@@ -2770,5 +2770,91 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "youAcceptedTheInvitation": "Sa võtsid kutse vastu",
+  "@youAcceptedTheInvitation": {},
+  "youUnbannedUser": "Sa eemaldasid suhtluskeelu kasutajalt {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Sa oled tühistanud kutse kasutajale {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youBannedUser": "Sa seadsid suhtluskeelu kasutajale {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youJoinedTheChat": "Sa liitusid vestlusega",
+  "@youJoinedTheChat": {},
+  "youKickedAndBanned": "Sa müksasid välja kasutaja {user} ning seadsid talle suhtluskeelu",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "showDirectChatsInSpaces": "Näita kogukonnasga seotud otsevestlusi",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyPrivacyWarning": "Palun arvesta, et sinu jutustuste lugejad näevad üksteist ning saavad üksteisega suhelda. Lood ise on loetavad vaid 24 tunni jooksul, kuid mitte miski ei taga, et nad kustutatakse kõikidest seadmetest ja serveritest.",
+  "@storyPrivacyWarning": {},
+  "thisUserHasNotPostedAnythingYet": "See kasutaja pole ühtegi jutustust veel avaldanud",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "storyFrom": "Lugu {date}:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "Palun arvesta, et sinu jutustuste lugejad näevad üksteist ning saavad üksteisega suhelda.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "whatIsGoingOn": "Mis toimub?",
+  "@whatIsGoingOn": {},
+  "youRejectedTheInvitation": "Sa lükkasid kutse tagasi",
+  "@youRejectedTheInvitation": {},
+  "youKicked": "Sa müksasid välja kasutaja {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Sa saatsid kutse kasutajale {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user} saatis sulle kutse",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "addToStory": "Lisa jutustusele",
+  "@addToStory": {},
+  "publish": "Avalda",
+  "@publish": {},
+  "whoCanSeeMyStories": "Kes näeb minu jutustusi?",
+  "@whoCanSeeMyStories": {},
+  "unsubscribeStories": "Loobu jutustuste tellimusest",
+  "@unsubscribeStories": {},
+  "yourStory": "Sinu jutustused",
+  "@yourStory": {}
 }
