@@ -2808,5 +2808,53 @@
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
+  },
+  "youRejectedTheInvitation": "Rexeitaches o convite",
+  "@youRejectedTheInvitation": {},
+  "youBannedUser": "Vetaches a {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user} convidoute",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youJoinedTheChat": "Unícheste á conversa",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Aceptaches o convite",
+  "@youAcceptedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Retiraches o convite para {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Convidaches a {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Expulsaches a {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Expulsaches e vetaches a {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Retiraches o veto a {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
   }
 }
