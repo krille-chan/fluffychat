@@ -1,1 +1,84 @@
-{}
+{
+  "commandHint_leave": "Palikti pokalbių kambarį",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "confirm": "Patvirtinti",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Atšaukti",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "Pakeitimai išsaugoti",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "Tavo vartotojo ID:",
+  "@yourUserId": {},
+  "edit": "Redaguoti",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "Atsisiųsti failą",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileSize": "Failo dydis",
+  "@fileSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "Draugai",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "Penktadienis",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "about": "Apie",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Visi",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "Paaukoti",
+  "@donate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Failo vardas",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "Pasikeisti slaptažodį",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Uždaryti",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
