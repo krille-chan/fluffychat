@@ -45,12 +45,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "Apakah Anda yakin ingin keluar?",
+  "areYouSureYouWantToLogout": "Apakah kamu yakin ingin keluar?",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Apa Anda yakin?",
+  "areYouSure": "Apakah kamu yakin?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -129,7 +129,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} mengundang Anda ke FluffyChat.\n1. Instal FluffyChat: https://fluffychat.im\n2. Daftar atau masuk\n3. Buka tautan undangan: {link}",
+  "inviteText": "{username} mengundang kamu ke FluffyChat. \n1. Instal FluffyChat: https://fluffychat.im \n2. Daftar atau masuk \n3. Buka tautan undangan: {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -187,7 +187,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Anda dapat mengabaikan pengguna yang mengganggu. Anda tidak akan dapat menerima pesan atau undangan ruang apapun dari pengguna di daftar abaian pribadi Anda.",
+  "ignoreListDescription": "Kamu bisa mengabaikan pengguna yang mengganggu. Kamu tidak akan dapat menerima pesan atau undangan ruang apa pun dari pengguna di daftar abaian pribadimu.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -312,7 +312,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "Masukkan homeserver Anda",
+  "enterYourHomeserver": "Masukkan homeserver-mu",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -349,7 +349,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Anda tidak akan bisa menonaktifkan enkripsi. Apa Anda yakin?",
+  "enableEncryptionWarning": "Kamu tidak akan bisa menonaktifkan enkripsi. Apakah kamu yakin?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -364,7 +364,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Anda harus memilih shortcode emote dan gambar!",
+  "emoteWarnNeedToPick": "Kamu harus memilih shortcode emote dan gambar!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -474,7 +474,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deactivateAccountWarning": "Ini akan menonaktifkan akun pengguna Anda. Ini tidak bisa dibatalkan! Apa Anda yakin?",
+  "deactivateAccountWarning": "Ini akan menonaktifkan akun penggunamu. Ini tidak bisa dibatalkan! Apakah kamu yakin?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -600,7 +600,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeYourAvatar": "Ubah avatar Anda",
+  "changeYourAvatar": "Ubah avatarmu",
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -829,12 +829,12 @@
       "username": {}
     }
   },
-  "askSSSSVerify": "Mohon masukkan frasa sandi atau kunci pemulihan penyimpanan aman Anda untuk memverifikasi sesi Anda.",
+  "askSSSSVerify": "Mohon masukkan frasa sandi atau kunci pemulihan penyimpanan aman kamu untuk memverifikasi sesimu.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Untuk dapat menandatangani orang lain, silakan masukkan frasa sandi atau kunci pemulihan penyimpanan aman Anda.",
+  "askSSSSSign": "Untuk dapat menandatangani orang lain, silakan masukkan frasa sandi atau kunci pemulihan penyimpanan aman kamu.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Cadangan chat Anda diamankan dengan kunci keamanan. Pastikan Anda untuk tidak menghilangkannya.",
+  "chatBackupDescription": "Cadangan chatmu diamankan dengan kunci keamanan. Pastikan kamu tidak menghilangkannya.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1067,7 +1067,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "Anda belum menambahkan cara untuk memulihkan kata sandi Anda.",
+  "noPasswordRecoveryDescription": "Kamu belum menambahkan cara untuk memulihkan kata sandimu.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1082,12 +1082,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Tampaknya Anda tidak memiliki layanan Google di ponsel Anda. Keputusan yang baik untuk privasi Anda! Untuk menerima pemberitahuan push di FluffyChat, sebaiknya Anda menggunakan https://microg.org/ atau https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Sepertinya kamu tidak memiliki layanan Google di ponselmu. Keputusan yang baik untuk privasimu! Untuk menerima pemberitahuan push di FluffyChat, sebaiknya kamu menggunakan https://microg.org/ atau https://unifiedpush.org/.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Anda hanya dapat mengaktifkan enkripsi setelah ruangan tidak lagi dapat diakses secara publik.",
+  "noEncryptionForPublicRooms": "Kamu hanya bisa mengaktifkan enkripsi setelah ruangan tidak lagi dapat diakses secara publik.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -1117,7 +1117,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Perlu diketahui bahwa Anda memerlukan Pantalaimon untuk menggunakan enkripsi ujung-ke-ujung untuk saat ini.",
+  "needPantalaimonWarning": "Perlu diketahui bahwa kamu memerlukan Pantalaimon untuk menggunakan enkripsi ujung-ke-ujung untuk saat ini.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1199,7 +1199,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youWillBeConnectedTo": "Anda akan dihubungkan ke {homeserver}",
+  "youWillBeConnectedTo": "Kamu akan dihubungkan ke {homeserver}",
   "@youWillBeConnectedTo": {
     "type": "text",
     "placeholders": {
@@ -1248,7 +1248,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeYourAvatar": "Hapus avatar Anda",
+  "removeYourAvatar": "Hapus avatarmu",
   "@removeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -1268,7 +1268,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Mohon masukkan kunci keamanan Anda:",
+  "pleaseEnterSecurityKey": "Mohon masukkan kunci keamananmu:",
   "@pleaseEnterSecurityKey": {
     "type": "text",
     "placeholders": {}
@@ -1335,42 +1335,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourPublicKey": "Kunci publik Anda",
+  "yourPublicKey": "Kunci publikmu",
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "yourOwnUsername": "Nama pengguna Anda sendiri",
+  "yourOwnUsername": "Nama penggunamu sendiri",
   "@yourOwnUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "yourChatsAreBeingSynced": "Chat Anda sedang disinkronasikan…",
+  "yourChatsAreBeingSynced": "Chatmu sedang disinkronasikan…",
   "@yourChatsAreBeingSynced": {
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Anda telah dicekal dari chat ini",
+  "youHaveBeenBannedFromThisChat": "Kamu telah dicekal dari chat ini",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youCannotInviteYourself": "Anda tidak bisa mengundang Anda sendiri",
+  "youCannotInviteYourself": "Kamu tidak bisa mengundang kamu sendiri",
   "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Anda tidak berpartisipasi lagi di chat ini",
+  "youAreNoLongerParticipatingInThisChat": "Kamu tidak berpartisipasi lagi di chat ini",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Anda diundang ke chat ini",
+  "youAreInvitedToThisChat": "Kamu diundang ke chat ini",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "you": "Anda",
+  "you": "Kamu",
   "@you": {
     "type": "text",
     "placeholders": {}
@@ -1385,7 +1385,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Dengan alamat ini Anda bisa memulihkan kata sandi Anda.",
+  "withTheseAddressesRecoveryDescription": "Dengan alamat ini kamu bisa memulihkan kata sandimu.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1395,7 +1395,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "Kenapa Anda ingin melaporkannya?",
+  "whyDoYouWantToReportThis": "Kenapa kamu ingin melaporkannya?",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
@@ -1410,7 +1410,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "Kami mengirim Anda email",
+  "weSentYouAnEmail": "Kami mengirim kamu sebuah email",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -1425,7 +1425,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "Enkripsi ujung-ke-ujung saat ini masih dalam beta! Gunakan dengan resiko Anda sendiri!",
+  "warningEncryptionInBeta": "Enkripsi ujung-ke-ujung saat ini masih dalam beta! Gunakan dengan risikomu sendiri!",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -1490,7 +1490,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Anda berhasil memverifikasi!",
+  "verifySuccess": "Kamu berhasil memverifikasi!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -1845,7 +1845,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentryInfo": "Informasi tentang privasi Anda: https://sentry.io/security/",
+  "sentryInfo": "Informasi tentang privasimu: https://sentry.io/security/",
   "@sentryInfo": {
     "type": "text",
     "placeholders": {}
@@ -2014,7 +2014,7 @@
       "username": {}
     }
   },
-  "pleaseEnterYourPassword": "Mohon masukkan kata sandi Anda",
+  "pleaseEnterYourPassword": "Mohon masukkan kata sandimu",
   "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
@@ -2096,7 +2096,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "serverRequiresEmail": "Server ini harus memvalidasi alamat email Anda untuk registrasi.",
+  "serverRequiresEmail": "Server ini harus memvalidasi alamat email kamu untuk registrasi.",
   "@serverRequiresEmail": {},
   "openInMaps": "Buka di peta",
   "@openInMaps": {
@@ -2115,7 +2115,7 @@
   "@editBundlesForAccount": {},
   "addAccount": "Tambah akun",
   "@addAccount": {},
-  "oneClientLoggedOut": "Salah satu client Anda telah keluar",
+  "oneClientLoggedOut": "Salah satu klienmu telah keluar",
   "@oneClientLoggedOut": {},
   "openCamera": "Buka kamera",
   "@openCamera": {
@@ -2149,17 +2149,17 @@
       "count": {}
     }
   },
-  "newUsernameDescription": "ID pengguna Anda akan memiliki format @namapengguna:namaserver",
+  "newUsernameDescription": "ID penggunamu akan memiliki format @namapengguna:namaserver",
   "@newUsernameDescription": {},
-  "newPasswordDescription": "Untuk bisa memulihkan kata sandi, Anda nanti harus menambahkan alamat email ke akun Anda.",
+  "newPasswordDescription": "Untuk bisa memulihkan kata sandi, kamu nanti harus menambahkan alamat email ke akunmu.",
   "@newPasswordDescription": {},
   "scanQrCode": "Pindai kode QR",
   "@scanQrCode": {},
   "typeInInviteLinkManually": "Masukkan tautan undangan secara manual...",
   "@typeInInviteLinkManually": {},
-  "shareYourInviteLink": "Bagikan tautan undangan Anda",
+  "shareYourInviteLink": "Bagikan tautan undanganmu",
   "@shareYourInviteLink": {},
-  "createNewChatExplaination": "Cukup pindai kode QR atau bagikan tautan undangan Anda jika Anda tidak bersebelahan.",
+  "createNewChatExplaination": "Cukup pindai kode QR atau bagikan tautan undanganmu jika kamu tidak bersebelahan.",
   "@createNewChatExplaination": {},
   "noMatrixServer": "{server1} itu bukan server Matrix, gunakan {server2} saja?",
   "@noMatrixServer": {
@@ -2174,7 +2174,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noCrossSignBootstrap": "FluffyChat saat ini tidak mendukung penandatanganan silang. Mohon mengaktifkannya di Element.",
+  "noCrossSignBootstrap": "FluffyChat saat ini tidak mendukung penandatanganan silang. Mohon aktifkan di Element.",
   "@noCrossSignBootstrap": {
     "type": "text",
     "placeholders": {}
@@ -2208,12 +2208,12 @@
       "brand": {}
     }
   },
-  "locationDisabledNotice": "Layanan lokasi dinonaktifkan. Mohon mengaktifkannya untuk bisa membagikan lokasi Anda.",
+  "locationDisabledNotice": "Layanan lokasi dinonaktifkan. Mohon diaktifkan untuk bisa membagikan lokasimu.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Izin lokasi ditolak. Mohon memberikan izin untuk bisa membagikan lokasi Anda.",
+  "locationPermissionDeniedNotice": "Izin lokasi ditolak. Mohon memberikan izin untuk bisa membagikan lokasimu.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
@@ -2279,7 +2279,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableChatBackup": "Aktifkan cadangan chat untuk tidak kehilangan akses chat Anda.",
+  "enableChatBackup": "Aktifkan cadangan chat untuk tidak kehilangan akses chatmu.",
   "@enableChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2381,12 +2381,12 @@
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHint_myroomnick": "Tetapkan nama tampilan Anda untuk ruangan ini",
+  "commandHint_myroomnick": "Tetapkan nama tampilanmu untuk ruangan ini",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHint_myroomavatar": "Tetapkan gambar Anda untuk ruangan ini (oleh uri-mxc)",
+  "commandHint_myroomavatar": "Tetapkan gambarmu untuk ruangan ini (oleh uri-mxc)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -2576,7 +2576,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "Mohon masukkan nama pengguna Anda",
+  "pleaseEnterYourUsername": "Mohon masukkan nama penggunamu",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -2586,7 +2586,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPin": "Mohon masukkan pin Anda",
+  "pleaseEnterYourPin": "Masukkan pin",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
@@ -2602,11 +2602,11 @@
   "@setupChatBackup": {},
   "iWroteDownTheKey": "Saya telah menuliskan kuncinya",
   "@iWroteDownTheKey": {},
-  "yourChatBackupHasBeenSetUp": "Cadangan pesan Anda telah disiapkan.",
+  "yourChatBackupHasBeenSetUp": "Cadangan pesanmu telah disiapkan.",
   "@yourChatBackupHasBeenSetUp": {},
-  "yourUserId": "ID pengguna Anda:",
+  "yourUserId": "ID penggunamu:",
   "@yourUserId": {},
-  "setupChatBackupDescription": "Untuk melindungi pesan Anda, kami telah membuat kunci keamanan untuk Anda.\nSilakan simpan kuncinya di tempat yang aman, seperti manajer kata sandi.",
+  "setupChatBackupDescription": "Untuk melindungi pesanmu, kami telah membuat kunci keamanan untukmu.\nSilakan simpan kuncinya di tempat yang aman, seperti manajer kata sandi.",
   "@setupChatBackupDescription": {},
   "unverified": "Tidak terverifikasi",
   "@unverified": {},
@@ -2637,7 +2637,7 @@
   "@addToSpaceDescription": {},
   "start": "Mulai",
   "@start": {},
-  "setupChatBackupNow": "Mulai menyiapkan cadangan chat Anda",
+  "setupChatBackupNow": "Mulai menyiapkan cadangan chatmu",
   "@setupChatBackupNow": {},
   "saveTheSecurityKeyNow": "Simpan kunci keamanannya",
   "@saveTheSecurityKeyNow": {},
@@ -2647,7 +2647,7 @@
   "@removeFromSpaceDescription": {},
   "removeFromSpace": "Hilangkan dari space",
   "@removeFromSpace": {},
-  "pleaseEnterSecurityKeyDescription": "Untuk mengakses cadangan chat Anda, mohon masukkan kunci keamanan Anda yang telah dibuat di sesi sebelumnya. Kunci keamanan Anda BUKAN kata sandi Anda.",
+  "pleaseEnterSecurityKeyDescription": "Untuk mengakses cadangan chatmu, mohon masukkan kunci keamanan kamu yang telah dibuat di sesi sebelumnya. Kunci keamananmu BUKAN kata sandimu.",
   "@pleaseEnterSecurityKeyDescription": {},
   "commandHint_clearcache": "Bersihkan cache",
   "@commandHint_clearcache": {
@@ -2684,7 +2684,7 @@
   "@whoCanSeeMyStories": {},
   "unsubscribeStories": "Batalkan langganan cerita",
   "@unsubscribeStories": {},
-  "yourStory": "Cerita Anda",
+  "yourStory": "Ceritamu",
   "@yourStory": {},
   "replyHasBeenSent": "Balasan telah dikirim",
   "@replyHasBeenSent": {},
@@ -2708,7 +2708,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoCanSeeMyStoriesDesc": "Diingat bahwa orang-orang dapat melihat dan kontak sesama di cerita Anda.",
+  "whoCanSeeMyStoriesDesc": "Diingat bahwa orang-orang dapat melihat dan kontak sesama di ceritamu.",
   "@whoCanSeeMyStoriesDesc": {},
   "whatIsGoingOn": "Apa yang sedang terjadi?",
   "@whatIsGoingOn": {},
@@ -2716,7 +2716,7 @@
   "@addDescription": {},
   "iUnderstand": "Saya mengerti",
   "@iUnderstand": {},
-  "storyPrivacyWarning": "Diingat bahwa orang-orang dapat melihat dan kontak satu bersama di cerita Anda. Cerita Anda akan terlihat selama 24 jam tetapi tidak ada jaminan bahwa itu akan dihapus oleh semua perangkat dan server.",
+  "storyPrivacyWarning": "Diingat bahwa orang-orang dapat melihat dan kontak satu bersama di ceritamu. Ceritamu akan terlihat selama 24 jam tetapi tidak ada jaminan bahwa itu akan dihapus oleh semua perangkat dan server.",
   "@storyPrivacyWarning": {},
   "dismiss": "Abaikan",
   "@dismiss": {},
@@ -2746,7 +2746,7 @@
   "@pinMessage": {},
   "pinnedEventsError": "Terjadi kesalahan memuat pesan-pesan yang disematkan",
   "@pinnedEventsError": {},
-  "confirmEventUnpin": "Apakah Anda yakin untuk melepaskan pin peristiwa ini secara permanen?",
+  "confirmEventUnpin": "Apakah kamu yakin untuk melepaskan pin peristiwa ini secara permanen?",
   "@confirmEventUnpin": {},
   "unsupportedAndroidVersionLong": "Fitur ini memerlukan versi Android yang baru. Mohon periksa untuk pembaruan atau dukungan LineageOS.",
   "@unsupportedAndroidVersionLong": {},
@@ -2803,49 +2803,49 @@
     "type": "text",
     "placeholders": {}
   },
-  "youInvitedBy": "Anda telah diundang oleh {user}",
+  "youInvitedBy": "Kamu telah diundang oleh {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Anda mengundang {user}",
+  "youInvitedUser": "Kamu mengundang {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Anda mengeluarkan {user}",
+  "youKicked": "Kamu mengeluarkan {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Anda mengeluarkan dan mencekal {user}",
+  "youKickedAndBanned": "Kamu mengeluarkan dan mencekal {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
     }
   },
-  "youRejectedTheInvitation": "Anda menolak undangannya",
+  "youRejectedTheInvitation": "Kamu menolak undangannya",
   "@youRejectedTheInvitation": {},
-  "youJoinedTheChat": "Anda bergabung ke obrolan",
+  "youJoinedTheChat": "Kamu bergabung ke obrolan",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Anda menerima undangannya",
+  "youAcceptedTheInvitation": "Kamu menerima undangannya",
   "@youAcceptedTheInvitation": {},
-  "youBannedUser": "Anda mencekal {user}",
+  "youBannedUser": "Kamu mencekal {user}",
   "@youBannedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youHaveWithdrawnTheInvitationFor": "Anda telah membatalkan undangan untuk {user}",
+  "youHaveWithdrawnTheInvitationFor": "Kamu telah membatalkan undangan untuk {user}",
   "@youHaveWithdrawnTheInvitationFor": {
     "placeholders": {
       "user": {}
     }
   },
-  "youUnbannedUser": "Anda membatalkan cekalan {user}",
+  "youUnbannedUser": "Kamu membatalkan cekalan {user}",
   "@youUnbannedUser": {
     "placeholders": {
       "user": {}
