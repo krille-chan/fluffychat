@@ -80,5 +80,89 @@
   "@close": {
     "type": "text",
     "placeholders": {}
+  },
+  "archive": "Archyvas",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPlay": "Groti",
+  "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "Pirmadienis",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "skip": "Praleisti",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sunday": "Sekmadienis",
+  "@sunday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tuesday": "Antradienis",
+  "@tuesday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewFriend": "Pridėti naują draugą",
+  "@addNewFriend": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "audioPlayerPause": "Pauzė",
+  "@audioPlayerPause": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Dalintis",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showPassword": "Rodyti slaptažodį",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "Laikas",
+  "@time": {},
+  "settings": "Nustatymai",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thursday": "Ketvirtadienis",
+  "@thursday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sender": "Siuntėjas",
+  "@sender": {},
+  "yes": "Taip",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "Tu",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Atsijungti",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Žinutės",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
   }
 }
