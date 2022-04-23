@@ -5,8 +5,8 @@ flutter pub get
 cd ios
 rm -rf Pods
 rm Podfile.lock
-pod install
-pod update
+arch -x86_64 pod install
+arch -x86_64 pod update
 cd ..
 flutter build ios --release
 cd ios
