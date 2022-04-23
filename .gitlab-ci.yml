@@ -1,6 +1,7 @@
-image:
-  name: cirrusci/flutter:2.10.1
+variables:
+  FLUTTER_VERSION: 2.10.4
 
+image: cirrusci/flutter:${FLUTTER_VERSION}
 
 .shared_windows_runners:
   tags:
@@ -29,6 +30,22 @@ code_analyze_beta:
 test:
   stage: coverage
   script: [flutter test]
+
+integration_test:
+  image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
+  stage: coverage
+  before_script:
+    - chmod 777 -R /dev/kvm
+    - adb start-server
+    - emulator -avd test -no-audio -no-boot-anim -no-window -accel on -gpu swiftshader_indirect &
+    - sleep 10
+  script:
+    - flutter pub get
+    - flutter test integration_test
+  tags:
+    - famedly
+    - docker
+  timeout: 20m
 
 build_web:
   stage: coverage
