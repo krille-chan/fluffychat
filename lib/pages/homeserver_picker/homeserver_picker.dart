@@ -34,9 +34,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void _updateFocus() {
     if (benchmarkResults == null) _loadHomeserverList();
-    setState(() {
-      displayServerList = homeserverFocusNode.hasFocus;
-    });
+    if (homeserverFocusNode.hasFocus) {
+      setState(() {
+        displayServerList = true;
+      });
+    }
   }
 
   void showServerInfo(HomeserverBenchmarkResult server) => showModalBottomSheet(
@@ -76,6 +78,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         homeserverController.text = server;
         searchTerm = '';
         homeserverFocusNode.unfocus();
+        displayServerList = false;
       });
 
   /// Starts an analysis of the given homeserver. It uses the current domain and

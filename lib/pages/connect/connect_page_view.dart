@@ -36,48 +36,52 @@ class ConnectPageView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(
-                child: Material(
-                  borderRadius: BorderRadius.circular(64),
-                  elevation: 10,
-                  color: Colors.transparent,
-                  child: CircleAvatar(
-                    radius: 64,
-                    backgroundColor: Colors.white.withAlpha(200),
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: avatar == null
-                              ? const Icon(
-                                  Icons.person_outlined,
-                                  color: Colors.black,
-                                  size: 64,
-                                )
-                              : FutureBuilder<Uint8List>(
-                                  future: avatar.readAsBytes(),
-                                  builder: (context, snapshot) {
-                                    final bytes = snapshot.data;
-                                    if (bytes == null) {
-                                      return const CircularProgressIndicator
-                                          .adaptive();
-                                    }
-                                    return Image.memory(bytes);
-                                  },
-                                ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: FloatingActionButton(
-                            mini: true,
-                            onPressed: controller.pickAvatar,
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black,
-                            child: const Icon(Icons.camera_alt_outlined),
-                          ),
-                        ),
-                      ],
+                child: Stack(
+                  children: [
+                    Material(
+                      borderRadius: BorderRadius.circular(64),
+                      elevation: 10,
+                      color: Colors.transparent,
+                      clipBehavior: Clip.hardEdge,
+                      child: CircleAvatar(
+                        radius: 64,
+                        backgroundColor: Colors.white.withAlpha(200),
+                        child: avatar == null
+                            ? const Icon(
+                                Icons.person_outlined,
+                                color: Colors.black,
+                                size: 64,
+                              )
+                            : FutureBuilder<Uint8List>(
+                                future: avatar.readAsBytes(),
+                                builder: (context, snapshot) {
+                                  final bytes = snapshot.data;
+                                  if (bytes == null) {
+                                    return const CircularProgressIndicator
+                                        .adaptive();
+                                  }
+                                  return Image.memory(
+                                    bytes,
+                                    fit: BoxFit.cover,
+                                    width: 128,
+                                    height: 128,
+                                  );
+                                },
+                              ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: FloatingActionButton(
+                        mini: true,
+                        onPressed: controller.pickAvatar,
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        child: const Icon(Icons.camera_alt_outlined),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
