@@ -38,12 +38,18 @@ class SignupPageView extends StatelessWidget {
                 obscureText: !controller.showPassword,
                 validator: controller.password1TextFieldValidator,
                 decoration: FluffyThemes.loginTextFieldDecoration(
-                  prefixIcon: const Icon(Icons.vpn_key_outlined),
+                  prefixIcon: const Icon(
+                    Icons.vpn_key_outlined,
+                    color: Colors.black,
+                  ),
                   suffixIcon: IconButton(
                     tooltip: L10n.of(context)!.showPassword,
-                    icon: Icon(controller.showPassword
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined),
+                    icon: Icon(
+                      controller.showPassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                      color: Colors.black,
+                    ),
                     onPressed: controller.toggleShowPassword,
                   ),
                   hintText: L10n.of(context)!.chooseAStrongPassword,
@@ -61,7 +67,10 @@ class SignupPageView extends StatelessWidget {
                     controller.loading ? null : [AutofillHints.username],
                 validator: controller.emailTextFieldValidator,
                 decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(Icons.mail_outlined),
+                    prefixIcon: const Icon(
+                      Icons.mail_outlined,
+                      color: Colors.black,
+                    ),
                     hintText: L10n.of(context)!.enterAnEmailAddress,
                     errorText: controller.error),
               ),

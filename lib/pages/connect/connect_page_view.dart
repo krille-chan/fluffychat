@@ -90,8 +90,12 @@ class ConnectPageView extends StatelessWidget {
               child: TextField(
                 controller: controller.usernameController,
                 onSubmitted: (_) => controller.signUp(),
+                style: FluffyThemes.loginTextFieldStyle,
                 decoration: FluffyThemes.loginTextFieldDecoration(
-                  prefixIcon: const Icon(Icons.account_box_outlined),
+                  prefixIcon: const Icon(
+                    Icons.account_box_outlined,
+                    color: Colors.black,
+                  ),
                   hintText: L10n.of(context)!.chooseAUsername,
                   errorText: controller.signupError,
                 ),

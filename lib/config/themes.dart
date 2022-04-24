@@ -13,6 +13,8 @@ abstract class FluffyThemes {
   static const fallbackTextStyle =
       TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
 
+  static const TextStyle loginTextFieldStyle = TextStyle(color: Colors.black);
+
   static InputDecoration loginTextFieldDecoration({
     String? errorText,
     String? labelText,
@@ -26,6 +28,9 @@ abstract class FluffyThemes {
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
+        suffixIconColor: Colors.black,
+        prefixIconColor: Colors.black,
+        iconColor: Colors.black,
         errorText: errorText,
         errorStyle: TextStyle(
           color: Colors.red.shade200,
@@ -37,6 +42,7 @@ abstract class FluffyThemes {
             ),
           ],
         ),
+        hintStyle: TextStyle(color: Colors.grey.shade700),
         labelStyle: const TextStyle(
           color: Colors.white,
           shadows: [

@@ -44,10 +44,14 @@ class LoginView extends StatelessWidget {
                   controller: controller.usernameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
+                  style: FluffyThemes.loginTextFieldStyle,
                   autofillHints:
                       controller.loading ? null : [AutofillHints.username],
                   decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(Icons.account_box_outlined),
+                    prefixIcon: const Icon(
+                      Icons.account_box_outlined,
+                      color: Colors.black,
+                    ),
                     errorText: controller.usernameError,
                     hintText: L10n.of(context)!.emailOrUsername,
                   ),
@@ -64,14 +68,21 @@ class LoginView extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                   obscureText: !controller.showPassword,
                   onSubmitted: controller.login,
+                  style: FluffyThemes.loginTextFieldStyle,
                   decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(Icons.lock_outlined),
+                    prefixIcon: const Icon(
+                      Icons.lock_outlined,
+                      color: Colors.black,
+                    ),
                     errorText: controller.passwordError,
                     suffixIcon: IconButton(
                       tooltip: L10n.of(context)!.showPassword,
-                      icon: Icon(controller.showPassword
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined),
+                      icon: Icon(
+                        controller.showPassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.black,
+                      ),
                       onPressed: controller.toggleShowPassword,
                     ),
                     hintText: L10n.of(context)!.password,
