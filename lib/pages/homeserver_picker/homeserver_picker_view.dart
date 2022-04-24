@@ -40,10 +40,14 @@ class HomeserverPickerView extends StatelessWidget {
                     focusNode: controller.homeserverFocusNode,
                     controller: controller.homeserverController,
                     onChanged: controller.onChanged,
+                    style: FluffyThemes.loginTextFieldStyle,
                     decoration: FluffyThemes.loginTextFieldDecoration(
                       labelText: L10n.of(context)!.homeserver,
                       hintText: L10n.of(context)!.enterYourHomeserver,
-                      suffixIcon: const Icon(Icons.search),
+                      suffixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      ),
                       errorText: controller.error,
                     ),
                     readOnly: !AppConfig.allowOtherHomeservers,
@@ -70,7 +74,10 @@ class HomeserverPickerView extends StatelessWidget {
                                   .map(
                                     (server) => ListTile(
                                       trailing: IconButton(
-                                        icon: const Icon(Icons.info_outlined),
+                                        icon: const Icon(
+                                          Icons.info_outlined,
+                                          color: Colors.black,
+                                        ),
                                         onPressed: () =>
                                             controller.showServerInfo(server),
                                       ),
@@ -78,9 +85,14 @@ class HomeserverPickerView extends StatelessWidget {
                                           server.homeserver.baseUrl.host),
                                       title: Text(
                                         server.homeserver.baseUrl.host,
+                                        style: const TextStyle(
+                                            color: Colors.black),
                                       ),
                                       subtitle: Text(
-                                          server.homeserver.description ?? ''),
+                                        server.homeserver.description ?? '',
+                                        style: TextStyle(
+                                            color: Colors.grey.shade700),
+                                      ),
                                     ),
                                   )
                                   .toList(),
