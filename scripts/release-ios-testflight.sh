@@ -1,5 +1,4 @@
 #!/bin/sh -ve
-git apply ./scripts/enable-android-google-services.patch
 flutter clean
 flutter pub get
 cd ios
