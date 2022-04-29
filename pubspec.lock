@@ -291,7 +291,7 @@ packages:
     source: hosted
     version: "1.0.6"
   dbus:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: dbus
       url: "https://pub.dartlang.org"
@@ -1315,7 +1315,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.3"
   pub_semver:
     dependency: transitive
     description:
@@ -1340,12 +1340,10 @@ packages:
   qr_code_scanner:
     dependency: "direct main"
     description:
-      path: "."
-      ref: fix_break_changes_platform
-      resolved-ref: "0feca6f15042c279ff575c559a3430df917b623d"
-      url: "https://github.com/xeinebiu/qr_code_scanner.git"
-    source: git
-    version: "0.7.0"
+      name: qr_code_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   qr_flutter:
     dependency: "direct main"
     description:
@@ -1710,6 +1708,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  tor_detector_web:
+    dependency: "direct main"
+    description:
+      name: tor_detector_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   tuple:
     dependency: transitive
     description:
