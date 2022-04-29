@@ -206,12 +206,13 @@ build_linux_appimage_x86:
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
     - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
-    - appimagetool FluffyChat.AppDir
+    - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-x86_64.AppImage.zsync" FluffyChat.AppDir
   allow_failure: true
   artifacts:
     when: on_success
     paths:
       - appimage/FluffyChat-x86_64.AppImage
+      - appimage/FluffyChat-x86_64.AppImage.zsync
 
 build_linux_appimage_arm64:
   stage: deploy
@@ -225,13 +226,14 @@ build_linux_appimage_arm64:
     - cp -r build/linux/arm64/release/bundle appimage/FluffyChat.AppDir
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
-    - cp assets/logo.svg FluffyChat.AppDir/fluffychat.svg
-    - appimagetool FluffyChat.AppDir
+    - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
+    - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-arm64.AppImage.zsync" FluffyChat.AppDir
   allow_failure: true
   artifacts:
     when: on_success
     paths:
       - appimage/FluffyChat-arm64.AppImage
+      - appimage/FluffyChat-arm64.AppImage.zsync
 
 update-dependencies:
   stage: coverage
@@ -289,6 +291,8 @@ upload-linux-x86:
     - tar czf package.tar.gz -C build/linux/x64/release/bundle/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-x86_64.AppImage ${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-x86_64.AppImage.zsync ${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage.zsync
 
 upload-linux-arm64:
   extends: .release
@@ -296,6 +300,9 @@ upload-linux-arm64:
     - tar czf package.tar.gz -C build/linux/arm64/release/bundle/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-arm64.AppImage ${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-arm64.AppImage.zsync ${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage.zsync
+
 
 upload-windows:
   extends: .release
@@ -326,3 +333,7 @@ release:
         --assets-link "{\"name\":\"fluffychat-linux-arm64.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-windows.zip\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip\"}" \
         --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
+        --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage\",\"filepath\":\"/FluffyChat-x86_64.AppImage\"}"
+        --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage.zsync\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage.zsync\",\"filepath\":\"/FluffyChat-x86_64.AppImage.zsync\"}"
+        --assets-link "{\"name\":\"FluffyChat-arm64.AppImage\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage\",\"filepath\":\"/FluffyChat-arm64.AppImage\"}"
+        --assets-link "{\"name\":\"FluffyChat-arm64.AppImage.zsync\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage.zsync\",\"filepath\":\"/FluffyChat-arm64.AppImage.zsync\"}"
