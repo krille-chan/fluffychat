@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=FluffyChat
+Comment=Matrix Client. Chat with your friends
+Exec=AppRun
+Icon=fluffychat
+Terminal=false
+Categories=Network;Chat;InstantMessaging;X-Matrix;
