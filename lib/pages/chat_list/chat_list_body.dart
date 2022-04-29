@@ -204,6 +204,23 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                         ),
                       ),
                     ),
+                    AnimatedContainer(
+                      height: widget.controller.isTorBrowser ? 64 : 0,
+                      duration: const Duration(milliseconds: 300),
+                      clipBehavior: Clip.hardEdge,
+                      curve: Curves.bounceInOut,
+                      decoration: const BoxDecoration(),
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surface,
+                        child: ListTile(
+                          leading: const Icon(Icons.vpn_key),
+                          title: Text(L10n.of(context)!.dehydrateTor),
+                          subtitle: Text(L10n.of(context)!.dehydrateTorLong),
+                          trailing: const Icon(Icons.chevron_right_outlined),
+                          onTap: widget.controller.dehydrate,
+                        ),
+                      ),
+                    ),
                     if (widget.controller.isSearchMode)
                       _SearchTitle(
                         title: L10n.of(context)!.chats,

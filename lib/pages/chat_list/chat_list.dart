@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -23,6 +24,10 @@ import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
+import '../settings_account/settings_account.dart';
+
+import 'package:fluffychat/utils/tor_stub.dart'
+    if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 enum SelectMode { normal, share, select }
 
@@ -142,6 +147,8 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
         roomSearchResult = userSearchResult = null;
         isSearching = false;
       });
+
+  bool isTorBrowser = false;
 
   SpacesEntry get activeSpacesEntry {
     final id = _activeSpacesEntry;
@@ -300,6 +307,9 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       searchServer = await Store().getItem(_serverStoreNamespace);
     });
+
+    _checkTorBrowser();
+
     super.initState();
   }
 
@@ -652,6 +662,15 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   void _hackyWebRTCFixForWeb() {
     Matrix.of(context).voipPlugin?.context = context;
   }
+
+  Future<void> _checkTorBrowser() async {
+    if (!kIsWeb) return;
+    final isTor = await TorBrowserDetector.isTorBrowser;
+    setState(() => isTorBrowser = isTor);
+  }
+
+  Future<void> dehydrate() =>
+      SettingsAccountController.dehydrateDevice(context);
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

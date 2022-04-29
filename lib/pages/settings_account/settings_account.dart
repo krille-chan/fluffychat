@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -136,5 +141,37 @@ class SettingsAccountController extends State<SettingsAccount> {
       return p;
     });
     return SettingsAccountView(this);
+  }
+
+  Future<void> dehydrateAction() => dehydrateDevice(context);
+
+  static Future<void> dehydrateDevice(BuildContext context) async {
+    final response = await showOkCancelAlertDialog(
+      context: context,
+      isDestructiveAction: true,
+      title: L10n.of(context)!.dehydrate,
+      message: L10n.of(context)!.dehydrateWarning,
+    );
+    if (response != OkCancelResult.ok) {
+      return;
+    }
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        try {
+          final export = await Matrix.of(context).client.exportDump();
+          final filePickerCross = FilePickerCross(
+              Uint8List.fromList(const Utf8Codec().encode(export!)),
+              path:
+                  '/fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup',
+              fileExtension: 'fluffybackup');
+          await filePickerCross.exportToStorage(
+            subject: L10n.of(context)!.dehydrateShare,
+          );
+        } catch (e, s) {
+          Logs().e('Export error', e, s);
+        }
+      },
+    );
   }
 }

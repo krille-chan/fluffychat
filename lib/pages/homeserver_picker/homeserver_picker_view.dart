@@ -24,6 +24,29 @@ class HomeserverPickerView extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // display a prominent banner to import session for TOR browser
+            // users. This feature is just some UX sugar as TOR users are
+            // usually forced to logout as TOR browser is non-persistent
+            AnimatedContainer(
+              height: controller.isTorBrowser ? 64 : 0,
+              duration: const Duration(milliseconds: 300),
+              clipBehavior: Clip.hardEdge,
+              curve: Curves.bounceInOut,
+              decoration: const BoxDecoration(),
+              child: Material(
+                clipBehavior: Clip.hardEdge,
+                borderRadius:
+                    const BorderRadius.vertical(bottom: Radius.circular(8)),
+                color: Theme.of(context).colorScheme.surface,
+                child: ListTile(
+                  leading: const Icon(Icons.vpn_key),
+                  title: Text(L10n.of(context)!.hydrateTor),
+                  subtitle: Text(L10n.of(context)!.hydrateTorLong),
+                  trailing: const Icon(Icons.chevron_right_outlined),
+                  onTap: controller.restoreBackup,
+                ),
+              ),
+            ),
             Expanded(
               child: ListView(
                 children: [
@@ -138,6 +161,30 @@ class HomeserverPickerView extends StatelessWidget {
                       ? const LinearProgressIndicator()
                       : Text(L10n.of(context)!.connect),
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: ExpansionTile(
+                title: Text(L10n.of(context)!.advanced),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                      onPressed: controller.isLoading
+                          ? () {}
+                          : controller.restoreBackup,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white.withAlpha(200),
+                        onPrimary: Colors.black,
+                        shadowColor: Colors.white,
+                      ),
+                      child: controller.isLoading
+                          ? const LinearProgressIndicator()
+                          : Text(L10n.of(context)!.hydrate),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

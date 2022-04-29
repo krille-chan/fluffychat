@@ -291,7 +291,7 @@ packages:
     source: hosted
     version: "1.0.6"
   dbus:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: dbus
       url: "https://pub.dartlang.org"
@@ -1701,6 +1701,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  tor_detector_web:
+    dependency: "direct main"
+    description:
+      name: tor_detector_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   tuple:
     dependency: transitive
     description:

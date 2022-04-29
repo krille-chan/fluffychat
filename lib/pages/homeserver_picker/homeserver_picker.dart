@@ -1,7 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 import 'package:vrouter/vrouter.dart';
@@ -11,6 +17,9 @@ import 'package:fluffychat/pages/homeserver_picker/homeserver_bottom_sheet.dart'
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
+
+import 'package:fluffychat/utils/tor_stub.dart'
+    if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 class HomeserverPicker extends StatefulWidget {
   const HomeserverPicker({Key? key}) : super(key: key);
@@ -32,6 +41,26 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   bool get loadingHomeservers =>
       AppConfig.allowOtherHomeservers && benchmarkResults == null;
   String searchTerm = '';
+
+  bool isTorBrowser = false;
+
+  Future<void> _checkTorBrowser() async {
+    if (!kIsWeb) return;
+
+    Hive.openBox('test').then((value) => null).catchError(
+      (e, s) async {
+        await showOkAlertDialog(
+            context: context,
+            title: L10n.of(context)!.indexedDbErrorTitle,
+            message: L10n.of(context)!.indexedDbErrorLong,
+            onWillPop: () async => false);
+        _checkTorBrowser();
+      },
+    );
+
+    final isTor = await TorBrowserDetector.isTorBrowser;
+    setState(() => isTorBrowser = isTor);
+  }
 
   void _updateFocus() {
     if (benchmarkResults == null) _loadHomeserverList();
@@ -139,6 +168,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   @override
   void initState() {
     homeserverFocusNode.addListener(_updateFocus);
+    _checkTorBrowser();
     super.initState();
   }
 
@@ -146,5 +176,21 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
     return HomeserverPickerView(this);
+  }
+
+  Future<void> restoreBackup() async {
+    await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          try {
+            final file = await FilePickerCross.importFromStorage(
+                fileExtension: '.fluffybackup');
+            final client = Matrix.of(context).getLoginClient();
+            await client.importDump(file.toString());
+            Matrix.of(context).initMatrix();
+          } catch (e, s) {
+            Logs().e('Future error:', e, s);
+          }
+        });
   }
 }

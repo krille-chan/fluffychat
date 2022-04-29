@@ -52,6 +52,14 @@ class SettingsAccountView extends StatelessWidget {
               ),
               const Divider(height: 1),
               ListTile(
+                trailing: const Icon(Icons.tap_and_play),
+                title: Text(
+                  L10n.of(context)!.dehydrate,
+                  style: const TextStyle(color: Colors.red),
+                ),
+                onTap: controller.dehydrateAction,
+              ),
+              ListTile(
                 trailing: const Icon(Icons.delete_outlined),
                 title: Text(
                   L10n.of(context)!.deleteAccount,

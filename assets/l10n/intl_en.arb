@@ -1304,6 +1304,15 @@
       "count": {}
     }
   },
+  "dehydrate": "Export session and wipe device",
+  "dehydrateWarning": "This action cannot be undone. Ensure you safely store the backup file.",
+  "dehydrateShare": "This is your private FluffyChat export. Ensure you don't lose it and keep it private.",
+  "dehydrateTor": "TOR Users: Export session",
+  "dehydrateTorLong": "For TOR users, it is recommended to export the session before closing the window.",
+  "hydrateTor": "TOR Users: Import session export",
+  "hydrateTorLong": "Did you export your session last time on TOR? Quickly import it and continue chatting.",
+  "hydrate": "Restore from backup file",
+  "advanced": "Advanced",
   "loadingPleaseWait": "Loading… Please wait.",
   "@loadingPleaseWait": {
     "type": "text",
@@ -2752,6 +2761,8 @@
   "@experimentalVideoCalls": {},
   "emailOrUsername": "Email or username",
   "@emailOrUsername": {},
+  "indexedDbErrorTitle": "Private mode issues",
+  "indexedDbErrorLong": "The message storage is unfortunately not enabled in private mode by default.\nPlease visit\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\nOtherwise, it is not possible to run FluffyChat.",
   "switchToAccount": "Switch to account {number}",
   "@switchToAccount": {
     "type": "number",
