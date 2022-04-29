@@ -205,8 +205,7 @@ build_linux_appimage_x86:
     - cp -r build/linux/x64/release/bundle appimage/FluffyChat.AppDir
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
-    - mkdir -p FluffyChat.AppDir/usr/share/icons
-    - cp ../assets/logo.png FluffyChat.AppDir/usr/share/icons/fluffychat.png
+    - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
     - appimagetool FluffyChat.AppDir
   allow_failure: true
   artifacts:
@@ -218,6 +217,7 @@ build_linux_appimage_arm64:
   stage: deploy
   image: appimagecrafters/appimage-builder
   needs: [build_linux_arm64]
+  tags: [docker_arm64]
   only:
     - main
     - tags
@@ -225,8 +225,7 @@ build_linux_appimage_arm64:
     - cp -r build/linux/arm64/release/bundle appimage/FluffyChat.AppDir
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
-    - mkdir -p FluffyChat.AppDir/usr/share/icons
-    - cp assets/logo.png FluffyChat.AppDir/usr/share/icons/fluffychat.png
+    - cp assets/logo.svg FluffyChat.AppDir/fluffychat.svg
     - appimagetool FluffyChat.AppDir
   allow_failure: true
   artifacts:
