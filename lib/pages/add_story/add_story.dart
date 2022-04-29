@@ -73,16 +73,12 @@ class AddStoryController extends State<AddStoryPage> {
     );
     final fileName = picked.fileName;
     if (fileName == null) return;
-    final shrinked = await showFutureLoadingDialog(
-      context: context,
-      future: () => MatrixImageFile.shrink(
-        bytes: picked.toUint8List(),
-        name: fileName,
-        compute: Matrix.of(context).client.runInBackground,
-      ),
+    final matrixFile = MatrixImageFile(
+      bytes: picked.toUint8List(),
+      name: fileName,
     );
     setState(() {
-      image = shrinked.result;
+      image = matrixFile;
     });
   }
 
@@ -91,19 +87,18 @@ class AddStoryController extends State<AddStoryPage> {
       source: ImageSource.camera,
     );
     if (picked == null) return;
-    final shrinked = await showFutureLoadingDialog(
+    final matrixFile = await showFutureLoadingDialog(
         context: context,
         future: () async {
           final bytes = await picked.readAsBytes();
-          return await MatrixImageFile.shrink(
+          return MatrixImageFile(
             bytes: bytes,
             name: picked.name,
-            compute: Matrix.of(context).client.runInBackground,
           );
         });
 
     setState(() {
-      image = shrinked.result;
+      image = matrixFile.result;
     });
   }
 
