@@ -194,6 +194,46 @@ build_linux_arm64:
     paths:
       - build/linux/arm64/release/bundle/
 
+build_linux_appimage_x86:
+  stage: deploy
+  image: appimagecrafters/appimage-builder
+  needs: [build_linux_x86]
+  only:
+    - main
+    - tags
+  script:
+    - cp -r build/linux/x64/release/bundle appimage/FluffyChat.AppDir
+    - cd appimage
+    - cp FluffyChat.desktop FluffyChat.AppDir/
+    - mkdir -p FluffyChat.AppDir/usr/share/icons
+    - cp ../assets/logo.png FluffyChat.AppDir/usr/share/icons/fluffychat.png
+    - appimagetool FluffyChat.AppDir
+  allow_failure: true
+  artifacts:
+    when: on_success
+    paths:
+      - appimage/FluffyChat-x86_64.AppImage
+
+build_linux_appimage_arm64:
+  stage: deploy
+  image: appimagecrafters/appimage-builder
+  needs: [build_linux_arm64]
+  only:
+    - main
+    - tags
+  script:
+    - cp -r build/linux/arm64/release/bundle appimage/FluffyChat.AppDir
+    - cd appimage
+    - cp FluffyChat.desktop FluffyChat.AppDir/
+    - mkdir -p FluffyChat.AppDir/usr/share/icons
+    - cp assets/logo.png FluffyChat.AppDir/usr/share/icons/fluffychat.png
+    - appimagetool FluffyChat.AppDir
+  allow_failure: true
+  artifacts:
+    when: on_success
+    paths:
+      - appimage/FluffyChat-arm64.AppImage
+
 update-dependencies:
   stage: coverage
   needs: []
