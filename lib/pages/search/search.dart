@@ -63,11 +63,11 @@ class SearchController extends State<Search> {
         cancelLabel: L10n.of(context)!.cancel,
         textFields: [
           DialogTextField(
-            prefixText: 'https://',
-            hintText: Matrix.of(context).client.homeserver?.host,
-            initialText: server,
-            keyboardType: TextInputType.url,
-          )
+              prefixText: 'https://',
+              hintText: Matrix.of(context).client.homeserver?.host,
+              initialText: server,
+              keyboardType: TextInputType.url,
+              autocorrect: false)
         ]);
     if (newServer == null) return;
     Store().setItem(_serverStoreNamespace, newServer.single);
