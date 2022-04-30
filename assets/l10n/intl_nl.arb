@@ -2855,5 +2855,7 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "showSpaces": "Spaces-lijst tonen",
+  "@showSpaces": {}
 }
