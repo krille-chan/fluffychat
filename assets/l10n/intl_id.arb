@@ -2850,5 +2850,7 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "showSpaces": "Tampilkan daftar space",
+  "@showSpaces": {}
 }
