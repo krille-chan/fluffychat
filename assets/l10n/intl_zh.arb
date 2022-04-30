@@ -2856,5 +2856,7 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "showSpaces": "显示空间列表",
+  "@showSpaces": {}
 }
