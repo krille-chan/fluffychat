@@ -2856,5 +2856,7 @@
   "unsubscribeStories": "Loobu jutustuste tellimusest",
   "@unsubscribeStories": {},
   "yourStory": "Sinu jutustused",
-  "@yourStory": {}
+  "@yourStory": {},
+  "showSpaces": "Näita kogukondade loendit",
+  "@showSpaces": {}
 }
