@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 class MessageDownloadContent extends StatelessWidget {
   final Event event;
@@ -28,24 +30,26 @@ class MessageDownloadContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(
-            children: [
-              Icon(
-                Icons.file_download_outlined,
+          ListTile(
+            leading: Icon(
+              Icons.file_download_outlined,
+              color: textColor,
+            ),
+            title: Text(
+              filename,
+              maxLines: 1,
+              style: TextStyle(
                 color: textColor,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  filename,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+            ),
+            trailing: PlatformInfos.isAndroid
+                ? IconButton(
+                    onPressed: () => event.shareFile(context),
+                    tooltip: L10n.of(context)!.share,
+                    icon: const Icon(Icons.share),
+                  )
+                : null,
           ),
           const Divider(),
           Row(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'image_viewer.dart';
 
 class ImageViewerView extends StatelessWidget {
@@ -37,6 +38,13 @@ class ImageViewerView extends StatelessWidget {
             color: Colors.white,
             tooltip: L10n.of(context)!.downloadFile,
           ),
+          if (PlatformInfos.isAndroid)
+            IconButton(
+              onPressed: controller.shareFileAction,
+              tooltip: L10n.of(context)!.share,
+              color: Colors.white,
+              icon: const Icon(Icons.share),
+            )
         ],
       ),
       body: InteractiveViewer(

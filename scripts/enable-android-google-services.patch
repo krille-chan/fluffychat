@@ -86,6 +86,6 @@ index c6295788..8dd17ce4 100644
    encrypt: ^5.0.1
 -  #fcm_shared_isolate: ^0.1.0
 +  fcm_shared_isolate: ^0.1.0
-   file_picker_cross: ^4.5.0
+   file_picker_cross: ^4.6.0
    flutter:
      sdk: flutter
