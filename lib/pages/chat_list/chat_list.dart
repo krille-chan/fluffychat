@@ -8,11 +8,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
+import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -40,7 +42,7 @@ class ChatList extends StatefulWidget {
   ChatListController createState() => ChatListController();
 }
 
-class ChatListController extends State<ChatList> {
+class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   StreamSubscription? _intentDataStreamSubscription;
 
   StreamSubscription? _intentFileStreamSubscription;
@@ -54,12 +56,18 @@ class ChatListController extends State<ChatList> {
     return (id == null || !id.stillValid(context)) ? defaultSpacesEntry : id;
   }
 
+  BoxConstraints? snappingSheetContainerSize;
+
   String? get activeSpaceId => activeSpacesEntry.getSpace(context)?.id;
 
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
 
   final StreamController<Client> _clientStream = StreamController.broadcast();
+
+  SnappingSheetController snappingSheetController = SnappingSheetController();
+
+  ScrollController snappingSheetScrollContentController = ScrollController();
 
   Stream<Client> get clientStream => _clientStream.stream;
 
@@ -72,7 +80,10 @@ class ChatListController extends State<ChatList> {
     }
   }
 
-  void setActiveSpacesEntry(BuildContext context, SpacesEntry spaceId) {
+  void setActiveSpacesEntry(BuildContext context, SpacesEntry? spaceId) {
+    if (snappingSheetController.currentPosition != kSpacesBottomBarHeight) {
+      snapBackSpacesSheet();
+    }
     setState(() => _activeSpacesEntry = spaceId);
   }
 
@@ -480,6 +491,8 @@ class ChatListController extends State<ChatList> {
     VRouter.of(context).to('/rooms');
     setState(() {
       _activeSpacesEntry = null;
+      snappingSheetController = SnappingSheetController();
+      snappingSheetScrollContentController = ScrollController();
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
@@ -574,6 +587,21 @@ class ChatListController extends State<ChatList> {
 
   void _hackyWebRTCFixForWeb() {
     Matrix.of(context).voipPlugin?.context = context;
+  }
+
+  void snapBackSpacesSheet() {
+    snappingSheetController.snapToPosition(
+      const SnappingPosition.pixels(
+        positionPixels: kSpacesBottomBarHeight,
+        snappingDuration: Duration(milliseconds: 500),
+      ),
+    );
+  }
+
+  expandSpaces() {
+    snappingSheetController.snapToPosition(
+      const SnappingPosition.factor(positionFactor: 0.5),
+    );
   }
 }
 

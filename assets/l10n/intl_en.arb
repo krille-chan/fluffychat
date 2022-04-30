@@ -1311,6 +1311,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "showSpaces": "Show spaces list",
   "loadMore": "Load more…",
   "@loadMore": {
     "type": "text",
