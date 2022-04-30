@@ -242,7 +242,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} změnili popis chatu na: „{description}“",
+  "changedTheChatDescriptionTo": "{username} změnil popis chatu na: „{description}“",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -265,7 +265,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} změnili přezdívku na: {displayname}",
+  "changedTheDisplaynameTo": "{username} změnil přezdívku na: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2760,12 +2760,103 @@
   "@emailOrUsername": {},
   "experimentalVideoCalls": "Experimentální videohovory",
   "@experimentalVideoCalls": {},
-  "unsupportedAndroidVersionLong": "Tato funkce vyžadovala novější verzi pro Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
+  "unsupportedAndroidVersionLong": "Tato funkce vyžaduje novější verzi Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
   "@unsupportedAndroidVersionLong": {},
   "pinnedEventsError": "Při načítání připnutých zpráv došlo k chybě",
   "@pinnedEventsError": {},
   "pinMessage": "Připnout zprávu do místnosti",
   "@pinMessage": {},
   "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",
-  "@confirmEventUnpin": {}
+  "@confirmEventUnpin": {},
+  "separateChatTypes": "Odděĺlit přímé chaty, skupiny a prostory",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youKicked": "Vykopli jste uživatele {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "switchToAccount": "Přepnout na účet {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "previousAccount": "Předchozí účet",
+  "@previousAccount": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "youAcceptedTheInvitation": "Přijal jsi pozvání",
+  "@youAcceptedTheInvitation": {},
+  "showSpaces": "Zobrazit seznam prostorů",
+  "@showSpaces": {},
+  "youJoinedTheChat": "Připojili jste se k chatu",
+  "@youJoinedTheChat": {},
+  "youInvitedBy": "Byli jste pozváni uživatelem {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "nextAccount": "Další účet",
+  "@nextAccount": {},
+  "editWidgets": "Upravit widgety",
+  "@editWidgets": {},
+  "addWidget": "Přidat widget",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Textová poznámka",
+  "@widgetEtherpad": {},
+  "widgetName": "Jméno",
+  "@widgetName": {},
+  "youBannedUser": "Zakázali jste uživatele {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Pozvali jste uživatele {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Vykopli jste a zakázali jste uživatele {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Zrušili jste zákaz uživateli {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "showDirectChatsInSpaces": "Zobrazit související přímé chaty ve službě Spaces",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetCustom": "Vlastní",
+  "@widgetCustom": {},
+  "youRejectedTheInvitation": "Odmítli jste pozvání",
+  "@youRejectedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Stáhli jste pozvánku pro uživatele {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "widgetUrlError": "Toto není platná adresa URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Zadejte jméno pro zobrazení.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Chyba při přidávání widgetu.",
+  "@errorAddingWidget": {}
 }
