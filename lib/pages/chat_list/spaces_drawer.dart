@@ -29,54 +29,55 @@ class SpacesDrawer extends StatelessWidget {
         controller.snapBackSpacesSheet();
         return false;
       },
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: spaceHierarchy.length,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return ListTile(
-              selected: currentIndex == index,
-              leading: const Icon(Icons.keyboard_arrow_down),
-              title: Text(L10n.of(context)!.allChats),
-              onTap: () => controller.setActiveSpacesEntry(
-                context,
-                null,
-              ),
-            );
-          } else {
-            final space = spaceHierarchy.keys.toList()[index];
-            final room = space.getSpace(context)!;
-            return ListTile(
-              selected: currentIndex == index,
-              leading: Avatar(
-                mxContent: room.avatar,
-                name: space.getName(context),
-                size: 24,
-                fontSize: 12,
-              ),
-              title: Text(space.getName(context)),
-              subtitle: room.topic.isEmpty
-                  ? null
-                  : Tooltip(
-                      message: room.topic,
-                      child: Text(
-                        room.topic.replaceAll('\n', ' '),
-                        softWrap: false,
-                        overflow: TextOverflow.fade,
+      child: Column(
+        children: List.generate(
+          spaceHierarchy.length,
+          (index) {
+            if (index == 0) {
+              return ListTile(
+                selected: currentIndex == index,
+                leading: const Icon(Icons.keyboard_arrow_down),
+                title: Text(L10n.of(context)!.allChats),
+                onTap: () => controller.setActiveSpacesEntry(
+                  context,
+                  null,
+                ),
+              );
+            } else {
+              final space = spaceHierarchy.keys.toList()[index];
+              final room = space.getSpace(context)!;
+              return ListTile(
+                selected: currentIndex == index,
+                leading: Avatar(
+                  mxContent: room.avatar,
+                  name: space.getName(context),
+                  size: 24,
+                  fontSize: 12,
+                ),
+                title: Text(space.getName(context)),
+                subtitle: room.topic.isEmpty
+                    ? null
+                    : Tooltip(
+                        message: room.topic,
+                        child: Text(
+                          room.topic.replaceAll('\n', ' '),
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
-                    ),
-              onTap: () => controller.setActiveSpacesEntry(
-                context,
-                space,
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit),
-                tooltip: L10n.of(context)!.edit,
-                onPressed: () => controller.editSpace(context, room.id),
-              ),
-            );
-          }
-        },
+                onTap: () => controller.setActiveSpacesEntry(
+                  context,
+                  space,
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.edit),
+                  tooltip: L10n.of(context)!.edit,
+                  onPressed: () => controller.editSpace(context, room.id),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
