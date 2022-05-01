@@ -401,7 +401,8 @@ class _MyCallingPage extends State<Calling> {
           //switchSpeakerButton,
           if (!voiceonly && !kIsWeb) switchCameraButton,
           if (!voiceonly) muteCameraButton,
-          if (kIsWeb) screenSharingButton,
+          if (PlatformInfos.isMobile || PlatformInfos.isWeb)
+            screenSharingButton,
           holdButton,
           hangupButton,
         ];
