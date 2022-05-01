@@ -14,7 +14,7 @@ packages:
       name: adaptive_dialog
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.6.1"
   adaptive_theme:
     dependency: "direct main"
     description:
@@ -878,6 +878,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intersperse:
+    dependency: transitive
+    description:
+      name: intersperse
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -978,6 +985,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.2"
+  macos_ui:
+    dependency: transitive
+    description:
+      name: macos_ui
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.1"
   markdown:
     dependency: transitive
     description:
