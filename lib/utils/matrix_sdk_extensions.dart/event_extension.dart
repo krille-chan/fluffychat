@@ -8,18 +8,28 @@ import 'package:matrix/matrix.dart';
 import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {
+  Future<LoadingDialogResult<MatrixFile?>> _getFile(BuildContext context) =>
+      showFutureLoadingDialog(
+        context: context,
+        future: () => downloadAndDecryptAttachmentCached(),
+      );
+
   void saveFile(BuildContext context) async {
-    final matrixFile = await showFutureLoadingDialog(
-      context: context,
-      future: () => downloadAndDecryptAttachmentCached(),
-    );
+    final matrixFile = await _getFile(context);
 
     matrixFile.result?.save(context);
+  }
+
+  void shareFile(BuildContext context) async {
+    final matrixFile = await _getFile(context);
+
+    matrixFile.result?.share(context);
   }
 
   bool get isAttachmentSmallEnough =>
       infoMap['size'] is int &&
       infoMap['size'] < room.client.database!.maxFileSize;
+
   bool get isThumbnailSmallEnough =>
       thumbnailInfoMap['size'] is int &&
       thumbnailInfoMap['size'] < room.client.database!.maxFileSize;

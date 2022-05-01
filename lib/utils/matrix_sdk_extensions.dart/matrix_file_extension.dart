@@ -13,23 +13,25 @@ import 'package:fluffychat/utils/platform_infos.dart';
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
     final fileName = name.split('/').last;
-    if (PlatformInfos.isMobile) {
-      final tmpDirectory = PlatformInfos.isAndroid
-          ? (await getExternalStorageDirectories(
-                  type: StorageDirectory.downloads))!
-              .first
-          : await getTemporaryDirectory();
-      final path = '${tmpDirectory.path}$fileName';
-      await File(path).writeAsBytes(bytes);
-      await Share.shareFiles([path]);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.savedFileAs(path))),
-      );
-      return;
-    } else {
-      final file = FilePickerCross(bytes);
-      await file.exportToStorage(fileName: fileName);
-    }
+
+    final file = FilePickerCross(bytes);
+    await file.exportToStorage(fileName: fileName, share: false);
+  }
+
+  void share(BuildContext context) async {
+    final fileName = name.split('/').last;
+    final tmpDirectory = PlatformInfos.isAndroid
+        ? (await getExternalStorageDirectories(
+                type: StorageDirectory.downloads))!
+            .first
+        : await getTemporaryDirectory();
+    final path = '${tmpDirectory.path}$fileName';
+    await File(path).writeAsBytes(bytes);
+    await Share.shareFiles([path]);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(L10n.of(context)!.savedFileAs(path))),
+    );
+    return;
   }
 
   MatrixFile get detectFileType {
