@@ -18,6 +18,8 @@ class ReplyDisplay extends StatelessWidget {
       height: controller.editEvent != null || controller.replyEvent != null
           ? 56
           : 0,
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(),
       child: Material(
         color: Theme.of(context).secondaryHeaderColor,
         child: Row(
