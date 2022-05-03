@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -76,16 +77,18 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       );
 
   void openScannerAction() async {
-    final info = await DeviceInfoPlugin().androidInfo;
-    if ((info.version.sdkInt ?? 16) < 21) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            L10n.of(context)!.unsupportedAndroidVersionLong,
+    if (PlatformInfos.isAndroid) {
+      final info = await DeviceInfoPlugin().androidInfo;
+      if ((info.version.sdkInt ?? 16) < 21) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              L10n.of(context)!.unsupportedAndroidVersionLong,
+            ),
           ),
-        ),
-      );
-      return;
+        );
+        return;
+      }
     }
     await Permission.camera.request();
     await showModalBottomSheet(
