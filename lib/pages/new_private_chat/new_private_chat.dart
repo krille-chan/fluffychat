@@ -1,3 +1,4 @@
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -76,16 +77,18 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       );
 
   void openScannerAction() async {
-    final info = await DeviceInfoPlugin().androidInfo;
-    if ((info.version.sdkInt ?? 16) < 21) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            L10n.of(context)!.unsupportedAndroidVersionLong,
+    if (PlatformInfos.isAndroid) {
+      final info = await DeviceInfoPlugin().androidInfo;
+      if ((info.version.sdkInt ?? 16) < 21) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              L10n.of(context)!.unsupportedAndroidVersionLong,
+            ),
           ),
-        ),
-      );
-      return;
+        );
+        return;
+      }
     }
     await Permission.camera.request();
     await showModalBottomSheet(
