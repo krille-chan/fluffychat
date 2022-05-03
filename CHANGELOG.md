@@ -14,6 +14,9 @@
 - feat: allow to create widgets (TheOneWithTheBraid)
 - feat: remove diacritics (henri2h)
 - feat: irish language support (Graeme Power)
+- feat: Enable screensharing on Mobile
+- feat: support AppImage builds
+- feat: Improve spaces design
 - fix: Android theme is not auto updating when system theme changes (Krille Fear)
 - fix: Chat view becomes gray for a second on sending reaction (Krille Fear)
 - fix: Don't request new thumbnail resolution on every window resize (Samuel Mezger)
