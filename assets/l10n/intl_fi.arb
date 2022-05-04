@@ -521,7 +521,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Oletus lupien taso",
+  "defaultPermissionLevel": "Oikeuksien oletustaso",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1139,7 +1139,7 @@
   "@newPasswordDescription": {},
   "newUsernameDescription": "Käyttäjätunnuksellasi tulee olemaan muoto @käyttäjätunnus:palvelinnimi",
   "@newUsernameDescription": {},
-  "noPasswordRecoveryDescription": "Et ole lisännyt tapaa salasanasi palauttamiseksi vielä.",
+  "noPasswordRecoveryDescription": "Et ole vielä lisännyt tapaa salasanasi palauttamiseksi.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1437,7 +1437,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Ota emote-paketti käyttöön globaalisti",
+  "enableEmotesGlobally": "Ota emote-paketti käyttöön kaikkialla",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1771,7 +1771,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "securityKeyLost": "Kadonnut turvallisuus avain?",
+  "securityKeyLost": "Kadonnut turva-avain?",
   "@securityKeyLost": {
     "type": "text",
     "placeholders": {}
@@ -1784,7 +1784,7 @@
       "count": {}
     }
   },
-  "securityKey": "Turvallisuusavain",
+  "securityKey": "Turva-avain",
   "@securityKey": {
     "type": "text",
     "placeholders": {}
@@ -1986,7 +1986,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleMuted": "Käännä mykistetty-tilaa",
+  "toggleMuted": "Mykistetty-kytkin",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -2265,7 +2265,7 @@
   "@start": {},
   "setupChatBackupNow": "Määritä keskusteluvarmuuskopiosi nyt",
   "@setupChatBackupNow": {},
-  "pleaseEnterSecurityKeyDescription": "Avataksesi keskusteluvarmuuskopiosi, syötä turvallisuusavain, joka luotiin edellisessä istunnossa. Turva-avaimesi EI OLE salasanasi.",
+  "pleaseEnterSecurityKeyDescription": "Avataksesi keskusteluvarmuuskopiosi, syötä turva-avain, joka luotiin edellisessä istunnossa. Turva-avaimesi EI OLE salasanasi.",
   "@pleaseEnterSecurityKeyDescription": {},
   "serverRequiresEmail": "Tämän palvelimen täytyy tarkistaa sähköposti-osoitteesi rekisteröitymistä varten.",
   "@serverRequiresEmail": {},
@@ -2546,7 +2546,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleFavorite": "Käännä suosikki-tilaa",
+  "toggleFavorite": "Suosikki-kytkin",
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
@@ -2585,7 +2585,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userUnknownVerification": "Käyttäjällä on tuntematon varmistustila",
+  "userUnknownVerification": "Käyttäjän varmistus on tuntemattomassa tilassa",
   "@userUnknownVerification": {
     "type": "text",
     "placeholders": {}
@@ -2725,7 +2725,7 @@
   "@placeCall": {},
   "matrixWidgets": "Matrix-pienoisohjelmat",
   "@matrixWidgets": {},
-  "integrationsNotImplemented": "Pienoisohjelmien ja integraatioiden muokkaus ei ole vielä mahdollista.",
+  "integrationsNotImplemented": "Pienoisohjelmien ja integraatioiden muokkaus ei vielä ole  mahdollista.",
   "@integrationsNotImplemented": {},
   "editIntegrations": "Muokkaa pienoisohjelmia ja integraatioita",
   "@editIntegrations": {},
@@ -2779,5 +2779,65 @@
   "widgetNameError": "Syötä näyttönimi.",
   "@widgetNameError": {},
   "addWidget": "Lisää pienoissovellus",
-  "@addWidget": {}
+  "@addWidget": {},
+  "showSpaces": "Näytä Space-luettelo",
+  "@showSpaces": {},
+  "showDirectChatsInSpaces": "Näytä Spaceihin kuuluvat suorat keskustelut niissä",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youRejectedTheInvitation": "Kieltäydyit kutsusta",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "Liityit keskusteluun",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Hyväksyit kutsun",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "Annoit porttikiellon käyttäjälle {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Olet perunut kutsun käyttäjälle {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user} kutsui sinut",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Poistit käyttäjän {user} keskustelusta",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Kutsuit käyttäjän {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Poistit ja annoit porttikiellon käyttäjälle {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Poistit käyttäjän {user} porttikiellon",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "separateChatTypes": "Erota suorat keskustelut, ryhmät ja Spacet",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
