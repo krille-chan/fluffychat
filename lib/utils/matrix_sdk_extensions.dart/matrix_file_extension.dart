@@ -12,6 +12,9 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
+    if (PlatformInfos.isIOS) {
+      return share(context);
+    }
     final fileName = name.split('/').last;
 
     final file = FilePickerCross(bytes);
