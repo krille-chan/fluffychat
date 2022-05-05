@@ -13,11 +13,9 @@ class SpacesDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = controller.activeSpaceId == null
-        ? 0
-        : controller.spaces
-                .indexWhere((space) => controller.activeSpaceId == space.id) +
-            1;
+    final currentIndex = controller.spacesEntries.indexWhere((space) =>
+        controller.activeSpacesEntry.runtimeType == space.runtimeType &&
+        (controller.activeSpaceId == space.getSpace(context)?.id));
 
     final Map<SpacesEntry, dynamic> spaceHierarchy =
         Map.fromEntries(controller.spacesEntries.map((e) => MapEntry(e, null)));
@@ -30,54 +28,46 @@ class SpacesDrawer extends StatelessWidget {
         return false;
       },
       child: Column(
-        children: List.generate(
-          spaceHierarchy.length,
-          (index) {
-            if (index == 0) {
-              return ListTile(
-                selected: currentIndex == index,
-                leading: const Icon(Icons.keyboard_arrow_down),
-                title: Text(L10n.of(context)!.allChats),
-                onTap: () => controller.setActiveSpacesEntry(
-                  context,
-                  null,
-                ),
-              );
-            } else {
-              final space = spaceHierarchy.keys.toList()[index];
-              final room = space.getSpace(context)!;
-              return ListTile(
-                selected: currentIndex == index,
-                leading: Avatar(
-                  mxContent: room.avatar,
-                  name: space.getName(context),
-                  size: 24,
-                  fontSize: 12,
-                ),
-                title: Text(space.getName(context)),
-                subtitle: room.topic.isEmpty
-                    ? null
-                    : Tooltip(
-                        message: room.topic,
-                        child: Text(
-                          room.topic.replaceAll('\n', ' '),
-                          softWrap: false,
-                          overflow: TextOverflow.fade,
-                        ),
+        children: List.generate(spaceHierarchy.length, (index) {
+          final space = spaceHierarchy.keys.toList()[index];
+          final room = space.getSpace(context);
+          final active = currentIndex == index;
+          return ListTile(
+            selected: active,
+            leading: index == 0
+                ? const Icon(Icons.keyboard_arrow_down)
+                : room == null
+                    ? space.getIcon(active)
+                    : Avatar(
+                        mxContent: room.avatar,
+                        name: space.getName(context),
+                        size: 24,
+                        fontSize: 12,
                       ),
-                onTap: () => controller.setActiveSpacesEntry(
-                  context,
-                  space,
-                ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.edit),
-                  tooltip: L10n.of(context)!.edit,
-                  onPressed: () => controller.editSpace(context, room.id),
-                ),
-              );
-            }
-          },
-        ),
+            title: Text(space.getName(context)),
+            subtitle: room?.topic.isEmpty ?? true
+                ? null
+                : Tooltip(
+                    message: room!.topic,
+                    child: Text(
+                      room.topic.replaceAll('\n', ' '),
+                      softWrap: false,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+            onTap: () => controller.setActiveSpacesEntry(
+              context,
+              space,
+            ),
+            trailing: room != null
+                ? IconButton(
+                    icon: const Icon(Icons.edit),
+                    tooltip: L10n.of(context)!.edit,
+                    onPressed: () => controller.editSpace(context, room.id),
+                  )
+                : null,
+          );
+        }),
       ),
     );
   }
