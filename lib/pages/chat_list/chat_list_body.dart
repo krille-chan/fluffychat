@@ -25,7 +25,6 @@ class ChatListViewBody extends StatefulWidget {
 class _ChatListViewBodyState extends State<ChatListViewBody> {
   // the matrix sync stream
   late StreamSubscription _subscription;
-  late StreamSubscription _clientSubscription;
 
   // used to check the animation direction
   String? _lastUserId;
@@ -40,8 +39,6 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
         .where((s) => s.hasRoomUpdate)
         .rateLimit(const Duration(seconds: 1))
         .listen((d) => setState(() {}));
-    _clientSubscription =
-        widget.controller.clientStream.listen((d) => setState(() {}));
     super.initState();
   }
 
@@ -194,7 +191,6 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
   @override
   void dispose() {
     _subscription.cancel();
-    _clientSubscription.cancel();
     super.dispose();
   }
 
