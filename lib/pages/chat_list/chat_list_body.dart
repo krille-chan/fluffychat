@@ -80,15 +80,20 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
             .shouldShowStoriesHeader(context);
         child = ListView.builder(
           key: ValueKey(Matrix.of(context).client.userID.toString() +
-              widget.controller.activeSpaceId.toString()),
+              widget.controller.activeSpaceId.toString() +
+              widget.controller.activeSpacesEntry.runtimeType.toString()),
           controller: widget.controller.scrollController,
-          itemCount: rooms.length + (displayStoriesHeader ? 1 : 0),
+          // add +1 space below in order to properly scroll below the spaces bar
+          itemCount: rooms.length + (displayStoriesHeader ? 2 : 1),
           itemBuilder: (BuildContext context, int i) {
             if (displayStoriesHeader) {
               if (i == 0) {
                 return const StoriesHeader();
               }
               i--;
+            }
+            if (i >= rooms.length) {
+              return const ListTile();
             }
             return ChatListItem(
               rooms[i],

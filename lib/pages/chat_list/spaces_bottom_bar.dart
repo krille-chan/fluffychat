@@ -94,11 +94,10 @@ class _SpacesBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = controller.activeSpaceId == null
-        ? 1
-        : controller.spaces
-                .indexWhere((space) => controller.activeSpaceId == space.id) +
-            2;
+    final currentIndex = controller.spacesEntries.indexWhere((space) =>
+            controller.activeSpacesEntry.runtimeType == space.runtimeType &&
+            (controller.activeSpaceId == space.getSpace(context)?.id)) +
+        1;
 
     return Container(
       height: 56,
@@ -110,15 +109,10 @@ class _SpacesBottomNavigation extends StatelessWidget {
           currentIndex: currentIndex,
           onTap: (i) => i == 0
               ? controller.expandSpaces()
-              : i == 1
-                  ? controller.setActiveSpacesEntry(
-                      context,
-                      null,
-                    )
-                  : controller.setActiveSpacesEntry(
-                      context,
-                      controller.spacesEntries[i],
-                    ),
+              : controller.setActiveSpacesEntry(
+                  context,
+                  controller.spacesEntries[i - 1],
+                ),
           selectedItemColor: Theme.of(context).colorScheme.primary,
           items: [
             SalomonBottomBarItem(
