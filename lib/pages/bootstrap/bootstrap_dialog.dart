@@ -7,7 +7,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
