@@ -32,19 +32,20 @@ class ImageViewerView extends StatelessWidget {
             color: Colors.white,
             tooltip: L10n.of(context)!.share,
           ),
-          if (PlatformInfos.isAndroid)
+          if (!PlatformInfos.isIOS)
             IconButton(
               icon: const Icon(Icons.download_outlined),
               onPressed: controller.saveFileAction,
               color: Colors.white,
               tooltip: L10n.of(context)!.downloadFile,
             ),
-          IconButton(
-            onPressed: controller.shareFileAction,
-            tooltip: L10n.of(context)!.share,
-            color: Colors.white,
-            icon: const Icon(Icons.share),
-          )
+          if (PlatformInfos.isMobile)
+            IconButton(
+              onPressed: controller.shareFileAction,
+              tooltip: L10n.of(context)!.share,
+              color: Colors.white,
+              icon: const Icon(Icons.share),
+            )
         ],
       ),
       body: InteractiveViewer(
