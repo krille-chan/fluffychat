@@ -377,6 +377,8 @@ class BackgroundPush {
     upAction = true;
     final data = Map<String, dynamic>.from(
         json.decode(utf8.decode(message))['notification']);
+    // UP may strip the devices list
+    data['devices'] ??= [];
     await pushHelper(
       PushNotification.fromJson(data),
       client: client,
