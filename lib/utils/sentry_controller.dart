@@ -13,7 +13,7 @@ abstract class SentryController {
       BuildContext context, bool enableSentry) async {
     if (!AppConfig.enableSentry) return;
     final storage = Store();
-    await storage.setItem(SettingKeys.sentry, enableSentry.toString());
+    await storage.setItemBool(SettingKeys.sentry, enableSentry);
     return;
   }
 
