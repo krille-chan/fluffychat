@@ -64,7 +64,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "Todas conversas",
+  "allChats": "Todas as conversas",
   "@allChats": {
     "type": "text",
     "placeholders": {}
@@ -2627,13 +2627,13 @@
   "@whatIsGoingOn": {},
   "addDescription": "Adicionar descrição",
   "@addDescription": {},
-  "passwordsDoNotMatch": "Senhas não batem!",
+  "passwordsDoNotMatch": "Senhas diferentes!",
   "@passwordsDoNotMatch": {},
   "pleaseEnterValidEmail": "Por favor, insira um email válido.",
   "@pleaseEnterValidEmail": {},
   "repeatPassword": "Repita a senha",
   "@repeatPassword": {},
-  "pleaseChooseAtLeastChars": "Por favor, use pelo menos {min} caracteres.",
+  "pleaseChooseAtLeastChars": "Por favor, use ao menos {min} caracteres.",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
@@ -2802,5 +2802,7 @@
   "previousAccount": "Conta anterior",
   "@previousAccount": {},
   "editWidgets": "Editar ferramentas",
-  "@editWidgets": {}
+  "@editWidgets": {},
+  "showSpaces": "Mostrar lista de espaços",
+  "@showSpaces": {}
 }
