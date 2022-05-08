@@ -2766,5 +2766,85 @@
   "openChat": "Ireki txata",
   "@openChat": {},
   "pinnedEventsError": "Errorea iltzatutako mezua kargatzerakoan",
-  "@pinnedEventsError": {}
+  "@pinnedEventsError": {},
+  "addWidget": "Gehitu widgeta",
+  "@addWidget": {},
+  "showSpaces": "Erakutsi guneen zerrenda",
+  "@showSpaces": {},
+  "showDirectChatsInSpaces": "Erakutsi zerikusia duten Mezu Zuzenak Taldeetan",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editWidgets": "Editatu widgetak",
+  "@editWidgets": {},
+  "widgetVideo": "Bideoa",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Testu-oharra",
+  "@widgetEtherpad": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Neurrira egindakoa",
+  "@widgetCustom": {},
+  "widgetName": "Izena",
+  "@widgetName": {},
+  "youJoinedTheChat": "Txatera sartu zara",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Gonbidapena onartu duzu",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "{user}(r)i debekua ezarri diozu",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "{user}(r)i luzatutako gonbidapena baliogabetu duzu",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user}(e)k gonbidatu zaitu",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "{user} gonbidatu duzu",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "{user} kanporatu duzu",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "{user} kanporatu eta debekua ezarri diozu",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "{user}(r)i debekua kendu diozu",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
+  "@youRejectedTheInvitation": {},
+  "separateChatTypes": "Bereizi Mezu Zuzenak, Taldeak eta Guneak",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetUrlError": "Ez da baliozko URL bat.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Mesedez, ezarri/zehaztu izen publiko bat.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Errorea widgeta gehitzerakoan.",
+  "@errorAddingWidget": {}
 }
