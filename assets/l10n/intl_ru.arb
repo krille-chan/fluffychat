@@ -2856,5 +2856,7 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "showSpaces": "Показать список пространств",
+  "@showSpaces": {}
 }
