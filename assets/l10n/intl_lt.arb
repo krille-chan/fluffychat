@@ -164,5 +164,128 @@
   "@messages": {
     "type": "text",
     "placeholders": {}
+  },
+  "scanQrCode": "Nuskanuokite QR kodą",
+  "@scanQrCode": {},
+  "ok": "OK",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAccount": "pridėti vartotoją",
+  "@addAccount": {},
+  "or": "Arba",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Slaptažodis",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Slaptažodis pakeistas",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "Įveskite savo slaptažodį",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Įveskite savo vartotojo vardą",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Atsakyti",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blockDevice": "Blokuoti įrenginį",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Blokuotas",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Pasirink saugų slaptažodį",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewGroup": "Sukurti naują grupę",
+  "@createNewGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Ištrinti žinutę",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "Atmesti",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Įrenginys",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Įrenginio ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Įrenginiai",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserver": "Namų serveris",
+  "@homeserver": {},
+  "enterYourHomeserver": "Įveskite namų serverį",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Viskas paruošta!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Šrifto dydis",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connectionAttemptFailed": "Prisijungimas nepavyko",
+  "@connectionAttemptFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Išvalyti archyvą",
+  "@clearArchive": {},
+  "create": "Sukurti",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountNow": "Sukurti vartotoją dabar",
+  "@createAccountNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Prisijungti",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
   }
 }
