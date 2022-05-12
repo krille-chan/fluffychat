@@ -28,10 +28,8 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
         .catchError((e) => _currentConnectivity = ConnectivityResult.none);
     if (!kIsWeb) {
       final wb = WidgetsBinding.instance;
-      wb?.addObserver(this);
-      if (wb != null) {
-        didChangeAppLifecycleState(wb.lifecycleState!);
-      }
+      wb.addObserver(this);
+      didChangeAppLifecycleState(wb.lifecycleState!);
     }
   }
 

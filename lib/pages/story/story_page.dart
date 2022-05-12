@@ -359,7 +359,7 @@ class StoryPageController extends State<StoryPage> {
   }
 
   void _setLoadingMode(bool mode) => loadingMode != mode
-      ? WidgetsBinding.instance?.addPostFrameCallback((_) {
+      ? WidgetsBinding.instance.addPostFrameCallback((_) {
           setState(() {
             loadingMode = mode;
           });

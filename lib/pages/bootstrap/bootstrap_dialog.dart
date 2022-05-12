@@ -147,27 +147,27 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
         case BootstrapState.loading:
           break;
         case BootstrapState.askWipeSsss:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.wipeSsss(_wipe!),
           );
           break;
         case BootstrapState.askBadSsss:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.ignoreBadSecrets(true),
           );
           break;
         case BootstrapState.askUseExistingSsss:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.useExistingSsss(!_wipe!),
           );
           break;
         case BootstrapState.askUnlockSsss:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.unlockedSsss(),
           );
           break;
         case BootstrapState.askNewSsss:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.newSsss(),
           );
           break;
@@ -312,12 +312,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
             ),
           );
         case BootstrapState.askWipeCrossSigning:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.wipeCrossSigning(_wipe!),
           );
           break;
         case BootstrapState.askSetupCrossSigning:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.askSetupCrossSigning(
               setupMasterKey: true,
               setupSelfSigningKey: true,
@@ -326,13 +326,13 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
           );
           break;
         case BootstrapState.askWipeOnlineKeyBackup:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.wipeOnlineKeyBackup(_wipe!),
           );
 
           break;
         case BootstrapState.askSetupOnlineKeyBackup:
-          WidgetsBinding.instance!.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) => bootstrap.askSetupOnlineKeyBackup(true),
           );
           break;
