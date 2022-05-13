@@ -171,7 +171,7 @@ class ChatController extends State<Chat> {
     final voipPlugin = Matrix.of(context).voipPlugin;
 
     if (voipPlugin != null) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         CallKeepManager().setVoipPlugin(voipPlugin);
         CallKeepManager().initialize().catchError((_) => true);
       });
@@ -210,7 +210,7 @@ class ChatController extends State<Chat> {
       // when the scroll controller is attached we want to scroll to an event id, if specified
       // and update the scroll controller...which will trigger a request history, if the
       // "load more" button is visible on the screen
-      SchedulerBinding.instance!.addPostFrameCallback((_) async {
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
         if (mounted) {
           final event = VRouter.of(context).queryParameters['event'];
           if (event != null) {

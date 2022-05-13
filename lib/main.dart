@@ -8,7 +8,6 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:gaeilge_flutter_l10n/gaeilge_flutter_l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
@@ -114,7 +113,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
           _router ??= GlobalKey<VRouterState>();
           if (columnMode != newColumns > 1) {
             Logs().v('Set Column Mode = $columnMode');
-            WidgetsBinding.instance?.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
                 _initialUrl = _router?.currentState?.url;
                 columnMode = newColumns > 1;
@@ -131,7 +130,6 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
             darkTheme: darkTheme,
             localizationsDelegates: const [
               ...L10n.localizationsDelegates,
-              GaMaterialLocalizations.delegate
             ],
             supportedLocales: L10n.supportedLocales,
             initialUrl: _initialUrl ?? '/',
@@ -141,7 +139,7 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
               LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
               LoadingDialog.defaultOnError =
                   (e) => (e as Object?)!.toLocalizedString(context);
-              WidgetsBinding.instance?.addPostFrameCallback((_) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
                 SystemChrome.setSystemUIOverlayStyle(
                   SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,

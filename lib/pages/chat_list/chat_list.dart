@@ -26,6 +26,7 @@ import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 
 enum SelectMode { normal, share, select }
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -171,7 +172,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   void _processIncomingUris(String? text) async {
     if (text == null) return;
     VRouter.of(context).to('/rooms');
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       UrlLauncher(context, text).openMatrixToUrl();
     });
   }
@@ -475,7 +476,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     setState(() {
       waitForFirstSync = true;
     });
-    WidgetsBinding.instance!.addPostFrameCallback((_) => checkBootstrap());
+    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
     return;
   }
 
@@ -572,7 +573,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   }
 
   void resetActiveBundle() {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
         Matrix.of(context).activeBundle = null;
       });

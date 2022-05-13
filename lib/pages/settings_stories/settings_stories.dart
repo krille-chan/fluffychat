@@ -83,7 +83,7 @@ class SettingsStoriesController extends State<SettingsStories> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         loadUsers = _loadUsers();
       });

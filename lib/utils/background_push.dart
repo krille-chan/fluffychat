@@ -71,7 +71,7 @@ class BackgroundPush {
 
   bool upAction = false;
 
-  BackgroundPush._(this.client, {this.onFcmError}) {
+  BackgroundPush._(this.client) {
     onLogin ??=
         client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
     onRoomSync ??= client.onSync.stream

@@ -253,7 +253,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     initMatrix();
     if (PlatformInfos.isWeb) {
       initConfig().then((_) => initSettings());
@@ -382,7 +382,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void initMatrix() {
     // Display the app lock
     if (PlatformInfos.isMobile) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         ([TargetPlatform.linux].contains(Theme.of(context).platform)
                 ? SharedPreferences.getInstance()
                     .then((prefs) => prefs.getString(SettingKeys.appLockKey))
@@ -513,7 +513,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
 
     onRoomKeyRequestSub.values.map((s) => s.cancel());
     onKeyVerificationRequestSub.values.map((s) => s.cancel());

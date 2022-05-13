@@ -91,7 +91,7 @@ class _ImageBubbleState extends State<ImageBubble> {
     try {
       final res = await widget.event
           .downloadAndDecryptAttachmentCached(getThumbnail: getThumbnail);
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (getThumbnail) {
           if (mounted) {
             setState(() => _thumbnail = res);
@@ -106,7 +106,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         }
       });
     } catch (err) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           setState(() => _error = err);
         }
@@ -278,7 +278,7 @@ class _ImageBubbleState extends State<ImageBubble> {
         errorBuilder: (context, error, stacktrace) {
           if (widget.event.hasThumbnail && !_requestedThumbnailOnFailure) {
             _requestedThumbnailOnFailure = true;
-            WidgetsBinding.instance!.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
                 _file = null;
                 _requestFile(getThumbnail: true);
@@ -352,7 +352,7 @@ class _ImageBubbleState extends State<ImageBubble> {
             // the image failed to load but the event has a thumbnail attached....so we can
             // try to load this one!
             _requestedThumbnailOnFailure = true;
-            WidgetsBinding.instance!.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               setState(() {
                 thumbnailUrl = widget.event
                     .getAttachmentUrl(
