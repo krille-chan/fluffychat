@@ -122,7 +122,13 @@
                 <action android:name="org.unifiedpush.flutter.connector.REGISTRATION_FAILED" />
             </intent-filter>
         </receiver>
-
+        <receiver android:enabled="true"  android:name=".EmbeddedDistributor" android:exported="false">
+            <intent-filter>
+                <action android:name="org.unifiedpush.android.distributor.feature.BYTES_MESSAGE"/>
+                <action android:name="org.unifiedpush.android.distributor.REGISTER"/>
+                <action android:name="org.unifiedpush.android.distributor.UNREGISTER"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

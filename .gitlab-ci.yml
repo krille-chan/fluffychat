@@ -62,7 +62,6 @@ integration_test:
     # properly set the homeserver IP for the test
     - sed -i "s/10.0.2.2/$(drill docker | grep -m 1 -P "\d+\.\d+\.\d+.\d+" | awk -F ' ' '{print $NF}')/g" integration_test/users.dart
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "It works! Synapse is running"
-    - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
   tags:
