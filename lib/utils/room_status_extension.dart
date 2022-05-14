@@ -8,26 +8,25 @@ import 'date_time_extension.dart';
 import 'matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 
 extension RoomStatusExtension on Room {
-  Presence? get directChatPresence => client.presences[directChatMatrixID];
+  CachedPresence? get directChatPresence =>
+      client.presences[directChatMatrixID];
 
   String getLocalizedStatus(BuildContext context) {
     if (isDirectChat) {
       final directChatPresence = this.directChatPresence;
       if (directChatPresence != null &&
-          (directChatPresence.presence.lastActiveAgo != null ||
-              directChatPresence.presence.currentlyActive != null)) {
-        if (directChatPresence.presence.statusMsg?.isNotEmpty ?? false) {
-          return directChatPresence.presence.statusMsg!;
+          (directChatPresence.lastActiveTimestamp != null ||
+              directChatPresence.currentlyActive != null)) {
+        if (directChatPresence.statusMsg?.isNotEmpty ?? false) {
+          return directChatPresence.statusMsg!;
         }
-        if (directChatPresence.presence.currentlyActive == true) {
+        if (directChatPresence.currentlyActive == true) {
           return L10n.of(context)!.currentlyActive;
         }
-        if (directChatPresence.presence.lastActiveAgo == null) {
+        if (directChatPresence.lastActiveTimestamp == null) {
           return L10n.of(context)!.lastSeenLongTimeAgo;
         }
-        final time = DateTime.fromMillisecondsSinceEpoch(
-            DateTime.now().millisecondsSinceEpoch -
-                directChatPresence.presence.lastActiveAgo!);
+        final time = directChatPresence.lastActiveTimestamp!;
         return L10n.of(context)!
             .lastActiveAgo(time.localizedTimeShort(context));
       }

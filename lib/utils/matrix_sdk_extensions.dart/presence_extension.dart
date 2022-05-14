@@ -5,30 +5,29 @@ import 'package:matrix/matrix.dart';
 
 import '../date_time_extension.dart';
 
-extension PresenceExtension on Presence {
+extension PresenceExtension on CachedPresence {
   String getLocalizedLastActiveAgo(BuildContext context) {
-    if (presence.lastActiveAgo != null && presence.lastActiveAgo != 0) {
-      return L10n.of(context)!.lastActiveAgo(
-          DateTime.fromMillisecondsSinceEpoch(
-                  DateTime.now().millisecondsSinceEpoch -
-                      presence.lastActiveAgo!)
-              .localizedTimeShort(context));
+    final lastActiveTimestamp = this.lastActiveTimestamp;
+    if (lastActiveTimestamp != null) {
+      return L10n.of(context)!
+          .lastActiveAgo(lastActiveTimestamp.localizedTimeShort(context));
     }
     return L10n.of(context)!.lastSeenLongTimeAgo;
   }
 
   String getLocalizedStatusMessage(BuildContext context) {
-    if (presence.statusMsg?.isNotEmpty ?? false) {
-      return presence.statusMsg!;
+    final statusMsg = this.statusMsg;
+    if (statusMsg != null && statusMsg.isNotEmpty) {
+      return statusMsg;
     }
-    if (presence.currentlyActive ?? false) {
+    if (currentlyActive ?? false) {
       return L10n.of(context)!.currentlyActive;
     }
     return getLocalizedLastActiveAgo(context);
   }
 
   Color get color {
-    switch (presence.presence) {
+    switch (presence) {
       case PresenceType.online:
         return Colors.green;
       case PresenceType.offline:

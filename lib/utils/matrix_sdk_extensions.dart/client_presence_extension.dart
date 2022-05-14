@@ -1,7 +1,7 @@
 import 'package:matrix/matrix.dart';
 
 extension ClientPresenceExtension on Client {
-  List<Presence> get contactList {
+  List<CachedPresence> get contactList {
     final directChatsMxid = rooms
         .where((r) => r.isDirectChat)
         .map((r) => r.directChatMatrixID)
@@ -10,20 +10,21 @@ extension ClientPresenceExtension on Client {
         .map(
           (mxid) =>
               presences[mxid] ??
-              Presence.fromJson(
-                {
-                  'sender': mxid,
-                  'type': 'm.presence',
-                  'content': {'presence': 'offline'},
-                },
+              CachedPresence(
+                PresenceType.offline,
+                0,
+                null,
+                false,
+                mxid ?? '',
               ),
         )
         .toList();
 
-    contactList.sort((a, b) => a.senderId.compareTo(b.senderId));
-    contactList.sort((a, b) => (a.presence.lastActiveAgo?.toDouble() ??
-            double.infinity)
-        .compareTo((b.presence.lastActiveAgo?.toDouble() ?? double.infinity)));
+    contactList.sort((a, b) => a.userid.compareTo(b.userid));
+    contactList.sort((a, b) => ((a.lastActiveTimestamp ??
+            DateTime.fromMillisecondsSinceEpoch(0))
+        .compareTo(
+            b.lastActiveTimestamp ?? DateTime.fromMillisecondsSinceEpoch(0))));
     return contactList;
   }
 }

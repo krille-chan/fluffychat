@@ -6,9 +6,10 @@ import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_
 
 Future<Client> prepareTestClient({
   bool loggedIn = false,
-  String homeserver = 'https://fakeserver.notexisting',
+  Uri? homeserver,
   String id = 'FluffyChat Widget Test',
 }) async {
+  homeserver ??= Uri.parse('https://fakeserver.notexisting');
   final client = Client(
     'FluffyChat Widget Tests',
     httpClient: FakeMatrixApi(),
