@@ -253,9 +253,6 @@ class _StoryButton extends StatelessWidget {
                             height: 24,
                             child: FloatingActionButton.small(
                               heroTag: null,
-                              backgroundColor:
-                                  Theme.of(context).backgroundColor,
-                              foregroundColor: Theme.of(context).primaryColor,
                               onPressed: () =>
                                   VRouter.of(context).to('/stories/create'),
                               child: const Icon(
@@ -269,7 +266,7 @@ class _StoryButton extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const Spacer(),
               Text(
                 profile.displayName ?? '',
                 maxLines: 1,
@@ -279,7 +276,7 @@ class _StoryButton extends StatelessWidget {
                   fontWeight: unread ? FontWeight.bold : null,
                 ),
               ),
-              const SizedBox(height: 8),
+              const Spacer(),
             ],
           ),
         ),

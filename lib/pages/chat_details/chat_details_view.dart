@@ -74,13 +74,9 @@ class ChatDetailsView extends StatelessWidget {
                     ChatSettingsPopupMenu(room, false)
                   ],
                   title: Text(
-                      room.getLocalizedDisplayname(
-                          MatrixLocals(L10n.of(context)!)),
-                      style: TextStyle(
-                          color: Theme.of(context)
-                              .appBarTheme
-                              .titleTextStyle!
-                              .color)),
+                    room.getLocalizedDisplayname(
+                        MatrixLocals(L10n.of(context)!)),
+                  ),
                   backgroundColor:
                       Theme.of(context).appBarTheme.backgroundColor,
                   flexibleSpace: FlexibleSpaceBar(

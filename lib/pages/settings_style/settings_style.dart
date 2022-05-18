@@ -37,12 +37,12 @@ class SettingsStyleController extends State<SettingsStyle> {
     setState(() {});
   }
 
-  void setChatColor(Color color) async {
+  void setChatColor(Color? color) async {
     await Matrix.of(context).store.setItem(
           SettingKeys.chatColor,
-          color.value.toString(),
+          color?.value.toString(),
         );
-    AppConfig.chatColor = color;
+    AppConfig.colorSchemeSeed = color;
     AdaptiveTheme.of(context).setTheme(
       light: FluffyThemes.light,
       dark: FluffyThemes.dark,
@@ -51,13 +51,14 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   AdaptiveThemeMode? currentTheme;
 
-  static final List<Color> customColors = [
+  static final List<Color?> customColors = [
     AppConfig.primaryColor,
     Colors.blue.shade800,
     Colors.green.shade800,
-    Colors.orange.shade900,
+    Colors.orange.shade700,
     Colors.pink.shade700,
     Colors.blueGrey.shade600,
+    null,
   ];
 
   void switchTheme(AdaptiveThemeMode? newTheme) {

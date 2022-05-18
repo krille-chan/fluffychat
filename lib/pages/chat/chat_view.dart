@@ -194,13 +194,8 @@ class ChatView extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 56.0),
                         child: FloatingActionButton(
                           onPressed: controller.scrollDown,
-                          foregroundColor:
-                              Theme.of(context).textTheme.bodyText2!.color,
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
                           mini: true,
-                          child: Icon(Icons.arrow_downward_outlined,
-                              color: Theme.of(context).primaryColor),
+                          child: const Icon(Icons.arrow_downward_outlined),
                         ),
                       )
                     : null,
