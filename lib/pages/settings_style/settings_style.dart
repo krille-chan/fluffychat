@@ -44,8 +44,8 @@ class SettingsStyleController extends State<SettingsStyle> {
         );
     AppConfig.colorSchemeSeed = color;
     AdaptiveTheme.of(context).setTheme(
-      light: FluffyThemes.light,
-      dark: FluffyThemes.dark,
+      light: FluffyThemes.light(),
+      dark: FluffyThemes.dark(),
     );
   }
 

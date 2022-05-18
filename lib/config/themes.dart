@@ -74,11 +74,13 @@ abstract class FluffyThemes {
     subtitle2: fallbackTextStyle,
   );
 
-  static ThemeData get light => ThemeData(
+  static ThemeData light([ColorScheme? colorScheme]) => ThemeData(
         visualDensity: VisualDensity.standard,
         useMaterial3: true,
         brightness: Brightness.light,
-        colorSchemeSeed: AppConfig.colorSchemeSeed,
+        colorSchemeSeed: AppConfig.colorSchemeSeed ??
+            colorScheme?.primary ??
+            AppConfig.chatColor,
         scaffoldBackgroundColor: Colors.white,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().black.merge(fallbackTextTheme)
@@ -124,11 +126,13 @@ abstract class FluffyThemes {
         ),
       );
 
-  static ThemeData get dark => ThemeData(
+  static ThemeData dark([ColorScheme? colorScheme]) => ThemeData(
         visualDensity: VisualDensity.standard,
         useMaterial3: true,
         brightness: Brightness.dark,
-        colorSchemeSeed: AppConfig.colorSchemeSeed,
+        colorSchemeSeed: AppConfig.colorSchemeSeed ??
+            colorScheme?.primary ??
+            AppConfig.chatColor,
         scaffoldBackgroundColor: Colors.black,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().white.merge(fallbackTextTheme)

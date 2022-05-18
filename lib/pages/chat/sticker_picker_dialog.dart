@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/avatar.dart';
-import '../../widgets/default_app_bar_search_field.dart';
 import 'events/image_bubble.dart';
 
 class StickerPickerDialog extends StatefulWidget {
@@ -117,10 +116,13 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                 icon: const Icon(Icons.close),
                 onPressed: Navigator.of(context, rootNavigator: false).pop,
               ),
-              title: DefaultAppBarSearchField(
+              title: TextField(
                 autofocus: false,
-                hintText: L10n.of(context)!.search,
-                suffix: const Icon(Icons.search_outlined),
+                decoration: InputDecoration(
+                  hintText: L10n.of(context)!.search,
+                  suffix: const Icon(Icons.search_outlined),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                ),
                 onChanged: (s) => setState(() => searchFilter = s),
               ),
             ),

@@ -367,6 +367,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1"
+  dynamic_color:
+    dependency: "direct main"
+    description:
+      name: dynamic_color
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.2"
   email_validator:
     dependency: "direct main"
     description:
@@ -2055,4 +2062,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.8.0"
+  flutter: ">=2.13.0-0.2.pre"
