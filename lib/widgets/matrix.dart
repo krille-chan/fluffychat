@@ -224,7 +224,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
   StreamSubscription<html.Event>? onFocusSub;
   StreamSubscription<html.Event>? onBlurSub;
-  final onOwnPresence = <String, StreamSubscription<Presence>>{};
+  final onOwnPresence = <String, StreamSubscription<CachedPresence>>{};
 
   String? _cachedPassword;
   Timer? _cachedPasswordClearTimer;
@@ -342,13 +342,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     });
     // Cache and resend status message
-    onOwnPresence[name] ??= c.onPresence.stream.listen((presence) {
+    onOwnPresence[name] ??= c.onPresenceChanged.stream.listen((presence) {
       if (c.isLogged() &&
-          c.userID == presence.senderId &&
-          presence.presence.statusMsg != null) {
-        Logs().v('Update status message: "${presence.presence.statusMsg}"');
-        store.setItem(
-            SettingKeys.ownStatusMessage, presence.presence.statusMsg);
+          c.userID == presence.userid &&
+          presence.statusMsg != null) {
+        Logs().v('Update status message: "${presence.statusMsg}"');
+        store.setItem(SettingKeys.ownStatusMessage, presence.statusMsg);
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
