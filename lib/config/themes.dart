@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,6 +22,9 @@ abstract class FluffyThemes {
     Widget? prefixIcon,
   }) =>
       InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
         fillColor: Colors.white.withAlpha(200),
         labelText: labelText,
         hintText: hintText,
@@ -74,17 +76,9 @@ abstract class FluffyThemes {
 
   static ThemeData get light => ThemeData(
         visualDensity: VisualDensity.standard,
-        primaryColorDark: Colors.white,
-        primaryColorLight: const Color(0xff121212),
+        useMaterial3: true,
         brightness: Brightness.light,
-        primaryColor: AppConfig.chatColor,
-        colorScheme: ThemeData.light().colorScheme.copyWith(
-              primary: AppConfig.chatColor,
-              secondary: AppConfig.chatColor,
-              surface: FluffyThemes.lighten(AppConfig.chatColor, 0.535),
-            ),
-        backgroundColor: Colors.white,
-        secondaryHeaderColor: Colors.blueGrey.shade50,
+        colorSchemeSeed: AppConfig.colorSchemeSeed,
         scaffoldBackgroundColor: Colors.white,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().black.merge(fallbackTextTheme)
@@ -101,54 +95,23 @@ abstract class FluffyThemes {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        dialogTheme: DialogTheme(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-        ),
-        popupMenuTheme: PopupMenuThemeData(
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: AppConfig.chatColor,
-          foregroundColor: Colors.white,
-        ),
+        dividerColor: Colors.blueGrey.shade50,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: AppConfig.chatColor,
-            onPrimary: Colors.white,
             textStyle: const TextStyle(fontSize: 16),
             elevation: 6,
             shadowColor: const Color(0x44000000),
             minimumSize: const Size.fromHeight(48),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            ),
             padding: const EdgeInsets.all(12),
           ),
         ),
-        cardTheme: CardTheme(
+        cardTheme: const CardTheme(
           elevation: 6,
-          shadowColor: const Color(0x44000000),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
+          // shadowColor: Color(0x44000000),
           clipBehavior: Clip.hardEdge,
         ),
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            borderSide: BorderSide(
-              color: lighten(AppConfig.chatColor, .51),
-              width: 1,
-            ),
-          ),
+          border: const UnderlineInputBorder(borderSide: BorderSide(width: 1)),
           filled: true,
           fillColor: Colors.blueGrey.shade50,
         ),
@@ -156,49 +119,22 @@ abstract class FluffyThemes {
           elevation: 6,
           shadowColor: Color(0x44000000),
           systemOverlayStyle: SystemUiOverlayStyle.dark,
+          surfaceTintColor: Colors.white,
           backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-          iconTheme: IconThemeData(color: Colors.black),
         ),
       );
 
-  static ThemeData get dark => ThemeData.dark().copyWith(
+  static ThemeData get dark => ThemeData(
         visualDensity: VisualDensity.standard,
-        primaryColorDark: const Color(0xff121212),
-        primaryColorLight: Colors.white,
-        primaryColor: AppConfig.chatColor,
-        errorColor: const Color(0xFFCF6679),
-        backgroundColor: Colors.black,
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorSchemeSeed: AppConfig.colorSchemeSeed,
         scaffoldBackgroundColor: Colors.black,
-        colorScheme: ThemeData.dark().colorScheme.copyWith(
-              primary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
-              secondary: FluffyThemes.lighten(AppConfig.chatColor, 0.33),
-              surface: FluffyThemes.darken(AppConfig.chatColor, 0.35),
-            ),
-        secondaryHeaderColor: Colors.blueGrey.shade900,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().white.merge(fallbackTextTheme)
             : null,
-        dialogTheme: DialogTheme(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-        ),
-        popupMenuTheme: PopupMenuThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-        ),
-        cardTheme: CardTheme(
-          elevation: 7,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-          clipBehavior: Clip.hardEdge,
-        ),
+        snackBarTheme:
+            const SnackBarThemeData(behavior: SnackBarBehavior.floating),
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
@@ -209,48 +145,19 @@ abstract class FluffyThemes {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: AppConfig.chatColor,
-          foregroundColor: Colors.white,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius)),
-          filled: true,
-          fillColor: Colors.blueGrey.shade900,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            borderSide: BorderSide(
-              color: FluffyThemes.darken(AppConfig.chatColor, .31),
-            ),
-          ),
-        ),
+        dividerColor: Colors.blueGrey.shade600,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: AppConfig.chatColor,
             onPrimary: Colors.white,
             minimumSize: const Size.fromHeight(48),
             textStyle: const TextStyle(fontSize: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            ),
             padding: const EdgeInsets.all(12),
           ),
         ),
-        snackBarTheme:
-            const SnackBarThemeData(behavior: SnackBarBehavior.floating),
         appBarTheme: const AppBarTheme(
           elevation: 6,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
           backgroundColor: Color(0xff1D1D1D),
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-        cupertinoOverrideTheme: const CupertinoThemeData(
-          textTheme: CupertinoTextThemeData(),
         ),
       );
 

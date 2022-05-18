@@ -11,7 +11,8 @@ abstract class AppConfig {
   static String get defaultHomeserver => _defaultHomeserver;
   static double bubbleSizeFactor = 1;
   static double fontSizeFactor = 1;
-  static Color chatColor = primaryColor;
+  static const Color chatColor = primaryColor;
+  static Color? colorSchemeSeed;
   static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
@@ -63,7 +64,7 @@ abstract class AppConfig {
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['chat_color'] != null) {
       try {
-        chatColor = Color(json['application_name']);
+        colorSchemeSeed = Color(json['application_name']);
       } catch (e) {
         Logs().w(
             'Invalid color in config.json! Please make sure to define the color in this format: "0xffdd0000"',

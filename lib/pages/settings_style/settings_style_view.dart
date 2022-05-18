@@ -23,38 +23,61 @@ class SettingsStyleView extends StatelessWidget {
         leading: const BackButton(),
         title: Text(L10n.of(context)!.changeTheme),
       ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: MaxWidthBody(
         withScrolling: true,
         child: Column(
           children: [
-            Row(
-              children: SettingsStyleController.customColors
-                  .map(
-                    (color) => Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(colorPickerSize),
-                        onTap: () => controller.setChatColor(color),
-                        child: Material(
-                          color: color,
-                          elevation: 6,
+            SizedBox(
+              height: colorPickerSize + 24,
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: SettingsStyleController.customColors
+                    .map(
+                      (color) => Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: InkWell(
                           borderRadius: BorderRadius.circular(colorPickerSize),
-                          child: SizedBox(
-                              width: colorPickerSize,
-                              height: colorPickerSize,
-                              child: AppConfig.chatColor.value == color.value
-                                  ? const Center(
-                                      child: Icon(
-                                      Icons.check,
-                                      size: 16,
-                                      color: Colors.white,
-                                    ))
-                                  : null),
+                          onTap: () => controller.setChatColor(color),
+                          child: color == null
+                              ? Material(
+                                  elevation:
+                                      AppConfig.colorSchemeSeed?.value == null
+                                          ? 100
+                                          : 0,
+                                  shadowColor: AppConfig.colorSchemeSeed,
+                                  borderRadius:
+                                      BorderRadius.circular(colorPickerSize),
+                                  child: Image.asset(
+                                    'assets/colors.png',
+                                    width: colorPickerSize,
+                                    height: colorPickerSize,
+                                  ),
+                                )
+                              : Material(
+                                  color: color,
+                                  elevation: 6,
+                                  borderRadius:
+                                      BorderRadius.circular(colorPickerSize),
+                                  child: SizedBox(
+                                      width: colorPickerSize,
+                                      height: colorPickerSize,
+                                      child: AppConfig.colorSchemeSeed?.value ==
+                                              color.value
+                                          ? const Center(
+                                              child: Icon(
+                                              Icons.check,
+                                              size: 16,
+                                              color: Colors.white,
+                                            ))
+                                          : null),
+                                ),
                         ),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
             ),
             const Divider(height: 1),
             RadioListTile<AdaptiveThemeMode>(
@@ -122,7 +145,7 @@ class SettingsStyleView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Material(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 elevation: 6,
                 shadowColor:
                     Theme.of(context).secondaryHeaderColor.withAlpha(100),
@@ -132,7 +155,7 @@ class SettingsStyleView extends StatelessWidget {
                   child: Text(
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize:
                           AppConfig.messageFontSize * AppConfig.fontSizeFactor,
                     ),

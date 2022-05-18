@@ -65,7 +65,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).appBarTheme.backgroundColor;
+    var color = Theme.of(context).scaffoldBackgroundColor;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -78,10 +78,8 @@ class Message extends StatelessWidget {
         ? nextEvent!.sender.id == event.sender.id && !displayTime
         : false;
     final textColor = ownMessage
-        ? Colors.white
-        : Theme.of(context).brightness == Brightness.dark
-            ? Colors.white
-            : Colors.black;
+        ? Theme.of(context).colorScheme.onPrimary
+        : Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -105,7 +103,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).primaryColor;
+          : Theme.of(context).colorScheme.primary;
     }
 
     final rowChildren = <Widget>[
