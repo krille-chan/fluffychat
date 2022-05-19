@@ -9,7 +9,6 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/utils/string_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/contacts_list.dart';
-import 'package:fluffychat/widgets/default_app_bar_search_field.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../utils/platform_infos.dart';
@@ -80,11 +79,14 @@ class SearchView extends StatelessWidget {
         appBar: AppBar(
           leading: const BackButton(),
           titleSpacing: 0,
-          title: DefaultAppBarSearchField(
+          title: TextField(
             autofocus: true,
-            hintText: L10n.of(context)!.search,
-            searchController: controller.controller,
-            suffix: const Icon(Icons.search_outlined),
+            controller: controller.controller,
+            decoration: InputDecoration(
+              suffix: const Icon(Icons.search_outlined),
+              hintText: L10n.of(context)!.search,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
             onChanged: controller.search,
           ),
           bottom: TabBar(

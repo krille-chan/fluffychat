@@ -21,6 +21,7 @@ dependencies:
   desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^3.2.1
+  dynamic_color: ^1.2.2
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.1.2
   encrypt: ^5.0.1

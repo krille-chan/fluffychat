@@ -25,8 +25,8 @@ class _LockScreenState extends State<LockScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: FluffyThemes.light,
-      darkTheme: FluffyThemes.light,
+      theme: FluffyThemes.light(),
+      darkTheme: FluffyThemes.light(),
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       home: Builder(
