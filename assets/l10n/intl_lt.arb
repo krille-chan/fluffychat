@@ -133,7 +133,7 @@
   },
   "time": "Laikas",
   "@time": {},
-  "settings": "Nustatymai",
+  "settings": "Nustatytmai",
   "@settings": {
     "type": "text",
     "placeholders": {}
@@ -2759,5 +2759,85 @@
     }
   },
   "markAsRead": "Žymėti kaip skaitytą",
-  "@markAsRead": {}
+  "@markAsRead": {},
+  "moreEvents": "{count,plural, =1{1 more event} other{{count} more events}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pushRules": "Taisyklės",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUserAndCountOthers": "{count, plural, other{Jau matė {username} ir {count} others}}",
+  "@seenByUserAndCountOthers": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} neperskaityti pokalbiai}}",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "unreadMessages": "{unreadEvents, plural, =1{1 unread message} other{{unreadEvents} neperskaitytos žinutės}}",
+  "@unreadMessages": {
+    "type": "text",
+    "placeholders": {
+      "unreadEvents": {}
+    }
+  },
+  "matrixWidgets": "Matrix programėlės",
+  "@matrixWidgets": {},
+  "integrationsNotImplemented": "Redaguoti programėles ir integracijas kol kas negalima.",
+  "@integrationsNotImplemented": {},
+  "editWidgets": "Redaguoti programėles",
+  "@editWidgets": {},
+  "addWidget": "Pridėti programėlę",
+  "@addWidget": {},
+  "widgetCustom": "Custom",
+  "@widgetCustom": {},
+  "errorAddingWidget": "Pridedant programėlę įvyko klaida.",
+  "@errorAddingWidget": {},
+  "askSSSSSign": "Kad galėtumėte priregistruoti kitą asmenį, įveskite slaptą frazę arba atkūrimo raktą.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSVerify": "Įveskite slaptą frazę arba atkūrimo raktą, kad patvirtintumėte sesiją.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Automatiškai leiskite animuotus lipdukus ir emotes",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "setupChatBackupDescription": "Siekdami apsaugoti jūsų pranešimus, sukūrėme jums saugos raktą. Laikykite tai saugioje vietoje, pvz. slaptažodžių tvarkyklėje.",
+  "@setupChatBackupDescription": {},
+  "ignoreListDescription": "Galite ignoruoti vartotojus, kurie jums trukdo. Negalėsite gauti jokių pranešimų ar kvietimų į kambarį iš vartotojų, įtrauktų į asmeninį ignoruojamųjų sąrašą.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "timeOfDay": "{hours12}:{minutes} {suffix}",
+  "@timeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "hours12": {},
+      "hours24": {},
+      "minutes": {},
+      "suffix": {}
+    }
+  },
+  "editIntegrations": "Redaguoti programėles ir integracijas",
+  "@editIntegrations": {}
 }
