@@ -83,10 +83,11 @@ class NewPrivateChatView extends StatelessWidget {
                   focusNode: controller.textFieldFocus,
                   onFieldSubmitted: controller.submitAction,
                   validator: controller.validateForm,
+                  inputFormatters: controller.removeMatrixToFormatters,
                   decoration: InputDecoration(
                     labelText: L10n.of(context)!.typeInInviteLinkManually,
                     hintText: '@username',
-                    prefixText: 'matrix.to/#/',
+                    prefixText: NewPrivateChatController.prefixNoProtocol,
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.send_outlined),
                       onPressed: controller.submitAction,

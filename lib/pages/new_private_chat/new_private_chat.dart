@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -27,11 +28,18 @@ class NewPrivateChatController extends State<NewPrivateChat> {
 
   bool _hideFab = false;
 
+  // remove leading matrix.to from text field in order to simplify pasting
+  final List<TextInputFormatter> removeMatrixToFormatters = [
+    FilteringTextInputFormatter.deny(NewPrivateChatController.prefix),
+    FilteringTextInputFormatter.deny(NewPrivateChatController.prefixNoProtocol),
+  ];
+
   bool get hideFab => _hideFab;
 
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
   static const String prefix = 'https://matrix.to/#/';
+  static const String prefixNoProtocol = 'matrix.to/#/';
 
   void setHideFab() {
     if (textFieldFocus.hasFocus != _hideFab) {
