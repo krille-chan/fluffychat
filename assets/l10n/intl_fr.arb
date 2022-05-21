@@ -910,7 +910,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Saisissez une adresse de courriel",
+  "enterAnEmailAddress": "Adresse de courriel (ne pas mandatoire)",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}

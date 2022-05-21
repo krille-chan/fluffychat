@@ -896,7 +896,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Gib eine E-Mail-Adresse ein",
+  "enterAnEmailAddress": "E-Mail-Adresse (nicht erforderlich)",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}

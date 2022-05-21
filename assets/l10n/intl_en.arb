@@ -955,11 +955,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterAnEmailAddress": "Enter an email address",
+  "enterAnEmailAddress": "Email address (not mandatory)",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
+  "emailContinueAnyway": "Continue anyway",
+  "emailEmptyWarning": "Warning: Even though adding a mail address leaks sensitive personal data, you have no way to recover your password without it.",
   "enterASpacepName": "Enter a space name",
   "@enterASpacepName": {},
   "enterAUsername": "Enter a username",

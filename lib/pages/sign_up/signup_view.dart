@@ -88,12 +88,13 @@ class SignupPageView extends StatelessWidget {
                     controller.loading ? null : [AutofillHints.username],
                 validator: controller.emailTextFieldValidator,
                 decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(
-                      Icons.mail_outlined,
-                      color: Colors.black,
-                    ),
-                    hintText: L10n.of(context)!.enterAnEmailAddress,
-                    errorText: controller.error),
+                  prefixIcon: const Icon(
+                    Icons.mail_outlined,
+                    color: Colors.black,
+                  ),
+                  hintText: L10n.of(context)!.enterAnEmailAddress,
+                  errorText: controller.error,
+                ),
               ),
             ),
             Hero(
