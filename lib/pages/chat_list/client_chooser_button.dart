@@ -123,12 +123,15 @@ class ClientChooserButton extends StatelessWidget {
               onKeysPressed: () => _previousAccount(matrix),
             ),
             PopupMenuButton<Object>(
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
-                size: 28,
-                fontSize: 12,
+              child: Material(
+                borderRadius: BorderRadius.zero,
+                child: Avatar(
+                  mxContent: snapshot.data?.avatarUrl,
+                  name: snapshot.data?.displayName ??
+                      matrix.client.userID!.localpart,
+                  size: 28,
+                  fontSize: 12,
+                ),
               ),
               onSelected: _clientSelected,
               itemBuilder: _bundleMenuItems,

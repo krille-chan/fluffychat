@@ -77,6 +77,14 @@ class AllRoomsSpacesEntry extends SpacesEntry {
 
   @override
   bool shouldShowStoriesHeader(BuildContext context) => true;
+
+  @override
+  bool operator ==(Object other) {
+    return runtimeType == other.runtimeType;
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 // "Direct Chats" entry.
@@ -101,6 +109,14 @@ class DirectChatsSpacesEntry extends SpacesEntry {
 
   @override
   bool shouldShowStoriesHeader(BuildContext context) => true;
+
+  @override
+  bool operator ==(Object other) {
+    return runtimeType == other.runtimeType;
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 // "Groups" entry.
@@ -134,6 +150,14 @@ class GroupsSpacesEntry extends SpacesEntry {
   bool separatedGroup(Room room, List<Room> spaces) {
     return !spaces.any((space) => _roomInsideSpace(room, space));
   }
+
+  @override
+  bool operator ==(Object other) {
+    return runtimeType == other.runtimeType;
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
 
 // All rooms associated with a specific space.
@@ -179,12 +203,12 @@ class SpaceSpacesEntry extends SpacesEntry {
   @override
   bool stillValid(BuildContext context) =>
       Matrix.of(context).client.getRoomById(space.id) != null;
-}
 
-// Produces a "rough equivalence" for maintaining the current spaces index.
-bool spacesEntryRoughEquivalence(SpacesEntry a, SpacesEntry b) {
-  if ((a is SpaceSpacesEntry) && (b is SpaceSpacesEntry)) {
-    return a.space.id == b.space.id;
+  @override
+  bool operator ==(Object other) {
+    return hashCode == other.hashCode;
   }
-  return a == b;
+
+  @override
+  int get hashCode => space.id.hashCode;
 }

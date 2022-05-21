@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
+import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
@@ -28,7 +29,7 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
 
   // used to check the animation direction
   String? _lastUserId;
-  String? _lastSpaceId;
+  SpacesEntry? _lastSpace;
 
   @override
   void initState() {
@@ -175,11 +176,13 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
         return SharedAxisTransition(
           animation: primaryAnimation,
           secondaryAnimation: secondaryAnimation,
-          transitionType:
-              widget.controller.snappingSheetController.currentPosition ==
-                      kSpacesBottomBarHeight
-                  ? SharedAxisTransitionType.horizontal
-                  : SharedAxisTransitionType.vertical,
+          transitionType: (widget.controller.snappingSheetController.isAttached
+                      ? widget
+                          .controller.snappingSheetController.currentPosition
+                      : 0) ==
+                  kSpacesBottomBarHeight
+              ? SharedAxisTransitionType.horizontal
+              : SharedAxisTransitionType.vertical,
           fillColor: Theme.of(context).scaffoldBackgroundColor,
           child: child,
         );
@@ -208,13 +211,13 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
     }
     // otherwise, the space changed...
     else {
-      reversed = widget.controller.spaces
-              .indexWhere((element) => element.id == _lastSpaceId) <
-          widget.controller.spaces.indexWhere(
-              (element) => element.id == widget.controller.activeSpaceId);
+      reversed = widget.controller.spacesEntries
+              .indexWhere((element) => element == _lastSpace) <
+          widget.controller.spacesEntries.indexWhere(
+              (element) => element == widget.controller.activeSpacesEntry);
     }
     _lastUserId = newClient.userID;
-    _lastSpaceId = widget.controller.activeSpaceId;
+    _lastSpace = widget.controller.activeSpacesEntry;
     return reversed;
   }
 }
