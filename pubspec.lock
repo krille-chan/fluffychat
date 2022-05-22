@@ -1592,9 +1592,11 @@ packages:
   snapping_sheet:
     dependency: "direct main"
     description:
-      name: snapping_sheet
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: listenable
+      resolved-ref: "2d9f2a40590c13aadfd226c2e41b08e155e6a92e"
+      url: "https://github.com/TheOneWithTheBraid/snapping_sheet.git"
+    source: git
     version: "3.1.0"
   source_map_stack_trace:
     dependency: transitive
