@@ -2758,5 +2758,7 @@
   "unsupportedAndroidVersionLong": "Ova funkcija zahtijeva noviju verziju Androida. Provjeri, postoje li nove verzije ili podrška za Lineage OS.",
   "@unsupportedAndroidVersionLong": {},
   "previousAccount": "Prethodni račun",
-  "@previousAccount": {}
+  "@previousAccount": {},
+  "showSpaces": "Prikaži popis prostora",
+  "@showSpaces": {}
 }
