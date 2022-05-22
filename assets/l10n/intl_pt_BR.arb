@@ -2804,5 +2804,58 @@
   "editWidgets": "Editar ferramentas",
   "@editWidgets": {},
   "showSpaces": "Mostrar lista de espaços",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "showDirectChatsInSpaces": "Mostrar Conversas Diretas relacionadas nos Espaços",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youRejectedTheInvitation": "Você rejeitou o convite",
+  "@youRejectedTheInvitation": {},
+  "youBannedUser": "Você baniu {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Você revogou o convite para {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "Você foi convidado por {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Você convidou {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youAcceptedTheInvitation": "Você aceitou o convite",
+  "@youAcceptedTheInvitation": {},
+  "youJoinedTheChat": "Você entrou na conversa",
+  "@youJoinedTheChat": {},
+  "youKicked": "Você expulsou {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Você expulsou e baniu {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Você revogou o banimento de {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  }
 }
