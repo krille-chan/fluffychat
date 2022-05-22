@@ -1,5 +1,5 @@
 variables:
-  FLUTTER_VERSION: 3.0.0
+  FLUTTER_VERSION: 3.0.1
 
 image: cirrusci/flutter:${FLUTTER_VERSION}
 
