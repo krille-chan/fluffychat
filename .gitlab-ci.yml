@@ -40,6 +40,7 @@ integration_test:
     - emulator -avd test -no-audio -no-boot-anim -no-window -accel on -gpu swiftshader_indirect &
     - sleep 10
   script:
+    - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
   tags:
