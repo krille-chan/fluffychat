@@ -1,110 +1,91 @@
-diff --git b/android/app/build.gradle a/android/app/build.gradle
-index 001fbd72..3a1f9293 100644
---- b/android/app/build.gradle
-+++ a/android/app/build.gradle
-@@ -68,6 +68,10 @@ android {
-         }
-         release {
-             signingConfig signingConfigs.release
-+            minifyEnabled false
-+            shrinkResources false
-+
-+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-         }
-     }
- }
-@@ -79,6 +83,9 @@ flutter {
+diff --git a/android/app/build.gradle b/android/app/build.gradle
+index ad9ffb87..37baafb1 100644
+--- a/android/app/build.gradle
++++ b/android/app/build.gradle
+@@ -44,7 +44,7 @@ android {
+ 
+     defaultConfig {
+         applicationId "chat.fluffy.fluffychat"
+-        minSdkVersion 16
++        minSdkVersion 19
+         targetSdkVersion 30
+         versionCode flutterVersionCode.toInteger()
+         versionName flutterVersionName
+@@ -82,11 +82,11 @@ flutter {
+ 
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-     //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
-+    testImplementation 'junit:junit:4.12'
-+    androidTestImplementation 'androidx.test:runner:1.1.1'
-+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
++    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'androidx.test:runner:1.1.1'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
      implementation 'androidx.multidex:multidex:2.0.1'
  }
  
-diff --git b/android/app/proguard-rules.pro a/android/app/proguard-rules.pro
-new file mode 100644
-index 00000000..40570865
---- /dev/null
-+++ a/android/app/proguard-rules.pro
-@@ -0,0 +1,41 @@
-+-optimizationpasses 5
-+## Flutter wrapper
-+-keep class io.flutter.app.** { *; }
-+-keep class io.flutter.plugin.**  { *; }
-+-keep class io.flutter.util.**  { *; }
-+-keep class io.flutter.view.**  { *; }
-+-keep class io.flutter.**  { *; }
-+-keep class io.flutter.plugins.**  { *; }
-+-dontwarn io.flutter.embedding.**
-+
-+##---------------Begin: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
-+# Gson uses generic type information stored in a class file when working with fields. Proguard
-+# removes such information by default, so configure it to keep all of it.
-+-keepattributes Signature
-+
-+# For using GSON @Expose annotation
-+-keepattributes *Annotation*
-+
-+# Gson specific classes
-+-dontwarn sun.misc.**
-+
-+# Application classes that will be serialized/deserialized over Gson
-+-keep class com.google.gson.examples.android.model.** { <fields>; }
-+
-+# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
-+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
-+-keep class * extends com.google.gson.TypeAdapter
-+-keep class * implements com.google.gson.TypeAdapterFactory
-+-keep class * implements com.google.gson.JsonSerializer
-+-keep class * implements com.google.gson.JsonDeserializer
-+
-+# Prevent R8 from leaving Data object members always null
-+-keepclassmembers,allowobfuscation class * {
-+  @com.google.gson.annotations.SerializedName <fields>;
-+}
-+
-+# Retain generic signatures of TypeToken and its subclasses with R8 version 3.0 and higher.
-+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
-+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
-+
-+##---------------End: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
+-//apply plugin: 'com.google.gms.google-services'
++apply plugin: 'com.google.gms.google-services'
+diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+index d9930f55..510e9845 100644
+--- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
++++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+@@ -1,4 +1,4 @@
+-/*package chat.fluffy.fluffychat
++package chat.fluffy.fluffychat
+ 
+ import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
+ 
+@@ -33,4 +33,3 @@ class FcmPushService : FcmSharedIsolateService() {
+         }
+     }
+ }
+-*/
 \ No newline at end of file
-diff --git b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-index 1afc4606..894d1571 100644
---- b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-+++ a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-@@ -7,13 +7,11 @@ import android.content.Context
- import androidx.multidex.MultiDex
- 
- class MainActivity : FlutterActivity() {
--
-     override fun attachBaseContext(base: Context) {
-         super.attachBaseContext(base)
-         MultiDex.install(this)
+diff --git a/android/build.gradle b/android/build.gradle
+index 85aa8647..3b7e09e7 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -8,7 +8,7 @@ buildscript {
+     dependencies {
+         classpath 'com.android.tools.build:gradle:4.2.1'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+-        //classpath 'com.google.gms:google-services:4.3.8'
++        classpath 'com.google.gms:google-services:4.3.8'
      }
+ }
  
--
-     override fun provideFlutterEngine(context: Context): FlutterEngine? {
-         return provideEngine(this)
-     }
-diff --git b/pubspec.lock a/pubspec.lock
-index 9bb85c04..3e6c42df 100644
---- b/pubspec.lock
-+++ a/pubspec.lock
-@@ -1592,11 +1592,9 @@ packages:
-   snapping_sheet:
-     dependency: "direct main"
-     description:
--      path: "."
--      ref: listenable
--      resolved-ref: "2d9f2a40590c13aadfd226c2e41b08e155e6a92e"
--      url: "https://github.com/TheOneWithTheBraid/snapping_sheet.git"
--    source: git
-+      name: snapping_sheet
-+      url: "https://pub.dartlang.org"
-+    source: hosted
-     version: "3.1.0"
-   source_map_stack_trace:
-     dependency: transitive
+diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
+index 00ca2aaa..8bb8a156 100644
+--- a/lib/utils/background_push.dart
++++ b/lib/utils/background_push.dart
+@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
+ import 'famedlysdk_store.dart';
+ import 'platform_infos.dart';
+ 
+-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
++import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+ 
+ class NoTokenException implements Exception {
+   String get cause => 'Cannot get firebase token';
+@@ -65,7 +65,7 @@ class BackgroundPush {
+ 
+   final pendingTests = <String, Completer<void>>{};
+ 
+-  final dynamic firebase = null; //FcmSharedIsolate();
++  final dynamic firebase = FcmSharedIsolate();
+ 
+   DateTime? lastReceivedPush;
+ 
+diff --git a/pubspec.yaml b/pubspec.yaml
+index c6295788..8dd17ce4 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -24,7 +24,7 @@ dependencies:
+   email_validator: ^2.0.1
+   emoji_picker_flutter: ^1.1.2
+   encrypt: ^5.0.1
+-  #fcm_shared_isolate: ^0.1.0
++  fcm_shared_isolate: ^0.1.0
+   file_picker_cross: ^4.6.0
+   flutter:
+     sdk: flutter
