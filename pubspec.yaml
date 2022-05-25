@@ -95,6 +95,7 @@ dev_dependencies:
   flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter
+  http: ^0.13.4
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
