@@ -119,12 +119,12 @@ upload-fdroid:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh-keyscan -t rsa fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa ssh.fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
   script:
     - cd build/android/
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
-    - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat/repo
-    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
+    - rsync -rav -e ssh ./ fluffy@ssh.fdroid.nordgedanken.dev:/opt/fdroid/fluffychat/repo
+    - ssh fluffy@ssh.fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
   needs: ["build_android_apk"]
   resource_group: playstore_release
   allow_failure: true
@@ -141,12 +141,12 @@ upload-fdroid-nightly:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh-keyscan -t rsa fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa ssh.fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
   script:
     - cd build/android/
     - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}_$(date +%s).apk"
-    - rsync -rav -e ssh ./ fluffy@fdroid.nordgedanken.dev:/opt/fdroid/fluffychat-nightly/repo
-    - ssh fluffy@fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightly && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
+    - rsync -rav -e ssh ./ fluffy@ssh.fdroid.nordgedanken.dev:/opt/fdroid/fluffychat-nightly/repo
+    - ssh fluffy@ssh.fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightly && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
   needs: ["build_android_apk"]
   resource_group: playstore_release
   allow_failure: true
