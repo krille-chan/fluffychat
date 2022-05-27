@@ -1,5 +1,5 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index ad9ffb87..37baafb1 100644
+index 001fbd72..339b35af 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
 @@ -44,7 +44,7 @@ android {
@@ -11,20 +11,79 @@ index ad9ffb87..37baafb1 100644
          targetSdkVersion 30
          versionCode flutterVersionCode.toInteger()
          versionName flutterVersionName
-@@ -82,11 +82,11 @@ flutter {
+@@ -68,6 +68,10 @@ android {
+         }
+         release {
+             signingConfig signingConfigs.release
++            minifyEnabled false
++            shrinkResources false
++
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
+     }
+ }
+@@ -78,8 +82,11 @@ flutter {
  
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 -    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
 +    implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
-     testImplementation 'junit:junit:4.12'
-     androidTestImplementation 'androidx.test:runner:1.1.1'
-     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
++    testImplementation 'junit:junit:4.12'
++    androidTestImplementation 'androidx.test:runner:1.1.1'
++    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
      implementation 'androidx.multidex:multidex:2.0.1'
  }
  
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
+diff --git a/android/app/proguard-rules.pro b/android/app/proguard-rules.pro
+new file mode 100644
+index 00000000..40570865
+--- /dev/null
++++ b/android/app/proguard-rules.pro
+@@ -0,0 +1,41 @@
++-optimizationpasses 5
++## Flutter wrapper
++-keep class io.flutter.app.** { *; }
++-keep class io.flutter.plugin.**  { *; }
++-keep class io.flutter.util.**  { *; }
++-keep class io.flutter.view.**  { *; }
++-keep class io.flutter.**  { *; }
++-keep class io.flutter.plugins.**  { *; }
++-dontwarn io.flutter.embedding.**
++
++##---------------Begin: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
++# Gson uses generic type information stored in a class file when working with fields. Proguard
++# removes such information by default, so configure it to keep all of it.
++-keepattributes Signature
++
++# For using GSON @Expose annotation
++-keepattributes *Annotation*
++
++# Gson specific classes
++-dontwarn sun.misc.**
++
++# Application classes that will be serialized/deserialized over Gson
++-keep class com.google.gson.examples.android.model.** { <fields>; }
++
++# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
++# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
++-keep class * extends com.google.gson.TypeAdapter
++-keep class * implements com.google.gson.TypeAdapterFactory
++-keep class * implements com.google.gson.JsonSerializer
++-keep class * implements com.google.gson.JsonDeserializer
++
++# Prevent R8 from leaving Data object members always null
++-keepclassmembers,allowobfuscation class * {
++  @com.google.gson.annotations.SerializedName <fields>;
++}
++
++# Retain generic signatures of TypeToken and its subclasses with R8 version 3.0 and higher.
++-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
++-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
++
++##---------------End: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
+\ No newline at end of file
 diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
 index d9930f55..510e9845 100644
 --- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
@@ -41,6 +100,24 @@ index d9930f55..510e9845 100644
  }
 -*/
 \ No newline at end of file
+diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
+index 1afc4606..894d1571 100644
+--- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
++++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
+@@ -7,13 +7,11 @@ import android.content.Context
+ import androidx.multidex.MultiDex
+ 
+ class MainActivity : FlutterActivity() {
+-
+     override fun attachBaseContext(base: Context) {
+         super.attachBaseContext(base)
+         MultiDex.install(this)
+     }
+ 
+-
+     override fun provideFlutterEngine(context: Context): FlutterEngine? {
+         return provideEngine(this)
+     }
 diff --git a/android/build.gradle b/android/build.gradle
 index 85aa8647..3b7e09e7 100644
 --- a/android/build.gradle
@@ -55,7 +132,7 @@ index 85aa8647..3b7e09e7 100644
  }
  
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
-index 00ca2aaa..8bb8a156 100644
+index cd79b0ab..c2db0f1e 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
 @@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
@@ -77,10 +154,10 @@ index 00ca2aaa..8bb8a156 100644
    DateTime? lastReceivedPush;
  
 diff --git a/pubspec.yaml b/pubspec.yaml
-index c6295788..8dd17ce4 100644
+index 6999d0b8..b2c9144f 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -24,7 +24,7 @@ dependencies:
+@@ -25,7 +25,7 @@ dependencies:
    email_validator: ^2.0.1
    emoji_picker_flutter: ^1.1.2
    encrypt: ^5.0.1
