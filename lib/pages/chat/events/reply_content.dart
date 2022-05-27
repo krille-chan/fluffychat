@@ -9,12 +9,12 @@ import 'html_message.dart';
 
 class ReplyContent extends StatelessWidget {
   final Event replyEvent;
-  final bool lightText;
+  final bool ownMessage;
   final Timeline? timeline;
 
   const ReplyContent(
     this.replyEvent, {
-    this.lightText = false,
+    this.ownMessage = false,
     Key? key,
     this.timeline,
   }) : super(key: key);
@@ -41,9 +41,9 @@ class ReplyContent extends StatelessWidget {
       replyBody = HtmlMessage(
         html: html!,
         defaultTextStyle: TextStyle(
-          color: lightText
-              ? Colors.white
-              : Theme.of(context).textTheme.bodyText2!.color,
+          color: ownMessage
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.onBackground,
           fontSize: fontSize,
         ),
         maxLines: 1,
@@ -60,9 +60,9 @@ class ReplyContent extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(
-          color: lightText
-              ? Colors.white
-              : Theme.of(context).textTheme.bodyText2!.color,
+          color: ownMessage
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.onBackground,
           fontSize: fontSize,
         ),
       );
@@ -73,7 +73,9 @@ class ReplyContent extends StatelessWidget {
         Container(
           width: 3,
           height: fontSize * 2 + 6,
-          color: lightText ? Colors.white : Theme.of(context).primaryColor,
+          color: ownMessage
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.onBackground,
         ),
         const SizedBox(width: 6),
         Flexible(
@@ -87,8 +89,9 @@ class ReplyContent extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color:
-                      lightText ? Colors.white : Theme.of(context).primaryColor,
+                  color: ownMessage
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onBackground,
                   fontSize: fontSize,
                 ),
               ),
