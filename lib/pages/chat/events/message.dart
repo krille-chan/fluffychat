@@ -213,7 +213,7 @@ class Message extends StatelessWidget {
                                             vertical: 4.0 *
                                                 AppConfig.bubbleSizeFactor),
                                         child: ReplyContent(replyEvent,
-                                            lightText: ownMessage,
+                                            ownMessage: ownMessage,
                                             timeline: timeline),
                                       ),
                                     ),
