@@ -32,8 +32,9 @@ class SignupPageView extends StatelessWidget {
               child: TextFormField(
                 readOnly: controller.loading,
                 autocorrect: false,
+                onChanged: controller.onPasswordType,
                 autofillHints:
-                    controller.loading ? null : [AutofillHints.password],
+                    controller.loading ? null : [AutofillHints.newPassword],
                 controller: controller.passwordController,
                 obscureText: !controller.showPassword,
                 validator: controller.password1TextFieldValidator,
@@ -56,6 +57,26 @@ class SignupPageView extends StatelessWidget {
                 ),
               ),
             ),
+            if (controller.displaySecondPasswordField)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextFormField(
+                  readOnly: controller.loading,
+                  autocorrect: false,
+                  autofillHints:
+                      controller.loading ? null : [AutofillHints.newPassword],
+                  controller: controller.password2Controller,
+                  obscureText: !controller.showPassword,
+                  validator: controller.password2TextFieldValidator,
+                  decoration: FluffyThemes.loginTextFieldDecoration(
+                    prefixIcon: const Icon(
+                      Icons.repeat_outlined,
+                      color: Colors.black,
+                    ),
+                    hintText: L10n.of(context)!.repeatPassword,
+                  ),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(

@@ -34,6 +34,7 @@ abstract class FluffyThemes {
         prefixIconColor: Colors.black,
         iconColor: Colors.black,
         errorText: errorText,
+        errorMaxLines: 4,
         errorStyle: TextStyle(
           color: Colors.red.shade200,
           shadows: const [

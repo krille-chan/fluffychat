@@ -17,10 +17,15 @@ class SignupPage extends StatefulWidget {
 
 class SignupPageController extends State<SignupPage> {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController password2Controller = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   String? error;
   bool loading = false;
-  bool showPassword = true;
+  bool showPassword = false;
+  bool noEmailWarningConfirmed = false;
+  bool displaySecondPasswordField = false;
+
+  static const int minPassLength = 8;
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
@@ -28,20 +33,39 @@ class SignupPageController extends State<SignupPage> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  void onPasswordType(String text) {
+    if (text.length >= minPassLength && !displaySecondPasswordField) {
+      setState(() {
+        displaySecondPasswordField = true;
+      });
+    }
+  }
+
   String? password1TextFieldValidator(String? value) {
-    const minLength = 8;
     if (value!.isEmpty) {
       return L10n.of(context)!.chooseAStrongPassword;
     }
-    if (value.length < minLength) {
-      return L10n.of(context)!.pleaseChooseAtLeastChars(minLength.toString());
+    if (value.length < minPassLength) {
+      return L10n.of(context)!
+          .pleaseChooseAtLeastChars(minPassLength.toString());
+    }
+    return null;
+  }
+
+  String? password2TextFieldValidator(String? value) {
+    if (value!.isEmpty) {
+      return L10n.of(context)!.repeatPassword;
+    }
+    if (value != passwordController.text) {
+      return L10n.of(context)!.passwordsDoNotMatch;
     }
     return null;
   }
 
   String? emailTextFieldValidator(String? value) {
-    if (value!.isEmpty) {
-      return L10n.of(context)!.addEmail;
+    if (value!.isEmpty && !noEmailWarningConfirmed) {
+      noEmailWarningConfirmed = true;
+      return L10n.of(context)!.noEmailWarning;
     }
     if (value.isNotEmpty && !value.contains('@')) {
       return L10n.of(context)!.pleaseEnterValidEmail;
@@ -62,14 +86,16 @@ class SignupPageController extends State<SignupPage> {
     try {
       final client = Matrix.of(context).getLoginClient();
       final email = emailController.text;
-      Matrix.of(context).currentClientSecret =
-          DateTime.now().millisecondsSinceEpoch.toString();
-      Matrix.of(context).currentThreepidCreds =
-          await client.requestTokenToRegisterEmail(
-        Matrix.of(context).currentClientSecret,
-        email,
-        0,
-      );
+      if (email.isNotEmpty) {
+        Matrix.of(context).currentClientSecret =
+            DateTime.now().millisecondsSinceEpoch.toString();
+        Matrix.of(context).currentThreepidCreds =
+            await client.requestTokenToRegisterEmail(
+          Matrix.of(context).currentClientSecret,
+          email,
+          0,
+        );
+      }
 
       await client.uiaRequestBackground(
         (auth) => client.register(
