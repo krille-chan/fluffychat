@@ -2852,5 +2852,7 @@
     }
   },
   "showSpaces": "Tampilkan daftar space",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "noEmailWarning": "Mohon tambahkan sebuah alamat email. Atau kamu tidak akan dapat mengatur ulang kata sandimu. Jika kamu tidak ingin, ketuk lagi untuk melanjitkan.",
+  "@noEmailWarning": {}
 }
