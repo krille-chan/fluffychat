@@ -236,7 +236,10 @@ class StoryView extends StatelessWidget {
                 onHorizontalDragEnd: controller.unhold,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 80,
+                  ),
                   decoration: BoxDecoration(
                     gradient: event.messageType == MessageTypes.Text
                         ? LinearGradient(
