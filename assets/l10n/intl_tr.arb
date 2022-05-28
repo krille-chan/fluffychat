@@ -2858,5 +2858,7 @@
     }
   },
   "showSpaces": "Alanlar listesini göster",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "noEmailWarning": "Lütfen geçerli bir e-posta adresi girin. Aksi takdirde parolanızı sıfırlayamazsınız. İstemiyorsanız, devam etmek için düğmeye tekrar dokunun.",
+  "@noEmailWarning": {}
 }
