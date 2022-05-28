@@ -2858,5 +2858,7 @@
     }
   },
   "showSpaces": "显示空间列表",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "noEmailWarning": "请输入有效电子邮件地址。否则你将无法重置密码。如果你不想输入邮件地址，再次轻点按钮以继续。",
+  "@noEmailWarning": {}
 }
