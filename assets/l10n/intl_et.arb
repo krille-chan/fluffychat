@@ -2858,5 +2858,7 @@
   "yourStory": "Sinu jutustused",
   "@yourStory": {},
   "showSpaces": "Näita kogukondade loendit",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "noEmailWarning": "Palun sisesta korrektne e-posti aadress. Vastasel juhul ei saa te oma salasõna taastada. Kui te seda ei soovi, siis jätkamiseks klõpsige nuppu uuesti.",
+  "@noEmailWarning": {}
 }
