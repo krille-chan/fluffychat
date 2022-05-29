@@ -142,8 +142,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   void _processIncomingSharedFiles(List<SharedMediaFile> files) {
     if (files.isEmpty) return;
-    VRouter.of(context).to('/rooms');
-    final file = File(files.first.path);
+    final file = File(files.first.path.replaceFirst('file://', ''));
 
     Matrix.of(context).shareContent = {
       'msgtype': 'chat.fluffy.shared_file',
@@ -152,11 +151,11 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
         name: file.path,
       ).detectFileType,
     };
+    VRouter.of(context).to('/rooms');
   }
 
   void _processIncomingSharedText(String? text) {
     if (text == null) return;
-    VRouter.of(context).to('/rooms');
     if (text.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
         text.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         (text.toLowerCase().startsWith(AppConfig.schemePrefix) &&
@@ -167,6 +166,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
       'msgtype': 'm.text',
       'body': text,
     };
+    VRouter.of(context).to('/rooms');
   }
 
   void _processIncomingUris(String? text) async {
