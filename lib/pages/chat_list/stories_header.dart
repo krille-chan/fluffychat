@@ -266,17 +266,17 @@ class _StoryButton extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
-              Text(
-                profile.displayName ?? '',
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: unread ? FontWeight.bold : null,
+              Center(
+                child: Text(
+                  profile.displayName ?? '',
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: unread ? FontWeight.bold : null,
+                  ),
                 ),
               ),
-              const Spacer(),
             ],
           ),
         ),
