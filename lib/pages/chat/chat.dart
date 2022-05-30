@@ -392,12 +392,9 @@ class ChatController extends State<Chat> {
       'url': sticker.url.toString(),
     };
     // send the sticker
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => room!.sendEvent(
-        eventContent,
-        type: EventTypes.Sticker,
-      ),
+    await room!.sendEvent(
+      eventContent,
+      type: EventTypes.Sticker,
     );
   }
 
