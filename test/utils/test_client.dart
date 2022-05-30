@@ -2,7 +2,7 @@ import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_api_lite/fake_matrix_api.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_hive_collections_database.dart';
 
 Future<Client> prepareTestClient({
   bool loggedIn = false,
@@ -20,7 +20,7 @@ Future<Client> prepareTestClient({
     importantStateEvents: <String>{
       'im.ponies.room_emotes', // we want emotes to work properly
     },
-    databaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
+    databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
     supportedLoginTypes: {
       AuthenticationTypes.password,
       AuthenticationTypes.sso
