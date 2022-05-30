@@ -107,7 +107,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Jste si jisti?",
+  "areYouSure": "Jste si jistý?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -250,7 +250,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} změnili jméno chatu na: „{chatname}“",
+  "changedTheChatNameTo": "{username} změnil jméno chatu na: „{chatname}“",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -265,7 +265,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} změnil přezdívku na: {displayname}",
+  "changedTheDisplaynameTo": "{username} změnili svoji přezdívku na: {displayname}",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -436,12 +436,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "Zakáže danému uživateli z této místnosti",
+  "commandHint_ban": "Zakázat danému uživateli přístup do této místnosti",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHint_html": "Odesílejte text ve formátu HTML",
+  "commandHint_html": "Odeslat text ve formátu HTML",
   "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
@@ -466,17 +466,17 @@
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHint_me": "Popiš se",
+  "commandHint_me": "Představ se",
   "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_myroomavatar": "Nastavte obrázek pro tuto místnost (autor mxc-uri)",
+  "commandHint_myroomavatar": "Nastavte si obrázek pro tuto místnost (autor mxc-uri)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHint_myroomnick": "Nastavte své zobrazované jméno pro tuto místnost",
+  "commandHint_myroomnick": "Nastavte si váš zobrazovaný název pro tuto místnost",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
@@ -501,7 +501,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHint_unban": "Zrušit zákaz daného uživatele z této místnosti",
+  "commandHint_unban": "Zrušte zákaz přístupu daného uživatele do této místnosti",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -2858,5 +2858,7 @@
   "widgetNameError": "Zadejte jméno pro zobrazení.",
   "@widgetNameError": {},
   "errorAddingWidget": "Chyba při přidávání widgetu.",
-  "@errorAddingWidget": {}
+  "@errorAddingWidget": {},
+  "noEmailWarning": "Prosím zadejte platnou emailovou adresu. V opačném případě nebudete moci obnovit heslo. Pokud nechcete, pokračujte dalším klepnutím na tlačítko.",
+  "@noEmailWarning": {}
 }
