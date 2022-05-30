@@ -111,7 +111,7 @@ class _KeyVerificationPageState extends State<KeyVerificationDialog> {
     if (directChatId != null) {
       user = widget.request.client
           .getRoomById(directChatId)!
-          .getUserByMXIDSync(widget.request.userId);
+          .unsafeGetUserFromMemoryOrFallback(widget.request.userId);
     }
     final displayName =
         user?.calcDisplayname() ?? widget.request.userId.localpart!;

@@ -48,7 +48,7 @@ class ClientChooserButton extends StatelessWidget {
               (client) => PopupMenuItem(
                 value: client,
                 child: FutureBuilder<Profile>(
-                  future: client!.ownProfile,
+                  future: client!.fetchOwnProfile(),
                   builder: (context, snapshot) => Row(
                     children: [
                       Avatar(
@@ -90,7 +90,7 @@ class ClientChooserButton extends StatelessWidget {
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return Center(
       child: FutureBuilder<Profile>(
-        future: matrix.client.ownProfile,
+        future: matrix.client.fetchOwnProfile(),
         builder: (context, snapshot) => Stack(
           alignment: Alignment.center,
           children: [

@@ -293,14 +293,14 @@ class _ChatAccountPicker extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FutureBuilder<Profile>(
-        future: controller.sendingClient!.ownProfile,
+        future: controller.sendingClient!.fetchOwnProfile(),
         builder: (context, snapshot) => PopupMenuButton<String>(
           onSelected: _popupMenuButtonSelected,
           itemBuilder: (BuildContext context) => clients
               .map((client) => PopupMenuItem<String>(
                     value: client!.userID,
                     child: FutureBuilder<Profile>(
-                      future: client.ownProfile,
+                      future: client.fetchOwnProfile(),
                       builder: (context, snapshot) => ListTile(
                         leading: Avatar(
                           mxContent: snapshot.data?.avatarUrl,

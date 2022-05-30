@@ -39,7 +39,7 @@ class MessageReactions extends StatelessWidget {
           );
         }
         reactionMap[key]!.count++;
-        reactionMap[key]!.reactors!.add(e.sender);
+        reactionMap[key]!.reactors!.add(e.senderFromMemoryOrFallback);
         reactionMap[key]!.reacted |= e.senderId == e.room.client.userID;
       }
     }

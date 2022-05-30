@@ -75,7 +75,7 @@ class Message extends StatelessWidget {
               EventTypes.Sticker,
               EventTypes.Encrypted,
             ].contains(nextEvent!.type)
-        ? nextEvent!.sender.id == event.sender.id && !displayTime
+        ? nextEvent!.senderId == event.senderId && !displayTime
         : false;
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
@@ -125,11 +125,16 @@ class Message extends StatelessWidget {
                   ),
                 ),
               ))
-          : Avatar(
-              mxContent: event.sender.avatarUrl,
-              name: event.sender.calcDisplayname(),
-              onTap: () => onAvatarTab!(event),
-            ),
+          : FutureBuilder<User?>(
+              future: event.fetchSenderUser(),
+              builder: (context, snapshot) {
+                final user = snapshot.data ?? event.senderFromMemoryOrFallback;
+                return Avatar(
+                  mxContent: user.avatarUrl,
+                  name: user.calcDisplayname(),
+                  onTap: () => onAvatarTab!(event),
+                );
+              }),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,14 +145,22 @@ class Message extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                 child: ownMessage || event.room.isDirectChat
                     ? const SizedBox(height: 12)
-                    : Text(
-                        event.sender.calcDisplayname(),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: event.sender.calcDisplayname().color,
-                        ),
-                      ),
+                    : FutureBuilder<User?>(
+                        future: event.fetchSenderUser(),
+                        builder: (context, snapshot) {
+                          final displayname =
+                              snapshot.data?.calcDisplayname() ??
+                                  event.senderFromMemoryOrFallback
+                                      .calcDisplayname();
+                          return Text(
+                            displayname,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: displayname.color,
+                            ),
+                          );
+                        }),
               ),
             Container(
               alignment: alignment,

@@ -12,7 +12,8 @@ extension ClientStoriesExtension on Client {
 
   List<User> get contacts => rooms
       .where((room) => room.isDirectChat)
-      .map((room) => room.getUserByMXIDSync(room.directChatMatrixID!))
+      .map((room) =>
+          room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!))
       .toList();
 
   List<Room> get storiesRooms => rooms

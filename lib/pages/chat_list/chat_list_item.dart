@@ -262,32 +262,47 @@ class ChatListItem extends StatelessWidget {
                       ),
                       softWrap: false,
                     )
-                  : Text(
-                      room.membership == Membership.invite
-                          ? L10n.of(context)!.youAreInvitedToThisChat
-                          : room.lastEvent?.getLocalizedBody(
-                                MatrixLocals(L10n.of(context)!),
-                                hideReply: true,
-                                hideEdit: true,
-                                plaintextBody: true,
-                                removeMarkdown: true,
-                                withSenderNamePrefix: !room.isDirectChat ||
-                                    room.directChatMatrixID !=
-                                        room.lastEvent?.senderId,
-                              ) ??
-                              L10n.of(context)!.emptyChat,
-                      softWrap: false,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: unread
-                            ? Theme.of(context).colorScheme.secondary
-                            : Theme.of(context).textTheme.bodyText2!.color,
-                        decoration: room.lastEvent?.redacted == true
-                            ? TextDecoration.lineThrough
-                            : null,
-                      ),
-                    ),
+                  : FutureBuilder<String>(
+                      future: room.lastEvent?.calcLocalizedBody(
+                            MatrixLocals(L10n.of(context)!),
+                            hideReply: true,
+                            hideEdit: true,
+                            plaintextBody: true,
+                            removeMarkdown: true,
+                            withSenderNamePrefix: !room.isDirectChat ||
+                                room.directChatMatrixID !=
+                                    room.lastEvent?.senderId,
+                          ) ??
+                          Future.value(L10n.of(context)!.emptyChat),
+                      builder: (context, snapshot) {
+                        return Text(
+                          room.membership == Membership.invite
+                              ? L10n.of(context)!.youAreInvitedToThisChat
+                              : snapshot.data ??
+                                  room.lastEvent?.calcLocalizedBodyFallback(
+                                    MatrixLocals(L10n.of(context)!),
+                                    hideReply: true,
+                                    hideEdit: true,
+                                    plaintextBody: true,
+                                    removeMarkdown: true,
+                                    withSenderNamePrefix: !room.isDirectChat ||
+                                        room.directChatMatrixID !=
+                                            room.lastEvent?.senderId,
+                                  ) ??
+                                  L10n.of(context)!.emptyChat,
+                          softWrap: false,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: unread
+                                ? Theme.of(context).colorScheme.secondary
+                                : Theme.of(context).textTheme.bodyText2!.color,
+                            decoration: room.lastEvent?.redacted == true
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
+                        );
+                      }),
             ),
             const SizedBox(width: 8),
             AnimatedContainer(

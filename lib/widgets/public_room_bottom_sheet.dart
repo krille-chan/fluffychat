@@ -41,9 +41,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
     }
   }
 
-  bool _testRoom(PublicRoomsChunk r) =>
-      r.canonicalAlias == roomAlias ||
-      (r.aliases?.contains(roomAlias) ?? false);
+  bool _testRoom(PublicRoomsChunk r) => r.canonicalAlias == roomAlias;
 
   Future<PublicRoomsChunk> _search(BuildContext context) async {
     final chunk = this.chunk;

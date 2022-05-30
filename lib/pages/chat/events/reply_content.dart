@@ -52,7 +52,7 @@ class ReplyContent extends StatelessWidget {
       );
     } else {
       replyBody = Text(
-        displayEvent.getLocalizedBody(
+        displayEvent.calcLocalizedBodyFallback(
           MatrixLocals(L10n.of(context)!),
           withSenderNamePrefix: false,
           hideReply: true,
@@ -83,18 +83,25 @@ class ReplyContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                displayEvent.sender.calcDisplayname() + ':',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: ownMessage
-                      ? Theme.of(context).colorScheme.onPrimary
-                      : Theme.of(context).colorScheme.onBackground,
-                  fontSize: fontSize,
-                ),
-              ),
+              FutureBuilder<User?>(
+                  future: displayEvent.fetchSenderUser(),
+                  builder: (context, snapshot) {
+                    return Text(
+                      (snapshot.data?.calcDisplayname() ??
+                              displayEvent.senderFromMemoryOrFallback
+                                  .calcDisplayname()) +
+                          ':',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: ownMessage
+                            ? Theme.of(context).colorScheme.onPrimary
+                            : Theme.of(context).colorScheme.onBackground,
+                        fontSize: fontSize,
+                      ),
+                    );
+                  }),
               replyBody,
             ],
           ),

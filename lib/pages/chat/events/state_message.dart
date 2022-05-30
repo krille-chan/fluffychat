@@ -39,16 +39,24 @@ class StateMessage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  event.getLocalizedBody(MatrixLocals(L10n.of(context)!)),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14 * AppConfig.fontSizeFactor,
-                    color: Theme.of(context).textTheme.bodyText2!.color,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                ),
+                FutureBuilder<String>(
+                    future: event
+                        .calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
+                    builder: (context, snapshot) {
+                      return Text(
+                        snapshot.data ??
+                            event.calcLocalizedBodyFallback(
+                                MatrixLocals(L10n.of(context)!)),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14 * AppConfig.fontSizeFactor,
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                          decoration: event.redacted
+                              ? TextDecoration.lineThrough
+                              : null,
+                        ),
+                      );
+                    }),
                 if (counter != 0)
                   Text(
                     L10n.of(context)!.moreEvents(counter),

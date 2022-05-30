@@ -48,12 +48,12 @@ class EventInfoDialog extends StatelessWidget {
         children: [
           ListTile(
             leading: Avatar(
-              mxContent: event.sender.avatarUrl,
-              name: event.sender.calcDisplayname(),
+              mxContent: event.senderFromMemoryOrFallback.avatarUrl,
+              name: event.senderFromMemoryOrFallback.calcDisplayname(),
             ),
             title: Text(L10n.of(context)!.sender),
-            subtitle:
-                Text('${event.sender.calcDisplayname()} [${event.senderId}]'),
+            subtitle: Text(
+                '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]'),
           ),
           ListTile(
             title: Text(L10n.of(context)!.time),

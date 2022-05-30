@@ -5,21 +5,16 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' hide Key;
 import 'package:flutter/services.dart';
 
-import 'package:fluffybox/hive.dart' as fluffybox;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../client_manager.dart';
-import '../famedlysdk_store.dart';
-
-// ignore: deprecated_member_use
-class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
-  FlutterFluffyBoxDatabase(
+class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
+  FlutterHiveCollectionsDatabase(
     String name,
     String path, {
-    fluffybox.HiveCipher? key,
+    HiveCipher? key,
   }) : super(
           name,
           path,
@@ -28,10 +23,10 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
   static const String _cipherStorageKey = 'database_encryption_key';
 
-  // ignore: deprecated_member_use
-  static Future<FluffyBoxDatabase> databaseBuilder(Client client) async {
-    Logs().d('Open FluffyBox...');
-    fluffybox.HiveAesCipher? hiverCipher;
+  static Future<FlutterHiveCollectionsDatabase> databaseBuilder(
+      Client client) async {
+    Logs().d('Open Hive...');
+    HiveAesCipher? hiverCipher;
     try {
       // Workaround for secure storage is calling Platform.operatingSystem on web
       if (kIsWeb) throw MissingPluginException();
@@ -53,30 +48,28 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
       final rawEncryptionKey = await secureStorage.read(key: _cipherStorageKey);
       if (rawEncryptionKey == null) throw MissingPluginException();
 
-      hiverCipher = fluffybox.HiveAesCipher(base64Url.decode(rawEncryptionKey));
+      hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
-      Logs().i('FluffyBox encryption is not supported on this platform');
+      Logs().i('Hive encryption is not supported on this platform');
     } catch (_) {
       const FlutterSecureStorage().delete(key: _cipherStorageKey);
       rethrow;
     }
 
-    // ignore: deprecated_member_use
-    final db = FluffyBoxDatabase(
-      'fluffybox_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
+    final db = FlutterHiveCollectionsDatabase(
+      'hive_collections_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
       await _findDatabasePath(client),
       key: hiverCipher,
     );
     try {
       await db.open();
     } catch (_) {
-      Logs().w('Unable to open FluffyBox. Delete database and storage key...');
-      await Store().deleteItem(ClientManager.clientNamespace);
+      Logs().w('Unable to open Hive. Delete database and storage key...');
       const FlutterSecureStorage().delete(key: _cipherStorageKey);
       await db.clear();
       rethrow;
     }
-    Logs().d('FluffyBox is ready');
+    Logs().d('Hive is ready');
     return db;
   }
 

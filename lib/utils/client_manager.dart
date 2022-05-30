@@ -8,10 +8,10 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/custom_image_resizer.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 import 'matrix_sdk_extensions.dart/fluffybox_database.dart';
-import 'matrix_sdk_extensions.dart/flutter_matrix_hive_database.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -95,8 +95,8 @@ abstract class ClientManager {
           // To check which story room we can post in
           EventTypes.RoomPowerLevels,
         },
-        databaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
-        legacyDatabaseBuilder: FlutterMatrixHiveStore.hiveDatabaseBuilder,
+        databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+        legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
         supportedLoginTypes: {
           AuthenticationTypes.password,
           if (PlatformInfos.isMobile ||
