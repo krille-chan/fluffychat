@@ -59,6 +59,12 @@ class _QrScannerModalState extends State<QrScannerModal> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+    // Workaround for QR Scanner is started in Pause mode
+    // https://github.com/juliuscanute/qr_code_scanner/issues/538#issuecomment-1133883828
+    if (Platform.isAndroid) {
+      controller.pauseCamera();
+    }
+    controller.resumeCamera();
     late StreamSubscription sub;
     sub = controller.scannedDataStream.listen((scanData) {
       sub.cancel();
