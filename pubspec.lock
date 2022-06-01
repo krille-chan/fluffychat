@@ -289,7 +289,7 @@ packages:
       name: dart_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.6"
   dbus:
     dependency: "direct overridden"
     description:
@@ -713,7 +713,7 @@ packages:
       name: flutter_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.4"
+    version: "0.8.7"
   frontend_server_client:
     dependency: transitive
     description:
@@ -2024,7 +2024,7 @@ packages:
       name: webrtc_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   win32:
     dependency: transitive
     description:
