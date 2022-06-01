@@ -28,6 +28,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   String? error;
   List<HomeserverBenchmarkResult>? benchmarkResults;
   bool displayServerList = false;
+
   bool get loadingHomeservers =>
       AppConfig.allowOtherHomeservers && benchmarkResults == null;
   String searchTerm = '';

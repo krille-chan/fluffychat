@@ -34,12 +34,34 @@ test:
 integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: coverage
+  services: 
+    - name: docker:dind
+      alias: docker
+  variables:
+    # activate container-to-container networking
+    FF_NETWORK_PER_BUILD: "true"
+    # Tell docker CLI how to talk to Docker daemon.
+    DOCKER_HOST: tcp://docker:2375/
+    # Use the overlayfs driver for improved performance.
+    DOCKER_DRIVER: overlay2
+    # Disable TLS since we're running inside local network.
+    DOCKER_TLS_CERTDIR: ""
   before_script:
     - chmod 777 -R /dev/kvm
     - adb start-server
     - emulator -avd test -no-audio -no-boot-anim -no-window -accel on -gpu swiftshader_indirect &
-    - sleep 10
+    - apk update && apk add docker drill grep
+    - chown -R 991:991 integration_test/synapse
+    - docker run -d --name synapse --user 991:991 --network=host --volume="$(pwd)/integration_test/synapse/data":/data:rw -p 8008:8008 matrixdotorg/synapse:latest
+    - sleep 20
+    # create three test user
+    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user alice --password AliceInWonderland --admin
+    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user bob --password JoWirSchaffenDas --admin
+    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user trudy --password HaveIBeenPwned --admin
   script:
+    # properly set the homeserver IP for the test
+    - sed -i "s/10.0.2.2/$(drill docker | grep -m 1 -P "\d+\.\d+\.\d+.\d+" | awk -F ' ' '{print $NF}')/g" integration_test/users.dart
+    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "It works! Synapse is running"
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
