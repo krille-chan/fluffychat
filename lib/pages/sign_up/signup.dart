@@ -97,14 +97,24 @@ class SignupPageController extends State<SignupPage> {
         );
       }
 
+      final displayname = Matrix.of(context).loginUsername!;
+      final localPart = displayname.toLowerCase().replaceAll(' ', '_');
+
       await client.uiaRequestBackground(
         (auth) => client.register(
-          username: Matrix.of(context).loginUsername!,
+          username: localPart,
           password: passwordController.text,
           initialDeviceDisplayName: PlatformInfos.clientName,
           auth: auth,
         ),
       );
+      // Set displayname
+      if (displayname != localPart) {
+        await client.setDisplayName(
+          client.userID!,
+          displayname,
+        );
+      }
     } catch (e) {
       error = (e).toLocalizedString(context);
     } finally {
