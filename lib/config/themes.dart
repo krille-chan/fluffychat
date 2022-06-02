@@ -20,6 +20,7 @@ abstract class FluffyThemes {
     String? hintText,
     Widget? suffixIcon,
     Widget? prefixIcon,
+    Color? errorColor,
   }) =>
       InputDecoration(
         border: OutlineInputBorder(
@@ -36,12 +37,12 @@ abstract class FluffyThemes {
         errorText: errorText,
         errorMaxLines: 4,
         errorStyle: TextStyle(
-          color: Colors.red.shade200,
+          color: errorColor ?? Colors.redAccent.shade200,
           shadows: const [
             Shadow(
               color: Colors.black,
               offset: Offset(0, 0),
-              blurRadius: 5,
+              blurRadius: 10,
             ),
           ],
         ),

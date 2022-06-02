@@ -94,6 +94,9 @@ class SignupPageView extends StatelessWidget {
                   ),
                   hintText: L10n.of(context)!.enterAnEmailAddress,
                   errorText: controller.error,
+                  errorColor: controller.emailController.text.isEmpty
+                      ? Colors.orangeAccent
+                      : null,
                 ),
               ),
             ),
