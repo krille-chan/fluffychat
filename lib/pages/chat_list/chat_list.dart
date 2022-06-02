@@ -82,7 +82,10 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   }
 
   void setActiveSpacesEntry(BuildContext context, SpacesEntry? spaceId) {
-    if (snappingSheetController.currentPosition != kSpacesBottomBarHeight) {
+    if ((snappingSheetController.isAttached
+            ? snappingSheetController.currentPosition
+            : 0) !=
+        kSpacesBottomBarHeight) {
       snapBackSpacesSheet();
     }
     setState(() => _activeSpacesEntry = spaceId);

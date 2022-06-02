@@ -66,6 +66,7 @@ class ContentBanner extends StatelessWidget {
                         imageUrl: src.toString(),
                         height: 300,
                         fit: BoxFit.cover,
+                        errorWidget: (c, m, e) => Icon(defaultIcon, size: 200),
                       );
                     })
                   : Icon(defaultIcon, size: 200),

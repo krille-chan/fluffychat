@@ -12,6 +12,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 const kSpacesBottomBarHeight = 56.0;
 
+final GlobalKey _globalKey = GlobalKey();
+
 class SpacesBottomBar extends StatelessWidget {
   final ChatListController controller;
 
@@ -37,13 +39,16 @@ class SpacesBottomBar extends StatelessWidget {
             return SingleChildScrollView(
               controller: controller.snappingSheetScrollContentController,
               child: AnimatedBuilder(
-                child: _SpacesBottomNavigation(controller: controller),
+                child: _SpacesBottomNavigation(
+                    key: _globalKey, controller: controller),
                 builder: (context, child) {
                   if (controller.snappingSheetContainerSize == null) {
                     return child!;
                   }
                   final rawPosition =
-                      controller.snappingSheetController.currentPosition;
+                      controller.snappingSheetController.isAttached
+                          ? controller.snappingSheetController.currentPosition
+                          : 0;
                   final position = rawPosition /
                       controller.snappingSheetContainerSize!.maxHeight;
 
