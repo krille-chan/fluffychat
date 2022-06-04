@@ -2839,5 +2839,7 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "noEmailWarning": "Syötä oikea sähköposti-osoite. Muutoin et voi palauttaa salasanaasi. Jollet halua, paina näppäintä uudelleen jatkaaksesi.",
+  "@noEmailWarning": {}
 }
