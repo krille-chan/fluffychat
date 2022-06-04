@@ -137,7 +137,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.share_outlined),
+                            Icon(Icons.adaptive.share_outlined),
                             const SizedBox(width: 12),
                             Text(L10n.of(context)!.inviteContact),
                           ],

@@ -1054,7 +1054,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   move_to_background:
     dependency: transitive
     description:
@@ -1457,7 +1457,7 @@ packages:
       name: share_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "4.0.6"
   share_plus_linux:
     dependency: transitive
     description:
