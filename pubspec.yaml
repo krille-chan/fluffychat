@@ -75,7 +75,7 @@ dependencies:
   salomon_bottom_bar: ^3.2.0
   scroll_to_index: ^2.1.1
   sentry: ^6.3.0
-  share_plus: ^4.0.4
+  share_plus: ^4.0.6
   shared_preferences: ^2.0.13
   slugify: ^2.0.0
   snapping_sheet: ^3.1.0

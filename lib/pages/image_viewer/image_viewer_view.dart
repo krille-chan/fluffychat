@@ -44,7 +44,7 @@ class ImageViewerView extends StatelessWidget {
               onPressed: controller.shareFileAction,
               tooltip: L10n.of(context)!.share,
               color: Colors.white,
-              icon: const Icon(Icons.share),
+              icon: Icon(Icons.adaptive.share_outlined),
             )
         ],
       ),
