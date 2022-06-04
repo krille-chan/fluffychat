@@ -113,7 +113,9 @@ class ChatListView extends StatelessWidget {
                     ),
                   )
                 : null,
-            bottomNavigationBar: const ConnectionStatusHeader(),
+            bottomNavigationBar: const SafeArea(
+              child: ConnectionStatusHeader(),
+            ),
           ),
         );
       },

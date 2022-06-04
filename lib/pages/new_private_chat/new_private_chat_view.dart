@@ -48,8 +48,10 @@ class NewPrivateChatView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Material(
                   borderRadius: BorderRadius.circular(12),
-                  elevation: 4,
+                  elevation: 6,
                   color: Colors.white,
+                  shadowColor: const Color(0x44000000),
+                  clipBehavior: Clip.hardEdge,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
