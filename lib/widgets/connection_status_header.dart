@@ -50,7 +50,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
       curve: Curves.bounceInOut,
       height: hide ? 0 : 36,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(color: Theme.of(context).secondaryHeaderColor),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +68,7 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
             _status.toLocalizedString(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
           ),
         ],
       ),
