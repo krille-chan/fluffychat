@@ -2801,5 +2801,64 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "showSpaces": "Bereichsliste anzeigen",
+  "@showSpaces": {},
+  "showDirectChatsInSpaces": "Zugehörige Direkt-Chats in Spaces anzeigen",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetNameError": "Bitte gib einen Anzeigenamen an.",
+  "@widgetNameError": {},
+  "youKicked": "Du hast {user} rausgeworfen",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "Du hast {user} rausgeworfen und verbannt",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Du hast die Verbannung von {user} rückgängig gemacht",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youRejectedTheInvitation": "Du hast die Einladung abgelehnt",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "Du bist dem Chat beigetreten",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Du hast die Einladung angenommen",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "Du hast den {user} verbannt",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Du hast die Einladung für {user} zurückgezogen",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "Du wurdest von {user} eingeladen",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Du hast {user} eingeladen",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noEmailWarning": "Bitte gib eine gültige E-Mail-Adresse ein. Andernfalls kannst du dein Passwort nicht zurücksetzen. Wenn du das nicht möchtest, tippe erneut auf die Schaltfläche, um fortzufahren.",
+  "@noEmailWarning": {}
 }
