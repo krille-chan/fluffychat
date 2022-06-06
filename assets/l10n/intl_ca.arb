@@ -1353,7 +1353,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Elimina l'expulsió",
+  "unbanFromChat": "Desfés l'expulsió",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1606,7 +1606,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Creeu el vostre primer xat ara mateix! 🙂\n- Feu clic al botó Missatge\n- Introduïu el nom d’usuari d’un conegut\n- Gaudiu del xat",
+  "startYourFirstChat": "Creeu el vostre primer xat ara mateix! 🙂\n- Feu clic al botó 'Nou xat'\n- Escanegeu el codi QR d’un conegut\n- Gaudiu del xat",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
