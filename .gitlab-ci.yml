@@ -228,6 +228,7 @@ build_linux_appimage_x86:
     - cp -r build/linux/x64/release/bundle appimage/FluffyChat.AppDir
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
+    - cp AppRun FluffyChat.AppDir/
     - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
     - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-x86_64.AppImage.zsync" FluffyChat.AppDir
   allow_failure: true
@@ -249,6 +250,7 @@ build_linux_appimage_arm64:
     - cp -r build/linux/arm64/release/bundle appimage/FluffyChat.AppDir
     - cd appimage
     - cp FluffyChat.desktop FluffyChat.AppDir/
+    - cp AppRun FluffyChat.AppDir/
     - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
     - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-arm64.AppImage.zsync" FluffyChat.AppDir
   allow_failure: true
