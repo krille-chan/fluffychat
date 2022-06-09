@@ -46,13 +46,11 @@ class SearchView extends StatelessWidget {
     }).then((QueryPublicRoomsResponse res) {
       final genericSearchTerm = controller.genericSearchTerm;
       if (genericSearchTerm != null &&
-          !res.chunk.any((room) =>
-              (room.aliases?.contains(controller.genericSearchTerm) ?? false) ||
-              room.canonicalAlias == controller.genericSearchTerm)) {
+          !res.chunk.any(
+              (room) => room.canonicalAlias == controller.genericSearchTerm)) {
         // we have to tack on the original alias
         res.chunk.add(
           PublicRoomsChunk(
-            aliases: [genericSearchTerm],
             name: genericSearchTerm,
             numJoinedMembers: 0,
             roomId: '!unknown',

@@ -26,7 +26,7 @@ class PinnedEvents extends StatelessWidget {
             actions: events
                 .map((event) => SheetAction(
                       key: event?.eventId ?? '',
-                      label: event?.getLocalizedBody(
+                      label: event?.calcLocalizedBodyFallback(
                             MatrixLocals(L10n.of(context)!),
                             withSenderNamePrefix: true,
                             hideReply: true,
@@ -90,32 +90,41 @@ class PinnedEvents extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: LinkText(
-                        text: event.getLocalizedBody(
-                          MatrixLocals(L10n.of(context)!),
-                          withSenderNamePrefix: true,
-                          hideReply: true,
-                        ),
-                        maxLines: 2,
-                        textStyle: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: fontSize,
-                          decoration: event.redacted
-                              ? TextDecoration.lineThrough
-                              : null,
-                        ),
-                        linkStyle: TextStyle(
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              ?.color
-                              ?.withAlpha(150),
-                          fontSize: fontSize,
-                          decoration: TextDecoration.underline,
-                        ),
-                        onLinkTap: (url) =>
-                            UrlLauncher(context, url).launchUrl(),
-                      ),
+                      child: FutureBuilder<String>(
+                          future: event.calcLocalizedBody(
+                            MatrixLocals(L10n.of(context)!),
+                            withSenderNamePrefix: true,
+                            hideReply: true,
+                          ),
+                          builder: (context, snapshot) {
+                            return LinkText(
+                              text: snapshot.data ??
+                                  event.calcLocalizedBodyFallback(
+                                    MatrixLocals(L10n.of(context)!),
+                                    withSenderNamePrefix: true,
+                                    hideReply: true,
+                                  ),
+                              maxLines: 2,
+                              textStyle: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: fontSize,
+                                decoration: event.redacted
+                                    ? TextDecoration.lineThrough
+                                    : null,
+                              ),
+                              linkStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    ?.color
+                                    ?.withAlpha(150),
+                                fontSize: fontSize,
+                                decoration: TextDecoration.underline,
+                              ),
+                              onLinkTap: (url) =>
+                                  UrlLauncher(context, url).launchUrl(),
+                            );
+                          }),
                     ),
                   ),
                 ],

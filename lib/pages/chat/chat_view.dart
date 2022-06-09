@@ -350,12 +350,12 @@ class ChatView extends StatelessWidget {
                                                                     builder: (c) =>
                                                                         UserBottomSheet(
                                                                       user: event
-                                                                          .sender,
+                                                                          .senderFromMemoryOrFallback,
                                                                       outerContext:
                                                                           context,
                                                                       onMention: () => controller
                                                                           .sendController
-                                                                          .text += '${event.sender.mention} ',
+                                                                          .text += '${event.senderFromMemoryOrFallback.mention} ',
                                                                     ),
                                                                   ),
                                                               unfold: controller

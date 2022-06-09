@@ -94,15 +94,18 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 child: ListTile(
                                   leading: Avatar(
                                     mxContent: room
-                                        .getUserByMXIDSync(deviceKeys[i].userId)
+                                        .unsafeGetUserFromMemoryOrFallback(
+                                            deviceKeys[i].userId)
                                         .avatarUrl,
                                     name: room
-                                        .getUserByMXIDSync(deviceKeys[i].userId)
+                                        .unsafeGetUserFromMemoryOrFallback(
+                                            deviceKeys[i].userId)
                                         .calcDisplayname(),
                                   ),
                                   title: Text(
                                     room
-                                        .getUserByMXIDSync(deviceKeys[i].userId)
+                                        .unsafeGetUserFromMemoryOrFallback(
+                                            deviceKeys[i].userId)
                                         .calcDisplayname(),
                                   ),
                                   subtitle: Text(

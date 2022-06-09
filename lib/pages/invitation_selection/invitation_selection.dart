@@ -38,7 +38,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     final participantsIds = participants.map((p) => p.stateKey).toList();
     final contacts = client.rooms
         .where((r) => r.isDirectChat)
-        .map((r) => r.getUserByMXIDSync(r.directChatMatrixID!))
+        .map((r) => r.unsafeGetUserFromMemoryOrFallback(r.directChatMatrixID!))
         .toList()
       ..removeWhere((u) => participantsIds.contains(u.stateKey));
     contacts.sort(

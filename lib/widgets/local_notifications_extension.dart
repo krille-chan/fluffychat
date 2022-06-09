@@ -31,7 +31,7 @@ extension LocalNotificationsExtension on MatrixState {
     final event = Event.fromJson(eventUpdate.content, room);
     final title =
         room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)!));
-    final body = event.getLocalizedBody(
+    final body = await event.calcLocalizedBody(
       MatrixLocals(L10n.of(widget.context)!),
       withSenderNamePrefix:
           !room.isDirectChat || room.lastEvent?.senderId == client.userID,
@@ -40,8 +40,11 @@ extension LocalNotificationsExtension on MatrixState {
       hideEdit: true,
       removeMarkdown: true,
     );
-    final icon = event.sender.avatarUrl?.getThumbnail(client,
-            width: 64, height: 64, method: ThumbnailMethod.crop) ??
+    final icon = event.senderFromMemoryOrFallback.avatarUrl?.getThumbnail(
+            client,
+            width: 64,
+            height: 64,
+            method: ThumbnailMethod.crop) ??
         room.avatar?.getThumbnail(client,
             width: 64, height: 64, method: ThumbnailMethod.crop);
     if (kIsWeb) {

@@ -50,6 +50,7 @@ class _EditContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final event = this.event;
     if (event == null) {
       return Container();
     }
@@ -60,19 +61,27 @@ class _EditContent extends StatelessWidget {
           color: Theme.of(context).primaryColor,
         ),
         Container(width: 15.0),
-        Text(
-          event?.getLocalizedBody(
-                MatrixLocals(L10n.of(context)!),
-                withSenderNamePrefix: false,
-                hideReply: true,
-              ) ??
-              '',
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.bodyText2!.color,
-          ),
-        ),
+        FutureBuilder<String>(
+            future: event.calcLocalizedBody(
+              MatrixLocals(L10n.of(context)!),
+              withSenderNamePrefix: false,
+              hideReply: true,
+            ),
+            builder: (context, snapshot) {
+              return Text(
+                snapshot.data ??
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                      withSenderNamePrefix: false,
+                      hideReply: true,
+                    ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText2!.color,
+                ),
+              );
+            }),
       ],
     );
   }

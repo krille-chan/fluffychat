@@ -29,10 +29,11 @@ class ChatAppBarTitle extends StatelessWidget {
           ? () => showModalBottomSheet(
                 context: context,
                 builder: (c) => UserBottomSheet(
-                  user: room.getUserByMXIDSync(directChatMatrixID),
+                  user: room
+                      .unsafeGetUserFromMemoryOrFallback(directChatMatrixID),
                   outerContext: context,
                   onMention: () => controller.sendController.text +=
-                      '${room.getUserByMXIDSync(directChatMatrixID).mention} ',
+                      '${room.unsafeGetUserFromMemoryOrFallback(directChatMatrixID).mention} ',
                 ),
               )
           : () => VRouter.of(context).toSegments(['rooms', room.id, 'details']),

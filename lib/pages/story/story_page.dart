@@ -370,7 +370,7 @@ class StoryPageController extends State<StoryPage> {
       .client
       .getRoomById(roomId)
       ?.getState(EventTypes.RoomCreate)
-      ?.sender
+      ?.senderFromMemoryOrFallback
       .avatarUrl;
 
   String get title =>
@@ -378,7 +378,7 @@ class StoryPageController extends State<StoryPage> {
           .client
           .getRoomById(roomId)
           ?.getState(EventTypes.RoomCreate)
-          ?.sender
+          ?.senderFromMemoryOrFallback
           .calcDisplayname() ??
       'Story not found';
 
@@ -485,7 +485,8 @@ class StoryPageController extends State<StoryPage> {
       case PopupStoryAction.message:
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
-          future: () => currentEvent!.sender.startDirectChat(),
+          future: () =>
+              currentEvent!.senderFromMemoryOrFallback.startDirectChat(),
         );
         if (roomIdResult.error != null) return;
         VRouter.of(context).toSegments(['rooms', roomIdResult.result!]);

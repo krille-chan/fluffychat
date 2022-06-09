@@ -461,11 +461,11 @@ class ChatController extends State<Chat> {
     if (selectedEvents.length == 1) {
       return selectedEvents.first
           .getDisplayEvent(timeline!)
-          .getLocalizedBody(MatrixLocals(L10n.of(context)!));
+          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)!));
     }
     for (final event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
-      copyString += event.getDisplayEvent(timeline!).getLocalizedBody(
+      copyString += event.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
           MatrixLocals(L10n.of(context)!),
           withSenderNamePrefix: true);
     }
@@ -773,7 +773,7 @@ class ChatController extends State<Chat> {
       editEvent = selectedEvents.first;
       inputText = sendController.text = editEvent!
           .getDisplayEvent(timeline!)
-          .getLocalizedBody(MatrixLocals(L10n.of(context)!),
+          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)!),
               withSenderNamePrefix: false, hideReply: true);
       selectedEvents.clear();
     });

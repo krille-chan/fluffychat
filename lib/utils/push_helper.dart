@@ -62,7 +62,7 @@ Future<void> pushHelper(
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
-  final body = event.getLocalizedBody(
+  final body = await event.calcLocalizedBody(
     matrixLocals,
     plaintextBody: true,
     withSenderNamePrefix: !event.room.isDirectChat,
