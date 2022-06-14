@@ -2858,5 +2858,7 @@
     }
   },
   "showSpaces": "Mostrar lista de espazos",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "noEmailWarning": "Escribe un enderezo de email válido. Doutro xeito non poderás restablecer o contrasinal. Se non queres, toca outra vez no botón para continuar.",
+  "@noEmailWarning": {}
 }
