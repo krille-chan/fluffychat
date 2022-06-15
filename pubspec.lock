@@ -1464,7 +1464,7 @@ packages:
       name: share_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.6"
+    version: "4.0.8"
   share_plus_linux:
     dependency: transitive
     description:

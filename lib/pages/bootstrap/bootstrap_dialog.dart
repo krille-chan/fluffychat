@@ -121,7 +121,12 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                   icon: const Icon(Icons.save_alt_outlined),
                   label: Text(L10n.of(context)!.saveTheSecurityKeyNow),
                   onPressed: () {
-                    Share.share(key!);
+                    final box = context.findRenderObject() as RenderBox;
+                    Share.share(
+                      key!,
+                      sharePositionOrigin:
+                          box.localToGlobal(Offset.zero) & box.size,
+                    );
                     setState(() => _recoveryKeyCopied = true);
                   },
                 ),
