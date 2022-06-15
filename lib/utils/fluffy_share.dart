@@ -9,7 +9,11 @@ import 'package:fluffychat/utils/platform_infos.dart';
 abstract class FluffyShare {
   static Future<void> share(String text, BuildContext context) async {
     if (PlatformInfos.isMobile) {
-      return Share.share(text);
+      final box = context.findRenderObject() as RenderBox;
+      return Share.share(
+        text,
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+      );
     }
     await Clipboard.setData(
       ClipboardData(text: text),

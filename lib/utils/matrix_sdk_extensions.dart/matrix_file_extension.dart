@@ -25,7 +25,11 @@ extension MatrixFileExtension on MatrixFile {
     final tmpDirectory = await getTemporaryDirectory();
     final path = '${tmpDirectory.path}$fileName';
     await File(path).writeAsBytes(bytes);
-    await Share.shareFiles([path]);
+    final box = context.findRenderObject() as RenderBox;
+    await Share.shareFiles(
+      [path],
+      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+    );
     return;
   }
 
