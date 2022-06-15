@@ -185,7 +185,7 @@
       "username": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} ha canviat la descripció del xat a: «{description}»",
+  "changedTheChatDescriptionTo": "{username} ha canviat la descripció del xat a: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -193,7 +193,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username} ha canviat el nom del xat a: «{chatname}»",
+  "changedTheChatNameTo": "{username} ha canviat el nom del xat a: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -404,7 +404,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "Conté el nom visible",
+  "containsDisplayName": "Conté l'àlies",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -441,7 +441,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotSetDisplayname": "No s’ha pogut definir el nom visible",
+  "couldNotSetDisplayname": "No s’ha pogut definir l'àlies",
   "@couldNotSetDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -503,7 +503,7 @@
       "timeOfDay": {}
     }
   },
-  "dateWithoutYear": "{day}/{month}",
+  "dateWithoutYear": "{day}-{month}",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -511,7 +511,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}/{month}/{year}",
+  "dateWithYear": "{day}-{month}-{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -570,7 +570,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "S’ha canviat el nom visible",
+  "displaynameHasBeenChanged": "Ha canviat l'àlies",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -590,7 +590,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "Edita el nom visible",
+  "editDisplayname": "Edita l'àlies",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -1725,7 +1725,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "L’esdeveniment «{type}» és desconegut",
+  "unknownEvent": "Esdeveniment desconegut '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1829,7 +1829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "Us heu verificat correctament.",
+  "verifySuccess": "T'has verificat correctament!",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
@@ -1889,7 +1889,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "warningEncryptionInBeta": "El xifratge d’extrem a extrem es troba actualment en proves. Utilitzeu-lo sota la vostra responsabilitat.",
+  "warningEncryptionInBeta": "El xifrat d'extrem a extrem es troba actualment en proves (Beta. Utilitza'l sota la teva responsabilitat!",
   "@warningEncryptionInBeta": {
     "type": "text",
     "placeholders": {}
@@ -2417,7 +2417,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} ha canviat el propi nom visible a: «{displayname}»",
+  "changedTheDisplaynameTo": "{username} ha canviat el seu àlies a: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -2490,6 +2490,39 @@
   },
   "bubbleSize": "Mida de la bombolla",
   "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomnick": "Estableix el teu àlies per a aquesta sala",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "editBlockedServers": "Edita els servidors bloquejats",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "El servidor admet els inicis de sessió:\n{serverVersions}\nPerò l'aplicació només admet:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "discoverGroups": "Descobreix grups",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "Descobreix",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editChatPermissions": "Edita els permisos del xat",
+  "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
   }
