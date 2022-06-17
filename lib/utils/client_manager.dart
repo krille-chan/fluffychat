@@ -7,6 +7,7 @@ import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -82,29 +83,33 @@ abstract class ClientManager {
     await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
   }
 
-  static Client createClient(String clientName) => Client(
-        clientName,
-        verificationMethods: {
-          KeyVerificationMethod.numbers,
-          if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
-            KeyVerificationMethod.emoji,
-        },
-        importantStateEvents: <String>{
-          // To make room emotes work
-          'im.ponies.room_emotes',
-          // To check which story room we can post in
-          EventTypes.RoomPowerLevels,
-        },
-        databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
-        legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
-        supportedLoginTypes: {
-          AuthenticationTypes.password,
-          if (PlatformInfos.isMobile ||
-              PlatformInfos.isWeb ||
-              PlatformInfos.isMacOS)
-            AuthenticationTypes.sso
-        },
-        compute: compute,
-        customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
-      );
+  static Client createClient(String clientName) {
+    final _client = CustomHttpClient.createHTTPClient();
+    return Client(
+      clientName,
+      httpClient: _client,
+      verificationMethods: {
+        KeyVerificationMethod.numbers,
+        if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
+          KeyVerificationMethod.emoji,
+      },
+      importantStateEvents: <String>{
+        // To make room emotes work
+        'im.ponies.room_emotes',
+        // To check which story room we can post in
+        EventTypes.RoomPowerLevels,
+      },
+      databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
+      supportedLoginTypes: {
+        AuthenticationTypes.password,
+        if (PlatformInfos.isMobile ||
+            PlatformInfos.isWeb ||
+            PlatformInfos.isMacOS)
+          AuthenticationTypes.sso
+      },
+      compute: compute,
+      customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
+    );
+  }
 }
