@@ -11,7 +11,7 @@ import 'package:fluffychat/utils/voip_plugin.dart';
 
 class CallKeeper {
   CallKeeper(this.callKeepManager, this.uuid, this.number, this.call) {
-    call?.onCallStateChanged.listen(_handleCallState);
+    call?.onCallStateChanged.stream.listen(_handleCallState);
   }
 
   CallKeepManager callKeepManager;
@@ -119,12 +119,12 @@ class CallKeepManager {
 
       await displayIncomingCall(call);
 
-      call.onCallStateChanged.listen((state) {
+      call.onCallStateChanged.stream.listen((state) {
         if (state == CallState.kEnded) {
           _callKeep.endAllCalls();
         }
       });
-      call.onCallEventChanged.listen((event) {
+      call.onCallEventChanged.stream.listen((event) {
         if (event == CallEvent.kLocalHoldUnhold) {
           Logs().i(
               'Call hold event: local ${call.localHold}, remote ${call.remoteOnHold}');

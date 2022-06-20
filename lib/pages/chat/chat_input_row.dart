@@ -246,7 +246,8 @@ class ChatInputRow extends StatelessWidget {
                   ),
                 ),
               ),
-              if (PlatformInfos.isMobile && controller.inputText.isEmpty)
+              if (PlatformInfos.platformCanRecord &&
+                  controller.inputText.isEmpty)
                 Container(
                   height: 56,
                   alignment: Alignment.center,

@@ -399,6 +399,19 @@ class ChatController extends State<Chat> {
   }
 
   void voiceMessageAction() async {
+    if (PlatformInfos.isAndroid) {
+      final info = await DeviceInfoPlugin().androidInfo;
+      if ((info.version.sdkInt ?? 16) < 19) {
+        showOkAlertDialog(
+          context: context,
+          title: L10n.of(context)!.unsupportedAndroidVersion,
+          message: L10n.of(context)!.unsupportedAndroidVersionLong,
+          okLabel: L10n.of(context)!.close,
+        );
+        return;
+      }
+    }
+
     if (await Record().hasPermission() == false) return;
     final result = await showDialog<RecordingResult>(
       context: context,
