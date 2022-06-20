@@ -519,7 +519,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged.values.map((s) => s.cancel());
     onOwnPresence.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
-
+    client.httpClient.close();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
     _backgroundPush?.onLogin?.cancel();

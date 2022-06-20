@@ -939,7 +939,7 @@ packages:
     description:
       path: "."
       ref: null-safety
-      resolved-ref: "a3d4020911860ff091d90638ab708604b71d2c5a"
+      resolved-ref: a3d4020911860ff091d90638ab708604b71d2c5a
       url: "https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git"
     source: git
     version: "0.1.4"
@@ -1947,7 +1947,7 @@ packages:
       name: visibility_detector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.3"
   vm_service:
     dependency: transitive
     description:
