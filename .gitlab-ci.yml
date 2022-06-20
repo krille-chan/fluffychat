@@ -1,5 +1,5 @@
 variables:
-  FLUTTER_VERSION: 3.0.1
+  FLUTTER_VERSION: 3.0.2
 
 image: cirrusci/flutter:${FLUTTER_VERSION}
 
@@ -34,7 +34,7 @@ test:
 integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: coverage
-  services: 
+  services:
     - name: docker:dind
       alias: docker
   variables:
@@ -195,7 +195,7 @@ build_linux_x86:
   stage: coverage
   before_script:
     [
-      sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 -y,
+      sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y,
     ]
   script: [./scripts/build-linux.sh]
   artifacts:

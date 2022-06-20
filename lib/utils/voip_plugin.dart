@@ -154,4 +154,14 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
       overlayEntry = null;
     }
   }
+
+  @override
+  void handleGroupCallEnded(GroupCall groupCall) {
+    // TODO: implement handleGroupCallEnded
+  }
+
+  @override
+  void handleNewGroupCall(GroupCall groupCall) {
+    // TODO: implement handleNewGroupCall
+  }
 }

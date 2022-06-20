@@ -33,7 +33,7 @@ class _RecordingDialogState extends State<RecordingDialog> {
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
-  static const double samplingRate = 22050.0;
+  static const int samplingRate = 22050;
 
   Future<void> startRecording() async {
     try {
@@ -49,7 +49,6 @@ class _RecordingDialogState extends State<RecordingDialog> {
       await Wakelock.enable();
       await _audioRecorder.start(
         path: _recordedPath,
-        encoder: AudioEncoder.AAC,
         bitRate: bitRate,
         samplingRate: samplingRate,
       );

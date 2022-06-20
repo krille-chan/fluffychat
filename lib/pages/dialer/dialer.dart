@@ -193,8 +193,8 @@ class _MyCallingPage extends State<Calling> {
     final call = this.call;
     if (call == null) return;
 
-    call.onCallStateChanged.listen(_handleCallState);
-    call.onCallEventChanged.listen((event) {
+    call.onCallStateChanged.stream.listen(_handleCallState);
+    call.onCallEventChanged.stream.listen((event) {
       if (event == CallEvent.kFeedsChanged) {
         setState(() {
           call.tryRemoveStopedStreams();

@@ -21,7 +21,7 @@ packages:
       name: adaptive_theme
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "3.0.0"
   analyzer:
     dependency: transitive
     description:
@@ -324,7 +324,7 @@ packages:
       name: device_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.2"
+    version: "4.0.0"
   device_info_plus_linux:
     dependency: transitive
     description:
@@ -338,7 +338,7 @@ packages:
       name: device_info_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "2.2.3"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -497,7 +497,7 @@ packages:
       name: flutter_blurhash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.4"
+    version: "0.7.0"
   flutter_cache_manager:
     dependency: "direct main"
     description:
@@ -584,7 +584,7 @@ packages:
       name: flutter_map
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "1.1.0"
   flutter_math_fork:
     dependency: transitive
     description:
@@ -701,7 +701,7 @@ packages:
       name: flutter_typeahead
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.5"
+    version: "4.0.0"
   flutter_web_auth:
     dependency: "direct main"
     description:
@@ -1019,7 +1019,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.12"
+    version: "0.10.1"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1105,7 +1105,7 @@ packages:
       name: octo_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   olm:
     dependency: transitive
     description:
@@ -1245,14 +1245,14 @@ packages:
       name: permission_handler
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.2.0"
+    version: "10.0.0"
   permission_handler_android:
     dependency: transitive
     description:
       name: permission_handler_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.0.2+1"
+    version: "10.0.0"
   permission_handler_apple:
     dependency: transitive
     description:
@@ -1309,6 +1309,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.5.2"
+  polylabel:
+    dependency: transitive
+    description:
+      name: polylabel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   pool:
     dependency: transitive
     description:
@@ -1408,21 +1415,42 @@ packages:
       name: record
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3"
+    version: "4.1.1"
+  record_linux:
+    dependency: transitive
+    description:
+      name: record_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
+  record_macos:
+    dependency: transitive
+    description:
+      name: record_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   record_platform_interface:
     dependency: transitive
     description:
       name: record_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   record_web:
     dependency: transitive
     description:
       name: record_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.1"
+  record_windows:
+    dependency: transitive
+    description:
+      name: record_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.3"
   rxdart:
     dependency: transitive
     description:
@@ -1443,7 +1471,7 @@ packages:
       name: scroll_to_index
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "3.0.1"
   sdp_transform:
     dependency: transitive
     description:
@@ -1464,7 +1492,7 @@ packages:
       name: share_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.8"
+    version: "4.0.9"
   share_plus_linux:
     dependency: transitive
     description:
@@ -1721,13 +1749,6 @@ packages:
     dependency: transitive
     description:
       name: tint
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-  transparent_image:
-    dependency: transitive
-    description:
-      name: transparent_image
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
@@ -2068,5 +2089,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.13.0-0.2.pre"
+  dart: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
