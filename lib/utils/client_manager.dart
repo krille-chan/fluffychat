@@ -84,10 +84,10 @@ abstract class ClientManager {
   }
 
   static Client createClient(String clientName) {
-    final _client = CustomHttpClient.createHTTPClient();
     return Client(
       clientName,
-      httpClient: _client,
+      httpClient:
+          PlatformInfos.isAndroid ? CustomHttpClient.createHTTPClient() : null,
       verificationMethods: {
         KeyVerificationMethod.numbers,
         if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
