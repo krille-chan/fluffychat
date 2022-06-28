@@ -4,23 +4,18 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
+import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/tombstone_display.dart';
-import 'package:fluffychat/pages/chat/typing_indicators.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -29,7 +24,6 @@ import 'package:fluffychat/widgets/unread_badge_back_button.dart';
 import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
-import 'events/message.dart';
 
 enum _EventContextAction { info, report }
 
@@ -148,7 +142,6 @@ class ChatView extends StatelessWidget {
           context: context, future: () => controller.room!.join());
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
-    final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
     return VWidgetGuard(
       onSystemPop: (redirector) async {
@@ -236,155 +229,8 @@ class ChatView extends StatelessWidget {
                                         );
                                       }
 
-                                      // create a map of eventId --> index to greatly improve performance of
-                                      // ListView's findChildIndexCallback
-                                      final thisEventsKeyMap = <String, int>{};
-                                      for (var i = 0;
-                                          i < controller.filteredEvents.length;
-                                          i++) {
-                                        thisEventsKeyMap[controller
-                                            .filteredEvents[i].eventId] = i;
-                                      }
-                                      return ListView.custom(
-                                        padding: EdgeInsets.only(
-                                          top: 16,
-                                          bottom: 4,
-                                          left: horizontalPadding,
-                                          right: horizontalPadding,
-                                        ),
-                                        reverse: true,
-                                        controller: controller.scrollController,
-                                        keyboardDismissBehavior: PlatformInfos
-                                                .isIOS
-                                            ? ScrollViewKeyboardDismissBehavior
-                                                .onDrag
-                                            : ScrollViewKeyboardDismissBehavior
-                                                .manual,
-                                        childrenDelegate:
-                                            SliverChildBuilderDelegate(
-                                          (BuildContext context, int i) {
-                                            return i ==
-                                                    controller.filteredEvents
-                                                            .length +
-                                                        1
-                                                ? controller.timeline!
-                                                        .isRequestingHistory
-                                                    ? const Center(
-                                                        child:
-                                                            CircularProgressIndicator
-                                                                .adaptive(
-                                                                    strokeWidth:
-                                                                        2),
-                                                      )
-                                                    : controller.canLoadMore
-                                                        ? Center(
-                                                            child:
-                                                                OutlinedButton(
-                                                              style:
-                                                                  OutlinedButton
-                                                                      .styleFrom(
-                                                                backgroundColor:
-                                                                    Theme.of(
-                                                                            context)
-                                                                        .scaffoldBackgroundColor,
-                                                              ),
-                                                              onPressed: controller
-                                                                  .requestHistory,
-                                                              child: Text(L10n.of(
-                                                                      context)!
-                                                                  .loadMore),
-                                                            ),
-                                                          )
-                                                        : Container()
-                                                : i == 0
-                                                    ? Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          SeenByRow(controller),
-                                                          TypingIndicators(
-                                                              controller),
-                                                        ],
-                                                      )
-                                                    : AutoScrollTag(
-                                                        key: ValueKey(controller
-                                                            .filteredEvents[
-                                                                i - 1]
-                                                            .eventId),
-                                                        index: i - 1,
-                                                        controller: controller
-                                                            .scrollController,
-                                                        child: Swipeable(
-                                                          key: ValueKey(controller
-                                                              .filteredEvents[
-                                                                  i - 1]
-                                                              .eventId),
-                                                          background:
-                                                              const Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        12.0),
-                                                            child: Center(
-                                                              child: Icon(Icons
-                                                                  .reply_outlined),
-                                                            ),
-                                                          ),
-                                                          direction:
-                                                              SwipeDirection
-                                                                  .endToStart,
-                                                          onSwipe: (direction) =>
-                                                              controller.replyAction(
-                                                                  replyTo: controller
-                                                                          .filteredEvents[
-                                                                      i - 1]),
-                                                          child: Message(
-                                                              controller.filteredEvents[
-                                                                  i - 1],
-                                                              onInfoTab: controller
-                                                                  .showEventInfo,
-                                                              onAvatarTab: (Event event) =>
-                                                                  showModalBottomSheet(
-                                                                    context:
-                                                                        context,
-                                                                    builder: (c) =>
-                                                                        UserBottomSheet(
-                                                                      user: event
-                                                                          .senderFromMemoryOrFallback,
-                                                                      outerContext:
-                                                                          context,
-                                                                      onMention: () => controller
-                                                                          .sendController
-                                                                          .text += '${event.senderFromMemoryOrFallback.mention} ',
-                                                                    ),
-                                                                  ),
-                                                              unfold: controller
-                                                                  .unfold,
-                                                              onSelect: controller
-                                                                  .onSelectMessage,
-                                                              scrollToEventId:
-                                                                  (String eventId) =>
-                                                                      controller.scrollToEventId(
-                                                                          eventId),
-                                                              longPressSelect:
-                                                                  controller
-                                                                      .selectedEvents
-                                                                      .isEmpty,
-                                                              selected: controller
-                                                                  .selectedEvents
-                                                                  .any((e) => e.eventId == controller.filteredEvents[i - 1].eventId),
-                                                              timeline: controller.timeline!,
-                                                              nextEvent: i < controller.filteredEvents.length ? controller.filteredEvents[i] : null),
-                                                        ),
-                                                      );
-                                          },
-                                          childCount:
-                                              controller.filteredEvents.length +
-                                                  2,
-                                          findChildIndexCallback: (key) =>
-                                              controller.findChildIndexCallback(
-                                                  key, thisEventsKeyMap),
-                                        ),
+                                      return ChatEventList(
+                                        controller: controller,
                                       );
                                     },
                                   )),

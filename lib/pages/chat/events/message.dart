@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
+import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -22,6 +23,7 @@ class Message extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final void Function(String)? scrollToEventId;
   final void Function(String) unfold;
+  final void Function(SwipeDirection) onSwipe;
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
@@ -33,6 +35,7 @@ class Message extends StatelessWidget {
       this.onInfoTab,
       this.onAvatarTab,
       this.scrollToEventId,
+      required this.onSwipe,
       required this.unfold,
       this.selected = false,
       required this.timeline,
@@ -325,19 +328,30 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    return Center(
-      child: Container(
-        color: selected
-            ? Theme.of(context).primaryColor.withAlpha(100)
-            : Theme.of(context).primaryColor.withAlpha(0),
-        constraints:
-            const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 4.0 * AppConfig.bubbleSizeFactor,
+    return Swipeable(
+      key: ValueKey(event.eventId),
+      background: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12.0),
+        child: Center(
+          child: Icon(Icons.reply_outlined),
+        ),
+      ),
+      direction: SwipeDirection.endToStart,
+      onSwipe: onSwipe,
+      child: Center(
+        child: Container(
+          color: selected
+              ? Theme.of(context).primaryColor.withAlpha(100)
+              : Theme.of(context).primaryColor.withAlpha(0),
+          constraints:
+              const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0 * AppConfig.bubbleSizeFactor,
+            ),
+            child: container,
           ),
-          child: container,
         ),
       ),
     );
