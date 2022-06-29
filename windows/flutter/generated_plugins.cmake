@@ -8,7 +8,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   desktop_lifecycle
   flutter_secure_storage_windows
   flutter_webrtc
-  permission_handler_windows
   url_launcher_windows
 )
 
