@@ -57,7 +57,7 @@ class SettingsController extends State<Settings> {
         ),
     ];
     final action = actions.length == 1
-        ? actions.single
+        ? actions.single.key
         : await showModalActionSheet<AvatarAction>(
             context: context,
             title: L10n.of(context)!.changeYourAvatar,
