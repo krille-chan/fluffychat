@@ -1464,7 +1464,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "哎呀，出了一些错误…",
+  "oopsSomethingWentWrong": "哎呀，出了点差错…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
