@@ -57,27 +57,34 @@ class Avatar extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: borderRadius,
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: Container(
-          width: size,
-          height: size,
-          color:
-              noPic ? name?.lightColor : Theme.of(context).secondaryHeaderColor,
-          child: noPic
-              ? textWidget
-              : CachedNetworkImage(
-                  imageUrl: src.toString(),
-                  fit: BoxFit.cover,
-                  width: size,
-                  height: size,
-                  placeholder: (c, s) => textWidget,
-                  errorWidget: (c, s, d) => Stack(
-                    children: [
-                      textWidget,
-                    ],
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).dividerColor),
+          borderRadius: borderRadius,
+        ),
+        child: ClipRRect(
+          borderRadius: borderRadius,
+          child: Container(
+            width: size,
+            height: size,
+            color: noPic
+                ? name?.lightColor
+                : Theme.of(context).secondaryHeaderColor,
+            child: noPic
+                ? textWidget
+                : CachedNetworkImage(
+                    imageUrl: src.toString(),
+                    fit: BoxFit.cover,
+                    width: size,
+                    height: size,
+                    placeholder: (c, s) => textWidget,
+                    errorWidget: (c, s, d) => Stack(
+                      children: [
+                        textWidget,
+                      ],
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );

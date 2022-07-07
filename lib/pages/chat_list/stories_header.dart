@@ -122,31 +122,29 @@ class StoriesHeader extends StatelessWidget {
                 itemCount: stories.length,
                 itemBuilder: (context, i) {
                   final room = stories[i];
-                  return Opacity(
-                    opacity: room.hasPosts ? 1 : 0.75,
-                    child: FutureBuilder<Profile>(
-                        future: room.getCreatorProfile(),
-                        builder: (context, snapshot) {
-                          final userId = room.creatorId;
-                          final displayname = snapshot.data?.displayName ??
-                              userId?.localpart ??
-                              'Unknown';
-                          final avatarUrl = snapshot.data?.avatarUrl;
-                          return _StoryButton(
-                            profile: Profile(
-                              displayName: displayname,
-                              avatarUrl: avatarUrl,
-                              userId: userId ?? 'Unknown',
-                            ),
-                            showEditFab: userId == client.userID,
-                            unread: room.membership == Membership.invite ||
-                                room.hasNewMessages,
-                            onPressed: () => _goToStoryAction(context, room.id),
-                            onLongPressed: () =>
-                                _contextualActions(context, room),
-                          );
-                        }),
-                  );
+                  return FutureBuilder<Profile>(
+                      future: room.getCreatorProfile(),
+                      builder: (context, snapshot) {
+                        final userId = room.creatorId;
+                        final displayname = snapshot.data?.displayName ??
+                            userId?.localpart ??
+                            'Unknown';
+                        final avatarUrl = snapshot.data?.avatarUrl;
+                        return _StoryButton(
+                          profile: Profile(
+                            displayName: displayname,
+                            avatarUrl: avatarUrl,
+                            userId: userId ?? 'Unknown',
+                          ),
+                          hasPosts: room.hasPosts || room == ownStoryRoom,
+                          showEditFab: userId == client.userID,
+                          unread: room.membership == Membership.invite ||
+                              room.hasNewMessages,
+                          onPressed: () => _goToStoryAction(context, room.id),
+                          onLongPressed: () =>
+                              _contextualActions(context, room),
+                        );
+                      });
                 },
               ),
             );
@@ -176,6 +174,7 @@ class _StoryButton extends StatelessWidget {
   final Profile profile;
   final bool showEditFab;
   final bool unread;
+  final bool hasPosts;
   final void Function() onPressed;
   final void Function()? onLongPressed;
 
@@ -183,6 +182,7 @@ class _StoryButton extends StatelessWidget {
     required this.profile,
     required this.onPressed,
     this.showEditFab = false,
+    this.hasPosts = true,
     this.unread = false,
     this.onLongPressed,
     Key? key,
@@ -196,88 +196,91 @@ class _StoryButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(7),
         onTap: onPressed,
         onLongPress: onLongPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Column(
-            children: [
-              const SizedBox(height: 8),
-              Material(
-                elevation: Theme.of(context).appBarTheme.elevation ?? 7,
-                shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                child: Container(
-                  padding: const EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                    gradient: unread
-                        ? const LinearGradient(
-                            colors: [
-                              Colors.red,
-                              Colors.purple,
-                              Colors.orange,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          )
-                        : null,
-                    color: unread ? null : Theme.of(context).dividerColor,
-                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                  ),
-                  child: Stack(
-                    children: [
-                      Material(
-                        color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
-                            foregroundColor:
-                                Theme.of(context).textTheme.bodyText1?.color,
-                            child: Avatar(
-                              mxContent: profile.avatarUrl,
-                              name: profile.displayName,
-                              size: 100,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ),
-                      if (showEditFab)
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: FloatingActionButton.small(
-                              heroTag: null,
-                              onPressed: () =>
-                                  VRouter.of(context).to('/stories/create'),
-                              child: const Icon(
-                                Icons.add_outlined,
-                                size: 16,
+        child: Opacity(
+          opacity: hasPosts ? 1 : 0.4,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                Material(
+                  shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                  borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                  child: Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      gradient: unread
+                          ? const LinearGradient(
+                              colors: [
+                                Colors.red,
+                                Colors.purple,
+                                Colors.orange,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            )
+                          : null,
+                      color: unread ? null : Theme.of(context).dividerColor,
+                      borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                    ),
+                    child: Stack(
+                      children: [
+                        Material(
+                          color: Theme.of(context).colorScheme.surface,
+                          borderRadius:
+                              BorderRadius.circular(Avatar.defaultSize),
+                          child: Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surface,
+                              foregroundColor:
+                                  Theme.of(context).textTheme.bodyText1?.color,
+                              child: Avatar(
+                                mxContent: profile.avatarUrl,
+                                name: profile.displayName,
+                                size: 100,
+                                fontSize: 24,
                               ),
                             ),
                           ),
                         ),
-                    ],
+                        if (showEditFab)
+                          Positioned(
+                            right: 0,
+                            bottom: 0,
+                            child: SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: FloatingActionButton.small(
+                                heroTag: null,
+                                onPressed: () =>
+                                    VRouter.of(context).to('/stories/create'),
+                                child: const Icon(
+                                  Icons.add_outlined,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Center(
-                child: Text(
-                  profile.displayName ?? '',
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: unread ? FontWeight.bold : null,
+                Center(
+                  child: Text(
+                    profile.displayName ?? '',
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: unread ? FontWeight.bold : null,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
