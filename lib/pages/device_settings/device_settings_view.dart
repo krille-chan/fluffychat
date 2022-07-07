@@ -37,60 +37,53 @@ class DevicesSettingsView extends StatelessWidget {
               return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2));
             }
-            return Column(
-              children: <Widget>[
-                if (controller.thisDevice != null)
-                  UserDeviceListItem(
-                    controller.thisDevice!,
-                    rename: controller.renameDeviceAction,
-                    remove: (d) => controller.removeDevicesAction([d]),
-                    verify: controller.verifyDeviceAction,
-                    block: controller.blockDeviceAction,
-                    unblock: controller.unblockDeviceAction,
-                  ),
-                const Divider(height: 1),
-                if (controller.notThisDevice.isNotEmpty)
-                  ListTile(
-                    title: Text(
-                      controller.errorDeletingDevices ??
-                          L10n.of(context)!.removeAllOtherDevices,
-                      style: const TextStyle(color: Colors.red),
-                    ),
-                    trailing: controller.loadingDeletingDevices
-                        ? const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2)
-                        : const Icon(Icons.delete_outline),
-                    onTap: controller.loadingDeletingDevices
-                        ? null
-                        : () => controller
-                            .removeDevicesAction(controller.notThisDevice),
-                  ),
-                const Divider(height: 1),
-                Expanded(
-                  child: controller.notThisDevice.isEmpty
-                      ? Center(
-                          child: Icon(
-                            Icons.devices_other,
-                            size: 60,
-                            color: Theme.of(context).secondaryHeaderColor,
-                          ),
-                        )
-                      : ListView.separated(
-                          separatorBuilder: (BuildContext context, int i) =>
-                              const Divider(height: 1),
-                          itemCount: controller.notThisDevice.length,
-                          itemBuilder: (BuildContext context, int i) =>
-                              UserDeviceListItem(
-                            controller.notThisDevice[i],
-                            rename: controller.renameDeviceAction,
-                            remove: (d) => controller.removeDevicesAction([d]),
-                            verify: controller.verifyDeviceAction,
-                            block: controller.blockDeviceAction,
-                            unblock: controller.unblockDeviceAction,
-                          ),
+            return ListView.builder(
+              itemCount: controller.notThisDevice.length + 1,
+              itemBuilder: (BuildContext context, int i) {
+                if (i == 0) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (controller.thisDevice != null)
+                        UserDeviceListItem(
+                          controller.thisDevice!,
+                          rename: controller.renameDeviceAction,
+                          remove: (d) => controller.removeDevicesAction([d]),
+                          verify: controller.verifyDeviceAction,
+                          block: controller.blockDeviceAction,
+                          unblock: controller.unblockDeviceAction,
                         ),
-                ),
-              ],
+                      const Divider(height: 1),
+                      if (controller.notThisDevice.isNotEmpty)
+                        ListTile(
+                          title: Text(
+                            controller.errorDeletingDevices ??
+                                L10n.of(context)!.removeAllOtherDevices,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                          trailing: controller.loadingDeletingDevices
+                              ? const CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2)
+                              : const Icon(Icons.delete_outline),
+                          onTap: controller.loadingDeletingDevices
+                              ? null
+                              : () => controller.removeDevicesAction(
+                                  controller.notThisDevice),
+                        ),
+                      const Divider(height: 1),
+                    ],
+                  );
+                }
+                i--;
+                return UserDeviceListItem(
+                  controller.notThisDevice[i],
+                  rename: controller.renameDeviceAction,
+                  remove: (d) => controller.removeDevicesAction([d]),
+                  verify: controller.verifyDeviceAction,
+                  block: controller.blockDeviceAction,
+                  unblock: controller.unblockDeviceAction,
+                );
+              },
             );
           },
         ),

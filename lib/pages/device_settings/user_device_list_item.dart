@@ -108,12 +108,13 @@ class UserDeviceListItem extends StatelessWidget {
       ),
       title: Row(
         children: <Widget>[
-          Text(
-            userDevice.displayname,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          Expanded(
+            child: Text(
+              userDevice.displayname,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-          const Spacer(),
           if (keys != null)
             Text(
               keys.blocked

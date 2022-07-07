@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/connect/connect_page.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -90,14 +89,14 @@ class ConnectPageView extends StatelessWidget {
               child: TextField(
                 controller: controller.usernameController,
                 onSubmitted: (_) => controller.signUp(),
-                style: FluffyThemes.loginTextFieldStyle,
-                decoration: FluffyThemes.loginTextFieldDecoration(
-                  prefixIcon: const Icon(
-                    Icons.account_box_outlined,
-                    color: Colors.black,
-                  ),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.account_box_outlined),
                   hintText: L10n.of(context)!.chooseAUsername,
                   errorText: controller.signupError,
+                  fillColor: Theme.of(context)
+                      .colorScheme
+                      .background
+                      .withOpacity(0.75),
                 ),
               ),
             ),
@@ -106,12 +105,7 @@ class ConnectPageView extends StatelessWidget {
               child: Hero(
                 tag: 'loginButton',
                 child: ElevatedButton(
-                  onPressed: controller.loading ? null : controller.signUp,
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white.withAlpha(200),
-                    onPrimary: Colors.black,
-                    shadowColor: Colors.white,
-                  ),
+                  onPressed: controller.loading ? () {} : controller.signUp,
                   child: controller.loading
                       ? const LinearProgressIndicator()
                       : Text(L10n.of(context)!.signUp),
@@ -148,11 +142,6 @@ class ConnectPageView extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () => controller
                                   .ssoLoginAction(identityProviders.single.id!),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.white.withAlpha(200),
-                                onPrimary: Colors.black,
-                                shadowColor: Colors.white,
-                              ),
                               child: Text(identityProviders.single.name ??
                                   identityProviders.single.brand ??
                                   L10n.of(context)!.loginWithOneClick),
@@ -176,11 +165,6 @@ class ConnectPageView extends StatelessWidget {
                 tag: 'signinButton',
                 child: ElevatedButton(
                   onPressed: controller.loading ? () {} : controller.login,
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white.withAlpha(200),
-                    onPrimary: Colors.black,
-                    shadowColor: Colors.white,
-                  ),
                   child: Text(L10n.of(context)!.login),
                 ),
               ),

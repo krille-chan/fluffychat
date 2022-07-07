@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'signup.dart';
 
@@ -38,11 +37,8 @@ class SignupPageView extends StatelessWidget {
                 controller: controller.passwordController,
                 obscureText: !controller.showPassword,
                 validator: controller.password1TextFieldValidator,
-                decoration: FluffyThemes.loginTextFieldDecoration(
-                  prefixIcon: const Icon(
-                    Icons.vpn_key_outlined,
-                    color: Colors.black,
-                  ),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.vpn_key_outlined),
                   suffixIcon: IconButton(
                     tooltip: L10n.of(context)!.showPassword,
                     icon: Icon(
@@ -53,7 +49,12 @@ class SignupPageView extends StatelessWidget {
                     ),
                     onPressed: controller.toggleShowPassword,
                   ),
+                  errorStyle: const TextStyle(color: Colors.orange),
                   hintText: L10n.of(context)!.chooseAStrongPassword,
+                  fillColor: Theme.of(context)
+                      .colorScheme
+                      .background
+                      .withOpacity(0.75),
                 ),
               ),
             ),
@@ -68,12 +69,14 @@ class SignupPageView extends StatelessWidget {
                   controller: controller.password2Controller,
                   obscureText: !controller.showPassword,
                   validator: controller.password2TextFieldValidator,
-                  decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(
-                      Icons.repeat_outlined,
-                      color: Colors.black,
-                    ),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: L10n.of(context)!.repeatPassword,
+                    errorStyle: const TextStyle(color: Colors.orange),
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.75),
                   ),
                 ),
               ),
@@ -87,16 +90,19 @@ class SignupPageView extends StatelessWidget {
                 autofillHints:
                     controller.loading ? null : [AutofillHints.username],
                 validator: controller.emailTextFieldValidator,
-                decoration: FluffyThemes.loginTextFieldDecoration(
-                  prefixIcon: const Icon(
-                    Icons.mail_outlined,
-                    color: Colors.black,
-                  ),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.mail_outlined),
                   hintText: L10n.of(context)!.enterAnEmailAddress,
                   errorText: controller.error,
-                  errorColor: controller.emailController.text.isEmpty
-                      ? Colors.orangeAccent
-                      : null,
+                  fillColor: Theme.of(context)
+                      .colorScheme
+                      .background
+                      .withOpacity(0.75),
+                  errorStyle: TextStyle(
+                    color: controller.emailController.text.isEmpty
+                        ? Colors.orangeAccent
+                        : Colors.orange,
+                  ),
                 ),
               ),
             ),
@@ -106,11 +112,6 @@ class SignupPageView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: ElevatedButton(
                   onPressed: controller.loading ? () {} : controller.signup,
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white.withAlpha(200),
-                    onPrimary: Colors.black,
-                    shadowColor: Colors.white,
-                  ),
                   child: controller.loading
                       ? const LinearProgressIndicator()
                       : Text(L10n.of(context)!.signUp),

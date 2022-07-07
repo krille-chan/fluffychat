@@ -255,12 +255,13 @@ class ChatView extends StatelessWidget {
                                   ),
                                   elevation: 6,
                                   shadowColor: Theme.of(context)
-                                      .secondaryHeaderColor
+                                      .dividerColor
                                       .withAlpha(100),
                                   clipBehavior: Clip.hardEdge,
-                                  color: Theme.of(context)
-                                      .appBarTheme
-                                      .backgroundColor,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.white
+                                      : Colors.black,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [

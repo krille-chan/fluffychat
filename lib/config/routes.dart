@@ -17,7 +17,6 @@ import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/pages/new_space/new_space.dart';
-import 'package:fluffychat/pages/search/search.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
 import 'package:fluffychat/pages/settings_account/settings_account.dart';
@@ -91,10 +90,6 @@ class AppRoutes {
               path: '/settings',
               widget: const Settings(),
               stackedRoutes: _settingsRoutes,
-            ),
-            VWidget(
-              path: '/search',
-              widget: const Search(),
             ),
             VWidget(
               path: '/archive',
@@ -224,14 +219,6 @@ class AppRoutes {
                   stackedRoutes: _settingsRoutes,
                 ),
               ],
-            ),
-            VWidget(
-              path: '/search',
-              widget: const TwoColumnLayout(
-                mainView: Search(),
-                sideView: EmptyPage(),
-              ),
-              buildTransition: _fadeTransition,
             ),
             VWidget(
               path: '/archive',

@@ -37,7 +37,7 @@ class SettingsView extends StatelessWidget {
           ),
         ],
         body: ListTileTheme(
-          iconColor: Theme.of(context).textTheme.bodyText1!.color,
+          iconColor: Theme.of(context).colorScheme.onBackground,
           child: ListView(
             children: <Widget>[
               ListTile(

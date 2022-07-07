@@ -9,56 +9,10 @@ abstract class FluffyThemes {
   static bool isColumnMode(BuildContext context) =>
       MediaQuery.of(context).size.width > columnWidth * 2;
 
-  static const fallbackTextStyle =
-      TextStyle(fontFamily: 'Roboto', fontFamilyFallback: ['NotoEmoji']);
-
-  static const TextStyle loginTextFieldStyle = TextStyle(color: Colors.black);
-
-  static InputDecoration loginTextFieldDecoration({
-    String? errorText,
-    String? labelText,
-    String? hintText,
-    Widget? suffixIcon,
-    Widget? prefixIcon,
-    Color? errorColor,
-  }) =>
-      InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        ),
-        fillColor: Colors.white.withAlpha(200),
-        labelText: labelText,
-        hintText: hintText,
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
-        suffixIconColor: Colors.black,
-        prefixIconColor: Colors.black,
-        iconColor: Colors.black,
-        errorText: errorText,
-        errorMaxLines: 4,
-        errorStyle: TextStyle(
-          color: errorColor ?? Colors.redAccent.shade200,
-          shadows: const [
-            Shadow(
-              color: Colors.black,
-              offset: Offset(0, 0),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        hintStyle: TextStyle(color: Colors.grey.shade700),
-        labelStyle: const TextStyle(
-          color: Colors.white,
-          shadows: [
-            Shadow(
-              color: Colors.black,
-              offset: Offset(0, 0),
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        contentPadding: const EdgeInsets.all(16),
-      );
+  static const fallbackTextStyle = TextStyle(
+    fontFamily: 'Roboto',
+    fontFamilyFallback: ['NotoEmoji'],
+  );
 
   static var fallbackTextTheme = const TextTheme(
     bodyText1: fallbackTextStyle,
@@ -83,12 +37,12 @@ abstract class FluffyThemes {
         colorSchemeSeed: AppConfig.colorSchemeSeed ??
             colorScheme?.primary ??
             AppConfig.chatColor,
-        scaffoldBackgroundColor: Colors.white,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().black.merge(fallbackTextTheme)
             : null,
-        snackBarTheme:
-            const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+        snackBarTheme: const SnackBarThemeData(
+          behavior: SnackBarBehavior.floating,
+        ),
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
@@ -100,31 +54,12 @@ abstract class FluffyThemes {
           },
         ),
         dividerColor: Colors.blueGrey.shade50,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            textStyle: const TextStyle(fontSize: 16),
-            elevation: 6,
-            shadowColor: const Color(0x44000000),
-            minimumSize: const Size.fromHeight(48),
-            padding: const EdgeInsets.all(12),
-          ),
-        ),
-        cardTheme: const CardTheme(
-          elevation: 6,
-          // shadowColor: Color(0x44000000),
-          clipBehavior: Clip.hardEdge,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: const UnderlineInputBorder(borderSide: BorderSide(width: 1)),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
           filled: true,
-          fillColor: Colors.blueGrey.shade50,
         ),
         appBarTheme: const AppBarTheme(
-          elevation: 6,
-          shadowColor: Color(0x44000000),
           systemOverlayStyle: SystemUiOverlayStyle.dark,
-          surfaceTintColor: Colors.white,
-          backgroundColor: Colors.white,
         ),
       );
 
@@ -135,7 +70,6 @@ abstract class FluffyThemes {
         colorSchemeSeed: AppConfig.colorSchemeSeed ??
             colorScheme?.primary ??
             AppConfig.chatColor,
-        scaffoldBackgroundColor: Colors.black,
         textTheme: PlatformInfos.isDesktop
             ? Typography.material2018().white.merge(fallbackTextTheme)
             : null,
@@ -151,20 +85,11 @@ abstract class FluffyThemes {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        dividerColor: Colors.blueGrey.shade600,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: AppConfig.chatColor,
-            onPrimary: Colors.white,
-            minimumSize: const Size.fromHeight(48),
-            textStyle: const TextStyle(fontSize: 16),
-            padding: const EdgeInsets.all(12),
-          ),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
+          filled: true,
         ),
-        appBarTheme: const AppBarTheme(
-          elevation: 6,
-          backgroundColor: Color(0xff1D1D1D),
-        ),
+        dividerColor: Colors.blueGrey.shade900,
       );
 
   static Color blackWhiteColor(BuildContext context) =>

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -22,53 +23,93 @@ class SpacesDrawer extends StatelessWidget {
 
     // TODO(TheOeWithTheBraid): wait for space hierarchy https://gitlab.com/famedly/company/frontend/libraries/matrix_api_lite/-/merge_requests/58
 
-    return WillPopScope(
-      onWillPop: () async {
-        controller.snapBackSpacesSheet();
-        return false;
-      },
-      child: Column(
-        children: List.generate(spaceHierarchy.length, (index) {
-          final space = spaceHierarchy.keys.toList()[index];
-          final room = space.getSpace(context);
-          final active = currentIndex == index;
+    return ListView.builder(
+      itemCount: spaceHierarchy.length + 2,
+      itemBuilder: (context, i) {
+        if (i == spaceHierarchy.length) {
           return ListTile(
-            selected: active,
-            leading: index == 0
-                ? const Icon(Icons.keyboard_arrow_down)
-                : room == null
-                    ? space.getIcon(active)
-                    : Avatar(
-                        mxContent: room.avatar,
-                        name: space.getName(context),
-                        size: 24,
-                        fontSize: 12,
-                      ),
-            title: Text(space.getName(context)),
-            subtitle: room?.topic.isEmpty ?? true
-                ? null
-                : Tooltip(
-                    message: room!.topic,
-                    child: Text(
-                      room.topic.replaceAll('\n', ' '),
-                      softWrap: false,
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-            onTap: () => controller.setActiveSpacesEntry(
-              context,
-              space,
+            leading: CircleAvatar(
+              radius: Avatar.defaultSize / 2,
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              foregroundColor:
+                  Theme.of(context).colorScheme.onSecondaryContainer,
+              child: const Icon(
+                Icons.archive_outlined,
+              ),
             ),
-            trailing: room != null
-                ? IconButton(
-                    icon: const Icon(Icons.edit),
+            title: Text(L10n.of(context)!.archive),
+            onTap: () {
+              Scaffold.of(context).closeDrawer();
+              VRouter.of(context).to('/archive');
+            },
+          );
+        }
+        if (i == spaceHierarchy.length + 1) {
+          return ListTile(
+            leading: CircleAvatar(
+              child: const Icon(Icons.group_work_outlined),
+              radius: Avatar.defaultSize / 2,
+              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              foregroundColor:
+                  Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
+            title: Text(L10n.of(context)!.createNewSpace),
+            onTap: () {
+              Scaffold.of(context).closeDrawer();
+              VRouter.of(context).to('/newspace');
+            },
+          );
+        }
+        final space = spaceHierarchy.keys.toList()[i];
+        final room = space.getSpace(context);
+        final active = currentIndex == i;
+        return ListTile(
+          selected: active,
+          leading: room == null
+              ? CircleAvatar(
+                  child: space.getIcon(active),
+                  radius: Avatar.defaultSize / 2,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
+                  foregroundColor:
+                      Theme.of(context).colorScheme.onSecondaryContainer,
+                )
+              : Avatar(
+                  mxContent: room.avatar,
+                  name: space.getName(context),
+                ),
+          title: Text(
+            space.getName(context),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: room?.topic.isEmpty ?? true
+              ? null
+              : Tooltip(
+                  message: room!.topic,
+                  child: Text(
+                    room.topic.replaceAll('\n', ' '),
+                    softWrap: false,
+                    overflow: TextOverflow.fade,
+                  ),
+                ),
+          onTap: () => controller.setActiveSpacesEntry(
+            context,
+            space,
+          ),
+          trailing: room != null
+              ? SizedBox(
+                  width: 32,
+                  child: IconButton(
+                    splashRadius: 24,
+                    icon: const Icon(Icons.edit_outlined),
                     tooltip: L10n.of(context)!.edit,
                     onPressed: () => controller.editSpace(context, room.id),
-                  )
-                : null,
-          );
-        }),
-      ),
+                  ),
+                )
+              : null,
+        );
+      },
     );
   }
 }

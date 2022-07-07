@@ -22,17 +22,17 @@ class SsoButton extends StatelessWidget {
       onTap: onPressed,
       borderRadius: BorderRadius.circular(7),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             Material(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(7),
+              borderRadius: BorderRadius.circular(8),
               clipBehavior: Clip.hardEdge,
               child: Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(4.0),
                 child: identityProvider.icon == null
                     ? const Icon(Icons.web_outlined)
                     : CachedNetworkImage(

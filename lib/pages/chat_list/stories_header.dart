@@ -18,7 +18,8 @@ enum ContextualRoomAction {
 }
 
 class StoriesHeader extends StatelessWidget {
-  const StoriesHeader({Key? key}) : super(key: key);
+  final String filter;
+  const StoriesHeader({required this.filter, Key? key}) : super(key: key);
 
   void _addToStoryAction(BuildContext context) =>
       VRouter.of(context).to('/stories/create');
@@ -105,7 +106,10 @@ class StoriesHeader extends StatelessWidget {
                 onTap: () => _addToStoryAction(context),
               );
             }
-            if (client.storiesRooms.isEmpty) {
+            if (client.storiesRooms.isEmpty ||
+                !client.storiesRooms.any((room) => room.displayname
+                    .toLowerCase()
+                    .contains(filter.toLowerCase()))) {
               return Container();
             }
             final ownStoryRoom = client.storiesRooms
@@ -130,6 +134,11 @@ class StoriesHeader extends StatelessWidget {
                             userId?.localpart ??
                             'Unknown';
                         final avatarUrl = snapshot.data?.avatarUrl;
+                        if (!displayname
+                            .toLowerCase()
+                            .contains(filter.toLowerCase())) {
+                          return Container();
+                        }
                         return _StoryButton(
                           profile: Profile(
                             displayName: displayname,
@@ -139,7 +148,7 @@ class StoriesHeader extends StatelessWidget {
                           hasPosts: room.hasPosts || room == ownStoryRoom,
                           showEditFab: userId == client.userID,
                           unread: room.membership == Membership.invite ||
-                              room.hasNewMessages,
+                              (room.hasNewMessages && room.hasPosts),
                           onPressed: () => _goToStoryAction(context, room.id),
                           onLongPressed: () =>
                               _contextualActions(context, room),

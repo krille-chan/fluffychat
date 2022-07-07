@@ -79,6 +79,16 @@ class ClientChooserButton extends StatelessWidget {
             )
             .toList(),
       ],
+      PopupMenuItem(
+        value: AddAccountAction.addAccount,
+        child: Row(
+          children: [
+            const Icon(Icons.person_add_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.addAccount),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -124,7 +134,8 @@ class ClientChooserButton extends StatelessWidget {
             ),
             PopupMenuButton<Object>(
               child: Material(
-                borderRadius: BorderRadius.zero,
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(99),
                 child: Avatar(
                   mxContent: snapshot.data?.avatarUrl,
                   name: snapshot.data?.displayName ??
@@ -158,6 +169,8 @@ class ClientChooserButton extends StatelessWidget {
       controller.setActiveClient(object);
     } else if (object is String) {
       controller.setActiveBundle(object);
+    } else if (object == AddAccountAction.addAccount) {
+      controller.addAccountAction();
     }
   }
 
@@ -222,3 +235,5 @@ class ClientChooserButton extends StatelessWidget {
     _handleKeyboardShortcut(matrix, lastIndex! - 1);
   }
 }
+
+enum AddAccountAction { addAccount }

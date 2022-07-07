@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'login.dart';
@@ -44,16 +43,16 @@ class LoginView extends StatelessWidget {
                   controller: controller.usernameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  style: FluffyThemes.loginTextFieldStyle,
                   autofillHints:
                       controller.loading ? null : [AutofillHints.username],
-                  decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(
-                      Icons.account_box_outlined,
-                      color: Colors.black,
-                    ),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.account_box_outlined),
                     errorText: controller.usernameError,
                     hintText: L10n.of(context)!.emailOrUsername,
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.75),
                   ),
                 ),
               ),
@@ -68,12 +67,8 @@ class LoginView extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                   obscureText: !controller.showPassword,
                   onSubmitted: controller.login,
-                  style: FluffyThemes.loginTextFieldStyle,
-                  decoration: FluffyThemes.loginTextFieldDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock_outlined,
-                      color: Colors.black,
-                    ),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_outlined),
                     errorText: controller.passwordError,
                     suffixIcon: IconButton(
                       tooltip: L10n.of(context)!.showPassword,
@@ -86,6 +81,10 @@ class LoginView extends StatelessWidget {
                       onPressed: controller.toggleShowPassword,
                     ),
                     hintText: L10n.of(context)!.password,
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.75),
                   ),
                 ),
               ),
@@ -97,11 +96,6 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading
                         ? null
                         : () => controller.login(context),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white.withAlpha(200),
-                      onPrimary: Colors.black,
-                      shadowColor: Colors.white,
-                    ),
                     child: controller.loading
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context)!.login),
@@ -126,11 +120,7 @@ class LoginView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed:
                       controller.loading ? () {} : controller.passwordForgotten,
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white.withAlpha(156),
-                    onPrimary: Colors.red,
-                    shadowColor: Colors.white,
-                  ),
+                  style: ElevatedButton.styleFrom(onPrimary: Colors.red),
                   child: Text(L10n.of(context)!.passwordForgotten),
                 ),
               ),

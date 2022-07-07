@@ -1423,13 +1423,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.3"
-  salomon_bottom_bar:
-    dependency: "direct main"
-    description:
-      name: salomon_bottom_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.0"
   scroll_to_index:
     dependency: "direct main"
     description:

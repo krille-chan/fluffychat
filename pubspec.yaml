@@ -71,7 +71,6 @@ dependencies:
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: ^4.1.1
-  salomon_bottom_bar: ^3.2.0
   scroll_to_index: ^3.0.1
   sentry: ^6.3.0
   share_plus: ^4.0.9

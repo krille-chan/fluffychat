@@ -14,9 +14,9 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
-import 'package:fluffychat/pages/chat_list/spaces_bottom_bar.dart';
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/famedlysdk_store.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../main.dart';
@@ -52,6 +52,97 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   SpacesEntry? _activeSpacesEntry;
 
+  bool isSearchMode = false;
+  Future<QueryPublicRoomsResponse>? publicRoomsResponse;
+  String? searchServer;
+  Timer? _coolDown;
+  SearchUserDirectoryResponse? userSearchResult;
+  QueryPublicRoomsResponse? roomSearchResult;
+
+  bool isSearching = false;
+  static const String _serverStoreNamespace = 'im.fluffychat.search.server';
+
+  void setServer() async {
+    final newServer = await showTextInputDialog(
+        useRootNavigator: false,
+        title: L10n.of(context)!.changeTheHomeserver,
+        context: context,
+        okLabel: L10n.of(context)!.ok,
+        cancelLabel: L10n.of(context)!.cancel,
+        textFields: [
+          DialogTextField(
+              prefixText: 'https://',
+              hintText: Matrix.of(context).client.homeserver?.host,
+              initialText: searchServer,
+              keyboardType: TextInputType.url,
+              autocorrect: false)
+        ]);
+    if (newServer == null) return;
+    Store().setItem(_serverStoreNamespace, newServer.single);
+    setState(() {
+      searchServer = newServer.single;
+    });
+    onSearchEnter(searchController.text);
+  }
+
+  final TextEditingController searchController = TextEditingController();
+
+  void _search() async {
+    final client = Matrix.of(context).client;
+    if (!isSearching) {
+      setState(() {
+        isSearching = true;
+      });
+    }
+    SearchUserDirectoryResponse? userSearchResult;
+    QueryPublicRoomsResponse? roomSearchResult;
+    try {
+      roomSearchResult = await client.queryPublicRooms(
+        server: searchServer,
+        filter: PublicRoomQueryFilter(genericSearchTerm: searchController.text),
+        limit: 20,
+      );
+      userSearchResult = await client.searchUserDirectory(
+        searchController.text,
+        limit: 20,
+      );
+    } catch (e, s) {
+      Logs().w('Searching has crashed', e, s);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toLocalizedString(context),
+          ),
+        ),
+      );
+    }
+    setState(() {
+      isSearching = false;
+      this.roomSearchResult = roomSearchResult;
+      this.userSearchResult = userSearchResult;
+    });
+  }
+
+  void onSearchEnter(String text) {
+    if (text.isEmpty) {
+      cancelSearch();
+      return;
+    }
+
+    setState(() {
+      isSearchMode = true;
+    });
+    _coolDown?.cancel();
+    _coolDown = Timer(const Duration(milliseconds: 500), _search);
+  }
+
+  void cancelSearch() => setState(() {
+        searchController.clear();
+        isSearchMode = false;
+        roomSearchResult = userSearchResult = null;
+        isSearching = false;
+      });
+
   SpacesEntry get activeSpacesEntry {
     final id = _activeSpacesEntry;
     return (id == null || !id.stillValid(context)) ? defaultSpacesEntry : id;
@@ -72,6 +163,8 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   Stream<Client> get clientStream => _clientStream.stream;
 
+  void addAccountAction() => VRouter.of(context).to('/settings/account/add');
+
   void _onScroll() {
     final newScrolledToTop = scrollController.position.pixels <= 0;
     if (newScrolledToTop != scrolledToTop) {
@@ -82,12 +175,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   }
 
   void setActiveSpacesEntry(BuildContext context, SpacesEntry? spaceId) {
-    if ((snappingSheetController.isAttached
-            ? snappingSheetController.currentPosition
-            : 0) !=
-        kSpacesBottomBarHeight) {
-      snapBackSpacesSheet();
-    }
+    Scaffold.of(context).closeDrawer();
     setState(() => _activeSpacesEntry = spaceId);
   }
 
@@ -212,6 +300,10 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      searchServer = await Store().getItem(_serverStoreNamespace);
+    });
     super.initState();
   }
 
@@ -336,32 +428,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
             statusMsg: input.single,
           ),
     );
-  }
-
-  void onPopupMenuSelect(action) {
-    switch (action) {
-      case PopupMenuAction.setStatus:
-        setStatus();
-        break;
-      case PopupMenuAction.settings:
-        VRouter.of(context).to('/settings');
-        break;
-      case PopupMenuAction.invite:
-        FluffyShare.share(
-            L10n.of(context)!.inviteText(Matrix.of(context).client.userID!,
-                'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
-            context);
-        break;
-      case PopupMenuAction.newGroup:
-        VRouter.of(context).to('/newgroup');
-        break;
-      case PopupMenuAction.newSpace:
-        VRouter.of(context).to('/newspace');
-        break;
-      case PopupMenuAction.archive:
-        VRouter.of(context).to('/archive');
-        break;
-    }
   }
 
   Future<void> _archiveSelectedRooms() async {
@@ -591,15 +657,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   void _hackyWebRTCFixForWeb() {
     Matrix.of(context).voipPlugin?.context = context;
-  }
-
-  void snapBackSpacesSheet() {
-    snappingSheetController.snapToPosition(
-      const SnappingPosition.pixels(
-        positionPixels: kSpacesBottomBarHeight,
-        snappingDuration: Duration(milliseconds: 500),
-      ),
-    );
   }
 
   expandSpaces() {
