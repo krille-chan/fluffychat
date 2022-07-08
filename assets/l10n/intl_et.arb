@@ -399,7 +399,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Sinu vestluste varukoopia on krüptitud turvavõtmega. Palun vaata, et sa seda ei kaota.",
+  "chatBackupDescription": "Sinu vestluste varukoopia on krüptitud taastamiseks mõeldud turvavõtmega. Palun vaata, et sa seda ei kaota.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2484,7 +2484,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Kas kustutame sinu vestluste varukoopia ja loome uue turvavõtme?",
+  "wipeChatBackup": "Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks mõeldud krüptovõtme?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2610,7 +2610,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Sinu vestluste varundus on seadistatud.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Et sinu sõnumid ei oleks võõrastele loetavad, me genereerisime krüptovõtme.\nPalun hoia seda turvalises kohas, näiteks salasõnade halduris.",
+  "setupChatBackupDescription": "Et sinu sõnumid ei oleks võõrastele loetavad, me genereerisime taastamiseks mõeldud krüptovõtme.\nPalun hoia seda turvalises kohas, näiteks salasõnade halduris.",
   "@setupChatBackupDescription": {},
   "yourUserId": "Sinu kasutajatunnus:",
   "@yourUserId": {},
