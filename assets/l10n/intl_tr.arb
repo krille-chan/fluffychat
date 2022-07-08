@@ -401,7 +401,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Sohbet yedeklemeniz bir güvenlik anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
+  "chatBackupDescription": "Eski mesajlarınız bir kurtarma anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2493,7 +2493,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Yeni bir güvenlik anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
+  "wipeChatBackup": "Yeni bir kurtarma anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2610,7 +2610,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Sohbet yedeklemeniz ayarlandı.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Mesajlarınızı korumak için sizin için bir güvenlik anahtarı oluşturduk.\nLütfen bunu parola yöneticisi gibi güvenli bir yerde saklayın.",
+  "setupChatBackupDescription": "Mesajlarınızı korumak için sizin için bir kurtarma anahtarı oluşturduk.\nLütfen bunu parola yöneticisi gibi güvenli bir yerde saklayın.",
   "@setupChatBackupDescription": {},
   "unverified": "Doğrulanmadı",
   "@unverified": {},
@@ -2860,5 +2860,33 @@
   "showSpaces": "Alanlar listesini göster",
   "@showSpaces": {},
   "noEmailWarning": "Lütfen geçerli bir e-posta adresi girin. Aksi takdirde parolanızı sıfırlayamazsınız. İstemiyorsanız, devam etmek için düğmeye tekrar dokunun.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "storeInAppleKeyChain": "Apple KeyChain'de sakla",
+  "@storeInAppleKeyChain": {},
+  "pleaseEnterRecoveryKey": "Lütfen kurtarma anahtarınızı girin:",
+  "@pleaseEnterRecoveryKey": {},
+  "recoveryKeyLost": "Kurtarma anahtarı kayıp mı?",
+  "@recoveryKeyLost": {},
+  "pleaseEnterRecoveryKeyDescription": "Eski mesajlarınızın kilidini açmak için lütfen önceki bir oturumda oluşturulan kurtarma anahtarınızı girin. Kurtarma anahtarınız parolanız DEĞİLDİR.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "users": "Kullanıcılar",
+  "@users": {},
+  "storeInSecureStorageDescription": "Kurtarma anahtarını bu aygıtın güvenli deposunda saklayın.",
+  "@storeInSecureStorageDescription": {},
+  "enableAutoBackups": "Otomatik yedeklemeleri etkinleştir",
+  "@enableAutoBackups": {},
+  "recoveryKey": "Kurtarma anahtarı",
+  "@recoveryKey": {},
+  "saveTheRecoveryKeyNow": "Kurtarma anahtarını şimdi kaydet",
+  "@saveTheRecoveryKeyNow": {},
+  "stories": "Hikayeler",
+  "@stories": {},
+  "storeInAndroidKeystore": "Android KeyStore'da sakla",
+  "@storeInAndroidKeystore": {},
+  "unlockOldMessages": "Eski mesajların kilidini aç",
+  "@unlockOldMessages": {},
+  "saveKeyManuallyDescription": "Sistem paylaşımı iletişim kutusunu veya panoyu tetikleyerek bu anahtarı elle kaydedin.",
+  "@saveKeyManuallyDescription": {},
+  "storeSecurlyOnThisDevice": "Bu aygıtta güvenli bir şekilde sakla",
+  "@storeSecurlyOnThisDevice": {}
 }
