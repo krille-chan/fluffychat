@@ -24,15 +24,14 @@ class SpacesDrawer extends StatelessWidget {
     // TODO(TheOeWithTheBraid): wait for space hierarchy https://gitlab.com/famedly/company/frontend/libraries/matrix_api_lite/-/merge_requests/58
 
     return ListView.builder(
-      itemCount: spaceHierarchy.length + 2,
+      itemCount: spaceHierarchy.length + 1,
       itemBuilder: (context, i) {
         if (i == spaceHierarchy.length) {
           return ListTile(
             leading: CircleAvatar(
               radius: Avatar.defaultSize / 2,
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              foregroundColor:
-                  Theme.of(context).colorScheme.onSecondaryContainer,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.onSecondary,
               child: const Icon(
                 Icons.archive_outlined,
               ),
@@ -41,22 +40,6 @@ class SpacesDrawer extends StatelessWidget {
             onTap: () {
               Scaffold.of(context).closeDrawer();
               VRouter.of(context).to('/archive');
-            },
-          );
-        }
-        if (i == spaceHierarchy.length + 1) {
-          return ListTile(
-            leading: CircleAvatar(
-              child: const Icon(Icons.group_work_outlined),
-              radius: Avatar.defaultSize / 2,
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              foregroundColor:
-                  Theme.of(context).colorScheme.onSecondaryContainer,
-            ),
-            title: Text(L10n.of(context)!.createNewSpace),
-            onTap: () {
-              Scaffold.of(context).closeDrawer();
-              VRouter.of(context).to('/newspace');
             },
           );
         }
@@ -69,10 +52,8 @@ class SpacesDrawer extends StatelessWidget {
               ? CircleAvatar(
                   child: space.getIcon(active),
                   radius: Avatar.defaultSize / 2,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  foregroundColor:
-                      Theme.of(context).colorScheme.onSecondaryContainer,
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
                 )
               : Avatar(
                   mxContent: room.avatar,
@@ -107,7 +88,7 @@ class SpacesDrawer extends StatelessWidget {
                     onPressed: () => controller.editSpace(context, room.id),
                   ),
                 )
-              : null,
+              : const Icon(Icons.arrow_forward_ios_outlined),
         );
       },
     );

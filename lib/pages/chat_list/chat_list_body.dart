@@ -59,7 +59,6 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
         child = Column(
           key: const ValueKey(null),
           mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Image.asset(
               'assets/private_chat_wallpaper.png',
@@ -76,6 +75,7 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                 ),
               ),
             ),
+            const SizedBox(height: 160),
           ],
         );
       } else {
@@ -96,7 +96,10 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                   children: [
                     const ConnectionStatusHeader(),
                     if (roomSearchResult != null) ...[
-                      _SearchTitle(title: L10n.of(context)!.publicRooms),
+                      _SearchTitle(
+                        title: L10n.of(context)!.publicRooms,
+                        icon: Icons.explore_outlined,
+                      ),
                       AnimatedContainer(
                         height: roomSearchResult.chunk.isEmpty ? 0 : 106,
                         duration: const Duration(milliseconds: 250),
@@ -126,7 +129,10 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       ),
                     ],
                     if (userSearchResult != null) ...[
-                      _SearchTitle(title: L10n.of(context)!.users),
+                      _SearchTitle(
+                        title: L10n.of(context)!.users,
+                        icon: Icons.group_outlined,
+                      ),
                       AnimatedContainer(
                         height: userSearchResult.results.isEmpty ? 0 : 106,
                         duration: const Duration(milliseconds: 250),
@@ -152,7 +158,10 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       ),
                     ],
                     if (widget.controller.isSearchMode)
-                      _SearchTitle(title: L10n.of(context)!.stories),
+                      _SearchTitle(
+                        title: L10n.of(context)!.stories,
+                        icon: Icons.camera_alt_outlined,
+                      ),
                     StoriesHeader(
                       filter: widget.controller.searchController.text,
                     ),
@@ -198,7 +207,10 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       ),
                     ),
                     if (widget.controller.isSearchMode)
-                      _SearchTitle(title: L10n.of(context)!.chats),
+                      _SearchTitle(
+                        title: L10n.of(context)!.chats,
+                        icon: Icons.chat_outlined,
+                      ),
                   ],
                 );
               }
@@ -336,7 +348,12 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
 
 class _SearchTitle extends StatelessWidget {
   final String title;
-  const _SearchTitle({required this.title, Key? key}) : super(key: key);
+  final IconData icon;
+  const _SearchTitle({
+    required this.title,
+    required this.icon,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
@@ -355,13 +372,19 @@ class _SearchTitle extends StatelessWidget {
               horizontal: 16,
               vertical: 8,
             ),
-            child: Text(title,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                )),
+            child: Row(
+              children: [
+                Icon(icon, size: 16),
+                const SizedBox(width: 16),
+                Text(title,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ],
+            ),
           ),
         ),
       );

@@ -121,7 +121,7 @@ class StoriesHeader extends StatelessWidget {
             return SizedBox(
               height: 98,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, i) {

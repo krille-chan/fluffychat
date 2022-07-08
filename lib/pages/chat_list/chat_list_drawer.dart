@@ -6,7 +6,9 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/spaces_drawer.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../config/app_config.dart';
 
 class ChatListDrawer extends StatelessWidget {
   final ChatListController controller;
@@ -17,12 +19,20 @@ class ChatListDrawer extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+              ListTile(
+                leading: const CircleAvatar(
+                  radius: Avatar.defaultSize / 2,
+                  backgroundImage: AssetImage('assets/logo.png'),
+                ),
+                title: Text(AppConfig.applicationName),
+              ),
+              const Divider(thickness: 1),
               Expanded(
                 child: SpacesDrawer(
                   controller: controller,
                 ),
               ),
-              const Divider(),
+              const Divider(thickness: 1),
               ListTile(
                 leading: Icon(
                   Icons.group_add_outlined,
@@ -32,6 +42,17 @@ class ChatListDrawer extends StatelessWidget {
                 onTap: () {
                   Scaffold.of(context).closeDrawer();
                   VRouter.of(context).to('/newgroup');
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.group_work_outlined,
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+                title: Text(L10n.of(context)!.createNewSpace),
+                onTap: () {
+                  Scaffold.of(context).closeDrawer();
+                  VRouter.of(context).to('/newspace');
                 },
               ),
               ListTile(

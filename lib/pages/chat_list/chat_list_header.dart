@@ -17,7 +17,6 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
     final selectMode = controller.selectMode;
 
     return AppBar(
-      titleSpacing: 8,
       automaticallyImplyLeading: false,
       leading: selectMode == SelectMode.normal
           ? null
@@ -47,7 +46,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                       borderRadius: BorderRadius.circular(90),
                       borderSide: BorderSide.none,
                     ),
-                    hintText: L10n.of(context)!.search,
+                    hintText: controller.activeSpacesEntry.getName(context),
                     prefixIcon: controller.isSearchMode
                         ? IconButton(
                             tooltip: L10n.of(context)!.cancel,
