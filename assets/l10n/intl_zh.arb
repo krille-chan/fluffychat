@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "您的聊天记录备份已由安全密钥加密。请确保您不会丢失它。",
+  "chatBackupDescription": "您的旧信息受恢复密钥保护。请确保您不会丢失它。",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2400,7 +2400,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的安全密钥吗？",
+  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的恢复密钥吗？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2578,7 +2578,7 @@
   "@createNewChatExplaination": {},
   "yourChatBackupHasBeenSetUp": "您的聊天记录备份已设置。",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "为了保护您的信息，我们为您生成了一个安全密钥。\n请将其保存在安全的地方，如密码管理器中。",
+  "setupChatBackupDescription": "为了保护您的信息，我们为您生成了一个恢复密钥。\n请将其保存在安全的地方，如密码管理器中。",
   "@setupChatBackupDescription": {},
   "scanQrCode": "扫描二维码",
   "@scanQrCode": {},
@@ -2860,5 +2860,33 @@
   "showSpaces": "显示空间列表",
   "@showSpaces": {},
   "noEmailWarning": "请输入有效电子邮件地址。否则你将无法重置密码。如果你不想输入邮件地址，再次轻点按钮以继续。",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "storeInSecureStorageDescription": "将恢复密钥存储在此设备的安全存储中。",
+  "@storeInSecureStorageDescription": {},
+  "storeInAppleKeyChain": "存储在 Apple KeyChain 中",
+  "@storeInAppleKeyChain": {},
+  "unlockOldMessages": "解锁旧信息",
+  "@unlockOldMessages": {},
+  "pleaseEnterRecoveryKey": "请输入你的恢复密钥：",
+  "@pleaseEnterRecoveryKey": {},
+  "recoveryKey": "恢复密钥",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "丢失了恢复密钥？",
+  "@recoveryKeyLost": {},
+  "pleaseEnterRecoveryKeyDescription": "要解锁您的旧邮件，请输入你在之前会话中生成的恢复密钥。 你的恢复密钥不是你的密码。",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "saveKeyManuallyDescription": "通过触发系统共享对话框或剪贴板手动保存此密钥。",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "存储在 Android KeyStore 中",
+  "@storeInAndroidKeystore": {},
+  "storeSecurlyOnThisDevice": "在此设备上安全存储",
+  "@storeSecurlyOnThisDevice": {},
+  "saveTheRecoveryKeyNow": "立即保存恢复密钥",
+  "@saveTheRecoveryKeyNow": {},
+  "enableAutoBackups": "启用自动备份",
+  "@enableAutoBackups": {},
+  "users": "用户",
+  "@users": {},
+  "stories": "故事",
+  "@stories": {}
 }
