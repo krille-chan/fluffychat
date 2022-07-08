@@ -121,7 +121,7 @@ class StoriesHeader extends StatelessWidget {
             return SizedBox(
               height: 98,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, i) {
@@ -216,7 +216,6 @@ class _StoryButton extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 Material(
-                  shadowColor: Theme.of(context).appBarTheme.shadowColor,
                   borderRadius: BorderRadius.circular(Avatar.defaultSize),
                   child: Container(
                     padding: const EdgeInsets.all(3),
@@ -232,7 +231,9 @@ class _StoryButton extends StatelessWidget {
                               end: Alignment.bottomRight,
                             )
                           : null,
-                      color: unread ? null : Theme.of(context).dividerColor,
+                      color: unread
+                          ? null
+                          : Theme.of(context).colorScheme.surfaceVariant,
                       borderRadius: BorderRadius.circular(Avatar.defaultSize),
                     ),
                     child: Stack(
