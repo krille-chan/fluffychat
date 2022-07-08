@@ -1854,7 +1854,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Стерти резервну копію бесіди, щоб створити новий ключ безпеки?",
+  "wipeChatBackup": "Стерти резервну копію бесіди, щоб створити новий ключ відновлення?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2193,7 +2193,7 @@
   },
   "chatHasBeenAddedToThisSpace": "Бесіду додано до цього простору",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatBackupDescription": "Резервне копіювання бесіди захищено ключем безпеки. Не загубіть його.",
+  "chatBackupDescription": "Ваші старі повідомлення захищені ключем відновлення. Переконайтеся, що ви не втратите його.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2209,7 +2209,7 @@
   "@setupChatBackup": {},
   "iWroteDownTheKey": "Ключ записано",
   "@iWroteDownTheKey": {},
-  "setupChatBackupDescription": "Щоб захистити ваші повідомлення, ми створили для вас ключ безпеки.\nЗберігайте його в надійному місці, наприклад, у менеджері паролів.",
+  "setupChatBackupDescription": "Щоб захистити ваші повідомлення, ми створили для вас ключ відновлення.\nЗберігайте його в надійному місці, наприклад, у менеджері паролів.",
   "@setupChatBackupDescription": {},
   "clearArchive": "Очистити архів",
   "@clearArchive": {},
@@ -2855,5 +2855,33 @@
   "showSpaces": "Показати список просторів",
   "@showSpaces": {},
   "noEmailWarning": "Введіть справжню адресу електронної пошти. В іншому випадку ви не зможете скинути пароль. Якщо ви цього не хочете, торкніться кнопки ще раз, щоб продовжити.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "saveTheRecoveryKeyNow": "Збережіть ключ відновлення зараз",
+  "@saveTheRecoveryKeyNow": {},
+  "saveKeyManuallyDescription": "Збережіть цей ключ вручну, запустивши діалогове вікно спільного доступу до системи або буфер обміну.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Зберегти в Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Зберегти в Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Зберегти на цей пристрій",
+  "@storeSecurlyOnThisDevice": {},
+  "pleaseEnterRecoveryKeyDescription": "Щоб розблокувати старі повідомлення, введіть ключ відновлення, згенерований у попередньому сеансі. Ваш ключ відновлення це НЕ ваш пароль.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "pleaseEnterRecoveryKey": "Введіть ключ відновлення:",
+  "@pleaseEnterRecoveryKey": {},
+  "recoveryKey": "Ключ відновлення",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Ключ відновлення втрачено?",
+  "@recoveryKeyLost": {},
+  "enableAutoBackups": "Увімкнути автоматичне резервне копіювання",
+  "@enableAutoBackups": {},
+  "users": "Користувачі",
+  "@users": {},
+  "stories": "Історії",
+  "@stories": {},
+  "unlockOldMessages": "Розблокувати старі повідомлення",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Збережіть ключ відновлення в безпечному сховищі цього пристрою.",
+  "@storeInSecureStorageDescription": {}
 }
