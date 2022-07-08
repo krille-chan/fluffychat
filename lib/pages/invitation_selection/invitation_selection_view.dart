@@ -32,7 +32,14 @@ class InvitationSelectionView extends StatelessWidget {
           autofocus: true,
           decoration: InputDecoration(
             hintText: L10n.of(context)!.inviteContactToGroup(groupName),
-            suffix: const Icon(Icons.search_outlined),
+            suffixIconConstraints: const BoxConstraints(
+              maxWidth: 48,
+              maxHeight: 48,
+              minWidth: 48,
+            ),
+            suffixIcon: controller.loading
+                ? const CircularProgressIndicator.adaptive()
+                : const Icon(Icons.search_outlined),
             contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           ),
           onChanged: controller.searchUserWithCoolDown,

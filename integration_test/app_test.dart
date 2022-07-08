@@ -26,7 +26,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Connect'), findsOneWidget);
-      expect(find.text('Homeserver'), findsOneWidget);
 
       final input = find.byType(TextField);
 

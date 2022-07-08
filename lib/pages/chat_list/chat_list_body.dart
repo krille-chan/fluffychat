@@ -180,11 +180,12 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                                 .onSecondaryContainer,
                           ),
                           title: Text(
-                            Matrix.of(context)
-                                    .client
-                                    .encryption!
-                                    .keyManager
-                                    .enabled
+                            (Matrix.of(context)
+                                        .client
+                                        .encryption
+                                        ?.keyManager
+                                        .enabled ==
+                                    true)
                                 ? L10n.of(context)!.unlockOldMessages
                                 : L10n.of(context)!.enableAutoBackups,
                             style: TextStyle(
