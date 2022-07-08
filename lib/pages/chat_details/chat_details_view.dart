@@ -81,10 +81,12 @@ class ChatDetailsView extends StatelessWidget {
                       Theme.of(context).appBarTheme.backgroundColor,
                   flexibleSpace: FlexibleSpaceBar(
                     background: ContentBanner(
-                        mxContent: room.avatar,
-                        onEdit: room.canSendEvent('m.room.avatar')
-                            ? controller.setAvatarAction
-                            : null),
+                      mxContent: room.avatar,
+                      onEdit: room.canSendEvent('m.room.avatar')
+                          ? controller.setAvatarAction
+                          : null,
+                      defaultIcon: Icons.group_outlined,
+                    ),
                   ),
                 ),
               ],

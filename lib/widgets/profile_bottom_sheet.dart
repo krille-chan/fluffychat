@@ -76,7 +76,7 @@ class ProfileBottomSheet extends StatelessWidget {
                                 )
                               : ContentBanner(
                                   mxContent: profile.avatarUrl,
-                                  defaultIcon: Icons.person_outline,
+                                  defaultIcon: Icons.account_circle_outlined,
                                   client: Matrix.of(context).client,
                                 ),
                         ),

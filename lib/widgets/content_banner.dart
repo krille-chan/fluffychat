@@ -19,7 +19,7 @@ class ContentBanner extends StatelessWidget {
   const ContentBanner(
       {this.mxContent,
       this.height = 400,
-      this.defaultIcon = Icons.people_outlined,
+      this.defaultIcon = Icons.account_circle_outlined,
       this.loading = false,
       this.onEdit,
       this.client,
@@ -34,7 +34,7 @@ class ContentBanner extends StatelessWidget {
       height: height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Theme.of(context).secondaryHeaderColor,
+        color: Theme.of(context).colorScheme.secondaryContainer,
       ),
       child: Stack(
         children: <Widget>[
@@ -66,10 +66,20 @@ class ContentBanner extends StatelessWidget {
                         imageUrl: src.toString(),
                         height: 300,
                         fit: BoxFit.cover,
-                        errorWidget: (c, m, e) => Icon(defaultIcon, size: 200),
+                        errorWidget: (c, m, e) => Icon(
+                          defaultIcon,
+                          size: 200,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                        ),
                       );
                     })
-                  : Icon(defaultIcon, size: 200),
+                  : Icon(
+                      defaultIcon,
+                      size: 200,
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                    ),
             ),
           ),
           if (onEdit != null)

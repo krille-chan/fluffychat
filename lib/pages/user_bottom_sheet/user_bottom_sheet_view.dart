@@ -119,7 +119,7 @@ class UserBottomSheetView extends StatelessWidget {
                   Expanded(
                     child: ContentBanner(
                       mxContent: user.avatarUrl,
-                      defaultIcon: Icons.person_outline,
+                      defaultIcon: Icons.account_circle_outlined,
                       client: client,
                     ),
                   ),

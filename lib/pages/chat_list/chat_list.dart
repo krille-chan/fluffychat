@@ -163,7 +163,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   Stream<Client> get clientStream => _clientStream.stream;
 
-  void addAccountAction() => VRouter.of(context).to('/settings/account/add');
+  void addAccountAction() => VRouter.of(context).to('/settings/account');
 
   void _onScroll() {
     final newScrolledToTop = scrollController.position.pixels <= 0;

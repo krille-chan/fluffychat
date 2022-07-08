@@ -114,7 +114,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                           ContentBanner(
                             mxContent: profile.avatarUrl,
                             height: 156,
-                            defaultIcon: Icons.person_outline,
+                            defaultIcon: Icons.group_outlined,
                             client: Matrix.of(context).client,
                           ),
                         ListTile(

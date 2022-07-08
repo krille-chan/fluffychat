@@ -31,7 +31,7 @@ class SettingsView extends StatelessWidget {
               background: ContentBanner(
                 mxContent: controller.profile?.avatarUrl,
                 onEdit: controller.setAvatarAction,
-                defaultIcon: Icons.person_outline_outlined,
+                defaultIcon: Icons.account_circle_outlined,
               ),
             ),
           ),
