@@ -83,9 +83,12 @@ class StoryView extends StatelessWidget {
                   ),
                 )
               : null,
-          leading: Avatar(
-            mxContent: controller.avatar,
-            name: controller.title,
+          leading: Hero(
+            tag: 'stories_${controller.roomId}',
+            child: Avatar(
+              mxContent: controller.avatar,
+              name: controller.title,
+            ),
           ),
         ),
         actions: currentEvent == null

@@ -54,39 +54,40 @@ class Avatar extends StatelessWidget {
       ),
     );
     final borderRadius = BorderRadius.circular(size / 2);
+    final container = Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).dividerColor),
+        borderRadius: borderRadius,
+      ),
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: Container(
+          width: size,
+          height: size,
+          color:
+              noPic ? name?.lightColor : Theme.of(context).secondaryHeaderColor,
+          child: noPic
+              ? textWidget
+              : CachedNetworkImage(
+                  imageUrl: src.toString(),
+                  fit: BoxFit.cover,
+                  width: size,
+                  height: size,
+                  placeholder: (c, s) => textWidget,
+                  errorWidget: (c, s, d) => Stack(
+                    children: [
+                      textWidget,
+                    ],
+                  ),
+                ),
+        ),
+      ),
+    );
+    if (onTap == null) return container;
     return InkWell(
       onTap: onTap,
       borderRadius: borderRadius,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).dividerColor),
-          borderRadius: borderRadius,
-        ),
-        child: ClipRRect(
-          borderRadius: borderRadius,
-          child: Container(
-            width: size,
-            height: size,
-            color: noPic
-                ? name?.lightColor
-                : Theme.of(context).secondaryHeaderColor,
-            child: noPic
-                ? textWidget
-                : CachedNetworkImage(
-                    imageUrl: src.toString(),
-                    fit: BoxFit.cover,
-                    width: size,
-                    height: size,
-                    placeholder: (c, s) => textWidget,
-                    errorWidget: (c, s, d) => Stack(
-                      children: [
-                        textWidget,
-                      ],
-                    ),
-                  ),
-          ),
-        ),
-      ),
+      child: container,
     );
   }
 }

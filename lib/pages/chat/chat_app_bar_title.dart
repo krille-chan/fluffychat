@@ -39,10 +39,13 @@ class ChatAppBarTitle extends StatelessWidget {
           : () => VRouter.of(context).toSegments(['rooms', room.id, 'details']),
       child: Row(
         children: [
-          Avatar(
-            mxContent: room.avatar,
-            name: room.displayname,
-            size: 32,
+          Hero(
+            tag: 'content_banner',
+            child: Avatar(
+              mxContent: room.avatar,
+              name: room.displayname,
+              size: 32,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(

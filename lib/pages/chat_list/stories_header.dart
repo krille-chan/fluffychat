@@ -119,7 +119,7 @@ class StoriesHeader extends StatelessWidget {
               ...client.storiesRooms..remove(ownStoryRoom),
             ];
             return SizedBox(
-              height: 106,
+              height: 98,
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 scrollDirection: Axis.horizontal,
@@ -145,6 +145,7 @@ class StoriesHeader extends StatelessWidget {
                             avatarUrl: avatarUrl,
                             userId: userId ?? 'Unknown',
                           ),
+                          heroTag: 'stories_${room.id}',
                           hasPosts: room.hasPosts || room == ownStoryRoom,
                           showEditFab: userId == client.userID,
                           unread: room.membership == Membership.invite ||
@@ -186,10 +187,12 @@ class _StoryButton extends StatelessWidget {
   final bool hasPosts;
   final void Function() onPressed;
   final void Function()? onLongPressed;
+  final String heroTag;
 
   const _StoryButton({
     required this.profile,
     required this.onPressed,
+    required this.heroTag,
     this.showEditFab = false,
     this.hasPosts = true,
     this.unread = false,
@@ -246,11 +249,14 @@ class _StoryButton extends StatelessWidget {
                                   Theme.of(context).colorScheme.surface,
                               foregroundColor:
                                   Theme.of(context).textTheme.bodyText1?.color,
-                              child: Avatar(
-                                mxContent: profile.avatarUrl,
-                                name: profile.displayName,
-                                size: 100,
-                                fontSize: 24,
+                              child: Hero(
+                                tag: heroTag,
+                                child: Avatar(
+                                  mxContent: profile.avatarUrl,
+                                  name: profile.displayName,
+                                  size: 100,
+                                  fontSize: 24,
+                                ),
                               ),
                             ),
                           ),

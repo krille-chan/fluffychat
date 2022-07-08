@@ -15,6 +15,7 @@ class ContentBanner extends StatelessWidget {
   final void Function()? onEdit;
   final Client? client;
   final double opacity;
+  final String heroTag;
 
   const ContentBanner(
       {this.mxContent,
@@ -24,6 +25,7 @@ class ContentBanner extends StatelessWidget {
       this.onEdit,
       this.client,
       this.opacity = 0.75,
+      this.heroTag = 'content_banner',
       Key? key})
       : super(key: key);
 
@@ -62,16 +64,19 @@ class ContentBanner extends StatelessWidget {
                         method: ThumbnailMethod.scale,
                         animated: true,
                       );
-                      return CachedNetworkImage(
-                        imageUrl: src.toString(),
-                        height: 300,
-                        fit: BoxFit.cover,
-                        errorWidget: (c, m, e) => Icon(
-                          defaultIcon,
-                          size: 200,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSecondaryContainer,
+                      return Hero(
+                        tag: heroTag,
+                        child: CachedNetworkImage(
+                          imageUrl: src.toString(),
+                          height: 300,
+                          fit: BoxFit.cover,
+                          errorWidget: (c, m, e) => Icon(
+                            defaultIcon,
+                            size: 200,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                          ),
                         ),
                       );
                     })
