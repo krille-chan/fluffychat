@@ -413,8 +413,6 @@
   },
   "yourUserId": "Your user ID:",
   "@yourUserId": {},
-  "setupChatBackup": "Set up chat backup",
-  "@setupChatBackup": {},
   "iWroteDownTheKey": "I wrote down the key",
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
@@ -424,9 +422,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "setupChatBackupDescription": "To protect your messages, we have generated a security key for you.\nPlease keep this in a safe place, such as a password manager.",
+  "setupChatBackupDescription": "To protect your messages, we have generated a recovery key for you.\nPlease keep this in a safe place, such as a password manager.",
   "@setupChatBackupDescription": {},
-  "chatBackupDescription": "Your chat backup is secured with a security key. Please make sure you don't lose it.",
+  "chatBackupDescription": "Your old messages are secured with a recovery key. Please make sure you don't lose it.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1727,11 +1725,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterSecurityKey": "Please enter your security key:",
-  "@pleaseEnterSecurityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "pleaseEnterRecoveryKey": "Please enter your recovery key:",
   "pleaseEnterYourPassword": "Please enter your password",
   "@pleaseEnterYourPassword": {
     "type": "text",
@@ -1945,16 +1939,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "securityKey": "Security key",
-  "@securityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "securityKeyLost": "Security key lost?",
-  "@securityKeyLost": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "recoveryKey": "Recovery key",
+  "recoveryKeyLost": "Recovery key lost?",
   "seenByUser": "Seen by {username}",
   "@seenByUser": {
     "type": "text",
@@ -2578,7 +2564,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Wipe your chat backup to create a new security key?",
+  "wipeChatBackup": "Wipe your chat backup to create a new recovery key?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2675,10 +2661,8 @@
   "@start": {},
   "setupChatBackupNow": "Set up your chat backup now",
   "@setupChatBackupNow": {},
-  "pleaseEnterSecurityKeyDescription": "To unlock your chat backup, please enter your security key that has been generated in a previous session. Your security key is NOT your password.",
-  "@pleaseEnterSecurityKeyDescription": {},
-  "saveTheSecurityKeyNow": "Save the security key now",
-  "@saveTheSecurityKeyNow": {},
+  "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
+  "saveTheRecoveryKeyNow": "Save the recovery key now",
   "addToStory": "Add to story",
   "@addToStory": {},
   "publish": "Publish",
@@ -2828,5 +2812,12 @@
   },
   "noEmailWarning": "Please enter a valid email address. Otherwise you won't be able to reset your password. If you don't want to, tap again on the button to continue.",
   "stories": "Stories",
-  "users": "Users"
+  "users": "Users",
+  "enableAutoBackups": "Enable auto backups",
+  "unlockOldMessages": "Unlock old messages",
+  "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",
+  "saveKeyManuallyDescription": "Save this key manually by triggering the system share dialog or clipboard.",
+  "storeInAndroidKeystore": "Store in Android KeyStore",
+  "storeInAppleKeyChain": "Store in Apple KeyChain",
+  "storeSecurlyOnThisDevice": "Store securly on this device"
 }

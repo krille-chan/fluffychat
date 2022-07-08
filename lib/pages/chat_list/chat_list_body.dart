@@ -168,13 +168,25 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       child: Material(
                         color: Theme.of(context).colorScheme.surface,
                         child: ListTile(
-                          leading: Image.asset(
-                            'assets/backup.png',
-                            fit: BoxFit.contain,
-                            width: 44,
+                          leading: CircleAvatar(
+                            radius: Avatar.defaultSize / 2,
+                            child:
+                                const Icon(Icons.enhanced_encryption_outlined),
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            foregroundColor: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
                           ),
                           title: Text(
-                            L10n.of(context)!.setupChatBackupNow,
+                            Matrix.of(context)
+                                    .client
+                                    .encryption!
+                                    .keyManager
+                                    .enabled
+                                ? L10n.of(context)!.unlockOldMessages
+                                : L10n.of(context)!.enableAutoBackups,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
                             ),
