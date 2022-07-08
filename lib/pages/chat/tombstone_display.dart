@@ -17,12 +17,12 @@ class TombstoneDisplay extends StatelessWidget {
     return SizedBox(
       height: 72,
       child: Material(
-        color: Theme.of(context).secondaryHeaderColor,
+        color: Theme.of(context).colorScheme.surfaceVariant,
         elevation: 1,
         child: ListTile(
           leading: CircleAvatar(
-            foregroundColor: Theme.of(context).colorScheme.secondary,
-            backgroundColor: Theme.of(context).backgroundColor,
+            foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             child: const Icon(Icons.upgrade_outlined),
           ),
           title: Text(
@@ -32,6 +32,9 @@ class TombstoneDisplay extends StatelessWidget {
                 .body,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           subtitle: Text(L10n.of(context)!.goToTheNewRoom),
           onTap: controller.goToNewRoomAction,

@@ -66,9 +66,7 @@ class PinnedEvents extends StatelessWidget {
 
           final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
           return Material(
-            color: Theme.of(context).appBarTheme.backgroundColor,
-            elevation: Theme.of(context).appBarTheme.elevation ?? 10,
-            shadowColor: Theme.of(context).appBarTheme.shadowColor,
+            color: Theme.of(context).colorScheme.surfaceVariant,
             child: InkWell(
               onTap: () => _displayPinnedEventsDialog(
                 context,
@@ -79,6 +77,7 @@ class PinnedEvents extends StatelessWidget {
                   IconButton(
                     splashRadius: 20,
                     iconSize: 20,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     icon: const Icon(Icons.push_pin),
                     tooltip: L10n.of(context)!.unpin,
                     onPressed: controller.room
@@ -106,6 +105,9 @@ class PinnedEvents extends StatelessWidget {
                                   ),
                               maxLines: 2,
                               textStyle: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
                                 overflow: TextOverflow.ellipsis,
                                 fontSize: fontSize,
                                 decoration: event.redacted
@@ -114,10 +116,8 @@ class PinnedEvents extends StatelessWidget {
                               ),
                               linkStyle: TextStyle(
                                 color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1
-                                    ?.color
-                                    ?.withAlpha(150),
+                                    .colorScheme
+                                    .onSurfaceVariant,
                                 fontSize: fontSize,
                                 decoration: TextDecoration.underline,
                               ),
