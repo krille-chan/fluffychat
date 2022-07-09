@@ -82,7 +82,7 @@ dependencies:
   unifiedpush: ^4.0.0
   universal_html: ^2.0.8
   url_launcher: ^6.0.20
-  video_compress: ^3.1.0
+  video_compress: ^3.1.1
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
   wakelock: ^0.6.1+1
