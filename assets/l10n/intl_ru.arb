@@ -399,7 +399,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Резервная копия чата защищена ключом безопасности. Пожалуйста, не потеряйте его.",
+  "chatBackupDescription": "Резервная старых сообщений защищена ключом восстановления. Пожалуйста, не потеряйте его.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2484,7 +2484,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Удалить резервную копию чата, чтобы создать новый ключ безопасности?",
+  "wipeChatBackup": "Удалить резервную копию чата, чтобы создать новый ключ восстановления?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2606,7 +2606,7 @@
   "@oneClientLoggedOut": {},
   "yourChatBackupHasBeenSetUp": "Резервное копирование чата настроено.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Для защиты ваших сообщений мы сгенерировали для вас ключ безопасности.\nПожалуйста, храните его в надежном месте, например, в менеджере паролей.",
+  "setupChatBackupDescription": "Для защиты ваших сообщений мы сгенерировали для вас ключ восстановления.\nПожалуйста, храните его в надежном месте, например, в менеджере паролей.",
   "@setupChatBackupDescription": {},
   "setupChatBackup": "Настройте резервное копирование чата",
   "@setupChatBackup": {},
@@ -2860,5 +2860,33 @@
   "showSpaces": "Показать список пространств",
   "@showSpaces": {},
   "noEmailWarning": "Пожалуйста, введите действительный адрес электронной почты. В противном случае вы не сможете сбросить пароль. Если вы не хотите этого делать, нажмите еще раз на кнопку, чтобы продолжить.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "recoveryKeyLost": "Ключ восстановления утерян?",
+  "@recoveryKeyLost": {},
+  "stories": "Истории",
+  "@stories": {},
+  "users": "Пользователи",
+  "@users": {},
+  "enableAutoBackups": "Включить автоматическое резервное копирование",
+  "@enableAutoBackups": {},
+  "unlockOldMessages": "Разблокировать старые сообщения",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Сохраните ключ восстановления в безопасном хранилище этого устройства.",
+  "@storeInSecureStorageDescription": {},
+  "storeSecurlyOnThisDevice": "Сохранить на этом устройстве",
+  "@storeSecurlyOnThisDevice": {},
+  "saveKeyManuallyDescription": "Сохраните этот ключ вручную, вызвав диалог общего доступа системы или буфера обмена.",
+  "@saveKeyManuallyDescription": {},
+  "recoveryKey": "Ключ восстановления",
+  "@recoveryKey": {},
+  "pleaseEnterRecoveryKey": "Введите ключ восстановления:",
+  "@pleaseEnterRecoveryKey": {},
+  "saveTheRecoveryKeyNow": "Сохранить ключ восстановления сейчас",
+  "@saveTheRecoveryKeyNow": {},
+  "pleaseEnterRecoveryKeyDescription": "Чтобы разблокировать старые сообщения, введите ключ восстановления, сгенерированный в предыдущем сеансе. Ваш ключ восстановления НЕ является вашим паролем.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "storeInAndroidKeystore": "Сохранить в Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
+  "@storeInAppleKeyChain": {}
 }
