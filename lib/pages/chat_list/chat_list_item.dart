@@ -157,9 +157,9 @@ class ChatListItem extends StatelessWidget {
         : 0.0;
     return Material(
       color: selected
-          ? Theme.of(context).primaryColor.withAlpha(100)
+          ? Theme.of(context).colorScheme.primaryContainer
           : activeChat
-              ? Theme.of(context).secondaryHeaderColor
+              ? Theme.of(context).colorScheme.secondaryContainer
               : Colors.transparent,
       child: ListTile(
         selected: selected || activeChat,

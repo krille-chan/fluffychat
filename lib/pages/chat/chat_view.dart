@@ -164,7 +164,7 @@ class ChatView extends StatelessWidget {
             builder: (BuildContext context, snapshot) {
               return Scaffold(
                 appBar: AppBar(
-                  elevation: 4,
+                  elevation: 2,
                   actionsIconTheme: IconThemeData(
                     color: controller.selectedEvents.isEmpty
                         ? null

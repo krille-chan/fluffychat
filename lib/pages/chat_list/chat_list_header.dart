@@ -36,70 +36,74 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   controller.selectedRoomIds.length.toString(),
                   key: const ValueKey(SelectMode.select),
                 )
-              : TextField(
-                  controller: controller.searchController,
-                  textInputAction: TextInputAction.search,
-                  onChanged: controller.onSearchEnter,
-                  decoration: InputDecoration(
-                    fillColor: Theme.of(context).colorScheme.surfaceVariant,
-                    contentPadding: EdgeInsets.zero,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(90),
-                      borderSide: BorderSide.none,
-                    ),
-                    hintText: controller.activeSpacesEntry.getName(context),
-                    prefixIcon: controller.isSearchMode
-                        ? IconButton(
-                            tooltip: L10n.of(context)!.cancel,
-                            icon: const Icon(Icons.close_outlined),
-                            onPressed: controller.cancelSearch,
-                            color: Theme.of(context).colorScheme.primary,
-                          )
-                        : IconButton(
-                            onPressed: Scaffold.of(context).openDrawer,
-                            icon: Icon(
-                              Icons.menu,
-                              color: Theme.of(context).colorScheme.onBackground,
+              : SizedBox(
+                  height: 44,
+                  child: TextField(
+                    controller: controller.searchController,
+                    textInputAction: TextInputAction.search,
+                    onChanged: controller.onSearchEnter,
+                    decoration: InputDecoration(
+                      fillColor: Theme.of(context).colorScheme.surfaceVariant,
+                      contentPadding: EdgeInsets.zero,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(90),
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: controller.activeSpacesEntry.getName(context),
+                      prefixIcon: controller.isSearchMode
+                          ? IconButton(
+                              tooltip: L10n.of(context)!.cancel,
+                              icon: const Icon(Icons.close_outlined),
+                              onPressed: controller.cancelSearch,
+                              color: Theme.of(context).colorScheme.primary,
+                            )
+                          : IconButton(
+                              onPressed: Scaffold.of(context).openDrawer,
+                              icon: Icon(
+                                Icons.menu,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
                             ),
-                          ),
-                    suffixIcon: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: controller.isSearchMode
-                          ? [
-                              if (controller.isSearching)
-                                const CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2,
+                      suffixIcon: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: controller.isSearchMode
+                            ? [
+                                if (controller.isSearching)
+                                  const CircularProgressIndicator.adaptive(
+                                    strokeWidth: 2,
+                                  ),
+                                TextButton(
+                                  onPressed: controller.setServer,
+                                  style: TextButton.styleFrom(
+                                    textStyle: const TextStyle(fontSize: 12),
+                                  ),
+                                  child: Text(
+                                    controller.searchServer ??
+                                        Matrix.of(context)
+                                            .client
+                                            .homeserver!
+                                            .host,
+                                    maxLines: 2,
+                                  ),
                                 ),
-                              TextButton(
-                                onPressed: controller.setServer,
-                                style: TextButton.styleFrom(
-                                  textStyle: const TextStyle(fontSize: 12),
+                              ]
+                            : [
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.camera_alt_outlined,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                  ),
+                                  tooltip: L10n.of(context)!.addToStory,
+                                  onPressed: () =>
+                                      VRouter.of(context).to('/stories/create'),
                                 ),
-                                child: Text(
-                                  controller.searchServer ??
-                                      Matrix.of(context)
-                                          .client
-                                          .homeserver!
-                                          .host,
-                                  maxLines: 2,
-                                ),
-                              ),
-                            ]
-                          : [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.camera_alt_outlined,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                ),
-                                tooltip: L10n.of(context)!.addToStory,
-                                onPressed: () =>
-                                    VRouter.of(context).to('/stories/create'),
-                              ),
-                              ClientChooserButton(controller),
-                              const SizedBox(width: 12),
-                            ],
+                                ClientChooserButton(controller),
+                                const SizedBox(width: 12),
+                              ],
+                      ),
                     ),
                   ),
                 ),
