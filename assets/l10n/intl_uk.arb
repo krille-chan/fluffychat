@@ -2864,7 +2864,7 @@
   "@storeInAndroidKeystore": {},
   "storeInAppleKeyChain": "Зберегти в Apple KeyChain",
   "@storeInAppleKeyChain": {},
-  "storeSecurlyOnThisDevice": "Зберегти на цей пристрій",
+  "storeSecurlyOnThisDevice": "Зберегти безпечно на цей пристрій",
   "@storeSecurlyOnThisDevice": {},
   "pleaseEnterRecoveryKeyDescription": "Щоб розблокувати старі повідомлення, введіть ключ відновлення, згенерований у попередньому сеансі. Ваш ключ відновлення це НЕ ваш пароль.",
   "@pleaseEnterRecoveryKeyDescription": {},
