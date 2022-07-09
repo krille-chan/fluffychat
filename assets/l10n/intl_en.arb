@@ -1310,6 +1310,7 @@
     "placeholders": {}
   },
   "showSpaces": "Show spaces list",
+  "@showSpaces": {},
   "loadMore": "Load more…",
   "@loadMore": {
     "type": "text",
@@ -1726,6 +1727,7 @@
     "placeholders": {}
   },
   "pleaseEnterRecoveryKey": "Please enter your recovery key:",
+  "@pleaseEnterRecoveryKey": {},
   "pleaseEnterYourPassword": "Please enter your password",
   "@pleaseEnterYourPassword": {
     "type": "text",
@@ -1940,7 +1942,9 @@
     "placeholders": {}
   },
   "recoveryKey": "Recovery key",
+  "@recoveryKey": {},
   "recoveryKeyLost": "Recovery key lost?",
+  "@recoveryKeyLost": {},
   "seenByUser": "Seen by {username}",
   "@seenByUser": {
     "type": "text",
@@ -2662,7 +2666,9 @@
   "setupChatBackupNow": "Set up your chat backup now",
   "@setupChatBackupNow": {},
   "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
+  "@pleaseEnterRecoveryKeyDescription": {},
   "saveTheRecoveryKeyNow": "Save the recovery key now",
+  "@saveTheRecoveryKeyNow": {},
   "addToStory": "Add to story",
   "@addToStory": {},
   "publish": "Publish",
@@ -2747,77 +2753,102 @@
   "emailOrUsername": "Email or username",
   "@emailOrUsername": {},
   "switchToAccount": "Switch to account {number}",
-    "@switchToAccount": {
-      "type": "number",
-      "placeholders": {
-        "number": {}
-      }
-    },
-    "nextAccount": "Next account",
-    "previousAccount": "Previous account",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Next account",
+  "@nextAccount": {},
+  "previousAccount": "Previous account",
+  "@previousAccount": {},
   "editWidgets": "Edit widgets",
+  "@editWidgets": {},
   "addWidget": "Add widget",
+  "@addWidget": {},
   "widgetVideo": "Video",
+  "@widgetVideo": {},
   "widgetEtherpad": "Text note",
+  "@widgetEtherpad": {},
   "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
   "widgetCustom": "Custom",
+  "@widgetCustom": {},
   "widgetName": "Name",
+  "@widgetName": {},
   "widgetUrlError": "This is not a valid URL.",
+  "@widgetUrlError": {},
   "widgetNameError": "Please provide a display name.",
+  "@widgetNameError": {},
   "errorAddingWidget": "Error adding the widget.",
+  "@errorAddingWidget": {},
   "youRejectedTheInvitation": "You rejected the invitation",
+  "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "You joined the chat",
+  "@youJoinedTheChat": {},
   "youAcceptedTheInvitation": "You accepted the invitation",
+  "@youAcceptedTheInvitation": {},
   "youBannedUser": "You banned {user}",
   "@youBannedUser": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youHaveWithdrawnTheInvitationFor": "You have withdrawn the invitation for {user}",
   "@youHaveWithdrawnTheInvitationFor": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youInvitedBy": "You have been invited by {user}",
   "@youInvitedBy": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youInvitedUser": "You invited {user}",
   "@youInvitedUser": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youKicked": "You kicked {user}",
   "@youKicked": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youKickedAndBanned": "You kicked and banned {user}",
   "@youKickedAndBanned": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "youUnbannedUser": "You unbanned {user}",
   "@youUnbannedUser": {
-      "placeholders": {
-        "user": {}
-      }
+    "placeholders": {
+      "user": {}
+    }
   },
   "noEmailWarning": "Please enter a valid email address. Otherwise you won't be able to reset your password. If you don't want to, tap again on the button to continue.",
+  "@noEmailWarning": {},
   "stories": "Stories",
+  "@stories": {},
   "users": "Users",
+  "@users": {},
   "enableAutoBackups": "Enable auto backups",
+  "@enableAutoBackups": {},
   "unlockOldMessages": "Unlock old messages",
+  "@unlockOldMessages": {},
   "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",
+  "@storeInSecureStorageDescription": {},
   "saveKeyManuallyDescription": "Save this key manually by triggering the system share dialog or clipboard.",
+  "@saveKeyManuallyDescription": {},
   "storeInAndroidKeystore": "Store in Android KeyStore",
+  "@storeInAndroidKeystore": {},
   "storeInAppleKeyChain": "Store in Apple KeyChain",
-  "storeSecurlyOnThisDevice": "Store securly on this device"
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Store securely on this device",
+  "@storeSecurlyOnThisDevice": {}
 }
