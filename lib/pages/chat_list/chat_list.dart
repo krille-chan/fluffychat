@@ -116,6 +116,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
         ),
       );
     }
+    if (!isSearchMode) return;
     setState(() {
       isSearching = false;
       this.roomSearchResult = roomSearchResult;
