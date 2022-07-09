@@ -320,16 +320,22 @@ class ChatListItem extends StatelessWidget {
                 color: room.highlightCount > 0
                     ? Colors.red
                     : room.notificationCount > 0
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColor.withAlpha(100),
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius),
               ),
               child: Center(
                 child: room.notificationCount > 0
                     ? Text(
                         room.notificationCount.toString(),
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: room.highlightCount > 0
+                              ? Colors.white
+                              : room.notificationCount > 0
+                                  ? Theme.of(context).colorScheme.onPrimary
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
                           fontSize: 13,
                         ),
                       )
