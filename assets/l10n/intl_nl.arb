@@ -2859,5 +2859,11 @@
   "showSpaces": "Spaces-lijst tonen",
   "@showSpaces": {},
   "noEmailWarning": "Voer een geldig e-mailadres in. Anders kan je je wachtwoord niet opnieuw instellen. Als je dat niet wilt, tik je nogmaals op de knop om door te gaan.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "recoveryKey": "Herstelsleutel",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Herstelsleutel verloren?",
+  "@recoveryKeyLost": {},
+  "pleaseEnterRecoveryKey": "Voer jouw herstelsleutel in:",
+  "@pleaseEnterRecoveryKey": {}
 }
