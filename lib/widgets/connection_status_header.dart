@@ -16,33 +16,28 @@ class ConnectionStatusHeader extends StatefulWidget {
 }
 
 class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
-  StreamSubscription? _onSyncSub;
-  static bool _anySyncReceived = false;
+  late final StreamSubscription _onSyncSub;
 
-  SyncStatusUpdate _status =
-      const SyncStatusUpdate(SyncStatus.waitingForResponse);
+  @override
+  void initState() {
+    _onSyncSub = Matrix.of(context).client.onSyncStatus.stream.listen(
+          (_) => setState(() {}),
+        );
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _onSyncSub?.cancel();
+    _onSyncSub.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    _onSyncSub ??= Matrix.of(context).client.onSyncStatus.stream.listen(
-          (status) => setState(
-            () {
-              _status = status;
-              if (status.status == SyncStatus.finished) {
-                _anySyncReceived = true;
-              }
-            },
-          ),
-        );
-
-    final hide = _anySyncReceived &&
-        _status.status != SyncStatus.error &&
+    final status = Matrix.of(context).client.onSyncStatus.value ??
+        const SyncStatusUpdate(SyncStatus.waitingForResponse);
+    final hide = Matrix.of(context).client.onSync.value != null &&
+        status.status != SyncStatus.error &&
         Matrix.of(context).client.prevBatch != null;
 
     return AnimatedContainer(
@@ -60,12 +55,12 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
             height: 24,
             child: CircularProgressIndicator.adaptive(
               strokeWidth: 2,
-              value: hide ? 1.0 : _status.progress,
+              value: hide ? 1.0 : status.progress,
             ),
           ),
           const SizedBox(width: 12),
           Text(
-            _status.toLocalizedString(context),
+            status.toLocalizedString(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(color: Theme.of(context).colorScheme.onSurface),

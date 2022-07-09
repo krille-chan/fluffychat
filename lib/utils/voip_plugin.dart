@@ -164,4 +164,10 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
   void handleNewGroupCall(GroupCall groupCall) {
     // TODO: implement handleNewGroupCall
   }
+
+  @override
+  Future<webrtc_impl.MediaStream> cloneStream(webrtc_impl.MediaStream stream) {
+    // TODO: implement cloneStream
+    throw UnimplementedError();
+  }
 }

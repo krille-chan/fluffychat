@@ -211,7 +211,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         }
       }
     } catch (e, s) {
-      client.onLoginStateChanged.sink.addError(e, s);
+      client.onLoginStateChanged.addError(e, s);
       SentryController.captureException(e, s);
       rethrow;
     }

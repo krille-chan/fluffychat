@@ -528,8 +528,8 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
-    if (client.prevBatch?.isEmpty ?? true) {
-      await client.onFirstSync.stream.first;
+    if (client.onSync.value == null) {
+      await client.onSync.stream.first;
     }
     // Load space members to display DM rooms
     final spaceId = activeSpaceId;

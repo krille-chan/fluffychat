@@ -57,7 +57,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
-  matrix: ^0.10.1
+  matrix: ^0.10.3
   matrix_homeserver_recommendations: ^0.2.0
   matrix_link_text: ^1.0.2
   native_imaging:
@@ -158,5 +158,3 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/snapping_sheet.git
       ref: listenable
-  #matrix:
-  #  path: ../famedlysdk/

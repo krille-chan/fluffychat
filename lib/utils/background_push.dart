@@ -219,7 +219,7 @@ class BackgroundPush {
 
   Future<void> setupPush() async {
     Logs().d("SetupPush");
-    if (client.loginState != LoginState.loggedIn ||
+    if (client.onLoginStateChanged.value != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         context == null) {
       return;

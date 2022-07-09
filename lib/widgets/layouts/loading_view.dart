@@ -13,10 +13,8 @@ class LoadingView extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => VRouter.of(context).to(
-        Matrix.of(context)
-                .widget
-                .clients
-                .any((client) => client.loginState == LoginState.loggedIn)
+        Matrix.of(context).widget.clients.any((client) =>
+                client.onLoginStateChanged.value == LoginState.loggedIn)
             ? '/rooms'
             : '/home',
         queryParameters: VRouter.of(context).queryParameters,
