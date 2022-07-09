@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Cadangan chatmu diamankan dengan kunci keamanan. Pastikan kamu tidak menghilangkannya.",
+  "chatBackupDescription": "Pesan lamamu diamankan dengan sebuah kunci pemulihan. Pastikan kamu tidak menghilangkannya.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1390,7 +1390,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Hapus cadangan chat untuk membuat kunci keamanan baru?",
+  "wipeChatBackup": "Hapus cadangan chat untuk membuat kunci pemulihan baru?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2606,7 +2606,7 @@
   "@yourChatBackupHasBeenSetUp": {},
   "yourUserId": "ID penggunamu:",
   "@yourUserId": {},
-  "setupChatBackupDescription": "Untuk melindungi pesanmu, kami telah membuat kunci keamanan untukmu.\nSilakan simpan kuncinya di tempat yang aman, seperti manajer kata sandi.",
+  "setupChatBackupDescription": "Untuk melindungi pesanmu, kami telah membuat kunci pemulihan untukmu.\nSilakan simpan kuncinya di tempat yang aman, seperti manajer kata sandi.",
   "@setupChatBackupDescription": {},
   "unverified": "Tidak terverifikasi",
   "@unverified": {},
@@ -2854,5 +2854,33 @@
   "showSpaces": "Tampilkan daftar space",
   "@showSpaces": {},
   "noEmailWarning": "Mohon tambahkan sebuah alamat email. Atau kamu tidak akan dapat mengatur ulang kata sandimu. Jika kamu tidak ingin, ketuk lagi untuk melanjitkan.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "pleaseEnterRecoveryKeyDescription": "Untuk mengakses pesan lamamu, mohon masukkan kunci pemulihanmu yang telah dibuat di sesi sebelumnya. Kunci pemulihanmu BUKAN kata sandimu.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "saveTheRecoveryKeyNow": "Simpan kunci pemulihan sekarang",
+  "@saveTheRecoveryKeyNow": {},
+  "users": "Pengguna",
+  "@users": {},
+  "storeInSecureStorageDescription": "Simpan kunci pemulihan di penyimpanan aman perangkat ini.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem.",
+  "@saveKeyManuallyDescription": {},
+  "recoveryKey": "Kunci pemulihan",
+  "@recoveryKey": {},
+  "stories": "Cerita",
+  "@stories": {},
+  "storeInAppleKeyChain": "Simpan di Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "pleaseEnterRecoveryKey": "Mohon masukkan kunci pemulihanmu:",
+  "@pleaseEnterRecoveryKey": {},
+  "unlockOldMessages": "Akses pesan lama",
+  "@unlockOldMessages": {},
+  "recoveryKeyLost": "Kunci pemulihan hilang?",
+  "@recoveryKeyLost": {},
+  "storeInAndroidKeystore": "Simpan di Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "enableAutoBackups": "Aktifkan cadangan otomatis",
+  "@enableAutoBackups": {},
+  "storeSecurlyOnThisDevice": "Simpan secara aman di perangkat ini",
+  "@storeSecurlyOnThisDevice": {}
 }
