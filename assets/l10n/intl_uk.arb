@@ -2883,5 +2883,11 @@
   "unlockOldMessages": "Розблокувати старі повідомлення",
   "@unlockOldMessages": {},
   "storeInSecureStorageDescription": "Збережіть ключ відновлення в безпечному сховищі цього пристрою.",
-  "@storeInSecureStorageDescription": {}
+  "@storeInSecureStorageDescription": {},
+  "countFiles": "{count} файлів",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
