@@ -2888,5 +2888,11 @@
   "storeSecurlyOnThisDevice": "Salvesta turvaliselt selles seadmes",
   "@storeSecurlyOnThisDevice": {},
   "unlockOldMessages": "Muuda vanad sõnumid loetavaks",
-  "@unlockOldMessages": {}
+  "@unlockOldMessages": {},
+  "countFiles": "{count} faili",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
