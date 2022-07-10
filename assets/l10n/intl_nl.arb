@@ -400,7 +400,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Je chatback-up is beveiligd met een veiligheidssleutel. Zorg ervoor dat je deze niet verliest.",
+  "chatBackupDescription": "Je oude berichten zijn beveiligd met een herstelsleutel. Zorg ervoor dat je deze niet verliest.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2492,7 +2492,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Wil je de chatback-up wissen en een nieuwe veiligheidssleutel te maken?",
+  "wipeChatBackup": "Wil je de chatback-up wissen om een nieuwe herstelsleutel te kunnen maken?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2611,7 +2611,7 @@
   "@yourChatBackupHasBeenSetUp": {},
   "yourUserId": "Uw persoon-ID:",
   "@yourUserId": {},
-  "setupChatBackupDescription": "Om je berichten te beschermen genereren we een veiligheidssleutel voor jouw.\nBewaar deze op een veilig plek, bijvoorbeeld in een wachtwoordmanager.",
+  "setupChatBackupDescription": "Om je berichten te beschermen genereren we een herstelsleutel voor jouw.\nBewaar deze op een veilig plek, bijvoorbeeld in een wachtwoordmanager.",
   "@setupChatBackupDescription": {},
   "unverified": "Niet geverifieerd",
   "@unverified": {},
@@ -2865,5 +2865,27 @@
   "recoveryKeyLost": "Herstelsleutel verloren?",
   "@recoveryKeyLost": {},
   "pleaseEnterRecoveryKey": "Voer jouw herstelsleutel in:",
-  "@pleaseEnterRecoveryKey": {}
+  "@pleaseEnterRecoveryKey": {},
+  "stories": "Verhalen",
+  "@stories": {},
+  "users": "Personen",
+  "@users": {},
+  "enableAutoBackups": "Automatische backups inschakelen",
+  "@enableAutoBackups": {},
+  "unlockOldMessages": "Oude berichten ontgrendelen",
+  "@unlockOldMessages": {},
+  "storeInAndroidKeystore": "In Android KeyStore opslaan",
+  "@storeInAndroidKeystore": {},
+  "saveTheRecoveryKeyNow": "Sla nu je herstelsleutel op",
+  "@saveTheRecoveryKeyNow": {},
+  "storeInAppleKeyChain": "In Apple KeyChain opslaan",
+  "@storeInAppleKeyChain": {},
+  "saveKeyManuallyDescription": "Sla deze sleutel handmatig op via delen of het klembord.",
+  "@saveKeyManuallyDescription": {},
+  "pleaseEnterRecoveryKeyDescription": "Om je oude berichten te ontgrendelen voer je jouw herstelsleutel in die gemaakt is in je vorige sessie. Je sleutel is niet je wachtwoord.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "storeInSecureStorageDescription": "Sla de herstelsleutel op in de beveiligde opslag van dit apparaat.",
+  "@storeInSecureStorageDescription": {},
+  "storeSecurlyOnThisDevice": "Veilig opslaan op dit apparaat",
+  "@storeSecurlyOnThisDevice": {}
 }
