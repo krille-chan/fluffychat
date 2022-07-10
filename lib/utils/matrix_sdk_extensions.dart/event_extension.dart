@@ -45,20 +45,8 @@ extension LocalizedBody on Event {
   String? get sizeString {
     if (content['info'] is Map<String, dynamic> &&
         content['info'].containsKey('size')) {
-      num size = content['info']['size'];
-      if (size < 1000000) {
-        size = size / 1000;
-        size = (size * 10).round() / 10;
-        return '${size.toString()} KB';
-      } else if (size < 1000000000) {
-        size = size / 1000000;
-        size = (size * 10).round() / 10;
-        return '${size.toString()} MB';
-      } else {
-        size = size / 1000000000;
-        size = (size * 10).round() / 10;
-        return '${size.toString()} GB';
-      }
+      final size = content['info']['size'];
+      return size.sizeString;
     } else {
       return null;
     }

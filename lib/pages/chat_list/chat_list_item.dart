@@ -103,7 +103,7 @@ class ChatListItem extends StatelessWidget {
               context: context,
               useRootNavigator: false,
               builder: (c) => SendFileDialog(
-                file: Matrix.of(context).shareContent!['file'],
+                files: [Matrix.of(context).shareContent!['file']],
                 room: room,
               ),
             );

@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/size_string.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
@@ -46,20 +47,5 @@ extension MatrixFileExtension on MatrixFile {
     return this;
   }
 
-  String get sizeString {
-    var size = this.size.toDouble();
-    if (size < 1000000) {
-      size = size / 1000;
-      size = (size * 10).round() / 10;
-      return '${size.toString()} KB';
-    } else if (size < 1000000000) {
-      size = size / 1000000;
-      size = (size * 10).round() / 10;
-      return '${size.toString()} MB';
-    } else {
-      size = size / 1000000000;
-      size = (size * 10).round() / 10;
-      return '${size.toString()} GB';
-    }
-  }
+  String get sizeString => size.sizeString;
 }

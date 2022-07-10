@@ -2850,5 +2850,11 @@
   "storeInAppleKeyChain": "Store in Apple KeyChain",
   "@storeInAppleKeyChain": {},
   "storeSecurlyOnThisDevice": "Store securely on this device",
-  "@storeSecurlyOnThisDevice": {}
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} files",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }

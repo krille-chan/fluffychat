@@ -70,20 +70,32 @@ class ChatController extends State<Chat> {
 
   void onDragDone(DropDoneDetails details) async {
     setState(() => dragging = false);
-    for (final xfile in details.files) {
-      final bytes = await xfile.readAsBytes();
-      await showDialog(
-        context: context,
-        useRootNavigator: false,
-        builder: (c) => SendFileDialog(
-          file: MatrixFile(
-            bytes: bytes,
-            name: xfile.name,
-          ).detectFileType,
-          room: room!,
+    final bytesList = await showFutureLoadingDialog(
+      context: context,
+      future: () => Future.wait(
+        details.files.map(
+          (xfile) => xfile.readAsBytes(),
         ),
-      );
+      ),
+    );
+    if (bytesList.error != null) return;
+
+    final matrixFiles = <MatrixFile>[];
+    for (var i = 0; i < bytesList.result!.length; i++) {
+      matrixFiles.add(MatrixFile(
+        bytes: bytesList.result![i],
+        name: details.files[i].name,
+      ).detectFileType);
     }
+
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (c) => SendFileDialog(
+        files: matrixFiles,
+        room: room!,
+      ),
+    );
   }
 
   bool get canSaveSelectedEvent =>
@@ -308,34 +320,41 @@ class ChatController extends State<Chat> {
   }
 
   void sendFileAction() async {
-    final result =
-        await FilePickerCross.importFromStorage(type: FileTypeCross.any);
-    if (result.fileName == null) return;
+    final result = await FilePickerCross.importMultipleFromStorage(
+      type: FileTypeCross.any,
+    );
+    if (result.isEmpty) return;
     await showDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        file: MatrixFile(
-          bytes: result.toUint8List(),
-          name: result.fileName!,
-        ).detectFileType,
+        files: result
+            .map((xfile) => MatrixFile(
+                  bytes: xfile.toUint8List(),
+                  name: xfile.fileName!,
+                ).detectFileType)
+            .toList(),
         room: room!,
       ),
     );
   }
 
   void sendImageAction() async {
-    final result =
-        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-    if (result.fileName == null) return;
+    final result = await FilePickerCross.importMultipleFromStorage(
+      type: FileTypeCross.image,
+    );
+    if (result.isEmpty) return;
+
     await showDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        file: MatrixImageFile(
-          bytes: result.toUint8List(),
-          name: result.fileName!,
-        ),
+        files: result
+            .map((xfile) => MatrixFile(
+                  bytes: xfile.toUint8List(),
+                  name: xfile.fileName!,
+                ).detectFileType)
+            .toList(),
         room: room!,
       ),
     );
@@ -351,10 +370,12 @@ class ChatController extends State<Chat> {
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        file: MatrixImageFile(
-          bytes: bytes,
-          name: file.path,
-        ),
+        files: [
+          MatrixImageFile(
+            bytes: bytes,
+            name: file.path,
+          )
+        ],
         room: room!,
       ),
     );
@@ -370,10 +391,12 @@ class ChatController extends State<Chat> {
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        file: MatrixVideoFile(
-          bytes: bytes,
-          name: file.path,
-        ),
+        files: [
+          MatrixVideoFile(
+            bytes: bytes,
+            name: file.path,
+          )
+        ],
         room: room!,
       ),
     );

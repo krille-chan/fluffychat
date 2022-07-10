@@ -4,16 +4,16 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
+import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
 
 class SendFileDialog extends StatefulWidget {
   final Room room;
-  final MatrixFile file;
+  final List<MatrixFile> files;
 
   const SendFileDialog({
     required this.room,
-    required this.file,
+    required this.files,
     Key? key,
   }) : super(key: key);
 
@@ -28,49 +28,59 @@ class _SendFileDialogState extends State<SendFileDialog> {
   static const int minSizeToCompress = 20 * 1024;
 
   Future<void> _send() async {
-    var file = widget.file;
-    MatrixImageFile? thumbnail;
-    if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
-      await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            file = await file.resizeVideo();
-            thumbnail = await file.getVideoThumbnail();
-          });
+    for (var file in widget.files) {
+      MatrixImageFile? thumbnail;
+      if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
+        await showFutureLoadingDialog(
+            context: context,
+            future: () async {
+              file = await file.resizeVideo();
+              thumbnail = await file.getVideoThumbnail();
+            });
+      }
+      final scaffoldMessenger = ScaffoldMessenger.of(context);
+      widget.room
+          .sendFileEvent(
+        file,
+        thumbnail: thumbnail,
+        shrinkImageMaxDimension: origImage ? null : 1600,
+      )
+          .catchError((e) {
+        scaffoldMessenger.showSnackBar(
+          SnackBar(content: Text(e.toLocalizedString())),
+        );
+      });
     }
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    widget.room
-        .sendFileEvent(
-      file,
-      thumbnail: thumbnail,
-      shrinkImageMaxDimension: origImage ? null : 1600,
-    )
-        .catchError((e) {
-      scaffoldMessenger.showSnackBar(
-        SnackBar(content: Text(e.toLocalizedString())),
-      );
-    });
-
     Navigator.of(context, rootNavigator: false).pop();
+
     return;
   }
 
   @override
   Widget build(BuildContext context) {
     var sendStr = L10n.of(context)!.sendFile;
-    if (widget.file is MatrixImageFile) {
+    final bool allFilesAreImages =
+        widget.files.every((file) => file is MatrixImageFile);
+    final sizeString = widget.files
+        .fold<double>(0, (p, file) => p + file.bytes.length)
+        .sizeString;
+    final fileName = widget.files.length == 1
+        ? widget.files.single.name
+        : L10n.of(context)!.countFiles(widget.files.length.toString());
+
+    if (allFilesAreImages) {
       sendStr = L10n.of(context)!.sendImage;
-    } else if (widget.file is MatrixAudioFile) {
+    } else if (widget.files.every((file) => file is MatrixAudioFile)) {
       sendStr = L10n.of(context)!.sendAudio;
-    } else if (widget.file is MatrixVideoFile) {
+    } else if (widget.files.every((file) => file is MatrixVideoFile)) {
       sendStr = L10n.of(context)!.sendVideo;
     }
     Widget contentWidget;
-    if (widget.file is MatrixImageFile) {
+    if (allFilesAreImages) {
       contentWidget = Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
         Flexible(
           child: Image.memory(
-            widget.file.bytes,
+            widget.files.first.bytes,
             fit: BoxFit.contain,
           ),
         ),
@@ -82,14 +92,13 @@ class _SendFileDialogState extends State<SendFileDialog> {
             ),
             InkWell(
               onTap: () => setState(() => origImage = !origImage),
-              child: Text(L10n.of(context)!.sendOriginal +
-                  ' (${widget.file.sizeString})'),
+              child: Text(L10n.of(context)!.sendOriginal + ' ($sizeString)'),
             ),
           ],
         )
       ]);
     } else {
-      contentWidget = Text('${widget.file.name} (${widget.file.sizeString})');
+      contentWidget = Text('$fileName ($sizeString)');
     }
     return AlertDialog(
       title: Text(sendStr),
