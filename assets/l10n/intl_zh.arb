@@ -2879,7 +2879,7 @@
   "@saveKeyManuallyDescription": {},
   "storeInAndroidKeystore": "存储在 Android KeyStore 中",
   "@storeInAndroidKeystore": {},
-  "storeSecurlyOnThisDevice": "在此设备上安全存储",
+  "storeSecurlyOnThisDevice": "安全地存储在此设备上",
   "@storeSecurlyOnThisDevice": {},
   "saveTheRecoveryKeyNow": "立即保存恢复密钥",
   "@saveTheRecoveryKeyNow": {},
@@ -2888,5 +2888,11 @@
   "users": "用户",
   "@users": {},
   "stories": "故事",
-  "@stories": {}
+  "@stories": {},
+  "countFiles": "{count} 个文件",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
