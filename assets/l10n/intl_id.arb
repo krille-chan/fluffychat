@@ -2882,5 +2882,11 @@
   "enableAutoBackups": "Aktifkan cadangan otomatis",
   "@enableAutoBackups": {},
   "storeSecurlyOnThisDevice": "Simpan secara aman di perangkat ini",
-  "@storeSecurlyOnThisDevice": {}
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} file",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
