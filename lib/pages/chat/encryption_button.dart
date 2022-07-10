@@ -70,45 +70,24 @@ class _EncryptionButtonState extends State<EncryptionButton> {
           .where((s) => s.deviceLists != null)
           .listen((s) => setState(() {}));
     }
-    return FutureBuilder<List<User>>(
-        future:
-            widget.room.encrypted ? widget.room.requestParticipants() : null,
-        builder: (BuildContext context, snapshot) {
-          Color? color;
-          if (widget.room.encrypted && snapshot.hasData) {
-            final users = snapshot.data!;
-            users.removeWhere((u) =>
-                !{Membership.invite, Membership.join}.contains(u.membership) ||
-                !widget.room.client.userDeviceKeys.containsKey(u.id));
-            var allUsersValid = true;
-            var oneUserInvalid = false;
-            for (final u in users) {
-              final status = widget.room.client.userDeviceKeys[u.id]!.verified;
-              if (status != UserVerifiedStatus.verified) {
-                allUsersValid = false;
-              }
-              if (status == UserVerifiedStatus.unknownDevice) {
-                oneUserInvalid = true;
-              }
-            }
-            if (oneUserInvalid) color = Colors.red;
-            if (!allUsersValid) color = Colors.orange;
-          } else if (!widget.room.encrypted &&
-              widget.room.joinRules != JoinRules.public) {
-            color = Colors.red;
-          }
-          return IconButton(
-            tooltip: widget.room.encrypted
-                ? L10n.of(context)!.encrypted
-                : L10n.of(context)!.encryptionNotEnabled,
-            icon: Icon(
-                widget.room.encrypted
-                    ? Icons.lock_outlined
-                    : Icons.lock_open_outlined,
-                size: 20,
-                color: color),
-            onPressed: _enableEncryptionAction,
-          );
-        });
+    return FutureBuilder<EncryptionHealthState>(
+        future: widget.room.calcEncryptionHealthState(),
+        builder: (BuildContext context, snapshot) => IconButton(
+              tooltip: widget.room.encrypted
+                  ? L10n.of(context)!.encrypted
+                  : L10n.of(context)!.encryptionNotEnabled,
+              icon: Icon(
+                  widget.room.encrypted
+                      ? Icons.lock_outlined
+                      : Icons.lock_open_outlined,
+                  size: 20,
+                  color: widget.room.joinRules != JoinRules.public &&
+                          !widget.room.encrypted
+                      ? Colors.red
+                      : snapshot.data == EncryptionHealthState.unverifiedDevices
+                          ? Colors.orange
+                          : null),
+              onPressed: _enableEncryptionAction,
+            ));
   }
 }
