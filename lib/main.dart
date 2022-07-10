@@ -22,7 +22,6 @@ import 'config/themes.dart';
 import 'utils/background_push.dart';
 import 'utils/custom_scroll_behaviour.dart';
 import 'utils/localized_exception_extension.dart';
-import 'utils/platform_infos.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 

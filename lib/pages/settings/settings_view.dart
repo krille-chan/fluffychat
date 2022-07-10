@@ -6,7 +6,6 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import '../../config/app_config.dart';
 import '../../widgets/content_banner.dart';
 import 'settings.dart';
 

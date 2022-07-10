@@ -33,7 +33,6 @@ import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';
-import '../utils/platform_infos.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
