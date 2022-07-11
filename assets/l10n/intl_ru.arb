@@ -2888,5 +2888,11 @@
   "storeInAndroidKeystore": "Сохранить в Android KeyStore",
   "@storeInAndroidKeystore": {},
   "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
-  "@storeInAppleKeyChain": {}
+  "@storeInAppleKeyChain": {},
+  "countFiles": "{count} файлов",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
