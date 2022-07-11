@@ -399,7 +399,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "A copia de apoio do chat está protexida cunha chave de seguridade. Pon coidado e non a perdas.",
+  "chatBackupDescription": "As mensaxes antigas están protexidas cunha chave de recuperación. Pon coidado e non a perdas.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2484,7 +2484,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Eliminar a copia de apoio do chat e crear unha nova chave de seguridade?",
+  "wipeChatBackup": "Eliminar a copia de apoio do chat e crear unha nova chave de recuperación?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2602,7 +2602,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Configurouse a copia de apoio do chat.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Para protexer as túas mensaxes creamos unha chave de seguridade para ti.\nGárdaa nun lugar seguro, como nun xestor de contrasinais.",
+  "setupChatBackupDescription": "Para protexer as túas mensaxes creamosche unha chave de recuperación.\nGárdaa nun lugar seguro, como nun xestor de contrasinais.",
   "@setupChatBackupDescription": {},
   "unverified": "Sen verificar",
   "@unverified": {},
@@ -2860,5 +2860,39 @@
   "showSpaces": "Mostrar lista de espazos",
   "@showSpaces": {},
   "noEmailWarning": "Escribe un enderezo de email válido. Doutro xeito non poderás restablecer o contrasinal. Se non queres, toca outra vez no botón para continuar.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "saveTheRecoveryKeyNow": "Garda agora a chave de recuperación",
+  "@saveTheRecoveryKeyNow": {},
+  "stories": "Historias",
+  "@stories": {},
+  "saveKeyManuallyDescription": "Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Gardar en Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Gardar en Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "recoveryKeyLost": "Perdeches a chave de recuperación?",
+  "@recoveryKeyLost": {},
+  "pleaseEnterRecoveryKey": "Escribe a túa chave de recuperación:",
+  "@pleaseEnterRecoveryKey": {},
+  "recoveryKey": "Chave de recuperación",
+  "@recoveryKey": {},
+  "storeSecurlyOnThisDevice": "Gardar de xeito seguro no dispositivo",
+  "@storeSecurlyOnThisDevice": {},
+  "pleaseEnterRecoveryKeyDescription": "Para desbloquear as mensaxes antigas, escribe a chave de recuperación creada nunha sesión existente. A chave de recuperación NON é o teu contrasinal.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "users": "Usuarias",
+  "@users": {},
+  "enableAutoBackups": "Activar copia automática",
+  "@enableAutoBackups": {},
+  "storeInSecureStorageDescription": "Gardar a chave de recuperación na almacenaxe segura deste dispositivo.",
+  "@storeInSecureStorageDescription": {},
+  "countFiles": "{count} ficheiros",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "unlockOldMessages": "Desbloquear mensaxes antigas",
+  "@unlockOldMessages": {}
 }
