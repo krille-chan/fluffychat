@@ -254,10 +254,11 @@ class ChatView extends StatelessWidget {
                                     bottomRight:
                                         Radius.circular(AppConfig.borderRadius),
                                   ),
-                                  elevation: 6,
+                                  elevation: 4,
                                   shadowColor: Theme.of(context)
-                                      .dividerColor
-                                      .withAlpha(100),
+                                      .colorScheme
+                                      .onBackground
+                                      .withAlpha(64),
                                   clipBehavior: Clip.hardEdge,
                                   color: Theme.of(context).brightness ==
                                           Brightness.light

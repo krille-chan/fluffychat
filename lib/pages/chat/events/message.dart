@@ -172,9 +172,9 @@ class Message extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
               child: Material(
                 color: noBubble ? Colors.transparent : color,
-                elevation: event.type == EventTypes.Sticker ? 0 : 6,
+                elevation: event.type == EventTypes.Sticker ? 0 : 4,
                 shadowColor:
-                    Theme.of(context).secondaryHeaderColor.withAlpha(100),
+                    Theme.of(context).colorScheme.onBackground.withAlpha(64),
                 borderRadius: borderRadius,
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(

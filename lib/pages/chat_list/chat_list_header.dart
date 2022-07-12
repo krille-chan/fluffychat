@@ -46,8 +46,9 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     topLeft: Radius.circular(AppConfig.borderRadius),
                     topRight: Radius.circular(AppConfig.borderRadius),
                   ),
-                  elevation: 6,
-                  shadowColor: Theme.of(context).dividerColor.withAlpha(100),
+                  elevation: 4,
+                  shadowColor:
+                      Theme.of(context).colorScheme.onBackground.withAlpha(64),
                   child: TextField(
                     controller: controller.searchController,
                     textInputAction: TextInputAction.search,
