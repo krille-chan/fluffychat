@@ -1,5 +1,5 @@
 variables:
-  FLUTTER_VERSION: 3.0.2
+  FLUTTER_VERSION: 3.0.4
 
 image: cirrusci/flutter:${FLUTTER_VERSION}
 
@@ -31,6 +31,7 @@ test:
   stage: coverage
   script: [flutter test]
 
+# the basic integration test configuration testing FLOSS builds on Synapse
 integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: coverage
@@ -47,28 +48,77 @@ integration_test:
     # Disable TLS since we're running inside local network.
     DOCKER_TLS_CERTDIR: ""
   before_script:
-    - chmod 777 -R /dev/kvm
-    - adb start-server
-    - emulator -avd test -no-audio -no-boot-anim -no-window -accel on -gpu swiftshader_indirect &
-    - apk update && apk add docker drill grep
-    - chown -R 991:991 integration_test/synapse
-    - docker run -d --name synapse --user 991:991 --network=host --volume="$(pwd)/integration_test/synapse/data":/data:rw -p 8008:8008 matrixdotorg/synapse:latest
-    - sleep 20
-    # create three test user
-    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user alice --password AliceInWonderland --admin
-    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user bob --password JoWirSchaffenDas --admin
-    - docker exec -i synapse register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml --user trudy --password HaveIBeenPwned --admin
-  script:
-    # properly set the homeserver IP for the test
-    - sed -i "s/10.0.2.2/$(drill docker | grep -m 1 -P "\d+\.\d+\.\d+.\d+" | awk -F ' ' '{print $NF}')/g" integration_test/users.dart
+    # start AVD and keep running in background
+    - scripts/integration-start-avd.sh &
+    - scripts/integration-prepare-alpine.sh
+    # create Synapse instance
+    - scripts/integration-server-synapse.sh
+    # properly set the homeserver IP and create test users
+    - scripts/integration-prepare-homeserver.sh
+    # ensure the homeserver works
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "It works! Synapse is running"
-    - git apply ./scripts/enable-android-google-services.patch
+  script:
     - flutter pub get
     - flutter test integration_test
   tags:
     - famedly
     - docker
   timeout: 20m
+
+# extending the default tests to test the Google-flavored builds
+integration_test_google:
+  extends: integration_test
+  script:
+    - git apply ./scripts/enable-android-google-services.patch
+    - flutter pub get
+    - flutter test integration_test
+
+# extending the default tests to use Conduit as local homeserver
+integration_test_conduit:
+  extends: integration_test
+  before_script:
+    # start AVD and keep running in background
+    - scripts/integration-start-avd.sh &
+    - scripts/integration-prepare-alpine.sh
+    # create Conduit instance
+    - scripts/integration-server-conduit.sh
+    # properly set the homeserver IP and create test users
+    - scripts/integration-prepare-homeserver.sh
+    # ensure the homeserver works
+    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "M_NOT_FOUND" 1> /dev/null && echo "Conduit is running!"
+
+# extending the default tests to use Dendrite as local homeserver
+integration_test_dendrite:
+  extends: integration_test
+  before_script:
+    # start AVD and keep running in background
+    - scripts/integration-start-avd.sh &
+    - scripts/integration-prepare-alpine.sh
+    # create Dendrite instance
+    - scripts/integration-server-dendrite.sh
+    # properly set the homeserver IP and create test users
+    - scripts/integration-prepare-homeserver.sh
+    # ensure the homeserver works
+    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "404 page not found" 1> /dev/null && echo "Dendrite is running!"
+
+release_mode_launches:
+  image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
+  stage: coverage
+  before_script:
+  script:
+    # start AVD and keep running in background
+    - scripts/integration-start-avd.sh &
+    # generate temporary release build configuration and ensure app launches
+    - scripts/integration-check-release-build.sh
+  tags:
+    - famedly
+    - docker
+  timeout: 20m
+
+release_mode_launches_google:
+  extends: release_mode_launches
+  before_script: 
+    - git apply ./scripts/enable-android-google-services.patch
 
 build_web:
   stage: coverage
@@ -109,7 +159,9 @@ build_android_debug:
 
 build_android_apk:
   stage: coverage
-  before_script: [./scripts/prepare-android-release.sh]
+  before_script:
+    - git apply ./scripts/enable-android-google-services.patch
+    - ./scripts/prepare-android-release.sh
   script: [./scripts/build-android-apk.sh]
   artifacts:
     when: on_success
@@ -121,7 +173,9 @@ build_android_apk:
 
 build_android_appbundle:
   stage: coverage
-  before_script: [./scripts/prepare-android-release.sh]
+  before_script:
+    - git apply ./scripts/enable-android-google-services.patch
+    - ./scripts/prepare-android-release.sh
   script: [./scripts/release-playstore-beta.sh]
   artifacts:
     when: on_success
@@ -339,7 +393,9 @@ upload-windows:
 
 upload-playstore:
   stage: release
-  before_script: [./scripts/prepare-android-release.sh]
+  before_script:
+    - git apply ./scripts/enable-android-google-services.patch
+    - ./scripts/prepare-android-release.sh
   script: [./scripts/release-playstore.sh]
   resource_group: playstore_release
   only:

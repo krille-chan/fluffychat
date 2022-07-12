@@ -1,1 +1,6 @@
 synapse/data/homeserver.db
+dendrite/data/server.*
+dendrite/data/matrix_key.pem
+dendrite/data/logs
+dendrite/data/jetstream
+dendrite/data/*.db

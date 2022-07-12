@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'package:fluffychat/main.dart' as app;
@@ -13,10 +12,6 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Integration Test', () {
-    test('Check server availability', () async {
-      final response = await get(Uri.parse('$homeserver/_matrix/static/'));
-      expect(response.statusCode, 200);
-    }, timeout: const Timeout(Duration(seconds: 10)));
     testWidgets('Test if the app starts', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();

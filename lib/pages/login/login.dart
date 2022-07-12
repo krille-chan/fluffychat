@@ -94,7 +94,7 @@ class LoginController extends State<Login> {
   }
 
   void _checkWellKnown(String userId) async {
-    setState(() => usernameError = null);
+    if (mounted) setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
     try {
       final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
@@ -133,19 +133,21 @@ class LoginController extends State<Login> {
             cancelLabel: L10n.of(context)!.cancel,
           );
           if (dialogResult == OkCancelResult.ok) {
-            setState(() => usernameError = null);
+            if (mounted) setState(() => usernameError = null);
           } else {
             Navigator.of(context, rootNavigator: false).pop();
             return;
           }
         }
-        setState(() => usernameError = null);
+        if (mounted) setState(() => usernameError = null);
       } else {
-        setState(() =>
-            Matrix.of(context).getLoginClient().homeserver = oldHomeserver);
+        if (mounted) {
+          setState(() =>
+              Matrix.of(context).getLoginClient().homeserver = oldHomeserver);
+        }
       }
     } catch (e) {
-      setState(() => usernameError = e.toString());
+      if (mounted) setState(() => usernameError = e.toString());
     }
   }
 
@@ -243,6 +245,8 @@ class LoginController extends State<Login> {
 extension on String {
   static final RegExp _phoneRegex =
       RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
+
   bool get isEmail => EmailValidator.validate(this);
+
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
