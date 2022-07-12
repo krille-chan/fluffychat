@@ -1,24 +1,24 @@
 {
   "@@last_modified": "2021-08-14 12:41:10.061080",
-  "pleaseChooseAtLeastChars": "لطفاً حداقل {min} تا نماد‌ انتخاب بده.",
+  "pleaseChooseAtLeastChars": "لطفاً حداقل {min} تا کاراکتر انتخاب کنید.",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
       "min": {}
     }
   },
-  "repeatPassword": "رمز عبور را تکرار بده",
+  "repeatPassword": "تکرار رمزعبور",
   "@repeatPassword": {},
   "about": "درباره",
   "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "passwordsDoNotMatch": "این رمز‌های عبور مطابقه ندارند!",
+  "passwordsDoNotMatch": "رمز‌های عبور مطابقت ندارند!",
   "@passwordsDoNotMatch": {},
-  "pleaseEnterValidEmail": "لطفاً یک آدرس ایمیل معتبر وارد کن.",
+  "pleaseEnterValidEmail": "لطفاً یک آدرس ایمیل معتبر وارد کنید.",
   "@pleaseEnterValidEmail": {},
-  "accept": "بپذیر",
+  "accept": "پذیرش",
   "@accept": {
     "type": "text",
     "placeholders": {}
@@ -40,7 +40,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "به اسپاش اضافه کن",
+  "addToSpace": "افزودن به اسپیس",
   "@addToSpace": {},
   "appLock": "قفل برنامه",
   "@appLock": {
@@ -57,17 +57,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "addEmail": "ایمیل اضافه کن",
+  "addEmail": "افزودن ایمیل",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "توضیحات گروه اضافه کن",
+  "addGroupDescription": "افزودن توضیحات گروه",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "addNewFriend": "دوست جدید اضافه کن",
+  "addNewFriend": "افزودن دوست جدید",
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
@@ -77,7 +77,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} زنگ زدن را جواب کرد",
+  "answeredTheCall": "{senderName} به تماس، جواب داد",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -116,6 +116,18 @@
   },
   "audioPlayerPlay": "نمایش",
   "@audioPlayerPlay": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "{username} رمزگذاری سرتاسر را فعال کرد",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "admin": "ادمین",
+  "@admin": {
     "type": "text",
     "placeholders": {}
   }
