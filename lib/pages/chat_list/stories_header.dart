@@ -119,7 +119,7 @@ class StoriesHeader extends StatelessWidget {
               ...client.storiesRooms..remove(ownStoryRoom),
             ];
             return SizedBox(
-              height: 98,
+              height: 96,
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 scrollDirection: Axis.horizontal,

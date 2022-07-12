@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -18,6 +19,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       automaticallyImplyLeading: false,
+      scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
       leading: selectMode == SelectMode.normal
           ? null
           : IconButton(
@@ -36,26 +38,31 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   controller.selectedRoomIds.length.toString(),
                   key: const ValueKey(SelectMode.select),
                 )
-              : SizedBox(
-                  height: 44,
+              : Material(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.white
+                      : Colors.black,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(AppConfig.borderRadius),
+                    topRight: Radius.circular(AppConfig.borderRadius),
+                  ),
+                  elevation: 6,
+                  shadowColor: Theme.of(context).dividerColor.withAlpha(100),
                   child: TextField(
                     controller: controller.searchController,
                     textInputAction: TextInputAction.search,
                     onChanged: controller.onSearchEnter,
                     decoration: InputDecoration(
-                      fillColor: Theme.of(context).colorScheme.surfaceVariant,
-                      contentPadding: EdgeInsets.zero,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(90),
-                        borderSide: BorderSide.none,
-                      ),
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide.none),
+                      filled: false,
                       hintText: controller.activeSpacesEntry.getName(context),
                       prefixIcon: controller.isSearchMode
                           ? IconButton(
                               tooltip: L10n.of(context)!.cancel,
                               icon: const Icon(Icons.close_outlined),
                               onPressed: controller.cancelSearch,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Theme.of(context).colorScheme.onBackground,
                             )
                           : IconButton(
                               onPressed: Scaffold.of(context).openDrawer,

@@ -48,7 +48,7 @@ class Avatar extends StatelessWidget {
       child: Text(
         fallbackLetters,
         style: TextStyle(
-          color: noPic ? name?.darkColor : null,
+          color: noPic ? Colors.white : null,
           fontSize: fontSize,
         ),
       ),

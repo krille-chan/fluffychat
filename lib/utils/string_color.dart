@@ -25,6 +25,6 @@ extension StringColor on String {
       number += codeUnitAt(i);
     }
     number = (number % 12) * 25.5;
-    return HSLColor.fromAHSL(1, number, 1, 0.8).toColor();
+    return HSLColor.fromAHSL(1, number, 1, 0.7).toColor();
   }
 }

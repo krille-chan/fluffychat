@@ -181,12 +181,10 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                             radius: Avatar.defaultSize / 2,
                             child:
                                 const Icon(Icons.enhanced_encryption_outlined),
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .secondaryContainer,
-                            foregroundColor: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surfaceVariant,
+                            foregroundColor:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                           title: Text(
                             (Matrix.of(context)
