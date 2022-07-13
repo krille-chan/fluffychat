@@ -223,7 +223,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
   StreamSubscription<html.Event>? onFocusSub;
   StreamSubscription<html.Event>? onBlurSub;
-  final onOwnPresence = <String, StreamSubscription<CachedPresence>>{};
 
   String? _cachedPassword;
   Timer? _cachedPasswordClearTimer;
@@ -340,15 +339,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
       }
     });
-    // Cache and resend status message
-    onOwnPresence[name] ??= c.onPresenceChanged.stream.listen((presence) {
-      if (c.isLogged() &&
-          c.userID == presence.userid &&
-          presence.statusMsg != null) {
-        Logs().v('Update status message: "${presence.statusMsg}"');
-        store.setItem(SettingKeys.ownStatusMessage, presence.statusMsg);
-      }
-    });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
@@ -371,8 +361,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onKeyVerificationRequestSub.remove(name);
     onLoginStateChanged[name]?.cancel();
     onLoginStateChanged.remove(name);
-    onOwnPresence[name]?.cancel();
-    onOwnPresence.remove(name);
     onNotification[name]?.cancel();
     onNotification.remove(name);
   }
@@ -516,7 +504,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onRoomKeyRequestSub.values.map((s) => s.cancel());
     onKeyVerificationRequestSub.values.map((s) => s.cancel());
     onLoginStateChanged.values.map((s) => s.cancel());
-    onOwnPresence.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
     client.httpClient.close();
     onFocusSub?.cancel();
