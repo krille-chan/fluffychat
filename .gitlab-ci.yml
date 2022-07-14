@@ -189,6 +189,25 @@ build_android_appbundle:
   only:
     - main
 
+fdroid_repo:
+  image: debian:testing
+  stage: release
+  before_script:
+  - apt-get update && apt-get -qy install fdroidserver wget curl jq --no-install-recommends
+  - ./scripts/prepare-fdroid.sh
+  script:
+  - ./scripts/create_fdroid_repos.sh
+  artifacts:
+    when: always
+    paths:
+      - repo
+  needs: 
+    - "build_android_debug"
+  resource_group: playstore_release
+  allow_failure: true
+  only:
+    - main
+
 upload-fdroid:
   stage: release
   before_script:
@@ -211,30 +230,10 @@ upload-fdroid:
   only:
     - tags
 
-upload-fdroid-nightly:
-  stage: release
-  before_script:
-    - "which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )"
-    - "which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )"
-    - "which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )"
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan -t rsa ssh.fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
-  script:
-    - cd build/android/
-    - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}_$(date +%s).apk"
-    - rsync -rav -e ssh ./ fluffy@ssh.fdroid.nordgedanken.dev:/opt/fdroid/fluffychat-nightly/repo
-    - ssh fluffy@ssh.fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat-nightly && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
-  needs: ["build_android_apk"]
-  resource_group: playstore_release
-  allow_failure: true
-  only:
-    - main
-
 pages:
-  needs: ["build_web"]
+  needs:
+    - "build_web"
+    - "fdroid_repo"
   stage: deploy
   image: node
   script:
@@ -242,6 +241,7 @@ pages:
     - npx tailwindcss -o ./tailwind.css --minify
     - cd ..
     - mv docs public
+    - mv repo public
     - mv build/web/ public/web/
   artifacts:
     paths:
