@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
@@ -54,7 +55,7 @@ class InputBar extends StatelessWidget {
     final List<Map<String, String?>> ret = <Map<String, String?>>[];
     const maxResults = 30;
 
-    final commandMatch = RegExp(r'^\/([\w]*)$').firstMatch(searchText);
+    final commandMatch = RegExp(r'^/(\w*)$').firstMatch(searchText);
     if (commandMatch != null) {
       final commandSearch = commandMatch[1]!.toLowerCase();
       for (final command in room.client.commands.keys) {
@@ -112,6 +113,39 @@ class InputBar extends StatelessWidget {
           if (ret.length > maxResults) {
             break;
           }
+        }
+      }
+      // aside of emote packs, also propose normal (tm) unicode emojis
+      final matchingUnicodeEmojis = Emoji.all()
+          .where((element) => [element.name, ...element.keywords]
+              .any((element) => element.toLowerCase().contains(emoteSearch)))
+          .toList();
+      // sort by the index of the search term in the name in order to have
+      // best matches first
+      // (thanks for the hint by github.com/nextcloud/circles devs)
+      matchingUnicodeEmojis.sort((a, b) {
+        final indexA = a.name.indexOf(emoteSearch);
+        final indexB = b.name.indexOf(emoteSearch);
+        if (indexA == -1 || indexB == -1) {
+          if (indexA == indexB) return 0;
+          if (indexA == -1) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+        return indexA.compareTo(indexB);
+      });
+      for (final emoji in matchingUnicodeEmojis) {
+        ret.add({
+          'type': 'emoji',
+          'emoji': emoji.char,
+          // don't include sub-group names, splitting at `:` hence
+          'label': '${emoji.char} - ${emoji.name.split(':').first}',
+          'current_word': ':$emoteSearch',
+        });
+        if (ret.length > maxResults) {
+          break;
         }
       }
     }
@@ -205,6 +239,17 @@ class InputBar extends StatelessWidget {
         ),
       );
     }
+    if (suggestion['type'] == 'emoji') {
+      final label = suggestion['label']!;
+      return Tooltip(
+        message: label,
+        waitDuration: const Duration(days: 1), // don't show on hover
+        child: Container(
+          padding: padding,
+          child: Text(label, style: const TextStyle(fontFamily: 'monospace')),
+        ),
+      );
+    }
     if (suggestion['type'] == 'emote') {
       final ratio = MediaQuery.of(context).devicePixelRatio;
       final url = Uri.parse(suggestion['mxc'] ?? '').getThumbnail(
@@ -282,8 +327,15 @@ class InputBar extends StatelessWidget {
     if (suggestion['type'] == 'command') {
       insertText = suggestion['name']! + ' ';
       startText = replaceText.replaceAllMapped(
-        RegExp(r'^(\/[\w]*)$'),
+        RegExp(r'^(/\w*)$'),
         (Match m) => '/' + insertText,
+      );
+    }
+    if (suggestion['type'] == 'emoji') {
+      insertText = suggestion['emoji']! + ' ';
+      startText = replaceText.replaceAllMapped(
+        suggestion['current_word']!,
+        (Match m) => insertText,
       );
     }
     if (suggestion['type'] == 'emote') {
@@ -376,10 +428,8 @@ class InputBar extends StatelessWidget {
           hideOnEmpty: true,
           hideOnLoading: true,
           keepSuggestionsOnSuggestionSelected: true,
-
-          debounceDuration: const Duration(
-              milliseconds:
-                  50), // show suggestions after 50ms idle time (default is 300)
+          debounceDuration: const Duration(milliseconds: 50),
+          // show suggestions after 50ms idle time (default is 300)
           textFieldConfiguration: TextFieldConfiguration(
             minLines: minLines,
             maxLines: maxLines,
@@ -407,8 +457,8 @@ class InputBar extends StatelessWidget {
           onSuggestionSelected: (Map<String, String?> suggestion) =>
               insertSuggestion(context, suggestion),
           errorBuilder: (BuildContext context, Object? error) => Container(),
-          loadingBuilder: (BuildContext context) =>
-              Container(), // fix loading briefly flickering a dark box
+          loadingBuilder: (BuildContext context) => Container(),
+          // fix loading briefly flickering a dark box
           noItemsFoundBuilder: (BuildContext context) =>
               Container(), // fix loading briefly showing no suggestions
         ),
