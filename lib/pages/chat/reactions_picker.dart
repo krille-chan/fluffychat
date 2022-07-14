@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:emoji_proposal/emoji_proposal.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -8,6 +9,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 
 class ReactionsPicker extends StatelessWidget {
   final ChatController controller;
+
   const ReactionsPicker(this.controller, {Key? key}) : super(key: key);
 
   @override
@@ -26,7 +28,13 @@ class ReactionsPicker extends StatelessWidget {
           if (!display) {
             return Container();
           }
-          final emojis = List<String>.from(AppEmojis.emojis);
+          final proposals = proposeEmojis(
+              controller.selectedEvents.first.plaintextBody,
+              number: 25,
+              languageCodes: EmojiProposalLanguageCodes.values.toSet());
+          final emojis = proposals.isNotEmpty
+              ? proposals.map((e) => e.char).toList()
+              : List<String>.from(AppEmojis.emojis);
           final allReactionEvents = controller.selectedEvents.first
               .aggregatedEvents(
                   controller.timeline!, RelationshipTypes.reaction)

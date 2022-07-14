@@ -388,6 +388,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  emoji_proposal:
+    dependency: "direct main"
+    description:
+      name: emoji_proposal
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
+  emojis:
+    dependency: "direct main"
+    description:
+      name: emojis
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.9"
   encrypt:
     dependency: "direct main"
     description:
@@ -1416,6 +1430,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.3"
+  remove_emoji:
+    dependency: transitive
+    description:
+      name: remove_emoji
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   rxdart:
     dependency: transitive
     description:
@@ -1437,6 +1458,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+  sentiment_dart:
+    dependency: transitive
+    description:
+      name: sentiment_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   sentry:
     dependency: "direct main"
     description:
