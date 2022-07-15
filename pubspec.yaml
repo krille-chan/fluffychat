@@ -76,7 +76,6 @@ dependencies:
   share_plus: ^4.0.9
   shared_preferences: ^2.0.13
   slugify: ^2.0.0
-  snapping_sheet: ^3.1.0
   swipe_to_action: ^0.2.0
   uni_links: ^0.5.1
   unifiedpush: ^4.0.0
@@ -152,9 +151,3 @@ dependency_overrides:
     git:
       url: https://github.com/xeinebiu/qr_code_scanner.git
       ref: fix_break_changes_platform
-  # wating for `Listenable` implementation
-  # Upstream pull request: https://github.com/AdamJonsson/snapping_sheet/pull/84
-  snapping_sheet:
-    git:
-      url: https://github.com/TheOneWithTheBraid/snapping_sheet.git
-      ref: listenable

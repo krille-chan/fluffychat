@@ -8,7 +8,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -157,10 +156,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
   bool scrolledToTop = true;
 
   final StreamController<Client> _clientStream = StreamController.broadcast();
-
-  SnappingSheetController snappingSheetController = SnappingSheetController();
-
-  ScrollController snappingSheetScrollContentController = ScrollController();
 
   Stream<Client> get clientStream => _clientStream.stream;
 
@@ -562,8 +557,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     VRouter.of(context).to('/rooms');
     setState(() {
       _activeSpacesEntry = null;
-      snappingSheetController = SnappingSheetController();
-      snappingSheetScrollContentController = ScrollController();
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
@@ -658,12 +651,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   void _hackyWebRTCFixForWeb() {
     Matrix.of(context).voipPlugin?.context = context;
-  }
-
-  expandSpaces() {
-    snappingSheetController.snapToPosition(
-      const SnappingPosition.factor(positionFactor: 0.5),
-    );
   }
 }
 
