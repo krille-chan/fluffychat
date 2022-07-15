@@ -6,7 +6,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus_windows
   desktop_drop
   desktop_lifecycle
-  flutter_secure_storage_windows
   flutter_webrtc
   record_windows
   url_launcher_windows
