@@ -157,7 +157,7 @@ diff --git a/pubspec.yaml b/pubspec.yaml
 index 6999d0b8..b2c9144f 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -27,7 +27,7 @@ dependencies:
+@@ -28,7 +28,7 @@ dependencies:
    emoji_proposal: ^0.0.1
    emojis: ^0.9.0
    encrypt: ^5.0.1

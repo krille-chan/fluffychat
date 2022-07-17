@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
+import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -16,6 +17,7 @@ import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
+import 'spaces_hierarchy_proposal.dart';
 
 class ChatListViewBody extends StatefulWidget {
   final ChatListController controller;
@@ -55,201 +57,206 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
     if (widget.controller.waitForFirstSync &&
         Matrix.of(context).client.prevBatch != null) {
       final rooms = widget.controller.activeSpacesEntry.getRooms(context);
-      if (rooms.isEmpty) {
-        child = Column(
-          key: const ValueKey(null),
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'assets/private_chat_wallpaper.png',
-              width: 160,
-              height: 160,
-            ),
-            Center(
-              child: Text(
-                L10n.of(context)!.startYourFirstChat,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            const SizedBox(height: 160),
-          ],
-        );
-      } else {
-        final displayStoriesHeader = widget.controller.activeSpacesEntry
-            .shouldShowStoriesHeader(context);
-        child = ListView.builder(
-          key: ValueKey(Matrix.of(context).client.userID.toString() +
-              widget.controller.activeSpaceId.toString() +
-              widget.controller.activeSpacesEntry.runtimeType.toString()),
-          controller: widget.controller.scrollController,
-          // add +1 space below in order to properly scroll below the spaces bar
-          itemCount: rooms.length + (displayStoriesHeader ? 2 : 1),
-          itemBuilder: (BuildContext context, int i) {
-            if (displayStoriesHeader) {
-              if (i == 0) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const ConnectionStatusHeader(),
-                    if (roomSearchResult != null) ...[
-                      _SearchTitle(
-                        title: L10n.of(context)!.publicRooms,
-                        icon: Icons.explore_outlined,
-                      ),
-                      AnimatedContainer(
-                        height: roomSearchResult.chunk.isEmpty ? 0 : 106,
-                        duration: const Duration(milliseconds: 250),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: roomSearchResult.chunk.length,
-                          itemBuilder: (context, i) => _SearchItem(
-                            title: roomSearchResult.chunk[i].name ??
-                                roomSearchResult
-                                    .chunk[i].canonicalAlias?.localpart ??
-                                L10n.of(context)!.group,
-                            avatar: roomSearchResult.chunk[i].avatarUrl,
-                            onPressed: () => showModalBottomSheet(
-                              context: context,
-                              builder: (c) => PublicRoomBottomSheet(
-                                roomAlias:
-                                    roomSearchResult.chunk[i].canonicalAlias ??
-                                        roomSearchResult.chunk[i].roomId,
-                                outerContext: context,
-                                chunk: roomSearchResult.chunk[i],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    if (userSearchResult != null) ...[
-                      _SearchTitle(
-                        title: L10n.of(context)!.users,
-                        icon: Icons.group_outlined,
-                      ),
-                      AnimatedContainer(
-                        height: userSearchResult.results.isEmpty ? 0 : 106,
-                        duration: const Duration(milliseconds: 250),
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: userSearchResult.results.length,
-                          itemBuilder: (context, i) => _SearchItem(
-                            title: userSearchResult.results[i].displayName ??
-                                userSearchResult.results[i].userId.localpart ??
-                                L10n.of(context)!.unknownDevice,
-                            avatar: userSearchResult.results[i].avatarUrl,
-                            onPressed: () => showModalBottomSheet(
-                              context: context,
-                              builder: (c) => ProfileBottomSheet(
-                                userId: userSearchResult.results[i].userId,
-                                outerContext: context,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    if (widget.controller.isSearchMode)
-                      _SearchTitle(
-                        title: L10n.of(context)!.stories,
-                        icon: Icons.camera_alt_outlined,
-                      ),
-                    StoriesHeader(
-                      filter: widget.controller.searchController.text,
+
+      final displayStoriesHeader = widget.controller.activeSpacesEntry
+              .shouldShowStoriesHeader(context) ||
+          rooms.isEmpty;
+      child = ListView.builder(
+        key: ValueKey(Matrix.of(context).client.userID.toString() +
+            widget.controller.activeSpaceId.toString() +
+            widget.controller.activeSpacesEntry.runtimeType.toString()),
+        controller: widget.controller.scrollController,
+        // add +1 space below in order to properly scroll below the spaces bar
+        itemCount: rooms.length + (displayStoriesHeader ? 2 : 1),
+        itemBuilder: (BuildContext context, int i) {
+          if (displayStoriesHeader) {
+            if (i == 0) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ConnectionStatusHeader(),
+                  if (roomSearchResult != null) ...[
+                    SearchTitle(
+                      title: L10n.of(context)!.publicRooms,
+                      icon: const Icon(Icons.explore_outlined),
                     ),
                     AnimatedContainer(
-                      height: !widget.controller.isSearchMode &&
-                              widget.controller.showChatBackupBanner
-                          ? 54
-                          : 0,
-                      duration: const Duration(milliseconds: 300),
+                      height: roomSearchResult.chunk.isEmpty ? 0 : 106,
+                      duration: const Duration(milliseconds: 250),
                       clipBehavior: Clip.hardEdge,
-                      curve: Curves.bounceInOut,
                       decoration: const BoxDecoration(),
-                      child: Material(
-                        color: Theme.of(context).colorScheme.surface,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            radius: Avatar.defaultSize / 2,
-                            child:
-                                const Icon(Icons.enhanced_encryption_outlined),
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surfaceVariant,
-                            foregroundColor:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          title: Text(
-                            (Matrix.of(context)
-                                        .client
-                                        .encryption
-                                        ?.keyManager
-                                        .enabled ==
-                                    true)
-                                ? L10n.of(context)!.unlockOldMessages
-                                : L10n.of(context)!.enableAutoBackups,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: roomSearchResult.chunk.length,
+                        itemBuilder: (context, i) => _SearchItem(
+                          title: roomSearchResult.chunk[i].name ??
+                              roomSearchResult
+                                  .chunk[i].canonicalAlias?.localpart ??
+                              L10n.of(context)!.group,
+                          avatar: roomSearchResult.chunk[i].avatarUrl,
+                          onPressed: () => showModalBottomSheet(
+                            context: context,
+                            builder: (c) => PublicRoomBottomSheet(
+                              roomAlias:
+                                  roomSearchResult.chunk[i].canonicalAlias ??
+                                      roomSearchResult.chunk[i].roomId,
+                              outerContext: context,
+                              chunk: roomSearchResult.chunk[i],
                             ),
                           ),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          onTap: widget.controller.firstRunBootstrapAction,
                         ),
                       ),
                     ),
-                    AnimatedContainer(
-                      height: widget.controller.isTorBrowser ? 64 : 0,
-                      duration: const Duration(milliseconds: 300),
-                      clipBehavior: Clip.hardEdge,
-                      curve: Curves.bounceInOut,
-                      decoration: const BoxDecoration(),
-                      child: Material(
-                        color: Theme.of(context).colorScheme.surface,
-                        child: ListTile(
-                          leading: const Icon(Icons.vpn_key),
-                          title: Text(L10n.of(context)!.dehydrateTor),
-                          subtitle: Text(L10n.of(context)!.dehydrateTorLong),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          onTap: widget.controller.dehydrate,
-                        ),
-                      ),
-                    ),
-                    if (widget.controller.isSearchMode)
-                      _SearchTitle(
-                        title: L10n.of(context)!.chats,
-                        icon: Icons.chat_outlined,
-                      ),
                   ],
-                );
-              }
-              i--;
+                  if (userSearchResult != null) ...[
+                    SearchTitle(
+                      title: L10n.of(context)!.users,
+                      icon: const Icon(Icons.group_outlined),
+                    ),
+                    AnimatedContainer(
+                      height: userSearchResult.results.isEmpty ? 0 : 106,
+                      duration: const Duration(milliseconds: 250),
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: userSearchResult.results.length,
+                        itemBuilder: (context, i) => _SearchItem(
+                          title: userSearchResult.results[i].displayName ??
+                              userSearchResult.results[i].userId.localpart ??
+                              L10n.of(context)!.unknownDevice,
+                          avatar: userSearchResult.results[i].avatarUrl,
+                          onPressed: () => showModalBottomSheet(
+                            context: context,
+                            builder: (c) => ProfileBottomSheet(
+                              userId: userSearchResult.results[i].userId,
+                              outerContext: context,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                  if (widget.controller.isSearchMode)
+                    SearchTitle(
+                      title: L10n.of(context)!.stories,
+                      icon: const Icon(Icons.camera_alt_outlined),
+                    ),
+                  StoriesHeader(
+                    filter: widget.controller.searchController.text,
+                  ),
+                  AnimatedContainer(
+                    height: !widget.controller.isSearchMode &&
+                            widget.controller.showChatBackupBanner
+                        ? 54
+                        : 0,
+                    duration: const Duration(milliseconds: 300),
+                    clipBehavior: Clip.hardEdge,
+                    curve: Curves.bounceInOut,
+                    decoration: const BoxDecoration(),
+                    child: Material(
+                      color: Theme.of(context).colorScheme.surface,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: Avatar.defaultSize / 2,
+                          child: const Icon(Icons.enhanced_encryption_outlined),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surfaceVariant,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                        title: Text(
+                          (Matrix.of(context)
+                                      .client
+                                      .encryption
+                                      ?.keyManager
+                                      .enabled ==
+                                  true)
+                              ? L10n.of(context)!.unlockOldMessages
+                              : L10n.of(context)!.enableAutoBackups,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
+                        trailing: const Icon(Icons.chevron_right_outlined),
+                        onTap: widget.controller.firstRunBootstrapAction,
+                      ),
+                    ),
+                  ),
+                  AnimatedContainer(
+                    height: widget.controller.isTorBrowser ? 64 : 0,
+                    duration: const Duration(milliseconds: 300),
+                    clipBehavior: Clip.hardEdge,
+                    curve: Curves.bounceInOut,
+                    decoration: const BoxDecoration(),
+                    child: Material(
+                      color: Theme.of(context).colorScheme.surface,
+                      child: ListTile(
+                        leading: const Icon(Icons.vpn_key),
+                        title: Text(L10n.of(context)!.dehydrateTor),
+                        subtitle: Text(L10n.of(context)!.dehydrateTorLong),
+                        trailing: const Icon(Icons.chevron_right_outlined),
+                        onTap: widget.controller.dehydrate,
+                      ),
+                    ),
+                  ),
+                  if (widget.controller.isSearchMode)
+                    SearchTitle(
+                      title: L10n.of(context)!.chats,
+                      icon: const Icon(Icons.chat_outlined),
+                    ),
+                  if (rooms.isEmpty)
+                    Column(
+                      key: const ValueKey(null),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/private_chat_wallpaper.png',
+                          width: 160,
+                          height: 160,
+                        ),
+                        Center(
+                          child: Text(
+                            L10n.of(context)!.startYourFirstChat,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
+                ],
+              );
             }
-            if (i >= rooms.length) {
-              return const ListTile();
-            }
-            if (!rooms[i].displayname.toLowerCase().contains(
-                widget.controller.searchController.text.toLowerCase())) {
-              return Container();
-            }
-            return ChatListItem(
-              rooms[i],
-              selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
-              onTap: widget.controller.selectMode == SelectMode.select
-                  ? () => widget.controller.toggleSelection(rooms[i].id)
+            i--;
+          }
+          if (i >= rooms.length) {
+            return SpacesHierarchyProposals(
+              space: widget.controller.activeSpacesEntry.getSpace(context)?.id,
+              query: widget.controller.isSearchMode
+                  ? widget.controller.searchController.text
                   : null,
-              onLongPress: () => widget.controller.toggleSelection(rooms[i].id),
-              activeChat: widget.controller.activeChat == rooms[i].id,
             );
-          },
-        );
-      }
+          }
+          if (!rooms[i].displayname.toLowerCase().contains(
+              widget.controller.searchController.text.toLowerCase())) {
+            return Container();
+          }
+          return ChatListItem(
+            rooms[i],
+            selected: widget.controller.selectedRoomIds.contains(rooms[i].id),
+            onTap: widget.controller.selectMode == SelectMode.select
+                ? () => widget.controller.toggleSelection(rooms[i].id)
+                : null,
+            onLongPress: () => widget.controller.toggleSelection(rooms[i].id),
+            activeChat: widget.controller.activeChat == rooms[i].id,
+          );
+        },
+      );
     } else {
       const dummyChatCount = 5;
       final titleColor =
@@ -361,54 +368,11 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
   }
 }
 
-class _SearchTitle extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  const _SearchTitle({
-    required this.title,
-    required this.icon,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          border: Border.symmetric(
-              horizontal: BorderSide(
-            color: Theme.of(context).dividerColor,
-            width: 1,
-          )),
-          color: Theme.of(context).colorScheme.surface,
-        ),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            child: Row(
-              children: [
-                Icon(icon, size: 16),
-                const SizedBox(width: 16),
-                Text(title,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ],
-            ),
-          ),
-        ),
-      );
-}
-
 class _SearchItem extends StatelessWidget {
   final String title;
   final Uri? avatar;
   final void Function() onPressed;
+
   const _SearchItem({
     required this.title,
     this.avatar,

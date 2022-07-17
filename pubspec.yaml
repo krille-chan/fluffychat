@@ -10,6 +10,7 @@ dependencies:
   adaptive_dialog: ^1.5.1
   adaptive_theme: ^3.0.0
   animations: ^2.0.2
+  async: ^2.8.2
   blurhash_dart: ^1.1.0
   cached_network_image: ^3.2.0
   callkeep: ^0.3.2
