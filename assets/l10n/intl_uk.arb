@@ -2889,5 +2889,27 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "hydrate": "Відновлення з файлу резервної копії",
+  "@hydrate": {},
+  "hydrateTorLong": "Минулого разу ви експортували свій сеанс із TOR? Швидко імпортуйте його та продовжуйте спілкування.",
+  "@hydrateTorLong": {},
+  "advanced": "Додатково",
+  "@advanced": {},
+  "indexedDbErrorTitle": "Проблеми приватного режиму",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "На жаль, сховище повідомлень не ввімкнуто у приватному режимі типово.\nВідкрийте\n - about:config\n - установіть для dom.indexedDB.privateBrowsing.enabled значення true\nІнакше запустити FluffyChat буде неможливо.",
+  "@indexedDbErrorLong": {},
+  "dehydrate": "Експортувати сеанс та очистити пристрій",
+  "@dehydrate": {},
+  "dehydrateWarning": "Цю дію не можна скасувати. Переконайтеся, що ви безпечно зберігаєте файл резервної копії.",
+  "@dehydrateWarning": {},
+  "dehydrateShare": "Це ваш приватний експорт FluffyChat. Переконайтеся, що ви не втратите його та зберігайте його приватно.",
+  "@dehydrateShare": {},
+  "dehydrateTor": "Користувачі TOR: експорт сеансу",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "Для користувачів TOR рекомендується експортувати сеанс перед закриттям вікна.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "Користувачі TOR: імпорт експортованого сеансу",
+  "@hydrateTor": {}
 }
