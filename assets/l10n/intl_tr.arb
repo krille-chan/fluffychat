@@ -2894,5 +2894,27 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "dehydrate": "Oturumu dışa aktar ve aygıtı sil",
+  "@dehydrate": {},
+  "dehydrateTorLong": "TOR kullanıcıları için, pencereyi kapatmadan önce oturumu dışa aktarmaları tavsiye edilir.",
+  "@dehydrateTorLong": {},
+  "dehydrateTor": "TOR Kullanıcıları: Oturumu dışa aktar",
+  "@dehydrateTor": {},
+  "hydrateTor": "TOR Kullanıcıları: Dışa aktarılan oturumu içe aktar",
+  "@hydrateTor": {},
+  "hydrate": "Yedekleme dosyasından geri yükle",
+  "@hydrate": {},
+  "indexedDbErrorTitle": "Gizli mod sorunları",
+  "@indexedDbErrorTitle": {},
+  "dehydrateWarning": "Bu eylem geri alınamaz. Yedekleme dosyasını güvenli bir şekilde sakladığınızdan emin olun.",
+  "@dehydrateWarning": {},
+  "dehydrateShare": "Bu sizin özel FluffyChat dışa aktarımınızdır. Kaybetmediğinizden ve gizli tuttuğunuzdan emin olun.",
+  "@dehydrateShare": {},
+  "hydrateTorLong": "TOR'da en son oturumunuzu dışa aktardınız mı? Hızlıca içe aktarın ve sohbete devam edin.",
+  "@hydrateTorLong": {},
+  "advanced": "Gelişmiş",
+  "@advanced": {},
+  "indexedDbErrorLong": "Mesaj saklama özelliği ne yazık ki öntanımlı olarak gizli modda etkin değildir.\nLütfen\n - about:config sayfasına gidin ve\n - dom.indexedDB.privateBrowsing.enabled seçeneğini true olarak ayarlayın\nAksi takdirde FluffyChat çalıştırılamaz.",
+  "@indexedDbErrorLong": {}
 }
