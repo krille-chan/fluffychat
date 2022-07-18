@@ -2888,5 +2888,27 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "dehydrateShare": "Ini adalah ekspor FluffyChat privat kamu. Pastikan kamu tidak menghilangkannya dan tetap rahasia.",
+  "@dehydrateShare": {},
+  "hydrate": "Pulihkan dari file cadangan",
+  "@hydrate": {},
+  "advanced": "Tingkat lanjut",
+  "@advanced": {},
+  "indexedDbErrorTitle": "Masalah dengan mode privat",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "Penyimpanan pesan sayangnya tidak diaktifkan dalam mode privat secara default.\nMohon kunjungi\n- about:config\n- tetapkan dom.indexedDB.privateBrowsing.enabled ke true\nJika tidak ditetapkan, FluffyChat tidak akan dapat dijalankan.",
+  "@indexedDbErrorLong": {},
+  "dehydrate": "Ekspor sesi dan bersihkan perangkat",
+  "@dehydrate": {},
+  "dehydrateWarning": "Tindakan ini tidak dapat diurungkan. Pastikan kamu telah menyimpan file cadangan dengan aman.",
+  "@dehydrateWarning": {},
+  "dehydrateTor": "Pengguna Tor: Ekspor sesi",
+  "@dehydrateTor": {},
+  "hydrateTorLong": "Apakah kamu mengekspor sesimu terakhir kali di Tor? Impor dengan cepat dan lanjut mengobrol.",
+  "@hydrateTorLong": {},
+  "dehydrateTorLong": "Pengguna Tor disarankan untuk mengekspor sesi sebelum menutup jendela.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "Pengguna Tor: Impor eksporan sesi",
+  "@hydrateTor": {}
 }
