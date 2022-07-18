@@ -2894,5 +2894,27 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "dehydrate": "Ekspordi sessiooni teave ja kustuta nutiseadmest rakenduse andmed",
+  "@dehydrate": {},
+  "dehydrateShare": "See on sinu FluffyChat'i privaatsete andmete eksport. Palun hoia teda turvaliselt ja vaata, et sa seda ei kaotaks.",
+  "@dehydrateShare": {},
+  "dehydrateTor": "TOR'i kasutajad: Ekspordi sessioon",
+  "@dehydrateTor": {},
+  "hydrateTor": "TOR'i kasutajatele: impordi viimati eksporditud sessiooni andmed",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Kui viimati TOR'i võrku kasutasid, siis kas sa eksportisid oma sessiooni andmed? Kui jah, siis impordi nad mugavasti ja jätka suhtlemist.",
+  "@hydrateTorLong": {},
+  "advanced": "Lisaseadistused",
+  "@advanced": {},
+  "indexedDbErrorTitle": "Brauseri privaatse akna kasutamisega seotud asjaolud",
+  "@indexedDbErrorTitle": {},
+  "dehydrateWarning": "Seda tegevust ei saa tagasi pöörata. Palun kontrolli, et sa oled varukoopia turvaliselt salvestanud.",
+  "@dehydrateWarning": {},
+  "dehydrateTorLong": "Kui oled TOR'i võrgu kasutaja, siis enne akna sulgemist palun ekspordi viimase sessiooni andmed.",
+  "@dehydrateTorLong": {},
+  "indexedDbErrorLong": "Privaatse akna puhul andmete salvestamine vaikimisi pole kasutusel.\nPalun toimi alljärgnevalt:\n- ava about:config\n- määra dom.indexedDB.privateBrowsing.enabled väärtuseks true\nVastasel juhul sa ei saa FluffyChat'i kasutada.",
+  "@indexedDbErrorLong": {},
+  "hydrate": "Taasta varundatud failist",
+  "@hydrate": {}
 }
