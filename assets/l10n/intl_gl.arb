@@ -2894,5 +2894,27 @@
     }
   },
   "unlockOldMessages": "Desbloquear mensaxes antigas",
-  "@unlockOldMessages": {}
+  "@unlockOldMessages": {},
+  "dehydrateShare": "Esta é a copia de apoio privada de FluffyChat. Pon coidado en non perdela e mantela segura.",
+  "@dehydrateShare": {},
+  "dehydrateTorLong": "Para usuarias de TOR, é recomendable exportar a sesión antes de pechar a ventál.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "Usuarias TOR: Importar a sesión exportada",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Exportaches a túa sesión a última vez en TOR? Importaa rápidamente e continúa cos teus chats.",
+  "@hydrateTorLong": {},
+  "hydrate": "Restablecer desde copia de apoio",
+  "@hydrate": {},
+  "advanced": "Avanzado",
+  "@advanced": {},
+  "dehydrateWarning": "Esta acción non é reversible. Pon coidado en gardar o ficheiro de apoio.",
+  "@dehydrateWarning": {},
+  "dehydrate": "Exportar sesión e eliminar dispositivo",
+  "@dehydrate": {},
+  "dehydrateTor": "Usuarias TOR: Exportar sesión",
+  "@dehydrateTor": {},
+  "indexedDbErrorTitle": "Problemas no modo privado",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar FluffyChat.",
+  "@indexedDbErrorLong": {}
 }
