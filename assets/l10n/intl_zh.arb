@@ -2894,5 +2894,27 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "dehydrateShare": "这是私人的 FluffyChat 导出。 确保你不会丢失它并将其保密。",
+  "@dehydrateShare": {},
+  "dehydrateTor": "TOR 用户：导出会话",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "建议 TOR 用户在关闭窗口之前导出会话。",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "TOR 用户：导入会话导出",
+  "@hydrateTor": {},
+  "hydrate": "从备份文件恢复",
+  "@hydrate": {},
+  "advanced": "高级",
+  "@advanced": {},
+  "dehydrate": "导出会话并擦除设备",
+  "@dehydrate": {},
+  "dehydrateWarning": "此操作无法撤消。 确保你安全地存储备份文件。",
+  "@dehydrateWarning": {},
+  "indexedDbErrorTitle": "私人模式问题",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "遗憾的是，默认情况下未在私有模式下启用消息存储。\n请访问\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\n否则，无法运行 FluffyChat。",
+  "@indexedDbErrorLong": {},
+  "hydrateTorLong": "你上次是否导出 TOR 会话？ 快速导入它并继续聊天。",
+  "@hydrateTorLong": {}
 }
