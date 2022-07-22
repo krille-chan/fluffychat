@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -93,6 +94,40 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
           ),
     );
   }
+
+  void onPusherTap(Pusher pusher) async {
+    final delete = await showModalActionSheet<bool>(
+      context: context,
+      title: pusher.deviceDisplayName,
+      message: '${pusher.appDisplayName} (${pusher.appId})',
+      actions: [
+        SheetAction(
+          label: L10n.of(context)!.delete,
+          isDestructiveAction: true,
+          key: true,
+        )
+      ],
+    );
+    if (delete != true) return;
+
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.deletePusher(
+            PusherId(
+              appId: pusher.appId,
+              pushkey: pusher.pushkey,
+            ),
+          ),
+    );
+
+    if (success.error != null) return;
+
+    setState(() {
+      pusherFuture = null;
+    });
+  }
+
+  Future<List<Pusher>?>? pusherFuture;
 
   @override
   Widget build(BuildContext context) => SettingsNotificationsView(this);

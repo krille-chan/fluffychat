@@ -77,7 +77,8 @@ class SettingsNotificationsView extends StatelessWidget {
                     ),
                   ),
                   FutureBuilder<List<Pusher>?>(
-                    future: Matrix.of(context).client.getPushers(),
+                    future: controller.pusherFuture ??=
+                        Matrix.of(context).client.getPushers(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         Center(
@@ -100,6 +101,7 @@ class SettingsNotificationsView extends StatelessWidget {
                           title: Text(
                               '${pushers[i].appDisplayName} - ${pushers[i].appId}'),
                           subtitle: Text(pushers[i].data.url.toString()),
+                          onTap: () => controller.onPusherTap(pushers[i]),
                         ),
                       );
                     },
