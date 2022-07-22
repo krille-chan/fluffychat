@@ -5,6 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/size_string.dart';
 import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {
@@ -42,15 +43,10 @@ extension LocalizedBody on Event {
           isThumbnailSmallEnough ||
           (content['url'] is String));
 
-  String? get sizeString {
-    if (content['info'] is Map<String, dynamic> &&
-        content['info'].containsKey('size')) {
-      final size = content['info']['size'];
-      return size.sizeString;
-    } else {
-      return null;
-    }
-  }
+  String? get sizeString => content
+      .tryGetMap<String, dynamic>('info')
+      ?.tryGet<int>('size')
+      ?.sizeString;
 
   static final _downloadAndDecryptFutures = <String, Future<MatrixFile>>{};
 
