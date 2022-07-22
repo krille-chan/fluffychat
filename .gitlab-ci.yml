@@ -104,7 +104,6 @@ integration_test_dendrite:
 release_mode_launches:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: coverage
-  before_script:
   script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
@@ -114,6 +113,10 @@ release_mode_launches:
     - famedly
     - docker
   timeout: 20m
+  rules:
+    - changes:
+      - android/*
+      - .gitlab-ci.yml
 
 release_mode_launches_google:
   extends: release_mode_launches
