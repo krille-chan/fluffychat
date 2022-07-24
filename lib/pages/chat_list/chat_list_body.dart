@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix_link_text/link_text.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
@@ -75,6 +77,7 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const ConnectionStatusHeader(),
+                  SpaceRoomListTopBar(widget.controller),
                   if (roomSearchResult != null) ...[
                     SearchTitle(
                       title: L10n.of(context)!.publicRooms,
@@ -205,7 +208,7 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       title: L10n.of(context)!.chats,
                       icon: const Icon(Icons.chat_outlined),
                     ),
-                  if (rooms.isEmpty)
+                  if (rooms.isEmpty && !widget.controller.isSearchMode)
                     Column(
                       key: const ValueKey(null),
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -365,6 +368,63 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
     _lastUserId = newClient.userID;
     _lastSpace = widget.controller.activeSpacesEntry;
     return reversed;
+  }
+
+  @override
+  void didUpdateWidget(covariant ChatListViewBody oldWidget) {
+    setState(() {});
+    super.didUpdateWidget(oldWidget);
+  }
+}
+
+class SpaceRoomListTopBar extends StatefulWidget {
+  final ChatListController controller;
+
+  const SpaceRoomListTopBar(this.controller, {Key? key}) : super(key: key);
+
+  @override
+  State<SpaceRoomListTopBar> createState() => _SpaceRoomListTopBarState();
+}
+
+class _SpaceRoomListTopBarState extends State<SpaceRoomListTopBar> {
+  bool _limitSize = true;
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.controller.activeSpacesEntry is SpaceSpacesEntry &&
+        !widget.controller.isSearchMode &&
+        (widget.controller.activeSpacesEntry as SpaceSpacesEntry)
+            .space
+            .topic
+            .isNotEmpty) {
+      return GestureDetector(
+        onTap: () => setState(() {
+          _limitSize = !_limitSize;
+        }),
+        child: Column(
+          children: [
+            Padding(
+              child: LinkText(
+                text: (widget.controller.activeSpacesEntry as SpaceSpacesEntry)
+                    .space
+                    .topic,
+                maxLines: _limitSize ? 3 : null,
+                linkStyle: const TextStyle(color: Colors.blueAccent),
+                textStyle: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).textTheme.bodyText2!.color,
+                ),
+                onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+              ),
+              padding: const EdgeInsets.all(8),
+            ),
+            const Divider(),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 }
 

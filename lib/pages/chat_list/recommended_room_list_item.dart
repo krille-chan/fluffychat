@@ -9,9 +9,13 @@ import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 
 class RecommendedRoomListItem extends StatelessWidget {
   final SpaceRoomsChunk room;
+  final VoidCallback onRoomJoined;
 
-  const RecommendedRoomListItem({Key? key, required this.room})
-      : super(key: key);
+  const RecommendedRoomListItem({
+    Key? key,
+    required this.room,
+    required this.onRoomJoined,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,28 +63,30 @@ class RecommendedRoomListItem extends StatelessWidget {
         ),
       ],
     );
-    final subtitle = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Expanded(
-          child: Text(
-            room.topic ?? 'topic',
-            softWrap: false,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText2!.color,
-            ),
-          ),
-        ),
-      ],
-    );
+    final subtitle = room.topic != null
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  room.topic!,
+                  softWrap: false,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText2!.color,
+                  ),
+                ),
+              ),
+            ],
+          )
+        : null;
     void handler() => showModalBottomSheet(
           context: context,
           builder: (c) => PublicRoomBottomSheet(
-            roomAlias: room.canonicalAlias!,
             outerContext: context,
             chunk: room,
+            onRoomJoined: onRoomJoined,
           ),
         );
     if (room.roomType == 'm.space') {

@@ -19,18 +19,25 @@ abstract class SpacesEntry {
 
   // Gets the (translated) name of this entry.
   String getName(BuildContext context);
+
   // Gets an icon for this entry (avoided if a space is given)
   Icon getIcon(bool active) => active
       ? const Icon(CupertinoIcons.chat_bubble_2_fill)
       : const Icon(CupertinoIcons.chat_bubble_2);
+
   // If this is a specific Room, returns the space Room for various purposes.
   Room? getSpace(BuildContext context) => null;
+
   // Gets a list of rooms - this is done as part of _ChatListViewBodyState to get the full list of rooms visible from this SpacesEntry.
   List<Room> getRooms(BuildContext context);
+
   // Checks that this entry is still valid.
   bool stillValid(BuildContext context) => true;
+
   // Returns true if the Stories header should be shown.
   bool shouldShowStoriesHeader(BuildContext context) => false;
+
+  String? get routeHandle;
 }
 
 // Common room validity checks
@@ -58,7 +65,9 @@ bool _roomInsideSpace(Room room, Room space) {
 // "All rooms" entry.
 class AllRoomsSpacesEntry extends SpacesEntry {
   static final AllRoomsSpacesEntry _value = AllRoomsSpacesEntry._();
+
   AllRoomsSpacesEntry._();
+
   factory AllRoomsSpacesEntry() {
     return _value;
   }
@@ -76,6 +85,9 @@ class AllRoomsSpacesEntry extends SpacesEntry {
   }
 
   @override
+  final String? routeHandle = null;
+
+  @override
   bool shouldShowStoriesHeader(BuildContext context) => true;
 
   @override
@@ -90,7 +102,9 @@ class AllRoomsSpacesEntry extends SpacesEntry {
 // "Direct Chats" entry.
 class DirectChatsSpacesEntry extends SpacesEntry {
   static final DirectChatsSpacesEntry _value = DirectChatsSpacesEntry._();
+
   DirectChatsSpacesEntry._();
+
   factory DirectChatsSpacesEntry() {
     return _value;
   }
@@ -108,6 +122,9 @@ class DirectChatsSpacesEntry extends SpacesEntry {
   }
 
   @override
+  final String? routeHandle = null;
+
+  @override
   bool shouldShowStoriesHeader(BuildContext context) => true;
 
   @override
@@ -122,7 +139,9 @@ class DirectChatsSpacesEntry extends SpacesEntry {
 // "Groups" entry.
 class GroupsSpacesEntry extends SpacesEntry {
   static final GroupsSpacesEntry _value = GroupsSpacesEntry._();
+
   GroupsSpacesEntry._();
+
   factory GroupsSpacesEntry() {
     return _value;
   }
@@ -147,6 +166,9 @@ class GroupsSpacesEntry extends SpacesEntry {
         .toList();
   }
 
+  @override
+  final String? routeHandle = 'groups';
+
   bool separatedGroup(Room room, List<Room> spaces) {
     return !spaces.any((space) => _roomInsideSpace(room, space));
   }
@@ -163,6 +185,7 @@ class GroupsSpacesEntry extends SpacesEntry {
 // All rooms associated with a specific space.
 class SpaceSpacesEntry extends SpacesEntry {
   final Room space;
+
   const SpaceSpacesEntry(this.space);
 
   @override
@@ -203,6 +226,9 @@ class SpaceSpacesEntry extends SpacesEntry {
   @override
   bool stillValid(BuildContext context) =>
       Matrix.of(context).client.getRoomById(space.id) != null;
+
+  @override
+  String? get routeHandle => space.id;
 
   @override
   bool operator ==(Object other) {

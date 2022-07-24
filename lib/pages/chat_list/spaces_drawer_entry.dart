@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/spaces_drawer.dart';
+import 'package:fluffychat/utils/space_navigator.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class SpacesDrawerEntry extends StatelessWidget {
@@ -46,10 +47,11 @@ class SpacesDrawerEntry extends StatelessWidget {
               overflow: TextOverflow.fade,
             ),
           );
-    void onTap() => controller.setActiveSpacesEntry(
-          context,
-          space,
-        );
+    void onTap() {
+      SpaceNavigator.navigateToSpace(space.routeHandle);
+      Scaffold.of(context).closeDrawer();
+    }
+
     final trailing = room != null
         ? SizedBox(
             width: 32,

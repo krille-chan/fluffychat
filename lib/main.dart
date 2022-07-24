@@ -22,6 +22,7 @@ import 'config/themes.dart';
 import 'utils/background_push.dart';
 import 'utils/custom_scroll_behaviour.dart';
 import 'utils/localized_exception_extension.dart';
+import 'utils/space_navigator.dart';
 import 'widgets/lock_screen.dart';
 import 'widgets/matrix.dart';
 
@@ -131,6 +132,9 @@ class _FluffyChatAppState extends State<FluffyChatApp> {
                     darkTheme: darkTheme,
                     localizationsDelegates: const [
                       ...L10n.localizationsDelegates,
+                    ],
+                    navigatorObservers: [
+                      SpaceNavigator.routeObserver,
                     ],
                     supportedLocales: L10n.supportedLocales,
                     initialUrl: _initialUrl ?? '/',

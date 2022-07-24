@@ -18,6 +18,7 @@ import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/space_navigator.dart';
 import '../../../utils/account_bundles.dart';
 import '../../main.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
@@ -47,7 +48,8 @@ class ChatList extends StatefulWidget {
   ChatListController createState() => ChatListController();
 }
 
-class ChatListController extends State<ChatList> with TickerProviderStateMixin {
+class ChatListController extends State<ChatList>
+    with TickerProviderStateMixin, RouteAware {
   StreamSubscription? _intentDataStreamSubscription;
 
   StreamSubscription? _intentFileStreamSubscription;
@@ -65,6 +67,8 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   bool isSearching = false;
   static const String _serverStoreNamespace = 'im.fluffychat.search.server';
+
+  StreamSubscription<String?>? _spacesSubscription;
 
   void setServer() async {
     final newServer = await showTextInputDialog(
@@ -175,11 +179,6 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
         scrolledToTop = newScrolledToTop;
       });
     }
-  }
-
-  void setActiveSpacesEntry(BuildContext context, SpacesEntry? spaceId) {
-    Scaffold.of(context).closeDrawer();
-    setState(() => _activeSpacesEntry = spaceId);
   }
 
   void editSpace(BuildContext context, String spaceId) async {
@@ -310,6 +309,8 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
     _checkTorBrowser();
 
+    _subscribeSpaceChanges();
+
     super.initState();
   }
 
@@ -336,6 +337,7 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
+    _spacesSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
   }
@@ -671,6 +673,27 @@ class ChatListController extends State<ChatList> with TickerProviderStateMixin {
 
   Future<void> dehydrate() =>
       SettingsAccountController.dehydrateDevice(context);
+
+  _adjustSpaceQuery(String? spaceId) {
+    cancelSearch();
+    setState(() {
+      if (spaceId != null) {
+        final matching =
+            spacesEntries.where((element) => element.routeHandle == spaceId);
+        if (matching.isNotEmpty) {
+          _activeSpacesEntry = matching.first;
+        } else {
+          _activeSpacesEntry = defaultSpacesEntry;
+        }
+      } else {
+        _activeSpacesEntry = defaultSpacesEntry;
+      }
+    });
+  }
+
+  void _subscribeSpaceChanges() {
+    _spacesSubscription = SpaceNavigator.stream.listen(_adjustSpaceQuery);
+  }
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
