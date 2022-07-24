@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,6 +10,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_drawer.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'chat_list_header.dart';
+import 'start_chat_fab.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
@@ -35,15 +35,8 @@ class ChatListView extends StatelessWidget {
             drawer: ChatListDrawer(controller),
             floatingActionButton: selectMode == SelectMode.normal
                 ? KeyBoardShortcuts(
-                    child: FloatingActionButton.extended(
-                      isExtended: controller.scrolledToTop,
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      onPressed: () =>
-                          VRouter.of(context).to('/newprivatechat'),
-                      icon: const Icon(CupertinoIcons.chat_bubble),
-                      label: Text(L10n.of(context)!.newChat),
-                    ),
+                    child:
+                        StartChatFloatingActionButton(controller: controller),
                     keysToPress: {
                       LogicalKeyboardKey.controlLeft,
                       LogicalKeyboardKey.keyN
