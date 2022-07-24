@@ -2916,5 +2916,14 @@
   "indexedDbErrorLong": "遗憾的是，默认情况下未在私有模式下启用消息存储。\n请访问\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\n否则，无法运行 FluffyChat。",
   "@indexedDbErrorLong": {},
   "hydrateTorLong": "你上次是否导出 TOR 会话？ 快速导入它并继续聊天。",
-  "@hydrateTorLong": {}
+  "@hydrateTorLong": {},
+  "suggestedRooms": "发现此空间群组",
+  "@suggestedRooms": {},
+  "numberRoomMembers": "{number} 名成员",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
