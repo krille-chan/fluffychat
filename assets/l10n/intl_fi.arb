@@ -382,7 +382,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Keskustelujesi varmuskopio on suojattu turva-avaimella. Varmistathan ettet hävitä sitä.",
+  "chatBackupDescription": "Vanhat viestisi on suojattu palautusavaimella. Varmistathan ettet hävitä sitä.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1317,7 +1317,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setupChatBackupDescription": "Suojellaksemme viestejäsi olemme luoneet sinulle turva-avaimen.\nPidäthän tätä turvallisessa paikassa, kuten salasanamanagerissasi.",
+  "setupChatBackupDescription": "Suojellaksemme viestejäsi olemme luoneet sinulle palautusavaimen.\nPidäthän tätä turvallisessa paikassa, kuten salasanamanagerissasi.",
   "@setupChatBackupDescription": {},
   "chatHasBeenRemovedFromThisSpace": "Keskustelu on poistettu tästä Spacesta",
   "@chatHasBeenRemovedFromThisSpace": {
@@ -2208,7 +2208,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Pyyhi keskusteluvarmuuskopio luodaksesi uuden turva-avaimen?",
+  "wipeChatBackup": "Pyyhi keskusteluvarmuuskopio luodaksesi uuden palautusavaimen?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2865,5 +2865,46 @@
   "dehydrate": "Vie istunto ja tyhjennä laite",
   "@dehydrate": {},
   "dehydrateWarning": "Tätä toimenpidettä ei voi kumota.\nVarmista varmuuskopiotiedoston turvallinen tallennus.",
-  "@dehydrateWarning": {}
+  "@dehydrateWarning": {},
+  "stories": "Tarinat",
+  "@stories": {},
+  "users": "Käyttäjät",
+  "@users": {},
+  "enableAutoBackups": "Ota automaattiset varmuuskopiot käyttöön",
+  "@enableAutoBackups": {},
+  "storeSecurlyOnThisDevice": "Tallenna turvallisesti tälle laitteelle",
+  "@storeSecurlyOnThisDevice": {},
+  "saveTheRecoveryKeyNow": "Tallenna palautusavain nyt",
+  "@saveTheRecoveryKeyNow": {},
+  "pleaseEnterRecoveryKeyDescription": "Avataksesi vanhojen viestiesi salauksen, syötä palautusavaimesi, joka luotiin edellisessä istunnossa. Palautusavaimesi EI OLE salasanasi.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "unlockOldMessages": "Pura vanhojen viestien salaus",
+  "@unlockOldMessages": {},
+  "indexedDbErrorLong": "Viestivarasto ei ole käytössä yksityisselauksessa oletuksena.\nKäythän osoitteessa\n - about:config\n - Aseta dom.indexedDB.privateBrowsing.enabled arvoon true\nMuuten FluffyChatin käyttäminen ei ole mahdollista.",
+  "@indexedDbErrorLong": {},
+  "saveKeyManuallyDescription": "Tallenna tämä avain manuaalisesti käyttäen järjestelmän jakodialogia tai leikepöytää.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Tallenna Android KeyStoreen",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Tallenna Applen avainnippuun",
+  "@storeInAppleKeyChain": {},
+  "countFiles": "{count} tiedostoa",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "numberRoomMembers": "{number} jäsentä",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "storeInSecureStorageDescription": "Tallenna palautusavain tämän laitteen turvavarastoon.",
+  "@storeInSecureStorageDescription": {},
+  "suggestedRooms": "Löydä ryhmiä tässä Spacessa",
+  "@suggestedRooms": {},
+  "indexedDbErrorTitle": "Yksityisen selauksen ongelmat",
+  "@indexedDbErrorTitle": {}
 }
