@@ -2916,5 +2916,14 @@
   "advanced": "Gelişmiş",
   "@advanced": {},
   "indexedDbErrorLong": "Mesaj saklama özelliği ne yazık ki öntanımlı olarak gizli modda etkin değildir.\nLütfen\n - about:config sayfasına gidin ve\n - dom.indexedDB.privateBrowsing.enabled seçeneğini true olarak ayarlayın\nAksi takdirde FluffyChat çalıştırılamaz.",
-  "@indexedDbErrorLong": {}
+  "@indexedDbErrorLong": {},
+  "numberRoomMembers": "{number} üye",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Bu alandaki grupları keşfet",
+  "@suggestedRooms": {}
 }
