@@ -2911,5 +2911,14 @@
   "dehydrateTorLong": "Для користувачів TOR рекомендується експортувати сеанс перед закриттям вікна.",
   "@dehydrateTorLong": {},
   "hydrateTor": "Користувачі TOR: імпорт експортованого сеансу",
-  "@hydrateTor": {}
+  "@hydrateTor": {},
+  "numberRoomMembers": "Учасників: {number}",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Знайти групи у просторі",
+  "@suggestedRooms": {}
 }
