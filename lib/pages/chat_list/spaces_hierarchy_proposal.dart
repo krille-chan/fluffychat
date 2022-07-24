@@ -94,14 +94,12 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
                             strokeWidth: 1,
                           ),
                         ),
-                  onTap: () => setState(
-                    () => SpacesHierarchyProposals._cache[widget.space!]!
-                        .invalidate(),
-                  ),
+                  onTap: _refreshRooms,
                 ),
                 ...rooms.map(
                   (e) => RecommendedRoomListItem(
                     room: e,
+                    onRoomJoined: _refreshRooms,
                   ),
                 ),
               ],
@@ -109,9 +107,9 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
           } else {
             child = Column(
               key: const ValueKey(null),
-              children: const [
-                LinearProgressIndicator(),
-                ListTile(),
+              children: [
+                if (!snapshot.hasError) const LinearProgressIndicator(),
+                const ListTile(),
               ],
             );
           }
@@ -143,4 +141,8 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
       return Container();
     }
   }
+
+  void _refreshRooms() => setState(
+        () => SpacesHierarchyProposals._cache[widget.space!]!.invalidate(),
+      );
 }

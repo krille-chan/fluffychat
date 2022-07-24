@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/space_navigator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
@@ -18,6 +19,7 @@ import 'platform_infos.dart';
 class UrlLauncher {
   final String? url;
   final BuildContext context;
+
   const UrlLauncher(this.context, this.url);
 
   void launchUrl() {
@@ -130,6 +132,11 @@ class UrlLauncher {
       }
       servers.addAll(identityParts.via);
       if (room != null) {
+        if (room.isSpace) {
+          SpaceNavigator.navigateToSpace(room.id);
+          VRouter.of(context).toSegments(['rooms']);
+          return;
+        }
         // we have the room, so....just open it
         if (event != null) {
           VRouter.of(context).toSegments(['rooms', room.id],

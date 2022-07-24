@@ -3,39 +3,48 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_matrix_html/flutter_html.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix_link_text/link_text.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/content_banner.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../utils/localized_exception_extension.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
-  final String roomAlias;
+  final String? roomAlias;
   final BuildContext outerContext;
   final PublicRoomsChunk? chunk;
-  const PublicRoomBottomSheet({
-    required this.roomAlias,
+  final VoidCallback? onRoomJoined;
+
+  PublicRoomBottomSheet({
+    this.roomAlias,
     required this.outerContext,
     this.chunk,
+    this.onRoomJoined,
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key) {
+    assert(roomAlias != null || chunk != null);
+  }
 
   void _joinRoom(BuildContext context) async {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog<String>(
       context: context,
-      future: () => client.joinRoom(roomAlias),
+      future: () => client.joinRoom(roomAlias ?? chunk!.roomId),
     );
     if (result.error == null) {
       if (client.getRoomById(result.result!) == null) {
         await client.onSync.stream.firstWhere(
             (sync) => sync.rooms?.join?.containsKey(result.result) ?? false);
       }
-      VRouter.of(context).toSegments(['rooms', result.result!]);
+      // don't open the room if the joined room is a space
+      if (!client.getRoomById(result.result!)!.isSpace) {
+        VRouter.of(context).toSegments(['rooms', result.result!]);
+      }
       Navigator.of(context, rootNavigator: false).pop();
       return;
     }
@@ -47,7 +56,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
     final chunk = this.chunk;
     if (chunk != null) return chunk;
     final query = await Matrix.of(context).client.queryPublicRooms(
-          server: roomAlias.domain,
+          server: roomAlias!.domain,
           filter: PublicRoomQueryFilter(
             genericSearchTerm: roomAlias,
           ),
@@ -76,7 +85,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                 backgroundColor:
                     Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                 title: Text(
-                  roomAlias,
+                  roomAlias ?? chunk!.name ?? chunk!.roomId,
                   overflow: TextOverflow.fade,
                 ),
                 leading: IconButton(
@@ -118,15 +127,37 @@ class PublicRoomBottomSheet extends StatelessWidget {
                             client: Matrix.of(context).client,
                           ),
                         ListTile(
-                          title:
-                              Text(profile?.name ?? roomAlias.localpart ?? ''),
+                          title: Text(profile?.name ??
+                              roomAlias?.localpart ??
+                              chunk!.roomId.localpart ??
+                              ''),
                           subtitle: Text(
-                              '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}'),
+                            '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',
+                          ),
                           trailing: const Icon(Icons.account_box_outlined),
                         ),
                         if (profile?.topic?.isNotEmpty ?? false)
                           ListTile(
-                            subtitle: Html(data: profile!.topic!),
+                            title: Text(
+                              L10n.of(context)!.groupDescription,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                            ),
+                            subtitle: LinkText(
+                              text: profile!.topic!,
+                              linkStyle:
+                                  const TextStyle(color: Colors.blueAccent),
+                              textStyle: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .color,
+                              ),
+                              onLinkTap: (url) =>
+                                  UrlLauncher(context, url).launchUrl(),
+                            ),
                           ),
                       ],
                     );
