@@ -630,7 +630,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changelog": "Changelog",
+  "changelog": "Catatan Perubahan",
   "@changelog": {
     "type": "text",
     "placeholders": {}
@@ -2910,5 +2910,14 @@
   "dehydrateTorLong": "Pengguna Tor disarankan untuk mengekspor sesi sebelum menutup jendela.",
   "@dehydrateTorLong": {},
   "hydrateTor": "Pengguna Tor: Impor eksporan sesi",
-  "@hydrateTor": {}
+  "@hydrateTor": {},
+  "numberRoomMembers": "{number} anggota",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Jelajahi grup di space ini",
+  "@suggestedRooms": {}
 }
