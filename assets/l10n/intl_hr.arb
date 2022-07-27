@@ -389,7 +389,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Sigurnosna kopija chata osigurana je sigurnosnim ključem. Pazi da ga ne izgubiš.",
+  "chatBackupDescription": "Sigurnosna kopija chata osigurana je ključem za obnavljanje. Pazi da ga ne izgubiš.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2056,7 +2056,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Započni svoj prvi razgovor! 🙂\n- Dodirni gumb „Novi razgovor”\n- Skeniraj QR-kod prijatelja\n- Zabavi se u razgovoru",
+  "startYourFirstChat": "Započni svoj prvi chat! 🙂\n- Dodirni gumb „Novi chat”\n- Skeniraj QR-kod prijatelja\n- Zabavi se u chatu",
   "@startYourFirstChat": {
     "type": "text",
     "placeholders": {}
@@ -2409,7 +2409,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "welcomeText": "Lijep pozdrav u najslađem programu za čavrljanje u mreži Matrix.",
+  "welcomeText": "Lijep pozdrav u najslađem programu za izravnu razmjenu poruka u Matrix mreži.",
   "@welcomeText": {
     "type": "text",
     "placeholders": {}
@@ -2434,7 +2434,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Izbrisati sigurnosnu kopiju chata za stvaranje novog sigurnosnog ključa?",
+  "wipeChatBackup": "Izbrisati sigurnosnu kopiju chata za stvaranje novog sigurnosnog ključa za obnavljanje?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2614,7 +2614,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Sigurnosna kopija tvog chata je postavljena.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Kako bismo zaštitili tvoje poruke, generirali smo sigurnosni ključ.\nČuvaj ga na sigurnom mjestu, poput upravljača lozinki.",
+  "setupChatBackupDescription": "Kako bismo zaštitili tvoje poruke, generirali smo ključ za obnavljanje.\nČuvaj ga na sigurnom mjestu, poput upravljača lozinki.",
   "@setupChatBackupDescription": {},
   "repeatPassword": "Ponovi lozinku",
   "@repeatPassword": {},
@@ -2760,5 +2760,170 @@
   "previousAccount": "Prethodni račun",
   "@previousAccount": {},
   "showSpaces": "Prikaži popis prostora",
-  "@showSpaces": {}
+  "@showSpaces": {},
+  "recoveryKey": "Ključ za obnavljanje",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Izgubio/la si ključ za obnavljanje?",
+  "@recoveryKeyLost": {},
+  "youKickedAndBanned": "Izbacio/la si i isključio/la korisnika {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noEmailWarning": "Upiši valjanu e-mail adresu. U suprotnom nećeš moći ponovo postaviti lozinku. Ako to ne želiš, ponovo dodirni gumb i nastavi.",
+  "@noEmailWarning": {},
+  "stories": "Priče",
+  "@stories": {},
+  "numberRoomMembers": "Broj članova: {number}",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "dehydrateWarning": "Ovo je nepovratna radnja. Spremi datoteku sigurnosne kopije na sigurno mjeto.",
+  "@dehydrateWarning": {},
+  "hydrateTor": "Korisnici TOR-a: Uzvezite izvoz sesije",
+  "@hydrateTor": {},
+  "dehydrateTor": "Korisnici TOR-a: izvezite sesiju",
+  "@dehydrateTor": {},
+  "emojis": "Emojiji",
+  "@emojis": {},
+  "indexedDbErrorLong": "Spremište poruka nažalost nije standarno uključena u privatnom modusu.\nOtvori stranicu\n - about:config\n - postavi dom.indexedDB.privateBrowsing.enabled na true\nFluffyChat se inače neće moći pokrenuti.",
+  "@indexedDbErrorLong": {},
+  "storeSecurlyOnThisDevice": "Spremi sigurno na ovom uređaju",
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "Broj datoteka: {count}",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "showDirectChatsInSpaces": "Pokaži povezane izravne chatove u prostorima",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "integrationsNotImplemented": "Uređivanje widgeta i integracija još nije moguće.",
+  "@integrationsNotImplemented": {},
+  "reactedWith": "{sender} je reagirao/la sa {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "pinMessage": "Prikvači na sobu",
+  "@pinMessage": {},
+  "pinnedEventsError": "Greška prilikom učitavanja prikvačenih poruka",
+  "@pinnedEventsError": {},
+  "editIntegrations": "Uredi widgete i integracije",
+  "@editIntegrations": {},
+  "matrixWidgets": "Matrix widgeti",
+  "@matrixWidgets": {},
+  "confirmEventUnpin": "Stvarno želiš trajno otkvačiti događaj?",
+  "@confirmEventUnpin": {},
+  "voiceCall": "Glasovni poziv",
+  "@voiceCall": {},
+  "placeCall": "Nazovi",
+  "@placeCall": {},
+  "videoCallsBetaWarning": "Napominjemo da se funkcija videopoziva trenutačno nalazi u beta stanju. Možda neće raditi ispravno ili uopće neće raditi na svim platformama.",
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Eksperimentalni videopozivi",
+  "@experimentalVideoCalls": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "editWidgets": "Uredi widgete",
+  "@editWidgets": {},
+  "addWidget": "Dodaj widget",
+  "@addWidget": {},
+  "widgetNameError": "Zadaj prikazno ime.",
+  "@widgetNameError": {},
+  "youRejectedTheInvitation": "Odbio/la si pozivnicu",
+  "@youRejectedTheInvitation": {},
+  "errorAddingWidget": "Greška prilikom dodavanja widgeta.",
+  "@errorAddingWidget": {},
+  "youJoinedTheChat": "Pridružio/la si se chatu",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "Prihvatio/la si pozivnicu",
+  "@youAcceptedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Povukao/la si pozivniu za korisnika {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "{user} te je pozvao/la",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "Pozvao/la si korisnika {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "Izbacio/la si korisnika {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Ponovo si uključio/la si korisnika {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "dehydrate": "Izvezi sesiju i izbriši uređaj",
+  "@dehydrate": {},
+  "dehydrateShare": "Ovo je tvoj privatni FluffyChat izvoz. Osiguraj da ga ne izgubiš i zadrži ga privatnim.",
+  "@dehydrateShare": {},
+  "saveTheRecoveryKeyNow": "Spremi ključ za obnavljanje sada",
+  "@saveTheRecoveryKeyNow": {},
+  "enableAutoBackups": "Uključi automatsko spremanje sigurnosnih kopija",
+  "@enableAutoBackups": {},
+  "unlockOldMessages": "Otključaj stare poruke",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Ključ za obnavljanje spremi u sigurno spremište na ovom uređaju.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Spremi ovaj ključ ručno pokretanjem dijaloga za dijeljenje sustava ili međuspremnika.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Spremi u Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "separateChatTypes": "Odvojeni izravni chatovi, grupe i prostori",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suggestedRooms": "Otkrij grupe u ovom prostoru",
+  "@suggestedRooms": {},
+  "dehydrateTorLong": "Korisnicima TOR-a preporučuje se izvoz sesije prije zatvaranja prozora.",
+  "@dehydrateTorLong": {},
+  "hydrateTorLong": "Je li zadnji izvoz sesije bio na TOR-u? Brzo ga uvezi i nastavi čavrljati.",
+  "@hydrateTorLong": {},
+  "hydrate": "Obnovi pomoću sigurnosne kopije",
+  "@hydrate": {},
+  "advanced": "Napredno",
+  "@advanced": {},
+  "pleaseEnterRecoveryKey": "Upiši svoj ključ za obnavljanje:",
+  "@pleaseEnterRecoveryKey": {},
+  "users": "Korisnici",
+  "@users": {},
+  "pleaseEnterRecoveryKeyDescription": "Za otključavanje starih poruka upiši ključ za obnavljanje koji je generiran u prethodnoj sesiji. Tvoj ključ za obnavljanje NIJE tvoja lozinka.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "indexedDbErrorTitle": "Problemi u privatnom modusu",
+  "@indexedDbErrorTitle": {},
+  "youBannedUser": "Isključio/la si korisnika {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "storeInAppleKeyChain": "Spremi u Apple KeyChain",
+  "@storeInAppleKeyChain": {}
 }
