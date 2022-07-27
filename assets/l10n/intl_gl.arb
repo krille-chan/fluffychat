@@ -2916,5 +2916,14 @@
   "indexedDbErrorTitle": "Problemas no modo privado",
   "@indexedDbErrorTitle": {},
   "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar FluffyChat.",
-  "@indexedDbErrorLong": {}
+  "@indexedDbErrorLong": {},
+  "numberRoomMembers": "{number} membros",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Descubre grupos neste espazo",
+  "@suggestedRooms": {}
 }
