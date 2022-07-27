@@ -64,6 +64,7 @@ integration_test:
     - famedly
     - docker
   timeout: 20m
+  when: manual
 
 # extending the default tests to test the Google-flavored builds
 integration_test_google:
@@ -72,6 +73,7 @@ integration_test_google:
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
+  when: manual
 
 # extending the default tests to use Conduit as local homeserver
 integration_test_conduit:
@@ -86,6 +88,7 @@ integration_test_conduit:
     - scripts/integration-prepare-homeserver.sh
     # ensure the homeserver works
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "M_NOT_FOUND" 1> /dev/null && echo "Conduit is running!"
+  when: manual
 
 # extending the default tests to use Dendrite as local homeserver
 integration_test_dendrite:
@@ -100,6 +103,7 @@ integration_test_dendrite:
     - scripts/integration-prepare-homeserver.sh
     # ensure the homeserver works
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "404 page not found" 1> /dev/null && echo "Dendrite is running!"
+  when: manual
 
 release_mode_launches:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
@@ -113,10 +117,7 @@ release_mode_launches:
     - famedly
     - docker
   timeout: 20m
-  rules:
-    - changes:
-      - android/*
-      - .gitlab-ci.yml
+  when: manual
 
 release_mode_launches_google:
   extends: release_mode_launches
