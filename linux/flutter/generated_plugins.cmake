@@ -7,6 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   desktop_lifecycle
   file_selector_linux
   flutter_secure_storage_linux
+  handy_window
   url_launcher_linux
 )
 

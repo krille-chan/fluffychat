@@ -796,6 +796,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  handy_window:
+    dependency: "direct main"
+    description:
+      name: handy_window
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
   highlight:
     dependency: transitive
     description:
