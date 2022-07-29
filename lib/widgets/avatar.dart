@@ -63,11 +63,13 @@ class Avatar extends StatelessWidget {
           child: noPic
               ? textWidget
               : MxcImage(
+                  key: Key(mxContent.toString()),
                   uri: mxContent,
                   fit: BoxFit.cover,
                   width: size,
                   height: size,
                   placeholder: (_) => textWidget,
+                  cacheKey: mxContent.toString(),
                 ),
         ),
       ),
