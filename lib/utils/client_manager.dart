@@ -99,6 +99,7 @@ abstract class ClientManager {
         // To check which story room we can post in
         EventTypes.RoomPowerLevels,
       },
+      logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
       legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
       supportedLoginTypes: {

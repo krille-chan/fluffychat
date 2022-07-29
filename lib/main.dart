@@ -38,7 +38,6 @@ void main() async {
           );
 
   final clients = await ClientManager.getClients();
-  Logs().level = kReleaseMode ? Level.warning : Level.verbose;
 
   if (PlatformInfos.isMobile) {
     BackgroundPush.clientOnly(clients.first);

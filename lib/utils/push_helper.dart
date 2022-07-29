@@ -51,9 +51,12 @@ Future<void> pushHelper(
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
-    await _flutterLocalNotificationsPlugin.cancelAll();
-    final store = await SharedPreferences.getInstance();
-    await store.setString(SettingKeys.notificationCurrentIds, json.encode({}));
+    if (notification.counts == null || notification.counts?.unread == 0) {
+      await _flutterLocalNotificationsPlugin.cancelAll();
+      final store = await SharedPreferences.getInstance();
+      await store.setString(
+          SettingKeys.notificationCurrentIds, json.encode({}));
+    }
     return;
   }
   Logs().v('Push helper got notification event.');
