@@ -21,6 +21,7 @@ class MxcImage extends StatefulWidget {
   final Curve animationCurve;
   final ThumbnailMethod thumbnailMethod;
   final Widget Function(BuildContext context)? placeholder;
+  final String? cacheKey;
 
   const MxcImage({
     this.uri,
@@ -35,6 +36,7 @@ class MxcImage extends StatefulWidget {
     this.retryDuration = const Duration(seconds: 2),
     this.animationCurve = Curves.linear,
     this.thumbnailMethod = ThumbnailMethod.scale,
+    this.cacheKey,
     Key? key,
   }) : super(key: key);
 
@@ -43,7 +45,21 @@ class MxcImage extends StatefulWidget {
 }
 
 class _MxcImageState extends State<MxcImage> {
-  Uint8List? _imageData;
+  static final Map<String, Uint8List> _imageDataCache = {};
+  Uint8List? _imageDataNoCache;
+  Uint8List? get _imageData {
+    final cacheKey = widget.cacheKey;
+    return cacheKey == null ? _imageDataNoCache : _imageDataCache[cacheKey];
+  }
+
+  set _imageData(Uint8List? data) {
+    if (data == null) return;
+    final cacheKey = widget.cacheKey;
+    cacheKey == null
+        ? _imageDataNoCache = data
+        : _imageDataCache[cacheKey] = data;
+  }
+
   bool? _isCached;
 
   Future<void> _load() async {
@@ -83,7 +99,14 @@ class _MxcImageState extends State<MxcImage> {
         _isCached = false;
       }
 
-      final remoteData = await http.get(httpUri).then((r) => r.bodyBytes);
+      final response = await http.get(httpUri);
+      if (response.statusCode != 200) {
+        if (response.statusCode == 404) {
+          return;
+        }
+        throw Exception();
+      }
+      final remoteData = response.bodyBytes;
 
       if (!mounted) return;
       setState(() {
@@ -122,6 +145,12 @@ class _MxcImageState extends State<MxcImage> {
     WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
   }
 
+  Widget placeholder(BuildContext context) =>
+      widget.placeholder?.call(context) ??
+      const Center(
+        child: CircularProgressIndicator.adaptive(),
+      );
+
   @override
   Widget build(BuildContext context) {
     final data = _imageData;
@@ -130,10 +159,7 @@ class _MxcImageState extends State<MxcImage> {
       duration: widget.animationDuration,
       crossFadeState:
           data == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      firstChild: widget.placeholder?.call(context) ??
-          const Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
+      firstChild: placeholder(context),
       secondChild: data == null || data.isEmpty
           ? Container()
           : Image.memory(
@@ -141,6 +167,11 @@ class _MxcImageState extends State<MxcImage> {
               width: widget.width,
               height: widget.height,
               fit: widget.fit,
+              errorBuilder: (context, __, ___) {
+                _isCached = false;
+                WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+                return placeholder(context);
+              },
             ),
     );
   }
