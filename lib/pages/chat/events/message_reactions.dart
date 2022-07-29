@@ -65,10 +65,7 @@ class MessageReactions extends StatelessWidget {
                     );
                   }
                 } else {
-                  showFutureLoadingDialog(
-                      context: context,
-                      future: () =>
-                          event.room.sendReaction(event.eventId, r.key!));
+                  event.room.sendReaction(event.eventId, r.key!);
                 }
               },
               onLongPress: () async => await _AdaptableReactorsDialog(
