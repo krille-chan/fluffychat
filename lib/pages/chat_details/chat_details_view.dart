@@ -225,8 +225,9 @@ class ChatDetailsView extends StatelessWidget {
                                   title: Text(L10n.of(context)!
                                       .whoIsAllowedToJoinThisGroup),
                                   subtitle: Text(
-                                    room.joinRules!.getLocalizedString(
-                                        MatrixLocals(L10n.of(context)!)),
+                                    room.joinRules?.getLocalizedString(
+                                            MatrixLocals(L10n.of(context)!)) ??
+                                        L10n.of(context)!.none,
                                   ),
                                 ),
                               ),
@@ -276,8 +277,9 @@ class ChatDetailsView extends StatelessWidget {
                                   title: Text(L10n.of(context)!
                                       .visibilityOfTheChatHistory),
                                   subtitle: Text(
-                                    room.historyVisibility!.getLocalizedString(
-                                        MatrixLocals(L10n.of(context)!)),
+                                    room.historyVisibility?.getLocalizedString(
+                                            MatrixLocals(L10n.of(context)!)) ??
+                                        L10n.of(context)!.none,
                                   ),
                                 ),
                               ),
