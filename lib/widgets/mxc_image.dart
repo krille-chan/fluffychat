@@ -134,7 +134,7 @@ class _MxcImageState extends State<MxcImage> {
           const Center(
             child: CircularProgressIndicator.adaptive(),
           ),
-      secondChild: data == null
+      secondChild: data == null || data.isEmpty
           ? Container()
           : Image.memory(
               data,
