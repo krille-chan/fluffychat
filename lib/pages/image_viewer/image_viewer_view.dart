@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import 'image_viewer.dart';
 
 class ImageViewerView extends StatelessWidget {
@@ -53,15 +53,14 @@ class ImageViewerView extends StatelessWidget {
         maxScale: 10.0,
         onInteractionEnd: controller.onInteractionEnds,
         child: Center(
-          child: ImageBubble(
-            controller.widget.event,
-            tapToView: false,
-            onLoaded: controller.widget.onLoaded,
-            fit: BoxFit.contain,
-            backgroundColor: Colors.black,
-            maxSize: false,
-            thumbnailOnly: false,
-            animated: true,
+          child: Hero(
+            tag: controller.widget.event.eventId,
+            child: MxcImage(
+              event: controller.widget.event,
+              fit: BoxFit.contain,
+              isThumbnail: false,
+              animated: true,
+            ),
           ),
         ),
       ),

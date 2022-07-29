@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/string_color.dart';
-import 'matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class Avatar extends StatelessWidget {
   final Uri? mxContent;
@@ -27,11 +26,6 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final src = mxContent?.getThumbnail(
-      client ?? Matrix.of(context).client,
-      width: size * MediaQuery.of(context).devicePixelRatio,
-      height: size * MediaQuery.of(context).devicePixelRatio,
-    );
     var fallbackLetters = '@';
     final name = this.name;
     if (name != null) {
@@ -68,17 +62,12 @@ class Avatar extends StatelessWidget {
               noPic ? name?.lightColor : Theme.of(context).secondaryHeaderColor,
           child: noPic
               ? textWidget
-              : CachedNetworkImage(
-                  imageUrl: src.toString(),
+              : MxcImage(
+                  uri: mxContent,
                   fit: BoxFit.cover,
                   width: size,
                   height: size,
-                  placeholder: (c, s) => textWidget,
-                  errorWidget: (c, s, d) => Stack(
-                    children: [
-                      textWidget,
-                    ],
-                  ),
+                  placeholder: (_) => textWidget,
                 ),
         ),
       ),
