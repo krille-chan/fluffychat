@@ -1040,7 +1040,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.3"
+    version: "0.11.0"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1361,12 +1361,10 @@ packages:
   qr_code_scanner:
     dependency: "direct main"
     description:
-      path: "."
-      ref: fix_break_changes_platform
-      resolved-ref: "0feca6f15042c279ff575c559a3430df917b623d"
-      url: "https://github.com/xeinebiu/qr_code_scanner.git"
-    source: git
-    version: "0.7.0"
+      name: qr_code_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   qr_flutter:
     dependency: "direct main"
     description:
