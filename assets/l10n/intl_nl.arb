@@ -2887,5 +2887,42 @@
   "storeInSecureStorageDescription": "Sla de herstelsleutel op in de beveiligde opslag van dit apparaat.",
   "@storeInSecureStorageDescription": {},
   "storeSecurlyOnThisDevice": "Veilig opslaan op dit apparaat",
-  "@storeSecurlyOnThisDevice": {}
+  "@storeSecurlyOnThisDevice": {},
+  "suggestedRooms": "Ontdek groepen in deze space",
+  "@suggestedRooms": {},
+  "numberRoomMembers": "{number} leden",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "dehydrateShare": "Dit is je prive FluffyChat export. Zorg ervoor dat je het niet verliest en houd het privé.",
+  "@dehydrateShare": {},
+  "dehydrate": "Sessie exporteren en apparaat wissen",
+  "@dehydrate": {},
+  "dehydrateWarning": "Deze actie kan niet ongedaan worden gemaakt. Zorg ervoor dat je het back-upbestand veilig opslaat.",
+  "@dehydrateWarning": {},
+  "dehydrateTor": "TOR-sessie: Exporteer sessie",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "Voor TOR-sessies is het aanbevolen de sessie te exporteren alvorens het venster te sluiten.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "TOR-sessie: Importeren sessie export",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Heb je de vorige keer je sessie geëxporteerd met TOR? Importeer het dan snel en ga verder met chatten.",
+  "@hydrateTorLong": {},
+  "hydrate": "Herstellen vanuit back-upbestand",
+  "@hydrate": {},
+  "advanced": "Geavanceerd",
+  "@advanced": {},
+  "indexedDbErrorTitle": "Problemen met privémodus",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "Het opslaan van berichten is helaas niet standaard ingeschakeld in de privémodus.\nBezoek alsjeblieft\n - about:config\n - stel dom.indexedDB.privateBrowsing.enabled in op true\nAnders is het niet mogelijk om FluffyChat op te starten.",
+  "@indexedDbErrorLong": {},
+  "countFiles": "{count} bestanden",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }
