@@ -1,17 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 
-import 'matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ContentBanner extends StatelessWidget {
   final Uri? mxContent;
   final double height;
   final IconData defaultIcon;
-  final bool loading;
   final void Function()? onEdit;
   final Client? client;
   final double opacity;
@@ -21,7 +17,6 @@ class ContentBanner extends StatelessWidget {
       {this.mxContent,
       this.height = 400,
       this.defaultIcon = Icons.account_circle_outlined,
-      this.loading = false,
       this.onEdit,
       this.client,
       this.opacity = 0.75,
@@ -47,44 +42,27 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: (!loading)
-                  ? LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
-                      // #775 don't request new image resolution on every resize
-                      // by rounding up to the next multiple of stepSize
-                      const stepSize = 300;
-                      final bannerSize =
-                          constraints.maxWidth * window.devicePixelRatio;
-                      final steppedBannerSize =
-                          (bannerSize / stepSize).ceil() * stepSize;
-                      final src = mxContent?.getThumbnail(
-                        client ?? Matrix.of(context).client,
-                        width: steppedBannerSize,
-                        height: steppedBannerSize,
-                        method: ThumbnailMethod.scale,
-                        animated: true,
-                      );
-                      return Hero(
-                        tag: heroTag,
-                        child: CachedNetworkImage(
-                          imageUrl: src.toString(),
-                          height: 300,
-                          fit: BoxFit.cover,
-                          errorWidget: (c, m, e) => Icon(
-                            defaultIcon,
-                            size: 200,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                          ),
-                        ),
-                      );
-                    })
-                  : Icon(
-                      defaultIcon,
-                      size: 200,
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+              child: LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                return Hero(
+                  tag: heroTag,
+                  child: MxcImage(
+                    uri: mxContent,
+                    animated: true,
+                    fit: BoxFit.cover,
+                    height: 400,
+                    width: 800,
+                    placeholder: (c) => Center(
+                      child: Icon(
+                        defaultIcon,
+                        size: 200,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
+                      ),
                     ),
+                  ),
+                );
+              }),
             ),
           ),
           if (onEdit != null)

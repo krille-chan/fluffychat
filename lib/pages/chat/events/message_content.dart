@@ -78,6 +78,7 @@ class MessageContent extends StatelessWidget {
               fit: BoxFit.cover,
             );
           case MessageTypes.Sticker:
+            if (event.redacted) continue textmessage;
             return Sticker(event);
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {

@@ -100,10 +100,11 @@ class Message extends StatelessWidget {
       bottomRight: const Radius.circular(AppConfig.borderRadius),
     );
     final noBubble = {
-      MessageTypes.Video,
-      MessageTypes.Image,
-      MessageTypes.Sticker,
-    }.contains(event.messageType);
+          MessageTypes.Video,
+          MessageTypes.Image,
+          MessageTypes.Sticker,
+        }.contains(event.messageType) &&
+        !event.redacted;
 
     if (ownMessage) {
       color = displayEvent.status.isError

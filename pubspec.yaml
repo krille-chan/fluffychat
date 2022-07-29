@@ -12,7 +12,6 @@ dependencies:
   animations: ^2.0.2
   async: ^2.8.2
   blurhash_dart: ^1.1.0
-  cached_network_image: ^3.2.0
   callkeep: ^0.3.2
   chewie: ^1.2.2
   collection: ^1.15.0-nullsafety.4

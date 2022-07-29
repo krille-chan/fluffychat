@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -35,8 +34,8 @@ class SsoButton extends StatelessWidget {
                 padding: const EdgeInsets.all(4.0),
                 child: identityProvider.icon == null
                     ? const Icon(Icons.web_outlined)
-                    : CachedNetworkImage(
-                        imageUrl: Uri.parse(identityProvider.icon!)
+                    : Image.network(
+                        Uri.parse(identityProvider.icon!)
                             .getDownloadLink(
                                 Matrix.of(context).getLoginClient())
                             .toString(),

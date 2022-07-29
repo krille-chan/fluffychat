@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -10,6 +9,7 @@ import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
 import 'command_hints.dart';
@@ -251,21 +251,15 @@ class InputBar extends StatelessWidget {
       );
     }
     if (suggestion['type'] == 'emote') {
-      final ratio = MediaQuery.of(context).devicePixelRatio;
-      final url = Uri.parse(suggestion['mxc'] ?? '').getThumbnail(
-        room.client,
-        width: size * ratio,
-        height: size * ratio,
-        method: ThumbnailMethod.scale,
-        animated: true,
-      );
       return Container(
         padding: padding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            CachedNetworkImage(
-              imageUrl: url.toString(),
+            MxcImage(
+              uri: suggestion['mxc'] is String
+                  ? Uri.parse(suggestion['mxc'] ?? '')
+                  : null,
               width: size,
               height: size,
             ),

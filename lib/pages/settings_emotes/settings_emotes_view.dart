@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
@@ -216,15 +216,8 @@ class _EmoteImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const size = 38.0;
-    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
-    final url = mxc.getThumbnail(
-      Matrix.of(context).client,
-      width: size * devicePixelRatio,
-      height: size * devicePixelRatio,
-      method: ThumbnailMethod.scale,
-    );
-    return CachedNetworkImage(
-      imageUrl: url.toString(),
+    return MxcImage(
+      uri: mxc,
       fit: BoxFit.contain,
       width: size,
       height: size,
