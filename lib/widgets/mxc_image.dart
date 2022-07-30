@@ -130,6 +130,7 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   void _tryLoad(_) async {
+    if (_imageData != null) return;
     try {
       await _load();
     } catch (_) {
@@ -169,6 +170,7 @@ class _MxcImageState extends State<MxcImage> {
               fit: widget.fit,
               errorBuilder: (context, __, ___) {
                 _isCached = false;
+                _imageData = null;
                 WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
                 return placeholder(context);
               },
