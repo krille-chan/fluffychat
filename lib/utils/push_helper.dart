@@ -11,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -68,7 +69,7 @@ Future<void> pushHelper(
   final body = await event.calcLocalizedBody(
     matrixLocals,
     plaintextBody: true,
-    withSenderNamePrefix: !event.room.isDirectChat,
+    withSenderNamePrefix: false,
     hideReply: true,
     hideEdit: true,
     removeMarkdown: true,
@@ -85,28 +86,38 @@ Future<void> pushHelper(
   final avatarFile =
       avatar == null ? null : await DefaultCacheManager().getSingleFile(avatar);
 
+  final id = await mapRoomIdToInt(event.room.id);
+
   // Show notification
+  final newMessage = Message(
+    body,
+    event.originServerTs,
+    Person(
+      name: event.senderFromMemoryOrFallback.calcDisplayname(),
+      icon: avatarFile == null
+          ? null
+          : BitmapFilePathAndroidIcon(avatarFile.path),
+    ),
+  );
+
+  final messagingStyleInformation = PlatformInfos.isAndroid
+      ? await AndroidFlutterLocalNotificationsPlugin()
+          .getActiveNotificationMessagingStyle(id)
+      : null;
+  messagingStyleInformation?.messages?.add(newMessage);
+
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
     AppConfig.pushNotificationsChannelId,
     AppConfig.pushNotificationsChannelName,
     channelDescription: AppConfig.pushNotificationsChannelDescription,
-    styleInformation: MessagingStyleInformation(
-      Person(name: event.room.client.userID),
-      conversationTitle: event.room.displayname,
-      groupConversation: !event.room.isDirectChat,
-      messages: [
-        Message(
-          body,
-          event.originServerTs,
-          Person(
-            name: event.room.displayname,
-            icon: avatarFile == null
-                ? null
-                : BitmapFilePathAndroidIcon(avatarFile.path),
-          ),
-        )
-      ],
-    ),
+    number: notification.counts?.unread,
+    styleInformation: messagingStyleInformation ??
+        MessagingStyleInformation(
+          Person(name: event.room.client.userID),
+          conversationTitle: event.room.displayname,
+          groupConversation: !event.room.isDirectChat,
+          messages: [newMessage],
+        ),
     ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
     importance: Importance.max,
     priority: Priority.high,
@@ -117,8 +128,9 @@ Future<void> pushHelper(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
   );
+
   await _flutterLocalNotificationsPlugin.show(
-    await mapRoomIdToInt(event.room.id),
+    id,
     event.room.displayname,
     body,
     platformChannelSpecifics,
