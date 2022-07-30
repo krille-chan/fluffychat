@@ -20,6 +20,43 @@ Future<void> pushHelper(
   String? activeRoomId,
   Future<dynamic> Function(String?)? onSelectNotification,
 }) async {
+  try {
+    await _tryPushHelper(
+      notification,
+      client: client,
+      l10n: l10n,
+      activeRoomId: activeRoomId,
+      onSelectNotification: onSelectNotification,
+    );
+  } catch (e, s) {
+    Logs().wtf('Push Helper has crashed!', e, s);
+
+    // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await _flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('notifications_icon'),
+        iOS: IOSInitializationSettings(),
+      ),
+      onSelectNotification: onSelectNotification,
+    );
+    _flutterLocalNotificationsPlugin.show(
+      0,
+      l10n?.newMessageInFluffyChat,
+      l10n?.openAppToReadMessages,
+      null,
+    );
+    rethrow;
+  }
+}
+
+Future<void> _tryPushHelper(
+  PushNotification notification, {
+  Client? client,
+  L10n? l10n,
+  String? activeRoomId,
+  Future<dynamic> Function(String?)? onSelectNotification,
+}) async {
   final isBackgroundMessage = client == null;
   Logs().v(
     'Push helper has been started (background=$isBackgroundMessage).',
@@ -52,11 +89,13 @@ Future<void> pushHelper(
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
-    if (notification.counts == null || notification.counts?.unread == 0) {
-      await _flutterLocalNotificationsPlugin.cancelAll();
-      final store = await SharedPreferences.getInstance();
-      await store.setString(
-          SettingKeys.notificationCurrentIds, json.encode({}));
+    if (notification.counts?.unread == 0) {
+      if (notification.counts == null || notification.counts?.unread == 0) {
+        await _flutterLocalNotificationsPlugin.cancelAll();
+        final store = await SharedPreferences.getInstance();
+        await store.setString(
+            SettingKeys.notificationCurrentIds, json.encode({}));
+      }
     }
     return;
   }
