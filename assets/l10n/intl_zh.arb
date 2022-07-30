@@ -2925,5 +2925,9 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "user": "用户",
+  "@user": {},
+  "custom": "自定义",
+  "@custom": {}
 }
