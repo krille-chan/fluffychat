@@ -2920,5 +2920,9 @@
     }
   },
   "suggestedRooms": "Знайти групи у просторі",
-  "@suggestedRooms": {}
+  "@suggestedRooms": {},
+  "user": "Користувач",
+  "@user": {},
+  "custom": "Користувацький",
+  "@custom": {}
 }
