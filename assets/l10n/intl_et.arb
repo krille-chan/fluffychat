@@ -2916,5 +2916,18 @@
   "indexedDbErrorLong": "Privaatse akna puhul andmete salvestamine vaikimisi pole kasutusel.\nPalun toimi alljärgnevalt:\n- ava about:config\n- määra dom.indexedDB.privateBrowsing.enabled väärtuseks true\nVastasel juhul sa ei saa FluffyChat'i kasutada.",
   "@indexedDbErrorLong": {},
   "hydrate": "Taasta varundatud failist",
-  "@hydrate": {}
+  "@hydrate": {},
+  "user": "Kasutaja",
+  "@user": {},
+  "custom": "Kohandatud",
+  "@custom": {},
+  "numberRoomMembers": "{number} liiget",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Otsi jututube selles kogukonnas",
+  "@suggestedRooms": {}
 }
