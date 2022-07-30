@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -44,7 +45,17 @@ Future<void> pushHelper(
       0,
       l10n?.newMessageInFluffyChat,
       l10n?.openAppToReadMessages,
-      null,
+      NotificationDetails(
+          iOS: const IOSNotificationDetails(),
+          android: AndroidNotificationDetails(
+            AppConfig.pushNotificationsChannelId,
+            AppConfig.pushNotificationsChannelName,
+            channelDescription: AppConfig.pushNotificationsChannelDescription,
+            number: notification.counts?.unread,
+            ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
+            importance: Importance.max,
+            priority: Priority.high,
+          )),
     );
     rethrow;
   }
@@ -122,8 +133,14 @@ Future<void> _tryPushHelper(
         height: 126,
       )
       .toString();
-  final avatarFile =
-      avatar == null ? null : await DefaultCacheManager().getSingleFile(avatar);
+  File? avatarFile;
+  try {
+    avatarFile = avatar == null
+        ? null
+        : await DefaultCacheManager().getSingleFile(avatar);
+  } catch (e, s) {
+    Logs().e('Unable to get avatar picture', e, s);
+  }
 
   final id = await mapRoomIdToInt(event.room.id);
 
