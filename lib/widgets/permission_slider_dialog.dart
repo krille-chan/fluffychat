@@ -1,91 +1,68 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/adaptive_flat_button.dart';
-
-class PermissionSliderDialog extends StatefulWidget {
-  const PermissionSliderDialog({
-    Key? key,
-    this.initialPermission = 0,
-  }) : super(key: key);
-
-  Future<int?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog<int>(
-          context: context,
-          builder: (context) => this,
-          useRootNavigator: false,
-        )
-      : showDialog<int>(
-          context: context,
-          builder: (context) => this,
-          useRootNavigator: false,
-        );
-
-  final int initialPermission;
-  @override
-  _PermissionSliderDialogState createState() => _PermissionSliderDialogState();
+enum PermissionLevel {
+  user,
+  moderator,
+  admin,
+  custom,
 }
 
-class _PermissionSliderDialogState extends State<PermissionSliderDialog> {
-  late int _permission;
-  @override
-  void initState() {
-    _permission = widget.initialPermission;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final title = Text(
-      L10n.of(context)!.setPermissionsLevel,
-      textAlign: TextAlign.center,
-    );
-    final content = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text('Level: ' +
-            (_permission == 100
-                ? '$_permission (${L10n.of(context)!.admin})'
-                : _permission >= 50
-                    ? '$_permission (${L10n.of(context)!.moderator})'
-                    : _permission.toString())),
-        SizedBox(
-          height: 56,
-          child: Slider.adaptive(
-            value: _permission.toDouble(),
-            onChanged: (d) => setState(() => _permission = d.round()),
-            max: 100.0,
-            min: 0.0,
-          ),
-        ),
-      ],
-    );
-    final buttons = [
-      AdaptiveFlatButton(
-        label: L10n.of(context)!.cancel,
-        onPressed: () =>
-            Navigator.of(context, rootNavigator: false).pop<int>(null),
-      ),
-      AdaptiveFlatButton(
-        label: L10n.of(context)!.confirm,
-        onPressed: () =>
-            Navigator.of(context, rootNavigator: false).pop<int>(_permission),
-      ),
-    ];
-    if (PlatformInfos.isCupertinoStyle) {
-      return CupertinoAlertDialog(
-        title: title,
-        content: content,
-        actions: buttons,
-      );
+extension on PermissionLevel {
+  String toLocalizedString(BuildContext context) {
+    switch (this) {
+      case PermissionLevel.user:
+        return L10n.of(context)!.user;
+      case PermissionLevel.moderator:
+        return L10n.of(context)!.moderator;
+      case PermissionLevel.admin:
+        return L10n.of(context)!.admin;
+      case PermissionLevel.custom:
+      default:
+        return L10n.of(context)!.custom;
     }
-    return AlertDialog(
-      title: title,
-      content: content,
-      actions: buttons,
-    );
+  }
+}
+
+Future<int?> showPermissionChooser(BuildContext context,
+    {int currentLevel = 0}) async {
+  final permissionLevel = await showModalActionSheet(
+    context: context,
+    title: L10n.of(context)!.setPermissionsLevel,
+    actions: PermissionLevel.values
+        .map(
+          (level) => SheetAction(
+            key: level,
+            label: level.toLocalizedString(context),
+          ),
+        )
+        .toList(),
+  );
+  if (permissionLevel == null) return null;
+
+  switch (permissionLevel) {
+    case PermissionLevel.user:
+      return 0;
+    case PermissionLevel.moderator:
+      return 50;
+    case PermissionLevel.admin:
+      return 100;
+    case PermissionLevel.custom:
+      final customLevel = await showTextInputDialog(
+        context: context,
+        title: L10n.of(context)!.setPermissionsLevel,
+        textFields: [
+          DialogTextField(
+            initialText: currentLevel.toString(),
+            keyboardType: TextInputType.number,
+            autocorrect: false,
+          )
+        ],
+      );
+      if (customLevel == null) return null;
+      return int.tryParse(customLevel.first);
   }
 }

@@ -2875,5 +2875,7 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "user": "User",
+  "custom": "Custom"
 }

@@ -30,9 +30,10 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
           SnackBar(content: Text(L10n.of(context)!.noPermission)));
       return;
     }
-    final newLevel =
-        await PermissionSliderDialog(initialPermission: currentLevel)
-            .show(context);
+    final newLevel = await showPermissionChooser(
+      context,
+      currentLevel: currentLevel,
+    );
     if (newLevel == null) return;
     final content = Map<String, dynamic>.from(
         room.getState(EventTypes.RoomPowerLevels)!.content);

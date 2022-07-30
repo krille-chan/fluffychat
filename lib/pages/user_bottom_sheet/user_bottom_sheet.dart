@@ -115,9 +115,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         }
         break;
       case 'permission':
-        final newPermission = await PermissionSliderDialog(
-                initialPermission: widget.user.powerLevel)
-            .show(context);
+        final newPermission = await showPermissionChooser(
+          context,
+          currentLevel: widget.user.powerLevel,
+        );
         if (newPermission != null) {
           if (newPermission == 100 && await _askConfirmation() == false) break;
           await showFutureLoadingDialog(
