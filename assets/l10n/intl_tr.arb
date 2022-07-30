@@ -2925,5 +2925,9 @@
     }
   },
   "suggestedRooms": "Bu alandaki grupları keşfet",
-  "@suggestedRooms": {}
+  "@suggestedRooms": {},
+  "user": "Kullanıcı",
+  "@user": {},
+  "custom": "Özel",
+  "@custom": {}
 }
