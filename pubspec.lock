@@ -1399,42 +1399,42 @@ packages:
       name: record
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.3.2"
   record_linux:
     dependency: transitive
     description:
       name: record_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.3.2"
   record_macos:
     dependency: transitive
     description:
       name: record_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.1"
   record_platform_interface:
     dependency: transitive
     description:
       name: record_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   record_web:
     dependency: transitive
     description:
       name: record_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1"
+    version: "0.4.0"
   record_windows:
     dependency: transitive
     description:
       name: record_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.6.1"
   remove_emoji:
     dependency: transitive
     description:
