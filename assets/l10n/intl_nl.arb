@@ -2924,5 +2924,9 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "user": "Persoon",
+  "@user": {},
+  "custom": "Aangepast",
+  "@custom": {}
 }
