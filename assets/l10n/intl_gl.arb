@@ -2925,5 +2925,9 @@
     }
   },
   "suggestedRooms": "Descubre grupos neste espazo",
-  "@suggestedRooms": {}
+  "@suggestedRooms": {},
+  "user": "Usuaria",
+  "@user": {},
+  "custom": "Personal",
+  "@custom": {}
 }
