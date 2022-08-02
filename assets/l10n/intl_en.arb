@@ -142,6 +142,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "allSuggestedRoomsJoined": "You joined all suggested rooms",
   "askVerificationRequest": "Accept this verification request from {username}?",
   "@askVerificationRequest": {
     "type": "text",

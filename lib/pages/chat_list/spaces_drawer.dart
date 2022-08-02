@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
@@ -55,7 +56,9 @@ class SpacesDrawer extends StatelessWidget {
           entry.children.addAll(childrenSpaceEntries);
           spacesHierarchy.add(entry);
         } else {
-          if (space?.spaceParents.isEmpty ?? false) {
+          // don't add rooms with parent space apart from those where the
+          // parent space is not joined
+          if (space?.hasNotJoinedParentSpace() ?? false) {
             spacesHierarchy.add(entry);
           }
         }
@@ -66,10 +69,6 @@ class SpacesDrawer extends StatelessWidget {
 
     spacesHierarchy.removeWhere((element) =>
         childSpaceIds.contains(element.spacesEntry.getSpace(context)?.id));
-
-    // final spacesHierarchy = spaceEntries;
-
-    // TODO(TheOeWithTheBraid): wait for space hierarchy https://gitlab.com/famedly/company/frontend/libraries/matrix_api_lite/-/merge_requests/58
 
     return ListView.builder(
       itemCount: spacesHierarchy.length + 1,
@@ -113,7 +112,11 @@ class SpacesEntryMaybeChildren {
       [String? parent]) {
     if (entry is SpaceSpacesEntry) {
       final room = entry.space;
-      if ((parent == null && room.spaceParents.isNotEmpty) ||
+      // don't add rooms with parent space apart from those where the
+      // parent space is not joined
+      if ((parent == null &&
+              room.spaceParents.isNotEmpty &&
+              room.hasNotJoinedParentSpace()) ||
           (parent != null &&
               !room.spaceParents.any((element) => element.roomId == parent))) {
         return null;
@@ -172,5 +175,16 @@ class SpacesEntryMaybeChildren {
   @override
   String toString() {
     return jsonEncode(toJson());
+  }
+}
+
+extension on Room {
+  bool hasNotJoinedParentSpace() {
+    return (spaceParents.isEmpty ||
+        spaceParents.none(
+          (p0) =>
+              (p0.canonical ?? true) &&
+              client.rooms.map((e) => e.id).contains(p0.roomId),
+        ));
   }
 }

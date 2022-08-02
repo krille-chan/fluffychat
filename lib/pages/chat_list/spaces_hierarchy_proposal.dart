@@ -62,6 +62,7 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
         builder: (context, snapshot) {
           Widget child;
           if (snapshot.hasData) {
+            final thereWereRooms = snapshot.data!.rooms.isNotEmpty;
             final rooms = snapshot.data!.rooms.where(
               (element) =>
                   element.roomId != widget.space &&
@@ -72,9 +73,11 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
                       // in case not, just leave it...
                       : true) &&
                   client.rooms
-                      .any((knownRoom) => element.roomId != knownRoom.id),
+                      .every((knownRoom) => element.roomId != knownRoom.id),
             );
-            if (rooms.isEmpty) child = const ListTile(key: ValueKey(false));
+            if (rooms.isEmpty && !thereWereRooms) {
+              child = const ListTile(key: ValueKey(false));
+            }
             child = Column(
               key: ValueKey(widget.space),
               mainAxisSize: MainAxisSize.min,
@@ -96,6 +99,11 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
                         ),
                   onTap: _refreshRooms,
                 ),
+                if (rooms.isEmpty && thereWereRooms)
+                  ListTile(
+                    leading: const Icon(Icons.info),
+                    title: Text(L10n.of(context)!.allSuggestedRoomsJoined),
+                  ),
                 ...rooms.map(
                   (e) => RecommendedRoomListItem(
                     room: e,
