@@ -2072,7 +2072,7 @@
   "@yourChatBackupHasBeenSetUp": {},
   "setupChatBackupDescription": "Az üzeneteid védelme érdekében generáltunk neked egy biztonsági kulcsot.\nKérlek, tárold egy biztonságos helyen, mint például egy jelszókezelő.",
   "@setupChatBackupDescription": {},
-  "chatBackupDescription": "A beszélgetések mentése egy biztonsági kulccsal van védve. Bizonyosodj meg róla, hogy nem fogod elveszíteni.",
+  "chatBackupDescription": "A régebbi beszélgetéseid egy biztonsági kulccsal vanak védve. Bizonyosodj meg róla, hogy nem fogod elveszíteni.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2253,5 +2253,68 @@
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "badServerVersionsException": "A Matrix szerver ezeket a specifikáció verziókat támogatja:\n{serverVersions}\nAzonban ez az app csak ezeket: {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "commandHint_me": "Mit csinálsz épp",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_op": "Az adott felhasználó hozzáférési szintjét változtatja (alapértelmezett: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "Válasz küldése reakcióként",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_unban": "Az adott felhasználó visszaengedése ebbe a szobába",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "numberRoomMembers": "{number} tag",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Csoportok felfedezése ebben a térben",
+  "@suggestedRooms": {},
+  "dontAskAgain": "Félbehagyás, és ne kérdezze többször",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Blokkolt szerverek szerkesztése",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrate": "Munkamenet exportálásssa és az eszköz törlése",
+  "@dehydrate": {},
+  "dehydrateWarning": "Ez nem visszavonható. Bizonyosodj meg róla, hogy biztonságos helyen tárolod a mentett fájlt.",
+  "@dehydrateWarning": {},
+  "dehydrateTor": "Tor felhasználók: munkamenet dehidratálása",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "Tor felhasználóknak ajánlott a munkamenet dehidratálása az ablak bezárása előtt.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "Tor felhasználók: hidratált munkamenet importálása",
+  "@hydrateTor": {},
+  "hydrate": "Visszaállítás fájlból",
+  "@hydrate": {},
+  "advanced": "Haladó",
+  "@advanced": {},
+  "showSpaces": "Tér lista mutatása",
+  "@showSpaces": {}
 }
