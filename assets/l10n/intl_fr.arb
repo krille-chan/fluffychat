@@ -401,7 +401,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "La sauvegarde de votre discussion est sécurisée par une clé de sécurité. Veillez à ne pas la perdre.",
+  "chatBackupDescription": "Vos anciens messages sont sécurisés par une clé de récupération. Veillez à ne pas la perdre.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2493,7 +2493,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Effacer la sauvegarde de votre discussion pour créer une nouvelle clé de sécurité ?",
+  "wipeChatBackup": "Effacer la sauvegarde de votre discussion pour créer une nouvelle clé de récupération ?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2610,7 +2610,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Votre sauvegarde de la discussion a été mise en place.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Pour protéger vos messages, nous avons généré une clé de sécurité pour vous.\nVeuillez la garder dans un endroit sûr, par exemple un gestionnaire de mots de passe.",
+  "setupChatBackupDescription": "Pour protéger vos messages, nous avons généré une clé de récupération pour vous.\nVeuillez la garder dans un endroit sûr, comme un gestionnaire de mots de passe.",
   "@setupChatBackupDescription": {},
   "yourUserId": "Votre identifiant utilisateur :",
   "@yourUserId": {},
@@ -2856,5 +2856,78 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
+  },
+  "saveTheRecoveryKeyNow": "Enregistrer la clé de récupération maintenant",
+  "@saveTheRecoveryKeyNow": {},
+  "users": "Utilisateurs/trices",
+  "@users": {},
+  "enableAutoBackups": "Activer les sauvegardes automatiques",
+  "@enableAutoBackups": {},
+  "storeInAndroidKeystore": "Stocker dans Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Stocker dans Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "user": "Utilisateur/trice",
+  "@user": {},
+  "custom": "Personnalisé",
+  "@custom": {},
+  "showSpaces": "Afficher la liste des espaces",
+  "@showSpaces": {},
+  "hydrate": "Restaurer à partir du fichier de sauvegarde",
+  "@hydrate": {},
+  "dehydrateWarning": "Cette action ne peut pas être annulée. Assurez-vous d'enregistrer convenablement le fichier de sauvegarde.",
+  "@dehydrateWarning": {},
+  "dehydrateTorLong": "Pour les utilisateurs/trices de TOR, il est recommandé d'exporter la session avant de fermer la fenêtre.",
+  "@dehydrateTorLong": {},
+  "recoveryKey": "Clé de récupération",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Clé de récupération perdue ?",
+  "@recoveryKeyLost": {},
+  "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter FluffyChat.",
+  "@indexedDbErrorLong": {},
+  "saveKeyManuallyDescription": "Enregistrer cette clé manuellement en déclenchant la boîte de dialogue de partage du système ou le presse-papiers.",
+  "@saveKeyManuallyDescription": {},
+  "storeInSecureStorageDescription": "Stocker la clé de récupération dans un espace sécurisé de cet appareil.",
+  "@storeInSecureStorageDescription": {},
+  "indexedDbErrorTitle": "Problèmes relatifs au mode privé",
+  "@indexedDbErrorTitle": {},
+  "stories": "Stories",
+  "@stories": {},
+  "noEmailWarning": "Veuillez saisir une adresse électronique valide. Sinon, vous ne pourrez pas réinitialiser votre mot de passe. Si vous ne voulez pas le faire, appuyez à nouveau sur le bouton pour continuer.",
+  "@noEmailWarning": {},
+  "numberRoomMembers": "{number} membres",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Découvrez les groupes dans cet espace",
+  "@suggestedRooms": {},
+  "dehydrate": "Exporter la session et effacer l'appareil",
+  "@dehydrate": {},
+  "dehydrateShare": "Ceci est votre export privé de FluffyChat. Assurez-vous de ne pas le perdre et de le garder privé.",
+  "@dehydrateShare": {},
+  "dehydrateTor": "Utilisateurs/trices de TOR : Exporter la session",
+  "@dehydrateTor": {},
+  "hydrateTor": "Utilisateurs/trices de TOR : Importer une session exportée",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Vous avez exporté votre session la dernière fois sur TOR ? Importez-la rapidement et continuez à discuter.",
+  "@hydrateTorLong": {},
+  "advanced": "Avancé",
+  "@advanced": {},
+  "pleaseEnterRecoveryKey": "Veuillez saisir votre clé de récupération :",
+  "@pleaseEnterRecoveryKey": {},
+  "pleaseEnterRecoveryKeyDescription": "Pour déverrouiller vos anciens messages, veuillez entrer votre clé de récupération qui a été générée lors d'une session précédente. Votre clé de récupération n'est PAS votre mot de passe.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "unlockOldMessages": "Déverrouiller les anciens messages",
+  "@unlockOldMessages": {},
+  "storeSecurlyOnThisDevice": "Stocker de manière sécurisé sur cet appareil",
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} fichiers",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
   }
 }
