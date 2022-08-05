@@ -58,8 +58,10 @@ abstract class FluffyThemes {
           border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
           filled: true,
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
+          surfaceTintColor: Colors.white,
+          shadowColor: Colors.black.withAlpha(64),
         ),
       );
 

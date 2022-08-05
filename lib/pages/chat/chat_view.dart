@@ -164,7 +164,7 @@ class ChatView extends StatelessWidget {
             builder: (BuildContext context, snapshot) {
               return Scaffold(
                 appBar: AppBar(
-                  elevation: 2,
+                  elevation: 3,
                   actionsIconTheme: IconThemeData(
                     color: controller.selectedEvents.isEmpty
                         ? null
@@ -193,7 +193,6 @@ class ChatView extends StatelessWidget {
                         ),
                       )
                     : null,
-                backgroundColor: Theme.of(context).colorScheme.surface,
                 body: DropTarget(
                   onDragDone: controller.onDragDone,
                   onDragEntered: controller.onDragEntered,

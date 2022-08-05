@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -47,7 +48,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         .withAlpha(128),
                     border: UnderlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(90),
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
                     ),
                     hintText: controller.activeSpacesEntry.getName(context),
                     prefixIcon: Padding(
