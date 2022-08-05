@@ -41,25 +41,36 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   textInputAction: TextInputAction.search,
                   onChanged: controller.onSearchEnter,
                   decoration: InputDecoration(
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .secondaryContainer
+                        .withAlpha(128),
                     border: UnderlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(90),
                     ),
                     hintText: controller.activeSpacesEntry.getName(context),
-                    prefixIcon: controller.isSearchMode
-                        ? IconButton(
-                            tooltip: L10n.of(context)!.cancel,
-                            icon: const Icon(Icons.close_outlined),
-                            onPressed: controller.cancelSearch,
-                            color: Theme.of(context).colorScheme.onBackground,
-                          )
-                        : IconButton(
-                            onPressed: Scaffold.of(context).openDrawer,
-                            icon: Icon(
-                              Icons.menu,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8.0,
+                        right: 4,
+                      ),
+                      child: controller.isSearchMode
+                          ? IconButton(
+                              tooltip: L10n.of(context)!.cancel,
+                              icon: const Icon(Icons.close_outlined),
+                              onPressed: controller.cancelSearch,
                               color: Theme.of(context).colorScheme.onBackground,
+                            )
+                          : IconButton(
+                              onPressed: Scaffold.of(context).openDrawer,
+                              icon: Icon(
+                                Icons.menu,
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                              ),
                             ),
-                          ),
+                    ),
                     suffixIcon: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: controller.isSearchMode
