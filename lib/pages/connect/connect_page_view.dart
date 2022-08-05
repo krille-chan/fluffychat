@@ -33,7 +33,7 @@ class ConnectPageView extends StatelessWidget {
         children: [
           if (Matrix.of(context).loginRegistrationSupported ?? false) ...[
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Center(
                 child: Stack(
                   children: [
@@ -85,7 +85,7 @@ class ConnectPageView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: controller.usernameController,
                 onSubmitted: (_) => controller.signUp(),
@@ -101,7 +101,7 @@ class ConnectPageView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Hero(
                 tag: 'loginButton',
                 child: ElevatedButton(
@@ -116,7 +116,7 @@ class ConnectPageView extends StatelessWidget {
               children: [
                 const Expanded(child: Divider(color: Colors.white)),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Text(
                     L10n.of(context)!.or,
                     style: const TextStyle(color: Colors.white),
@@ -138,7 +138,7 @@ class ConnectPageView extends StatelessWidget {
                 : Center(
                     child: identityProviders.length == 1
                         ? Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
                               onPressed: () => controller
                                   .ssoLoginAction(identityProviders.single.id!),
@@ -160,7 +160,7 @@ class ConnectPageView extends StatelessWidget {
                   ),
           if (controller.supportsLogin)
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Hero(
                 tag: 'signinButton',
                 child: ElevatedButton(

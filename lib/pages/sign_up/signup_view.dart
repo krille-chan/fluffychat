@@ -27,7 +27,7 @@ class SignupPageView extends StatelessWidget {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextFormField(
                 readOnly: controller.loading,
                 autocorrect: false,
@@ -60,7 +60,7 @@ class SignupPageView extends StatelessWidget {
             ),
             if (controller.displaySecondPasswordField)
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
                   readOnly: controller.loading,
                   autocorrect: false,
@@ -81,7 +81,7 @@ class SignupPageView extends StatelessWidget {
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextFormField(
                 readOnly: controller.loading,
                 autocorrect: false,
@@ -109,7 +109,7 @@ class SignupPageView extends StatelessWidget {
             Hero(
               tag: 'loginButton',
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12),
                 child: ElevatedButton(
                   onPressed: controller.loading ? () {} : controller.signup,
                   child: controller.loading

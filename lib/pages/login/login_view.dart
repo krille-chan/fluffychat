@@ -34,7 +34,7 @@ class LoginView extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(12.0),
                 child: TextField(
                   readOnly: controller.loading,
                   autocorrect: false,
@@ -57,7 +57,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(12.0),
                 child: TextField(
                   readOnly: controller.loading,
                   autocorrect: false,
@@ -91,7 +91,7 @@ class LoginView extends StatelessWidget {
               Hero(
                 tag: 'signinButton',
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     onPressed: controller.loading
                         ? null
@@ -106,7 +106,7 @@ class LoginView extends StatelessWidget {
                 children: [
                   const Expanded(child: Divider(color: Colors.white)),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Text(
                       L10n.of(context)!.or,
                       style: const TextStyle(color: Colors.white),
@@ -116,7 +116,7 @@ class LoginView extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12.0),
                 child: ElevatedButton(
                   onPressed:
                       controller.loading ? () {} : controller.passwordForgotten,

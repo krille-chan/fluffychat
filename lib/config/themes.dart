@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
@@ -59,7 +58,6 @@ abstract class FluffyThemes {
           filled: true,
         ),
         appBarTheme: AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
           surfaceTintColor: Colors.white,
           shadowColor: Colors.black.withAlpha(64),
         ),
@@ -92,6 +90,10 @@ abstract class FluffyThemes {
           filled: true,
         ),
         dividerColor: Colors.blueGrey.shade900,
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.black,
+          shadowColor: Colors.black.withAlpha(64),
+        ),
       );
 
   static Color blackWhiteColor(BuildContext context) =>
