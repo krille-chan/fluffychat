@@ -77,28 +77,21 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
     return L10n.of(context)!.storeSecurlyOnThisDevice;
   }
 
-  static const secureStorage = FlutterSecureStorage(
-    aOptions: AndroidOptions(
-      encryptedSharedPreferences: true,
-    ),
-  );
-
   @override
   void initState() {
     _createBootstrap(widget.wipe);
     super.initState();
   }
 
-  void _createBootstrap(bool wipe) {
+  void _createBootstrap(bool wipe) async {
     _wipe = wipe;
     titleText = null;
     _recoveryKeyStored = false;
     bootstrap =
         widget.client.encryption!.bootstrap(onUpdate: () => setState(() {}));
-    secureStorage.read(key: _secureStorageKey).then((key) {
-      if (key == null) return;
-      _recoveryKeyTextEditingController.text = key;
-    });
+    final key = await const FlutterSecureStorage().read(key: _secureStorageKey);
+    if (key == null) return;
+    _recoveryKeyTextEditingController.text = key;
   }
 
   @override
@@ -188,7 +181,7 @@ class _BootstrapDialogState extends State<BootstrapDialog> {
                       (_recoveryKeyCopied || _storeInSecureStorage == true)
                           ? () {
                               if (_storeInSecureStorage == true) {
-                                secureStorage.write(
+                                const FlutterSecureStorage().write(
                                   key: _secureStorageKey,
                                   value: key,
                                 );
