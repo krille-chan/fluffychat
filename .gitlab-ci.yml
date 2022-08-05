@@ -391,9 +391,11 @@ upload-windows:
   image: alpine:latest
   script:
     - apk add --no-cache curl zip
+    - mv build/windows/runner/Release/fluffychat.msix fluffychat.msix
     - cd build/windows/runner/Release; zip -r ../../../../package.zip  . ; cd -
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file fluffychat.msix ${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix
 
 upload-playstore:
   stage: release
@@ -416,6 +418,7 @@ release:
         --assets-link "{\"name\":\"fluffychat-linux-x86.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-linux-arm64.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz\"}" \
         --assets-link "{\"name\":\"fluffychat-windows.zip\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip\"}" \
+        --assets-link "{\"name\":\"fluffychat-windows.msix\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix\"}" \
         --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
         --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage\",\"filepath\":\"/FluffyChat-x86_64.AppImage\"}"
         --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage.zsync\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage.zsync\",\"filepath\":\"/FluffyChat-x86_64.AppImage.zsync\"}"

@@ -19,6 +19,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "updateAvailable": "FluffyChat update available",
+  "updateNow": "Start update in background",
   "accept": "Accept",
   "@accept": {
     "type": "text",

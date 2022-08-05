@@ -53,6 +53,7 @@ dependencies:
   geolocator: ^7.6.2
   handy_window: ^0.1.6
   hive_flutter: ^1.1.0
+  http: ^0.13.4
   image: ^3.1.1
   image_picker: ^0.8.4+8
   intl: any
@@ -96,10 +97,10 @@ dev_dependencies:
   flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter
-  http: ^0.13.4
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
+  msix: ^3.6.2
 
 flutter_native_splash:
   color: "#ffffff"
@@ -127,6 +128,19 @@ flutter:
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
 
+msix_config:
+  display_name: FluffyChat
+  publisher_display_name: FluffyChat
+  publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
+  identity_name: chat.fluffy.fluffychat
+  logo_path: assets\logo.png
+  capabilities: internetClient, location, microphone, webcam
+  protocol_activation: https
+  app_uri_handler_hosts: fluffychat.im, matrix.to
+  execution_alias: fluffychat
+  sign_msix: false
+  install_certificate: false
+
 dependency_overrides:
   # Necessary for webRTC on web.
   # Fix for stream fallback for unsupported browsers:
@@ -136,6 +150,12 @@ dependency_overrides:
       url: https://github.com/TheOneWithTheBraid/plus_plugins.git
       ref: a04401cb48abe92d138c0e9288b360739994a9e9
       path: packages/connectivity_plus/connectivity_plus_web
+  # fake secure storage plugin for Windows
+  # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
+  flutter_secure_storage_windows:
+    git:
+      url: https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git
+      ref: main
   geolocator_android:
     hosted:
       name: geolocator_android
