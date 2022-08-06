@@ -32,9 +32,7 @@ class LoginScaffold extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(
-              'assets/login_wallpaper.png',
-            ),
+            image: AssetImage('assets/login_wallpaper.png'),
           ),
         ),
         alignment: Alignment.center,

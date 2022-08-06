@@ -61,6 +61,12 @@ abstract class FluffyThemes {
           surfaceTintColor: Colors.white,
           shadowColor: Colors.black.withAlpha(64),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            textStyle: const TextStyle(fontSize: 16),
+          ),
+        ),
       );
 
   static ThemeData dark([ColorScheme? colorScheme]) => ThemeData(
@@ -93,6 +99,12 @@ abstract class FluffyThemes {
         appBarTheme: AppBarTheme(
           surfaceTintColor: Colors.black,
           shadowColor: Colors.black.withAlpha(64),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            textStyle: const TextStyle(fontSize: 16),
+          ),
         ),
       );
 
