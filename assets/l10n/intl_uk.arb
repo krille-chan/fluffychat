@@ -2924,5 +2924,9 @@
   "user": "Користувач",
   "@user": {},
   "custom": "Користувацький",
-  "@custom": {}
+  "@custom": {},
+  "updateAvailable": "Доступне оновлення FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Почати оновлення у фоновому режимі",
+  "@updateNow": {}
 }
