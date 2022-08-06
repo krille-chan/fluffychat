@@ -28,12 +28,17 @@ static void my_application_activate(GApplication* application) {
   // If running on Wayland assume the header bar will work (may need changing
   // if future cases occur).
   gboolean use_header_bar = TRUE;
+  const gchar* gtk_csd_env = g_getenv("GTK_CSD");
+  if (gtk_csd_env != nullptr && g_strcmp0(gtk_csd_env, "1") != 0)
+    use_header_bar = FALSE;
 #ifdef GDK_WINDOWING_X11
   GdkScreen *screen = gtk_window_get_screen(window);
   if (GDK_IS_X11_SCREEN(screen)) {
      const gchar* wm_name = gdk_x11_screen_get_window_manager_name(screen);
      if (g_strcmp0(wm_name, "GNOME Shell") != 0) {
        use_header_bar = FALSE;
+       // Disable libhandy here, otherwise the close button disappears on KDE X11
+       g_setenv("GTK_CSD", "0", TRUE);
      }
   }
 #endif
