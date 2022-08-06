@@ -149,6 +149,9 @@ build_windows:
     paths:
       - build/windows/runner/Release
   allow_failure: true
+  only:
+    - main
+    - tags
 
 build_android_debug:
   stage: coverage
