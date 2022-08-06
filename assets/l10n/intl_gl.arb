@@ -2929,5 +2929,9 @@
   "user": "Usuaria",
   "@user": {},
   "custom": "Personal",
-  "@custom": {}
+  "@custom": {},
+  "updateAvailable": "Actualización dispoñible para FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Iniciar actualización en segundo plano",
+  "@updateNow": {}
 }
