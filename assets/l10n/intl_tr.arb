@@ -2929,5 +2929,9 @@
   "user": "Kullanıcı",
   "@user": {},
   "custom": "Özel",
-  "@custom": {}
+  "@custom": {},
+  "updateAvailable": "FluffyChat güncellemesi var",
+  "@updateAvailable": {},
+  "updateNow": "Güncellemeyi arka planda başlat",
+  "@updateNow": {}
 }
