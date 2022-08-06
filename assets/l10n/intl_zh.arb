@@ -2929,5 +2929,9 @@
   "user": "用户",
   "@user": {},
   "custom": "自定义",
-  "@custom": {}
+  "@custom": {},
+  "updateAvailable": "FluffyChat 更新可用",
+  "@updateAvailable": {},
+  "updateNow": "在后台开始更新",
+  "@updateNow": {}
 }
