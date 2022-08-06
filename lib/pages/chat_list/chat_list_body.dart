@@ -14,7 +14,6 @@ import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../utils/stream_extension.dart';
@@ -76,7 +75,6 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const ConnectionStatusHeader(),
                   SpaceRoomListTopBar(widget.controller),
                   if (roomSearchResult != null) ...[
                     SearchTitle(

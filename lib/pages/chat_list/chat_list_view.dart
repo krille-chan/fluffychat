@@ -7,6 +7,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_drawer.dart';
+import 'package:fluffychat/widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'chat_list_header.dart';
@@ -33,6 +34,7 @@ class ChatListView extends StatelessWidget {
             appBar: ChatListHeader(controller: controller),
             body: ChatListViewBody(controller),
             drawer: ChatListDrawer(controller),
+            bottomNavigationBar: const ConnectionStatusHeader(),
             floatingActionButton: selectMode == SelectMode.normal
                 ? KeyBoardShortcuts(
                     child:

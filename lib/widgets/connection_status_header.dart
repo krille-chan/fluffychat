@@ -34,11 +34,12 @@ class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
 
   @override
   Widget build(BuildContext context) {
-    final status = Matrix.of(context).client.onSyncStatus.value ??
+    final client = Matrix.of(context).client;
+    final status = client.onSyncStatus.value ??
         const SyncStatusUpdate(SyncStatus.waitingForResponse);
-    final hide = Matrix.of(context).client.onSync.value != null &&
+    final hide = client.onSync.value != null &&
         status.status != SyncStatus.error &&
-        Matrix.of(context).client.prevBatch != null;
+        client.prevBatch != null;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
