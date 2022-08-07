@@ -2933,5 +2933,7 @@
   "updateAvailable": "FluffyChat 更新可用",
   "@updateAvailable": {},
   "updateNow": "在后台开始更新",
-  "@updateNow": {}
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "你加入了所有推荐的聊天室",
+  "@allSuggestedRoomsJoined": {}
 }
