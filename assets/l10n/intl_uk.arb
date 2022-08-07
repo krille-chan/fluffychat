@@ -2928,5 +2928,7 @@
   "updateAvailable": "Доступне оновлення FluffyChat",
   "@updateAvailable": {},
   "updateNow": "Почати оновлення у фоновому режимі",
-  "@updateNow": {}
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Ви приєдналися до всіх запропонованих кімнат",
+  "@allSuggestedRoomsJoined": {}
 }
