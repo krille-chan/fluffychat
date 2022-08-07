@@ -2919,5 +2919,15 @@
     }
   },
   "suggestedRooms": "Jelajahi grup di space ini",
-  "@suggestedRooms": {}
+  "@suggestedRooms": {},
+  "custom": "Kustom",
+  "@custom": {},
+  "updateAvailable": "Tersedia pembaruan FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Mulai memperbarui di latar belakang",
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Kamu bergabung semua ruangan yang disarankan",
+  "@allSuggestedRoomsJoined": {},
+  "user": "Pengguna",
+  "@user": {}
 }
