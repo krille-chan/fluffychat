@@ -2929,5 +2929,11 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "updateAvailable": "Mise à jour de FluffyChat disponible",
+  "@updateAvailable": {},
+  "updateNow": "Lancer la mise à jour en arrière-plan",
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Vous avez rejoint toutes les salles suggérées",
+  "@allSuggestedRoomsJoined": {}
 }
