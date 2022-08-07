@@ -2933,5 +2933,7 @@
   "updateAvailable": "FluffyChat güncellemesi var",
   "@updateAvailable": {},
   "updateNow": "Güncellemeyi arka planda başlat",
-  "@updateNow": {}
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Önerilen tüm odalara katıldınız",
+  "@allSuggestedRoomsJoined": {}
 }
