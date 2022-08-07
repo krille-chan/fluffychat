@@ -205,7 +205,7 @@ fdroid_repo:
     paths:
       - repo
   needs: 
-    - "build_android_debug"
+    - "build_android_apk"
   resource_group: playstore_release
   allow_failure: true
   only:
