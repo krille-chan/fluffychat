@@ -2929,5 +2929,11 @@
     }
   },
   "suggestedRooms": "Otsi jututube selles kogukonnas",
-  "@suggestedRooms": {}
+  "@suggestedRooms": {},
+  "updateNow": "Alusta uuendamist taustal",
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Sa liitusid kõikide soovitatud jututubadega",
+  "@allSuggestedRoomsJoined": {},
+  "updateAvailable": "On olemas FluffyChat'i uuendus",
+  "@updateAvailable": {}
 }
