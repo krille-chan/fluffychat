@@ -213,6 +213,8 @@ class ChatController extends State<Chat> {
 
   Future<bool> getTimeline() async {
     if (timeline == null) {
+      await Matrix.of(context).client.roomsLoading;
+      await Matrix.of(context).client.accountDataLoading;
       timeline = await room!.getTimeline(onUpdate: updateView);
       if (timeline!.events.isNotEmpty) {
         if (room!.markedUnread) room!.markUnread(false);
