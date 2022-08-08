@@ -2928,5 +2928,11 @@
   "user": "Persoon",
   "@user": {},
   "custom": "Aangepast",
-  "@custom": {}
+  "@custom": {},
+  "updateAvailable": "FluffyChat-update beschikbaar",
+  "@updateAvailable": {},
+  "updateNow": "Update op de achtergrond starten",
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Je bent toegetreden in alle voorgestelde kamers",
+  "@allSuggestedRoomsJoined": {}
 }
