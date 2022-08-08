@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 
 extension StringColor on String {
-  Color get color {
+  static final _colorCache = <String, Map<double, Color>>{};
+
+  Color _getColorLight(double light) {
     var number = 0.0;
     for (var i = 0; i < length; i++) {
       number += codeUnitAt(i);
     }
     number = (number % 12) * 25.5;
-    return HSLColor.fromAHSL(1, number, 1, 0.35).toColor();
+    return HSLColor.fromAHSL(1, number, 1, light).toColor();
+  }
+
+  Color get color {
+    _colorCache[this] ??= {};
+    return _colorCache[this]![0.35] ??= _getColorLight(0.35);
   }
 
   Color get darkColor {
-    var number = 0.0;
-    for (var i = 0; i < length; i++) {
-      number += codeUnitAt(i);
-    }
-    number = (number % 12) * 25.5;
-    return HSLColor.fromAHSL(1, number, 1, 0.2).toColor();
+    _colorCache[this] ??= {};
+    return _colorCache[this]![0.2] ??= _getColorLight(0.2);
   }
 
   Color get lightColor {
-    var number = 0.0;
-    for (var i = 0; i < length; i++) {
-      number += codeUnitAt(i);
-    }
-    number = (number % 12) * 25.5;
-    return HSLColor.fromAHSL(1, number, 1, 0.40).toColor();
+    _colorCache[this] ??= {};
+    return _colorCache[this]![0.4] ??= _getColorLight(0.4);
   }
 }
