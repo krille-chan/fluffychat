@@ -88,77 +88,65 @@ class StoriesHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    return StreamBuilder(
-      stream: Matrix.of(context).onShareContentChanged.stream,
-      builder: (context, _) => StreamBuilder<Object>(
-          stream: client.onSync.stream
-              .where((syncUpdate) => syncUpdate.hasRoomUpdate),
-          builder: (context, snapshot) {
-            if (Matrix.of(context).shareContent != null) {
-              return ListTile(
-                leading: CircleAvatar(
-                  radius: Avatar.defaultSize / 2,
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                  foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
-                  child: const Icon(Icons.camera_alt_outlined),
-                ),
-                title: Text(L10n.of(context)!.addToStory),
-                onTap: () => _addToStoryAction(context),
-              );
-            }
-            if (client.storiesRooms.isEmpty ||
-                !client.storiesRooms.any((room) => room.displayname
-                    .toLowerCase()
-                    .contains(filter.toLowerCase()))) {
-              return Container();
-            }
-            final ownStoryRoom = client.storiesRooms
-                .firstWhereOrNull((r) => r.creatorId == client.userID);
-            final stories = [
-              if (ownStoryRoom != null) ownStoryRoom,
-              ...client.storiesRooms..remove(ownStoryRoom),
-            ];
-            return SizedBox(
-              height: 96,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                scrollDirection: Axis.horizontal,
-                itemCount: stories.length,
-                itemBuilder: (context, i) {
-                  final room = stories[i];
-                  return FutureBuilder<Profile>(
-                      future: room.getCreatorProfile(),
-                      builder: (context, snapshot) {
-                        final userId = room.creatorId;
-                        final displayname = snapshot.data?.displayName ??
-                            userId?.localpart ??
-                            'Unknown';
-                        final avatarUrl = snapshot.data?.avatarUrl;
-                        if (!displayname
-                            .toLowerCase()
-                            .contains(filter.toLowerCase())) {
-                          return Container();
-                        }
-                        return _StoryButton(
-                          profile: Profile(
-                            displayName: displayname,
-                            avatarUrl: avatarUrl,
-                            userId: userId ?? 'Unknown',
-                          ),
-                          heroTag: 'stories_${room.id}',
-                          hasPosts: room.hasPosts || room == ownStoryRoom,
-                          showEditFab: userId == client.userID,
-                          unread: room.membership == Membership.invite ||
-                              (room.hasNewMessages && room.hasPosts),
-                          onPressed: () => _goToStoryAction(context, room.id),
-                          onLongPressed: () =>
-                              _contextualActions(context, room),
-                        );
-                      });
-                },
-              ),
-            );
-          }),
+    if (Matrix.of(context).shareContent != null) {
+      return ListTile(
+        leading: CircleAvatar(
+          radius: Avatar.defaultSize / 2,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
+          child: const Icon(Icons.camera_alt_outlined),
+        ),
+        title: Text(L10n.of(context)!.addToStory),
+        onTap: () => _addToStoryAction(context),
+      );
+    }
+    if (client.storiesRooms.isEmpty ||
+        !client.storiesRooms.any((room) =>
+            room.displayname.toLowerCase().contains(filter.toLowerCase()))) {
+      return Container();
+    }
+    final ownStoryRoom = client.storiesRooms
+        .firstWhereOrNull((r) => r.creatorId == client.userID);
+    final stories = [
+      if (ownStoryRoom != null) ownStoryRoom,
+      ...client.storiesRooms..remove(ownStoryRoom),
+    ];
+    return SizedBox(
+      height: 96,
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        scrollDirection: Axis.horizontal,
+        itemCount: stories.length,
+        itemBuilder: (context, i) {
+          final room = stories[i];
+          return FutureBuilder<Profile>(
+              future: room.getCreatorProfile(),
+              builder: (context, snapshot) {
+                final userId = room.creatorId;
+                final displayname = snapshot.data?.displayName ??
+                    userId?.localpart ??
+                    'Unknown';
+                final avatarUrl = snapshot.data?.avatarUrl;
+                if (!displayname.toLowerCase().contains(filter.toLowerCase())) {
+                  return Container();
+                }
+                return _StoryButton(
+                  profile: Profile(
+                    displayName: displayname,
+                    avatarUrl: avatarUrl,
+                    userId: userId ?? 'Unknown',
+                  ),
+                  heroTag: 'stories_${room.id}',
+                  hasPosts: room.hasPosts || room == ownStoryRoom,
+                  showEditFab: userId == client.userID,
+                  unread: room.membership == Membership.invite ||
+                      (room.hasNewMessages && room.hasPosts),
+                  onPressed: () => _goToStoryAction(context, room.id),
+                  onLongPressed: () => _contextualActions(context, room),
+                );
+              });
+        },
+      ),
     );
   }
 }
