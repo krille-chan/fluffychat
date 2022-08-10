@@ -90,7 +90,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void _loadHomeserverList() async {
     try {
-      final homeserverList = await JoinmatrixOrgParser().fetchHomeservers();
+      final homeserverList =
+          await const JoinmatrixOrgParser().fetchHomeservers();
       final benchmark = await HomeserverListProvider.benchmarkHomeserver(
         homeserverList,
         timeout: const Duration(seconds: 10),
