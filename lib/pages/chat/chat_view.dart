@@ -120,12 +120,6 @@ class ChatView extends StatelessWidget {
     }
   }
 
-  bool hasRoomStateUpdate(SyncUpdate syncUpdate) =>
-      syncUpdate.rooms?.leave?[controller.roomId]?.state?.isNotEmpty == true ||
-      syncUpdate.rooms?.invite?[controller.roomId]?.inviteState?.isNotEmpty ==
-          true ||
-      syncUpdate.rooms?.join?[controller.roomId]?.state?.isNotEmpty == true;
-
   @override
   Widget build(BuildContext context) {
     controller.matrix ??= Matrix.of(context);
@@ -163,11 +157,7 @@ class ChatView extends StatelessWidget {
         onTapDown: controller.setReadMarker,
         behavior: HitTestBehavior.opaque,
         child: StreamBuilder(
-          stream: Matrix.of(context)
-              .client
-              .onSync
-              .stream
-              .where(hasRoomStateUpdate)
+          stream: controller.room!.onUpdate.stream
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, snapshot) => FutureBuilder<bool>(
             future: controller.getTimeline(),
