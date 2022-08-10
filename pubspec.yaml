@@ -62,7 +62,7 @@ dependencies:
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
   matrix: ^0.11.0
-  matrix_homeserver_recommendations: ^0.2.1
+  matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging:
     git: https://gitlab.com/famedly/company/frontend/libraries/native_imaging.git
