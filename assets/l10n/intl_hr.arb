@@ -2925,5 +2925,15 @@
     }
   },
   "storeInAppleKeyChain": "Spremi u Apple KeyChain",
-  "@storeInAppleKeyChain": {}
+  "@storeInAppleKeyChain": {},
+  "user": "Korisnik",
+  "@user": {},
+  "custom": "Prilagođeno",
+  "@custom": {},
+  "updateAvailable": "Dostupna je nova FluffyChat verzija",
+  "@updateAvailable": {},
+  "updateNow": "Pokreni aktuliziranje u pozadini",
+  "@updateNow": {},
+  "allSuggestedRoomsJoined": "Prihvatio/la si sve predložene sobe",
+  "@allSuggestedRoomsJoined": {}
 }
