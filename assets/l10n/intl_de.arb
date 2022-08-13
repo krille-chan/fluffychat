@@ -2862,5 +2862,7 @@
   "noEmailWarning": "Bitte gib eine gültige E-Mail-Adresse ein. Andernfalls kannst du dein Passwort nicht zurücksetzen. Wenn du das nicht möchtest, tippe erneut auf die Schaltfläche, um fortzufahren.",
   "@noEmailWarning": {},
   "updateAvailable": "FluffyChat-Update verfügbar",
-  "@updateAvailable": {}
+  "@updateAvailable": {},
+  "updateNow": "Update im Hintergrund starten",
+  "@updateNow": {}
 }
