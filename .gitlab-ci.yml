@@ -10,25 +10,25 @@ image: cirrusci/flutter:${FLUTTER_VERSION}
     - windows-1809
 
 stages:
-  - coverage
-  - release
+  - test
+  - build
   - deploy
 
 code_analyze:
-  stage: coverage
+  stage: test
   script: [./scripts/code_analyze.sh]
   artifacts:
     reports:
       codequality: code-quality-report.json
 
-test:
-  stage: coverage
+widget_test:
+  stage: test
   script: [flutter test]
 
 # the basic integration test configuration testing FLOSS builds on Synapse
 integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
-  stage: coverage
+  stage: test
   services:
     - name: docker:dind
       alias: docker
@@ -101,7 +101,7 @@ integration_test_dendrite:
 
 release_mode_launches:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
-  stage: coverage
+  stage: test
   script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
@@ -119,7 +119,7 @@ release_mode_launches_google:
     - git apply ./scripts/enable-android-google-services.patch
 
 build_web:
-  stage: coverage
+  stage: build
   before_script:
     [sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh]
   script: [./scripts/build-web.sh]
@@ -130,7 +130,7 @@ build_web:
 build_windows:
   extends:
     - .shared_windows_runners
-  stage: coverage
+  stage: build
   before_script: [./scripts/prepare-windows.ps1]
   script: [./scripts/build-windows.ps1]
   artifacts:
@@ -142,7 +142,7 @@ build_windows:
     - tags
 
 build_android_debug:
-  stage: coverage
+  stage: build
   script: [./scripts/build-android-debug.sh]
   artifacts:
     when: on_success
@@ -153,7 +153,7 @@ build_android_debug:
     - tags
 
 build_android_apk:
-  stage: coverage
+  stage: build
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
@@ -166,8 +166,8 @@ build_android_apk:
     - main
     - tags
 
-build_android_appbundle:
-  stage: coverage
+deploy_playstore_internal:
+  stage: deploy
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
@@ -180,51 +180,9 @@ build_android_appbundle:
   only:
     - main
 
-fdroid_repo:
-  image: debian:testing
-  stage: release
-  before_script:
-    - apt-get update && apt-get -qy install fdroidserver wget curl jq --no-install-recommends
-    - ./scripts/prepare-fdroid.sh
-  script:
-    - ./scripts/create_fdroid_repos.sh
-  artifacts:
-    when: always
-    paths:
-      - repo
-  needs:
-    - "build_android_apk"
-  resource_group: playstore_release
-  allow_failure: true
-  only:
-    - main
-
-upload-fdroid:
-  stage: release
-  before_script:
-    - "which ssh-agent || (sudo apt-get update -y && sudo apt-get install openssh-client -y )"
-    - "which rsync || (sudo apt-get update -y && sudo apt-get install rsync -y )"
-    - "which pcregrep || (sudo apt-get update -y && sudo apt-get install pcregrep -y )"
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan -t rsa ssh.fdroid.nordgedanken.dev >> ~/.ssh/known_hosts
-  script:
-    - cd build/android/
-    - export UPDATE_VERSION=$(pcregrep -o1 'version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*' ../../pubspec.yaml) && mv app-release.apk "${UPDATE_VERSION}.apk"
-    - rsync -rav -e ssh ./ fluffy@ssh.fdroid.nordgedanken.dev:/opt/fdroid/fluffychat/repo
-    - ssh fluffy@ssh.fdroid.nordgedanken.dev -t '/bin/bash -i -l -c "cd /opt/fdroid/fluffychat && source ../fdroidserver-env/bin/activate && fdroid update --verbose && deactivate"'
-  needs: ["build_android_apk"]
-  resource_group: playstore_release
-  allow_failure: true
-  only:
-    - tags
-
 pages:
   needs:
     - "build_web"
-    - "fdroid_repo"
   stage: deploy
   image: node
   script:
@@ -241,7 +199,7 @@ pages:
     - main
 
 build_linux_x86:
-  stage: coverage
+  stage: build
   before_script:
     [
       sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y,
@@ -253,7 +211,7 @@ build_linux_x86:
       - build/linux/x64/release/bundle/
 
 build_linux_arm64:
-  stage: coverage
+  stage: build
   before_script: [flutter upgrade]
   script: [./scripts/build-linux.sh]
   tags: [docker_arm64]
@@ -266,51 +224,8 @@ build_linux_arm64:
     paths:
       - build/linux/arm64/release/bundle/
 
-build_linux_appimage_x86:
-  stage: deploy
-  image: appimagecrafters/appimage-builder
-  needs: [build_linux_x86]
-  only:
-    - main
-    - tags
-  script:
-    - cp -r build/linux/x64/release/bundle appimage/FluffyChat.AppDir
-    - cd appimage
-    - cp FluffyChat.desktop FluffyChat.AppDir/
-    - cp AppRun FluffyChat.AppDir/
-    - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
-    - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-x86_64.AppImage.zsync" FluffyChat.AppDir
-  allow_failure: true
-  artifacts:
-    when: on_success
-    paths:
-      - appimage/FluffyChat-x86_64.AppImage
-      - appimage/FluffyChat-x86_64.AppImage.zsync
-
-build_linux_appimage_arm64:
-  stage: deploy
-  image: appimagecrafters/appimage-builder
-  needs: [build_linux_arm64]
-  tags: [docker_arm64]
-  only:
-    - main
-    - tags
-  script:
-    - cp -r build/linux/arm64/release/bundle appimage/FluffyChat.AppDir
-    - cd appimage
-    - cp FluffyChat.desktop FluffyChat.AppDir/
-    - cp AppRun FluffyChat.AppDir/
-    - cp ../assets/logo.svg FluffyChat.AppDir/fluffychat.svg
-    - appimagetool -u "zsync|https://gitlab.com/famedly/fluffychat/-/releases/permalink/latest/downloads/FluffyChat-arm64.AppImage.zsync" FluffyChat.AppDir
-  allow_failure: true
-  artifacts:
-    when: on_success
-    paths:
-      - appimage/FluffyChat-arm64.AppImage
-      - appimage/FluffyChat-arm64.AppImage.zsync
-
-update-dependencies:
-  stage: coverage
+update_dependencies:
+  stage: build
   needs: []
   tags:
     - docker
@@ -336,7 +251,7 @@ update-dependencies:
     - 'git diff --exit-code || (git checkout -B ${UPDATE_BRANCH} && git add . && git commit -m "chore: Update dependencies" && git push -f origin ${UPDATE_BRANCH} && ./scripts/open-mr.sh)'
 
 .release:
-  stage: release
+  stage: deploy
   image: curlimages/curl:latest
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
@@ -346,38 +261,34 @@ update-dependencies:
     - export RELEASE_VERSION=$(echo $CI_COMMIT_TAG | grep -oE "\d+\.\d+\.\d+")
     - export PACKAGE_REGISTRY_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/fluffychat/${RELEASE_VERSION}"
 
-upload-android:
+upload_android:
   extends: .release
   script:
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
 
-upload-web:
+upload_web:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/web/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
 
-upload-linux-x86:
+upload_linux_x86:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/x64/release/bundle/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-x86_64.AppImage ${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-x86_64.AppImage.zsync ${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage.zsync
 
-upload-linux-arm64:
+upload_linux_arm64:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/arm64/release/bundle/ .
     - |
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-arm64.AppImage ${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file appimage/FluffyChat-arm64.AppImage.zsync ${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage.zsync
 
-upload-windows:
+upload_windows:
   extends: .release
   image: alpine:latest
   script:
@@ -388,8 +299,8 @@ upload-windows:
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
       curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file fluffychat.msix ${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix
 
-upload-playstore:
-  stage: release
+deploy_playstore:
+  stage: deploy
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
@@ -411,7 +322,3 @@ release:
         --assets-link "{\"name\":\"fluffychat-windows.zip\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip\"}" \
         --assets-link "{\"name\":\"fluffychat-windows.msix\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix\"}" \
         --assets-link "{\"name\":\"fluffychat-web.tar.gz\",\"url\":\"${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz\"}"
-        --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage\",\"filepath\":\"/FluffyChat-x86_64.AppImage\"}"
-        --assets-link "{\"name\":\"FluffyChat-x86_64.AppImage.zsync\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-x86_64.AppImage.zsync\",\"filepath\":\"/FluffyChat-x86_64.AppImage.zsync\"}"
-        --assets-link "{\"name\":\"FluffyChat-arm64.AppImage\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage\",\"filepath\":\"/FluffyChat-arm64.AppImage\"}"
-        --assets-link "{\"name\":\"FluffyChat-arm64.AppImage.zsync\",\"url\":\"${PACKAGE_REGISTRY_URL}/FluffyChat-arm64.AppImage.zsync\",\"filepath\":\"/FluffyChat-arm64.AppImage.zsync\"}"
