@@ -144,6 +144,8 @@ build_windows:
 build_android_debug:
   stage: build
   script: [./scripts/build-android-debug.sh]
+  tags:
+    - android
   artifacts:
     when: on_success
     paths:
@@ -158,6 +160,8 @@ build_android_apk:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
   script: [./scripts/build-android-apk.sh]
+  tags:
+    - android
   artifacts:
     when: on_success
     paths:
@@ -172,6 +176,8 @@ deploy_playstore_internal:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
   script: [./scripts/release-playstore-beta.sh]
+  tags:
+    - android
   artifacts:
     when: on_success
     paths:
