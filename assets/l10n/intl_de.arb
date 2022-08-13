@@ -394,7 +394,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Dein Chat-Backup ist mit einem Sicherheitsschlüssel gesichert. Bitte stelle sicher, dass du diesen nicht verlierst.",
+  "chatBackupDescription": "Deine alten Nachrichten sind mit einem Wiederherstellungsschlüssel gesichert. Bitte stellen sicher, dass du ihn nicht verlierst.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2471,7 +2471,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Chat-Backup löschen, um neuen Sicherheitsschlüssel zu erstellen?",
+  "wipeChatBackup": "Den Chat-Backup löschen, um einen neuen Wiederherstellungsschlüssel zu erstellen?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2864,5 +2864,76 @@
   "updateAvailable": "FluffyChat-Update verfügbar",
   "@updateAvailable": {},
   "updateNow": "Update im Hintergrund starten",
-  "@updateNow": {}
+  "@updateNow": {},
+  "recoveryKey": "Wiederherstellungs-Schlüssel",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Wiederherstellungsschlüssel verloren?",
+  "@recoveryKeyLost": {},
+  "saveTheRecoveryKeyNow": "Speicher jetzt den Wiederherstellungsschlüssel",
+  "@saveTheRecoveryKeyNow": {},
+  "enableAutoBackups": "Aktiviere automatische Sicherungen",
+  "@enableAutoBackups": {},
+  "user": "Benutzer",
+  "@user": {},
+  "custom": "Brauch",
+  "@custom": {},
+  "allSuggestedRoomsJoined": "Du bist allen vorgeschlagenen Chatrooms beigetreten",
+  "@allSuggestedRoomsJoined": {},
+  "numberRoomMembers": "{number} Mitglieder",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Entdecke Gruppen in diesem Bereich",
+  "@suggestedRooms": {},
+  "storeInAndroidKeystore": "Im Android KeyStore speichern",
+  "@storeInAndroidKeystore": {},
+  "storeSecurlyOnThisDevice": "Auf diesem Gerät sicher speichern",
+  "@storeSecurlyOnThisDevice": {},
+  "dehydrate": "Sitzung exportieren und Gerät löschen",
+  "@dehydrate": {},
+  "dehydrateWarning": "Diese Aktion kann nicht rückgängig gemacht werden. Stelle sicher, dass du die Sicherungsdatei sicher aufbewahrst.",
+  "@dehydrateWarning": {},
+  "dehydrateShare": "Dies ist dein privater FluffyChat-Export. Stelle sicher, dass du ihn nicht verlierst und bewahre ihn privat auf.",
+  "@dehydrateShare": {},
+  "dehydrateTor": "TOR-Benutzer: Sitzung exportieren",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "Für TOR-Benutzer wird empfohlen, die Sitzung zu exportieren, bevor das Fenster geschlossen wird.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "TOR-Benutzer: Session-Export importieren",
+  "@hydrateTor": {},
+  "hydrate": "Aus Sicherungsdatei wiederherstellen",
+  "@hydrate": {},
+  "indexedDbErrorTitle": "Probleme im Privatmodus",
+  "@indexedDbErrorTitle": {},
+  "unlockOldMessages": "Entsperre alte Nachrichten",
+  "@unlockOldMessages": {},
+  "pleaseEnterRecoveryKeyDescription": "Um deine alten Nachrichten zu entsperren, gib bitte den Wiederherstellungsschlüssel ein, der in einer früheren Sitzung generiert wurde. Dein Wiederherstellungsschlüssel ist NICHT dein Passwort.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "saveKeyManuallyDescription": "Speicher diesen Schlüssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage auslöst.",
+  "@saveKeyManuallyDescription": {},
+  "hydrateTorLong": "Hast du deine Sitzung das letzte Mal auf TOR exportiert? Importiere sie schnell und chatte weiter.",
+  "@hydrateTorLong": {},
+  "pleaseEnterRecoveryKey": "Bitte gebe deinen Wiederherstellungsschlüssel ein:",
+  "@pleaseEnterRecoveryKey": {},
+  "advanced": "Fortschrittlich",
+  "@advanced": {},
+  "countFiles": "{count} Dateien",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "users": "Benutzer",
+  "@users": {},
+  "storeInSecureStorageDescription": "Speicher den Wiederherstellungsschlüssel im sicheren Speicher dieses Geräts.",
+  "@storeInSecureStorageDescription": {},
+  "storeInAppleKeyChain": "Im Android KeyStore speichern",
+  "@storeInAppleKeyChain": {},
+  "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, FluffyChat auszuführen.",
+  "@indexedDbErrorLong": {},
+  "stories": "Status",
+  "@stories": {}
 }
