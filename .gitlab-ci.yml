@@ -196,7 +196,6 @@ pages:
     - npx tailwindcss -o ./tailwind.css --minify
     - cd ..
     - mv docs public
-    - mv repo public
     - mv build/web/ public/web/
   artifacts:
     paths:
