@@ -21,12 +21,6 @@ code_analyze:
     reports:
       codequality: code-quality-report.json
 
-code_analyze_beta:
-  extends: code_analyze
-  image:
-    name: cirrusci/flutter:beta
-  allow_failure: true
-
 test:
   stage: coverage
   script: [flutter test]
@@ -121,7 +115,7 @@ release_mode_launches:
 
 release_mode_launches_google:
   extends: release_mode_launches
-  before_script: 
+  before_script:
     - git apply ./scripts/enable-android-google-services.patch
 
 build_web:
@@ -132,12 +126,6 @@ build_web:
   artifacts:
     paths:
       - build/web/
-
-build_web_beta:
-  extends: build_web
-  image:
-    name: cirrusci/flutter:beta
-  allow_failure: true
 
 build_windows:
   extends:
@@ -196,15 +184,15 @@ fdroid_repo:
   image: debian:testing
   stage: release
   before_script:
-  - apt-get update && apt-get -qy install fdroidserver wget curl jq --no-install-recommends
-  - ./scripts/prepare-fdroid.sh
+    - apt-get update && apt-get -qy install fdroidserver wget curl jq --no-install-recommends
+    - ./scripts/prepare-fdroid.sh
   script:
-  - ./scripts/create_fdroid_repos.sh
+    - ./scripts/create_fdroid_repos.sh
   artifacts:
     when: always
     paths:
       - repo
-  needs: 
+  needs:
     - "build_android_apk"
   resource_group: playstore_release
   allow_failure: true
