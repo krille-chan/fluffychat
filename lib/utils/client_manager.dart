@@ -83,6 +83,10 @@ abstract class ClientManager {
     await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
   }
 
+  static NativeImplementations get nativeImplementations => kIsWeb
+      ? NativeImplementationsWebWorker(Uri.parse('native_executor.js'))
+      : NativeImplementationsIsolate(compute);
+
   static Client createClient(String clientName) {
     return Client(
       clientName,
@@ -109,7 +113,7 @@ abstract class ClientManager {
             PlatformInfos.isMacOS)
           AuthenticationTypes.sso
       },
-      compute: compute,
+      nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
     );
   }

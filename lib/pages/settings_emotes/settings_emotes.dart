@@ -7,6 +7,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/utils/client_manager.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes_view.dart';
 
@@ -206,10 +207,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
     );
     try {
       file = (await file.generateThumbnail(
-        compute: Matrix.of(context).client.runInBackground,
+        nativeImplementations: ClientManager.nativeImplementations,
       ))!;
-    } catch (_) {
-      // do nothing
+    } catch (e, s) {
+      Logs().w('Unable to create thumbnail', e, s);
     }
     final uploadResp = await showFutureLoadingDialog(
       context: context,
