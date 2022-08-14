@@ -12,10 +12,10 @@ class QrScannerModal extends StatefulWidget {
   const QrScannerModal({Key? key}) : super(key: key);
 
   @override
-  _QrScannerModalState createState() => _QrScannerModalState();
+  QrScannerModalState createState() => QrScannerModalState();
 }
 
-class _QrScannerModalState extends State<QrScannerModal> {
+class QrScannerModalState extends State<QrScannerModal> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
 

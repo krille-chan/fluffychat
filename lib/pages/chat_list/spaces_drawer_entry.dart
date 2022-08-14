@@ -23,10 +23,10 @@ class SpacesDrawerEntry extends StatelessWidget {
     final active = controller.activeSpacesEntry == entry.spacesEntry;
     final leading = room == null
         ? CircleAvatar(
-            child: space.getIcon(active),
             radius: Avatar.defaultSize / 2,
             backgroundColor: Theme.of(context).colorScheme.secondary,
             foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            child: space.getIcon(active),
           )
         : Avatar(
             mxContent: room.avatar,

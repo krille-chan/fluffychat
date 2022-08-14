@@ -80,10 +80,10 @@ class FluffyChatApp extends StatefulWidget {
   static bool gotInitialLink = false;
 
   @override
-  _FluffyChatAppState createState() => _FluffyChatAppState();
+  FluffyChatAppState createState() => FluffyChatAppState();
 }
 
-class _FluffyChatAppState extends State<FluffyChatApp> {
+class FluffyChatAppState extends State<FluffyChatApp> {
   GlobalKey<VRouterState>? _router;
   bool? columnMode;
   String? _initialUrl;

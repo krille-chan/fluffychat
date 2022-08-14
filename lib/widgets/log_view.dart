@@ -6,10 +6,10 @@ class LogViewer extends StatefulWidget {
   const LogViewer({Key? key}) : super(key: key);
 
   @override
-  _LogViewerState createState() => _LogViewerState();
+  LogViewerState createState() => LogViewerState();
 }
 
-class _LogViewerState extends State<LogViewer> {
+class LogViewerState extends State<LogViewer> {
   Level logLevel = Level.debug;
   double fontSize = 14;
   @override

@@ -20,10 +20,10 @@ class SendLocationDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SendLocationDialogState createState() => _SendLocationDialogState();
+  SendLocationDialogState createState() => SendLocationDialogState();
 }
 
-class _SendLocationDialogState extends State<SendLocationDialog> {
+class SendLocationDialogState extends State<SendLocationDialog> {
   bool disabled = false;
   bool denied = false;
   bool isSending = false;
@@ -54,19 +54,19 @@ class _SendLocationDialogState extends State<SendLocationDialog> {
       return;
     }
     try {
-      Position _position;
+      Position position;
       try {
-        _position = await Geolocator.getCurrentPosition(
+        position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.best,
           timeLimit: const Duration(seconds: 30),
         );
       } on TimeoutException {
-        _position = await Geolocator.getCurrentPosition(
+        position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.medium,
           timeLimit: const Duration(seconds: 30),
         );
       }
-      setState(() => position = _position);
+      setState(() => position = position);
     } catch (e) {
       setState(() => error = e);
     }

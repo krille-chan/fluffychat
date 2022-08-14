@@ -160,11 +160,11 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                       child: ListTile(
                         leading: CircleAvatar(
                           radius: Avatar.defaultSize / 2,
-                          child: const Icon(Icons.enhanced_encryption_outlined),
                           backgroundColor:
                               Theme.of(context).colorScheme.surfaceVariant,
                           foregroundColor:
                               Theme.of(context).colorScheme.onSurfaceVariant,
+                          child: const Icon(Icons.enhanced_encryption_outlined),
                         ),
                         title: Text(
                           (Matrix.of(context)
@@ -402,6 +402,7 @@ class _SpaceRoomListTopBarState extends State<SpaceRoomListTopBar> {
         child: Column(
           children: [
             Padding(
+              padding: const EdgeInsets.all(8),
               child: LinkText(
                 text: (widget.controller.activeSpacesEntry as SpaceSpacesEntry)
                     .space
@@ -414,7 +415,6 @@ class _SpaceRoomListTopBarState extends State<SpaceRoomListTopBar> {
                 ),
                 onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
               ),
-              padding: const EdgeInsets.all(8),
             ),
             const Divider(),
           ],

@@ -23,10 +23,10 @@ class FluffyEmojiPickerView extends EmojiPickerBuilder {
       : super(config, state);
 
   @override
-  _DefaultEmojiPickerViewState createState() => _DefaultEmojiPickerViewState();
+  DefaultEmojiPickerViewState createState() => DefaultEmojiPickerViewState();
 }
 
-class _DefaultEmojiPickerViewState extends State<FluffyEmojiPickerView>
+class DefaultEmojiPickerViewState extends State<FluffyEmojiPickerView>
     with SingleTickerProviderStateMixin {
   PageController? _pageController;
   TabController? _tabController;
@@ -267,12 +267,12 @@ class _DefaultEmojiPickerViewState extends State<FluffyEmojiPickerView>
       return TextButton(
         onPressed: onPressed,
         onLongPress: onLongPressed,
-        child: child,
         style: ButtonStyle(
           padding: MaterialStateProperty.all(EdgeInsets.zero),
           minimumSize: MaterialStateProperty.all(Size.zero),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
+        child: child,
       );
     }
     return GestureDetector(

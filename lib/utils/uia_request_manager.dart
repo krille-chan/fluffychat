@@ -80,8 +80,8 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         default:
-          final url = Uri.parse(client.homeserver.toString() +
-              '/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}');
+          final url = Uri.parse(
+              '${client.homeserver}/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}');
           launch(
             url.toString(),
             forceSafariVC: true,

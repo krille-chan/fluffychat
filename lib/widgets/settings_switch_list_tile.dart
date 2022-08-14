@@ -17,10 +17,10 @@ class SettingsSwitchListTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SettingsSwitchListTileState createState() => _SettingsSwitchListTileState();
+  SettingsSwitchListTileState createState() => SettingsSwitchListTileState();
 }
 
-class _SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
+class SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(

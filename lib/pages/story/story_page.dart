@@ -210,7 +210,7 @@ class StoryPageController extends State<StoryPage> {
       final tmpDirectory = await getTemporaryDirectory();
       final fileName =
           event.content.tryGet<String>('filename') ?? 'unknown_story_video.mp4';
-      final file = File(tmpDirectory.path + '/' + fileName);
+      final file = File('${tmpDirectory.path}/$fileName');
       await file.writeAsBytes(matrixFile.bytes);
       if (!mounted) return null;
       final videoPlayerController =

@@ -37,8 +37,6 @@ class ChatListView extends StatelessWidget {
             bottomNavigationBar: const ConnectionStatusHeader(),
             floatingActionButton: selectMode == SelectMode.normal
                 ? KeyBoardShortcuts(
-                    child:
-                        StartChatFloatingActionButton(controller: controller),
                     keysToPress: {
                       LogicalKeyboardKey.controlLeft,
                       LogicalKeyboardKey.keyN
@@ -46,6 +44,8 @@ class ChatListView extends StatelessWidget {
                     onKeysPressed: () =>
                         VRouter.of(context).to('/newprivatechat'),
                     helpLabel: L10n.of(context)!.newChat,
+                    child:
+                        StartChatFloatingActionButton(controller: controller),
                   )
                 : null,
           ),

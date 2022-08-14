@@ -226,7 +226,7 @@ class InputBar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('/' + command,
+              Text('/$command',
                   style: const TextStyle(fontFamily: 'monospace')),
               Text(
                 hint,
@@ -319,14 +319,14 @@ class InputBar extends StatelessWidget {
         : controller!.text.substring(controller!.selection.baseOffset + 1);
     var insertText = '';
     if (suggestion['type'] == 'command') {
-      insertText = suggestion['name']! + ' ';
+      insertText = '${suggestion['name']!} ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'^(/\w*)$'),
-        (Match m) => '/' + insertText,
+        (Match m) => '/$insertText',
       );
     }
     if (suggestion['type'] == 'emoji') {
-      insertText = suggestion['emoji']! + ' ';
+      insertText = '${suggestion['emoji']!} ';
       startText = replaceText.replaceAllMapped(
         suggestion['current_word']!,
         (Match m) => insertText,
@@ -351,21 +351,21 @@ class InputBar extends StatelessWidget {
           break;
         }
       }
-      insertText = ':${isUnique ? '' : insertPack! + '~'}$insertEmote: ';
+      insertText = ':${isUnique ? '' : '${insertPack!}~'}$insertEmote: ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(:(?:[-\w]+~)?[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'user') {
-      insertText = suggestion['mention']! + ' ';
+      insertText = '${suggestion['mention']!} ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(@[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
       );
     }
     if (suggestion['type'] == 'room') {
-      insertText = suggestion['mxid']! + ' ';
+      insertText = '${suggestion['mxid']!} ';
       startText = replaceText.replaceAllMapped(
         RegExp(r'(\s|^)(#[-\w]+)$'),
         (Match m) => '${m[1]}$insertText',
@@ -401,9 +401,7 @@ class InputBar extends StatelessWidget {
                   final val = controller!.value;
                   final selection = val.selection.start;
                   final messageWithoutNewLine =
-                      controller!.text.substring(0, val.selection.start) +
-                          '\n' +
-                          controller!.text.substring(val.selection.end);
+                      '${controller!.text.substring(0, val.selection.start)}\n${controller!.text.substring(val.selection.end)}';
                   controller!.value = TextEditingValue(
                     text: messageWithoutNewLine,
                     selection: TextSelection.fromPosition(

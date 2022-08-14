@@ -18,10 +18,10 @@ class SendFileDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SendFileDialogState createState() => _SendFileDialogState();
+  SendFileDialogState createState() => SendFileDialogState();
 }
 
-class _SendFileDialogState extends State<SendFileDialog> {
+class SendFileDialogState extends State<SendFileDialog> {
   bool origImage = false;
 
   /// Images smaller than 20kb don't need compression.
@@ -92,7 +92,7 @@ class _SendFileDialogState extends State<SendFileDialog> {
             ),
             InkWell(
               onTap: () => setState(() => origImage = !origImage),
-              child: Text(L10n.of(context)!.sendOriginal + ' ($sizeString)'),
+              child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
             ),
           ],
         )

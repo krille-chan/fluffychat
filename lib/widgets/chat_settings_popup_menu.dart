@@ -24,10 +24,10 @@ class ChatSettingsPopupMenu extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ChatSettingsPopupMenuState createState() => _ChatSettingsPopupMenuState();
+  ChatSettingsPopupMenuState createState() => ChatSettingsPopupMenuState();
 }
 
-class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
+class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
   StreamSubscription? notificationChangeSub;
 
   @override
@@ -108,22 +108,22 @@ class _ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       alignment: Alignment.center,
       children: [
         KeyBoardShortcuts(
-          child: Container(),
           keysToPress: {
             LogicalKeyboardKey.controlLeft,
             LogicalKeyboardKey.keyI
           },
           helpLabel: L10n.of(context)!.chatDetails,
           onKeysPressed: _showChatDetails,
+          child: Container(),
         ),
         KeyBoardShortcuts(
-          child: Container(),
           keysToPress: {
             LogicalKeyboardKey.controlLeft,
             LogicalKeyboardKey.keyW
           },
           helpLabel: L10n.of(context)!.matrixWidgets,
           onKeysPressed: _showWidgets,
+          child: Container(),
         ),
         PopupMenuButton(
           onSelected: (String choice) async {

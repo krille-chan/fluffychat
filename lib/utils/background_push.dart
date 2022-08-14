@@ -104,10 +104,13 @@ class BackgroundPush {
   }
 
   factory BackgroundPush(
-      Client _client, BuildContext _context, GlobalKey<VRouterState>? router,
-      {final void Function(String errorMsg, {Uri? link})? onFcmError}) {
-    final instance = BackgroundPush.clientOnly(_client);
-    instance.context = _context;
+    Client client,
+    BuildContext context,
+    GlobalKey<VRouterState>? router, {
+    final void Function(String errorMsg, {Uri? link})? onFcmError,
+  }) {
+    final instance = BackgroundPush.clientOnly(client);
+    instance.context = context;
     // ignore: prefer_initializing_formals
     instance.router = router;
     // ignore: prefer_initializing_formals
@@ -341,9 +344,9 @@ class BackgroundPush {
       }
     } catch (e) {
       Logs().i(
-          '[Push] No self-hosted unified push gateway present: ' + newEndpoint);
+          '[Push] No self-hosted unified push gateway present: $newEndpoint');
     }
-    Logs().i('[Push] UnifiedPush using endpoint ' + endpoint);
+    Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
       final fcmToken = await firebase?.getToken();

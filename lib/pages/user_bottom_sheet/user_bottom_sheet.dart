@@ -29,15 +29,14 @@ class UserBottomSheet extends StatefulWidget {
 class UserBottomSheetController extends State<UserBottomSheet> {
   void participantAction(String action) async {
     // ignore: prefer_function_declarations_over_variables
-    final Function _askConfirmation =
-        () async => (await showOkCancelAlertDialog(
-              useRootNavigator: false,
-              context: context,
-              title: L10n.of(context)!.areYouSure,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.no,
-            ) ==
-            OkCancelResult.ok);
+    final Function askConfirmation = () async => (await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.no,
+        ) ==
+        OkCancelResult.ok);
     switch (action) {
       case 'report':
         final event = widget.user;
@@ -88,7 +87,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         widget.onMention!();
         break;
       case 'ban':
-        if (await _askConfirmation()) {
+        if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
             future: () => widget.user.ban(),
@@ -97,7 +96,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         }
         break;
       case 'unban':
-        if (await _askConfirmation()) {
+        if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
             future: () => widget.user.unban(),
@@ -106,7 +105,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         }
         break;
       case 'kick':
-        if (await _askConfirmation()) {
+        if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
             future: () => widget.user.kick(),
@@ -120,7 +119,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           currentLevel: widget.user.powerLevel,
         );
         if (newPermission != null) {
-          if (newPermission == 100 && await _askConfirmation() == false) break;
+          if (newPermission == 100 && await askConfirmation() == false) break;
           await showFutureLoadingDialog(
             context: context,
             future: () => widget.user.setPower(newPermission),
@@ -139,7 +138,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case 'ignore':
-        if (await _askConfirmation()) {
+        if (await askConfirmation()) {
           await showFutureLoadingDialog(
               context: context,
               future: () =>

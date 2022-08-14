@@ -87,10 +87,7 @@ class ReplyContent extends StatelessWidget {
                   future: displayEvent.fetchSenderUser(),
                   builder: (context, snapshot) {
                     return Text(
-                      (snapshot.data?.calcDisplayname() ??
-                              displayEvent.senderFromMemoryOrFallback
-                                  .calcDisplayname()) +
-                          ':',
+                      '${snapshot.data?.calcDisplayname() ?? displayEvent.senderFromMemoryOrFallback.calcDisplayname()}:',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

@@ -20,10 +20,10 @@ class EventVideoPlayer extends StatefulWidget {
   const EventVideoPlayer(this.event, {Key? key}) : super(key: key);
 
   @override
-  _EventVideoPlayerState createState() => _EventVideoPlayerState();
+  EventVideoPlayerState createState() => EventVideoPlayerState();
 }
 
-class _EventVideoPlayerState extends State<EventVideoPlayer> {
+class EventVideoPlayerState extends State<EventVideoPlayer> {
   ChewieController? _chewieManager;
   bool _isDownloading = false;
   String? _networkUri;

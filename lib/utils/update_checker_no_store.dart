@@ -82,7 +82,7 @@ class UpdateCheckerNoStore {
         final dir = await getTemporaryDirectory();
         final response = await get(downloadUri(metadata));
         if (response.statusCode == 200) {
-          final file = File(dir.path + '/fluffychat.msix');
+          final file = File('${dir.path}/fluffychat.msix');
           await file.writeAsBytes(response.bodyBytes);
           Process.start(file.path, [], runInShell: true);
         } else {

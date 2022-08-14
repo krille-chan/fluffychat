@@ -52,9 +52,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     builder: (BuildContext context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(
-                          child: Text(L10n.of(context)!.oopsSomethingWentWrong +
-                              ': ' +
-                              snapshot.error.toString()),
+                          child: Text(
+                              '${L10n.of(context)!.oopsSomethingWentWrong}: ${snapshot.error}'),
                         );
                       }
                       if (!snapshot.hasData) {

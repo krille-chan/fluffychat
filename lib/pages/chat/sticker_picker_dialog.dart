@@ -24,7 +24,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     final packSlugs = stickerPacks.keys.toList();
 
     // ignore: prefer_function_declarations_over_variables
-    final _packBuilder = (BuildContext context, int packIndex) {
+    final packBuilder = (BuildContext context, int packIndex) {
       final pack = stickerPacks[packSlugs[packIndex]]!;
       final filteredImagePackImageEntried = pack.images.entries.toList();
       if (searchFilter?.isNotEmpty ?? false) {
@@ -128,7 +128,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
             ),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
-              _packBuilder,
+              packBuilder,
               childCount: packSlugs.length,
             )),
           ],

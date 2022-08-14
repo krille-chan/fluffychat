@@ -16,8 +16,7 @@ void main() async {
     final missing = commands.where((c) => !translated.contains(c)).toList();
 
     expect(0, missing.length,
-        reason: 'missing hints for ' +
-            missing.toString() +
-            '\nAdding hints? See scripts/generate_command_hints_glue.sh');
+        reason:
+            'missing hints for $missing\nAdding hints? See scripts/generate_command_hints_glue.sh');
   });
 }
