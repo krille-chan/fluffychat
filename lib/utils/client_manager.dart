@@ -84,7 +84,7 @@ abstract class ClientManager {
   }
 
   static NativeImplementations get nativeImplementations => kIsWeb
-      ? NativeImplementationsWebWorker(Uri.parse('native_executor.js'))
+      ? const NativeImplementationsDummy()
       : NativeImplementationsIsolate(compute);
 
   static Client createClient(String clientName) {
