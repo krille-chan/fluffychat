@@ -10,7 +10,6 @@ import 'package:wakelock/wakelock.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
@@ -64,9 +63,9 @@ class _RecordingDialogState extends State<RecordingDialog> {
           _duration += const Duration(milliseconds: 100);
         });
       });
-    } catch (e, s) {
-      SentryController.captureException(e, s);
+    } catch (_) {
       setState(() => error = true);
+      rethrow;
     }
   }
 

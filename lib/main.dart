@@ -16,7 +16,6 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'config/app_config.dart';
 import 'config/themes.dart';
 import 'utils/background_push.dart';
@@ -49,8 +48,8 @@ void main() async {
         .addAll(Uri.parse(html.window.location.href).queryParameters);
   }
 
-  runZonedGuarded(
-    () => runApp(PlatformInfos.isMobile
+  runApp(
+    PlatformInfos.isMobile
         ? AppLock(
             builder: (args) => FluffyChatApp(
               clients: clients,
@@ -59,8 +58,7 @@ void main() async {
             lockScreen: const LockScreen(),
             enabled: false,
           )
-        : FluffyChatApp(clients: clients, queryParameters: queryParameters)),
-    SentryController.captureException,
+        : FluffyChatApp(clients: clients, queryParameters: queryParameters),
   );
 }
 

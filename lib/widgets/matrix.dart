@@ -24,7 +24,6 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 import '../config/app_config.dart';
@@ -211,7 +210,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     } catch (e, s) {
       client.onLoginStateChanged.addError(e, s);
-      SentryController.captureException(e, s);
       rethrow;
     }
   }
@@ -273,12 +271,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
   }
 
-  void _reportSyncError(SyncStatusUpdate update) =>
-      SentryController.captureException(
-        update.error!.exception,
-        update.error!.stackTrace,
-      );
-
   void _registerSubs(String name) {
     final c = getClientByName(name);
     if (c == null) {
@@ -286,9 +278,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           'Attempted to register subscriptions for non-existing client $name');
       return;
     }
-    c.onSyncStatus.stream
-        .where((s) => s.status == SyncStatus.error)
-        .listen(_reportSyncError);
     onRoomKeyRequestSub[name] ??=
         c.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
       if (widget.clients.any(((cl) =>

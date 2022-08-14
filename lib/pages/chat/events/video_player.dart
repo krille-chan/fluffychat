@@ -14,7 +14,6 @@ import 'package:video_player/video_player.dart';
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 
 class EventVideoPlayer extends StatefulWidget {
   final Event event;
@@ -70,7 +69,7 @@ class _EventVideoPlayerState extends State<EventVideoPlayer> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.toLocalizedString(context)),
       ));
-      SentryController.captureException(e, s);
+      Logs().w('Error while playing video', e, s);
     } finally {
       // Workaround for Chewie needs time to get the aspectRatio
       await Future.delayed(const Duration(milliseconds: 100));

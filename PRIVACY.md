@@ -19,11 +19,6 @@ FluffyChat only communicates with the selected server, with sentry.io if enabled
 
 More information is available at: [https://matrix.org](https://matrix.org)
 
-## Sentry<a id="2"/>
-FluffyChat uses Sentry for crash reports if the user allows it.
-
-More information is available at: [https://sentry.io](https://sentry.io)
-
 ## Database<a id="3"/>
 FluffyChat caches some data received from the server in a local database on the device of the user.
 

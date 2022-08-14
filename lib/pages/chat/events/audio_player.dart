@@ -9,7 +9,6 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import '../../../utils/matrix_sdk_extensions.dart/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
@@ -124,7 +123,7 @@ class _AudioPlayerState extends State<AudioPlayerWidget> {
           content: Text(L10n.of(context)!.oopsSomethingWentWrong),
         ),
       );
-      SentryController.captureException(e, s);
+      Logs().w('Error while playing audio', e, s);
     });
   }
 

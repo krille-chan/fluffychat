@@ -1500,13 +1500,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.5"
-  sentry:
-    dependency: "direct main"
-    description:
-      name: sentry
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.4.0"
   share_plus:
     dependency: "direct main"
     description:
