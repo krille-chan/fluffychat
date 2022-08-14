@@ -25,6 +25,18 @@ class ChatListDrawer extends StatelessWidget {
                   backgroundImage: AssetImage('assets/logo.png'),
                 ),
                 title: Text(AppConfig.applicationName),
+                trailing: Icon(
+                  Icons.adaptive.share_outlined,
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+                onTap: () {
+                  Scaffold.of(context).closeDrawer();
+                  FluffyShare.share(
+                      L10n.of(context)!.inviteText(
+                          Matrix.of(context).client.userID!,
+                          'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
+                      context);
+                },
               ),
               const Divider(thickness: 1),
               Expanded(
@@ -53,21 +65,6 @@ class ChatListDrawer extends StatelessWidget {
                 onTap: () {
                   Scaffold.of(context).closeDrawer();
                   VRouter.of(context).to('/newspace');
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.adaptive.share_outlined,
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-                title: Text(L10n.of(context)!.inviteContact),
-                onTap: () {
-                  Scaffold.of(context).closeDrawer();
-                  FluffyShare.share(
-                      L10n.of(context)!.inviteText(
-                          Matrix.of(context).client.userID!,
-                          'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
-                      context);
                 },
               ),
               ListTile(
