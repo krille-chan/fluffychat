@@ -62,3 +62,4 @@ ios/Podfile.lock
 /linux/out
 /macos/out
 .vs
+assets/js/package/olm.js
