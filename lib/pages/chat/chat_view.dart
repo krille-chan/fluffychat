@@ -16,7 +16,6 @@ import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pages/chat/tombstone_display.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -216,12 +215,6 @@ class ChatView extends StatelessWidget {
                                   onTap: controller.clearSingleSelectedEvent,
                                   child: Builder(
                                     builder: (context) {
-                                      if (snapshot.hasError) {
-                                        SentryController.captureException(
-                                          snapshot.error,
-                                          StackTrace.current,
-                                        );
-                                      }
                                       if (controller.timeline == null) {
                                         return const Center(
                                           child: CircularProgressIndicator

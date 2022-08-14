@@ -8,7 +8,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/widgets/sentry_switch_list_tile.dart';
 import '../config/app_config.dart';
 
 abstract class PlatformInfos {
@@ -62,7 +61,6 @@ abstract class PlatformInfos {
           onPressed: () => VRouter.of(context).to('logs'),
           child: const Text('Logs'),
         ),
-        SentrySwitchListTile.adaptive(label: L10n.of(context)!.sendBugReports),
       ],
       applicationIcon: Image.asset('assets/logo.png', width: 64, height: 64),
       applicationName: AppConfig.applicationName,

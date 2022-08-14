@@ -8,7 +8,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/sentry_controller.dart';
 
 extension ResizeImage on MatrixFile {
   static const int max = 1200;
@@ -23,7 +22,7 @@ extension ResizeImage on MatrixFile {
       // will throw an error e.g. on Android SDK < 18
       mediaInfo = await VideoCompress.compressVideo(tmpFile.path);
     } catch (e, s) {
-      SentryController.captureException(e, s);
+      Logs().w('Error while compressing video', e, s);
     }
     return MatrixVideoFile(
       bytes: (await mediaInfo?.file?.readAsBytes()) ?? bytes,
@@ -50,7 +49,7 @@ extension ResizeImage on MatrixFile {
         name: name,
       );
     } catch (e, s) {
-      SentryController.captureException(e, s);
+      Logs().w('Error while compressing video', e, s);
     }
     return null;
   }
