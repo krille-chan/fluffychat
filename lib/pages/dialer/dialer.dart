@@ -25,7 +25,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -121,10 +120,10 @@ class Calling extends StatefulWidget {
       : super(key: key);
 
   @override
-  _MyCallingPage createState() => _MyCallingPage();
+  MyCallingPage createState() => MyCallingPage();
 }
 
-class _MyCallingPage extends State<Calling> {
+class MyCallingPage extends State<Calling> {
   Room? get room => call?.room;
 
   String get displayName => call?.displayName ?? '';

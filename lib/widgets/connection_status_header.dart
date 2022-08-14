@@ -12,10 +12,10 @@ class ConnectionStatusHeader extends StatefulWidget {
   const ConnectionStatusHeader({Key? key}) : super(key: key);
 
   @override
-  _ConnectionStatusHeaderState createState() => _ConnectionStatusHeaderState();
+  ConnectionStatusHeaderState createState() => ConnectionStatusHeaderState();
 }
 
-class _ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
+class ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
   late final StreamSubscription _onSyncSub;
 
   @override

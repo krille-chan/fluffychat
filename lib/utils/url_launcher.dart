@@ -80,7 +80,7 @@ class UrlLauncher {
     final newHost = uri.host.split('.').map((hostPartEncoded) {
       final hostPart = Uri.decodeComponent(hostPartEncoded);
       final hostPartPunycode = punycodeEncode(hostPart);
-      return hostPartPunycode != hostPart + '-'
+      return hostPartPunycode != '$hostPart-'
           ? 'xn--$hostPartPunycode'
           : hostPart;
     }).join('.');

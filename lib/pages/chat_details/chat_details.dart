@@ -185,7 +185,7 @@ class ChatDetailsController extends State<ChatDetails> {
     await showFutureLoadingDialog(
       context: context,
       future: () =>
-          room.client.setRoomAlias('#' + input.single + ':' + domain!, room.id),
+          room.client.setRoomAlias('#${input.single}:${domain!}', room.id),
     );
   }
 

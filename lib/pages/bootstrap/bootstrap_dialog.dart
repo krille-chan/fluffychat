@@ -39,10 +39,10 @@ class BootstrapDialog extends StatefulWidget {
         );
 
   @override
-  _BootstrapDialogState createState() => _BootstrapDialogState();
+  BootstrapDialogState createState() => BootstrapDialogState();
 }
 
-class _BootstrapDialogState extends State<BootstrapDialog> {
+class BootstrapDialogState extends State<BootstrapDialog> {
   final TextEditingController _recoveryKeyTextEditingController =
       TextEditingController();
 

@@ -18,10 +18,10 @@ class InviteStoryPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _InviteStoryPageState createState() => _InviteStoryPageState();
+  InviteStoryPageState createState() => InviteStoryPageState();
 }
 
-class _InviteStoryPageState extends State<InviteStoryPage> {
+class InviteStoryPageState extends State<InviteStoryPage> {
   Set<String> _undecided = {};
   final Set<String> _invite = {};
 

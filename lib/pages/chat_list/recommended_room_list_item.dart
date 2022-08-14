@@ -44,12 +44,12 @@ class RecommendedRoomListItem extends StatelessWidget {
             TextSpan(children: [
               WidgetSpan(
                   child: Tooltip(
+                    message: L10n.of(context)!
+                        .numberRoomMembers(room.numJoinedMembers),
                     child: const Icon(
                       Icons.people_outlined,
                       size: 20,
                     ),
-                    message: L10n.of(context)!
-                        .numberRoomMembers(room.numJoinedMembers),
                   ),
                   alignment: PlaceholderAlignment.middle,
                   baseline: TextBaseline.alphabetic),

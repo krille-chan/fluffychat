@@ -23,12 +23,12 @@ class AudioPlayerWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AudioPlayerState createState() => _AudioPlayerState();
+  AudioPlayerState createState() => AudioPlayerState();
 }
 
 enum AudioPlayerStatus { notDownloaded, downloading, downloaded }
 
-class _AudioPlayerState extends State<AudioPlayerWidget> {
+class AudioPlayerState extends State<AudioPlayerWidget> {
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
   final AudioPlayer audioPlayer = AudioPlayer();
 

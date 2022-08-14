@@ -75,6 +75,13 @@ class ChatInputRow extends StatelessWidget {
             ]
           : <Widget>[
               KeyBoardShortcuts(
+                keysToPress: {
+                  LogicalKeyboardKey.altLeft,
+                  LogicalKeyboardKey.keyA
+                },
+                onKeysPressed: () =>
+                    controller.onAddPopupMenuButtonSelected('file'),
+                helpLabel: L10n.of(context)!.sendFile,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   height: 56,
@@ -168,18 +175,17 @@ class ChatInputRow extends StatelessWidget {
                     ],
                   ),
                 ),
-                keysToPress: {
-                  LogicalKeyboardKey.altLeft,
-                  LogicalKeyboardKey.keyA
-                },
-                onKeysPressed: () =>
-                    controller.onAddPopupMenuButtonSelected('file'),
-                helpLabel: L10n.of(context)!.sendFile,
               ),
               Container(
                 height: 56,
                 alignment: Alignment.center,
                 child: KeyBoardShortcuts(
+                  keysToPress: {
+                    LogicalKeyboardKey.altLeft,
+                    LogicalKeyboardKey.keyE
+                  },
+                  onKeysPressed: controller.emojiPickerAction,
+                  helpLabel: L10n.of(context)!.emojis,
                   child: IconButton(
                     tooltip: L10n.of(context)!.emojis,
                     icon: PageTransitionSwitcher(
@@ -192,8 +198,8 @@ class ChatInputRow extends StatelessWidget {
                           animation: primaryAnimation,
                           secondaryAnimation: secondaryAnimation,
                           transitionType: SharedAxisTransitionType.scaled,
-                          child: child,
                           fillColor: Colors.transparent,
+                          child: child,
                         );
                       },
                       child: Icon(
@@ -205,12 +211,6 @@ class ChatInputRow extends StatelessWidget {
                     ),
                     onPressed: controller.emojiPickerAction,
                   ),
-                  keysToPress: {
-                    LogicalKeyboardKey.altLeft,
-                    LogicalKeyboardKey.keyE
-                  },
-                  onKeysPressed: controller.emojiPickerAction,
-                  helpLabel: L10n.of(context)!.emojis,
                 ),
               ),
               if (controller.matrix!.isMultiAccount &&

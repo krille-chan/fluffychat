@@ -15,10 +15,10 @@ class LockScreen extends StatefulWidget {
   const LockScreen({Key? key}) : super(key: key);
 
   @override
-  _LockScreenState createState() => _LockScreenState();
+  LockScreenState createState() => LockScreenState();
 }
 
-class _LockScreenState extends State<LockScreen> {
+class LockScreenState extends State<LockScreen> {
   final TextEditingController _textEditingController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   bool _wrongInput = false;

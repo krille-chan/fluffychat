@@ -107,23 +107,22 @@ class ClientChooserButton extends StatelessWidget {
             ...List.generate(
               clientCount,
               (index) => KeyBoardShortcuts(
-                child: Container(),
                 keysToPress: _buildKeyboardShortcut(index + 1),
                 helpLabel: L10n.of(context)!.switchToAccount(index + 1),
                 onKeysPressed: () => _handleKeyboardShortcut(matrix, index),
+                child: Container(),
               ),
             ),
             KeyBoardShortcuts(
-              child: Container(),
               keysToPress: {
                 LogicalKeyboardKey.controlLeft,
                 LogicalKeyboardKey.tab
               },
               helpLabel: L10n.of(context)!.nextAccount,
               onKeysPressed: () => _nextAccount(matrix),
+              child: Container(),
             ),
             KeyBoardShortcuts(
-              child: Container(),
               keysToPress: {
                 LogicalKeyboardKey.controlLeft,
                 LogicalKeyboardKey.shiftLeft,
@@ -131,8 +130,11 @@ class ClientChooserButton extends StatelessWidget {
               },
               helpLabel: L10n.of(context)!.previousAccount,
               onKeysPressed: () => _previousAccount(matrix),
+              child: Container(),
             ),
             PopupMenuButton<Object>(
+              onSelected: _clientSelected,
+              itemBuilder: _bundleMenuItems,
               child: Material(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(99),
@@ -144,8 +146,6 @@ class ClientChooserButton extends StatelessWidget {
                   fontSize: 12,
                 ),
               ),
-              onSelected: _clientSelected,
-              itemBuilder: _bundleMenuItems,
             ),
           ],
         ),

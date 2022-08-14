@@ -33,15 +33,15 @@ Future<void> pushHelper(
     Logs().wtf('Push Helper has crashed!', e, s);
 
     // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await _flutterLocalNotificationsPlugin.initialize(
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
         android: AndroidInitializationSettings('notifications_icon'),
         iOS: IOSInitializationSettings(),
       ),
       onSelectNotification: onSelectNotification,
     );
-    _flutterLocalNotificationsPlugin.show(
+    flutterLocalNotificationsPlugin.show(
       0,
       l10n?.newMessageInFluffyChat,
       l10n?.openAppToReadMessages,
@@ -83,8 +83,8 @@ Future<void> _tryPushHelper(
   }
 
   // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  await _flutterLocalNotificationsPlugin.initialize(
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
       android: AndroidInitializationSettings('notifications_icon'),
       iOS: IOSInitializationSettings(),
@@ -102,7 +102,7 @@ Future<void> _tryPushHelper(
     Logs().v('Notification is a clearing indicator.');
     if (notification.counts?.unread == 0) {
       if (notification.counts == null || notification.counts?.unread == 0) {
-        await _flutterLocalNotificationsPlugin.cancelAll();
+        await flutterLocalNotificationsPlugin.cancelAll();
         final store = await SharedPreferences.getInstance();
         await store.setString(
             SettingKeys.notificationCurrentIds, json.encode({}));
@@ -185,7 +185,7 @@ Future<void> _tryPushHelper(
     iOS: iOSPlatformChannelSpecifics,
   );
 
-  await _flutterLocalNotificationsPlugin.show(
+  await flutterLocalNotificationsPlugin.show(
     id,
     event.room.displayname,
     body,

@@ -133,8 +133,8 @@ class _SpacesHierarchyProposalsState extends State<SpacesHierarchyProposals> {
                 animation: primaryAnimation,
                 secondaryAnimation: secondaryAnimation,
                 transitionType: SharedAxisTransitionType.scaled,
-                child: child,
                 fillColor: Colors.transparent,
+                child: child,
               );
             },
             layoutBuilder: (children) => Stack(

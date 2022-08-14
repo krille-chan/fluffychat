@@ -14,10 +14,10 @@ class EncryptionButton extends StatefulWidget {
   final Room room;
   const EncryptionButton(this.room, {Key? key}) : super(key: key);
   @override
-  _EncryptionButtonState createState() => _EncryptionButtonState();
+  EncryptionButtonState createState() => EncryptionButtonState();
 }
 
-class _EncryptionButtonState extends State<EncryptionButton> {
+class EncryptionButtonState extends State<EncryptionButton> {
   StreamSubscription? _onSyncSub;
 
   void _enableEncryptionAction() async {

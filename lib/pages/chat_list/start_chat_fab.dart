@@ -26,8 +26,8 @@ class StartChatFloatingActionButton extends StatelessWidget {
           animation: primaryAnimation,
           secondaryAnimation: secondaryAnimation,
           transitionType: SharedAxisTransitionType.horizontal,
-          child: child,
           fillColor: Colors.transparent,
+          child: child,
         );
       },
       layoutBuilder: (children) => Stack(

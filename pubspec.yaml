@@ -38,20 +38,21 @@ dependencies:
   flutter_local_notifications: ^9.7.0
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^1.1.0
+  flutter_map: ^2.2.0
   flutter_matrix_html: ^1.1.0
   flutter_olm: ^1.2.0
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
   flutter_secure_storage: ^5.1.0
-  flutter_slidable: ^1.2.0
+  flutter_slidable: ^2.0.0
   flutter_svg: ^0.22.0
   flutter_typeahead: ^4.0.0
   flutter_web_auth: ^0.4.0
-  flutter_webrtc: ^0.8.7
+  flutter_webrtc: ^0.9.2
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   handy_window: ^0.1.6
+  hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
   image: ^3.1.1
@@ -59,6 +60,7 @@ dependencies:
   intl: any
   just_audio: ^0.9.20
   keyboard_shortcuts: ^0.1.4
+  latlong2: ^0.8.1
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
   matrix: ^0.11.2
@@ -85,14 +87,16 @@ dependencies:
   unifiedpush: ^4.0.0
   universal_html: ^2.0.8
   url_launcher: ^6.0.20
+  uuid: ^3.0.6
   video_compress: ^3.1.1
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
   wakelock: ^0.6.1+1
+  webrtc_interface: ^1.0.7
 
 dev_dependencies:
   dart_code_metrics: ^4.10.1
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
   flutter_native_splash: ^2.0.3+1
   flutter_test:
     sdk: flutter

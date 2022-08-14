@@ -19,10 +19,10 @@ class RecordingDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RecordingDialogState createState() => _RecordingDialogState();
+  RecordingDialogState createState() => RecordingDialogState();
 }
 
-class _RecordingDialogState extends State<RecordingDialog> {
+class RecordingDialogState extends State<RecordingDialog> {
   Timer? _recorderSubscription;
   Duration _duration = Duration.zero;
 

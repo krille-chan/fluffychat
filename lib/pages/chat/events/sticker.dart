@@ -13,10 +13,10 @@ class Sticker extends StatefulWidget {
   const Sticker(this.event, {Key? key}) : super(key: key);
 
   @override
-  _StickerState createState() => _StickerState();
+  StickerState createState() => StickerState();
 }
 
-class _StickerState extends State<Sticker> {
+class StickerState extends State<Sticker> {
   bool? animated;
 
   @override

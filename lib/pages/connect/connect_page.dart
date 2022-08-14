@@ -131,8 +131,8 @@ class ConnectPageController extends State<ConnectPage> {
 
   void ssoLoginAction(String id) async {
     final redirectUrl = kIsWeb
-        ? html.window.origin! + '/web/auth.html'
-        : AppConfig.appOpenUrlScheme.toLowerCase() + '://login';
+        ? '${html.window.origin!}/web/auth.html'
+        : '${AppConfig.appOpenUrlScheme.toLowerCase()}://login';
     final url =
         '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
     final urlScheme = Uri.parse(redirectUrl).scheme;

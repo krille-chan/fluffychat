@@ -15,7 +15,7 @@ extension ResizeImage on MatrixFile {
 
   Future<MatrixVideoFile> resizeVideo() async {
     final tmpDir = await getTemporaryDirectory();
-    final tmpFile = File(tmpDir.path + '/' + name);
+    final tmpFile = File('${tmpDir.path}/$name');
     MediaInfo? mediaInfo;
     await tmpFile.writeAsBytes(bytes);
     try {
@@ -37,7 +37,7 @@ extension ResizeImage on MatrixFile {
   Future<MatrixImageFile?> getVideoThumbnail() async {
     if (!PlatformInfos.isMobile) return null;
     final tmpDir = await getTemporaryDirectory();
-    final tmpFile = File(tmpDir.path + '/' + name);
+    final tmpFile = File('${tmpDir.path}/$name');
     if (await tmpFile.exists() == false) {
       await tmpFile.writeAsBytes(bytes);
     }

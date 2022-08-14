@@ -39,10 +39,10 @@ class KeyVerificationDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _KeyVerificationPageState createState() => _KeyVerificationPageState();
+  KeyVerificationPageState createState() => KeyVerificationPageState();
 }
 
-class _KeyVerificationPageState extends State<KeyVerificationDialog> {
+class KeyVerificationPageState extends State<KeyVerificationDialog> {
   void Function()? originalOnUpdate;
   late final List<dynamic> sasEmoji;
 

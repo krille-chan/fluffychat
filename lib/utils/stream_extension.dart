@@ -9,9 +9,9 @@ extension StreamExtension on Stream {
     var gotMessage = false;
     // as we call our inline-defined function recursively we need to make sure that the
     // variable exists prior of creating the function. Silly dart.
-    Function? _onMessage;
+    Function? onMessage;
     // callback to determine if we should send out an update
-    _onMessage = () {
+    onMessage = () {
       // do nothing if it is already closed
       if (controller.isClosed) {
         return;
@@ -25,7 +25,7 @@ extension StreamExtension on Stream {
           // method to send out an update!
           timer = null;
           if (gotMessage) {
-            _onMessage?.call();
+            onMessage?.call();
           }
         });
       } else {
@@ -33,7 +33,7 @@ extension StreamExtension on Stream {
         gotMessage = true;
       }
     };
-    final subscription = listen((_) => _onMessage?.call(),
+    final subscription = listen((_) => onMessage?.call(),
         onDone: () => controller.close(),
         onError: (e, s) => controller.addError(e, s));
     // add proper cleanup to the subscription and the controller, to not memory leak

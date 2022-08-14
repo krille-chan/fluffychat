@@ -21,8 +21,8 @@ class CupertinoWidgetsBottomSheet extends StatelessWidget {
           (widget) => Link(
             builder: (context, callback) {
               return CupertinoActionSheetAction(
-                child: Text(widget.name ?? widget.url),
                 onPressed: callback ?? () {},
+                child: Text(widget.name ?? widget.url),
               );
             },
             target: LinkTarget.blank,
@@ -41,8 +41,8 @@ class CupertinoWidgetsBottomSheet extends StatelessWidget {
           },
         ),
         CupertinoActionSheetAction(
-          child: Text(L10n.of(context)!.cancel),
           onPressed: Navigator.of(context).pop,
+          child: Text(L10n.of(context)!.cancel),
         ),
       ],
     );
