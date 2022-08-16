@@ -367,9 +367,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "setupChatBackupDescription": "Para proteger as tuas mensagens, gerámos uma chave de segurança para ti.\nPor favo, mantém-na num sítio seguro, como um gestor de palavras-passe.",
+  "setupChatBackupDescription": "Para proteger as tuas mensagens, gerámos uma chave de recuperação para ti.\nPor favo, mantém-na num sítio seguro, como um gestor de palavras-passe.",
   "@setupChatBackupDescription": {},
-  "chatBackupDescription": "A tua cópia de segurança de conversas está protegida com uma chave de segurança. Por favor, certifica-te que não a perdes.",
+  "chatBackupDescription": "A tuas mensagens antigas estão protegidas com uma chave de recuperação. Por favor, certifica-te que não a perdes.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1308,7 +1308,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "",
+  "needPantalaimonWarning": "Por favor,",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1999,5 +1999,72 @@
     "placeholders": {
       "username": {}
     }
-  }
+  },
+  "updateAvailable": "Atualização do FluffyChat disponível",
+  "@updateAvailable": {},
+  "updateNow": "Iniciar atualização me segundo plano",
+  "@updateNow": {},
+  "advanced": "Avançado",
+  "@advanced": {},
+  "suggestedRooms": "Descobrir grupos neste espaço",
+  "@suggestedRooms": {},
+  "commandHint_clearcache": "Limpar cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encriptação",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Descartar sessão",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Iniciar uma conversa direta\nUsa --no-encryption para desativar a encriptação",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "dehydrate": "Exportar sessão e limpar dispositivo",
+  "@dehydrate": {},
+  "dehydrateWarning": "Esta ação não pode ser revertida. Assegura-te que guardas bem a cópia de segurança.",
+  "@dehydrateWarning": {},
+  "dehydrateShare": "Esta é a tua exportação privada do FluffyChat. Assegura-te que não a perdes e que a manténs privada.",
+  "@dehydrateShare": {},
+  "hydrateTorLong": "Exportaste a tua sessão na última vez que estiveste no TOR? Importa-a rapidamente e continua a conversar.",
+  "@hydrateTorLong": {},
+  "dehydrateTor": "Utilizadores do TOR: Exportar sessão",
+  "@dehydrateTor": {},
+  "hydrate": "Restaurar a partir de cópia de segurança",
+  "@hydrate": {},
+  "bubbleSize": "Tamanho da bolha",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberRoomMembers": "{number} membros",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "allSuggestedRoomsJoined": "Juntaste-te a todas as salas sugeridas",
+  "@allSuggestedRoomsJoined": {},
+  "hydrateTor": "Utilizadores do TOR: Importar sessão",
+  "@hydrateTor": {},
+  "dehydrateTorLong": "Para utilizadores do TOR, é recomendado exportar a sessão antes de fechar a janela.",
+  "@dehydrateTorLong": {},
+  "moreEvents": "{count,plural, =1{mais 1 evento} other{mais {count} eventos}}",
+  "@moreEvents": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "showSpaces": "Mostrar lista de espaços",
+  "@showSpaces": {}
 }
