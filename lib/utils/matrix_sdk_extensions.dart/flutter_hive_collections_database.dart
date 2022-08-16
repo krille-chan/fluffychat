@@ -51,9 +51,11 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
       hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
       Logs().i('Hive encryption is not supported on this platform');
-    } catch (_) {
-      const FlutterSecureStorage().delete(key: _cipherStorageKey);
-      rethrow;
+    } catch (e, s) {
+      const FlutterSecureStorage()
+          .delete(key: _cipherStorageKey)
+          .catchError((_) {});
+      Logs().w('Unable to init Hive encryption', e, s);
     }
 
     final db = FlutterHiveCollectionsDatabase(
