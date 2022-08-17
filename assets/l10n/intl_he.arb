@@ -160,7 +160,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendOnEnter": "שלח וכנס",
+  "sendOnEnter": "שלח בכניסה",
   "@sendOnEnter": {},
   "badServerLoginTypesException": "שרת הבית תומך בסוגי הכניסה:\n{serverVersions}\nאבל אפליקציה זו תומכת רק ב:\n{supportedVersions}",
   "@badServerLoginTypesException": {
@@ -241,7 +241,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "autoplayImages": "הפעל אוטומטית מדבקות ואמוטים מונפשים",
+  "autoplayImages": "הפעל אוטומטית מדבקות ואנימציות מונפשים",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
@@ -254,7 +254,7 @@
       "supportedVersions": {}
     }
   },
-  "banFromChat": "חסום מצ'אט",
+  "banFromChat": "צאט חסום",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -532,7 +532,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "addToSpace": "הוסף לספייס",
+  "addToSpace": "הוסף לחלל",
   "@addToSpace": {},
   "commandHint_unban": "בטל את החסימה של המשתמש הנתון מהחדר הזה",
   "@commandHint_unban": {
@@ -1695,6 +1695,26 @@
   },
   "openCamera": "פתח מצלמה",
   "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "suggestedRooms": "גלה קבוצות במרחב הזה",
+  "@suggestedRooms": {},
+  "allSuggestedRoomsJoined": "הצטרפת לכל החדרים המוצעים",
+  "@allSuggestedRoomsJoined": {},
+  "updateAvailable": "עדכון FluffyChat זמין",
+  "@updateAvailable": {},
+  "updateNow": "התחל עדכון ברקע",
+  "@updateNow": {},
+  "numberRoomMembers": "{number} חברים",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "bubbleSize": "גודל בועות",
+  "@bubbleSize": {
     "type": "text",
     "placeholders": {}
   }
