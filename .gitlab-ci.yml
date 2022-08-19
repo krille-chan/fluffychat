@@ -209,7 +209,10 @@ pages:
     - "build_web"
     - "fdroid_repo"
   stage: deploy
-  image: node
+  image: node:alpine
+  before_script:
+    - apk update
+    - apk add jq unzip curl wget
   script:
     - cd docs
     - npx tailwindcss -o ./tailwind.css --minify
@@ -218,7 +221,7 @@ pages:
     - mv repo public
     - mv build/web/ public/nightly
     - rm -rf build
-    - ./scripts/download-web-stable.sh
+    - ./scripts/download-web-stable.sh 
     - mv stable public/web
   artifacts:
     paths:
