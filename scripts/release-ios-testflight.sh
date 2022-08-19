@@ -4,7 +4,7 @@ flutter clean
 flutter pub get
 cd ios
 rm -rf Pods
-rm Podfile.lock
+rm -f Podfile.lock
 arch -x86_64 pod install
 arch -x86_64 pod update
 cd ..
