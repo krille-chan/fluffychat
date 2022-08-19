@@ -212,16 +212,16 @@ pages:
   image: node:alpine
   before_script:
     - apk update
-    - apk add jq unzip curl wget
+    - apk add jq unzip curl wget bash
   script:
     - cd docs
     - npx tailwindcss -o ./tailwind.css --minify
     - cd ..
     - mv docs public
-    - mv repo public
+    - mv repo public || true
     - mv build/web/ public/nightly
     - rm -rf build
-    - ./scripts/download-web-stable.sh 
+    - ./scripts/download-web-stable.sh
     - mv stable public/web
   artifacts:
     paths:
