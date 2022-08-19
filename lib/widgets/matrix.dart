@@ -479,8 +479,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       if (value != null && int.tryParse(value) != null) {
         AppConfig.colorSchemeSeed = Color(int.parse(value));
         AdaptiveTheme.of(context).setTheme(
-          light: FluffyThemes.light(),
-          dark: FluffyThemes.dark(),
+          light: FluffyThemes.buildTheme(Brightness.light),
+          dark: FluffyThemes.buildTheme(Brightness.dark),
         );
       }
     });

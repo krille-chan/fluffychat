@@ -29,10 +29,12 @@ abstract class FluffyThemes {
     subtitle2: fallbackTextStyle,
   );
 
-  static ThemeData light([ColorScheme? colorScheme]) => ThemeData(
+  static ThemeData buildTheme(Brightness brightness,
+          [ColorScheme? colorScheme]) =>
+      ThemeData(
         visualDensity: VisualDensity.standard,
         useMaterial3: true,
-        brightness: Brightness.light,
+        brightness: brightness,
         colorSchemeSeed: AppConfig.colorSchemeSeed ??
             colorScheme?.primary ??
             AppConfig.chatColor,
@@ -42,23 +44,16 @@ abstract class FluffyThemes {
         snackBarTheme: const SnackBarThemeData(
           behavior: SnackBarBehavior.floating,
         ),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          },
-        ),
-        dividerColor: Colors.blueGrey.shade50,
+        dividerColor: brightness == Brightness.light
+            ? Colors.blueGrey.shade50
+            : Colors.blueGrey.shade900,
         inputDecorationTheme: const InputDecorationTheme(
           border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
           filled: true,
         ),
         appBarTheme: AppBarTheme(
-          surfaceTintColor: Colors.white,
+          surfaceTintColor:
+              brightness == Brightness.light ? Colors.white : Colors.black,
           shadowColor: Colors.black.withAlpha(64),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -68,67 +63,4 @@ abstract class FluffyThemes {
           ),
         ),
       );
-
-  static ThemeData dark([ColorScheme? colorScheme]) => ThemeData(
-        visualDensity: VisualDensity.standard,
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        colorSchemeSeed: AppConfig.colorSchemeSeed ??
-            colorScheme?.primary ??
-            AppConfig.chatColor,
-        textTheme: PlatformInfos.isDesktop
-            ? Typography.material2018().white.merge(fallbackTextTheme)
-            : null,
-        snackBarTheme:
-            const SnackBarThemeData(behavior: SnackBarBehavior.floating),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          },
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
-          filled: true,
-        ),
-        dividerColor: Colors.blueGrey.shade900,
-        appBarTheme: AppBarTheme(
-          surfaceTintColor: Colors.black,
-          shadowColor: Colors.black.withAlpha(64),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(16),
-            textStyle: const TextStyle(fontSize: 16),
-          ),
-        ),
-      );
-
-  static Color blackWhiteColor(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.light
-          ? Colors.white
-          : Colors.black;
-
-  static Color darken(Color color, [double amount = .1]) {
-    assert(amount >= 0 && amount <= 1);
-
-    final hsl = HSLColor.fromColor(color);
-    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
-
-    return hslDark.toColor();
-  }
-
-  static Color lighten(Color color, [double amount = .1]) {
-    assert(amount >= 0 && amount <= 1);
-
-    final hsl = HSLColor.fromColor(color);
-    final hslLight =
-        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
-
-    return hslLight.toColor();
-  }
 }

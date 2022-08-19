@@ -99,8 +99,14 @@ class FluffyChatAppState extends State<FluffyChatApp> {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
         builder: (lightColorScheme, darkColorScheme) => AdaptiveTheme(
-              light: FluffyThemes.light(lightColorScheme),
-              dark: FluffyThemes.dark(darkColorScheme),
+              light: FluffyThemes.buildTheme(
+                Brightness.light,
+                lightColorScheme,
+              ),
+              dark: FluffyThemes.buildTheme(
+                Brightness.dark,
+                lightColorScheme,
+              ),
               initial: AdaptiveThemeMode.system,
               builder: (theme, darkTheme) => LayoutBuilder(
                 builder: (context, constraints) {
