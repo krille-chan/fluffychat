@@ -3,7 +3,6 @@
 GITLAB_PROJECT_ID="16112282"
 
 mkdir fdroid/repo
-mkdir repo
 
 git fetch
 
@@ -36,7 +35,9 @@ cd .. && mv -v /fdroid repo/nightly
 
 # building stable + RC repo
 
-rm -rf /fdroid
+rm -rf /fdroid fdroid/repo
+
+mkdir fdroid/repo
 
 cd fdroid
 rm -f repo/*.apk
