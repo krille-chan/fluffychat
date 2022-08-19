@@ -54,11 +54,10 @@ integration_test:
   script:
     - flutter pub get
     - flutter test integration_test
+  allow_failure: true
   tags:
-    - famedly
-    - docker
+    - android
   timeout: 20m
-  when: manual
 
 # extending the default tests to test the Google-flavored builds
 integration_test_google:
@@ -67,7 +66,7 @@ integration_test_google:
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
-  when: manual
+  allow_failure: true
 
 # extending the default tests to use Conduit as local homeserver
 integration_test_conduit:
@@ -82,7 +81,7 @@ integration_test_conduit:
     - scripts/integration-prepare-homeserver.sh
     # ensure the homeserver works
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "M_NOT_FOUND" 1> /dev/null && echo "Conduit is running!"
-  when: manual
+  allow_failure: true
 
 # extending the default tests to use Dendrite as local homeserver
 integration_test_dendrite:
@@ -97,7 +96,7 @@ integration_test_dendrite:
     - scripts/integration-prepare-homeserver.sh
     # ensure the homeserver works
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "404 page not found" 1> /dev/null && echo "Dendrite is running!"
-  when: manual
+  allow_failure: true
 
 release_mode_launches:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
@@ -107,16 +106,16 @@ release_mode_launches:
     - scripts/integration-start-avd.sh &
     # generate temporary release build configuration and ensure app launches
     - scripts/integration-check-release-build.sh
+  allow_failure: true
   tags:
-    - famedly
-    - docker
+    - android
   timeout: 20m
-  when: manual
 
 release_mode_launches_google:
   extends: release_mode_launches
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
+  allow_failure: true
 
 build_web:
   stage: build
@@ -186,9 +185,29 @@ deploy_playstore_internal:
   only:
     - main
 
+fdroid_repo:
+  image: debian:testing
+  stage: deploy
+  before_script:
+    - apt-get update && apt-get -qy install fdroidserver wget curl jq --no-install-recommends || true
+    - ./scripts/prepare-fdroid.sh || true
+  script:
+    - ./scripts/create_fdroid_repos.sh || true
+  artifacts:
+    when: always
+    paths:
+      - repo
+  needs:
+    - "build_android_apk"
+  resource_group: playstore_release
+  allow_failure: true
+  only:
+    - main
+
 pages:
   needs:
     - "build_web"
+    - "fdroid_repo"
   stage: deploy
   image: node
   script:
@@ -196,7 +215,11 @@ pages:
     - npx tailwindcss -o ./tailwind.css --minify
     - cd ..
     - mv docs public
-    - mv build/web/ public/web/
+    - mv repo public
+    - mv build/web/ public/nightly
+    - rm -rf build
+    - ./scripts/download-web-stable.sh
+    - mv stable public/web
   artifacts:
     paths:
       - public
