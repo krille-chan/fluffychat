@@ -7,9 +7,9 @@ mkdir repo
 
 git fetch
 
-cd fdroid
-
 # building nightly repo
+
+cd fdroid
 
 cp config.nightly.py config.py
 
@@ -31,13 +31,12 @@ done
 
 fdroid update --rename-apks
 mkdir /fdroid && fdroid deploy
-rm -rf /fdroid
-cd .. && mkdir public && mv -v /fdroid repo/nightly
-
+rm -rf /fdroid/archive
+cd .. && mv -v /fdroid repo/nightly
 
 # building stable + RC repo
 
-mkdir /fdroid
+rm -rf /fdroid
 
 cd fdroid
 rm -f repo/*.apk

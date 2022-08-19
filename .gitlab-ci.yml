@@ -220,6 +220,8 @@ pages:
     - mv docs public
     - mv repo public || true
     - mv build/web/ public/nightly
+    # ensure the nightly deployment knows its location
+    - sed -i "s/href=\"\/web\/\"/href=\"\/nightly\/\"/g" public/nightly/index.html
     - rm -rf build
     - ./scripts/download-web-stable.sh
     - mv stable public/web
