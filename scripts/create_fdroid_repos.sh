@@ -2,7 +2,10 @@
 
 GITLAB_PROJECT_ID="16112282"
 
+# repo directory for build
 mkdir fdroid/repo
+# ... and for deployment
+mkdir repo
 
 git fetch
 
