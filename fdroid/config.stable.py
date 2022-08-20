@@ -10,4 +10,4 @@ archive_older = 0
 local_copy_dir = "/fdroid"
 
 keystore = "key.jks"
-repo_keyalias = "key alias"
+repo_keyalias = "key"
