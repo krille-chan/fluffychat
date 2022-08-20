@@ -87,14 +87,22 @@ class SettingsAccountController extends State<SettingsAccount> {
         OkCancelResult.cancel) {
       return;
     }
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-        ) ==
-        OkCancelResult.cancel) {
+    final supposedMxid = Matrix.of(context).client.userID!;
+    final mxids = await showTextInputDialog(
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context)!.confirmMatrixId,
+      textFields: [
+        DialogTextField(
+          validator: (text) => text == supposedMxid
+              ? null
+              : L10n.of(context)!.supposedMxid(supposedMxid),
+        ),
+      ],
+      okLabel: L10n.of(context)!.delete,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (mxids == null || mxids.length != 1 || mxids.single != supposedMxid) {
       return;
     }
     final input = await showTextInputDialog(
