@@ -18,9 +18,9 @@ PODS:
     - FlutterMacOS
   - flutter_web_auth (0.4.1):
     - FlutterMacOS
-  - flutter_webrtc (0.7.1):
+  - flutter_webrtc (0.8.11):
     - FlutterMacOS
-    - WebRTC-SDK (= 97.4692.05)
+    - WebRTC-SDK (= 97.4692.07)
   - FlutterMacOS (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -49,7 +49,7 @@ PODS:
     - FlutterMacOS
   - wakelock_macos (0.0.1):
     - FlutterMacOS
-  - WebRTC-SDK (97.4692.05)
+  - WebRTC-SDK (97.4692.07)
 
 DEPENDENCIES:
   - audio_session (from `Flutter/ephemeral/.symlinks/plugins/audio_session/macos`)
@@ -137,7 +137,7 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 3805ca215b2fb7f397d78b66db91f6a747af52e4
   flutter_secure_storage_macos: 6ceee8fbc7f484553ad17f79361b556259df89aa
   flutter_web_auth: ae2c29ca9b98c00b4e0e8c0919bb4a05d44b76df
-  flutter_webrtc: 37c4efd66d9d306878c1323d5ac5a1d10c748b3a
+  flutter_webrtc: 39478671aae60497438bceafc011357911e00056
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: 821be05bbdb1b49500e029ebcbf2d6acf2dfb966
@@ -152,7 +152,7 @@ SPEC CHECKSUMS:
   url_launcher_macos: 597e05b8e514239626bcf4a850fcf9ef5c856ec3
   video_compress: c896234f100791b5fef7f049afa38f6d2ef7b42f
   wakelock_macos: bc3f2a9bd8d2e6c89fee1e1822e7ddac3bd004a9
-  WebRTC-SDK: a6ee40bda0e3f7dba057907c3897374005c5715b
+  WebRTC-SDK: e16ed5e9f54d2a983d5f1f479a4b55f20da202fe
 
 PODFILE CHECKSUM: 9b8d08a513b178c33212d1b54cc9e3cba756d95b
 

@@ -39,7 +39,9 @@ abstract class FluffyThemes {
             colorScheme?.primary ??
             AppConfig.chatColor,
         textTheme: PlatformInfos.isDesktop
-            ? Typography.material2018().black.merge(fallbackTextTheme)
+            ? brightness == Brightness.light
+                ? Typography.material2018().black.merge(fallbackTextTheme)
+                : Typography.material2018().white.merge(fallbackTextTheme)
             : null,
         snackBarTheme: const SnackBarThemeData(
           behavior: SnackBarBehavior.floating,
