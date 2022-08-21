@@ -2935,5 +2935,14 @@
   "updateNow": "Güncellemeyi arka planda başlat",
   "@updateNow": {},
   "allSuggestedRoomsJoined": "Önerilen tüm odalara katıldınız",
-  "@allSuggestedRoomsJoined": {}
+  "@allSuggestedRoomsJoined": {},
+  "confirmMatrixId": "Hesabınızı silmek için lütfen Matrix kimliğinizi doğrulayın.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Bu {mxid} olmalıdır",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  }
 }
