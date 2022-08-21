@@ -2935,5 +2935,14 @@
   "updateNow": "在后台开始更新",
   "@updateNow": {},
   "allSuggestedRoomsJoined": "你加入了所有推荐的聊天室",
-  "@allSuggestedRoomsJoined": {}
+  "@allSuggestedRoomsJoined": {},
+  "confirmMatrixId": "要删除账户，请确认你的 Matrix ID。",
+  "@confirmMatrixId": {},
+  "supposedMxid": "应为 {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  }
 }
