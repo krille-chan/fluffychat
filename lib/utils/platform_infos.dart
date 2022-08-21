@@ -54,10 +54,6 @@ abstract class PlatformInfos {
           child: Text(L10n.of(context)!.sourceCode),
         ),
         OutlinedButton(
-          onPressed: () => launch(AppConfig.emojiFontUrl),
-          child: const Text(AppConfig.emojiFontName),
-        ),
-        OutlinedButton(
           onPressed: () => VRouter.of(context).to('logs'),
           child: const Text('Logs'),
         ),

@@ -119,18 +119,6 @@ flutter:
     - assets/js/
     - assets/js/package/
 
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: fonts/Roboto/Roboto-Regular.ttf
-        - asset: fonts/Roboto/Roboto-Italic.ttf
-          style: italic
-        - asset: fonts/Roboto/Roboto-Bold.ttf
-          weight: 700
-    - family: NotoEmoji
-      fonts:
-        - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
-
 msix_config:
   display_name: FluffyChat
   publisher_display_name: FluffyChat

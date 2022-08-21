@@ -55,9 +55,6 @@ abstract class AppConfig {
   static const String pushNotificationsGatewayUrl =
       'https://push.fluffychat.im/_matrix/push/v1/notify';
   static const String pushNotificationsPusherFormat = 'event_id_only';
-  static const String emojiFontName = 'Noto Emoji';
-  static const String emojiFontUrl =
-      'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 16.0;
   static const double columnWidth = 360.0;
 
