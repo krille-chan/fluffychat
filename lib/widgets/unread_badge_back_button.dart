@@ -17,7 +17,6 @@ class UnreadBadgeBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Center(child: BackButton()),
         StreamBuilder(
             stream: Matrix.of(context).client.onSync.stream,
             builder: (context, _) {
@@ -52,6 +51,7 @@ class UnreadBadgeBackButton extends StatelessWidget {
                     )
                   : Container();
             }),
+        const Center(child: BackButton()),
       ],
     );
   }
