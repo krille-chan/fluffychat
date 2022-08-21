@@ -2930,5 +2930,14 @@
   "updateNow": "Почати оновлення у фоновому режимі",
   "@updateNow": {},
   "allSuggestedRoomsJoined": "Ви приєдналися до всіх запропонованих кімнат",
-  "@allSuggestedRoomsJoined": {}
+  "@allSuggestedRoomsJoined": {},
+  "supposedMxid": "Це має бути {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "confirmMatrixId": "Підтвердьте свій Matrix ID, щоб видалити свій обліковий запис.",
+  "@confirmMatrixId": {}
 }
