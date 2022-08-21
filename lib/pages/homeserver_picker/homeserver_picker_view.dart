@@ -18,6 +18,8 @@ class HomeserverPickerView extends StatelessWidget {
     final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(

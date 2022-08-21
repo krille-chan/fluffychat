@@ -25,10 +25,10 @@ class ImageViewerController extends State<ImageViewer> {
   }
 
   /// Save this file with a system call.
-  void saveFileAction() => widget.event.saveFile(context);
+  void saveFileAction(BuildContext context) => widget.event.saveFile(context);
 
   /// Save this file with a system call.
-  void shareFileAction() => widget.event.shareFile(context);
+  void shareFileAction(BuildContext context) => widget.event.shareFile(context);
 
   static const maxScaleFactor = 1.5;
 

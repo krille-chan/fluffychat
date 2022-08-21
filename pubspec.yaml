@@ -78,7 +78,7 @@ dependencies:
   receive_sharing_intent: ^1.4.5
   record: ^4.3.2
   scroll_to_index: ^3.0.1
-  share_plus: ^4.0.9
+  share_plus: ^4.0.10+1
   shared_preferences: ^2.0.13
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0

@@ -26,10 +26,15 @@ extension MatrixFileExtension on MatrixFile {
     final tmpDirectory = await getTemporaryDirectory();
     final path = '${tmpDirectory.path}$fileName';
     await File(path).writeAsBytes(bytes);
-    final box = context.findRenderObject() as RenderBox;
+
+    // Workaround for iPad from
+    // https://github.com/fluttercommunity/plus_plugins/tree/main/packages/share_plus/share_plus#ipad
+    final box = context.findRenderObject() as RenderBox?;
+
     await Share.shareFiles(
       [path],
-      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+      sharePositionOrigin:
+          box == null ? null : box.localToGlobal(Offset.zero) & box.size,
     );
     return;
   }

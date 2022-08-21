@@ -108,7 +108,7 @@ class ChatController extends State<Chat> {
         MessageTypes.File,
       }.contains(selectedEvents.single.messageType);
 
-  void saveSelectedEvent() => selectedEvents.single.saveFile(context);
+  void saveSelectedEvent(context) => selectedEvents.single.saveFile(context);
 
   List<Event> selectedEvents = [];
 
