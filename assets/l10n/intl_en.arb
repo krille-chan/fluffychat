@@ -55,6 +55,14 @@
     "type": "text",
     "placeholders": {}
   },
+  "confirmMatrixId": "Please confirm your Matrix ID in order to delete your account.",
+  "supposedMxid": "This should be {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+        "mxid": {}
+    }
+  },
   "addGroupDescription": "Add a group description",
   "@addGroupDescription": {
     "type": "text",
