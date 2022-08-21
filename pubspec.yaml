@@ -48,7 +48,7 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_typeahead: ^4.0.0
   flutter_web_auth: ^0.4.0
-  flutter_webrtc: ^0.9.2
+  flutter_webrtc: 0.9.0 # Higher fails to build on iOS https://github.com/flutter-webrtc/flutter-webrtc/issues/1054
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   handy_window: ^0.1.6
