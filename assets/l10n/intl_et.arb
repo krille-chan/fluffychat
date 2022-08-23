@@ -2935,5 +2935,14 @@
   "allSuggestedRoomsJoined": "Sa liitusid kõikide soovitatud jututubadega",
   "@allSuggestedRoomsJoined": {},
   "updateAvailable": "On olemas FluffyChat'i uuendus",
-  "@updateAvailable": {}
+  "@updateAvailable": {},
+  "confirmMatrixId": "Konto kustutamiseks palun kinnitage oma Matrix'i ID.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "See peaks olema {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  }
 }
