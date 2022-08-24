@@ -61,7 +61,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "Lisää ryhmän kuvaus",
+  "addGroupDescription": "Lisää ryhmälle kuvaus",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2906,5 +2906,24 @@
   "suggestedRooms": "Löydä ryhmiä tässä Spacessa",
   "@suggestedRooms": {},
   "indexedDbErrorTitle": "Yksityisen selauksen ongelmat",
-  "@indexedDbErrorTitle": {}
+  "@indexedDbErrorTitle": {},
+  "user": "Käyttäjä",
+  "@user": {},
+  "custom": "Mukautettu",
+  "@custom": {},
+  "confirmMatrixId": "Kirjoita Matrix IDsi uudelleen poistaaksesi tunnuksesi.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Tämän pitäisi olla {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "allSuggestedRoomsJoined": "Olet liittynyt kaikkiin ehdotettuihin huoneisiin",
+  "@allSuggestedRoomsJoined": {},
+  "updateAvailable": "FluffyChatin päivitys on saatavilla",
+  "@updateAvailable": {},
+  "updateNow": "Aloita päivitys taustalla",
+  "@updateNow": {}
 }
