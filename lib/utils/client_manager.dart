@@ -104,8 +104,8 @@ abstract class ClientManager {
         EventTypes.RoomPowerLevels,
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
-      legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
+      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      databaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         if (PlatformInfos.isMobile ||
