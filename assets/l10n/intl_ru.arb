@@ -2894,5 +2894,55 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "user": "Пользователь",
+  "@user": {},
+  "confirmMatrixId": "Пожалуйста, подтвердите Matrix ID, чтобы удалить свою учётную запись.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Это должно быть {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "numberRoomMembers": "{number} участников",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "suggestedRooms": "Откройте для себя группы в этом пространстве",
+  "@suggestedRooms": {},
+  "dehydrateTor": "Пользователи TOR: Экспорт сеанса",
+  "@dehydrateTor": {},
+  "indexedDbErrorLong": "К сожалению, по умолчанию хранилище сообщений не включено в приватном режиме.\nПожалуйста, посетите\n  - about:config\n  - установите для dom.indexedDB.privateBrowsing.enabled значение true\nВ противном случае запуск FluffyChat будет невозможен.",
+  "@indexedDbErrorLong": {},
+  "custom": "Пользовательское",
+  "@custom": {},
+  "allSuggestedRoomsJoined": "Вы присоединились ко всем предложенным комнатам",
+  "@allSuggestedRoomsJoined": {},
+  "dehydrateShare": "Это ваш личный экспорт FluffyChat. Убедитесь, что вы не потеряете его и держите его в тайне.",
+  "@dehydrateShare": {},
+  "updateAvailable": "Доступно обновление для FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Обновить в фоновом режиме",
+  "@updateNow": {},
+  "hydrate": "Восстановить из файла резервной копии",
+  "@hydrate": {},
+  "advanced": "Продвинутое",
+  "@advanced": {},
+  "hydrateTor": "Пользователи TOR: Импорт экспорта сессии",
+  "@hydrateTor": {},
+  "hydrateTorLong": "В прошлый раз вы экспортировали свою сессию в TOR? Быстро импортируйте его и продолжайте общение.",
+  "@hydrateTorLong": {},
+  "dehydrateTorLong": "Для пользователей TOR рекомендуется экспортировать сессию перед закрытием окна.",
+  "@dehydrateTorLong": {},
+  "dehydrate": "Экспорт сеанса и очистка устройства",
+  "@dehydrate": {},
+  "dehydrateWarning": "Это действие не может быть отменено. Убедитесь, что вы безопасно сохранили файл резервной копии.",
+  "@dehydrateWarning": {},
+  "indexedDbErrorTitle": "Проблемы с приватным режимом",
+  "@indexedDbErrorTitle": {}
 }
