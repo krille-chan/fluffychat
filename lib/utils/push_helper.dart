@@ -112,6 +112,12 @@ Future<void> _tryPushHelper(
   }
   Logs().v('Push helper got notification event.');
 
+  if (!event.isEventTypeKnown) {
+    Logs()
+        .v('Push message event is from an unknown event type. Do not display.');
+    return;
+  }
+
   l10n ??= await L10n.delegate.load(window.locale);
   final matrixLocals = MatrixLocals(l10n);
 

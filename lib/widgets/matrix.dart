@@ -11,6 +11,7 @@ import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
@@ -23,6 +24,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
@@ -256,6 +258,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     } else {
       initSettings();
     }
+    initLoadingDialog();
+  }
+
+  void initLoadingDialog() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
+      LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
+      LoadingDialog.defaultOnError =
+          (e) => (e as Object?)!.toLocalizedString(context);
+    });
   }
 
   Future<void> initConfig() async {
