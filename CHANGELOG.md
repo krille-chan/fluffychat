@@ -1,3 +1,15 @@
+## v1.6.3 - 2022-08-25
+- Translated using Weblate (Chinese (Simplified)) (Eric)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Finnish) (Aminda Suomalainen)
+- Translated using Weblate (Russian) (Sergey Shavin)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- chore: Migrate back to flutter hive collections (Christian Pauly)
+- chore: Update provider package and remove dep override (Christian Pauly)
+- fix: Do not display push events for unknown event types (Christian Pauly)
+- refactor: App widget (Christian Pauly)
+
 ## v1.6.0 - 2022-07-31
 FluffyChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
 simplified and the drawer on the chat list page got a come-back. Some new features like
