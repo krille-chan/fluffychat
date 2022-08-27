@@ -40,7 +40,7 @@ class FlutterFluffyBoxDatabase extends FluffyBoxDatabase {
 
       const secureStorage = FlutterSecureStorage();
       final containsEncryptionKey =
-          await secureStorage.containsKey(key: _cipherStorageKey);
+          await secureStorage.read(key: _cipherStorageKey) != null;
       if (!containsEncryptionKey) {
         // do not try to create a buggy secure storage for new Linux users
         if (Platform.isLinux) throw MissingPluginException();

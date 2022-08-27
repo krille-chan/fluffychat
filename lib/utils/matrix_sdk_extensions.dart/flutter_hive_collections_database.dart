@@ -33,7 +33,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
 
       const secureStorage = FlutterSecureStorage();
       final containsEncryptionKey =
-          await secureStorage.containsKey(key: _cipherStorageKey);
+          await secureStorage.read(key: _cipherStorageKey) != null;
       if (!containsEncryptionKey) {
         // do not try to create a buggy secure storage for new Linux users
         if (Platform.isLinux) throw MissingPluginException();
@@ -50,6 +50,9 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
 
       hiverCipher = HiveAesCipher(base64Url.decode(rawEncryptionKey));
     } on MissingPluginException catch (_) {
+      const FlutterSecureStorage()
+          .delete(key: _cipherStorageKey)
+          .catchError((_) {});
       Logs().i('Hive encryption is not supported on this platform');
     } catch (e, s) {
       const FlutterSecureStorage()

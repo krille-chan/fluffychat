@@ -668,7 +668,7 @@ packages:
       name: flutter_secure_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "6.0.0"
   flutter_secure_storage_linux:
     dependency: transitive
     description:
