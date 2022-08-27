@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/services.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -57,6 +58,9 @@ abstract class FluffyThemes {
           surfaceTintColor:
               brightness == Brightness.light ? Colors.white : Colors.black,
           shadowColor: Colors.black.withAlpha(64),
+          systemOverlayStyle: brightness == Brightness.light
+              ? SystemUiOverlayStyle.light
+              : SystemUiOverlayStyle.dark,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
