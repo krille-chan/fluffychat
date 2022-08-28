@@ -21,7 +21,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
           key: key,
         );
 
-  static const String _cipherStorageKey = 'database_encryption_key';
+  static const String _cipherStorageKey = 'hive_encryption_key';
 
   static Future<FlutterHiveCollectionsDatabase> databaseBuilder(
       Client client) async {
@@ -71,7 +71,8 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
     } catch (e, s) {
       Logs().w('Unable to open Hive. Delete database and storage key...', e, s);
       const FlutterSecureStorage().delete(key: _cipherStorageKey);
-      await db.clear();
+      await db.clear().catchError((_) {});
+      await Hive.deleteFromDisk();
       rethrow;
     }
     Logs().d('Hive is ready');
@@ -96,10 +97,10 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
         }
       }
       // do not destroy your stable FluffyChat in debug mode
-      if (kDebugMode) {
-        directory = Directory(directory.uri.resolve('debug').toFilePath());
-        directory.create(recursive: true);
-      }
+      directory = Directory(directory.uri
+          .resolve(kDebugMode ? 'hive_debug' : 'hive')
+          .toFilePath());
+      directory.create(recursive: true);
       path = directory.path;
     }
     return path;
