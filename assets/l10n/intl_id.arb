@@ -2929,5 +2929,14 @@
   "allSuggestedRoomsJoined": "Kamu bergabung semua ruangan yang disarankan",
   "@allSuggestedRoomsJoined": {},
   "user": "Pengguna",
-  "@user": {}
+  "@user": {},
+  "confirmMatrixId": "Mohon konfirmasi ID Matrix Anda untuk menghapus akun Anda.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Ini seharusnya {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  }
 }
