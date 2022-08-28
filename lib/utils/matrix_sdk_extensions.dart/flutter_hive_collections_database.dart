@@ -62,7 +62,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
     }
 
     final db = FlutterHiveCollectionsDatabase(
-      'hive_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
+      'hive_collections_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
       await _findDatabasePath(client),
       key: hiverCipher,
     );
