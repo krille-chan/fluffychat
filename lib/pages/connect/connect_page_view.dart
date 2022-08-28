@@ -20,9 +20,6 @@ class ConnectPageView extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.loading,
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 0,
         centerTitle: true,
         title: Text(
           Matrix.of(context).getLoginClient().homeserver?.host ?? '',

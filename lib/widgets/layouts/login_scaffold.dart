@@ -13,19 +13,19 @@ class LoginScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.light,
-          statusBarColor: Colors.transparent,
-          systemNavigationBarContrastEnforced: false,
-          systemNavigationBarColor: Colors.black,
-          systemNavigationBarIconBrightness: Brightness.light,
-        ),
-      );
-    });
     return Scaffold(
-      appBar: appBar,
+      appBar: AppBar(
+        automaticallyImplyLeading: appBar?.automaticallyImplyLeading ?? true,
+        centerTitle: appBar?.centerTitle,
+        title: appBar?.title,
+        leading: appBar?.leading,
+        actions: appBar?.actions,
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+      ),
       extendBodyBehindAppBar: true,
       extendBody: true,
       body: Container(

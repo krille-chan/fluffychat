@@ -14,9 +14,6 @@ class SignupPageView extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.loading,
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 0,
         title: Text(
           L10n.of(context)!.signUp,
           style: const TextStyle(color: Colors.white),

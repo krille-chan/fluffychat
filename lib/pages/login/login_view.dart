@@ -16,9 +16,6 @@ class LoginView extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.loading,
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 0,
         centerTitle: true,
         title: Text(
           L10n.of(context)!.logInTo(Matrix.of(context)

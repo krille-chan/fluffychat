@@ -18,33 +18,21 @@ class HomeserverPickerView extends StatelessWidget {
     final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
       appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: controller.restoreBackup,
             tooltip: L10n.of(context)!.hydrate,
-            icon: const Icon(
-              Icons.restore_outlined,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.restore_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.privacy,
             onPressed: () => launch(AppConfig.privacyUrl),
-            icon: const Icon(
-              Icons.shield_outlined,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.shield_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.about,
             onPressed: () => PlatformInfos.showDialog(context),
-            icon: const Icon(
-              Icons.info_outlined,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.info_outlined),
           ),
         ],
       ),

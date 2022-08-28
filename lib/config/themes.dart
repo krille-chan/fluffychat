@@ -58,9 +58,11 @@ abstract class FluffyThemes {
           surfaceTintColor:
               brightness == Brightness.light ? Colors.white : Colors.black,
           shadowColor: Colors.black.withAlpha(64),
-          systemOverlayStyle: brightness == Brightness.light
-              ? SystemUiOverlayStyle.dark
-              : SystemUiOverlayStyle.light,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: brightness.reversed,
+            statusBarBrightness: brightness,
+          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -69,4 +71,9 @@ abstract class FluffyThemes {
           ),
         ),
       );
+}
+
+extension on Brightness {
+  Brightness get reversed =>
+      this == Brightness.dark ? Brightness.light : Brightness.dark;
 }
