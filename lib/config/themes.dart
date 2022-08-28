@@ -59,8 +59,8 @@ abstract class FluffyThemes {
               brightness == Brightness.light ? Colors.white : Colors.black,
           shadowColor: Colors.black.withAlpha(64),
           systemOverlayStyle: brightness == Brightness.light
-              ? SystemUiOverlayStyle.light
-              : SystemUiOverlayStyle.dark,
+              ? SystemUiOverlayStyle.dark
+              : SystemUiOverlayStyle.light,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
