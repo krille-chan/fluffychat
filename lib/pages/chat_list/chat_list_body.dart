@@ -147,44 +147,6 @@ class _ChatListViewBodyState extends State<ChatListViewBody> {
                     filter: widget.controller.searchController.text,
                   ),
                   AnimatedContainer(
-                    height: !widget.controller.isSearchMode &&
-                            widget.controller.showChatBackupBanner
-                        ? 54
-                        : 0,
-                    duration: const Duration(milliseconds: 300),
-                    clipBehavior: Clip.hardEdge,
-                    curve: Curves.bounceInOut,
-                    decoration: const BoxDecoration(),
-                    child: Material(
-                      color: Theme.of(context).colorScheme.surface,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: Avatar.defaultSize / 2,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surfaceVariant,
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onSurfaceVariant,
-                          child: const Icon(Icons.enhanced_encryption_outlined),
-                        ),
-                        title: Text(
-                          (Matrix.of(context)
-                                      .client
-                                      .encryption
-                                      ?.keyManager
-                                      .enabled ==
-                                  true)
-                              ? L10n.of(context)!.unlockOldMessages
-                              : L10n.of(context)!.enableAutoBackups,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                        ),
-                        trailing: const Icon(Icons.chevron_right_outlined),
-                        onTap: widget.controller.firstRunBootstrapAction,
-                      ),
-                    ),
-                  ),
-                  AnimatedContainer(
                     height: widget.controller.isTorBrowser ? 64 : 0,
                     duration: const Duration(milliseconds: 300),
                     clipBehavior: Clip.hardEdge,

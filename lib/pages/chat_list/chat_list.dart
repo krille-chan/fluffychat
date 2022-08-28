@@ -211,19 +211,6 @@ class ChatListController extends State<ChatList>
   }
 
   final selectedRoomIds = <String>{};
-  bool? crossSigningCached;
-  bool showChatBackupBanner = false;
-
-  void firstRunBootstrapAction() async {
-    setState(() {
-      showChatBackupBanner = false;
-    });
-
-    await BootstrapDialog(
-      client: Matrix.of(context).client,
-    ).show(context);
-    VRouter.of(context).to('/rooms');
-  }
 
   String? get activeChat => VRouter.of(context).pathParameters['roomid'];
 
@@ -312,24 +299,6 @@ class ChatListController extends State<ChatList>
     _subscribeSpaceChanges();
 
     super.initState();
-  }
-
-  void checkBootstrap() async {
-    if (!Matrix.of(context).client.encryptionEnabled) return;
-    await Matrix.of(context).client.accountDataLoading;
-    await Matrix.of(context).client.userDeviceKeysLoading;
-    final crossSigning =
-        await Matrix.of(context).client.encryption?.crossSigning.isCached() ??
-            false;
-    final needsBootstrap =
-        Matrix.of(context).client.encryption?.crossSigning.enabled == false ||
-            crossSigning == false;
-    final isUnknownSession = Matrix.of(context).client.isUnknownSession;
-    if (needsBootstrap || isUnknownSession) {
-      setState(() {
-        showChatBackupBanner = true;
-      });
-    }
   }
 
   @override
@@ -538,7 +507,17 @@ class ChatListController extends State<ChatList>
     await client.accountDataLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
+
+      // Display first login bootstrap if enabled
+      if (client.encryption?.keyManager.enabled == true) {
+        if (await client.encryption?.keyManager.isCached() == false ||
+            await client.encryption?.crossSigning.isCached() == false ||
+            client.isUnknownSession) {
+          await BootstrapDialog(client: client).show(context);
+        }
+      }
     }
+
     // Load space members to display DM rooms
     final spaceId = activeSpaceId;
     if (spaceId != null) {
@@ -553,7 +532,6 @@ class ChatListController extends State<ChatList>
     setState(() {
       waitForFirstSync = true;
     });
-    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
     return;
   }
 

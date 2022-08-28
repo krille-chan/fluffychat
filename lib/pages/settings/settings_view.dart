@@ -39,6 +39,23 @@ class SettingsView extends StatelessWidget {
           iconColor: Theme.of(context).colorScheme.onBackground,
           child: ListView(
             children: <Widget>[
+              AnimatedContainer(
+                height: controller.showChatBackupBanner ? 54 : 0,
+                duration: const Duration(milliseconds: 300),
+                clipBehavior: Clip.hardEdge,
+                curve: Curves.bounceInOut,
+                decoration: const BoxDecoration(),
+                child: ListTile(
+                  leading: const Icon(Icons.backup_outlined),
+                  title: Text(L10n.of(context)!.enableAutoBackups),
+                  trailing: const Icon(
+                    Icons.warning_outlined,
+                    color: Colors.orange,
+                  ),
+                  onTap: controller.firstRunBootstrapAction,
+                ),
+              ),
+              const Divider(thickness: 1),
               ListTile(
                 leading: const Icon(Icons.format_paint_outlined),
                 title: Text(L10n.of(context)!.changeTheme),

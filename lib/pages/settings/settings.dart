@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../widgets/matrix.dart';
+import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_view.dart';
 
 class Settings extends StatefulWidget {
@@ -21,10 +22,6 @@ class Settings extends StatefulWidget {
 }
 
 class SettingsController extends State<Settings> {
-  Future<bool>? crossSigningCachedFuture;
-  bool? crossSigningCached;
-  Future<bool>? megolmBackupCachedFuture;
-  bool? megolmBackupCached;
   Future<dynamic>? profileFuture;
   Profile? profile;
   bool profileUpdated = false;
@@ -107,6 +104,43 @@ class SettingsController extends State<Settings> {
   }
 
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
+
+    super.initState();
+  }
+
+  void checkBootstrap() async {
+    final client = Matrix.of(context).client;
+    if (!client.encryptionEnabled) return;
+    await client.accountDataLoading;
+    await client.userDeviceKeysLoading;
+    if (client.prevBatch == null) {
+      await client.onSync.stream.first;
+    }
+    final crossSigning =
+        await client.encryption?.crossSigning.isCached() ?? false;
+    final needsBootstrap =
+        await client.encryption?.keyManager.isCached() == false ||
+            client.encryption?.crossSigning.enabled == false ||
+            crossSigning == false;
+    final isUnknownSession = client.isUnknownSession;
+    setState(() {
+      showChatBackupBanner = needsBootstrap || isUnknownSession;
+    });
+  }
+
+  bool? crossSigningCached;
+  bool showChatBackupBanner = false;
+
+  void firstRunBootstrapAction() async {
+    await BootstrapDialog(
+      client: Matrix.of(context).client,
+    ).show(context);
+    checkBootstrap();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
     profileFuture ??= client
@@ -119,18 +153,6 @@ class SettingsController extends State<Settings> {
       if (mounted) setState(() => profile = p);
       return p;
     });
-    if (client.encryption != null) {
-      crossSigningCachedFuture ??=
-          client.encryption?.crossSigning.isCached().then((c) {
-        if (mounted) setState(() => crossSigningCached = c);
-        return c;
-      });
-      megolmBackupCachedFuture ??=
-          client.encryption?.keyManager.isCached().then((c) {
-        if (mounted) setState(() => megolmBackupCached = c);
-        return c;
-      });
-    }
     return SettingsView(this);
   }
 }
