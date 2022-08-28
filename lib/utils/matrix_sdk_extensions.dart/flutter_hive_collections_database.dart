@@ -62,14 +62,14 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
     }
 
     final db = FlutterHiveCollectionsDatabase(
-      'hive_collections_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
+      'hive_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
       await _findDatabasePath(client),
       key: hiverCipher,
     );
     try {
       await db.open();
-    } catch (_) {
-      Logs().w('Unable to open Hive. Delete database and storage key...');
+    } catch (e, s) {
+      Logs().w('Unable to open Hive. Delete database and storage key...', e, s);
       const FlutterSecureStorage().delete(key: _cipherStorageKey);
       await db.clear();
       rethrow;
