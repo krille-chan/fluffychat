@@ -2934,5 +2934,14 @@
   "updateNow": "Update op de achtergrond starten",
   "@updateNow": {},
   "allSuggestedRoomsJoined": "Je bent toegetreden in alle voorgestelde kamers",
-  "@allSuggestedRoomsJoined": {}
+  "@allSuggestedRoomsJoined": {},
+  "confirmMatrixId": "Bevestig jouw Matrix ID om je account te verwijderen.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Dit moet {mxid} zijn",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  }
 }
