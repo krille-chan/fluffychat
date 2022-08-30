@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
@@ -23,6 +25,60 @@ class ClientChooserButton extends StatelessWidget {
               ? -1
               : 1);
     return <PopupMenuEntry<Object>>[
+      PopupMenuItem(
+        value: SettingsAction.newStory,
+        child: Row(
+          children: [
+            const Icon(Icons.camera_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.yourStory),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.newGroup,
+        child: Row(
+          children: [
+            const Icon(Icons.group_add_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.createNewGroup),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.newSpace,
+        child: Row(
+          children: [
+            const Icon(Icons.workspaces_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.createNewSpace),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.invite,
+        child: Row(
+          children: [
+            Icon(Icons.adaptive.share_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.inviteContact),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.settings,
+        child: Row(
+          children: [
+            const Icon(Icons.settings_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.settings),
+          ],
+        ),
+      ),
+      const PopupMenuItem(
+        value: null,
+        child: Divider(height: 1),
+      ),
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
             matrix.accountBundles[bundle]!.single!.userID != bundle)
@@ -80,7 +136,7 @@ class ClientChooserButton extends StatelessWidget {
             .toList(),
       ],
       PopupMenuItem(
-        value: AddAccountAction.addAccount,
+        value: SettingsAction.addAccount,
         child: Row(
           children: [
             const Icon(Icons.person_add_outlined),
@@ -98,42 +154,50 @@ class ClientChooserButton extends StatelessWidget {
 
     int clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
-    return Center(
-      child: FutureBuilder<Profile>(
-        future: matrix.client.fetchOwnProfile(),
-        builder: (context, snapshot) => Stack(
-          alignment: Alignment.center,
-          children: [
-            ...List.generate(
-              clientCount,
-              (index) => KeyBoardShortcuts(
-                keysToPress: _buildKeyboardShortcut(index + 1),
-                helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-                onKeysPressed: () => _handleKeyboardShortcut(matrix, index),
-                child: Container(),
+    return FutureBuilder<Profile>(
+      future: matrix.client.fetchOwnProfile(),
+      builder: (context, snapshot) => Stack(
+        alignment: Alignment.center,
+        children: [
+          ...List.generate(
+            clientCount,
+            (index) => KeyBoardShortcuts(
+              keysToPress: _buildKeyboardShortcut(index + 1),
+              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+              onKeysPressed: () => _handleKeyboardShortcut(
+                matrix,
+                index,
+                context,
               ),
-            ),
-            KeyBoardShortcuts(
-              keysToPress: {
-                LogicalKeyboardKey.controlLeft,
-                LogicalKeyboardKey.tab
-              },
-              helpLabel: L10n.of(context)!.nextAccount,
-              onKeysPressed: () => _nextAccount(matrix),
               child: Container(),
             ),
-            KeyBoardShortcuts(
-              keysToPress: {
-                LogicalKeyboardKey.controlLeft,
-                LogicalKeyboardKey.shiftLeft,
-                LogicalKeyboardKey.tab
-              },
-              helpLabel: L10n.of(context)!.previousAccount,
-              onKeysPressed: () => _previousAccount(matrix),
-              child: Container(),
-            ),
-            PopupMenuButton<Object>(
-              onSelected: _clientSelected,
+          ),
+          KeyBoardShortcuts(
+            keysToPress: {
+              LogicalKeyboardKey.controlLeft,
+              LogicalKeyboardKey.tab
+            },
+            helpLabel: L10n.of(context)!.nextAccount,
+            onKeysPressed: () => _nextAccount(matrix, context),
+            child: Container(),
+          ),
+          KeyBoardShortcuts(
+            keysToPress: {
+              LogicalKeyboardKey.controlLeft,
+              LogicalKeyboardKey.shiftLeft,
+              LogicalKeyboardKey.tab
+            },
+            helpLabel: L10n.of(context)!.previousAccount,
+            onKeysPressed: () => _previousAccount(matrix, context),
+            child: Container(),
+          ),
+          Theme(
+            data: Theme.of(context),
+            child: PopupMenuButton<Object>(
+              shape: Border.all(
+                color: Theme.of(context).dividerColor,
+              ),
+              onSelected: (o) => _clientSelected(o, context),
               itemBuilder: _bundleMenuItems,
               child: Material(
                 color: Colors.transparent,
@@ -147,8 +211,8 @@ class ClientChooserButton extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -164,17 +228,46 @@ class ClientChooserButton extends StatelessWidget {
     }
   }
 
-  void _clientSelected(Object object) {
+  void _clientSelected(
+    Object object,
+    BuildContext context,
+  ) {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {
       controller.setActiveBundle(object);
-    } else if (object == AddAccountAction.addAccount) {
-      controller.addAccountAction();
+    } else if (object is SettingsAction) {
+      switch (object) {
+        case SettingsAction.addAccount:
+          VRouter.of(context).to('/settings/account');
+          break;
+        case SettingsAction.newStory:
+          VRouter.of(context).to('/stories/create');
+          break;
+        case SettingsAction.newGroup:
+          VRouter.of(context).to('/newgroup');
+          break;
+        case SettingsAction.newSpace:
+          VRouter.of(context).to('/newspace');
+          break;
+        case SettingsAction.invite:
+          FluffyShare.share(
+              L10n.of(context)!.inviteText(Matrix.of(context).client.userID!,
+                  'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat'),
+              context);
+          break;
+        case SettingsAction.settings:
+          VRouter.of(context).to('/settings');
+          break;
+      }
     }
   }
 
-  void _handleKeyboardShortcut(MatrixState matrix, int index) {
+  void _handleKeyboardShortcut(
+    MatrixState matrix,
+    int index,
+    BuildContext context,
+  ) {
     final bundles = matrix.accountBundles.keys.toList()
       ..sort((a, b) => a!.isValidMatrixId == b!.isValidMatrixId
           ? 0
@@ -186,20 +279,20 @@ class ClientChooserButton extends StatelessWidget {
       int clientCount = 0;
       matrix.accountBundles
           .forEach((key, value) => clientCount += value.length);
-      _handleKeyboardShortcut(matrix, clientCount);
+      _handleKeyboardShortcut(matrix, clientCount, context);
     }
     for (final bundleName in bundles) {
       final bundle = matrix.accountBundles[bundleName];
       if (bundle != null) {
         if (index < bundle.length) {
-          return _clientSelected(bundle[index]!);
+          return _clientSelected(bundle[index]!, context);
         } else {
           index -= bundle.length;
         }
       }
     }
     // if index too high, restarting from 0
-    _handleKeyboardShortcut(matrix, 0);
+    _handleKeyboardShortcut(matrix, 0, context);
   }
 
   int? _shortcutIndexOfClient(MatrixState matrix, Client client) {
@@ -223,17 +316,24 @@ class ClientChooserButton extends StatelessWidget {
     return null;
   }
 
-  void _nextAccount(MatrixState matrix) {
+  void _nextAccount(MatrixState matrix, BuildContext context) {
     final client = matrix.client;
     final lastIndex = _shortcutIndexOfClient(matrix, client);
-    _handleKeyboardShortcut(matrix, lastIndex! + 1);
+    _handleKeyboardShortcut(matrix, lastIndex! + 1, context);
   }
 
-  void _previousAccount(MatrixState matrix) {
+  void _previousAccount(MatrixState matrix, BuildContext context) {
     final client = matrix.client;
     final lastIndex = _shortcutIndexOfClient(matrix, client);
-    _handleKeyboardShortcut(matrix, lastIndex! - 1);
+    _handleKeyboardShortcut(matrix, lastIndex! - 1, context);
   }
 }
 
-enum AddAccountAction { addAccount }
+enum SettingsAction {
+  addAccount,
+  newStory,
+  newGroup,
+  newSpace,
+  invite,
+  settings,
+}

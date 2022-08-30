@@ -138,7 +138,7 @@ SPEC CHECKSUMS:
   flutter_secure_storage_macos: 6ceee8fbc7f484553ad17f79361b556259df89aa
   flutter_web_auth: ae2c29ca9b98c00b4e0e8c0919bb4a05d44b76df
   flutter_webrtc: 39478671aae60497438bceafc011357911e00056
-  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: 821be05bbdb1b49500e029ebcbf2d6acf2dfb966
   just_audio: 9b67ca7b97c61cfc9784ea23cd8cc55eb226d489

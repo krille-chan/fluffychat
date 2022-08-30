@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../config/themes.dart';
+
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
@@ -18,7 +20,8 @@ class TwoColumnLayout extends StatelessWidget {
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(),
-              width: 360.0,
+              width: 360.0 +
+                  (FluffyThemes.getDisplayNavigationRail(context) ? 64 : 0),
               child: mainView,
             ),
             Container(

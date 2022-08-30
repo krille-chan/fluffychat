@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:vrouter/vrouter.dart';
+
 import 'package:fluffychat/utils/platform_infos.dart';
+import '../widgets/matrix.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
+
+  static bool isColumnModeByWidth(double width) => width > columnWidth * 2 + 64;
+
   static bool isColumnMode(BuildContext context) =>
-      MediaQuery.of(context).size.width > columnWidth * 2;
+      isColumnModeByWidth(MediaQuery.of(context).size.width);
+
+  static bool getDisplayNavigationRail(BuildContext context) =>
+      !VRouter.of(context).path.startsWith('/settings') &&
+      (Matrix.of(context).client.rooms.any((room) => room.isSpace) ||
+          AppConfig.separateChatTypes);
 
   static const fallbackTextStyle = TextStyle(
     fontFamily: 'Roboto',

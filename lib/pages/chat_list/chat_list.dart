@@ -13,12 +13,12 @@ import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
-import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/space_navigator.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
@@ -30,7 +30,11 @@ import '../settings_account/settings_account.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
-enum SelectMode { normal, share, select }
+enum SelectMode {
+  normal,
+  share,
+  select,
+}
 
 enum PopupMenuAction {
   settings,
@@ -39,6 +43,13 @@ enum PopupMenuAction {
   newSpace,
   setStatus,
   archive,
+}
+
+enum ActiveFilter {
+  allChats,
+  groups,
+  messages,
+  spaces,
 }
 
 class ChatList extends StatefulWidget {
@@ -56,7 +67,95 @@ class ChatListController extends State<ChatList>
 
   StreamSubscription? _intentUriStreamSubscription;
 
-  SpacesEntry? _activeSpacesEntry;
+  bool get displayNavigationBar =>
+      !FluffyThemes.isColumnMode(context) &&
+      (spaces.isNotEmpty || AppConfig.separateChatTypes);
+
+  String? activeSpaceId;
+
+  void resetActiveSpaceId() {
+    setState(() {
+      activeSpaceId = null;
+    });
+  }
+
+  void setActiveSpace(String? spaceId) {
+    setState(() {
+      activeSpaceId = spaceId;
+      activeFilter = ActiveFilter.spaces;
+    });
+  }
+
+  int get selectedIndex {
+    switch (activeFilter) {
+      case ActiveFilter.allChats:
+        return 0;
+      case ActiveFilter.groups:
+        return 0;
+      case ActiveFilter.messages:
+        return 1;
+      case ActiveFilter.spaces:
+        return AppConfig.separateChatTypes ? 2 : 1;
+    }
+  }
+
+  void onDestinationSelected(int? i) {
+    switch (i) {
+      case 0:
+        if (AppConfig.separateChatTypes) {
+          setState(() {
+            activeFilter = ActiveFilter.groups;
+          });
+        } else {
+          setState(() {
+            activeFilter = ActiveFilter.allChats;
+          });
+        }
+        break;
+      case 1:
+        if (AppConfig.separateChatTypes) {
+          setState(() {
+            activeFilter = ActiveFilter.messages;
+          });
+        } else {
+          setState(() {
+            activeFilter = ActiveFilter.spaces;
+          });
+        }
+        break;
+      case 2:
+        setState(() {
+          activeFilter = ActiveFilter.spaces;
+        });
+        break;
+    }
+  }
+
+  ActiveFilter activeFilter = AppConfig.separateChatTypes
+      ? ActiveFilter.messages
+      : ActiveFilter.allChats;
+
+  List<Room> get filteredRooms {
+    final rooms = Matrix.of(context).client.rooms;
+    switch (activeFilter) {
+      case ActiveFilter.allChats:
+        return rooms
+            .where((room) => !room.isSpace && !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.groups:
+        return rooms
+            .where((room) =>
+                !room.isSpace && !room.isDirectChat && !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.messages:
+        return rooms
+            .where((room) =>
+                !room.isSpace && room.isDirectChat && !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.spaces:
+        return rooms.where((room) => room.isSpace).toList();
+    }
+  }
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -154,14 +253,7 @@ class ChatListController extends State<ChatList>
 
   bool isTorBrowser = false;
 
-  SpacesEntry get activeSpacesEntry {
-    final id = _activeSpacesEntry;
-    return (id == null || !id.stillValid(context)) ? defaultSpacesEntry : id;
-  }
-
   BoxConstraints? snappingSheetContainerSize;
-
-  String? get activeSpaceId => activeSpacesEntry.getSpace(context)?.id;
 
   final ScrollController scrollController = ScrollController();
   bool scrolledToTop = true;
@@ -189,26 +281,6 @@ class ChatListController extends State<ChatList>
   // Needs to match GroupsSpacesEntry for 'separate group' checking.
   List<Room> get spaces =>
       Matrix.of(context).client.rooms.where((r) => r.isSpace).toList();
-
-  // Note that this could change due to configuration, etc.
-  // Also be aware that _activeSpacesEntry = null is the expected reset method.
-  SpacesEntry get defaultSpacesEntry => AppConfig.separateChatTypes
-      ? DirectChatsSpacesEntry()
-      : AllRoomsSpacesEntry();
-
-  List<SpacesEntry> get spacesEntries {
-    if (AppConfig.separateChatTypes) {
-      return [
-        defaultSpacesEntry,
-        GroupsSpacesEntry(),
-        ...spaces.map((space) => SpaceSpacesEntry(space)).toList()
-      ];
-    }
-    return [
-      defaultSpacesEntry,
-      ...spaces.map((space) => SpaceSpacesEntry(space)).toList()
-    ];
-  }
 
   final selectedRoomIds = <String>{};
 
@@ -295,8 +367,6 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
-
-    _subscribeSpaceChanges();
 
     super.initState();
   }
@@ -419,73 +489,43 @@ class ChatListController extends State<ChatList>
     }
   }
 
-  Future<void> addOrRemoveToSpace() async {
-    final id = activeSpaceId;
-    if (id != null) {
-      final consent = await showOkCancelAlertDialog(
+  Future<void> addToSpace() async {
+    final selectedSpace = await showConfirmationDialog<String>(
         context: context,
-        title: L10n.of(context)!.removeFromSpace,
-        message: L10n.of(context)!.removeFromSpaceDescription,
-        okLabel: L10n.of(context)!.remove,
-        cancelLabel: L10n.of(context)!.cancel,
-        isDestructiveAction: true,
+        title: L10n.of(context)!.addToSpace,
+        message: L10n.of(context)!.addToSpaceDescription,
         fullyCapitalizedForMaterial: false,
-      );
-      if (consent != OkCancelResult.ok) return;
-
-      final space = Matrix.of(context).client.getRoomById(id);
-      final result = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
+        actions: Matrix.of(context)
+            .client
+            .rooms
+            .where((r) => r.isSpace)
+            .map(
+              (space) => AlertDialogAction(
+                key: space.id,
+                label: space.displayname,
+              ),
+            )
+            .toList());
+    if (selectedSpace == null) return;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
+        if (space.canSendDefaultStates) {
           for (final roomId in selectedRoomIds) {
-            await space!.removeSpaceChild(roomId);
+            await space.setSpaceChild(roomId);
           }
-        },
+        }
+      },
+    );
+    if (result.error == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+        ),
       );
-      if (result.error == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.of(context)!.chatHasBeenRemovedFromThisSpace),
-          ),
-        );
-      }
-    } else {
-      final selectedSpace = await showConfirmationDialog<String>(
-          context: context,
-          title: L10n.of(context)!.addToSpace,
-          message: L10n.of(context)!.addToSpaceDescription,
-          fullyCapitalizedForMaterial: false,
-          actions: Matrix.of(context)
-              .client
-              .rooms
-              .where((r) => r.isSpace)
-              .map(
-                (space) => AlertDialogAction(
-                  key: space.id,
-                  label: space.displayname,
-                ),
-              )
-              .toList());
-      if (selectedSpace == null) return;
-      final result = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
-          if (space.canSendDefaultStates) {
-            for (final roomId in selectedRoomIds) {
-              await space.setSpaceChild(roomId);
-            }
-          }
-        },
-      );
-      if (result.error == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
-          ),
-        );
-      }
     }
+
     setState(() => selectedRoomIds.clear());
   }
 
@@ -517,18 +557,6 @@ class ChatListController extends State<ChatList>
         }
       }
     }
-
-    // Load space members to display DM rooms
-    final spaceId = activeSpaceId;
-    if (spaceId != null) {
-      final space = client.getRoomById(spaceId)!;
-      final localMembers = space.getParticipants().length;
-      final actualMembersCount = (space.summary.mInvitedMemberCount ?? 0) +
-          (space.summary.mJoinedMemberCount ?? 0);
-      if (localMembers < actualMembersCount) {
-        await space.requestParticipants();
-      }
-    }
     setState(() {
       waitForFirstSync = true;
     });
@@ -546,7 +574,6 @@ class ChatListController extends State<ChatList>
   void setActiveClient(Client client) {
     VRouter.of(context).to('/rooms');
     setState(() {
-      _activeSpacesEntry = null;
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
@@ -556,7 +583,6 @@ class ChatListController extends State<ChatList>
   void setActiveBundle(String bundle) {
     VRouter.of(context).to('/rooms');
     setState(() {
-      _activeSpacesEntry = null;
       selectedRoomIds.clear();
       Matrix.of(context).activeBundle = bundle;
       if (!Matrix.of(context)
@@ -651,27 +677,6 @@ class ChatListController extends State<ChatList>
 
   Future<void> dehydrate() =>
       SettingsAccountController.dehydrateDevice(context);
-
-  _adjustSpaceQuery(String? spaceId) {
-    cancelSearch();
-    setState(() {
-      if (spaceId != null) {
-        final matching =
-            spacesEntries.where((element) => element.routeHandle == spaceId);
-        if (matching.isNotEmpty) {
-          _activeSpacesEntry = matching.first;
-        } else {
-          _activeSpacesEntry = defaultSpacesEntry;
-        }
-      } else {
-        _activeSpacesEntry = defaultSpacesEntry;
-      }
-    });
-  }
-
-  void _subscribeSpaceChanges() {
-    _spacesSubscription = SpaceNavigator.stream.listen(_adjustSpaceQuery);
-  }
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
