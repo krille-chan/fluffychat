@@ -13,10 +13,12 @@ import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pages/chat_list/spaces_entry.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/space_navigator.dart';
 import '../../../utils/account_bundles.dart';
@@ -30,7 +32,11 @@ import '../settings_account/settings_account.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
-enum SelectMode { normal, share, select }
+enum SelectMode {
+  normal,
+  share,
+  select,
+}
 
 enum PopupMenuAction {
   settings,
@@ -39,6 +45,13 @@ enum PopupMenuAction {
   newSpace,
   setStatus,
   archive,
+}
+
+enum ActiveFilter {
+  allChats,
+  groups,
+  messages,
+  spaces,
 }
 
 class ChatList extends StatefulWidget {
@@ -57,6 +70,92 @@ class ChatListController extends State<ChatList>
   StreamSubscription? _intentUriStreamSubscription;
 
   SpacesEntry? _activeSpacesEntry;
+
+  bool get displayNavigationBar =>
+      !FluffyThemes.isColumnMode(context) &&
+      (spaces.isNotEmpty || AppConfig.separateChatTypes);
+
+  int get selectedIndex {
+    switch (activeFilter) {
+      case ActiveFilter.allChats:
+        return 0;
+      case ActiveFilter.groups:
+        return 0;
+      case ActiveFilter.messages:
+        return 1;
+      case ActiveFilter.spaces:
+        return AppConfig.separateChatTypes ? 2 : 1;
+    }
+  }
+
+  void onDestinationSelected(int? i) {
+    switch (i) {
+      case 0:
+        if (AppConfig.separateChatTypes) {
+          setState(() {
+            activeFilter = ActiveFilter.groups;
+          });
+        } else {
+          setState(() {
+            activeFilter = ActiveFilter.allChats;
+          });
+        }
+        break;
+      case 1:
+        if (AppConfig.separateChatTypes) {
+          setState(() {
+            activeFilter = ActiveFilter.messages;
+          });
+        } else {
+          setState(() {
+            activeFilter = ActiveFilter.spaces;
+          });
+        }
+        break;
+      case 2:
+        setState(() {
+          activeFilter = ActiveFilter.spaces;
+        });
+        break;
+    }
+  }
+
+  ActiveFilter activeFilter = AppConfig.separateChatTypes
+      ? ActiveFilter.messages
+      : ActiveFilter.allChats;
+
+  List<Room> get filteredRooms {
+    final rooms = Matrix.of(context).client.rooms;
+    switch (activeFilter) {
+      case ActiveFilter.allChats:
+        return rooms
+            .where((room) =>
+                !room.isSpace && room.spaceParents.isEmpty && !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.groups:
+        return rooms
+            .where((room) =>
+                !room.isSpace &&
+                room.spaceParents.isEmpty &&
+                !room.isDirectChat &&
+                !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.messages:
+        return rooms
+            .where((room) =>
+                !room.isSpace &&
+                room.spaceParents.isEmpty &&
+                room.isDirectChat &&
+                !room.isStoryRoom)
+            .toList();
+      case ActiveFilter.spaces:
+        return rooms
+            .where((room) =>
+                (room.isSpace || room.spaceParents.isNotEmpty) &&
+                !room.isStoryRoom)
+            .toList();
+    }
+  }
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -154,6 +253,7 @@ class ChatListController extends State<ChatList>
 
   bool isTorBrowser = false;
 
+  @Deprecated('')
   SpacesEntry get activeSpacesEntry {
     final id = _activeSpacesEntry;
     return (id == null || !id.stillValid(context)) ? defaultSpacesEntry : id;

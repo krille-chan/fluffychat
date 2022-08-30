@@ -62,18 +62,14 @@ class FluffyChatAppState extends State<FluffyChatApp> {
         initial: AdaptiveThemeMode.system,
         builder: (theme, darkTheme) => LayoutBuilder(
           builder: (context, constraints) {
-            const maxColumns = 3;
-            var newColumns =
-                (constraints.maxWidth / FluffyThemes.columnWidth).floor();
-            if (newColumns > maxColumns) newColumns = maxColumns;
-            columnMode ??= newColumns > 1;
-            _router ??= GlobalKey<VRouterState>();
-            if (columnMode != newColumns > 1) {
-              Logs().v('Set Column Mode = $columnMode');
+            final isColumnMode =
+                FluffyThemes.isColumnModeByWidth(constraints.maxWidth);
+            if (isColumnMode != columnMode) {
+              Logs().v('Set Column Mode = $isColumnMode');
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 setState(() {
                   _initialUrl = _router?.currentState?.url;
-                  columnMode = newColumns > 1;
+                  columnMode = isColumnMode;
                   _router = GlobalKey<VRouterState>();
                 });
               });
