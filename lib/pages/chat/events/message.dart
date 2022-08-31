@@ -70,7 +70,7 @@ class Message extends StatelessWidget {
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
     var color = Theme.of(context).brightness == Brightness.light
         ? Colors.white
-        : Colors.black;
+        : Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -174,8 +174,7 @@ class Message extends StatelessWidget {
               child: Material(
                 color: noBubble ? Colors.transparent : color,
                 elevation: event.type == EventTypes.Sticker ? 0 : 4,
-                shadowColor:
-                    Theme.of(context).colorScheme.onBackground.withAlpha(64),
+                shadowColor: Colors.black.withAlpha(64),
                 borderRadius: borderRadius,
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
