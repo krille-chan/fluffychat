@@ -130,7 +130,7 @@ class LoginView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed:
                       controller.loading ? () {} : controller.passwordForgotten,
-                  style: ElevatedButton.styleFrom(onPrimary: Colors.red),
+                  style: ElevatedButton.styleFrom(foregroundColor: Colors.red),
                   child: Text(L10n.of(context)!.passwordForgotten),
                 ),
               ),

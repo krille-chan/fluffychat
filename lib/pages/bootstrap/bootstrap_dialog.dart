@@ -335,7 +335,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        onPrimary: Colors.red,
+                        foregroundColor: Colors.red,
                       ),
                       icon: const Icon(Icons.delete_outlined),
                       label: Text(L10n.of(context)!.recoveryKeyLost),

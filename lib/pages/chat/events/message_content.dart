@@ -265,7 +265,7 @@ class _ButtonContent extends StatelessWidget {
       icon: icon,
       label: Text(label, overflow: TextOverflow.ellipsis),
       style: OutlinedButton.styleFrom(
-        primary: textColor,
+        foregroundColor: textColor,
         backgroundColor: Colors.white.withAlpha(64),
       ),
     );
