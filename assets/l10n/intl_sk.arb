@@ -1788,5 +1788,11 @@
   "@sendVideo": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestedRooms": "Objavujte skupiny v tomto priestore",
+  "@suggestedRooms": {},
+  "updateAvailable": "dostupná aktualizácia FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Začať aktualizáciu na pozadí",
+  "@updateNow": {}
 }
