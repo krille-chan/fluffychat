@@ -2944,5 +2944,9 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "commandHint_markasgroup": "Grup olarak işaretle",
+  "@commandHint_markasgroup": {},
+  "commandHint_markasdm": "Doğrudan mesaj odası olarak işaretle",
+  "@commandHint_markasdm": {}
 }
