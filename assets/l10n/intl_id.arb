@@ -2938,5 +2938,9 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "commandHint_markasdm": "Tandai sebagai ruangan pesan langsung",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Tandai sebagai grup",
+  "@commandHint_markasgroup": {}
 }
