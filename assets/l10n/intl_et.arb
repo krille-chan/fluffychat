@@ -2944,5 +2944,9 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "commandHint_markasgroup": "Märgi vestlusrühmaks",
+  "@commandHint_markasgroup": {},
+  "commandHint_markasdm": "Märgi otsevestusluseks",
+  "@commandHint_markasdm": {}
 }
