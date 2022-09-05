@@ -40,6 +40,10 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_send;
     case "unban":
       return l10n.commandHint_unban;
+    case 'markasdm':
+      return l10n.commandHint_markasdm;
+    case 'markasgroup':
+      return l10n.commandHint_markasgroup;
     default:
       return "";
   }

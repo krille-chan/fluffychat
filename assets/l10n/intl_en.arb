@@ -487,6 +487,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "commandHint_markasdm": "Mark as direct message room",
+  "commandHint_markasgroup": "Mark as group",
   "commandHint_ban": "Ban the given user from this room",
   "@commandHint_ban": {
     "type": "text",
