@@ -88,7 +88,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
     titleText = null;
     _recoveryKeyStored = false;
     bootstrap =
-        widget.client.encryption!.bootstrap(onUpdate: () => setState(() {}));
+        widget.client.encryption!.bootstrap(onUpdate: (_) => setState(() {}));
     final key = await const FlutterSecureStorage().read(key: _secureStorageKey);
     if (key == null) return;
     _recoveryKeyTextEditingController.text = key;

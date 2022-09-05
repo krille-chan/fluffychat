@@ -63,11 +63,10 @@ dependencies:
   latlong2: ^0.8.1
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
-  matrix: ^0.11.2
+  matrix: ^0.13.0
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
-  native_imaging:
-    git: https://gitlab.com/famedly/company/frontend/libraries/native_imaging.git
+  native_imaging: ^0.1.0
   package_info_plus: ^1.3.0
   path_provider: ^2.0.9
   pin_code_text_field: ^1.8.0
@@ -153,6 +152,8 @@ dependency_overrides:
       url: https://github.com/TheOneWithTheBraid/plus_plugins.git
       ref: a04401cb48abe92d138c0e9288b360739994a9e9
       path: packages/connectivity_plus/connectivity_plus_web
+  # Until all dependencies are compatible. Missing: file_picker_cross, flutter_matrix_html
+  ffi: ^2.0.0
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:
