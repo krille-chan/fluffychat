@@ -2939,5 +2939,9 @@
     }
   },
   "confirmMatrixId": "Підтвердьте свій Matrix ID, щоб видалити свій обліковий запис.",
-  "@confirmMatrixId": {}
+  "@confirmMatrixId": {},
+  "commandHint_markasgroup": "Позначити групою",
+  "@commandHint_markasgroup": {},
+  "commandHint_markasdm": "Позначити кімнатою особистого спілкування",
+  "@commandHint_markasdm": {}
 }
