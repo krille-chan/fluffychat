@@ -2944,5 +2944,9 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "commandHint_markasgroup": "标记为群组",
+  "@commandHint_markasgroup": {},
+  "commandHint_markasdm": "标记为私信聊天室",
+  "@commandHint_markasdm": {}
 }
