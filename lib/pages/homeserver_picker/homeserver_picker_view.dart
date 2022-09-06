@@ -22,16 +22,19 @@ class HomeserverPickerView extends StatelessWidget {
           IconButton(
             onPressed: controller.restoreBackup,
             tooltip: L10n.of(context)!.hydrate,
+            color: Colors.white,
             icon: const Icon(Icons.restore_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.privacy,
             onPressed: () => launch(AppConfig.privacyUrl),
+            color: Colors.white,
             icon: const Icon(Icons.shield_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.about,
             onPressed: () => PlatformInfos.showDialog(context),
+            color: Colors.white,
             icon: const Icon(Icons.info_outlined),
           ),
         ],

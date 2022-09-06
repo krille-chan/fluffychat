@@ -50,6 +50,7 @@ class StoryView extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 0,
         leading: IconButton(
+          color: Colors.white,
           icon: const Icon(Icons.close),
           onPressed: Navigator.of(context).pop,
         ),
@@ -96,10 +97,12 @@ class StoryView extends StatelessWidget {
             : [
                 if (!controller.isOwnStory)
                   IconButton(
+                    color: Colors.white,
                     icon: Icon(Icons.adaptive.share_outlined),
                     onPressed: controller.share,
                   ),
                 PopupMenuButton<PopupStoryAction>(
+                  color: Colors.white,
                   onSelected: controller.onPopupStoryAction,
                   itemBuilder: (context) => [
                     if (controller.currentEvent?.canRedact ?? false)

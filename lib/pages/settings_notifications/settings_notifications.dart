@@ -58,26 +58,33 @@ class SettingsNotifications extends StatefulWidget {
 
 class SettingsNotificationsController extends State<SettingsNotifications> {
   bool? getNotificationSetting(NotificationSettingsItem item) {
-    final pushRules = Matrix.of(context).client.globalPushRules;
+    // Until https://gitlab.com/famedly/company/frontend/famedlysdk/-/merge_requests/1124 is shipped
+    final pushRulesRaw = Matrix.of(context)
+        .client
+        .accountData['m.push_rules']
+        ?.content
+        .tryGetMap<String, dynamic>('device');
+    if (pushRulesRaw == null) return null;
+    final pushRules = PushRuleSet.fromJson(pushRulesRaw);
     switch (item.type) {
       case PushRuleKind.content:
-        return pushRules!.content
+        return pushRules.content
             ?.singleWhereOrNull((r) => r.ruleId == item.key)
             ?.enabled;
       case PushRuleKind.override:
-        return pushRules!.override
+        return pushRules.override
             ?.singleWhereOrNull((r) => r.ruleId == item.key)
             ?.enabled;
       case PushRuleKind.room:
-        return pushRules!.room
+        return pushRules.room
             ?.singleWhereOrNull((r) => r.ruleId == item.key)
             ?.enabled;
       case PushRuleKind.sender:
-        return pushRules!.sender
+        return pushRules.sender
             ?.singleWhereOrNull((r) => r.ruleId == item.key)
             ?.enabled;
       case PushRuleKind.underride:
-        return pushRules!.underride
+        return pushRules.underride
             ?.singleWhereOrNull((r) => r.ruleId == item.key)
             ?.enabled;
     }

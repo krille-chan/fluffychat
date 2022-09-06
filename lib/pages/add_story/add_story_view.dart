@@ -17,6 +17,7 @@ class AddStoryView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade900,
       appBar: AppBar(
+        leading: const BackButton(color: Colors.white),
         systemOverlayStyle: SystemUiOverlayStyle.light,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -38,15 +39,18 @@ class AddStoryView extends StatelessWidget {
           if (controller.hasMedia)
             IconButton(
               icon: const Icon(Icons.fullscreen_outlined),
+              color: Colors.white,
               onPressed: controller.toggleBoxFit,
             ),
           if (!controller.hasMedia)
             IconButton(
               icon: const Icon(Icons.color_lens_outlined),
+              color: Colors.white,
               onPressed: controller.updateColor,
             ),
           IconButton(
             icon: const Icon(Icons.delete_outlined),
+            color: Colors.white,
             onPressed: controller.reset,
           ),
         ],

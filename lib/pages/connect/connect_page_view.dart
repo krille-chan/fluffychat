@@ -19,6 +19,8 @@ class ConnectPageView extends StatelessWidget {
     final identityProviders = controller.identityProviders;
     return LoginScaffold(
       appBar: AppBar(
+        leading:
+            controller.loading ? null : const BackButton(color: Colors.white),
         automaticallyImplyLeading: !controller.loading,
         centerTitle: true,
         title: Text(

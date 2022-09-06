@@ -15,6 +15,8 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoginScaffold(
       appBar: AppBar(
+        leading:
+            controller.loading ? null : const BackButton(color: Colors.white),
         automaticallyImplyLeading: !controller.loading,
         centerTitle: true,
         title: Text(
