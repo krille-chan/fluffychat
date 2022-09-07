@@ -2933,5 +2933,20 @@
   "updateAvailable": "Actualización dispoñible para FluffyChat",
   "@updateAvailable": {},
   "updateNow": "Iniciar actualización en segundo plano",
-  "@updateNow": {}
+  "@updateNow": {},
+  "confirmMatrixId": "Confirma o teu ID Matrix para poder eliminar a conta.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Debería ser {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "allSuggestedRoomsJoined": "Unícheste a tódalas salas suxeridas",
+  "@allSuggestedRoomsJoined": {},
+  "commandHint_markasdm": "Marcar como sala de mensaxe directa",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Marcar como grupo",
+  "@commandHint_markasgroup": {}
 }
