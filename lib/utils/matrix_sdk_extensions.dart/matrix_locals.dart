@@ -175,7 +175,7 @@ class MatrixLocals extends MatrixLocalizations {
   String get needPantalaimonWarning => l10n.needPantalaimonWarning;
 
   @override
-  String get noPermission => l10n.noPermission;
+  String get noPermission => l10n.noKeyForThisMessage;
 
   @override
   String redactedAnEvent(String senderName) {

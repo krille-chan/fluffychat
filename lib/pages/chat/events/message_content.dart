@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
@@ -29,35 +30,62 @@ class MessageContent extends StatelessWidget {
       : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
+    final l10n = L10n.of(context)!;
     if (event.content['can_request_session'] != true) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
         event.type == EventTypes.Encrypted
-            ? L10n.of(context)!.needPantalaimonWarning
+            ? l10n.needPantalaimonWarning
             : event.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
+                MatrixLocals(l10n),
               ),
       )));
       return;
     }
     final client = Matrix.of(context).client;
     if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
-      await BootstrapDialog(
+      final success = await BootstrapDialog(
         client: Matrix.of(context).client,
       ).show(context);
-      final timeline = await event.room.getTimeline();
-      timeline.requestKeys();
-      timeline.cancelSubscriptions();
-    } else {
-      final success = await showFutureLoadingDialog(
-        context: context,
-        future: () => event.requestKey(),
-      );
-      if (success.error == null) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(L10n.of(context)!.requestToReadOlderMessages)));
-      }
+      if (success != true) return;
     }
+    event.requestKey();
+    final sender = event.senderFromMemoryOrFallback;
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          leading: CloseButton(onPressed: Navigator.of(context).pop),
+          title: Text(
+            l10n.whyIsThisMessageEncrypted,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
+        body: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Avatar(
+                  mxContent: sender.avatarUrl,
+                  name: sender.calcDisplayname(),
+                ),
+                title: Text(sender.calcDisplayname()),
+                subtitle: Text(event.originServerTs.localizedTime(context)),
+                trailing: const Icon(Icons.lock_outlined),
+              ),
+              const Divider(),
+              Text(
+                event.calcLocalizedBodyFallback(
+                  MatrixLocals(l10n),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
