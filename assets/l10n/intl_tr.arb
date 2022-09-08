@@ -2948,5 +2948,9 @@
   "commandHint_markasgroup": "Grup olarak işaretle",
   "@commandHint_markasgroup": {},
   "commandHint_markasdm": "Doğrudan mesaj odası olarak işaretle",
-  "@commandHint_markasdm": {}
+  "@commandHint_markasdm": {},
+  "whyIsThisMessageEncrypted": "Bu mesaj neden okunamıyor?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "Bu durum, mesaj siz bu aygıtta hesabınızda oturum açmadan önce gönderildiyse meydana gelebilir. \n \nGönderenin aygıtınızı engellemiş olması veya internet bağlantısında bir sorun olması da mümkündür. \n \nMesajı başka bir oturumda okuyabiliyor musunuz? O zaman mesajı oradan aktarabilirsiniz! Ayarlar > Aygıtlar bölümüne gidin ve aygıtlarınızın birbirini doğruladığından emin olun. Odayı bir sonraki sefer açtığınızda ve her iki oturum da ön planda olduğunda, anahtarlar otomatik olarak iletilecektir. \n \nOturumu kapatırken veya aygıt değiştirirken anahtarları kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinleştirdiğinizden emin olun.",
+  "@noKeyForThisMessage": {}
 }
