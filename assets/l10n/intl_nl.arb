@@ -2897,7 +2897,7 @@
       "number": {}
     }
   },
-  "dehydrateShare": "Dit is je prive FluffyChat export. Zorg ervoor dat je het niet verliest en houd het privé.",
+  "dehydrateShare": "Dit is jouw persoonlijke FluffyChat export. Zorg ervoor dat je het niet verliest en houd het privé.",
   "@dehydrateShare": {},
   "dehydrate": "Sessie exporteren en apparaat wissen",
   "@dehydrate": {},
@@ -2943,5 +2943,13 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "commandHint_markasdm": "Markeer als privéberichtenkamer",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Markeer als groep",
+  "@commandHint_markasgroup": {},
+  "whyIsThisMessageEncrypted": "Waarom is dit bericht onleesbaar?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chat back-up hebt aangezet in de instellingen.",
+  "@noKeyForThisMessage": {}
 }
