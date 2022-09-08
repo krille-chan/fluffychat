@@ -1,3 +1,18 @@
+## v1.6.4 - 2022-09-08
+- Translated using Weblate (Chinese (Simplified)) (Eric)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (Xosé M)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Slovak) (Marek Ľach)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- chore: Adjust bubble color in dark mode (Christian Pauly)
+- chore: Update matrix sdk (Christian Pauly)
+- chore: Update to flutter 3.3.0 (Christian Pauly)
+- feat: Automatic key requests and better key error dialog (Christian Pauly)
+- fix: Styling and notification settings (Christian Pauly)
+- fix: add missing command localizations (Christian Pauly)
+
 ## v1.6.3 - 2022-08-25
 - Translated using Weblate (Chinese (Simplified)) (Eric)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
