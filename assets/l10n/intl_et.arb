@@ -2948,5 +2948,7 @@
   "commandHint_markasgroup": "Märgi vestlusrühmaks",
   "@commandHint_markasgroup": {},
   "commandHint_markasdm": "Märgi otsevestusluseks",
-  "@commandHint_markasdm": {}
+  "@commandHint_markasdm": {},
+  "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
+  "@whyIsThisMessageEncrypted": {}
 }
