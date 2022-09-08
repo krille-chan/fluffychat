@@ -2950,5 +2950,7 @@
   "commandHint_markasdm": "Märgi otsevestusluseks",
   "@commandHint_markasdm": {},
   "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
-  "@whyIsThisMessageEncrypted": {}
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "See võib juhtuda, kui sõnum oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti võib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud või on tekkinud tõrkeid veebiühenduses.\n\nAga mõnes teises seadmes saad seda sõnumit lugeda? Siis sa võid sõnumi sealt üle tõsta. Ava Seadistused -> Seadmed ning kontrolli, et kõik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse või jututoa ning mõlemad sessioonid on avatud, siis vajalikud krüptovõtmed saadetakse automaatset.\n\nKas sa soovid vältida krüptovõtmete kadumist väljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on krüptovõtmete varundus sisse lülitatud.",
+  "@noKeyForThisMessage": {}
 }
