@@ -2925,5 +2925,13 @@
   "updateAvailable": "FluffyChatin päivitys on saatavilla",
   "@updateAvailable": {},
   "updateNow": "Aloita päivitys taustalla",
-  "@updateNow": {}
+  "@updateNow": {},
+  "commandHint_markasgroup": "Merkitse ryhmäksi",
+  "@commandHint_markasgroup": {},
+  "whyIsThisMessageEncrypted": "Miksei tätä viestiä voida lukea?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "Tämä voi tapahtua mikäli viesti lähetettiin ennen sisäänkirjautumistasi tälle laitteelle.\n\nOn myös mahdollista, että lähettäjä on estänyt tämän laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytkö lukemaan viestin toisella istunnolla? Siinä tapauksessa voit siirtää viestin siltä! Mene Asetukset > Laitteet ja varmista, että laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi laitteen ja molempien istuntojen ollessa etualalla, avaimet siirretään automaattisesti.\n\nHaluatko varmistaa ettet menetä avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion käytössäolo asetuksista.",
+  "@noKeyForThisMessage": {},
+  "commandHint_markasdm": "Merkitse yksityiskeskusteluksi",
+  "@commandHint_markasdm": {}
 }
