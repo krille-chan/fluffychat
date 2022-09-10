@@ -30,6 +30,8 @@ class SpaceView extends StatefulWidget {
 class _SpaceViewState extends State<SpaceView> {
   static final Map<String, Future<GetSpaceHierarchyResponse>> _requests = {};
 
+  String? prevBatch;
+
   void _refresh() {
     setState(() {
       _requests.remove(widget.controller.activeSpaceId);
@@ -37,8 +39,11 @@ class _SpaceViewState extends State<SpaceView> {
   }
 
   Future<GetSpaceHierarchyResponse> getFuture(String activeSpaceId) =>
-      _requests[activeSpaceId] ??=
-          Matrix.of(context).client.getSpaceHierarchy(activeSpaceId);
+      _requests[activeSpaceId] ??= Matrix.of(context).client.getSpaceHierarchy(
+            activeSpaceId,
+            maxDepth: 1,
+            from: prevBatch,
+          );
 
   void _onJoinSpaceChild(SpaceRoomsChunk spaceChild) async {
     final client = Matrix.of(context).client;
@@ -186,10 +191,10 @@ class _SpaceViewState extends State<SpaceView> {
           final parentSpace = allSpaces.firstWhereOrNull((space) => space
               .spaceChildren
               .any((child) => child.roomId == activeSpaceId));
-          final spaceChildren = response.rooms
-            ..sort((a, b) => a.roomType == 'm.space' ? -1 : 1);
+          final spaceChildren = response.rooms;
+          final canLoadMore = response.nextBatch != null;
           return ListView.builder(
-              itemCount: spaceChildren.length + 1,
+              itemCount: spaceChildren.length + 1 + (canLoadMore ? 1 : 0),
               controller: widget.scrollController,
               itemBuilder: (context, i) {
                 if (i == 0) {
@@ -213,6 +218,16 @@ class _SpaceViewState extends State<SpaceView> {
                   );
                 }
                 i--;
+                if (canLoadMore && i == spaceChildren.length) {
+                  return ListTile(
+                    title: Text(L10n.of(context)!.loadMore),
+                    trailing: const Icon(Icons.chevron_right_outlined),
+                    onTap: () {
+                      prevBatch = response.nextBatch;
+                      _refresh();
+                    },
+                  );
+                }
                 final spaceChild = spaceChildren[i];
                 final room = client.getRoomById(spaceChild.roomId);
                 if (room != null && !room.isSpace) {

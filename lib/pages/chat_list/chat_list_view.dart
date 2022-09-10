@@ -48,6 +48,7 @@ class ChatListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final client = Matrix.of(context).client;
     return StreamBuilder<Object?>(
       stream: Matrix.of(context).onShareContentChanged.stream,
       builder: (_, __) {
@@ -61,9 +62,9 @@ class ChatListView extends StatelessWidget {
           child: Row(
             children: [
               if (FluffyThemes.isColumnMode(context) &&
-                  FluffyThemes.getDisplayNavigationRail(context)) ...[
+                  FluffyThemes.getDisplayNavigationRail(context) &&
+                  controller.waitForFirstSync) ...[
                 Builder(builder: (context) {
-                  final client = Matrix.of(context).client;
                   final allSpaces = client.rooms.where((room) => room.isSpace);
                   final rootSpaces = allSpaces
                       .where(
@@ -74,6 +75,7 @@ class ChatListView extends StatelessWidget {
                       )
                       .toList();
                   final destinations = getNavigationDestinations(context);
+
                   return SizedBox(
                     width: 64,
                     child: ListView.builder(
