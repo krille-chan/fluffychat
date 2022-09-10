@@ -186,8 +186,10 @@ class _SpaceViewState extends State<SpaceView> {
           final parentSpace = allSpaces.firstWhereOrNull((space) => space
               .spaceChildren
               .any((child) => child.roomId == activeSpaceId));
+          final spaceChildren = response.rooms
+            ..sort((a, b) => a.roomType == 'm.space' ? -1 : 1);
           return ListView.builder(
-              itemCount: response.rooms.length + 1,
+              itemCount: spaceChildren.length + 1,
               controller: widget.scrollController,
               itemBuilder: (context, i) {
                 if (i == 0) {
@@ -211,7 +213,7 @@ class _SpaceViewState extends State<SpaceView> {
                   );
                 }
                 i--;
-                final spaceChild = response.rooms[i];
+                final spaceChild = spaceChildren[i];
                 final room = client.getRoomById(spaceChild.roomId);
                 if (room != null && !room.isSpace) {
                   return ChatListItem(
