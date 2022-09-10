@@ -16,14 +16,8 @@ extension ClientStoriesExtension on Client {
           room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!))
       .toList();
 
-  List<Room> get storiesRooms => rooms
-      .where((room) =>
-          room
-              .getState(EventTypes.RoomCreate)
-              ?.content
-              .tryGet<String>('type') ==
-          storiesRoomType)
-      .toList();
+  List<Room> get storiesRooms =>
+      rooms.where((room) => room.isStoryRoom).toList();
 
   Future<List<User>> getUndecidedContactsForStories(Room? storiesRoom) async {
     if (storiesRoom == null) return contacts;
@@ -95,4 +89,10 @@ extension ClientStoriesExtension on Client {
             )
             .toList());
   }
+}
+
+extension StoryRoom on Room {
+  bool get isStoryRoom =>
+      getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
+      ClientStoriesExtension.storiesRoomType;
 }

@@ -5,12 +5,14 @@ class SearchTitle extends StatelessWidget {
   final Widget icon;
   final Widget? trailing;
   final void Function()? onTap;
+  final Color? color;
 
   const SearchTitle({
     required this.title,
     required this.icon,
     this.trailing,
     this.onTap,
+    this.color,
     Key? key,
   }) : super(key: key);
 
@@ -26,7 +28,7 @@ class SearchTitle extends StatelessWidget {
             width: 1,
           ),
         ),
-        color: Theme.of(context).colorScheme.surface,
+        color: color ?? Theme.of(context).colorScheme.surface,
         child: InkWell(
           onTap: onTap,
           splashColor: Theme.of(context).colorScheme.surface,

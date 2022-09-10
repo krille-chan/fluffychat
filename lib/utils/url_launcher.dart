@@ -10,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/space_navigator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
@@ -133,7 +132,7 @@ class UrlLauncher {
       servers.addAll(identityParts.via);
       if (room != null) {
         if (room.isSpace) {
-          SpaceNavigator.navigateToSpace(room.id);
+          // TODO: Implement navigate to space
           VRouter.of(context).toSegments(['rooms']);
           return;
         }

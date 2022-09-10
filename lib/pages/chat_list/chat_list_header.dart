@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/matrix.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
@@ -53,39 +52,25 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         borderRadius:
                             BorderRadius.circular(AppConfig.borderRadius),
                       ),
-                      hintText: controller.activeSpacesEntry.getName(context),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 8.0,
-                          right: 4,
-                        ),
-                        child: controller.isSearchMode
-                            ? IconButton(
-                                tooltip: L10n.of(context)!.cancel,
-                                icon: const Icon(Icons.close_outlined),
-                                onPressed: controller.cancelSearch,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                              )
-                            : IconButton(
-                                onPressed: Scaffold.of(context).openDrawer,
-                                icon: Icon(
-                                  Icons.menu,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                ),
-                              ),
-                      ),
-                      suffixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: controller.isSearchMode
-                            ? [
-                                if (controller.isSearching)
-                                  const CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2,
-                                  ),
-                                TextButton(
+                      hintText: L10n.of(context)!.search,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      prefixIcon: controller.isSearchMode
+                          ? IconButton(
+                              tooltip: L10n.of(context)!.cancel,
+                              icon: const Icon(Icons.close_outlined),
+                              onPressed: controller.cancelSearch,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            )
+                          : Icon(
+                              Icons.search_outlined,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                      suffixIcon: controller.isSearchMode
+                          ? controller.isSearching
+                              ? const CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2,
+                                )
+                              : TextButton(
                                   onPressed: controller.setServer,
                                   style: TextButton.styleFrom(
                                     textStyle: const TextStyle(fontSize: 12),
@@ -98,24 +83,11 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                                             .host,
                                     maxLines: 2,
                                   ),
-                                ),
-                              ]
-                            : [
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.camera_alt_outlined,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                  ),
-                                  tooltip: L10n.of(context)!.addToStory,
-                                  onPressed: () =>
-                                      VRouter.of(context).to('/stories/create'),
-                                ),
-                                ClientChooserButton(controller),
-                                const SizedBox(width: 12),
-                              ],
-                      ),
+                                )
+                          : SizedBox(
+                              width: 0,
+                              child: ClientChooserButton(controller),
+                            ),
                     ),
                   ),
                 ),
@@ -126,8 +98,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   if (controller.spaces.isNotEmpty)
                     IconButton(
                       tooltip: L10n.of(context)!.addToSpace,
-                      icon: const Icon(Icons.group_work_outlined),
-                      onPressed: controller.addOrRemoveToSpace,
+                      icon: const Icon(Icons.workspaces_outlined),
+                      onPressed: controller.addToSpace,
                     ),
                   IconButton(
                     tooltip: L10n.of(context)!.toggleUnread,
