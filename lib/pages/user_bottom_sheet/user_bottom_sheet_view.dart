@@ -9,6 +9,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import '../../utils/matrix_sdk_extensions.dart/presence_extension.dart';
 import '../../widgets/content_banner.dart';
+import '../../widgets/m2_popup_menu_button.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
@@ -43,7 +44,7 @@ class UserBottomSheetView extends StatelessWidget {
                 title: Text(user.calcDisplayname()),
                 actions: [
                   if (user.id != client.userID)
-                    PopupMenuButton(
+                    M2PopupMenuButton(
                       itemBuilder: (_) => [
                         if (controller.widget.onMention != null)
                           PopupMenuItem(

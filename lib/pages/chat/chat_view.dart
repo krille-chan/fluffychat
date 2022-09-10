@@ -21,6 +21,7 @@ import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/unread_badge_back_button.dart';
 import '../../utils/stream_extension.dart';
+import '../../widgets/m2_popup_menu_button.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 
@@ -65,7 +66,7 @@ class ChatView extends StatelessWidget {
           tooltip: L10n.of(context)!.pinMessage,
         ),
         if (controller.selectedEvents.length == 1)
-          PopupMenuButton<_EventContextAction>(
+          M2PopupMenuButton<_EventContextAction>(
             onSelected: (action) {
               switch (action) {
                 case _EventContextAction.info:

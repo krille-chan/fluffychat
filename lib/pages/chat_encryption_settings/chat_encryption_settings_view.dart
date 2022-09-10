@@ -9,6 +9,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions.dart/device_extension.dart';
+import '../../widgets/m2_popup_menu_button.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
@@ -73,7 +74,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 deviceKeys[i].userId !=
                                     deviceKeys[i - 1].userId) ...{
                               const Divider(height: 1, thickness: 1),
-                              PopupMenuButton(
+                              M2PopupMenuButton(
                                 onSelected: (dynamic action) => controller
                                     .onSelected(context, action, deviceKeys[i]),
                                 itemBuilder: (c) {
@@ -115,7 +116,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 ),
                               ),
                             },
-                            PopupMenuButton(
+                            M2PopupMenuButton(
                               onSelected: (dynamic action) => controller
                                   .onSelected(context, action, deviceKeys[i]),
                               itemBuilder: (c) {

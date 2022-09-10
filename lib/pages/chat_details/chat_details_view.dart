@@ -16,6 +16,7 @@ import 'package:fluffychat/widgets/content_banner.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
+import '../../widgets/m2_popup_menu_button.dart';
 
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -197,7 +198,7 @@ class ChatDetailsView extends StatelessWidget {
                                     Text(L10n.of(context)!.setCustomEmotes),
                                 onTap: controller.goToEmoteSettings,
                               ),
-                              PopupMenuButton(
+                              M2PopupMenuButton(
                                 onSelected: controller.setJoinRulesAction,
                                 itemBuilder: (BuildContext context) =>
                                     <PopupMenuEntry<JoinRules>>[
@@ -231,7 +232,7 @@ class ChatDetailsView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              PopupMenuButton(
+                              M2PopupMenuButton(
                                 onSelected:
                                     controller.setHistoryVisibilityAction,
                                 itemBuilder: (BuildContext context) =>
@@ -284,7 +285,7 @@ class ChatDetailsView extends StatelessWidget {
                                 ),
                               ),
                               if (room.joinRules == JoinRules.public)
-                                PopupMenuButton(
+                                M2PopupMenuButton(
                                   onSelected: controller.setGuestAccessAction,
                                   itemBuilder: (BuildContext context) =>
                                       <PopupMenuEntry<GuestAccess>>[

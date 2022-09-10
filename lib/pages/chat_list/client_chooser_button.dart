@@ -9,6 +9,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
+import '../../widgets/m2_popup_menu_button.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
@@ -191,24 +192,18 @@ class ClientChooserButton extends StatelessWidget {
             onKeysPressed: () => _previousAccount(matrix, context),
             child: Container(),
           ),
-          Theme(
-            data: Theme.of(context),
-            child: PopupMenuButton<Object>(
-              shape: Border.all(
-                color: Theme.of(context).dividerColor,
-              ),
-              onSelected: (o) => _clientSelected(o, context),
-              itemBuilder: _bundleMenuItems,
-              child: Material(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(99),
-                child: Avatar(
-                  mxContent: snapshot.data?.avatarUrl,
-                  name: snapshot.data?.displayName ??
-                      matrix.client.userID!.localpart,
-                  size: 28,
-                  fontSize: 12,
-                ),
+          M2PopupMenuButton<Object>(
+            onSelected: (o) => _clientSelected(o, context),
+            itemBuilder: _bundleMenuItems,
+            child: Material(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(99),
+              child: Avatar(
+                mxContent: snapshot.data?.avatarUrl,
+                name: snapshot.data?.displayName ??
+                    matrix.client.userID!.localpart,
+                size: 28,
+                fontSize: 12,
               ),
             ),
           ),
