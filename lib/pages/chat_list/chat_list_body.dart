@@ -136,6 +136,7 @@ class ChatListViewBody extends StatelessWidget {
                           ),
                         if (displayStoriesHeader)
                           StoriesHeader(
+                            key: const Key('stories_header'),
                             filter: controller.searchController.text,
                           ),
                         const ConnectionStatusHeader(),
@@ -197,6 +198,7 @@ class ChatListViewBody extends StatelessWidget {
                   }
                   return ChatListItem(
                     rooms[i],
+                    key: Key('chat_list_item_${rooms[i].id}'),
                     selected: controller.selectedRoomIds.contains(rooms[i].id),
                     onTap: controller.selectMode == SelectMode.select
                         ? () => controller.toggleSelection(rooms[i].id)
