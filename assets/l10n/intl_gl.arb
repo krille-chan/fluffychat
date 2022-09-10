@@ -538,7 +538,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "connect": "Conectar",
+  "connect": "Acceder",
   "@connect": {
     "type": "text",
     "placeholders": {}
@@ -2948,5 +2948,9 @@
   "commandHint_markasdm": "Marcar como sala de mensaxe directa",
   "@commandHint_markasdm": {},
   "commandHint_markasgroup": "Marcar como grupo",
-  "@commandHint_markasgroup": {}
+  "@commandHint_markasgroup": {},
+  "whyIsThisMessageEncrypted": "Por que non podo ler esta mensaxe?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "Pode ser que a mensaxe fose enviada antes de que ti accedeses á túa conta neste dispositivo.\n\nTamén é posible que a remitente non validase o teu dispositivo ou tamén que algo fallase na conexión a internet.\n\nPodes ler a mensaxe noutro dispositivo? Entón podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes tódolos dispositivos verificados. Entón cando abras a sala a próxima vez a sincronización realizarase e as chaves transmitiranse automáticamente.\n\nNon desexas perder as chaves cando pechas sesión ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas.",
+  "@noKeyForThisMessage": {}
 }
