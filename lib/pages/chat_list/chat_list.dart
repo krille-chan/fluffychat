@@ -574,6 +574,7 @@ class ChatListController extends State<ChatList>
   void setActiveClient(Client client) {
     VRouter.of(context).to('/rooms');
     setState(() {
+      activeSpaceId = null;
       selectedRoomIds.clear();
       Matrix.of(context).setActiveClient(client);
     });
