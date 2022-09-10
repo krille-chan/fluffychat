@@ -2978,5 +2978,7 @@
   "foregroundServiceRunning": "See teavitus toimib siis, kui esiplaaniteenus töötab.",
   "@foregroundServiceRunning": {},
   "allSpaces": "Kõik kogukonnad",
-  "@allSpaces": {}
+  "@allSpaces": {},
+  "screenSharingDetail": "Sa jagad oma ekraani famedly's",
+  "@screenSharingDetail": {}
 }
