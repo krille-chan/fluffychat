@@ -111,7 +111,7 @@ class ClientChooserButton extends StatelessWidget {
                         mxContent: snapshot.data?.avatarUrl,
                         name: snapshot.data?.displayName ??
                             client.userID!.localpart,
-                        size: 28,
+                        size: 32,
                         fontSize: 12,
                       ),
                       const SizedBox(width: 12),

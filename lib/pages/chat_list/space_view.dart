@@ -7,7 +7,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -193,17 +192,12 @@ class _SpaceViewState extends State<SpaceView> {
               itemBuilder: (context, i) {
                 if (i == 0) {
                   return ListTile(
-                    leading: FluffyThemes.isColumnMode(context) &&
-                            parentSpace == null
-                        ? null
-                        : BackButton(
-                            onPressed: () => widget.controller
-                                .setActiveSpace(parentSpace?.id),
-                          ),
+                    leading: BackButton(
+                      onPressed: () =>
+                          widget.controller.setActiveSpace(parentSpace?.id),
+                    ),
                     title: Text(parentSpace == null
-                        ? FluffyThemes.isColumnMode(context)
-                            ? L10n.of(context)!.showSpaces
-                            : L10n.of(context)!.allSpaces
+                        ? L10n.of(context)!.allSpaces
                         : parentSpace.displayname),
                     trailing: IconButton(
                       icon: snapshot.connectionState != ConnectionState.done

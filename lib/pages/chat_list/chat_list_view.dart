@@ -73,14 +73,13 @@ class ChatListView extends StatelessWidget {
                         ),
                       )
                       .toList();
-                  final destinations = getNavigationDestinations(context)
-                    ..removeLast();
+                  final destinations = getNavigationDestinations(context);
                   return SizedBox(
                     width: 64,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: rootSpaces.length +
-                          1 +
+                          2 +
                           (AppConfig.separateChatTypes ? 1 : 0),
                       itemBuilder: (context, i) {
                         if (i < destinations.length) {
@@ -95,6 +94,12 @@ class ChatListView extends StatelessWidget {
                                       .secondaryContainer
                                   : Theme.of(context).colorScheme.background,
                               border: Border(
+                                bottom: i == (destinations.length - 1)
+                                    ? BorderSide(
+                                        width: 1,
+                                        color: Theme.of(context).dividerColor,
+                                      )
+                                    : BorderSide.none,
                                 left: BorderSide(
                                   color: isSelected
                                       ? Theme.of(context).colorScheme.primary

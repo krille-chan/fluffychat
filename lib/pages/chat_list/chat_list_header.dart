@@ -92,7 +92,15 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
       actions: selectMode == SelectMode.share
-          ? null
+          ? [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+                child: ClientChooserButton(controller),
+              ),
+            ]
           : selectMode == SelectMode.select
               ? [
                   if (controller.spaces.isNotEmpty)
