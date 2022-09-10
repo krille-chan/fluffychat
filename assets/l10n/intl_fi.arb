@@ -2959,5 +2959,7 @@
   "otherCallingPermissions": "Mikrofoni, kamera ja muut FluffyChatin oikeudet",
   "@otherCallingPermissions": {},
   "newGroup": "Uusi ryhmä",
-  "@newGroup": {}
+  "@newGroup": {},
+  "screenSharingDetail": "Jaat ruutuasi famedlyssä",
+  "@screenSharingDetail": {}
 }
