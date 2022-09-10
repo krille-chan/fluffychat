@@ -2799,7 +2799,7 @@
   "@widgetName": {},
   "widgetUrlError": "这不是有效的 URL。",
   "@widgetUrlError": {},
-  "separateChatTypes": "分开私聊、群组和空间",
+  "separateChatTypes": "分开私聊和群组",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2952,5 +2952,15 @@
   "whyIsThisMessageEncrypted": "为什么此消息不可读？",
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "如果消息是在你在此设备上登录账户前发送的，就可能发生这种情况。\n\n也有可能是发送者屏蔽了你的设备或网络连接出了问题。\n\n你能在另一个会话中读取消息吗？如果是的话，你可以从它那里传递信息！点击设置 > 设备，并确保你的设备已经相互验证。当你下次打开聊天室，且两个会话都在前台，密钥就会自动传输。\n\n你不想在注销或切换设备时丢失密钥？请确保在设置中启用了聊天备份。",
-  "@noKeyForThisMessage": {}
+  "@noKeyForThisMessage": {},
+  "newGroup": "新群组",
+  "@newGroup": {},
+  "newSpace": "新空间",
+  "@newSpace": {},
+  "enterSpace": "进入空间",
+  "@enterSpace": {},
+  "enterRoom": "进入聊天室",
+  "@enterRoom": {},
+  "allSpaces": "所有空间",
+  "@allSpaces": {}
 }
