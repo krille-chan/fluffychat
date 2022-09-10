@@ -2978,5 +2978,7 @@
   "screenSharingTitle": "屏幕共享",
   "@screenSharingTitle": {},
   "callingAccount": "呼叫账户",
-  "@callingAccount": {}
+  "@callingAccount": {},
+  "screenSharingDetail": "你在非匿名共享屏幕",
+  "@screenSharingDetail": {}
 }
