@@ -2978,5 +2978,7 @@
   "newGroup": "Yeni grup",
   "@newGroup": {},
   "newSpace": "Yeni alan",
-  "@newSpace": {}
+  "@newSpace": {},
+  "screenSharingDetail": "Ekranınızı famedly'de paylaşıyorsunuz",
+  "@screenSharingDetail": {}
 }
