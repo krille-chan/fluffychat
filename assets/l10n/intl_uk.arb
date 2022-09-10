@@ -2973,5 +2973,7 @@
   "otherCallingPermissions": "Мікрофон, камера та інші дозволи FluffyChat",
   "@otherCallingPermissions": {},
   "allSpaces": "Усі простори",
-  "@allSpaces": {}
+  "@allSpaces": {},
+  "screenSharingDetail": "Ви ділитеся своїм екраном не анонімно",
+  "@screenSharingDetail": {}
 }
