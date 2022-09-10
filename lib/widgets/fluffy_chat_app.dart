@@ -17,7 +17,7 @@ class FluffyChatApp extends StatefulWidget {
   final Widget? testWidget;
   final List<Client> clients;
   final Map<String, String>? queryParameters;
-
+  static final GlobalKey<VRouterState> routerKey = GlobalKey<VRouterState>();
   const FluffyChatApp({
     Key? key,
     this.testWidget,
@@ -35,7 +35,6 @@ class FluffyChatApp extends StatefulWidget {
 }
 
 class FluffyChatAppState extends State<FluffyChatApp> {
-  GlobalKey<VRouterState>? _router;
   bool? columnMode;
   String? _initialUrl;
 
@@ -67,14 +66,13 @@ class FluffyChatAppState extends State<FluffyChatApp> {
               Logs().v('Set Column Mode = $isColumnMode');
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 setState(() {
-                  _initialUrl = _router?.currentState?.url;
+                  _initialUrl = FluffyChatApp.routerKey.currentState?.url;
                   columnMode = isColumnMode;
-                  _router = GlobalKey<VRouterState>();
                 });
               });
             }
             return VRouter(
-              key: _router,
+              key: FluffyChatApp.routerKey,
               title: AppConfig.applicationName,
               theme: theme,
               scrollBehavior: CustomScrollBehavior(),
@@ -86,7 +84,7 @@ class FluffyChatAppState extends State<FluffyChatApp> {
               routes: AppRoutes(columnMode ?? false).routes,
               builder: (context, child) => Matrix(
                 context: context,
-                router: _router,
+                router: FluffyChatApp.routerKey,
                 clients: widget.clients,
                 child: child,
               ),

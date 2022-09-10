@@ -427,8 +427,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       voipPlugin = null;
       return;
     }
-    voipPlugin =
-        webrtcIsSupported ? VoipPlugin(client: client, context: context) : null;
+    voipPlugin = webrtcIsSupported ? VoipPlugin(client) : null;
   }
 
   bool _firstStartup = true;
