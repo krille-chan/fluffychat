@@ -42,6 +42,9 @@ class ChatListViewBody extends StatelessWidget {
         );
       },
       child: StreamBuilder(
+          key: ValueKey(client.userID.toString() +
+              controller.activeFilter.toString() +
+              controller.activeSpaceId.toString()),
           stream: client.onSync.stream
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
@@ -55,8 +58,6 @@ class ChatListViewBody extends StatelessWidget {
                 ActiveFilter.messages,
               }.contains(controller.activeFilter);
               return ListView.builder(
-                key: ValueKey(client.userID.toString() +
-                    controller.activeFilter.toString()),
                 controller: controller.scrollController,
                 // add +1 space below in order to properly scroll below the spaces bar
                 itemCount: rooms.length + 1,

@@ -17,7 +17,7 @@ class FluffyChatApp extends StatefulWidget {
   final Widget? testWidget;
   final List<Client> clients;
   final Map<String, String>? queryParameters;
-  static final GlobalKey<VRouterState> routerKey = GlobalKey<VRouterState>();
+  static GlobalKey<VRouterState> routerKey = GlobalKey<VRouterState>();
   const FluffyChatApp({
     Key? key,
     this.testWidget,
@@ -68,6 +68,7 @@ class FluffyChatAppState extends State<FluffyChatApp> {
                 setState(() {
                   _initialUrl = FluffyChatApp.routerKey.currentState?.url;
                   columnMode = isColumnMode;
+                  FluffyChatApp.routerKey = GlobalKey<VRouterState>();
                 });
               });
             }
