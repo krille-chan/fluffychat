@@ -2835,7 +2835,7 @@
       "user": {}
     }
   },
-  "separateChatTypes": "Erota suorat keskustelut, ryhmät ja Spacet",
+  "separateChatTypes": "Erota yksityiskeskustelut ryhmistä",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2933,5 +2933,31 @@
   "noKeyForThisMessage": "Tämä voi tapahtua mikäli viesti lähetettiin ennen sisäänkirjautumistasi tälle laitteelle.\n\nOn myös mahdollista, että lähettäjä on estänyt tämän laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytkö lukemaan viestin toisella istunnolla? Siinä tapauksessa voit siirtää viestin siltä! Mene Asetukset > Laitteet ja varmista, että laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi laitteen ja molempien istuntojen ollessa etualalla, avaimet siirretään automaattisesti.\n\nHaluatko varmistaa ettet menetä avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion käytössäolo asetuksista.",
   "@noKeyForThisMessage": {},
   "commandHint_markasdm": "Merkitse yksityiskeskusteluksi",
-  "@commandHint_markasdm": {}
+  "@commandHint_markasdm": {},
+  "foregroundServiceRunning": "Tämä ilmoitus näkyy etualapalvelun ollessa käynnissä.",
+  "@foregroundServiceRunning": {},
+  "callingPermissions": "Puheluoikeudet",
+  "@callingPermissions": {},
+  "callingAccount": "Soittamistunnus",
+  "@callingAccount": {},
+  "callingAccountDetails": "Sallii FluffyChatin käyttää Androidin omaa Puhelut-sovellusta.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Näy päällä",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "Sallii sovelluksen näkyä muiden sovellusten päällä (tätä ei tarvita, mikäli olet jo määrittänyt FluffyChatin puhelin-tunnukseksi)",
+  "@appearOnTopDetails": {},
+  "newSpace": "Uusi Space",
+  "@newSpace": {},
+  "enterSpace": "Siirry Spaceen",
+  "@enterSpace": {},
+  "enterRoom": "Siirry huoneeseen",
+  "@enterRoom": {},
+  "allSpaces": "Kaikki Spacet",
+  "@allSpaces": {},
+  "screenSharingTitle": "ruudunjako",
+  "@screenSharingTitle": {},
+  "otherCallingPermissions": "Mikrofoni, kamera ja muut FluffyChatin oikeudet",
+  "@otherCallingPermissions": {},
+  "newGroup": "Uusi ryhmä",
+  "@newGroup": {}
 }
