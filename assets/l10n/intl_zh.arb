@@ -2962,5 +2962,21 @@
   "enterRoom": "进入聊天室",
   "@enterRoom": {},
   "allSpaces": "所有空间",
-  "@allSpaces": {}
+  "@allSpaces": {},
+  "appearOnTop": "出现在其他应用上方",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "允许应用显示在顶部（如果你已经将 Fluffychat 设置为呼叫账户，则不需要授予此权限）",
+  "@appearOnTopDetails": {},
+  "otherCallingPermissions": "麦克风、摄像头和其他 FluffyChat 权限",
+  "@otherCallingPermissions": {},
+  "callingPermissions": "呼叫权限",
+  "@callingPermissions": {},
+  "callingAccountDetails": "允许 FluffyChat 使用本机 android 拨号器应用。",
+  "@callingAccountDetails": {},
+  "foregroundServiceRunning": "此通知在前台服务运行时出现。",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "屏幕共享",
+  "@screenSharingTitle": {},
+  "callingAccount": "呼叫账户",
+  "@callingAccount": {}
 }
