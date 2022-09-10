@@ -22,6 +22,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
+import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
@@ -53,6 +54,7 @@ enum ActiveFilter {
 }
 
 class ChatList extends StatefulWidget {
+  static BuildContext? contextForVoip;
   const ChatList({Key? key}) : super(key: key);
 
   @override
@@ -361,7 +363,7 @@ class ChatListController extends State<ChatList>
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
-
+    CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       searchServer = await Store().getItem(_serverStoreNamespace);
     });
@@ -670,7 +672,7 @@ class ChatListController extends State<ChatList>
   }
 
   void _hackyWebRTCFixForWeb() {
-    Matrix.of(context).voipPlugin?.context = context;
+    ChatList.contextForVoip = context;
   }
 
   Future<void> _checkTorBrowser() async {

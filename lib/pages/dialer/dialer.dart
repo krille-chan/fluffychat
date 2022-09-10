@@ -22,9 +22,12 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:vibration/vibration.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -124,47 +127,47 @@ class Calling extends StatefulWidget {
 }
 
 class MyCallingPage extends State<Calling> {
-  Room? get room => call?.room;
+  Room? get room => call.room;
 
-  String get displayName => call?.displayName ?? '';
+  String get displayName => call.displayName ?? '';
 
   String get callId => widget.callId;
 
-  CallSession? get call => widget.call;
+  CallSession get call => widget.call;
 
   MediaStream? get localStream {
-    if (call != null && call!.localUserMediaStream != null) {
-      return call!.localUserMediaStream!.stream!;
+    if (call.localUserMediaStream != null) {
+      return call.localUserMediaStream!.stream!;
     }
     return null;
   }
 
   MediaStream? get remoteStream {
-    if (call != null && call!.getRemoteStreams.isNotEmpty) {
-      return call!.getRemoteStreams[0].stream!;
+    if (call.getRemoteStreams.isNotEmpty) {
+      return call.getRemoteStreams[0].stream!;
     }
     return null;
   }
 
-  bool get speakerOn => call?.speakerOn ?? false;
+  bool get speakerOn => call.speakerOn;
 
-  bool get isMicrophoneMuted => call?.isMicrophoneMuted ?? false;
+  bool get isMicrophoneMuted => call.isMicrophoneMuted;
 
-  bool get isLocalVideoMuted => call?.isLocalVideoMuted ?? false;
+  bool get isLocalVideoMuted => call.isLocalVideoMuted;
 
-  bool get isScreensharingEnabled => call?.screensharingEnabled ?? false;
+  bool get isScreensharingEnabled => call.screensharingEnabled;
 
-  bool get isRemoteOnHold => call?.remoteOnHold ?? false;
+  bool get isRemoteOnHold => call.remoteOnHold;
 
-  bool get voiceonly => call == null || call?.type == CallType.kVoice;
+  bool get voiceonly => call.type == CallType.kVoice;
 
-  bool get connecting => call?.state == CallState.kConnecting;
+  bool get connecting => call.state == CallState.kConnecting;
 
-  bool get connected => call?.state == CallState.kConnected;
+  bool get connected => call.state == CallState.kConnected;
 
-  bool get mirrored => call?.facingMode == 'user';
+  bool get mirrored => call.facingMode == 'user';
 
-  List<WrappedMediaStream> get streams => call?.streams ?? [];
+  List<WrappedMediaStream> get streams => call.streams;
   double? _localVideoHeight;
   double? _localVideoWidth;
   EdgeInsetsGeometry? _localVideoMargin;
@@ -190,8 +193,6 @@ class MyCallingPage extends State<Calling> {
 
   void initialize() async {
     final call = this.call;
-    if (call == null) return;
-
     call.onCallStateChanged.stream.listen(_handleCallState);
     call.onCallEventChanged.stream.listen((event) {
       if (event == CallEvent.kFeedsChanged) {
@@ -220,7 +221,7 @@ class MyCallingPage extends State<Calling> {
       const Duration(seconds: 2),
       () => widget.onClear?.call(),
     );
-    if (call?.type == CallType.kVideo) {
+    if (call.type == CallType.kVideo) {
       try {
         unawaited(Wakelock.disable());
       } catch (_) {}
@@ -230,7 +231,7 @@ class MyCallingPage extends State<Calling> {
   @override
   void dispose() {
     super.dispose();
-    call?.cleanUp.call();
+    call.cleanUp.call();
   }
 
   void _resizeLocalVideo(Orientation orientation) {
@@ -249,6 +250,14 @@ class MyCallingPage extends State<Calling> {
 
   void _handleCallState(CallState state) {
     Logs().v('CallingPage::handleCallState: ${state.toString()}');
+    if ({CallState.kConnected, CallState.kEnded}.contains(state)) {
+      try {
+        Vibration.vibrate(duration: 200);
+      } catch (e) {
+        Logs().e('[Dialer] could not vibrate for call updates');
+      }
+    }
+
     if (mounted) {
       setState(() {
         _state = state;
@@ -259,52 +268,69 @@ class MyCallingPage extends State<Calling> {
 
   void _answerCall() {
     setState(() {
-      call?.answer();
+      call.answer();
     });
   }
 
   void _hangUp() {
     setState(() {
-      if (call != null && (call?.isRinging ?? false)) {
-        call?.reject();
+      if (call.isRinging) {
+        call.reject();
       } else {
-        call?.hangup();
+        call.hangup();
       }
     });
   }
 
   void _muteMic() {
     setState(() {
-      call?.setMicrophoneMuted(!call!.isMicrophoneMuted);
+      call.setMicrophoneMuted(!call.isMicrophoneMuted);
     });
   }
 
-  void _screenSharing() {
+  void _screenSharing() async {
+    if (PlatformInfos.isAndroid) {
+      if (!call.screensharingEnabled) {
+        await FlutterForegroundTask.init(
+          androidNotificationOptions: AndroidNotificationOptions(
+            channelId: 'notification_channel_id',
+            channelName: 'Foreground Notification',
+            channelDescription: L10n.of(context)!.foregroundServiceRunning,
+          ),
+        );
+        FlutterForegroundTask.startService(
+            notificationTitle: L10n.of(context)!.screenSharingTitle,
+            notificationText: L10n.of(context)!.screenSharingDetail);
+      } else {
+        FlutterForegroundTask.stopService();
+      }
+    }
+
     setState(() {
-      call?.setScreensharingEnabled(!call!.screensharingEnabled);
+      call.setScreensharingEnabled(!call.screensharingEnabled);
     });
   }
 
   void _remoteOnHold() {
     setState(() {
-      call?.setRemoteOnHold(!call!.remoteOnHold);
+      call.setRemoteOnHold(!call.remoteOnHold);
     });
   }
 
   void _muteCamera() {
     setState(() {
-      call?.setLocalVideoMuted(!call!.isLocalVideoMuted);
+      call.setLocalVideoMuted(!call.isLocalVideoMuted);
     });
   }
 
   void _switchCamera() async {
-    if (call!.localUserMediaStream != null) {
+    if (call.localUserMediaStream != null) {
       await Helper.switchCamera(
-          call!.localUserMediaStream!.stream!.getVideoTracks()[0]);
+          call.localUserMediaStream!.stream!.getVideoTracks()[0]);
       if (PlatformInfos.isMobile) {
-        call!.facingMode == 'user'
-            ? call!.facingMode = 'environment'
-            : call!.facingMode = 'user';
+        call.facingMode == 'user'
+            ? call.facingMode = 'environment'
+            : call.facingMode = 'user';
       }
     }
     setState(() {});
@@ -319,7 +345,7 @@ class MyCallingPage extends State<Calling> {
   */
 
   List<Widget> _buildActionButtons(bool isFloating) {
-    if (isFloating || call == null) {
+    if (isFloating) {
       return [];
     }
 
@@ -391,7 +417,7 @@ class MyCallingPage extends State<Calling> {
       case CallState.kInviteSent:
       case CallState.kCreateAnswer:
       case CallState.kConnecting:
-        return call!.isOutgoing
+        return call.isOutgoing
             ? <Widget>[hangupButton]
             : <Widget>[answerButton, hangupButton];
       case CallState.kConnected:
@@ -429,7 +455,7 @@ class MyCallingPage extends State<Calling> {
     final stackWidgets = <Widget>[];
 
     final call = this.call;
-    if (call == null || call.callHasEnded) {
+    if (call.callHasEnded) {
       return stackWidgets;
     }
 

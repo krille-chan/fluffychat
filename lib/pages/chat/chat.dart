@@ -25,7 +25,6 @@ import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -180,14 +179,6 @@ class ChatController extends State<Chat> {
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
-    final voipPlugin = Matrix.of(context).voipPlugin;
-
-    if (voipPlugin != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        CallKeepManager().setVoipPlugin(voipPlugin);
-        CallKeepManager().initialize().catchError((_) => true);
-      });
-    }
     super.initState();
   }
 

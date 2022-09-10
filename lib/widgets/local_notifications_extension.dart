@@ -13,6 +13,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
@@ -20,7 +21,9 @@ extension LocalNotificationsExtension on MatrixState {
     final roomId = eventUpdate.roomID;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
-      if (Platform.isLinux && DesktopLifecycle.instance.isActive.value) return;
+      if (PlatformInfos.isLinux && DesktopLifecycle.instance.isActive.value) {
+        return;
+      }
     }
     final room = client.getRoomById(roomId);
     if (room == null) {

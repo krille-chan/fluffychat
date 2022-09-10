@@ -4,24 +4,27 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import '../../utils/famedlysdk_store.dart';
+import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
 
-class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
-  VoipPlugin({required this.client, required this.context}) {
+class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
+  final Client client;
+  VoipPlugin(this.client) {
     voip = VoIP(client, this);
-    try {
-      Connectivity()
-          .onConnectivityChanged
-          .listen(_handleNetworkChanged)
-          .onError((e) => _currentConnectivity = ConnectivityResult.none);
-    } catch (e, s) {
-      Logs().w('Could not subscribe network updates', e, s);
-    }
+    Connectivity()
+        .onConnectivityChanged
+        .listen(_handleNetworkChanged)
+        .onError((e) => _currentConnectivity = ConnectivityResult.none);
     Connectivity()
         .checkConnectivity()
         .then((result) => _currentConnectivity = result)
@@ -29,23 +32,14 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
     if (!kIsWeb) {
       final wb = WidgetsBinding.instance;
       wb.addObserver(this);
-      didChangeAppLifecycleState(wb.lifecycleState!);
+      didChangeAppLifecycleState(wb.lifecycleState);
     }
   }
-
-  final Client client;
   bool background = false;
   bool speakerOn = false;
   late VoIP voip;
   ConnectivityResult? _currentConnectivity;
-  ValueChanged<CallSession>? onIncomingCall;
   OverlayEntry? overlayEntry;
-
-  // hacky workaround: in order to have [Overlay.of] working on web, the context
-  // mus explicitly be re-assigned
-  //
-  // hours wasted: 5
-  BuildContext context;
 
   void _handleNetworkChanged(ConnectivityResult result) async {
     /// Got a new connectivity status!
@@ -58,17 +52,19 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
+  void didChangeAppLifecycleState(AppLifecycleState? state) {
     Logs().v('AppLifecycleState = $state');
-    background = !(state != AppLifecycleState.detached &&
-        state != AppLifecycleState.paused);
+    background = (state == AppLifecycleState.detached ||
+        state == AppLifecycleState.paused);
   }
 
-  void addCallingOverlay(
-      BuildContext context, String callId, CallSession call) {
+  void addCallingOverlay(String callId, CallSession call) {
+    final context = kIsWeb
+        ? ChatList.contextForVoip!
+        : FluffyChatApp.routerKey.currentContext!; // web is weird
     if (overlayEntry != null) {
-      Logs().w('[VOIP] addCallingOverlay: The call session already exists?');
-      overlayEntry?.remove();
+      Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
+      overlayEntry!.remove();
     }
     // Overlay.of(context) is broken on web
     // falling back on a dialog
@@ -103,7 +99,8 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
   MediaDevices get mediaDevices => webrtc_impl.navigator.mediaDevices;
 
   @override
-  bool get isBackgroud => background;
+  // remove this from sdk once callkeep is stable
+  bool get isBackgroud => false;
 
   @override
   bool get isWeb => kIsWeb;
@@ -119,9 +116,12 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
     return webrtc_impl.RTCVideoRenderer();
   }
 
+  Future<bool> get hasCallingAccount async =>
+      kIsWeb ? false : await CallKeepManager().hasPhoneAccountEnabled;
+
   @override
   void playRingtone() async {
-    if (!background) {
+    if (!background && !await hasCallingAccount) {
       try {
         await UserMediaManager().startRingingTone();
       } catch (_) {}
@@ -130,7 +130,7 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void stopRingtone() async {
-    if (!background) {
+    if (!background && !await hasCallingAccount) {
       try {
         await UserMediaManager().stopRingingTone();
       } catch (_) {}
@@ -139,19 +139,58 @@ class VoipPlugin extends WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void handleNewCall(CallSession call) async {
-    /// Popup CallingPage for incoming call.
-    if (!background) {
-      addCallingOverlay(context, call.callId, call);
+    if (PlatformInfos.isAndroid) {
+      // probably works on ios too
+      final hasCallingAccount = await CallKeepManager().hasPhoneAccountEnabled;
+      if (call.direction == CallDirection.kIncoming &&
+          hasCallingAccount &&
+          call.type == CallType.kVoice) {
+        ///Popup native telecom manager call UI for incoming call.
+        final callKeeper = CallKeeper(CallKeepManager(), call);
+        CallKeepManager().addCall(call.callId, callKeeper);
+        await CallKeepManager().showCallkitIncoming(call);
+        return;
+      } else {
+        try {
+          final wasForeground = await FlutterForegroundTask.isAppOnForeground;
+          await Store().setItem(
+              'wasForeground', wasForeground == true ? 'true' : 'false');
+          FlutterForegroundTask.setOnLockScreenVisibility(true);
+          FlutterForegroundTask.wakeUpScreen();
+          FlutterForegroundTask.launchApp();
+        } catch (e) {
+          Logs().e('VOIP foreground failed $e');
+        }
+        // use fallback flutter call pages for outgoing and video calls.
+        addCallingOverlay(call.callId, call);
+        try {
+          if (!hasCallingAccount) {
+            ScaffoldMessenger.of(FluffyChatApp.routerKey.currentContext!)
+                .showSnackBar(const SnackBar(
+                    content: Text(
+              'No calling accounts found (used for native calls UI)',
+            )));
+          }
+        } catch (e) {
+          Logs().e('failed to show snackbar');
+        }
+      }
     } else {
-      onIncomingCall?.call(call);
+      addCallingOverlay(call.callId, call);
     }
   }
 
   @override
   void handleCallEnded(CallSession session) async {
     if (overlayEntry != null) {
-      overlayEntry?.remove();
+      overlayEntry!.remove();
       overlayEntry = null;
+      if (PlatformInfos.isAndroid) {
+        FlutterForegroundTask.setOnLockScreenVisibility(false);
+        FlutterForegroundTask.stopService();
+        final wasForeground = await Store().getItem('wasForeground');
+        wasForeground == 'false' ? FlutterForegroundTask.minimizeApp() : null;
+      }
     }
   }
 
