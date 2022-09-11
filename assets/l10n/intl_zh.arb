@@ -2963,7 +2963,7 @@
   "@enterRoom": {},
   "allSpaces": "所有空间",
   "@allSpaces": {},
-  "appearOnTop": "出现在其他应用上方",
+  "appearOnTop": "显示在其他应用上方",
   "@appearOnTop": {},
   "appearOnTopDetails": "允许应用显示在顶部（如果你已经将 Fluffychat 设置为呼叫账户，则不需要授予此权限）",
   "@appearOnTopDetails": {},
@@ -2979,6 +2979,13 @@
   "@screenSharingTitle": {},
   "callingAccount": "呼叫账户",
   "@callingAccount": {},
-  "screenSharingDetail": "你在非匿名共享屏幕",
-  "@screenSharingDetail": {}
+  "screenSharingDetail": "你正在 FluffyChat 共享屏幕",
+  "@screenSharingDetail": {},
+  "numChats": "{number} 个聊天",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
