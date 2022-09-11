@@ -56,8 +56,20 @@ class ChatListView extends StatelessWidget {
         return VWidgetGuard(
           onSystemPop: (redirector) async {
             final selMode = controller.selectMode;
-            if (selMode != SelectMode.normal) controller.cancelAction();
-            if (selMode == SelectMode.select) redirector.stopRedirection();
+            if (selMode != SelectMode.normal) {
+              controller.cancelAction();
+              redirector.stopRedirection();
+              return;
+            }
+            if (controller.activeFilter !=
+                (AppConfig.separateChatTypes
+                    ? ActiveFilter.messages
+                    : ActiveFilter.allChats)) {
+              controller
+                  .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
+              redirector.stopRedirection();
+              return;
+            }
           },
           child: Row(
             children: [

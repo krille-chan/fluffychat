@@ -148,20 +148,24 @@ class _SpaceViewState extends State<SpaceView> {
       return ListView.builder(
         itemCount: rootSpaces.length,
         controller: widget.scrollController,
-        itemBuilder: (context, i) => ListTile(
-          leading: Avatar(
-            mxContent: rootSpaces[i].avatar,
-            name: rootSpaces[i].displayname,
+        itemBuilder: (context, i) => Material(
+          color: Theme.of(context).backgroundColor,
+          child: ListTile(
+            leading: Avatar(
+              mxContent: rootSpaces[i].avatar,
+              name: rootSpaces[i].displayname,
+            ),
+            title: Text(
+              rootSpaces[i].displayname,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: Text(L10n.of(context)!
+                .numChats(rootSpaces[i].spaceChildren.length.toString())),
+            onTap: () => widget.controller.setActiveSpace(rootSpaces[i].id),
+            onLongPress: () => _onSpaceChildContextMenu(null, rootSpaces[i]),
+            trailing: const Icon(Icons.chevron_right_outlined),
           ),
-          title: Text(
-            rootSpaces[i].displayname,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: Text('${rootSpaces[i].spaceChildren.length} Chats'),
-          onTap: () => widget.controller.setActiveSpace(rootSpaces[i].id),
-          onLongPress: () => _onSpaceChildContextMenu(null, rootSpaces[i]),
-          trailing: const Icon(Icons.chevron_right_outlined),
         ),
       );
     }
@@ -193,122 +197,135 @@ class _SpaceViewState extends State<SpaceView> {
               .any((child) => child.roomId == activeSpaceId));
           final spaceChildren = response.rooms;
           final canLoadMore = response.nextBatch != null;
-          return ListView.builder(
-              itemCount: spaceChildren.length + 1 + (canLoadMore ? 1 : 0),
-              controller: widget.scrollController,
-              itemBuilder: (context, i) {
-                if (i == 0) {
-                  return ListTile(
-                    leading: BackButton(
-                      onPressed: () =>
-                          widget.controller.setActiveSpace(parentSpace?.id),
-                    ),
-                    title: Text(parentSpace == null
-                        ? L10n.of(context)!.allSpaces
-                        : parentSpace.displayname),
-                    trailing: IconButton(
-                      icon: snapshot.connectionState != ConnectionState.done
-                          ? const CircularProgressIndicator.adaptive()
-                          : const Icon(Icons.refresh_outlined),
-                      onPressed:
-                          snapshot.connectionState != ConnectionState.done
-                              ? null
-                              : _refresh,
-                    ),
-                  );
-                }
-                i--;
-                if (canLoadMore && i == spaceChildren.length) {
-                  return ListTile(
-                    title: Text(L10n.of(context)!.loadMore),
-                    trailing: const Icon(Icons.chevron_right_outlined),
-                    onTap: () {
-                      prevBatch = response.nextBatch;
-                      _refresh();
-                    },
-                  );
-                }
-                final spaceChild = spaceChildren[i];
-                final room = client.getRoomById(spaceChild.roomId);
-                if (room != null && !room.isSpace) {
-                  return ChatListItem(
-                    room,
-                    onLongPress: () =>
-                        _onSpaceChildContextMenu(spaceChild, room),
-                    activeChat: widget.controller.activeChat == room.id,
-                  );
-                }
-                final isSpace = spaceChild.roomType == 'm.space';
-                final topic =
-                    spaceChild.topic?.isEmpty ?? true ? null : spaceChild.topic;
-                if (spaceChild.roomId == activeSpaceId) {
-                  return SearchTitle(
-                    title:
-                        spaceChild.name ?? spaceChild.canonicalAlias ?? 'Space',
-                    icon: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Avatar(
-                        size: 24,
-                        mxContent: spaceChild.avatarUrl,
-                        name: spaceChild.name,
-                        fontSize: 9,
+          return VWidgetGuard(
+            onSystemPop: (redirector) async {
+              if (parentSpace != null) {
+                widget.controller.setActiveSpace(parentSpace.id);
+                redirector.stopRedirection();
+                return;
+              }
+            },
+            child: ListView.builder(
+                itemCount: spaceChildren.length + 1 + (canLoadMore ? 1 : 0),
+                controller: widget.scrollController,
+                itemBuilder: (context, i) {
+                  if (i == 0) {
+                    return ListTile(
+                      leading: BackButton(
+                        onPressed: () =>
+                            widget.controller.setActiveSpace(parentSpace?.id),
                       ),
+                      title: Text(parentSpace == null
+                          ? L10n.of(context)!.allSpaces
+                          : parentSpace.displayname),
+                      trailing: IconButton(
+                        icon: snapshot.connectionState != ConnectionState.done
+                            ? const CircularProgressIndicator.adaptive()
+                            : const Icon(Icons.refresh_outlined),
+                        onPressed:
+                            snapshot.connectionState != ConnectionState.done
+                                ? null
+                                : _refresh,
+                      ),
+                    );
+                  }
+                  i--;
+                  if (canLoadMore && i == spaceChildren.length) {
+                    return ListTile(
+                      title: Text(L10n.of(context)!.loadMore),
+                      trailing: const Icon(Icons.chevron_right_outlined),
+                      onTap: () {
+                        prevBatch = response.nextBatch;
+                        _refresh();
+                      },
+                    );
+                  }
+                  final spaceChild = spaceChildren[i];
+                  final room = client.getRoomById(spaceChild.roomId);
+                  if (room != null && !room.isSpace) {
+                    return ChatListItem(
+                      room,
+                      onLongPress: () =>
+                          _onSpaceChildContextMenu(spaceChild, room),
+                      activeChat: widget.controller.activeChat == room.id,
+                    );
+                  }
+                  final isSpace = spaceChild.roomType == 'm.space';
+                  final topic = spaceChild.topic?.isEmpty ?? true
+                      ? null
+                      : spaceChild.topic;
+                  if (spaceChild.roomId == activeSpaceId) {
+                    return SearchTitle(
+                      title: spaceChild.name ??
+                          spaceChild.canonicalAlias ??
+                          'Space',
+                      icon: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Avatar(
+                          size: 24,
+                          mxContent: spaceChild.avatarUrl,
+                          name: spaceChild.name,
+                          fontSize: 9,
+                        ),
+                      ),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondaryContainer
+                          .withAlpha(128),
+                      trailing: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Icon(Icons.edit_outlined),
+                      ),
+                      onTap: () => _onJoinSpaceChild(spaceChild),
+                    );
+                  }
+                  return ListTile(
+                    leading: Avatar(
+                      mxContent: spaceChild.avatarUrl,
+                      name: spaceChild.name,
                     ),
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondaryContainer
-                        .withAlpha(128),
-                    trailing: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Icon(Icons.edit_outlined),
+                    title: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            spaceChild.name ??
+                                spaceChild.canonicalAlias ??
+                                L10n.of(context)!.chat,
+                            maxLines: 1,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        if (!isSpace) ...[
+                          const Icon(
+                            Icons.people_outline,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            spaceChild.numJoinedMembers.toString(),
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ],
                     ),
                     onTap: () => _onJoinSpaceChild(spaceChild),
+                    onLongPress: () =>
+                        _onSpaceChildContextMenu(spaceChild, room),
+                    subtitle: Text(
+                      topic ??
+                          (isSpace
+                              ? L10n.of(context)!.enterSpace
+                              : L10n.of(context)!.enterRoom),
+                      maxLines: 1,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground),
+                    ),
+                    trailing: isSpace
+                        ? const Icon(Icons.chevron_right_outlined)
+                        : null,
                   );
-                }
-                return ListTile(
-                  leading: Avatar(
-                    mxContent: spaceChild.avatarUrl,
-                    name: spaceChild.name,
-                  ),
-                  title: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          spaceChild.name ??
-                              spaceChild.canonicalAlias ??
-                              L10n.of(context)!.chat,
-                          maxLines: 1,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      if (!isSpace) ...[
-                        const Icon(
-                          Icons.people_outline,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          spaceChild.numJoinedMembers.toString(),
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ],
-                  ),
-                  onTap: () => _onJoinSpaceChild(spaceChild),
-                  onLongPress: () => _onSpaceChildContextMenu(spaceChild, room),
-                  subtitle: Text(
-                    topic ??
-                        (isSpace
-                            ? L10n.of(context)!.enterSpace
-                            : L10n.of(context)!.enterRoom),
-                    maxLines: 1,
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground),
-                  ),
-                  trailing:
-                      isSpace ? const Icon(Icons.chevron_right_outlined) : null,
-                );
-              });
+                }),
+          );
         });
   }
 }

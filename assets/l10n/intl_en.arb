@@ -2942,5 +2942,12 @@
   "enterRoom": "Enter room",
   "@enterRoom": {},
   "allSpaces": "All spaces",
-  "@allSpaces": {}
+  "@allSpaces": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
