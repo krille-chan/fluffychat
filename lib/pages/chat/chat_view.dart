@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -19,7 +20,7 @@ import 'package:fluffychat/pages/chat/tombstone_display.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/unread_badge_back_button.dart';
+import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../utils/stream_extension.dart';
 import '../../widgets/m2_popup_menu_button.dart';
 import 'chat_emoji_picker.dart';
@@ -179,7 +180,11 @@ class ChatView extends StatelessWidget {
                           tooltip: L10n.of(context)!.close,
                           color: Theme.of(context).colorScheme.primary,
                         )
-                      : UnreadBadgeBackButton(roomId: controller.roomId!),
+                      : UnreadRoomsBadge(
+                          filter: (r) => r.id != controller.roomId!,
+                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                          child: const Center(child: BackButton()),
+                        ),
                   titleSpacing: 0,
                   title: ChatAppBarTitle(controller),
                   actions: _appBarActions(context),

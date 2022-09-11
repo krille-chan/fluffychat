@@ -11,6 +11,7 @@ dependencies:
   adaptive_theme: ^3.0.0
   animations: ^2.0.2
   async: ^2.8.2
+  badges: ^2.0.3
   blurhash_dart: ^1.1.0
   callkeep: ^0.3.2
   chewie: ^1.2.2

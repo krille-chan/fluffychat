@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
-import '../widgets/matrix.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -16,9 +15,7 @@ abstract class FluffyThemes {
       isColumnModeByWidth(MediaQuery.of(context).size.width);
 
   static bool getDisplayNavigationRail(BuildContext context) =>
-      !VRouter.of(context).path.startsWith('/settings') &&
-      (Matrix.of(context).client.rooms.any((room) => room.isSpace) ||
-          AppConfig.separateChatTypes);
+      !VRouter.of(context).path.startsWith('/settings');
 
   static const fallbackTextStyle = TextStyle(
     fontFamily: 'Roboto',

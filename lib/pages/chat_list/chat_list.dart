@@ -101,63 +101,54 @@ class ChatListController extends State<ChatList>
     }
   }
 
-  void onDestinationSelected(int? i) {
+  ActiveFilter getActiveFilterByDestination(int? i) {
     switch (i) {
-      case 0:
-        if (AppConfig.separateChatTypes) {
-          setState(() {
-            activeFilter = ActiveFilter.groups;
-          });
-        } else {
-          setState(() {
-            activeFilter = ActiveFilter.allChats;
-          });
-        }
-        break;
       case 1:
         if (AppConfig.separateChatTypes) {
-          setState(() {
-            activeFilter = ActiveFilter.messages;
-          });
-        } else {
-          setState(() {
-            activeFilter = ActiveFilter.spaces;
-          });
+          return ActiveFilter.messages;
         }
-        break;
+        return ActiveFilter.spaces;
       case 2:
-        setState(() {
-          activeFilter = ActiveFilter.spaces;
-        });
-        break;
+        return ActiveFilter.spaces;
+      case 0:
+      default:
+        if (AppConfig.separateChatTypes) {
+          return ActiveFilter.groups;
+        }
+        return ActiveFilter.allChats;
     }
+  }
+
+  void onDestinationSelected(int? i) {
+    setState(() {
+      activeFilter = getActiveFilterByDestination(i);
+    });
   }
 
   ActiveFilter activeFilter = AppConfig.separateChatTypes
       ? ActiveFilter.messages
       : ActiveFilter.allChats;
 
-  List<Room> get filteredRooms {
-    final rooms = Matrix.of(context).client.rooms;
+  bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return rooms
-            .where((room) => !room.isSpace && !room.isStoryRoom)
-            .toList();
+        return (room) => !room.isSpace && !room.isStoryRoom;
       case ActiveFilter.groups:
-        return rooms
-            .where((room) =>
-                !room.isSpace && !room.isDirectChat && !room.isStoryRoom)
-            .toList();
+        return (room) =>
+            !room.isSpace && !room.isDirectChat && !room.isStoryRoom;
       case ActiveFilter.messages:
-        return rooms
-            .where((room) =>
-                !room.isSpace && room.isDirectChat && !room.isStoryRoom)
-            .toList();
+        return (room) =>
+            !room.isSpace && room.isDirectChat && !room.isStoryRoom;
       case ActiveFilter.spaces:
-        return rooms.where((room) => room.isSpace).toList();
+        return (r) => r.isSpace;
     }
   }
+
+  List<Room> get filteredRooms => Matrix.of(context)
+      .client
+      .rooms
+      .where(getRoomFilterByActiveFilter(activeFilter))
+      .toList();
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;

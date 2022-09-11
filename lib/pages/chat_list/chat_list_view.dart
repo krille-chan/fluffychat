@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:badges/badges.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:vrouter/vrouter.dart';
@@ -9,6 +10,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'chat_list_header.dart';
@@ -19,32 +21,62 @@ class ChatListView extends StatelessWidget {
 
   const ChatListView(this.controller, {Key? key}) : super(key: key);
 
-  List<NavigationDestination> getNavigationDestinations(BuildContext context) =>
-      [
-        if (AppConfig.separateChatTypes) ...[
-          NavigationDestination(
-            icon: const Icon(Icons.groups_outlined),
-            selectedIcon: const Icon(Icons.groups),
-            label: L10n.of(context)!.groups,
+  List<NavigationDestination> getNavigationDestinations(BuildContext context) {
+    final badgePosition = BadgePosition.topEnd(top: -12, end: -8);
+    return [
+      if (AppConfig.separateChatTypes) ...[
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups_outlined),
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.chat_outlined),
-            selectedIcon: const Icon(Icons.chat),
-            label: L10n.of(context)!.messages,
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups),
           ),
-        ] else
-          NavigationDestination(
-            icon: const Icon(Icons.chat_outlined),
-            selectedIcon: const Icon(Icons.chat),
-            label: L10n.of(context)!.chats,
+          label: L10n.of(context)!.groups,
+        ),
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter:
+                controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
+            child: const Icon(Icons.chat_outlined),
           ),
-        if (controller.spaces.isNotEmpty)
-          const NavigationDestination(
-            icon: Icon(Icons.workspaces_outlined),
-            selectedIcon: Icon(Icons.workspaces),
-            label: 'Spaces',
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter:
+                controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
+            child: const Icon(Icons.chat),
           ),
-      ];
+          label: L10n.of(context)!.messages,
+        ),
+      ] else
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter:
+                controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
+            child: const Icon(Icons.chat_outlined),
+          ),
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter:
+                controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
+            child: const Icon(Icons.chat),
+          ),
+          label: L10n.of(context)!.chats,
+        ),
+      if (controller.spaces.isNotEmpty)
+        const NavigationDestination(
+          icon: Icon(Icons.workspaces_outlined),
+          selectedIcon: Icon(Icons.workspaces),
+          label: 'Spaces',
+        ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,11 +134,6 @@ class ChatListView extends StatelessWidget {
                             height: 64,
                             width: 64,
                             decoration: BoxDecoration(
-                              color: isSelected
-                                  ? Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer
-                                  : Theme.of(context).colorScheme.background,
                               border: Border(
                                 bottom: i == (destinations.length - 1)
                                     ? BorderSide(
@@ -129,15 +156,21 @@ class ChatListView extends StatelessWidget {
                             alignment: Alignment.center,
                             child: IconButton(
                               color: isSelected
-                                  ? Theme.of(context).colorScheme.primary
+                                  ? Theme.of(context).colorScheme.secondary
                                   : null,
                               icon: CircleAvatar(
-                                  backgroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
-                                  foregroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondaryContainer,
+                                  backgroundColor: isSelected
+                                      ? Theme.of(context).colorScheme.secondary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                  foregroundColor: isSelected
+                                      ? Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
                                   child: i == controller.selectedIndex
                                       ? destinations[i].selectedIcon ??
                                           destinations[i].icon
@@ -156,15 +189,10 @@ class ChatListView extends StatelessWidget {
                           height: 64,
                           width: 64,
                           decoration: BoxDecoration(
-                            color: isSelected
-                                ? Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer
-                                : Theme.of(context).colorScheme.background,
                             border: Border(
                               left: BorderSide(
                                 color: isSelected
-                                    ? Theme.of(context).colorScheme.primary
+                                    ? Theme.of(context).colorScheme.secondary
                                     : Colors.transparent,
                                 width: 4,
                               ),
