@@ -2980,5 +2980,12 @@
   "newSpace": "Yeni alan",
   "@newSpace": {},
   "screenSharingDetail": "Ekranınızı FuffyChat'te paylaşıyorsunuz",
-  "@screenSharingDetail": {}
+  "@screenSharingDetail": {},
+  "numChats": "{number} sohbet",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
