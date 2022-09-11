@@ -2975,5 +2975,12 @@
   "allSpaces": "Усі простори",
   "@allSpaces": {},
   "screenSharingDetail": "Ви ділитеся своїм екраном FuffyChat",
-  "@screenSharingDetail": {}
+  "@screenSharingDetail": {},
+  "numChats": "{number} бесід",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
