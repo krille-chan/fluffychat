@@ -106,8 +106,7 @@ class ChatListView extends StatelessWidget {
           child: Row(
             children: [
               if (FluffyThemes.isColumnMode(context) &&
-                  FluffyThemes.getDisplayNavigationRail(context) &&
-                  controller.waitForFirstSync) ...[
+                  FluffyThemes.getDisplayNavigationRail(context)) ...[
                 Builder(builder: (context) {
                   final allSpaces = client.rooms.where((room) => room.isSpace);
                   final rootSpaces = allSpaces
@@ -124,9 +123,7 @@ class ChatListView extends StatelessWidget {
                     width: 64,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
-                      itemCount: rootSpaces.length +
-                          2 +
-                          (AppConfig.separateChatTypes ? 1 : 0),
+                      itemCount: rootSpaces.length + destinations.length,
                       itemBuilder: (context, i) {
                         if (i < destinations.length) {
                           final isSelected = i == controller.selectedIndex;
