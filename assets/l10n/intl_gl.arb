@@ -2799,7 +2799,7 @@
   "@addToBundle": {},
   "removeFromBundle": "Eliminar deste feixe",
   "@removeFromBundle": {},
-  "separateChatTypes": "Separar Conversas directas, Grupos e Espazos",
+  "separateChatTypes": "Separar Conversas directas e Grupos",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2952,5 +2952,40 @@
   "whyIsThisMessageEncrypted": "Por que non podo ler esta mensaxe?",
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "Pode ser que a mensaxe fose enviada antes de que ti accedeses á túa conta neste dispositivo.\n\nTamén é posible que a remitente non validase o teu dispositivo ou tamén que algo fallase na conexión a internet.\n\nPodes ler a mensaxe noutro dispositivo? Entón podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes tódolos dispositivos verificados. Entón cando abras a sala a próxima vez a sincronización realizarase e as chaves transmitiranse automáticamente.\n\nNon desexas perder as chaves cando pechas sesión ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas.",
-  "@noKeyForThisMessage": {}
+  "@noKeyForThisMessage": {},
+  "appearOnTop": "Aparecer arriba",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Micrófono, cámara e outros permisos para FluffyChat",
+  "@otherCallingPermissions": {},
+  "newGroup": "Novo grupo",
+  "@newGroup": {},
+  "newSpace": "Novo espazo",
+  "@newSpace": {},
+  "foregroundServiceRunning": "Esta notificación aparece cando se está a executar o servizo en segundo plano.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "compartición da pantalla",
+  "@screenSharingTitle": {},
+  "callingPermissions": "Permisos de chamada",
+  "@callingPermissions": {},
+  "callingAccount": "Conta que chama",
+  "@callingAccount": {},
+  "callingAccountDetails": "Permite a FluffyChat usar a app marcador nativa de android.",
+  "@callingAccountDetails": {},
+  "appearOnTopDetails": "Permítelle á app aparecer por enrriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
+  "@appearOnTopDetails": {},
+  "enterSpace": "Entrar no espazo",
+  "@enterSpace": {},
+  "enterRoom": "Entrar na sala",
+  "@enterRoom": {},
+  "allSpaces": "Tódolos espazos",
+  "@allSpaces": {},
+  "screenSharingDetail": "Estás compartindo a túa pantalla en FluffyChat",
+  "@screenSharingDetail": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
