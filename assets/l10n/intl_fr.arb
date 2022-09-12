@@ -2852,7 +2852,7 @@
       "user": {}
     }
   },
-  "separateChatTypes": "Séparer les discussions directes, les groupes et les espaces",
+  "separateChatTypes": "Séparer les discussions directes et les groupes",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2935,5 +2935,57 @@
   "updateNow": "Lancer la mise à jour en arrière-plan",
   "@updateNow": {},
   "allSuggestedRoomsJoined": "Vous avez rejoint toutes les salles suggérées",
-  "@allSuggestedRoomsJoined": {}
+  "@allSuggestedRoomsJoined": {},
+  "noKeyForThisMessage": "Cela peut se produire si le message a été envoyé avant que vous ne vous soyez connecté à votre compte sur cet appareil.\n\nIl est également possible que l'expéditeur ait bloqué votre appareil ou qu'un problème de connexion Internet se soit produit.\n\nÊtes-vous capable de lire le message sur une autre session ? Vous pouvez alors transférer le message à partir de celle-ci ! Allez dans Paramètres > Appareils et assurez-vous que vos appareils se sont vérifiés mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les clés seront transmises automatiquement.\n\nVous ne voulez pas perdre les clés en vous déconnectant ou en changeant d'appareil ? Assurez-vous que vous avez activé la sauvegarde de la discussion dans les paramètres.",
+  "@noKeyForThisMessage": {},
+  "enterRoom": "Entrer dans le salon",
+  "@enterRoom": {},
+  "allSpaces": "Tous les espaces",
+  "@allSpaces": {},
+  "commandHint_markasdm": "Marquer comme salon de messagerie directe",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Marquer comme groupe",
+  "@commandHint_markasgroup": {},
+  "confirmMatrixId": "Veuillez confirmer votre identifiant Matrix afin de supprimer votre compte.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Cela devrait être {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "whyIsThisMessageEncrypted": "Pourquoi ce message est-il illisible ?",
+  "@whyIsThisMessageEncrypted": {},
+  "foregroundServiceRunning": "Cette notification s’affiche lorsque le service au premier plan est en cours d’exécution.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "Partage d'écran",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "Vous partagez votre écran dans FuffyChat",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Permissions d'appel",
+  "@callingPermissions": {},
+  "callingAccount": "Compte d'appel",
+  "@callingAccount": {},
+  "callingAccountDetails": "Permet à FluffyChat d'utiliser l'application de numérotation native d'Android.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Apparaître en haut",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Fluffychat comme compte d'appel)",
+  "@appearOnTopDetails": {},
+  "otherCallingPermissions": "Microphone, caméra et autres autorisations de FluffyChat",
+  "@otherCallingPermissions": {},
+  "newGroup": "Nouveau groupe",
+  "@newGroup": {},
+  "newSpace": "Nouvel espace",
+  "@newSpace": {},
+  "enterSpace": "Entrer dans l’espace",
+  "@enterSpace": {},
+  "numChats": "{number} discussions",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
