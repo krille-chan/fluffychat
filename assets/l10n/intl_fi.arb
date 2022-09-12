@@ -71,7 +71,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "Lisää Spaceen",
+  "addToSpace": "Lisää avaruuteen",
   "@addToSpace": {},
   "admin": "Ylläpitäjä",
   "@admin": {
@@ -392,7 +392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Keskustelu on lisätty tähän Spaceen",
+  "chatHasBeenAddedToThisSpace": "Keskustelu on lisätty tähän avaruuteen",
   "@chatHasBeenAddedToThisSpace": {},
   "chats": "Keskustelut",
   "@chats": {
@@ -481,7 +481,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "Uusi Space",
+  "createNewSpace": "Uusi avaruus",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
@@ -1319,7 +1319,7 @@
   },
   "setupChatBackupDescription": "Suojellaksemme viestejäsi olemme luoneet sinulle palautusavaimen.\nPidäthän tätä turvallisessa paikassa, kuten salasanamanagerissasi.",
   "@setupChatBackupDescription": {},
-  "chatHasBeenRemovedFromThisSpace": "Keskustelu on poistettu tästä Spacesta",
+  "chatHasBeenRemovedFromThisSpace": "Keskustelu on poistettu tästä avaruudesta",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -1408,7 +1408,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Syötä Spacen nimi",
+  "enterASpacepName": "Nimeä avaruus",
   "@enterASpacepName": {},
   "inoffensive": "Loukkaamatonta",
   "@inoffensive": {
@@ -1925,12 +1925,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "spaceIsPublic": "Space on julkinen",
+  "spaceIsPublic": "Avaruus on julkinen",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "spaceName": "Spacen nimi",
+  "spaceName": "Avaruuden nimi",
   "@spaceName": {
     "type": "text",
     "placeholders": {}
@@ -2255,11 +2255,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeFromSpace": "Poista Spacesta",
+  "removeFromSpace": "Poista avaruudesta",
   "@removeFromSpace": {},
-  "removeFromSpaceDescription": "Tämä poistaa keskustelun nykyisestä Spacesta. Se tulee yhä näkymään kategoriassa \"Kaikki keskustelut\".",
+  "removeFromSpaceDescription": "Tämä poistaa keskustelun nykyisestä avaruudesta. Se tulee yhä näkymään kategoriassa \"Kaikki keskustelut\".",
   "@removeFromSpaceDescription": {},
-  "addToSpaceDescription": "Valitse Space, jonne tämä keskustelu lisätään.",
+  "addToSpaceDescription": "Valitse avaruus, jonne tämä keskustelu lisätään.",
   "@addToSpaceDescription": {},
   "start": "Aloita",
   "@start": {},
@@ -2422,7 +2422,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "publicSpace": "Julkinen Space",
+  "publicSpace": "Julkinen avaruus",
   "@publicSpace": {
     "type": "text",
     "placeholders": {}
@@ -2780,9 +2780,9 @@
   "@widgetNameError": {},
   "addWidget": "Lisää pienoissovellus",
   "@addWidget": {},
-  "showSpaces": "Näytä Space-luettelo",
+  "showSpaces": "Näytä avaruus-lista",
   "@showSpaces": {},
-  "showDirectChatsInSpaces": "Näytä Spaceihin kuuluvat suorat keskustelut niissä",
+  "showDirectChatsInSpaces": "Näytä avaruuksiin kuuluvat suorat keskustelut niissä",
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
@@ -2903,7 +2903,7 @@
   },
   "storeInSecureStorageDescription": "Tallenna palautusavain tämän laitteen turvavarastoon.",
   "@storeInSecureStorageDescription": {},
-  "suggestedRooms": "Löydä ryhmiä tässä Spacessa",
+  "suggestedRooms": "Löydä ryhmiä tässä avaruudessa",
   "@suggestedRooms": {},
   "indexedDbErrorTitle": "Yksityisen selauksen ongelmat",
   "@indexedDbErrorTitle": {},
@@ -2946,13 +2946,13 @@
   "@appearOnTop": {},
   "appearOnTopDetails": "Sallii sovelluksen näkyä muiden sovellusten päällä (tätä ei tarvita, mikäli olet jo määrittänyt FluffyChatin puhelin-tunnukseksi)",
   "@appearOnTopDetails": {},
-  "newSpace": "Uusi Space",
+  "newSpace": "Uusi avaruus",
   "@newSpace": {},
-  "enterSpace": "Siirry Spaceen",
+  "enterSpace": "Siirry avaruuteen",
   "@enterSpace": {},
   "enterRoom": "Siirry huoneeseen",
   "@enterRoom": {},
-  "allSpaces": "Kaikki Spacet",
+  "allSpaces": "Kaikki avaruudet",
   "@allSpaces": {},
   "screenSharingTitle": "ruudunjako",
   "@screenSharingTitle": {},
