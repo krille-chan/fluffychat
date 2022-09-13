@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import '../widgets/matrix.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -14,8 +16,24 @@ abstract class FluffyThemes {
   static bool isColumnMode(BuildContext context) =>
       isColumnModeByWidth(MediaQuery.of(context).size.width);
 
-  static bool getDisplayNavigationRail(BuildContext context) =>
-      !VRouter.of(context).path.startsWith('/settings');
+  static ValueNotifier<bool>? _navigationRailWidth;
+
+  static ValueNotifier<bool>? getDisplayNavigationRail(BuildContext context) {
+    if (!VRouter.of(context).path.startsWith('/settings')) {
+      if (_navigationRailWidth == null) {
+        _navigationRailWidth = ValueNotifier(false);
+        Matrix.of(context)
+            .store
+            .getItemBool(SettingKeys.desktopDrawerOpen, false)
+            .then((value) => _navigationRailWidth!.value = value);
+      }
+      return _navigationRailWidth;
+    } else {
+      return null;
+    }
+  }
+
+  static const hugeScreenBreakpoint = 1280;
 
   static const fallbackTextStyle = TextStyle(
     fontFamily: 'Roboto',

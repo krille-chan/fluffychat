@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -17,6 +19,7 @@ import '../../widgets/matrix.dart';
 class SpaceView extends StatefulWidget {
   final ChatListController controller;
   final ScrollController scrollController;
+
   const SpaceView(
     this.controller, {
     Key? key,
@@ -28,22 +31,9 @@ class SpaceView extends StatefulWidget {
 }
 
 class _SpaceViewState extends State<SpaceView> {
-  static final Map<String, Future<GetSpaceHierarchyResponse>> _requests = {};
+  SpaceHierarchyCache? cache;
 
   String? prevBatch;
-
-  void _refresh() {
-    setState(() {
-      _requests.remove(widget.controller.activeSpaceId);
-    });
-  }
-
-  Future<GetSpaceHierarchyResponse> getFuture(String activeSpaceId) =>
-      _requests[activeSpaceId] ??= Matrix.of(context).client.getSpaceHierarchy(
-            activeSpaceId,
-            maxDepth: 1,
-            from: prevBatch,
-          );
 
   void _onJoinSpaceChild(SpaceRoomsChunk spaceChild) async {
     final client = Matrix.of(context).client;
@@ -64,7 +54,9 @@ class _SpaceViewState extends State<SpaceView> {
         },
       );
       if (result.error != null) return;
-      _refresh();
+      setState(() {
+        cache!.refresh(widget.controller.activeSpaceId!);
+      });
     }
     if (spaceChild.roomType == 'm.space') {
       if (spaceChild.roomId == widget.controller.activeSpaceId) {
@@ -132,6 +124,8 @@ class _SpaceViewState extends State<SpaceView> {
 
   @override
   Widget build(BuildContext context) {
+    cache ??= SpaceHierarchyCache.instance ??=
+        SpaceHierarchyCache(client: Matrix.of(context).client);
     final client = Matrix.of(context).client;
     final activeSpaceId = widget.controller.activeSpaceId;
     final allSpaces = client.rooms.where((room) => room.isSpace);
@@ -170,7 +164,7 @@ class _SpaceViewState extends State<SpaceView> {
       );
     }
     return FutureBuilder<GetSpaceHierarchyResponse>(
-        future: getFuture(activeSpaceId),
+        future: cache!.getFuture(activeSpaceId, prevBatch),
         builder: (context, snapshot) {
           final response = snapshot.data;
           final error = snapshot.error;
@@ -184,7 +178,7 @@ class _SpaceViewState extends State<SpaceView> {
                   child: Text(error.toLocalizedString(context)),
                 ),
                 IconButton(
-                  onPressed: _refresh,
+                  onPressed: () => cache!.refresh(activeSpaceId),
                   icon: const Icon(Icons.refresh_outlined),
                 )
               ],
@@ -221,24 +215,38 @@ class _SpaceViewState extends State<SpaceView> {
                           : parentSpace.displayname),
                       trailing: IconButton(
                         icon: snapshot.connectionState != ConnectionState.done
-                            ? const CircularProgressIndicator.adaptive()
+                            ? const SizedBox.square(
+                                dimension: 24,
+                                child: CircularProgressIndicator.adaptive(),
+                              )
                             : const Icon(Icons.refresh_outlined),
                         onPressed:
                             snapshot.connectionState != ConnectionState.done
                                 ? null
-                                : _refresh,
+                                : () => setState(() {
+                                      cache!.refresh(activeSpaceId);
+                                    }),
                       ),
                     );
                   }
                   i--;
                   if (canLoadMore && i == spaceChildren.length) {
                     return ListTile(
-                      title: Text(L10n.of(context)!.loadMore),
-                      trailing: const Icon(Icons.chevron_right_outlined),
-                      onTap: () {
-                        prevBatch = response.nextBatch;
-                        _refresh();
-                      },
+                      title: TextButton.icon(
+                        label: Text(L10n.of(context)!.loadMore),
+                        icon: cache?.isRefreshing(activeSpaceId) ?? false
+                            ? const SizedBox.square(
+                                dimension: 24,
+                                child: CircularProgressIndicator(),
+                              )
+                            : const Icon(Icons.refresh),
+                        onPressed: () {
+                          prevBatch = snapshot.data!.nextBatch!;
+                          setState(() {
+                            cache!.refresh(activeSpaceId);
+                          });
+                        },
+                      ),
                     );
                   }
                   final spaceChild = spaceChildren[i];
@@ -335,4 +343,70 @@ enum SpaceChildContextAction {
   join,
   leave,
   removeFromSpace,
+}
+
+class SpaceHierarchyCache {
+  static SpaceHierarchyCache? instance;
+
+  final Client client;
+  final Map<String, List<Completer<GetSpaceHierarchyResponse?>>> _requests = {};
+
+  SpaceHierarchyCache({required this.client});
+
+  void refresh(String activeSpaceId) {
+    _requests.remove(activeSpaceId);
+  }
+
+  bool isRefreshing(String spaceId) =>
+      _requests[spaceId] != null &&
+      (_requests[spaceId]?.any((element) => !element.isCompleted) ?? false);
+
+  Future<GetSpaceHierarchyResponse> getFuture(
+    String activeSpaceId,
+    String? prevBatch,
+  ) {
+    _requests[activeSpaceId] ??= [];
+    final completer = Completer<GetSpaceHierarchyResponse?>();
+    client
+        .getSpaceHierarchy(
+          activeSpaceId,
+          maxDepth: 1,
+          from: prevBatch,
+        )
+        .then(
+          completer.complete,
+        )
+        .onError(completer.completeError);
+    _requests[activeSpaceId]?.add(completer);
+
+    return Future.wait(_requests[activeSpaceId]!.reversed.map(
+          (e) => e.future.onError((e, s) => null),
+        )).then(
+      (value) => SpacesHierarchyMerges.merged(
+        value.whereNotNull().toList(),
+      ),
+    );
+  }
+}
+
+extension SpacesHierarchyMerges on GetSpaceHierarchyResponse {
+  static GetSpaceHierarchyResponse merged(
+    List<GetSpaceHierarchyResponse> responses,
+  ) {
+    final rooms = <SpaceRoomsChunk>[];
+    for (final response in responses) {
+      for (final newRoom in response.rooms) {
+        if (rooms.none(
+          (existingRoom) => existingRoom.roomId == newRoom.roomId,
+        )) {
+          rooms.add(newRoom);
+        }
+      }
+    }
+    String? nextBatch;
+    if (!responses.any((response) => response.nextBatch == null)) {
+      nextBatch = responses.last.nextBatch;
+    }
+    return GetSpaceHierarchyResponse(rooms: rooms, nextBatch: nextBatch);
+  }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -13,12 +14,14 @@ import 'package:uni_links/uni_links.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions.dart/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
@@ -667,6 +670,59 @@ class ChatListController extends State<ChatList>
     });
   }
 
+  List<NavigationDestination> getNavigationDestinations(BuildContext context) {
+    final badgePosition = BadgePosition.topEnd(top: -12, end: -8);
+    return [
+      if (AppConfig.separateChatTypes) ...[
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups_outlined),
+          ),
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups),
+          ),
+          label: L10n.of(context)!.groups,
+        ),
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.messages),
+            child: const Icon(Icons.chat_outlined),
+          ),
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.messages),
+            child: const Icon(Icons.chat),
+          ),
+          label: L10n.of(context)!.messages,
+        ),
+      ] else
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.allChats),
+            child: const Icon(Icons.chat_outlined),
+          ),
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: getRoomFilterByActiveFilter(ActiveFilter.allChats),
+            child: const Icon(Icons.chat),
+          ),
+          label: L10n.of(context)!.chats,
+        ),
+      if (spaces.isNotEmpty)
+        NavigationDestination(
+          icon: const Icon(Icons.workspaces_outlined),
+          selectedIcon: const Icon(Icons.workspaces),
+          label: L10n.of(context)!.spaces,
+        ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     Matrix.of(context).navigatorContext = context;
@@ -685,6 +741,14 @@ class ChatListController extends State<ChatList>
 
   Future<void> dehydrate() =>
       SettingsAccountController.dehydrateDevice(context);
+
+  void toggleDesktopDrawer() {
+    final listenable = FluffyThemes.getDisplayNavigationRail(context)!;
+    listenable.value = !listenable.value;
+    Matrix.of(context)
+        .store
+        .setItemBool(SettingKeys.desktopDrawerOpen, listenable.value);
+  }
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

@@ -134,6 +134,7 @@
       "senderName": {}
     }
   },
+  "spaces": "Spaces",
   "anyoneCanJoin": "Anyone can join",
   "@anyoneCanJoin": {
     "type": "text",
