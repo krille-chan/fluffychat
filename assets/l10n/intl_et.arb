@@ -2979,6 +2979,13 @@
   "@foregroundServiceRunning": {},
   "allSpaces": "Kõik kogukonnad",
   "@allSpaces": {},
-  "screenSharingDetail": "Sa jagad oma ekraani famedly's",
-  "@screenSharingDetail": {}
+  "screenSharingDetail": "Sa jagad oma ekraani FuffyChat'i vahendusel",
+  "@screenSharingDetail": {},
+  "numChats": "{number} vestlust",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
