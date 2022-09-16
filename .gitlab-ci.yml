@@ -124,16 +124,42 @@ build_web:
     - docker
     - famedly
 
+# yes, we *do* build a Windows DLL on Linux. More reliable.
+build_olm_windows:
+  image: archlinux:latest
+  stage: test
+  before_script:
+    - pacman-key --init
+    - pacman --noconfirm -Sy mingw-w64 cmake git base-devel
+  script:
+    - ./scripts/build-olm-windows.sh
+    - mv olm/build/libolm.dll .
+  artifacts:
+    paths:
+      - libolm.dll
+  only:
+    - main
+    - tags
+
 build_windows:
   extends:
     - .shared_windows_runners
-  stage: build
-  before_script: [./scripts/prepare-windows.ps1]
-  script: [./scripts/build-windows.ps1]
+  stage: test
+  before_script:
+    - ./scripts/prepare-windows.ps1
+    # workarounding artifacts download being broken
+    - $response = Invoke-WebRequest -Uri "$CI_API_V4_URL/projects/$CI_PROJECT_ID/pipelines/$CI_PIPELINE_ID/jobs" -UseBasicParsing
+    - $jobs = $response | ConvertFrom-Json
+    - $job = $jobs | where { $_.name -eq "build_olm_windows" }
+    - $jobId = $job.id
+    - Invoke-WebRequest -Uri "$CI_API_V4_URL/projects/$CI_PROJECT_ID/jobs/$jobId/artifacts/libolm.dll" -UseBasicParsing -OutFile libolm.dll
+  script:
+    - ./scripts/build-windows.ps1
+    - Copy-Item -Path "libolm.dll" -Destination "build/windows/runner/Release"
+    - ./scripts/package-windows.ps1
   artifacts:
     paths:
       - build/windows/runner/Release
-  allow_failure: true
   only:
     - main
     - tags
