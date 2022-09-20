@@ -130,5 +130,177 @@
   "@admin": {
     "type": "text",
     "placeholders": {}
+  },
+  "supposedMxid": "این باید {mxid} باشد",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "botMessages": "پیام‌های روبات",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} نام نمایش خودش را ایدون تغییر کرد: «{displayname}»",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "confirmMatrixId": "لطفاً شناسایی ماترس تان را تایید دهید تا حساب تان را حذف کنید.",
+  "@confirmMatrixId": {},
+  "allSuggestedRoomsJoined": "همه اتاق‌های پیشنهادی را پیوستید",
+  "@allSuggestedRoomsJoined": {},
+  "changeDeviceName": "نام دستگاه را تغییر کنید",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "نام مستعار",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banFromChat": "از این گپ تبعید کبید",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "این درخواست تایید را از {username} بپذیرید؟",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "updateNow": "به‌روزرسانی را در پس‌زمینه شروع کنید",
+  "@updateNow": {},
+  "updateAvailable": "به‌روزرسانی فلأفی‌گپ در دسترس است",
+  "@updateAvailable": {},
+  "areGuestsAllowedToJoin": "آیا اجازه می‌شود که کاربر مهمان‌ها بپیوندند",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "بطور خودکار اموجی و برچسب‌های سرزنده را نمایش شوند",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "avatarHasBeenChanged": "تصویر کاربر تغییر کرد",
+  "@avatarHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "authentication": "اصالت‌سنجی",
+  "@authentication": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numberRoomMembers": "{number} تا عضو",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "sendOnEnter": "ارسال با کلید بازگشت",
+  "@sendOnEnter": {},
+  "cachedKeys": "کلیدها در مخزن ذخیره شده‌اند",
+  "@cachedKeys": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "لغو",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatDescriptionTo": "{username} توصیف گپ را ایدون تغییر کرد: «{description}»",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} اجازه‌های گپ را تغییر کرد",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} نام گپ را ایدون تغییر کرد: «{chatname}»",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "cantOpenUri": "نمی‌توانیم این URI را باز کنیم: {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "banned": "تبعید شده",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} {targetName} را تبعید کرد",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "دستگاه را مسدود کنید",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "مسدود شده",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "سرور می‌تواند این گونه‌های ورود‮ را پشتیباتی کند:\n{serverVersions}\nولی این برنامه می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "badServerVersionsException": "سرور می‌تواند این نسخه‌های مشخصات را پشتیباتی کند:\n{serverVersions}\nولی این برنامه می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "suggestedRooms": "در این اسپیس گروه‌ها را بیابید",
+  "@suggestedRooms": {},
+  "changedTheChatAvatar": "{username} تصویر گپ را تغییر کرد",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "bubbleSize": "اندازه‌ی حباب",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
   }
 }
