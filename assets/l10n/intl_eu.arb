@@ -2836,7 +2836,7 @@
   },
   "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
   "@youRejectedTheInvitation": {},
-  "separateChatTypes": "Bereizi Mezu Zuzenak, Taldeak eta Guneak",
+  "separateChatTypes": "Bereizi Mezu Zuzenak eta taldeak",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2923,5 +2923,42 @@
   "saveKeyManuallyDescription": "Gorde gako hau eskuz gailuko partekatze-menua erabiliz.",
   "@saveKeyManuallyDescription": {},
   "indexedDbErrorTitle": "Modu pribatuaren arazoak",
-  "@indexedDbErrorTitle": {}
+  "@indexedDbErrorTitle": {},
+  "confirmMatrixId": "Mesedez, baieztatu zure Matrix IDa kontua ezabatzeko.",
+  "@confirmMatrixId": {},
+  "newSpace": "Espazio berria",
+  "@newSpace": {},
+  "enterRoom": "Sartu gelara",
+  "@enterRoom": {},
+  "whyIsThisMessageEncrypted": "Zergatik ezin da mezu hau irakurri?",
+  "@whyIsThisMessageEncrypted": {},
+  "allSpaces": "Espazio guztiak",
+  "@allSpaces": {},
+  "newGroup": "Talde berria",
+  "@newGroup": {},
+  "enterSpace": "Sartu espaziora",
+  "@enterSpace": {},
+  "appearOnTopDetails": "Aplikazioa goikaldean agertzeko baimentzen du (ez da beharrezkoa FluffyChat dei egiteko kontua bezala ezarri baduzu)",
+  "@appearOnTopDetails": {},
+  "screenSharingTitle": "pantaila partekatzen",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "Pantaila FluffyChaten partekatzen ari zara",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Deiak egiteko baimenak",
+  "@callingPermissions": {},
+  "callingAccount": "Deia egiteko kontua",
+  "@callingAccount": {},
+  "callingAccountDetails": "Baimendu FluffyCaht Android gailuko telefono markagailua erabiltzea.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Gainean erakutsi",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Mikrofono, kamera eta FluffyChaten beste baimen batzuk",
+  "@otherCallingPermissions": {},
+  "numChats": "{number} txat",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
