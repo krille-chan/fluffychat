@@ -2798,7 +2798,7 @@
   "@widgetEtherpad": {},
   "editWidgets": "Widgets wijzigen",
   "@editWidgets": {},
-  "separateChatTypes": "Gescheiden directe chats, groepen en spaces",
+  "separateChatTypes": "Gescheiden directe chats en groepen",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2951,5 +2951,40 @@
   "whyIsThisMessageEncrypted": "Waarom is dit bericht onleesbaar?",
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chat back-up hebt aangezet in de instellingen.",
-  "@noKeyForThisMessage": {}
+  "@noKeyForThisMessage": {},
+  "enterSpace": "Space betreden",
+  "@enterSpace": {},
+  "allSpaces": "Alle spaces",
+  "@allSpaces": {},
+  "foregroundServiceRunning": "Deze melding verschijnt wanneer de voorgronddienst draait.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "scherm delen",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "Je deelt je scherm in FuffyChat",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Belrechten",
+  "@callingPermissions": {},
+  "callingAccount": "Belaccount",
+  "@callingAccount": {},
+  "callingAccountDetails": "Hiermee kan FluffyChat de Android-kiezer-app gebruiken.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Bovenaan verschijnen",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "Laat de app bovenaan verschijnen (niet nodig als je FluffyChat al hebt ingesteld als een belaccount)",
+  "@appearOnTopDetails": {},
+  "otherCallingPermissions": "Microfoon, camera en andere FluffyChat-rechten",
+  "@otherCallingPermissions": {},
+  "newGroup": "Nieuwe groep",
+  "@newGroup": {},
+  "newSpace": "Nieuwe space",
+  "@newSpace": {},
+  "enterRoom": "Kamer betreden",
+  "@enterRoom": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
