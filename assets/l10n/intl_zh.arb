@@ -1315,7 +1315,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "来自 FluffyChat 的新消息",
+  "newMessageInFluffyChat": "💬 FluffyChat 新消息",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1881,35 +1881,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} 发送了文件",
+  "sentAFile": "📁{username} 发送了文件",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} 发送了音频",
+  "sentAnAudio": "🎤{username} 发送了音频",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} 发送了图片",
+  "sentAPicture": "🖼️ {username} 发送了图片",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} 发送了贴纸",
+  "sentASticker": "😊 {username} 发送了贴纸",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} 发送了视频",
+  "sentAVideo": "🎥 {username} 发送了视频",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
