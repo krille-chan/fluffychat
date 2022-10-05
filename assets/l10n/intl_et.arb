@@ -1361,7 +1361,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Uus sõnum FluffyChat'i vahendusel",
+  "newMessageInFluffyChat": "💬 Uus sõnum FluffyChat'i vahendusel",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1950,35 +1950,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} saatis faili",
+  "sentAFile": "📁 {username} saatis faili",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} saatis helifaili",
+  "sentAnAudio": "🎤 {username} saatis helifaili",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} saatis pildi",
+  "sentAPicture": "🖼️ {username} saatis pildi",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} saatis kleepsu",
+  "sentASticker": "😊 {username} saatis kleepsu",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} saatis video",
+  "sentAVideo": "🎥 {username} saatis video",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
