@@ -1458,7 +1458,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "New message in FluffyChat",
+  "newMessageInFluffyChat": "💬 New message in FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -2068,35 +2068,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} sent a file",
+  "sentAFile": "📁 {username} sent a file",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} sent an audio",
+  "sentAnAudio": "🎤 {username} sent an audio",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} sent a picture",
+  "sentAPicture": "🖼️ {username} sent a picture",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} sent a sticker",
+  "sentASticker": "😊 {username} sent a sticker",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} sent a video",
+  "sentAVideo": "🎥 {username} sent a video",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {

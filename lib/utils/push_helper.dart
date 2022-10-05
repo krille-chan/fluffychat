@@ -141,14 +141,16 @@ Future<void> _tryPushHelper(
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
-  final body = await event.calcLocalizedBody(
-    matrixLocals,
-    plaintextBody: true,
-    withSenderNamePrefix: false,
-    hideReply: true,
-    hideEdit: true,
-    removeMarkdown: true,
-  );
+  final body = event.type == EventTypes.Encrypted
+      ? l10n.newMessageInFluffyChat
+      : await event.calcLocalizedBody(
+          matrixLocals,
+          plaintextBody: true,
+          withSenderNamePrefix: false,
+          hideReply: true,
+          hideEdit: true,
+          removeMarkdown: true,
+        );
 
   // The person object for the android message style notification
   final avatar = event.room.avatar
