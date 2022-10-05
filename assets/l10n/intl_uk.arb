@@ -886,7 +886,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Нове повідомлення у FluffyChat",
+  "newMessageInFluffyChat": "💬 Нове повідомлення у FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1166,35 +1166,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} надсилає файл",
+  "sentAFile": "📁 {username} надсилає файл",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} надсилає аудіо",
+  "sentAnAudio": "🎤 {username} надсилає аудіо",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} надсилає зображення",
+  "sentAPicture": "🖼️ {username} надсилає зображення",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} надсилає наліпку",
+  "sentASticker": "😊 {username} надсилає наліпку",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} надсилає відео",
+  "sentAVideo": "🎥 {username} надсилає відео",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
