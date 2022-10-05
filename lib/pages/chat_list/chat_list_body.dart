@@ -49,9 +49,15 @@ class ChatListViewBody extends StatelessWidget {
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, _) {
-            if (controller.waitForFirstSync &&
-                client.prevBatch != null &&
-                controller.activeFilter != ActiveFilter.spaces) {
+            if (controller.activeFilter == ActiveFilter.spaces &&
+                !controller.isSearchMode) {
+              return SpaceView(
+                controller,
+                scrollController: controller.scrollController,
+                key: Key(controller.activeSpaceId ?? 'Spaces'),
+              );
+            }
+            if (controller.waitForFirstSync && client.prevBatch != null) {
               final rooms = controller.filteredRooms;
               final displayStoriesHeader = {
                 ActiveFilter.allChats,
@@ -208,13 +214,6 @@ class ChatListViewBody extends StatelessWidget {
                     activeChat: controller.activeChat == rooms[i].id,
                   );
                 },
-              );
-            }
-            if (controller.activeFilter == ActiveFilter.spaces) {
-              return SpaceView(
-                controller,
-                scrollController: controller.scrollController,
-                key: Key(controller.activeSpaceId ?? 'Spaces'),
               );
             }
             const dummyChatCount = 5;
