@@ -1107,7 +1107,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Pesan baru di FluffyChat",
+  "newMessageInFluffyChat": "💬 Pesan baru di FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1857,35 +1857,35 @@
       "senderName": {}
     }
   },
-  "sentAVideo": "{username} mengirim video",
+  "sentAVideo": "🎥 {username} mengirim video",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} mengirim stiker",
+  "sentASticker": "😊 {username} mengirim stiker",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} mengirim gambar",
+  "sentAPicture": "🖼️ {username} mengirim gambar",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} mengirim suara",
+  "sentAnAudio": "🎤 {username} mengirim suara",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAFile": "{username} mengirim file",
+  "sentAFile": "📁 {username} mengirim file",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
