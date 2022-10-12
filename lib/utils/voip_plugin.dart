@@ -209,4 +209,14 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
     // TODO: implement cloneStream
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement canHandleNewCall
+  bool get canHandleNewCall =>
+      voip.currentCID == null && voip.currentGroupCID == null;
+
+  @override
+  void handleMissedCall(CallSession session) {
+    // TODO: implement handleMissedCall
+  }
 }
