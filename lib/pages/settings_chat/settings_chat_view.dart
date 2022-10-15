@@ -45,6 +45,12 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.hideUnimportantStateEvents,
+                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
+                storeKey: SettingKeys.hideUnimportantStateEvents,
+                defaultValue: AppConfig.hideUnimportantStateEvents,
+              ),
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
                   title: L10n.of(context)!.autoplayImages,

@@ -8,9 +8,7 @@ import '../../../config/app_config.dart';
 
 class StateMessage extends StatelessWidget {
   final Event event;
-  final void Function(String) unfold;
-  const StateMessage(this.event, {required this.unfold, Key? key})
-      : super(key: key);
+  const StateMessage(this.event, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,48 +23,43 @@ class StateMessage extends StatelessWidget {
         vertical: 4.0,
       ),
       child: Center(
-        child: InkWell(
-          onTap: counter != 0 ? () => unfold(event.eventId) : null,
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.white
-                  : Colors.grey.shade900,
-              borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                FutureBuilder<String>(
-                    future: event
-                        .calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
-                    builder: (context, snapshot) {
-                      return Text(
-                        snapshot.data ??
-                            event.calcLocalizedBodyFallback(
-                                MatrixLocals(L10n.of(context)!)),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14 * AppConfig.fontSizeFactor,
-                          color: Theme.of(context).textTheme.bodyText2!.color,
-                          decoration: event.redacted
-                              ? TextDecoration.lineThrough
-                              : null,
-                        ),
-                      );
-                    }),
-                if (counter != 0)
-                  Text(
-                    L10n.of(context)!.moreEvents(counter),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14 * AppConfig.fontSizeFactor,
-                    ),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.grey.shade900,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FutureBuilder<String>(
+                  future:
+                      event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
+                  builder: (context, snapshot) {
+                    return Text(
+                      snapshot.data ??
+                          event.calcLocalizedBodyFallback(
+                              MatrixLocals(L10n.of(context)!)),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14 * AppConfig.fontSizeFactor,
+                        color: Theme.of(context).textTheme.bodyText2!.color,
+                        decoration:
+                            event.redacted ? TextDecoration.lineThrough : null,
+                      ),
+                    );
+                  }),
+              if (counter != 0)
+                Text(
+                  L10n.of(context)!.moreEvents(counter),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14 * AppConfig.fontSizeFactor,
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),

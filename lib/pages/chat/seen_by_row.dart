@@ -12,11 +12,7 @@ class SeenByRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seenByUsers = controller.room!.getSeenByUsers(
-      controller.timeline!,
-      controller.filteredEvents,
-      controller.unfolded,
-    );
+    final seenByUsers = controller.room!.getSeenByUsers(controller.timeline!);
     const maxAvatars = 7;
     return Container(
       width: double.infinity,
@@ -28,8 +24,8 @@ class SeenByRow extends StatelessWidget {
         duration: seenByUsers.isEmpty
             ? const Duration(milliseconds: 0)
             : const Duration(milliseconds: 300),
-        alignment: controller.filteredEvents.isNotEmpty &&
-                controller.filteredEvents.first.senderId ==
+        alignment: controller.timeline!.events.isNotEmpty &&
+                controller.timeline!.events.first.senderId ==
                     Matrix.of(context).client.userID
             ? Alignment.topRight
             : Alignment.topLeft,

@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 
 import '../config/app_config.dart';
 import 'date_time_extension.dart';
-import 'matrix_sdk_extensions.dart/filtered_timeline_extension.dart';
 
 extension RoomStatusExtension on Room {
   CachedPresence? get directChatPresence =>
@@ -65,14 +64,9 @@ extension RoomStatusExtension on Room {
     return typingText;
   }
 
-  List<User> getSeenByUsers(
-      Timeline timeline, List<Event> filteredEvents, Set<String> unfolded,
-      {String? eventId}) {
+  List<User> getSeenByUsers(Timeline timeline, {String? eventId}) {
     if (timeline.events.isEmpty) return [];
-
-    final filteredEvents = timeline.getFilteredEvents(unfolded: unfolded);
-    if (filteredEvents.isEmpty) return [];
-    eventId ??= filteredEvents.first.eventId;
+    eventId ??= timeline.events.first.eventId;
 
     final lastReceipts = <User>{};
     // now we iterate the timeline events until we hit the first rendered event
@@ -83,7 +77,7 @@ extension RoomStatusExtension on Room {
       }
     }
     lastReceipts.removeWhere((user) =>
-        user.id == client.userID || user.id == filteredEvents.first.senderId);
+        user.id == client.userID || user.id == timeline.events.first.senderId);
     return lastReceipts.toList();
   }
 }

@@ -110,8 +110,6 @@ class StoryPageController extends State<StoryPage> {
     if (timeline == null || currentEvent == null) return [];
     return Matrix.of(context).client.getRoomById(roomId)?.getSeenByUsers(
               timeline,
-              events,
-              {},
               eventId: currentEvent.eventId,
             ) ??
         [];

@@ -2949,5 +2949,6 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Hide unimportant state events"
 }

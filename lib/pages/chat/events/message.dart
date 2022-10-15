@@ -22,7 +22,6 @@ class Message extends StatelessWidget {
   final void Function(Event)? onAvatarTab;
   final void Function(Event)? onInfoTab;
   final void Function(String)? scrollToEventId;
-  final void Function(String) unfold;
   final void Function(SwipeDirection) onSwipe;
   final bool longPressSelect;
   final bool selected;
@@ -36,7 +35,6 @@ class Message extends StatelessWidget {
       this.onAvatarTab,
       this.scrollToEventId,
       required this.onSwipe,
-      required this.unfold,
       this.selected = false,
       required this.timeline,
       Key? key})
@@ -57,7 +55,7 @@ class Message extends StatelessWidget {
       if (event.type.startsWith('m.call.')) {
         return Container();
       }
-      return StateMessage(event, unfold: unfold);
+      return StateMessage(event);
     }
 
     if (event.type == EventTypes.Message &&
