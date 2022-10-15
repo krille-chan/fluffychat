@@ -161,7 +161,6 @@ class ChatListItem extends StatelessWidget {
               ? Theme.of(context).colorScheme.secondaryContainer
               : Colors.transparent,
       child: ListTile(
-        selected: selected || activeChat,
         onLongPress: onLongPress,
         leading: selected
             ? SizedBox(
