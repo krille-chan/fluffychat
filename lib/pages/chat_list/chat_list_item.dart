@@ -291,7 +291,8 @@ class ChatListItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: unread ? FontWeight.w600 : null,
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
                             decoration: room.lastEvent?.redacted == true
                                 ? TextDecoration.lineThrough
                                 : null,
