@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} accepted the invitation",
+  "acceptedTheInvitation": "👍 {username} accepted the invitation",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} activated end to end encryption",
+  "activatedEndToEndEncryption": "🔐 {username} activated end to end encryption",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -702,7 +702,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} created the chat",
+  "createdTheChat": "💬 {username} created the chat",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1209,7 +1209,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} invited {targetName}",
+  "invitedUser": "📩 {username} invited {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1245,7 +1245,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} joined the chat",
+  "joinedTheChat": "👋 {username} joined the chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1267,7 +1267,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} kicked {targetName}",
+  "kicked": "👞 {username} kicked {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1275,7 +1275,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} kicked and banned {targetName}",
+  "kickedAndBanned": "🙅 {username} kicked and banned {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2452,7 +2452,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} left the chat",
+  "userLeftTheChat": "🚪 {username} left the chat",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2837,7 +2837,7 @@
   "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "You joined the chat",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "You accepted the invitation",
+  "youAcceptedTheInvitation": "👍 You accepted the invitation",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "You banned {user}",
   "@youBannedUser": {
@@ -2851,25 +2851,25 @@
       "user": {}
     }
   },
-  "youInvitedBy": "You have been invited by {user}",
+  "youInvitedBy": "📩 You have been invited by {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "You invited {user}",
+  "youInvitedUser": "📩 You invited {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "You kicked {user}",
+  "youKicked": "👞 You kicked {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "You kicked and banned {user}",
+  "youKickedAndBanned": "🙅 You kicked and banned {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}

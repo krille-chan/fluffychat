@@ -12,11 +12,6 @@ class StateMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (event.unsigned!['im.fluffychat.collapsed_state_event'] == true) {
-      return Container();
-    }
-    final int counter =
-        event.unsigned!['im.fluffychat.collapsed_state_event_count'] ?? 0;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8.0,
@@ -26,41 +21,26 @@ class StateMessage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.light
-                ? Colors.white
-                : Colors.grey.shade900,
+            color: Theme.of(context).colorScheme.secondaryContainer,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FutureBuilder<String>(
-                  future:
-                      event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
-                  builder: (context, snapshot) {
-                    return Text(
-                      snapshot.data ??
-                          event.calcLocalizedBodyFallback(
-                              MatrixLocals(L10n.of(context)!)),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14 * AppConfig.fontSizeFactor,
-                        color: Theme.of(context).textTheme.bodyText2!.color,
-                        decoration:
-                            event.redacted ? TextDecoration.lineThrough : null,
+          child: FutureBuilder<String>(
+              future: event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
+              builder: (context, snapshot) {
+                return Text(
+                  snapshot.data ??
+                      event.calcLocalizedBodyFallback(
+                        MatrixLocals(L10n.of(context)!),
                       ),
-                    );
-                  }),
-              if (counter != 0)
-                Text(
-                  L10n.of(context)!.moreEvents(counter),
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
                     fontSize: 14 * AppConfig.fontSizeFactor,
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                    decoration:
+                        event.redacted ? TextDecoration.lineThrough : null,
                   ),
-                ),
-            ],
-          ),
+                );
+              }),
         ),
       ),
     );

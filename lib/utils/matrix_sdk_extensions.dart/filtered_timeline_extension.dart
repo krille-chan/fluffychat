@@ -22,10 +22,12 @@ extension IsStateExtension on Event {
       (!AppConfig.hideUnimportantStateEvents ||
           !isState ||
           importantStateEvents.contains(type)) &&
-      // hide member events in public rooms
+      // hide simple join/leave member events in public rooms
       (!AppConfig.hideUnimportantStateEvents ||
           type != EventTypes.RoomMember ||
-          room.joinRules != JoinRules.public);
+          room.joinRules != JoinRules.public ||
+          content.tryGet<String>('membership') == 'ban' ||
+          stateKey != senderId);
 
   static const Set<String> importantStateEvents = {
     EventTypes.Encryption,
