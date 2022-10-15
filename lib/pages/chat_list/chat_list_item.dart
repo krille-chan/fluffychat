@@ -21,8 +21,8 @@ class ChatListItem extends StatelessWidget {
   final bool activeChat;
   final bool selected;
   final Function? onForget;
-  final Function? onTap;
-  final Function? onLongPress;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
 
   const ChatListItem(
     this.room, {
@@ -34,85 +34,85 @@ class ChatListItem extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  dynamic clickAction(BuildContext context) async {
+  void clickAction(BuildContext context) async {
     if (onTap != null) return onTap!();
-    if (!activeChat) {
-      if (room.membership == Membership.invite &&
-          (await showFutureLoadingDialog(
-                      context: context,
-                      future: () async {
-                        final joinedFuture = room.client.onSync.stream
-                            .where((u) =>
-                                u.rooms?.join?.containsKey(room.id) ?? false)
-                            .first;
-                        await room.join();
-                        await joinedFuture;
-                      }))
-                  .error !=
-              null) {
-        return;
-      }
-
-      if (room.membership == Membership.ban) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.of(context)!.youHaveBeenBannedFromThisChat),
-          ),
-        );
-        return;
-      }
-
-      if (room.membership == Membership.leave) {
-        final action = await showModalActionSheet<ArchivedRoomAction>(
+    if (activeChat) return;
+    if (room.membership == Membership.invite) {
+      final joinResult = await showFutureLoadingDialog(
           context: context,
-          title: L10n.of(context)!.archivedRoom,
-          message: L10n.of(context)!.thisRoomHasBeenArchived,
-          actions: [
-            SheetAction(
-              label: L10n.of(context)!.rejoin,
-              key: ArchivedRoomAction.rejoin,
-            ),
-            SheetAction(
-              label: L10n.of(context)!.delete,
-              key: ArchivedRoomAction.delete,
-              isDestructiveAction: true,
-            ),
-          ],
-        );
-        if (action != null) {
-          switch (action) {
-            case ArchivedRoomAction.delete:
-              await archiveAction(context);
-              break;
-            case ArchivedRoomAction.rejoin:
-              await showFutureLoadingDialog(
-                context: context,
-                future: () => room.join(),
-              );
-              break;
-          }
+          future: () async {
+            final waitForRoom = room.client.waitForRoomInSync(
+              room.id,
+              join: true,
+            );
+            await room.join();
+            await waitForRoom;
+          });
+      if (joinResult.error != null) return;
+    }
+
+    if (room.membership == Membership.ban) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.youHaveBeenBannedFromThisChat),
+        ),
+      );
+      return;
+    }
+
+    if (room.membership == Membership.leave) {
+      final action = await showModalActionSheet<ArchivedRoomAction>(
+        context: context,
+        title: L10n.of(context)!.archivedRoom,
+        message: L10n.of(context)!.thisRoomHasBeenArchived,
+        actions: [
+          SheetAction(
+            label: L10n.of(context)!.rejoin,
+            key: ArchivedRoomAction.rejoin,
+          ),
+          SheetAction(
+            label: L10n.of(context)!.delete,
+            key: ArchivedRoomAction.delete,
+            isDestructiveAction: true,
+          ),
+        ],
+      );
+      if (action != null) {
+        switch (action) {
+          case ArchivedRoomAction.delete:
+            await archiveAction(context);
+            break;
+          case ArchivedRoomAction.rejoin:
+            await showFutureLoadingDialog(
+              context: context,
+              future: () => room.join(),
+            );
+            break;
         }
+      }
+    }
+
+    if (room.membership == Membership.join) {
+      // Share content into this room
+      final shareContent = Matrix.of(context).shareContent;
+      if (shareContent != null) {
+        if (shareContent.tryGet<String>('msgtype') ==
+            'chat.fluffy.shared_file') {
+          await showDialog(
+            context: context,
+            useRootNavigator: false,
+            builder: (c) => SendFileDialog(
+              files: shareContent['file'],
+              room: room,
+            ),
+          );
+        } else {
+          room.sendEvent(shareContent);
+        }
+        Matrix.of(context).shareContent = null;
       }
 
-      if (room.membership == Membership.join) {
-        if (Matrix.of(context).shareContent != null) {
-          if (Matrix.of(context).shareContent!['msgtype'] ==
-              'chat.fluffy.shared_file') {
-            await showDialog(
-              context: context,
-              useRootNavigator: false,
-              builder: (c) => SendFileDialog(
-                files: [Matrix.of(context).shareContent!['file']],
-                room: room,
-              ),
-            );
-          } else {
-            room.sendEvent(Matrix.of(context).shareContent!);
-          }
-          Matrix.of(context).shareContent = null;
-        }
-        VRouter.of(context).toSegments(['rooms', room.id]);
-      }
+      VRouter.of(context).toSegments(['rooms', room.id]);
     }
   }
 
@@ -162,7 +162,7 @@ class ChatListItem extends StatelessWidget {
               : Colors.transparent,
       child: ListTile(
         selected: selected || activeChat,
-        onLongPress: onLongPress as void Function()?,
+        onLongPress: onLongPress,
         leading: selected
             ? SizedBox(
                 width: Avatar.defaultSize,
@@ -176,7 +176,7 @@ class ChatListItem extends StatelessWidget {
             : Avatar(
                 mxContent: room.avatar,
                 name: room.displayname,
-                onTap: onLongPress as void Function()?,
+                onTap: onLongPress,
               ),
         title: Row(
           children: <Widget>[
@@ -187,10 +187,7 @@ class ChatListItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 softWrap: false,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: unread
-                      ? Theme.of(context).colorScheme.secondary
-                      : Theme.of(context).textTheme.bodyText1!.color,
+                  fontWeight: unread ? FontWeight.bold : null,
                 ),
               ),
             ),
@@ -257,8 +254,9 @@ class ChatListItem extends StatelessWidget {
                   ? Text(
                       typingText,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
+                      maxLines: 1,
                       softWrap: false,
                     )
                   : FutureBuilder<String>(
@@ -293,9 +291,8 @@ class ChatListItem extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: unread
-                                ? Theme.of(context).colorScheme.secondary
-                                : Theme.of(context).textTheme.bodyText2!.color,
+                            fontWeight: unread ? FontWeight.w600 : null,
+                            color: Theme.of(context).colorScheme.onBackground,
                             decoration: room.lastEvent?.redacted == true
                                 ? TextDecoration.lineThrough
                                 : null,
@@ -316,9 +313,10 @@ class ChatListItem extends StatelessWidget {
                               room.notificationCount.toString().length +
                           9,
               decoration: BoxDecoration(
-                color: room.highlightCount > 0
+                color: room.highlightCount > 0 ||
+                        room.membership == Membership.invite
                     ? Colors.red
-                    : room.notificationCount > 0
+                    : room.notificationCount > 0 || room.markedUnread
                         ? Theme.of(context).colorScheme.primary
                         : Theme.of(context).colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius),
