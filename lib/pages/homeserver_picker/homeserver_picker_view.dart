@@ -18,23 +18,22 @@ class HomeserverPickerView extends StatelessWidget {
     final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
       appBar: AppBar(
+        title: Text(AppConfig.applicationName),
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: controller.restoreBackup,
             tooltip: L10n.of(context)!.hydrate,
-            color: Colors.white,
             icon: const Icon(Icons.restore_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.privacy,
             onPressed: () => launch(AppConfig.privacyUrl),
-            color: Colors.white,
             icon: const Icon(Icons.shield_outlined),
           ),
           IconButton(
             tooltip: L10n.of(context)!.about,
             onPressed: () => PlatformInfos.showDialog(context),
-            color: Colors.white,
             icon: const Icon(Icons.info_outlined),
           ),
         ],
@@ -84,10 +83,7 @@ class HomeserverPickerView extends StatelessWidget {
                         hintText: L10n.of(context)!.enterYourHomeserver,
                         suffixIcon: const Icon(Icons.search),
                         errorText: controller.error,
-                        fillColor: Theme.of(context)
-                            .colorScheme
-                            .background
-                            .withOpacity(0.75),
+                        fillColor: Theme.of(context).colorScheme.background,
                       ),
                       readOnly: !AppConfig.allowOtherHomeservers,
                       onSubmitted: (_) => controller.checkHomeserverAction(),

@@ -15,8 +15,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoginScaffold(
       appBar: AppBar(
-        leading:
-            controller.loading ? null : const BackButton(color: Colors.white),
+        leading: controller.loading ? null : const BackButton(),
         automaticallyImplyLeading: !controller.loading,
         centerTitle: true,
         title: Text(
@@ -25,7 +24,6 @@ class LoginView extends StatelessWidget {
               .homeserver
               .toString()
               .replaceFirst('https://', '')),
-          style: const TextStyle(color: Colors.white),
         ),
       ),
       body: Builder(builder: (context) {
@@ -49,10 +47,7 @@ class LoginView extends StatelessWidget {
                     errorText: controller.usernameError,
                     errorStyle: const TextStyle(color: Colors.orange),
                     hintText: L10n.of(context)!.emailOrUsername,
-                    fillColor: Theme.of(context)
-                        .colorScheme
-                        .background
-                        .withOpacity(0.75),
+                    fillColor: Theme.of(context).colorScheme.background,
                   ),
                 ),
               ),
@@ -82,10 +77,7 @@ class LoginView extends StatelessWidget {
                       onPressed: controller.toggleShowPassword,
                     ),
                     hintText: L10n.of(context)!.password,
-                    fillColor: Theme.of(context)
-                        .colorScheme
-                        .background
-                        .withOpacity(0.75),
+                    fillColor: Theme.of(context).colorScheme.background,
                   ),
                 ),
               ),
@@ -105,26 +97,25 @@ class LoginView extends StatelessWidget {
               ),
               Row(
                 children: [
-                  const Expanded(
-                      child: Divider(
-                    color: Colors.white,
-                    thickness: 1,
-                  )),
+                  Expanded(
+                    child: Divider(
+                      thickness: 1,
+                      color: Theme.of(context).textTheme.subtitle1?.color,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
                       L10n.of(context)!.or,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ),
-                  const Expanded(
-                      child: Divider(
-                    color: Colors.white,
-                    thickness: 1,
-                  )),
+                  Expanded(
+                    child: Divider(
+                      thickness: 1,
+                      color: Theme.of(context).textTheme.subtitle1?.color,
+                    ),
+                  ),
                 ],
               ),
               Padding(
