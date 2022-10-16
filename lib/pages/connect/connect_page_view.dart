@@ -19,13 +19,11 @@ class ConnectPageView extends StatelessWidget {
     final identityProviders = controller.identityProviders;
     return LoginScaffold(
       appBar: AppBar(
-        leading:
-            controller.loading ? null : const BackButton(color: Colors.white),
+        leading: controller.loading ? null : const BackButton(),
         automaticallyImplyLeading: !controller.loading,
         centerTitle: true,
         title: Text(
           Matrix.of(context).getLoginClient().homeserver?.host ?? '',
-          style: const TextStyle(color: Colors.white),
         ),
       ),
       body: ListView(
@@ -38,15 +36,19 @@ class ConnectPageView extends StatelessWidget {
                   children: [
                     Material(
                       borderRadius: BorderRadius.circular(64),
-                      elevation: 10,
+                      elevation: Theme.of(context)
+                              .appBarTheme
+                              .scrolledUnderElevation ??
+                          4,
                       color: Colors.transparent,
+                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
                       clipBehavior: Clip.hardEdge,
                       child: CircleAvatar(
                         radius: 64,
-                        backgroundColor: Colors.white.withAlpha(200),
+                        backgroundColor: Colors.white,
                         child: avatar == null
                             ? const Icon(
-                                Icons.person_outlined,
+                                Icons.person,
                                 color: Colors.black,
                                 size: 64,
                               )
@@ -93,10 +95,7 @@ class ConnectPageView extends StatelessWidget {
                   hintText: L10n.of(context)!.chooseAUsername,
                   errorText: controller.signupError,
                   errorStyle: const TextStyle(color: Colors.orange),
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .background
-                      .withOpacity(0.75),
+                  fillColor: Theme.of(context).colorScheme.background,
                 ),
               ),
             ),
@@ -105,6 +104,10 @@ class ConnectPageView extends StatelessWidget {
               child: Hero(
                 tag: 'loginButton',
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ),
                   onPressed: controller.loading ? () {} : controller.signUp,
                   child: controller.loading
                       ? const LinearProgressIndicator()
@@ -112,45 +115,52 @@ class ConnectPageView extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              children: [
-                const Expanded(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: [
+                  Expanded(
                     child: Divider(
-                  color: Colors.white,
-                  thickness: 1,
-                )),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    L10n.of(context)!.or,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
+                      thickness: 1,
+                      color: Theme.of(context).textTheme.subtitle1?.color,
                     ),
                   ),
-                ),
-                const Expanded(
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      L10n.of(context)!.or,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  Expanded(
                     child: Divider(
-                  color: Colors.white,
-                  thickness: 1,
-                )),
-              ],
+                      thickness: 1,
+                      color: Theme.of(context).textTheme.subtitle1?.color,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
           if (controller.supportsSso)
             identityProviders == null
                 ? const SizedBox(
                     height: 74,
-                    child: Center(
-                        child: CircularProgressIndicator.adaptive(
-                      backgroundColor: Colors.white,
-                    )),
+                    child: Center(child: CircularProgressIndicator.adaptive()),
                   )
                 : Center(
                     child: identityProviders.length == 1
                         ? Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
+                                foregroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
+                              ),
                               onPressed: () => controller
                                   .ssoLoginAction(identityProviders.single.id!),
                               child: Text(identityProviders.single.name ??
@@ -175,6 +185,12 @@ class ConnectPageView extends StatelessWidget {
               child: Hero(
                 tag: 'signinButton',
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
+                    foregroundColor:
+                        Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
                   onPressed: controller.loading ? () {} : controller.login,
                   child: Text(L10n.of(context)!.login),
                 ),

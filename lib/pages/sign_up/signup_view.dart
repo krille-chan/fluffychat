@@ -13,13 +13,9 @@ class SignupPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoginScaffold(
       appBar: AppBar(
-        leading:
-            controller.loading ? null : const BackButton(color: Colors.white),
+        leading: controller.loading ? null : const BackButton(),
         automaticallyImplyLeading: !controller.loading,
-        title: Text(
-          L10n.of(context)!.signUp,
-          style: const TextStyle(color: Colors.white),
-        ),
+        title: Text(L10n.of(context)!.signUp),
       ),
       body: Form(
         key: controller.formKey,
@@ -50,10 +46,7 @@ class SignupPageView extends StatelessWidget {
                   ),
                   errorStyle: const TextStyle(color: Colors.orange),
                   hintText: L10n.of(context)!.chooseAStrongPassword,
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .background
-                      .withOpacity(0.75),
+                  fillColor: Theme.of(context).colorScheme.background,
                 ),
               ),
             ),
@@ -72,10 +65,7 @@ class SignupPageView extends StatelessWidget {
                     prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: L10n.of(context)!.repeatPassword,
                     errorStyle: const TextStyle(color: Colors.orange),
-                    fillColor: Theme.of(context)
-                        .colorScheme
-                        .background
-                        .withOpacity(0.75),
+                    fillColor: Theme.of(context).colorScheme.background,
                   ),
                 ),
               ),
@@ -93,10 +83,8 @@ class SignupPageView extends StatelessWidget {
                   prefixIcon: const Icon(Icons.mail_outlined),
                   hintText: L10n.of(context)!.enterAnEmailAddress,
                   errorText: controller.error,
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .background
-                      .withOpacity(0.75),
+                  fillColor: Theme.of(context).colorScheme.background,
+                  errorMaxLines: 4,
                   errorStyle: TextStyle(
                     color: controller.emailController.text.isEmpty
                         ? Colors.orangeAccent
@@ -110,6 +98,10 @@ class SignupPageView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
                   onPressed: controller.loading ? () {} : controller.signup,
                   child: controller.loading
                       ? const LinearProgressIndicator()
