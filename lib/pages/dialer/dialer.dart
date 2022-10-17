@@ -291,12 +291,14 @@ class MyCallingPage extends State<Calling> {
   void _screenSharing() async {
     if (PlatformInfos.isAndroid) {
       if (!call.screensharingEnabled) {
-        await FlutterForegroundTask.init(
+        FlutterForegroundTask.init(
           androidNotificationOptions: AndroidNotificationOptions(
             channelId: 'notification_channel_id',
             channelName: 'Foreground Notification',
             channelDescription: L10n.of(context)!.foregroundServiceRunning,
           ),
+          iosNotificationOptions: const IOSNotificationOptions(),
+          foregroundTaskOptions: const ForegroundTaskOptions(),
         );
         FlutterForegroundTask.startService(
             notificationTitle: L10n.of(context)!.screenSharingTitle,
