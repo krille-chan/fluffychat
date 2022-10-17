@@ -2986,5 +2986,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Onbelangrijke statusgebeurtenissen verbergen",
+  "@hideUnimportantStateEvents": {}
 }
