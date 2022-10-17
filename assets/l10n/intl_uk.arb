@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} приймає запрошення",
+  "acceptedTheInvitation": "👍 {username} погоджується на запрошення",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} активує наскрізне шифрування",
+  "activatedEndToEndEncryption": "🔐 {username} активує наскрізне шифрування",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -395,7 +395,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} створює бесіду",
+  "createdTheChat": "💬 {username} створює бесіду",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -706,7 +706,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} запрошує {targetName}",
+  "invitedUser": "📩 {username} запрошує {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -737,7 +737,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} приєднується до бесіди",
+  "joinedTheChat": "👋 {username} приєднується до бесіди",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -754,7 +754,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} вилучає {targetName}",
+  "kicked": "👞 {username} вилучає {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -762,7 +762,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} вилучає та блокує {targetName}",
+  "kickedAndBanned": "🙅 {username} вилучає та блокує {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1402,7 +1402,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} виходить з бесіди",
+  "userLeftTheChat": "🚪 {username} виходить з бесіди",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2804,13 +2804,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "youInvitedBy": "Ви були запрошені {user}",
+  "youInvitedBy": "📩 Ви були запрошені {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youAcceptedTheInvitation": "Ви прийняли запрошення",
+  "youAcceptedTheInvitation": "👍 Ви погодилися на запрошення",
   "@youAcceptedTheInvitation": {},
   "youRejectedTheInvitation": "Ви відхилили запрошення",
   "@youRejectedTheInvitation": {},
@@ -2826,7 +2826,7 @@
       "user": {}
     }
   },
-  "youKickedAndBanned": "Ви вилучили й заблокували {user}",
+  "youKickedAndBanned": "🙅 Ви вилучили й заблокували {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2834,7 +2834,7 @@
   },
   "youJoinedTheChat": "Ви приєдналися до бесіди",
   "@youJoinedTheChat": {},
-  "youKicked": "Ви вилучили {user}",
+  "youKicked": "👞 Ви вилучили {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
@@ -2846,7 +2846,7 @@
       "user": {}
     }
   },
-  "youInvitedUser": "Ви запросили {user}",
+  "youInvitedUser": "📩 Ви запросили {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2982,5 +2982,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Сховати неважливі державні свята",
+  "@hideUnimportantStateEvents": {}
 }
