@@ -102,7 +102,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} menerima undangannya",
+  "acceptedTheInvitation": "👍 {username} menerima undangannya",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -147,7 +147,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} mengundang {targetName}",
+  "invitedUser": "📩 {username} mengundang {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -524,7 +524,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} membuat chat ini",
+  "createdTheChat": "💬 {username} membuat chat ini",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} mengaktifkan enkripsi ujung ke ujung",
+  "activatedEndToEndEncryption": "🔐 {username} mengaktifkan enkripsi ujung ke ujung",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -1014,7 +1014,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kickedAndBanned": "{username} mengeluarkan dan mencekal {targetName}",
+  "kickedAndBanned": "🙅 {username} mengeluarkan dan mencekal {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1022,7 +1022,7 @@
       "targetName": {}
     }
   },
-  "kicked": "{username} mengeluarkan {targetName}",
+  "kicked": "👞 {username} mengeluarkan {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1045,7 +1045,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} telah bergabung di chat",
+  "joinedTheChat": "👋 {username} telah bergabung di chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1211,7 +1211,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "{username} keluar dari chat",
+  "userLeftTheChat": "🚪 {username} keluar dari chat",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2803,25 +2803,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "youInvitedBy": "Kamu telah diundang oleh {user}",
+  "youInvitedBy": "📩 Kamu telah diundang oleh {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Kamu mengundang {user}",
+  "youInvitedUser": "📩 Kamu mengundang {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Kamu mengeluarkan {user}",
+  "youKicked": "👞 Kamu mengeluarkan {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Kamu mengeluarkan dan mencekal {user}",
+  "youKickedAndBanned": "🙅 Kamu mengeluarkan dan mencekal {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2831,7 +2831,7 @@
   "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "Kamu bergabung ke obrolan",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Kamu menerima undangannya",
+  "youAcceptedTheInvitation": "👍 Kamu menerima undangannya",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "Kamu mencekal {user}",
   "@youBannedUser": {
@@ -2981,5 +2981,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Sembunyikan peristiwa keadaan yang tidak penting",
+  "@hideUnimportantStateEvents": {}
 }
