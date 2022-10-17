@@ -87,6 +87,7 @@ class CallKeepManager {
   VoipPlugin? _voipPlugin;
 
   String get appName => 'FluffyChat';
+
   Future<bool> get hasPhoneAccountEnabled async =>
       await _callKeep.hasPhoneAccount();
 
@@ -106,6 +107,7 @@ class CallKeepManager {
         'additionalPermissions': [''],
       };
   bool setupDone = false;
+
   Future<void> showCallkitIncoming(CallSession call) async {
     if (!setupDone) {
       await _callKeep.setup(
@@ -246,8 +248,8 @@ class CallKeepManager {
             ),
             const Divider(),
             ListTile(
-              onTap: () =>
-                  FlutterForegroundTask.openSystemAlertWindowSettings(true),
+              onTap: () => FlutterForegroundTask.openSystemAlertWindowSettings(
+                  forceOpen: true),
               title: Text(L10n.of(context)!.appearOnTop),
               subtitle: Text(L10n.of(context)!.appearOnTopDetails),
               trailing: const Icon(Icons.file_upload_rounded),

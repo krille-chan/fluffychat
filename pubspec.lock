@@ -203,7 +203,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "2.3.9"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -217,7 +217,7 @@ packages:
       name: connectivity_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.6"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -226,21 +226,19 @@ packages:
     source: hosted
     version: "1.2.0"
   connectivity_plus_web:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "packages/connectivity_plus/connectivity_plus_web"
-      ref: a04401cb48abe92d138c0e9288b360739994a9e9
-      resolved-ref: a04401cb48abe92d138c0e9288b360739994a9e9
-      url: "https://github.com/TheOneWithTheBraid/plus_plugins.git"
-    source: git
-    version: "1.2.1"
+      name: connectivity_plus_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.5"
   connectivity_plus_windows:
     dependency: transitive
     description:
       name: connectivity_plus_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.2"
   convert:
     dependency: transitive
     description:
@@ -548,12 +546,10 @@ packages:
   flutter_foreground_task:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "td/forceOpenOnTop"
-      resolved-ref: b5f429acbcddb8267d77dd2d76032357d78a725d
-      url: "https://github.com/Techno-Disaster/flutter_foreground_task.git"
-    source: git
-    version: "3.8.2"
+      name: flutter_foreground_task
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.10.0"
   flutter_highlight:
     dependency: transitive
     description:
@@ -1555,7 +1551,7 @@ packages:
       name: shared_preferences_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.12"
+    version: "2.0.14"
   shared_preferences_ios:
     dependency: transitive
     description:
