@@ -50,7 +50,7 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_typeahead: ^4.0.0
   flutter_web_auth: ^0.4.0
-  flutter_webrtc: ^0.9.5
+  flutter_webrtc: ^0.9.11
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   handy_window: ^0.1.6
@@ -95,7 +95,7 @@ dependencies:
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
   wakelock: ^0.6.1+1
-  webrtc_interface: ^1.0.7
+  webrtc_interface: ^1.0.8
 
 dev_dependencies:
   dart_code_metrics: ^4.10.1
