@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} katılma davetini kabul etti",
+  "acceptedTheInvitation": "👍 {username} katılma davetini kabul etti",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} uçtan uca şifrelemeyi etkinleştirdi",
+  "activatedEndToEndEncryption": "🔐 {username} uçtan uca şifrelemeyi etkinleştirdi",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -631,7 +631,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} sohbeti oluşturdu",
+  "createdTheChat": "💬 {username} sohbeti oluşturdu",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1136,7 +1136,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username}, {targetName} kişisini davet etti",
+  "invitedUser": "📩 {username}, {targetName} kişisini davet etti",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1172,7 +1172,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} sohbete katıldı",
+  "joinedTheChat": "👋 {username} sohbete katıldı",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1194,7 +1194,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username}, {targetName} kişisini attı",
+  "kicked": "👞 {username}, {targetName} kişisini attı",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1202,7 +1202,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username}, {targetName} kişisini attı ve engelledi",
+  "kickedAndBanned": "🙅 {username}, {targetName} kişisini attı ve engelledi",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2333,7 +2333,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} sohbetten ayrıldı",
+  "userLeftTheChat": "🚪 {username} sohbetten ayrıldı",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2811,9 +2811,9 @@
   },
   "youJoinedTheChat": "Sohbete katıldınız",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Daveti kabul ettiniz",
+  "youAcceptedTheInvitation": "👍 Daveti kabul ettiniz",
   "@youAcceptedTheInvitation": {},
-  "youKickedAndBanned": "{user} kullanıcısını attınız ve yasakladınız",
+  "youKickedAndBanned": "🙅 {user} kullanıcısını attınız ve yasakladınız",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2825,7 +2825,7 @@
       "user": {}
     }
   },
-  "youKicked": "{user} kullanıcısını attınız",
+  "youKicked": "👞 {user} kullanıcısını attınız",
   "@youKicked": {
     "placeholders": {
       "user": {}
@@ -2839,13 +2839,13 @@
       "user": {}
     }
   },
-  "youInvitedBy": "{user} tarafından davet edildiniz",
+  "youInvitedBy": "📩 {user} tarafından davet edildiniz",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "{user} kullanıcısını davet ettiniz",
+  "youInvitedUser": "📩 {user} kullanıcısını davet ettiniz",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2987,5 +2987,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Önemsiz durum etkinliklerini gizle",
+  "@hideUnimportantStateEvents": {}
 }
