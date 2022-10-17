@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} aceptou o convite",
+  "acceptedTheInvitation": "👍 {username} aceptou o convite",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} activou o cifrado extremo-a-extremo",
+  "activatedEndToEndEncryption": "🔐 {username} activou o cifrado extremo-a-extremo",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -622,7 +622,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} creou a conversa",
+  "createdTheChat": "💬 {username} creou a conversa",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1127,7 +1127,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} convidou a {targetName}",
+  "invitedUser": "📩 {username} convidou a {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1163,7 +1163,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} uníuse ao chat",
+  "joinedTheChat": "👋 {username} uníuse ao chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1185,7 +1185,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} expulsou a {targetName}",
+  "kicked": "👞 {username} expulsou a {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1193,7 +1193,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} expulsou e vetou a {targetName}",
+  "kickedAndBanned": "🙅 {username} expulsou e vetou a {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1361,7 +1361,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Nova mensaxe en FluffyChat",
+  "newMessageInFluffyChat": "💬 Nova mensaxe en FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1950,35 +1950,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} enviou un ficheiro",
+  "sentAFile": "📁 {username} enviou un ficheiro",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} enviou un audio",
+  "sentAnAudio": "🎤 {username} enviou un audio",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} enviou unha imaxe",
+  "sentAPicture": "🖼️ {username} enviou unha imaxe",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} enviou un adhesivo",
+  "sentASticker": "😊 {username} enviou un adhesivo",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} enviou un vídeo",
+  "sentAVideo": "🎥 {username} enviou un vídeo",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2324,7 +2324,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} deixou a conversa",
+  "userLeftTheChat": "🚪 {username} deixou a conversa",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2817,7 +2817,7 @@
       "user": {}
     }
   },
-  "youInvitedBy": "{user} convidoute",
+  "youInvitedBy": "📩 {user} convidoute",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
@@ -2825,7 +2825,7 @@
   },
   "youJoinedTheChat": "Unícheste á conversa",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Aceptaches o convite",
+  "youAcceptedTheInvitation": "👍 Aceptaches o convite",
   "@youAcceptedTheInvitation": {},
   "youHaveWithdrawnTheInvitationFor": "Retiraches o convite para {user}",
   "@youHaveWithdrawnTheInvitationFor": {
@@ -2833,19 +2833,19 @@
       "user": {}
     }
   },
-  "youInvitedUser": "Convidaches a {user}",
+  "youInvitedUser": "📩  Convidaches a {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Expulsaches a {user}",
+  "youKicked": "👞 Expulsaches a {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Expulsaches e vetaches a {user}",
+  "youKickedAndBanned": "🙅 Expulsaches e vetaches a {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2987,5 +2987,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Agochar os eventos de menor relevancia",
+  "@hideUnimportantStateEvents": {}
 }
