@@ -9,6 +9,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 extension UiaRequestManager on MatrixState {
   Future uiaRequestHandler(UiaRequest uiaRequest) async {
+    final l10n = L10n.of(navigatorContext)!;
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
           uiaRequest.nextStages.isEmpty) {
@@ -22,9 +23,9 @@ extension UiaRequestManager on MatrixState {
           final input = cachedPassword ??
               (await showTextInputDialog(
                 context: navigatorContext,
-                title: L10n.of(context)!.pleaseEnterYourPassword,
-                okLabel: L10n.of(context)!.ok,
-                cancelLabel: L10n.of(context)!.cancel,
+                title: l10n.pleaseEnterYourPassword,
+                okLabel: l10n.ok,
+                cancelLabel: l10n.cancel,
                 textFields: [
                   const DialogTextField(
                     minLines: 1,
@@ -64,10 +65,10 @@ extension UiaRequestManager on MatrixState {
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
                 context: navigatorContext,
-                title: L10n.of(context)!.weSentYouAnEmail,
-                message: L10n.of(context)!.pleaseClickOnLink,
-                okLabel: L10n.of(context)!.iHaveClickedOnLink,
-                cancelLabel: L10n.of(context)!.cancel,
+                title: l10n.weSentYouAnEmail,
+                message: l10n.pleaseClickOnLink,
+                okLabel: l10n.iHaveClickedOnLink,
+                cancelLabel: l10n.cancel,
               )) {
             return uiaRequest.completeStage(auth);
           }
@@ -90,10 +91,10 @@ extension UiaRequestManager on MatrixState {
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
-                message: L10n.of(context)!.pleaseFollowInstructionsOnWeb,
+                message: l10n.pleaseFollowInstructionsOnWeb,
                 context: navigatorContext,
-                okLabel: L10n.of(context)!.next,
-                cancelLabel: L10n.of(context)!.cancel,
+                okLabel: l10n.next,
+                cancelLabel: l10n.cancel,
               )) {
             return uiaRequest.completeStage(
               AuthenticationData(session: uiaRequest.session),
