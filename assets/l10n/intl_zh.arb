@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} 已接受邀请",
+  "acceptedTheInvitation": "👍 {username} 已接受邀请",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} 激活了端到端加密",
+  "activatedEndToEndEncryption": "🔐 {username} 激活了端到端加密",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -605,7 +605,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} 创建了聊天",
+  "createdTheChat": "💬 {username} 创建了聊天",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1091,7 +1091,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} 邀请了 {targetName}",
+  "invitedUser": "📩 {username} 邀请了 {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1127,7 +1127,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} 加入了聊天",
+  "joinedTheChat": "👋 {username} 加入了聊天",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1149,7 +1149,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} 踢了 {targetName}",
+  "kicked": "👞 {username} 踢了 {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1157,7 +1157,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} 踢了 {targetName} 并将其封禁",
+  "kickedAndBanned": "🙅 {username} 踢出 {targetName} 并将其封禁",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2240,7 +2240,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} 离开了聊天",
+  "userLeftTheChat": "🚪{username} 离开了聊天",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2819,19 +2819,19 @@
       "user": {}
     }
   },
-  "youInvitedBy": "你受到 {user} 的邀请",
+  "youInvitedBy": "📩 你受到 {user} 的邀请",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "你邀请了 {user}",
+  "youInvitedUser": "📩 你邀请了 {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "你踢掉了 {user}",
+  "youKicked": "👞你踢掉了 {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
@@ -2843,7 +2843,7 @@
       "user": {}
     }
   },
-  "youAcceptedTheInvitation": "你接受了邀请",
+  "youAcceptedTheInvitation": "👍 你接受了邀请",
   "@youAcceptedTheInvitation": {},
   "youHaveWithdrawnTheInvitationFor": "你撤回了对 {user} 的邀请",
   "@youHaveWithdrawnTheInvitationFor": {
@@ -2851,7 +2851,7 @@
       "user": {}
     }
   },
-  "youKickedAndBanned": "你踢掉并封禁了 {user}",
+  "youKickedAndBanned": "🙅你踢掉并封禁了 {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2987,5 +2987,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "隐藏不重要的状态事件",
+  "@hideUnimportantStateEvents": {}
 }
