@@ -16,7 +16,7 @@ dependencies:
   callkeep: ^0.3.2
   chewie: ^1.2.2
   collection: ^1.15.0-nullsafety.4
-  connectivity_plus: ^2.2.0
+  connectivity_plus: ^2.3.9
   cupertino_icons: any
   desktop_drop: ^0.3.2
   desktop_lifecycle: ^0.1.0
@@ -36,7 +36,7 @@ dependencies:
   flutter_app_lock: ^2.0.0
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
-  flutter_foreground_task: ^3.8.2
+  flutter_foreground_task: ^3.10.0
   flutter_local_notifications: ^9.7.0
   flutter_localizations:
     sdk: flutter
@@ -148,22 +148,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # Necessary for webRTC on web.
-  # Fix for stream fallback for unsupported browsers:
-  # Upstream pull request: https://github.com/fluttercommunity/plus_plugins/pull/746
-  connectivity_plus_web:
-    git:
-      url: https://github.com/TheOneWithTheBraid/plus_plugins.git
-      ref: a04401cb48abe92d138c0e9288b360739994a9e9
-      path: packages/connectivity_plus/connectivity_plus_web
   # Until all dependencies are compatible. Missing: file_picker_cross, flutter_matrix_html
   ffi: ^2.0.0
-
-  # upstream request at https://github.com/Dev-hwang/flutter_foreground_task/pull/102
-  flutter_foreground_task:
-    git:
-      url: https://github.com/Techno-Disaster/flutter_foreground_task.git
-      ref: td/forceOpenOnTop
 
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
