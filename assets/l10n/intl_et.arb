@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} võttis kutse vastu",
+  "acceptedTheInvitation": "👍 {username} võttis kutse vastu",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} võttis kasutusele läbiva krüptimise",
+  "activatedEndToEndEncryption": "🔐{username} võttis kasutusele läbiva krüptimise",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -622,7 +622,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} algatas vestluse",
+  "createdTheChat": "💬 {username} algatas vestluse",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1127,7 +1127,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} kutsus kasutajaks {targetName}",
+  "invitedUser": "📩 {username} saatis kutse kasutajale {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1163,7 +1163,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} liitus vestlusega",
+  "joinedTheChat": "👋 {username} liitus vestlusega",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1185,7 +1185,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} müksas kasutaja {targetName} välja",
+  "kicked": "👞 {username} müksas kasutaja {targetName} välja",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1193,7 +1193,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} müksas kasutaja {targetName} välja ning seadis talle suhtluskeelu",
+  "kickedAndBanned": "🙅{username} müksas kasutaja {targetName} välja ning seadis talle suhtluskeelu",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2324,7 +2324,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} lahkus vestlusest",
+  "userLeftTheChat": "🚪{username} lahkus vestlusest",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2771,7 +2771,7 @@
       "number": {}
     }
   },
-  "youAcceptedTheInvitation": "Sa võtsid kutse vastu",
+  "youAcceptedTheInvitation": "👍 Sa võtsid kutse vastu",
   "@youAcceptedTheInvitation": {},
   "youUnbannedUser": "Sa eemaldasid suhtluskeelu kasutajalt {user}",
   "@youUnbannedUser": {
@@ -2793,7 +2793,7 @@
   },
   "youJoinedTheChat": "Sa liitusid vestlusega",
   "@youJoinedTheChat": {},
-  "youKickedAndBanned": "Sa müksasid välja kasutaja {user} ning seadsid talle suhtluskeelu",
+  "youKickedAndBanned": "🙅Sa müksasid kasutaja {user} välja ning seadsid talle suhtluskeelu",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2829,19 +2829,19 @@
   "@whatIsGoingOn": {},
   "youRejectedTheInvitation": "Sa lükkasid kutse tagasi",
   "@youRejectedTheInvitation": {},
-  "youKicked": "Sa müksasid välja kasutaja {user}",
+  "youKicked": "👞 Sa müksasid kasutaja {user} välja",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Sa saatsid kutse kasutajale {user}",
+  "youInvitedUser": "📩 Sa saatsid kutse kasutajale {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedBy": "{user} saatis sulle kutse",
+  "youInvitedBy": "📩 {user} saatis sulle kutse",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
@@ -2987,5 +2987,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Peida väheolulised olekuteated",
+  "@hideUnimportantStateEvents": {}
 }
