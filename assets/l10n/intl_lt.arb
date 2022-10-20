@@ -1199,7 +1199,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Nauja žinutė FluffyChat'e",
+  "newMessageInFluffyChat": "💬 Nauja žinutė FluffyChat'e",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1955,21 +1955,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} atsiuntė failą",
+  "sentAFile": "📁 {username} atsiuntė failą",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} atsiuntė garso įrašą",
+  "sentAnAudio": "🎤 {username} atsiuntė garso įrašą",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} atsiuntė lipduką",
+  "sentASticker": "😊 {username} atsiuntė lipduką",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
@@ -2113,14 +2113,14 @@
       "min": {}
     }
   },
-  "acceptedTheInvitation": "{username} priėmė kvietimą",
+  "acceptedTheInvitation": "👍 {username} priėmė kvietimą",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "activatedEndToEndEncryption": "{username} aktyvavo visapusį šifravimą",
+  "activatedEndToEndEncryption": "🔐 {username} aktyvavo visapusį šifravimą",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -2242,7 +2242,7 @@
       "count": {}
     }
   },
-  "createdTheChat": "{username} sukūrė pokalbį",
+  "createdTheChat": "💬 {username} sukūrė pokalbį",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -2345,7 +2345,7 @@
       "groupName": {}
     }
   },
-  "invitedUser": "{username} pakvietė {targetName}",
+  "invitedUser": "📩 {username} pakvietė {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -2361,7 +2361,7 @@
       "link": {}
     }
   },
-  "joinedTheChat": "{username} prisijungė prie pokalbio",
+  "joinedTheChat": "👋 {username} prisijungė prie pokalbio",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -2378,7 +2378,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} išmetė {targetName}",
+  "kicked": "👞 {username} išmetė {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -2386,7 +2386,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} išmetė ir užblokavo {targetName}",
+  "kickedAndBanned": "🙅 {username} išmetė ir užblokavo {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2619,7 +2619,7 @@
   "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "Jūs prisijungėte prie pokalbio",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Jūs priėmėte kvietimą",
+  "youAcceptedTheInvitation": "👍 Jūs priėmėte kvietimą",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "Jūs užblokavote {user}",
   "@youBannedUser": {
@@ -2633,25 +2633,25 @@
       "user": {}
     }
   },
-  "youInvitedBy": "Jus pakvietė {user}",
+  "youInvitedBy": "📩 Jus pakvietė {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Jūs išmetėte {user}",
+  "youKicked": "👞 Jūs išmetėte {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Pakvietėte {user}",
+  "youInvitedUser": "📩 Pakvietėte {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Jūs išmetėte ir užblokavote {user}",
+  "youKickedAndBanned": "🙅 Jūs išmetėte ir užblokavote {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2720,14 +2720,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAPicture": "{username} atsiuntė nuotrauką",
+  "sentAPicture": "🖼️ {username} atsiuntė nuotrauką",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} atsiuntė vaizdo įrašą",
+  "sentAVideo": "🎥 {username} atsiuntė vaizdo įrašą",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2751,7 +2751,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "{username} paliko pokalbį",
+  "userLeftTheChat": "🚪 {username} paliko pokalbį",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2968,5 +2968,7 @@
     "placeholders": {
       "number": {}
     }
-  }
+  },
+  "hideUnimportantStateEvents": "Slėpti nesvarbius būsenos įvykius",
+  "@hideUnimportantStateEvents": {}
 }
