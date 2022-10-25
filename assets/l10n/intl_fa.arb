@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} دعوت را پذیرفت",
+  "acceptedTheInvitation": "👍 {username} دعوت را پذیرفت",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -119,7 +119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} رمزگذاری سرتاسر را فعال کرد",
+  "activatedEndToEndEncryption": "🔐 {username} رمزگذاری سرتاسر را فعال کرد",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -143,7 +143,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} نام نمایش خودش را ایدون تغییر کرد: «{displayname}»",
+  "changedTheDisplaynameTo": "{username} نام نمایش خود را ایدون تغییر داد: «{displayname}»",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -191,7 +191,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "avatarHasBeenChanged": "تصویر کاربر تغییر کرد",
+  "avatarHasBeenChanged": "تصویر کاربر تغییر داد",
   "@avatarHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -220,7 +220,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatDescriptionTo": "{username} توصیف گپ را ایدون تغییر کرد: «{description}»",
+  "changedTheChatDescriptionTo": "{username} توصیف گپ را ایدون تغییر داد: «{description}»",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -228,14 +228,14 @@
       "description": {}
     }
   },
-  "changedTheChatPermissions": "{username} اجازه‌های گپ را تغییر کرد",
+  "changedTheChatPermissions": "{username} اجازه‌های گپ را تغییر داد",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} نام گپ را ایدون تغییر کرد: «{chatname}»",
+  "changedTheChatNameTo": "{username} نام گپ را ایدون تغییر داد: «{chatname}»",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -291,7 +291,7 @@
   },
   "suggestedRooms": "در این اسپیس گروه‌ها را بیابید",
   "@suggestedRooms": {},
-  "changedTheChatAvatar": "{username} تصویر گپ را تغییر کرد",
+  "changedTheChatAvatar": "{username} تصویر گپ را تغییر داد",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -300,6 +300,319 @@
   },
   "bubbleSize": "اندازه‌ی حباب",
   "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheGuestAccessRules": "{username} قوانین دسترسی مهمان را تغییر داد",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} عکس پروفایل خود را تغییر داد",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "chats": "گپ‌ها",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "پیام‌ها",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestToReadOlderMessages": "درخواست بدهید پیام‌های قبل‌تر را ببینید",
+  "@requestToReadOlderMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "فرستادن",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "صدا را فرستید",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "اصل را فرستید",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheRoomAliases": "{username} نام‌های مستعار اتاق را تغییر داد",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} لینک دعوت را تغییر داد",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "clearText": "متن را پاک سازید",
+  "@clearText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "بستن",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "تصویر را فرستید",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendMessages": "پیام‌ها را فرستید",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheHistoryVisibility": "{username} پدیداری تاریخ را تغییر داد",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} قوانین دسترسی مهمان را ایدون تغییر داد: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} قوانین پیوستن ایدون تغییر داد: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} پدیداری تاریخ را ایدون تغییر داد: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "chooseAStrongPassword": "یه رمز عبور توانا را سازید",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "پشتیبان گپ تان تنظیم شده‌است.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "changeTheme": "سبک خود را تغییر دهید",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "نام گروه را تغییر دهید",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeWallpaper": "کاغذدیواری را تغییر دهید",
+  "@changeWallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "عکس پروفایل خود را تغییر دهید",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "رمزگزاری خراب شده‌است",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iWroteDownTheKey": "کلید را یادداشت نوشتم",
+  "@iWroteDownTheKey": {},
+  "setupChatBackupDescription": "تا پیغام‌هاتون حفظ شوند، این کلید ساخته شد.\nلطفاً جای امنی بپاییدش، مثل یک مدیر رمز عبور.",
+  "@setupChatBackupDescription": {},
+  "clearArchive": "بایگانی را پاک سازید",
+  "@clearArchive": {},
+  "chooseAUsername": "یه نام کاربری را سازید",
+  "@chooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_create": "یه گپ گروه خالی را سازید.\n«--no-encryption» را استفاده کنید تا رمزگزاری را خاموش کنید",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "یه گپ مستقیم شروع کنید\n«--no-encryption» را استفاده کنید تا رمزگزاری را خاموش کنید",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "sendSticker": "استیکر را فرستید",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "ویدئو را فرستید",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sender": "فرستنده",
+  "@sender": {},
+  "changedTheJoinRules": "{username} قوانین پیوستن را تغییر داد",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeTheServer": "سِروِر را تغییر دهید",
+  "@changeTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "مشخصات گپ",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_markasdm": "به عنوان اتاق پیام‌های مستقیم علامت دهید",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "به نوان گروه علامت دهید",
+  "@commandHint_markasgroup": {},
+  "commandHint_clearcache": "حافظه پنهان را پاک سازید",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "نشست را دور اندازید",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "groups": "گروه‌ها",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "برنامه را باز کنید تا پیام‌ها را بخوانید",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "پیامی بقرستید",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentCallInformations": "{senderName} اتلاعات زنگیدن را فرستاد",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sendAsText": "به انوان متن فرستید",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "sendFile": "پرونده را فرستید",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} یه زنگیدن شروع کرد",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "tryToSendAgain": "مجدّداً سعی کنید ارسال کنید",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reactedWith": "{sender} با {reaction} واکنش نشان داد",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "askSSSSSign": "تا بتوانید شخص دیگر را امضا کنید، لطفاً رمز عبور را برای حافظه‌ی امن وارد کنید.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSVerify": "لطفاً رنز عبور را برای حافظه‌ی امن وارد کنید تا نشستت را درستی بسنجید.",
+  "@askSSSSVerify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "گپ به این اسپیس اضافه شده‌است",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chatHasBeenRemovedFromThisSpace": "گپ از این اسپیس برداشته شده‌است",
+  "@chatHasBeenRemovedFromThisSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "گپ",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "پشتیبان گپ",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changelog": "تغییرات",
+  "@changelog": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changePassword": "رمز عبور را تغییر دهید",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changesHaveBeenSaved": "تغییرات ذخیره شده‌اند",
+  "@changesHaveBeenSaved": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "سِروِرِ خانه را تغییر دهید",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicGroups": "گروه‌های عمومی",
+  "@publicGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "separateChatTypes": "پیام‌های مستقیم را از گروه‌ها جدا کنید",
+  "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
   }
