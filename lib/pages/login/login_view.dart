@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
                       controller.loading ? null : [AutofillHints.password],
                   controller: controller.passwordController,
                   textInputAction: TextInputAction.next,
-                  obscureText: !controller.showPassword,
+                  obscureText: controller.loading || !controller.showPassword,
                   onSubmitted: controller.login,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outlined),
