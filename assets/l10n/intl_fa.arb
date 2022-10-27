@@ -615,5 +615,103 @@
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "connectionAttemptFailed": "سعی اتصال موفق نشد",
+  "@connectionAttemptFailed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showSpaces": "فهرست اسپیس‌ها را نشان دهید",
+  "@showSpaces": {},
+  "sentAPicture": "🖼️ {username} یه عکس فرستاد",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "🎥 {username} یه ویدئو فرستاد",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "commandInvalid": "فرمان اعتبار نیست",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} یه فرمان نیست.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "contactHasBeenInvitedToTheGroup": "مخاطب به گروه دعوت شده‌است",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "📁 {username} یه پرونده فرستاد",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "🎤 {username} یه ضبط صوتی فرستاد",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "showDirectChatsInSpaces": "گپ‌های مستقیم مربوط توی اسپیس‌ها نشان دهید",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} یه روی‌داد {type} فرستاد",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "weSentYouAnEmail": "یه ایمیل شما فرستادیم",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replyHasBeenSent": "پاسخ فرستاده شده‌است",
+  "@replyHasBeenSent": {},
+  "loadCountMoreParticipants": "{count} تا شرکت کنندگان اضافی را بار گیرید",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "sentASticker": "😊 {username} یه استیکر فرستاد",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "connect": "اتصال",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "تائید",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allSpaces": "همه اسپیس‌ها",
+  "@allSpaces": {}
 }
