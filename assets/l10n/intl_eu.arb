@@ -291,7 +291,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "Enkriptatzea hondatu egin da",
+  "channelCorruptedDecryptError": "Zifraketa hondatu egin da",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -1860,7 +1860,7 @@
   "@iUnderstand": {},
   "videoCallsBetaWarning": "Kontuan izan bideo deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
   "@videoCallsBetaWarning": {},
-  "toggleMuted": "Piztu / Itzali mututuak",
+  "toggleMuted": "Ikusi / izkutatu mututuak",
   "@toggleMuted": {
     "type": "text",
     "placeholders": {}
@@ -2666,7 +2666,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleFavorite": "Piztu / Itzali gogokoa",
+  "toggleFavorite": "Ikusi / izkutatu gogokoak",
   "@toggleFavorite": {
     "type": "text",
     "placeholders": {}
@@ -2975,5 +2975,7 @@
   "commandHint_markasgroup": "Markatu talde bezala",
   "@commandHint_markasgroup": {},
   "foregroundServiceRunning": "Jakinarazpen hau zerbitzua martxan dagoenean agertzen da.",
-  "@foregroundServiceRunning": {}
+  "@foregroundServiceRunning": {},
+  "commandHint_markasdm": "Markatu mezu-zuzen gela bezala",
+  "@commandHint_markasdm": {}
 }
