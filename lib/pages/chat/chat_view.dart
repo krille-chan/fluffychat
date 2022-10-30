@@ -212,6 +212,7 @@ class ChatView extends StatelessWidget {
                           width: double.infinity,
                           height: double.infinity,
                           fit: BoxFit.cover,
+                          filterQuality: FilterQuality.medium,
                         ),
                       SafeArea(
                         child: Column(
