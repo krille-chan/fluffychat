@@ -40,34 +40,34 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "افزودن به اسپیس",
+  "addToSpace": "بہ اسپیس افزایید",
   "@addToSpace": {},
-  "appLock": "قفل برنامه",
+  "appLock": "قفل برنامہ",
   "@appLock": {
     "type": "text",
     "placeholders": {}
   },
-  "all": "همه",
+  "all": "همہ",
   "@all": {
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "همه اتاق‌ها",
+  "allChats": "همہ اتاق‌ها",
   "@allChats": {
     "type": "text",
     "placeholders": {}
   },
-  "addEmail": "افزودن ایمیل",
+  "addEmail": "ایمیل افزایید",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "افزودن توضیحات گروه",
+  "addGroupDescription": "یہ توصیف گروه افزایید",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "addNewFriend": "افزودن دوست جدید",
+  "addNewFriend": "دوست جدید افزایید",
   "@addNewFriend": {
     "type": "text",
     "placeholders": {}
@@ -77,7 +77,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} به تماس، جواب داد",
+  "answeredTheCall": "{senderName} ہ تماس، جواب داد",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -153,7 +153,7 @@
   },
   "confirmMatrixId": "لطفاً شناسایی ماترس تان را تایید دهید تا حساب تان را حذف کنید.",
   "@confirmMatrixId": {},
-  "allSuggestedRoomsJoined": "همه اتاق‌های پیشنهادی را پیوستید",
+  "allSuggestedRoomsJoined": "همہ اتاق‌های پیشنھادی را پیوستید",
   "@allSuggestedRoomsJoined": {},
   "changeDeviceName": "نام دستگاه را تغییر کنید",
   "@changeDeviceName": {
@@ -165,7 +165,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "از این گپ تبعید کبید",
+  "banFromChat": "از این گپ ممنوعیت کنید",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -177,11 +177,11 @@
       "username": {}
     }
   },
-  "updateNow": "به‌روزرسانی را در پس‌زمینه شروع کنید",
+  "updateNow": "بہ‌روزرسانی را در پس‌زمینہ شروع کنید",
   "@updateNow": {},
-  "updateAvailable": "به‌روزرسانی فلأفی‌گپ در دسترس است",
+  "updateAvailable": "بہ‌روزرسانی فلأفی‌گپ در دسترس است",
   "@updateAvailable": {},
-  "areGuestsAllowedToJoin": "آیا اجازه می‌شود که کاربر مهمان‌ها بپیوندند",
+  "areGuestsAllowedToJoin": "آیا اجازه می‌شود کہ کاربر مہمان‌ها بپیوندند",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
@@ -250,12 +250,12 @@
       "uri": {}
     }
   },
-  "banned": "تبعید شده",
+  "banned": "ممنوعیت شده",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username} {targetName} را تبعید کرد",
+  "bannedUser": "{username} {targetName} را ممنوعیت کرد",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -273,7 +273,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerLoginTypesException": "سرور می‌تواند این گونه‌های ورود‮ را پشتیباتی کند:\n{serverVersions}\nولی این برنامه می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
+  "badServerLoginTypesException": "سرور می‌تواند این گونہ‌های ورود‮ را پشتیباتی کند:\n{serverVersions}\nولی این برنامہ می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -281,7 +281,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "سرور می‌تواند این نسخه‌های مشخصات را پشتیباتی کند:\n{serverVersions}\nولی این برنامه می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
+  "badServerVersionsException": "سرور می‌تواند این نسخہ‌های مشخصات را پشتیبانی کند:\n{serverVersions}\nولی این برنامہ می‌تواند فقط این‌ها را پشتیبانی کند:\n{supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -298,12 +298,12 @@
       "username": {}
     }
   },
-  "bubbleSize": "اندازه‌ی حباب",
+  "bubbleSize": "اندازۀ حباب",
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
   },
-  "changedTheGuestAccessRules": "{username} قوانین دسترسی مهمان را تغییر داد",
+  "changedTheGuestAccessRules": "{username} قوانین دسترسی مہمان را تغییر داد",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
@@ -388,7 +388,7 @@
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} قوانین دسترسی مهمان را ایدون تغییر داد: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} قوانین دسترسی مہمان را ایدون تغییر داد: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -412,7 +412,7 @@
       "rules": {}
     }
   },
-  "chooseAStrongPassword": "یه رمز عبور توانا را سازید",
+  "chooseAStrongPassword": "یہ رمز عبور توانا را سازید",
   "@chooseAStrongPassword": {
     "type": "text",
     "placeholders": {}
@@ -439,28 +439,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "رمزگزاری خراب شده‌است",
+  "channelCorruptedDecryptError": "رمزگذاری خراب شده‌است",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
   },
   "iWroteDownTheKey": "کلید را یادداشت نوشتم",
   "@iWroteDownTheKey": {},
-  "setupChatBackupDescription": "تا پیغام‌هاتون حفظ شوند، این کلید ساخته شد.\nلطفاً جای امنی بپاییدش، مثل یک مدیر رمز عبور.",
+  "setupChatBackupDescription": "تا پیغام‌های شما حفظ شوند، این کلید ساختہ شد.\nلطفاً جای امنی بپاییدش، مثل یک مدیر رمز عبور.",
   "@setupChatBackupDescription": {},
   "clearArchive": "بایگانی را پاک سازید",
   "@clearArchive": {},
-  "chooseAUsername": "یه نام کاربری را سازید",
+  "chooseAUsername": "یہ نام کاربری را سازید",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_create": "یه گپ گروه خالی را سازید.\n«--no-encryption» را استفاده کنید تا رمزگزاری را خاموش کنید",
+  "commandHint_create": "یہ گپ گروه خالی را سازید.\n«--no-encryption» را استفاده کنید تا رمزگذاری را خاموش کنید",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "commandHint_dm": "یه گپ مستقیم شروع کنید\n«--no-encryption» را استفاده کنید تا رمزگزاری را خاموش کنید",
+  "commandHint_dm": "یہ گپ مستقیم شروع کنید\n«--no-encryption» را استفاده کنید تا رمزگذاری را خاموش کنید",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -494,11 +494,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_markasdm": "به عنوان اتاق پیام‌های مستقیم علامت دهید",
+  "commandHint_markasdm": "بہ عنوان اتاق پیام‌های مستقیم علامت دهید",
   "@commandHint_markasdm": {},
-  "commandHint_markasgroup": "به نوان گروه علامت دهید",
+  "commandHint_markasgroup": "بہ عنوان گروه علامت دهید",
   "@commandHint_markasgroup": {},
-  "commandHint_clearcache": "حافظه پنهان را پاک سازید",
+  "commandHint_clearcache": "حافظہ پنھان را پاک سازید",
   "@commandHint_clearcache": {
     "type": "text",
     "description": "Usage hint for the command /clearcache"
@@ -513,7 +513,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "openAppToReadMessages": "برنامه را باز کنید تا پیام‌ها را بخوانید",
+  "openAppToReadMessages": "برنامہ را باز کنید تا پیام‌ها را بخوانید",
   "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
@@ -530,7 +530,7 @@
       "senderName": {}
     }
   },
-  "sendAsText": "به انوان متن فرستید",
+  "sendAsText": "بہ عنوان متن فرستید",
   "@sendAsText": {
     "type": "text"
   },
@@ -539,7 +539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startedACall": "{senderName} یه زنگیدن شروع کرد",
+  "startedACall": "{senderName} یہ زنگیدن شروع کرد",
   "@startedACall": {
     "type": "text",
     "placeholders": {
@@ -559,19 +559,19 @@
       "reaction": {}
     }
   },
-  "askSSSSSign": "تا بتوانید شخص دیگر را امضا کنید، لطفاً رمز عبور را برای حافظه‌ی امن وارد کنید.",
+  "askSSSSSign": "تا بتوانید شخص دیگر را امضا کنید، لطفاً رمز عبور را برای حافظۂ امن وارد کنید.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSVerify": "لطفاً رنز عبور را برای حافظه‌ی امن وارد کنید تا نشستت را درستی بسنجید.",
+  "askSSSSVerify": "لطفاً رمز عبور را برای حافظۂ امن وارد کنید تا نشستت را درستی بسنجید.",
   "@askSSSSVerify": {
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "گپ به این اسپیس اضافه شده‌است",
+  "chatHasBeenAddedToThisSpace": "گپ بہ این اسپیس اضافه شده‌است",
   "@chatHasBeenAddedToThisSpace": {},
-  "chatHasBeenRemovedFromThisSpace": "گپ از این اسپیس برداشته شده‌است",
+  "chatHasBeenRemovedFromThisSpace": "گپ از این اسپیس برداشتہ شده‌است",
   "@chatHasBeenRemovedFromThisSpace": {
     "type": "text",
     "placeholders": {}
@@ -601,7 +601,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheHomeserver": "سِروِرِ خانه را تغییر دهید",
+  "changeTheHomeserver": "سِروِرِ خانہ را تغییر دهید",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -621,16 +621,16 @@
     "type": "text",
     "placeholders": {}
   },
-  "showSpaces": "فهرست اسپیس‌ها را نشان دهید",
+  "showSpaces": "فھرست اسپیس‌ها را نشان دهید",
   "@showSpaces": {},
-  "sentAPicture": "🖼️ {username} یه عکس فرستاد",
+  "sentAPicture": "🖼️ {username} یہ عکس فرستاد",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "🎥 {username} یه ویدئو فرستاد",
+  "sentAVideo": "🎥 {username} یہ ویدئو فرستاد",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -641,7 +641,7 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandMissing": "{command} یه فرمان نیست.",
+  "commandMissing": "{command} یہ فرمان نیست.",
   "@commandMissing": {
     "type": "text",
     "placeholders": {
@@ -649,19 +649,19 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "contactHasBeenInvitedToTheGroup": "مخاطب به گروه دعوت شده‌است",
+  "contactHasBeenInvitedToTheGroup": "مخاطب بہ گروه دعوت شده‌است",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "📁 {username} یه پرونده فرستاد",
+  "sentAFile": "📁 {username} یہ پرونده فرستاد",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "🎤 {username} یه ضبط صوتی فرستاد",
+  "sentAnAudio": "🎤 {username} یہ ضبط صوتی فرستاد",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
@@ -673,7 +673,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username} یه روی‌داد {type} فرستاد",
+  "userSentUnknownEvent": "{username} یہ روی‌داد {type} فرستاد",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -681,7 +681,7 @@
       "type": {}
     }
   },
-  "weSentYouAnEmail": "یه ایمیل شما فرستادیم",
+  "weSentYouAnEmail": "یہ ایمیل شما فرستادیم",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -695,7 +695,7 @@
       "count": {}
     }
   },
-  "sentASticker": "😊 {username} یه استیکر فرستاد",
+  "sentASticker": "😊 {username} یہ استیکر فرستاد",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
@@ -712,6 +712,379 @@
     "type": "text",
     "placeholders": {}
   },
-  "allSpaces": "همه اسپیس‌ها",
-  "@allSpaces": {}
+  "allSpaces": "همہ اسپیس‌ها",
+  "@allSpaces": {},
+  "commandHint_ban": "کاربر مشخص شده را از این اتاق ممنوعیت کنید",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_kick": "کاربر مشخص شده را از این اتاق بردارید",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_plain": "متن بی فرمت را فرستید",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_unban": "کاربر مشخص شده را لغو ممنوعیت کنید",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "containsDisplayName": "نام نمایش را شامل می‌کند",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "نام کاربری را شامل می‌کند",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "دستگاه",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discover": "کشف کردن",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "کپی",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "درجۂ اجازۀ پیشفرض",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "حذف",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "حساب را حذف کنید",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "پیام را حذف کنید",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deny": "رد کردن",
+  "@deny": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourUserId": "شناسایی کاربری شما:",
+  "@yourUserId": {},
+  "commandHint_html": "متن با فرمت HTML فرستید",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_join": "اتاق مشخص شده را پیوندید",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_leave": "این اتاق را ترک کنید",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_myroomnick": "برای این اتاق نام نمایش خود را تنظیم کنید",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_myroomavatar": "برای این اتاق عکس پروفایل خود تنظیم کنید (با mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_op": "درجۂ اجازۀ کاربر مشخص شده را تنظیم کنید (پیشفرض: ۵۰)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "پاسخ را بہ عنوان یہ واکنش فرستید",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "compareEmojiMatch": "مقایسہ و حتمی کنید کہ اموجی‌های بعد با آنھای دستگاه دیگر باهم می‌آیند:",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "در حافظه کپی کنید",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetAvatar": "عکس پروفایل نتوانست تنظیم شود",
+  "@couldNotSetAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotSetDisplayname": "نام نمایش نتوانست تنظیم شود",
+  "@couldNotSetDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} تا شرکت کننده",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "سازید",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewGroup": "گروه جدیدی سازید",
+  "@createNewGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "اسپیس جدید",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningEnabled": "امضا کردن متقابل فعال",
+  "@crossSigningEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "crossSigningDisabled": "امضا کردن متقابل خاموش",
+  "@crossSigningDisabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithYear": "{year}-{month}-{day}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deviceId": "شناسایی دستگاه",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "دستگاهان",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceVerifyDescription": "رمزگذاری امن است فقط اگر همہ دستگاهان درستی سنجیده شده‌اند",
+  "@deviceVerifyDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discardPicture": "عکس را دور اندازید",
+  "@discardPicture": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "discoverGroups": "گروه‌ها را کشف کنید",
+  "@discoverGroups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "نام نمایش تغییر شده‌است",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "donate": "بخشیدن",
+  "@donate": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dontAskAgain": "لغو کنید و دوباره نپرسید",
+  "@dontAskAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "پرونده را بارگیرید",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "ویرایش",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "فھرست سرور‌های مسدود را ویرایش کنید",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "نام‌های مستعار را ویرایش کنید",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "عکس اتاق را ویرایش کنید",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "شکلک قبلاً وجود دارد!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "یک کد کوتاه شکلک و یک تصویر باید بچینید!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "کد کوتاه شکلک نامعتبر!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "گپ خالی",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "در حافظه کپی شده",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccountNow": "الان حساب سازید",
+  "@createAccountNow": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "💬 {username} گپ را ساخت",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "darkTheme": "تاریک",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "گپ‌های مستقیم",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editJitsiInstance": "نمونۂ جیتسی را ویرایش کنید",
+  "@editJitsiInstance": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "بستہ‌های شکلک برای اتاق",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "‏تنظیمات شکلک",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "کد کوتاه شکلک",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_me": "خود را توصیف کنید",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_send": "متن را فرستید",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "couldNotDecryptMessage": "پیام نتوانست رمزگشایی شود: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "chatBackupDescription": "پیام‌های قدیم تان با یہ کلید باز یابی امن می‌شوند. لطفاً حتمی کنید کہ آن را گم نکنید.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deactivateAccountWarning": "این انجام حساب کاربری تان را خاموش خواهد کرد. این انجام بازگشتنی نیست! متمئن هستید؟",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_invite": "کاربر مشخص شده را بہ این اتاق دعوت دهید",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "compareNumbersMatch": "مقایسہ و حتمی کنید کہ شماره‌های بعد با آنھای دستگاه دیگر باهم می‌آیند:",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "configureChat": "گپ را تنظیم کنید",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "currentlyActive": "الان فعال",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}، {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "editChatPermissions": "اجازه‌های گپ را ویرایش کنید",
+  "@editChatPermissions": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "نام ننایش را ویرایش کنید",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
