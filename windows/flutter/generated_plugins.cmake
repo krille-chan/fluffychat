@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  connectivity_plus_windows
+  connectivity_plus
   desktop_drop
   desktop_lifecycle
   flutter_webrtc
