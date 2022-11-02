@@ -84,7 +84,11 @@ class TypingIndicators extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: typingUsers.isEmpty
                       ? null
-                      : Image.asset('assets/typing.gif', height: 30, filterQuality: FilterQuality.medium,),
+                      : Image.asset(
+                          'assets/typing.gif',
+                          height: 30,
+                          filterQuality: FilterQuality.medium,
+                        ),
                 ),
               ),
             ),

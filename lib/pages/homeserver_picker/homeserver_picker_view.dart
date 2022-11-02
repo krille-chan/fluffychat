@@ -47,7 +47,10 @@ class HomeserverPickerView extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 200,
-                  child: Image.asset('assets/info-logo.png', filterQuality: FilterQuality.medium,),
+                  child: Image.asset(
+                    'assets/info-logo.png',
+                    filterQuality: FilterQuality.medium,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
