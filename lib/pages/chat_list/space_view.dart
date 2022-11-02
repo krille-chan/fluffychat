@@ -176,6 +176,7 @@ class _SpaceViewState extends State<SpaceView> {
           final error = snapshot.error;
           if (error != null) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
