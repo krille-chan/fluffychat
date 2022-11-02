@@ -12,7 +12,6 @@ import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions.dart/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
-import 'matrix_sdk_extensions.dart/fluffybox_database.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -105,7 +104,6 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
-      legacyDatabaseBuilder: FlutterFluffyBoxDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         if (PlatformInfos.isMobile ||

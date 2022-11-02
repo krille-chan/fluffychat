@@ -65,7 +65,7 @@ dependencies:
   latlong2: ^0.8.1
   localstorage: ^4.0.0+1
   lottie: ^1.2.2
-  matrix: ^0.14.1
+  matrix: ^0.15.0
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
