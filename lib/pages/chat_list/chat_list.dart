@@ -268,7 +268,9 @@ class ChatListController extends State<ChatList>
 
   void editSpace(BuildContext context, String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
-    VRouter.of(context).toSegments(['spaces', spaceId]);
+    if (mounted) {
+      VRouter.of(context).toSegments(['spaces', spaceId]);
+    }
   }
 
   // Needs to match GroupsSpacesEntry for 'separate group' checking.
@@ -512,6 +514,7 @@ class ChatListController extends State<ChatList>
       },
     );
     if (result.error == null) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
@@ -545,14 +548,16 @@ class ChatListController extends State<ChatList>
       if (client.encryption?.keyManager.enabled == true) {
         if (await client.encryption?.keyManager.isCached() == false ||
             await client.encryption?.crossSigning.isCached() == false ||
-            client.isUnknownSession) {
+            client.isUnknownSession && !mounted) {
           await BootstrapDialog(client: client).show(context);
         }
       }
     }
-    setState(() {
-      waitForFirstSync = true;
-    });
+    if (mounted) {
+      setState(() {
+        waitForFirstSync = true;
+      });
+    }
     return;
   }
 
@@ -592,6 +597,7 @@ class ChatListController extends State<ChatList>
   }
 
   void editBundlesForAccount(String? userId, String? activeBundle) async {
+    final l10n = L10n.of(context)!;
     final client = Matrix.of(context)
         .widget
         .clients[Matrix.of(context).getClientIndexByMatrixId(userId!)];
@@ -615,10 +621,8 @@ class ChatListController extends State<ChatList>
       case EditBundleAction.addToBundle:
         final bundle = await showTextInputDialog(
             context: context,
-            title: L10n.of(context)!.bundleName,
-            textFields: [
-              DialogTextField(hintText: L10n.of(context)!.bundleName)
-            ]);
+            title: l10n.bundleName,
+            textFields: [DialogTextField(hintText: l10n.bundleName)]);
         if (bundle == null || bundle.isEmpty || bundle.single.isEmpty) return;
         await showFutureLoadingDialog(
           context: context,
