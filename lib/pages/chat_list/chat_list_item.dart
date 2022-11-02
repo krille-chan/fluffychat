@@ -96,13 +96,15 @@ class ChatListItem extends StatelessWidget {
       // Share content into this room
       final shareContent = Matrix.of(context).shareContent;
       if (shareContent != null) {
+        final shareFile = shareContent.tryGet<MatrixFile>('file');
         if (shareContent.tryGet<String>('msgtype') ==
-            'chat.fluffy.shared_file') {
+                'chat.fluffy.shared_file' &&
+            shareFile != null) {
           await showDialog(
             context: context,
             useRootNavigator: false,
             builder: (c) => SendFileDialog(
-              files: shareContent['file'],
+              files: [shareFile],
               room: room,
             ),
           );
