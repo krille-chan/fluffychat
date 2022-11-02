@@ -688,7 +688,7 @@
   },
   "replyHasBeenSent": "پاسخ فرستاده شده‌است",
   "@replyHasBeenSent": {},
-  "loadCountMoreParticipants": "{count} تا شرکت کنندگان اضافی را بار گیرید",
+  "loadCountMoreParticipants": "{count} تا شرکت کنندۀ اضافی را بار گیرید",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -1082,7 +1082,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "نام ننایش را ویرایش کنید",
+  "editDisplayname": "نام نمایش را ویرایش کنید",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
