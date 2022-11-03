@@ -553,12 +553,10 @@ class ChatListController extends State<ChatList>
         }
       }
     }
-    if (mounted) {
-      setState(() {
-        waitForFirstSync = true;
-      });
-    }
-    return;
+    if (!mounted) return;
+    setState(() {
+      waitForFirstSync = true;
+    });
   }
 
   void cancelAction() {

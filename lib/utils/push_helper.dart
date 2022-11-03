@@ -20,7 +20,7 @@ Future<void> pushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  Future<dynamic> Function(String?)? onSelectNotification,
+  void Function(NotificationResponse?)? onSelectNotification,
 }) async {
   try {
     await _tryPushHelper(
@@ -38,16 +38,17 @@ Future<void> pushHelper(
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
         android: AndroidInitializationSettings('notifications_icon'),
-        iOS: IOSInitializationSettings(),
+        iOS: DarwinInitializationSettings(),
       ),
-      onSelectNotification: onSelectNotification,
+      onDidReceiveNotificationResponse: onSelectNotification,
+      onDidReceiveBackgroundNotificationResponse: onSelectNotification,
     );
     flutterLocalNotificationsPlugin.show(
       0,
       l10n?.newMessageInFluffyChat,
       l10n?.openAppToReadMessages,
       NotificationDetails(
-          iOS: const IOSNotificationDetails(),
+          iOS: const DarwinNotificationDetails(),
           android: AndroidNotificationDetails(
             AppConfig.pushNotificationsChannelId,
             AppConfig.pushNotificationsChannelName,
@@ -67,7 +68,7 @@ Future<void> _tryPushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  Future<dynamic> Function(String?)? onSelectNotification,
+  void Function(NotificationResponse?)? onSelectNotification,
 }) async {
   final isBackgroundMessage = client == null;
   Logs().v(
@@ -88,9 +89,10 @@ Future<void> _tryPushHelper(
   await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
       android: AndroidInitializationSettings('notifications_icon'),
-      iOS: IOSInitializationSettings(),
+      iOS: DarwinInitializationSettings(),
     ),
-    onSelectNotification: onSelectNotification,
+    onDidReceiveNotificationResponse: onSelectNotification,
+    //onDidReceiveBackgroundNotificationResponse: onSelectNotification,
   );
 
   client ??= (await ClientManager.getClients(initialize: false)).first;
@@ -206,7 +208,7 @@ Future<void> _tryPushHelper(
     priority: Priority.high,
     groupKey: event.room.id,
   );
-  const iOSPlatformChannelSpecifics = IOSNotificationDetails();
+  const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,

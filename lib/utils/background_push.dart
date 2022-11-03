@@ -250,7 +250,7 @@ class BackgroundPush {
         return;
       }
       _wentToRoomOnStartup = true;
-      goToRoom(details.payload);
+      goToRoom(details.notificationResponse);
     });
   }
 
@@ -294,8 +294,9 @@ class BackgroundPush {
     );
   }
 
-  Future<void> goToRoom(String? roomId) async {
+  Future<void> goToRoom(NotificationResponse? response) async {
     try {
+      final roomId = response?.payload;
       Logs().v('[Push] Attempting to go to room $roomId...');
       if (router == null || roomId == null) {
         return;

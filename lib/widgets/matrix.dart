@@ -409,7 +409,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               action: link == null
                   ? null
                   : SnackBarAction(
-                      label: L10n.of(context)!.link,
+                      label: L10n.of(navigatorContext)!.link,
                       onPressed: () => launch(link.toString()),
                     ),
             );
