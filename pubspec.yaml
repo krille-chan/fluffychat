@@ -16,12 +16,12 @@ dependencies:
   callkeep: ^0.3.2
   chewie: ^1.2.2
   collection: ^1.15.0-nullsafety.4
-  connectivity_plus: ^2.3.9
+  connectivity_plus: ^3.0.2
   cupertino_icons: any
   desktop_drop: ^0.3.2
   desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
-  device_info_plus: ^4.0.0
+  device_info_plus: ^8.0.0
   dynamic_color: ^1.2.2
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.1.2
@@ -33,7 +33,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.3.0
-  flutter_app_lock: ^2.0.0
+  flutter_app_lock: ^3.0.0
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
   flutter_foreground_task: ^3.10.0
@@ -49,7 +49,7 @@ dependencies:
   flutter_slidable: ^2.0.0
   flutter_svg: ^0.22.0
   flutter_typeahead: ^4.0.0
-  flutter_web_auth: ^0.4.0
+  flutter_web_auth: ^0.5.0
   flutter_webrtc: ^0.9.11
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
