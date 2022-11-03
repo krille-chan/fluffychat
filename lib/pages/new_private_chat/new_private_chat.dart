@@ -86,7 +86,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   void openScannerAction() async {
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
-      if ((info.version.sdkInt ?? 16) < 21) {
+      if (info.version.sdkInt < 21) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

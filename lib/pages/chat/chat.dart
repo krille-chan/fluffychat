@@ -398,7 +398,7 @@ class ChatController extends State<Chat> {
   void voiceMessageAction() async {
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
-      if ((info.version.sdkInt ?? 16) < 19) {
+      if (info.version.sdkInt < 19) {
         showOkAlertDialog(
           context: context,
           title: L10n.of(context)!.unsupportedAndroidVersion,
@@ -961,7 +961,7 @@ class ChatController extends State<Chat> {
     // VoIP required Android SDK 21
     if (PlatformInfos.isAndroid) {
       DeviceInfoPlugin().androidInfo.then((value) {
-        if ((value.version.sdkInt ?? 16) < 21) {
+        if (value.version.sdkInt < 21) {
           Navigator.pop(context);
           showOkAlertDialog(
             context: context,

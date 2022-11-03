@@ -6,10 +6,10 @@ import FlutterMacOS
 import Foundation
 
 import audio_session
-import connectivity_plus_macos
+import connectivity_plus
 import desktop_drop
 import desktop_lifecycle
-import device_info_plus_macos
+import device_info_plus
 import emoji_picker_flutter
 import flutter_local_notifications
 import flutter_secure_storage_macos
