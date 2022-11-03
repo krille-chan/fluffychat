@@ -27,6 +27,7 @@ class EmptyPage extends StatelessWidget {
                 'assets/info-logo.png',
                 width: width,
                 height: width,
+                filterQuality: FilterQuality.medium,
               ),
             ),
           ),

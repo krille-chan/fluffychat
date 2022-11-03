@@ -168,6 +168,7 @@ class _MxcImageState extends State<MxcImage> {
               width: widget.width,
               height: widget.height,
               fit: widget.fit,
+              filterQuality: FilterQuality.medium,
               errorBuilder: (context, __, ___) {
                 _isCached = false;
                 _imageData = null;

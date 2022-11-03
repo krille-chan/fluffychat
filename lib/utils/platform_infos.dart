@@ -62,7 +62,12 @@ abstract class PlatformInfos {
           child: const Text('Logs'),
         ),
       ],
-      applicationIcon: Image.asset('assets/logo.png', width: 64, height: 64),
+      applicationIcon: Image.asset(
+        'assets/logo.png',
+        width: 64,
+        height: 64,
+        filterQuality: FilterQuality.medium,
+      ),
       applicationName: AppConfig.applicationName,
     );
   }
