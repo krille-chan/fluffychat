@@ -21,7 +21,7 @@ class StateMessage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondaryContainer,
+            color: Theme.of(context).colorScheme.onInverseSurface,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           child: FutureBuilder<String>(

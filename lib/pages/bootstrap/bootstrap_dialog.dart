@@ -270,6 +270,11 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimary,
+                          backgroundColor: Theme.of(context).primaryColor,
+                        ),
                         icon: _recoveryKeyInputLoading
                             ? const CircularProgressIndicator.adaptive()
                             : const Icon(Icons.lock_open_outlined),
