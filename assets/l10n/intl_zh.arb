@@ -2989,5 +2989,7 @@
     }
   },
   "hideUnimportantStateEvents": "隐藏不重要的状态事件",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "不再显示",
+  "@doNotShowAgain": {}
 }
