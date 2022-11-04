@@ -2989,5 +2989,7 @@
     }
   },
   "hideUnimportantStateEvents": "Peida väheolulised olekuteated",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Ära näita uuesti",
+  "@doNotShowAgain": {}
 }
