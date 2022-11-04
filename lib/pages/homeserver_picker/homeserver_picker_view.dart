@@ -16,6 +16,26 @@ class HomeserverPickerView extends StatelessWidget {
   Widget build(BuildContext context) {
     final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
+      appBar: AppBar(
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: TextField(
+            focusNode: controller.homeserverFocusNode,
+            controller: controller.homeserverController,
+            onChanged: controller.onChanged,
+            decoration: InputDecoration(
+              prefixText: '${L10n.of(context)!.homeserver}: ',
+              hintText: L10n.of(context)!.enterYourHomeserver,
+              suffixIcon: const Icon(Icons.search),
+              errorText: controller.error,
+            ),
+            readOnly: !AppConfig.allowOtherHomeservers,
+            onSubmitted: (_) => controller.checkHomeserverAction(),
+            autocorrect: false,
+          ),
+        ),
+      ),
       body: Column(
         children: [
           // display a prominent banner to import session for TOR browser
@@ -44,32 +64,6 @@ class HomeserverPickerView extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  height: 200,
-                  child: Image.asset(
-                    'assets/info-logo.png',
-                    filterQuality: FilterQuality.medium,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: TextField(
-                    focusNode: controller.homeserverFocusNode,
-                    controller: controller.homeserverController,
-                    onChanged: controller.onChanged,
-                    decoration: InputDecoration(
-                      prefixText: '${L10n.of(context)!.homeserver}: ',
-                      hintText: L10n.of(context)!.enterYourHomeserver,
-                      suffixIcon: const Icon(Icons.search),
-                      errorText: controller.error,
-                      fillColor: Theme.of(context).backgroundColor,
-                    ),
-                    readOnly: !AppConfig.allowOtherHomeservers,
-                    onSubmitted: (_) => controller.checkHomeserverAction(),
-                    autocorrect: false,
-                  ),
-                ),
                 if (controller.displayServerList)
                   Padding(
                     padding: const EdgeInsets.all(12.0),
@@ -114,9 +108,17 @@ class HomeserverPickerView extends StatelessWidget {
                             ),
                     ),
                   )
-                else
+                else ...[
+                  Container(
+                    alignment: Alignment.center,
+                    height: 200,
+                    child: Image.asset(
+                      'assets/info-logo.png',
+                      filterQuality: FilterQuality.medium,
+                    ),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Center(
                       child: Text(
                         AppConfig.applicationWelcomeMessage ??
@@ -126,6 +128,7 @@ class HomeserverPickerView extends StatelessWidget {
                       ),
                     ),
                   ),
+                ],
               ],
             ),
           ),

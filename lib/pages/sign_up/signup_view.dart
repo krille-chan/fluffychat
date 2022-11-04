@@ -46,7 +46,6 @@ class SignupPageView extends StatelessWidget {
                   ),
                   errorStyle: const TextStyle(color: Colors.orange),
                   hintText: L10n.of(context)!.chooseAStrongPassword,
-                  fillColor: Theme.of(context).colorScheme.background,
                 ),
               ),
             ),
@@ -65,7 +64,6 @@ class SignupPageView extends StatelessWidget {
                     prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: L10n.of(context)!.repeatPassword,
                     errorStyle: const TextStyle(color: Colors.orange),
-                    fillColor: Theme.of(context).colorScheme.background,
                   ),
                 ),
               ),
@@ -83,7 +81,6 @@ class SignupPageView extends StatelessWidget {
                   prefixIcon: const Icon(Icons.mail_outlined),
                   hintText: L10n.of(context)!.enterAnEmailAddress,
                   errorText: controller.error,
-                  fillColor: Theme.of(context).colorScheme.background,
                   errorMaxLines: 4,
                   errorStyle: TextStyle(
                     color: controller.emailController.text.isEmpty

@@ -89,13 +89,13 @@ class Message extends StatelessWidget {
     final displayEvent = event.getDisplayEvent(timeline);
     final borderRadius = BorderRadius.only(
       topLeft: !ownMessage
-          ? const Radius.circular(2)
+          ? const Radius.circular(4)
           : const Radius.circular(AppConfig.borderRadius),
-      topRight: ownMessage
-          ? const Radius.circular(2)
-          : const Radius.circular(AppConfig.borderRadius),
+      topRight: const Radius.circular(AppConfig.borderRadius),
       bottomLeft: const Radius.circular(AppConfig.borderRadius),
-      bottomRight: const Radius.circular(AppConfig.borderRadius),
+      bottomRight: ownMessage
+          ? const Radius.circular(4)
+          : const Radius.circular(AppConfig.borderRadius),
     );
     final noBubble = {
           MessageTypes.Video,

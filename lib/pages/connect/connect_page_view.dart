@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/connect/connect_page.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
@@ -95,7 +96,6 @@ class ConnectPageView extends StatelessWidget {
                   hintText: L10n.of(context)!.chooseAUsername,
                   errorText: controller.signupError,
                   errorStyle: const TextStyle(color: Colors.orange),
-                  fillColor: Theme.of(context).colorScheme.background,
                 ),
               ),
             ),
@@ -150,9 +150,10 @@ class ConnectPageView extends StatelessWidget {
                   )
                 : Center(
                     child: identityProviders.length == 1
-                        ? Padding(
+                        ? Container(
+                            width: double.infinity,
                             padding: const EdgeInsets.all(12.0),
-                            child: ElevatedButton(
+                            child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Theme.of(context)
                                     .colorScheme
@@ -161,9 +162,22 @@ class ConnectPageView extends StatelessWidget {
                                     .colorScheme
                                     .onPrimaryContainer,
                               ),
+                              icon: identityProviders.single.icon == null
+                                  ? const Icon(
+                                      Icons.web_outlined,
+                                      size: 16,
+                                    )
+                                  : Image.network(
+                                      Uri.parse(identityProviders.single.icon!)
+                                          .getDownloadLink(Matrix.of(context)
+                                              .getLoginClient())
+                                          .toString(),
+                                      width: 32,
+                                      height: 32,
+                                    ),
                               onPressed: () => controller
                                   .ssoLoginAction(identityProviders.single.id!),
-                              child: Text(identityProviders.single.name ??
+                              label: Text(identityProviders.single.name ??
                                   identityProviders.single.brand ??
                                   L10n.of(context)!.loginWithOneClick),
                             ),

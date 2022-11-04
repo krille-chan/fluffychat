@@ -160,8 +160,6 @@ class ChatListController extends State<ChatList>
   bool isSearching = false;
   static const String _serverStoreNamespace = 'im.fluffychat.search.server';
 
-  StreamSubscription<String?>? _spacesSubscription;
-
   void setServer() async {
     final newServer = await showTextInputDialog(
         useRootNavigator: false,
@@ -371,7 +369,6 @@ class ChatListController extends State<ChatList>
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
-    _spacesSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
   }

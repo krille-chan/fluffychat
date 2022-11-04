@@ -16,6 +16,25 @@ class LoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobileMode = !FluffyThemes.isColumnMode(context);
+    final scaffold = Scaffold(
+      backgroundColor: isMobileMode ? null : Colors.transparent,
+      appBar: appBar == null
+          ? null
+          : AppBar(
+              titleSpacing: appBar?.titleSpacing,
+              automaticallyImplyLeading:
+                  appBar?.automaticallyImplyLeading ?? true,
+              centerTitle: appBar?.centerTitle,
+              title: appBar?.title,
+              leading: appBar?.leading,
+              actions: appBar?.actions,
+              backgroundColor: isMobileMode ? null : Colors.transparent,
+            ),
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      body: body,
+    );
+    if (isMobileMode) return scaffold;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -38,23 +57,7 @@ class LoginScaffold extends StatelessWidget {
             constraints: isMobileMode
                 ? const BoxConstraints()
                 : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: appBar == null
-                  ? null
-                  : AppBar(
-                      automaticallyImplyLeading:
-                          appBar?.automaticallyImplyLeading ?? true,
-                      centerTitle: appBar?.centerTitle,
-                      title: appBar?.title,
-                      leading: appBar?.leading,
-                      actions: appBar?.actions,
-                      backgroundColor: Colors.transparent,
-                    ),
-              extendBodyBehindAppBar: true,
-              extendBody: true,
-              body: body,
-            ),
+            child: scaffold,
           ),
         ),
       ),
