@@ -103,7 +103,7 @@ class LoginView extends StatelessWidget {
                     Expanded(
                       child: Divider(
                         thickness: 1,
-                        color: Theme.of(context).textTheme.subtitle1?.color,
+                        color: Theme.of(context).dividerColor,
                       ),
                     ),
                     Padding(
@@ -116,7 +116,7 @@ class LoginView extends StatelessWidget {
                     Expanded(
                       child: Divider(
                         thickness: 1,
-                        color: Theme.of(context).textTheme.subtitle1?.color,
+                        color: Theme.of(context).dividerColor,
                       ),
                     ),
                   ],

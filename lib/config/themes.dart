@@ -59,7 +59,7 @@ abstract class FluffyThemes {
             ? Colors.blueGrey.shade50
             : Colors.blueGrey.shade900,
         inputDecorationTheme: const InputDecorationTheme(
-          border: UnderlineInputBorder(borderSide: BorderSide(width: 1)),
+          border: InputBorder.none,
           filled: true,
         ),
         appBarTheme: AppBarTheme(
