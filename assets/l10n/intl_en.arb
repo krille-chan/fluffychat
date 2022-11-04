@@ -2950,5 +2950,6 @@
       "number": {}
     }
   },
-  "hideUnimportantStateEvents": "Hide unimportant state events"
+  "hideUnimportantStateEvents": "Hide unimportant state events",
+  "doNotShowAgain": "Do not show again"
 }
