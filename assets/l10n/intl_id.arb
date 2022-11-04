@@ -2983,5 +2983,7 @@
     }
   },
   "hideUnimportantStateEvents": "Sembunyikan peristiwa keadaan yang tidak penting",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Jangan tampilkan lagi",
+  "@doNotShowAgain": {}
 }
