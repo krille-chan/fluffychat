@@ -2984,5 +2984,7 @@
     }
   },
   "hideUnimportantStateEvents": "Сховати неважливі державні свята",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Не показувати знову",
+  "@doNotShowAgain": {}
 }
