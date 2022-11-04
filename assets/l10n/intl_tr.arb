@@ -2989,5 +2989,7 @@
     }
   },
   "hideUnimportantStateEvents": "Önemsiz durum etkinliklerini gizle",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Tekrar gösterme",
+  "@doNotShowAgain": {}
 }
