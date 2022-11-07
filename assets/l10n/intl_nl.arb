@@ -2988,5 +2988,7 @@
     }
   },
   "hideUnimportantStateEvents": "Onbelangrijke statusgebeurtenissen verbergen",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Niet meer tonen",
+  "@doNotShowAgain": {}
 }
