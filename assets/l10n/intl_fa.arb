@@ -1086,5 +1086,233 @@
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
+  },
+  "end2endEncryptionSettings": "تنظیمات رمزگذاری سرتاسری",
+  "@end2endEncryptionSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "آی‌دی",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} دعوت نامه {targetName} را پس گرفته است",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "guestsAreForbidden": "مهمان ها ممنوع شده اند",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "پنهان کردن رویداد های ویرایش شده",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserverIsNotCompatible": "سرور خانه سازگار نیست",
+  "@homeserverIsNotCompatible": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "پنهان کردن رویداد های ناشناخته",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "این محتوا به مدیران سرور گزارش شد",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friends": "دوستان",
+  "@friends": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "از عضو شدن",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "از دعوت",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "به اتاق جدید بروید",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "گروه",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "گروه عمومی است",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "گروه با {displayname}",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "howOffensiveIsThisContent": "این محتوا چه مقدار توهین آمیز است؟",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentViewer": "تماشا کننده محتوا",
+  "@contentViewer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableChatBackup": "پشتیبان گیری از گپ را فعال کنید تا هیچ‌وقت دسترسی به گپ های خود را از دست ندهید.",
+  "@enableChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "بسته شکلک را به طور سراسری فعال کنید",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "رمزگذاری را فعال کنید",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "شما دیگر قادر به غیرفعال سازی رمزگذاری نخواهید بود. آیا مطمئن هستید؟",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "رمزگذاری شده",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "رمزگذاری",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionAlgorithm": "الگوریتم رمزگذاری",
+  "@encryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "رمزگذاری فعال نیست",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAGroupName": "نام گروه را وارد کنید",
+  "@enterAGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "یک آدرس رایانامه وارد کنید",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} تماس را پایان داد",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "homeserver": "سرور خانه",
+  "@homeserver": {},
+  "enterYourHomeserver": "سرور خانه خود را وارد کنید",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterASpacepName": "یک نام برای فضا وارد کنید",
+  "@enterASpacepName": {},
+  "errorObtainingLocation": "خطا در هنگام بدست آوری مکان: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "enterAUsername": "یک نام کاربری وارد کنید",
+  "@enterAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "همه‌چیز آماده است!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "به شدت توهین آمیز",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "نام فایل",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileSize": "اندازه فایل",
+  "@fileSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "فلافی‌چت",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "اندازه قلم",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "جلو",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "friday": "جمعه",
+  "@friday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescription": "توضیحات گروه",
+  "@groupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupDescriptionHasBeenChanged": "توضیحات گروه تغییر کرد",
+  "@groupDescriptionHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "help": "کمک",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "مهمان ها میتوانند عضو شوند",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
   }
 }
