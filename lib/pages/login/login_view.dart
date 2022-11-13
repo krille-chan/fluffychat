@@ -58,16 +58,16 @@ class LoginView extends StatelessWidget {
                   autofillHints:
                       controller.loading ? null : [AutofillHints.password],
                   controller: controller.passwordController,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.go,
                   obscureText: !controller.showPassword,
                   onSubmitted: controller.login,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outlined),
                     errorText: controller.passwordError,
                     errorStyle: const TextStyle(color: Colors.orange),
-                    suffixIcon: InkWell(
-                      onTap: controller.toggleShowPassword,
-                      child: Icon(
+                    suffixIcon: IconButton(
+                      onPressed: controller.toggleShowPassword,
+                      icon: Icon(
                         controller.showPassword
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,

@@ -27,7 +27,8 @@ class LoginController extends State<Login> {
   bool loading = false;
   bool showPassword = false;
 
-  void toggleShowPassword() => setState(() => showPassword = !showPassword);
+  void toggleShowPassword() =>
+      setState(() => showPassword = !loading && !showPassword);
 
   void login([_]) async {
     final matrix = Matrix.of(context);
