@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
   desktop_drop
   desktop_lifecycle
+  emoji_picker_flutter
   flutter_webrtc
   permission_handler_windows
   record_windows

@@ -343,7 +343,7 @@ packages:
       name: emoji_picker_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.5.0"
   emoji_proposal:
     dependency: "direct main"
     description:

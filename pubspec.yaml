@@ -24,7 +24,7 @@ dependencies:
   device_info_plus: ^8.0.0
   dynamic_color: ^1.2.2
   email_validator: ^2.0.1
-  emoji_picker_flutter: ^1.1.2
+  emoji_picker_flutter: ^1.5.0
   emoji_proposal: ^0.0.1
   emojis: ^0.9.0
   encrypt: ^5.0.1
