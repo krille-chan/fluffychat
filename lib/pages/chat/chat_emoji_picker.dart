@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
-import 'package:fluffychat/utils/fluffy_emoji_picker.dart';
 import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
@@ -20,7 +19,6 @@ class ChatEmojiPicker extends StatelessWidget {
           ? EmojiPicker(
               onEmojiSelected: controller.onEmojiSelected,
               onBackspacePressed: controller.emojiPickerBackspace,
-              customWidget: (c, s) => FluffyEmojiPickerView(c, s),
             )
           : null,
     );
