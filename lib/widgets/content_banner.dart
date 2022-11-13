@@ -47,19 +47,12 @@ class ContentBanner extends StatelessWidget {
                 return Hero(
                   tag: heroTag,
                   child: MxcImage(
+                    key: Key(mxContent?.toString() ?? 'NoKey'),
                     uri: mxContent,
                     animated: true,
                     fit: BoxFit.cover,
                     height: 400,
                     width: 800,
-                    placeholder: (c) => Center(
-                      child: Icon(
-                        defaultIcon,
-                        size: 200,
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                      ),
-                    ),
                   ),
                 );
               }),
