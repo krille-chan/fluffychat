@@ -2989,5 +2989,7 @@
     }
   },
   "hideUnimportantStateEvents": "Masquer les événements d'état sans importance",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Ne plus afficher",
+  "@doNotShowAgain": {}
 }
