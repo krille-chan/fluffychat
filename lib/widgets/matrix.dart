@@ -491,10 +491,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     store.getItem(SettingKeys.chatColor).then((value) {
       if (value != null && int.tryParse(value) != null) {
         AppConfig.colorSchemeSeed = Color(int.parse(value));
-        AdaptiveTheme.of(context).setTheme(
-          light: FluffyThemes.buildTheme(Brightness.light),
-          dark: FluffyThemes.buildTheme(Brightness.dark),
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          AdaptiveTheme.of(context).setTheme(
+            light: FluffyThemes.buildTheme(Brightness.light),
+            dark: FluffyThemes.buildTheme(Brightness.dark),
+          );
+        });
       }
     });
   }
