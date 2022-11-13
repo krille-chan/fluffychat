@@ -19,6 +19,8 @@ void main() async {
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final clients = await ClientManager.getClients();
+  await clients.first.roomsLoading;
+  await clients.first.accountDataLoading;
 
   if (PlatformInfos.isMobile) {
     BackgroundPush.clientOnly(clients.first);
