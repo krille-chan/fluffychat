@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
@@ -19,8 +20,11 @@ void main() async {
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final clients = await ClientManager.getClients();
-  await clients.first.roomsLoading;
-  await clients.first.accountDataLoading;
+
+  // Preload first client
+  final firstClient = clients.firstOrNull;
+  await firstClient?.roomsLoading;
+  await firstClient?.accountDataLoading;
 
   if (PlatformInfos.isMobile) {
     BackgroundPush.clientOnly(clients.first);
