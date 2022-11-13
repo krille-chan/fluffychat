@@ -668,7 +668,7 @@ class ChatListController extends State<ChatList>
   Future<void> _checkTorBrowser() async {
     if (!kIsWeb) return;
     final isTor = await TorBrowserDetector.isTorBrowser;
-    setState(() => isTorBrowser = isTor);
+    isTorBrowser = isTor;
   }
 
   Future<void> dehydrate() =>
