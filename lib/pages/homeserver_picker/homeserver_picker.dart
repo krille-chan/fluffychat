@@ -59,7 +59,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
 
     final isTor = await TorBrowserDetector.isTorBrowser;
-    setState(() => isTorBrowser = isTor);
+    isTorBrowser = isTor;
   }
 
   void _updateFocus() {
