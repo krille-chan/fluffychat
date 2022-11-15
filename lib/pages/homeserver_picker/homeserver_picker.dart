@@ -180,8 +180,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   Future<void> restoreBackup() async {
-    final file =
-        await FilePickerCross.importFromStorage(fileExtension: '.fluffybackup');
+    final file = await FilePickerCross.importFromStorage();
     if (file.fileName == null) return;
     await showFutureLoadingDialog(
         context: context,
