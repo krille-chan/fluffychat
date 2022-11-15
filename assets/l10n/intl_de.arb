@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} hat die Einladung angenommen",
+  "acceptedTheInvitation": "👍 {username} hat die Einladung angenommen",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -28,7 +28,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} hat Ende-zu-Ende Verschlüsselung aktiviert",
+  "activatedEndToEndEncryption": "🔐 {username} hat Ende-zu-Ende Verschlüsselung aktiviert",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -617,7 +617,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} hat den Chat erstellt",
+  "createdTheChat": "💬 {username} hat den Chat erstellt",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1122,7 +1122,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} hat {targetName} eingeladen",
+  "invitedUser": "📩 {username} hat {targetName} eingeladen",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1158,7 +1158,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} ist dem Chat beigetreten",
+  "joinedTheChat": "👋 {username} ist dem Chat beigetreten",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1180,7 +1180,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} hat {targetName} hinausgeworfen",
+  "kicked": "👞 {username} hat {targetName} hinausgeworfen",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1188,7 +1188,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} hat {targetName} hinausgeworfen und verbannt",
+  "kickedAndBanned": "🙅 {username} hat {targetName} hinausgeworfen und verbannt",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1356,7 +1356,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Neue Nachricht in FluffyChat",
+  "newMessageInFluffyChat": "💬 Neue Nachricht in FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1937,35 +1937,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} hat eine Datei gesendet",
+  "sentAFile": "📁 {username} hat eine Datei gesendet",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} hat eine Audio-Datei gesendet",
+  "sentAnAudio": "🎤 {username} hat eine Audio-Datei gesendet",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} hat ein Bild gesendet",
+  "sentAPicture": "🖼️ {username} hat ein Bild gesendet",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} hat einen Sticker gesendet",
+  "sentASticker": "😊 {username} hat einen Sticker gesendet",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} hat ein Video gesendet",
+  "sentAVideo": "🎥 {username} hat ein Video gesendet",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2311,7 +2311,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} hat den Chat verlassen",
+  "userLeftTheChat": "🚪 {username} hat den Chat verlassen",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2610,7 +2610,7 @@
   "@iWroteDownTheKey": {},
   "yourChatBackupHasBeenSetUp": "Dein Chat-Backup wurde eingerichtet.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Um deine Nachrichten zu schützen, haben wir einen Sicherheitsschlüssel für dich generiert.\nBewahre ihn bitte an einem sicheren Ort auf, wie zum Beispiel einem Passwort-Manager.",
+  "setupChatBackupDescription": "Um deine Nachrichten zu schützen, haben wir einen Wiederherstellungsschlüssel für dich generiert.\nBewahre ihn bitte an einem sicheren Ort auf, wie zum Beispiel einem Passwort-Manager.",
   "@setupChatBackupDescription": {},
   "unverified": "Unverifiziert",
   "@unverified": {},
@@ -2797,7 +2797,7 @@
   "@errorAddingWidget": {},
   "previousAccount": "Vorheriger Account",
   "@previousAccount": {},
-  "separateChatTypes": "Separate Direktchats, Gruppen und Spaces",
+  "separateChatTypes": "Separate Direktchats und Gruppen",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2811,13 +2811,13 @@
   },
   "widgetNameError": "Bitte gib einen Anzeigenamen an.",
   "@widgetNameError": {},
-  "youKicked": "Du hast {user} rausgeworfen",
+  "youKicked": "👞 Du hast {user} rausgeworfen",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Du hast {user} rausgeworfen und verbannt",
+  "youKickedAndBanned": "🙅 Du hast {user} rausgeworfen und verbannt",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2833,7 +2833,7 @@
   "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "Du bist dem Chat beigetreten",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Du hast die Einladung angenommen",
+  "youAcceptedTheInvitation": "👍 Du hast die Einladung angenommen",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "Du hast den {user} verbannt",
   "@youBannedUser": {
@@ -2847,13 +2847,13 @@
       "user": {}
     }
   },
-  "youInvitedBy": "Du wurdest von {user} eingeladen",
+  "youInvitedBy": "📩 Du wurdest von {user} eingeladen",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Du hast {user} eingeladen",
+  "youInvitedUser": "📩 Du hast {user} eingeladen",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2930,10 +2930,66 @@
   "@users": {},
   "storeInSecureStorageDescription": "Speicher den Wiederherstellungsschlüssel im sicheren Speicher dieses Geräts.",
   "@storeInSecureStorageDescription": {},
-  "storeInAppleKeyChain": "Im Android KeyStore speichern",
+  "storeInAppleKeyChain": "Im Apple KeyChain speichern",
   "@storeInAppleKeyChain": {},
   "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, FluffyChat auszuführen.",
   "@indexedDbErrorLong": {},
   "stories": "Status",
-  "@stories": {}
+  "@stories": {},
+  "confirmMatrixId": "Bitte bestätigen deine Matrix-ID, um dein Konto zu löschen.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "das sollte sein {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "commandHint_markasdm": "Als Direktnachrichtenraum markieren",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Als Gruppe markieren",
+  "@commandHint_markasgroup": {},
+  "hideUnimportantStateEvents": "Blende unwichtige Zustandsereignisse aus",
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Nicht mehr anzeigen",
+  "@doNotShowAgain": {},
+  "appearOnTopDetails": "Ermöglicht, dass die App oben angezeigt wird (nicht erforderlich, wenn Sie Fluffychat bereits als Anrufkonto eingerichtet haben)",
+  "@appearOnTopDetails": {},
+  "noKeyForThisMessage": "Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Gerät bei deinem Konto angemeldet hast.\n\nEs ist auch möglich, dass der Absender dein Gerät blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon übertragen! Gehe zu denEinstellungen > Geräte und vergewissere dich, dass sich deine Geräte gegenseitig verifiziert haben. Wenn du den Raum das nächste Mal öffnest und beide Sitzungen im Vordergrund sind, werden die Schlüssel automatisch übertragen.\n\nDu möchtest die Schlüssel beim Abmelden oder Gerätewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast.",
+  "@noKeyForThisMessage": {},
+  "foregroundServiceRunning": "Diese Benachrichtigung wird angezeigt, wenn der Vordergrunddienst ausgeführt wird.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "Bildschirm teilen",
+  "@screenSharingTitle": {},
+  "callingPermissions": "Anrufberechtigungen",
+  "@callingPermissions": {},
+  "callingAccount": "Anrufkonto",
+  "@callingAccount": {},
+  "callingAccountDetails": "Ermöglicht FluffyChat, die native Android-Dialer-App zu verwenden.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Oben erscheinen",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Mikrofon, Kamera und andere FluffyChat-Berechtigungen",
+  "@otherCallingPermissions": {},
+  "whyIsThisMessageEncrypted": "Warum ist diese Nachricht nicht lesbar?",
+  "@whyIsThisMessageEncrypted": {},
+  "newGroup": "Neue Gruppe",
+  "@newGroup": {},
+  "newSpace": "Neuer Raum",
+  "@newSpace": {},
+  "enterSpace": "Raum betreten",
+  "@enterSpace": {},
+  "enterRoom": "Raum betreten",
+  "@enterRoom": {},
+  "allSpaces": "Alle Räume",
+  "@allSpaces": {},
+  "screenSharingDetail": "Du teilst deinen Bildschirm in FuffyChat",
+  "@screenSharingDetail": {},
+  "numChats": "{number} Chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  }
 }
