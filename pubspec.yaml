@@ -60,7 +60,7 @@ dependencies:
   just_audio: ^0.9.20
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
-  matrix: ^0.15.2
+  matrix: ^0.15.4
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0

@@ -44,6 +44,12 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_markasdm;
     case 'markasgroup':
       return l10n.commandHint_markasgroup;
+    case 'googly':
+      return l10n.commandHint_googly;
+    case 'hug':
+      return l10n.commandHint_hug;
+    case 'cuddle':
+      return l10n.commandHint_cuddle;
     default:
       return "";
   }

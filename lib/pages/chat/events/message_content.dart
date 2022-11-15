@@ -14,6 +14,7 @@ import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import '../../bootstrap/bootstrap_dialog.dart';
 import 'audio_player.dart';
+import 'cute_events.dart';
 import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
@@ -108,6 +109,8 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
             return Sticker(event);
+          case CuteEventContent.eventType:
+            return CuteContent(event);
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {
               return AudioPlayerWidget(

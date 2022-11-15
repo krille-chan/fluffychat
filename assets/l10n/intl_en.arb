@@ -103,6 +103,30 @@
     "type": "text",
     "placeholders": {}
   },
+  "commandHint_googly":"Send some googly eyes",
+  "commandHint_cuddle": "Send a cuddle",
+  "commandHint_hug": "Send a hug",
+  "googlyEyesContent": "{senderName} sends you googly eyes",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} cuddles you",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} hugs you",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
   "answeredTheCall": "{senderName} answered the call",
   "@answeredTheCall": {
     "type": "text",
