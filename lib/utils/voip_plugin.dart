@@ -205,12 +205,6 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  Future<webrtc_impl.MediaStream> cloneStream(webrtc_impl.MediaStream stream) {
-    // TODO: implement cloneStream
-    throw UnimplementedError();
-  }
-
-  @override
   // TODO: implement canHandleNewCall
   bool get canHandleNewCall =>
       voip.currentCID == null && voip.currentGroupCID == null;
