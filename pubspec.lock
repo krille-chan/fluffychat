@@ -273,7 +273,7 @@ packages:
       name: dart_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.9"
+    version: "1.0.11"
   dbus:
     dependency: transitive
     description:
@@ -692,7 +692,7 @@ packages:
       name: flutter_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.11"
+    version: "0.9.16"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -977,7 +977,7 @@ packages:
       name: matrix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.15.0"
+    version: "0.15.2"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1941,7 +1941,7 @@ packages:
       name: webrtc_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.8"
+    version: "1.0.10"
   win32:
     dependency: transitive
     description:
