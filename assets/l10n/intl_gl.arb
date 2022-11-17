@@ -2989,5 +2989,7 @@
     }
   },
   "hideUnimportantStateEvents": "Agochar os eventos de menor relevancia",
-  "@hideUnimportantStateEvents": {}
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Non mostrar outra vez",
+  "@doNotShowAgain": {}
 }
