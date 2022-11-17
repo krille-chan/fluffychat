@@ -10,7 +10,6 @@ dependencies:
   adaptive_dialog: ^1.5.1
   adaptive_theme: ^3.0.0
   animations: ^2.0.2
-  async: ^2.8.2
   badges: ^2.0.3
   blurhash_dart: ^1.1.0
   callkeep: ^0.3.2
@@ -46,8 +45,6 @@ dependencies:
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
   flutter_secure_storage: ^6.0.0
-  flutter_slidable: ^2.0.0
-  flutter_svg: ^0.22.0
   flutter_typeahead: ^4.0.0
   flutter_web_auth: ^0.5.0
   flutter_webrtc: ^0.9.11
@@ -63,8 +60,6 @@ dependencies:
   just_audio: ^0.9.20
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
-  localstorage: ^4.0.0+1
-  lottie: ^1.2.2
   matrix: ^0.15.2
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
@@ -89,7 +84,6 @@ dependencies:
   unifiedpush: ^4.0.0
   universal_html: ^2.0.8
   url_launcher: ^6.0.20
-  uuid: ^3.0.6
   vibration: ^1.7.4-nullsafety.0
   video_compress: ^3.1.1
   video_player: ^2.2.18

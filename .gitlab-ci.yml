@@ -26,7 +26,7 @@ widget_test:
   script: [flutter test]
 
 # the basic integration test configuration testing FLOSS builds on Synapse
-integration_test:
+.integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
   services:
@@ -60,8 +60,8 @@ integration_test:
   timeout: 20m
 
 # extending the default tests to test the Google-flavored builds
-integration_test_google:
-  extends: integration_test
+.integration_test_google:
+  extends: .integration_test
   script:
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
@@ -69,8 +69,8 @@ integration_test_google:
   allow_failure: true
 
 # extending the default tests to use Conduit as local homeserver
-integration_test_conduit:
-  extends: integration_test
+.integration_test_conduit:
+  extends: .integration_test
   before_script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
@@ -84,8 +84,8 @@ integration_test_conduit:
   allow_failure: true
 
 # extending the default tests to use Dendrite as local homeserver
-integration_test_dendrite:
-  extends: integration_test
+.integration_test_dendrite:
+  extends: .integration_test
   before_script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
@@ -98,7 +98,7 @@ integration_test_dendrite:
     - curl docker:8008/_matrix/static/ 2> /dev/null | grep "404 page not found" 1> /dev/null && echo "Dendrite is running!"
   allow_failure: true
 
-release_mode_launches:
+.release_mode_launches:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
   script:
@@ -111,8 +111,8 @@ release_mode_launches:
     - android
   timeout: 20m
 
-release_mode_launches_google:
-  extends: release_mode_launches
+.release_mode_launches_google:
+  extends: .release_mode_launches
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
   allow_failure: true
