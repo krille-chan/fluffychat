@@ -685,7 +685,7 @@ packages:
       name: flutter_webrtc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.14"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
