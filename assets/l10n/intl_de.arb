@@ -1510,7 +1510,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoppla! Etwas ist schief gelaufen…",
+  "oopsSomethingWentWrong": "Hoppla! Etwas ist schiefgelaufen …",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2768,14 +2768,14 @@
   "@confirmEventUnpin": {},
   "dismiss": "Verwerfen",
   "@dismiss": {},
-  "switchToAccount": "Zum Account {number} wechseln",
+  "switchToAccount": "Zu Konto {number} wechseln",
   "@switchToAccount": {
     "type": "number",
     "placeholders": {
       "number": {}
     }
   },
-  "nextAccount": "Nächster Account",
+  "nextAccount": "Nächstes Konto",
   "@nextAccount": {},
   "editWidgets": "Widgets bearbeiten",
   "@editWidgets": {},
@@ -2795,7 +2795,7 @@
   "@widgetUrlError": {},
   "errorAddingWidget": "Fehler beim Hinzufügen des Widgets.",
   "@errorAddingWidget": {},
-  "previousAccount": "Vorheriger Account",
+  "previousAccount": "Vorheriges Konto",
   "@previousAccount": {},
   "separateChatTypes": "Separate Direktchats und Gruppen",
   "@separateChatTypes": {
