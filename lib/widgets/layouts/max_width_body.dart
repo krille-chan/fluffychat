@@ -15,24 +15,26 @@ class MaxWidthBody extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final padding = EdgeInsets.symmetric(
-          horizontal: max(0, (constraints.maxWidth - maxWidth) / 2),
-        );
-        return withScrolling
-            ? SingleChildScrollView(
-                physics: const ScrollPhysics(),
-                child: Padding(
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final padding = EdgeInsets.symmetric(
+            horizontal: max(0, (constraints.maxWidth - maxWidth) / 2),
+          );
+          return withScrolling
+              ? SingleChildScrollView(
+                  physics: const ScrollPhysics(),
+                  child: Padding(
+                    padding: padding,
+                    child: child,
+                  ),
+                )
+              : Padding(
                   padding: padding,
                   child: child,
-                ),
-              )
-            : Padding(
-                padding: padding,
-                child: child,
-              );
-      },
+                );
+        },
+      ),
     );
   }
 }
