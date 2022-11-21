@@ -2985,5 +2985,32 @@
   "hideUnimportantStateEvents": "Sembunyikan peristiwa keadaan yang tidak penting",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Jangan tampilkan lagi",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "hugContent": "{senderName} memeluk kamu",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "googlyEyesContent": "{senderName} mengirim mata googly",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} berpelukan dengan kamu",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Kirim mata googly",
+  "@commandHint_googly": {},
+  "commandHint_hug": "Kirim pelukan",
+  "@commandHint_hug": {},
+  "commandHint_cuddle": "Kirim berpelukan",
+  "@commandHint_cuddle": {}
 }
