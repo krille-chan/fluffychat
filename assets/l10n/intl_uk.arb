@@ -2986,5 +2986,32 @@
   "hideUnimportantStateEvents": "Сховати неважливі державні свята",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Не показувати знову",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "commandHint_cuddle": "Надіслати пригортайку",
+  "@commandHint_cuddle": {},
+  "googlyEyesContent": "{senderName} надсилає вам гугл-очі",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Надіслати кілька гугл-очей",
+  "@commandHint_googly": {},
+  "commandHint_hug": "Надіслати обійми",
+  "@commandHint_hug": {},
+  "cuddleContent": "{senderName} пригортається до вас",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} обіймає вас",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
