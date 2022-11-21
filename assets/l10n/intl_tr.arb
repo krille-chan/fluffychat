@@ -2991,5 +2991,32 @@
   "hideUnimportantStateEvents": "Önemsiz durum etkinliklerini gizle",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Tekrar gösterme",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "googlyEyesContent": "{senderName} size şaşkın gözler gönderiyor",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_cuddle": "Kucaklama gönder",
+  "@commandHint_cuddle": {},
+  "commandHint_googly": "Şaşkın gözler gönder",
+  "@commandHint_googly": {},
+  "commandHint_hug": "Sarılma gönder",
+  "@commandHint_hug": {},
+  "cuddleContent": "{senderName} sizi kucaklıyor",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} size sarılıyor",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
