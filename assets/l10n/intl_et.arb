@@ -2991,5 +2991,32 @@
   "hideUnimportantStateEvents": "Peida väheolulised olekuteated",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Ära näita uuesti",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "commandHint_cuddle": "Saada üks kaisutus",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Saada üks kallistus",
+  "@commandHint_hug": {},
+  "googlyEyesContent": "{senderName} saatis sulle otsivad silmad",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} kaisutab sind",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} kallistab sind",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Saada ühed otsivad silmad",
+  "@commandHint_googly": {}
 }
