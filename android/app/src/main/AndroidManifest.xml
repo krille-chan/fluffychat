@@ -117,7 +117,8 @@
         <service android:name="io.wazo.callkeep.VoiceConnectionService"
           android:label="Wazo"
           android:foregroundServiceType="camera|microphone|mediaProjection"
-          android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE">
+          android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
+          android:exported="true">
           <intent-filter>
               <action android:name="android.telecom.ConnectionService" />
           </intent-filter>
