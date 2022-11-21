@@ -96,6 +96,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         homeserverList,
         timeout: const Duration(seconds: 10),
       );
+      if (!mounted) return;
       setState(() {
         benchmarkResults = benchmark;
       });
