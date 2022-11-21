@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
@@ -12,7 +11,7 @@ extension LocalizedBody on Event {
   Future<LoadingDialogResult<MatrixFile?>> _getFile(BuildContext context) =>
       showFutureLoadingDialog(
         context: context,
-        future: () => downloadAndDecryptAttachmentCached(),
+        future: downloadAndDecryptAttachment,
       );
 
   void saveFile(BuildContext context) async {
@@ -47,39 +46,4 @@ extension LocalizedBody on Event {
       .tryGetMap<String, dynamic>('info')
       ?.tryGet<int>('size')
       ?.sizeString;
-
-  static final _downloadAndDecryptFutures = <String, Future<MatrixFile>>{};
-
-  Future<bool> isAttachmentCached({bool getThumbnail = false}) async {
-    final mxcUrl = attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail);
-    if (mxcUrl == null) return false;
-    // check if we have it in-memory
-    if (_downloadAndDecryptFutures.containsKey(mxcUrl)) {
-      return true;
-    }
-    // check if it is stored
-    if (await isAttachmentInLocalStore(getThumbnail: getThumbnail)) {
-      return true;
-    }
-    // check if the url is cached
-    final url = mxcUrl.getDownloadLink(room.client);
-    final file = await DefaultCacheManager().getFileFromCache(url.toString());
-    return file != null;
-  }
-
-  Future<MatrixFile?> downloadAndDecryptAttachmentCached(
-      {bool getThumbnail = false}) async {
-    final mxcUrl =
-        attachmentOrThumbnailMxcUrl(getThumbnail: getThumbnail)?.toString() ??
-            eventId;
-    _downloadAndDecryptFutures[mxcUrl] ??= downloadAndDecryptAttachment(
-      getThumbnail: getThumbnail,
-      downloadCallback: (Uri url) async {
-        final file = await DefaultCacheManager().getSingleFile(url.toString());
-        return await file.readAsBytes();
-      },
-    );
-    final res = await _downloadAndDecryptFutures[mxcUrl];
-    return res;
-  }
 }

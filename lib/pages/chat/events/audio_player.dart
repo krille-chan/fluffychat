@@ -60,9 +60,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (status != AudioPlayerStatus.notDownloaded) return;
     setState(() => status = AudioPlayerStatus.downloading);
     try {
-      final matrixFile =
-          await widget.event.downloadAndDecryptAttachmentCached();
-      if (matrixFile == null) throw ('Download failed');
+      final matrixFile = await widget.event.downloadAndDecryptAttachment();
       final tempDir = await getTemporaryDirectory();
       final fileName = Uri.encodeComponent(
           widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
