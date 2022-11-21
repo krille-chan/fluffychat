@@ -8,7 +8,7 @@ index 001fbd72..339b35af 100644
          applicationId "chat.fluffy.fluffychat"
 -        minSdkVersion 16
 +        minSdkVersion 19
-         targetSdkVersion 30
+         targetSdkVersion 31
          versionCode flutterVersionCode.toInteger()
          versionName flutterVersionName
 @@ -68,6 +68,10 @@ android {
