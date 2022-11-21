@@ -14,7 +14,7 @@ lib/generated_plugin_registrant.dart
 prime
 
 # libolm package
-/assets/js/package/*
+/assets/js/package
 
 # IntelliJ related
 *.iml
@@ -62,4 +62,3 @@ ios/Podfile.lock
 /linux/out
 /macos/out
 .vs
-assets/js/package/olm.js
