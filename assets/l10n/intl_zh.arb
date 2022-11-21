@@ -2991,5 +2991,32 @@
   "hideUnimportantStateEvents": "隐藏不重要的状态事件",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "不再显示",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "googlyEyesContent": "{senderName} 给你发送了“大眼”表情",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "发送 一些“大眼”",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "发送“拥抱”",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "发送“搂抱”",
+  "@commandHint_hug": {},
+  "cuddleContent": "{senderName} 拥抱了你",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} 搂抱了你",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
