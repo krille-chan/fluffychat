@@ -34,7 +34,9 @@ class PublicRoomBottomSheet extends StatelessWidget {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog<String>(
       context: context,
-      future: () => client.joinRoom(roomAlias ?? chunk!.roomId),
+      future: () => chunk?.joinRule == 'knock'
+          ? client.knockRoom(chunk!.roomId)
+          : client.joinRoom(roomAlias ?? chunk!.roomId),
     );
     if (result.error == null) {
       if (client.getRoomById(result.result!) == null) {
