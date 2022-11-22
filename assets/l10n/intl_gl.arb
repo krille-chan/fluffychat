@@ -2991,5 +2991,32 @@
   "hideUnimportantStateEvents": "Agochar os eventos de menor relevancia",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Non mostrar outra vez",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "commandHint_googly": "Envía uns ollos desos grandes",
+  "@commandHint_googly": {},
+  "googlyEyesContent": "{senderName} enviouche uns ollos grandes",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} mándache un achuche",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_cuddle": "Envía un agarimo",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Envía un abrazo",
+  "@commandHint_hug": {},
+  "hugContent": "{senderName} abrázate",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
