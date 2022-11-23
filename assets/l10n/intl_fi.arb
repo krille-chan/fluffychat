@@ -39,7 +39,7 @@
       "username": {}
     }
   },
-  "activatedEndToEndEncryption": "{username} otti käyttöön päästä-päähän salauksen",
+  "activatedEndToEndEncryption": "🔐 {username} otti käyttöön päästä-päähän salauksen",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -887,7 +887,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} kutsui käyttäjän {targetName}",
+  "invitedUser": "📩 {username} kutsui käyttäjän {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -918,7 +918,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} potki käyttäjän {targetName}",
+  "kicked": "👞 {username} potki käyttäjän {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -926,7 +926,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} potki ja antoi porttikiellon käyttäjälle {targetName}",
+  "kickedAndBanned": "🙅 {username} potki ja antoi porttikiellon käyttäjälle {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1079,7 +1079,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Uusi viesti FluffyChätissä",
+  "newMessageInFluffyChat": "💬 Uusi viesti FluffyChätissä",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1482,7 +1482,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} liittyi keskusteluun",
+  "joinedTheChat": "👋 {username} liittyi keskusteluun",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -2076,7 +2076,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} poistui keskustelusta",
+  "userLeftTheChat": "🚪 {username} poistui keskustelusta",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2341,14 +2341,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} lähetti tiedoston",
+  "sentAFile": "📁 {username} lähetti tiedoston",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} lähetti ääniviestin",
+  "sentAnAudio": "🎤 {username} lähetti ääniviestin",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
@@ -2464,21 +2464,21 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAPicture": "{username} lähetti kuvan",
+  "sentAPicture": "🖼️ {username} lähetti kuvan",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} lähetti tarran",
+  "sentASticker": "😊 {username} lähetti tarran",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} lähetti videon",
+  "sentAVideo": "🎥 {username} lähetti videon",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2791,7 +2791,7 @@
   "@youRejectedTheInvitation": {},
   "youJoinedTheChat": "Liityit keskusteluun",
   "@youJoinedTheChat": {},
-  "youAcceptedTheInvitation": "Hyväksyit kutsun",
+  "youAcceptedTheInvitation": "👍 Hyväksyit kutsun",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "Annoit porttikiellon käyttäjälle {user}",
   "@youBannedUser": {
@@ -2805,25 +2805,25 @@
       "user": {}
     }
   },
-  "youInvitedBy": "{user} kutsui sinut",
+  "youInvitedBy": "📩 {user} kutsui sinut",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Poistit käyttäjän {user} keskustelusta",
+  "youKicked": "👞 Potkit käyttäjän {user} keskustelusta",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Kutsuit käyttäjän {user}",
+  "youInvitedUser": "📩 Kutsuit käyttäjän {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Poistit ja annoit porttikiellon käyttäjälle {user}",
+  "youKickedAndBanned": "🙅 Potkit ja annoit porttikiellon käyttäjälle {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2960,6 +2960,44 @@
   "@otherCallingPermissions": {},
   "newGroup": "Uusi ryhmä",
   "@newGroup": {},
-  "screenSharingDetail": "Jaat ruutuasi famedlyssä",
-  "@screenSharingDetail": {}
+  "screenSharingDetail": "Jaat ruutuasi FluffyChatissä",
+  "@screenSharingDetail": {},
+  "hugContent": "{senderName} halaa sinua",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} kokovartalohalaa sinua",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_hug": "Lähetä halaus",
+  "@commandHint_hug": {},
+  "googlyEyesContent": "{senderName} lähettää askartelusilmiä",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "numChats": "{number} keskustelua",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "commandHint_googly": "Lähetä askartelusilmiä",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Lähetä kokovartaluhalaus",
+  "@commandHint_cuddle": {},
+  "hideUnimportantStateEvents": "Piilota ei-niin-tärkeät tilatapahtumat",
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Älä näytä uudelleen",
+  "@doNotShowAgain": {}
 }
