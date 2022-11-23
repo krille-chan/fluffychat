@@ -1,3 +1,6 @@
+## v1.7.1 2022 11-23
+Minor bugfix release to retrigger build for FlatPak and Android. Fixes some style bugs and updates some translations
+
 ## v1.7.0 2022-11-17
 FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work has also been done under the hood to make the app faster and more stable. The main color has slightly changed and the design got some finetuning.
 
