@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} heeft de uitnodiging geaccepteerd",
+  "acceptedTheInvitation": "👍 {username} heeft de uitnodiging geaccepteerd",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} heeft eind-tot-eindversleuteling geactiveerd",
+  "activatedEndToEndEncryption": "🔐 {username} heeft eind-tot-eindversleuteling geactiveerd",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -630,7 +630,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} heeft de chat gemaakt",
+  "createdTheChat": "💬 {username} heeft de chat gemaakt",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1135,7 +1135,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} heeft {targetName} uitgenodigd",
+  "invitedUser": "📩 {username} heeft {targetName} uitgenodigd",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1171,7 +1171,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} is toegetreden tot de chat",
+  "joinedTheChat": "👋 {username} is toegetreden tot de chat",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1193,7 +1193,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} heeft {targetName} verwijderd",
+  "kicked": "👞 {username} heeft {targetName} verwijderd",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1201,7 +1201,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} heeft {targetName} verwijderd en verbannen",
+  "kickedAndBanned": "🙅 {username} heeft {targetName} verwijderd en verbannen",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1369,7 +1369,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Nieuw bericht in FluffyChat",
+  "newMessageInFluffyChat": "💬 Nieuw bericht in FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1958,35 +1958,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} heeft een bestand verzonden",
+  "sentAFile": "📁 {username} heeft een bestand verzonden",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} heeft een audio verzonden",
+  "sentAnAudio": "🎤 {username} heeft een audio verzonden",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} heeft een afbeelding verzonden",
+  "sentAPicture": "🖼️ {username} heeft een afbeelding verzonden",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} heeft een sticker verzonden",
+  "sentASticker": "😊 {username} heeft een sticker verzonden",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} heeft een video verzonden",
+  "sentAVideo": "🎥 {username} heeft een video verzonden",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2332,7 +2332,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} is vertrokken uit de chat",
+  "userLeftTheChat": "🚪 {username} is vertrokken uit de chat",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2808,7 +2808,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAcceptedTheInvitation": "Je hebt de uitnodiging geaccepteerd",
+  "youAcceptedTheInvitation": "👍 Je hebt de uitnodiging geaccepteerd",
   "@youAcceptedTheInvitation": {},
   "youRejectedTheInvitation": "Je hebt de uitnodiging afgewezen",
   "@youRejectedTheInvitation": {},
@@ -2826,25 +2826,25 @@
       "user": {}
     }
   },
-  "youInvitedBy": "Je bent uitgenodigd door {user}",
+  "youInvitedBy": "📩 Je bent uitgenodigd door {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Je hebt {user} uitgenodigd",
+  "youInvitedUser": "📩 Je hebt {user} uitgenodigd",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKicked": "Je hebt {user} weggestuurd",
+  "youKicked": "👞 Je hebt {user} weggestuurd",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Je hebt weggestuurd en verbannen {user}",
+  "youKickedAndBanned": "🙅 Je hebt weggestuurd en verbannen {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2990,5 +2990,32 @@
   "hideUnimportantStateEvents": "Onbelangrijke statusgebeurtenissen verbergen",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Niet meer tonen",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "googlyEyesContent": "{senderName} stuurt je wiebelogen",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Wat wiebelogen versturen",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Een knuffel versturen",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Een knuffel versturen",
+  "@commandHint_hug": {},
+  "cuddleContent": "{senderName} knuffelt je",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} omhelst je",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
