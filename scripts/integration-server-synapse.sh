@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-chown -R 991:991 integration_test/synapse
-docker run -d --name synapse --user 991:991 --volume="$(pwd)/integration_test/synapse/data":/data:rw -p 8008:8008 matrixdotorg/synapse:latest
-sleep 20
+docker run -d --name synapse --tmpfs /data \
+    --volume="$(pwd)/integration_test/synapse/data/homeserver.yaml":/data/homeserver.yaml:rw \
+    --volume="$(pwd)/integration_test/synapse/data/localhost.log.config":/data/localhost.log.config:rw \
+    -p 80:80 matrixdotorg/synapse:latest

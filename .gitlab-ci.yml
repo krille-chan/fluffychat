@@ -20,18 +20,30 @@ code_analyze:
   artifacts:
     reports:
       codequality: code-quality-report.json
+  tags:
+    - docker
+    - famedly
 
 widget_test:
   stage: test
   script: [flutter test]
+  tags:
+    - docker
+    - famedly
 
 # the basic integration test configuration testing FLOSS builds on Synapse
-.integration_test:
+integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
   services:
     - name: docker:dind
       alias: docker
+  parallel:
+    matrix:
+      - HOMESERVER_IMPLEMENTATION:
+          - synapse
+          - dendrite
+          - conduit
   variables:
     # activate container-to-container networking
     FF_NETWORK_PER_BUILD: "true"
@@ -41,81 +53,64 @@ widget_test:
     DOCKER_DRIVER: overlay2
     # Disable TLS since we're running inside local network.
     DOCKER_TLS_CERTDIR: ""
+    HOMESERVER: "docker"
   before_script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
     - scripts/integration-prepare-alpine.sh
+    # create test user environment variables
+    - source scripts/integration-create-environment-variables.sh
     # create Synapse instance
-    - scripts/integration-server-synapse.sh
+    - scripts/integration-server-${HOMESERVER_IMPLEMENTATION}.sh
     # properly set the homeserver IP and create test users
     - scripts/integration-prepare-homeserver.sh
-    # ensure the homeserver works
-    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "It works! Synapse is running"
   script:
     - flutter pub get
     - flutter test integration_test
-  allow_failure: true
   tags:
-    - android
+    - docker
+    - famedly
   timeout: 20m
 
+
+# integration tests for Linux builds
+.integration_test_linux:
+  extends: integration_test
+  script:
+    - apk add cmake ninja gtk+3.0-dev clang pkgconf xz-dev libsecret-dev jsoncpp-dev
+    - flutter pub get
+    - flutter test integration_test -d linux
+
 # extending the default tests to test the Google-flavored builds
-.integration_test_google:
-  extends: .integration_test
+integration_test_proprietary:
+  extends: integration_test
   script:
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
-  allow_failure: true
 
-# extending the default tests to use Conduit as local homeserver
-.integration_test_conduit:
-  extends: .integration_test
-  before_script:
-    # start AVD and keep running in background
-    - scripts/integration-start-avd.sh &
-    - scripts/integration-prepare-alpine.sh
-    # create Conduit instance
-    - scripts/integration-server-conduit.sh
-    # properly set the homeserver IP and create test users
-    - scripts/integration-prepare-homeserver.sh
-    # ensure the homeserver works
-    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "M_NOT_FOUND" 1> /dev/null && echo "Conduit is running!"
-  allow_failure: true
-
-# extending the default tests to use Dendrite as local homeserver
-.integration_test_dendrite:
-  extends: .integration_test
-  before_script:
-    # start AVD and keep running in background
-    - scripts/integration-start-avd.sh &
-    - scripts/integration-prepare-alpine.sh
-    # create Dendrite instance
-    - scripts/integration-server-dendrite.sh
-    # properly set the homeserver IP and create test users
-    - scripts/integration-prepare-homeserver.sh
-    # ensure the homeserver works
-    - curl docker:8008/_matrix/static/ 2> /dev/null | grep "404 page not found" 1> /dev/null && echo "Dendrite is running!"
-  allow_failure: true
-
-.release_mode_launches:
+release_mode_launches:
+  parallel:
+    matrix:
+      - FLAVOR:
+          - floss
+          - proprietary
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
+  before_script:
+    - |
+        if [ "$FLAVOR" == "proprietary" ]; then
+          git apply ./scripts/enable-android-google-services.patch
+        fi
   script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
     # generate temporary release build configuration and ensure app launches
     - scripts/integration-check-release-build.sh
-  allow_failure: true
   tags:
-    - android
+    - docker
+    - famedly
   timeout: 20m
-
-.release_mode_launches_google:
-  extends: .release_mode_launches
-  before_script:
-    - git apply ./scripts/enable-android-google-services.patch
-  allow_failure: true
 
 build_web:
   stage: build
@@ -144,7 +139,8 @@ build_android_debug:
   stage: build
   script: [./scripts/build-android-debug.sh]
   tags:
-    - android
+    - docker
+    - famedly
   artifacts:
     when: on_success
     paths:
@@ -160,7 +156,8 @@ build_android_apk:
     - ./scripts/prepare-android-release.sh
   script: [./scripts/build-android-apk.sh]
   tags:
-    - android
+    - docker
+    - famedly
   artifacts:
     when: on_success
     paths:
@@ -176,7 +173,8 @@ deploy_playstore_internal:
     - ./scripts/prepare-android-release.sh
   script: [./scripts/release-playstore-beta.sh]
   tags:
-    - android
+    - docker
+    - famedly
   artifacts:
     when: on_success
     paths:

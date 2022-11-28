@@ -1,8 +1,16 @@
+import 'dart:io';
+
 abstract class Users {
   const Users._();
-  static const alice = User('alice', 'AliceInWonderland');
-  static const bob = User('bob', 'JoWirSchaffenDas');
-  static const trudy = User('trudy', 'HaveIBeenPwned');
+
+  static final user1 = User(
+    Platform.environment['USER1_NAME'] ?? 'alice',
+    Platform.environment['USER1_PW'] ?? 'AliceInWonderland',
+  );
+  static final user2 = User(
+    Platform.environment['USER2_NAME'] ?? 'bob',
+    Platform.environment['USER2_PW'] ?? 'JoWirSchaffenDas',
+  );
 }
 
 class User {
@@ -12,5 +20,5 @@ class User {
   const User(this.name, this.password);
 }
 
-// https://stackoverflow.com/a/33088657
-const homeserver = 'http://10.0.2.2:8008';
+final homeserver =
+    'http://${Platform.environment['HOMESERVER'] ?? 'localhost'}';

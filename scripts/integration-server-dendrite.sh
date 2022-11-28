@@ -10,7 +10,5 @@ docker run --rm --entrypoint="" \
   -tls-cert /mnt/server.crt \
   -tls-key /mnt/server.key
 
- docker run -d --volume="$(pwd)/integration_test/dendrite/data":/etc/dendrite:rw \
-  --name dendrite -p 8008:8008 matrixdotorg/dendrite-monolith:latest -really-enable-open-registration
-
-sleep 20
+docker run -d --volume="$(pwd)/integration_test/dendrite/data":/etc/dendrite:rw \
+  --name dendrite -p 80:8008 matrixdotorg/dendrite-monolith:latest -really-enable-open-registration
