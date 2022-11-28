@@ -41,8 +41,8 @@ void main() {
 
       final inputs = find.byType(TextField);
 
-      await tester.enterText(inputs.first, Users.alice.name);
-      await tester.enterText(inputs.last, Users.alice.password);
+      await tester.enterText(inputs.first, Users.user1.name);
+      await tester.enterText(inputs.last, Users.user1.password);
       await tester.testTextInput.receiveAction(TextInputAction.done);
     });
   });
