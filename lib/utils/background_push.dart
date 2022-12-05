@@ -72,8 +72,6 @@ class BackgroundPush {
   bool upAction = false;
 
   BackgroundPush._(this.client) {
-    onLogin ??=
-        client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
@@ -123,7 +121,6 @@ class BackgroundPush {
 
   void handleLoginStateChanged(_) => setupPush();
 
-  StreamSubscription<LoginState>? onLogin;
   StreamSubscription<SyncUpdate>? onRoomSync;
 
   void _newFcmToken(String token) {

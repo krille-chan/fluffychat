@@ -360,6 +360,7 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
+    Matrix.of(context).backgroundPush?.setupPush();
 
     super.initState();
   }

@@ -78,7 +78,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   String? loginUsername;
   bool? loginRegistrationSupported;
 
-  BackgroundPush? _backgroundPush;
+  BackgroundPush? backgroundPush;
 
   Client get client {
     if (widget.clients.isEmpty) {
@@ -397,7 +397,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
 
     if (PlatformInfos.isMobile) {
-      _backgroundPush = BackgroundPush(
+      backgroundPush = BackgroundPush(
         client,
         context,
         widget.router,
@@ -444,7 +444,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     client.requestHistoryOnLimitedTimeline = !foreground;
     if (_firstStartup) {
       _firstStartup = false;
-      _backgroundPush?.setupPush();
+      backgroundPush?.setupPush();
     }
   }
 
@@ -514,7 +514,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     client.httpClient.close();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
-    _backgroundPush?.onLogin?.cancel();
+    backgroundPush?.onRoomSync?.cancel();
 
     linuxNotifications?.close();
 
