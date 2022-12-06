@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} aceitou o convite",
+  "acceptedTheInvitation": "👍 {username} aceitou o convite",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} ativou a criptografia ponta-a-ponta",
+  "activatedEndToEndEncryption": "🔐 {username} ativou a criptografia ponta-a-ponta",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -398,7 +398,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "O backup da sua conversa é protegido com sua chave de segurança. Por favor, evite perdê-la.",
+  "chatBackupDescription": "Suas mensagens antigas são protegidas com sua chave de recuperação. Por favor, evite perdê-la.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -621,7 +621,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} criou a conversa",
+  "createdTheChat": "💬 {username} criou a conversa",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1126,7 +1126,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} convidou {targetName}",
+  "invitedUser": "📩 {username} convidou {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1162,7 +1162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} entrou na conversa",
+  "joinedTheChat": "👋 {username} entrou na conversa",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1184,7 +1184,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} enxotou {targetName}",
+  "kicked": "👞 {username} enxotou {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -1192,7 +1192,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} expulsou e baniu {targetName}",
+  "kickedAndBanned": "🙅 {username} expulsou e baniu {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1360,7 +1360,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Nova mensagem no FluffyChat",
+  "newMessageInFluffyChat": "💬 Nova mensagem no FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1949,35 +1949,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} enviou um arquivo",
+  "sentAFile": "📁 {username} enviou um arquivo",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} enviou um audio",
+  "sentAnAudio": "🎤 {username} enviou um audio",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} enviou uma imagem",
+  "sentAPicture": "🖼️ {username} enviou uma imagem",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} enviou uma figurinha",
+  "sentASticker": "😊 {username} enviou uma figurinha",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} enviou um vídeo",
+  "sentAVideo": "🎥 {username} enviou um vídeo",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -2323,7 +2323,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} saiu da conversa",
+  "userLeftTheChat": "🚪 {username} saiu da conversa",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -2483,7 +2483,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Limpar o backup da conversa para criar uma nova chave de segurança?",
+  "wipeChatBackup": "Limpar o backup da conversa para criar uma nova chave de recuperação?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2579,7 +2579,7 @@
   },
   "yourChatBackupHasBeenSetUp": "Seu backup de conversas foi configurado.",
   "@yourChatBackupHasBeenSetUp": {},
-  "setupChatBackupDescription": "Para proteger suas mensagens, nós geramos uma chave de segurança para você.\nPor favor, guarde-a num lugar seguro, como um gerenciador de senhas.",
+  "setupChatBackupDescription": "Para proteger suas mensagens, nós geramos uma chave de recuperação para você.\nPor favor, guarde-a num lugar seguro, como um gerenciador de senhas.",
   "@setupChatBackupDescription": {},
   "removeFromSpaceDescription": "Isto remove esta conversa do atual espaço. Ela continuará visível sob \"Todas conversas\".",
   "@removeFromSpaceDescription": {},
@@ -2729,7 +2729,7 @@
   "@dismiss": {},
   "matrixWidgets": "Ferramentas Matrix",
   "@matrixWidgets": {},
-  "separateChatTypes": "Separar Conversas Diretas, Grupos e Espaços",
+  "separateChatTypes": "Separar Conversas Diretas e Grupos",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2824,29 +2824,29 @@
       "user": {}
     }
   },
-  "youInvitedBy": "Você foi convidado por {user}",
+  "youInvitedBy": "📩 Você foi convidado por {user}",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "youInvitedUser": "Você convidou {user}",
+  "youInvitedUser": "📩 Você convidou {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "youAcceptedTheInvitation": "Você aceitou o convite",
+  "youAcceptedTheInvitation": "👍 Você aceitou o convite",
   "@youAcceptedTheInvitation": {},
   "youJoinedTheChat": "Você entrou na conversa",
   "@youJoinedTheChat": {},
-  "youKicked": "Você expulsou {user}",
+  "youKicked": "👞 Você expulsou {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "youKickedAndBanned": "Você expulsou e baniu {user}",
+  "youKickedAndBanned": "🙅 Você expulsou e baniu {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2857,5 +2857,165 @@
     "placeholders": {
       "user": {}
     }
-  }
+  },
+  "cuddleContent": "{senderName} afagou você",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "pleaseEnterRecoveryKeyDescription": "Para destrancar suas mensagens antigas, por favor, insira sua chave de recuperação gerada numa sessão prévia. Suas chave de recuperação NÃO é sua senha.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "indexedDbErrorLong": "Infelizmente, o armazenamento de mensagens não é habilitado por padrão no modo privado.\nPor favor, visite\n- about:config\n- atribua \"true\" a \"dom.indexedDB.privateBrowsing.enabled\"\nDe outro modo, não será possível executar o FluffyChat.",
+  "@indexedDbErrorLong": {},
+  "users": "Usuários",
+  "@users": {},
+  "stories": "Stories",
+  "@stories": {},
+  "confirmMatrixId": "Por favor, confirme seu ID Matrix para apagar sua conta.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "Isto deveria ser {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "dehydrateTor": "Usuários TOR: Exportar sessão",
+  "@dehydrateTor": {},
+  "recoveryKey": "Chave de recuperação",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Perdeu a chave de recuperação?",
+  "@recoveryKeyLost": {},
+  "commandHint_cuddle": "Enviar um afago",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Enviar um abraço",
+  "@commandHint_hug": {},
+  "commandHint_googly": "Enviar olhos arregalados",
+  "@commandHint_googly": {},
+  "googlyEyesContent": "{senderName} enviou olhos arregalados",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} abraçou você",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "allSuggestedRoomsJoined": "Você entrou em todas conversas sugeridas",
+  "@allSuggestedRoomsJoined": {},
+  "numberRoomMembers": "{number} membros",
+  "@numberRoomMembers": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "commandHint_markasdm": "Marcar como conversa direta",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Marcar como grupo",
+  "@commandHint_markasgroup": {},
+  "dehydrateShare": "Este é seu extrato FluffyChat. Cuidado para não perdê-lo e o mantenha privado.",
+  "@dehydrateShare": {},
+  "hydrateTor": "Usuários TOR: Importar sessão",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Você exportou sua última sessão no TOR? Importe ela rapidamente e continue conversando.",
+  "@hydrateTorLong": {},
+  "hydrate": "Restaurar a partir de arquivo backup",
+  "@hydrate": {},
+  "advanced": "Avançado",
+  "@advanced": {},
+  "pleaseEnterRecoveryKey": "Por favor, insira sua chave de recuperação:",
+  "@pleaseEnterRecoveryKey": {},
+  "indexedDbErrorTitle": "Problemas no modo privado",
+  "@indexedDbErrorTitle": {},
+  "storeInSecureStorageDescription": "Guardar a chave de recuperação no armazenamento seguro deste dispositivo.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Salvar esta chave manualmente via compartilhamento do sistema ou área de transferência.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Guardar no cofre do Android",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Guardar no chaveiro da Apple",
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Guardar de modo seguro neste dispositivo",
+  "@storeSecurlyOnThisDevice": {},
+  "user": "Usuário",
+  "@user": {},
+  "custom": "Personalizado",
+  "@custom": {},
+  "foregroundServiceRunning": "Esta notificação aparece quando um serviço está executando.",
+  "@foregroundServiceRunning": {},
+  "callingPermissions": "Permissões de chamada",
+  "@callingPermissions": {},
+  "callingAccount": "Conta para chamadas",
+  "@callingAccount": {},
+  "callingAccountDetails": "Permitir que o FluffyChat use o app de chamadas nativo do Android.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Aparecer no topo",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "Permitir que o app apareça no topo (desnecessário caso FluffyChat já esteja configurado como conta para chamadas)",
+  "@appearOnTopDetails": {},
+  "otherCallingPermissions": "Microfone, câmera e outras permissões do FluffyChat",
+  "@otherCallingPermissions": {},
+  "newGroup": "Novo grupo",
+  "@newGroup": {},
+  "newSpace": "Novo espaço",
+  "@newSpace": {},
+  "enterSpace": "Entrar no espaço",
+  "@enterSpace": {},
+  "enterRoom": "Entrar na conversa",
+  "@enterRoom": {},
+  "allSpaces": "Todos espaços",
+  "@allSpaces": {},
+  "hideUnimportantStateEvents": "Ocultar eventos desimportantes",
+  "@hideUnimportantStateEvents": {},
+  "countFiles": "{count} arquivos",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "doNotShowAgain": "Não mostrar novamente",
+  "@doNotShowAgain": {},
+  "updateAvailable": "Atualização do FluffyChat disponível",
+  "@updateAvailable": {},
+  "updateNow": "Iniciar atualização nos bastidores",
+  "@updateNow": {},
+  "suggestedRooms": "Desvendar grupos neste espaço",
+  "@suggestedRooms": {},
+  "saveTheRecoveryKeyNow": "Salvar a chave de recuperação agora",
+  "@saveTheRecoveryKeyNow": {},
+  "unlockOldMessages": "Destrancar mensagens antigas",
+  "@unlockOldMessages": {},
+  "dehydrate": "Exportar sessão e limpar dispositivo",
+  "@dehydrate": {},
+  "dehydrateWarning": "Esta ação não pode ser desfeita. Certifique-se de que o arquivo backup está guardado e seguro.",
+  "@dehydrateWarning": {},
+  "dehydrateTorLong": "Para usuários TOR, é recomendado exportar a sessão antes de fechar a janela.",
+  "@dehydrateTorLong": {},
+  "enableAutoBackups": "Habilitar backups automáticos",
+  "@enableAutoBackups": {},
+  "whyIsThisMessageEncrypted": "Por que esta mensagem está ilegível?",
+  "@whyIsThisMessageEncrypted": {},
+  "screenSharingTitle": "Compartilhar tela",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "Você está compartilhando sua tela no FluffyChat",
+  "@screenSharingDetail": {},
+  "numChats": "{number} conversas",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "noEmailWarning": "Por favor, insira um e-mail válido. De outro modo, você não conseguirá recuperar sua senha. Caso prefira assim, toque novamente no botão para continuar.",
+  "@noEmailWarning": {},
+  "noKeyForThisMessage": "Isto pode ocorrer caso a mensagem tenha sido enviada antes da entrada na sua conta com este dispositivo.\n\nTambém é possível que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conexão.\n\nVocê consegue ler as mensagens em outra sessão? Então, pode transferir as mensagens de lá! Vá em Configurações > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a conversa da próxima vez e ambas as sessões estiverem abertas, as chaves serão transmitidas automaticamente.\n\nNão gostaria de perder suas chaves quando sair ou trocar de dispositivos? Certifique-se que o backup de conversas esteja habilitado nas configurações.",
+  "@noKeyForThisMessage": {}
 }
