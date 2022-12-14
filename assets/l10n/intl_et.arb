@@ -3018,5 +3018,12 @@
     }
   },
   "commandHint_googly": "Saada ühed otsivad silmad",
-  "@commandHint_googly": {}
+  "@commandHint_googly": {},
+  "wasDirectChatDisplayName": "Sõnumiteta vestlus (vana nimega {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  }
 }
