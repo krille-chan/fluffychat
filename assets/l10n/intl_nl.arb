@@ -3017,5 +3017,12 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "wasDirectChatDisplayName": "Lege chat (was {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
   }
 }
