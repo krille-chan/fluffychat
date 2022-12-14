@@ -3013,5 +3013,12 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "wasDirectChatDisplayName": "Порожня бесіда (раніше {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
   }
 }
