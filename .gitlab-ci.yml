@@ -73,7 +73,7 @@ widget_test:
     - flutter test integration_test -d linux
 
 # extending the default tests to test the Google-flavored builds
-integration_test_proprietary:
+.integration_test_proprietary:
   extends: .integration_test
   script:
     - git apply ./scripts/enable-android-google-services.patch
