@@ -20,19 +20,13 @@ code_analyze:
   artifacts:
     reports:
       codequality: code-quality-report.json
-  tags:
-    - docker
-    - famedly
 
 widget_test:
   stage: test
   script: [flutter test]
-  tags:
-    - docker
-    - famedly
 
 # the basic integration test configuration testing FLOSS builds on Synapse
-integration_test:
+.integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
   services:
@@ -67,15 +61,12 @@ integration_test:
   script:
     - flutter pub get
     - flutter test integration_test
-  tags:
-    - docker
-    - famedly
   timeout: 20m
 
 
 # integration tests for Linux builds
 .integration_test_linux:
-  extends: integration_test
+  extends: .integration_test
   script:
     - apk add cmake ninja gtk+3.0-dev clang pkgconf xz-dev libsecret-dev jsoncpp-dev
     - flutter pub get
@@ -83,13 +74,13 @@ integration_test:
 
 # extending the default tests to test the Google-flavored builds
 integration_test_proprietary:
-  extends: integration_test
+  extends: .integration_test
   script:
     - git apply ./scripts/enable-android-google-services.patch
     - flutter pub get
     - flutter test integration_test
 
-release_mode_launches:
+.release_mode_launches:
   parallel:
     matrix:
       - FLAVOR:
@@ -107,9 +98,6 @@ release_mode_launches:
     - scripts/integration-start-avd.sh &
     # generate temporary release build configuration and ensure app launches
     - scripts/integration-check-release-build.sh
-  tags:
-    - docker
-    - famedly
   timeout: 20m
 
 build_web:
@@ -138,9 +126,6 @@ build_windows:
 build_android_debug:
   stage: build
   script: [./scripts/build-android-debug.sh]
-  tags:
-    - docker
-    - famedly
   artifacts:
     when: on_success
     paths:
@@ -155,9 +140,6 @@ build_android_apk:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
   script: [./scripts/build-android-apk.sh]
-  tags:
-    - docker
-    - famedly
   artifacts:
     when: on_success
     paths:
@@ -172,9 +154,6 @@ deploy_playstore_internal:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
   script: [./scripts/release-playstore-beta.sh]
-  tags:
-    - docker
-    - famedly
   artifacts:
     when: on_success
     paths:
