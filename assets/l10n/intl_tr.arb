@@ -3018,5 +3018,12 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "wasDirectChatDisplayName": "Boş sohbet ({oldDisplayName} idi)",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
   }
 }
