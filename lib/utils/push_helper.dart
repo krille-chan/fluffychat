@@ -48,16 +48,20 @@ Future<void> pushHelper(
       l10n?.newMessageInFluffyChat,
       l10n?.openAppToReadMessages,
       NotificationDetails(
-          iOS: const DarwinNotificationDetails(),
-          android: AndroidNotificationDetails(
-            AppConfig.pushNotificationsChannelId,
-            AppConfig.pushNotificationsChannelName,
-            channelDescription: AppConfig.pushNotificationsChannelDescription,
-            number: notification.counts?.unread,
-            ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
-            importance: Importance.max,
-            priority: Priority.high,
-          )),
+        iOS: const DarwinNotificationDetails(),
+        android: AndroidNotificationDetails(
+          notification.roomId ?? AppConfig.pushNotificationsChannelId,
+          notification.roomName ?? AppConfig.pushNotificationsChannelName,
+          channelDescription: notification.roomName ??
+              AppConfig.pushNotificationsChannelDescription,
+          groupAlertBehavior: GroupAlertBehavior.summary,
+          category: AndroidNotificationCategory.message,
+          number: notification.counts?.unread,
+          ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
     );
     rethrow;
   }
