@@ -3012,5 +3012,12 @@
   "commandHint_hug": "Kirim pelukan",
   "@commandHint_hug": {},
   "commandHint_cuddle": "Kirim berpelukan",
-  "@commandHint_cuddle": {}
+  "@commandHint_cuddle": {},
+  "wasDirectChatDisplayName": "Obrolan kosong (sebelumnya {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  }
 }
