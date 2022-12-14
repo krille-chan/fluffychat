@@ -2975,5 +2975,12 @@
     }
   },
   "hideUnimportantStateEvents": "Hide unimportant state events",
-  "doNotShowAgain": "Do not show again"
+  "doNotShowAgain": "Do not show again",
+  "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  }
 }
