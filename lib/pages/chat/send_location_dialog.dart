@@ -66,7 +66,7 @@ class SendLocationDialogState extends State<SendLocationDialog> {
           timeLimit: const Duration(seconds: 30),
         );
       }
-      setState(() => position = position);
+      setState(() => this.position = position);
     } catch (e) {
       setState(() => error = e);
     }
