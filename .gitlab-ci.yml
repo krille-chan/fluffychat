@@ -1,7 +1,7 @@
 variables:
   FLUTTER_VERSION: 3.3.9
 
-image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/flutter/stable:${FLUTTER_VERSION}
+image: cirrusci/flutter:${FLUTTER_VERSION}
 
 .shared_windows_runners:
   tags:
