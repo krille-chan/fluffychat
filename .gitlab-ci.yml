@@ -144,6 +144,9 @@ build_android_apk:
     when: on_success
     paths:
       - build/android/app-release.apk
+  tags:
+    - docker
+    - famedly
   only:
     - main
     - tags
