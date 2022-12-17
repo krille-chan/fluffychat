@@ -20,10 +20,16 @@ code_analyze:
   artifacts:
     reports:
       codequality: code-quality-report.json
+  tags:
+    - docker
+    - famedly
 
 widget_test:
   stage: test
   script: [flutter test]
+  tags:
+    - docker
+    - famedly
 
 # the basic integration test configuration testing FLOSS builds on Synapse
 .integration_test:
@@ -62,6 +68,9 @@ widget_test:
     - flutter pub get
     - flutter test integration_test
   timeout: 20m
+  tags:
+    - docker
+    - famedly
 
 
 # integration tests for Linux builds
@@ -99,6 +108,9 @@ widget_test:
     # generate temporary release build configuration and ensure app launches
     - scripts/integration-check-release-build.sh
   timeout: 20m
+  tags:
+    - docker
+    - famedly
 
 build_web:
   stage: build
@@ -108,6 +120,9 @@ build_web:
   artifacts:
     paths:
       - build/web/
+  tags:
+    - docker
+    - famedly
 
 build_windows:
   extends:
@@ -133,6 +148,9 @@ build_android_debug:
   except:
     - main
     - tags
+  tags:
+    - docker
+    - famedly
 
 build_android_apk:
   stage: build
@@ -162,6 +180,9 @@ deploy_playstore_internal:
     paths:
       - build/android/app-release.aab
   resource_group: playstore_release
+  tags:
+    - docker
+    - famedly
   only:
     - main
 
@@ -180,6 +201,9 @@ fdroid_repo:
   needs:
     - "build_android_apk"
   resource_group: playstore_release
+  tags:
+    - docker
+    - famedly
   allow_failure: true
   only:
     - main
@@ -218,6 +242,9 @@ build_linux_x86:
       sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y,
     ]
   script: [./scripts/build-linux.sh]
+  tags:
+    - docker
+    - famedly
   artifacts:
     when: on_success
     paths:
@@ -266,6 +293,9 @@ update_dependencies:
 .release:
   stage: deploy
   image: curlimages/curl:latest
+  tags:
+    - docker
+    - famedly
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
     - if: '$CI_COMMIT_TAG =~ /^rc\d+\.\d+\.\d+-\d+$/'
