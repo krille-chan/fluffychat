@@ -63,6 +63,8 @@
 	<string>Share your location with your contacts in FluffyChat.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Share your location with your contacts in FluffyChat.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Share your location with your contacts in FluffyChat.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record voice message and share them with your contacts on FluffyChat.</string>
 	<key>NSMotionUsageDescription</key>
