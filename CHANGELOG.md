@@ -1,4 +1,7 @@
-## v1.7.1 2022 11-23
+## v1.7.2 2022-12-19
+Update dependencies and translations.
+
+## v1.7.1 2022-11-23
 Minor bugfix release to retrigger build for FlatPak and Android. Fixes some style bugs and updates some translations
 
 ## v1.7.0 2022-11-17
