@@ -3018,5 +3018,12 @@
     "placeholders": {
       "senderName": {}
     }
+  },
+  "wasDirectChatDisplayName": "空聊天（曾是 {oldDisplayName}）",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
   }
 }

@@ -2991,5 +2991,39 @@
   "hideUnimportantStateEvents": "Masquer les événements d'état sans importance",
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "Ne plus afficher",
-  "@doNotShowAgain": {}
+  "@doNotShowAgain": {},
+  "commandHint_googly": "Envoyer des yeux écarquillés",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Envoyer un câlin",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Envoyer une accolade",
+  "@commandHint_hug": {},
+  "googlyEyesContent": "{senderName} vous envoie des yeux écarquillés",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} vous fait un câlin",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} vous fait une accolade",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "wasDirectChatDisplayName": "Discussion vide (était {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  }
 }
