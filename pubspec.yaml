@@ -73,7 +73,10 @@ dependencies:
   qr_code_scanner: ^1.0.0
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
-  record: ^4.3.2
+  record: # Because of https://github.com/llfbandit/record/issues/95
+    git:
+      url: https://github.com/krillefear/record.git
+      path: record
   scroll_to_index: ^3.0.1
   share_plus: ^4.0.10+1
   shared_preferences: ^2.0.13
