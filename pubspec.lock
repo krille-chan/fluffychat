@@ -953,9 +953,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "krille/remove-transaction-workaround"
+      resolved-ref: "7a5b013c921a97755c9fa0d3ee733b544f3655ba"
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
+    source: git
     version: "0.15.9"
   matrix_api_lite:
     dependency: transitive
