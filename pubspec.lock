@@ -955,7 +955,7 @@ packages:
     description:
       path: "."
       ref: "krille/remove-transaction-workaround"
-      resolved-ref: "7a5b013c921a97755c9fa0d3ee733b544f3655ba"
+      resolved-ref: aac5e6649648040ac250a91f51215fc656d0f3ee
       url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
     source: git
     version: "0.15.9"
