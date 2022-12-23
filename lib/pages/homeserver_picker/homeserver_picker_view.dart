@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'homeserver_app_bar.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
@@ -16,28 +17,9 @@ class HomeserverPickerView extends StatelessWidget {
   Widget build(BuildContext context) {
     final benchmarkResults = controller.benchmarkResults;
     return LoginScaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        title: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: TextField(
-            focusNode: controller.homeserverFocusNode,
-            controller: controller.homeserverController,
-            onChanged: controller.onChanged,
-            decoration: InputDecoration(
-              prefixText: '${L10n.of(context)!.homeserver}: ',
-              hintText: L10n.of(context)!.enterYourHomeserver,
-              suffixIcon: const Icon(Icons.search),
-              errorText: controller.error,
-            ),
-            readOnly: !AppConfig.allowOtherHomeservers,
-            onSubmitted: (_) => controller.checkHomeserverAction(),
-            autocorrect: false,
-          ),
-        ),
-      ),
       body: Column(
         children: [
+          HomeserverAppBar(controller: controller),
           // display a prominent banner to import session for TOR browser
           // users. This feature is just some UX sugar as TOR users are
           // usually forced to logout as TOR browser is non-persistent
