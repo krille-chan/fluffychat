@@ -682,9 +682,11 @@ packages:
   flutter_webrtc:
     dependency: "direct main"
     description:
-      name: flutter_webrtc
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "3d0bb887ebffe24e8db361e45c777ed44d8df180"
+      url: "https://github.com/radzio-it/flutter-webrtc.git"
+    source: git
     version: "0.9.18"
   fuchsia_remote_debug_protocol:
     dependency: transitive
