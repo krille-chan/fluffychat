@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -105,6 +106,10 @@ class StoryView extends StatelessWidget {
                 M2PopupMenuButton<PopupStoryAction>(
                   color: Colors.white,
                   onSelected: controller.onPopupStoryAction,
+                  icon: Icon(
+                    Icons.adaptive.more_outlined,
+                    color: Colors.white,
+                  ),
                   itemBuilder: (context) => [
                     if (controller.currentEvent?.canRedact ?? false)
                       PopupMenuItem(
@@ -303,7 +308,8 @@ class StoryView extends StatelessWidget {
                               ? LinearProgressIndicator(
                                   color: Colors.white,
                                   minHeight: 2,
-                                  backgroundColor: Colors.grey.shade600,
+                                  backgroundColor:
+                                      Colors.white.withOpacity(0.25),
                                   value: controller.loadingMode
                                       ? null
                                       : controller.progress.inMilliseconds /
@@ -315,7 +321,7 @@ class StoryView extends StatelessWidget {
                                   height: 2,
                                   color: i < controller.index
                                       ? Colors.white
-                                      : Colors.grey.shade600,
+                                      : Colors.white.withOpacity(0.25),
                                 ),
                         ),
                     ],
@@ -324,36 +330,47 @@ class StoryView extends StatelessWidget {
               ),
               if (!controller.isOwnStory && currentEvent != null)
                 Positioned(
-                  bottom: 16,
-                  left: 16,
-                  right: 16,
+                  bottom: 8,
+                  left: 8,
+                  right: 8,
                   child: SafeArea(
-                    child: TextField(
-                      focusNode: controller.replyFocus,
-                      controller: controller.replyController,
-                      onSubmitted: controller.replyAction,
-                      textInputAction: TextInputAction.send,
-                      readOnly: controller.replyLoading,
-                      decoration: InputDecoration(
-                        hintText: L10n.of(context)!.reply,
-                        prefixIcon: IconButton(
-                          onPressed: controller.replyEmojiAction,
-                          icon: const Icon(Icons.emoji_emotions_outlined),
-                        ),
-                        suffixIcon: controller.replyLoading
-                            ? const SizedBox(
-                                width: 16,
-                                height: 16,
-                                child: Center(
-                                  child: CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2),
+                    child: Material(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(AppConfig.borderRadius),
+                        bottomRight: Radius.circular(AppConfig.borderRadius),
+                      ),
+                      shadowColor: Colors.black.withAlpha(64),
+                      clipBehavior: Clip.hardEdge,
+                      elevation: 4,
+                      child: TextField(
+                        focusNode: controller.replyFocus,
+                        controller: controller.replyController,
+                        onSubmitted: controller.replyAction,
+                        textInputAction: TextInputAction.send,
+                        readOnly: controller.replyLoading,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                          hintText: L10n.of(context)!.reply,
+                          prefixIcon: IconButton(
+                            onPressed: controller.replyEmojiAction,
+                            icon: const Icon(Icons.emoji_emotions_outlined),
+                          ),
+                          suffixIcon: controller.replyLoading
+                              ? const SizedBox(
+                                  width: 16,
+                                  height: 16,
+                                  child: Center(
+                                    child: CircularProgressIndicator.adaptive(
+                                        strokeWidth: 2),
+                                  ),
+                                )
+                              : IconButton(
+                                  onPressed: controller.replyAction,
+                                  icon: const Icon(Icons.send_outlined),
                                 ),
-                              )
-                            : IconButton(
-                                onPressed: controller.replyAction,
-                                icon: const Icon(Icons.send_outlined),
-                              ),
-                        fillColor: Theme.of(context).colorScheme.background,
+                          fillColor: Theme.of(context).colorScheme.background,
+                        ),
                       ),
                     ),
                   ),
