@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:video_player/video_player.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
