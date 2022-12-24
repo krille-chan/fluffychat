@@ -2,12 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:file_picker_cross/file_picker_cross.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/theme_builder.dart';
 import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
 
@@ -38,21 +37,15 @@ class SettingsStyleController extends State<SettingsStyle> {
   }
 
   void setChatColor(Color? color) async {
-    await Matrix.of(context).store.setItem(
-          SettingKeys.chatColor,
-          color?.value.toString(),
-        );
     AppConfig.colorSchemeSeed = color;
-    AdaptiveTheme.of(context).setTheme(
-      light: FluffyThemes.buildTheme(Brightness.light),
-      dark: FluffyThemes.buildTheme(Brightness.dark),
-    );
+    ThemeController.of(context).setPrimaryColor(color);
   }
 
-  AdaptiveThemeMode? currentTheme;
+  ThemeMode get currentTheme => ThemeController.of(context).themeMode;
+  Color? get currentColor => ThemeController.of(context).primaryColor;
 
   static final List<Color?> customColors = [
-    AppConfig.primaryColor,
+    AppConfig.chatColor,
     Colors.blue.shade800,
     Colors.green.shade800,
     Colors.orange.shade700,
@@ -61,20 +54,20 @@ class SettingsStyleController extends State<SettingsStyle> {
     null,
   ];
 
-  void switchTheme(AdaptiveThemeMode? newTheme) {
+  void switchTheme(ThemeMode? newTheme) {
     if (newTheme == null) return;
     switch (newTheme) {
-      case AdaptiveThemeMode.light:
-        AdaptiveTheme.of(context).setLight();
+      case ThemeMode.light:
+        ThemeController.of(context).setThemeMode(ThemeMode.light);
         break;
-      case AdaptiveThemeMode.dark:
-        AdaptiveTheme.of(context).setDark();
+      case ThemeMode.dark:
+        ThemeController.of(context).setThemeMode(ThemeMode.dark);
         break;
-      case AdaptiveThemeMode.system:
-        AdaptiveTheme.of(context).setSystem();
+      case ThemeMode.system:
+        ThemeController.of(context).setThemeMode(ThemeMode.system);
         break;
     }
-    setState(() => currentTheme = newTheme);
+    setState(() {});
   }
 
   void changeFontSizeFactor(double d) {

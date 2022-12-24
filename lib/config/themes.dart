@@ -38,15 +38,12 @@ abstract class FluffyThemes {
     subtitle2: fallbackTextStyle,
   );
 
-  static ThemeData buildTheme(Brightness brightness,
-          [ColorScheme? colorScheme]) =>
+  static ThemeData buildTheme(Brightness brightness, [Color? seed]) =>
       ThemeData(
         visualDensity: VisualDensity.standard,
         useMaterial3: true,
         brightness: brightness,
-        colorSchemeSeed: AppConfig.colorSchemeSeed ??
-            colorScheme?.primary ??
-            AppConfig.chatColor,
+        colorSchemeSeed: seed ?? AppConfig.colorSchemeSeed,
         textTheme: PlatformInfos.isDesktop
             ? brightness == Brightness.light
                 ? Typography.material2018().black.merge(fallbackTextTheme)

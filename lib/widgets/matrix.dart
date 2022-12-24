@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
@@ -23,7 +22,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -488,19 +486,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     store
         .getItemBool(SettingKeys.experimentalVoip, AppConfig.experimentalVoip)
         .then((value) => AppConfig.experimentalVoip = value);
-    store.getItem(SettingKeys.chatColor).then((value) {
-      if (value != null && int.tryParse(value) != null) {
-        AppConfig.colorSchemeSeed = Color(int.parse(value));
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) {
-            AdaptiveTheme.of(context).setTheme(
-              light: FluffyThemes.buildTheme(Brightness.light),
-              dark: FluffyThemes.buildTheme(Brightness.dark),
-            );
-          }
-        });
-      }
-    });
   }
 
   @override

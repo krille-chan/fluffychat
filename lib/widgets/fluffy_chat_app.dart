@@ -1,14 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/theme_builder.dart';
 import '../config/app_config.dart';
 import '../utils/custom_scroll_behaviour.dart';
 import 'matrix.dart';
@@ -47,51 +46,41 @@ class FluffyChatAppState extends State<FluffyChatApp> {
 
   @override
   Widget build(BuildContext context) {
-    return DynamicColorBuilder(
-      builder: (lightColorScheme, darkColorScheme) => AdaptiveTheme(
-        light: FluffyThemes.buildTheme(
-          Brightness.light,
-          lightColorScheme,
-        ),
-        dark: FluffyThemes.buildTheme(
-          Brightness.dark,
-          lightColorScheme,
-        ),
-        initial: AdaptiveThemeMode.system,
-        builder: (theme, darkTheme) => LayoutBuilder(
-          builder: (context, constraints) {
-            final isColumnMode =
-                FluffyThemes.isColumnModeByWidth(constraints.maxWidth);
-            if (isColumnMode != columnMode) {
-              Logs().v('Set Column Mode = $isColumnMode');
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                setState(() {
-                  _initialUrl = FluffyChatApp.routerKey.currentState?.url;
-                  columnMode = isColumnMode;
-                  FluffyChatApp.routerKey = GlobalKey<VRouterState>();
-                });
+    return ThemeBuilder(
+      builder: (context, themeMode, primaryColor) => LayoutBuilder(
+        builder: (context, constraints) {
+          final isColumnMode =
+              FluffyThemes.isColumnModeByWidth(constraints.maxWidth);
+          if (isColumnMode != columnMode) {
+            Logs().v('Set Column Mode = $isColumnMode');
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              setState(() {
+                _initialUrl = FluffyChatApp.routerKey.currentState?.url;
+                columnMode = isColumnMode;
+                FluffyChatApp.routerKey = GlobalKey<VRouterState>();
               });
-            }
-            return VRouter(
-              key: FluffyChatApp.routerKey,
-              title: AppConfig.applicationName,
-              theme: theme,
-              scrollBehavior: CustomScrollBehavior(),
-              logs: kReleaseMode ? VLogs.none : VLogs.info,
-              darkTheme: darkTheme,
-              localizationsDelegates: L10n.localizationsDelegates,
-              supportedLocales: L10n.supportedLocales,
-              initialUrl: _initialUrl ?? '/',
-              routes: AppRoutes(columnMode ?? false).routes,
-              builder: (context, child) => Matrix(
-                context: context,
-                router: FluffyChatApp.routerKey,
-                clients: widget.clients,
-                child: child,
-              ),
-            );
-          },
-        ),
+            });
+          }
+          return VRouter(
+            key: FluffyChatApp.routerKey,
+            title: AppConfig.applicationName,
+            themeMode: themeMode,
+            theme: FluffyThemes.buildTheme(Brightness.light, primaryColor),
+            darkTheme: FluffyThemes.buildTheme(Brightness.dark, primaryColor),
+            scrollBehavior: CustomScrollBehavior(),
+            logs: kReleaseMode ? VLogs.none : VLogs.info,
+            localizationsDelegates: L10n.localizationsDelegates,
+            supportedLocales: L10n.supportedLocales,
+            initialUrl: _initialUrl ?? '/',
+            routes: AppRoutes(columnMode ?? false).routes,
+            builder: (context, child) => Matrix(
+              context: context,
+              router: FluffyChatApp.routerKey,
+              clients: widget.clients,
+              child: child,
+            ),
+          );
+        },
       ),
     );
   }

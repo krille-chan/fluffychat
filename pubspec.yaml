@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   adaptive_dialog: ^1.5.1
-  adaptive_theme: ^3.0.0
   animations: ^2.0.2
   badges: ^2.0.3
   blurhash_dart: ^1.1.0
@@ -21,7 +20,6 @@ dependencies:
   desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^8.0.0
-  dynamic_color: ^1.2.2
   email_validator: ^2.0.1
   emoji_picker_flutter: ^1.5.0
   emoji_proposal: ^0.0.1
@@ -83,6 +81,7 @@ dependencies:
   shared_preferences: ^2.0.13
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
+  system_theme: ^2.0.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
   unifiedpush: ^4.0.3

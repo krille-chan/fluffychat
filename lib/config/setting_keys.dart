@@ -8,7 +8,6 @@ abstract class SettingKeys {
   static const String showDirectChatsInSpaces =
       'chat.fluffy.showDirectChatsInSpaces';
   static const String separateChatTypes = 'chat.fluffy.separateChatTypes';
-  static const String chatColor = 'chat.fluffy.chat_color';
   static const String sentry = 'sentry';
   static const String theme = 'theme';
   static const String amoledEnabled = 'amoled_enabled';
