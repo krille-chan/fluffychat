@@ -17,11 +17,11 @@ class CuteContent extends StatefulWidget {
 }
 
 class _CuteContentState extends State<CuteContent> {
-  static final List<OverlayEntry> overlays = [];
+  static bool _isOverlayShown = false;
 
   @override
   void initState() {
-    if (AppConfig.autoplayImages && overlays.isEmpty) {
+    if (AppConfig.autoplayImages && !_isOverlayShown) {
       addOverlay();
     }
     super.initState();
@@ -55,52 +55,21 @@ class _CuteContentState extends State<CuteContent> {
     );
   }
 
-  Widget overlayBuilder(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final position = Size(
-          Random().nextInt(constraints.maxWidth.round() - 64).toDouble(),
-          Random().nextInt(constraints.maxHeight.round() - 64).toDouble());
-
-      return Padding(
-        padding: EdgeInsets.only(
-            top: position.height,
-            left: position.width,
-            bottom: constraints.maxHeight - 64 - position.height,
-            right: constraints.maxWidth - 64 - position.width),
-        child: SizedBox.square(
-          dimension: 64,
-          child: GestureDetector(
-            onTap: removeOverlay,
-            child: Text(
-              widget.event.text,
-              style: const TextStyle(fontSize: 48),
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
   Future<void> addOverlay() async {
+    _isOverlayShown = true;
     await Future.delayed(const Duration(milliseconds: 50));
-    for (int i = 0; i < 5; i++) {
-      final overlay = OverlayEntry(
-        builder: overlayBuilder,
-      );
-      Overlay.of(context)?.insert(overlay);
 
-      Future.delayed(Duration(seconds: Random().nextInt(35))).then((_) {
-        overlay.remove();
-        overlays.remove(overlay);
-      });
-      overlays.add(overlay);
-    }
-  }
-
-  void removeOverlay() {
-    if (overlays.isEmpty) return;
-    final overlay = overlays.removeLast();
-    overlay.remove();
+    OverlayEntry? overlay;
+    overlay = OverlayEntry(
+      builder: (context) => CuteEventOverlay(
+        emoji: widget.event.text,
+        onAnimationEnd: () {
+          _isOverlayShown = false;
+          overlay?.remove();
+        },
+      ),
+    );
+    Overlay.of(context)?.insert(overlay);
   }
 
   generateLabel(User? user) {
@@ -124,5 +93,103 @@ class _CuteContentState extends State<CuteContent> {
               '',
         );
     }
+  }
+}
+
+class CuteEventOverlay extends StatefulWidget {
+  final String emoji;
+  final VoidCallback onAnimationEnd;
+
+  const CuteEventOverlay({
+    Key? key,
+    required this.emoji,
+    required this.onAnimationEnd,
+  }) : super(key: key);
+
+  @override
+  State<CuteEventOverlay> createState() => _CuteEventOverlayState();
+}
+
+class _CuteEventOverlayState extends State<CuteEventOverlay>
+    with TickerProviderStateMixin {
+  final List<Size> items = List.generate(
+    50,
+    (index) => Size(
+      Random().nextDouble(),
+      4 + (Random().nextDouble() * 4),
+    ),
+  );
+
+  AnimationController? controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 2500),
+      vsync: this,
+    );
+    controller?.forward();
+    controller?.addStatusListener(_hideOverlay);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller!,
+      builder: (context, _) => LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth - _CuteOverlayContent.size;
+          final height = constraints.maxHeight + _CuteOverlayContent.size;
+          return SizedBox(
+            height: constraints.maxHeight,
+            width: constraints.maxWidth,
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              fit: StackFit.expand,
+              children: items
+                  .map(
+                    (position) => Positioned(
+                      left: position.width * width,
+                      bottom: (height *
+                              .25 *
+                              position.height *
+                              (controller?.value ?? 0)) -
+                          _CuteOverlayContent.size,
+                      child: _CuteOverlayContent(
+                        emoji: widget.emoji,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _hideOverlay(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      widget.onAnimationEnd.call();
+    }
+  }
+}
+
+class _CuteOverlayContent extends StatelessWidget {
+  static const double size = 64.0;
+  final String emoji;
+
+  const _CuteOverlayContent({Key? key, required this.emoji}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.square(
+      dimension: size,
+      child: Text(
+        emoji,
+        style: const TextStyle(fontSize: 48),
+      ),
+    );
   }
 }
