@@ -42,7 +42,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (controller.activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return L10n.of(context)!.start;
+        return L10n.of(context)!.newChat;
       case ActiveFilter.groups:
         return L10n.of(context)!.newGroup;
       case ActiveFilter.spaces:
