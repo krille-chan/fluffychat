@@ -8,7 +8,7 @@ class EmptyPage extends StatelessWidget {
   const EmptyPage({this.loading = false, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final width = min(MediaQuery.of(context).size.width, EmptyPage._width);
+    final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
     return Scaffold(
       // Add invisible appbar to make status bar on Android tablets bright.
       appBar: AppBar(
@@ -24,7 +24,7 @@ class EmptyPage extends StatelessWidget {
             child: Hero(
               tag: 'info-logo',
               child: Image.asset(
-                'assets/info-logo.png',
+                'assets/favicon.png',
                 width: width,
                 height: width,
                 filterQuality: FilterQuality.medium,

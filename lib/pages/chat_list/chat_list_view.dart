@@ -234,7 +234,8 @@ class ChatListView extends StatelessWidget {
                           destinations: getNavigationDestinations(context),
                         )
                       : null,
-                  floatingActionButton: selectMode == SelectMode.normal
+                  floatingActionButton: controller.filteredRooms.isNotEmpty &&
+                          selectMode == SelectMode.normal
                       ? KeyBoardShortcuts(
                           keysToPress: {
                             LogicalKeyboardKey.controlLeft,

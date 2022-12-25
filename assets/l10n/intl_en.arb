@@ -2258,11 +2258,7 @@
       "senderName": {}
     }
   },
-  "startYourFirstChat": "Start your first chat right now! 🙂\n- Tap on 'New chat'\n- Scan the QR code of a friend\n- Have fun chatting",
-  "@startYourFirstChat": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "startFirstChat": "Start your first chat",
   "status": "Status",
   "@status": {
     "type": "text",
@@ -2982,5 +2978,6 @@
     "placeholders": {
       "oldDisplayName": {}
     }
-  }
+  },
+  "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities."
 }

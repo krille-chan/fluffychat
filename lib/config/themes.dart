@@ -55,8 +55,11 @@ abstract class FluffyThemes {
         dividerColor: brightness == Brightness.light
             ? Colors.blueGrey.shade50
             : Colors.blueGrey.shade900,
-        inputDecorationTheme: const InputDecorationTheme(
-          border: InputBorder.none,
+        inputDecorationTheme: InputDecorationTheme(
+          border: UnderlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          ),
           filled: true,
         ),
         appBarTheme: AppBarTheme(

@@ -39,8 +39,12 @@ class NewSpaceView extends StatelessWidget {
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
             ),
-            Expanded(
-              child: Image.asset('assets/private_chat_wallpaper.png'),
+            ListTile(
+              trailing: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Icon(Icons.info_outlined),
+              ),
+              subtitle: Text(L10n.of(context)!.newSpaceDescription),
             ),
           ],
         ),

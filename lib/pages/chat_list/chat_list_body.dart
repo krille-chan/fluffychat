@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
@@ -172,28 +173,34 @@ class ChatListViewBody extends StatelessWidget {
                             icon: const Icon(Icons.chat_outlined),
                           ),
                         if (rooms.isEmpty && !controller.isSearchMode)
-                          Column(
-                            key: const ValueKey(null),
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'assets/private_chat_wallpaper.png',
-                                width: 160,
-                                height: 160,
-                              ),
-                              Center(
-                                child: Text(
-                                  L10n.of(context)!.startYourFirstChat,
-                                  textAlign: TextAlign.start,
-                                  style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 16,
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 32),
+                                Image.asset(
+                                  'assets/start_chat.png',
                                 ),
-                              ),
-                              const SizedBox(height: 16),
-                            ],
+                                Divider(
+                                  height: 1,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                ),
+                                const SizedBox(height: 32),
+                                FloatingActionButton.extended(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.primary,
+                                  foregroundColor:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  icon: const Icon(Icons.edit_outlined),
+                                  onPressed: () =>
+                                      VRouter.of(context).to('/newprivatechat'),
+                                  label: Text(L10n.of(context)!.startFirstChat),
+                                ),
+                              ],
+                            ),
                           ),
                       ],
                     );
