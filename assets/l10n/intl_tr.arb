@@ -3025,5 +3025,9 @@
     "placeholders": {
       "oldDisplayName": {}
     }
-  }
+  },
+  "startFirstChat": "İlk sohbetinizi başlatın",
+  "@startFirstChat": {},
+  "newSpaceDescription": "Alanlar, sohbetlerinizi birleştirmenize ve özel veya genel topluluklar oluşturmanıza olanak tanır.",
+  "@newSpaceDescription": {}
 }
