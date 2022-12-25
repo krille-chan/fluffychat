@@ -3020,5 +3020,9 @@
     "placeholders": {
       "oldDisplayName": {}
     }
-  }
+  },
+  "startFirstChat": "Розпочніть свою першу бесіду",
+  "@startFirstChat": {},
+  "newSpaceDescription": "Простори дозволяють об'єднувати ваші бесіди та створювати приватні або загальнодоступні спільноти.",
+  "@newSpaceDescription": {}
 }
