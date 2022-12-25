@@ -55,6 +55,7 @@ enum ActiveFilter {
 
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
+
   const ChatList({Key? key}) : super(key: key);
 
   @override
@@ -235,12 +236,15 @@ class ChatListController extends State<ChatList>
     _coolDown = Timer(const Duration(milliseconds: 500), _search);
   }
 
-  void cancelSearch() => setState(() {
-        searchController.clear();
-        isSearchMode = false;
-        roomSearchResult = userSearchResult = null;
-        isSearching = false;
-      });
+  void cancelSearch() {
+    setState(() {
+      searchController.clear();
+      isSearchMode = false;
+      roomSearchResult = userSearchResult = null;
+      isSearching = false;
+    });
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
 
   bool isTorBrowser = false;
 

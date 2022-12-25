@@ -19,6 +19,7 @@ enum ContextualRoomAction {
 
 class StoriesHeader extends StatelessWidget {
   final String filter;
+
   const StoriesHeader({required this.filter, Key? key}) : super(key: key);
 
   void _addToStoryAction(BuildContext context) =>
@@ -99,11 +100,6 @@ class StoriesHeader extends StatelessWidget {
         title: Text(L10n.of(context)!.addToStory),
         onTap: () => _addToStoryAction(context),
       );
-    }
-    if (client.storiesRooms.isEmpty ||
-        !client.storiesRooms.any((room) =>
-            room.displayname.toLowerCase().contains(filter.toLowerCase()))) {
-      return Container();
     }
     final ownStoryRoom = client.storiesRooms
         .firstWhereOrNull((r) => r.creatorId == client.userID);

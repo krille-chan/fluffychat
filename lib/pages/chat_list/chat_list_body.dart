@@ -73,75 +73,81 @@ class ChatListViewBody extends StatelessWidget {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (roomSearchResult != null) ...[
+                        if (controller.isSearchMode) ...[
                           SearchTitle(
                             title: L10n.of(context)!.publicRooms,
                             icon: const Icon(Icons.explore_outlined),
                           ),
-                          AnimatedContainer(
-                            height: roomSearchResult.chunk.isEmpty ? 0 : 106,
-                            duration: const Duration(milliseconds: 250),
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(),
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: roomSearchResult.chunk.length,
-                              itemBuilder: (context, i) => _SearchItem(
-                                title: roomSearchResult.chunk[i].name ??
-                                    roomSearchResult
-                                        .chunk[i].canonicalAlias?.localpart ??
-                                    L10n.of(context)!.group,
-                                avatar: roomSearchResult.chunk[i].avatarUrl,
-                                onPressed: () => showModalBottomSheet(
-                                  context: context,
-                                  builder: (c) => PublicRoomBottomSheet(
-                                    roomAlias: roomSearchResult
-                                            .chunk[i].canonicalAlias ??
-                                        roomSearchResult.chunk[i].roomId,
-                                    outerContext: context,
-                                    chunk: roomSearchResult.chunk[i],
+                          SizedBox(
+                            height: 106,
+                            child: roomSearchResult == null ||
+                                    roomSearchResult.chunk.isEmpty
+                                ? Center(
+                                    child:
+                                        Text(L10n.of(context)!.noSearchResult),
+                                  )
+                                : ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: roomSearchResult.chunk.length,
+                                    itemBuilder: (context, i) => _SearchItem(
+                                      title: roomSearchResult.chunk[i].name ??
+                                          roomSearchResult.chunk[i]
+                                              .canonicalAlias?.localpart ??
+                                          L10n.of(context)!.group,
+                                      avatar:
+                                          roomSearchResult.chunk[i].avatarUrl,
+                                      onPressed: () => showModalBottomSheet(
+                                        context: context,
+                                        builder: (c) => PublicRoomBottomSheet(
+                                          roomAlias: roomSearchResult
+                                                  .chunk[i].canonicalAlias ??
+                                              roomSearchResult.chunk[i].roomId,
+                                          outerContext: context,
+                                          chunk: roomSearchResult.chunk[i],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                           ),
-                        ],
-                        if (userSearchResult != null) ...[
                           SearchTitle(
                             title: L10n.of(context)!.users,
                             icon: const Icon(Icons.group_outlined),
                           ),
-                          AnimatedContainer(
-                            height: userSearchResult.results.isEmpty ? 0 : 106,
-                            duration: const Duration(milliseconds: 250),
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(),
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: userSearchResult.results.length,
-                              itemBuilder: (context, i) => _SearchItem(
-                                title:
-                                    userSearchResult.results[i].displayName ??
-                                        userSearchResult
-                                            .results[i].userId.localpart ??
-                                        L10n.of(context)!.unknownDevice,
-                                avatar: userSearchResult.results[i].avatarUrl,
-                                onPressed: () => showModalBottomSheet(
-                                  context: context,
-                                  builder: (c) => ProfileBottomSheet(
-                                    userId: userSearchResult.results[i].userId,
-                                    outerContext: context,
+                          SizedBox(
+                            height: 106,
+                            child: userSearchResult == null ||
+                                    userSearchResult.results.isEmpty
+                                ? Center(
+                                    child:
+                                        Text(L10n.of(context)!.noSearchResult),
+                                  )
+                                : ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: userSearchResult.results.length,
+                                    itemBuilder: (context, i) => _SearchItem(
+                                      title: userSearchResult
+                                              .results[i].displayName ??
+                                          userSearchResult
+                                              .results[i].userId.localpart ??
+                                          L10n.of(context)!.unknownDevice,
+                                      avatar:
+                                          userSearchResult.results[i].avatarUrl,
+                                      onPressed: () => showModalBottomSheet(
+                                        context: context,
+                                        builder: (c) => ProfileBottomSheet(
+                                          userId: userSearchResult
+                                              .results[i].userId,
+                                          outerContext: context,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                           ),
-                        ],
-                        if (controller.isSearchMode)
                           SearchTitle(
                             title: L10n.of(context)!.stories,
                             icon: const Icon(Icons.camera_alt_outlined),
                           ),
+                        ],
                         if (displayStoriesHeader)
                           StoriesHeader(
                             key: const Key('stories_header'),
@@ -319,6 +325,7 @@ class _SearchItem extends StatelessWidget {
                   title,
                   maxLines: 2,
                   textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontSize: 12,
                   ),

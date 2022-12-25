@@ -1450,6 +1450,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "noSearchResult": "No matching search results.",
   "moderator": "Moderator",
   "@moderator": {
     "type": "text",
