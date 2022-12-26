@@ -3029,5 +3029,15 @@
   "startFirstChat": "İlk sohbetinizi başlatın",
   "@startFirstChat": {},
   "newSpaceDescription": "Alanlar, sohbetlerinizi birleştirmenize ve özel veya genel topluluklar oluşturmanıza olanak tanır.",
-  "@newSpaceDescription": {}
+  "@newSpaceDescription": {},
+  "encryptThisChat": "Bu sohbeti şifrele",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "Uçtan uca şifreleme",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "Güvenlik nedeniyle, daha önce etkinleştirildiği bir sohbette şifrelemeyi devre dışı bırakamazsınız.",
+  "@disableEncryptionWarning": {},
+  "sorryThatsNotPossible": "Üzgünüm... bu mümkün değil",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Aygıt anahtarları:",
+  "@deviceKeys": {}
 }
