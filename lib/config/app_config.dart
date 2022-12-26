@@ -24,6 +24,8 @@ abstract class AppConfig {
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
       'https://gitlab.com/famedly/fluffychat/-/wikis/Push-Notifications-without-Google-Services';
+  static const String encryptionTutorial =
+      'https://gitlab.com/famedly/fluffychat/-/wikis/How-to-use-end-to-end-encryption-in-FluffyChat';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';

@@ -2979,5 +2979,10 @@
       "oldDisplayName": {}
     }
   },
-  "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities."
+  "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
+  "encryptThisChat": "Encrypt this chat",
+  "endToEndEncryption": "End to end encryption",
+  "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
+  "sorryThatsNotPossible": "Sorry... that is not possible",
+  "deviceKeys": "Device keys:"
 }

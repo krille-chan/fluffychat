@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:vrouter/vrouter.dart';
@@ -19,49 +22,68 @@ class ChatEncryptionSettings extends StatefulWidget {
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   String? get roomId => VRouter.of(context).pathParameters['roomid'];
 
+  Room get room => Matrix.of(context).client.getRoomById(roomId!)!;
+
   Future<void> unblock(DeviceKeys key) async {
     if (key.blocked) {
       await key.setBlocked(false);
     }
   }
 
-  Future<void> onSelected(
-      BuildContext context, String action, DeviceKeys key) async {
-    final room = Matrix.of(context).client.getRoomById(roomId!);
-    switch (action) {
-      case 'verify':
-        await unblock(key);
-        final req = key.startVerification();
-        req.onUpdate = () {
-          if (req.state == KeyVerificationState.done) {
-            setState(() {});
-          }
-        };
-        await KeyVerificationDialog(request: req).show(context);
-        break;
-      case 'verify_user':
-        await unblock(key);
-        final req =
-            await room!.client.userDeviceKeys[key.userId]!.startVerification();
-        req.onUpdate = () {
-          if (req.state == KeyVerificationState.done) {
-            setState(() {});
-          }
-        };
-        await KeyVerificationDialog(request: req).show(context);
-        break;
-      case 'block':
-        if (key.directVerified) {
-          await key.setVerified(false);
-        }
-        await key.setBlocked(true);
-        setState(() {});
-        break;
-      case 'unblock':
-        await unblock(key);
-        setState(() {});
-        break;
+  void enableEncryption(_) async {
+    if (room.encrypted) {
+      showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.sorryThatsNotPossible,
+        message: L10n.of(context)!.disableEncryptionWarning,
+      );
+      return;
     }
+    if (room.joinRules == JoinRules.public) {
+      showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.sorryThatsNotPossible,
+        message: L10n.of(context)!.noEncryptionForPublicRooms,
+      );
+      return;
+    }
+    if (!room.canChangeStateEvent(EventTypes.Encryption)) {
+      showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.sorryThatsNotPossible,
+        message: L10n.of(context)!.noPermission,
+      );
+      return;
+    }
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.areYouSure,
+      message: L10n.of(context)!.enableEncryptionWarning,
+      okLabel: L10n.of(context)!.yes,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (consent != OkCancelResult.ok) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.enableEncryption(),
+    );
+  }
+
+  void startVerification() async {
+    final req = await room.client.userDeviceKeys[room.directChatMatrixID]!
+        .startVerification();
+    req.onUpdate = () {
+      if (req.state == KeyVerificationState.done) {
+        setState(() {});
+      }
+    };
+    await KeyVerificationDialog(request: req).show(context);
+  }
+
+  void toggleDeviceKey(DeviceKeys key) {
+    setState(() {
+      key.setBlocked(!key.blocked);
+    });
   }
 
   @override
