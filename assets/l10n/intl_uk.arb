@@ -3024,5 +3024,15 @@
   "startFirstChat": "Розпочніть свою першу бесіду",
   "@startFirstChat": {},
   "newSpaceDescription": "Простори дозволяють об'єднувати ваші бесіди та створювати приватні або загальнодоступні спільноти.",
-  "@newSpaceDescription": {}
+  "@newSpaceDescription": {},
+  "encryptThisChat": "Зашифрувати цю бесіду",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "Наскрізне шифрування",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "З міркувань безпеки ви не можете вимкнути шифрування в бесіді, ув якій воно було ввімкнене раніше.",
+  "@disableEncryptionWarning": {},
+  "sorryThatsNotPossible": "Вибачте... це неможливо",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Ключі пристрою:",
+  "@deviceKeys": {}
 }
