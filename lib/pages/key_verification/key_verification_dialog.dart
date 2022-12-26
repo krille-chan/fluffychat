@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,25 +10,15 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import '../../utils/beautify_string_extension.dart';
-import '../../widgets/adaptive_flat_button.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
-  Future<void> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (context) => this,
-          useRootNavigator: false,
-        )
-      : showDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (context) => this,
-          useRootNavigator: false,
-        );
+  Future<void> show(BuildContext context) => showModalBottomSheet(
+        context: context,
+        builder: (context) => this,
+        useRootNavigator: true,
+        isDismissible: false,
+      );
 
   final KeyVerification request;
 
@@ -152,12 +141,16 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             ],
           ),
         );
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.submit,
+        buttons.add(TextButton(
+          child: Text(
+            L10n.of(context)!.submit,
+          ),
           onPressed: () => checkInput(textEditingController.text),
         ));
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.skip,
+        buttons.add(TextButton(
+          child: Text(
+            L10n.of(context)!.skip,
+          ),
           onPressed: () => widget.request.openSSSS(skip: true),
         ));
         break;
@@ -166,102 +159,78 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(children: [
-              if (!PlatformInfos.isCupertinoStyle)
-                Avatar(mxContent: user?.avatarUrl, name: displayName),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: PlatformInfos.isCupertinoStyle
-                      ? CrossAxisAlignment.center
-                      : CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      displayName,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    Text(
-                      '${widget.request.userId} - ${widget.request.deviceId}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
             const SizedBox(height: 16),
-            Image.asset('assets/verification.png', fit: BoxFit.contain),
+            Avatar(
+              mxContent: user?.avatarUrl,
+              name: displayName,
+              size: Avatar.defaultSize * 2,
+            ),
             const SizedBox(height: 16),
             Text(
               L10n.of(context)!.askVerificationRequest(displayName),
             )
           ],
         );
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.reject,
-          textColor: Colors.red,
+        buttons.add(TextButton.icon(
+          icon: const Icon(Icons.close),
+          style: TextButton.styleFrom(foregroundColor: Colors.red),
+          label: Text(L10n.of(context)!.reject),
           onPressed: () => widget.request
               .rejectVerification()
               .then((_) => Navigator.of(context, rootNavigator: false).pop()),
         ));
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.accept,
+        buttons.add(TextButton.icon(
+          icon: const Icon(Icons.check),
+          label: Text(L10n.of(context)!.accept),
           onPressed: () => widget.request.acceptVerification(),
         ));
         break;
       case KeyVerificationState.waitingAccept:
-        body = Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image.asset('assets/verification.png', fit: BoxFit.contain),
-            const SizedBox(height: 16),
-            const CircularProgressIndicator.adaptive(strokeWidth: 2),
-            const SizedBox(height: 16),
-            Text(
-              L10n.of(context)!.waitingPartnerAcceptRequest,
-              textAlign: TextAlign.center,
-            ),
-          ],
+        body = Center(
+          child: Column(
+            children: <Widget>[
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Avatar(
+                    mxContent: user?.avatarUrl,
+                    name: displayName,
+                  ),
+                  const SizedBox(
+                    width: Avatar.defaultSize + 2,
+                    height: Avatar.defaultSize + 2,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                L10n.of(context)!.waitingPartnerAcceptRequest,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         );
-        final key = widget.request.client.userDeviceKeys[widget.request.userId]
-            ?.deviceKeys[widget.request.deviceId];
-        if (key != null) {
-          buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context)!.verifyManual,
-            onPressed: () async {
-              final result = await showOkCancelAlertDialog(
-                useRootNavigator: false,
-                context: context,
-                title: L10n.of(context)!.verifyManual,
-                message: key.ed25519Key?.beautified ?? 'Key not found',
-              );
-              if (result == OkCancelResult.ok) {
-                await key.setVerified(true);
-              }
-              await widget.request.cancel();
-              Navigator.of(context, rootNavigator: false).pop();
-            },
-          ));
-        }
 
         break;
       case KeyVerificationState.askSas:
         TextSpan compareWidget;
         // maybe add a button to switch between the two and only determine default
         // view for if "emoji" is a present sasType or not?
-        String compareText;
+
         if (widget.request.sasTypes.contains('emoji')) {
-          compareText = L10n.of(context)!.compareEmojiMatch;
+          title = Text(
+            L10n.of(context)!.compareEmojiMatch,
+            maxLines: 2,
+            style: const TextStyle(fontSize: 16),
+          );
           compareWidget = TextSpan(
             children: widget.request.sasEmojis
                 .map((e) => WidgetSpan(child: _Emoji(e, sasEmoji)))
                 .toList(),
           );
         } else {
-          compareText = L10n.of(context)!.compareNumbersMatch;
+          title = Text(L10n.of(context)!.compareNumbersMatch);
           final numbers = widget.request.sasNumbers;
           final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
           compareWidget =
@@ -270,27 +239,23 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Center(
-              child: Text(
-                compareText,
-                style: const TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 10),
             Text.rich(
               compareWidget,
               textAlign: TextAlign.center,
             ),
           ],
         );
-        buttons.add(AdaptiveFlatButton(
-          textColor: Colors.red,
-          label: L10n.of(context)!.theyDontMatch,
+        buttons.add(TextButton.icon(
+          icon: const Icon(Icons.close),
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.red,
+          ),
+          label: Text(L10n.of(context)!.theyDontMatch),
           onPressed: () => widget.request.rejectSas(),
         ));
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.theyMatch,
+        buttons.add(TextButton.icon(
+          icon: const Icon(Icons.check_outlined),
+          label: Text(L10n.of(context)!.theyMatch),
           onPressed: () => widget.request.acceptSas(),
         ));
         break;
@@ -315,7 +280,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Icon(Icons.check_circle_outlined,
-                color: Colors.green, size: 200.0),
+                color: Colors.green, size: 128.0),
             const SizedBox(height: 10),
             Text(
               L10n.of(context)!.verifySuccess,
@@ -323,8 +288,10 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             ),
           ],
         );
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.close,
+        buttons.add(TextButton(
+          child: Text(
+            L10n.of(context)!.close,
+          ),
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
@@ -332,7 +299,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(Icons.cancel, color: Colors.red, size: 200.0),
+            const Icon(Icons.cancel, color: Colors.red, size: 128.0),
             const SizedBox(height: 10),
             Text(
               'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}',
@@ -340,33 +307,32 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             ),
           ],
         );
-        buttons.add(AdaptiveFlatButton(
-          label: L10n.of(context)!.close,
+        buttons.add(TextButton(
+          child: Text(
+            L10n.of(context)!.close,
+          ),
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
         ));
         break;
     }
-    final content = SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 16),
-          body,
-        ],
-      ),
-    );
-    if (PlatformInfos.isCupertinoStyle) {
-      return CupertinoAlertDialog(
+    return Scaffold(
+      appBar: AppBar(
+        leading: const CloseButton(),
         title: title,
-        content: content,
-        actions: buttons,
-      );
-    }
-    return AlertDialog(
-      title: title,
-      content: content,
-      actions: buttons,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(12.0),
+        children: [body],
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: buttons,
+          ),
+        ),
+      ),
     );
   }
 }
