@@ -64,6 +64,7 @@ class FluffyChatAppState extends State<FluffyChatApp> {
           return VRouter(
             key: FluffyChatApp.routerKey,
             title: AppConfig.applicationName,
+            debugShowCheckedModeBanner: false,
             themeMode: themeMode,
             theme: FluffyThemes.buildTheme(Brightness.light, primaryColor),
             darkTheme: FluffyThemes.buildTheme(Brightness.dark, primaryColor),
