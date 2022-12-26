@@ -16,7 +16,7 @@ dependencies:
   collection: ^1.15.0-nullsafety.4
   connectivity_plus: ^3.0.2
   cupertino_icons: any
-  desktop_drop: ^0.3.2
+  desktop_drop: ^0.4.0
   desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^8.0.0
@@ -42,7 +42,7 @@ dependencies:
   flutter_olm: ^1.2.0
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
-  flutter_secure_storage: ^6.0.0
+  flutter_secure_storage: ^7.0.1
   flutter_typeahead: ^4.0.0
   flutter_web_auth: ^0.5.0
   flutter_webrtc: # Until https://github.com/flutter-webrtc/flutter-webrtc/issues/1212 is fixed
