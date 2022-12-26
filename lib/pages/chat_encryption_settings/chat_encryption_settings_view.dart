@@ -137,8 +137,9 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                                   (s) => '${s.group(0)} ') ??
                                           L10n.of(context)!
                                               .unknownEncryptionAlgorithm,
-                                      style:
-                                          const TextStyle(fontFamily: 'Mono'),
+                                      style: const TextStyle(
+                                        fontFamily: 'monospace',
+                                      ),
                                     ),
                                   ),
                                 );
