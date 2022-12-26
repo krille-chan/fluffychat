@@ -16,7 +16,7 @@ class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => showModalBottomSheet(
         context: context,
         builder: (context) => this,
-        useRootNavigator: true,
+        useRootNavigator: false,
         isDismissible: false,
       );
 
