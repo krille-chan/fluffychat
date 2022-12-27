@@ -3025,5 +3025,19 @@
     "placeholders": {
       "oldDisplayName": {}
     }
-  }
+  },
+  "startFirstChat": "Alusta oma esimest vestlust",
+  "@startFirstChat": {},
+  "encryptThisChat": "Krüpti see vestlus",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "Läbiv krüptimine",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "Kui vestluses on krüptimine kasutusele võetud, siis turvalisuse huvides ei saa seda hiljem välja lülitada.",
+  "@disableEncryptionWarning": {},
+  "sorryThatsNotPossible": "Vabandust... see ei ole võimalik",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Seadme võtmed:",
+  "@deviceKeys": {},
+  "newSpaceDescription": "Kogukonnad võimaldavad sul koondada erinevaid vestlusi ning korraldada avalikku või privaatset ühistegevust.",
+  "@newSpaceDescription": {}
 }
