@@ -1335,12 +1335,17 @@ packages:
   record:
     dependency: "direct main"
     description:
-      path: record
-      ref: HEAD
-      resolved-ref: "95e3e8a08e54698a41ab49d50d1d3cb42cecb4e7"
-      url: "https://github.com/krillefear/record.git"
-    source: git
-    version: "4.4.3"
+      name: record
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.4.4"
+  record_linux:
+    dependency: transitive
+    description:
+      name: record_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   record_macos:
     dependency: transitive
     description:
@@ -1368,7 +1373,7 @@ packages:
       name: record_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.2"
+    version: "0.7.1"
   remove_emoji:
     dependency: transitive
     description:
