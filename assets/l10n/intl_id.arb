@@ -3023,5 +3023,15 @@
   "startFirstChat": "Mulai percakapan pertamamu",
   "@startFirstChat": {},
   "newSpaceDescription": "Fitur space bisa membantu untuk memisahkan percakapanmu dan membuat komunitas pribadi atau publik.",
-  "@newSpaceDescription": {}
+  "@newSpaceDescription": {},
+  "sorryThatsNotPossible": "Maaf... itu tidak mungkin",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Kunci perangkat:",
+  "@deviceKeys": {},
+  "encryptThisChat": "Enkripsi obrolan ini",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "Enkripsi ujung ke ujung",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "Demi keamanan kamu tidak bisa menonaktifkan enkripsi dalam sebuah obrolan di mana sebelumbya sudah diaktifkan.",
+  "@disableEncryptionWarning": {}
 }
