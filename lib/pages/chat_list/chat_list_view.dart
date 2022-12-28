@@ -222,32 +222,37 @@ class ChatListView extends StatelessWidget {
                 ),
               ],
               Expanded(
-                child: Scaffold(
-                  appBar: ChatListHeader(controller: controller),
-                  body: ChatListViewBody(controller),
-                  bottomNavigationBar: controller.displayNavigationBar
-                      ? NavigationBar(
-                          height: 64,
-                          selectedIndex: controller.selectedIndex,
-                          onDestinationSelected:
-                              controller.onDestinationSelected,
-                          destinations: getNavigationDestinations(context),
-                        )
-                      : null,
-                  floatingActionButton: controller.filteredRooms.isNotEmpty &&
-                          selectMode == SelectMode.normal
-                      ? KeyBoardShortcuts(
-                          keysToPress: {
-                            LogicalKeyboardKey.controlLeft,
-                            LogicalKeyboardKey.keyN
-                          },
-                          onKeysPressed: () =>
-                              VRouter.of(context).to('/newprivatechat'),
-                          helpLabel: L10n.of(context)!.newChat,
-                          child: StartChatFloatingActionButton(
-                              controller: controller),
-                        )
-                      : null,
+                child: GestureDetector(
+                  onTap: FocusManager.instance.primaryFocus?.unfocus,
+                  excludeFromSemantics: true,
+                  behavior: HitTestBehavior.translucent,
+                  child: Scaffold(
+                    appBar: ChatListHeader(controller: controller),
+                    body: ChatListViewBody(controller),
+                    bottomNavigationBar: controller.displayNavigationBar
+                        ? NavigationBar(
+                            height: 64,
+                            selectedIndex: controller.selectedIndex,
+                            onDestinationSelected:
+                                controller.onDestinationSelected,
+                            destinations: getNavigationDestinations(context),
+                          )
+                        : null,
+                    floatingActionButton: controller.filteredRooms.isNotEmpty &&
+                            selectMode == SelectMode.normal
+                        ? KeyBoardShortcuts(
+                            keysToPress: {
+                              LogicalKeyboardKey.controlLeft,
+                              LogicalKeyboardKey.keyN
+                            },
+                            onKeysPressed: () =>
+                                VRouter.of(context).to('/newprivatechat'),
+                            helpLabel: L10n.of(context)!.newChat,
+                            child: StartChatFloatingActionButton(
+                                controller: controller),
+                          )
+                        : null,
+                  ),
                 ),
               ),
             ],
