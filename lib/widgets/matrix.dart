@@ -327,15 +327,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
 
         if (state != LoginState.loggedIn) {
-          widget.router!.currentState!.to(
+          widget.router?.currentState?.to(
             '/rooms',
-            queryParameters: widget.router!.currentState!.queryParameters,
+            queryParameters: widget.router?.currentState?.queryParameters ?? {},
           );
         }
       } else {
-        widget.router!.currentState!.to(
+        widget.router?.currentState?.to(
           state == LoginState.loggedIn ? '/rooms' : '/home',
-          queryParameters: widget.router!.currentState!.queryParameters,
+          queryParameters: widget.router?.currentState?.queryParameters ?? {},
         );
       }
     });

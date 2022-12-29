@@ -38,6 +38,7 @@ class SettingsView extends StatelessWidget {
         body: ListTileTheme(
           iconColor: Theme.of(context).colorScheme.onBackground,
           child: ListView(
+            key: const Key('SettingsListViewContent'),
             children: <Widget>[
               AnimatedContainer(
                 height: controller.showChatBackupBanner ? 54 : 0,

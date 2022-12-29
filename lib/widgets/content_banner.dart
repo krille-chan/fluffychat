@@ -11,6 +11,7 @@ class ContentBanner extends StatelessWidget {
   final void Function()? onEdit;
   final Client? client;
   final double opacity;
+  final WidgetBuilder? placeholder;
 
   const ContentBanner(
       {this.mxContent,
@@ -19,6 +20,7 @@ class ContentBanner extends StatelessWidget {
       this.onEdit,
       this.client,
       this.opacity = 0.75,
+      this.placeholder,
       Key? key})
       : super(key: key);
 
@@ -54,6 +56,7 @@ class ContentBanner extends StatelessWidget {
                       uri: mxContent,
                       animated: true,
                       fit: BoxFit.cover,
+                      placeholder: placeholder,
                       height: 400,
                       width: 800,
                     ),

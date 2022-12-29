@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
 import 'login_view.dart';
@@ -30,7 +31,7 @@ class LoginController extends State<Login> {
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
-  void login([_]) async {
+  void login() async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
@@ -48,6 +49,9 @@ class LoginController extends State<Login> {
     }
 
     setState(() => loading = true);
+
+    _coolDown?.cancel();
+
     try {
       final username = usernameController.text;
       AuthenticationIdentifier identifier;
@@ -97,8 +101,8 @@ class LoginController extends State<Login> {
   void _checkWellKnown(String userId) async {
     if (mounted) setState(() => usernameError = null);
     if (!userId.isValidMatrixId) return;
+    final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
     try {
-      final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
       var newDomain = Uri.https(userId.domain!, '');
       Matrix.of(context).getLoginClient().homeserver = newDomain;
       DiscoveryInformation? wellKnownInformation;
@@ -112,14 +116,11 @@ class LoginController extends State<Login> {
         // do nothing, newDomain is already set to a reasonable fallback
       }
       if (newDomain != oldHomeserver) {
-        await showFutureLoadingDialog(
-          context: context,
-          // do nothing if we error, we'll handle it below
-          future: () => Matrix.of(context)
-              .getLoginClient()
-              .checkHomeserver(newDomain)
-              .catchError((e) {}),
-        );
+        Matrix.of(context)
+            .getLoginClient()
+            .checkHomeserver(newDomain)
+            .catchError((e) {});
+
         if (Matrix.of(context).getLoginClient().homeserver == null) {
           Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
           // okay, the server we checked does not appear to be a matrix server
@@ -140,15 +141,18 @@ class LoginController extends State<Login> {
             return;
           }
         }
-        if (mounted) setState(() => usernameError = null);
+        usernameError = null;
+        if (mounted) setState(() {});
       } else {
+        Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
         if (mounted) {
-          setState(() =>
-              Matrix.of(context).getLoginClient().homeserver = oldHomeserver);
+          setState(() {});
         }
       }
     } catch (e) {
-      if (mounted) setState(() => usernameError = e.toString());
+      Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
+      usernameError = e.toLocalizedString(context);
+      if (mounted) setState(() {});
     }
   }
 
