@@ -238,8 +238,11 @@ class ChatListView extends StatelessWidget {
                             destinations: getNavigationDestinations(context),
                           )
                         : null,
-                    floatingActionButton: controller.filteredRooms.isNotEmpty &&
-                            selectMode == SelectMode.normal
+                    floatingActionButtonLocation:
+                        controller.filteredRooms.isEmpty
+                            ? FloatingActionButtonLocation.centerFloat
+                            : null,
+                    floatingActionButton: selectMode == SelectMode.normal
                         ? KeyBoardShortcuts(
                             keysToPress: {
                               LogicalKeyboardKey.controlLeft,
@@ -249,7 +252,8 @@ class ChatListView extends StatelessWidget {
                                 VRouter.of(context).to('/newprivatechat'),
                             helpLabel: L10n.of(context)!.newChat,
                             child: StartChatFloatingActionButton(
-                                controller: controller),
+                              controller: controller,
+                            ),
                           )
                         : null,
                   ),

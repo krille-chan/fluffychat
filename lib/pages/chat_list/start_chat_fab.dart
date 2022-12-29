@@ -42,7 +42,9 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (controller.activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return L10n.of(context)!.newChat;
+        return controller.filteredRooms.isEmpty
+            ? L10n.of(context)!.startFirstChat
+            : L10n.of(context)!.newChat;
       case ActiveFilter.groups:
         return L10n.of(context)!.newGroup;
       case ActiveFilter.spaces:
@@ -55,7 +57,11 @@ class StartChatFloatingActionButton extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
-      width: controller.scrolledToTop ? 144 : 64,
+      width: controller.filteredRooms.isEmpty
+          ? null
+          : controller.scrolledToTop
+              ? 144
+              : 64,
       child: controller.scrolledToTop
           ? FloatingActionButton.extended(
               backgroundColor: Theme.of(context).colorScheme.primary,
