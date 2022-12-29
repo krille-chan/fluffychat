@@ -430,8 +430,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     voipPlugin = webrtcIsSupported ? VoipPlugin(client) : null;
   }
 
-  bool _firstStartup = true;
-
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     Logs().v('AppLifecycleState = $state');
@@ -440,10 +438,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     client.backgroundSync = foreground;
     client.syncPresence = foreground ? null : PresenceType.unavailable;
     client.requestHistoryOnLimitedTimeline = !foreground;
-    if (_firstStartup) {
-      _firstStartup = false;
-      backgroundPush?.setupPush();
-    }
   }
 
   void initSettings() {
