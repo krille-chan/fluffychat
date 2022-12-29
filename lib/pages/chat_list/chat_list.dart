@@ -225,7 +225,7 @@ class ChatListController extends State<ChatList>
 
   void onSearchEnter(String text) {
     if (text.isEmpty) {
-      cancelSearch();
+      cancelSearch(unfocus: false);
       return;
     }
 
@@ -236,14 +236,14 @@ class ChatListController extends State<ChatList>
     _coolDown = Timer(const Duration(milliseconds: 500), _search);
   }
 
-  void cancelSearch() {
+  void cancelSearch({bool unfocus = true}) {
     setState(() {
       searchController.clear();
       isSearchMode = false;
       roomSearchResult = userSearchResult = null;
       isSearching = false;
     });
-    FocusManager.instance.primaryFocus?.unfocus();
+    if (unfocus) FocusManager.instance.primaryFocus?.unfocus();
   }
 
   bool isTorBrowser = false;
