@@ -2985,5 +2985,6 @@
   "endToEndEncryption": "End to end encryption",
   "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
   "sorryThatsNotPossible": "Sorry... that is not possible",
-  "deviceKeys": "Device keys:"
+  "deviceKeys": "Device keys:",
+  "letsStart": "Let's start"
 }

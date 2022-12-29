@@ -43,21 +43,20 @@ class LoginScaffold extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Material(
-          color: Theme.of(context).brightness == Brightness.light
-              ? Theme.of(context).scaffoldBackgroundColor.withOpacity(0.9)
-              : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.75),
-          borderRadius: isMobileMode
-              ? null
-              : BorderRadius.circular(AppConfig.borderRadius),
-          elevation: isMobileMode ? 0 : 10,
-          clipBehavior: Clip.hardEdge,
-          shadowColor: Colors.black,
-          child: ConstrainedBox(
-            constraints: isMobileMode
-                ? const BoxConstraints()
-                : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-            child: scaffold,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Material(
+            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.925),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            clipBehavior: Clip.hardEdge,
+            elevation: 10,
+            shadowColor: Colors.black,
+            child: ConstrainedBox(
+              constraints: isMobileMode
+                  ? const BoxConstraints()
+                  : const BoxConstraints(maxWidth: 480, maxHeight: 640),
+              child: scaffold,
+            ),
           ),
         ),
       ),

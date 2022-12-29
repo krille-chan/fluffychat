@@ -82,7 +82,7 @@ class LoginView extends StatelessWidget {
                 tag: 'signinButton',
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -90,7 +90,8 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading
                         ? null
                         : () => controller.login(context),
-                    child: controller.loading
+                    icon: const Icon(Icons.login_outlined),
+                    label: controller.loading
                         ? const LinearProgressIndicator()
                         : Text(L10n.of(context)!.login),
                   ),
@@ -124,14 +125,15 @@ class LoginView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   onPressed:
                       controller.loading ? () {} : controller.passwordForgotten,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Theme.of(context).colorScheme.error,
                     backgroundColor: Theme.of(context).colorScheme.onError,
                   ),
-                  child: Text(L10n.of(context)!.passwordForgotten),
+                  icon: const Icon(Icons.safety_check_outlined),
+                  label: Text(L10n.of(context)!.passwordForgotten),
                 ),
               ),
             ],

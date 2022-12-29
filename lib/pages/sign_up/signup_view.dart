@@ -94,13 +94,14 @@ class SignupPageView extends StatelessWidget {
               tag: 'loginButton',
               child: Padding(
                 padding: const EdgeInsets.all(12),
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.person_add_outlined),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   onPressed: controller.loading ? () {} : controller.signup,
-                  child: controller.loading
+                  label: controller.loading
                       ? const LinearProgressIndicator()
                       : Text(L10n.of(context)!.signUp),
                 ),

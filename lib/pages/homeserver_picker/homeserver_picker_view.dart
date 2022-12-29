@@ -48,75 +48,68 @@ class HomeserverPickerView extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView(
-                children: [
-                  if (controller.displayServerList)
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Material(
-                        borderRadius:
-                            BorderRadius.circular(AppConfig.borderRadius),
-                        color: Theme.of(context).colorScheme.onInverseSurface,
-                        clipBehavior: Clip.hardEdge,
-                        child: benchmarkResults == null
-                            ? const Center(
-                                child: Padding(
-                                padding: EdgeInsets.all(12.0),
-                                child: CircularProgressIndicator.adaptive(),
-                              ))
-                            : Column(
-                                children: controller.filteredHomeservers
-                                    .map(
-                                      (server) => ListTile(
-                                        trailing: IconButton(
-                                          icon: const Icon(
-                                            Icons.info_outlined,
-                                            color: Colors.black,
-                                          ),
-                                          onPressed: () =>
-                                              controller.showServerInfo(server),
-                                        ),
-                                        onTap: () => controller.setServer(
-                                            server.homeserver.baseUrl.host),
-                                        title: Text(
-                                          server.homeserver.baseUrl.host,
-                                          style: const TextStyle(
-                                              color: Colors.black),
-                                        ),
-                                        subtitle: Text(
-                                          server.homeserver.description ?? '',
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                      ),
+              child: controller.displayServerList
+                  ? ListView(
+                      children: [
+                        if (controller.displayServerList)
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Material(
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onInverseSurface,
+                              clipBehavior: Clip.hardEdge,
+                              child: benchmarkResults == null
+                                  ? const Center(
+                                      child: Padding(
+                                      padding: EdgeInsets.all(12.0),
+                                      child:
+                                          CircularProgressIndicator.adaptive(),
+                                    ))
+                                  : Column(
+                                      children: controller.filteredHomeservers
+                                          .map(
+                                            (server) => ListTile(
+                                              trailing: IconButton(
+                                                icon: const Icon(
+                                                  Icons.info_outlined,
+                                                  color: Colors.black,
+                                                ),
+                                                onPressed: () => controller
+                                                    .showServerInfo(server),
+                                              ),
+                                              onTap: () => controller.setServer(
+                                                  server
+                                                      .homeserver.baseUrl.host),
+                                              title: Text(
+                                                server.homeserver.baseUrl.host,
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              subtitle: Text(
+                                                server.homeserver.description ??
+                                                    '',
+                                                style: TextStyle(
+                                                    color:
+                                                        Colors.grey.shade700),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
+                            ),
+                          ),
+                      ],
                     )
-                  else ...[
-                    Container(
-                      alignment: Alignment.center,
-                      height: 200,
+                  : Container(
+                      alignment: Alignment.topCenter,
                       child: Image.asset(
-                        'assets/info-logo.png',
+                        'assets/banner_transparent.png',
                         filterQuality: FilterQuality.medium,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Center(
-                        child: Text(
-                          AppConfig.applicationWelcomeMessage ??
-                              L10n.of(context)!.welcomeText,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
             ),
             SafeArea(
               child: Container(
@@ -127,20 +120,16 @@ class HomeserverPickerView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                      onPressed: controller.restoreBackup,
-                      child: Text(L10n.of(context)!.hydrate),
-                    ),
-                    TextButton(
                       onPressed: () => launch(AppConfig.privacyUrl),
                       child: Text(L10n.of(context)!.privacy),
                     ),
+                    TextButton(
+                      onPressed: controller.restoreBackup,
+                      child: Text(L10n.of(context)!.hydrate),
+                    ),
                     Hero(
                       tag: 'loginButton',
-                      child: ElevatedButton(
+                      child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               Theme.of(context).colorScheme.primary,
@@ -150,9 +139,10 @@ class HomeserverPickerView extends StatelessWidget {
                         onPressed: controller.isLoading
                             ? null
                             : controller.checkHomeserverAction,
-                        child: controller.isLoading
+                        icon: const Icon(Icons.start_outlined),
+                        label: controller.isLoading
                             ? const LinearProgressIndicator()
-                            : Text(L10n.of(context)!.connect),
+                            : Text(L10n.of(context)!.letsStart),
                       ),
                     ),
                   ],

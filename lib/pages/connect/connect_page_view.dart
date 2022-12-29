@@ -40,9 +40,12 @@ class ConnectPageView extends StatelessWidget {
                       elevation: Theme.of(context)
                               .appBarTheme
                               .scrolledUnderElevation ??
-                          4,
+                          10,
                       color: Colors.transparent,
-                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                      shadowColor: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withAlpha(64),
                       clipBehavior: Clip.hardEdge,
                       child: CircleAvatar(
                         radius: 64,
@@ -103,13 +106,14 @@ class ConnectPageView extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Hero(
                 tag: 'loginButton',
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
                   onPressed: controller.loading ? () {} : controller.signUp,
-                  child: controller.loading
+                  icon: const Icon(Icons.person_add_outlined),
+                  label: controller.loading
                       ? const LinearProgressIndicator()
                       : Text(L10n.of(context)!.signUp),
                 ),
@@ -198,7 +202,8 @@ class ConnectPageView extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Hero(
                 tag: 'signinButton',
-                child: ElevatedButton(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.login_outlined),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         Theme.of(context).colorScheme.primaryContainer,
@@ -206,7 +211,7 @@ class ConnectPageView extends StatelessWidget {
                         Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                   onPressed: controller.loading ? () {} : controller.login,
-                  child: Text(L10n.of(context)!.login),
+                  label: Text(L10n.of(context)!.login),
                 ),
               ),
             ),
