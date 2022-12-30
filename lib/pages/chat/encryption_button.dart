@@ -33,8 +33,9 @@ class EncryptionButton extends StatelessWidget {
                         color: room.joinRules != JoinRules.public &&
                                 !room.encrypted
                             ? Colors.red
-                            : snapshot.data ==
-                                    EncryptionHealthState.unverifiedDevices
+                            : room.joinRules != JoinRules.public &&
+                                    snapshot.data ==
+                                        EncryptionHealthState.unverifiedDevices
                                 ? Colors.orange
                                 : null),
                     onPressed: () => VRouter.of(context)
