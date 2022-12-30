@@ -56,7 +56,8 @@ dependencies:
   image: ^3.1.1
   image_picker: ^0.8.4+8
   intl: any
-  just_audio: ^0.9.20
+  just_audio: ^0.9.30
+  just_audio_mpv: ^0.1.6
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   matrix: ^0.15.11

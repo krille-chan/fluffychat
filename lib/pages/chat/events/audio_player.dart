@@ -102,6 +102,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
 
     onAudioPositionChanged ??= audioPlayer.positionStream.listen((state) {
+      if (maxPosition <= 0) return;
       setState(() {
         statusText =
             '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
@@ -110,9 +111,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             .round();
       });
     });
-    onDurationChanged ??= audioPlayer.durationStream.listen((max) => max == null
-        ? null
-        : setState(() => maxPosition = max.inMilliseconds.toDouble()));
+    onDurationChanged ??= audioPlayer.durationStream.listen((max) {
+      if (max == null || max == Duration.zero) return;
+      setState(() => maxPosition = max.inMilliseconds.toDouble());
+    });
     onPlayerStateChanged ??=
         audioPlayer.playingStream.listen((_) => setState(() {}));
     audioPlayer.setFilePath(audioFile!.path);
