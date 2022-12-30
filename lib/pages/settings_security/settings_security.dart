@@ -28,13 +28,13 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.pleaseEnterYourPassword,
+          hintText: L10n.of(context)!.chooseAStrongPassword,
           obscureText: true,
           minLines: 1,
           maxLines: 1,
         ),
         DialogTextField(
-          hintText: L10n.of(context)!.chooseAStrongPassword,
+          hintText: L10n.of(context)!.repeatPassword,
           obscureText: true,
           minLines: 1,
           maxLines: 1,

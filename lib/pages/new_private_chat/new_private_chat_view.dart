@@ -109,7 +109,7 @@ class NewPrivateChatView extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: PlatformInfos.isMobile && !controller.hideFab
+      floatingActionButton: PlatformInfos.isMobile
           ? Padding(
               padding: const EdgeInsets.only(bottom: 64.0),
               child: FloatingActionButton.extended(

@@ -25,38 +25,16 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   final formKey = GlobalKey<FormState>();
   bool loading = false;
 
-  bool _hideFab = false;
-
   // remove leading matrix.to from text field in order to simplify pasting
   final List<TextInputFormatter> removeMatrixToFormatters = [
     FilteringTextInputFormatter.deny(NewPrivateChatController.prefix),
     FilteringTextInputFormatter.deny(NewPrivateChatController.prefixNoProtocol),
   ];
 
-  bool get hideFab => _hideFab;
-
   static const Set<String> supportedSigils = {'@', '!', '#'};
 
   static const String prefix = 'https://matrix.to/#/';
   static const String prefixNoProtocol = 'matrix.to/#/';
-
-  void setHideFab() {
-    if (textFieldFocus.hasFocus != _hideFab) {
-      setState(() => _hideFab = textFieldFocus.hasFocus);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    textFieldFocus.addListener(setHideFab);
-  }
-
-  @override
-  void dispose() {
-    textFieldFocus.removeListener(setHideFab);
-    super.dispose();
-  }
 
   void submitAction([_]) async {
     controller.text = controller.text.trim();
