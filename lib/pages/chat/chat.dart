@@ -16,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/chat_view.dart';
@@ -172,10 +173,20 @@ class ChatController extends State<Chat> {
     }
   }
 
+  void _loadDraft() async {
+    final prefs = await SharedPreferences.getInstance();
+    final draft = prefs.getString('draft_$roomId');
+    if (draft != null && draft.isNotEmpty) {
+      sendController.text = draft;
+      setState(() => inputText = draft);
+    }
+  }
+
   @override
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
+    _loadDraft();
     super.initState();
   }
 
@@ -257,6 +268,8 @@ class ChatController extends State<Chat> {
 
   Future<void> send() async {
     if (sendController.text.trim().isEmpty) return;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('draft_$roomId');
     var parseCommands = true;
 
     final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
@@ -920,7 +933,15 @@ class ChatController extends State<Chat> {
     );
   }
 
+  Timer? _storeInputTimeoutTimer;
+  static const Duration _storeInputTimeout = Duration(milliseconds: 500);
+
   void onInputBarChanged(String text) {
+    _storeInputTimeoutTimer?.cancel();
+    _storeInputTimeoutTimer = Timer(_storeInputTimeout, () async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('draft_$roomId', text);
+    });
     setReadMarker();
     if (text.endsWith(' ') && matrix!.hasComplexBundles) {
       final clients = currentRoomBundle;

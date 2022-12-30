@@ -10,6 +10,7 @@
 - feat: Add audio message support to linux (Krille Fear)
 - feat: Use Android system accent color (Krille Fear)
 - feat: include olm to Windows builds (TheOneWithTheBraid)
+- feat: Store drafts (Krille)
 - fix: Android push notification follow-up (TheOneWithTheBraid)
 - fix: Content banner (Krille Fear)
 - fix: Correct redacted by username (Krille Fear)
