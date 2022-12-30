@@ -1,1721 +1,1446 @@
 {
-  "@@last_modified": "2021-08-14 12:41:10.036931",
-  "about": "אודות",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accept": "קבל",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "acceptedTheInvitation": "{username} קיבל את ההזמנה",
-  "@acceptedTheInvitation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "account": "חשבון",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accountInformation": "פרטי חשבון",
-  "@accountInformation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "activatedEndToEndEncryption": "{username} הפעיל הצפנה מקצה לקצה",
-  "@activatedEndToEndEncryption": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "addGroupDescription": "הוספת תיאור קבוצה",
-  "@addGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "admin": "מנהל",
-  "@admin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alias": "כינוי",
-  "@alias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alreadyHaveAnAccount": "כבר יש לך חשבון?",
-  "@alreadyHaveAnAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "answeredTheCall": "{senderName} ענה לשיחה",
-  "@answeredTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "anyoneCanJoin": "כל אחד יכול להצטרף",
-  "@anyoneCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archive": "ארכיון",
-  "@archive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archivedRoom": "חדר בארכיון",
-  "@archivedRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areGuestsAllowedToJoin": "האם משתמשים אורחים מורשים להצטרף",
-  "@areGuestsAllowedToJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "האם אתה בטוח?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSCache": "אנא הזן את ביטוי הסיסמה המאובטח שלך או מפתח שחזור כדי לשמור את המפתחות במטמון.",
-  "@askSSSSCache": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSSign": "כדי שתוכל לחתום על משתמש אחר , הזן את הסיסמה שלך או את מפתח השחזור.",
-  "@askSSSSSign": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askSSSSVerify": "אנא הזן את משפט הסיסמה המאובטח שלך או מפתח השחזור כדי לאמת את ההפעלה שלך.",
-  "@askSSSSVerify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askVerificationRequest": "לקבל בקשת אימות זו מ- {username}?",
-  "@askVerificationRequest": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "authentication": "אימות",
-  "@authentication": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "שנה סיסמא",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "appLock": "נעילת אפליקציה",
-  "@appLock": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cancel": "ביטול",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAtLeastChars": "אנא כתוב לפחות {min} תווים",
-  "@pleaseChooseAtLeastChars": {
-    "type": "text",
-    "placeholders": {
-      "min": {}
-    }
-  },
-  "addEmail": "הוסף מייל",
-  "@addEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "all": "הכל",
-  "@all": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "allChats": "כל הצ'אטים",
-  "@allChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "banned": "חסום",
-  "@banned": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "avatarHasBeenChanged": "האווטאר השתנה",
-  "@avatarHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOnEnter": "שלח בכניסה",
-  "@sendOnEnter": {},
-  "badServerLoginTypesException": "שרת הבית תומך בסוגי הכניסה:\n{serverVersions}\nאבל אפליקציה זו תומכת רק ב:\n{supportedVersions}",
-  "@badServerLoginTypesException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "changedTheGuestAccessRulesTo": "{username} שינה את כללי הגישה לאורחים ל: {rules}",
-  "@changedTheGuestAccessRulesTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "rules": {}
-    }
-  },
-  "changedTheJoinRules": "{username} שינה את כללי ההצטרפות",
-  "@changedTheJoinRules": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changeWallpaper": "שנה טפט",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changedTheChatNameTo": "{username} שינה את שם הצ'אט ל: '{chatname}'",
-  "@changedTheChatNameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "chatname": {}
-    }
-  },
-  "changedTheRoomInvitationLink": "{username} שינה את קישור ההזמנה",
-  "@changedTheRoomInvitationLink": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "passwordsDoNotMatch": "הסיסמאות לא תואמות!",
-  "@passwordsDoNotMatch": {},
-  "pleaseEnterValidEmail": "אנא כתוב כתובת אימייל תקינה.",
-  "@pleaseEnterValidEmail": {},
-  "repeatPassword": "כתוב שוב את הסיסמה",
-  "@repeatPassword": {},
-  "addNewFriend": "הוסף חבר חדש",
-  "@addNewFriend": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSureYouWantToLogout": "האם אתה בטוח שברצונך לצאת?",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changelog": "יומן שינויים",
-  "@changelog": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chat": "צ׳אט",
-  "@chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPause": "השהה",
-  "@audioPlayerPause": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPlay": "הפעל",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "autoplayImages": "הפעל אוטומטית מדבקות ואנימציות מונפשים",
-  "@autoplayImages": {
-    "type": "text",
-    "placeholder": {}
-  },
-  "badServerVersionsException": "שרת הבית תומך בגרסאות:\n{serverVersions}\nאבל האפליקציה הזו תומכת רק ב-{supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "banFromChat": "צאט חסום",
-  "@banFromChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "bannedUser": "{username} חסם את {targetName}",
-  "@bannedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "blockDevice": "חסום מכשיר",
-  "@blockDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blocked": "חסום",
-  "@blocked": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "botMessages": "הודעות בוט",
-  "@botMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cachedKeys": "מפתחות מאוחסנים במטמון",
-  "@cachedKeys": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cantOpenUri": "לא ניתן לפתוח את ה-URI {uri}",
-  "@cantOpenUri": {
-    "type": "text",
-    "placeholders": {
-      "uri": {}
-    }
-  },
-  "changeDeviceName": "שנה את שם המכשיר",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changedTheChatAvatar": "{username} שינה את האווטאר של הצ'אט",
-  "@changedTheChatAvatar": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheChatDescriptionTo": "{username} שינה את תיאור הצ'אט ל: '{description}'",
-  "@changedTheChatDescriptionTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "description": {}
-    }
-  },
-  "changedTheChatPermissions": "{username} שינה את הרשאות הצ'אט",
-  "@changedTheChatPermissions": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheDisplaynameTo": "{username} שינה את שם התצוגה שלו ל: '{displayname}'",
-  "@changedTheDisplaynameTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "displayname": {}
-    }
-  },
-  "changedTheGuestAccessRules": "{username} שינה את כללי הגישה לאורחים",
-  "@changedTheGuestAccessRules": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheHistoryVisibility": "{username} שינה את נראות ההיסטוריה",
-  "@changedTheHistoryVisibility": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheHistoryVisibilityTo": "{username} שינה את נראות ההיסטוריה ל: {rules}",
-  "@changedTheHistoryVisibilityTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "rules": {}
-    }
-  },
-  "changedTheJoinRulesTo": "{username} שינה את כללי ההצטרפות ל: {joinRules}",
-  "@changedTheJoinRulesTo": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "joinRules": {}
-    }
-  },
-  "changedTheProfileAvatar": "{username} שינה את האווטאר שלו",
-  "@changedTheProfileAvatar": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changedTheRoomAliases": "{username} שינה את כינוי החדר",
-  "@changedTheRoomAliases": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "changesHaveBeenSaved": "השינויים נשמרו",
-  "@changesHaveBeenSaved": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheHomeserver": "שנה את שרת הבית",
-  "@changeTheHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheme": "שנה את הסגנון שלך",
-  "@changeTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheNameOfTheGroup": "שנה את שם הקבוצה",
-  "@changeTheNameOfTheGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheServer": "שנה את השרת",
-  "@changeTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeYourAvatar": "שינוי האווטאר שלך",
-  "@changeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "channelCorruptedDecryptError": "ההצפנה נפגמה",
-  "@channelCorruptedDecryptError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yourUserId": "מזהה המשתמש שלך:",
-  "@yourUserId": {},
-  "iWroteDownTheKey": "רשמתי את המפתח",
-  "@iWroteDownTheKey": {},
-  "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
-  "@yourChatBackupHasBeenSetUp": {},
-  "chatBackup": "גיבוי צ'אט",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setupChatBackup": "הגדר גיבוי צ'אט",
-  "@setupChatBackup": {},
-  "commandHint_ban": "חסום את המשתמש הנתון מהחדר הזה",
-  "@commandHint_ban": {
-    "type": "text",
-    "description": "Usage hint for the command /ban"
-  },
-  "commandHint_clearcache": "נקה מטמון",
-  "@commandHint_clearcache": {
-    "type": "text",
-    "description": "Usage hint for the command /clearcache"
-  },
-  "commandHint_create": "צור צ'אט קבוצתי ריק\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
-  "@commandHint_create": {
-    "type": "text",
-    "description": "Usage hint for the command /create"
-  },
-  "commandHint_discardsession": "התעלם מהסשן",
-  "@commandHint_discardsession": {
-    "type": "text",
-    "description": "Usage hint for the command /discardsession"
-  },
-  "commandHint_dm": "התחל צ'אט ישיר\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
-  "@commandHint_dm": {
-    "type": "text",
-    "description": "Usage hint for the command /dm"
-  },
-  "commandHint_html": "שלח טקסט בתבנית HTML",
-  "@commandHint_html": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "commandHint_invite": "הזמן את המשתמש הנתון לחדר זה",
-  "@commandHint_invite": {
-    "type": "text",
-    "description": "Usage hint for the command /invite"
-  },
-  "commandHint_join": "הצטרף לחדר הנתון",
-  "@commandHint_join": {
-    "type": "text",
-    "description": "Usage hint for the command /join"
-  },
-  "commandHint_kick": "הסר את המשתמש הנתון מהחדר הזה",
-  "@commandHint_kick": {
-    "type": "text",
-    "description": "Usage hint for the command /kick"
-  },
-  "commandHint_leave": "עזוב את החדר הזה",
-  "@commandHint_leave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandHint_me": "תאר את עצמך",
-  "@commandHint_me": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "setupChatBackupDescription": "כדי להגן על ההודעות שלך, יצרנו מפתח אבטחה עבורך.\nאנא שמור אותו במקום בטוח, כגון מנהל סיסמאות.",
-  "@setupChatBackupDescription": {},
-  "chatDetails": "פרטי צ'אט",
-  "@chatDetails": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackupDescription": "גיבוי הצ'אט שלך מאובטח באמצעות מפתח אבטחה. אנא וודא שאתה לא מאבד אותו.",
-  "@chatBackupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatHasBeenAddedToThisSpace": "צ'אט נוסף למרחב הזה",
-  "@chatHasBeenAddedToThisSpace": {},
-  "chatHasBeenRemovedFromThisSpace": "הצ'אט הוסר מהמרחב הזה",
-  "@chatHasBeenRemovedFromThisSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chats": "צ'אטים",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAStrongPassword": "בחר סיסמה חזקה",
-  "@chooseAStrongPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAUsername": "בחר שם משתמש",
-  "@chooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "נקה ארכיון",
-  "@clearArchive": {},
-  "clearText": "נקה טקסט",
-  "@clearText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "close": "סגור",
-  "@close": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHint_myroomavatar": "הגדר את התמונה שלך לחדר זה (על ידי mxc-uri)",
-  "@commandHint_myroomavatar": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomavatar"
-  },
-  "commandHint_myroomnick": "הגדר את שם התצוגה שלך עבור חדר זה",
-  "@commandHint_myroomnick": {
-    "type": "text",
-    "description": "Usage hint for the command /myroomnick"
-  },
-  "addToSpace": "הוסף לחלל",
-  "@addToSpace": {},
-  "commandHint_unban": "בטל את החסימה של המשתמש הנתון מהחדר הזה",
-  "@commandHint_unban": {
-    "type": "text",
-    "description": "Usage hint for the command /unban"
-  },
-  "countParticipants": "{count} משתתפים",
-  "@countParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "create": "צור",
-  "@create": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createAccountNow": "צור חשבון עכשיו",
-  "@createAccountNow": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createdTheChat": "{username} יצר את הצ'אט",
-  "@createdTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "crossSigningEnabled": "חתימה צולבת על",
-  "@crossSigningEnabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "currentlyActive": "פעיל כעת",
-  "@currentlyActive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "darkTheme": "כהה",
-  "@darkTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateAndTimeOfDay": "{date}, {timeOfDay}",
-  "@dateAndTimeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "timeOfDay": {}
-    }
-  },
-  "dateWithoutYear": "{month}-{day}",
-  "@dateWithoutYear": {
-    "type": "text",
-    "placeholders": {
-      "month": {},
-      "day": {}
-    }
-  },
-  "defaultPermissionLevel": "רמת הרשאת ברירת מחדל",
-  "@defaultPermissionLevel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteAccount": "מחק חשבון",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteMessage": "מחק הודעה",
-  "@deleteMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deny": "דחה",
-  "@deny": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceId": "מזהה מכשיר",
-  "@deviceId": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "devices": "התקנים",
-  "@devices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceVerifyDescription": "ההצפנה מאובטחת רק כאשר כל המכשירים אומתו.",
-  "@deviceVerifyDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "directChats": "צ'אטים ישירים",
-  "@directChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discardPicture": "התעלם מתמונה",
-  "@discardPicture": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "לגלות",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "donate": "תרם",
-  "@donate": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "downloadFile": "הורד קובץ",
-  "@downloadFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "edit": "ערוך",
-  "@edit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editChatPermissions": "ערוך הרשאות צ'אט",
-  "@editChatPermissions": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editDisplayname": "ערוך את שם התצוגה",
-  "@editDisplayname": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editJitsiInstance": "ערוך מופע Jitsi",
-  "@editJitsiInstance": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAliases": "ערוך כינויים לחדר",
-  "@editRoomAliases": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteExists": "אימוט כבר קיים!",
-  "@emoteExists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emptyChat": "צ'אט ריק",
-  "@emptyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableChatBackup": "אפשר את גיבוי הצ'אט כדי שלעולם לא תאבד גישה לצ'אטים שלך.",
-  "@enableChatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encrypted": "מוצפן",
-  "@encrypted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryptionAlgorithm": "אלגוריתם הצפנה",
-  "@encryptionAlgorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "end2endEncryptionSettings": "הגדרות הצפנה מקצה לקצה",
-  "@end2endEncryptionSettings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAGroupName": "הזן שם קבוצה",
-  "@enterAGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAnEmailAddress": "הזן כתובת דואר אלקטרוני",
-  "@enterAnEmailAddress": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterASpacepName": "הזן שם חלל",
-  "@enterASpacepName": {},
-  "enterYourHomeserver": "הזן את שרת הבית שלך",
-  "@enterYourHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "everythingReady": "הכל מוכן!",
-  "@everythingReady": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileName": "שם קובץ",
-  "@fileName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileSize": "גודל הקובץ",
-  "@fileSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fontSize": "גודל גופן",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "forward": "העבר",
-  "@forward": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friday": "יום שישי",
-  "@friday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friends": "חברים",
-  "@friends": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromJoining": "מהצטרפות",
-  "@fromJoining": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromTheInvitation": "מההזמנה",
-  "@fromTheInvitation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "goToTheNewRoom": "עבור לחדר החדש",
-  "@goToTheNewRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescription": "תיאור קבוצה",
-  "@groupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescriptionHasBeenChanged": "תיאור הקבוצה השתנה",
-  "@groupDescriptionHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupIsPublic": "הקבוצה ציבורית",
-  "@groupIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupWith": "קבוצה עם {displayname}",
-  "@groupWith": {
-    "type": "text",
-    "placeholders": {
-      "displayname": {}
-    }
-  },
-  "guestsAreForbidden": "אורחים אסורים",
-  "@guestsAreForbidden": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "guestsCanJoin": "אורחים יכולים להצטרף",
-  "@guestsCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "id": "מזהה",
-  "@id": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "identity": "זהות",
-  "@identity": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "משתמשים שהתעלמו מהם",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "incorrectPassphraseOrKey": "ביטוי סיסמה או מפתח שחזור שגויים",
-  "@incorrectPassphraseOrKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidEmail": "דואר אלקטרוני לא חוקי",
-  "@invalidEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteContact": "הזמן איש קשר",
-  "@inviteContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invited": "הזמין",
-  "@invited": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invitedUser": "{username} הזמין את {targetName}",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "invitedUsersOnly": "משתמשים מוזמנים בלבד",
-  "@invitedUsersOnly": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteForMe": "הזמנה בשבילי",
-  "@inviteForMe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteText": "{username} הזמין אותך ל-FluffyChat.\n1. התקן את FluffyChat: https://fluffychat.im\n2. הירשם או היכנס\n3. פתח את קישור ההזמנה: {link}",
-  "@inviteText": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "link": {}
-    }
-  },
-  "isDeviceKeyCorrect": "האם מפתח המכשיר נכון?",
-  "@isDeviceKeyCorrect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "isTyping": "מקליד/ה…",
-  "@isTyping": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "joinedTheChat": "{username} הצטרף לצ'אט",
-  "@joinedTheChat": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "joinRoom": "הצטרף לחדר",
-  "@joinRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "keysCached": "המפתחות נשמרים במטמון",
-  "@keysCached": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "keysMissing": "המפתחות חסרים",
-  "@keysMissing": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "kicked": "{username} בעט ב {targetName}",
-  "@kicked": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "kickedAndBanned": "{username} בעט וחסם {targetName}",
-  "@kickedAndBanned": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "kickFromChat": "בעיטה מהצ'אט",
-  "@kickFromChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastActiveAgo": "פעילות אחרונה: {localizedTimeShort}",
-  "@lastActiveAgo": {
-    "type": "text",
-    "placeholders": {
-      "localizedTimeShort": {}
-    }
-  },
-  "lastSeenIp": "IP שנראה לאחרונה",
-  "@lastSeenIp": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastSeenLongTimeAgo": "נראה לפני זמן רב",
-  "@lastSeenLongTimeAgo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "leftTheChat": "עזב את הצ'אט",
-  "@leftTheChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadingPleaseWait": "טוען אנא המתן.",
-  "@loadingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadMore": "טען עוד…",
-  "@loadMore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "locationDisabledNotice": "שירותי המיקום מושבתים. אנא הפעל אותם כדי לשתף את המיקום שלך.",
-  "@locationDisabledNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copy": "העתק",
-  "@copy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHint_send": "שלח טקסט",
-  "@commandHint_send": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "commandHint_op": "הגדרת רמת צריכת החשמל של המשתמש הנתון (ברירת מחדל: 50)",
-  "@commandHint_op": {
-    "type": "text",
-    "description": "Usage hint for the command /op"
-  },
-  "commandHint_plain": "שלח טקסט לא מעוצב",
-  "@commandHint_plain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "commandHint_react": "שלח תשובה כתגובה",
-  "@commandHint_react": {
-    "type": "text",
-    "description": "Usage hint for the command /react"
-  },
-  "createNewGroup": "צור קבוצה חדשה",
-  "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsUserName": "מכיל שם משתמש",
-  "@containsUserName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createNewSpace": "חלל חדש",
-  "@createNewSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "crossSigningDisabled": "חתימה צולבת",
-  "@crossSigningDisabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dontAskAgain": "בטל ואל תשאל שוב",
-  "@dontAskAgain": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryption": "אפשר הצפנה",
-  "@enableEncryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteContactToGroup": "הזמן איש קשר אל {groupName}",
-  "@inviteContactToGroup": {
-    "type": "text",
-    "placeholders": {
-      "groupName": {}
-    }
-  },
-  "dateWithYear": "{year}-{month}-{day}",
-  "@dateWithYear": {
-    "type": "text",
-    "placeholders": {
-      "year": {},
-      "month": {},
-      "day": {}
-    }
-  },
-  "deactivateAccountWarning": "פעולה זו תשבית את חשבון המשתמש שלך. אי אפשר לבטל את זה! האם אתה בטוח?",
-  "@deactivateAccountWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "device": "מכשיר",
-  "@device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "group": "קבוצה",
-  "@group": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAUsername": "הזן שם משתמש",
-  "@enterAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discoverGroups": "גלה קבוצות",
-  "@discoverGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "displaynameHasBeenChanged": "שם התצוגה השתנה",
-  "@displaynameHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editBlockedServers": "ערוך שרתים חסומים",
-  "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAvatar": "עריכת אווטאר של חדר",
-  "@editRoomAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "endedTheCall": "{senderName} סיים את השיחה",
-  "@endedTheCall": {
-    "type": "text",
-    "placeholders": {
-      "senderName": {}
-    }
-  },
-  "groups": "קבוצות",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryptionWarning": "לא תוכל לבטל את ההצפנה יותר. האם אתה בטוח?",
-  "@enableEncryptionWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryption": "הצפנה",
-  "@encryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "errorObtainingLocation": "שגיאה בהשגת מיקום: {error}",
-  "@errorObtainingLocation": {
-    "type": "text",
-    "placeholders": {
-      "error": {}
-    }
-  },
-  "hasWithdrawnTheInvitationFor": "{username} ביטל את ההזמנה עבור {targetName}",
-  "@hasWithdrawnTheInvitationFor": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "hideRedactedEvents": "הסתר אירועים מצונזרים",
-  "@hideRedactedEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryptionNotEnabled": "ההצפנה אינה מופעלת",
-  "@encryptionNotEnabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "extremeOffensive": "פוגעני ביותר",
-  "@extremeOffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "הסתר אירועים לא ידועים",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadCountMoreParticipants": "טען {count} משתתפים נוספים",
-  "@loadCountMoreParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "homeserver": "שרת בית",
-  "@homeserver": {},
-  "ignore": "התעלם",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreListDescription": "באפשרותך להתעלם ממשתמשים שמפריעים לך. לא תוכל לקבל הודעות או הזמנות לחדר מהמשתמשים ברשימת ההתעלם האישית שלך.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "התעלם משם משתמש",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "iHaveClickedOnLink": "לחצתי על הקישור",
-  "@iHaveClickedOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "leave": "לעזוב",
-  "@leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "license": "רשיון",
-  "@license": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lightTheme": "בהיר",
-  "@lightTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentViewer": "מציג התוכן",
-  "@contentViewer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "delete": "מחיקה",
-  "@delete": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inoffensive": "לֹא פּוֹגֵעַ",
-  "@inoffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "configureChat": "קביעת תצורה של צ'אט",
-  "@configureChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "confirm": "לאשר",
-  "@confirm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connect": "התחבר",
-  "@connect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connectionAttemptFailed": "ניסיון החיבור נכשל",
-  "@connectionAttemptFailed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contactHasBeenInvitedToTheGroup": "איש הקשר הוזמן לקבוצה",
-  "@contactHasBeenInvitedToTheGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsDisplayName": "מכיל שם תצוגה",
-  "@containsDisplayName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentHasBeenReported": "התוכן דווח למנהלי השרת",
-  "@contentHasBeenReported": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copiedToClipboard": "הועתק ללוח הגזירים",
-  "@copiedToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandInvalid": "הפקודה אינה חוקית",
-  "@commandInvalid": {
-    "type": "text"
-  },
-  "commandMissing": "{command} אינו פקודה.",
-  "@commandMissing": {
-    "type": "text",
-    "placeholders": {
-      "command": {}
+    "@@last_modified": "2021-08-14 12:41:10.036931",
+    "about": "אודות",
+    "@about": {
+        "type": "text",
+        "placeholders": {}
     },
-    "description": "State that {command} is not a valid /command."
-  },
-  "compareEmojiMatch": "השווה וודא שהאימוג'י הבאים תואמים לאלו של המכשיר השני:",
-  "@compareEmojiMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "compareNumbersMatch": "השווה וודא שהמספרים הבאים תואמים לאלה של המכשיר השני:",
-  "@compareNumbersMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "couldNotSetAvatar": "לא היתה אפשרות להגדיר אווטאר",
-  "@couldNotSetAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "couldNotSetDisplayname": "לא היתה אפשרות להגדיר שם תצוגה",
-  "@couldNotSetDisplayname": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyToClipboard": "העתק ללוח",
-  "@copyToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "couldNotDecryptMessage": "לא ניתן לפענח הודעה: {error}",
-  "@couldNotDecryptMessage": {
-    "type": "text",
-    "placeholders": {
-      "error": {}
+    "accept": "קבל",
+    "@accept": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "{username} קיבל את ההזמנה",
+    "@acceptedTheInvitation": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "account": "חשבון",
+    "@account": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "{username} הפעיל הצפנה מקצה לקצה",
+    "@activatedEndToEndEncryption": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "addGroupDescription": "הוספת תיאור קבוצה",
+    "@addGroupDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "admin": "מנהל",
+    "@admin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "alias": "כינוי",
+    "@alias": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "answeredTheCall": "{senderName} ענה לשיחה",
+    "@answeredTheCall": {
+        "type": "text",
+        "placeholders": {
+            "senderName": {}
+        }
+    },
+    "anyoneCanJoin": "כל אחד יכול להצטרף",
+    "@anyoneCanJoin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "archive": "ארכיון",
+    "@archive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "archivedRoom": "חדר בארכיון",
+    "@archivedRoom": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "areGuestsAllowedToJoin": "האם משתמשים אורחים מורשים להצטרף",
+    "@areGuestsAllowedToJoin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "areYouSure": "האם אתה בטוח?",
+    "@areYouSure": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "askSSSSSign": "כדי שתוכל לחתום על משתמש אחר , הזן את הסיסמה שלך או את מפתח השחזור.",
+    "@askSSSSSign": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "askVerificationRequest": "לקבל בקשת אימות זו מ- {username}?",
+    "@askVerificationRequest": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changePassword": "שנה סיסמא",
+    "@changePassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "appLock": "נעילת אפליקציה",
+    "@appLock": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "cancel": "ביטול",
+    "@cancel": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseChooseAtLeastChars": "אנא כתוב לפחות {min} תווים",
+    "@pleaseChooseAtLeastChars": {
+        "type": "text",
+        "placeholders": {
+            "min": {}
+        }
+    },
+    "addEmail": "הוסף מייל",
+    "@addEmail": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "all": "הכל",
+    "@all": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "allChats": "כל הצ'אטים",
+    "@allChats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "banned": "חסום",
+    "@banned": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendOnEnter": "שלח בכניסה",
+    "@sendOnEnter": {},
+    "badServerLoginTypesException": "שרת הבית תומך בסוגי הכניסה:\n{serverVersions}\nאבל אפליקציה זו תומכת רק ב:\n{supportedVersions}",
+    "@badServerLoginTypesException": {
+        "type": "text",
+        "placeholders": {
+            "serverVersions": {},
+            "supportedVersions": {}
+        }
+    },
+    "changedTheGuestAccessRulesTo": "{username} שינה את כללי הגישה לאורחים ל: {rules}",
+    "@changedTheGuestAccessRulesTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "rules": {}
+        }
+    },
+    "changedTheJoinRules": "{username} שינה את כללי ההצטרפות",
+    "@changedTheJoinRules": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changeWallpaper": "שנה טפט",
+    "@changeWallpaper": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changedTheChatNameTo": "{username} שינה את שם הצ'אט ל: '{chatname}'",
+    "@changedTheChatNameTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "chatname": {}
+        }
+    },
+    "changedTheRoomInvitationLink": "{username} שינה את קישור ההזמנה",
+    "@changedTheRoomInvitationLink": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "passwordsDoNotMatch": "הסיסמאות לא תואמות!",
+    "@passwordsDoNotMatch": {},
+    "pleaseEnterValidEmail": "אנא כתוב כתובת אימייל תקינה.",
+    "@pleaseEnterValidEmail": {},
+    "repeatPassword": "כתוב שוב את הסיסמה",
+    "@repeatPassword": {},
+    "areYouSureYouWantToLogout": "האם אתה בטוח שברצונך לצאת?",
+    "@areYouSureYouWantToLogout": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chat": "צ׳אט",
+    "@chat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "autoplayImages": "הפעל אוטומטית מדבקות ואנימציות מונפשים",
+    "@autoplayImages": {
+        "type": "text",
+        "placeholder": {}
+    },
+    "badServerVersionsException": "שרת הבית תומך בגרסאות:\n{serverVersions}\nאבל האפליקציה הזו תומכת רק ב-{supportedVersions}",
+    "@badServerVersionsException": {
+        "type": "text",
+        "placeholders": {
+            "serverVersions": {},
+            "supportedVersions": {}
+        }
+    },
+    "banFromChat": "צאט חסום",
+    "@banFromChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "bannedUser": "{username} חסם את {targetName}",
+    "@bannedUser": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "blockDevice": "חסום מכשיר",
+    "@blockDevice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "blocked": "חסום",
+    "@blocked": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "botMessages": "הודעות בוט",
+    "@botMessages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "cantOpenUri": "לא ניתן לפתוח את ה-URI {uri}",
+    "@cantOpenUri": {
+        "type": "text",
+        "placeholders": {
+            "uri": {}
+        }
+    },
+    "changeDeviceName": "שנה את שם המכשיר",
+    "@changeDeviceName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changedTheChatAvatar": "{username} שינה את האווטאר של הצ'אט",
+    "@changedTheChatAvatar": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changedTheChatDescriptionTo": "{username} שינה את תיאור הצ'אט ל: '{description}'",
+    "@changedTheChatDescriptionTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "description": {}
+        }
+    },
+    "changedTheChatPermissions": "{username} שינה את הרשאות הצ'אט",
+    "@changedTheChatPermissions": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changedTheDisplaynameTo": "{username} שינה את שם התצוגה שלו ל: '{displayname}'",
+    "@changedTheDisplaynameTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "displayname": {}
+        }
+    },
+    "changedTheGuestAccessRules": "{username} שינה את כללי הגישה לאורחים",
+    "@changedTheGuestAccessRules": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changedTheHistoryVisibility": "{username} שינה את נראות ההיסטוריה",
+    "@changedTheHistoryVisibility": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changedTheHistoryVisibilityTo": "{username} שינה את נראות ההיסטוריה ל: {rules}",
+    "@changedTheHistoryVisibilityTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "rules": {}
+        }
+    },
+    "changedTheJoinRulesTo": "{username} שינה את כללי ההצטרפות ל: {joinRules}",
+    "@changedTheJoinRulesTo": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "joinRules": {}
+        }
+    },
+    "changedTheProfileAvatar": "{username} שינה את האווטאר שלו",
+    "@changedTheProfileAvatar": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changedTheRoomAliases": "{username} שינה את כינוי החדר",
+    "@changedTheRoomAliases": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "changeTheHomeserver": "שנה את שרת הבית",
+    "@changeTheHomeserver": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeTheme": "שנה את הסגנון שלך",
+    "@changeTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeTheNameOfTheGroup": "שנה את שם הקבוצה",
+    "@changeTheNameOfTheGroup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeYourAvatar": "שינוי האווטאר שלך",
+    "@changeYourAvatar": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "channelCorruptedDecryptError": "ההצפנה נפגמה",
+    "@channelCorruptedDecryptError": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "yourUserId": "מזהה המשתמש שלך:",
+    "@yourUserId": {},
+    "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
+    "@yourChatBackupHasBeenSetUp": {},
+    "chatBackup": "גיבוי צ'אט",
+    "@chatBackup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandHint_ban": "חסום את המשתמש הנתון מהחדר הזה",
+    "@commandHint_ban": {
+        "type": "text",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "נקה מטמון",
+    "@commandHint_clearcache": {
+        "type": "text",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_create": "צור צ'אט קבוצתי ריק\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
+    "@commandHint_create": {
+        "type": "text",
+        "description": "Usage hint for the command /create"
+    },
+    "commandHint_discardsession": "התעלם מהסשן",
+    "@commandHint_discardsession": {
+        "type": "text",
+        "description": "Usage hint for the command /discardsession"
+    },
+    "commandHint_dm": "התחל צ'אט ישיר\nהשתמש ב--no-encryption כדי להשבית את ההצפנה",
+    "@commandHint_dm": {
+        "type": "text",
+        "description": "Usage hint for the command /dm"
+    },
+    "commandHint_html": "שלח טקסט בתבנית HTML",
+    "@commandHint_html": {
+        "type": "text",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_invite": "הזמן את המשתמש הנתון לחדר זה",
+    "@commandHint_invite": {
+        "type": "text",
+        "description": "Usage hint for the command /invite"
+    },
+    "commandHint_join": "הצטרף לחדר הנתון",
+    "@commandHint_join": {
+        "type": "text",
+        "description": "Usage hint for the command /join"
+    },
+    "commandHint_kick": "הסר את המשתמש הנתון מהחדר הזה",
+    "@commandHint_kick": {
+        "type": "text",
+        "description": "Usage hint for the command /kick"
+    },
+    "commandHint_leave": "עזוב את החדר הזה",
+    "@commandHint_leave": {
+        "type": "text",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandHint_me": "תאר את עצמך",
+    "@commandHint_me": {
+        "type": "text",
+        "description": "Usage hint for the command /me"
+    },
+    "chatDetails": "פרטי צ'אט",
+    "@chatDetails": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chatBackupDescription": "גיבוי הצ'אט שלך מאובטח באמצעות מפתח אבטחה. אנא וודא שאתה לא מאבד אותו.",
+    "@chatBackupDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chatHasBeenAddedToThisSpace": "צ'אט נוסף למרחב הזה",
+    "@chatHasBeenAddedToThisSpace": {},
+    "chats": "צ'אטים",
+    "@chats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chooseAStrongPassword": "בחר סיסמה חזקה",
+    "@chooseAStrongPassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chooseAUsername": "בחר שם משתמש",
+    "@chooseAUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "clearArchive": "נקה ארכיון",
+    "@clearArchive": {},
+    "close": "סגור",
+    "@close": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandHint_myroomavatar": "הגדר את התמונה שלך לחדר זה (על ידי mxc-uri)",
+    "@commandHint_myroomavatar": {
+        "type": "text",
+        "description": "Usage hint for the command /myroomavatar"
+    },
+    "commandHint_myroomnick": "הגדר את שם התצוגה שלך עבור חדר זה",
+    "@commandHint_myroomnick": {
+        "type": "text",
+        "description": "Usage hint for the command /myroomnick"
+    },
+    "addToSpace": "הוסף לחלל",
+    "@addToSpace": {},
+    "commandHint_unban": "בטל את החסימה של המשתמש הנתון מהחדר הזה",
+    "@commandHint_unban": {
+        "type": "text",
+        "description": "Usage hint for the command /unban"
+    },
+    "countParticipants": "{count} משתתפים",
+    "@countParticipants": {
+        "type": "text",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "create": "צור",
+    "@create": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "createdTheChat": "{username} יצר את הצ'אט",
+    "@createdTheChat": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "crossSigningEnabled": "חתימה צולבת על",
+    "@crossSigningEnabled": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "currentlyActive": "פעיל כעת",
+    "@currentlyActive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "darkTheme": "כהה",
+    "@darkTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "text",
+        "placeholders": {
+            "date": {},
+            "timeOfDay": {}
+        }
+    },
+    "dateWithoutYear": "{month}-{day}",
+    "@dateWithoutYear": {
+        "type": "text",
+        "placeholders": {
+            "month": {},
+            "day": {}
+        }
+    },
+    "defaultPermissionLevel": "רמת הרשאת ברירת מחדל",
+    "@defaultPermissionLevel": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deleteAccount": "מחק חשבון",
+    "@deleteAccount": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deleteMessage": "מחק הודעה",
+    "@deleteMessage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deny": "דחה",
+    "@deny": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deviceId": "מזהה מכשיר",
+    "@deviceId": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "devices": "התקנים",
+    "@devices": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "directChats": "צ'אטים ישירים",
+    "@directChats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "discover": "לגלות",
+    "@discover": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "downloadFile": "הורד קובץ",
+    "@downloadFile": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "edit": "ערוך",
+    "@edit": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editChatPermissions": "ערוך הרשאות צ'אט",
+    "@editChatPermissions": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editDisplayname": "ערוך את שם התצוגה",
+    "@editDisplayname": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editRoomAliases": "ערוך כינויים לחדר",
+    "@editRoomAliases": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emoteExists": "אימוט כבר קיים!",
+    "@emoteExists": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emptyChat": "צ'אט ריק",
+    "@emptyChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "encrypted": "מוצפן",
+    "@encrypted": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enterAGroupName": "הזן שם קבוצה",
+    "@enterAGroupName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enterAnEmailAddress": "הזן כתובת דואר אלקטרוני",
+    "@enterAnEmailAddress": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enterASpacepName": "הזן שם חלל",
+    "@enterASpacepName": {},
+    "enterYourHomeserver": "הזן את שרת הבית שלך",
+    "@enterYourHomeserver": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "everythingReady": "הכל מוכן!",
+    "@everythingReady": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fileName": "שם קובץ",
+    "@fileName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fluffychat": "FluffyChat",
+    "@fluffychat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fontSize": "גודל גופן",
+    "@fontSize": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "forward": "העבר",
+    "@forward": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "friday": "יום שישי",
+    "@friday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fromJoining": "מהצטרפות",
+    "@fromJoining": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fromTheInvitation": "מההזמנה",
+    "@fromTheInvitation": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "goToTheNewRoom": "עבור לחדר החדש",
+    "@goToTheNewRoom": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupDescription": "תיאור קבוצה",
+    "@groupDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupDescriptionHasBeenChanged": "תיאור הקבוצה השתנה",
+    "@groupDescriptionHasBeenChanged": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupIsPublic": "הקבוצה ציבורית",
+    "@groupIsPublic": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupWith": "קבוצה עם {displayname}",
+    "@groupWith": {
+        "type": "text",
+        "placeholders": {
+            "displayname": {}
+        }
+    },
+    "guestsAreForbidden": "אורחים אסורים",
+    "@guestsAreForbidden": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "guestsCanJoin": "אורחים יכולים להצטרף",
+    "@guestsCanJoin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "id": "מזהה",
+    "@id": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "identity": "זהות",
+    "@identity": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignoredUsers": "משתמשים שהתעלמו מהם",
+    "@ignoredUsers": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "incorrectPassphraseOrKey": "ביטוי סיסמה או מפתח שחזור שגויים",
+    "@incorrectPassphraseOrKey": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteContact": "הזמן איש קשר",
+    "@inviteContact": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "invited": "הזמין",
+    "@invited": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "invitedUser": "{username} הזמין את {targetName}",
+    "@invitedUser": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "invitedUsersOnly": "משתמשים מוזמנים בלבד",
+    "@invitedUsersOnly": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteForMe": "הזמנה בשבילי",
+    "@inviteForMe": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteText": "{username} הזמין אותך ל-FluffyChat.\n1. התקן את FluffyChat: https://fluffychat.im\n2. הירשם או היכנס\n3. פתח את קישור ההזמנה: {link}",
+    "@inviteText": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "link": {}
+        }
+    },
+    "isTyping": "מקליד/ה…",
+    "@isTyping": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "joinedTheChat": "{username} הצטרף לצ'אט",
+    "@joinedTheChat": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "joinRoom": "הצטרף לחדר",
+    "@joinRoom": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "keysCached": "המפתחות נשמרים במטמון",
+    "@keysCached": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "kicked": "{username} בעט ב {targetName}",
+    "@kicked": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "kickedAndBanned": "{username} בעט וחסם {targetName}",
+    "@kickedAndBanned": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "kickFromChat": "בעיטה מהצ'אט",
+    "@kickFromChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "lastActiveAgo": "פעילות אחרונה: {localizedTimeShort}",
+    "@lastActiveAgo": {
+        "type": "text",
+        "placeholders": {
+            "localizedTimeShort": {}
+        }
+    },
+    "lastSeenLongTimeAgo": "נראה לפני זמן רב",
+    "@lastSeenLongTimeAgo": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "leftTheChat": "עזב את הצ'אט",
+    "@leftTheChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loadingPleaseWait": "טוען אנא המתן.",
+    "@loadingPleaseWait": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loadMore": "טען עוד…",
+    "@loadMore": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "locationDisabledNotice": "שירותי המיקום מושבתים. אנא הפעל אותם כדי לשתף את המיקום שלך.",
+    "@locationDisabledNotice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copy": "העתק",
+    "@copy": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandHint_send": "שלח טקסט",
+    "@commandHint_send": {
+        "type": "text",
+        "description": "Usage hint for the command /send"
+    },
+    "commandHint_op": "הגדרת רמת צריכת החשמל של המשתמש הנתון (ברירת מחדל: 50)",
+    "@commandHint_op": {
+        "type": "text",
+        "description": "Usage hint for the command /op"
+    },
+    "commandHint_plain": "שלח טקסט לא מעוצב",
+    "@commandHint_plain": {
+        "type": "text",
+        "description": "Usage hint for the command /plain"
+    },
+    "commandHint_react": "שלח תשובה כתגובה",
+    "@commandHint_react": {
+        "type": "text",
+        "description": "Usage hint for the command /react"
+    },
+    "createNewGroup": "צור קבוצה חדשה",
+    "@createNewGroup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "containsUserName": "מכיל שם משתמש",
+    "@containsUserName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "createNewSpace": "חלל חדש",
+    "@createNewSpace": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enableEncryption": "אפשר הצפנה",
+    "@enableEncryption": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteContactToGroup": "הזמן איש קשר אל {groupName}",
+    "@inviteContactToGroup": {
+        "type": "text",
+        "placeholders": {
+            "groupName": {}
+        }
+    },
+    "dateWithYear": "{year}-{month}-{day}",
+    "@dateWithYear": {
+        "type": "text",
+        "placeholders": {
+            "year": {},
+            "month": {},
+            "day": {}
+        }
+    },
+    "deactivateAccountWarning": "פעולה זו תשבית את חשבון המשתמש שלך. אי אפשר לבטל את זה! האם אתה בטוח?",
+    "@deactivateAccountWarning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "device": "מכשיר",
+    "@device": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "group": "קבוצה",
+    "@group": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "displaynameHasBeenChanged": "שם התצוגה השתנה",
+    "@displaynameHasBeenChanged": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editBlockedServers": "ערוך שרתים חסומים",
+    "@editBlockedServers": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editRoomAvatar": "עריכת אווטאר של חדר",
+    "@editRoomAvatar": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "endedTheCall": "{senderName} סיים את השיחה",
+    "@endedTheCall": {
+        "type": "text",
+        "placeholders": {
+            "senderName": {}
+        }
+    },
+    "groups": "קבוצות",
+    "@groups": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enableEncryptionWarning": "לא תוכל לבטל את ההצפנה יותר. האם אתה בטוח?",
+    "@enableEncryptionWarning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "encryption": "הצפנה",
+    "@encryption": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "errorObtainingLocation": "שגיאה בהשגת מיקום: {error}",
+    "@errorObtainingLocation": {
+        "type": "text",
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "hasWithdrawnTheInvitationFor": "{username} ביטל את ההזמנה עבור {targetName}",
+    "@hasWithdrawnTheInvitationFor": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "hideRedactedEvents": "הסתר אירועים מצונזרים",
+    "@hideRedactedEvents": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "encryptionNotEnabled": "ההצפנה אינה מופעלת",
+    "@encryptionNotEnabled": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "extremeOffensive": "פוגעני ביותר",
+    "@extremeOffensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "hideUnknownEvents": "הסתר אירועים לא ידועים",
+    "@hideUnknownEvents": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loadCountMoreParticipants": "טען {count} משתתפים נוספים",
+    "@loadCountMoreParticipants": {
+        "type": "text",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "homeserver": "שרת בית",
+    "@homeserver": {},
+    "ignore": "התעלם",
+    "@ignore": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignoreListDescription": "באפשרותך להתעלם ממשתמשים שמפריעים לך. לא תוכל לקבל הודעות או הזמנות לחדר מהמשתמשים ברשימת ההתעלם האישית שלך.",
+    "@ignoreListDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignoreUsername": "התעלם משם משתמש",
+    "@ignoreUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "iHaveClickedOnLink": "לחצתי על הקישור",
+    "@iHaveClickedOnLink": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "leave": "לעזוב",
+    "@leave": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "license": "רשיון",
+    "@license": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "lightTheme": "בהיר",
+    "@lightTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "delete": "מחיקה",
+    "@delete": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inoffensive": "לֹא פּוֹגֵעַ",
+    "@inoffensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "configureChat": "קביעת תצורה של צ'אט",
+    "@configureChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "confirm": "לאשר",
+    "@confirm": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "connect": "התחבר",
+    "@connect": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "contactHasBeenInvitedToTheGroup": "איש הקשר הוזמן לקבוצה",
+    "@contactHasBeenInvitedToTheGroup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "containsDisplayName": "מכיל שם תצוגה",
+    "@containsDisplayName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "contentHasBeenReported": "התוכן דווח למנהלי השרת",
+    "@contentHasBeenReported": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copiedToClipboard": "הועתק ללוח הגזירים",
+    "@copiedToClipboard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandInvalid": "הפקודה אינה חוקית",
+    "@commandInvalid": {
+        "type": "text"
+    },
+    "commandMissing": "{command} אינו פקודה.",
+    "@commandMissing": {
+        "type": "text",
+        "placeholders": {
+            "command": {}
+        },
+        "description": "State that {command} is not a valid /command."
+    },
+    "compareEmojiMatch": "השווה וודא שהאימוג'י הבאים תואמים לאלו של המכשיר השני:",
+    "@compareEmojiMatch": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "compareNumbersMatch": "השווה וודא שהמספרים הבאים תואמים לאלה של המכשיר השני:",
+    "@compareNumbersMatch": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copyToClipboard": "העתק ללוח",
+    "@copyToClipboard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "couldNotDecryptMessage": "לא ניתן לפענח הודעה: {error}",
+    "@couldNotDecryptMessage": {
+        "type": "text",
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "help": "עזרה",
+    "@help": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "howOffensiveIsThisContent": "עד כמה התוכן הזה פוגעני?",
+    "@howOffensiveIsThisContent": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "locationPermissionDeniedNotice": "הרשאת המיקום נדחתה. אנא אפשר את היכולת לשתף את מיקומך.",
+    "@locationPermissionDeniedNotice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "login": "כניסה",
+    "@login": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "moderator": "מנחה",
+    "@moderator": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "needPantalaimonWarning": "שים לב שאתה צריך Pantalaimon כדי להשתמש בהצפנה מקצה לקצה לעת עתה.",
+    "@needPantalaimonWarning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newChat": "צ'אט חדש",
+    "@newChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newVerificationRequest": "בקשת אימות חדשה!",
+    "@newVerificationRequest": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "next": "הבא",
+    "@next": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "no": "לא",
+    "@no": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noConnectionToTheServer": "אין חיבור לשרת",
+    "@noConnectionToTheServer": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noEncryptionForPublicRooms": "אתה יכול להפעיל הצפנה רק כשהחדר כבר לא נגיש לציבור.",
+    "@noEncryptionForPublicRooms": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "shareYourInviteLink": "שתף את קישור ההזמנה שלך",
+    "@shareYourInviteLink": {},
+    "typeInInviteLinkManually": "הקלד את קישור ההזמנה באופן ידני...",
+    "@typeInInviteLinkManually": {},
+    "noRoomsFound": "לא נמצאו חדרים…",
+    "@noRoomsFound": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "notifications": "התראות",
+    "@notifications": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "numUsersTyping": "{count} משתמשים מקלידים…",
+    "@numUsersTyping": {
+        "type": "text",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "obtainingLocation": "משיג מיקום…",
+    "@obtainingLocation": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "onlineKeyBackupEnabled": "גיבוי מפתח מקוון מופעל",
+    "@onlineKeyBackupEnabled": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "oopsPushError": "אופס! למרבה הצער, אירעה שגיאה בעת הגדרת התראות.",
+    "@oopsPushError": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "oopsSomethingWentWrong": "אופס, משהו השתבש…",
+    "@oopsSomethingWentWrong": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openAppToReadMessages": "פתח את האפליקציה לקריאת הודעות",
+    "@openAppToReadMessages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "oneClientLoggedOut": "אחד מהמכשירים שלך התנתק",
+    "@oneClientLoggedOut": {},
+    "addAccount": "הוסף חשבון",
+    "@addAccount": {},
+    "editBundlesForAccount": "ערוך חבילות עבור חשבון זה",
+    "@editBundlesForAccount": {},
+    "participant": "משתתף",
+    "@participant": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "password": "סיסמה",
+    "@password": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseClickOnLink": "אנא לחץ על הקישור במייל ולאחר מכן המשך.",
+    "@pleaseClickOnLink": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseEnter4Digits": "אנא הזן 4 ספרות או השאר ריק כדי להשבית את נעילת האפליקציה.",
+    "@pleaseEnter4Digits": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loginWithOneClick": "היכנס בלחיצה אחת",
+    "@loginWithOneClick": {},
+    "online": "מחובר/ת",
+    "@online": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "addToBundle": "הוסף לחבילה",
+    "@addToBundle": {},
+    "optionalGroupName": "(אופציונלי) שם קבוצה",
+    "@optionalGroupName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passphraseOrKey": "ביטוי סיסמה או מפתח שחזור",
+    "@passphraseOrKey": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passwordForgotten": "שכחתי סיסמה",
+    "@passwordForgotten": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passwordHasBeenChanged": "הסיסמה שונתה",
+    "@passwordHasBeenChanged": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passwordRecovery": "שחזור סיסמה",
+    "@passwordRecovery": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "people": "אנשים",
+    "@people": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pickImage": "בחר תמונה",
+    "@pickImage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "play": "הפעל {fileName}",
+    "@play": {
+        "type": "text",
+        "placeholders": {
+            "fileName": {}
+        }
+    },
+    "pleaseChoose": "אנא בחר",
+    "@pleaseChoose": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseChooseAPasscode": "אנא בחר קוד גישה",
+    "@pleaseChooseAPasscode": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseChooseAUsername": "אנא בחר שם משתמש",
+    "@pleaseChooseAUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseEnterAMatrixIdentifier": "אנא הזן Matrix ID.",
+    "@pleaseEnterAMatrixIdentifier": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseEnterYourPassword": "נא הזן את הסיסמה שלך",
+    "@pleaseEnterYourPassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseEnterYourPin": "אנא הזן את קוד הpin שלך",
+    "@pleaseEnterYourPin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pin": "קוד pin",
+    "@pin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseEnterYourUsername": "אנא הזן שם משתמש",
+    "@pleaseEnterYourUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newMessageInFluffyChat": "הודעה חדשה ב-FluffyChat",
+    "@newMessageInFluffyChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "monday": "יום שני",
+    "@monday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noGoogleServicesWarning": "נראה שאין לך שירותי גוגל בטלפון שלך. זו החלטה טובה לפרטיות שלך! כדי לקבל התרעות ב- FluffyChat אנו ממליצים להשתמש https://microg.org/ או https://unifiedpush.org/.",
+    "@noGoogleServicesWarning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noMatrixServer": "{server1} אינו שרת מטריקס, השתמש ב-{server2} במקום זאת?",
+    "@noMatrixServer": {
+        "type": "text",
+        "placeholders": {
+            "server1": {},
+            "server2": {}
+        }
+    },
+    "none": "ללא",
+    "@none": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noPasswordRecoveryDescription": "עדיין לא הוספת דרך לשחזר את הסיסמה שלך.",
+    "@noPasswordRecoveryDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "offensive": "פוגעני",
+    "@offensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "notificationsEnabledForThisAccount": "התראות הופעלו עבור חשבון זה",
+    "@notificationsEnabledForThisAccount": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "bundleName": "שם החבילה",
+    "@bundleName": {},
+    "offline": "לא מקוון",
+    "@offline": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openVideoCamera": "פתח את המצלמה לסרטון",
+    "@openVideoCamera": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "removeFromBundle": "הסר מחבילה זו",
+    "@removeFromBundle": {},
+    "enableMultiAccounts": "(בטא) אפשר ריבוי חשבונות במכשיר זה",
+    "@enableMultiAccounts": {},
+    "openInMaps": "פתיחה במפות",
+    "@openInMaps": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "link": "קישור",
+    "@link": {},
+    "serverRequiresEmail": "שרת זה צריך לאמת את כתובת הדואר האלקטרוני שלך לרישום.",
+    "@serverRequiresEmail": {},
+    "logout": "יציאה",
+    "@logout": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "muteChat": "השתקת הצ'אט",
+    "@muteChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "scanQrCode": "סרוק קוד QR",
+    "@scanQrCode": {},
+    "noPermission": "אין הרשאה",
+    "@noPermission": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "or": "או",
+    "@or": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "logInTo": "היכנס אל {homeserver}",
+    "@logInTo": {
+        "type": "text",
+        "placeholders": {
+            "homeserver": {}
+        }
+    },
+    "makeSureTheIdentifierIsValid": "ודא שהמזהה חוקי",
+    "@makeSureTheIdentifierIsValid": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "memberChanges": "שינויים בחבר",
+    "@memberChanges": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "mention": "הזכיר",
+    "@mention": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "messageWillBeRemovedWarning": "ההודעה תוסר עבור כל המשתתפים",
+    "@messageWillBeRemovedWarning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "messages": "הודעות",
+    "@messages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openCamera": "פתח מצלמה",
+    "@openCamera": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "updateAvailable": "עדכון FluffyChat זמין",
+    "@updateAvailable": {},
+    "updateNow": "התחל עדכון ברקע",
+    "@updateNow": {},
+    "bubbleSize": "גודל בועות",
+    "@bubbleSize": {
+        "type": "text",
+        "placeholders": {}
     }
-  },
-  "help": "עזרה",
-  "@help": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "homeserverIsNotCompatible": "שרת הבית אינו תואם",
-  "@homeserverIsNotCompatible": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "howOffensiveIsThisContent": "עד כמה התוכן הזה פוגעני?",
-  "@howOffensiveIsThisContent": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "locationPermissionDeniedNotice": "הרשאת המיקום נדחתה. אנא אפשר את היכולת לשתף את מיקומך.",
-  "@locationPermissionDeniedNotice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "login": "כניסה",
-  "@login": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "moderator": "מנחה",
-  "@moderator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "needPantalaimonWarning": "שים לב שאתה צריך Pantalaimon כדי להשתמש בהצפנה מקצה לקצה לעת עתה.",
-  "@needPantalaimonWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newChat": "צ'אט חדש",
-  "@newChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newVerificationRequest": "בקשת אימות חדשה!",
-  "@newVerificationRequest": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "הבא",
-  "@next": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "לא",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noConnectionToTheServer": "אין חיבור לשרת",
-  "@noConnectionToTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noCrossSignBootstrap": "Fluffychat אינו תומך כרגע בהפעלת חתימה צולבת. אנא הפעל אותו מתוך Element.",
-  "@noCrossSignBootstrap": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noEncryptionForPublicRooms": "אתה יכול להפעיל הצפנה רק כשהחדר כבר לא נגיש לציבור.",
-  "@noEncryptionForPublicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createNewChatExplaination": "פשוט סרקו את קוד ה-QR או שתפו את קישור ההזמנה שלכם אם אינכם אחד ליד השני.",
-  "@createNewChatExplaination": {},
-  "shareYourInviteLink": "שתף את קישור ההזמנה שלך",
-  "@shareYourInviteLink": {},
-  "typeInInviteLinkManually": "הקלד את קישור ההזמנה באופן ידני...",
-  "@typeInInviteLinkManually": {},
-  "noMegolmBootstrap": "הפעל במקום זאת גיבוי מפתח מקוון מתוך Element.",
-  "@noMegolmBootstrap": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noRoomsFound": "לא נמצאו חדרים…",
-  "@noRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noStatusesFound": "לא נמצאו סטטוסים עד כה.",
-  "@noStatusesFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notifications": "התראות",
-  "@notifications": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notSupportedInWeb": "לא נתמך בweb",
-  "@notSupportedInWeb": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "numberSelected": "{number} נבחר",
-  "@numberSelected": {
-    "type": "text",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "numUsersTyping": "{count} משתמשים מקלידים…",
-  "@numUsersTyping": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "obtainingLocation": "משיג מיקום…",
-  "@obtainingLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "onlineKeyBackupDisabled": "גיבוי מפתח מקוון מושבת",
-  "@onlineKeyBackupDisabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "onlineKeyBackupEnabled": "גיבוי מפתח מקוון מופעל",
-  "@onlineKeyBackupEnabled": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsPushError": "אופס! למרבה הצער, אירעה שגיאה בעת הגדרת התראות.",
-  "@oopsPushError": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oopsSomethingWentWrong": "אופס, משהו השתבש…",
-  "@oopsSomethingWentWrong": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openAppToReadMessages": "פתח את האפליקציה לקריאת הודעות",
-  "@openAppToReadMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "oneClientLoggedOut": "אחד מהמכשירים שלך התנתק",
-  "@oneClientLoggedOut": {},
-  "addAccount": "הוסף חשבון",
-  "@addAccount": {},
-  "editBundlesForAccount": "ערוך חבילות עבור חשבון זה",
-  "@editBundlesForAccount": {},
-  "participant": "משתתף",
-  "@participant": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "password": "סיסמה",
-  "@password": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseClickOnLink": "אנא לחץ על הקישור במייל ולאחר מכן המשך.",
-  "@pleaseClickOnLink": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnter4Digits": "אנא הזן 4 ספרות או השאר ריק כדי להשבית את נעילת האפליקציה.",
-  "@pleaseEnter4Digits": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loginWithOneClick": "היכנס בלחיצה אחת",
-  "@loginWithOneClick": {},
-  "online": "מחובר/ת",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addToBundle": "הוסף לחבילה",
-  "@addToBundle": {},
-  "optionalGroupName": "(אופציונלי) שם קבוצה",
-  "@optionalGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "participatingUserDevices": "מכשירי משתמש משתתפים",
-  "@participatingUserDevices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passphraseOrKey": "ביטוי סיסמה או מפתח שחזור",
-  "@passphraseOrKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordForgotten": "שכחתי סיסמה",
-  "@passwordForgotten": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordHasBeenChanged": "הסיסמה שונתה",
-  "@passwordHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordRecovery": "שחזור סיסמה",
-  "@passwordRecovery": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "people": "אנשים",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pickImage": "בחר תמונה",
-  "@pickImage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "play": "הפעל {fileName}",
-  "@play": {
-    "type": "text",
-    "placeholders": {
-      "fileName": {}
-    }
-  },
-  "pleaseChoose": "אנא בחר",
-  "@pleaseChoose": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAPasscode": "אנא בחר קוד גישה",
-  "@pleaseChooseAPasscode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAUsername": "אנא בחר שם משתמש",
-  "@pleaseChooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterAMatrixIdentifier": "אנא הזן Matrix ID.",
-  "@pleaseEnterAMatrixIdentifier": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterSecurityKey": "נא הזן את מפתח האבטחה שלך:",
-  "@pleaseEnterSecurityKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPassword": "נא הזן את הסיסמה שלך",
-  "@pleaseEnterYourPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourPin": "אנא הזן את קוד הpin שלך",
-  "@pleaseEnterYourPin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pin": "קוד pin",
-  "@pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterYourUsername": "אנא הזן שם משתמש",
-  "@pleaseEnterYourUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newMessageInFluffyChat": "הודעה חדשה ב-FluffyChat",
-  "@newMessageInFluffyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "monday": "יום שני",
-  "@monday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noGoogleServicesWarning": "נראה שאין לך שירותי גוגל בטלפון שלך. זו החלטה טובה לפרטיות שלך! כדי לקבל התרעות ב- FluffyChat אנו ממליצים להשתמש https://microg.org/ או https://unifiedpush.org/.",
-  "@noGoogleServicesWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noMatrixServer": "{server1} אינו שרת מטריקס, השתמש ב-{server2} במקום זאת?",
-  "@noMatrixServer": {
-    "type": "text",
-    "placeholders": {
-      "server1": {},
-      "server2": {}
-    }
-  },
-  "none": "ללא",
-  "@none": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPublicRoomsFound": "לא נמצאו חדרים ציבוריים…",
-  "@noPublicRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newPasswordDescription": "על מנת שתוכל לשחזר את הסיסמה שלך, עליך להוסיף מאוחר יותר כתובת אימייל לחשבון שלך.",
-  "@newPasswordDescription": {},
-  "noPasswordRecoveryDescription": "עדיין לא הוספת דרך לשחזר את הסיסמה שלך.",
-  "@noPasswordRecoveryDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offensive": "פוגעני",
-  "@offensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newUsernameDescription": "מזהה המשתמש שלך יקבל את הפורמט @username:servername",
-  "@newUsernameDescription": {},
-  "notificationsEnabledForThisAccount": "התראות הופעלו עבור חשבון זה",
-  "@notificationsEnabledForThisAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "bundleName": "שם החבילה",
-  "@bundleName": {},
-  "offline": "לא מקוון",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openVideoCamera": "פתח את המצלמה לסרטון",
-  "@openVideoCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeFromBundle": "הסר מחבילה זו",
-  "@removeFromBundle": {},
-  "enableMultiAccounts": "(בטא) אפשר ריבוי חשבונות במכשיר זה",
-  "@enableMultiAccounts": {},
-  "openInMaps": "פתיחה במפות",
-  "@openInMaps": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "link": "קישור",
-  "@link": {},
-  "serverRequiresEmail": "שרת זה צריך לאמת את כתובת הדואר האלקטרוני שלך לרישום.",
-  "@serverRequiresEmail": {},
-  "makeAModerator": "הפוך למנחה",
-  "@makeAModerator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "logout": "יציאה",
-  "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "muteChat": "השתקת הצ'אט",
-  "@muteChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noDescription": "אין תיאור",
-  "@noDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "scanQrCode": "סרוק קוד QR",
-  "@scanQrCode": {},
-  "noPermission": "אין הרשאה",
-  "@noPermission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "or": "או",
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "logInTo": "היכנס אל {homeserver}",
-  "@logInTo": {
-    "type": "text",
-    "placeholders": {
-      "homeserver": {}
-    }
-  },
-  "makeAnAdmin": "הפוך למנהל מערכת",
-  "@makeAnAdmin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeSureTheIdentifierIsValid": "ודא שהמזהה חוקי",
-  "@makeSureTheIdentifierIsValid": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "memberChanges": "שינויים בחבר",
-  "@memberChanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "mention": "הזכיר",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageWillBeRemovedWarning": "ההודעה תוסר עבור כל המשתתפים",
-  "@messageWillBeRemovedWarning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "הודעות",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openCamera": "פתח מצלמה",
-  "@openCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "suggestedRooms": "גלה קבוצות במרחב הזה",
-  "@suggestedRooms": {},
-  "allSuggestedRoomsJoined": "הצטרפת לכל החדרים המוצעים",
-  "@allSuggestedRoomsJoined": {},
-  "updateAvailable": "עדכון FluffyChat זמין",
-  "@updateAvailable": {},
-  "updateNow": "התחל עדכון ברקע",
-  "@updateNow": {},
-  "numberRoomMembers": "{number} חברים",
-  "@numberRoomMembers": {
-    "type": "number",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "bubbleSize": "גודל בועות",
-  "@bubbleSize": {
-    "type": "text",
-    "placeholders": {}
-  }
 }

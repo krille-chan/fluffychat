@@ -1,30 +1,25 @@
 {
-  "@@last_modified": "2021-08-14 12:41:10.154280",
-  "about": "সম্পর্কে",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accept": "স্বীকার করি",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "acceptedTheInvitation": "{username} আমন্ত্রণ গ্রহণ করেছে",
-  "@acceptedTheInvitation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
+    "@@last_modified": "2021-08-14 12:41:10.154280",
+    "about": "সম্পর্কে",
+    "@about": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "accept": "স্বীকার করি",
+    "@accept": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "{username} আমন্ত্রণ গ্রহণ করেছে",
+    "@acceptedTheInvitation": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "account": "অ্যাকাউন্ট",
+    "@account": {
+        "type": "text",
+        "placeholders": {}
     }
-  },
-  "account": "অ্যাকাউন্ট",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accountInformation": "অ্যাকাউন্ট তথ্য",
-  "@accountInformation": {
-    "type": "text",
-    "placeholders": {}
-  }
 }
