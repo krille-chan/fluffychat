@@ -58,7 +58,7 @@ abstract class FluffyThemes {
         inputDecorationTheme: InputDecorationTheme(
           border: UnderlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           filled: true,
         ),
@@ -70,6 +70,20 @@ abstract class FluffyThemes {
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: brightness.reversed,
             statusBarBrightness: brightness,
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+            ),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
