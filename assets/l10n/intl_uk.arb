@@ -3034,5 +3034,9 @@
   "sorryThatsNotPossible": "Вибачте... це неможливо",
   "@sorryThatsNotPossible": {},
   "deviceKeys": "Ключі пристрою:",
-  "@deviceKeys": {}
+  "@deviceKeys": {},
+  "noSearchResult": "Немає відповідних результатів пошуку.",
+  "@noSearchResult": {},
+  "letsStart": "Розпочнімо",
+  "@letsStart": {}
 }
