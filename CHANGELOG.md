@@ -1,3 +1,28 @@
+## v1.8.0 2022-12-30
+- Added translation using Weblate (Yue (yue_HK)) (Raatty)
+- Translated using Weblate (Chinese (Simplified)) (Mike Evans)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (French) (Anne Onyme 017)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- design: New encryption page (Krille Fear)
+- feat: Add audio message support to linux (Krille Fear)
+- feat: Use Android system accent color (Krille Fear)
+- feat: include olm to Windows builds (TheOneWithTheBraid)
+- fix: Android push notification follow-up (TheOneWithTheBraid)
+- fix: Content banner (Krille Fear)
+- fix: Correct redacted by username (Krille Fear)
+- fix: Do not setup push on every app resume (Krille Fear)
+- fix: Encryption button is orange in public rooms (Krille Fear)
+- fix: File event design (Krille Fear)
+- fix: Hide google services warning after marked (Krille Fear)
+- fix: Improve story page appearance (Reinhart Previano Koentjoro)
+- fix: Libhandy windows (Krille Fear)
+- fix: Monochromatic icon rendering for Android 13+ (Reinhart Previano Koentjoro)
+- fix: homeserver error text not visible in app bar (TheOneWithTheBraid)
+- fix: minor issues in room list (TheOneWithTheBraid)
+
 ## v1.7.2 2022-12-19
 Update dependencies and translations.
 
