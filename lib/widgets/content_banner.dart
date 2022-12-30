@@ -42,20 +42,27 @@ class ContentBanner extends StatelessWidget {
             bottom: 0,
             child: Opacity(
               opacity: opacity,
-              child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                return Hero(
-                  tag: heroTag,
-                  child: MxcImage(
-                    key: Key(mxContent?.toString() ?? 'NoKey'),
-                    uri: mxContent,
-                    animated: true,
-                    fit: BoxFit.cover,
-                    height: 400,
-                    width: 800,
-                  ),
-                );
-              }),
+              child: Hero(
+                tag: heroTag,
+                child: mxContent == null
+                    ? Center(
+                        child: Icon(
+                          defaultIcon,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          size: 128,
+                        ),
+                      )
+                    : MxcImage(
+                        key: Key(mxContent?.toString() ?? 'NoKey'),
+                        uri: mxContent,
+                        animated: true,
+                        fit: BoxFit.cover,
+                        height: 400,
+                        width: 800,
+                      ),
+              ),
             ),
           ),
           if (onEdit != null)
