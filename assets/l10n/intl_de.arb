@@ -2992,5 +2992,56 @@
       "number": {}
     }
   },
-  "newSpaceDescription": "Mit Spaces kannst du deine Chats zusammenfassen und private oder öffentliche Communities aufbauen."
+  "newSpaceDescription": "Mit Spaces kannst du deine Chats zusammenfassen und private oder öffentliche Communities aufbauen.",
+  "@newSpaceDescription": {},
+  "wasDirectChatDisplayName": "Leerer Chat (was {oldDisplayName}",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "encryptThisChat": "Diesen Chat verschlüsseln",
+  "@encryptThisChat": {},
+  "googlyEyesContent": "{senderName} hat dir Googly Eyes gesendet",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "noSearchResult": "Keine Suchergebnisse.",
+  "@noSearchResult": {},
+  "startFirstChat": "Starte deinen ersten Chat",
+  "@startFirstChat": {},
+  "deviceKeys": "Geräteschlüssel:",
+  "@deviceKeys": {},
+  "commandHint_cuddle": "Umarmung senden",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Umarmung senden",
+  "@commandHint_hug": {},
+  "cuddleContent": "{senderName} knuddelt dich",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "sorryThatsNotPossible": "Sorry ... das ist nicht möglich",
+  "@sorryThatsNotPossible": {},
+  "letsStart": "Los geht's",
+  "@letsStart": {},
+  "hugContent": "{senderName} umarmt dich",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Googly Eyes senden",
+  "@commandHint_googly": {},
+  "endToEndEncryption": "Ende-zu-Ende-Verschlüsselung",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "Aus Sicherheitsgründen können Sie die Verschlüsselung in einem Chat nicht deaktivieren, wo sie zuvor aktiviert wurde.",
+  "@disableEncryptionWarning": {}
 }
