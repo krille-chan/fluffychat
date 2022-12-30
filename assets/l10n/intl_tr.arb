@@ -3039,5 +3039,9 @@
   "sorryThatsNotPossible": "Üzgünüm... bu mümkün değil",
   "@sorryThatsNotPossible": {},
   "deviceKeys": "Aygıt anahtarları:",
-  "@deviceKeys": {}
+  "@deviceKeys": {},
+  "noSearchResult": "Eşleşen arama sonucu yok.",
+  "@noSearchResult": {},
+  "letsStart": "Başlayalım",
+  "@letsStart": {}
 }
