@@ -413,6 +413,7 @@ class ChatController extends State<Chat> {
     final result = await showDialog<RecordingResult>(
       context: context,
       useRootNavigator: false,
+      barrierDismissible: false,
       builder: (c) => const RecordingDialog(),
     );
     if (result == null) return;
