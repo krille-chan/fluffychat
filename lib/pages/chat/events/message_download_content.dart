@@ -51,24 +51,27 @@ class MessageDownloadContent extends StatelessWidget {
                   )
                 : null,
           ),
-          const Divider(),
-          Row(
-            children: [
-              Text(
-                filetype,
-                style: TextStyle(
-                  color: textColor.withAlpha(150),
-                ),
-              ),
-              const Spacer(),
-              if (sizeString != null)
+          const Divider(height: 1),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+            child: Row(
+              children: [
                 Text(
-                  sizeString,
+                  filetype,
                   style: TextStyle(
                     color: textColor.withAlpha(150),
                   ),
                 ),
-            ],
+                const Spacer(),
+                if (sizeString != null)
+                  Text(
+                    sizeString,
+                    style: TextStyle(
+                      color: textColor.withAlpha(150),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ],
       ),

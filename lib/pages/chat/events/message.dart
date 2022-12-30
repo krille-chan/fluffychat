@@ -100,9 +100,13 @@ class Message extends StatelessWidget {
     final noBubble = {
           MessageTypes.Video,
           MessageTypes.Image,
-          MessageTypes.Sticker,
+          MessageTypes.Sticker
         }.contains(event.messageType) &&
         !event.redacted;
+    final noPadding = {
+      MessageTypes.File,
+      MessageTypes.Audio,
+    }.contains(event.messageType);
 
     if (ownMessage) {
       color = displayEvent.status.isError
@@ -187,7 +191,7 @@ class Message extends StatelessWidget {
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                     ),
-                    padding: noBubble
+                    padding: noBubble || noPadding
                         ? EdgeInsets.zero
                         : EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
                     constraints: const BoxConstraints(
