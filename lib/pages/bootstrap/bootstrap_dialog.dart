@@ -139,6 +139,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   minLines: 4,
                   maxLines: 4,
                   readOnly: true,
+                  style: const TextStyle(fontFamily: 'monospace'),
                   controller: TextEditingController(text: key),
                 ),
                 const SizedBox(height: 16),
@@ -254,16 +255,22 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     ),
                     const Divider(height: 32),
                     TextField(
-                      minLines: 1,
-                      maxLines: 1,
+                      minLines: 2,
+                      maxLines: 2,
                       autocorrect: false,
                       readOnly: _recoveryKeyInputLoading,
                       autofillHints: _recoveryKeyInputLoading
                           ? null
                           : [AutofillHints.password],
                       controller: _recoveryKeyTextEditingController,
+                      style: const TextStyle(fontFamily: 'monospace'),
                       decoration: InputDecoration(
                         hintText: 'Abc123 Def456',
+                        labelStyle: TextStyle(
+                            fontFamily: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                ?.fontFamily),
                         labelText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
                       ),

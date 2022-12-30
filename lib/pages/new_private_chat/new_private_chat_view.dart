@@ -39,42 +39,8 @@ class NewPrivateChatView extends StatelessWidget {
         withScrolling: true,
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.all(_qrCodePadding),
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(_qrCodePadding * 2),
-              child: InkWell(
-                onTap: controller.inviteAction,
-                borderRadius: BorderRadius.circular(12),
-                child: Material(
-                  borderRadius: BorderRadius.circular(12),
-                  elevation: 6,
-                  color: Colors.white,
-                  shadowColor: const Color(0x44000000),
-                  clipBehavior: Clip.hardEdge,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      QrImage(
-                        data:
-                            'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                        version: QrVersions.auto,
-                        size: min(MediaQuery.of(context).size.width - 16, 200),
-                      ),
-                      Image.asset('assets/share.png', width: 48, height: 48),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              subtitle: Text(
-                L10n.of(context)!.createNewChatExplaination,
-                textAlign: TextAlign.center,
-              ),
-            ),
             Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Form(
                 key: controller.formKey,
                 child: TextFormField(
@@ -87,6 +53,10 @@ class NewPrivateChatView extends StatelessWidget {
                   validator: controller.validateForm,
                   inputFormatters: controller.removeMatrixToFormatters,
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     labelText: L10n.of(context)!.typeInInviteLinkManually,
                     hintText: '@username',
                     prefixText: NewPrivateChatController.prefixNoProtocol,
@@ -95,6 +65,35 @@ class NewPrivateChatView extends StatelessWidget {
                       onPressed: controller.submitAction,
                     ),
                   ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(_qrCodePadding),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(_qrCodePadding * 2),
+              child: Material(
+                borderRadius: BorderRadius.circular(12),
+                elevation: 10,
+                color: Colors.white,
+                shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                clipBehavior: Clip.hardEdge,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    QrImage(
+                      data:
+                          'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                      version: QrVersions.auto,
+                      size: min(MediaQuery.of(context).size.width - 16, 200),
+                    ),
+                    TextButton.icon(
+                      icon: Icon(Icons.adaptive.share_outlined),
+                      label: Text(L10n.of(context)!.shareYourInviteLink),
+                      onPressed: controller.inviteAction,
+                    ),
+                    const SizedBox(height: 8),
+                  ],
                 ),
               ),
             ),
