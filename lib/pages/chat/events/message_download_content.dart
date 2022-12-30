@@ -43,13 +43,6 @@ class MessageDownloadContent extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            trailing: PlatformInfos.isAndroid
-                ? IconButton(
-                    onPressed: () => event.shareFile(context),
-                    tooltip: L10n.of(context)!.share,
-                    icon: Icon(Icons.adaptive.share_outlined),
-                  )
-                : null,
           ),
           const Divider(height: 1),
           Padding(
