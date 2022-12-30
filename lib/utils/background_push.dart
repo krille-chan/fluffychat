@@ -84,7 +84,6 @@ class BackgroundPush {
         activeRoomId: router?.currentState?.pathParameters['roomid'],
         onSelectNotification: goToRoom,
       ),
-      onNewToken: _newFcmToken,
     );
     if (Platform.isAndroid) {
       UnifiedPush.initialize(
@@ -113,20 +112,10 @@ class BackgroundPush {
     instance.router = router;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
-    instance.fullInit();
     return instance;
   }
 
-  Future<void> fullInit() => setupPush();
-
-  void handleLoginStateChanged(_) => setupPush();
-
   StreamSubscription<SyncUpdate>? onRoomSync;
-
-  void _newFcmToken(String token) {
-    _fcmToken = token;
-    setupPush();
-  }
 
   Future<void> setupPusher({
     String? gatewayUrl,
@@ -255,7 +244,7 @@ class BackgroundPush {
     if (context == null) {
       return;
     }
-    if (await store.getItemBool(SettingKeys.showNoGoogle, true) != true) {
+    if (await store.getItemBool(SettingKeys.showNoGoogle, true) == true) {
       return;
     }
     await loadLocale();

@@ -362,11 +362,13 @@ class ChatListController extends State<ChatList>
     _hackyWebRTCFixForWeb();
     CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      searchServer = await Store().getItem(_serverStoreNamespace);
+      if (mounted) {
+        searchServer = await Store().getItem(_serverStoreNamespace);
+        Matrix.of(context).backgroundPush?.setupPush();
+      }
     });
 
     _checkTorBrowser();
-    Matrix.of(context).backgroundPush?.setupPush();
     _onSyncStatus =
         Matrix.of(context).client.onSyncStatus.stream.listen((status) {
       Logs().v('Sync Status: ${status.status.name}');
