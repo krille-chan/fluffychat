@@ -8,7 +8,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../../config/setting_keys.dart';
 import '../../../pages/image_viewer/image_viewer.dart';
-import '../../../utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import '../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {

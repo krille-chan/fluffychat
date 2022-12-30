@@ -5,7 +5,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class ChatAppBarTitle extends StatelessWidget {

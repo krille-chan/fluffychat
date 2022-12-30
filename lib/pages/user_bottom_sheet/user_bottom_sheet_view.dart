@@ -7,7 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import '../../utils/matrix_sdk_extensions.dart/presence_extension.dart';
+import '../../utils/matrix_sdk_extensions/presence_extension.dart';
 import '../../widgets/content_banner.dart';
 import '../../widgets/m2_popup_menu_button.dart';
 import '../../widgets/matrix.dart';

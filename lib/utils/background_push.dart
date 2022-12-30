@@ -32,7 +32,7 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';

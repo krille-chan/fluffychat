@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions.dart/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 
 class MessageDownloadContent extends StatelessWidget {
   final Event event;

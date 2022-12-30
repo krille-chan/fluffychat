@@ -5,7 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/settings_stories/settings_stories_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/matrix_sdk_extensions.dart/client_stories_extension.dart';
+import '../../utils/matrix_sdk_extensions/client_stories_extension.dart';
 
 class SettingsStories extends StatefulWidget {
   const SettingsStories({Key? key}) : super(key: key);

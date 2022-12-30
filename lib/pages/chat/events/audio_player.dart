@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import '../../../utils/matrix_sdk_extensions.dart/event_extension.dart';
+import '../../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
   final Color color;

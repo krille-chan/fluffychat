@@ -6,7 +6,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/matrix_sdk_extensions.dart/event_extension.dart';
+import '../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class ImageViewer extends StatefulWidget {
   final Event event;
