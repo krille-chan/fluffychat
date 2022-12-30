@@ -205,7 +205,7 @@ class MessageContent extends StatelessWidget {
           default:
             if (event.redacted) {
               return FutureBuilder<User?>(
-                  future: event.fetchSenderUser(),
+                  future: event.redactedBecause?.fetchSenderUser(),
                   builder: (context, snapshot) {
                     return _ButtonContent(
                       label: L10n.of(context)!.redactedAnEvent(snapshot.data
