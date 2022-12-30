@@ -3033,5 +3033,9 @@
   "endToEndEncryption": "Enkripsi ujung ke ujung",
   "@endToEndEncryption": {},
   "disableEncryptionWarning": "Demi keamanan kamu tidak bisa menonaktifkan enkripsi dalam sebuah obrolan di mana sebelumbya sudah diaktifkan.",
-  "@disableEncryptionWarning": {}
+  "@disableEncryptionWarning": {},
+  "noSearchResult": "Tidak ada hasil pencarian yang cocok.",
+  "@noSearchResult": {},
+  "letsStart": "Mari kita mulai",
+  "@letsStart": {}
 }
