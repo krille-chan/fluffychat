@@ -50,12 +50,9 @@ Future<void> pushHelper(
       NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
-          notification.roomId ?? AppConfig.pushNotificationsChannelId,
-          notification.roomName ?? AppConfig.pushNotificationsChannelName,
-          channelDescription: notification.roomName ??
-              AppConfig.pushNotificationsChannelDescription,
-          groupAlertBehavior: GroupAlertBehavior.summary,
-          category: AndroidNotificationCategory.message,
+          AppConfig.pushNotificationsChannelId,
+          AppConfig.pushNotificationsChannelName,
+          channelDescription: AppConfig.pushNotificationsChannelDescription,
           number: notification.counts?.unread,
           ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
