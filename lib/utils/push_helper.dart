@@ -60,7 +60,6 @@ Future<void> pushHelper(
           ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.high,
-          groupKey: notification.roomId,
         ),
       ),
     );
@@ -197,16 +196,10 @@ Future<void> _tryPushHelper(
   messagingStyleInformation?.messages?.add(newMessage);
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-    notification.roomId ?? AppConfig.pushNotificationsChannelId,
-    notification.roomName ?? AppConfig.pushNotificationsChannelName,
-    channelDescription:
-        notification.roomName ?? AppConfig.pushNotificationsChannelDescription,
-    groupAlertBehavior: GroupAlertBehavior.summary,
-    category: AndroidNotificationCategory.message,
+    AppConfig.pushNotificationsChannelId,
+    AppConfig.pushNotificationsChannelName,
+    channelDescription: AppConfig.pushNotificationsChannelDescription,
     number: notification.counts?.unread,
-    ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
-    importance: Importance.max,
-    priority: Priority.high,
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
           Person(name: event.room.client.userID),
@@ -214,6 +207,9 @@ Future<void> _tryPushHelper(
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
+    ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
+    importance: Importance.max,
+    priority: Priority.high,
     groupKey: event.room.id,
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
