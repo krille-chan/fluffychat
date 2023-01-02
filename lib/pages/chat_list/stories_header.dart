@@ -115,32 +115,28 @@ class StoriesHeader extends StatelessWidget {
         itemCount: stories.length,
         itemBuilder: (context, i) {
           final room = stories[i];
-          return FutureBuilder<Profile>(
-              future: room.getCreatorProfile(),
-              builder: (context, snapshot) {
-                final userId = room.creatorId;
-                final displayname = snapshot.data?.displayName ??
-                    userId?.localpart ??
-                    'Unknown';
-                final avatarUrl = snapshot.data?.avatarUrl;
-                if (!displayname.toLowerCase().contains(filter.toLowerCase())) {
-                  return Container();
-                }
-                return _StoryButton(
-                  profile: Profile(
-                    displayName: displayname,
-                    avatarUrl: avatarUrl,
-                    userId: userId ?? 'Unknown',
-                  ),
-                  heroTag: 'stories_${room.id}',
-                  hasPosts: room.hasPosts || room == ownStoryRoom,
-                  showEditFab: userId == client.userID,
-                  unread: room.membership == Membership.invite ||
-                      (room.hasNewMessages && room.hasPosts),
-                  onPressed: () => _goToStoryAction(context, room.id),
-                  onLongPressed: () => _contextualActions(context, room),
-                );
-              });
+          final creator = room
+              .unsafeGetUserFromMemoryOrFallback(room.creatorId ?? 'Unknown');
+          final userId = room.creatorId;
+          final displayname = creator.calcDisplayname();
+          final avatarUrl = creator.avatarUrl;
+          if (!displayname.toLowerCase().contains(filter.toLowerCase())) {
+            return Container();
+          }
+          return _StoryButton(
+            profile: Profile(
+              displayName: displayname,
+              avatarUrl: avatarUrl,
+              userId: userId ?? 'Unknown',
+            ),
+            heroTag: 'stories_${room.id}',
+            hasPosts: room.hasPosts || room == ownStoryRoom,
+            showEditFab: userId == client.userID,
+            unread: room.membership == Membership.invite ||
+                (room.hasNewMessages && room.hasPosts),
+            onPressed: () => _goToStoryAction(context, room.id),
+            onLongPressed: () => _contextualActions(context, room),
+          );
         },
       ),
     );
@@ -148,9 +144,6 @@ class StoriesHeader extends StatelessWidget {
 }
 
 extension on Room {
-  Future<Profile> getCreatorProfile() =>
-      client.getProfileFromUserId(getState(EventTypes.RoomCreate)!.senderId);
-
   bool get hasPosts {
     if (membership == Membership.invite) return true;
     final lastEvent = this.lastEvent;
