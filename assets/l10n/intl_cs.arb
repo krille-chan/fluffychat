@@ -2860,5 +2860,9 @@
   "errorAddingWidget": "Chyba při přidávání widgetu.",
   "@errorAddingWidget": {},
   "noEmailWarning": "Prosím zadejte platnou emailovou adresu. V opačném případě nebudete moci obnovit heslo. Pokud nechcete, pokračujte dalším klepnutím na tlačítko.",
-  "@noEmailWarning": {}
+  "@noEmailWarning": {},
+  "updateAvailable": "K dispozici aktualizace FluffyChat",
+  "@updateAvailable": {},
+  "updateNow": "Spustit aktualizaci na pozadí",
+  "@updateNow": {}
 }
