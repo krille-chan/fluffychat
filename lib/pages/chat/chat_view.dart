@@ -221,10 +221,10 @@ class ChatView extends StatelessWidget {
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               colors: [
-                                colorScheme.primaryContainer.withAlpha(32),
-                                colorScheme.secondaryContainer.withAlpha(32),
-                                colorScheme.tertiaryContainer.withAlpha(32),
-                                colorScheme.primaryContainer.withAlpha(32),
+                                colorScheme.primaryContainer.withAlpha(64),
+                                colorScheme.secondaryContainer.withAlpha(64),
+                                colorScheme.tertiaryContainer.withAlpha(64),
+                                colorScheme.primaryContainer.withAlpha(64),
                               ],
                             ),
                           ),

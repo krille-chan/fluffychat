@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+
 class M2PopupMenuButton<T> extends StatelessWidget {
   final List<PopupMenuEntry<T>> Function(BuildContext) itemBuilder;
   final T? initialValue;
@@ -28,6 +30,9 @@ class M2PopupMenuButton<T> extends StatelessWidget {
         useMaterial3: false,
         popupMenuTheme: PopupMenuThemeData(
           color: theme.colorScheme.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          ),
           elevation: theme.appBarTheme.scrolledUnderElevation,
           textStyle: theme.textTheme.bodyText1,
         ),
