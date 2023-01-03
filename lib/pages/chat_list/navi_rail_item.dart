@@ -33,7 +33,7 @@ class NaviRailItem extends StatelessWidget {
               width: isSelected ? 4 : 0,
               duration: const Duration(milliseconds: 200),
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(90),
                   bottomRight: Radius.circular(90),
