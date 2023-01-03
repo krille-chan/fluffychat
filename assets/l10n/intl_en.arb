@@ -2514,5 +2514,6 @@
     "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
     "sorryThatsNotPossible": "Sorry... that is not possible",
     "deviceKeys": "Device keys:",
-    "letsStart": "Let's start"
+    "letsStart": "Let's start",
+    "enterInviteLinkOrMatrixId": "Enter invite link or Matrix ID..."
 }

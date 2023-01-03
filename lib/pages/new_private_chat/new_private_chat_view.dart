@@ -94,7 +94,7 @@ class NewPrivateChatView extends StatelessWidget {
                       horizontal: 12,
                       vertical: 6,
                     ),
-                    labelText: L10n.of(context)!.typeInInviteLinkManually,
+                    labelText: L10n.of(context)!.enterInviteLinkOrMatrixId,
                     hintText: '@username',
                     prefixText: NewPrivateChatController.prefixNoProtocol,
                     suffixIcon: IconButton(
