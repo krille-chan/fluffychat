@@ -10,7 +10,6 @@
 .buildlog/
 .history
 .svn/
-lib/generated_plugin_registrant.dart
 prime
 
 # libolm package
@@ -38,7 +37,6 @@ prime
 /build/
 
 # Web related
-lib/generated_plugin_registrant.dart
 docs/build/
 docs/.jekyll-cache/
 docs/_site/
