@@ -28,6 +28,7 @@ class ConnectPageView extends StatelessWidget {
         ),
       ),
       body: ListView(
+        key: const Key('ConnectPageListView'),
         children: [
           if (Matrix.of(context).loginRegistrationSupported ?? false) ...[
             Padding(

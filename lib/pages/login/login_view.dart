@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
                   controller: controller.passwordController,
                   textInputAction: TextInputAction.go,
                   obscureText: !controller.showPassword,
-                  onSubmitted: controller.login,
+                  onSubmitted: (_) => controller.login(),
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outlined),
                     errorText: controller.passwordError,
@@ -87,9 +87,7 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading
-                        ? null
-                        : () => controller.login(context),
+                    onPressed: controller.loading ? null : controller.login,
                     icon: const Icon(Icons.login_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()

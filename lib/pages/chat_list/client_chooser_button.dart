@@ -104,8 +104,13 @@ class ClientChooserButton extends StatelessWidget {
             .map(
               (client) => PopupMenuItem(
                 value: client,
-                child: FutureBuilder<Profile>(
-                  future: client!.fetchOwnProfile(),
+                child: FutureBuilder<Profile?>(
+                  // analyzer does not understand this type cast for error
+                  // handling
+                  //
+                  // ignore: unnecessary_cast
+                  future: (client!.fetchOwnProfile() as Future<Profile?>)
+                      .onError((e, s) => null),
                   builder: (context, snapshot) => Row(
                     children: [
                       Avatar(

@@ -15,6 +15,7 @@ import '../utils/localized_exception_extension.dart';
 class ProfileBottomSheet extends StatelessWidget {
   final String userId;
   final BuildContext outerContext;
+
   const ProfileBottomSheet({
     required this.userId,
     required this.outerContext,
@@ -78,6 +79,13 @@ class ProfileBottomSheet extends StatelessWidget {
                                   mxContent: profile.avatarUrl,
                                   defaultIcon: Icons.account_circle_outlined,
                                   client: Matrix.of(context).client,
+                                  placeholder: (context) => Center(
+                                    child: Text(
+                                      userId.localpart ?? userId,
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                  ),
                                 ),
                         ),
                         ListTile(
