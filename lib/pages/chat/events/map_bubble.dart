@@ -35,15 +35,15 @@ class MapBubble extends StatelessWidget {
                   center: LatLng(latitude, longitude),
                   zoom: zoom,
                 ),
-                layers: [
-                  TileLayerOptions(
+                children: [
+                  TileLayer(
                     maxZoom: 20,
                     minZoom: 0,
                     urlTemplate:
                         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    subdomains: ['a', 'b', 'c'],
+                    subdomains: const ['a', 'b', 'c'],
                   ),
-                  MarkerLayerOptions(
+                  MarkerLayer(
                     rotate: true,
                     markers: [
                       Marker(
