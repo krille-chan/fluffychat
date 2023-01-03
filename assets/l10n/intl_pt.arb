@@ -1,155 +1,155 @@
 {
-  "@@last_modified": "2021-08-14 12:41:09.940318",
-  "copiedToClipboard": "Copiada para a área de transferência",
-  "@copiedToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "login": "Iniciar sessão",
-  "@login": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "monday": "segunda-feira",
-  "@monday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saturday": "sábado",
-  "@saturday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wednesday": "quarta-feira",
-  "@wednesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "about": "Sobre",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "admin": "Admin",
-  "@admin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "Tens a certeza?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notifications": "Notificações",
-  "@notifications": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "account": "Conta",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cancel": "Cancelar",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "delete": "Eliminar",
-  "@delete": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateAndTimeOfDay": "{date}, {timeOfDay}",
-  "@dateAndTimeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "timeOfDay": {}
+    "@@last_modified": "2021-08-14 12:41:09.940318",
+    "copiedToClipboard": "Copiada para a área de transferência",
+    "@copiedToClipboard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "login": "Iniciar sessão",
+    "@login": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "monday": "segunda-feira",
+    "@monday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "saturday": "sábado",
+    "@saturday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "wednesday": "quarta-feira",
+    "@wednesday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "about": "Sobre",
+    "@about": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "admin": "Admin",
+    "@admin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "areYouSure": "Tens a certeza?",
+    "@areYouSure": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "notifications": "Notificações",
+    "@notifications": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "account": "Conta",
+    "@account": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "cancel": "Cancelar",
+    "@cancel": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "delete": "Eliminar",
+    "@delete": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "text",
+        "placeholders": {
+            "date": {},
+            "timeOfDay": {}
+        }
+    },
+    "dateWithYear": "{day}-{month}-{year}",
+    "@dateWithYear": {
+        "type": "text",
+        "placeholders": {
+            "year": {},
+            "month": {},
+            "day": {}
+        }
+    },
+    "help": "Ajuda",
+    "@help": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "messages": "Mensagens",
+    "@messages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "reason": "Razão",
+    "@reason": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "privacy": "Privacidade",
+    "@privacy": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openCamera": "Abrir câmara",
+    "@openCamera": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "settings": "Configurações",
+    "@settings": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "tuesday": "terça-feira",
+    "@tuesday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "logout": "Terminar sessão",
+    "@logout": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "search": "Pesquisar",
+    "@search": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sunday": "domingo",
+    "@sunday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "users": "Utilizadores",
+    "@users": {},
+    "close": "Fechar",
+    "@close": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateWithoutYear": "{day}-{month}",
+    "@dateWithoutYear": {
+        "type": "text",
+        "placeholders": {
+            "month": {},
+            "day": {}
+        }
+    },
+    "friday": "sexta-feira",
+    "@friday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "thursday": "quinta-feira",
+    "@thursday": {
+        "type": "text",
+        "placeholders": {}
     }
-  },
-  "dateWithYear": "{day}-{month}-{year}",
-  "@dateWithYear": {
-    "type": "text",
-    "placeholders": {
-      "year": {},
-      "month": {},
-      "day": {}
-    }
-  },
-  "help": "Ajuda",
-  "@help": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "Mensagens",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reason": "Razão",
-  "@reason": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "Privacidade",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openCamera": "Abrir câmara",
-  "@openCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "settings": "Configurações",
-  "@settings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tuesday": "terça-feira",
-  "@tuesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "logout": "Terminar sessão",
-  "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "Pesquisar",
-  "@search": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sunday": "domingo",
-  "@sunday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "users": "Utilizadores",
-  "@users": {},
-  "close": "Fechar",
-  "@close": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateWithoutYear": "{day}-{month}",
-  "@dateWithoutYear": {
-    "type": "text",
-    "placeholders": {
-      "month": {},
-      "day": {}
-    }
-  },
-  "friday": "sexta-feira",
-  "@friday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "thursday": "quinta-feira",
-  "@thursday": {
-    "type": "text",
-    "placeholders": {}
-  }
 }

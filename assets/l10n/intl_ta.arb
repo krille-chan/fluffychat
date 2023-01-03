@@ -1,20 +1,20 @@
 {
-  "@@last_modified": "2021-08-14 12:41:09.826673",
-  "acceptedTheInvitation": "{username} அழைப்பை ஏற்றுக்கொண்டார்",
-  "@acceptedTheInvitation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
+    "@@last_modified": "2021-08-14 12:41:09.826673",
+    "acceptedTheInvitation": "{username} அழைப்பை ஏற்றுக்கொண்டார்",
+    "@acceptedTheInvitation": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "accept": "ஏற்றுக்கொள்",
+    "@accept": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "about": "பற்றி",
+    "@about": {
+        "type": "text",
+        "placeholders": {}
     }
-  },
-  "accept": "ஏற்றுக்கொள்",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "about": "பற்றி",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  }
 }

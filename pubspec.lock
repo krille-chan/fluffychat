@@ -56,7 +56,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   asn1lib:
     dependency: transitive
     description:
@@ -741,7 +741,7 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   handy_window:
     dependency: "direct main"
     description:
@@ -1650,6 +1650,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  translations_cleaner:
+    dependency: "direct dev"
+    description:
+      name: translations_cleaner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   tuple:
     dependency: transitive
     description:
@@ -1987,5 +1994,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.17.0 <3.0.0"
+  dart: ">=2.17.6 <3.0.0"
   flutter: ">=3.0.0"

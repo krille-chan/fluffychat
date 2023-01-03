@@ -102,6 +102,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   msix: ^3.6.2
+  translations_cleaner: ^0.0.5
 
 flutter_native_splash:
   color: "#ffffff"

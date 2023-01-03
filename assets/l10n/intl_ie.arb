@@ -1,1470 +1,1265 @@
 {
-  "group": "Gruppe",
-  "@group": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "identity": "Identitá",
-  "@identity": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "close": "Cluder",
-  "@close": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "confirm": "Confirmar",
-  "@confirm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "admin": "Administrator",
-  "@admin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chats": "Conversationes",
-  "@chats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deny": "Refusar",
-  "@deny": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discover": "Decovrir",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsUserName": "Contene li nómine",
-  "@containsUserName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "contentViewer": "Visor de contenete",
-  "@contentViewer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connectionAttemptFailed": "Prova de conexion ne successat",
-  "@connectionAttemptFailed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Contene li visibil nómine",
-  "@containsDisplayName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copiedToClipboard": "Copiat al Paperiere",
-  "@copiedToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyToClipboard": "Copiar al Paperiere",
-  "@copyToClipboard": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "countParticipants": "{count} participantes",
-  "@countParticipants": {
-    "type": "text",
-    "placeholders": {
-      "count": {}
+    "group": "Gruppe",
+    "@group": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "identity": "Identitá",
+    "@identity": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "close": "Cluder",
+    "@close": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "confirm": "Confirmar",
+    "@confirm": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "admin": "Administrator",
+    "@admin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chats": "Conversationes",
+    "@chats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deny": "Refusar",
+    "@deny": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "discover": "Decovrir",
+    "@discover": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "containsUserName": "Contene li nómine",
+    "@containsUserName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "containsDisplayName": "Contene li visibil nómine",
+    "@containsDisplayName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copiedToClipboard": "Copiat al Paperiere",
+    "@copiedToClipboard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copyToClipboard": "Copiar al Paperiere",
+    "@copyToClipboard": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "countParticipants": "{count} participantes",
+    "@countParticipants": {
+        "type": "text",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "createNewSpace": "Crear un spacie",
+    "@createNewSpace": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "currentlyActive": "Activ actualmen",
+    "@currentlyActive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "text",
+        "placeholders": {
+            "date": {},
+            "timeOfDay": {}
+        }
+    },
+    "deleteAccount": "Destructer li conto",
+    "@deleteAccount": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "deleteMessage": "Remover li missage",
+    "@deleteMessage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editBlockedServers": "Modificar blocat servitores",
+    "@editBlockedServers": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "everythingReady": "Omni es pret!",
+    "@everythingReady": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "extremeOffensive": "Extremmen offensiv",
+    "@extremeOffensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fileName": "Nómine de file",
+    "@fileName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fontSize": "Dimension de fonde",
+    "@fontSize": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fromJoining": "Pro adhesion",
+    "@fromJoining": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enterYourHomeserver": "Provide vor hem-servitor",
+    "@enterYourHomeserver": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "fromTheInvitation": "Pro invitation",
+    "@fromTheInvitation": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupIsPublic": "Gruppe es public",
+    "@groupIsPublic": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "help": "Auxilie",
+    "@help": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "hideUnknownEvents": "Celar ínconosset evenimentes",
+    "@hideUnknownEvents": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "id": "ID",
+    "@id": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignoredUsers": "Ignorat usatores",
+    "@ignoredUsers": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "invitedUsersOnly": "Solmen invitat usatores",
+    "@invitedUsersOnly": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "login": "Aperter li session",
+    "@login": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "isTyping": "tippa…",
+    "@isTyping": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "joinRoom": "Adherer al chambre",
+    "@joinRoom": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loadMore": "Cargar plu…",
+    "@loadMore": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteForMe": "Invitationes por me",
+    "@inviteForMe": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "keysCached": "Claves es in cache",
+    "@keysCached": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "lastActiveAgo": "Ultim activité: {localizedTimeShort}",
+    "@lastActiveAgo": {
+        "type": "text",
+        "placeholders": {
+            "localizedTimeShort": {}
+        }
+    },
+    "mention": "Mentionar",
+    "@mention": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "next": "Sequent",
+    "@next": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "no": "No",
+    "@no": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "offensive": "Offensiv",
+    "@offensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "offline": "For del rete",
+    "@offline": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ok": "OK",
+    "@ok": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "online": "In li rete",
+    "@online": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "memberChanges": "Cambios inter membres",
+    "@memberChanges": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "muteChat": "Assurdar li conversation",
+    "@muteChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newChat": "Crear un conversation",
+    "@newChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newVerificationRequest": "Nov demanda de verification!",
+    "@newVerificationRequest": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "scanQrCode": "Scannar un code QR",
+    "@scanQrCode": {},
+    "noRoomsFound": "Null chambres trovat…",
+    "@noRoomsFound": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openInMaps": "Aperter in mappas",
+    "@openInMaps": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "optionalGroupName": "(Facultativ) Nómine de gruppe",
+    "@optionalGroupName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "password": "Contrasigne",
+    "@password": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passwordForgotten": "Li contrasigne esset obliviat",
+    "@passwordForgotten": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "passwordRecovery": "Reganiar li contrasigne",
+    "@passwordRecovery": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseChoose": "Ples selecter",
+    "@pleaseChoose": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pushRules": "Regules de push-notificationes",
+    "@pushRules": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "redactMessage": "Redacter li missage",
+    "@redactMessage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "removeDevice": "Remover li aparate",
+    "@removeDevice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "saveFile": "Gardar li file",
+    "@saveFile": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "recoveryKey": "Clave de regania",
+    "@recoveryKey": {},
+    "sendMessages": "Inviar missages",
+    "@sendMessages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendVideo": "Inviar video",
+    "@sendVideo": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "shareLocation": "Partir un localisation",
+    "@shareLocation": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "signUp": "Inregistrar se",
+    "@signUp": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "spaceName": "Nómine de spacie",
+    "@spaceName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "tuesday": "Mardí",
+    "@tuesday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "unavailable": "Índisponibil",
+    "@unavailable": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "toggleUnread": "Marcar quam (ín)leet",
+    "@toggleUnread": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "unblockDevice": "Deblocar li aparate",
+    "@unblockDevice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "unknownDevice": "Ínconosset aparate",
+    "@unknownDevice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "voiceMessage": "Voce-missage",
+    "@voiceMessage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "wallpaper": "Tapete",
+    "@wallpaper": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "messageType": "Tip de missage",
+    "@messageType": {},
+    "start": "Iniciar",
+    "@start": {},
+    "messageInfo": "Information pri li missage",
+    "@messageInfo": {},
+    "openGallery": "Aperter li galerie",
+    "@openGallery": {},
+    "unsubscribeStories": "Desabonnar racontas",
+    "@unsubscribeStories": {},
+    "yourStory": "Vor raconte",
+    "@yourStory": {},
+    "videoWithSize": "Video ({size})",
+    "@videoWithSize": {
+        "type": "text",
+        "placeholders": {
+            "size": {}
+        }
+    },
+    "reportUser": "Raportar li usator",
+    "@reportUser": {},
+    "matrixWidgets": "Widgets de Matrix",
+    "@matrixWidgets": {},
+    "voiceCall": "Telefonada",
+    "@voiceCall": {},
+    "nextAccount": "Sequent conto",
+    "@nextAccount": {},
+    "previousAccount": "Precedent conto",
+    "@previousAccount": {},
+    "countFiles": "{count} files",
+    "@countFiles": {
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "all": "Omni",
+    "@all": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "create": "Crear",
+    "@create": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "connect": "Conexer",
+    "@connect": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "copy": "Copiar",
+    "@copy": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "darkTheme": "Obscur",
+    "@darkTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "messages": "Missages",
+    "@messages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "none": "Null",
+    "@none": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "rejoin": "Re-adherer",
+    "@rejoin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "remove": "Remover",
+    "@remove": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "notifications": "Notificationes",
+    "@notifications": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "reply": "Responder",
+    "@reply": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "saturday": "Saturdí",
+    "@saturday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateWithYear": "{day}.{month}.{year}",
+    "@dateWithYear": {
+        "type": "text",
+        "placeholders": {
+            "year": {},
+            "month": {},
+            "day": {}
+        }
+    },
+    "delete": "Remover",
+    "@delete": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "search": "Sercha",
+    "@search": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "devices": "Aparates",
+    "@devices": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "friday": "Venerdí",
+    "@friday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "lightTheme": "Lucid",
+    "@lightTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "edit": "Redacter",
+    "@edit": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "security": "Securitá",
+    "@security": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "settings": "Parametres",
+    "@settings": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "share": "Partir",
+    "@share": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "systemTheme": "Del sistema",
+    "@systemTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "thursday": "Jovedí",
+    "@thursday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "username": "Nómine de usator",
+    "@username": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "verify": "Verificar",
+    "@verify": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "wednesday": "Mercurdí",
+    "@wednesday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "submit": "Inviar",
+    "@submit": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "unpin": "Defixar",
+    "@unpin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "verified": "Verificat",
+    "@verified": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "warning": "Avise!",
+    "@warning": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "yes": "Yes",
+    "@yes": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "time": "Hora",
+    "@time": {},
+    "publish": "Publicar",
+    "@publish": {},
+    "sender": "Autor",
+    "@sender": {},
+    "dismiss": "Demisser",
+    "@dismiss": {},
+    "custom": "Personalisat",
+    "@custom": {},
+    "emojis": "Emoji",
+    "@emojis": {},
+    "widgetCustom": "Personalisat",
+    "@widgetCustom": {},
+    "users": "Usatores",
+    "@users": {},
+    "user": "Usator",
+    "@user": {},
+    "stories": "Racontas",
+    "@stories": {},
+    "forward": "Avan",
+    "@forward": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groups": "Gruppes",
+    "@groups": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignore": "Ignorar",
+    "@ignore": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inoffensive": "Ínoffensiv",
+    "@inoffensive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "invited": "Invitat",
+    "@invited": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "leave": "Forlassar",
+    "@leave": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "license": "Licentie",
+    "@license": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "or": "O",
+    "@or": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "link": "Ligament",
+    "@link": {},
+    "participant": "Participante",
+    "@participant": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "reason": "Cause",
+    "@reason": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "people": "Homes",
+    "@people": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pin": "Fixar",
+    "@pin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "privacy": "Privatie",
+    "@privacy": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "recording": "Registrante",
+    "@recording": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "register": "Inregistrar se",
+    "@register": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "reject": "Refuser",
+    "@reject": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "repeatPassword": "Repetir li contrasigne",
+    "@repeatPassword": {},
+    "addEmail": "Adjunter e-post",
+    "@addEmail": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "archivedRoom": "Archivat chambre",
+    "@archivedRoom": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changePassword": "Cambiar li contrasigne",
+    "@changePassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeWallpaper": "Cambiar li tapete",
+    "@changeWallpaper": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "clearArchive": "Vacuar li archive",
+    "@clearArchive": {},
+    "commandHint_clearcache": "Vacuar li cache",
+    "@commandHint_clearcache": {
+        "type": "text",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_send": "Inviar li textu",
+    "@commandHint_send": {
+        "type": "text",
+        "description": "Usage hint for the command /send"
+    },
+    "configureChat": "Configurar li conversation",
+    "@configureChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "directChats": "Direct conversationes",
+    "@directChats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "enableEncryption": "Activar li ciffration",
+    "@enableEncryption": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "downloadFile": "Descargar li file",
+    "@downloadFile": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emoteSettings": "Parametres de emotiones",
+    "@emoteSettings": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emoteShortcode": "Curt-code de emotion",
+    "@emoteShortcode": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emptyChat": "Vacui conversation",
+    "@emptyChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupDescription": "Descrition del gruppe",
+    "@groupDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "videoCall": "Videotelefonada",
+    "@videoCall": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openChat": "Aperter li conversation",
+    "@openChat": {},
+    "reportMessage": "Raportar li missage",
+    "@reportMessage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "noPermission": "Sin permission",
+    "@noPermission": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "openCamera": "Aperter li cámera",
+    "@openCamera": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "showPassword": "Monstrar li contrasigne",
+    "@showPassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendFile": "Inviar un file",
+    "@sendFile": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendImage": "Inviar un image",
+    "@sendImage": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendOriginal": "Inviar li originale",
+    "@sendOriginal": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "theyMatch": "Corresponde",
+    "@theyMatch": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "anyoneCanJoin": "Alquí posse adherer se",
+    "@anyoneCanJoin": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "obtainingLocation": "Obtenente li localisation…",
+    "@obtainingLocation": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "iUnderstand": "Yo comprende",
+    "@iUnderstand": {},
+    "addWidget": "Adjunter un widget",
+    "@addWidget": {},
+    "addAccount": "Adjunter un conto",
+    "@addAccount": {},
+    "publicRooms": "Public chambres",
+    "@publicRooms": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "verifyStart": "Iniciar li verification",
+    "@verifyStart": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "addDescription": "Adjunter un descrition",
+    "@addDescription": {},
+    "roomVersion": "Version del chambre",
+    "@roomVersion": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendAudio": "Inviar audio",
+    "@sendAudio": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sendSticker": "Inviar un nota adhesiv",
+    "@sendSticker": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "setStatus": "Assignar li statu",
+    "@setStatus": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sourceCode": "Code de fonte",
+    "@sourceCode": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "play": "Reproducter {fileName}",
+    "@play": {
+        "type": "text",
+        "placeholders": {
+            "fileName": {}
+        }
+    },
+    "pleaseEnterValidEmail": "Ples provider un valid adresse de e-post.",
+    "@pleaseEnterValidEmail": {},
+    "about": "Pri",
+    "@about": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "accept": "Acceptar",
+    "@accept": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "updateNow": "Actualisar in li funde",
+    "@updateNow": {},
+    "confirmMatrixId": "Ples confirmar vor Matrix ID por destructer vor conto.",
+    "@confirmMatrixId": {},
+    "allChats": "Omni conversationes",
+    "@allChats": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "addToSpace": "Adjunter al spacie",
+    "@addToSpace": {},
+    "addGroupDescription": "Adjunter un descrition de gruppe",
+    "@addGroupDescription": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "askVerificationRequest": "Esque acceptar ti demanda de verification de {username}?",
+    "@askVerificationRequest": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "autoplayImages": "Automaticmen reproducter animat images",
+    "@autoplayImages": {
+        "type": "text",
+        "placeholder": {}
+    },
+    "sendOnEnter": "Inviar per Enter",
+    "@sendOnEnter": {},
+    "blocked": "Blocat",
+    "@blocked": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "blockDevice": "Blocar li aparate",
+    "@blockDevice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "botMessages": "Missages de robots",
+    "@botMessages": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "bubbleSize": "Dimension de parlada-bul",
+    "@bubbleSize": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeDeviceName": "Cambiar li nómine de aparate",
+    "@changeDeviceName": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeTheHomeserver": "Cambiar li hem-servitor",
+    "@changeTheHomeserver": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chat": "Conversation",
+    "@chat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeYourAvatar": "Cambiar vor avatar",
+    "@changeYourAvatar": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chatBackup": "Archive de conversation",
+    "@chatBackup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chatDetails": "Detallies del conversation",
+    "@chatDetails": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "chooseAUsername": "Selecte un nómine de usator",
+    "@chooseAUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandHint_me": "Ples descrir vos",
+    "@commandHint_me": {
+        "type": "text",
+        "description": "Usage hint for the command /me"
+    },
+    "commandHint_leave": "Forlassar ti chambre",
+    "@commandHint_leave": {
+        "type": "text",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandInvalid": "Comande es ínvalid",
+    "@commandInvalid": {
+        "type": "text"
+    },
+    "updateAvailable": "Un actualisament de FluffyChat es disponibil",
+    "@updateAvailable": {},
+    "yourUserId": "Vor ID de usator:",
+    "@yourUserId": {},
+    "editWidgets": "Modificar li widgets",
+    "@editWidgets": {},
+    "widgetEtherpad": "Textual nota",
+    "@widgetEtherpad": {},
+    "banFromChat": "Bannir del conversation",
+    "@banFromChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "changeTheme": "Cambiar li stil",
+    "@changeTheme": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "commandHint_markasgroup": "Marcar quam gruppe",
+    "@commandHint_markasgroup": {},
+    "widgetJitsi": "Jitsi Meet",
+    "@widgetJitsi": {},
+    "screenSharingTitle": "partir li ecran",
+    "@screenSharingTitle": {},
+    "callingPermissions": "Permissiones de telefonada",
+    "@callingPermissions": {},
+    "callingAccount": "Conto telefonante",
+    "@callingAccount": {},
+    "bannedUser": "{username} ha bannit {targetName}",
+    "@bannedUser": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "commandHint_html": "Inviar contenete HTML",
+    "@commandHint_html": {
+        "type": "text",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_plain": "Inviar textu sin formate",
+    "@commandHint_plain": {
+        "type": "text",
+        "description": "Usage hint for the command /plain"
+    },
+    "editRoomAliases": "Modificar pseudonimos del chambre",
+    "@editRoomAliases": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "emoteExists": "Emotion ja existe!",
+    "@emoteExists": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "createNewGroup": "Crear un nov gruppe",
+    "@createNewGroup": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editRoomAvatar": "Modificar li avatar del chambre",
+    "@editRoomAvatar": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "groupWith": "Gruppe con {displayname}",
+    "@groupWith": {
+        "type": "text",
+        "placeholders": {
+            "displayname": {}
+        }
+    },
+    "invitedUser": "{username} invitat {targetName}",
+    "@invitedUser": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "targetName": {}
+        }
+    },
+    "leftTheChat": "Surtit ex li conversation",
+    "@leftTheChat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "loadingPleaseWait": "Cargante... ples atender.",
+    "@loadingPleaseWait": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "{username} ha acceptat li invitation",
+    "@acceptedTheInvitation": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "supposedMxid": "To deve esser {mxid}",
+    "@supposedMxid": {
+        "type": "text",
+        "placeholders": {
+            "mxid": {}
+        }
+    },
+    "areYouSureYouWantToLogout": "Esque vu vole cluder li session?",
+    "@areYouSureYouWantToLogout": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "badServerLoginTypesException": "Li hem-servitor supporta ti tipes de autentication:\n{serverVersions}\nMa ti-ci application supporta solmen:\n{supportedVersions}",
+    "@badServerLoginTypesException": {
+        "type": "text",
+        "placeholders": {
+            "serverVersions": {},
+            "supportedVersions": {}
+        }
+    },
+    "cantOpenUri": "Ne successat aperter li adresse {uri}",
+    "@cantOpenUri": {
+        "type": "text",
+        "placeholders": {
+            "uri": {}
+        }
+    },
+    "badServerVersionsException": "Li hem-servitor supporta ti versiones de specification:\n{serverVersions}\nMa ti-ci application supporta solmen {supportedVersions}",
+    "@badServerVersionsException": {
+        "type": "text",
+        "placeholders": {
+            "serverVersions": {},
+            "supportedVersions": {}
+        }
+    },
+    "dateWithoutYear": "{day}.{month}",
+    "@dateWithoutYear": {
+        "type": "text",
+        "placeholders": {
+            "month": {},
+            "day": {}
+        }
+    },
+    "device": "Aparate",
+    "@device": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "widgetVideo": "Video",
+    "@widgetVideo": {},
+    "widgetName": "Nómine",
+    "@widgetName": {},
+    "account": "Conto",
+    "@account": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "alias": "pseudonim",
+    "@alias": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "archive": "Archive",
+    "@archive": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "banned": "Bannit",
+    "@banned": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "cancel": "Anullar",
+    "@cancel": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "encrypted": "Ciffrat",
+    "@encrypted": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "encryption": "Ciffration",
+    "@encryption": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "homeserver": "Hem-servitor",
+    "@homeserver": {},
+    "fluffychat": "FluffyChat",
+    "@fluffychat": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "moderator": "Moderator",
+    "@moderator": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "monday": "Lunedí",
+    "@monday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "newGroup": "Crear un gruppe",
+    "@newGroup": {},
+    "newSpace": "Crear un spacie",
+    "@newSpace": {},
+    "enterSpace": "Intrar li spacie",
+    "@enterSpace": {},
+    "enterRoom": "Intrar li chambre",
+    "@enterRoom": {},
+    "allSpaces": "Omni spacies",
+    "@allSpaces": {},
+    "numChats": "{number} conversationes",
+    "@numChats": {
+        "type": "number",
+        "placeholders": {
+            "number": {}
+        }
+    },
+    "logout": "Cluder li session",
+    "@logout": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "send": "Inviar",
+    "@send": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "you": "Vu",
+    "@you": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "title": "FluffyChat",
+    "@title": {
+        "description": "Title for the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "skip": "Omisser",
+    "@skip": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "status": "Statu",
+    "@status": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "sunday": "Soledí",
+    "@sunday": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "unverified": "Ínverificat",
+    "@unverified": {},
+    "deviceId": "ID de aparate",
+    "@deviceId": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "editDisplayname": "Redacter li visibil nómine",
+    "@editDisplayname": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "ignoreUsername": "Ignorar un nómine",
+    "@ignoreUsername": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "inviteContact": "Invitar un contacte",
+    "@inviteContact": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "requestPermission": "Demandar li permission",
+    "@requestPermission": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "areYouSure": "Esque vu es cert?",
+    "@areYouSure": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "pleaseChooseAtLeastChars": "Ples usar adminim {min} caracteres.",
+    "@pleaseChooseAtLeastChars": {
+        "type": "text",
+        "placeholders": {
+            "min": {}
+        }
     }
-  },
-  "createNewSpace": "Crear un spacie",
-  "@createNewSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createAccountNow": "Crear un conto nu",
-  "@createAccountNow": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "currentlyActive": "Activ actualmen",
-  "@currentlyActive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateAndTimeOfDay": "{date}, {timeOfDay}",
-  "@dateAndTimeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "timeOfDay": {}
-    }
-  },
-  "deleteAccount": "Destructer li conto",
-  "@deleteAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deleteMessage": "Remover li missage",
-  "@deleteMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discardPicture": "Rejecter li image",
-  "@discardPicture": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editBlockedServers": "Modificar blocat servitores",
-  "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryptionAlgorithm": "Algoritm de ciffration",
-  "@encryptionAlgorithm": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "everythingReady": "Omni es pret!",
-  "@everythingReady": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "extremeOffensive": "Extremmen offensiv",
-  "@extremeOffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileName": "Nómine de file",
-  "@fileName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fileSize": "Grandore de file",
-  "@fileSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fontSize": "Dimension de fonde",
-  "@fontSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromJoining": "Pro adhesion",
-  "@fromJoining": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterAUsername": "Provide un nómine de usator",
-  "@enterAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enterYourHomeserver": "Provide vor hem-servitor",
-  "@enterYourHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "fromTheInvitation": "Pro invitation",
-  "@fromTheInvitation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupIsPublic": "Gruppe es public",
-  "@groupIsPublic": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "help": "Auxilie",
-  "@help": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "hideUnknownEvents": "Celar ínconosset evenimentes",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "id": "ID",
-  "@id": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoredUsers": "Ignorat usatores",
-  "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invalidEmail": "E-post es ínvalid",
-  "@invalidEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invitedUsersOnly": "Solmen invitat usatores",
-  "@invitedUsersOnly": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "login": "Aperter li session",
-  "@login": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "isTyping": "tippa…",
-  "@isTyping": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "joinRoom": "Adherer al chambre",
-  "@joinRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "loadMore": "Cargar plu…",
-  "@loadMore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteForMe": "Invitationes por me",
-  "@inviteForMe": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "keysCached": "Claves es in cache",
-  "@keysCached": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "keysMissing": "Claves mancant",
-  "@keysMissing": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lastActiveAgo": "Ultim activité: {localizedTimeShort}",
-  "@lastActiveAgo": {
-    "type": "text",
-    "placeholders": {
-      "localizedTimeShort": {}
-    }
-  },
-  "lastSeenIp": "Ultim IP",
-  "@lastSeenIp": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "mention": "Mentionar",
-  "@mention": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "next": "Sequent",
-  "@next": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "no": "No",
-  "@no": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offensive": "Offensiv",
-  "@offensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "offline": "For del rete",
-  "@offline": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ok": "OK",
-  "@ok": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "online": "In li rete",
-  "@online": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "memberChanges": "Cambios inter membres",
-  "@memberChanges": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "muteChat": "Assurdar li conversation",
-  "@muteChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newChat": "Crear un conversation",
-  "@newChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noDescription": "Sin descrition",
-  "@noDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "numberSelected": "{number} selectet",
-  "@numberSelected": {
-    "type": "text",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "makeAModerator": "Promover a moderator",
-  "@makeAModerator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeAnAdmin": "Promover a administrator",
-  "@makeAnAdmin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newVerificationRequest": "Nov demanda de verification!",
-  "@newVerificationRequest": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "scanQrCode": "Scannar un code QR",
-  "@scanQrCode": {},
-  "noRoomsFound": "Null chambres trovat…",
-  "@noRoomsFound": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openInMaps": "Aperter in mappas",
-  "@openInMaps": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalGroupName": "(Facultativ) Nómine de gruppe",
-  "@optionalGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "password": "Contrasigne",
-  "@password": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordForgotten": "Li contrasigne esset obliviat",
-  "@passwordForgotten": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "passwordRecovery": "Reganiar li contrasigne",
-  "@passwordRecovery": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChoose": "Ples selecter",
-  "@pleaseChoose": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicGroups": "Public gruppes",
-  "@publicGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicKey": "Public clave",
-  "@publicKey": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "publicSpace": "Public spacie",
-  "@publicSpace": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pushRules": "Regules de push-notificationes",
-  "@pushRules": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "redactMessage": "Redacter li missage",
-  "@redactMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeDevice": "Remover li aparate",
-  "@removeDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "removeMessage": "Remover li missage",
-  "@removeMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saveFile": "Gardar li file",
-  "@saveFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "recoveryKey": "Clave de regania",
-  "@recoveryKey": {},
-  "sendMessages": "Inviar missages",
-  "@sendMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendVideo": "Inviar video",
-  "@sendVideo": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "shareLocation": "Partir un localisation",
-  "@shareLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "signUp": "Inregistrar se",
-  "@signUp": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "spaceName": "Nómine de spacie",
-  "@spaceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "tuesday": "Mardí",
-  "@tuesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unavailable": "Índisponibil",
-  "@unavailable": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "timeOfDay": "{hours24}:{minutes}",
-  "@timeOfDay": {
-    "type": "text",
-    "placeholders": {
-      "hours12": {},
-      "hours24": {},
-      "minutes": {},
-      "suffix": {}
-    }
-  },
-  "toggleUnread": "Marcar quam (ín)leet",
-  "@toggleUnread": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unblockDevice": "Deblocar li aparate",
-  "@unblockDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unknownDevice": "Ínconosset aparate",
-  "@unknownDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyManual": "Verificar manualmen",
-  "@verifyManual": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "voiceMessage": "Voce-missage",
-  "@voiceMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wallpaper": "Tapete",
-  "@wallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "zoomIn": "Agrandar",
-  "@zoomIn": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "zoomOut": "Diminuer",
-  "@zoomOut": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageType": "Tip de missage",
-  "@messageType": {},
-  "start": "Iniciar",
-  "@start": {},
-  "messageInfo": "Information pri li missage",
-  "@messageInfo": {},
-  "openGallery": "Aperter li galerie",
-  "@openGallery": {},
-  "unsubscribeStories": "Desabonnar racontas",
-  "@unsubscribeStories": {},
-  "yourStory": "Vor raconte",
-  "@yourStory": {},
-  "videoWithSize": "Video ({size})",
-  "@videoWithSize": {
-    "type": "text",
-    "placeholders": {
-      "size": {}
-    }
-  },
-  "reportUser": "Raportar li usator",
-  "@reportUser": {},
-  "matrixWidgets": "Widgets de Matrix",
-  "@matrixWidgets": {},
-  "voiceCall": "Telefonada",
-  "@voiceCall": {},
-  "nextAccount": "Sequent conto",
-  "@nextAccount": {},
-  "previousAccount": "Precedent conto",
-  "@previousAccount": {},
-  "countFiles": "{count} files",
-  "@countFiles": {
-    "placeholders": {
-      "count": {}
-    }
-  },
-  "all": "Omni",
-  "@all": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "create": "Crear",
-  "@create": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "connect": "Conexer",
-  "@connect": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copy": "Copiar",
-  "@copy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "darkTheme": "Obscur",
-  "@darkTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messages": "Missages",
-  "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "none": "Null",
-  "@none": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "rejoin": "Re-adherer",
-  "@rejoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "remove": "Remover",
-  "@remove": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "notifications": "Notificationes",
-  "@notifications": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reply": "Responder",
-  "@reply": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "saturday": "Saturdí",
-  "@saturday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "dateWithYear": "{day}.{month}.{year}",
-  "@dateWithYear": {
-    "type": "text",
-    "placeholders": {
-      "year": {},
-      "month": {},
-      "day": {}
-    }
-  },
-  "delete": "Remover",
-  "@delete": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "search": "Sercha",
-  "@search": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "devices": "Aparates",
-  "@devices": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "donate": "Donar",
-  "@donate": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friday": "Venerdí",
-  "@friday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "lightTheme": "Lucid",
-  "@lightTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "edit": "Redacter",
-  "@edit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "security": "Securitá",
-  "@security": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "settings": "Parametres",
-  "@settings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "share": "Partir",
-  "@share": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "systemTheme": "Del sistema",
-  "@systemTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "thursday": "Jovedí",
-  "@thursday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "username": "Nómine de usator",
-  "@username": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verify": "Verificar",
-  "@verify": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "wednesday": "Mercurdí",
-  "@wednesday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "submit": "Inviar",
-  "@submit": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unpin": "Defixar",
-  "@unpin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verified": "Verificat",
-  "@verified": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "warning": "Avise!",
-  "@warning": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yes": "Yes",
-  "@yes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "time": "Hora",
-  "@time": {},
-  "publish": "Publicar",
-  "@publish": {},
-  "sender": "Autor",
-  "@sender": {},
-  "dismiss": "Demisser",
-  "@dismiss": {},
-  "custom": "Personalisat",
-  "@custom": {},
-  "avatarHasBeenChanged": "Li avatar sta cambiat",
-  "@avatarHasBeenChanged": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emojis": "Emoji",
-  "@emojis": {},
-  "widgetCustom": "Personalisat",
-  "@widgetCustom": {},
-  "users": "Usatores",
-  "@users": {},
-  "user": "Usator",
-  "@user": {},
-  "accountInformation": "Information pri li conto",
-  "@accountInformation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "stories": "Racontas",
-  "@stories": {},
-  "forward": "Avan",
-  "@forward": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "friends": "Amics",
-  "@friends": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groups": "Gruppes",
-  "@groups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignore": "Ignorar",
-  "@ignore": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inoffensive": "Ínoffensiv",
-  "@inoffensive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "invited": "Invitat",
-  "@invited": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "leave": "Forlassar",
-  "@leave": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "license": "Licentie",
-  "@license": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "or": "O",
-  "@or": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "link": "Ligament",
-  "@link": {},
-  "participant": "Participante",
-  "@participant": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reason": "Cause",
-  "@reason": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "people": "Homes",
-  "@people": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pin": "Fixar",
-  "@pin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "privacy": "Privatie",
-  "@privacy": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "recording": "Registrante",
-  "@recording": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "register": "Inregistrar se",
-  "@register": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "reject": "Refuser",
-  "@reject": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "repeatPassword": "Repetir li contrasigne",
-  "@repeatPassword": {},
-  "addEmail": "Adjunter e-post",
-  "@addEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archivedRoom": "Archivat chambre",
-  "@archivedRoom": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changePassword": "Cambiar li contrasigne",
-  "@changePassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearText": "Vacuar li textu",
-  "@clearText": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeWallpaper": "Cambiar li tapete",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "clearArchive": "Vacuar li archive",
-  "@clearArchive": {},
-  "commandHint_clearcache": "Vacuar li cache",
-  "@commandHint_clearcache": {
-    "type": "text",
-    "description": "Usage hint for the command /clearcache"
-  },
-  "commandHint_send": "Inviar li textu",
-  "@commandHint_send": {
-    "type": "text",
-    "description": "Usage hint for the command /send"
-  },
-  "configureChat": "Configurar li conversation",
-  "@configureChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "directChats": "Direct conversationes",
-  "@directChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "enableEncryption": "Activar li ciffration",
-  "@enableEncryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "discoverGroups": "Decovrir gruppes",
-  "@discoverGroups": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "downloadFile": "Descargar li file",
-  "@downloadFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteSettings": "Parametres de emotiones",
-  "@emoteSettings": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteShortcode": "Curt-code de emotion",
-  "@emoteShortcode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emptyChat": "Vacui conversation",
-  "@emptyChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescription": "Descrition del gruppe",
-  "@groupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "videoCall": "Videotelefonada",
-  "@videoCall": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openChat": "Aperter li conversation",
-  "@openChat": {},
-  "reportMessage": "Raportar li missage",
-  "@reportMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "noPermission": "Sin permission",
-  "@noPermission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "openCamera": "Aperter li cámera",
-  "@openCamera": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showPassword": "Monstrar li contrasigne",
-  "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendFile": "Inviar un file",
-  "@sendFile": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendImage": "Inviar un image",
-  "@sendImage": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendOriginal": "Inviar li originale",
-  "@sendOriginal": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "theyMatch": "Corresponde",
-  "@theyMatch": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyUser": "Verificar li usator",
-  "@verifyUser": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "anyoneCanJoin": "Alquí posse adherer se",
-  "@anyoneCanJoin": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "obtainingLocation": "Obtenente li localisation…",
-  "@obtainingLocation": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "iUnderstand": "Yo comprende",
-  "@iUnderstand": {},
-  "addWidget": "Adjunter un widget",
-  "@addWidget": {},
-  "addAccount": "Adjunter un conto",
-  "@addAccount": {},
-  "publicRooms": "Public chambres",
-  "@publicRooms": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "verifyStart": "Iniciar li verification",
-  "@verifyStart": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addDescription": "Adjunter un descrition",
-  "@addDescription": {},
-  "roomVersion": "Version del chambre",
-  "@roomVersion": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendAudio": "Inviar audio",
-  "@sendAudio": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sendSticker": "Inviar un nota adhesiv",
-  "@sendSticker": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "setStatus": "Assignar li statu",
-  "@setStatus": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sourceCode": "Code de fonte",
-  "@sourceCode": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "play": "Reproducter {fileName}",
-  "@play": {
-    "type": "text",
-    "placeholders": {
-      "fileName": {}
-    }
-  },
-  "pleaseEnterValidEmail": "Ples provider un valid adresse de e-post.",
-  "@pleaseEnterValidEmail": {},
-  "about": "Pri",
-  "@about": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "accept": "Acceptar",
-  "@accept": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "updateNow": "Actualisar in li funde",
-  "@updateNow": {},
-  "confirmMatrixId": "Ples confirmar vor Matrix ID por destructer vor conto.",
-  "@confirmMatrixId": {},
-  "allChats": "Omni conversationes",
-  "@allChats": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addNewFriend": "Adjunter un nov amic",
-  "@addNewFriend": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addToSpace": "Adjunter al spacie",
-  "@addToSpace": {},
-  "addGroupDescription": "Adjunter un descrition de gruppe",
-  "@addGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alreadyHaveAnAccount": "Ja have un conto?",
-  "@alreadyHaveAnAccount": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "askVerificationRequest": "Esque acceptar ti demanda de verification de {username}?",
-  "@askVerificationRequest": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "autoplayImages": "Automaticmen reproducter animat images",
-  "@autoplayImages": {
-    "type": "text",
-    "placeholder": {}
-  },
-  "sendOnEnter": "Inviar per Enter",
-  "@sendOnEnter": {},
-  "blocked": "Blocat",
-  "@blocked": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "blockDevice": "Blocar li aparate",
-  "@blockDevice": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "botMessages": "Missages de robots",
-  "@botMessages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "bubbleSize": "Dimension de parlada-bul",
-  "@bubbleSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "suggestedRooms": "Decovrir gruppes in ti spacie",
-  "@suggestedRooms": {},
-  "changeDeviceName": "Cambiar li nómine de aparate",
-  "@changeDeviceName": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheHomeserver": "Cambiar li hem-servitor",
-  "@changeTheHomeserver": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chat": "Conversation",
-  "@chat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeYourAvatar": "Cambiar vor avatar",
-  "@changeYourAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatBackup": "Archive de conversation",
-  "@chatBackup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chatDetails": "Detallies del conversation",
-  "@chatDetails": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAUsername": "Selecte un nómine de usator",
-  "@chooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHint_me": "Ples descrir vos",
-  "@commandHint_me": {
-    "type": "text",
-    "description": "Usage hint for the command /me"
-  },
-  "commandHint_leave": "Forlassar ti chambre",
-  "@commandHint_leave": {
-    "type": "text",
-    "description": "Usage hint for the command /leave"
-  },
-  "commandInvalid": "Comande es ínvalid",
-  "@commandInvalid": {
-    "type": "text"
-  },
-  "updateAvailable": "Un actualisament de FluffyChat es disponibil",
-  "@updateAvailable": {},
-  "changeTheServer": "Cambiar li servitor",
-  "@changeTheServer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "yourUserId": "Vor ID de usator:",
-  "@yourUserId": {},
-  "editWidgets": "Modificar li widgets",
-  "@editWidgets": {},
-  "widgetEtherpad": "Textual nota",
-  "@widgetEtherpad": {},
-  "banFromChat": "Bannir del conversation",
-  "@banFromChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "changeTheme": "Cambiar li stil",
-  "@changeTheme": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "commandHint_markasgroup": "Marcar quam gruppe",
-  "@commandHint_markasgroup": {},
-  "widgetJitsi": "Jitsi Meet",
-  "@widgetJitsi": {},
-  "screenSharingTitle": "partir li ecran",
-  "@screenSharingTitle": {},
-  "callingPermissions": "Permissiones de telefonada",
-  "@callingPermissions": {},
-  "callingAccount": "Conto telefonante",
-  "@callingAccount": {},
-  "bannedUser": "{username} ha bannit {targetName}",
-  "@bannedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "commandHint_html": "Inviar contenete HTML",
-  "@commandHint_html": {
-    "type": "text",
-    "description": "Usage hint for the command /html"
-  },
-  "commandHint_plain": "Inviar textu sin formate",
-  "@commandHint_plain": {
-    "type": "text",
-    "description": "Usage hint for the command /plain"
-  },
-  "editRoomAliases": "Modificar pseudonimos del chambre",
-  "@editRoomAliases": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "emoteExists": "Emotion ja existe!",
-  "@emoteExists": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "createNewGroup": "Crear un nov gruppe",
-  "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editJitsiInstance": "Modificar li instantie de Jitsi",
-  "@editJitsiInstance": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editRoomAvatar": "Modificar li avatar del chambre",
-  "@editRoomAvatar": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupWith": "Gruppe con {displayname}",
-  "@groupWith": {
-    "type": "text",
-    "placeholders": {
-      "displayname": {}
-    }
-  },
-  "invitedUser": "{username} invitat {targetName}",
-  "@invitedUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "targetName": {}
-    }
-  },
-  "leftTheChat": "Surtit ex li conversation",
-  "@leftTheChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showSpaces": "Monstrar li liste de spacies",
-  "@showSpaces": {},
-  "loadingPleaseWait": "Cargante... ples atender.",
-  "@loadingPleaseWait": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "acceptedTheInvitation": "{username} ha acceptat li invitation",
-  "@acceptedTheInvitation": {
-    "type": "text",
-    "placeholders": {
-      "username": {}
-    }
-  },
-  "supposedMxid": "To deve esser {mxid}",
-  "@supposedMxid": {
-    "type": "text",
-    "placeholders": {
-      "mxid": {}
-    }
-  },
-  "areYouSureYouWantToLogout": "Esque vu vole cluder li session?",
-  "@areYouSureYouWantToLogout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "badServerLoginTypesException": "Li hem-servitor supporta ti tipes de autentication:\n{serverVersions}\nMa ti-ci application supporta solmen:\n{supportedVersions}",
-  "@badServerLoginTypesException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "cantOpenUri": "Ne successat aperter li adresse {uri}",
-  "@cantOpenUri": {
-    "type": "text",
-    "placeholders": {
-      "uri": {}
-    }
-  },
-  "badServerVersionsException": "Li hem-servitor supporta ti versiones de specification:\n{serverVersions}\nMa ti-ci application supporta solmen {supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "text",
-    "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
-    }
-  },
-  "dateWithoutYear": "{day}.{month}",
-  "@dateWithoutYear": {
-    "type": "text",
-    "placeholders": {
-      "month": {},
-      "day": {}
-    }
-  },
-  "device": "Aparate",
-  "@device": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "widgetVideo": "Video",
-  "@widgetVideo": {},
-  "widgetName": "Nómine",
-  "@widgetName": {},
-  "numberRoomMembers": "{number} membres",
-  "@numberRoomMembers": {
-    "type": "number",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "audioPlayerPlay": "Reproducter",
-  "@audioPlayerPlay": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "account": "Conto",
-  "@account": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "alias": "pseudonim",
-  "@alias": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "archive": "Archive",
-  "@archive": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "audioPlayerPause": "Pausar",
-  "@audioPlayerPause": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "authentication": "Autentication",
-  "@authentication": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "banned": "Bannit",
-  "@banned": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "cancel": "Anullar",
-  "@cancel": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encrypted": "Ciffrat",
-  "@encrypted": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "encryption": "Ciffration",
-  "@encryption": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "homeserver": "Hem-servitor",
-  "@homeserver": {},
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "advanced": "Avansat",
-  "@advanced": {},
-  "moderator": "Moderator",
-  "@moderator": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "monday": "Lunedí",
-  "@monday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "newGroup": "Crear un gruppe",
-  "@newGroup": {},
-  "newSpace": "Crear un spacie",
-  "@newSpace": {},
-  "enterSpace": "Intrar li spacie",
-  "@enterSpace": {},
-  "enterRoom": "Intrar li chambre",
-  "@enterRoom": {},
-  "allSpaces": "Omni spacies",
-  "@allSpaces": {},
-  "numChats": "{number} conversationes",
-  "@numChats": {
-    "type": "number",
-    "placeholders": {
-      "number": {}
-    }
-  },
-  "logout": "Cluder li session",
-  "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "send": "Inviar",
-  "@send": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "you": "Vu",
-  "@you": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "title": "FluffyChat",
-  "@title": {
-    "description": "Title for the application",
-    "type": "text",
-    "placeholders": {}
-  },
-  "skip": "Omisser",
-  "@skip": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "status": "Statu",
-  "@status": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "sunday": "Soledí",
-  "@sunday": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "unverified": "Ínverificat",
-  "@unverified": {},
-  "cachedKeys": "Claves in li cache",
-  "@cachedKeys": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "deviceId": "ID de aparate",
-  "@deviceId": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editDisplayname": "Redacter li visibil nómine",
-  "@editDisplayname": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Ignorar un nómine",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "inviteContact": "Invitar un contacte",
-  "@inviteContact": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "requestPermission": "Demandar li permission",
-  "@requestPermission": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "areYouSure": "Esque vu es cert?",
-  "@areYouSure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseChooseAtLeastChars": "Ples usar adminim {min} caracteres.",
-  "@pleaseChooseAtLeastChars": {
-    "type": "text",
-    "placeholders": {
-      "min": {}
-    }
-  }
 }
