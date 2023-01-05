@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -250,8 +249,9 @@ class LoginController extends State<Login> {
 extension on String {
   static final RegExp _phoneRegex =
       RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
+  static final RegExp _emailRegex = RegExp(r'(.+)@(.+)\.(.+)');
 
-  bool get isEmail => EmailValidator.validate(this);
+  bool get isEmail => _emailRegex.hasMatch(this);
 
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
