@@ -2515,5 +2515,6 @@
     "sorryThatsNotPossible": "Sorry... that is not possible",
     "deviceKeys": "Device keys:",
     "letsStart": "Let's start",
-    "enterInviteLinkOrMatrixId": "Enter invite link or Matrix ID..."
+    "enterInviteLinkOrMatrixId": "Enter invite link or Matrix ID...",
+    "reopenChat": "Reopen chat"
 }

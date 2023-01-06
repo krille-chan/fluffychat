@@ -133,6 +133,37 @@ class ChatController extends State<Chat> {
 
   bool showEmojiPicker = false;
 
+  bool get isLeftDMRoom {
+    final room = this.room;
+    final userId = room?.directChatMatrixID;
+    if (room == null || userId == null) return false;
+    return room.isDirectChat &&
+        room.unsafeGetUserFromMemoryOrFallback(userId).membership ==
+            Membership.leave;
+  }
+
+  void recreateChat() async {
+    final room = this.room;
+    final userId = room?.directChatMatrixID;
+    if (room == null || userId == null) {
+      throw Exception(
+          'Try to recreate a room with is not a DM room. This should not be possible from the UI!');
+    }
+    final success = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          final client = room.client;
+          final waitForSync = client.onSync.stream
+              .firstWhere((s) => s.rooms?.leave?.containsKey(room.id) ?? false);
+          await room.leave();
+          await waitForSync;
+          return await client.startDirectChat(userId);
+        });
+    final roomId = success.result;
+    if (roomId == null) return;
+    VRouter.of(context).toSegments(['rooms', roomId]);
+  }
+
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   void requestHistory() async {

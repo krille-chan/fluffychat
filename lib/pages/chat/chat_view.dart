@@ -277,16 +277,47 @@ class ChatView extends StatelessWidget {
                                           Brightness.light
                                       ? Colors.white
                                       : Colors.black,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const ConnectionStatusHeader(),
-                                      ReactionsPicker(controller),
-                                      ReplyDisplay(controller),
-                                      ChatInputRow(controller),
-                                      ChatEmojiPicker(controller),
-                                    ],
-                                  ),
+                                  child: controller.isLeftDMRoom
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                foregroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .error,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.archive_outlined,
+                                              ),
+                                              onPressed: () {},
+                                              label: Text(
+                                                L10n.of(context)!.leave,
+                                              ),
+                                            ),
+                                            TextButton.icon(
+                                              icon: const Icon(
+                                                Icons.chat_outlined,
+                                              ),
+                                              onPressed:
+                                                  controller.recreateChat,
+                                              label: Text(
+                                                  L10n.of(context)!.reopenChat),
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const ConnectionStatusHeader(),
+                                            ReactionsPicker(controller),
+                                            ReplyDisplay(controller),
+                                            ChatInputRow(controller),
+                                            ChatEmojiPicker(controller),
+                                          ],
+                                        ),
                                 ),
                               ),
                           ],
