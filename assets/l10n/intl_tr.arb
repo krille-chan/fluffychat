@@ -2537,5 +2537,7 @@
   "letsStart": "Başlayalım",
   "@letsStart": {},
   "enterInviteLinkOrMatrixId": "Davet bağlantısını veya Matris kimliğini girin...",
-  "@enterInviteLinkOrMatrixId": {}
+  "@enterInviteLinkOrMatrixId": {},
+  "reopenChat": "Sohbeti yeniden aç",
+  "@reopenChat": {}
 }
