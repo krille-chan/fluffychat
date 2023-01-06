@@ -20,7 +20,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chats": "Chat",
+  "chats": "Obrolan",
   "@chats": {
     "type": "text",
     "placeholders": {}
@@ -459,7 +459,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "💬 {username} membuat chat ini",
+  "createdTheChat": "💬 {username} membuat obrolan ini",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -500,12 +500,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Cadangan chat",
+  "chatBackup": "Cadangan obrolan",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Chat",
+  "chat": "Obrolan",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -614,14 +614,14 @@
       "displayname": {}
     }
   },
-  "changedTheChatPermissions": "{username} mengubah izin chat",
+  "changedTheChatPermissions": "{username} mengubah izin obrolan",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} mengubah nama chat ke: '{chatname}'",
+  "changedTheChatNameTo": "{username} mengubah nama obrolan ke: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -629,7 +629,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username} mengubah deskripsi chat ke: '{description}'",
+  "changedTheChatDescriptionTo": "{username} mengubah deskripsi obrolan ke: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -637,7 +637,7 @@
       "description": {}
     }
   },
-  "changedTheChatAvatar": "{username} mengubah avatar chat",
+  "changedTheChatAvatar": "{username} mengubah avatar obrolan",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -684,7 +684,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "Cekal dari chat",
+  "banFromChat": "Cekal dari obrolan",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -813,7 +813,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Detail chat",
+  "chatDetails": "Detail obrolan",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -847,7 +847,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Keluar dari chat",
+  "leftTheChat": "Keluar dari obrolan",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -864,7 +864,7 @@
       "localizedTimeShort": {}
     }
   },
-  "kickFromChat": "Keluarkan dari chat",
+  "kickFromChat": "Keluarkan dari obrolan",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -885,17 +885,17 @@
       "targetName": {}
     }
   },
-  "keysCached": "Kunci telah dicache",
+  "keysCached": "Kunci telah ditembolok",
   "@keysCached": {
     "type": "text",
     "placeholders": {}
   },
-  "joinRoom": "Gabung ruangan",
+  "joinRoom": "Bergabung dengan ruangan",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "👋 {username} telah bergabung di chat",
+  "joinedTheChat": "👋 {username} telah bergabung dengan obrolan",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -962,7 +962,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Bisukan chat",
+  "muteChat": "Bisukan obrolan",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1024,7 +1024,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "🚪 {username} keluar dari chat",
+  "userLeftTheChat": "🚪 {username} keluar dari obrolan",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1111,7 +1111,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Kamu telah dicekal dari chat ini",
+  "youHaveBeenBannedFromThisChat": "Kamu telah dicekal dari obrolan ini",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1121,12 +1121,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Kamu tidak berpartisipasi lagi di chat ini",
+  "youAreNoLongerParticipatingInThisChat": "Kamu tidak berpartisipasi lagi di obrolan ini",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Kamu diundang ke chat ini",
+  "youAreInvitedToThisChat": "Kamu diundang ke obrolan ini",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1151,7 +1151,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Hapus cadangan chat untuk membuat kunci pemulihan baru?",
+  "wipeChatBackup": "Hapus cadangan obrolan untuk membuat kunci pemulihan baru?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -1221,7 +1221,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Visibilitas sejarah chat",
+  "visibilityOfTheChatHistory": "Visibilitas sejarah obrolan",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
@@ -1287,7 +1287,7 @@
       "count": {}
     }
   },
-  "unreadChats": "{unreadCount, plural, =1{1 chat belum dibaca} other{{unreadCount} chat belum dibaca}}",
+  "unreadChats": "{unreadCount, plural, =1{1 obrolan belum dibaca} other{{unreadCount} obrolan belum dibaca}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1299,7 +1299,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unmuteChat": "Bunyikan chat",
+  "unmuteChat": "Bunyikan obrolan",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -1604,7 +1604,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Hilangkan cekalan dari chat",
+  "unbanFromChat": "Hilangkan cekalan dari obrolan",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1875,7 +1875,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Edit izin chat",
+  "editChatPermissions": "Edit izin obrolan",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -1910,7 +1910,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Konfigurasikan chat",
+  "configureChat": "Konfigurasi obrolan",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -1997,7 +1997,7 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "chatHasBeenAddedToThisSpace": "Chat telah ditambahkan ke space ini",
+  "chatHasBeenAddedToThisSpace": "Obrolan telah ditambahkan ke space ini",
   "@chatHasBeenAddedToThisSpace": {},
   "changeTheme": "Ubah tema",
   "@changeTheme": {
@@ -2132,7 +2132,7 @@
   },
   "link": "Tautan",
   "@link": {},
-  "yourChatBackupHasBeenSetUp": "Cadangan pesanmu telah disiapkan.",
+  "yourChatBackupHasBeenSetUp": "Cadangan obrolanmu telah disiapkan.",
   "@yourChatBackupHasBeenSetUp": {},
   "yourUserId": "ID penggunamu:",
   "@yourUserId": {},
@@ -2161,7 +2161,7 @@
   "@sender": {},
   "openGallery": "Buka galeri",
   "@openGallery": {},
-  "addToSpaceDescription": "Pilih sebuah space untuk menambahkan chat ke spacenya.",
+  "addToSpaceDescription": "Pilih sebuah space untuk menambahkan obrolan ke spacenya.",
   "@addToSpaceDescription": {},
   "start": "Mulai",
   "@start": {},
@@ -2169,7 +2169,7 @@
   "@loginWithOneClick": {},
   "removeFromSpace": "Hilangkan dari space",
   "@removeFromSpace": {},
-  "commandHint_clearcache": "Bersihkan cache",
+  "commandHint_clearcache": "Bersihkan tembolok",
   "@commandHint_clearcache": {
     "type": "text",
     "description": "Usage hint for the command /clearcache"
@@ -2179,12 +2179,12 @@
     "type": "text",
     "description": "Usage hint for the command /discardsession"
   },
-  "commandHint_dm": "Memulai sebuah chat langsung\nGunakan --no-encryption untuk menonaktifkan enkripsi",
+  "commandHint_dm": "Mulai sebuah obrolan langsung\nGunakan --no-encryption untuk menonaktifkan enkripsi",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
   },
-  "commandHint_create": "Buat sebuah chat grup kosong\nGunakan --no-encryption untuk menonaktifkan enkripsi",
+  "commandHint_create": "Buat sebuah grup obrolan kosong\nGunakan --no-encryption untuk menonaktifkan enkripsi",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -2517,9 +2517,9 @@
       "oldDisplayName": {}
     }
   },
-  "startFirstChat": "Mulai percakapan pertamamu",
+  "startFirstChat": "Mulai obrolan pertamamu",
   "@startFirstChat": {},
-  "newSpaceDescription": "Fitur space bisa membantu untuk memisahkan percakapanmu dan membuat komunitas pribadi atau publik.",
+  "newSpaceDescription": "Fitur space bisa membantu untuk memisahkan obrolanmu dan membuat komunitas pribadi atau publik.",
   "@newSpaceDescription": {},
   "sorryThatsNotPossible": "Maaf... itu tidak mungkin",
   "@sorryThatsNotPossible": {},
@@ -2536,5 +2536,7 @@
   "letsStart": "Mari kita mulai",
   "@letsStart": {},
   "enterInviteLinkOrMatrixId": "Masukkan tautan undangan atau ID Matrix...",
-  "@enterInviteLinkOrMatrixId": {}
+  "@enterInviteLinkOrMatrixId": {},
+  "reopenChat": "Buka obrolan lagi",
+  "@reopenChat": {}
 }
