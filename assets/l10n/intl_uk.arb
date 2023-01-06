@@ -2537,5 +2537,7 @@
   "letsStart": "Розпочнімо",
   "@letsStart": {},
   "enterInviteLinkOrMatrixId": "Введіть запрошувальне посилання або Matrix ID...",
-  "@enterInviteLinkOrMatrixId": {}
+  "@enterInviteLinkOrMatrixId": {},
+  "reopenChat": "Відновити бесіду",
+  "@reopenChat": {}
 }
