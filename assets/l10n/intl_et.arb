@@ -2537,5 +2537,7 @@
   "enterInviteLinkOrMatrixId": "Sisesta kutse link või Matrix ID...",
   "@enterInviteLinkOrMatrixId": {},
   "letsStart": "Sõidame!",
-  "@letsStart": {}
+  "@letsStart": {},
+  "reopenChat": "Alusta vestlust uuesti",
+  "@reopenChat": {}
 }
