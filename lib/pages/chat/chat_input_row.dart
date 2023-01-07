@@ -10,6 +10,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../config/themes.dart';
 import '../../widgets/m2_popup_menu_button.dart';
 import 'chat.dart';
 import 'input_bar.dart';
@@ -84,7 +85,8 @@ class ChatInputRow extends StatelessWidget {
                     controller.onAddPopupMenuButtonSelected('file'),
                 helpLabel: L10n.of(context)!.sendFile,
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
                   height: 56,
                   width: controller.inputText.isEmpty ? 56 : 0,
                   alignment: Alignment.center,

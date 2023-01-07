@@ -85,7 +85,7 @@ class ImageBubble extends StatelessWidget {
       child: Hero(
         tag: event.eventId,
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(seconds: 1),
           child: Container(
             constraints: maxSize
                 ? BoxConstraints(

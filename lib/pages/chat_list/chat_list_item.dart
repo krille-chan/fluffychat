@@ -9,6 +9,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
@@ -241,8 +242,8 @@ class ChatListItem extends StatelessWidget {
               width: typingText.isEmpty ? 0 : 18,
               clipBehavior: Clip.hardEdge,
               decoration: const BoxDecoration(),
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.bounceInOut,
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
               padding: const EdgeInsets.only(right: 4),
               child: Icon(
                 Icons.edit_outlined,
@@ -304,8 +305,8 @@ class ChatListItem extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.bounceInOut,
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
               padding: const EdgeInsets.symmetric(horizontal: 7),
               height: unreadBubbleSize,
               width:

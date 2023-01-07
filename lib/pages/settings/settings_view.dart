@@ -6,6 +6,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import '../../config/themes.dart';
 import '../../widgets/content_banner.dart';
 import 'settings.dart';
 
@@ -42,9 +43,9 @@ class SettingsView extends StatelessWidget {
             children: <Widget>[
               AnimatedContainer(
                 height: controller.showChatBackupBanner ? 54 : 0,
-                duration: const Duration(milliseconds: 300),
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
                 clipBehavior: Clip.hardEdge,
-                curve: Curves.bounceInOut,
                 decoration: const BoxDecoration(),
                 child: ListTile(
                   leading: const Icon(Icons.backup_outlined),

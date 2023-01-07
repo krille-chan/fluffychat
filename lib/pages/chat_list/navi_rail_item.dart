@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import '../../config/themes.dart';
 
 class NaviRailItem extends StatelessWidget {
   final String toolTip;
@@ -31,7 +32,8 @@ class NaviRailItem extends StatelessWidget {
             left: 0,
             child: AnimatedContainer(
               width: isSelected ? 4 : 0,
-              duration: const Duration(milliseconds: 200),
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
                 borderRadius: const BorderRadius.only(

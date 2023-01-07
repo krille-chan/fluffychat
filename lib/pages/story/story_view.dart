@@ -15,6 +15,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import '../../config/themes.dart';
 import '../../widgets/m2_popup_menu_button.dart';
 
 class StoryView extends StatelessWidget {
@@ -247,7 +248,8 @@ class StoryView extends StatelessWidget {
                 onHorizontalDragStart: controller.hold,
                 onHorizontalDragEnd: controller.unhold,
                 child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16.0,
                     vertical: 80,

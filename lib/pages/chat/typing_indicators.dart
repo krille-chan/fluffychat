@@ -24,8 +24,8 @@ class TypingIndicators extends StatelessWidget {
         constraints:
             const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
         height: typingUsers.isEmpty ? 0 : Avatar.defaultSize + bottomPadding,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.bounceInOut,
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
         alignment: controller.timeline!.events.isNotEmpty &&
                 controller.timeline!.events.first.senderId ==
                     Matrix.of(context).client.userID

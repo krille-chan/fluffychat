@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import '../config/themes.dart';
 import '../utils/localized_exception_extension.dart';
 import 'matrix.dart';
 
@@ -42,8 +43,8 @@ class ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
         client.prevBatch != null;
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.bounceInOut,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
       height: hide ? 0 : 36,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),

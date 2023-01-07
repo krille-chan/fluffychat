@@ -31,7 +31,8 @@ class SideViewLayout extends StatelessWidget {
                     color: Theme.of(context).dividerColor,
                   ),
                   AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
+                    duration: FluffyThemes.animationDuration,
+                    curve: FluffyThemes.animationCurve,
                     clipBehavior: Clip.antiAlias,
                     decoration: const BoxDecoration(),
                     width: hideSideView ? 0 : 360.0,

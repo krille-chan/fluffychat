@@ -22,8 +22,9 @@ class SeenByRow extends StatelessWidget {
             const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
         height: seenByUsers.isEmpty ? 0 : 24,
         duration: seenByUsers.isEmpty
-            ? const Duration(milliseconds: 0)
-            : const Duration(milliseconds: 300),
+            ? Duration.zero
+            : FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
         alignment: controller.timeline!.events.isNotEmpty &&
                 controller.timeline!.events.first.senderId ==
                     Matrix.of(context).client.userID

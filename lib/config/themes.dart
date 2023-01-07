@@ -38,6 +38,9 @@ abstract class FluffyThemes {
     subtitle2: fallbackTextStyle,
   );
 
+  static const Duration animationDuration = Duration(milliseconds: 250);
+  static const Curve animationCurve = Curves.easeInOut;
+
   static ThemeData buildTheme(Brightness brightness, [Color? seed]) =>
       ThemeData(
         visualDensity: VisualDensity.standard,

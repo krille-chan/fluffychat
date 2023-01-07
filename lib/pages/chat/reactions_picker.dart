@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import '../../config/themes.dart';
 
 class ReactionsPicker extends StatelessWidget {
   final ChatController controller;
@@ -20,7 +21,8 @@ class ReactionsPicker extends StatelessWidget {
         controller.room!.canSendDefaultMessages &&
         controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
       height: (display) ? 56 : 0,
       child: Material(
         color: Colors.transparent,

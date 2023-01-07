@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../../config/themes.dart';
 import 'chat_list.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
@@ -55,13 +56,13 @@ class StartChatFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
       width: controller.filteredRooms.isEmpty
           ? null
           : controller.scrolledToTop
               ? 144
-              : 64,
+              : 56,
       child: controller.scrolledToTop
           ? FloatingActionButton.extended(
               backgroundColor: Theme.of(context).colorScheme.primary,

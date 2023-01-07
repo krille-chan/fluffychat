@@ -14,6 +14,7 @@ import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import '../../config/themes.dart';
 import '../../widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
 
@@ -82,12 +83,12 @@ class ChatListViewBody extends StatelessWidget {
                           AnimatedContainer(
                             clipBehavior: Clip.hardEdge,
                             decoration: const BoxDecoration(),
-                            curve: Curves.easeInOut,
                             height: roomSearchResult == null ||
                                     roomSearchResult.chunk.isEmpty
                                 ? 0
                                 : 106,
-                            duration: const Duration(milliseconds: 250),
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
                             child: roomSearchResult == null
                                 ? null
                                 : ListView.builder(
@@ -120,12 +121,12 @@ class ChatListViewBody extends StatelessWidget {
                           AnimatedContainer(
                             clipBehavior: Clip.hardEdge,
                             decoration: const BoxDecoration(),
-                            curve: Curves.easeInOut,
                             height: userSearchResult == null ||
                                     userSearchResult.results.isEmpty
                                 ? 0
                                 : 106,
-                            duration: const Duration(milliseconds: 250),
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
                             child: userSearchResult == null
                                 ? null
                                 : ListView.builder(
@@ -163,9 +164,9 @@ class ChatListViewBody extends StatelessWidget {
                         const ConnectionStatusHeader(),
                         AnimatedContainer(
                           height: controller.isTorBrowser ? 64 : 0,
-                          duration: const Duration(milliseconds: 300),
+                          duration: FluffyThemes.animationDuration,
+                          curve: FluffyThemes.animationCurve,
                           clipBehavior: Clip.hardEdge,
-                          curve: Curves.bounceInOut,
                           decoration: const BoxDecoration(),
                           child: Material(
                             color: Theme.of(context).colorScheme.surface,
