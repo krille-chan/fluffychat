@@ -13,6 +13,7 @@ import 'package:video_player/video_player.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/story/story_view.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
@@ -58,7 +59,7 @@ class StoryPageController extends State<StoryPage> {
   void replyEmojiAction() async {
     if (replyLoading) return;
     _modalOpened = true;
-    await showModalBottomSheet(
+    await showAdaptiveBottomSheet(
       context: context,
       builder: (context) => EmojiPicker(
         onEmojiSelected: (c, e) {
@@ -123,7 +124,7 @@ class StoryPageController extends State<StoryPage> {
 
   void displaySeenByUsers() async {
     _modalOpened = true;
-    await showModalBottomSheet(
+    await showAdaptiveBottomSheet(
       context: context,
       builder: (context) => Scaffold(
         appBar: AppBar(

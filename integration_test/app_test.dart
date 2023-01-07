@@ -61,12 +61,14 @@ void main() {
           await tester.pumpAndSettle();
 
           await tester.scrollUntilVisible(
-            find.text('Chats'),
+            find.text('Chats').first,
             500,
-            scrollable: find.descendant(
-              of: find.byType(ChatListViewBody),
-              matching: find.byType(Scrollable),
-            ),
+            scrollable: find
+                .descendant(
+                  of: find.byType(ChatListViewBody),
+                  matching: find.byType(Scrollable),
+                )
+                .first,
           );
           await tester.pumpAndSettle();
           await tester.tap(find.text('Chats'));
@@ -77,10 +79,12 @@ void main() {
           await tester.scrollUntilVisible(
             find.text(Users.user2.name).first,
             500,
-            scrollable: find.descendant(
-              of: find.byType(ChatListViewBody),
-              matching: find.byType(Scrollable),
-            ),
+            scrollable: find
+                .descendant(
+                  of: find.byType(ChatListViewBody),
+                  matching: find.byType(Scrollable),
+                )
+                .first,
           );
           await tester.pumpAndSettle();
           await tester.tap(find.text(Users.user2.name).first);

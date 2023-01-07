@@ -10,6 +10,7 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
@@ -89,7 +90,7 @@ class ChatEventList extends StatelessWidget {
                     onSwipe: (direction) =>
                         controller.replyAction(replyTo: event),
                     onInfoTab: controller.showEventInfo,
-                    onAvatarTab: (Event event) => showModalBottomSheet(
+                    onAvatarTab: (Event event) => showAdaptiveBottomSheet(
                           context: context,
                           builder: (c) => UserBottomSheet(
                             user: event.senderFromMemoryOrFallback,

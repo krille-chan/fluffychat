@@ -14,6 +14,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat/edit_widgets_dialog.dart';
 import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'm2_popup_menu_button.dart';
 import 'matrix.dart';
 
@@ -185,7 +186,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           context: context,
           builder: (context) => CupertinoWidgetsBottomSheet(room: widget.room),
         )
-      : showModalBottomSheet(
+      : showAdaptiveBottomSheet(
           context: context,
           builder: (context) => WidgetsBottomSheet(room: widget.room),
         );

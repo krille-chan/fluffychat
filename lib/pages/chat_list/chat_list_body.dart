@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -101,7 +102,7 @@ class ChatListViewBody extends StatelessWidget {
                                           L10n.of(context)!.group,
                                       avatar:
                                           roomSearchResult.chunk[i].avatarUrl,
-                                      onPressed: () => showModalBottomSheet(
+                                      onPressed: () => showAdaptiveBottomSheet(
                                         context: context,
                                         builder: (c) => PublicRoomBottomSheet(
                                           roomAlias: roomSearchResult
@@ -140,7 +141,7 @@ class ChatListViewBody extends StatelessWidget {
                                           L10n.of(context)!.unknownDevice,
                                       avatar:
                                           userSearchResult.results[i].avatarUrl,
-                                      onPressed: () => showModalBottomSheet(
+                                      onPressed: () => showAdaptiveBottomSheet(
                                         context: context,
                                         builder: (c) => ProfileBottomSheet(
                                           userId: userSearchResult

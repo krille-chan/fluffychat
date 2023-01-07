@@ -22,6 +22,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -422,9 +423,8 @@ class ChatController extends State<Chat> {
   }
 
   void sendStickerAction() async {
-    final sticker = await showModalBottomSheet<ImagePackImageContent>(
+    final sticker = await showAdaptiveBottomSheet<ImagePackImageContent>(
       context: context,
-      useRootNavigator: false,
       builder: (c) => StickerPickerDialog(room: room!),
     );
     if (sticker == null) return;
