@@ -79,14 +79,17 @@ class ChatListViewBody extends StatelessWidget {
                             title: L10n.of(context)!.publicRooms,
                             icon: const Icon(Icons.explore_outlined),
                           ),
-                          SizedBox(
-                            height: 106,
-                            child: roomSearchResult == null ||
+                          AnimatedContainer(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            curve: Curves.easeInOut,
+                            height: roomSearchResult == null ||
                                     roomSearchResult.chunk.isEmpty
-                                ? Center(
-                                    child:
-                                        Text(L10n.of(context)!.noSearchResult),
-                                  )
+                                ? 0
+                                : 106,
+                            duration: const Duration(milliseconds: 250),
+                            child: roomSearchResult == null
+                                ? null
                                 : ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: roomSearchResult.chunk.length,
@@ -114,14 +117,17 @@ class ChatListViewBody extends StatelessWidget {
                             title: L10n.of(context)!.users,
                             icon: const Icon(Icons.group_outlined),
                           ),
-                          SizedBox(
-                            height: 106,
-                            child: userSearchResult == null ||
+                          AnimatedContainer(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            curve: Curves.easeInOut,
+                            height: userSearchResult == null ||
                                     userSearchResult.results.isEmpty
-                                ? Center(
-                                    child:
-                                        Text(L10n.of(context)!.noSearchResult),
-                                  )
+                                ? 0
+                                : 106,
+                            duration: const Duration(milliseconds: 250),
+                            child: userSearchResult == null
+                                ? null
                                 : ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: userSearchResult.results.length,
