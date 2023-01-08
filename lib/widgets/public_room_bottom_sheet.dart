@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -8,7 +6,6 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 import 'package:vrouter/vrouter.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/content_banner.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -72,101 +69,87 @@ class PublicRoomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final roomAlias = this.roomAlias;
-    return Center(
-      child: SizedBox(
-        width: min(
-            MediaQuery.of(context).size.width, FluffyThemes.columnWidth * 1.5),
-        child: Material(
-          elevation: 4,
-          child: SafeArea(
-            child: Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                elevation: 0,
-                titleSpacing: 0,
-                backgroundColor:
-                    Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
-                title: Text(
-                  roomAlias ?? chunk!.name ?? chunk!.roomId,
-                  overflow: TextOverflow.fade,
-                ),
-                leading: IconButton(
-                  icon: const Icon(Icons.arrow_downward_outlined),
-                  onPressed: Navigator.of(context, rootNavigator: false).pop,
-                  tooltip: L10n.of(context)!.close,
-                ),
-                actions: [
-                  TextButton.icon(
-                    onPressed: () => _joinRoom(context),
-                    label: Text(L10n.of(context)!.joinRoom),
-                    icon: const Icon(Icons.login_outlined),
-                  ),
-                ],
-              ),
-              body: FutureBuilder<PublicRoomsChunk>(
-                  future: _search(context),
-                  builder: (context, snapshot) {
-                    final profile = snapshot.data;
-                    return ListView(
-                      padding: EdgeInsets.zero,
-                      children: [
-                        if (profile == null)
-                          Container(
-                            height: 156,
-                            alignment: Alignment.center,
-                            color: Theme.of(context).secondaryHeaderColor,
-                            child: snapshot.hasError
-                                ? Text(
-                                    snapshot.error!.toLocalizedString(context))
-                                : const CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2),
-                          )
-                        else
-                          ContentBanner(
-                            mxContent: profile.avatarUrl,
-                            height: 156,
-                            defaultIcon: Icons.group_outlined,
-                            client: Matrix.of(context).client,
-                          ),
-                        ListTile(
-                          title: Text(profile?.name ??
-                              roomAlias?.localpart ??
-                              chunk!.roomId.localpart ??
-                              ''),
-                          subtitle: Text(
-                            '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',
-                          ),
-                          trailing: const Icon(Icons.account_box_outlined),
-                        ),
-                        if (profile?.topic?.isNotEmpty ?? false)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context)!.groupDescription,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
-                            ),
-                            subtitle: LinkText(
-                              text: profile!.topic!,
-                              linkStyle:
-                                  const TextStyle(color: Colors.blueAccent),
-                              textStyle: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .color,
-                              ),
-                              onLinkTap: (url) =>
-                                  UrlLauncher(context, url).launchUrl(),
-                            ),
-                          ),
-                      ],
-                    );
-                  }),
-            ),
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          elevation: 0,
+          titleSpacing: 0,
+          backgroundColor:
+              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
+          title: Text(
+            roomAlias ?? chunk!.name ?? chunk!.roomId,
+            overflow: TextOverflow.fade,
           ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_downward_outlined),
+            onPressed: Navigator.of(context, rootNavigator: false).pop,
+            tooltip: L10n.of(context)!.close,
+          ),
+          actions: [
+            TextButton.icon(
+              onPressed: () => _joinRoom(context),
+              label: Text(L10n.of(context)!.joinRoom),
+              icon: const Icon(Icons.login_outlined),
+            ),
+          ],
         ),
+        body: FutureBuilder<PublicRoomsChunk>(
+            future: _search(context),
+            builder: (context, snapshot) {
+              final profile = snapshot.data;
+              return ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  if (profile == null)
+                    Container(
+                      height: 156,
+                      alignment: Alignment.center,
+                      color: Theme.of(context).secondaryHeaderColor,
+                      child: snapshot.hasError
+                          ? Text(snapshot.error!.toLocalizedString(context))
+                          : const CircularProgressIndicator.adaptive(
+                              strokeWidth: 2),
+                    )
+                  else
+                    ContentBanner(
+                      mxContent: profile.avatarUrl,
+                      height: 156,
+                      defaultIcon: Icons.group_outlined,
+                      client: Matrix.of(context).client,
+                    ),
+                  ListTile(
+                    title: Text(profile?.name ??
+                        roomAlias?.localpart ??
+                        chunk!.roomId.localpart ??
+                        ''),
+                    subtitle: Text(
+                      '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',
+                    ),
+                    trailing: const Icon(Icons.account_box_outlined),
+                  ),
+                  if (profile?.topic?.isNotEmpty ?? false)
+                    ListTile(
+                      title: Text(
+                        L10n.of(context)!.groupDescription,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                      subtitle: LinkText(
+                        text: profile!.topic!,
+                        linkStyle: const TextStyle(color: Colors.blueAccent),
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                        ),
+                        onLinkTap: (url) =>
+                            UrlLauncher(context, url).launchUrl(),
+                      ),
+                    ),
+                ],
+              );
+            }),
       ),
     );
   }

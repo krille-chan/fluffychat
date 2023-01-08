@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import '../../widgets/avatar.dart';
 import '../user_bottom_sheet/user_bottom_sheet.dart';
 
@@ -28,7 +29,7 @@ class ParticipantListItem extends StatelessWidget {
     return Opacity(
       opacity: user.membership == Membership.join ? 1 : 0.5,
       child: ListTile(
-        onTap: () => showModalBottomSheet(
+        onTap: () => showAdaptiveBottomSheet(
           context: context,
           builder: (c) => UserBottomSheet(
             user: user,

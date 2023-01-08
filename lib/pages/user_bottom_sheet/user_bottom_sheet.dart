@@ -10,6 +10,17 @@ import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet_view.dart';
 
+enum UserBottomSheetAction {
+  report,
+  mention,
+  ban,
+  kick,
+  unban,
+  permission,
+  message,
+  ignore,
+}
+
 class UserBottomSheet extends StatefulWidget {
   final User user;
   final Function? onMention;
@@ -27,7 +38,7 @@ class UserBottomSheet extends StatefulWidget {
 }
 
 class UserBottomSheetController extends State<UserBottomSheet> {
-  void participantAction(String action) async {
+  void participantAction(UserBottomSheetAction action) async {
     // ignore: prefer_function_declarations_over_variables
     final Function askConfirmation = () async => (await showOkCancelAlertDialog(
           useRootNavigator: false,
@@ -38,7 +49,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         ) ==
         OkCancelResult.ok);
     switch (action) {
-      case 'report':
+      case UserBottomSheetAction.report:
         final event = widget.user;
         final score = await showConfirmationDialog<int>(
             context: context,
@@ -82,11 +93,11 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)));
         break;
-      case 'mention':
+      case UserBottomSheetAction.mention:
         Navigator.of(context, rootNavigator: false).pop();
         widget.onMention!();
         break;
-      case 'ban':
+      case UserBottomSheetAction.ban:
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
@@ -95,7 +106,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
-      case 'unban':
+      case UserBottomSheetAction.unban:
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
@@ -104,7 +115,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
-      case 'kick':
+      case UserBottomSheetAction.kick:
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
@@ -113,7 +124,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
-      case 'permission':
+      case UserBottomSheetAction.permission:
         final newPermission = await showPermissionChooser(
           context,
           currentLevel: widget.user.powerLevel,
@@ -127,7 +138,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
-      case 'message':
+      case UserBottomSheetAction.message:
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
           future: () => widget.user.startDirectChat(),
@@ -137,7 +148,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
             .toSegments(['rooms', roomIdResult.result!]);
         Navigator.of(context, rootNavigator: false).pop();
         break;
-      case 'ignore':
+      case UserBottomSheetAction.ignore:
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
               context: context,

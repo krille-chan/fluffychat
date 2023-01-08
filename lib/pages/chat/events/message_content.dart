@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix_link_text/link_text.dart';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -52,7 +53,7 @@ class MessageContent extends StatelessWidget {
     }
     event.requestKey();
     final sender = event.senderFromMemoryOrFallback;
-    await showModalBottomSheet(
+    await showAdaptiveBottomSheet(
       context: context,
       builder: (context) => Scaffold(
         appBar: AppBar(

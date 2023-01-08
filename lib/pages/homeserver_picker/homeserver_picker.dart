@@ -15,6 +15,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_bottom_sheet.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
@@ -71,7 +72,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  void showServerInfo(HomeserverBenchmarkResult server) => showModalBottomSheet(
+  void showServerInfo(HomeserverBenchmarkResult server) =>
+      showAdaptiveBottomSheet(
         context: context,
         builder: (_) => HomeserverBottomSheet(
           homeserver: server,

@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
@@ -145,7 +146,7 @@ class UrlLauncher {
         }
         return;
       } else {
-        await showModalBottomSheet(
+        await showAdaptiveBottomSheet(
           context: context,
           builder: (c) => PublicRoomBottomSheet(
             roomAlias: identityParts.primaryIdentifier,
@@ -182,7 +183,7 @@ class UrlLauncher {
         }
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
-      await showModalBottomSheet(
+      await showAdaptiveBottomSheet(
         context: context,
         builder: (c) => ProfileBottomSheet(
           userId: identityParts.primaryIdentifier,

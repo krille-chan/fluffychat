@@ -5,6 +5,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
@@ -26,7 +27,7 @@ class ChatAppBarTitle extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: directChatMatrixID != null
-          ? () => showModalBottomSheet(
+          ? () => showAdaptiveBottomSheet(
                 context: context,
                 builder: (c) => UserBottomSheet(
                   user: room
