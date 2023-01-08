@@ -7,7 +7,7 @@ import 'package:matrix_link_text/link_text.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/content_banner.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../utils/localized_exception_extension.dart';
 
@@ -71,12 +71,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
     final roomAlias = this.roomAlias;
     return SafeArea(
       child: Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
-          elevation: 0,
-          titleSpacing: 0,
-          backgroundColor:
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
           title: Text(
             roomAlias ?? chunk!.name ?? chunk!.roomId,
             overflow: TextOverflow.fade,
@@ -87,10 +82,13 @@ class PublicRoomBottomSheet extends StatelessWidget {
             tooltip: L10n.of(context)!.close,
           ),
           actions: [
-            TextButton.icon(
-              onPressed: () => _joinRoom(context),
-              label: Text(L10n.of(context)!.joinRoom),
-              icon: const Icon(Icons.login_outlined),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton.icon(
+                onPressed: () => _joinRoom(context),
+                label: Text(L10n.of(context)!.joinRoom),
+                icon: const Icon(Icons.login_outlined),
+              ),
             ),
           ],
         ),
@@ -112,11 +110,16 @@ class PublicRoomBottomSheet extends StatelessWidget {
                               strokeWidth: 2),
                     )
                   else
-                    ContentBanner(
-                      mxContent: profile.avatarUrl,
-                      height: 156,
-                      defaultIcon: Icons.group_outlined,
-                      client: Matrix.of(context).client,
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Avatar(
+                          mxContent: profile.avatarUrl,
+                          name: profile.name ?? roomAlias,
+                          size: Avatar.defaultSize * 3,
+                          fontSize: 36,
+                        ),
+                      ),
                     ),
                   ListTile(
                     title: Text(profile?.name ??
