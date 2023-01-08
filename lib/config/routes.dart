@@ -94,6 +94,13 @@ class AppRoutes {
             VWidget(
               path: '/archive',
               widget: const Archive(),
+              stackedRoutes: [
+                VWidget(
+                  path: ':roomid',
+                  widget: const Chat(),
+                  buildTransition: _dynamicTransition,
+                ),
+              ],
             ),
             VWidget(
               path: '/newprivatechat',
@@ -220,13 +227,25 @@ class AppRoutes {
                 ),
               ],
             ),
-            VWidget(
+            VNester(
               path: '/archive',
-              widget: const TwoColumnLayout(
-                mainView: Archive(),
-                sideView: EmptyPage(),
+              widgetBuilder: (child) => TwoColumnLayout(
+                mainView: const Archive(),
+                sideView: child,
               ),
               buildTransition: _fadeTransition,
+              nestedRoutes: [
+                VWidget(
+                  path: '',
+                  widget: const EmptyPage(),
+                  buildTransition: _dynamicTransition,
+                ),
+                VWidget(
+                  path: ':roomid',
+                  widget: const Chat(),
+                  buildTransition: _dynamicTransition,
+                ),
+              ],
             ),
           ],
         ),

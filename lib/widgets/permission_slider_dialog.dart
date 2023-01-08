@@ -29,12 +29,12 @@ extension on PermissionLevel {
 
 Future<int?> showPermissionChooser(BuildContext context,
     {int currentLevel = 0}) async {
-  final permissionLevel = await showModalActionSheet(
+  final permissionLevel = await showConfirmationDialog(
     context: context,
     title: L10n.of(context)!.setPermissionsLevel,
     actions: PermissionLevel.values
         .map(
-          (level) => SheetAction(
+          (level) => AlertDialogAction(
             key: level,
             label: level.toLocalizedString(context),
           ),

@@ -67,6 +67,16 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
+        value: SettingsAction.archive,
+        child: Row(
+          children: [
+            const Icon(Icons.archive_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.archive),
+          ],
+        ),
+      ),
+      PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
           children: [
@@ -259,6 +269,9 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.settings:
           VRouter.of(context).to('/settings');
           break;
+        case SettingsAction.archive:
+          VRouter.of(context).to('/archive');
+          break;
       }
     }
   }
@@ -336,4 +349,5 @@ enum SettingsAction {
   newSpace,
   invite,
   settings,
+  archive,
 }

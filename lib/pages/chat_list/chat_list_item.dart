@@ -21,7 +21,6 @@ class ChatListItem extends StatelessWidget {
   final Room room;
   final bool activeChat;
   final bool selected;
-  final Function? onForget;
   final void Function()? onTap;
   final void Function()? onLongPress;
 
@@ -31,7 +30,6 @@ class ChatListItem extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.onLongPress,
-    this.onForget,
     Key? key,
   }) : super(key: key);
 
@@ -62,35 +60,7 @@ class ChatListItem extends StatelessWidget {
     }
 
     if (room.membership == Membership.leave) {
-      final action = await showModalActionSheet<ArchivedRoomAction>(
-        context: context,
-        title: L10n.of(context)!.archivedRoom,
-        message: L10n.of(context)!.thisRoomHasBeenArchived,
-        actions: [
-          SheetAction(
-            label: L10n.of(context)!.rejoin,
-            key: ArchivedRoomAction.rejoin,
-          ),
-          SheetAction(
-            label: L10n.of(context)!.delete,
-            key: ArchivedRoomAction.delete,
-            isDestructiveAction: true,
-          ),
-        ],
-      );
-      if (action != null) {
-        switch (action) {
-          case ArchivedRoomAction.delete:
-            await archiveAction(context);
-            break;
-          case ArchivedRoomAction.rejoin:
-            await showFutureLoadingDialog(
-              context: context,
-              future: () => room.join(),
-            );
-            break;
-        }
-      }
+      VRouter.of(context).toSegments(['archive', room.id]);
     }
 
     if (room.membership == Membership.join) {
@@ -122,13 +92,10 @@ class ChatListItem extends StatelessWidget {
   Future<void> archiveAction(BuildContext context) async {
     {
       if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        final success = await showFutureLoadingDialog(
+        await showFutureLoadingDialog(
           context: context,
           future: () => room.forget(),
         );
-        if (success.error == null) {
-          if (onForget != null) onForget!();
-        }
         return;
       }
       final confirmed = await showOkCancelAlertDialog(

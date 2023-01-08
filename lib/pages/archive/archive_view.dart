@@ -21,10 +21,14 @@ class ArchiveView extends StatelessWidget {
           leading: const BackButton(),
           title: Text(L10n.of(context)!.archive),
           actions: [
-            if (snapshot.hasData && archive != null && archive!.isNotEmpty)
-              TextButton(
-                onPressed: controller.forgetAllAction,
-                child: Text(L10n.of(context)!.clearArchive),
+            if (snapshot.data?.isNotEmpty ?? false)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton.icon(
+                  onPressed: controller.forgetAllAction,
+                  label: Text(L10n.of(context)!.clearArchive),
+                  icon: const Icon(Icons.cleaning_services_outlined),
+                ),
               )
           ],
         ),
@@ -50,7 +54,6 @@ class ArchiveView extends StatelessWidget {
                 itemCount: archive!.length,
                 itemBuilder: (BuildContext context, int i) => ChatListItem(
                   archive![i],
-                  onForget: controller.forgetAction,
                 ),
               );
             }

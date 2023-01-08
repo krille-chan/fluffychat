@@ -21,10 +21,11 @@ class PinnedEvents extends StatelessWidget {
       BuildContext context, List<Event?> events) async {
     final eventId = events.length == 1
         ? events.single?.eventId
-        : await showModalActionSheet<String>(
+        : await showConfirmationDialog<String>(
             context: context,
+            title: L10n.of(context)!.pinMessage,
             actions: events
-                .map((event) => SheetAction(
+                .map((event) => AlertDialogAction(
                       key: event?.eventId ?? '',
                       label: event?.calcLocalizedBodyFallback(
                             MatrixLocals(L10n.of(context)!),
