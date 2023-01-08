@@ -630,6 +630,7 @@ class ChatController extends State<Chat> {
   }
 
   bool get canRedactSelectedEvents {
+    if (isArchived) return false;
     final clients = matrix!.currentBundle;
     for (final event in selectedEvents) {
       if (event.canRedact == false &&
@@ -639,7 +640,9 @@ class ChatController extends State<Chat> {
   }
 
   bool get canEditSelectedEvents {
-    if (selectedEvents.length != 1 || !selectedEvents.first.status.isSent) {
+    if (isArchived ||
+        selectedEvents.length != 1 ||
+        !selectedEvents.first.status.isSent) {
       return false;
     }
     return currentRoomBundle
@@ -755,6 +758,15 @@ class ChatController extends State<Chat> {
     if (_allReactionEvents
         .any((e) => e.content['m.relates_to']['key'] == emoji.emoji)) return;
     return sendEmojiAction(emoji.emoji);
+  }
+
+  void forgetRoom() async {
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: room!.forget,
+    );
+    if (result.error != null) return;
+    VRouter.of(context).to('/archive');
   }
 
   void typeEmoji(Emoji? emoji) {
@@ -1007,6 +1019,9 @@ class ChatController extends State<Chat> {
     }
     setState(() => inputText = text);
   }
+
+  bool get isArchived =>
+      {Membership.leave, Membership.ban}.contains(room?.membership);
 
   void showEventInfo([Event? event]) =>
       (event ?? selectedEvents.single).showInfoDialog(context);

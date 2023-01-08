@@ -37,7 +37,10 @@ class ChatAppBarTitle extends StatelessWidget {
                       '${room.unsafeGetUserFromMemoryOrFallback(directChatMatrixID).mention} ',
                 ),
               )
-          : () => VRouter.of(context).toSegments(['rooms', room.id, 'details']),
+          : controller.isArchived
+              ? null
+              : () =>
+                  VRouter.of(context).toSegments(['rooms', room.id, 'details']),
       child: Row(
         children: [
           Hero(
