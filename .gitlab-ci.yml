@@ -74,6 +74,9 @@ integration_test:
     - ffmpeg -i video.mkv -vf scale=iw/2:-2 -crf 40 -b:v 2000k -preset fast video.mp4 || true
   timeout: 30m
   retry: 2
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
   artifacts:
     when: always
     paths:
@@ -88,6 +91,10 @@ integration_test:
 .integration_test_linux:
   image: cirrusci/flutter:${FLUTTER_VERSION}
   extends: integration_test
+  parallel:
+    matrix:
+      - HOMESERVER_IMPLEMENTATION:
+          - conduit
   script:
     - apt-get update
     - apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libsecret-1-dev libjsoncpp-dev
@@ -99,6 +106,10 @@ integration_test:
 # extending the default tests to test the Google-flavored builds
 integration_test_proprietary:
   extends: integration_test
+  parallel:
+    matrix:
+      - HOMESERVER_IMPLEMENTATION:
+          - conduit
   script:
     # start AVD and keep running in background
     - scripts/integration-start-avd.sh &
