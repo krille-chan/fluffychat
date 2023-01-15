@@ -2342,7 +2342,7 @@
       "user": {}
     }
   },
-  "youInvitedUser": "📩  Convidaches a {user}",
+  "youInvitedUser": "📩 Convidaches a {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2537,5 +2537,7 @@
     "placeholders": {
       "oldDisplayName": {}
     }
-  }
+  },
+  "reopenChat": "Reabrir conversa",
+  "@reopenChat": {}
 }
