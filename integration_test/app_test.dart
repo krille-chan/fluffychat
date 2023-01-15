@@ -3,7 +3,6 @@ import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_body.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
-import 'package:fluffychat/widgets/m2_popup_menu_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
