@@ -140,7 +140,10 @@ class ChatController extends State<Chat> {
     if (room == null || userId == null) return false;
     return room.isDirectChat &&
         room.unsafeGetUserFromMemoryOrFallback(userId).membership ==
-            Membership.leave;
+            Membership.leave &&
+        ((room.summary.mJoinedMemberCount ?? 0) +
+                (room.summary.mInvitedMemberCount ?? 0)) ==
+            1;
   }
 
   void recreateChat() async {
