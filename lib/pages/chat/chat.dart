@@ -165,6 +165,20 @@ class ChatController extends State<Chat> {
     VRouter.of(context).toSegments(['rooms', roomId]);
   }
 
+  void leaveChat() async {
+    final room = this.room;
+    if (room == null) {
+      throw Exception(
+          'Leave room button clicked while room is null. This should not be possible from the UI!');
+    }
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: room.leave,
+    );
+    if (success.error != null) return;
+    VRouter.of(context).to('/rooms');
+  }
+
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   void requestHistory() async {

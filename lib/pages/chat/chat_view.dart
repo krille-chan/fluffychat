@@ -298,6 +298,8 @@ class ChatView extends StatelessWidget {
                                           children: [
                                             TextButton.icon(
                                               style: TextButton.styleFrom(
+                                                padding:
+                                                    const EdgeInsets.all(16),
                                                 foregroundColor:
                                                     Theme.of(context)
                                                         .colorScheme
@@ -306,12 +308,16 @@ class ChatView extends StatelessWidget {
                                               icon: const Icon(
                                                 Icons.archive_outlined,
                                               ),
-                                              onPressed: () {},
+                                              onPressed: controller.leaveChat,
                                               label: Text(
                                                 L10n.of(context)!.leave,
                                               ),
                                             ),
                                             TextButton.icon(
+                                              style: TextButton.styleFrom(
+                                                padding:
+                                                    const EdgeInsets.all(16),
+                                              ),
                                               icon: const Icon(
                                                 Icons.chat_outlined,
                                               ),
