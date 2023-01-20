@@ -196,7 +196,7 @@ class InputBar extends StatelessWidget {
           ret.add({
             'type': 'room',
             'mxid': (r.canonicalAlias.isNotEmpty) ? r.canonicalAlias : r.id,
-            'displayname': r.displayname,
+            'displayname': r.getLocalizedDisplayname(),
             'avatar_url': r.avatar?.toString(),
           });
         }

@@ -200,7 +200,9 @@ Future<void> _tryPushHelper(
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
           Person(name: event.room.client.userID),
-          conversationTitle: event.room.displayname,
+          conversationTitle: event.room.getLocalizedDisplayname(
+            MatrixLocals(l10n),
+          ),
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
@@ -217,7 +219,9 @@ Future<void> _tryPushHelper(
 
   await flutterLocalNotificationsPlugin.show(
     id,
-    event.room.displayname,
+    event.room.getLocalizedDisplayname(
+      MatrixLocals(l10n),
+    ),
     body,
     platformChannelSpecifics,
     payload: event.roomId,

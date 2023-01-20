@@ -18,6 +18,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -508,7 +509,8 @@ class ChatListController extends State<ChatList>
             .map(
               (space) => AlertDialogAction(
                 key: space.id,
-                label: space.displayname,
+                label: space
+                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
               ),
             )
             .toList());

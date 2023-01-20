@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
@@ -205,8 +206,11 @@ class ChatListViewBody extends StatelessWidget {
                     );
                   }
                   i--;
-                  if (!rooms[i].displayname.toLowerCase().contains(
-                      controller.searchController.text.toLowerCase())) {
+                  if (!rooms[i]
+                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+                      .toLowerCase()
+                      .contains(
+                          controller.searchController.text.toLowerCase())) {
                     return Container();
                   }
                   return ChatListItem(

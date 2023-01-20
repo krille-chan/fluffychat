@@ -10,6 +10,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
@@ -85,7 +86,10 @@ class _SpaceViewState extends State<SpaceView> {
         activeSpaceId == null ? null : client.getRoomById(activeSpaceId);
     final action = await showModalActionSheet<SpaceChildContextAction>(
       context: context,
-      title: spaceChild?.name ?? room?.displayname,
+      title: spaceChild?.name ??
+          room?.getLocalizedDisplayname(
+            MatrixLocals(L10n.of(context)!),
+          ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
         if (room == null)
@@ -148,25 +152,31 @@ class _SpaceViewState extends State<SpaceView> {
       return ListView.builder(
         itemCount: rootSpaces.length,
         controller: widget.scrollController,
-        itemBuilder: (context, i) => Material(
-          color: Theme.of(context).backgroundColor,
-          child: ListTile(
-            leading: Avatar(
-              mxContent: rootSpaces[i].avatar,
-              name: rootSpaces[i].displayname,
+        itemBuilder: (context, i) {
+          final rootSpace = rootSpaces[i];
+          final displayname = rootSpace.getLocalizedDisplayname(
+            MatrixLocals(L10n.of(context)!),
+          );
+          return Material(
+            color: Theme.of(context).backgroundColor,
+            child: ListTile(
+              leading: Avatar(
+                mxContent: rootSpace.avatar,
+                name: displayname,
+              ),
+              title: Text(
+                displayname,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(L10n.of(context)!
+                  .numChats(rootSpace.spaceChildren.length.toString())),
+              onTap: () => widget.controller.setActiveSpace(rootSpace.id),
+              onLongPress: () => _onSpaceChildContextMenu(null, rootSpace),
+              trailing: const Icon(Icons.chevron_right_outlined),
             ),
-            title: Text(
-              rootSpaces[i].displayname,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle: Text(L10n.of(context)!
-                .numChats(rootSpaces[i].spaceChildren.length.toString())),
-            onTap: () => widget.controller.setActiveSpace(rootSpaces[i].id),
-            onLongPress: () => _onSpaceChildContextMenu(null, rootSpaces[i]),
-            trailing: const Icon(Icons.chevron_right_outlined),
-          ),
-        ),
+          );
+        },
       );
     }
     return FutureBuilder<GetSpaceHierarchyResponse>(
@@ -218,7 +228,9 @@ class _SpaceViewState extends State<SpaceView> {
                       ),
                       title: Text(parentSpace == null
                           ? L10n.of(context)!.allSpaces
-                          : parentSpace.displayname),
+                          : parentSpace.getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context)!),
+                            )),
                       trailing: IconButton(
                         icon: snapshot.connectionState != ConnectionState.done
                             ? const CircularProgressIndicator.adaptive()

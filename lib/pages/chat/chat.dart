@@ -134,15 +134,6 @@ class ChatController extends State<Chat> {
 
   bool showEmojiPicker = false;
 
-  bool get isLeftDMRoom {
-    final room = this.room;
-    final userId = room?.directChatMatrixID;
-    if (room == null || userId == null) return false;
-    return room.isDirectChat &&
-        room.unsafeGetUserFromMemoryOrFallback(userId).membership ==
-            Membership.leave;
-  }
-
   void recreateChat() async {
     final room = this.room;
     final userId = room?.directChatMatrixID;

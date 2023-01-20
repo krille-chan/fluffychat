@@ -291,7 +291,8 @@ class ChatView extends StatelessWidget {
                                           Brightness.light
                                       ? Colors.white
                                       : Colors.black,
-                                  child: controller.isLeftDMRoom
+                                  child: controller.room?.isAbandonedDMRoom ==
+                                          true
                                       ? Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,

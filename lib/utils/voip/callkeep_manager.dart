@@ -222,8 +222,9 @@ class CallKeepManager {
     addCall(call.callId, callKeeper);
     await _callKeep.displayIncomingCall(
       call.callId,
-      '${call.displayName!} (FluffyChat)',
-      localizedCallerName: '${call.displayName!} (FluffyChat)',
+      '${call.room.getLocalizedDisplayname()} (FluffyChat)',
+      localizedCallerName:
+          '${call.room.getLocalizedDisplayname()} (FluffyChat)',
       handleType: 'number',
       hasVideo: call.type == CallType.kVideo,
     );

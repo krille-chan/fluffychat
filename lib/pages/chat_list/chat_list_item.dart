@@ -124,6 +124,9 @@ class ChatListItem extends StatelessWidget {
             ? 20.0
             : 14.0
         : 0.0;
+    final displayname = room.getLocalizedDisplayname(
+      MatrixLocals(L10n.of(context)!),
+    );
     return Material(
       color: selected
           ? Theme.of(context).colorScheme.primaryContainer
@@ -144,14 +147,14 @@ class ChatListItem extends StatelessWidget {
               )
             : Avatar(
                 mxContent: room.avatar,
-                name: room.displayname,
+                name: displayname,
                 onTap: onLongPress,
               ),
         title: Row(
           children: <Widget>[
             Expanded(
               child: Text(
-                room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+                displayname,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 softWrap: false,

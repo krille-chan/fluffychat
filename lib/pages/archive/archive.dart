@@ -42,7 +42,7 @@ class ArchiveController extends State<Archive> {
       context: context,
       future: () async {
         while (archive.isNotEmpty) {
-          Logs().v('Forget room ${archive.last.displayname}');
+          Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
           await archive.last.forget();
           archive.removeLast();
         }

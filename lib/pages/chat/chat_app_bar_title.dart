@@ -47,7 +47,9 @@ class ChatAppBarTitle extends StatelessWidget {
             tag: 'content_banner',
             child: Avatar(
               mxContent: room.avatar,
-              name: room.displayname,
+              name: room.getLocalizedDisplayname(
+                MatrixLocals(L10n.of(context)!),
+              ),
               size: 32,
             ),
           ),
