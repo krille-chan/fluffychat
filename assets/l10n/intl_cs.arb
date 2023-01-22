@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username} přijali pozvání",
+  "acceptedTheInvitation": "👍 {username} přijal/a pozvání",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} aktivoval koncové šifrování",
+  "activatedEndToEndEncryption": "🔐 {username} aktivoval/a koncové šifrování",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -334,7 +334,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, že klíč neztratíte.",
+  "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -527,7 +527,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username} založil chat",
+  "createdTheChat": "💬 {username} založil/a chat",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -957,7 +957,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username} pozvali {targetName}",
+  "invitedUser": "📩 {username} pozval/a {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -988,7 +988,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username} se připojili k chatu",
+  "joinedTheChat": "👋 {username} se připojil/a k chatu",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -1005,7 +1005,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} vyhodil {targetName}",
+  "kicked": "👞 {username} vyhodil/a {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -2373,5 +2373,34 @@
   "updateNow": "Spustit aktualizaci na pozadí",
   "@updateNow": {},
   "disableEncryptionWarning": "Z bezpečnostních důvodů nemůžete vypnout šifrování v chatu, kde již bylo dříve zapnuto.",
-  "@disableEncryptionWarning": {}
+  "@disableEncryptionWarning": {},
+  "confirmMatrixId": "Prosím, potvrďte vaše Matrix ID, abyste mohli smazat váš účet.",
+  "@confirmMatrixId": {},
+  "commandHint_googly": "Poslat kroutící se očička",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Poslat mazlení",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Poslat obejmutí",
+  "@commandHint_hug": {},
+  "hugContent": "{senderName} vás objímá",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "googlyEyesContent": "{senderName} vám posílá kroutící se očička",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} se s vámi mazlí",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  }
 }
