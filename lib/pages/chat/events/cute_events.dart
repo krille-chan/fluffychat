@@ -69,7 +69,7 @@ class _CuteContentState extends State<CuteContent> {
         },
       ),
     );
-    Overlay.of(context)?.insert(overlay);
+    Overlay.of(context).insert(overlay);
   }
 
   generateLabel(User? user) {

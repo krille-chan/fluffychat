@@ -812,7 +812,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "play": "Prehrať (fileName}",
+    "play": "Prehrať {fileName}",
     "@play": {
         "type": "text",
         "placeholders": {

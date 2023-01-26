@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:punycode/punycode.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -56,17 +56,17 @@ class UrlLauncher {
             // to an apple maps thingy
             // https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
             final ll = '${latlong.first},${latlong.last}';
-            launch('https://maps.apple.com/?q=$ll&sll=$ll');
+            launchUrlString('https://maps.apple.com/?q=$ll&sll=$ll');
           } else {
             // transmute geo URIs on desktop to openstreetmap links, as those usually can't handle
             // geo URIs
-            launch(
+            launchUrlString(
                 'https://www.openstreetmap.org/?mlat=${latlong.first}&mlon=${latlong.last}#map=16/${latlong.first}/${latlong.last}');
           }
           return;
         }
       }
-      launch(url!);
+      launchUrlString(url!);
       return;
     }
     if (uri.host.isEmpty) {
@@ -84,7 +84,7 @@ class UrlLauncher {
           ? 'xn--$hostPartPunycode'
           : hostPart;
     }).join('.');
-    launch(uri.replace(host: newHost).toString());
+    launchUrlString(uri.replace(host: newHost).toString());
   }
 
   void openMatrixToUrl() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -93,12 +93,12 @@ class SettingsView extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.help_outline_outlined),
                 title: Text(L10n.of(context)!.help),
-                onTap: () => launch(AppConfig.supportUrl),
+                onTap: () => launchUrlString(AppConfig.supportUrl),
               ),
               ListTile(
                 leading: const Icon(Icons.shield_sharp),
                 title: Text(L10n.of(context)!.privacy),
-                onTap: () => launch(AppConfig.privacyUrl),
+                onTap: () => launchUrlString(AppConfig.privacyUrl),
               ),
               ListTile(
                 leading: const Icon(Icons.info_outline_rounded),

@@ -228,9 +228,9 @@ class ChatListViewBody extends StatelessWidget {
             }
             const dummyChatCount = 5;
             final titleColor =
-                Theme.of(context).textTheme.bodyText1!.color!.withAlpha(100);
+                Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
             final subtitleColor =
-                Theme.of(context).textTheme.bodyText1!.color!.withAlpha(50);
+                Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(50);
             return ListView.builder(
               key: const Key('dummychats'),
               itemCount: dummyChatCount,
@@ -241,7 +241,7 @@ class ChatListViewBody extends StatelessWidget {
                     backgroundColor: titleColor,
                     child: CircularProgressIndicator(
                       strokeWidth: 1,
-                      color: Theme.of(context).textTheme.bodyText1!.color,
+                      color: Theme.of(context).textTheme.bodyLarge!.color,
                     ),
                   ),
                   title: Row(

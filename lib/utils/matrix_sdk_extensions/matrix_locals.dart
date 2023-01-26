@@ -19,7 +19,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String answeredTheCall(String senderName) {
-    return l10n.answeredTheCall(senderName);
+    return l10n.answeredTheCall(senderName, senderName);
   }
 
   @override
@@ -245,7 +245,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String unknownEvent(String typeKey) {
-    return l10n.unknownEvent(typeKey);
+    return l10n.unknownEvent(typeKey, typeKey);
   }
 
   @override

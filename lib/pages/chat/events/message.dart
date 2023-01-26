@@ -303,8 +303,11 @@ class Message extends StatelessWidget {
               child: Center(
                   child: Material(
                 color: displayTime
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).backgroundColor.withOpacity(0.33),
+                    ? Theme.of(context).colorScheme.background
+                    : Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.33),
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
                 clipBehavior: Clip.antiAlias,
                 child: Padding(

@@ -2009,7 +2009,7 @@
         "type": "text",
         "placeholder": {}
     },
-    "cantOpenUri": "Impossibile aprire l'URI",
+    "cantOpenUri": "Can't open the URI {uri}",
     "@cantOpenUri": {
         "type": "text",
         "placeholders": {

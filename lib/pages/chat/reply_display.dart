@@ -80,7 +80,7 @@ class _EditContent extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText2!.color,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
                 ),
               );
             }),

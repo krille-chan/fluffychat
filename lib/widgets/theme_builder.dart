@@ -96,7 +96,6 @@ class ThemeController extends State<ThemeBuilder> {
       // https://github.com/bdlukaa/system_theme/issues/10
       final accentColor = SystemTheme.accentColor;
       final color = accentColor.accent;
-      if (color == kDefaultSystemAccentColor) return AppConfig.chatColor;
       return color;
     } catch (_) {
       return AppConfig.chatColor;

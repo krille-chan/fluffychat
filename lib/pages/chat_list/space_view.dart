@@ -158,7 +158,7 @@ class _SpaceViewState extends State<SpaceView> {
             MatrixLocals(L10n.of(context)!),
           );
           return Material(
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).colorScheme.background,
             child: ListTile(
               leading: Avatar(
                 mxContent: rootSpace.avatar,

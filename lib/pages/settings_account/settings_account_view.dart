@@ -17,7 +17,7 @@ class SettingsAccountView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.account)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).textTheme.bodyText1!.color,
+        iconColor: Theme.of(context).textTheme.bodyLarge!.color,
         child: MaxWidthBody(
           withScrolling: true,
           child: Column(

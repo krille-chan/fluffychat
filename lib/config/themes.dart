@@ -23,19 +23,19 @@ abstract class FluffyThemes {
   );
 
   static var fallbackTextTheme = const TextTheme(
-    bodyText1: fallbackTextStyle,
-    bodyText2: fallbackTextStyle,
-    button: fallbackTextStyle,
-    caption: fallbackTextStyle,
-    overline: fallbackTextStyle,
-    headline1: fallbackTextStyle,
-    headline2: fallbackTextStyle,
-    headline3: fallbackTextStyle,
-    headline4: fallbackTextStyle,
-    headline5: fallbackTextStyle,
-    headline6: fallbackTextStyle,
-    subtitle1: fallbackTextStyle,
-    subtitle2: fallbackTextStyle,
+    bodyLarge: fallbackTextStyle,
+    bodyMedium: fallbackTextStyle,
+    labelLarge: fallbackTextStyle,
+    bodySmall: fallbackTextStyle,
+    labelSmall: fallbackTextStyle,
+    displayLarge: fallbackTextStyle,
+    displayMedium: fallbackTextStyle,
+    displaySmall: fallbackTextStyle,
+    headlineMedium: fallbackTextStyle,
+    headlineSmall: fallbackTextStyle,
+    titleLarge: fallbackTextStyle,
+    titleMedium: fallbackTextStyle,
+    titleSmall: fallbackTextStyle,
   );
 
   static const Duration animationDuration = Duration(milliseconds: 250);

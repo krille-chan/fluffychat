@@ -37,7 +37,7 @@ class VerificationRequestContent extends StatelessWidget {
               color: Theme.of(context).dividerColor,
             ),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).colorScheme.background,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,

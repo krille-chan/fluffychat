@@ -30,8 +30,12 @@ extension LocalizedExceptionExtension on Object {
           .toString()
           .replaceAll('{', '"')
           .replaceAll('}', '"');
-      return L10n.of(context)!
-          .badServerVersionsException(serverVersions, supportedVersions);
+      return L10n.of(context)!.badServerVersionsException(
+        serverVersions,
+        supportedVersions,
+        serverVersions,
+        supportedVersions,
+      );
     }
     if (this is BadServerLoginTypesException) {
       final serverVersions = (this as BadServerLoginTypesException)
@@ -44,8 +48,11 @@ extension LocalizedExceptionExtension on Object {
           .toString()
           .replaceAll('{', '"')
           .replaceAll('}', '"');
-      return L10n.of(context)!
-          .badServerLoginTypesException(serverVersions, supportedVersions);
+      return L10n.of(context)!.badServerLoginTypesException(
+        serverVersions,
+        supportedVersions,
+        supportedVersions,
+      );
     }
     if (this is MatrixConnectionException || this is SocketException) {
       return L10n.of(context)!.noConnectionToTheServer;

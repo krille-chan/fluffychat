@@ -52,7 +52,7 @@ class HtmlMessage extends StatelessWidget {
       defaultTextStyle: defaultTextStyle,
       emoteSize: emoteSize,
       linkStyle: linkStyle ??
-          themeData.textTheme.bodyText2!.copyWith(
+          themeData.textTheme.bodyMedium!.copyWith(
             color: themeData.colorScheme.secondary,
             decoration: TextDecoration.underline,
           ),

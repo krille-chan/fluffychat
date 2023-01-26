@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
@@ -121,7 +121,7 @@ class HomeserverPickerView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextButton(
-                      onPressed: () => launch(AppConfig.privacyUrl),
+                      onPressed: () => launchUrlString(AppConfig.privacyUrl),
                       child: Text(L10n.of(context)!.privacy),
                     ),
                     TextButton(

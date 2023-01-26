@@ -49,6 +49,7 @@ class SendFileDialogState extends State<SendFileDialog> {
         scaffoldMessenger.showSnackBar(
           SnackBar(content: Text(e.toLocalizedString())),
         );
+        return null;
       });
     }
     Navigator.of(context, rootNavigator: false).pop();

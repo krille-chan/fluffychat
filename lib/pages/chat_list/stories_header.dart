@@ -94,7 +94,7 @@ class StoriesHeader extends StatelessWidget {
         leading: CircleAvatar(
           radius: Avatar.defaultSize / 2,
           backgroundColor: Theme.of(context).colorScheme.surface,
-          foregroundColor: Theme.of(context).textTheme.bodyText1?.color,
+          foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
           child: const Icon(Icons.camera_alt_outlined),
         ),
         title: Text(L10n.of(context)!.addToStory),
@@ -226,7 +226,7 @@ class _StoryButton extends StatelessWidget {
                               backgroundColor:
                                   Theme.of(context).colorScheme.surface,
                               foregroundColor:
-                                  Theme.of(context).textTheme.bodyText1?.color,
+                                  Theme.of(context).textTheme.bodyLarge?.color,
                               child: Hero(
                                 tag: heroTag,
                                 child: Avatar(

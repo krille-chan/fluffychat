@@ -34,7 +34,7 @@ class M2PopupMenuButton<T> extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           ),
           elevation: theme.appBarTheme.scrolledUnderElevation,
-          textStyle: theme.textTheme.bodyText1,
+          textStyle: theme.textTheme.bodyLarge,
         ),
       ),
       child: PopupMenuButton<T>(

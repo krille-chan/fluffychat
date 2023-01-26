@@ -40,7 +40,7 @@ class LockScreenState extends State<LockScreen> {
           ),
           body: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).colorScheme.background,
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -54,7 +54,7 @@ class LockScreenState extends State<LockScreen> {
                   Theme.of(context).secondaryHeaderColor.withAlpha(16),
                   Theme.of(context).primaryColor.withAlpha(16),
                   Theme.of(context).colorScheme.secondary.withAlpha(16),
-                  Theme.of(context).backgroundColor.withAlpha(16),
+                  Theme.of(context).colorScheme.background.withAlpha(16),
                 ],
               ),
             ),

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -83,11 +83,7 @@ extension UiaRequestManager on MatrixState {
         default:
           final url = Uri.parse(
               '${client.homeserver}/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}');
-          launch(
-            url.toString(),
-            forceSafariVC: true,
-            forceWebView: false,
-          );
+          launchUrlString(url.toString());
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,

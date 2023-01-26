@@ -115,10 +115,7 @@ class LoginController extends State<Login> {
         // do nothing, newDomain is already set to a reasonable fallback
       }
       if (newDomain != oldHomeserver) {
-        Matrix.of(context)
-            .getLoginClient()
-            .checkHomeserver(newDomain)
-            .catchError((e) {});
+        await Matrix.of(context).getLoginClient().checkHomeserver(newDomain);
 
         if (Matrix.of(context).getLoginClient().homeserver == null) {
           Matrix.of(context).getLoginClient().homeserver = oldHomeserver;

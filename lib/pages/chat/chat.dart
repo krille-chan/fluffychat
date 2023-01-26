@@ -1072,11 +1072,13 @@ class ChatController extends State<Chat> {
             Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials());
     if (success.result != null) {
       final voipPlugin = Matrix.of(context).voipPlugin;
-      await voipPlugin!.voip.inviteToCall(room!.id, callType).catchError((e) {
+      try {
+        await voipPlugin!.voip.inviteToCall(room!.id, callType);
+      } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text((e as Object).toLocalizedString(context))),
+          SnackBar(content: Text(e.toLocalizedString(context))),
         );
-      });
+      }
     } else {
       await showOkAlertDialog(
         context: context,

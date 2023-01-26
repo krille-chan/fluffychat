@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeserverBottomSheet extends StatelessWidget {
   final HomeserverBenchmarkResult homeserver;
@@ -38,25 +38,26 @@ class HomeserverBottomSheet extends StatelessWidget {
             title: Text(homeserverSoftware),
           ),
         ListTile(
-          onTap: () => launch(homeserver.homeserver.baseUrl.toString()),
+          onTap: () =>
+              launchUrlString(homeserver.homeserver.baseUrl.toString()),
           leading: const Icon(Icons.link_outlined),
           title: Text(homeserver.homeserver.baseUrl.toString()),
         ),
         if (registration != null)
           ListTile(
-            onTap: () => launch(registration.toString()),
+            onTap: () => launchUrlString(registration.toString()),
             leading: const Icon(Icons.person_add_outlined),
             title: Text(registration.toString()),
           ),
         if (rules != null)
           ListTile(
-            onTap: () => launch(rules.toString()),
+            onTap: () => launchUrlString(rules.toString()),
             leading: const Icon(Icons.visibility_outlined),
             title: Text(rules.toString()),
           ),
         if (privacy != null)
           ListTile(
-            onTap: () => launch(privacy.toString()),
+            onTap: () => launchUrlString(privacy.toString()),
             leading: const Icon(Icons.shield_outlined),
             title: Text(privacy.toString()),
           ),

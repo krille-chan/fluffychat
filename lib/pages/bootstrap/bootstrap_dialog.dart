@@ -269,7 +269,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         labelStyle: TextStyle(
                             fontFamily: Theme.of(context)
                                 .textTheme
-                                .bodyText1
+                                .bodyLarge
                                 ?.fontFamily),
                         labelText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,

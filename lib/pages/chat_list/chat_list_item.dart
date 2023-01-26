@@ -189,7 +189,7 @@ class ChatListItem extends StatelessWidget {
                   fontSize: 13,
                   color: unread
                       ? Theme.of(context).colorScheme.secondary
-                      : Theme.of(context).textTheme.bodyText2!.color,
+                      : Theme.of(context).textTheme.bodyMedium!.color,
                 ),
               ),
             ),

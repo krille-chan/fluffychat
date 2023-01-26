@@ -123,7 +123,7 @@ class SettingsStyleView extends StatelessWidget {
                 title: Text(L10n.of(context)!.changeWallpaper),
                 trailing: Icon(
                   Icons.photo_outlined,
-                  color: Theme.of(context).textTheme.bodyText1?.color,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
                 ),
                 onTap: controller.setWallpaperAction,
               );

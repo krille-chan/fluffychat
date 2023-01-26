@@ -144,7 +144,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                         linkStyle: const TextStyle(color: Colors.blueAccent),
                         textStyle: TextStyle(
                           fontSize: 14,
-                          color: Theme.of(context).textTheme.bodyText2!.color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         onLinkTap: (url) =>
                             UrlLauncher(context, url).launchUrl(),

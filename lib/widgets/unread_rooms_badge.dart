@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as b;
 import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
 
 class UnreadRoomsBadge extends StatelessWidget {
   final bool Function(Room) filter;
-  final BadgePosition? badgePosition;
+  final b.BadgePosition? badgePosition;
   final Widget? child;
 
   const UnreadRoomsBadge({
@@ -32,7 +32,7 @@ class UnreadRoomsBadge extends StatelessWidget {
               .where(filter)
               .where((r) => (r.isUnread || r.membership == Membership.invite))
               .length;
-          return Badge(
+          return b.Badge(
             alignment: Alignment.bottomRight,
             badgeContent: Text(
               unreadCount.toString(),
@@ -42,14 +42,13 @@ class UnreadRoomsBadge extends StatelessWidget {
               ),
             ),
             showBadge: unreadCount != 0,
-            animationType: BadgeAnimationType.scale,
+            animationType: b.BadgeAnimationType.scale,
             badgeColor: Theme.of(context).colorScheme.primary,
             position: badgePosition,
             elevation: 4,
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.background,
               width: 2,
-              strokeAlign: StrokeAlign.outside,
             ),
             child: child,
           );

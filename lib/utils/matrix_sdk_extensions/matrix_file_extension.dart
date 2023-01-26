@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -22,17 +20,12 @@ extension MatrixFileExtension on MatrixFile {
   }
 
   void share(BuildContext context) async {
-    final fileName = name.split('/').last;
-    final tmpDirectory = await getTemporaryDirectory();
-    final path = '${tmpDirectory.path}$fileName';
-    await File(path).writeAsBytes(bytes);
-
     // Workaround for iPad from
     // https://github.com/fluttercommunity/plus_plugins/tree/main/packages/share_plus/share_plus#ipad
     final box = context.findRenderObject() as RenderBox?;
 
-    await Share.shareFiles(
-      [path],
+    await Share.shareXFiles(
+      [XFile.fromData(bytes)],
       sharePositionOrigin:
           box == null ? null : box.localToGlobal(Offset.zero) & box.size,
     );

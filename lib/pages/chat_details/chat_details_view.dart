@@ -42,7 +42,7 @@ class ChatDetailsView extends StatelessWidget {
         (room.summary.mJoinedMemberCount ?? 0);
     final canRequestMoreMembers =
         controller.members!.length < actualMembersCount;
-    final iconColor = Theme.of(context).textTheme.bodyText1!.color;
+    final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
     return StreamBuilder(
         stream: room.onUpdate.stream,
         builder: (context, snapshot) {
@@ -127,7 +127,7 @@ class ChatDetailsView extends StatelessWidget {
                                   fontSize: 14,
                                   color: Theme.of(context)
                                       .textTheme
-                                      .bodyText2!
+                                      .bodyMedium!
                                       .color,
                                 ),
                                 onLinkTap: (url) =>
