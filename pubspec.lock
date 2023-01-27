@@ -1708,10 +1708,10 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "5949029e70abe87f75cfe59d17bf5c397619c4b74a099b10116baeb34786fad9"
+      sha256: "76917b7d4b9526b2ba416808a7eb9fb2863c1a09cf63ec85f1453da240fa818a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.17"
+    version: "2.0.15"
   shared_preferences_android:
     dependency: transitive
     description:
@@ -1720,14 +1720,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.15"
-  shared_preferences_foundation:
-    dependency: transitive
-    description:
-      name: shared_preferences_foundation
-      sha256: "1ffa239043ab8baf881ec3094a3c767af9d10399b2839020b9e4d44c0bb23951"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
   shared_preferences_ios:
     dependency: transitive
     description:
@@ -1744,6 +1736,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  shared_preferences_macos:
+    dependency: transitive
+    description:
+      name: shared_preferences_macos
+      sha256: "81b6a60b2d27020eb0fc41f4cebc91353047309967901a79ee8203e40c42ed46"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   shared_preferences_platform_interface:
     dependency: transitive
     description:
