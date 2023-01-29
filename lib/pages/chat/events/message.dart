@@ -168,7 +168,7 @@ class Message extends StatelessWidget {
                               color: (Theme.of(context).brightness ==
                                       Brightness.light
                                   ? displayname.color
-                                  : displayname.lightColor),
+                                  : displayname.lightColorText),
                             ),
                           );
                         }),

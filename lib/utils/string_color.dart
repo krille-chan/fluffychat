@@ -22,8 +22,13 @@ extension StringColor on String {
     return _colorCache[this]![0.2] ??= _getColorLight(0.2);
   }
 
-  Color get lightColor {
+  Color get lightColorText {
     _colorCache[this] ??= {};
     return _colorCache[this]![0.7] ??= _getColorLight(0.7);
+  }
+
+  Color get lightColorAvatar {
+    _colorCache[this] ??= {};
+    return _colorCache[this]![0.4] ??= _getColorLight(0.4);
   }
 }

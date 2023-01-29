@@ -58,8 +58,9 @@ class Avatar extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          color:
-              noPic ? name?.lightColor : Theme.of(context).secondaryHeaderColor,
+          color: noPic
+              ? name?.lightColorAvatar
+              : Theme.of(context).secondaryHeaderColor,
           child: noPic
               ? textWidget
               : MxcImage(
