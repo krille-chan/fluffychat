@@ -1,7 +1,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-version: 1.8.0+2330
+version: 1.9.0+2331
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -41,8 +41,7 @@ dependencies:
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
   flutter_secure_storage: ^7.0.1
-  flutter_typeahead: # until https://github.com/AbdulRahmanAlHamali/flutter_typeahead/pull/447 is merged released
-    git: https://github.com/krillefear/flutter_typeahead.git
+  flutter_typeahead: ^4.3.2
   flutter_web_auth: ^0.5.0
   flutter_webrtc: # Until https://github.com/flutter-webrtc/flutter-webrtc/issues/1212 is fixed
     git: https://github.com/radzio-it/flutter-webrtc.git
