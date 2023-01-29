@@ -2537,5 +2537,7 @@
   "disableEncryptionWarning": "Aus Sicherheitsgründen können Sie die Verschlüsselung in einem Chat nicht deaktivieren, wo sie zuvor aktiviert wurde.",
   "@disableEncryptionWarning": {},
   "enterInviteLinkOrMatrixId": "Einladungslink oder Matrix-ID eingeben …",
-  "@enterInviteLinkOrMatrixId": {}
+  "@enterInviteLinkOrMatrixId": {},
+  "reopenChat": "Chat wieder eröffnen",
+  "@reopenChat": {}
 }
