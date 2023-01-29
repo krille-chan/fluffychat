@@ -165,7 +165,10 @@ class Message extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: displayname.color,
+                              color: (Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? displayname.color
+                                  : displayname.lightColor),
                             ),
                           );
                         }),
