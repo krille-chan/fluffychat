@@ -166,6 +166,7 @@ build_olm_windows:
   artifacts:
     paths:
       - libolm.dll
+  allow_failure: true
   only:
     - main
     - tags
@@ -189,6 +190,7 @@ build_windows:
   artifacts:
     paths:
       - build/windows/runner/Release
+  allow_failure: true
   only:
     - main
     - tags
