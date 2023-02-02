@@ -144,7 +144,9 @@ msix_config:
 dependency_overrides:
   # Until all dependencies are compatible. Missing: file_picker_cross, flutter_matrix_html
   ffi: ^2.0.0
-
+  # This otherwise breaks on linux with flutter 3.7.0, let's override it for now.
+  file_selector: ^0.9.2+2
+  file_selector_linux: ^0.9.1
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:
