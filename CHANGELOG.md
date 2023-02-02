@@ -21,11 +21,13 @@
 - chore: add integration tests for spaces (TheOneWithTheBraid)
 - design: More clear chat background and rounded popup menu (Krille)
 - design: Nicer navigationrail (Krille)
+- design: Upgrade to Flutter 3.7
 - feat: Bring back disabling the header bar on Linux desktop (q234rty)
 - feat: Nicer design for abandonded DM rooms (Christian Pauly)
 - fix: Archive (Krille)
 - fix: Shared preferences package for flutter 3.7 (Christian Pauly)
 - fix: permission of web builds (TheOneWithTheBraid)
+- fix: Notification Settings (Krille)
 - refactor: Migrate to Flutter 3.7.0 (Christian Pauly)
 - refactor: Same animations everywhere in app (Krille)
 - refactor: Stories header with futurebuilder (Krille)
