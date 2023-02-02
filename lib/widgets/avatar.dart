@@ -48,31 +48,25 @@ class Avatar extends StatelessWidget {
       ),
     );
     final borderRadius = BorderRadius.circular(size / 2);
-    final container = Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).dividerColor),
-        borderRadius: borderRadius,
-      ),
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: Container(
-          width: size,
-          height: size,
-          color: noPic
-              ? name?.lightColorAvatar
-              : Theme.of(context).secondaryHeaderColor,
-          child: noPic
-              ? textWidget
-              : MxcImage(
-                  key: Key(mxContent.toString()),
-                  uri: mxContent,
-                  fit: BoxFit.cover,
-                  width: size,
-                  height: size,
-                  placeholder: (_) => textWidget,
-                  cacheKey: mxContent.toString(),
-                ),
-        ),
+    final container = ClipRRect(
+      borderRadius: borderRadius,
+      child: Container(
+        width: size,
+        height: size,
+        color: noPic
+            ? name?.lightColorAvatar
+            : Theme.of(context).secondaryHeaderColor,
+        child: noPic
+            ? textWidget
+            : MxcImage(
+                key: Key(mxContent.toString()),
+                uri: mxContent,
+                fit: BoxFit.cover,
+                width: size,
+                height: size,
+                placeholder: (_) => textWidget,
+                cacheKey: mxContent.toString(),
+              ),
       ),
     );
     if (onTap == null) return container;

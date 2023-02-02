@@ -15,7 +15,6 @@ import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat/edit_widgets_dialog.dart';
 import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'm2_popup_menu_button.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -127,7 +126,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           onKeysPressed: _showWidgets,
           child: Container(),
         ),
-        M2PopupMenuButton(
+        PopupMenuButton(
           onSelected: (String choice) async {
             switch (choice) {
               case 'widgets':

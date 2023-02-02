@@ -9,7 +9,6 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
-import '../../widgets/m2_popup_menu_button.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
@@ -207,7 +206,7 @@ class ClientChooserButton extends StatelessWidget {
             onKeysPressed: () => _previousAccount(matrix, context),
             child: Container(),
           ),
-          M2PopupMenuButton<Object>(
+          PopupMenuButton<Object>(
             onSelected: (o) => _clientSelected(o, context),
             itemBuilder: _bundleMenuItems,
             child: Material(

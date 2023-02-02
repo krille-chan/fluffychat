@@ -11,7 +11,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
-import '../../widgets/m2_popup_menu_button.dart';
 import 'chat.dart';
 import 'input_bar.dart';
 
@@ -92,7 +91,7 @@ class ChatInputRow extends StatelessWidget {
                   alignment: Alignment.center,
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(),
-                  child: M2PopupMenuButton<String>(
+                  child: PopupMenuButton<String>(
                     icon: const Icon(Icons.add_outlined),
                     onSelected: controller.onAddPopupMenuButtonSelected,
                     itemBuilder: (BuildContext context) =>
@@ -298,7 +297,7 @@ class _ChatAccountPicker extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: FutureBuilder<Profile>(
         future: controller.sendingClient!.fetchOwnProfile(),
-        builder: (context, snapshot) => M2PopupMenuButton<String>(
+        builder: (context, snapshot) => PopupMenuButton<String>(
           onSelected: _popupMenuButtonSelected,
           itemBuilder: (BuildContext context) => clients
               .map((client) => PopupMenuItem<String>(

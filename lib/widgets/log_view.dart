@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'm2_popup_menu_button.dart';
-
 class LogViewer extends StatefulWidget {
   const LogViewer({Key? key}) : super(key: key);
 
@@ -34,7 +32,7 @@ class LogViewerState extends State<LogViewer> {
             icon: const Icon(Icons.zoom_out_outlined),
             onPressed: () => setState(() => fontSize--),
           ),
-          M2PopupMenuButton<Level>(
+          PopupMenuButton<Level>(
             itemBuilder: (context) => Level.values
                 .map((level) => PopupMenuItem(
                       value: level,

@@ -16,7 +16,6 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import '../../config/themes.dart';
-import '../../widgets/m2_popup_menu_button.dart';
 
 class StoryView extends StatelessWidget {
   final StoryPageController controller;
@@ -104,7 +103,7 @@ class StoryView extends StatelessWidget {
                     icon: Icon(Icons.adaptive.share_outlined),
                     onPressed: controller.share,
                   ),
-                M2PopupMenuButton<PopupStoryAction>(
+                PopupMenuButton<PopupStoryAction>(
                   color: Colors.white,
                   onSelected: controller.onPopupStoryAction,
                   icon: Icon(

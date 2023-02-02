@@ -55,9 +55,11 @@ abstract class FluffyThemes {
         snackBarTheme: const SnackBarThemeData(
           behavior: SnackBarBehavior.floating,
         ),
-        dividerColor: brightness == Brightness.light
-            ? Colors.blueGrey.shade50
-            : Colors.blueGrey.shade900,
+        popupMenuTheme: PopupMenuThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          ),
+        ),
         inputDecorationTheme: InputDecorationTheme(
           border: UnderlineInputBorder(
             borderSide: BorderSide.none,
