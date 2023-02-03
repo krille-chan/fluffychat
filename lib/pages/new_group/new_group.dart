@@ -26,6 +26,8 @@ class NewGroupController extends State<NewGroup> {
       context: context,
       future: () async {
         final roomId = await client.createGroupChat(
+          visibility:
+              publicGroup ? sdk.Visibility.public : sdk.Visibility.private,
           preset: publicGroup
               ? sdk.CreateRoomPreset.publicChat
               : sdk.CreateRoomPreset.privateChat,
