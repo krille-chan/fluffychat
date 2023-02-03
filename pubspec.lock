@@ -346,13 +346,13 @@ packages:
     source: hosted
     version: "0.2.1"
   dynamic_color:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dynamic_color
-      sha256: "37a15576f5a0bfd5555b613cf20ea3bd379607cf88d457374a16032f4e942174"
+      sha256: "0ff251e8a31f54adde9ab4d4b301c94df46dcd34e4fbd6d7623631ed174b205e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.4"
+    version: "1.6.0"
   emoji_picker_flutter:
     dependency: "direct main"
     description:
@@ -1852,22 +1852,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  system_theme:
-    dependency: "direct main"
-    description:
-      name: system_theme
-      sha256: "28bb63b997c252eee7fea6dc9e3528a9a6bf4b566ccbc8b49926389ca3e2c96b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  system_theme_web:
-    dependency: transitive
-    description:
-      name: system_theme_web
-      sha256: "7566f5a928f6d28d7a60c97bea8a851d1c6bc9b86a4df2366230a97458489219"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   term_glyph:
     dependency: transitive
     description:
@@ -2286,4 +2270,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.0 <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.4.0-17.0.pre"
