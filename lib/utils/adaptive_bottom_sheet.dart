@@ -8,7 +8,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
   required BuildContext context,
   required Widget Function(BuildContext) builder,
   bool isDismissible = true,
-  bool isScrollControlled = false,
+  bool isScrollControlled = true,
 }) =>
     showModalBottomSheet(
       context: context,
