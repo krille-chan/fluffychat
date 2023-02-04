@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
@@ -212,12 +213,15 @@ class ClientChooserButton extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(99),
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
-                size: 28,
-                fontSize: 12,
+              child: Hero(
+                tag: 'profilesettings',
+                child: Avatar(
+                  mxContent: snapshot.data?.avatarUrl,
+                  name: snapshot.data?.displayName ??
+                      matrix.client.userID!.localpart,
+                  size: 28,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
@@ -240,7 +244,7 @@ class ClientChooserButton extends StatelessWidget {
   void _clientSelected(
     Object object,
     BuildContext context,
-  ) {
+  ) async {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {
@@ -248,7 +252,15 @@ class ClientChooserButton extends StatelessWidget {
     } else if (object is SettingsAction) {
       switch (object) {
         case SettingsAction.addAccount:
-          VRouter.of(context).to('/settings/account');
+          final consent = await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context)!.addAccount,
+            message: L10n.of(context)!.enableMultiAccounts,
+            okLabel: L10n.of(context)!.next,
+            cancelLabel: L10n.of(context)!.cancel,
+          );
+          if (consent != OkCancelResult.ok) return;
+          VRouter.of(context).to('/settings/addaccount');
           break;
         case SettingsAction.newStory:
           VRouter.of(context).to('/stories/create');

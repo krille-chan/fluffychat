@@ -19,30 +19,34 @@ class SettingsSecurityView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.security)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).textTheme.bodyLarge!.color,
+        iconColor: Theme.of(context).colorScheme.onBackground,
         child: MaxWidthBody(
           withScrolling: true,
           child: Column(
             children: [
               ListTile(
-                trailing: const Icon(Icons.panorama_fish_eye),
+                leading: const Icon(Icons.panorama_fish_eye),
+                trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.whoCanSeeMyStories),
                 onTap: () => VRouter.of(context).to('stories'),
               ),
               ListTile(
-                trailing: const Icon(Icons.close),
+                leading: const Icon(Icons.close),
+                trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.ignoredUsers),
                 onTap: () => VRouter.of(context).to('ignorelist'),
               ),
               ListTile(
-                trailing: const Icon(Icons.vpn_key_outlined),
+                leading: const Icon(Icons.password_outlined),
+                trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(
                   L10n.of(context)!.changePassword,
                 ),
                 onTap: controller.changePasswordAccountAction,
               ),
               ListTile(
-                trailing: const Icon(Icons.mail_outlined),
+                leading: const Icon(Icons.mail_outlined),
+                trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.passwordRecovery),
                 onTap: () => VRouter.of(context).to('3pid'),
               ),
@@ -50,7 +54,8 @@ class SettingsSecurityView extends StatelessWidget {
                 const Divider(thickness: 1),
                 if (PlatformInfos.isMobile)
                   ListTile(
-                    trailing: const Icon(Icons.lock_outlined),
+                    leading: const Icon(Icons.lock_outlined),
+                    trailing: const Icon(Icons.chevron_right_outlined),
                     title: Text(L10n.of(context)!.appLock),
                     onTap: controller.setAppLockAction,
                   ),
@@ -64,48 +69,32 @@ class SettingsSecurityView extends StatelessWidget {
                         Matrix.of(context).client.fingerprintKey.beautified,
                     okLabel: L10n.of(context)!.ok,
                   ),
-                  trailing: const Icon(Icons.vpn_key_outlined),
-                ),
-                if (!Matrix.of(context).client.encryption!.crossSigning.enabled)
-                  ListTile(
-                    title: Text(L10n.of(context)!.crossSigningEnabled),
-                    trailing: const Icon(Icons.error, color: Colors.red),
-                    onTap: () => controller.showBootstrapDialog(context),
+                  subtitle: Text(
+                    Matrix.of(context).client.fingerprintKey.beautified,
+                    style: const TextStyle(fontFamily: 'monospace'),
                   ),
-                if (!Matrix.of(context).client.encryption!.keyManager.enabled)
-                  ListTile(
-                    title: Text(L10n.of(context)!.onlineKeyBackupEnabled),
-                    trailing: const Icon(Icons.error, color: Colors.red),
-                    onTap: () => controller.showBootstrapDialog(context),
-                  ),
-                if (Matrix.of(context).client.isUnknownSession)
-                  ListTile(
-                    title: const Text('Session verified'),
-                    trailing: const Icon(Icons.error, color: Colors.red),
-                    onTap: () => controller.showBootstrapDialog(context),
-                  ),
-                FutureBuilder(
-                  future: () async {
-                    return (await Matrix.of(context)
-                            .client
-                            .encryption!
-                            .keyManager
-                            .isCached()) &&
-                        (await Matrix.of(context)
-                            .client
-                            .encryption!
-                            .crossSigning
-                            .isCached());
-                  }(),
-                  builder: (context, snapshot) => snapshot.data == true
-                      ? Container()
-                      : ListTile(
-                          title: Text(L10n.of(context)!.keysCached),
-                          trailing: const Icon(Icons.error, color: Colors.red),
-                          onTap: () => controller.showBootstrapDialog(context),
-                        ),
+                  leading: const Icon(Icons.vpn_key_outlined),
                 ),
               },
+              const Divider(height: 1),
+              ListTile(
+                leading: const Icon(Icons.tap_and_play),
+                trailing: const Icon(Icons.chevron_right_outlined),
+                title: Text(
+                  L10n.of(context)!.dehydrate,
+                  style: const TextStyle(color: Colors.red),
+                ),
+                onTap: controller.dehydrateAction,
+              ),
+              ListTile(
+                leading: const Icon(Icons.delete_outlined),
+                trailing: const Icon(Icons.chevron_right_outlined),
+                title: Text(
+                  L10n.of(context)!.deleteAccount,
+                  style: const TextStyle(color: Colors.red),
+                ),
+                onTap: controller.deleteAccountAction,
+              ),
             ],
           ),
         ),

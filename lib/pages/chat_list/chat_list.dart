@@ -15,6 +15,7 @@ import 'package:vrouter/vrouter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
+import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
@@ -27,7 +28,6 @@ import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
-import '../settings_account/settings_account.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -688,7 +688,7 @@ class ChatListController extends State<ChatList>
   }
 
   Future<void> dehydrate() =>
-      SettingsAccountController.dehydrateDevice(context);
+      SettingsSecurityController.dehydrateDevice(context);
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
