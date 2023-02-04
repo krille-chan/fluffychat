@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -25,13 +24,13 @@ class SettingsSecurityView extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: const Icon(Icons.panorama_fish_eye),
+                leading: const Icon(Icons.camera_outlined),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.whoCanSeeMyStories),
                 onTap: () => VRouter.of(context).to('stories'),
               ),
               ListTile(
-                leading: const Icon(Icons.close),
+                leading: const Icon(Icons.block_outlined),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.ignoredUsers),
                 onTap: () => VRouter.of(context).to('ignorelist'),
@@ -61,14 +60,6 @@ class SettingsSecurityView extends StatelessWidget {
                   ),
                 ListTile(
                   title: Text(L10n.of(context)!.yourPublicKey),
-                  onTap: () => showOkAlertDialog(
-                    useRootNavigator: false,
-                    context: context,
-                    title: L10n.of(context)!.yourPublicKey,
-                    message:
-                        Matrix.of(context).client.fingerprintKey.beautified,
-                    okLabel: L10n.of(context)!.ok,
-                  ),
                   subtitle: Text(
                     Matrix.of(context).client.fingerprintKey.beautified,
                     style: const TextStyle(fontFamily: 'monospace'),
