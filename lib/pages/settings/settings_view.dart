@@ -1,3 +1,4 @@
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -20,6 +21,9 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: CloseButton(
+          onPressed: VRouter.of(context).pop,
+        ),
         title: Text(L10n.of(context)!.settings),
         actions: [
           TextButton.icon(
@@ -111,7 +115,7 @@ class SettingsView extends StatelessWidget {
                           subtitle: Align(
                             alignment: Alignment.centerLeft,
                             child: TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () => FluffyShare.share(mxid, context),
                               icon: const Icon(
                                 Icons.copy_outlined,
                                 size: 14,
@@ -139,9 +143,7 @@ class SettingsView extends StatelessWidget {
               value: controller.showChatBackupBanner == false,
               secondary: const Icon(Icons.backup_outlined),
               title: Text(L10n.of(context)!.chatBackup),
-              onChanged: controller.showChatBackupBanner != false
-                  ? controller.firstRunBootstrapAction
-                  : null,
+              onChanged: controller.firstRunBootstrapAction,
             ),
             const Divider(thickness: 1),
             ListTile(

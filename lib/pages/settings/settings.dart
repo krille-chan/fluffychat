@@ -179,6 +179,15 @@ class SettingsController extends State<Settings> {
   bool? showChatBackupBanner;
 
   void firstRunBootstrapAction([_]) async {
+    if (showChatBackupBanner != true) {
+      showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.chatBackup,
+        message: L10n.of(context)!.onlineKeyBackupEnabled,
+        okLabel: L10n.of(context)!.close,
+      );
+      return;
+    }
     await BootstrapDialog(
       client: Matrix.of(context).client,
     ).show(context);
