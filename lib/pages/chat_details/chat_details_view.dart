@@ -100,42 +100,47 @@ class ChatDetailsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             ListTile(
-                              leading: room.canSendEvent('m.room.topic')
-                                  ? CircleAvatar(
-                                      backgroundColor: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                      foregroundColor: iconColor,
-                                      radius: Avatar.defaultSize / 2,
-                                      child: const Icon(Icons.edit_outlined),
+                              onTap: room.canSendEvent(EventTypes.RoomTopic)
+                                  ? controller.setTopicAction
+                                  : null,
+                              trailing: room.canSendEvent(EventTypes.RoomTopic)
+                                  ? Icon(
+                                      Icons.edit_outlined,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
                                     )
                                   : null,
                               title: Text(
-                                  '${L10n.of(context)!.groupDescription}:',
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontWeight: FontWeight.bold)),
-                              subtitle: LinkText(
-                                text: room.topic.isEmpty
-                                    ? L10n.of(context)!.addGroupDescription
-                                    : room.topic,
-                                linkStyle:
-                                    const TextStyle(color: Colors.blueAccent),
-                                textStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .color,
+                                L10n.of(context)!.groupDescription,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                onLinkTap: (url) =>
-                                    UrlLauncher(context, url).launchUrl(),
                               ),
-                              onTap: room.canSendEvent('m.room.topic')
-                                  ? controller.setTopicAction
-                                  : null,
                             ),
+                            if (room.topic.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: LinkText(
+                                  text: room.topic.isEmpty
+                                      ? L10n.of(context)!.addGroupDescription
+                                      : room.topic,
+                                  linkStyle:
+                                      const TextStyle(color: Colors.blueAccent),
+                                  textStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                                  ),
+                                  onLinkTap: (url) =>
+                                      UrlLauncher(context, url).launchUrl(),
+                                ),
+                              ),
                             const SizedBox(height: 8),
                             const Divider(height: 1),
                             ListTile(

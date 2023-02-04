@@ -39,17 +39,27 @@ class ParticipantListItem extends StatelessWidget {
         title: Row(
           children: <Widget>[
             Text(user.calcDisplayname()),
-            permissionBatch.isEmpty
-                ? Container()
-                : Container(
-                    padding: const EdgeInsets.all(4),
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(child: Text(permissionBatch)),
+            if (permissionBatch.isNotEmpty)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 2,
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
+                child: Text(
+                  permissionBatch,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
+                ),
+              ),
             membershipBatch[user.membership]!.isEmpty
                 ? Container()
                 : Container(
