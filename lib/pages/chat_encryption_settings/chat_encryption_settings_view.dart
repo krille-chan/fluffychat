@@ -79,72 +79,103 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     ),
                     StreamBuilder(
                       stream: room.onUpdate.stream,
-                      builder: (context, snapshot) =>
-                          FutureBuilder<List<DeviceKeys>>(
-                              future: room.getUserDeviceKeys(),
-                              builder: (BuildContext context, snapshot) {
-                                if (snapshot.hasError) {
-                                  return Center(
-                                    child: Text(
-                                        '${L10n.of(context)!.oopsSomethingWentWrong}: ${snapshot.error}'),
-                                  );
-                                }
-                                if (!snapshot.hasData) {
-                                  return const Center(
-                                      child: CircularProgressIndicator.adaptive(
-                                          strokeWidth: 2));
-                                }
-                                final deviceKeys = snapshot.data!;
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: deviceKeys.length,
-                                  itemBuilder: (BuildContext context, int i) =>
-                                      SwitchListTile(
-                                    value: !deviceKeys[i].blocked,
-                                    activeColor: deviceKeys[i].verified
-                                        ? Colors.green
-                                        : Colors.orange,
-                                    onChanged: (_) => controller
-                                        .toggleDeviceKey(deviceKeys[i]),
-                                    title: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            deviceKeys[i].deviceId ??
-                                                L10n.of(context)!.unknownDevice,
+                      builder: (context, snapshot) => FutureBuilder<
+                              List<DeviceKeys>>(
+                          future: room.getUserDeviceKeys(),
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Center(
+                                child: Text(
+                                    '${L10n.of(context)!.oopsSomethingWentWrong}: ${snapshot.error}'),
+                              );
+                            }
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                  child: CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2));
+                            }
+                            final deviceKeys = snapshot.data!;
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: deviceKeys.length,
+                              itemBuilder: (BuildContext context, int i) =>
+                                  SwitchListTile(
+                                value: !deviceKeys[i].blocked,
+                                activeColor: deviceKeys[i].verified
+                                    ? Colors.green
+                                    : Colors.orange,
+                                onChanged: (_) =>
+                                    controller.toggleDeviceKey(deviceKeys[i]),
+                                title: Row(
+                                  children: [
+                                    Icon(
+                                      deviceKeys[i].verified
+                                          ? Icons.verified_outlined
+                                          : deviceKeys[i].blocked
+                                              ? Icons.block_outlined
+                                              : Icons.info_outlined,
+                                      color: deviceKeys[i].verified
+                                          ? Colors.green
+                                          : deviceKeys[i].blocked
+                                              ? Colors.red
+                                              : Colors.orange,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      deviceKeys[i].deviceId ??
+                                          L10n.of(context)!.unknownDevice,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Material(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                AppConfig.borderRadius),
+                                            side: BorderSide(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 4.0),
-                                          child: Chip(
-                                            label: Text(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryContainer,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: Text(
                                               deviceKeys[i].userId,
-                                              style: const TextStyle(
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
                                                 fontSize: 12,
                                                 fontStyle: FontStyle.italic,
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    subtitle: Text(
-                                      deviceKeys[i]
-                                              .ed25519Key
-                                              ?.replaceAllMapped(
-                                                  RegExp(r'.{4}'),
-                                                  (s) => '${s.group(0)} ') ??
-                                          L10n.of(context)!
-                                              .unknownEncryptionAlgorithm,
-                                      style: const TextStyle(
-                                        fontFamily: 'monospace',
                                       ),
                                     ),
+                                  ],
+                                ),
+                                subtitle: Text(
+                                  deviceKeys[i].ed25519Key?.replaceAllMapped(
+                                          RegExp(r'.{4}'),
+                                          (s) => '${s.group(0)} ') ??
+                                      L10n.of(context)!
+                                          .unknownEncryptionAlgorithm,
+                                  style: const TextStyle(
+                                    fontFamily: 'monospace',
                                   ),
-                                );
-                              }),
+                                ),
+                              ),
+                            );
+                          }),
                     ),
                   ] else
                     Padding(
