@@ -94,6 +94,11 @@ abstract class FluffyThemes {
             ),
           ),
         ),
+        dialogTheme: DialogTheme(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          ),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(16),

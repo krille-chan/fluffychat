@@ -31,12 +31,9 @@ class SettingsChatView extends StatelessWidget {
                 title: Text(L10n.of(context)!.emoteSettings),
                 onTap: () => VRouter.of(context).to('emotes'),
                 trailing: const Icon(Icons.chevron_right_outlined),
-                leading: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Icon(Icons.insert_emoticon_outlined),
-                ),
+                leading: const Icon(Icons.emoji_emotions_outlined),
               ),
-              const Divider(height: 1),
+              const Divider(),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.renderRichContent,
                 onChanged: (b) => AppConfig.renderHtml = b,
@@ -68,7 +65,7 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
-              const Divider(height: 1),
+              const Divider(),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
