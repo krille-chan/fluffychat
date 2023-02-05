@@ -213,15 +213,12 @@ class ClientChooserButton extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(99),
-              child: Hero(
-                tag: 'profilesettings',
-                child: Avatar(
-                  mxContent: snapshot.data?.avatarUrl,
-                  name: snapshot.data?.displayName ??
-                      matrix.client.userID!.localpart,
-                  size: 28,
-                  fontSize: 12,
-                ),
+              child: Avatar(
+                mxContent: snapshot.data?.avatarUrl,
+                name: snapshot.data?.displayName ??
+                    matrix.client.userID!.localpart,
+                size: 28,
+                fontSize: 12,
               ),
             ),
           ),

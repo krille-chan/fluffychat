@@ -66,14 +66,11 @@ class SettingsView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                     Avatar.defaultSize * 2.5),
                               ),
-                              child: Hero(
-                                tag: 'profilesettings',
-                                child: Avatar(
-                                  mxContent: profile?.avatarUrl,
-                                  name: displayname,
-                                  size: Avatar.defaultSize * 2.5,
-                                  fontSize: 18 * 2.5,
-                                ),
+                              child: Avatar(
+                                mxContent: profile?.avatarUrl,
+                                name: displayname,
+                                size: Avatar.defaultSize * 2.5,
+                                fontSize: 18 * 2.5,
                               ),
                             ),
                             if (profile != null)
