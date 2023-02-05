@@ -2539,5 +2539,9 @@
   "enterInviteLinkOrMatrixId": "Введіть запрошувальне посилання або Matrix ID...",
   "@enterInviteLinkOrMatrixId": {},
   "reopenChat": "Відновити бесіду",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "noOtherDevicesFound": "Інших пристроїв не знайдено",
+  "@noOtherDevicesFound": {},
+  "noBackupWarning": "Увага! Якщо ви не ввімкнете резервне копіювання бесіди, ви втратите доступ до своїх зашифрованих повідомлень. Наполегливо радимо ввімкнути резервне копіювання бесіди перед виходом.",
+  "@noBackupWarning": {}
 }
