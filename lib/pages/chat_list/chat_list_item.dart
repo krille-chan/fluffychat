@@ -128,7 +128,10 @@ class ChatListItem extends StatelessWidget {
       MatrixLocals(L10n.of(context)!),
     );
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 1,
+      ),
       child: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
@@ -138,6 +141,7 @@ class ChatListItem extends StatelessWidget {
                 ? Theme.of(context).colorScheme.secondaryContainer
                 : Colors.transparent,
         child: ListTile(
+          visualDensity: const VisualDensity(vertical: -0.5),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           onLongPress: onLongPress,
           leading: selected

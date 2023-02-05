@@ -27,6 +27,16 @@ class SettingsChatView extends StatelessWidget {
           withScrolling: true,
           child: Column(
             children: [
+              ListTile(
+                title: Text(L10n.of(context)!.emoteSettings),
+                onTap: () => VRouter.of(context).to('emotes'),
+                trailing: const Icon(Icons.chevron_right_outlined),
+                leading: const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Icon(Icons.insert_emoticon_outlined),
+                ),
+              ),
+              const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.renderRichContent,
                 onChanged: (b) => AppConfig.renderHtml = b,
@@ -58,6 +68,7 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
+              const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
@@ -75,7 +86,6 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.experimentalVoip,
                   defaultValue: AppConfig.experimentalVoip,
                 ),
-              const Divider(height: 1),
               if (Matrix.of(context).webrtcIsSupported && !kIsWeb)
                 ListTile(
                   title: Text(L10n.of(context)!.callingPermissions),
@@ -86,16 +96,6 @@ class SettingsChatView extends StatelessWidget {
                     child: Icon(Icons.call),
                   ),
                 ),
-              const Divider(height: 1),
-              ListTile(
-                title: Text(L10n.of(context)!.emoteSettings),
-                onTap: () => VRouter.of(context).to('emotes'),
-                trailing: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Icon(Icons.insert_emoticon_outlined),
-                ),
-              ),
-              const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,

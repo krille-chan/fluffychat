@@ -87,15 +87,15 @@ class SettingsView extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Align(
-                            alignment: Alignment.centerLeft,
-                            child: TextButton.icon(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextButton.icon(
                               onPressed: controller.setDisplaynameAction,
                               icon: const Icon(
                                 Icons.edit_outlined,
-                                size: 18,
+                                size: 16,
                               ),
                               style: TextButton.styleFrom(
                                 foregroundColor:
@@ -105,13 +105,10 @@ class SettingsView extends StatelessWidget {
                                 displayname,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 18),
+                                //  style: const TextStyle(fontSize: 18),
                               ),
                             ),
-                          ),
-                          subtitle: Align(
-                            alignment: Alignment.centerLeft,
-                            child: TextButton.icon(
+                            TextButton.icon(
                               onPressed: () => FluffyShare.share(mxid, context),
                               icon: const Icon(
                                 Icons.copy_outlined,
@@ -125,10 +122,10 @@ class SettingsView extends StatelessWidget {
                                 mxid,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 12),
+                                //    style: const TextStyle(fontSize: 12),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
                     ],
