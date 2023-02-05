@@ -36,10 +36,10 @@ class UserDeviceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final keys = Matrix.of(context)
-        .client
-        .userDeviceKeys[Matrix.of(context).client.userID]
+    final client = Matrix.of(context).client;
+    final keys = client.userDeviceKeys[Matrix.of(context).client.userID]
         ?.deviceKeys[userDevice.deviceId];
+    final isOwnDevice = userDevice.deviceId == client.deviceID;
 
     return ListTile(
       onTap: () async {
@@ -51,7 +51,7 @@ class UserDeviceListItem extends StatelessWidget {
               key: UserDeviceListItemAction.rename,
               label: L10n.of(context)!.changeDeviceName,
             ),
-            if (keys != null) ...{
+            if (!isOwnDevice && keys != null) ...{
               SheetAction(
                 key: UserDeviceListItemAction.verify,
                 label: L10n.of(context)!.verifyStart,
@@ -69,11 +69,12 @@ class UserDeviceListItem extends StatelessWidget {
                   isDestructiveAction: true,
                 ),
             },
-            SheetAction(
-              key: UserDeviceListItemAction.remove,
-              label: L10n.of(context)!.delete,
-              isDestructiveAction: true,
-            ),
+            if (!isOwnDevice)
+              SheetAction(
+                key: UserDeviceListItemAction.remove,
+                label: L10n.of(context)!.delete,
+                isDestructiveAction: true,
+              ),
           ],
         );
         if (action == null) return;

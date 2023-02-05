@@ -69,6 +69,13 @@ class DevicesSettingsView extends StatelessWidget {
                               ? null
                               : () => controller.removeDevicesAction(
                                   controller.notThisDevice),
+                        )
+                      else
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(L10n.of(context)!.noOtherDevicesFound),
+                          ),
                         ),
                       const Divider(height: 1),
                     ],

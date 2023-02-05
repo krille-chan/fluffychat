@@ -2517,5 +2517,6 @@
     "letsStart": "Let's start",
     "enterInviteLinkOrMatrixId": "Enter invite link or Matrix ID...",
     "reopenChat": "Reopen chat",
-    "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out."
+    "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
+    "noOtherDevicesFound": "No other devices found"
 }
