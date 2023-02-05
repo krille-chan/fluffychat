@@ -28,21 +28,32 @@ class InvitationSelectionView extends StatelessWidget {
                     .toSegments(['rooms', controller.roomId!]),
               ),
         titleSpacing: 0,
-        title: TextField(
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: L10n.of(context)!.inviteContactToGroup(groupName),
-            suffixIconConstraints: const BoxConstraints(
-              maxWidth: 48,
-              maxHeight: 48,
-              minWidth: 48,
+        title: SizedBox(
+          height: 44,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: TextField(
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                hintText: L10n.of(context)!.inviteContactToGroup(groupName),
+                suffixIcon: controller.loading
+                    ? const Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 10.0,
+                          horizontal: 12,
+                        ),
+                        child: SizedBox.square(
+                          dimension: 24,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      )
+                    : const Icon(Icons.search_outlined),
+              ),
+              onChanged: controller.searchUserWithCoolDown,
             ),
-            suffixIcon: controller.loading
-                ? const CircularProgressIndicator.adaptive()
-                : const Icon(Icons.search_outlined),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           ),
-          onChanged: controller.searchUserWithCoolDown,
         ),
       ),
       body: MaxWidthBody(
@@ -85,8 +96,18 @@ class InvitationSelectionView extends StatelessWidget {
                         mxContent: contacts[i].avatarUrl,
                         name: contacts[i].calcDisplayname(),
                       ),
-                      title: Text(contacts[i].calcDisplayname()),
-                      subtitle: Text(contacts[i].id),
+                      title: Text(
+                        contacts[i].calcDisplayname(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        contacts[i].id,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
                       onTap: () =>
                           controller.inviteAction(context, contacts[i].id),
                     ),
