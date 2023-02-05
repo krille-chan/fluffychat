@@ -2539,5 +2539,9 @@
   "enterInviteLinkOrMatrixId": "Davet bağlantısını veya Matris kimliğini girin...",
   "@enterInviteLinkOrMatrixId": {},
   "reopenChat": "Sohbeti yeniden aç",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "noBackupWarning": "Uyarı! Sohbet yedeklemesini etkinleştirmezseniz, şifrelenen mesajlarınıza erişiminizi kaybedersiniz. Oturumu kapatmadan önce sohbet yedeklemesini etkinleştirmeniz önemle tavsiye edilir.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "Başka aygıt bulunamadı",
+  "@noOtherDevicesFound": {}
 }
