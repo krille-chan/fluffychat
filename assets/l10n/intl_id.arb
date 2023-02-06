@@ -2538,5 +2538,9 @@
   "enterInviteLinkOrMatrixId": "Masukkan tautan undangan atau ID Matrix...",
   "@enterInviteLinkOrMatrixId": {},
   "reopenChat": "Buka obrolan lagi",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "noBackupWarning": "Peringatan! Tanpa mengaktifkan cadangan percakapan, kamu akan kehilangan akses ke pesan terenkripsimu. Disarankan untuk mengaktifkan cadangan percakapan terlebih dahulu sebelum keluar dari akun.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "Tidak ada perangkat lain yang ditemukan",
+  "@noOtherDevicesFound": {}
 }
