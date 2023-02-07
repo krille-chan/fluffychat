@@ -2539,5 +2539,9 @@
   "enterInviteLinkOrMatrixId": "Entrez le lien d'invitation ou l'ID Matrix...",
   "@enterInviteLinkOrMatrixId": {},
   "noSearchResult": "Aucun résultat de recherche correspondant.",
-  "@noSearchResult": {}
+  "@noSearchResult": {},
+  "noOtherDevicesFound": "Aucun autre appareil trouvé",
+  "@noOtherDevicesFound": {},
+  "noBackupWarning": "Attention ! Sans l'activation de la sauvegarde de la discussion, vous perdrez l'accès à vos messages chiffrés. Il est fortement recommandé d'activer la sauvegarde de la discussion avant de se déconnecter.",
+  "@noBackupWarning": {}
 }
