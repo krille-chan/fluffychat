@@ -9,7 +9,7 @@ environment:
 dependencies:
   adaptive_dialog: ^1.8.0+1
   animations: ^2.0.7
-  badges: ^2.0.3
+  badges: ^3.0.2
   blurhash_dart: ^1.1.0
   callkeep: ^0.3.2
   chewie: ^1.3.6
@@ -32,7 +32,7 @@ dependencies:
   flutter_app_lock: ^3.0.0
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
-  flutter_foreground_task: ^3.10.0
+  flutter_foreground_task: ^4.0.0
   flutter_local_notifications: ^12.0.2
   flutter_localizations:
     sdk: flutter
@@ -48,7 +48,7 @@ dependencies:
     git: https://github.com/radzio-it/flutter-webrtc.git
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
-  handy_window: ^0.1.9
+  handy_window: ^0.3.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
@@ -59,7 +59,7 @@ dependencies:
   just_audio_mpv: ^0.1.6
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
-  matrix: ^0.15.12
+  matrix: ^0.16.0
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
@@ -75,7 +75,7 @@ dependencies:
   record: ^4.4.4
   scroll_to_index: ^3.0.1
   share_plus: ^4.0.10+1
-  shared_preferences: 2.0.15 # Pinned because https://github.com/flutter/flutter/issues/118401
+  shared_preferences: ^2.0.17 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
   tor_detector_web: ^1.1.0
@@ -91,7 +91,7 @@ dependencies:
   webrtc_interface: ^1.0.10
 
 dev_dependencies:
-  dart_code_metrics: ^4.10.1
+  dart_code_metrics: ^5.5.1
   flutter_lints: ^2.0.1
   flutter_native_splash: ^2.0.3+1
   flutter_test:
