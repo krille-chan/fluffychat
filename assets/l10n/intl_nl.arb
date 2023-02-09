@@ -315,12 +315,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeYourAvatar": "Je avatar veranderen",
+  "changeYourAvatar": "Jouw avatar veranderen",
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "De encryptie is beschadigd",
+  "channelCorruptedDecryptError": "De versleuteling is beschadigd",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -384,7 +384,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Deelnemen aan de gegeven kamer",
+  "commandHint_join": "Deelnemen aan de kamer",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -404,12 +404,12 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_myroomavatar": "Je avatar voor deze kamer instellen (met mxc-uri)",
+  "commandHint_myroomavatar": "Jouw avatar voor deze kamer instellen (met mxc-uri)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHint_myroomnick": "Je naam voor deze kamer instellen",
+  "commandHint_myroomnick": "Jouw naam voor deze kamer instellen",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
@@ -511,7 +511,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotDecryptMessage": "Kan het bericht niet decoderen: {error}",
+  "couldNotDecryptMessage": "Kan het bericht niet ontsleutelen: {error}",
   "@couldNotDecryptMessage": {
     "type": "text",
     "placeholders": {
@@ -1389,12 +1389,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterAMatrixIdentifier": "Voer een Matrix ID in.",
+  "pleaseEnterAMatrixIdentifier": "Voer een Matrix-ID in.",
   "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPassword": "Voer je wachtwoord in",
+  "pleaseEnterYourPassword": "Voer jouw wachtwoord in",
   "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
@@ -1500,7 +1500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeYourAvatar": "Je avatar verwijderen",
+  "removeYourAvatar": "Jouw avatar verwijderen",
   "@removeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -1773,7 +1773,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "statusExampleMessage": "Hoe gaat het met je vandaag?",
+  "statusExampleMessage": "Hoe gaat het met jouw vandaag?",
   "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
@@ -2132,9 +2132,9 @@
   "@addAccount": {},
   "link": "Link",
   "@link": {},
-  "yourChatBackupHasBeenSetUp": "Uw chat back-up is ingesteld.",
+  "yourChatBackupHasBeenSetUp": "Jouw chatback-up is ingesteld.",
   "@yourChatBackupHasBeenSetUp": {},
-  "yourUserId": "Uw persoon-ID:",
+  "yourUserId": "Jouw persoon-ID:",
   "@yourUserId": {},
   "unverified": "Niet geverifieerd",
   "@unverified": {},
@@ -2291,7 +2291,7 @@
   "@widgetCustom": {},
   "widgetName": "Naam",
   "@widgetName": {},
-  "widgetUrlError": "Dit is geen geldige URL.",
+  "widgetUrlError": "Dit is geen geldige link.",
   "@widgetUrlError": {},
   "widgetNameError": "Geef een naam op.",
   "@widgetNameError": {},
@@ -2365,7 +2365,7 @@
       "user": {}
     }
   },
-  "noEmailWarning": "Voer een geldig e-mailadres in. Anders kan je je wachtwoord niet opnieuw instellen. Als je dat niet wilt, tik je nogmaals op de knop om door te gaan.",
+  "noEmailWarning": "Voer een geldig e-mailadres in. Anders kan je jouw wachtwoord niet opnieuw instellen. Als je dat niet wilt, tik je nogmaals op de knop om door te gaan.",
   "@noEmailWarning": {},
   "recoveryKey": "Herstelsleutel",
   "@recoveryKey": {},
@@ -2399,13 +2399,13 @@
   "@dehydrate": {},
   "dehydrateWarning": "Deze actie kan niet ongedaan worden gemaakt. Zorg ervoor dat je het back-upbestand veilig opslaat.",
   "@dehydrateWarning": {},
-  "dehydrateTor": "TOR-sessie: Exporteer sessie",
+  "dehydrateTor": "TOR-sessies: Exporteer sessie",
   "@dehydrateTor": {},
   "dehydrateTorLong": "Voor TOR-sessies is het aanbevolen de sessie te exporteren alvorens het venster te sluiten.",
   "@dehydrateTorLong": {},
   "hydrateTor": "TOR-sessie: Importeren sessie export",
   "@hydrateTor": {},
-  "hydrateTorLong": "Heb je de vorige keer je sessie geëxporteerd met TOR? Importeer het dan snel en ga verder met chatten.",
+  "hydrateTorLong": "Heb je de vorige keer jouw sessie geëxporteerd met TOR? Importeer het dan snel en ga verder met chatten.",
   "@hydrateTorLong": {},
   "hydrate": "Herstellen vanuit back-upbestand",
   "@hydrate": {},
@@ -2427,7 +2427,7 @@
   "@updateAvailable": {},
   "updateNow": "Update op de achtergrond starten",
   "@updateNow": {},
-  "confirmMatrixId": "Bevestig jouw Matrix ID om je account te verwijderen.",
+  "confirmMatrixId": "Bevestig jouw Matrix-ID om je account te verwijderen.",
   "@confirmMatrixId": {},
   "supposedMxid": "Dit moet {mxid} zijn",
   "@supposedMxid": {
@@ -2442,7 +2442,7 @@
   "@commandHint_markasgroup": {},
   "whyIsThisMessageEncrypted": "Waarom is dit bericht onleesbaar?",
   "@whyIsThisMessageEncrypted": {},
-  "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chat back-up hebt aangezet in de instellingen.",
+  "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen.",
   "@noKeyForThisMessage": {},
   "enterSpace": "Space betreden",
   "@enterSpace": {},
@@ -2454,11 +2454,11 @@
   "@screenSharingTitle": {},
   "screenSharingDetail": "Je deelt je scherm in FuffyChat",
   "@screenSharingDetail": {},
-  "callingPermissions": "Belrechten",
+  "callingPermissions": "Telefoon-rechten",
   "@callingPermissions": {},
-  "callingAccount": "Belaccount",
+  "callingAccount": "Telefoon-account",
   "@callingAccount": {},
-  "callingAccountDetails": "Hiermee kan FluffyChat de Android-kiezer-app gebruiken.",
+  "callingAccountDetails": "Hiermee kan FluffyChat de Android telefoon-app gebruiken.",
   "@callingAccountDetails": {},
   "appearOnTop": "Bovenaan verschijnen",
   "@appearOnTop": {},
@@ -2538,5 +2538,9 @@
   "startFirstChat": "Begin je eerste chat",
   "@startFirstChat": {},
   "newSpaceDescription": "Met spaces kun je je chats samenvoegen en privé- of openbare community's bouwen.",
-  "@newSpaceDescription": {}
+  "@newSpaceDescription": {},
+  "noOtherDevicesFound": "Geen andere apparaten gevonden",
+  "@noOtherDevicesFound": {},
+  "noBackupWarning": "Waarschuwing! Zonder de chatback-up in te schakelen, verlies je de toegang tot je versleutelde berichten. Het is sterk aanbevolen om eerst de chatback-up in te schakelen voordat je uitlogt.",
+  "@noBackupWarning": {}
 }
