@@ -109,7 +109,7 @@
       "username": {}
     }
   },
-  "badServerLoginTypesException": "ホームサーバーでサポートされているログインタイプ：\n{serverVersions}\nアプリでは{supportedVersions}しかサポートされていません",
+  "badServerLoginTypesException": "ホームサーバーでサポートされているログインタイプ：\n{serverVersions}\nアプリがサポートしているログインタイプ：\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -423,7 +423,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "{username}がチャットを作成しました",
+  "createdTheChat": "💬 {username}がチャットを作成しました",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -839,7 +839,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "{username}が{targetName}を招待しました",
+  "invitedUser": "📩 {username} が {targetName} を招待しました",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -870,7 +870,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "{username}がチャットに参加しました",
+  "joinedTheChat": "👋 {username} がチャットに参加しました",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -887,7 +887,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username}は{targetName}をキックしました",
+  "kicked": "👞 {username} は {targetName} をキックしました",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -895,7 +895,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username}は{targetName}をキックしBANしました",
+  "kickedAndBanned": "🙅 {username} が {targetName} をキックしブロックしました",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1024,7 +1024,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "FluffyChatに新しいメッセージがあります",
+  "newMessageInFluffyChat": "💬 FluffyChatに新しいメッセージがあります",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1059,7 +1059,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "あなたのスマホにはグーグルサービスがないようですね。プライバシーを保護するための良い選択です！Push通知を受け取るにはmicroGを使うことを推奨しています: https://microg.org/",
+  "noGoogleServicesWarning": "あなたのスマホにはGoogleサービスがないようですね。プライバシーを保護するための良い選択です！プッシュ通知を受け取るには https://microg.org/ または https://unifiedpush.org/ を使うことをお勧めします。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1319,7 +1319,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "追放を取り消し",
+  "unbanFromChat": "チャットからのブロックを解除する",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1437,35 +1437,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username}はファイルを送信しました",
+  "sentAFile": "📁 {username}はファイルを送信しました",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username}は音声を送信しました",
+  "sentAnAudio": "🎤 {username}は音声を送信しました",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username}は画像を送信しました",
+  "sentAPicture": "🖼️ {username}は画像を送信しました",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username}はステッカーを送信しました",
+  "sentASticker": "😊 {username}はステッカーを送信しました",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username}は動画を送信しました",
+  "sentAVideo": "🎥 {username}は動画を送信しました",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -1684,7 +1684,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount}の未読メッセージ}}",
+  "unreadChats": "{unreadCount, plural, =1{1件の未読メッセージ} other{{unreadCount}件の未読メッセージ}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1714,7 +1714,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username}は退室しました",
+  "userLeftTheChat": "🚪 {username}はチャットから退室しました",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1829,12 +1829,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "なぜこれを通報したいのですか？",
+  "whyDoYouWantToReportThis": "これを通報する理由",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "新しい秘密鍵を作るためにチャットのバックアップを消去しますか？",
+  "wipeChatBackup": "チャットのバックアップを消去して、新しいリカバリーキーを作りますか？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -1997,5 +1997,464 @@
       "command": {}
     },
     "description": "State that {command} is not a valid /command."
-  }
+  },
+  "oneClientLoggedOut": "クライアントの 1つがログアウトしました",
+  "@oneClientLoggedOut": {},
+  "addAccount": "アカウントを追加",
+  "@addAccount": {},
+  "editBundlesForAccount": "このアカウントのバンドルを編集",
+  "@editBundlesForAccount": {},
+  "unverified": "未検証",
+  "@unverified": {},
+  "sender": "送信者",
+  "@sender": {},
+  "unsubscribeStories": "ストーリーの購読を解除する",
+  "@unsubscribeStories": {},
+  "yourStory": "あなたのストーリー",
+  "@yourStory": {},
+  "matrixWidgets": "Matrixのウィジェット",
+  "@matrixWidgets": {},
+  "placeCall": "電話をかける",
+  "@placeCall": {},
+  "voiceCall": "音声通話",
+  "@voiceCall": {},
+  "unsupportedAndroidVersionLong": "この機能を利用するには、より新しいAndroidのバージョンが必要です。アップデートまたはLineage OSのサポートをご確認ください。",
+  "@unsupportedAndroidVersionLong": {},
+  "widgetVideo": "動画",
+  "@widgetVideo": {},
+  "widgetName": "名称",
+  "@widgetName": {},
+  "widgetCustom": "カスタム",
+  "@widgetCustom": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "dehydrateWarning": "この操作は元に戻せません。バックアップファイルを安全に保存してください。",
+  "@dehydrateWarning": {},
+  "dehydrate": "セッションのエクスポートとデバイスの消去",
+  "@dehydrate": {},
+  "messageType": "メッセージの種類",
+  "@messageType": {},
+  "start": "開始",
+  "@start": {},
+  "publish": "公開",
+  "@publish": {},
+  "addDescription": "説明を追加",
+  "@addDescription": {},
+  "indexedDbErrorTitle": "プライベートモードに関する問題",
+  "@indexedDbErrorTitle": {},
+  "addWidget": "ウィジェットを追加",
+  "@addWidget": {},
+  "youBannedUser": "{user} を禁止しました",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youJoinedTheChat": "チャットに参加しました",
+  "@youJoinedTheChat": {},
+  "youHaveWithdrawnTheInvitationFor": "{user} への招待を取り下げました",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "users": "ユーザー",
+  "@users": {},
+  "youRejectedTheInvitation": "招待を拒否しました",
+  "@youRejectedTheInvitation": {},
+  "screenSharingDetail": "FuffyChatで画面を共有しています",
+  "@screenSharingDetail": {},
+  "enterASpacepName": "スペース名を入力してください",
+  "@enterASpacepName": {},
+  "homeserver": "ホームサーバー",
+  "@homeserver": {},
+  "scanQrCode": "QRコードをスキャン",
+  "@scanQrCode": {},
+  "obtainingLocation": "位置情報を取得しています…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToBundle": "バンドルに追加",
+  "@addToBundle": {},
+  "removeFromBundle": "このバンドルから削除",
+  "@removeFromBundle": {},
+  "bundleName": "バンドル名",
+  "@bundleName": {},
+  "noMatrixServer": "{server1} はMatrixのサーバーではありません。代わりに {server2} を使用しますか?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "openVideoCamera": "ビデオ用にカメラを開く",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "link": "リンク",
+  "@link": {},
+  "or": "または",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "登録",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "アバターを削除する",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "ファイルを保存",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recoveryKey": "リカバリーキー",
+  "@recoveryKey": {},
+  "showDirectChatsInSpaces": "関連するダイレクトチャットをスペースに表示する",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "singlesignon": "シングルサインオン",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "スペースは公開されています",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "spaceName": "スペース名",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFirstChat": "最初のチャットを開始する",
+  "@startFirstChat": {},
+  "addToSpaceDescription": "このチャットを追加するスペースを選択してください。",
+  "@addToSpaceDescription": {},
+  "messageInfo": "メッセージの情報",
+  "@messageInfo": {},
+  "openGallery": "ギャラリーを開く",
+  "@openGallery": {},
+  "removeFromSpace": "スペースから削除",
+  "@removeFromSpace": {},
+  "pleaseEnterRecoveryKeyDescription": "古いメッセージを解除するには、以前のセッションで生成されたリカバリーキーを入力してください。リカバリーキーはパスワードではありません。",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "thisUserHasNotPostedAnythingYet": "このユーザーはまだストーリーに何も投稿していません",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "replyHasBeenSent": "返信が送信されました",
+  "@replyHasBeenSent": {},
+  "videoWithSize": "ビデオ ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "storyFrom": "{date}からのストーリー:\n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "whoCanSeeMyStoriesDesc": "あなたのストーリーでは、人々がお互いを見て連絡を取ることができることに注意してください。",
+  "@whoCanSeeMyStoriesDesc": {},
+  "iUnderstand": "わかりました",
+  "@iUnderstand": {},
+  "openChat": "チャットを開く",
+  "@openChat": {},
+  "experimentalVideoCalls": "実験的なビデオ通話",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "メールアドレスまたはユーザー名",
+  "@emailOrUsername": {},
+  "switchToAccount": "アカウント {number} に切り替える",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "次のアカウント",
+  "@nextAccount": {},
+  "youAcceptedTheInvitation": "👍 招待を承諾しました",
+  "@youAcceptedTheInvitation": {},
+  "errorAddingWidget": "ウィジェットの追加中にエラーが発生しました。",
+  "@errorAddingWidget": {},
+  "widgetNameError": "表示名を入力してください。",
+  "@widgetNameError": {},
+  "stories": "ストーリー",
+  "@stories": {},
+  "youUnbannedUser": "{user} の禁止を解除しました",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "📩 {user} から招待されました",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "👞 {user} をキックしました",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "🙅 {user} をキックしてブロックしました",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "storeInAppleKeyChain": "Apple KeyChainに保存",
+  "@storeInAppleKeyChain": {},
+  "storeInAndroidKeystore": "Android KeyStoreに保存する",
+  "@storeInAndroidKeystore": {},
+  "storeInSecureStorageDescription": "このデバイスの安全なストレージにリカバリーキーを保存。",
+  "@storeInSecureStorageDescription": {},
+  "unlockOldMessages": "古いメッセージのロックを解除する",
+  "@unlockOldMessages": {},
+  "enableAutoBackups": "自動バックアップを有効にする",
+  "@enableAutoBackups": {},
+  "callingAccount": "通話アカウント",
+  "@callingAccount": {},
+  "callingPermissions": "通話の権限",
+  "@callingPermissions": {},
+  "screenSharingTitle": "画面共有",
+  "@screenSharingTitle": {},
+  "foregroundServiceRunning": "この通知は、フォアグラウンド サービスの実行中に表示されます。",
+  "@foregroundServiceRunning": {},
+  "custom": "カスタム",
+  "@custom": {},
+  "countFiles": "{count}個のファイル",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "storeSecurlyOnThisDevice": "このデバイスに安全に保管する",
+  "@storeSecurlyOnThisDevice": {},
+  "whyIsThisMessageEncrypted": "このメッセージが読めない理由",
+  "@whyIsThisMessageEncrypted": {},
+  "otherCallingPermissions": "マイク、カメラ、その他FluffyChatの権限",
+  "@otherCallingPermissions": {},
+  "appearOnTopDetails": "アプリをトップに表示できるようにする（すでに通話アカウントとしてFluffychatを設定している場合は必要ありません）",
+  "@appearOnTopDetails": {},
+  "loginWithOneClick": "ワンクリックでサインイン",
+  "@loginWithOneClick": {},
+  "dehydrateTorLong": "TOR ユーザーの場合、ウィンドウを閉じる前にセッションをエクスポートすることをお勧めします。",
+  "@dehydrateTorLong": {},
+  "hydrateTorLong": "前回、TOR でセッションをエクスポートしましたか？すぐにインポートしてチャットを続けましょう。",
+  "@hydrateTorLong": {},
+  "shareYourInviteLink": "招待リンクを共有する",
+  "@shareYourInviteLink": {},
+  "enableMultiAccounts": "(ベータ版) このデバイスで複数のアカウントを有効にする",
+  "@enableMultiAccounts": {},
+  "pleaseEnterRecoveryKey": "リカバリーキーを入力してください。",
+  "@pleaseEnterRecoveryKey": {},
+  "serverRequiresEmail": "このサーバーは、登録のためにメールアドレスを検証する必要があります。",
+  "@serverRequiresEmail": {},
+  "sendSticker": "ステッカーを送る",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "同期中...お待ちください。",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emojis": "絵文字",
+  "@emojis": {},
+  "storyPrivacyWarning": "あなたのストーリーでは、人々がお互いを見て連絡を取ることができることに注意してください。ストーリーは24時間表示されますが、すべてのデバイスとサーバーから削除されるという保証はありません。",
+  "@storyPrivacyWarning": {},
+  "markAsRead": "既読にする",
+  "@markAsRead": {},
+  "videoCallsBetaWarning": "ビデオ通話は、現在ベータ版であることにご注意ください。すべてのプラットフォームで期待通りに動作しない、あるいはまったく動作しない可能性があります。",
+  "@videoCallsBetaWarning": {},
+  "confirmEventUnpin": "イベントの固定を完全に解除してもよろしいですか？",
+  "@confirmEventUnpin": {},
+  "unsupportedAndroidVersion": "サポートされていないAndroidのバージョン",
+  "@unsupportedAndroidVersion": {},
+  "user": "ユーザー",
+  "@user": {},
+  "enterInviteLinkOrMatrixId": "招待リンクまたはMatrixのIDを入力してください...",
+  "@enterInviteLinkOrMatrixId": {},
+  "newGroup": "新しいグループ",
+  "@newGroup": {},
+  "noBackupWarning": "警告！チャットのバックアップを有効にしないと、暗号化されたメッセージにアクセスできなくなります。ログアウトする前に、まずチャットのバックアップを有効にすることを強くお勧めします。",
+  "@noBackupWarning": {},
+  "disableEncryptionWarning": "セキュリティ上の理由から、以前は暗号化が有効だったチャットで暗号化を無効にすることはできません。",
+  "@disableEncryptionWarning": {},
+  "youInvitedUser": "📩 {user} を招待しました",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "reactedWith": "{sender} が {reaction} で反応しました",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "createNewSpace": "新しいスペース",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetUrlError": "有効なURLではありません。",
+  "@widgetUrlError": {},
+  "reportUser": "ユーザーを報告",
+  "@reportUser": {},
+  "errorObtainingLocation": "位置情報の取得中にエラーが発生しました: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "pinMessage": "部屋にピン留めする",
+  "@pinMessage": {},
+  "previousAccount": "前のアカウント",
+  "@previousAccount": {},
+  "editWidgets": "ウィジェットを編集",
+  "@editWidgets": {},
+  "pleaseChoose": "選択してください",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "おっと！残念ながら、プッシュ通知の設定中にエラーが発生しました。",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noOtherDevicesFound": "他のデバイスが見つかりません",
+  "@noOtherDevicesFound": {},
+  "typeInInviteLinkManually": "招待リンクを手動で入力...",
+  "@typeInInviteLinkManually": {},
+  "recoveryKeyLost": "リカバリーキーを紛失した場合",
+  "@recoveryKeyLost": {},
+  "shareLocation": "位置情報の共有",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "time": "時間",
+  "@time": {},
+  "sendAsText": "テキストとして送信",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "commandHint_googly": "ぎょろ目を送る",
+  "@commandHint_googly": {},
+  "commandHint_hug": "ハグを送る",
+  "@commandHint_hug": {},
+  "encryptThisChat": "このチャットを暗号化する",
+  "@encryptThisChat": {},
+  "noEmailWarning": "有効なメールアドレスを入力してください。入力しないと、パスワードをリセットすることができなくなります。不要な場合は、もう一度ボタンをタップして続けてください。",
+  "@noEmailWarning": {},
+  "commandHint_markasdm": "ダイレクトメッセージの部屋としてマークする",
+  "@commandHint_markasdm": {},
+  "commandHint_dm": "ダイレクトチャットを開始する\n暗号化を無効にするには、--no-encryptionを使用してください",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_leave": "この部屋を退出",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_myroomavatar": "この部屋の写真を設定する (mxc-uriで)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "この部屋の表示名を設定する",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_plain": "書式設定されていないテキストを送信する",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_react": "リアクションとして返信を送信する",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "dehydrateTor": "TOR ユーザー: セッションをエクスポート",
+  "@dehydrateTor": {},
+  "hydrateTor": "TOR ユーザー: セッションのエクスポートをインポート",
+  "@hydrateTor": {},
+  "locationDisabledNotice": "位置情報サービスが無効になっています。位置情報を共有できるようにするには、位置情報サービスを有効にしてください。",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noSearchResult": "一致する検索結果がありません。",
+  "@noSearchResult": {},
+  "dehydrateShare": "これはあなたの非公開の FluffyChat エクスポートです。なくさないようにして、公開せず保管してください。",
+  "@dehydrateShare": {},
+  "locationPermissionDeniedNotice": "位置情報の権限が拒否されました。位置情報を共有できるように許可してください。",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "letsStart": "始めましょう",
+  "@letsStart": {},
+  "deviceKeys": "デバイスキー:",
+  "@deviceKeys": {},
+  "sorryThatsNotPossible": "申し訳ありません...それは不可能です",
+  "@sorryThatsNotPossible": {},
+  "endToEndEncryption": "エンドツーエンド暗号化",
+  "@endToEndEncryption": {},
+  "wasDirectChatDisplayName": "空のチャット (以前は {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "doNotShowAgain": "今後表示しない",
+  "@doNotShowAgain": {},
+  "hideUnimportantStateEvents": "重要でない状態イベントを非表示にする",
+  "@hideUnimportantStateEvents": {},
+  "numChats": "{number} チャット",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "allSpaces": "すべてのスペース",
+  "@allSpaces": {},
+  "enterRoom": "部屋に入る",
+  "@enterRoom": {},
+  "enterSpace": "スペースに入る",
+  "@enterSpace": {},
+  "newSpace": "新しいスペース",
+  "@newSpace": {},
+  "reopenChat": "チャットを再開する",
+  "@reopenChat": {}
 }
