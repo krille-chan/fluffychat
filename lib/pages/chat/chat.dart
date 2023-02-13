@@ -446,6 +446,7 @@ class ChatController extends State<Chat> {
   }
 
   void voiceMessageAction() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
       if (info.version.sdkInt < 19) {
@@ -486,7 +487,16 @@ class ChatController extends State<Chat> {
           'waveform': result.waveform,
         },
       },
-    );
+    ).catchError((e) {
+      scaffoldMessenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            (e as Object).toLocalizedString(context),
+          ),
+        ),
+      );
+      return null;
+    });
     setState(() {
       replyEvent = null;
     });

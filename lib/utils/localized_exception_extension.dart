@@ -19,6 +19,9 @@ extension LocalizedExceptionExtension on Object {
           return (this as MatrixException).errorMessage;
       }
     }
+    if (this is FileTooBigMatrixException) {
+      return L10n.of(context)!.fileIsTooBigForServer;
+    }
     if (this is BadServerVersionsException) {
       final serverVersions = (this as BadServerVersionsException)
           .serverVersions
