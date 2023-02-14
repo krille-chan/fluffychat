@@ -136,6 +136,10 @@ class ChatDetailsView extends StatelessWidget {
                                         .textTheme
                                         .bodyMedium!
                                         .color,
+                                    decorationColor: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
                                   ),
                                   onLinkTap: (url) =>
                                       UrlLauncher(context, url).launchUrl(),

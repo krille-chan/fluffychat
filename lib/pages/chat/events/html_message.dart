@@ -55,6 +55,7 @@ class HtmlMessage extends StatelessWidget {
           themeData.textTheme.bodyMedium!.copyWith(
             color: themeData.colorScheme.secondary,
             decoration: TextDecoration.underline,
+            decorationColor: themeData.colorScheme.secondary,
           ),
       shrinkToFit: true,
       maxLines: maxLines,

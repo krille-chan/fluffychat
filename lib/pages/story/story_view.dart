@@ -280,6 +280,7 @@ class StoryView extends StatelessWidget {
                         fontSize: 24,
                         color: Colors.blue.shade50,
                         decoration: TextDecoration.underline,
+                        decorationColor: Colors.blue.shade50,
                         shadows: event.messageType == MessageTypes.Text
                             ? null
                             : textShadows,

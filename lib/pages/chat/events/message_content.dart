@@ -154,6 +154,7 @@ class MessageContent extends StatelessWidget {
                   color: textColor.withAlpha(150),
                   fontSize: bigEmotes ? fontSize * 3 : fontSize,
                   decoration: TextDecoration.underline,
+                  decorationColor: textColor.withAlpha(150),
                 ),
                 room: event.room,
                 emoteSize: bigEmotes ? fontSize * 3 : fontSize * 1.5,
@@ -243,6 +244,7 @@ class MessageContent extends StatelessWidget {
                       color: textColor.withAlpha(150),
                       fontSize: bigEmotes ? fontSize * 3 : fontSize,
                       decoration: TextDecoration.underline,
+                      decorationColor: textColor.withAlpha(150),
                     ),
                     onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
                   );
