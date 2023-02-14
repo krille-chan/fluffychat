@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -42,7 +40,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   int currentPosition = 0;
   double maxPosition = 0;
 
-  File? audioFile;
+  MatrixFile? audioFile;
 
   @override
   void dispose() {
@@ -62,14 +60,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     setState(() => status = AudioPlayerStatus.downloading);
     try {
       final matrixFile = await widget.event.downloadAndDecryptAttachment();
-      final tempDir = await getTemporaryDirectory();
-      final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
-      final file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
-      await file.writeAsBytes(matrixFile.bytes);
-
       setState(() {
-        audioFile = file;
+        audioFile = matrixFile;
         status = AudioPlayerStatus.downloaded;
       });
       _playAction();
@@ -117,7 +109,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     });
     onPlayerStateChanged ??=
         audioPlayer.playingStream.listen((_) => setState(() {}));
-    audioPlayer.setFilePath(audioFile!.path);
+    audioPlayer.setAudioSource(MatrixFileAudioSource(audioFile!));
     audioPlayer.play().catchError((e, s) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -248,6 +240,25 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// To use a MatrixFile as an AudioSource for the just_audio package
+class MatrixFileAudioSource extends StreamAudioSource {
+  final MatrixFile file;
+  MatrixFileAudioSource(this.file);
+
+  @override
+  Future<StreamAudioResponse> request([int? start, int? end]) async {
+    start ??= 0;
+    end ??= file.bytes.length;
+    return StreamAudioResponse(
+      sourceLength: file.bytes.length,
+      contentLength: end - start,
+      offset: start,
+      stream: Stream.value(file.bytes.sublist(start, end)),
+      contentType: file.mimeType,
     );
   }
 }
