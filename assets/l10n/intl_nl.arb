@@ -2542,5 +2542,7 @@
   "noOtherDevicesFound": "Geen andere apparaten gevonden",
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Waarschuwing! Zonder de chatback-up in te schakelen, verlies je de toegang tot je versleutelde berichten. Het is sterk aanbevolen om eerst de chatback-up in te schakelen voordat je uitlogt.",
-  "@noBackupWarning": {}
+  "@noBackupWarning": {},
+  "fileIsTooBigForServer": "De server meldt dat het bestand te groot is om te verzenden.",
+  "@fileIsTooBigForServer": {}
 }
