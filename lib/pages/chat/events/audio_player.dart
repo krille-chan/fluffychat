@@ -29,7 +29,7 @@ enum AudioPlayerStatus { notDownloaded, downloading, downloaded }
 
 class AudioPlayerState extends State<AudioPlayerWidget> {
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
-  final AudioPlayer audioPlayer = AudioPlayer();
+  AudioPlayer? audioPlayer;
 
   StreamSubscription? onAudioPositionChanged;
   StreamSubscription? onDurationChanged;
@@ -44,8 +44,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   @override
   void dispose() {
-    if (audioPlayer.playerState.playing) {
-      audioPlayer.stop();
+    if (audioPlayer?.playerState.playing == true) {
+      audioPlayer?.stop();
     }
     onAudioPositionChanged?.cancel();
     onDurationChanged?.cancel();
@@ -76,6 +76,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   }
 
   void _playAction() async {
+    final audioPlayer = this.audioPlayer ??= AudioPlayer();
     if (AudioPlayerWidget.currentId != widget.event.eventId) {
       if (AudioPlayerWidget.currentId != null) {
         if (audioPlayer.playerState.playing) {
@@ -180,7 +181,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                       color: widget.color.withAlpha(64),
                       borderRadius: BorderRadius.circular(64),
                       child: Icon(
-                        audioPlayer.playerState.playing
+                        audioPlayer?.playerState.playing == true
                             ? Icons.pause_outlined
                             : Icons.play_arrow_outlined,
                         color: widget.color,
@@ -203,7 +204,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
                   Expanded(
                     child: InkWell(
-                      onTap: () => audioPlayer.seek(Duration(
+                      onTap: () => audioPlayer?.seek(Duration(
                           milliseconds:
                               (maxPosition / AudioPlayerWidget.wavesCount)
                                       .round() *
