@@ -113,7 +113,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
   Future<String> _getFileStoreDirectory() async {
     try {
       try {
-        return (await getApplicationSupportDirectory()).path;
+        return (await getTemporaryDirectory()).path;
       } catch (_) {
         return (await getApplicationDocumentsDirectory()).path;
       }
