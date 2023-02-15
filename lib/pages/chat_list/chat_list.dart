@@ -352,8 +352,6 @@ class ChatListController extends State<ChatList>
     }
   }
 
-  StreamSubscription? _onSyncStatus;
-
   @override
   void initState() {
     _initReceiveSharingIntent();
@@ -370,10 +368,6 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
-    _onSyncStatus =
-        Matrix.of(context).client.onSyncStatus.stream.listen((status) {
-      Logs().v('Sync Status: ${status.status.name}');
-    });
 
     super.initState();
   }
@@ -383,7 +377,6 @@ class ChatListController extends State<ChatList>
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
-    _onSyncStatus?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
   }
