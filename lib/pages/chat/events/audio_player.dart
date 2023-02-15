@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -40,7 +43,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   int currentPosition = 0;
   double maxPosition = 0;
 
-  MatrixFile? audioFile;
+  MatrixFile? matrixFile;
+  File? audioFile;
 
   @override
   void dispose() {
@@ -60,8 +64,19 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     setState(() => status = AudioPlayerStatus.downloading);
     try {
       final matrixFile = await widget.event.downloadAndDecryptAttachment();
+      File? file;
+
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+        final fileName = Uri.encodeComponent(
+            widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
+        file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+        await file.writeAsBytes(matrixFile.bytes);
+      }
+
       setState(() {
-        audioFile = matrixFile;
+        audioFile = file;
+        this.matrixFile = matrixFile;
         status = AudioPlayerStatus.downloaded;
       });
       _playAction();
@@ -110,7 +125,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     });
     onPlayerStateChanged ??=
         audioPlayer.playingStream.listen((_) => setState(() {}));
-    audioPlayer.setAudioSource(MatrixFileAudioSource(audioFile!));
+    final audioFile = this.audioFile;
+    if (audioFile != null) {
+      audioPlayer.setFilePath(audioFile.path);
+    } else {
+      await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
+    }
     audioPlayer.play().catchError((e, s) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
