@@ -60,7 +60,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   if (room.isDirectChat)
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Center(
+                      child: SizedBox(
+                        width: double.infinity,
                         child: ElevatedButton.icon(
                           onPressed: controller.startVerification,
                           icon: const Icon(Icons.verified_outlined),
@@ -69,15 +70,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                       ),
                     ),
                   if (room.encrypted) ...[
-                    const Divider(height: 1),
-                    ListTile(
-                      title: Text(
-                        L10n.of(context)!.deviceKeys,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    const SizedBox(height: 16),
                     StreamBuilder(
                       stream: room.onUpdate.stream,
                       builder: (context, snapshot) => FutureBuilder<
@@ -123,40 +116,39 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                               : Colors.orange,
                                       size: 20,
                                     ),
+                                    const SizedBox(width: 4),
                                     Text(
                                       deviceKeys[i].deviceId ??
                                           L10n.of(context)!.unknownDevice,
                                     ),
                                     const SizedBox(width: 4),
-                                    Expanded(
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Material(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                AppConfig.borderRadius),
-                                            side: BorderSide(
+                                    Flexible(
+                                      fit: FlexFit.loose,
+                                      child: Material(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              AppConfig.borderRadius),
+                                          side: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primaryContainer,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            deviceKeys[i].userId,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
                                               color: Theme.of(context)
                                                   .colorScheme
                                                   .primary,
-                                            ),
-                                          ),
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primaryContainer,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Text(
-                                              deviceKeys[i].userId,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary,
-                                                fontSize: 12,
-                                                fontStyle: FontStyle.italic,
-                                              ),
+                                              fontSize: 12,
+                                              fontStyle: FontStyle.italic,
                                             ),
                                           ),
                                         ),
