@@ -99,10 +99,6 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   MediaDevices get mediaDevices => webrtc_impl.navigator.mediaDevices;
 
   @override
-  // remove this from sdk once callkeep is stable
-  bool get isBackgroud => false;
-
-  @override
   bool get isWeb => kIsWeb;
 
   @override
