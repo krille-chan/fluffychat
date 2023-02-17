@@ -4,7 +4,7 @@ extension BeautifyStringExtension on String {
     for (var i = 0; i < length; i++) {
       beautifiedStr += substring(i, i + 1);
       if (i % 4 == 3) {
-        beautifiedStr += '    ';
+        beautifiedStr += ' ';
       }
       if (i % 16 == 15) {
         beautifiedStr += '\n';

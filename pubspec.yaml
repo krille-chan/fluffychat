@@ -124,6 +124,9 @@ flutter:
           style: italic
         - asset: fonts/Roboto/Roboto-Bold.ttf
           weight: 700
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/Roboto/RobotoMono-Regular.ttf
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf

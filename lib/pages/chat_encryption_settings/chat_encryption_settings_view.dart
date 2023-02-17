@@ -7,6 +7,7 @@ import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
+import 'package:fluffychat/utils/beautify_string_extension.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
@@ -164,13 +165,13 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                   ],
                                 ),
                                 subtitle: Text(
-                                  deviceKeys[i].ed25519Key?.replaceAllMapped(
-                                          RegExp(r'.{4}'),
-                                          (s) => '${s.group(0)} ') ??
+                                  deviceKeys[i].ed25519Key?.beautified ??
                                       L10n.of(context)!
                                           .unknownEncryptionAlgorithm,
-                                  style: const TextStyle(
-                                    fontFamily: 'monospace',
+                                  style: TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
                                   ),
                                 ),
                               ),
