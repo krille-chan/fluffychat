@@ -125,9 +125,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
               children: [
                 ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  trailing: Icon(
-                    Icons.info_outlined,
-                    color: Theme.of(context).colorScheme.primary,
+                  trailing: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.info_outlined,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                   subtitle: Text(L10n.of(context)!.chatBackupDescription),
                 ),
@@ -136,11 +139,15 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   thickness: 1,
                 ),
                 TextField(
-                  minLines: 4,
+                  minLines: 2,
                   maxLines: 4,
                   readOnly: true,
-                  style: const TextStyle(fontFamily: 'monospace'),
+                  style: const TextStyle(fontFamily: 'RobotoMono'),
                   controller: TextEditingController(text: key),
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(16),
+                    suffixIcon: Icon(Icons.key_outlined),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 if (_supportsSecureStorage)
@@ -234,7 +241,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                 icon: const Icon(Icons.close),
                 onPressed: Navigator.of(context).pop,
               ),
-              title: Text(L10n.of(context)!.unlockOldMessages),
+              title: Text(L10n.of(context)!.chatBackup),
             ),
             body: Center(
               child: ConstrainedBox(
@@ -255,7 +262,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     ),
                     const Divider(height: 32),
                     TextField(
-                      minLines: 2,
+                      minLines: 1,
                       maxLines: 2,
                       autocorrect: false,
                       readOnly: _recoveryKeyInputLoading,
@@ -263,15 +270,15 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           ? null
                           : [AutofillHints.password],
                       controller: _recoveryKeyTextEditingController,
-                      style: const TextStyle(fontFamily: 'monospace'),
+                      style: const TextStyle(fontFamily: 'RobotoMono'),
                       decoration: InputDecoration(
-                        hintText: 'Abc123 Def456',
-                        labelStyle: TextStyle(
+                        contentPadding: const EdgeInsets.all(16),
+                        hintStyle: TextStyle(
                             fontFamily: Theme.of(context)
                                 .textTheme
                                 .bodyLarge
                                 ?.fontFamily),
-                        labelText: L10n.of(context)!.recoveryKey,
+                        hintText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
                       ),
                     ),
