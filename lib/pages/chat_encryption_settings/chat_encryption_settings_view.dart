@@ -71,6 +71,14 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     ),
                   if (room.encrypted) ...[
                     const SizedBox(height: 16),
+                    ListTile(
+                      title: Text(
+                        L10n.of(context)!.deviceKeys,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     StreamBuilder(
                       stream: room.onUpdate.stream,
                       builder: (context, snapshot) => FutureBuilder<
