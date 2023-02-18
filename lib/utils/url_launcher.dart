@@ -84,7 +84,9 @@ class UrlLauncher {
           ? 'xn--$hostPartPunycode'
           : hostPart;
     }).join('.');
-    launchUrlString(uri.replace(host: newHost).toString());
+    // Force LaunchMode.externalApplication, otherwise url_launcher will default
+    // to opening links in a webview on mobile platforms.
+    launchUrlString(uri.replace(host: newHost).toString(), mode: LaunchMode.externalApplication);
   }
 
   void openMatrixToUrl() async {
