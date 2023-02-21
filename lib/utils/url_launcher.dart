@@ -86,7 +86,8 @@ class UrlLauncher {
     }).join('.');
     // Force LaunchMode.externalApplication, otherwise url_launcher will default
     // to opening links in a webview on mobile platforms.
-    launchUrlString(uri.replace(host: newHost).toString(), mode: LaunchMode.externalApplication);
+    launchUrlString(uri.replace(host: newHost).toString(),
+        mode: LaunchMode.externalApplication);
   }
 
   void openMatrixToUrl() async {
