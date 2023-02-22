@@ -537,12 +537,12 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    "compareEmojiMatch": "Compare and make sure the following emoji match those of the other device:",
+    "compareEmojiMatch": "Please compare the emojis",
     "@compareEmojiMatch": {
         "type": "text",
         "placeholders": {}
     },
-    "compareNumbersMatch": "Compare and make sure the following numbers match those of the other device:",
+    "compareNumbersMatch": "Please compare the numbers",
     "@compareNumbersMatch": {
         "type": "text",
         "placeholders": {}

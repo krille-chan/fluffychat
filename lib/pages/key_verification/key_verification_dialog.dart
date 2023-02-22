@@ -221,7 +221,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         if (widget.request.sasTypes.contains('emoji')) {
           title = Text(
             L10n.of(context)!.compareEmojiMatch,
-            maxLines: 2,
+            maxLines: 1,
             style: const TextStyle(fontSize: 16),
           );
           compareWidget = TextSpan(
@@ -374,7 +374,10 @@ class _Emoji extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(emoji.emoji, style: const TextStyle(fontSize: 50)),
-        Text(getLocalizedName()),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Text(getLocalizedName()),
+        ),
         const SizedBox(height: 10, width: 5),
       ],
     );
