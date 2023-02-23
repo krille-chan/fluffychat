@@ -271,12 +271,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Порівняйте і переконайтесь, що показані емодзі збігаються емодзі на іншому пристрої:",
+  "compareEmojiMatch": "Порівняйте емодзі",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Порівняйте і переконайтесь, що вказані числа збігаються з числами на іншому пристрої:",
+  "compareNumbersMatch": "Порівняйте цифри",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
