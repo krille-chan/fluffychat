@@ -452,12 +452,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Karşılaştırın ve aşağıdaki emojilerin diğer aygıttaki emojilerle eşleştiğinden emin olun:",
+  "compareEmojiMatch": "Lütfen emojileri karşılaştırın",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Karşılaştırın ve aşağıdaki numaraların diğer aygıttaki numaralarla eşleştiğinden emin olun:",
+  "compareNumbersMatch": "Lütfen sayıları karşılaştırın",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
