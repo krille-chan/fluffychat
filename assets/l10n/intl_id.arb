@@ -786,12 +786,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Bandingkan dan pastikan angka cocok di perangkat lainnya:",
+  "compareNumbersMatch": "Bandingkan angka",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Bandingkan dan pastikan emoji cocok di perangkat lainnya:",
+  "compareEmojiMatch": "Bandingkan emoji",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
