@@ -448,12 +448,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Comparar e asegurarse de que estas emoticonas concordan no outro dispositivo:",
+  "compareEmojiMatch": "Compara estes emojis",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Compara e asegúrate de que os seguintes números concordan cos do outro dispositivo:",
+  "compareNumbersMatch": "Compara estes números",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
