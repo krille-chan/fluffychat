@@ -448,12 +448,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Võrdle ja kontrolli, et emotikonid on teises seadmes täpselt samad:",
+  "compareEmojiMatch": "Palun võrdle emotikone",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Võrdle ja kontrolli, et järgnevad numbrid on teises seadmes täpselt samad:",
+  "compareNumbersMatch": "Palun võrdle numbreid",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
