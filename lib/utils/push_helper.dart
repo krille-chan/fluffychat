@@ -45,8 +45,8 @@ Future<void> pushHelper(
     );
     flutterLocalNotificationsPlugin.show(
       0,
-      l10n?.newMessageInFluffyChat,
-      l10n?.openAppToReadMessages,
+      l10n?.newMessageInFluffyChat ?? 'New message in FluffyChat', // default to hardcoded value if l10n is null
+      l10n?.openAppToReadMessages ?? 'Open app to read messages', // default to hardcoded value if l10n is null
       NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
@@ -54,7 +54,7 @@ Future<void> pushHelper(
           AppConfig.pushNotificationsChannelName,
           channelDescription: AppConfig.pushNotificationsChannelDescription,
           number: notification.counts?.unread,
-          ticker: l10n!.unreadChats(notification.counts?.unread ?? 1),
+          ticker: l10n?.unreadChats(notification.counts?.unread ?? 1) ?? '1 unread chat', // default to hardcoded value if l10n is null
           importance: Importance.max,
           priority: Priority.high,
         ),
