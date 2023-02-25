@@ -59,7 +59,7 @@ dependencies:
   just_audio_mpv: ^0.1.6
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
-  matrix: ^0.17.0
+  matrix: ^0.17.1
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
