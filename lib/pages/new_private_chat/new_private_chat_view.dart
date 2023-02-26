@@ -20,6 +20,8 @@ class NewPrivateChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final qrCodeSize =
+        min(MediaQuery.of(context).size.width - 16, 200).toDouble();
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -61,14 +63,33 @@ class NewPrivateChatView extends StatelessWidget {
                         data:
                             'https://matrix.to/#/${Matrix.of(context).client.userID}',
                         version: QrVersions.auto,
-                        size: min(MediaQuery.of(context).size.width - 16, 200),
+                        size: qrCodeSize,
                       ),
                       TextButton.icon(
+                        style: TextButton.styleFrom(
+                          fixedSize:
+                              Size.fromWidth(qrCodeSize - (2 * _qrCodePadding)),
+                        ),
                         icon: Icon(Icons.adaptive.share_outlined),
                         label: Text(L10n.of(context)!.shareYourInviteLink),
                         onPressed: controller.inviteAction,
                       ),
                       const SizedBox(height: 8),
+                      if (PlatformInfos.isMobile) ...[
+                        OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primaryContainer,
+                            fixedSize: Size.fromWidth(
+                              qrCodeSize - (2 * _qrCodePadding),
+                            ),
+                          ),
+                          icon: const Icon(Icons.qr_code_scanner_outlined),
+                          label: Text(L10n.of(context)!.scanQrCode),
+                          onPressed: controller.openScannerAction,
+                        ),
+                        const SizedBox(height: 8),
+                      ],
                     ],
                   ),
                 ),
@@ -108,17 +129,6 @@ class NewPrivateChatView extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: PlatformInfos.isMobile
-          ? Padding(
-              padding: const EdgeInsets.only(bottom: 64.0),
-              child: FloatingActionButton.extended(
-                onPressed: controller.openScannerAction,
-                label: Text(L10n.of(context)!.scanQrCode),
-                icon: const Icon(Icons.camera_alt_outlined),
-              ),
-            )
-          : null,
     );
   }
 }
