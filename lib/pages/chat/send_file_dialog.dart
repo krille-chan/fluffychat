@@ -33,11 +33,12 @@ class SendFileDialogState extends State<SendFileDialog> {
       MatrixImageFile? thumbnail;
       if (file is MatrixVideoFile && file.bytes.length > minSizeToCompress) {
         await showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              file = await file.resizeVideo();
-              thumbnail = await file.getVideoThumbnail();
-            });
+          context: context,
+          future: () async {
+            file = await file.resizeVideo();
+            thumbnail = await file.getVideoThumbnail();
+          },
+        );
       }
       final scaffoldMessenger = ScaffoldMessenger.of(context);
       widget.room
@@ -79,26 +80,29 @@ class SendFileDialogState extends State<SendFileDialog> {
     }
     Widget contentWidget;
     if (allFilesAreImages) {
-      contentWidget = Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        Flexible(
-          child: Image.memory(
-            widget.files.first.bytes,
-            fit: BoxFit.contain,
+      contentWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Flexible(
+            child: Image.memory(
+              widget.files.first.bytes,
+              fit: BoxFit.contain,
+            ),
           ),
-        ),
-        Row(
-          children: <Widget>[
-            Checkbox(
-              value: origImage,
-              onChanged: (v) => setState(() => origImage = v ?? false),
-            ),
-            InkWell(
-              onTap: () => setState(() => origImage = !origImage),
-              child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
-            ),
-          ],
-        )
-      ]);
+          Row(
+            children: <Widget>[
+              Checkbox(
+                value: origImage,
+                onChanged: (v) => setState(() => origImage = v ?? false),
+              ),
+              InkWell(
+                onTap: () => setState(() => origImage = !origImage),
+                child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
+              ),
+            ],
+          )
+        ],
+      );
     } else {
       contentWidget = Text('$fileName ($sizeString)');
     }

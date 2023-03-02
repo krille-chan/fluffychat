@@ -82,14 +82,15 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
     } else {
       overlayEntry = OverlayEntry(
         builder: (_) => Calling(
-            context: context,
-            client: client,
-            callId: callId,
-            call: call,
-            onClear: () {
-              overlayEntry?.remove();
-              overlayEntry = null;
-            }),
+          context: context,
+          client: client,
+          callId: callId,
+          call: call,
+          onClear: () {
+            overlayEntry?.remove();
+            overlayEntry = null;
+          },
+        ),
       );
       Overlay.of(context).insert(overlayEntry!);
     }
@@ -103,8 +104,9 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   Future<RTCPeerConnection> createPeerConnection(
-          Map<String, dynamic> configuration,
-          [Map<String, dynamic> constraints = const {}]) =>
+    Map<String, dynamic> configuration, [
+    Map<String, dynamic> constraints = const {},
+  ]) =>
       webrtc_impl.createPeerConnection(configuration, constraints);
 
   @override
@@ -150,7 +152,9 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         try {
           final wasForeground = await FlutterForegroundTask.isAppOnForeground;
           await Store().setItem(
-              'wasForeground', wasForeground == true ? 'true' : 'false');
+            'wasForeground',
+            wasForeground == true ? 'true' : 'false',
+          );
           FlutterForegroundTask.setOnLockScreenVisibility(true);
           FlutterForegroundTask.wakeUpScreen();
           FlutterForegroundTask.launchApp();
@@ -162,10 +166,13 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         try {
           if (!hasCallingAccount) {
             ScaffoldMessenger.of(FluffyChatApp.routerKey.currentContext!)
-                .showSnackBar(const SnackBar(
-                    content: Text(
-              'No calling accounts found (used for native calls UI)',
-            )));
+                .showSnackBar(
+              const SnackBar(
+                content: Text(
+                  'No calling accounts found (used for native calls UI)',
+                ),
+              ),
+            );
           }
         } catch (e) {
           Logs().e('failed to show snackbar');

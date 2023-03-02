@@ -29,9 +29,10 @@ class NewSpaceView extends StatelessWidget {
                 textInputAction: TextInputAction.go,
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
-                    labelText: L10n.of(context)!.spaceName,
-                    prefixIcon: const Icon(Icons.people_outlined),
-                    hintText: L10n.of(context)!.enterASpacepName),
+                  labelText: L10n.of(context)!.spaceName,
+                  prefixIcon: const Icon(Icons.people_outlined),
+                  hintText: L10n.of(context)!.enterASpacepName,
+                ),
               ),
             ),
             SwitchListTile.adaptive(

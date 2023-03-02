@@ -27,21 +27,27 @@ class MessageContent extends StatelessWidget {
   final Color textColor;
   final void Function(Event)? onInfoTab;
 
-  const MessageContent(this.event,
-      {this.onInfoTab, Key? key, required this.textColor})
-      : super(key: key);
+  const MessageContent(
+    this.event, {
+    this.onInfoTab,
+    Key? key,
+    required this.textColor,
+  }) : super(key: key);
 
   void _verifyOrRequestKey(BuildContext context) async {
     final l10n = L10n.of(context)!;
     if (event.content['can_request_session'] != true) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           content: Text(
-        event.type == EventTypes.Encrypted
-            ? l10n.needPantalaimonWarning
-            : event.calcLocalizedBodyFallback(
-                MatrixLocals(l10n),
-              ),
-      )));
+            event.type == EventTypes.Encrypted
+                ? l10n.needPantalaimonWarning
+                : event.calcLocalizedBodyFallback(
+                    MatrixLocals(l10n),
+                  ),
+          ),
+        ),
+      );
       return;
     }
     final client = Matrix.of(context).client;
@@ -213,73 +219,83 @@ class MessageContent extends StatelessWidget {
           default:
             if (event.redacted) {
               return FutureBuilder<User?>(
-                  future: event.redactedBecause?.fetchSenderUser(),
-                  builder: (context, snapshot) {
-                    return _ButtonContent(
-                      label: L10n.of(context)!.redactedAnEvent(snapshot.data
-                              ?.calcDisplayname() ??
-                          event.senderFromMemoryOrFallback.calcDisplayname()),
-                      icon: const Icon(Icons.delete_outlined),
-                      textColor: buttonTextColor,
-                      onPressed: () => onInfoTab!(event),
-                    );
-                  });
+                future: event.redactedBecause?.fetchSenderUser(),
+                builder: (context, snapshot) {
+                  return _ButtonContent(
+                    label: L10n.of(context)!.redactedAnEvent(
+                      snapshot.data?.calcDisplayname() ??
+                          event.senderFromMemoryOrFallback.calcDisplayname(),
+                    ),
+                    icon: const Icon(Icons.delete_outlined),
+                    textColor: buttonTextColor,
+                    onPressed: () => onInfoTab!(event),
+                  );
+                },
+              );
             }
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
             return FutureBuilder<String>(
-                future: event.calcLocalizedBody(MatrixLocals(L10n.of(context)!),
-                    hideReply: true),
-                builder: (context, snapshot) {
-                  return LinkText(
-                    text: snapshot.data ??
-                        event.calcLocalizedBodyFallback(
-                            MatrixLocals(L10n.of(context)!),
-                            hideReply: true),
-                    textStyle: TextStyle(
-                      color: textColor,
-                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                      decoration:
-                          event.redacted ? TextDecoration.lineThrough : null,
-                    ),
-                    linkStyle: TextStyle(
-                      color: textColor.withAlpha(150),
-                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                      decoration: TextDecoration.underline,
-                      decorationColor: textColor.withAlpha(150),
-                    ),
-                    onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
-                  );
-                });
+              future: event.calcLocalizedBody(
+                MatrixLocals(L10n.of(context)!),
+                hideReply: true,
+              ),
+              builder: (context, snapshot) {
+                return LinkText(
+                  text: snapshot.data ??
+                      event.calcLocalizedBodyFallback(
+                        MatrixLocals(L10n.of(context)!),
+                        hideReply: true,
+                      ),
+                  textStyle: TextStyle(
+                    color: textColor,
+                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                    decoration:
+                        event.redacted ? TextDecoration.lineThrough : null,
+                  ),
+                  linkStyle: TextStyle(
+                    color: textColor.withAlpha(150),
+                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                    decoration: TextDecoration.underline,
+                    decorationColor: textColor.withAlpha(150),
+                  ),
+                  onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+                );
+              },
+            );
         }
       case EventTypes.CallInvite:
         return FutureBuilder<User?>(
-            future: event.fetchSenderUser(),
-            builder: (context, snapshot) {
-              return _ButtonContent(
-                label: L10n.of(context)!.startedACall(
-                    snapshot.data?.calcDisplayname() ??
-                        event.senderFromMemoryOrFallback.calcDisplayname()),
-                icon: const Icon(Icons.phone_outlined),
-                textColor: buttonTextColor,
-                onPressed: () => onInfoTab!(event),
-              );
-            });
+          future: event.fetchSenderUser(),
+          builder: (context, snapshot) {
+            return _ButtonContent(
+              label: L10n.of(context)!.startedACall(
+                snapshot.data?.calcDisplayname() ??
+                    event.senderFromMemoryOrFallback.calcDisplayname(),
+              ),
+              icon: const Icon(Icons.phone_outlined),
+              textColor: buttonTextColor,
+              onPressed: () => onInfoTab!(event),
+            );
+          },
+        );
       default:
         return FutureBuilder<User?>(
-            future: event.fetchSenderUser(),
-            builder: (context, snapshot) {
-              return _ButtonContent(
-                label: L10n.of(context)!.userSentUnknownEvent(
-                    snapshot.data?.calcDisplayname() ??
-                        event.senderFromMemoryOrFallback.calcDisplayname(),
-                    event.type),
-                icon: const Icon(Icons.info_outlined),
-                textColor: buttonTextColor,
-                onPressed: () => onInfoTab!(event),
-              );
-            });
+          future: event.fetchSenderUser(),
+          builder: (context, snapshot) {
+            return _ButtonContent(
+              label: L10n.of(context)!.userSentUnknownEvent(
+                snapshot.data?.calcDisplayname() ??
+                    event.senderFromMemoryOrFallback.calcDisplayname(),
+                event.type,
+              ),
+              icon: const Icon(Icons.info_outlined),
+              textColor: buttonTextColor,
+              onPressed: () => onInfoTab!(event),
+            );
+          },
+        );
     }
   }
 }

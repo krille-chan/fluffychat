@@ -75,7 +75,9 @@ class InvitationSelectionView extends StatelessWidget {
                   ),
                   subtitle: Text(controller.foundProfiles[i].userId),
                   onTap: () => controller.inviteAction(
-                      context, controller.foundProfiles[i].userId),
+                    context,
+                    controller.foundProfiles[i].userId,
+                  ),
                 ),
               )
             : FutureBuilder<List<User>>(
@@ -106,7 +108,8 @@ class InvitationSelectionView extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary),
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
                       ),
                       onTap: () =>
                           controller.inviteAction(context, contacts[i].id),

@@ -75,7 +75,8 @@ class AddWidgetTileState extends State<AddWidgetTile> {
       Navigator.of(context).pop();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.errorAddingWidget)));
+        SnackBar(content: Text(L10n.of(context)!.errorAddingWidget)),
+      );
     }
   }
 

@@ -84,21 +84,22 @@ class ReplyContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               FutureBuilder<User?>(
-                  future: displayEvent.fetchSenderUser(),
-                  builder: (context, snapshot) {
-                    return Text(
-                      '${snapshot.data?.calcDisplayname() ?? displayEvent.senderFromMemoryOrFallback.calcDisplayname()}:',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: ownMessage
-                            ? Theme.of(context).colorScheme.onPrimary
-                            : Theme.of(context).colorScheme.onBackground,
-                        fontSize: fontSize,
-                      ),
-                    );
-                  }),
+                future: displayEvent.fetchSenderUser(),
+                builder: (context, snapshot) {
+                  return Text(
+                    '${snapshot.data?.calcDisplayname() ?? displayEvent.senderFromMemoryOrFallback.calcDisplayname()}:',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: ownMessage
+                          ? Theme.of(context).colorScheme.onPrimary
+                          : Theme.of(context).colorScheme.onBackground,
+                      fontSize: fontSize,
+                    ),
+                  );
+                },
+              ),
               replyBody,
             ],
           ),

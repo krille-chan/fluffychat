@@ -91,11 +91,12 @@ class ThemeController extends State<ThemeBuilder> {
     return Provider(
       create: (_) => this,
       child: DynamicColorBuilder(
-          builder: (light, _) => widget.builder(
-                context,
-                themeMode,
-                primaryColor ?? light?.primary,
-              )),
+        builder: (light, _) => widget.builder(
+          context,
+          themeMode,
+          primaryColor ?? light?.primary,
+        ),
+      ),
     );
   }
 }

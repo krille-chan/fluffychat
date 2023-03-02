@@ -69,7 +69,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
-            widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
+          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+        );
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
         await file.writeAsBytes(matrixFile.bytes);
       }
@@ -224,23 +225,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
                   Expanded(
                     child: InkWell(
-                      onTap: () => audioPlayer?.seek(Duration(
+                      onTap: () => audioPlayer?.seek(
+                        Duration(
                           milliseconds:
                               (maxPosition / AudioPlayerWidget.wavesCount)
                                       .round() *
-                                  i)),
+                                  i,
+                        ),
+                      ),
                       child: Container(
                         height: 32,
                         alignment: Alignment.center,
                         child: Opacity(
                           opacity: currentPosition > i ? 1 : 0.5,
                           child: Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 1),
-                              decoration: BoxDecoration(
-                                color: widget.color,
-                                borderRadius: BorderRadius.circular(64),
-                              ),
-                              height: 32 * (waveform[i] / 1024)),
+                            margin: const EdgeInsets.symmetric(horizontal: 1),
+                            decoration: BoxDecoration(
+                              color: widget.color,
+                              borderRadius: BorderRadius.circular(64),
+                            ),
+                            height: 32 * (waveform[i] / 1024),
+                          ),
                         ),
                       ),
                     ),

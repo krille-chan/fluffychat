@@ -8,8 +8,9 @@ extension IosBadgeClientExtension on Client {
   void updateIosBadge() {
     if (PlatformInfos.isIOS) {
       // Workaround for iOS not clearing notifications with fcm_shared_isolate
-      if (!rooms.any((r) =>
-          r.membership == Membership.invite || (r.notificationCount > 0))) {
+      if (!rooms.any(
+        (r) => r.membership == Membership.invite || (r.notificationCount > 0),
+      )) {
         // ignore: unawaited_futures
         FlutterLocalNotificationsPlugin().cancelAll();
         FlutterAppBadger.removeBadge();

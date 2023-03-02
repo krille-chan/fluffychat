@@ -59,16 +59,18 @@ class SettingsStyleView extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.circular(colorPickerSize),
                                   child: SizedBox(
-                                      width: colorPickerSize,
-                                      height: colorPickerSize,
-                                      child: controller.currentColor == color
-                                          ? const Center(
-                                              child: Icon(
+                                    width: colorPickerSize,
+                                    height: colorPickerSize,
+                                    child: controller.currentColor == color
+                                        ? const Center(
+                                            child: Icon(
                                               Icons.check,
                                               size: 16,
                                               color: Colors.white,
-                                            ))
-                                          : null),
+                                            ),
+                                          )
+                                        : null,
+                                  ),
                                 ),
                         ),
                       ),
@@ -118,16 +120,18 @@ class SettingsStyleView extends StatelessWidget {
                 ),
                 onTap: controller.deleteWallpaperAction,
               ),
-            Builder(builder: (context) {
-              return ListTile(
-                title: Text(L10n.of(context)!.changeWallpaper),
-                trailing: Icon(
-                  Icons.photo_outlined,
-                  color: Theme.of(context).textTheme.bodyLarge?.color,
-                ),
-                onTap: controller.setWallpaperAction,
-              );
-            }),
+            Builder(
+              builder: (context) {
+                return ListTile(
+                  title: Text(L10n.of(context)!.changeWallpaper),
+                  trailing: Icon(
+                    Icons.photo_outlined,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                  onTap: controller.setWallpaperAction,
+                );
+              },
+            ),
             const Divider(height: 1),
             ListTile(
               title: Text(

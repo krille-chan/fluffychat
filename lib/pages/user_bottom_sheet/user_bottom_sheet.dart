@@ -52,33 +52,35 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.report:
         final event = widget.user;
         final score = await showConfirmationDialog<int>(
-            context: context,
-            title: L10n.of(context)!.reportUser,
-            message: L10n.of(context)!.howOffensiveIsThisContent,
-            cancelLabel: L10n.of(context)!.cancel,
-            okLabel: L10n.of(context)!.ok,
-            actions: [
-              AlertDialogAction(
-                key: -100,
-                label: L10n.of(context)!.extremeOffensive,
-              ),
-              AlertDialogAction(
-                key: -50,
-                label: L10n.of(context)!.offensive,
-              ),
-              AlertDialogAction(
-                key: 0,
-                label: L10n.of(context)!.inoffensive,
-              ),
-            ]);
+          context: context,
+          title: L10n.of(context)!.reportUser,
+          message: L10n.of(context)!.howOffensiveIsThisContent,
+          cancelLabel: L10n.of(context)!.cancel,
+          okLabel: L10n.of(context)!.ok,
+          actions: [
+            AlertDialogAction(
+              key: -100,
+              label: L10n.of(context)!.extremeOffensive,
+            ),
+            AlertDialogAction(
+              key: -50,
+              label: L10n.of(context)!.offensive,
+            ),
+            AlertDialogAction(
+              key: 0,
+              label: L10n.of(context)!.inoffensive,
+            ),
+          ],
+        );
         if (score == null) return;
         final reason = await showTextInputDialog(
-            useRootNavigator: false,
-            context: context,
-            title: L10n.of(context)!.whyDoYouWantToReportThis,
-            okLabel: L10n.of(context)!.ok,
-            cancelLabel: L10n.of(context)!.cancel,
-            textFields: [DialogTextField(hintText: L10n.of(context)!.reason)]);
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.whyDoYouWantToReportThis,
+          okLabel: L10n.of(context)!.ok,
+          cancelLabel: L10n.of(context)!.cancel,
+          textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
+        );
         if (reason == null || reason.single.isEmpty) return;
         final result = await showFutureLoadingDialog(
           context: context,
@@ -91,7 +93,8 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         if (result.error != null) return;
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)));
+          SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)),
+        );
         break;
       case UserBottomSheetAction.mention:
         Navigator.of(context, rootNavigator: false).pop();
@@ -151,9 +154,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.ignore:
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
-              context: context,
-              future: () =>
-                  Matrix.of(context).client.ignoreUser(widget.user.id));
+            context: context,
+            future: () => Matrix.of(context).client.ignoreUser(widget.user.id),
+          );
         }
     }
   }

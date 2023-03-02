@@ -140,16 +140,17 @@ class EmotesSettingsView extends StatelessWidget {
                                 actions: !useShortCuts
                                     ? {}
                                     : {
-                                        SubmitLineIntent:
-                                            CallbackAction(onInvoke: (i) {
-                                          controller.submitImageAction(
-                                            imageCode,
-                                            textEditingController.text,
-                                            image,
-                                            textEditingController,
-                                          );
-                                          return null;
-                                        }),
+                                        SubmitLineIntent: CallbackAction(
+                                          onInvoke: (i) {
+                                            controller.submitImageAction(
+                                              imageCode,
+                                              textEditingController.text,
+                                              image,
+                                              textEditingController,
+                                            );
+                                            return null;
+                                          },
+                                        ),
                                       },
                                 child: TextField(
                                   readOnly: controller.readonly,

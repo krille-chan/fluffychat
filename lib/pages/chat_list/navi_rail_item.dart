@@ -48,17 +48,18 @@ class NaviRailItem extends StatelessWidget {
               onPressed: onTap,
               tooltip: toolTip,
               icon: Material(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  color: isSelected
-                      ? Theme.of(context).colorScheme.primaryContainer
-                      : Theme.of(context).colorScheme.background,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 8.0,
-                    ),
-                    child: isSelected ? selectedIcon ?? icon : icon,
-                  )),
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primaryContainer
+                    : Theme.of(context).colorScheme.background,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 8.0,
+                  ),
+                  child: isSelected ? selectedIcon ?? icon : icon,
+                ),
+              ),
             ),
           ),
         ],

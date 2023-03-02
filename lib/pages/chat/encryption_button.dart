@@ -13,34 +13,34 @@ class EncryptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<SyncUpdate>(
-        stream: Matrix.of(context)
-            .client
-            .onSync
-            .stream
-            .where((s) => s.deviceLists != null),
-        builder: (context, snapshot) {
-          return FutureBuilder<EncryptionHealthState>(
-              future: room.calcEncryptionHealthState(),
-              builder: (BuildContext context, snapshot) => IconButton(
-                    tooltip: room.encrypted
-                        ? L10n.of(context)!.encrypted
-                        : L10n.of(context)!.encryptionNotEnabled,
-                    icon: Icon(
-                        room.encrypted
-                            ? Icons.lock_outlined
-                            : Icons.lock_open_outlined,
-                        size: 20,
-                        color: room.joinRules != JoinRules.public &&
-                                !room.encrypted
-                            ? Colors.red
-                            : room.joinRules != JoinRules.public &&
-                                    snapshot.data ==
-                                        EncryptionHealthState.unverifiedDevices
-                                ? Colors.orange
-                                : null),
-                    onPressed: () => VRouter.of(context)
-                        .toSegments(['rooms', room.id, 'encryption']),
-                  ));
-        });
+      stream: Matrix.of(context)
+          .client
+          .onSync
+          .stream
+          .where((s) => s.deviceLists != null),
+      builder: (context, snapshot) {
+        return FutureBuilder<EncryptionHealthState>(
+          future: room.calcEncryptionHealthState(),
+          builder: (BuildContext context, snapshot) => IconButton(
+            tooltip: room.encrypted
+                ? L10n.of(context)!.encrypted
+                : L10n.of(context)!.encryptionNotEnabled,
+            icon: Icon(
+              room.encrypted ? Icons.lock_outlined : Icons.lock_open_outlined,
+              size: 20,
+              color: room.joinRules != JoinRules.public && !room.encrypted
+                  ? Colors.red
+                  : room.joinRules != JoinRules.public &&
+                          snapshot.data ==
+                              EncryptionHealthState.unverifiedDevices
+                      ? Colors.orange
+                      : null,
+            ),
+            onPressed: () => VRouter.of(context)
+                .toSegments(['rooms', room.id, 'encryption']),
+          ),
+        );
+      },
+    );
   }
 }

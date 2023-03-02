@@ -92,34 +92,39 @@ class InviteStoryPageState extends State<InviteStoryPage> {
           const Divider(height: 1),
           Expanded(
             child: FutureBuilder<List<User>>(
-                future: loadContacts,
-                builder: (context, snapshot) {
-                  final contacts = snapshot.data;
-                  if (contacts == null) {
-                    final error = snapshot.error;
-                    if (error != null) {
-                      return Center(
-                          child: Text(error.toLocalizedString(context)));
-                    }
-                    return const Center(
-                        child: CircularProgressIndicator.adaptive());
+              future: loadContacts,
+              builder: (context, snapshot) {
+                final contacts = snapshot.data;
+                if (contacts == null) {
+                  final error = snapshot.error;
+                  if (error != null) {
+                    return Center(
+                      child: Text(error.toLocalizedString(context)),
+                    );
                   }
-                  _undecided = contacts.map((u) => u.id).toSet();
-                  return ListView.builder(
-                    itemCount: contacts.length,
-                    itemBuilder: (context, i) => SwitchListTile.adaptive(
-                      value: _invite.contains(contacts[i].id),
-                      onChanged: (b) => setState(() => b
-                          ? _invite.add(contacts[i].id)
-                          : _invite.remove(contacts[i].id)),
-                      secondary: Avatar(
-                        mxContent: contacts[i].avatarUrl,
-                        name: contacts[i].calcDisplayname(),
-                      ),
-                      title: Text(contacts[i].calcDisplayname()),
-                    ),
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
                   );
-                }),
+                }
+                _undecided = contacts.map((u) => u.id).toSet();
+                return ListView.builder(
+                  itemCount: contacts.length,
+                  itemBuilder: (context, i) => SwitchListTile.adaptive(
+                    value: _invite.contains(contacts[i].id),
+                    onChanged: (b) => setState(
+                      () => b
+                          ? _invite.add(contacts[i].id)
+                          : _invite.remove(contacts[i].id),
+                    ),
+                    secondary: Avatar(
+                      mxContent: contacts[i].avatarUrl,
+                      name: contacts[i].calcDisplayname(),
+                    ),
+                    title: Text(contacts[i].calcDisplayname()),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

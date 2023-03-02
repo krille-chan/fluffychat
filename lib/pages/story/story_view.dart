@@ -144,9 +144,10 @@ class StoryView extends StatelessWidget {
           final events = controller.events;
           if (snapshot.connectionState != ConnectionState.done) {
             return const Center(
-                child: CircularProgressIndicator.adaptive(
-              strokeWidth: 2,
-            ));
+              child: CircularProgressIndicator.adaptive(
+                strokeWidth: 2,
+              ),
+            );
           }
           if (events.isEmpty) {
             return Center(
@@ -218,7 +219,9 @@ class StoryView extends StatelessWidget {
                       !PlatformInfos.isMobile))
                 FutureBuilder<MatrixFile>(
                   future: controller.downloadAndDecryptAttachment(
-                      event, event.messageType == MessageTypes.Video),
+                    event,
+                    event.messageType == MessageTypes.Video,
+                  ),
                   builder: (context, snapshot) {
                     final matrixFile = snapshot.data;
                     if (matrixFile == null) {
@@ -364,7 +367,8 @@ class StoryView extends StatelessWidget {
                                   height: 16,
                                   child: Center(
                                     child: CircularProgressIndicator.adaptive(
-                                        strokeWidth: 2),
+                                      strokeWidth: 2,
+                                    ),
                                   ),
                                 )
                               : IconButton(

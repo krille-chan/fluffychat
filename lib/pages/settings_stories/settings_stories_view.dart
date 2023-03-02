@@ -38,9 +38,10 @@ class SettingsStoriesView extends StatelessWidget {
                 }
                 if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(
-                      child: CircularProgressIndicator.adaptive(
-                    strokeWidth: 2,
-                  ));
+                    child: CircularProgressIndicator.adaptive(
+                      strokeWidth: 2,
+                    ),
+                  );
                 }
                 return ListView.builder(
                   itemCount: controller.users.length,

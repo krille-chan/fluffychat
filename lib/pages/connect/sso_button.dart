@@ -37,7 +37,8 @@ class SsoButton extends StatelessWidget {
                     : Image.network(
                         Uri.parse(identityProvider.icon!)
                             .getDownloadLink(
-                                Matrix.of(context).getLoginClient())
+                              Matrix.of(context).getLoginClient(),
+                            )
                             .toString(),
                         width: 32,
                         height: 32,

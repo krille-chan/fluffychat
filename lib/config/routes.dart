@@ -70,21 +70,25 @@ class AppRoutes {
               widget: const ChatDetails(),
               stackedRoutes: _chatDetailsRoutes,
             ),
-            VWidget(path: ':roomid', widget: const Chat(), stackedRoutes: [
-              VWidget(
-                path: 'encryption',
-                widget: const ChatEncryptionSettings(),
-              ),
-              VWidget(
-                path: 'invite',
-                widget: const InvitationSelection(),
-              ),
-              VWidget(
-                path: 'details',
-                widget: const ChatDetails(),
-                stackedRoutes: _chatDetailsRoutes,
-              ),
-            ]),
+            VWidget(
+              path: ':roomid',
+              widget: const Chat(),
+              stackedRoutes: [
+                VWidget(
+                  path: 'encryption',
+                  widget: const ChatEncryptionSettings(),
+                ),
+                VWidget(
+                  path: 'invite',
+                  widget: const InvitationSelection(),
+                ),
+                VWidget(
+                  path: 'details',
+                  widget: const ChatDetails(),
+                  stackedRoutes: _chatDetailsRoutes,
+                ),
+              ],
+            ),
             VWidget(
               path: '/settings',
               widget: const Settings(),
@@ -263,21 +267,22 @@ class AppRoutes {
               buildTransition: _fadeTransition,
             ),
             VWidget(
-                path: 'connect',
-                widget: const ConnectPage(),
-                buildTransition: _fadeTransition,
-                stackedRoutes: [
-                  VWidget(
-                    path: 'login',
-                    widget: const Login(),
-                    buildTransition: _fadeTransition,
-                  ),
-                  VWidget(
-                    path: 'signup',
-                    widget: const SignupPage(),
-                    buildTransition: _fadeTransition,
-                  ),
-                ]),
+              path: 'connect',
+              widget: const ConnectPage(),
+              buildTransition: _fadeTransition,
+              stackedRoutes: [
+                VWidget(
+                  path: 'login',
+                  widget: const Login(),
+                  buildTransition: _fadeTransition,
+                ),
+                VWidget(
+                  path: 'signup',
+                  widget: const SignupPage(),
+                  buildTransition: _fadeTransition,
+                ),
+              ],
+            ),
             VWidget(
               path: 'logs',
               widget: const LogViewer(),
@@ -354,21 +359,22 @@ class AppRoutes {
               buildTransition: _fadeTransition,
             ),
             VWidget(
-                path: 'connect',
-                widget: const ConnectPage(),
-                buildTransition: _fadeTransition,
-                stackedRoutes: [
-                  VWidget(
-                    path: 'login',
-                    widget: const Login(),
-                    buildTransition: _fadeTransition,
-                  ),
-                  VWidget(
-                    path: 'signup',
-                    widget: const SignupPage(),
-                    buildTransition: _fadeTransition,
-                  ),
-                ]),
+              path: 'connect',
+              widget: const ConnectPage(),
+              buildTransition: _fadeTransition,
+              stackedRoutes: [
+                VWidget(
+                  path: 'login',
+                  widget: const Login(),
+                  buildTransition: _fadeTransition,
+                ),
+                VWidget(
+                  path: 'signup',
+                  widget: const SignupPage(),
+                  buildTransition: _fadeTransition,
+                ),
+              ],
+            ),
           ],
         ),
         VWidget(

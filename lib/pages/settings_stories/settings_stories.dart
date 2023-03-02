@@ -32,14 +32,15 @@ class SettingsStoriesController extends State<SettingsStories> {
       final blockList = room.client.storiesBlockList;
       blockList.add(user.id);
       await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            await user.kick();
-            await room.client.setStoriesBlockList(blockList.toSet().toList());
-            setState(() {
-              users[user] = false;
-            });
+        context: context,
+        future: () async {
+          await user.kick();
+          await room.client.setStoriesBlockList(blockList.toSet().toList());
+          setState(() {
+            users[user] = false;
           });
+        },
+      );
       return;
     }
 
@@ -47,14 +48,15 @@ class SettingsStoriesController extends State<SettingsStories> {
     final blockList = room.client.storiesBlockList;
     blockList.remove(user.id);
     await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          await room.client.setStoriesBlockList(blockList);
-          await room.invite(user.id);
-          setState(() {
-            users[user] = true;
-          });
+      context: context,
+      future: () async {
+        await room.client.setStoriesBlockList(blockList);
+        await room.invite(user.id);
+        setState(() {
+          users[user] = true;
         });
+      },
+    );
     return;
   }
 

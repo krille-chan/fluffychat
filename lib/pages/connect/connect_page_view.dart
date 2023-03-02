@@ -174,17 +174,20 @@ class ConnectPageView extends StatelessWidget {
                                     )
                                   : Image.network(
                                       Uri.parse(identityProviders.single.icon!)
-                                          .getDownloadLink(Matrix.of(context)
-                                              .getLoginClient())
+                                          .getDownloadLink(
+                                            Matrix.of(context).getLoginClient(),
+                                          )
                                           .toString(),
                                       width: 32,
                                       height: 32,
                                     ),
                               onPressed: () => controller
                                   .ssoLoginAction(identityProviders.single.id!),
-                              label: Text(identityProviders.single.name ??
-                                  identityProviders.single.brand ??
-                                  L10n.of(context)!.loginWithOneClick),
+                              label: Text(
+                                identityProviders.single.name ??
+                                    identityProviders.single.brand ??
+                                    L10n.of(context)!.loginWithOneClick,
+                              ),
                             ),
                           )
                         : Wrap(

@@ -33,7 +33,8 @@ class UrlLauncher {
     if (uri == null) {
       // we can't open this thing
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))));
+        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+      );
       return;
     }
     if (!{'https', 'http'}.contains(uri.scheme)) {
@@ -61,7 +62,8 @@ class UrlLauncher {
             // transmute geo URIs on desktop to openstreetmap links, as those usually can't handle
             // geo URIs
             launchUrlString(
-                'https://www.openstreetmap.org/?mlat=${latlong.first}&mlon=${latlong.last}#map=16/${latlong.first}/${latlong.last}');
+              'https://www.openstreetmap.org/?mlat=${latlong.first}&mlon=${latlong.last}#map=16/${latlong.first}/${latlong.last}',
+            );
           }
           return;
         }
@@ -71,7 +73,8 @@ class UrlLauncher {
     }
     if (uri.host.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))));
+        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+      );
       return;
     }
     // okay, we have either an http or an https URI.
@@ -86,8 +89,10 @@ class UrlLauncher {
     }).join('.');
     // Force LaunchMode.externalApplication, otherwise url_launcher will default
     // to opening links in a webview on mobile platforms.
-    launchUrlString(uri.replace(host: newHost).toString(),
-        mode: LaunchMode.externalApplication);
+    launchUrlString(
+      uri.replace(host: newHost).toString(),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   void openMatrixToUrl() async {
@@ -142,8 +147,10 @@ class UrlLauncher {
         }
         // we have the room, so....just open it
         if (event != null) {
-          VRouter.of(context).toSegments(['rooms', room.id],
-              queryParameters: {'event': event});
+          VRouter.of(context).toSegments(
+            ['rooms', room.id],
+            queryParameters: {'event': event},
+          );
         } else {
           VRouter.of(context).toSegments(['rooms', room.id]);
         }
@@ -175,11 +182,14 @@ class UrlLauncher {
           if (response.error != null) return;
           // wait for two seconds so that it probably came down /sync
           await showFutureLoadingDialog(
-              context: context,
-              future: () => Future.delayed(const Duration(seconds: 2)));
+            context: context,
+            future: () => Future.delayed(const Duration(seconds: 2)),
+          );
           if (event != null) {
-            VRouter.of(context).toSegments(['rooms', response.result!],
-                queryParameters: {'event': event});
+            VRouter.of(context).toSegments(
+              ['rooms', response.result!],
+              queryParameters: {'event': event},
+            );
           } else {
             VRouter.of(context).toSegments(['rooms', response.result!]);
           }

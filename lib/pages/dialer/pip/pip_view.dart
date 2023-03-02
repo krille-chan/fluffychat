@@ -198,9 +198,11 @@ class PIPViewState extends State<PIPView> with TickerProviderStateMixin {
                     : Tween<Offset>(
                         begin: _dragOffset,
                         end: calculatedOffset,
-                      ).transform(_dragAnimationController.isAnimating
-                        ? dragAnimationValue
-                        : toggleFloatingAnimationValue);
+                      ).transform(
+                        _dragAnimationController.isAnimating
+                            ? dragAnimationValue
+                            : toggleFloatingAnimationValue,
+                      );
                 final borderRadius = Tween<double>(
                   begin: 0,
                   end: 10,

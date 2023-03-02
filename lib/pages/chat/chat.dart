@@ -82,10 +82,12 @@ class ChatController extends State<Chat> {
 
     final matrixFiles = <MatrixFile>[];
     for (var i = 0; i < bytesList.result!.length; i++) {
-      matrixFiles.add(MatrixFile(
-        bytes: bytesList.result![i],
-        name: details.files[i].name,
-      ).detectFileType);
+      matrixFiles.add(
+        MatrixFile(
+          bytes: bytesList.result![i],
+          name: details.files[i].name,
+        ).detectFileType,
+      );
     }
 
     await showDialog(
@@ -139,18 +141,20 @@ class ChatController extends State<Chat> {
     final userId = room?.directChatMatrixID;
     if (room == null || userId == null) {
       throw Exception(
-          'Try to recreate a room with is not a DM room. This should not be possible from the UI!');
+        'Try to recreate a room with is not a DM room. This should not be possible from the UI!',
+      );
     }
     final success = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final client = room.client;
-          final waitForSync = client.onSync.stream
-              .firstWhere((s) => s.rooms?.leave?.containsKey(room.id) ?? false);
-          await room.leave();
-          await waitForSync;
-          return await client.startDirectChat(userId);
-        });
+      context: context,
+      future: () async {
+        final client = room.client;
+        final waitForSync = client.onSync.stream
+            .firstWhere((s) => s.rooms?.leave?.containsKey(room.id) ?? false);
+        await room.leave();
+        await waitForSync;
+        return await client.startDirectChat(userId);
+      },
+    );
     final roomId = success.result;
     if (roomId == null) return;
     VRouter.of(context).toSegments(['rooms', roomId]);
@@ -160,7 +164,8 @@ class ChatController extends State<Chat> {
     final room = this.room;
     if (room == null) {
       throw Exception(
-          'Leave room button clicked while room is null. This should not be possible from the UI!');
+        'Leave room button clicked while room is null. This should not be possible from the UI!',
+      );
     }
     final success = await showFutureLoadingDialog(
       context: context,
@@ -327,10 +332,12 @@ class ChatController extends State<Chat> {
     }
 
     // ignore: unawaited_futures
-    room!.sendTextEvent(sendController.text,
-        inReplyTo: replyEvent,
-        editEventId: editEvent?.eventId,
-        parseCommands: parseCommands);
+    room!.sendTextEvent(
+      sendController.text,
+      inReplyTo: replyEvent,
+      editEventId: editEvent?.eventId,
+      parseCommands: parseCommands,
+    );
     sendController.value = TextEditingValue(
       text: pendingText,
       selection: const TextSelection.collapsed(offset: 0),
@@ -354,10 +361,12 @@ class ChatController extends State<Chat> {
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
         files: result
-            .map((xfile) => MatrixFile(
-                  bytes: xfile.toUint8List(),
-                  name: xfile.fileName!,
-                ).detectFileType)
+            .map(
+              (xfile) => MatrixFile(
+                bytes: xfile.toUint8List(),
+                name: xfile.fileName!,
+              ).detectFileType,
+            )
             .toList(),
         room: room!,
       ),
@@ -375,10 +384,12 @@ class ChatController extends State<Chat> {
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
         files: result
-            .map((xfile) => MatrixFile(
-                  bytes: xfile.toUint8List(),
-                  name: xfile.fileName!,
-                ).detectFileType)
+            .map(
+              (xfile) => MatrixFile(
+                bytes: xfile.toUint8List(),
+                name: xfile.fileName!,
+              ).detectFileType,
+            )
             .toList(),
         room: room!,
       ),
@@ -537,8 +548,9 @@ class ChatController extends State<Chat> {
     for (final event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
       copyString += event.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
-          MatrixLocals(L10n.of(context)!),
-          withSenderNamePrefix: true);
+            MatrixLocals(L10n.of(context)!),
+            withSenderNamePrefix: true,
+          );
     }
     return copyString;
   }
@@ -554,33 +566,35 @@ class ChatController extends State<Chat> {
   void reportEventAction() async {
     final event = selectedEvents.single;
     final score = await showConfirmationDialog<int>(
-        context: context,
-        title: L10n.of(context)!.reportMessage,
-        message: L10n.of(context)!.howOffensiveIsThisContent,
-        cancelLabel: L10n.of(context)!.cancel,
-        okLabel: L10n.of(context)!.ok,
-        actions: [
-          AlertDialogAction(
-            key: -100,
-            label: L10n.of(context)!.extremeOffensive,
-          ),
-          AlertDialogAction(
-            key: -50,
-            label: L10n.of(context)!.offensive,
-          ),
-          AlertDialogAction(
-            key: 0,
-            label: L10n.of(context)!.inoffensive,
-          ),
-        ]);
+      context: context,
+      title: L10n.of(context)!.reportMessage,
+      message: L10n.of(context)!.howOffensiveIsThisContent,
+      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context)!.ok,
+      actions: [
+        AlertDialogAction(
+          key: -100,
+          label: L10n.of(context)!.extremeOffensive,
+        ),
+        AlertDialogAction(
+          key: -50,
+          label: L10n.of(context)!.offensive,
+        ),
+        AlertDialogAction(
+          key: 0,
+          label: L10n.of(context)!.inoffensive,
+        ),
+      ],
+    );
     if (score == null) return;
     final reason = await showTextInputDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.whyDoYouWantToReportThis,
-        okLabel: L10n.of(context)!.ok,
-        cancelLabel: L10n.of(context)!.cancel,
-        textFields: [DialogTextField(hintText: L10n.of(context)!.reason)]);
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context)!.whyDoYouWantToReportThis,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
+    );
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -597,7 +611,8 @@ class ChatController extends State<Chat> {
       selectedEvents.clear();
     });
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)));
+      SnackBar(content: Text(L10n.of(context)!.contentHasBeenReported)),
+    );
   }
 
   void redactEventsAction() async {
@@ -612,25 +627,27 @@ class ChatController extends State<Chat> {
     if (!confirmed) return;
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            if (event.status.isSent) {
-              if (event.canRedact) {
-                await event.redactEvent();
-              } else {
-                final client = currentRoomBundle.firstWhere(
-                    (cl) => selectedEvents.first.senderId == cl!.userID,
-                    orElse: () => null);
-                if (client == null) {
-                  return;
-                }
-                final room = client.getRoomById(roomId!)!;
-                await Event.fromJson(event.toJson(), room).redactEvent();
-              }
+        context: context,
+        future: () async {
+          if (event.status.isSent) {
+            if (event.canRedact) {
+              await event.redactEvent();
             } else {
-              await event.remove();
+              final client = currentRoomBundle.firstWhere(
+                (cl) => selectedEvents.first.senderId == cl!.userID,
+                orElse: () => null,
+              );
+              if (client == null) {
+                return;
+              }
+              final room = client.getRoomById(roomId!)!;
+              await Event.fromJson(event.toJson(), room).redactEvent();
             }
-          });
+          } else {
+            await event.remove();
+          }
+        },
+      );
     }
     setState(() {
       showEmojiPicker = false;
@@ -706,41 +723,42 @@ class ChatController extends State<Chat> {
       // event id not found...maybe we can fetch it?
       // the try...finally is here to start and close the loading dialog reliably
       await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            // okay, we first have to fetch if the event is in the room
+        context: context,
+        future: () async {
+          // okay, we first have to fetch if the event is in the room
+          try {
+            final event = await timeline!.getEventById(eventId);
+            if (event == null) {
+              // event is null...meaning something is off
+              return;
+            }
+          } catch (err) {
+            if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
+              // event wasn't found, as the server gave a 404 or something
+              return;
+            }
+            rethrow;
+          }
+          // okay, we know that the event *is* in the room
+          while (eventIndex == -1) {
+            if (!canLoadMore) {
+              // we can't load any more events but still haven't found ours yet...better stop here
+              return;
+            }
             try {
-              final event = await timeline!.getEventById(eventId);
-              if (event == null) {
-                // event is null...meaning something is off
-                return;
-              }
+              await timeline!.requestHistory(historyCount: _loadHistoryCount);
             } catch (err) {
-              if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
-                // event wasn't found, as the server gave a 404 or something
+              if (err is TimeoutException) {
+                // loading the history timed out...so let's do nothing
                 return;
               }
               rethrow;
             }
-            // okay, we know that the event *is* in the room
-            while (eventIndex == -1) {
-              if (!canLoadMore) {
-                // we can't load any more events but still haven't found ours yet...better stop here
-                return;
-              }
-              try {
-                await timeline!.requestHistory(historyCount: _loadHistoryCount);
-              } catch (err) {
-                if (err is TimeoutException) {
-                  // loading the history timed out...so let's do nothing
-                  return;
-                }
-                rethrow;
-              }
-              eventIndex =
-                  timeline!.events.indexWhere((e) => e.eventId == eventId);
-            }
-          });
+            eventIndex =
+                timeline!.events.indexWhere((e) => e.eventId == eventId);
+          }
+        },
+      );
     }
     if (!mounted) {
       return;
@@ -811,7 +829,8 @@ class ChatController extends State<Chat> {
         sendController
           ..text = sendController.text.characters.skipLast(1).toString()
           ..selection = TextSelection.fromPosition(
-              TextPosition(offset: sendController.text.length));
+            TextPosition(offset: sendController.text.length),
+          );
         break;
     }
   }
@@ -846,8 +865,9 @@ class ChatController extends State<Chat> {
 
   void editSelectedEventAction() {
     final client = currentRoomBundle.firstWhere(
-        (cl) => selectedEvents.first.senderId == cl!.userID,
-        orElse: () => null);
+      (cl) => selectedEvents.first.senderId == cl!.userID,
+      orElse: () => null,
+    );
     if (client == null) {
       return;
     }
@@ -855,10 +875,12 @@ class ChatController extends State<Chat> {
     setState(() {
       pendingText = sendController.text;
       editEvent = selectedEvents.first;
-      inputText = sendController.text = editEvent!
-          .getDisplayEvent(timeline!)
-          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)!),
-              withSenderNamePrefix: false, hideReply: true);
+      inputText = sendController.text =
+          editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
+                MatrixLocals(L10n.of(context)!),
+                withSenderNamePrefix: false,
+                hideReply: true,
+              );
       selectedEvents.clear();
     });
     inputFocus.requestFocus();
@@ -881,10 +903,12 @@ class ChatController extends State<Chat> {
     }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room!.client.joinRoom(room!
-          .getState(EventTypes.RoomTombstone)!
-          .parsedTombstoneContent
-          .replacementRoom),
+      future: () => room!.client.joinRoom(
+        room!
+            .getState(EventTypes.RoomTombstone)!
+            .parsedTombstoneContent
+            .replacementRoom,
+      ),
     );
     await showFutureLoadingDialog(
       context: context,
@@ -1077,9 +1101,10 @@ class ChatController extends State<Chat> {
     if (callType == null) return;
 
     final success = await showFutureLoadingDialog(
-        context: context,
-        future: () =>
-            Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials());
+      context: context,
+      future: () =>
+          Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials(),
+    );
     if (success.result != null) {
       final voipPlugin = Matrix.of(context).voipPlugin;
       try {

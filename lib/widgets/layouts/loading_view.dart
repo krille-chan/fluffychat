@@ -16,8 +16,10 @@ class LoadingView extends StatelessWidget {
       (_) async {
         await UpdateCheckerNoStore(context).checkUpdate();
         VRouter.of(context).to(
-          Matrix.of(context).widget.clients.any((client) =>
-                  client.onLoginStateChanged.value == LoginState.loggedIn)
+          Matrix.of(context).widget.clients.any(
+                    (client) =>
+                        client.onLoginStateChanged.value == LoginState.loggedIn,
+                  )
               ? '/rooms'
               : '/home',
           queryParameters: VRouter.of(context).queryParameters,

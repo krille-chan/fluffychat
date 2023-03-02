@@ -58,34 +58,36 @@ class SettingsIgnoreListView extends StatelessWidget {
             const Divider(height: 1),
             Expanded(
               child: StreamBuilder<Object>(
-                  stream: client.onAccountData.stream
-                      .where((a) => a.type == 'm.ignored_user_list'),
-                  builder: (context, snapshot) {
-                    return ListView.builder(
-                      itemCount: client.ignoredUsers.length,
-                      itemBuilder: (c, i) => FutureBuilder<Profile>(
-                        future:
-                            client.getProfileFromUserId(client.ignoredUsers[i]),
-                        builder: (c, s) => ListTile(
-                          leading: Avatar(
-                            mxContent: s.data?.avatarUrl ?? Uri.parse(''),
-                            name: s.data?.displayName ?? client.ignoredUsers[i],
-                          ),
-                          title: Text(
-                              s.data?.displayName ?? client.ignoredUsers[i]),
-                          trailing: IconButton(
-                            tooltip: L10n.of(context)!.delete,
-                            icon: const Icon(Icons.delete_forever_outlined),
-                            onPressed: () => showFutureLoadingDialog(
-                              context: context,
-                              future: () =>
-                                  client.unignoreUser(client.ignoredUsers[i]),
-                            ),
+                stream: client.onAccountData.stream
+                    .where((a) => a.type == 'm.ignored_user_list'),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                    itemCount: client.ignoredUsers.length,
+                    itemBuilder: (c, i) => FutureBuilder<Profile>(
+                      future:
+                          client.getProfileFromUserId(client.ignoredUsers[i]),
+                      builder: (c, s) => ListTile(
+                        leading: Avatar(
+                          mxContent: s.data?.avatarUrl ?? Uri.parse(''),
+                          name: s.data?.displayName ?? client.ignoredUsers[i],
+                        ),
+                        title: Text(
+                          s.data?.displayName ?? client.ignoredUsers[i],
+                        ),
+                        trailing: IconButton(
+                          tooltip: L10n.of(context)!.delete,
+                          icon: const Icon(Icons.delete_forever_outlined),
+                          onPressed: () => showFutureLoadingDialog(
+                            context: context,
+                            future: () =>
+                                client.unignoreUser(client.ignoredUsers[i]),
                           ),
                         ),
                       ),
-                    );
-                  }),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

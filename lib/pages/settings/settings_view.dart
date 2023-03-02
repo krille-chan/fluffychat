@@ -40,98 +40,100 @@ class SettingsView extends StatelessWidget {
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
             FutureBuilder<Profile>(
-                future: controller.profileFuture,
-                builder: (context, snapshot) {
-                  final profile = snapshot.data;
-                  final mxid = Matrix.of(context).client.userID ??
-                      L10n.of(context)!.user;
-                  final displayname =
-                      profile?.displayName ?? mxid.localpart ?? mxid;
-                  return Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(32.0),
-                        child: Stack(
-                          children: [
-                            Material(
-                              elevation: Theme.of(context)
-                                      .appBarTheme
-                                      .scrolledUnderElevation ??
-                                  4,
-                              shadowColor:
-                                  Theme.of(context).appBarTheme.shadowColor,
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                    Avatar.defaultSize * 2.5),
+              future: controller.profileFuture,
+              builder: (context, snapshot) {
+                final profile = snapshot.data;
+                final mxid =
+                    Matrix.of(context).client.userID ?? L10n.of(context)!.user;
+                final displayname =
+                    profile?.displayName ?? mxid.localpart ?? mxid;
+                return Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Stack(
+                        children: [
+                          Material(
+                            elevation: Theme.of(context)
+                                    .appBarTheme
+                                    .scrolledUnderElevation ??
+                                4,
+                            shadowColor:
+                                Theme.of(context).appBarTheme.shadowColor,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Theme.of(context).dividerColor,
                               ),
-                              child: Avatar(
-                                mxContent: profile?.avatarUrl,
-                                name: displayname,
-                                size: Avatar.defaultSize * 2.5,
-                                fontSize: 18 * 2.5,
+                              borderRadius: BorderRadius.circular(
+                                Avatar.defaultSize * 2.5,
                               ),
                             ),
-                            if (profile != null)
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: FloatingActionButton.small(
-                                  onPressed: controller.setAvatarAction,
-                                  heroTag: null,
-                                  child: const Icon(Icons.camera_alt_outlined),
-                                ),
+                            child: Avatar(
+                              mxContent: profile?.avatarUrl,
+                              name: displayname,
+                              size: Avatar.defaultSize * 2.5,
+                              fontSize: 18 * 2.5,
+                            ),
+                          ),
+                          if (profile != null)
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: FloatingActionButton.small(
+                                onPressed: controller.setAvatarAction,
+                                heroTag: null,
+                                child: const Icon(Icons.camera_alt_outlined),
                               ),
-                          ],
-                        ),
+                            ),
+                        ],
                       ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton.icon(
-                              onPressed: controller.setDisplaynameAction,
-                              icon: const Icon(
-                                Icons.edit_outlined,
-                                size: 16,
-                              ),
-                              style: TextButton.styleFrom(
-                                foregroundColor:
-                                    Theme.of(context).colorScheme.onBackground,
-                              ),
-                              label: Text(
-                                displayname,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                //  style: const TextStyle(fontSize: 18),
-                              ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton.icon(
+                            onPressed: controller.setDisplaynameAction,
+                            icon: const Icon(
+                              Icons.edit_outlined,
+                              size: 16,
                             ),
-                            TextButton.icon(
-                              onPressed: () => FluffyShare.share(mxid, context),
-                              icon: const Icon(
-                                Icons.copy_outlined,
-                                size: 14,
-                              ),
-                              style: TextButton.styleFrom(
-                                foregroundColor:
-                                    Theme.of(context).colorScheme.secondary,
-                              ),
-                              label: Text(
-                                mxid,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                //    style: const TextStyle(fontSize: 12),
-                              ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onBackground,
                             ),
-                          ],
-                        ),
+                            label: Text(
+                              displayname,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              //  style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () => FluffyShare.share(mxid, context),
+                            icon: const Icon(
+                              Icons.copy_outlined,
+                              size: 14,
+                            ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                            ),
+                            label: Text(
+                              mxid,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              //    style: const TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  );
-                }),
+                    ),
+                  ],
+                );
+              },
+            ),
             const Divider(thickness: 1),
             if (showChatBackupBanner == null)
               ListTile(

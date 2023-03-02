@@ -49,11 +49,12 @@ class ChatView extends StatelessWidget {
         if (controller.canSaveSelectedEvent)
           // Use builder context to correctly position the share dialog on iPad
           Builder(
-              builder: (context) => IconButton(
-                    icon: Icon(Icons.adaptive.share),
-                    tooltip: L10n.of(context)!.share,
-                    onPressed: () => controller.saveSelectedEvent(context),
-                  )),
+            builder: (context) => IconButton(
+              icon: Icon(Icons.adaptive.share),
+              tooltip: L10n.of(context)!.share,
+              onPressed: () => controller.saveSelectedEvent(context),
+            ),
+          ),
         if (controller.canRedactSelectedEvents)
           IconButton(
             icon: const Icon(Icons.delete_outlined),
@@ -155,7 +156,9 @@ class ChatView extends StatelessWidget {
 
     if (controller.room!.membership == Membership.invite) {
       showFutureLoadingDialog(
-          context: context, future: () => controller.room!.join());
+        context: context,
+        future: () => controller.room!.join(),
+      );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final colorScheme = Theme.of(context).colorScheme;
@@ -249,21 +252,23 @@ class ChatView extends StatelessWidget {
                             PinnedEvents(controller),
                             Expanded(
                               child: GestureDetector(
-                                  onTap: controller.clearSingleSelectedEvent,
-                                  child: Builder(
-                                    builder: (context) {
-                                      if (controller.timeline == null) {
-                                        return const Center(
-                                          child: CircularProgressIndicator
-                                              .adaptive(strokeWidth: 2),
-                                        );
-                                      }
-
-                                      return ChatEventList(
-                                        controller: controller,
+                                onTap: controller.clearSingleSelectedEvent,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (controller.timeline == null) {
+                                      return const Center(
+                                        child:
+                                            CircularProgressIndicator.adaptive(
+                                                strokeWidth: 2,),
                                       );
-                                    },
-                                  )),
+                                    }
+
+                                    return ChatEventList(
+                                      controller: controller,
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
                             if (controller.room!.canSendDefaultMessages &&
                                 controller.room!.membership == Membership.join)
@@ -274,7 +279,8 @@ class ChatView extends StatelessWidget {
                                   right: bottomSheetPadding,
                                 ),
                                 constraints: const BoxConstraints(
-                                    maxWidth: FluffyThemes.columnWidth * 2.5),
+                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                ),
                                 alignment: Alignment.center,
                                 child: Material(
                                   borderRadius: const BorderRadius.only(
@@ -324,7 +330,8 @@ class ChatView extends StatelessWidget {
                                               onPressed:
                                                   controller.recreateChat,
                                               label: Text(
-                                                  L10n.of(context)!.reopenChat),
+                                                L10n.of(context)!.reopenChat,
+                                              ),
                                             ),
                                           ],
                                         )

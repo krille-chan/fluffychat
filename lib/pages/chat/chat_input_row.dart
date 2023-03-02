@@ -300,23 +300,24 @@ class _ChatAccountPicker extends StatelessWidget {
         builder: (context, snapshot) => PopupMenuButton<String>(
           onSelected: _popupMenuButtonSelected,
           itemBuilder: (BuildContext context) => clients
-              .map((client) => PopupMenuItem<String>(
-                    value: client!.userID,
-                    child: FutureBuilder<Profile>(
-                      future: client.fetchOwnProfile(),
-                      builder: (context, snapshot) => ListTile(
-                        leading: Avatar(
-                          mxContent: snapshot.data?.avatarUrl,
-                          name: snapshot.data?.displayName ??
-                              client.userID!.localpart,
-                          size: 20,
-                        ),
-                        title:
-                            Text(snapshot.data?.displayName ?? client.userID!),
-                        contentPadding: const EdgeInsets.all(0),
+              .map(
+                (client) => PopupMenuItem<String>(
+                  value: client!.userID,
+                  child: FutureBuilder<Profile>(
+                    future: client.fetchOwnProfile(),
+                    builder: (context, snapshot) => ListTile(
+                      leading: Avatar(
+                        mxContent: snapshot.data?.avatarUrl,
+                        name: snapshot.data?.displayName ??
+                            client.userID!.localpart,
+                        size: 20,
                       ),
+                      title: Text(snapshot.data?.displayName ?? client.userID!),
+                      contentPadding: const EdgeInsets.all(0),
                     ),
-                  ))
+                  ),
+                ),
+              )
               .toList(),
           child: Avatar(
             mxContent: snapshot.data?.avatarUrl,

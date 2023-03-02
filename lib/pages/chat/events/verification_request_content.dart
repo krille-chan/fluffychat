@@ -9,9 +9,11 @@ class VerificationRequestContent extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const VerificationRequestContent(
-      {required this.event, required this.timeline, Key? key})
-      : super(key: key);
+  const VerificationRequestContent({
+    required this.event,
+    required this.timeline,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +45,22 @@ class VerificationRequestContent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.lock_outlined,
-                  color: canceled
-                      ? Colors.red
-                      : (fullyDone ? Colors.green : Colors.grey)),
+              Icon(
+                Icons.lock_outlined,
+                color: canceled
+                    ? Colors.red
+                    : (fullyDone ? Colors.green : Colors.grey),
+              ),
               const SizedBox(width: 8),
-              Text(canceled
-                  ? 'Error ${cancel.first.content.tryGet<String>('code')}: ${cancel.first.content.tryGet<String>('reason')}'
-                  : (fullyDone
-                      ? L10n.of(context)!.verifySuccess
-                      : (started
-                          ? L10n.of(context)!.loadingPleaseWait
-                          : L10n.of(context)!.newVerificationRequest)))
+              Text(
+                canceled
+                    ? 'Error ${cancel.first.content.tryGet<String>('code')}: ${cancel.first.content.tryGet<String>('reason')}'
+                    : (fullyDone
+                        ? L10n.of(context)!.verifySuccess
+                        : (started
+                            ? L10n.of(context)!.loadingPleaseWait
+                            : L10n.of(context)!.newVerificationRequest)),
+              )
             ],
           ),
         ),

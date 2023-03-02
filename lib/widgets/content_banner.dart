@@ -13,16 +13,16 @@ class ContentBanner extends StatelessWidget {
   final double opacity;
   final WidgetBuilder? placeholder;
 
-  const ContentBanner(
-      {this.mxContent,
-      this.height = 400,
-      this.defaultIcon = Icons.account_circle_outlined,
-      this.onEdit,
-      this.client,
-      this.opacity = 0.75,
-      this.placeholder,
-      Key? key})
-      : super(key: key);
+  const ContentBanner({
+    this.mxContent,
+    this.height = 400,
+    this.defaultIcon = Icons.account_circle_outlined,
+    this.onEdit,
+    this.client,
+    this.opacity = 0.75,
+    this.placeholder,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
