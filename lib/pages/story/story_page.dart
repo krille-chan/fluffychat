@@ -46,10 +46,11 @@ class StoryPageController extends State<StoryPage> {
   Timeline? timeline;
 
   Event? get currentEvent => index < events.length ? events[index] : null;
-  StoryThemeData get storyThemeData =>
-      StoryThemeData.fromJson(currentEvent?.content
-              .tryGetMap<String, dynamic>(StoryThemeData.contentKey) ??
-          {});
+  StoryThemeData get storyThemeData => StoryThemeData.fromJson(
+        currentEvent?.content
+                .tryGetMap<String, dynamic>(StoryThemeData.contentKey) ??
+            {},
+      );
 
   bool replyLoading = false;
   bool _modalOpened = false;
@@ -83,8 +84,9 @@ class StoryPageController extends State<StoryPage> {
       final client = Matrix.of(context).client;
       final roomId = await client.startDirectChat(currentEvent.senderId);
       var replyText = L10n.of(context)!.storyFrom(
-          currentEvent.originServerTs.localizedTime(context),
-          currentEvent.content.tryGet<String>('body') ?? '');
+        currentEvent.originServerTs.localizedTime(context),
+        currentEvent.content.tryGet<String>('body') ?? '',
+      );
       replyText = replyText.split('\n').map((line) => '> $line').join('\n');
       message = '$replyText\n\n$message';
       await client.getRoomById(roomId)!.sendTextEvent(message);
@@ -307,33 +309,35 @@ class StoryPageController extends State<StoryPage> {
     final event = currentEvent;
     if (event == null) return;
     final score = await showConfirmationDialog<int>(
-        context: context,
-        title: L10n.of(context)!.reportMessage,
-        message: L10n.of(context)!.howOffensiveIsThisContent,
-        cancelLabel: L10n.of(context)!.cancel,
-        okLabel: L10n.of(context)!.ok,
-        actions: [
-          AlertDialogAction(
-            key: -100,
-            label: L10n.of(context)!.extremeOffensive,
-          ),
-          AlertDialogAction(
-            key: -50,
-            label: L10n.of(context)!.offensive,
-          ),
-          AlertDialogAction(
-            key: 0,
-            label: L10n.of(context)!.inoffensive,
-          ),
-        ]);
+      context: context,
+      title: L10n.of(context)!.reportMessage,
+      message: L10n.of(context)!.howOffensiveIsThisContent,
+      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context)!.ok,
+      actions: [
+        AlertDialogAction(
+          key: -100,
+          label: L10n.of(context)!.extremeOffensive,
+        ),
+        AlertDialogAction(
+          key: -50,
+          label: L10n.of(context)!.offensive,
+        ),
+        AlertDialogAction(
+          key: 0,
+          label: L10n.of(context)!.inoffensive,
+        ),
+      ],
+    );
     if (score == null) return;
     final reason = await showTextInputDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.whyDoYouWantToReportThis,
-        okLabel: L10n.of(context)!.ok,
-        cancelLabel: L10n.of(context)!.cancel,
-        textFields: [DialogTextField(hintText: L10n.of(context)!.reason)]);
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context)!.whyDoYouWantToReportThis,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      textFields: [DialogTextField(hintText: L10n.of(context)!.reason)],
+    );
     if (reason == null || reason.single.isEmpty) return;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -352,7 +356,9 @@ class StoryPageController extends State<StoryPage> {
   }
 
   Future<MatrixFile> downloadAndDecryptAttachment(
-      Event event, bool getThumbnail) async {
+    Event event,
+    bool getThumbnail,
+  ) async {
     return _fileCache[event.eventId] ??=
         event.downloadAndDecryptAttachment(getThumbnail: getThumbnail);
   }
@@ -400,10 +406,12 @@ class StoryPageController extends State<StoryPage> {
       final timeline = this.timeline = await room.getTimeline();
       timeline.requestKeys();
       var events = timeline.events
-          .where((e) =>
-              e.type == EventTypes.Message &&
-              !e.redacted &&
-              e.status == EventStatus.synced)
+          .where(
+            (e) =>
+                e.type == EventTypes.Message &&
+                !e.redacted &&
+                e.status == EventStatus.synced,
+          )
           .toList();
 
       final hasOutdatedEvents = events.removeOutdatedEvents();
@@ -432,12 +440,16 @@ class StoryPageController extends State<StoryPage> {
 
       // Preload images and videos
       events
-          .where((event) => {MessageTypes.Image, MessageTypes.Video}
-              .contains(event.messageType))
-          .forEach((event) => downloadAndDecryptAttachment(
+          .where(
+            (event) => {MessageTypes.Image, MessageTypes.Video}
+                .contains(event.messageType),
+          )
+          .forEach(
+            (event) => downloadAndDecryptAttachment(
               event,
-              event.messageType == MessageTypes.Video &&
-                  PlatformInfos.isMobile));
+              event.messageType == MessageTypes.Video && PlatformInfos.isMobile,
+            ),
+          );
 
       // Reverse list
       this.events.clear();
@@ -502,9 +514,11 @@ class StoryPageController extends State<StoryPage> {
 
 extension on List<Event> {
   bool removeOutdatedEvents() {
-    final outdatedIndex = indexWhere((event) =>
-        DateTime.now().difference(event.originServerTs).inHours >
-        ClientStoriesExtension.lifeTimeInHours);
+    final outdatedIndex = indexWhere(
+      (event) =>
+          DateTime.now().difference(event.originServerTs).inHours >
+          ClientStoriesExtension.lifeTimeInHours,
+    );
     if (outdatedIndex != -1) {
       removeRange(outdatedIndex, length);
       return true;

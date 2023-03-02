@@ -5,7 +5,8 @@ import 'package:matrix/matrix.dart';
 import 'package:native_imaging/native_imaging.dart' as native;
 
 Future<MatrixImageFileResizedResponse?> customImageResizer(
-    MatrixImageFileResizeArguments arguments) async {
+  MatrixImageFileResizeArguments arguments,
+) async {
   await native.init();
   late native.Image nativeImg;
 
@@ -21,7 +22,10 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
         return null;
       }
       final rgba = Uint8List.view(
-          rgbaData.buffer, rgbaData.offsetInBytes, rgbaData.lengthInBytes);
+        rgbaData.buffer,
+        rgbaData.offsetInBytes,
+        rgbaData.lengthInBytes,
+      );
 
       final width = dartFrame.image.width;
       final height = dartFrame.image.height;

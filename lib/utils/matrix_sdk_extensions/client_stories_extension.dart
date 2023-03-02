@@ -15,8 +15,10 @@ extension ClientStoriesExtension on Client {
 
   List<User> get contacts => rooms
       .where((room) => room.isDirectChat)
-      .map((room) =>
-          room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!))
+      .map(
+        (room) =>
+            room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!),
+      )
       .toList();
 
   List<Room> get storiesRooms =>
@@ -78,23 +80,30 @@ extension ClientStoriesExtension on Client {
   }
 
   Future<Room?> getStoriesRoom(BuildContext context) async {
-    final candidates = rooms.where((room) =>
-        room.getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
-            storiesRoomType &&
-        room.ownPowerLevel >= 100);
+    final candidates = rooms.where(
+      (room) =>
+          room
+                  .getState(EventTypes.RoomCreate)
+                  ?.content
+                  .tryGet<String>('type') ==
+              storiesRoomType &&
+          room.ownPowerLevel >= 100,
+    );
     if (candidates.isEmpty) return null;
     if (candidates.length == 1) return candidates.single;
     return await showModalActionSheet<Room>(
-        context: context,
-        actions: candidates
-            .map(
-              (room) => SheetAction(
-                  label: room.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
-                  ),
-                  key: room),
-            )
-            .toList());
+      context: context,
+      actions: candidates
+          .map(
+            (room) => SheetAction(
+              label: room.getLocalizedDisplayname(
+                MatrixLocals(L10n.of(context)!),
+              ),
+              key: room,
+            ),
+          )
+          .toList(),
+    );
   }
 }
 

@@ -22,12 +22,17 @@ class ChatPermissionsSettings extends StatefulWidget {
 
 class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
   String? get roomId => VRouter.of(context).pathParameters['roomid'];
-  void editPowerLevel(BuildContext context, String key, int currentLevel,
-      {String? category}) async {
+  void editPowerLevel(
+    BuildContext context,
+    String key,
+    int currentLevel, {
+    String? category,
+  }) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     if (!room.canSendEvent(EventTypes.RoomPowerLevels)) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.noPermission)));
+        SnackBar(content: Text(L10n.of(context)!.noPermission)),
+      );
       return;
     }
     final newLevel = await showPermissionChooser(
@@ -36,7 +41,8 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     );
     if (newLevel == null) return;
     final content = Map<String, dynamic>.from(
-        room.getState(EventTypes.RoomPowerLevels)!.content);
+      room.getState(EventTypes.RoomPowerLevels)!.content,
+    );
     if (category != null) {
       if (!content.containsKey(category)) {
         content[category] = <String, dynamic>{};
@@ -74,10 +80,13 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
       title: L10n.of(context)!.replaceRoomWithNewerVersion,
       actions: capabilities.mRoomVersions!.available.entries
           .where((r) => r.key != roomVersion)
-          .map((version) => AlertDialogAction(
+          .map(
+            (version) => AlertDialogAction(
               key: version.key,
               label:
-                  '${version.key} (${version.value.toString().split('.').last})'))
+                  '${version.key} (${version.value.toString().split('.').last})',
+            ),
+          )
           .toList(),
     );
     if (newVersion == null ||

@@ -25,22 +25,23 @@ class StateMessage extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           child: FutureBuilder<String>(
-              future: event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
-              builder: (context, snapshot) {
-                return Text(
-                  snapshot.data ??
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                      ),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14 * AppConfig.fontSizeFactor,
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                );
-              }),
+            future: event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
+            builder: (context, snapshot) {
+              return Text(
+                snapshot.data ??
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                    ),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14 * AppConfig.fontSizeFactor,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  decoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

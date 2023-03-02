@@ -29,9 +29,10 @@ class NewGroupView extends StatelessWidget {
                 textInputAction: TextInputAction.go,
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
-                    labelText: L10n.of(context)!.optionalGroupName,
-                    prefixIcon: const Icon(Icons.people_outlined),
-                    hintText: L10n.of(context)!.enterAGroupName),
+                  labelText: L10n.of(context)!.optionalGroupName,
+                  prefixIcon: const Icon(Icons.people_outlined),
+                  hintText: L10n.of(context)!.enterAGroupName,
+                ),
               ),
             ),
             SwitchListTile.adaptive(

@@ -78,7 +78,8 @@ class BackgroundPush {
     firebase?.setListeners(
       onMessage: (message) => pushHelper(
         PushNotification.fromJson(
-            Map<String, dynamic>.from(message['data'] ?? message)),
+          Map<String, dynamic>.from(message['data'] ?? message),
+        ),
         client: client,
         l10n: l10n,
         activeRoomId: router?.currentState?.pathParameters['roomid'],
@@ -331,7 +332,8 @@ class BackgroundPush {
       }
     } catch (e) {
       Logs().i(
-          '[Push] No self-hosted unified push gateway present: $newEndpoint');
+        '[Push] No self-hosted unified push gateway present: $newEndpoint',
+      );
     }
     Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
@@ -366,7 +368,8 @@ class BackgroundPush {
   Future<void> _onUpMessage(Uint8List message, String i) async {
     upAction = true;
     final data = Map<String, dynamic>.from(
-        json.decode(utf8.decode(message))['notification']);
+      json.decode(utf8.decode(message))['notification'],
+    );
     // UP may strip the devices list
     data['devices'] ??= [];
     await pushHelper(
@@ -382,8 +385,11 @@ class BackgroundPush {
   /// IDs we map the [roomId] to a number and store this number.
   late Map<String, int> idMap;
   Future<void> _loadIdMap() async {
-    idMap = Map<String, int>.from(json.decode(
-        (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}'));
+    idMap = Map<String, int>.from(
+      json.decode(
+        (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}',
+      ),
+    );
   }
 
   Future<int> mapRoomIdToInt(String roomId) async {
@@ -441,7 +447,8 @@ class BackgroundPush {
         if (syncErrored) {
           try {
             Logs().v(
-                '[Push] failed to sync for fallback push, fetching notifications endpoint...');
+              '[Push] failed to sync for fallback push, fetching notifications endpoint...',
+            );
             final notifications = await client.getNotifications(limit: 20);
             final notificationRooms =
                 notifications.notifications.map((n) => n.roomId).toSet();
@@ -450,8 +457,9 @@ class BackgroundPush {
                 .map((r) => r.id);
           } catch (e) {
             Logs().v(
-                '[Push] failed to fetch pending notifications for clearing push, falling back...',
-                e);
+              '[Push] failed to fetch pending notifications for clearing push, falling back...',
+              e,
+            );
             emptyRooms = client.rooms
                 .where((r) => r.notificationCount == 0)
                 .map((r) => r.id);
@@ -474,7 +482,9 @@ class BackgroundPush {
       }
       if (changed) {
         await store.setItem(
-            SettingKeys.notificationCurrentIds, json.encode(idMap));
+          SettingKeys.notificationCurrentIds,
+          json.encode(idMap),
+        );
       }
     } finally {
       _clearingPushLock = false;

@@ -20,7 +20,8 @@ class UpdateCheckerNoStore {
   static const gitLabHost = 'gitlab.com';
 
   static Uri get tagsUri => Uri.parse(
-      'https://$gitLabHost/projects/$gitLabProjectId/repository/tags');
+        'https://$gitLabHost/projects/$gitLabProjectId/repository/tags',
+      );
 
   final BuildContext context;
 

@@ -71,8 +71,11 @@ class InvitationSelectionController extends State<InvitationSelection> {
       future: () => room.invite(id),
     );
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.contactHasBeenInvitedToTheGroup),
+        ),
+      );
     }
   }
 
@@ -99,7 +102,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text((e).toLocalizedString(context))));
+        SnackBar(content: Text((e).toLocalizedString(context))),
+      );
       return;
     } finally {
       setState(() => loading = false);
@@ -108,19 +112,25 @@ class InvitationSelectionController extends State<InvitationSelection> {
       foundProfiles = List<Profile>.from(response.results);
       if (text.isValidMatrixId &&
           foundProfiles.indexWhere((profile) => text == profile.userId) == -1) {
-        setState(() => foundProfiles = [
-              Profile.fromJson({'user_id': text}),
-            ]);
+        setState(
+          () => foundProfiles = [
+            Profile.fromJson({'user_id': text}),
+          ],
+        );
       }
       final participants = Matrix.of(context)
           .client
           .getRoomById(roomId!)!
           .getParticipants()
-          .where((user) =>
-              [Membership.join, Membership.invite].contains(user.membership))
+          .where(
+            (user) =>
+                [Membership.join, Membership.invite].contains(user.membership),
+          )
           .toList();
-      foundProfiles.removeWhere((profile) =>
-          participants.indexWhere((u) => u.id == profile.userId) != -1);
+      foundProfiles.removeWhere(
+        (profile) =>
+            participants.indexWhere((u) => u.id == profile.userId) != -1,
+      );
     });
   }
 

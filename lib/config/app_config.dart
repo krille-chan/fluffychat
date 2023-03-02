@@ -70,8 +70,9 @@ abstract class AppConfig {
         colorSchemeSeed = Color(json['chat_color']);
       } catch (e) {
         Logs().w(
-            'Invalid color in config.json! Please make sure to define the color in this format: "0xffdd0000"',
-            e);
+          'Invalid color in config.json! Please make sure to define the color in this format: "0xffdd0000"',
+          e,
+        );
       }
     }
     if (json['application_name'] is String) {

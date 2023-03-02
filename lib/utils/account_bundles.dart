@@ -55,10 +55,12 @@ extension AccountBundlesExtension on Client {
     }
     ret ??= [];
     if (ret.isEmpty) {
-      ret.add(AccountBundle(
-        name: userID,
-        priority: 0,
-      ));
+      ret.add(
+        AccountBundle(
+          name: userID,
+          priority: 0,
+        ),
+      );
     }
     return ret;
   }

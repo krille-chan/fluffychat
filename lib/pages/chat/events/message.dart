@@ -27,18 +27,19 @@ class Message extends StatelessWidget {
   final bool selected;
   final Timeline timeline;
 
-  const Message(this.event,
-      {this.nextEvent,
-      this.longPressSelect = false,
-      this.onSelect,
-      this.onInfoTab,
-      this.onAvatarTab,
-      this.scrollToEventId,
-      required this.onSwipe,
-      this.selected = false,
-      required this.timeline,
-      Key? key})
-      : super(key: key);
+  const Message(
+    this.event, {
+    this.nextEvent,
+    this.longPressSelect = false,
+    this.onSelect,
+    this.onInfoTab,
+    this.onAvatarTab,
+    this.scrollToEventId,
+    required this.onSwipe,
+    this.selected = false,
+    required this.timeline,
+    Key? key,
+  }) : super(key: key);
 
   /// Indicates wheither the user may use a mouse instead
   /// of touchscreen.
@@ -126,13 +127,15 @@ class Message extends StatelessWidget {
                     height: 16 * AppConfig.bubbleSizeFactor,
                     child: event.status == EventStatus.sending
                         ? const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2)
+                            strokeWidth: 2,
+                          )
                         : event.status == EventStatus.error
                             ? const Icon(Icons.error, color: Colors.red)
                             : null,
                   ),
                 ),
-              ))
+              ),
+            )
           : FutureBuilder<User?>(
               future: event.fetchSenderUser(),
               builder: (context, snapshot) {
@@ -142,7 +145,8 @@ class Message extends StatelessWidget {
                   name: user.calcDisplayname(),
                   onTap: () => onAvatarTab!(event),
                 );
-              }),
+              },
+            ),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +175,8 @@ class Message extends StatelessWidget {
                                   : displayname.lightColorText),
                             ),
                           );
-                        }),
+                        },
+                      ),
               ),
             Container(
               alignment: alignment,
@@ -198,7 +203,8 @@ class Message extends StatelessWidget {
                         ? EdgeInsets.zero
                         : EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
                     constraints: const BoxConstraints(
-                        maxWidth: FluffyThemes.columnWidth * 1.5),
+                      maxWidth: FluffyThemes.columnWidth * 1.5,
+                    ),
                     child: Stack(
                       children: <Widget>[
                         Column(
@@ -233,11 +239,14 @@ class Message extends StatelessWidget {
                                     child: AbsorbPointer(
                                       child: Container(
                                         margin: EdgeInsets.symmetric(
-                                            vertical: 4.0 *
-                                                AppConfig.bubbleSizeFactor),
-                                        child: ReplyContent(replyEvent,
-                                            ownMessage: ownMessage,
-                                            timeline: timeline),
+                                          vertical:
+                                              4.0 * AppConfig.bubbleSizeFactor,
+                                        ),
+                                        child: ReplyContent(
+                                          replyEvent,
+                                          ownMessage: ownMessage,
+                                          timeline: timeline,
+                                        ),
                                       ),
                                     ),
                                   );
@@ -249,10 +258,13 @@ class Message extends StatelessWidget {
                               onInfoTab: onInfoTab,
                             ),
                             if (event.hasAggregatedEvents(
-                                timeline, RelationshipTypes.edit))
+                              timeline,
+                              RelationshipTypes.edit,
+                            ))
                               Padding(
                                 padding: EdgeInsets.only(
-                                    top: 4.0 * AppConfig.bubbleSizeFactor),
+                                  top: 4.0 * AppConfig.bubbleSizeFactor,
+                                ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -301,26 +313,29 @@ class Message extends StatelessWidget {
             Padding(
               padding: displayTime
                   ? EdgeInsets.symmetric(
-                      vertical: 8.0 * AppConfig.bubbleSizeFactor)
+                      vertical: 8.0 * AppConfig.bubbleSizeFactor,
+                    )
                   : EdgeInsets.zero,
               child: Center(
-                  child: Material(
-                color: displayTime
-                    ? Theme.of(context).colorScheme.background
-                    : Theme.of(context)
-                        .colorScheme
-                        .background
-                        .withOpacity(0.33),
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-                clipBehavior: Clip.antiAlias,
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Text(
-                    event.originServerTs.localizedTime(context),
-                    style: TextStyle(fontSize: 14 * AppConfig.fontSizeFactor),
+                child: Material(
+                  color: displayTime
+                      ? Theme.of(context).colorScheme.background
+                      : Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.33),
+                  borderRadius:
+                      BorderRadius.circular(AppConfig.borderRadius / 2),
+                  clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Text(
+                      event.originServerTs.localizedTime(context),
+                      style: TextStyle(fontSize: 14 * AppConfig.fontSizeFactor),
+                    ),
                   ),
                 ),
-              )),
+              ),
             ),
           row,
           if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))

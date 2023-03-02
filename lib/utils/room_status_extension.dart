@@ -54,12 +54,14 @@ extension RoomStatusExtension on Room {
       }
     } else if (typingUsers.length == 2) {
       typingText = L10n.of(context)!.userAndUserAreTyping(
-          typingUsers.first.calcDisplayname(),
-          typingUsers[1].calcDisplayname());
+        typingUsers.first.calcDisplayname(),
+        typingUsers[1].calcDisplayname(),
+      );
     } else if (typingUsers.length > 2) {
       typingText = L10n.of(context)!.userAndOthersAreTyping(
-          typingUsers.first.calcDisplayname(),
-          (typingUsers.length - 1).toString());
+        typingUsers.first.calcDisplayname(),
+        (typingUsers.length - 1).toString(),
+      );
     }
     return typingText;
   }
@@ -76,8 +78,10 @@ extension RoomStatusExtension on Room {
         break;
       }
     }
-    lastReceipts.removeWhere((user) =>
-        user.id == client.userID || user.id == timeline.events.first.senderId);
+    lastReceipts.removeWhere(
+      (user) =>
+          user.id == client.userID || user.id == timeline.events.first.senderId,
+    );
     return lastReceipts.toList();
   }
 }

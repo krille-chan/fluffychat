@@ -111,7 +111,9 @@ Future<void> _tryPushHelper(
         await flutterLocalNotificationsPlugin.cancelAll();
         final store = await SharedPreferences.getInstance();
         await store.setString(
-            SettingKeys.notificationCurrentIds, json.encode({}));
+          SettingKeys.notificationCurrentIds,
+          json.encode({}),
+        );
       }
     }
     return;
@@ -237,7 +239,8 @@ Future<void> _tryPushHelper(
 Future<int> mapRoomIdToInt(String roomId) async {
   final store = await SharedPreferences.getInstance();
   final idMap = Map<String, int>.from(
-      jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'));
+    jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'),
+  );
   int? currentInt;
   try {
     currentInt = idMap[roomId];

@@ -77,10 +77,15 @@ extension DateTimeExtension on DateTime {
       }
     } else if (sameYear) {
       return L10n.of(context)!.dateWithoutYear(
-          month.toString().padLeft(2, '0'), day.toString().padLeft(2, '0'));
+        month.toString().padLeft(2, '0'),
+        day.toString().padLeft(2, '0'),
+      );
     }
-    return L10n.of(context)!.dateWithYear(year.toString(),
-        month.toString().padLeft(2, '0'), day.toString().padLeft(2, '0'));
+    return L10n.of(context)!.dateWithYear(
+      year.toString(),
+      month.toString().padLeft(2, '0'),
+      day.toString().padLeft(2, '0'),
+    );
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also
@@ -95,7 +100,9 @@ extension DateTimeExtension on DateTime {
 
     if (sameDay) return localizedTimeOfDay(context);
     return L10n.of(context)!.dateAndTimeOfDay(
-        localizedTimeShort(context), localizedTimeOfDay(context));
+      localizedTimeShort(context),
+      localizedTimeOfDay(context),
+    );
   }
 
   static String _z(int i) => i < 10 ? '0${i.toString()}' : i.toString();

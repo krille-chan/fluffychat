@@ -111,14 +111,15 @@ class CallKeepManager {
   Future<void> showCallkitIncoming(CallSession call) async {
     if (!setupDone) {
       await _callKeep.setup(
-          null,
-          <String, dynamic>{
-            'ios': <String, dynamic>{
-              'appName': appName,
-            },
-            'android': alertOptions,
+        null,
+        <String, dynamic>{
+          'ios': <String, dynamic>{
+            'appName': appName,
           },
-          backgroundMode: true);
+          'android': alertOptions,
+        },
+        backgroundMode: true,
+      );
     }
     setupDone = true;
     await displayIncomingCall(call);
@@ -131,7 +132,8 @@ class CallKeepManager {
       (event) {
         if (event == CallEvent.kLocalHoldUnhold) {
           Logs().i(
-              'Call hold event: local ${call.localHold}, remote ${call.remoteOnHold}');
+            'Call hold event: local ${call.localHold}, remote ${call.remoteOnHold}',
+          );
         }
       },
     );
@@ -169,10 +171,14 @@ class CallKeepManager {
     _callKeep.on(CallKeepPerformAnswerCallAction(), answerCall);
     _callKeep.on(CallKeepDidPerformDTMFAction(), didPerformDTMFAction);
     _callKeep.on(
-        CallKeepDidReceiveStartCallAction(), didReceiveStartCallAction);
+      CallKeepDidReceiveStartCallAction(),
+      didReceiveStartCallAction,
+    );
     _callKeep.on(CallKeepDidToggleHoldAction(), didToggleHoldCallAction);
     _callKeep.on(
-        CallKeepDidPerformSetMutedCallAction(), didPerformSetMutedCallAction);
+      CallKeepDidPerformSetMutedCallAction(),
+      didPerformSetMutedCallAction,
+    );
     _callKeep.on(CallKeepPerformEndCallAction(), endCall);
     _callKeep.on(CallKeepPushKitToken(), onPushKitToken);
     _callKeep.on(CallKeepDidDisplayIncomingCall(), didDisplayIncomingCall);
@@ -209,11 +215,17 @@ class CallKeepManager {
   Future<void> updateDisplay(String callUUID) async {
     // Workaround because Android doesn't display well displayName, se we have to switch ...
     if (isIOS) {
-      await _callKeep.updateDisplay(callUUID,
-          displayName: 'New Name', handle: callUUID);
+      await _callKeep.updateDisplay(
+        callUUID,
+        displayName: 'New Name',
+        handle: callUUID,
+      );
     } else {
-      await _callKeep.updateDisplay(callUUID,
-          displayName: callUUID, handle: 'New Name');
+      await _callKeep.updateDisplay(
+        callUUID,
+        displayName: callUUID,
+        handle: 'New Name',
+      );
     }
   }
 
@@ -250,7 +262,8 @@ class CallKeepManager {
             const Divider(),
             ListTile(
               onTap: () => FlutterForegroundTask.openSystemAlertWindowSettings(
-                  forceOpen: true),
+                forceOpen: true,
+              ),
               title: Text(L10n.of(context)!.appearOnTop),
               subtitle: Text(L10n.of(context)!.appearOnTopDetails),
               trailing: const Icon(Icons.file_upload_rounded),
@@ -310,7 +323,8 @@ class CallKeepManager {
   }
 
   Future<void> didReceiveStartCallAction(
-      CallKeepDidReceiveStartCallAction event) async {
+    CallKeepDidReceiveStartCallAction event,
+  ) async {
     if (event.handle == null) {
       // @TODO: sometime we receive `didReceiveStartCallAction` with handle` undefined`
       return;
@@ -328,7 +342,8 @@ class CallKeepManager {
   }
 
   Future<void> didPerformSetMutedCallAction(
-      CallKeepDidPerformSetMutedCallAction event) async {
+    CallKeepDidPerformSetMutedCallAction event,
+  ) async {
     final keeper = calls[event.callUUID];
     if (event.muted!) {
       keeper!.call.setMicrophoneMuted(true);
@@ -339,7 +354,8 @@ class CallKeepManager {
   }
 
   Future<void> didToggleHoldCallAction(
-      CallKeepDidToggleHoldAction event) async {
+    CallKeepDidToggleHoldAction event,
+  ) async {
     final keeper = calls[event.callUUID];
     if (event.hold!) {
       keeper!.call.setRemoteOnHold(true);

@@ -18,23 +18,28 @@ class PinnedEvents extends StatelessWidget {
   const PinnedEvents(this.controller, {Key? key}) : super(key: key);
 
   Future<void> _displayPinnedEventsDialog(
-      BuildContext context, List<Event?> events) async {
+    BuildContext context,
+    List<Event?> events,
+  ) async {
     final eventId = events.length == 1
         ? events.single?.eventId
         : await showConfirmationDialog<String>(
             context: context,
             title: L10n.of(context)!.pinMessage,
             actions: events
-                .map((event) => AlertDialogAction(
-                      key: event?.eventId ?? '',
-                      label: event?.calcLocalizedBodyFallback(
-                            MatrixLocals(L10n.of(context)!),
-                            withSenderNamePrefix: true,
-                            hideReply: true,
-                          ) ??
-                          'UNKNOWN',
-                    ))
-                .toList());
+                .map(
+                  (event) => AlertDialogAction(
+                    key: event?.eventId ?? '',
+                    label: event?.calcLocalizedBodyFallback(
+                          MatrixLocals(L10n.of(context)!),
+                          withSenderNamePrefix: true,
+                          hideReply: true,
+                        ) ??
+                        'UNKNOWN',
+                  ),
+                )
+                .toList(),
+          );
 
     if (eventId != null) controller.scrollToEventId(eventId);
   }
@@ -54,87 +59,86 @@ class PinnedEvents extends StatelessWidget {
       return completer;
     });
     return FutureBuilder<List<Event?>>(
-        future: Future.wait(completers.map((e) => e.future).toList()),
-        builder: (context, snapshot) {
-          final pinnedEvents = snapshot.data;
-          final event = (pinnedEvents != null && pinnedEvents.isNotEmpty)
-              ? snapshot.data?.last
-              : null;
+      future: Future.wait(completers.map((e) => e.future).toList()),
+      builder: (context, snapshot) {
+        final pinnedEvents = snapshot.data;
+        final event = (pinnedEvents != null && pinnedEvents.isNotEmpty)
+            ? snapshot.data?.last
+            : null;
 
-          if (event == null || pinnedEvents == null) {
-            return Container();
-          }
+        if (event == null || pinnedEvents == null) {
+          return Container();
+        }
 
-          final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-          return Material(
-            color: Theme.of(context).colorScheme.surfaceVariant,
-            child: InkWell(
-              onTap: () => _displayPinnedEventsDialog(
-                context,
-                pinnedEvents,
-              ),
-              child: Row(
-                children: [
-                  IconButton(
-                    splashRadius: 20,
-                    iconSize: 20,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    icon: const Icon(Icons.push_pin),
-                    tooltip: L10n.of(context)!.unpin,
-                    onPressed: controller.room
-                                ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
-                            false
-                        ? () => controller.unpinEvent(event.eventId)
-                        : null,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: FutureBuilder<String>(
-                          future: event.calcLocalizedBody(
-                            MatrixLocals(L10n.of(context)!),
-                            withSenderNamePrefix: true,
-                            hideReply: true,
+        final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+        return Material(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          child: InkWell(
+            onTap: () => _displayPinnedEventsDialog(
+              context,
+              pinnedEvents,
+            ),
+            child: Row(
+              children: [
+                IconButton(
+                  splashRadius: 20,
+                  iconSize: 20,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  icon: const Icon(Icons.push_pin),
+                  tooltip: L10n.of(context)!.unpin,
+                  onPressed: controller.room
+                              ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
+                          false
+                      ? () => controller.unpinEvent(event.eventId)
+                      : null,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: FutureBuilder<String>(
+                      future: event.calcLocalizedBody(
+                        MatrixLocals(L10n.of(context)!),
+                        withSenderNamePrefix: true,
+                        hideReply: true,
+                      ),
+                      builder: (context, snapshot) {
+                        return LinkText(
+                          text: snapshot.data ??
+                              event.calcLocalizedBodyFallback(
+                                MatrixLocals(L10n.of(context)!),
+                                withSenderNamePrefix: true,
+                                hideReply: true,
+                              ),
+                          maxLines: 2,
+                          textStyle: TextStyle(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: fontSize,
+                            decoration: event.redacted
+                                ? TextDecoration.lineThrough
+                                : null,
                           ),
-                          builder: (context, snapshot) {
-                            return LinkText(
-                              text: snapshot.data ??
-                                  event.calcLocalizedBodyFallback(
-                                    MatrixLocals(L10n.of(context)!),
-                                    withSenderNamePrefix: true,
-                                    hideReply: true,
-                                  ),
-                              maxLines: 2,
-                              textStyle: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: fontSize,
-                                decoration: event.redacted
-                                    ? TextDecoration.lineThrough
-                                    : null,
-                              ),
-                              linkStyle: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                                fontSize: fontSize,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSurfaceVariant,
-                              ),
-                              onLinkTap: (url) =>
-                                  UrlLauncher(context, url).launchUrl(),
-                            );
-                          }),
+                          linkStyle: TextStyle(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            fontSize: fontSize,
+                            decoration: TextDecoration.underline,
+                            decorationColor:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                          onLinkTap: (url) =>
+                              UrlLauncher(context, url).launchUrl(),
+                        );
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

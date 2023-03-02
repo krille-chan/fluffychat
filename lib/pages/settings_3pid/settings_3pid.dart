@@ -79,11 +79,12 @@ class Settings3PidController extends State<Settings3Pid> {
       return;
     }
     final success = await showFutureLoadingDialog(
-        context: context,
-        future: () => Matrix.of(context).client.delete3pidFromAccount(
-              identifier.address,
-              identifier.medium,
-            ));
+      context: context,
+      future: () => Matrix.of(context).client.delete3pidFromAccount(
+            identifier.address,
+            identifier.medium,
+          ),
+    );
     if (success.error != null) return;
     setState(() => request = null);
   }

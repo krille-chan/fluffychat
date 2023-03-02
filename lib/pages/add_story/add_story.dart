@@ -88,14 +88,15 @@ class AddStoryController extends State<AddStoryPage> {
     );
     if (picked == null) return;
     final matrixFile = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final bytes = await picked.readAsBytes();
-          return MatrixImageFile(
-            bytes: bytes,
-            name: picked.name,
-          );
-        });
+      context: context,
+      future: () async {
+        final bytes = await picked.readAsBytes();
+        return MatrixImageFile(
+          bytes: bytes,
+          name: picked.name,
+        );
+      },
+    );
 
     setState(() {
       image = matrixFile.result;

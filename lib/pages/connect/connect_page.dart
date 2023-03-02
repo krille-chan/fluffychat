@@ -118,8 +118,9 @@ class ConnectPageController extends State<ConnectPage> {
   List<IdentityProvider>? get identityProviders {
     final loginTypes = _rawLoginTypes;
     if (loginTypes == null) return null;
-    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere((flow) =>
-        flow['type'] == AuthenticationTypes.sso)['identity_providers'];
+    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
+          (flow) => flow['type'] == AuthenticationTypes.sso,
+        )['identity_providers'];
     final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();
@@ -163,9 +164,11 @@ class ConnectPageController extends State<ConnectPage> {
             RequestType.GET,
             '/client/r0/login',
           )
-          .then((loginTypes) => setState(() {
-                _rawLoginTypes = loginTypes;
-              }));
+          .then(
+            (loginTypes) => setState(() {
+              _rawLoginTypes = loginTypes;
+            }),
+          );
     }
   }
 

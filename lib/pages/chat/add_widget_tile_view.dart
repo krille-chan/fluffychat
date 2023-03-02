@@ -26,12 +26,15 @@ class AddWidgetTileView extends StatelessWidget {
             'm.jitsi': Text(L10n.of(context)!.widgetJitsi),
             'm.video': Text(L10n.of(context)!.widgetVideo),
             'm.custom': Text(L10n.of(context)!.widgetCustom),
-          }.map((key, value) => MapEntry(
+          }.map(
+            (key, value) => MapEntry(
               key,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: value,
-              ))),
+              ),
+            ),
+          ),
           onValueChanged: controller.setWidgetType,
         ),
         Padding(

@@ -135,8 +135,9 @@ class UserDeviceListItem extends StatelessWidget {
       ),
       subtitle: Text(
         L10n.of(context)!.lastActiveAgo(
-            DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs ?? 0)
-                .localizedTimeShort(context)),
+          DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs ?? 0)
+              .localizedTimeShort(context),
+        ),
         style: const TextStyle(fontWeight: FontWeight.w300),
       ),
     );

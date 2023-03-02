@@ -60,13 +60,20 @@ class EmotesSettingsController extends State<EmotesSettings> {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setRoomStateWithKey(
-            room!.id, 'im.ponies.room_emotes', stateKey ?? '', pack!.toJson()),
+          room!.id,
+          'im.ponies.room_emotes',
+          stateKey ?? '',
+          pack!.toJson(),
+        ),
       );
     } else {
       await showFutureLoadingDialog(
         context: context,
         future: () => client.setAccountData(
-            client.userID!, 'im.ponies.user_emotes', pack!.toJson()),
+          client.userID!,
+          'im.ponies.user_emotes',
+          pack!.toJson(),
+        ),
       );
     }
   }
@@ -95,7 +102,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
     await showFutureLoadingDialog(
       context: context,
       future: () => client.setAccountData(
-          client.userID!, 'im.ponies.emote_rooms', content),
+        client.userID!,
+        'im.ponies.emote_rooms',
+        content,
+      ),
     );
     setState(() {});
   }
@@ -197,7 +207,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   void imagePickerAction(
-      ValueNotifier<ImagePackImageContent?> controller) async {
+    ValueNotifier<ImagePackImageContent?> controller,
+  ) async {
     final result =
         await FilePickerCross.importFromStorage(type: FileTypeCross.image);
     if (result.fileName == null) return;

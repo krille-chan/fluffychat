@@ -62,7 +62,9 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String changedTheGuestAccessRulesTo(
-      String senderName, String localizedString) {
+    String senderName,
+    String localizedString,
+  ) {
     return l10n.changedTheGuestAccessRulesTo(senderName, localizedString);
   }
 
@@ -73,7 +75,9 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String changedTheHistoryVisibilityTo(
-      String senderName, String localizedString) {
+    String senderName,
+    String localizedString,
+  ) {
     return l10n.changedTheHistoryVisibilityTo(senderName, localizedString);
   }
 

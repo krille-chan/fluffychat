@@ -144,13 +144,15 @@ void main() {
 
         await tester.waitFor(
           find.descendant(
-              of: find.byType(InvitationSelectionView),
-              matching: find.byType(TextField)),
+            of: find.byType(InvitationSelectionView),
+            matching: find.byType(TextField),
+          ),
         );
         await tester.enterText(
           find.descendant(
-              of: find.byType(InvitationSelectionView),
-              matching: find.byType(TextField)),
+            of: find.byType(InvitationSelectionView),
+            matching: find.byType(TextField),
+          ),
           Users.user2.name,
         );
 
@@ -160,14 +162,17 @@ void main() {
         await Future.delayed(const Duration(milliseconds: 1000));
         await tester.pumpAndSettle();
 
-        await tester.tap(find
-            .descendant(
+        await tester.tap(
+          find
+              .descendant(
                 of: find.descendant(
                   of: find.byType(InvitationSelectionView),
                   matching: find.byType(ListTile),
                 ),
-                matching: find.text(Users.user2.name))
-            .last);
+                matching: find.text(Users.user2.name),
+              )
+              .last,
+        );
         await tester.pumpAndSettle();
 
         await tester.waitFor(find.maybeUppercaseText('Yes'));

@@ -130,7 +130,8 @@ class RecordingDialogState extends State<RecordingDialog> {
                       .take(26)
                       .toList()
                       .reversed
-                      .map((amplitude) => Container(
+                      .map(
+                        (amplitude) => Container(
                           margin: const EdgeInsets.only(left: 2),
                           width: 4,
                           decoration: BoxDecoration(
@@ -138,7 +139,9 @@ class RecordingDialogState extends State<RecordingDialog> {
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
                           ),
-                          height: maxDecibalWidth * (amplitude / 100)))
+                          height: maxDecibalWidth * (amplitude / 100),
+                        ),
+                      )
                       .toList(),
                 ),
               ),

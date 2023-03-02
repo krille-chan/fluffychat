@@ -65,10 +65,11 @@ class HomeserverPickerView extends StatelessWidget {
                               child: benchmarkResults == null
                                   ? const Center(
                                       child: Padding(
-                                      padding: EdgeInsets.all(12.0),
-                                      child:
-                                          CircularProgressIndicator.adaptive(),
-                                    ))
+                                        padding: EdgeInsets.all(12.0),
+                                        child: CircularProgressIndicator
+                                            .adaptive(),
+                                      ),
+                                    )
                                   : Column(
                                       children: controller.filteredHomeservers
                                           .map(
@@ -82,19 +83,20 @@ class HomeserverPickerView extends StatelessWidget {
                                                     .showServerInfo(server),
                                               ),
                                               onTap: () => controller.setServer(
-                                                  server
-                                                      .homeserver.baseUrl.host),
+                                                server.homeserver.baseUrl.host,
+                                              ),
                                               title: Text(
                                                 server.homeserver.baseUrl.host,
                                                 style: const TextStyle(
-                                                    color: Colors.black),
+                                                  color: Colors.black,
+                                                ),
                                               ),
                                               subtitle: Text(
                                                 server.homeserver.description ??
                                                     '',
                                                 style: TextStyle(
-                                                    color:
-                                                        Colors.grey.shade700),
+                                                  color: Colors.grey.shade700,
+                                                ),
                                               ),
                                             ),
                                           )

@@ -30,8 +30,10 @@ class Settings3PidView extends StatelessWidget {
       body: MaxWidthBody(
         child: FutureBuilder<List<ThirdPartyIdentifier>?>(
           future: controller.request,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<ThirdPartyIdentifier>?> snapshot) {
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<List<ThirdPartyIdentifier>?> snapshot,
+          ) {
             if (snapshot.hasError) {
               return Center(
                 child: Text(
@@ -42,7 +44,8 @@ class Settings3PidView extends StatelessWidget {
             }
             if (!snapshot.hasData) {
               return const Center(
-                  child: CircularProgressIndicator.adaptive(strokeWidth: 2));
+                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+              );
             }
             final identifier = snapshot.data!;
             return Column(
@@ -71,10 +74,11 @@ class Settings3PidView extends StatelessWidget {
                     itemCount: identifier.length,
                     itemBuilder: (BuildContext context, int i) => ListTile(
                       leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          foregroundColor: Colors.grey,
-                          child: Icon(identifier[i].iconData)),
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        foregroundColor: Colors.grey,
+                        child: Icon(identifier[i].iconData),
+                      ),
                       title: Text(identifier[i].address),
                       trailing: IconButton(
                         tooltip: L10n.of(context)!.delete,

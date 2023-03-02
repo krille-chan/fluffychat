@@ -117,8 +117,10 @@ class InputBar extends StatelessWidget {
       }
       // aside of emote packs, also propose normal (tm) unicode emojis
       final matchingUnicodeEmojis = Emoji.all()
-          .where((element) => [element.name, ...element.keywords]
-              .any((element) => element.toLowerCase().contains(emoteSearch)))
+          .where(
+            (element) => [element.name, ...element.keywords]
+                .any((element) => element.toLowerCase().contains(emoteSearch)),
+          )
           .toList();
       // sort by the index of the search term in the name in order to have
       // best matches first
@@ -186,12 +188,14 @@ class InputBar extends StatelessWidget {
                             .toLowerCase()
                             .contains(roomSearch)) ||
                     (state.content['alt_aliases'] is List &&
-                        state.content['alt_aliases'].any((l) =>
-                            l is String &&
-                            l
-                                .split(':')[0]
-                                .toLowerCase()
-                                .contains(roomSearch))))) ||
+                        state.content['alt_aliases'].any(
+                          (l) =>
+                              l is String &&
+                              l
+                                  .split(':')[0]
+                                  .toLowerCase()
+                                  .contains(roomSearch),
+                        )))) ||
             (r.name.toLowerCase().contains(roomSearch))) {
           ret.add({
             'type': 'room',
@@ -226,8 +230,10 @@ class InputBar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('/$command',
-                  style: const TextStyle(fontFamily: 'monospace')),
+              Text(
+                '/$command',
+                style: const TextStyle(fontFamily: 'monospace'),
+              ),
               Text(
                 hint,
                 maxLines: 1,
@@ -273,8 +279,8 @@ class InputBar extends StatelessWidget {
                   child: suggestion['pack_avatar_url'] != null
                       ? Avatar(
                           mxContent: Uri.tryParse(
-                              suggestion.tryGet<String>('pack_avatar_url') ??
-                                  ''),
+                            suggestion.tryGet<String>('pack_avatar_url') ?? '',
+                          ),
                           name: suggestion.tryGet<String>('pack_display_name'),
                           size: size * 0.9,
                           client: client,
@@ -397,23 +403,27 @@ class InputBar extends StatelessWidget {
         actions: !useShortCuts
             ? {}
             : {
-                NewLineIntent: CallbackAction(onInvoke: (i) {
-                  final val = controller!.value;
-                  final selection = val.selection.start;
-                  final messageWithoutNewLine =
-                      '${controller!.text.substring(0, val.selection.start)}\n${controller!.text.substring(val.selection.end)}';
-                  controller!.value = TextEditingValue(
-                    text: messageWithoutNewLine,
-                    selection: TextSelection.fromPosition(
-                      TextPosition(offset: selection + 1),
-                    ),
-                  );
-                  return null;
-                }),
-                SubmitLineIntent: CallbackAction(onInvoke: (i) {
-                  onSubmitted!(controller!.text);
-                  return null;
-                }),
+                NewLineIntent: CallbackAction(
+                  onInvoke: (i) {
+                    final val = controller!.value;
+                    final selection = val.selection.start;
+                    final messageWithoutNewLine =
+                        '${controller!.text.substring(0, val.selection.start)}\n${controller!.text.substring(val.selection.end)}';
+                    controller!.value = TextEditingValue(
+                      text: messageWithoutNewLine,
+                      selection: TextSelection.fromPosition(
+                        TextPosition(offset: selection + 1),
+                      ),
+                    );
+                    return null;
+                  },
+                ),
+                SubmitLineIntent: CallbackAction(
+                  onInvoke: (i) {
+                    onSubmitted!(controller!.text);
+                    return null;
+                  },
+                ),
               },
         child: TypeAheadField<Map<String, String?>>(
           direction: AxisDirection.up,

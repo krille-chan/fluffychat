@@ -39,7 +39,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
       } else {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
-            widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last);
+          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+        );
         final file = File('${tempDir.path}/${fileName}_${videoFile.name}');
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);
@@ -62,13 +63,17 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         );
       }
     } on MatrixConnectionException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.toLocalizedString(context)),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toLocalizedString(context)),
+        ),
+      );
     } catch (e, s) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.toLocalizedString(context)),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toLocalizedString(context)),
+        ),
+      );
       Logs().w('Error while playing video', e, s);
     } finally {
       // Workaround for Chewie needs time to get the aspectRatio
@@ -120,14 +125,16 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                               width: 24,
                               height: 24,
                               child: CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2),
+                                strokeWidth: 2,
+                              ),
                             )
                           : const Icon(Icons.download_outlined),
                       label: Text(
                         _isDownloading
                             ? L10n.of(context)!.loadingPleaseWait
                             : L10n.of(context)!.videoWithSize(
-                                widget.event.sizeString ?? '?MB'),
+                                widget.event.sizeString ?? '?MB',
+                              ),
                       ),
                       onPressed: _isDownloading ? null : _downloadAction,
                     ),

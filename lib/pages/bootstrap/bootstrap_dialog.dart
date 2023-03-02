@@ -246,7 +246,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
             body: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
-                    maxWidth: FluffyThemes.columnWidth * 1.5),
+                  maxWidth: FluffyThemes.columnWidth * 1.5,
+                ),
                 child: ListView(
                   padding: const EdgeInsets.all(16.0),
                   children: [
@@ -258,7 +259,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       subtitle: Text(
-                          L10n.of(context)!.pleaseEnterRecoveryKeyDescription),
+                        L10n.of(context)!.pleaseEnterRecoveryKeyDescription,
+                      ),
                     ),
                     const Divider(height: 32),
                     TextField(
@@ -274,64 +276,68 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         hintStyle: TextStyle(
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.fontFamily),
+                          fontFamily:
+                              Theme.of(context).textTheme.bodyLarge?.fontFamily,
+                        ),
                         hintText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
                       ),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onPrimary,
-                          backgroundColor: Theme.of(context).primaryColor,
-                        ),
-                        icon: _recoveryKeyInputLoading
-                            ? const CircularProgressIndicator.adaptive()
-                            : const Icon(Icons.lock_open_outlined),
-                        label: Text(L10n.of(context)!.unlockOldMessages),
-                        onPressed: _recoveryKeyInputLoading
-                            ? null
-                            : () async {
-                                setState(() {
-                                  _recoveryKeyInputError = null;
-                                  _recoveryKeyInputLoading = true;
-                                });
-                                try {
-                                  final key =
-                                      _recoveryKeyTextEditingController.text;
-                                  await bootstrap.newSsssKey!.unlock(
-                                    keyOrPassphrase: key,
-                                  );
-                                  Logs().d('SSSS unlocked');
-                                  await bootstrap
-                                      .client.encryption!.crossSigning
-                                      .selfSign(
-                                    keyOrPassphrase: key,
-                                  );
-                                  Logs().d('Successful elfsigned');
-                                  await bootstrap.openExistingSsss();
-                                } catch (e, s) {
-                                  Logs().w('Unable to unlock SSSS', e, s);
-                                  setState(() => _recoveryKeyInputError =
-                                      L10n.of(context)!.oopsSomethingWentWrong);
-                                } finally {
-                                  setState(
-                                      () => _recoveryKeyInputLoading = false);
-                                }
-                              }),
-                    const SizedBox(height: 16),
-                    Row(children: [
-                      const Expanded(child: Divider()),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(L10n.of(context)!.or),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
+                        backgroundColor: Theme.of(context).primaryColor,
                       ),
-                      const Expanded(child: Divider()),
-                    ]),
+                      icon: _recoveryKeyInputLoading
+                          ? const CircularProgressIndicator.adaptive()
+                          : const Icon(Icons.lock_open_outlined),
+                      label: Text(L10n.of(context)!.unlockOldMessages),
+                      onPressed: _recoveryKeyInputLoading
+                          ? null
+                          : () async {
+                              setState(() {
+                                _recoveryKeyInputError = null;
+                                _recoveryKeyInputLoading = true;
+                              });
+                              try {
+                                final key =
+                                    _recoveryKeyTextEditingController.text;
+                                await bootstrap.newSsssKey!.unlock(
+                                  keyOrPassphrase: key,
+                                );
+                                Logs().d('SSSS unlocked');
+                                await bootstrap.client.encryption!.crossSigning
+                                    .selfSign(
+                                  keyOrPassphrase: key,
+                                );
+                                Logs().d('Successful elfsigned');
+                                await bootstrap.openExistingSsss();
+                              } catch (e, s) {
+                                Logs().w('Unable to unlock SSSS', e, s);
+                                setState(
+                                  () => _recoveryKeyInputError =
+                                      L10n.of(context)!.oopsSomethingWentWrong,
+                                );
+                              } finally {
+                                setState(
+                                  () => _recoveryKeyInputLoading = false,
+                                );
+                              }
+                            },
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        const Expanded(child: Divider()),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(L10n.of(context)!.or),
+                        ),
+                        const Expanded(child: Divider()),
+                      ],
+                    ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.cast_connected_outlined),
@@ -408,11 +414,13 @@ class BootstrapDialogState extends State<BootstrapDialog> {
         case BootstrapState.error:
           titleText = L10n.of(context)!.oopsSomethingWentWrong;
           body = const Icon(Icons.error_outline, color: Colors.red, size: 40);
-          buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context)!.close,
-            onPressed: () =>
-                Navigator.of(context, rootNavigator: false).pop<bool>(false),
-          ));
+          buttons.add(
+            AdaptiveFlatButton(
+              label: L10n.of(context)!.close,
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: false).pop<bool>(false),
+            ),
+          );
           break;
         case BootstrapState.done:
           titleText = L10n.of(context)!.everythingReady;
@@ -423,11 +431,13 @@ class BootstrapDialogState extends State<BootstrapDialog> {
               Text(L10n.of(context)!.yourChatBackupHasBeenSetUp),
             ],
           );
-          buttons.add(AdaptiveFlatButton(
-            label: L10n.of(context)!.close,
-            onPressed: () =>
-                Navigator.of(context, rootNavigator: false).pop<bool>(false),
-          ));
+          buttons.add(
+            AdaptiveFlatButton(
+              label: L10n.of(context)!.close,
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: false).pop<bool>(false),
+            ),
+          );
           break;
       }
     }

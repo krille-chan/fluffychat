@@ -41,7 +41,8 @@ class ChatPermissionsSettingsView extends StatelessWidget {
               return Center(child: Text(L10n.of(context)!.noRoomsFound));
             }
             final powerLevelsContent = Map<String, dynamic>.from(
-                room.getState(EventTypes.RoomPowerLevels)!.content);
+              room.getState(EventTypes.RoomPowerLevels)!.content,
+            );
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
               ..removeWhere((k, v) => v is! int);
             final eventsPowerLevels =
@@ -57,7 +58,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         permissionKey: entry.key,
                         permission: entry.value,
                         onTap: () => controller.editPowerLevel(
-                            context, entry.key, entry.value),
+                          context,
+                          entry.key,
+                          entry.value,
+                        ),
                       ),
                     const Divider(thickness: 1),
                     ListTile(
@@ -69,21 +73,26 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Builder(builder: (context) {
-                      const key = 'rooms';
-                      final int value = powerLevelsContent
-                              .containsKey('notifications')
-                          ? powerLevelsContent['notifications']['rooms'] ?? 0
-                          : 0;
-                      return PermissionsListTile(
-                        permissionKey: key,
-                        permission: value,
-                        category: 'notifications',
-                        onTap: () => controller.editPowerLevel(
-                            context, key, value,
-                            category: 'notifications'),
-                      );
-                    }),
+                    Builder(
+                      builder: (context) {
+                        const key = 'rooms';
+                        final int value = powerLevelsContent
+                                .containsKey('notifications')
+                            ? powerLevelsContent['notifications']['rooms'] ?? 0
+                            : 0;
+                        return PermissionsListTile(
+                          permissionKey: key,
+                          permission: value,
+                          category: 'notifications',
+                          onTap: () => controller.editPowerLevel(
+                            context,
+                            key,
+                            value,
+                            category: 'notifications',
+                          ),
+                        );
+                      },
+                    ),
                     const Divider(thickness: 1),
                     ListTile(
                       title: Text(
@@ -100,8 +109,11 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         category: 'events',
                         permission: entry.value,
                         onTap: () => controller.editPowerLevel(
-                            context, entry.key, entry.value,
-                            category: 'events'),
+                          context,
+                          entry.key,
+                          entry.value,
+                          category: 'events',
+                        ),
                       ),
                     if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
                       const Divider(thickness: 1),
@@ -110,8 +122,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const Center(
-                                child: CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2));
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2,
+                              ),
+                            );
                           }
                           final String roomVersion = room
                                   .getState(EventTypes.RoomCreate)!
@@ -120,7 +134,8 @@ class ChatPermissionsSettingsView extends StatelessWidget {
 
                           return ListTile(
                             title: Text(
-                                '${L10n.of(context)!.roomVersion}: $roomVersion'),
+                              '${L10n.of(context)!.roomVersion}: $roomVersion',
+                            ),
                             onTap: () =>
                                 controller.updateRoomAction(snapshot.data!),
                           );

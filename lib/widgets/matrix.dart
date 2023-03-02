@@ -135,18 +135,22 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           continue;
         }
         resBundles[bundle.name] ??= [];
-        resBundles[bundle.name]!.add(_AccountBundleWithClient(
-          client: widget.clients[i],
-          bundle: bundle,
-        ));
+        resBundles[bundle.name]!.add(
+          _AccountBundleWithClient(
+            client: widget.clients[i],
+            bundle: bundle,
+          ),
+        );
       }
     }
     for (final b in resBundles.values) {
-      b.sort((a, b) => a.bundle!.priority == null
-          ? 1
-          : b.bundle!.priority == null
-              ? -1
-              : a.bundle!.priority!.compareTo(b.bundle!.priority!));
+      b.sort(
+        (a, b) => a.bundle!.priority == null
+            ? 1
+            : b.bundle!.priority == null
+                ? -1
+                : a.bundle!.priority!.compareTo(b.bundle!.priority!),
+      );
     }
     return resBundles
         .map((k, v) => MapEntry(k, v.map((vv) => vv.client).toList()));
@@ -161,8 +165,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       return client;
     }
     final candidate = _loginClientCandidate ??= ClientManager.createClient(
-        '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}')
-      ..onLoginStateChanged
+      '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}',
+    )..onLoginStateChanged
           .stream
           .where((l) => l == LoginState.loggedIn)
           .first
@@ -286,16 +290,20 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final c = getClientByName(name);
     if (c == null) {
       Logs().w(
-          'Attempted to register subscriptions for non-existing client $name');
+        'Attempted to register subscriptions for non-existing client $name',
+      );
       return;
     }
     onRoomKeyRequestSub[name] ??=
         c.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
-      if (widget.clients.any(((cl) =>
-          cl.userID == request.requestingDevice.userId &&
-          cl.identityKey == request.requestingDevice.curve25519Key))) {
+      if (widget.clients.any(
+        ((cl) =>
+            cl.userID == request.requestingDevice.userId &&
+            cl.identityKey == request.requestingDevice.curve25519Key),
+      )) {
         Logs().i(
-            '[Key Request] Request is from one of our own clients, forwarding the key...');
+          '[Key Request] Request is from one of our own clients, forwarding the key...',
+        );
         await request.forwardKey();
       }
     });
@@ -344,11 +352,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification[name] ??= c.onEvent.stream
-            .where((e) =>
-                e.type == EventUpdateType.timeline &&
-                [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                    .contains(e.content['type']) &&
-                e.content['sender'] != c.userID)
+            .where(
+              (e) =>
+                  e.type == EventUpdateType.timeline &&
+                  [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
+                      .contains(e.content['type']) &&
+                  e.content['sender'] != c.userID,
+            )
             .listen(showLocalNotification);
       });
     }
@@ -448,25 +458,31 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         wallpaper = file;
       }
     });
-    store.getItem(SettingKeys.fontSizeFactor).then((value) =>
-        AppConfig.fontSizeFactor =
-            double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor);
-    store.getItem(SettingKeys.bubbleSizeFactor).then((value) =>
-        AppConfig.bubbleSizeFactor =
-            double.tryParse(value ?? '') ?? AppConfig.bubbleSizeFactor);
+    store.getItem(SettingKeys.fontSizeFactor).then(
+          (value) => AppConfig.fontSizeFactor =
+              double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor,
+        );
+    store.getItem(SettingKeys.bubbleSizeFactor).then(
+          (value) => AppConfig.bubbleSizeFactor =
+              double.tryParse(value ?? '') ?? AppConfig.bubbleSizeFactor,
+        );
     store
         .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
         .then((value) => AppConfig.renderHtml = value);
     store
         .getItemBool(
-            SettingKeys.hideRedactedEvents, AppConfig.hideRedactedEvents)
+          SettingKeys.hideRedactedEvents,
+          AppConfig.hideRedactedEvents,
+        )
         .then((value) => AppConfig.hideRedactedEvents = value);
     store
         .getItemBool(SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
         .then((value) => AppConfig.hideUnknownEvents = value);
     store
-        .getItemBool(SettingKeys.showDirectChatsInSpaces,
-            AppConfig.showDirectChatsInSpaces)
+        .getItemBool(
+          SettingKeys.showDirectChatsInSpaces,
+          AppConfig.showDirectChatsInSpaces,
+        )
         .then((value) => AppConfig.showDirectChatsInSpaces = value);
     store
         .getItemBool(SettingKeys.separateChatTypes, AppConfig.separateChatTypes)

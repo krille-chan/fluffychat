@@ -28,12 +28,13 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
       final pack = stickerPacks[packSlugs[packIndex]]!;
       final filteredImagePackImageEntried = pack.images.entries.toList();
       if (searchFilter?.isNotEmpty ?? false) {
-        filteredImagePackImageEntried.removeWhere((e) =>
-            !(e.key.toLowerCase().contains(searchFilter!.toLowerCase()) ||
-                (e.value.body
-                        ?.toLowerCase()
-                        .contains(searchFilter!.toLowerCase()) ??
-                    false)));
+        filteredImagePackImageEntried.removeWhere(
+          (e) => !(e.key.toLowerCase().contains(searchFilter!.toLowerCase()) ||
+              (e.value.body
+                      ?.toLowerCase()
+                      .contains(searchFilter!.toLowerCase()) ??
+                  false)),
+        );
       }
       final imageKeys =
           filteredImagePackImageEntried.map((e) => e.key).toList();
@@ -57,7 +58,8 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
           GridView.builder(
             itemCount: imageKeys.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 100),
+              maxCrossAxisExtent: 100,
+            ),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int imageIndex) {
@@ -127,10 +129,11 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               ),
             ),
             SliverList(
-                delegate: SliverChildBuilderDelegate(
-              packBuilder,
-              childCount: packSlugs.length,
-            )),
+              delegate: SliverChildBuilderDelegate(
+                packBuilder,
+                childCount: packSlugs.length,
+              ),
+            ),
           ],
         ),
       ),

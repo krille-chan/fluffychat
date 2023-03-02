@@ -56,7 +56,8 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
+        SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)),
+      );
     }
   }
 
@@ -151,7 +152,8 @@ class SettingsSecurityController extends State<SettingsSecurity> {
             auth: AuthenticationPassword(
               password: input.single,
               identifier: AuthenticationUserIdentifier(
-                  user: Matrix.of(context).client.userID!),
+                user: Matrix.of(context).client.userID!,
+              ),
             ),
           ),
     );
@@ -181,10 +183,11 @@ class SettingsSecurityController extends State<SettingsSecurity> {
         try {
           final export = await Matrix.of(context).client.exportDump();
           final filePickerCross = FilePickerCross(
-              Uint8List.fromList(const Utf8Codec().encode(export!)),
-              path:
-                  '/fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup',
-              fileExtension: 'fluffybackup');
+            Uint8List.fromList(const Utf8Codec().encode(export!)),
+            path:
+                '/fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup',
+            fileExtension: 'fluffybackup',
+          );
           await filePickerCross.exportToStorage(
             subject: L10n.of(context)!.dehydrateShare,
           );

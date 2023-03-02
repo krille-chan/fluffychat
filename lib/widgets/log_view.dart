@@ -34,10 +34,12 @@ class LogViewerState extends State<LogViewer> {
           ),
           PopupMenuButton<Level>(
             itemBuilder: (context) => Level.values
-                .map((level) => PopupMenuItem(
-                      value: level,
-                      child: Text(level.toString()),
-                    ))
+                .map(
+                  (level) => PopupMenuItem(
+                    value: level,
+                    child: Text(level.toString()),
+                  ),
+                )
                 .toList(),
             onSelected: (Level level) => setState(() => logLevel = level),
           ),

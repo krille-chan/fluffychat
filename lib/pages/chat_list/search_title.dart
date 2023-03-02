@@ -45,13 +45,15 @@ class SearchTitle extends StatelessWidget {
                   children: [
                     icon,
                     const SizedBox(width: 16),
-                    Text(title,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        )),
+                    Text(
+                      title,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     if (trailing != null)
                       Expanded(
                         child: Align(

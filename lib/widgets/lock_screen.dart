@@ -72,7 +72,8 @@ class LockScreenState extends State<LockScreen> {
                     await ([TargetPlatform.linux]
                             .contains(Theme.of(context).platform)
                         ? SharedPreferences.getInstance().then(
-                            (prefs) => prefs.getString(SettingKeys.appLockKey))
+                            (prefs) => prefs.getString(SettingKeys.appLockKey),
+                          )
                         : const FlutterSecureStorage()
                             .read(key: SettingKeys.appLockKey))) {
                   AppLock.of(context)!.didUnlock();

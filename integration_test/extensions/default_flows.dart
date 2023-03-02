@@ -144,7 +144,8 @@ extension DefaultFlowExtensions on WidgetTester {
     do {
       if (DateTime.now().isAfter(end)) {
         throw Exception(
-            'Timed out waiting for HomeserverPicker or ChatListViewBody');
+          'Timed out waiting for HomeserverPicker or ChatListViewBody',
+        );
       }
 
       await pumpAndSettle();

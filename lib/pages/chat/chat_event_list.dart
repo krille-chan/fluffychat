@@ -86,19 +86,20 @@ class ChatEventList extends StatelessWidget {
             index: i - 1,
             controller: controller.scrollController,
             child: event.isVisibleInGui
-                ? Message(event,
+                ? Message(
+                    event,
                     onSwipe: (direction) =>
                         controller.replyAction(replyTo: event),
                     onInfoTab: controller.showEventInfo,
                     onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                          context: context,
-                          builder: (c) => UserBottomSheet(
-                            user: event.senderFromMemoryOrFallback,
-                            outerContext: context,
-                            onMention: () => controller.sendController.text +=
-                                '${event.senderFromMemoryOrFallback.mention} ',
-                          ),
-                        ),
+                      context: context,
+                      builder: (c) => UserBottomSheet(
+                        user: event.senderFromMemoryOrFallback,
+                        outerContext: context,
+                        onMention: () => controller.sendController.text +=
+                            '${event.senderFromMemoryOrFallback.mention} ',
+                      ),
+                    ),
                     onSelect: controller.onSelectMessage,
                     scrollToEventId: (String eventId) =>
                         controller.scrollToEventId(eventId),
@@ -108,7 +109,8 @@ class ChatEventList extends StatelessWidget {
                     timeline: controller.timeline!,
                     nextEvent: i < controller.timeline!.events.length
                         ? controller.timeline!.events[i]
-                        : null)
+                        : null,
+                  )
                 : Container(),
           );
         },

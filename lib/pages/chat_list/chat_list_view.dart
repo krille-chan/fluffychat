@@ -109,56 +109,60 @@ class ChatListView extends StatelessWidget {
             children: [
               if (FluffyThemes.isColumnMode(context) &&
                   FluffyThemes.getDisplayNavigationRail(context)) ...[
-                Builder(builder: (context) {
-                  final allSpaces = client.rooms.where((room) => room.isSpace);
-                  final rootSpaces = allSpaces
-                      .where(
-                        (space) => !allSpaces.any(
-                          (parentSpace) => parentSpace.spaceChildren
-                              .any((child) => child.roomId == space.id),
-                        ),
-                      )
-                      .toList();
-                  final destinations = getNavigationDestinations(context);
+                Builder(
+                  builder: (context) {
+                    final allSpaces =
+                        client.rooms.where((room) => room.isSpace);
+                    final rootSpaces = allSpaces
+                        .where(
+                          (space) => !allSpaces.any(
+                            (parentSpace) => parentSpace.spaceChildren
+                                .any((child) => child.roomId == space.id),
+                          ),
+                        )
+                        .toList();
+                    final destinations = getNavigationDestinations(context);
 
-                  return SizedBox(
-                    width: 64,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: rootSpaces.length + destinations.length,
-                      itemBuilder: (context, i) {
-                        if (i < destinations.length) {
+                    return SizedBox(
+                      width: 64,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: rootSpaces.length + destinations.length,
+                        itemBuilder: (context, i) {
+                          if (i < destinations.length) {
+                            return NaviRailItem(
+                              isSelected: i == controller.selectedIndex,
+                              onTap: () => controller.onDestinationSelected(i),
+                              icon: destinations[i].icon,
+                              selectedIcon: destinations[i].selectedIcon,
+                              toolTip: destinations[i].label,
+                            );
+                          }
+                          i -= destinations.length;
+                          final isSelected =
+                              controller.activeFilter == ActiveFilter.spaces &&
+                                  rootSpaces[i].id == controller.activeSpaceId;
                           return NaviRailItem(
-                            isSelected: i == controller.selectedIndex,
-                            onTap: () => controller.onDestinationSelected(i),
-                            icon: destinations[i].icon,
-                            selectedIcon: destinations[i].selectedIcon,
-                            toolTip: destinations[i].label,
-                          );
-                        }
-                        i -= destinations.length;
-                        final isSelected =
-                            controller.activeFilter == ActiveFilter.spaces &&
-                                rootSpaces[i].id == controller.activeSpaceId;
-                        return NaviRailItem(
-                          toolTip: rootSpaces[i].getLocalizedDisplayname(
-                              MatrixLocals(L10n.of(context)!)),
-                          isSelected: isSelected,
-                          onTap: () =>
-                              controller.setActiveSpace(rootSpaces[i].id),
-                          icon: Avatar(
-                            mxContent: rootSpaces[i].avatar,
-                            name: rootSpaces[i].getLocalizedDisplayname(
+                            toolTip: rootSpaces[i].getLocalizedDisplayname(
                               MatrixLocals(L10n.of(context)!),
                             ),
-                            size: 32,
-                            fontSize: 12,
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                }),
+                            isSelected: isSelected,
+                            onTap: () =>
+                                controller.setActiveSpace(rootSpaces[i].id),
+                            icon: Avatar(
+                              mxContent: rootSpaces[i].avatar,
+                              name: rootSpaces[i].getLocalizedDisplayname(
+                                MatrixLocals(L10n.of(context)!),
+                              ),
+                              size: 32,
+                              fontSize: 12,
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
                 Container(
                   color: Theme.of(context).dividerColor,
                   width: 1,

@@ -33,9 +33,11 @@ extension StreamExtension on Stream {
         gotMessage = true;
       }
     };
-    final subscription = listen((_) => onMessage?.call(),
-        onDone: () => controller.close(),
-        onError: (e, s) => controller.addError(e, s));
+    final subscription = listen(
+      (_) => onMessage?.call(),
+      onDone: () => controller.close(),
+      onError: (e, s) => controller.addError(e, s),
+    );
     // add proper cleanup to the subscription and the controller, to not memory leak
     controller.onCancel = () {
       subscription.cancel();

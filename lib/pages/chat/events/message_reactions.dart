@@ -46,45 +46,51 @@ class MessageReactions extends StatelessWidget {
 
     final reactionList = reactionMap.values.toList();
     reactionList.sort((a, b) => b.count - a.count > 0 ? 1 : -1);
-    return Wrap(spacing: 4.0, runSpacing: 4.0, children: [
-      ...reactionList
-          .map(
-            (r) => _Reaction(
-              reactionKey: r.key,
-              count: r.count,
-              reacted: r.reacted,
-              onTap: () {
-                if (r.reacted) {
-                  final evt = allReactionEvents.firstWhereOrNull((e) =>
-                      e.senderId == e.room.client.userID &&
-                      e.content['m.relates_to']['key'] == r.key);
-                  if (evt != null) {
-                    showFutureLoadingDialog(
-                      context: context,
-                      future: () => evt.redactEvent(),
+    return Wrap(
+      spacing: 4.0,
+      runSpacing: 4.0,
+      children: [
+        ...reactionList
+            .map(
+              (r) => _Reaction(
+                reactionKey: r.key,
+                count: r.count,
+                reacted: r.reacted,
+                onTap: () {
+                  if (r.reacted) {
+                    final evt = allReactionEvents.firstWhereOrNull(
+                      (e) =>
+                          e.senderId == e.room.client.userID &&
+                          e.content['m.relates_to']['key'] == r.key,
                     );
+                    if (evt != null) {
+                      showFutureLoadingDialog(
+                        context: context,
+                        future: () => evt.redactEvent(),
+                      );
+                    }
+                  } else {
+                    event.room.sendReaction(event.eventId, r.key!);
                   }
-                } else {
-                  event.room.sendReaction(event.eventId, r.key!);
-                }
-              },
-              onLongPress: () async => await _AdaptableReactorsDialog(
-                client: client,
-                reactionEntry: r,
-              ).show(context),
+                },
+                onLongPress: () async => await _AdaptableReactorsDialog(
+                  client: client,
+                  reactionEntry: r,
+                ).show(context),
+              ),
+            )
+            .toList(),
+        if (allReactionEvents.any((e) => e.status.isSending))
+          const SizedBox(
+            width: 28,
+            height: 28,
+            child: Padding(
+              padding: EdgeInsets.all(4.0),
+              child: CircularProgressIndicator.adaptive(strokeWidth: 1),
             ),
-          )
-          .toList(),
-      if (allReactionEvents.any((e) => e.status.isSending))
-        const SizedBox(
-          width: 28,
-          height: 28,
-          child: Padding(
-            padding: EdgeInsets.all(4.0),
-            child: CircularProgressIndicator.adaptive(strokeWidth: 1),
           ),
-        ),
-    ]);
+      ],
+    );
   }
 }
 
@@ -121,11 +127,13 @@ class _Reaction extends StatelessWidget {
             height: fontSize,
           ),
           const SizedBox(width: 4),
-          Text(count.toString(),
-              style: TextStyle(
-                color: textColor,
-                fontSize: DefaultTextStyle.of(context).style.fontSize,
-              )),
+          Text(
+            count.toString(),
+            style: TextStyle(
+              color: textColor,
+              fontSize: DefaultTextStyle.of(context).style.fontSize,
+            ),
+          ),
         ],
       );
     } else {
@@ -133,11 +141,13 @@ class _Reaction extends StatelessWidget {
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
-      content = Text('$renderKey $count',
-          style: TextStyle(
-            color: textColor,
-            fontSize: DefaultTextStyle.of(context).style.fontSize,
-          ));
+      content = Text(
+        '$renderKey $count',
+        style: TextStyle(
+          color: textColor,
+          fontSize: DefaultTextStyle.of(context).style.fontSize,
+        ),
+      );
     }
     return InkWell(
       onTap: () => onTap != null ? onTap!() : null,

@@ -67,15 +67,17 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
-      await matrix.getLoginClient().login(LoginType.mLoginPassword,
-          identifier: identifier,
-          // To stay compatible with older server versions
-          // ignore: deprecated_member_use
-          user: identifier.type == AuthenticationIdentifierTypes.userId
-              ? username
-              : null,
-          password: passwordController.text,
-          initialDeviceDisplayName: PlatformInfos.clientName);
+      await matrix.getLoginClient().login(
+            LoginType.mLoginPassword,
+            identifier: identifier,
+            // To stay compatible with older server versions
+            // ignore: deprecated_member_use
+            user: identifier.type == AuthenticationIdentifierTypes.userId
+                ? username
+                : null,
+            password: passwordController.text,
+            initialDeviceDisplayName: PlatformInfos.clientName,
+          );
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
@@ -121,7 +123,8 @@ class LoginController extends State<Login> {
           Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
           // okay, the server we checked does not appear to be a matrix server
           Logs().v(
-              '$newDomain is not running a homeserver, asking to use $oldHomeserver');
+            '$newDomain is not running a homeserver, asking to use $oldHomeserver',
+          );
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
@@ -230,7 +233,8 @@ class LoginController extends State<Login> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)));
+        SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)),
+      );
       usernameController.text = input.single;
       passwordController.text = password.single;
       login();

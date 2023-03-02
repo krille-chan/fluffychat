@@ -38,15 +38,16 @@ class ChatListItem extends StatelessWidget {
     if (activeChat) return;
     if (room.membership == Membership.invite) {
       final joinResult = await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            final waitForRoom = room.client.waitForRoomInSync(
-              room.id,
-              join: true,
-            );
-            await room.join();
-            await waitForRoom;
-          });
+        context: context,
+        future: () async {
+          final waitForRoom = room.client.waitForRoomInSync(
+            room.id,
+            join: true,
+          );
+          await room.join();
+          await waitForRoom;
+        },
+      );
       if (joinResult.error != null) return;
     }
 
@@ -107,7 +108,9 @@ class ChatListItem extends StatelessWidget {
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
-          context: context, future: () => room.leave());
+        context: context,
+        future: () => room.leave(),
+      );
       return;
     }
   }
@@ -183,7 +186,8 @@ class ChatListItem extends StatelessWidget {
               if (room.isFavourite)
                 Padding(
                   padding: EdgeInsets.only(
-                      right: room.notificationCount > 0 ? 4.0 : 0.0),
+                    right: room.notificationCount > 0 ? 4.0 : 0.0,
+                  ),
                   child: Icon(
                     Icons.push_pin,
                     size: 16,
@@ -282,7 +286,8 @@ class ChatListItem extends StatelessWidget {
                                   : null,
                             ),
                           );
-                        }),
+                        },
+                      ),
               ),
               const SizedBox(width: 8),
               AnimatedContainer(

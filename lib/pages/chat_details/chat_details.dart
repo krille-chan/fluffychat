@@ -58,7 +58,8 @@ class ChatDetailsController extends State<ChatDetails> {
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context)!.displaynameHasBeenChanged)));
+        SnackBar(content: Text(L10n.of(context)!.displaynameHasBeenChanged)),
+      );
     }
   }
 
@@ -212,8 +213,11 @@ class ChatDetailsController extends State<ChatDetails> {
       future: () => room.setDescription(input.single),
     );
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged),
+        ),
+      );
     }
   }
 
@@ -325,7 +329,9 @@ class ChatDetailsController extends State<ChatDetails> {
   void requestMoreMembersAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId!);
     final participants = await showFutureLoadingDialog(
-        context: context, future: () => room!.requestParticipants());
+      context: context,
+      future: () => room!.requestParticipants(),
+    );
     if (participants.error == null) {
       setState(() => members = participants.result);
     }

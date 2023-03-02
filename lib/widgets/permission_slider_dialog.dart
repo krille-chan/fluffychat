@@ -27,8 +27,10 @@ extension on PermissionLevel {
   }
 }
 
-Future<int?> showPermissionChooser(BuildContext context,
-    {int currentLevel = 0}) async {
+Future<int?> showPermissionChooser(
+  BuildContext context, {
+  int currentLevel = 0,
+}) async {
   final permissionLevel = await showConfirmationDialog(
     context: context,
     title: L10n.of(context)!.setPermissionsLevel,

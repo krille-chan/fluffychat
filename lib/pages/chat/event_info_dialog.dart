@@ -54,7 +54,8 @@ class EventInfoDialog extends StatelessWidget {
             ),
             title: Text(L10n.of(context)!.sender),
             subtitle: Text(
-                '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]'),
+              '${event.senderFromMemoryOrFallback.calcDisplayname()} [${event.senderId}]',
+            ),
           ),
           ListTile(
             title: Text(L10n.of(context)!.time),
