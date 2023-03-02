@@ -259,7 +259,8 @@ class ChatView extends StatelessWidget {
                                       return const Center(
                                         child:
                                             CircularProgressIndicator.adaptive(
-                                                strokeWidth: 2,),
+                                          strokeWidth: 2,
+                                        ),
                                       );
                                     }
 
