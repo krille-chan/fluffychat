@@ -51,7 +51,6 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
-  image: ^3.1.1
   image_picker: ^0.8.4+8
   intl: any
   just_audio: ^0.9.30

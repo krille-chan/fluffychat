@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:blurhash_dart/blurhash_dart.dart';
-import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
@@ -53,9 +50,4 @@ extension ResizeImage on MatrixFile {
     }
     return null;
   }
-}
-
-Future<BlurHash> createBlurHash(Uint8List file) async {
-  final image = decodeImage(file)!;
-  return BlurHash.encode(image, numCompX: 4, numCompY: 3);
 }
