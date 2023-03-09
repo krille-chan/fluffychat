@@ -285,10 +285,10 @@ packages:
     dependency: transitive
     description:
       name: dart_webrtc
-      sha256: "5d53ae883f314016b822ec498e54dd437c84a71ae2162a243aeb0162deb85158"
+      sha256: a8244b36b6b673649f489f4f13a011e6fb029de678f6c606dc3f072a088b6ea8
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.12"
+    version: "1.0.15"
   dbus:
     dependency: transitive
     description:
@@ -790,12 +790,11 @@ packages:
   flutter_webrtc:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "3d0bb887ebffe24e8db361e45c777ed44d8df180"
-      url: "https://github.com/radzio-it/flutter-webrtc.git"
-    source: git
-    version: "0.9.18"
+      name: flutter_webrtc
+      sha256: "4eacac1b49c65fd225ea69f41b3c28fae55c1f2caba6d5f21a6de2bd43e6dc02"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.24"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -2232,10 +2231,10 @@ packages:
     dependency: "direct main"
     description:
       name: webrtc_interface
-      sha256: d891c844cbe4a10d0d51469d5af02cafe9be288bed341fe5c797b951bd7e9c18
+      sha256: fb79e2dbf594a61bfeed6dc52fa3209d63594ac59930043a9e98371d2d40000c
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.10"
+    version: "1.0.11"
   win32:
     dependency: transitive
     description:
