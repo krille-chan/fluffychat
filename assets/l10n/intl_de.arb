@@ -443,12 +443,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Vergleiche und stelle sicher, dass die folgenden Emoji mit denen des anderen Gerätes übereinstimmen:",
+  "compareEmojiMatch": "Bitte vergleiche die Emojis",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Vergleiche und stelle sicher, dass die folgenden Zahlen mit denen des anderen Gerätes übereinstimmen:",
+  "compareNumbersMatch": "Bitte vergleiche die Zahlen",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -1266,7 +1266,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoppla! Etwas ist schiefgelaufen …",
+  "oopsSomethingWentWrong": "Hoppla, da ist etwas schiefgelaufen …",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1871,7 +1871,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Unbekanntes Ereignis „{type}“",
+  "unknownEvent": "Unbekanntes Ereignis '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
@@ -2275,7 +2275,7 @@
   "@openChat": {},
   "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
   "@confirmEventUnpin": {},
-  "dismiss": "Verwerfen",
+  "dismiss": "Ablehnen",
   "@dismiss": {},
   "switchToAccount": "Zu Konto {number} wechseln",
   "@switchToAccount": {
@@ -2539,5 +2539,11 @@
   "enterInviteLinkOrMatrixId": "Einladungslink oder Matrix-ID eingeben …",
   "@enterInviteLinkOrMatrixId": {},
   "reopenChat": "Chat wieder eröffnen",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "fileIsTooBigForServer": "Der Server meldet, dass die Datei zu groß ist für eine Übermittlung ist.",
+  "@fileIsTooBigForServer": {},
+  "noBackupWarning": "Achtung! Ohne Aktivierung des Chat-Backups verlierst du den Zugriff auf deine verschlüsselten Nachrichten. Vor dem Ausloggen wird dringend empfohlen den Chat-Backup zu aktivieren.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "Keine anderen Geräte anwesend",
+  "@noOtherDevicesFound": {}
 }
