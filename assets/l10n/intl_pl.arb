@@ -1450,7 +1450,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 nieprzeczytany czat} =2{2 nieprzeczytane czaty} =3{3 nieprzeczytane czaty} =4{4 nieprzeczytane czaty} other{{unreadCount} nieprzeczytanych czatów}}",
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
