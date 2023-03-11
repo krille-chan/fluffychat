@@ -1,7 +1,7 @@
 {
   "@@locale": "pl",
   "@@last_modified": "2021-08-14 12:41:09.943634",
-  "about": "O nas",
+  "about": "O aplikacji",
   "@about": {
     "type": "text",
     "placeholders": {}
@@ -188,7 +188,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} zmienił/-a swój nick na: {displayname}",
+  "changedTheDisplaynameTo": "{username} zmienił/-a swój nick na: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -523,7 +523,7 @@
       "day": {}
     }
   },
-  "dateWithYear": "{day}-{month}-{year}",
+  "dateWithYear": "{day}.{month}.{year}",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -1748,7 +1748,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whatIsGoingOn": "Co u Ciebie słychać?",
+  "whatIsGoingOn": "Co u ciebie słychać?",
   "@whatIsGoingOn": {},
   "pleaseEnterValidEmail": "Proszę podaj poprawny adres email.",
   "@pleaseEnterValidEmail": {},
@@ -2288,5 +2288,247 @@
   "dehydrateTor": "Użytkownicy TOR-a: Eksportuj sesję",
   "@dehydrateTor": {},
   "matrixWidgets": "Widżety Matrix",
-  "@matrixWidgets": {}
+  "@matrixWidgets": {},
+  "unsupportedAndroidVersion": "Nieobsługiwana wersja systemu Android",
+  "@unsupportedAndroidVersion": {},
+  "widgetCustom": "Własny",
+  "@widgetCustom": {},
+  "widgetEtherpad": "Notatka",
+  "@widgetEtherpad": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "pinMessage": "Przypnij do pokoju",
+  "@pinMessage": {},
+  "confirmEventUnpin": "Czy na pewno chcesz trwale odpiąć wydarzenie?",
+  "@confirmEventUnpin": {},
+  "youJoinedTheChat": "Dołączono do czatu",
+  "@youJoinedTheChat": {},
+  "noEmailWarning": "Wprowadź prawidłowy adres e-mail. W przeciwnym razie resetowanie hasła nie będzie możliwe. Jeśli nie chcesz, dotknij ponownie przycisku, aby kontynuować.",
+  "@noEmailWarning": {},
+  "user": "Użytkownik",
+  "@user": {},
+  "custom": "Własne",
+  "@custom": {},
+  "newGroup": "Nowa grupa",
+  "@newGroup": {},
+  "newSpace": "Nowa przestrzeń",
+  "@newSpace": {},
+  "enterInviteLinkOrMatrixId": "Wprowadź link zaproszenia lub identyfikator Matrix...",
+  "@enterInviteLinkOrMatrixId": {},
+  "fileIsTooBigForServer": "Serwer zgłasza, że plik jest zbyt duży, aby go wysłać.",
+  "@fileIsTooBigForServer": {},
+  "youBannedUser": "Zbanowałeś/-aś {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "users": "Użytkownicy",
+  "@users": {},
+  "countFiles": "{count} plików",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noOtherDevicesFound": "Nie znaleziono innych urządzeń",
+  "@noOtherDevicesFound": {},
+  "enableAutoBackups": "Włącz automatyczne tworzenie kopii zapasowych",
+  "@enableAutoBackups": {},
+  "widgetUrlError": "Niepoprawny URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Podaj nazwę wyświetlaną.",
+  "@widgetNameError": {},
+  "encryptThisChat": "Zaszyfruj ten czat",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "Szyfrowanie od końca do końca",
+  "@endToEndEncryption": {},
+  "disableEncryptionWarning": "Ze względów bezpieczeństwa nie można wyłączyć szyfrowania w czacie, w którym zostało ono wcześniej włączone.",
+  "@disableEncryptionWarning": {},
+  "deviceKeys": "Klucze urządzenia:",
+  "@deviceKeys": {},
+  "emailOrUsername": "Adres e-mail lub nazwa użytkownika",
+  "@emailOrUsername": {},
+  "indexedDbErrorLong": "Przechowywanie wiadomości niestety nie jest domyślnie włączone w trybie prywatnym.\nOdwiedź\n - about:config\n - ustaw dom.indexedDB.privateBrowsing.enabled na true\nW przeciwnym razie nie jest możliwe uruchomienie FluffyChat.",
+  "@indexedDbErrorLong": {},
+  "saveKeyManuallyDescription": "Zapisz ten klucz ręcznie, uruchamiając systemowe okno dialogowe udostępniania lub schowek.",
+  "@saveKeyManuallyDescription": {},
+  "screenSharingTitle": "udostępnianie ekranu",
+  "@screenSharingTitle": {},
+  "appearOnTopDetails": "Umożliwia wyświetlanie aplikacji nad innymi (nie jest to konieczne, jeśli FluffyChat jest już ustawiony jako konto do dzwonienia)",
+  "@appearOnTopDetails": {},
+  "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
+  "@noKeyForThisMessage": {},
+  "sorryThatsNotPossible": "Przepraszamy... to nie jest możliwe",
+  "@sorryThatsNotPossible": {},
+  "noBackupWarning": "Uwaga! Bez włączenia kopii zapasowej czatu, stracisz dostęp do swoich zaszyfrowanych wiadomości. Zaleca się włączenie kopii zapasowej czatu przed wylogowaniem.",
+  "@noBackupWarning": {},
+  "commandHint_googly": "Wyślij kręcące się oczka",
+  "@commandHint_googly": {},
+  "callingPermissions": "Uprawnienia połączeń",
+  "@callingPermissions": {},
+  "storeInAndroidKeystore": "Przechowaj w Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "commandHint_cuddle": "Wyślij przytulenie",
+  "@commandHint_cuddle": {},
+  "googlyEyesContent": "{senderName} wysyła ci kręcące się oczka",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} przytula cię",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "{senderName} uściska cię",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_hug": "Wyślij uścisk",
+  "@commandHint_hug": {},
+  "letsStart": "Zacznijmy",
+  "@letsStart": {},
+  "reactedWith": "{sender} zareagował/-a z {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "emojis": "Emoji",
+  "@emojis": {},
+  "placeCall": "Zadzwoń",
+  "@placeCall": {},
+  "voiceCall": "Połączenie głosowe",
+  "@voiceCall": {},
+  "unsupportedAndroidVersionLong": "Ta funkcja wymaga nowszej wersji systemu Android. Sprawdź aktualizacje lub wsparcie Lineage OS.",
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "Należy pamiętać, że połączenia wideo są obecnie w fazie beta. Mogą nie działać zgodnie z oczekiwaniami lub nie działać w ogóle na wszystkich platformach.",
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Eksperymentalne połączenia wideo",
+  "@experimentalVideoCalls": {},
+  "indexedDbErrorTitle": "Problemy związane z trybem prywatnym",
+  "@indexedDbErrorTitle": {},
+  "switchToAccount": "Przełącz na konto {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "nextAccount": "Następne konto",
+  "@nextAccount": {},
+  "previousAccount": "Poprzednie konto",
+  "@previousAccount": {},
+  "editWidgets": "Edytuj widżety",
+  "@editWidgets": {},
+  "addWidget": "Dodaj widżet",
+  "@addWidget": {},
+  "widgetVideo": "Film",
+  "@widgetVideo": {},
+  "widgetName": "Nazwa",
+  "@widgetName": {},
+  "errorAddingWidget": "Błąd podczas dodawania widżetu.",
+  "@errorAddingWidget": {},
+  "youRejectedTheInvitation": "Odrzucono zaproszenie",
+  "@youRejectedTheInvitation": {},
+  "youAcceptedTheInvitation": "👍 Zaakceptowałeś/-aś zaproszenie",
+  "@youAcceptedTheInvitation": {},
+  "youHaveWithdrawnTheInvitationFor": "Wycofano zaproszenie dla {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedBy": "📩 Zostałeś/-aś zaproszony/-a przez {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youInvitedUser": "📩 Zaprosiłeś/-aś {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKicked": "👞 Wyrzuciłeś/-aś {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youKickedAndBanned": "🙅 Wyrzuciłeś/-aś i zbanowałeś/-aś {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "youUnbannedUser": "Odbanowałeś/-aś {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "stories": "Relacje",
+  "@stories": {},
+  "unlockOldMessages": "Odblokuj stare wiadomości",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Przechowaj klucz odzyskiwania w bezpiecznym magazynie tego urządzenia.",
+  "@storeInSecureStorageDescription": {},
+  "storeInAppleKeyChain": "Przechowaj w pęku kluczy Apple",
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Przechowaj bezpiecznie na tym urządzeniu",
+  "@storeSecurlyOnThisDevice": {},
+  "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
+  "@foregroundServiceRunning": {},
+  "screenSharingDetail": "Udostępniasz swój ekran w FluffyChat",
+  "@screenSharingDetail": {},
+  "callingAccount": "Konto połączeń",
+  "@callingAccount": {},
+  "callingAccountDetails": "Pozwala FluffyChat używać natywnej aplikacji do wykonywania połączeń w Androidzie.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Wyświetlaj nad innymi",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Mikrofon, kamera i inne uprawnienia FluffyChat",
+  "@otherCallingPermissions": {},
+  "whyIsThisMessageEncrypted": "Dlaczego nie można odczytać tej wiadomości?",
+  "@whyIsThisMessageEncrypted": {},
+  "enterSpace": "Wejdź do przestrzeni",
+  "@enterSpace": {},
+  "enterRoom": "Wejdź do pokoju",
+  "@enterRoom": {},
+  "allSpaces": "Wszystkie przestrzenie",
+  "@allSpaces": {},
+  "numChats": "{number} czatów",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "hideUnimportantStateEvents": "Ukryj nieistotne wydarzenia stanu",
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "Nie pokazuj ponownie",
+  "@doNotShowAgain": {},
+  "wasDirectChatDisplayName": "Pusty czat (wcześniej {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "newSpaceDescription": "Przestrzenie pozwalają na konsolidację czatów i budowanie prywatnych lub publicznych społeczności.",
+  "@newSpaceDescription": {},
+  "reopenChat": "Otwórz ponownie czat",
+  "@reopenChat": {}
 }
