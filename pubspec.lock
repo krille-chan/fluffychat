@@ -790,10 +790,11 @@ packages:
   flutter_webrtc:
     dependency: "direct main"
     description:
-      name: flutter_webrtc
-      sha256: "4eacac1b49c65fd225ea69f41b3c28fae55c1f2caba6d5f21a6de2bd43e6dc02"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "5e634009ebbba856bfe2b825f7e5d59596ae1452"
+      url: "https://github.com/radzio-it/flutter-webrtc.git"
+    source: git
     version: "0.9.24"
   fuchsia_remote_debug_protocol:
     dependency: transitive
