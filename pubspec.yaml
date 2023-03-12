@@ -1,7 +1,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-version: 1.10.0+2331
+version: 1.10.0+3252
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
