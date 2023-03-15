@@ -185,7 +185,7 @@ class ChatListViewBody extends StatelessWidget {
                       if (controller.isSearchMode)
                         SearchTitle(
                           title: L10n.of(context)!.chats,
-                          icon: const Icon(Icons.chat_outlined),
+                          icon: const Icon(Icons.forum_outlined),
                         ),
                       if (rooms.isEmpty && !controller.isSearchMode)
                         Padding(

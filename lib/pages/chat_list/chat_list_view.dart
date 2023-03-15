@@ -45,13 +45,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.chat_outlined),
+            child: const Icon(Icons.forum_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.chat),
+            child: const Icon(Icons.forum),
           ),
           label: L10n.of(context)!.messages,
         ),
@@ -61,13 +61,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.chat_outlined),
+            child: const Icon(Icons.forum_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.chat),
+            child: const Icon(Icons.forum),
           ),
           label: L10n.of(context)!.chats,
         ),

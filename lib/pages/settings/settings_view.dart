@@ -169,7 +169,7 @@ class SettingsView extends StatelessWidget {
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
-              leading: const Icon(Icons.chat_bubble_outline_outlined),
+              leading: const Icon(Icons.forum_outlined),
               title: Text(L10n.of(context)!.chat),
               onTap: () => VRouter.of(context).to('/settings/chat'),
               trailing: const Icon(Icons.chevron_right_outlined),

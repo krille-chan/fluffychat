@@ -326,7 +326,7 @@ class ChatView extends StatelessWidget {
                                                     const EdgeInsets.all(16),
                                               ),
                                               icon: const Icon(
-                                                Icons.chat_outlined,
+                                                Icons.forum_outlined,
                                               ),
                                               onPressed:
                                                   controller.recreateChat,
