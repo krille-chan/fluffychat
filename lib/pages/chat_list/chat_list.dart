@@ -93,10 +93,9 @@ class ChatListController extends State<ChatList>
   int get selectedIndex {
     switch (activeFilter) {
       case ActiveFilter.allChats:
+      case ActiveFilter.messages:
         return 0;
       case ActiveFilter.groups:
-        return 0;
-      case ActiveFilter.messages:
         return 1;
       case ActiveFilter.spaces:
         return AppConfig.separateChatTypes ? 2 : 1;
@@ -107,7 +106,7 @@ class ChatListController extends State<ChatList>
     switch (i) {
       case 1:
         if (AppConfig.separateChatTypes) {
-          return ActiveFilter.messages;
+          return ActiveFilter.groups;
         }
         return ActiveFilter.spaces;
       case 2:
@@ -115,7 +114,7 @@ class ChatListController extends State<ChatList>
       case 0:
       default:
         if (AppConfig.separateChatTypes) {
-          return ActiveFilter.groups;
+          return ActiveFilter.messages;
         }
         return ActiveFilter.allChats;
     }

@@ -9,7 +9,10 @@ import 'app_config.dart';
 abstract class FluffyThemes {
   static const double columnWidth = 360.0;
 
-  static bool isColumnModeByWidth(double width) => width > columnWidth * 2 + 64;
+  static const double navRailWidth = 64.0;
+
+  static bool isColumnModeByWidth(double width) =>
+      width > columnWidth * 2 + navRailWidth;
 
   static bool isColumnMode(BuildContext context) =>
       isColumnModeByWidth(MediaQuery.of(context).size.width);

@@ -30,19 +30,6 @@ class ChatListView extends StatelessWidget {
         NavigationDestination(
           icon: UnreadRoomsBadge(
             badgePosition: badgePosition,
-            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.groups_outlined),
-          ),
-          selectedIcon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
-            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.groups),
-          ),
-          label: L10n.of(context)!.groups,
-        ),
-        NavigationDestination(
-          icon: UnreadRoomsBadge(
-            badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
             child: const Icon(Icons.forum_outlined),
@@ -54,6 +41,19 @@ class ChatListView extends StatelessWidget {
             child: const Icon(Icons.forum),
           ),
           label: L10n.of(context)!.messages,
+        ),
+        NavigationDestination(
+          icon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups_outlined),
+          ),
+          selectedIcon: UnreadRoomsBadge(
+            badgePosition: badgePosition,
+            filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
+            child: const Icon(Icons.groups),
+          ),
+          label: L10n.of(context)!.groups,
         ),
       ] else
         NavigationDestination(
@@ -124,7 +124,7 @@ class ChatListView extends StatelessWidget {
                     final destinations = getNavigationDestinations(context);
 
                     return SizedBox(
-                      width: 64,
+                      width: FluffyThemes.navRailWidth,
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount: rootSpaces.length + destinations.length,
