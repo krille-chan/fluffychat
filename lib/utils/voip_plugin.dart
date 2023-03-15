@@ -118,7 +118,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       kIsWeb ? false : await CallKeepManager().hasPhoneAccountEnabled;
 
   @override
-  void playRingtone() async {
+  Future<void> playRingtone() async {
     if (!background && !await hasCallingAccount) {
       try {
         await UserMediaManager().startRingingTone();
@@ -127,7 +127,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  void stopRingtone() async {
+  Future<void> stopRingtone() async {
     if (!background && !await hasCallingAccount) {
       try {
         await UserMediaManager().stopRingingTone();
@@ -136,7 +136,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  void handleNewCall(CallSession call) async {
+  Future<void> handleNewCall(CallSession call) async {
     if (PlatformInfos.isAndroid) {
       // probably works on ios too
       final hasCallingAccount = await CallKeepManager().hasPhoneAccountEnabled;
@@ -184,7 +184,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  void handleCallEnded(CallSession session) async {
+  Future<void> handleCallEnded(CallSession session) async {
     if (overlayEntry != null) {
       overlayEntry!.remove();
       overlayEntry = null;
@@ -198,12 +198,12 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  void handleGroupCallEnded(GroupCall groupCall) {
+  Future<void> handleGroupCallEnded(GroupCall groupCall) async {
     // TODO: implement handleGroupCallEnded
   }
 
   @override
-  void handleNewGroupCall(GroupCall groupCall) {
+  Future<void> handleNewGroupCall(GroupCall groupCall) async {
     // TODO: implement handleNewGroupCall
   }
 
@@ -213,7 +213,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       voip.currentCID == null && voip.currentGroupCID == null;
 
   @override
-  void handleMissedCall(CallSession session) {
+  Future<void> handleMissedCall(CallSession session) async {
     // TODO: implement handleMissedCall
   }
 }

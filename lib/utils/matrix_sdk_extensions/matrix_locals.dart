@@ -308,4 +308,7 @@ class MatrixLocals extends MatrixLocalizations {
   @override
   String wasDirectChatDisplayName(String oldDisplayName) =>
       l10n.wasDirectChatDisplayName(oldDisplayName);
+
+  //@override
+  String get unknownUser => l10n.user;
 }
