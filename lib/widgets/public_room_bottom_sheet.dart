@@ -29,23 +29,33 @@ class PublicRoomBottomSheet extends StatelessWidget {
 
   void _joinRoom(BuildContext context) async {
     final client = Matrix.of(context).client;
+    final chunk = this.chunk;
+    final navigator = Navigator.of(context);
+    final router = VRouter.of(context);
     final result = await showFutureLoadingDialog<String>(
       context: context,
-      future: () => chunk?.joinRule == 'knock'
-          ? client.knockRoom(chunk!.roomId)
-          : client.joinRoom(roomAlias ?? chunk!.roomId),
+      future: () async {
+        if (chunk != null && client.getRoomById(chunk.roomId) != null) {
+          return chunk.roomId;
+        }
+        final roomId = chunk != null && chunk.joinRule == 'knock'
+            ? await client.knockRoom(chunk.roomId)
+            : await client.joinRoom(roomAlias ?? chunk!.roomId);
+
+        if (client.getRoomById(roomId) == null) {
+          await client.onSync.stream.firstWhere(
+            (sync) => sync.rooms?.join?.containsKey(roomId) ?? false,
+          );
+        }
+        return roomId;
+      },
     );
     if (result.error == null) {
-      if (client.getRoomById(result.result!) == null) {
-        await client.onSync.stream.firstWhere(
-          (sync) => sync.rooms?.join?.containsKey(result.result) ?? false,
-        );
-      }
+      navigator.pop();
       // don't open the room if the joined room is a space
       if (!client.getRoomById(result.result!)!.isSpace) {
-        VRouter.of(context).toSegments(['rooms', result.result!]);
+        router.toSegments(['rooms', result.result!]);
       }
-      Navigator.of(context, rootNavigator: false).pop();
       return;
     }
   }
