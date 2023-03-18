@@ -2544,5 +2544,12 @@
   "noOtherDevicesFound": "Tidak ada perangkat lain yang ditemukan",
   "@noOtherDevicesFound": {},
   "fileIsTooBigForServer": "Server melaporkan bahwa file terlalu besar untuk dikirim.",
-  "@fileIsTooBigForServer": {}
+  "@fileIsTooBigForServer": {},
+  "fileHasBeenSavedAt": "Berkas telah disimpan di {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  }
 }
