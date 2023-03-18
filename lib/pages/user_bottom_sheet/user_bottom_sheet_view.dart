@@ -94,7 +94,7 @@ class UserBottomSheetView extends StatelessWidget {
             if (user.canBan && user.membership != Membership.ban)
               ListTile(
                 title: Text(L10n.of(context)!.banFromChat),
-                trailing: const Icon(Icons.warning_sharp),
+                leading: const Icon(Icons.warning_sharp),
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.ban),
               )
