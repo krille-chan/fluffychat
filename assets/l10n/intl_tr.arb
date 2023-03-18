@@ -2545,5 +2545,12 @@
   "noOtherDevicesFound": "Başka aygıt bulunamadı",
   "@noOtherDevicesFound": {},
   "fileIsTooBigForServer": "Sunucu, dosyanın gönderilemeyecek kadar büyük olduğunu bildiriyor.",
-  "@fileIsTooBigForServer": {}
+  "@fileIsTooBigForServer": {},
+  "fileHasBeenSavedAt": "Dosya {path} konumuna kaydedildi",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  }
 }
