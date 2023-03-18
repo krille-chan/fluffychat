@@ -25,7 +25,7 @@ dependencies:
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
-  file_picker_cross: ^4.6.0
+  file_picker: ^5.2.6
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
@@ -72,7 +72,7 @@ dependencies:
   receive_sharing_intent: ^1.4.5
   record: ^4.4.4
   scroll_to_index: ^3.0.1
-  share_plus: ^4.0.10+1
+  share_plus: ^6.3.1
   shared_preferences: 2.0.15 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
@@ -143,11 +143,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # Until all dependencies are compatible. Missing: file_picker_cross, flutter_matrix_html
+  # Until all dependencies are compatible. Missing: flutter_matrix_html
   ffi: ^2.0.0
-  # This otherwise breaks on linux with flutter 3.7.0, let's override it for now.
-  file_selector: ^0.9.2+2
-  file_selector_linux: ^0.9.1
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:

@@ -2519,5 +2519,12 @@
     "reopenChat": "Reopen chat",
     "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
     "noOtherDevicesFound": "No other devices found",
-    "fileIsTooBigForServer": "The server reports that the file is too large to be sent."
+    "fileIsTooBigForServer": "The server reports that the file is too large to be sent.",
+    "fileHasBeenSavedAt": "File has been saved at {path}",
+    "@fileHasBeenSavedAt": {
+        "type": "text",
+        "placeholders": {
+            "path": {}
+        }
+    }
 }

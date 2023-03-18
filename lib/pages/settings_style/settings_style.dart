@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
-import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:collection/collection.dart';
+import 'package:file_picker/file_picker.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
@@ -19,14 +18,16 @@ class SettingsStyle extends StatefulWidget {
 
 class SettingsStyleController extends State<SettingsStyle> {
   void setWallpaperAction() async {
-    final wallpaper =
-        await FilePickerCross.importFromStorage(type: FileTypeCross.image);
-    final path = wallpaper.path;
-    if (path == null) return;
-    Matrix.of(context).wallpaper = File(path);
+    final picked = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      withData: false,
+    );
+    final pickedFile = picked?.files.firstOrNull;
+
+    if (pickedFile == null) return;
     await Matrix.of(context)
         .store
-        .setItem(SettingKeys.wallpaper, wallpaper.path);
+        .setItem(SettingKeys.wallpaper, pickedFile.path);
     setState(() {});
   }
 

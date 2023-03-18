@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_security_view.dart';
@@ -177,25 +177,23 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     if (response != OkCancelResult.ok) {
       return;
     }
-    await showFutureLoadingDialog(
+    final file = await showFutureLoadingDialog(
       context: context,
       future: () async {
-        try {
-          final export = await Matrix.of(context).client.exportDump();
-          final filePickerCross = FilePickerCross(
-            Uint8List.fromList(const Utf8Codec().encode(export!)),
-            path:
-                '/fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup',
-            fileExtension: 'fluffybackup',
-          );
-          await filePickerCross.exportToStorage(
-            subject: L10n.of(context)!.dehydrateShare,
-          );
-        } catch (e, s) {
-          Logs().e('Export error', e, s);
-        }
+        final export = await Matrix.of(context).client.exportDump();
+        if (export == null) throw Exception('Export data is null.');
+
+        final exportBytes = Uint8List.fromList(
+          const Utf8Codec().encode(export),
+        );
+
+        final exportFileName =
+            'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
+
+        return MatrixFile(bytes: exportBytes, name: exportFileName);
       },
     );
+    file.result?.save(context);
   }
 
   @override

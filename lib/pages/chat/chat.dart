@@ -9,7 +9,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
@@ -352,19 +352,20 @@ class ChatController extends State<Chat> {
   }
 
   void sendFileAction() async {
-    final result = await FilePickerCross.importMultipleFromStorage(
-      type: FileTypeCross.any,
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+      withData: true,
     );
-    if (result.isEmpty) return;
+    if (result == null || result.files.isEmpty) return;
     await showDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        files: result
+        files: result.files
             .map(
               (xfile) => MatrixFile(
-                bytes: xfile.toUint8List(),
-                name: xfile.fileName!,
+                bytes: xfile.bytes!,
+                name: xfile.name,
               ).detectFileType,
             )
             .toList(),
@@ -374,20 +375,22 @@ class ChatController extends State<Chat> {
   }
 
   void sendImageAction() async {
-    final result = await FilePickerCross.importMultipleFromStorage(
-      type: FileTypeCross.image,
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      withData: true,
+      allowMultiple: true,
     );
-    if (result.isEmpty) return;
+    if (result == null || result.files.isEmpty) return;
 
     await showDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
-        files: result
+        files: result.files
             .map(
               (xfile) => MatrixFile(
-                bytes: xfile.toUint8List(),
-                name: xfile.fileName!,
+                bytes: xfile.bytes!,
+                name: xfile.name,
               ).detectFileType,
             )
             .toList(),

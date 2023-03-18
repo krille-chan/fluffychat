@@ -3,7 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:file_picker_cross/file_picker_cross.dart';
+import 'package:collection/collection.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -68,14 +69,15 @@ class AddStoryController extends State<AddStoryPage> {
   }
 
   void importMedia() async {
-    final picked = await FilePickerCross.importFromStorage(
-      type: FileTypeCross.image,
+    final picked = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      withData: true,
     );
-    final fileName = picked.fileName;
-    if (fileName == null) return;
+    final file = picked?.files.firstOrNull;
+    if (file == null) return;
     final matrixFile = MatrixImageFile(
-      bytes: picked.toUint8List(),
-      name: fileName,
+      bytes: file.bytes!,
+      name: file.name,
     );
     setState(() {
       image = matrixFile;
