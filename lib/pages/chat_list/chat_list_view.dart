@@ -15,7 +15,6 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
-import 'chat_list_header.dart';
 import 'start_chat_fab.dart';
 
 class ChatListView extends StatelessWidget {
@@ -46,12 +45,12 @@ class ChatListView extends StatelessWidget {
           icon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.groups_outlined),
+            child: const Icon(Icons.group_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
-            child: const Icon(Icons.groups),
+            child: const Icon(Icons.group),
           ),
           label: L10n.of(context)!.groups,
         ),
@@ -174,7 +173,6 @@ class ChatListView extends StatelessWidget {
                   excludeFromSemantics: true,
                   behavior: HitTestBehavior.translucent,
                   child: Scaffold(
-                    appBar: ChatListHeader(controller: controller),
                     body: ChatListViewBody(controller),
                     bottomNavigationBar: controller.displayNavigationBar
                         ? NavigationBar(
@@ -185,24 +183,24 @@ class ChatListView extends StatelessWidget {
                             destinations: getNavigationDestinations(context),
                           )
                         : null,
-                    floatingActionButtonLocation:
-                        controller.filteredRooms.isEmpty
-                            ? FloatingActionButtonLocation.centerFloat
-                            : null,
-                    floatingActionButton: selectMode == SelectMode.normal
-                        ? KeyBoardShortcuts(
-                            keysToPress: {
-                              LogicalKeyboardKey.controlLeft,
-                              LogicalKeyboardKey.keyN
-                            },
-                            onKeysPressed: () =>
-                                VRouter.of(context).to('/newprivatechat'),
-                            helpLabel: L10n.of(context)!.newChat,
-                            child: StartChatFloatingActionButton(
-                              controller: controller,
-                            ),
-                          )
-                        : null,
+                    floatingActionButton: KeyBoardShortcuts(
+                      keysToPress: {
+                        LogicalKeyboardKey.controlLeft,
+                        LogicalKeyboardKey.keyN
+                      },
+                      onKeysPressed: () =>
+                          VRouter.of(context).to('/newprivatechat'),
+                      helpLabel: L10n.of(context)!.newChat,
+                      child: selectMode == SelectMode.normal &&
+                              controller.filteredRooms.isNotEmpty &&
+                              !controller.isSearchMode
+                          ? StartChatFloatingActionButton(
+                              activeFilter: controller.activeFilter,
+                              roomsIsEmpty: false,
+                              scrolledToTop: controller.scrolledToTop,
+                            )
+                          : const SizedBox.shrink(),
+                    ),
                   ),
                 ),
               ),

@@ -47,11 +47,11 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   static final List<Color?> customColors = [
     AppConfig.chatColor,
-    Colors.blue.shade800,
-    Colors.green.shade800,
-    Colors.orange.shade700,
-    Colors.pink.shade700,
-    Colors.blueGrey.shade600,
+    Colors.indigo,
+    Colors.green,
+    Colors.orange,
+    Colors.pink,
+    Colors.blueGrey,
     null,
   ];
 

@@ -7,13 +7,19 @@ import '../../config/themes.dart';
 import 'chat_list.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
-  final ChatListController controller;
+  final ActiveFilter activeFilter;
+  final bool scrolledToTop;
+  final bool roomsIsEmpty;
 
-  const StartChatFloatingActionButton({Key? key, required this.controller})
-      : super(key: key);
+  const StartChatFloatingActionButton({
+    Key? key,
+    required this.activeFilter,
+    required this.scrolledToTop,
+    required this.roomsIsEmpty,
+  }) : super(key: key);
 
   void _onPressed(BuildContext context) {
-    switch (controller.activeFilter) {
+    switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
         VRouter.of(context).to('/newprivatechat');
@@ -28,10 +34,10 @@ class StartChatFloatingActionButton extends StatelessWidget {
   }
 
   IconData get icon {
-    switch (controller.activeFilter) {
+    switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return Icons.edit_outlined;
+        return Icons.add_outlined;
       case ActiveFilter.groups:
         return Icons.group_add_outlined;
       case ActiveFilter.spaces:
@@ -40,10 +46,10 @@ class StartChatFloatingActionButton extends StatelessWidget {
   }
 
   String getLabel(BuildContext context) {
-    switch (controller.activeFilter) {
+    switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return controller.filteredRooms.isEmpty
+        return roomsIsEmpty
             ? L10n.of(context)!.startFirstChat
             : L10n.of(context)!.newChat;
       case ActiveFilter.groups:
@@ -58,15 +64,13 @@ class StartChatFloatingActionButton extends StatelessWidget {
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
-      width: controller.filteredRooms.isEmpty
+      width: roomsIsEmpty
           ? null
-          : controller.scrolledToTop
+          : scrolledToTop
               ? 144
               : 56,
-      child: controller.scrolledToTop
+      child: scrolledToTop
           ? FloatingActionButton.extended(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
               onPressed: () => _onPressed(context),
               icon: Icon(icon),
               label: Text(
@@ -75,8 +79,6 @@ class StartChatFloatingActionButton extends StatelessWidget {
               ),
             )
           : FloatingActionButton(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
               onPressed: () => _onPressed(context),
               child: Icon(icon),
             ),
