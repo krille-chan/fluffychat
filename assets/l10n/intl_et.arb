@@ -2545,5 +2545,12 @@
   "noBackupWarning": "Hoiatus! Kui sa ei lülita sisse vestluse varundust, siis sul puudub hiljem ligipääs krüptitud sõnumitele. Me tungivalt soovitame, et palun lülita vestluse varundamine sisse enne väljalogimist.",
   "@noBackupWarning": {},
   "fileIsTooBigForServer": "Serveri seadistuste alusel on see fail saatmiseks liiga suur.",
-  "@fileIsTooBigForServer": {}
+  "@fileIsTooBigForServer": {},
+  "fileHasBeenSavedAt": "Fail on salvestatud kausta: {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  }
 }
