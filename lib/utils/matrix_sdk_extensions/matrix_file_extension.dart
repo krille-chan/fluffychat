@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -55,12 +54,9 @@ extension MatrixFileExtension on MatrixFile {
   }
 
   Future<Directory> getDownloadDirectoryAndroid() async {
-    final downloadDirectories = await getExternalStorageDirectories(
-      type: StorageDirectory.downloads,
-    );
-    if (downloadDirectories != null && downloadDirectories.isNotEmpty) {
-      inspect(downloadDirectories);
-      return downloadDirectories.first;
+    final defaultDownloadDirectory = Directory('/storage/emulated/0/Download');
+    if (await defaultDownloadDirectory.exists()) {
+      return defaultDownloadDirectory;
     }
     return await getApplicationDocumentsDirectory();
   }
