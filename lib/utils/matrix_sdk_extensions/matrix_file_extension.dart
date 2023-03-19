@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -49,14 +50,19 @@ extension MatrixFileExtension on MatrixFile {
   }
 
   Future<String> getDownloadPathAndroid() async {
+    final directory = await getDownloadDirectoryAndroid();
+    return '${directory.path}/$name';
+  }
+
+  Future<Directory> getDownloadDirectoryAndroid() async {
     final downloadDirectories = await getExternalStorageDirectories(
       type: StorageDirectory.downloads,
     );
     if (downloadDirectories != null && downloadDirectories.isNotEmpty) {
-      return downloadDirectories.first.path;
+      inspect(downloadDirectories);
+      return downloadDirectories.first;
     }
-    final fallbackDirectory = await getApplicationDocumentsDirectory();
-    return fallbackDirectory.path;
+    return await getApplicationDocumentsDirectory();
   }
 
   FileType get filePickerFileType {
