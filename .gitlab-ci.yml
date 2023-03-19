@@ -1,9 +1,7 @@
 variables:
   FLUTTER_VERSION: 3.7.7
 
-image:
-  name: cirrusci/flutter:${FLUTTER_VERSION}
-  pull_policy: if-not-present
+image: cirrusci/flutter:${FLUTTER_VERSION}
 
 .shared_windows_runners:
   tags:
@@ -22,16 +20,10 @@ code_analyze:
   artifacts:
     reports:
       codequality: code-quality-report.json
-  tags:
-    - docker
-    - famedly
 
 widget_test:
   stage: test
   script: [ flutter test ]
-  tags:
-    - docker
-    - famedly
 
 # the basic integration test configuration testing FLOSS builds on Synapse
 integration_test:
@@ -149,9 +141,6 @@ build_web:
   artifacts:
     paths:
       - build/web/
-  tags:
-    - docker
-    - famedly
 
 # yes, we *do* build a Windows DLL on Linux. More reliable.
 build_olm_windows:
@@ -205,9 +194,6 @@ build_android_debug:
   except:
     - main
     - tags
-  tags:
-    - docker
-    - famedly
 
 build_android_apk:
   stage: build
@@ -219,9 +205,6 @@ build_android_apk:
     when: on_success
     paths:
       - build/android/app-release.apk
-  tags:
-    - docker
-    - famedly
   only:
     - main
     - tags
@@ -237,9 +220,6 @@ deploy_playstore_internal:
     paths:
       - build/android/app-release.aab
   resource_group: playstore_release
-  tags:
-    - docker
-    - famedly
   only:
     - main
 
@@ -258,9 +238,6 @@ fdroid_repo:
   needs:
     - "build_android_apk"
   resource_group: playstore_release
-  tags:
-    - docker
-    - famedly
   allow_failure: true
   only:
     - main
@@ -295,9 +272,6 @@ build_linux_x86:
       sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y,
     ]
   script: [ ./scripts/build-linux.sh ]
-  tags:
-    - docker
-    - famedly
   artifacts:
     when: on_success
     paths:
@@ -320,8 +294,6 @@ build_linux_arm64:
 update_dependencies:
   stage: build
   needs: [ ]
-  tags:
-    - docker
   only:
     - schedules
   variables:
@@ -346,9 +318,6 @@ update_dependencies:
 .release:
   stage: deploy
   image: curlimages/curl:latest
-  tags:
-    - docker
-    - famedly
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
     - if: '$CI_COMMIT_TAG =~ /^rc\d+\.\d+\.\d+-\d+$/'
