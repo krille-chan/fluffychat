@@ -302,11 +302,12 @@ build_linux_arm64:
   stage: build
   before_script:
     # Workaround from https://github.com/flutter/flutter/issues/116703#issuecomment-1403956612
-    - mkdir test
-    - cd test
+    - rm -rf workaround116703
+    - mkdir workaround116703
+    - cd workaround116703
     - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - tar -xvf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz flutter/bin/cache/artifacts/engine/linux-x64/shader_lib
-    - cp -R flutter/bin/cache/artifacts/engine/linux-x64/shader_lib /home/famedly/flutter/bin/cache/artifacts/engine/linux-arm64
+    - cp -R flutter/bin/cache/artifacts/engine/linux-x64/shader_lib /opt/flutter/bin/cache/artifacts/engine/linux-arm64
     - rm -rf flutter flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - cd ..
   script: [ ./scripts/build-linux.sh ]
