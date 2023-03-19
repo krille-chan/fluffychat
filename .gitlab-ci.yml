@@ -16,7 +16,15 @@ stages:
 
 code_analyze:
   stage: test
-  script: [ ./scripts/code_analyze.sh ]
+  script:
+    - flutter pub get
+    - dart run import_sorter:main --no-comments --exit-if-changed
+    - flutter format lib/ test/ --set-exit-if-changed
+    - flutter analyze
+    - git apply ./scripts/enable-android-google-services.patch
+    - flutter pub get
+    - flutter analyze
+    - flutter pub run dart_code_metrics:metrics lib -r gitlab > code-quality-report.json || true
   artifacts:
     reports:
       codequality: code-quality-report.json
@@ -66,9 +74,8 @@ integration_test:
     - ffmpeg -i video.mkv -vf scale=iw/2:-2 -crf 40 -b:v 2000k -preset fast video.mp4 || true
   timeout: 30m
   retry: 2
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: always
+  only:
+    - tags
   artifacts:
     when: always
     paths:
@@ -129,6 +136,8 @@ release_mode_launches:
     # generate temporary release build configuration and ensure app launches
     - scripts/integration-check-release-build.sh
   timeout: 20m
+  only:
+    - tags
   tags:
     - docker
     - famedly
@@ -137,7 +146,8 @@ build_web:
   stage: build
   before_script:
     [ sudo apt update && sudo apt install curl -y, ./scripts/prepare-web.sh ]
-  script: [ ./scripts/build-web.sh ]
+  script:
+    - flutter build web --release --verbose --source-maps
   artifacts:
     paths:
       - build/web/
@@ -186,11 +196,14 @@ build_windows:
 
 build_android_debug:
   stage: build
-  script: [ ./scripts/build-android-debug.sh ]
+  script: [ flutter build apk --debug ]
   artifacts:
     when: on_success
     paths:
       - build/app/outputs/apk/debug/app-debug.apk
+  tags:
+    - docker
+    - famedly
   except:
     - main
     - tags
@@ -200,11 +213,14 @@ build_android_apk:
   before_script:
     - git apply ./scripts/enable-android-google-services.patch
     - ./scripts/prepare-android-release.sh
-  script: [ ./scripts/build-android-apk.sh ]
+  script: [ flutter build apk --release ]
   artifacts:
     when: on_success
     paths:
-      - build/android/app-release.apk
+      - build/app/outputs/apk/release/app-release.apk
+  tags:
+    - docker
+    - famedly
   only:
     - main
     - tags
@@ -220,6 +236,9 @@ deploy_playstore_internal:
     paths:
       - build/android/app-release.aab
   resource_group: playstore_release
+  tags:
+    - docker
+    - famedly
   only:
     - main
 
@@ -268,10 +287,12 @@ build_linux_x86:
   stage: build
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/flutter-linux/stable
   before_script:
-    [
-      sudo apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install keyboard-configuration -y && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y,
-    ]
-  script: [ ./scripts/build-linux.sh ]
+    - sudo apt-get update
+    - sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 -y
+  script: [ flutter build linux --release -v ]
+  tags:
+    - docker
+    - famedly
   artifacts:
     when: on_success
     paths:
