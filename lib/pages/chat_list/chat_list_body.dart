@@ -72,176 +72,181 @@ class ChatListViewBody extends StatelessWidget {
                   ActiveFilter.messages,
                 }.contains(controller.activeFilter) &&
                 client.storiesRooms.isNotEmpty;
-            return CustomScrollView(
-              controller: controller.scrollController,
-              slivers: [
-                ChatListHeader(controller: controller),
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      if (controller.isSearchMode) ...[
-                        SearchTitle(
-                          title: L10n.of(context)!.publicRooms,
-                          icon: const Icon(Icons.explore_outlined),
-                        ),
-                        AnimatedContainer(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(),
-                          height: roomSearchResult == null ||
-                                  roomSearchResult.chunk.isEmpty
-                              ? 0
-                              : 106,
-                          duration: FluffyThemes.animationDuration,
-                          curve: FluffyThemes.animationCurve,
-                          child: roomSearchResult == null
-                              ? null
-                              : ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: roomSearchResult.chunk.length,
-                                  itemBuilder: (context, i) => _SearchItem(
-                                    title: roomSearchResult.chunk[i].name ??
-                                        roomSearchResult.chunk[i].canonicalAlias
-                                            ?.localpart ??
-                                        L10n.of(context)!.group,
-                                    avatar: roomSearchResult.chunk[i].avatarUrl,
-                                    onPressed: () => showAdaptiveBottomSheet(
-                                      context: context,
-                                      builder: (c) => PublicRoomBottomSheet(
-                                        roomAlias: roomSearchResult
-                                                .chunk[i].canonicalAlias ??
-                                            roomSearchResult.chunk[i].roomId,
-                                        outerContext: context,
-                                        chunk: roomSearchResult.chunk[i],
+            return SafeArea(
+              child: CustomScrollView(
+                controller: controller.scrollController,
+                slivers: [
+                  ChatListHeader(controller: controller),
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        if (controller.isSearchMode) ...[
+                          SearchTitle(
+                            title: L10n.of(context)!.publicRooms,
+                            icon: const Icon(Icons.explore_outlined),
+                          ),
+                          AnimatedContainer(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            height: roomSearchResult == null ||
+                                    roomSearchResult.chunk.isEmpty
+                                ? 0
+                                : 106,
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
+                            child: roomSearchResult == null
+                                ? null
+                                : ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: roomSearchResult.chunk.length,
+                                    itemBuilder: (context, i) => _SearchItem(
+                                      title: roomSearchResult.chunk[i].name ??
+                                          roomSearchResult.chunk[i]
+                                              .canonicalAlias?.localpart ??
+                                          L10n.of(context)!.group,
+                                      avatar:
+                                          roomSearchResult.chunk[i].avatarUrl,
+                                      onPressed: () => showAdaptiveBottomSheet(
+                                        context: context,
+                                        builder: (c) => PublicRoomBottomSheet(
+                                          roomAlias: roomSearchResult
+                                                  .chunk[i].canonicalAlias ??
+                                              roomSearchResult.chunk[i].roomId,
+                                          outerContext: context,
+                                          chunk: roomSearchResult.chunk[i],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                        ),
-                        SearchTitle(
-                          title: L10n.of(context)!.users,
-                          icon: const Icon(Icons.group_outlined),
-                        ),
-                        AnimatedContainer(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(),
-                          height: userSearchResult == null ||
-                                  userSearchResult.results.isEmpty
-                              ? 0
-                              : 106,
-                          duration: FluffyThemes.animationDuration,
-                          curve: FluffyThemes.animationCurve,
-                          child: userSearchResult == null
-                              ? null
-                              : ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: userSearchResult.results.length,
-                                  itemBuilder: (context, i) => _SearchItem(
-                                    title: userSearchResult
-                                            .results[i].displayName ??
-                                        userSearchResult
-                                            .results[i].userId.localpart ??
-                                        L10n.of(context)!.unknownDevice,
-                                    avatar:
-                                        userSearchResult.results[i].avatarUrl,
-                                    onPressed: () => showAdaptiveBottomSheet(
-                                      context: context,
-                                      builder: (c) => ProfileBottomSheet(
-                                        userId:
-                                            userSearchResult.results[i].userId,
-                                        outerContext: context,
+                          ),
+                          SearchTitle(
+                            title: L10n.of(context)!.users,
+                            icon: const Icon(Icons.group_outlined),
+                          ),
+                          AnimatedContainer(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            height: userSearchResult == null ||
+                                    userSearchResult.results.isEmpty
+                                ? 0
+                                : 106,
+                            duration: FluffyThemes.animationDuration,
+                            curve: FluffyThemes.animationCurve,
+                            child: userSearchResult == null
+                                ? null
+                                : ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: userSearchResult.results.length,
+                                    itemBuilder: (context, i) => _SearchItem(
+                                      title: userSearchResult
+                                              .results[i].displayName ??
+                                          userSearchResult
+                                              .results[i].userId.localpart ??
+                                          L10n.of(context)!.unknownDevice,
+                                      avatar:
+                                          userSearchResult.results[i].avatarUrl,
+                                      onPressed: () => showAdaptiveBottomSheet(
+                                        context: context,
+                                        builder: (c) => ProfileBottomSheet(
+                                          userId: userSearchResult
+                                              .results[i].userId,
+                                          outerContext: context,
+                                        ),
                                       ),
                                     ),
                                   ),
+                          ),
+                          SearchTitle(
+                            title: L10n.of(context)!.stories,
+                            icon: const Icon(Icons.camera_alt_outlined),
+                          ),
+                        ],
+                        if (displayStoriesHeader)
+                          StoriesHeader(
+                            key: const Key('stories_header'),
+                            filter: controller.searchController.text,
+                          ),
+                        const ConnectionStatusHeader(),
+                        AnimatedContainer(
+                          height: controller.isTorBrowser ? 64 : 0,
+                          duration: FluffyThemes.animationDuration,
+                          curve: FluffyThemes.animationCurve,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(),
+                          child: Material(
+                            color: Theme.of(context).colorScheme.surface,
+                            child: ListTile(
+                              leading: const Icon(Icons.vpn_key),
+                              title: Text(L10n.of(context)!.dehydrateTor),
+                              subtitle:
+                                  Text(L10n.of(context)!.dehydrateTorLong),
+                              trailing:
+                                  const Icon(Icons.chevron_right_outlined),
+                              onTap: controller.dehydrate,
+                            ),
+                          ),
+                        ),
+                        if (controller.isSearchMode)
+                          SearchTitle(
+                            title: L10n.of(context)!.chats,
+                            icon: const Icon(Icons.forum_outlined),
+                          ),
+                        if (rooms.isEmpty && !controller.isSearchMode) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/start_chat.png',
+                                  height: 256,
                                 ),
-                        ),
-                        SearchTitle(
-                          title: L10n.of(context)!.stories,
-                          icon: const Icon(Icons.camera_alt_outlined),
-                        ),
+                                const Divider(height: 1),
+                              ],
+                            ),
+                          ),
+                          Center(
+                            child: StartChatFloatingActionButton(
+                              activeFilter: controller.activeFilter,
+                              roomsIsEmpty: true,
+                              scrolledToTop: controller.scrolledToTop,
+                            ),
+                          ),
+                        ],
                       ],
-                      if (displayStoriesHeader)
-                        StoriesHeader(
-                          key: const Key('stories_header'),
-                          filter: controller.searchController.text,
-                        ),
-                      const ConnectionStatusHeader(),
-                      AnimatedContainer(
-                        height: controller.isTorBrowser ? 64 : 0,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(),
-                        child: Material(
-                          color: Theme.of(context).colorScheme.surface,
-                          child: ListTile(
-                            leading: const Icon(Icons.vpn_key),
-                            title: Text(L10n.of(context)!.dehydrateTor),
-                            subtitle: Text(L10n.of(context)!.dehydrateTorLong),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: controller.dehydrate,
-                          ),
-                        ),
-                      ),
-                      if (controller.isSearchMode)
-                        SearchTitle(
-                          title: L10n.of(context)!.chats,
-                          icon: const Icon(Icons.forum_outlined),
-                        ),
-                      if (rooms.isEmpty && !controller.isSearchMode) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/start_chat.png',
-                                height: 256,
-                              ),
-                              const Divider(height: 1),
-                            ],
-                          ),
-                        ),
-                        Center(
-                          child: StartChatFloatingActionButton(
-                            activeFilter: controller.activeFilter,
-                            roomsIsEmpty: true,
-                            scrolledToTop: controller.scrolledToTop,
-                          ),
-                        ),
-                      ],
-                    ],
+                    ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int i) {
-                      if (!rooms[i]
-                          .getLocalizedDisplayname(
-                            MatrixLocals(L10n.of(context)!),
-                          )
-                          .toLowerCase()
-                          .contains(
-                            controller.searchController.text.toLowerCase(),
-                          )) {
-                        return Container();
-                      }
-                      return ChatListItem(
-                        rooms[i],
-                        key: Key('chat_list_item_${rooms[i].id}'),
-                        selected:
-                            controller.selectedRoomIds.contains(rooms[i].id),
-                        onTap: controller.selectMode == SelectMode.select
-                            ? () => controller.toggleSelection(rooms[i].id)
-                            : null,
-                        onLongPress: () =>
-                            controller.toggleSelection(rooms[i].id),
-                        activeChat: controller.activeChat == rooms[i].id,
-                      );
-                    },
-                    childCount: rooms.length,
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int i) {
+                        if (!rooms[i]
+                            .getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context)!),
+                            )
+                            .toLowerCase()
+                            .contains(
+                              controller.searchController.text.toLowerCase(),
+                            )) {
+                          return Container();
+                        }
+                        return ChatListItem(
+                          rooms[i],
+                          key: Key('chat_list_item_${rooms[i].id}'),
+                          selected:
+                              controller.selectedRoomIds.contains(rooms[i].id),
+                          onTap: controller.selectMode == SelectMode.select
+                              ? () => controller.toggleSelection(rooms[i].id)
+                              : null,
+                          onLongPress: () =>
+                              controller.toggleSelection(rooms[i].id),
+                          activeChat: controller.activeChat == rooms[i].id,
+                        );
+                      },
+                      childCount: rooms.length,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
           const dummyChatCount = 5;

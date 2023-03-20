@@ -69,6 +69,7 @@ class NewPrivateChatView extends StatelessWidget {
                         style: TextButton.styleFrom(
                           fixedSize:
                               Size.fromWidth(qrCodeSize - (2 * _qrCodePadding)),
+                          foregroundColor: Colors.black,
                         ),
                         icon: Icon(Icons.adaptive.share_outlined),
                         label: Text(L10n.of(context)!.shareYourInviteLink),
