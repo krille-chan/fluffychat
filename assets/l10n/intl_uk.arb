@@ -2545,5 +2545,12 @@
   "noBackupWarning": "Увага! Якщо ви не ввімкнете резервне копіювання бесіди, ви втратите доступ до своїх зашифрованих повідомлень. Наполегливо радимо ввімкнути резервне копіювання бесіди перед виходом.",
   "@noBackupWarning": {},
   "fileIsTooBigForServer": "Сервер повідомляє, що файл завеликий для надсилання.",
-  "@fileIsTooBigForServer": {}
+  "@fileIsTooBigForServer": {},
+  "fileHasBeenSavedAt": "Файл збережено в {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  }
 }
