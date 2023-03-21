@@ -118,7 +118,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheDisplaynameTo": "{username} نام نمایش خود را ایدون تغییر داد: «{displayname}»",
+  "changedTheDisplaynameTo": "{username} نام نمایشی خود را تغییر داد به: «{displayname}»",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -171,7 +171,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatDescriptionTo": "{username} توصیف گپ را ایدون تغییر داد: «{description}»",
+  "changedTheChatDescriptionTo": "{username} توصیف گپ را تغییر داد: «{description}»",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -186,7 +186,7 @@
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username} نام گپ را ایدون تغییر داد: «{chatname}»",
+  "changedTheChatNameTo": "{username} نام گپ را تغییر داد به: «{chatname}»",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -1160,5 +1160,9 @@
     "placeholders": {
       "senderName": {}
     }
-  }
+  },
+  "commandHint_cuddle": "ارسال آغوش",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "ارسال بغل",
+  "@commandHint_hug": {}
 }
