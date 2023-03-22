@@ -2526,5 +2526,6 @@
         "placeholders": {
             "path": {}
         }
-    }
+    },
+    "jumpToLastReadMessage": "Jump to last read message"
 }

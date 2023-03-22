@@ -132,6 +132,11 @@ class ChatController extends State<Chat> {
 
   bool showEmojiPicker = false;
 
+  bool get lastReadEventVisible =>
+      timeline == null ||
+      room!.fullyRead.isEmpty ||
+      timeline!.events.any((event) => event.eventId == room!.fullyRead);
+
   void recreateChat() async {
     final room = this.room;
     final userId = room?.directChatMatrixID;
@@ -190,9 +195,13 @@ class ChatController extends State<Chat> {
   }
 
   void requestFuture() async {
-    if (!timeline!.canRequestFuture) return;
+    final timeline = this.timeline;
+    if (timeline == null) return;
+    if (!timeline.canRequestFuture) return;
     try {
-      await timeline!.requestFuture(historyCount: _loadHistoryCount);
+      final mostRecentEventId = timeline.events.first.eventId;
+      await timeline.requestFuture(historyCount: _loadHistoryCount);
+      setReadMarker(eventId: mostRecentEventId);
     } catch (err) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -280,19 +289,29 @@ class ChatController extends State<Chat> {
 
   Future<void>? _setReadMarkerFuture;
 
-  void setReadMarker([_]) {
-    if (_setReadMarkerFuture == null &&
-        (room!.hasNewMessages || room!.notificationCount > 0) &&
-        timeline != null &&
-        timeline!.events.isNotEmpty &&
-        Matrix.of(context).webHasFocus) {
-      Logs().v('Set read marker...');
-      // ignore: unawaited_futures
-      _setReadMarkerFuture = timeline!.setReadMarker().then((_) {
-        _setReadMarkerFuture = null;
-      });
-      room!.client.updateIosBadge();
+  void setReadMarker({String? eventId}) {
+    if (_setReadMarkerFuture != null) return;
+    if (lastReadEventVisible &&
+        !room!.hasNewMessages &&
+        room!.notificationCount == 0) {
+      return;
     }
+    if (!Matrix.of(context).webHasFocus) return;
+
+    final timeline = this.timeline;
+    if (timeline == null || timeline.events.isEmpty) return;
+
+    if (eventId == null && !lastReadEventVisible) {
+      return;
+    }
+
+    eventId ??= timeline.events.first.eventId;
+    Logs().v('Set read marker...', eventId);
+    // ignore: unawaited_futures
+    _setReadMarkerFuture = timeline.setReadMarker(eventId).then((_) {
+      _setReadMarkerFuture = null;
+    });
+    room!.client.updateIosBadge();
   }
 
   @override
@@ -759,6 +778,7 @@ class ChatController extends State<Chat> {
         timeline = null;
       });
       await getTimeline();
+      setReadMarker(eventId: timeline!.events.first.eventId);
     }
     scrollController.jumpTo(0);
   }
