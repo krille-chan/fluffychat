@@ -2552,5 +2552,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "jumpToLastReadMessage": "Перейти до останнього прочитаного повідомлення",
+  "@jumpToLastReadMessage": {}
 }
