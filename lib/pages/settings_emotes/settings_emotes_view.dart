@@ -107,7 +107,7 @@ class EmotesSettingsView extends StatelessWidget {
                     )
                   : ListView.separated(
                       separatorBuilder: (BuildContext context, int i) =>
-                          Container(),
+                          const SizedBox.shrink(),
                       itemCount: imageKeys.length + 1,
                       itemBuilder: (BuildContext context, int i) {
                         if (i >= imageKeys.length) {

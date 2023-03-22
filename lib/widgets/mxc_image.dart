@@ -163,7 +163,7 @@ class _MxcImageState extends State<MxcImage> {
           data == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: placeholder(context),
       secondChild: data == null || data.isEmpty
-          ? Container()
+          ? const SizedBox.shrink()
           : Image.memory(
               data,
               width: widget.width,

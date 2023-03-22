@@ -115,7 +115,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           },
           helpLabel: L10n.of(context)!.chatDetails,
           onKeysPressed: _showChatDetails,
-          child: Container(),
+          child: const SizedBox.shrink(),
         ),
         KeyBoardShortcuts(
           keysToPress: {
@@ -124,7 +124,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           },
           helpLabel: L10n.of(context)!.matrixWidgets,
           onKeysPressed: _showWidgets,
-          child: Container(),
+          child: const SizedBox.shrink(),
         ),
         PopupMenuButton(
           onSelected: (String choice) async {

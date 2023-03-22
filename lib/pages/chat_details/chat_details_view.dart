@@ -409,7 +409,7 @@ class ChatDetailsView extends StatelessWidget {
                                   ),
                                   onTap: () => VRouter.of(context).to('invite'),
                                 )
-                              : Container(),
+                              : const SizedBox.shrink(),
                         ],
                       )
                     : i < controller.members!.length + 1

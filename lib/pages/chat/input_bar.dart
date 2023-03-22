@@ -313,7 +313,7 @@ class InputBar extends StatelessWidget {
         ),
       );
     }
-    return Container();
+    return const SizedBox.shrink();
   }
 
   void insertSuggestion(_, Map<String, String?> suggestion) {
@@ -458,11 +458,11 @@ class InputBar extends StatelessWidget {
               buildSuggestion(c, s, Matrix.of(context).client),
           onSuggestionSelected: (Map<String, String?> suggestion) =>
               insertSuggestion(context, suggestion),
-          errorBuilder: (BuildContext context, Object? error) => Container(),
-          loadingBuilder: (BuildContext context) => Container(),
+          errorBuilder: (BuildContext context, Object? error) => const SizedBox.shrink(),
+          loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
           // fix loading briefly flickering a dark box
           noItemsFoundBuilder: (BuildContext context) =>
-              Container(), // fix loading briefly showing no suggestions
+              const SizedBox.shrink(), // fix loading briefly showing no suggestions
         ),
       ),
     );

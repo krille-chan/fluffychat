@@ -326,7 +326,7 @@ class ChatListItem extends StatelessWidget {
                             fontSize: 13,
                           ),
                         )
-                      : Container(),
+                      : const SizedBox.shrink(),
                 ),
               ),
             ],

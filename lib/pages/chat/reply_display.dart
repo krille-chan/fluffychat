@@ -58,7 +58,7 @@ class _EditContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final event = this.event;
     if (event == null) {
-      return Container();
+      return const SizedBox.shrink();
     }
     return Row(
       children: <Widget>[

@@ -39,7 +39,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
       final imageKeys =
           filteredImagePackImageEntried.map((e) => e.key).toList();
       if (imageKeys.isEmpty) {
-        return Container();
+        return const SizedBox.shrink();
       }
       final packName = pack.pack.displayName ?? packSlugs[packIndex];
       return Column(

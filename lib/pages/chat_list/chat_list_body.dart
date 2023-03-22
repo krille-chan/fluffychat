@@ -227,7 +227,7 @@ class ChatListViewBody extends StatelessWidget {
                             .contains(
                               controller.searchController.text.toLowerCase(),
                             )) {
-                          return Container();
+                          return const SizedBox.shrink();
                         }
                         return ChatListItem(
                           rooms[i],

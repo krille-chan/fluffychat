@@ -54,7 +54,7 @@ class Message extends StatelessWidget {
       EventTypes.CallInvite
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
-        return Container();
+        return const SizedBox.shrink();
       }
       return StateMessage(event);
     }

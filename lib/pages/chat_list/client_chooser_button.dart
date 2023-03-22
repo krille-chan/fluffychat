@@ -189,7 +189,7 @@ class ClientChooserButton extends StatelessWidget {
                 index,
                 context,
               ),
-              child: Container(),
+              child: const SizedBox.shrink(),
             ),
           ),
           KeyBoardShortcuts(
@@ -199,7 +199,7 @@ class ClientChooserButton extends StatelessWidget {
             },
             helpLabel: L10n.of(context)!.nextAccount,
             onKeysPressed: () => _nextAccount(matrix, context),
-            child: Container(),
+            child: const SizedBox.shrink(),
           ),
           KeyBoardShortcuts(
             keysToPress: {
@@ -209,7 +209,7 @@ class ClientChooserButton extends StatelessWidget {
             },
             helpLabel: L10n.of(context)!.previousAccount,
             onKeysPressed: () => _previousAccount(matrix, context),
-            child: Container(),
+            child: const SizedBox.shrink(),
           ),
           PopupMenuButton<Object>(
             onSelected: (o) => _clientSelected(o, context),
