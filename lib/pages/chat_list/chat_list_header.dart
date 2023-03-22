@@ -19,10 +19,11 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      pinned: FluffyThemes.isColumnMode(context),
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      backgroundColor: Colors.transparent,
+      pinned:
+          FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
+      scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
+      backgroundColor:
+          selectMode == SelectMode.normal ? Colors.transparent : null,
       automaticallyImplyLeading: false,
       leading: selectMode == SelectMode.normal
           ? null
@@ -44,70 +45,61 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 )
               : SizedBox(
                   height: 44,
-                  child: Material(
-                    elevation:
-                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
-                            4,
-                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                    child: TextField(
-                      controller: controller.searchController,
-                      textInputAction: TextInputAction.search,
-                      onChanged: controller.onSearchEnter,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
-                        ),
-                        hintText: L10n.of(context)!.search,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        prefixIcon: controller.isSearchMode
-                            ? IconButton(
-                                tooltip: L10n.of(context)!.cancel,
-                                icon: const Icon(Icons.close_outlined),
-                                onPressed: controller.cancelSearch,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                              )
-                            : Icon(
-                                Icons.search_outlined,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                              ),
-                        suffixIcon: controller.isSearchMode
-                            ? controller.isSearching
-                                ? const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 10.0,
-                                      horizontal: 12,
-                                    ),
-                                    child: SizedBox.square(
-                                      dimension: 24,
-                                      child: CircularProgressIndicator.adaptive(
-                                        strokeWidth: 2,
-                                      ),
-                                    ),
-                                  )
-                                : TextButton(
-                                    onPressed: controller.setServer,
-                                    style: TextButton.styleFrom(
-                                      textStyle: const TextStyle(fontSize: 12),
-                                    ),
-                                    child: Text(
-                                      controller.searchServer ??
-                                          Matrix.of(context)
-                                              .client
-                                              .homeserver!
-                                              .host,
-                                      maxLines: 2,
-                                    ),
-                                  )
-                            : SizedBox(
-                                width: 0,
-                                child: ClientChooserButton(controller),
-                              ),
+                  child: TextField(
+                    controller: controller.searchController,
+                    textInputAction: TextInputAction.search,
+                    onChanged: controller.onSearchEnter,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
                       ),
+                      hintText: L10n.of(context)!.search,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      prefixIcon: controller.isSearchMode
+                          ? IconButton(
+                              tooltip: L10n.of(context)!.cancel,
+                              icon: const Icon(Icons.close_outlined),
+                              onPressed: controller.cancelSearch,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            )
+                          : Icon(
+                              Icons.search_outlined,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                      suffixIcon: controller.isSearchMode
+                          ? controller.isSearching
+                              ? const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 10.0,
+                                    horizontal: 12,
+                                  ),
+                                  child: SizedBox.square(
+                                    dimension: 24,
+                                    child: CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                )
+                              : TextButton(
+                                  onPressed: controller.setServer,
+                                  style: TextButton.styleFrom(
+                                    textStyle: const TextStyle(fontSize: 12),
+                                  ),
+                                  child: Text(
+                                    controller.searchServer ??
+                                        Matrix.of(context)
+                                            .client
+                                            .homeserver!
+                                            .host,
+                                    maxLines: 2,
+                                  ),
+                                )
+                          : SizedBox(
+                              width: 0,
+                              child: ClientChooserButton(controller),
+                            ),
                     ),
                   ),
                 ),
