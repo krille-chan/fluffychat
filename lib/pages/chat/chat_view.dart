@@ -351,7 +351,8 @@ class ChatView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      if (!controller.lastReadEventVisible)
+                      if (!controller.lastReadEventVisible &&
+                          controller.timeline!.allowNewEvent)
                         Positioned(
                           top: 16,
                           left: 0,
