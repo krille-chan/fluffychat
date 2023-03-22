@@ -2552,5 +2552,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "jumpToLastReadMessage": "Son okunan mesaja atla",
+  "@jumpToLastReadMessage": {}
 }
