@@ -179,7 +179,7 @@ class ChatView extends StatelessWidget {
         child: StreamBuilder(
           stream: controller.room!.onUpdate.stream
               .rateLimit(const Duration(seconds: 1)),
-          builder: (context, snapshot) => FutureBuilder<bool>(
+          builder: (context, snapshot) => FutureBuilder(
             future: controller.getTimeline(),
             builder: (BuildContext context, snapshot) {
               return Scaffold(

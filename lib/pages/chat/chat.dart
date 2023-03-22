@@ -130,10 +130,6 @@ class ChatController extends State<Chat> {
 
   String pendingText = '';
 
-  bool get canLoadMore =>
-      timeline!.events.isEmpty ||
-      timeline!.events.last.type != EventTypes.RoomCreate;
-
   bool showEmojiPicker = false;
 
   void recreateChat() async {
@@ -178,19 +174,34 @@ class ChatController extends State<Chat> {
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   void requestHistory() async {
-    if (canLoadMore) {
-      try {
-        await timeline!.requestHistory(historyCount: _loadHistoryCount);
-      } catch (err) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (err).toLocalizedString(context),
-            ),
+    if (!timeline!.canRequestHistory) return;
+    try {
+      await timeline!.requestHistory(historyCount: _loadHistoryCount);
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            (err).toLocalizedString(context),
           ),
-        );
-        rethrow;
-      }
+        ),
+      );
+      rethrow;
+    }
+  }
+
+  void requestFuture() async {
+    if (!timeline!.canRequestFuture) return;
+    try {
+      await timeline!.requestFuture(historyCount: _loadHistoryCount);
+    } catch (err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            (err).toLocalizedString(context),
+          ),
+        ),
+      );
+      rethrow;
     }
   }
 
@@ -201,13 +212,13 @@ class ChatController extends State<Chat> {
     setReadMarker();
     if (!scrollController.hasClients) return;
     if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent &&
-        timeline!.events.isNotEmpty &&
-        timeline!.events[timeline!.events.length - 1].type !=
-            EventTypes.RoomCreate) {
+        scrollController.position.maxScrollExtent) {
       requestHistory();
+    } else if (scrollController.position.pixels == 0) {
+      requestFuture();
     }
-    if (scrollController.position.pixels > 0 && showScrollDownButton == false) {
+    if (timeline?.allowNewEvent == false ||
+        scrollController.position.pixels > 0 && showScrollDownButton == false) {
       setState(() => showScrollDownButton = true);
     } else if (scrollController.position.pixels == 0 &&
         showScrollDownButton == true) {
@@ -237,11 +248,14 @@ class ChatController extends State<Chat> {
     setState(() {});
   }
 
-  Future<bool> getTimeline() async {
+  Future<void> getTimeline([String? eventContextId]) async {
     if (timeline == null) {
       await Matrix.of(context).client.roomsLoading;
       await Matrix.of(context).client.accountDataLoading;
-      timeline = await room!.getTimeline(onUpdate: updateView);
+      timeline = await room!.getTimeline(
+        onUpdate: updateView,
+        eventContextId: eventContextId,
+      );
       if (timeline!.events.isNotEmpty) {
         if (room!.markedUnread) room!.markUnread(false);
         setReadMarker();
@@ -261,7 +275,7 @@ class ChatController extends State<Chat> {
       });
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
-    return true;
+    return;
   }
 
   Future<void>? _setReadMarkerFuture;
@@ -723,45 +737,11 @@ class ChatController extends State<Chat> {
   void scrollToEventId(String eventId) async {
     var eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
-      // event id not found...maybe we can fetch it?
-      // the try...finally is here to start and close the loading dialog reliably
-      await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          // okay, we first have to fetch if the event is in the room
-          try {
-            final event = await timeline!.getEventById(eventId);
-            if (event == null) {
-              // event is null...meaning something is off
-              return;
-            }
-          } catch (err) {
-            if (err is MatrixException && err.errcode == 'M_NOT_FOUND') {
-              // event wasn't found, as the server gave a 404 or something
-              return;
-            }
-            rethrow;
-          }
-          // okay, we know that the event *is* in the room
-          while (eventIndex == -1) {
-            if (!canLoadMore) {
-              // we can't load any more events but still haven't found ours yet...better stop here
-              return;
-            }
-            try {
-              await timeline!.requestHistory(historyCount: _loadHistoryCount);
-            } catch (err) {
-              if (err is TimeoutException) {
-                // loading the history timed out...so let's do nothing
-                return;
-              }
-              rethrow;
-            }
-            eventIndex =
-                timeline!.events.indexWhere((e) => e.eventId == eventId);
-          }
-        },
-      );
+      setState(() {
+        timeline = null;
+      });
+      await getTimeline(eventId);
+      eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
     }
     if (!mounted) {
       return;
@@ -773,7 +753,15 @@ class ChatController extends State<Chat> {
     _updateScrollController();
   }
 
-  void scrollDown() => scrollController.jumpTo(0);
+  void scrollDown() async {
+    if (!timeline!.allowNewEvent) {
+      setState(() {
+        timeline = null;
+      });
+      await getTimeline();
+    }
+    scrollController.jumpTo(0);
+  }
 
   void onEmojiSelected(_, Emoji? emoji) {
     switch (emojiPickerType) {

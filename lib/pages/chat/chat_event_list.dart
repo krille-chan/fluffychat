@@ -48,6 +48,22 @@ class ChatEventList extends StatelessWidget {
         (BuildContext context, int i) {
           // Footer to display typing indicator and read receipts:
           if (i == 0) {
+            if (controller.timeline!.isRequestingFuture) {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+              );
+            }
+            if (controller.timeline!.canRequestFuture) {
+              Center(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  ),
+                  onPressed: controller.requestFuture,
+                  child: Text(L10n.of(context)!.loadMore),
+                ),
+              );
+            }
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -64,7 +80,7 @@ class ChatEventList extends StatelessWidget {
                 child: CircularProgressIndicator.adaptive(strokeWidth: 2),
               );
             }
-            if (controller.canLoadMore) {
+            if (controller.timeline!.canRequestHistory) {
               Center(
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
