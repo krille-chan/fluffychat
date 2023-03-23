@@ -2552,5 +2552,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "jumpToLastReadMessage": "Ir á última mensaxe lida",
+  "@jumpToLastReadMessage": {}
 }
