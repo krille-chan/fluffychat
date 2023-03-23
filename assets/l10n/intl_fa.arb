@@ -1164,5 +1164,538 @@
   "commandHint_cuddle": "ارسال آغوش",
   "@commandHint_cuddle": {},
   "commandHint_hug": "ارسال بغل",
-  "@commandHint_hug": {}
+  "@commandHint_hug": {},
+  "editBundlesForAccount": "بسته‌های این حساب را ویرایش کنید",
+  "@editBundlesForAccount": {},
+  "loginWithOneClick": "با یک کلیک وارد شوید",
+  "@loginWithOneClick": {},
+  "logout": "خارج شدن",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "makeSureTheIdentifierIsValid": "مطمئن شوید که شناسه معتبر است",
+  "@makeSureTheIdentifierIsValid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "اشاره",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "monday": "دوشنبه",
+  "@monday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "بی‌صدا کردن گپ",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "گپ جدید",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "💬 پیام جدید در FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "بدون اتصال به سرور",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "نه",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "shareYourInviteLink": "پیوند دعوت خود را به اشتراک بگذارید",
+  "@shareYourInviteLink": {},
+  "noPasswordRecoveryDescription": "شما هنوز راهی برای بازیابی رمز عبور خود اضافه نکرده‌اید.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "اعلان‌ها برای این حساب فعال شد",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "or": "یا",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "شرکت کننده",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "عبارت عبور یا کلید بازیابی",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "رمز عبور",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "رمز عبور تغییر کرد",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "بازیابی رمز عبور",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "سنجاق کردن",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "پخش {fileName}",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseChooseAUsername": "لطفا یک نام‌کاربری انتخاب کنید",
+  "@pleaseChooseAUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "لطفاً 4 رقم را وارد کنید یا خالی بگذارید تا قفل برنامه غیرفعال شود.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterAMatrixIdentifier": "لطفا یک ID ماتریکس وارد کنید.",
+  "@pleaseEnterAMatrixIdentifier": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "لطفا کد خود را وارد کنید",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "لطفا رمزعبور خود را وارد کنید",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "لطفاً دستورالعمل‌های وب‌سایت را دنبال کنید و روی بعدی بزنید.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "اتاق‌های عمومی",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "obtainingLocation": "به دست آوردن مکان…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "اوه، مشکلی پیش آمد…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToBundle": "به بسته نرم‌افزاری اضافه کنید",
+  "@addToBundle": {},
+  "passwordForgotten": "رمز عبور را فراموش کردم",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterRecoveryKey": "لطفا کلید بازیابی خود را وارد کنید:",
+  "@pleaseEnterRecoveryKey": {},
+  "link": "پیوند",
+  "@link": {},
+  "iHaveClickedOnLink": "من روی پیوند کلیک کردم",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "عبارت عبور یا کلید بازیابی اشتباه است",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "بی ضرر",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "دعوت از مخاطب به {groupName}",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "invitedUsersOnly": "فقط کاربران دعوت شده",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "دعوت برای من",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "isTyping": "در حال نوشتن…",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinRoom": "پیوستن به اتاق",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "👞 {username} {targetName} را بیرون کرد",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickFromChat": "از گفتگو بیرون کردن",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "خروج از گپ",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrate": "برون‌ریزی جلسه و پاک کردن دستگاه",
+  "@dehydrate": {},
+  "hydrateTorLong": "آیا آخرین بار جلسه خود را در TOR برون‌ریزی کردید؟ به سرعت آن را درون‌ریزی کنید و به چت ادامه دهید.",
+  "@hydrateTorLong": {},
+  "loadingPleaseWait": "در حال بارگذاری... لطفا صبر کنید.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "بارگذاری بیشتر…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "مجوز مکان رد شد. لطفاً به آن اجازه دهید تا بتواند موقعیت مکانی شما را به اشتراک بگذارد.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "وارد شدن به {homeserver}",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "memberChanges": "تغییر اعضا",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noSearchResult": "نتایج جستجوی منطبقی وجود ندارد.",
+  "@noSearchResult": {},
+  "moderator": "مدیر",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "درخواست تأیید جدید!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "typeInInviteLinkManually": "پیوند دعوت را به صورت دستی وارد کنید...",
+  "@typeInInviteLinkManually": {},
+  "noPermission": "بدون مجوز",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "هیچ اتاقی پیدا نشد…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "آفلاین",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "آنلاین",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "اوه! متأسفانه هنگام تنظیم اعلان‌ها خطایی روی داد.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "باز کردن دوربین",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addAccount": "اضافه کردن حساب کاربری",
+  "@addAccount": {},
+  "people": "مردم",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "یک عکس انتخاب کنید",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "لطفا انتخاب کنید",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "لطفا یک کد عبور انتخاب کنید",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "لطفا نام‌کاربری خود را وارد کنید",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "حریم خصوصی",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "پروانه",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} کاربر در حال نوشتن هستند…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ignoreListDescription": "می توانید کاربرانی را که مزاحم شما هستند نادیده بگیرید. شما نمی توانید هیچ پیام یا دعوت اتاقی از کاربران موجود در لیست نادیده گرفته شخصی خود دریافت کنید.",
+  "@ignoreListDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invited": "دعوت شده",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "📩 {username} دعوت کرده از {targetName}",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "keysCached": "کلیدها در حافظه پنهان هستند",
+  "@keysCached": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "👋 {username} به گفتگو پیوست",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "kickedAndBanned": "🙅 {username} {targetName} را بیرون و ممنوع کرد",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "lastSeenLongTimeAgo": "خیلی وقت پیش دیده شده",
+  "@lastSeenLongTimeAgo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrateWarning": "این عمل قابل لغو نیست. مطمئن شوید که فایل پشتیبان را ذخیره می کنید.",
+  "@dehydrateWarning": {},
+  "dehydrateShare": "این برون‌ریزی FluffyChat خصوصی شما است. مطمئن شوید که آن را از دست ندهید و آن را خصوصی نگه دارید.",
+  "@dehydrateShare": {},
+  "locationDisabledNotice": "خدمات مکان غیرفعال است. لطفاً آن را فعال کنید تا بتوانید موقعیت مکانی خود را به اشتراک بگذارید.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrateTorLong": "برای کاربران TOR، توصیه می شود قبل از بستن پنجره، جلسه را برون‌ریزی کنند.",
+  "@dehydrateTorLong": {},
+  "messageWillBeRemovedWarning": "پیام برای همه شرکت کنندگان حذف خواهد شد",
+  "@messageWillBeRemovedWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "لطفاً توجه داشته باشید که در حال حاضر برای استفاده از رمزگذاری انتها به انتها به Pantalaimon نیاز دارید.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "بعدی",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "هیچ احساسی پیدا نشد. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "به نظر می رسد که شما هیچ سرویس گوگل روی گوشی خود ندارید. این تصمیم خوبی برای حفظ حریم خصوصی شماست! برای دریافت اعلان‌ها در FluffyChat توصیه می‌کنیم از https://microg.org/ یا https://unifiedpush.org/ استفاده کنید.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "فقط زمانی می‌توانید رمزگذاری را فعال کنید که اتاق دیگر در دسترس عموم نباشد.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "پشتیبان‌گیری از کلید آنلاین فعال است",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableMultiAccounts": "(BETA) چند حساب را در این دستگاه فعال کنید",
+  "@enableMultiAccounts": {},
+  "pleaseClickOnLink": "لطفا روی لینک موجود در ایمیل کلیک کنید و سپس ادامه دهید.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hydrateTor": "کاربران TOR: برون‌ریزی جلسه را درون‌ریزی کنید",
+  "@hydrateTor": {},
+  "hydrate": "بازیابی از فایل پشتیبان",
+  "@hydrate": {},
+  "inviteContact": "دعوت از مخاطب",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} سرور ماتریکس نیست، به جای آن از {server2} استفاده کنید؟",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "openVideoCamera": "بازکردن دوربین برای فیلم‌برداری",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oneClientLoggedOut": "یکی از کلاینت‌های شما از سیستم خارج شده است",
+  "@oneClientLoggedOut": {},
+  "removeFromBundle": "از این بسته حذف کنید",
+  "@removeFromBundle": {},
+  "bundleName": "اسم بسته",
+  "@bundleName": {},
+  "openInMaps": "باز کردن در نقشه‌ها",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "serverRequiresEmail": "این سرور برای ثبت‌نام باید آدرس ایمیل شما را تایید کند.",
+  "@serverRequiresEmail": {},
+  "optionalGroupName": "(اختیاری) اسم گروه",
+  "@optionalGroupName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoreUsername": "نام کاربری نادیده گرفته شده",
+  "@ignoreUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} شما را به FluffyChat دعوت کرده است.\n۱. FluffyChat را نصب کنید: https://fluffychat.im\n۲. ثبت نام کنید یا وارد شوید.\n۳. لینک دعوت را باز کنید: {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "leave": "ترک کردن",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "هیچ یک",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "توهین آمیز",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "کد QR را اسکن کنید",
+  "@scanQrCode": {},
+  "lastActiveAgo": "آخرین فعالیت: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "lightTheme": "روشن",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrateTor": "کاربران TOR: برون‌ریزی جلسه",
+  "@dehydrateTor": {},
+  "login": "وارد شدن",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notifications": "اعلان‌ها",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "تایید",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
