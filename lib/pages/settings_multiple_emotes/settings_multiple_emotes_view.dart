@@ -35,7 +35,8 @@ class MultipleEmotesSettingsView extends StatelessWidget {
           final keys = packs.keys.toList();
           keys.sort();
           return ListView.separated(
-            separatorBuilder: (BuildContext context, int i) => const SizedBox.shrink(),
+            separatorBuilder: (BuildContext context, int i) =>
+                const SizedBox.shrink(),
             itemCount: keys.length,
             itemBuilder: (BuildContext context, int i) {
               final event = packs[keys[i]];

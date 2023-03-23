@@ -458,11 +458,12 @@ class InputBar extends StatelessWidget {
               buildSuggestion(c, s, Matrix.of(context).client),
           onSuggestionSelected: (Map<String, String?> suggestion) =>
               insertSuggestion(context, suggestion),
-          errorBuilder: (BuildContext context, Object? error) => const SizedBox.shrink(),
+          errorBuilder: (BuildContext context, Object? error) =>
+              const SizedBox.shrink(),
           loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
           // fix loading briefly flickering a dark box
-          noItemsFoundBuilder: (BuildContext context) =>
-              const SizedBox.shrink(), // fix loading briefly showing no suggestions
+          noItemsFoundBuilder: (BuildContext context) => const SizedBox
+              .shrink(), // fix loading briefly showing no suggestions
         ),
       ),
     );

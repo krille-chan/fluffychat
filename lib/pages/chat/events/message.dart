@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
@@ -18,6 +19,7 @@ import 'verification_request_content.dart';
 class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
+  final bool displayReadMarker;
   final void Function(Event)? onSelect;
   final void Function(Event)? onAvatarTab;
   final void Function(Event)? onInfoTab;
@@ -30,6 +32,7 @@ class Message extends StatelessWidget {
   const Message(
     this.event, {
     this.nextEvent,
+    this.displayReadMarker = false,
     this.longPressSelect = false,
     this.onSelect,
     this.onInfoTab,
@@ -303,7 +306,8 @@ class Message extends StatelessWidget {
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
         displayTime ||
-        selected) {
+        selected ||
+        displayReadMarker) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
@@ -346,6 +350,17 @@ class Message extends StatelessWidget {
                 right: 12.0,
               ),
               child: MessageReactions(event, timeline),
+            ),
+          if (displayReadMarker)
+            Row(
+              children: [
+                const Expanded(child: Divider()),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(L10n.of(context)!.readUpToHere),
+                ),
+                const Expanded(child: Divider()),
+              ],
             ),
         ],
       );

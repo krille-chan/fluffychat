@@ -53,6 +53,8 @@ class ChatController extends State<Chat> {
 
   MatrixState? matrix;
 
+  String? readMarkerEventId;
+
   String? get roomId => context.vRouter.pathParameters['roomid'];
 
   final AutoScrollController scrollController = AutoScrollController();

@@ -123,6 +123,8 @@ class ChatEventList extends StatelessWidget {
                     selected: controller.selectedEvents
                         .any((e) => e.eventId == event.eventId),
                     timeline: controller.timeline!,
+                    displayReadMarker:
+                        controller.readMarkerEventId == event.eventId,
                     nextEvent: i < controller.timeline!.events.length
                         ? controller.timeline!.events[i]
                         : null,

@@ -143,6 +143,7 @@ class ChatView extends StatelessWidget {
     final client = controller.matrix!.client;
     controller.sendingClient ??= client;
     controller.room = controller.sendingClient!.getRoomById(controller.roomId!);
+    controller.readMarkerEventId ??= controller.room!.fullyRead;
     if (controller.room == null) {
       return Scaffold(
         appBar: AppBar(

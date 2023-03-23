@@ -2527,5 +2527,6 @@
             "path": {}
         }
     },
-    "jumpToLastReadMessage": "Jump to last read message"
+    "jumpToLastReadMessage": "Jump to last read message",
+    "readUpToHere": "Read up to here"
 }
