@@ -2551,5 +2551,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "jumpToLastReadMessage": "Pergi ke pesan terakhir dibaca",
+  "@jumpToLastReadMessage": {}
 }
