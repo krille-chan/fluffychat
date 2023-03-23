@@ -2552,5 +2552,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "jumpToLastReadMessage": "Liigu viimase loetud sõnumini",
+  "@jumpToLastReadMessage": {}
 }
