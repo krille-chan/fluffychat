@@ -2554,5 +2554,7 @@
     }
   },
   "jumpToLastReadMessage": "Перейти до останнього прочитаного повідомлення",
-  "@jumpToLastReadMessage": {}
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Читати тут",
+  "@readUpToHere": {}
 }
