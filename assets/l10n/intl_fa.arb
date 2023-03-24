@@ -310,7 +310,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendImage": "تصویر را فرستید",
+  "sendImage": "تصویر بفرستید",
   "@sendImage": {
     "type": "text",
     "placeholders": {}
@@ -1697,5 +1697,180 @@
   "@ok": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "roomHasBeenUpgraded": "اتاق بروزرسانی شد",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "ثبت نام",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reject": "رد کردن",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} دعوت را رد کرد",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejoin": "دوباره پیوستن",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbanFromChat": "لغو ممنوعیت از گپ",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "پاسخ",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "درخواست مجوز",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "نسخه اتاق",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saturday": "شنبه",
+  "@saturday": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "search": "جستجو",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "امنیت",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "دیده شده توسط {username}",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "seenByUserAndUser": "دیده شده توسط {username} و {username2}",
+  "@seenByUserAndUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "setAsCanonicalAlias": "به عنوان نام مستعار اصلی تنظیم کنید",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setGroupDescription": "تنظیم توضیحات گروه",
+  "@setGroupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "آواتار خود را حذف کنید",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "در حال ضبط",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username} یک رویداد را ویرایش کرد",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "remove": "حذف کردن",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "حذف تمام دستگاه‌های دیگر",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "حذف شده توسط {username}",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeDevice": "حذف دستگاه",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "محتوای پیام کامل را ارائه دهید",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "گزارش پیام",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "ذخیره فایل",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recoveryKey": "کلید بازیابی",
+  "@recoveryKey": {},
+  "setInvitationLink": "تنظیم پیوند دعوت",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "قواعد ارسال",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reason": "دلیل",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "اموتی سفارشی را تنظیم کنید",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactMessage": "ویرایش پیام",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "اتاق را با نسخه جدیدتر جایگزین کنید",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recoveryKeyLost": "کلید بازیابی را گم کردید؟",
+  "@recoveryKeyLost": {}
 }
