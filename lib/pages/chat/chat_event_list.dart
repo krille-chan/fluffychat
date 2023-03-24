@@ -91,7 +91,7 @@ class ChatEventList extends StatelessWidget {
                 ),
               );
             }
-            return Container();
+            return const SizedBox.shrink();
           }
 
           // The message at this index:
@@ -127,7 +127,7 @@ class ChatEventList extends StatelessWidget {
                         ? controller.timeline!.events[i]
                         : null,
                   )
-                : Container(),
+                : const SizedBox.shrink(),
           );
         },
         childCount: controller.timeline!.events.length + 2,

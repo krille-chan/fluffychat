@@ -207,7 +207,7 @@ class StoryView extends StatelessWidget {
                       final videoPlayerController = snapshot.data;
                       if (videoPlayerController == null) {
                         controller.loadingModeOn();
-                        return Container();
+                        return const SizedBox.shrink();
                       }
                       controller.loadingModeOff();
                       return Center(child: VideoPlayer(videoPlayerController));
@@ -226,7 +226,7 @@ class StoryView extends StatelessWidget {
                     final matrixFile = snapshot.data;
                     if (matrixFile == null) {
                       controller.loadingModeOn();
-                      return Container();
+                      return const SizedBox.shrink();
                     }
                     controller.loadingModeOff();
                     return Container(

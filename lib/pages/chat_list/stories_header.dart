@@ -121,7 +121,7 @@ class StoriesHeader extends StatelessWidget {
           final displayname = creator.calcDisplayname();
           final avatarUrl = creator.avatarUrl;
           if (!displayname.toLowerCase().contains(filter.toLowerCase())) {
-            return Container();
+            return const SizedBox.shrink();
           }
           return _StoryButton(
             profile: Profile(

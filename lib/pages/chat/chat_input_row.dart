@@ -23,7 +23,7 @@ class ChatInputRow extends StatelessWidget {
   Widget build(BuildContext context) {
     if (controller.showEmojiPicker &&
         controller.emojiPickerType == EmojiPickerType.reaction) {
-      return Container();
+      return const SizedBox.shrink();
     }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -72,7 +72,7 @@ class ChatInputRow extends StatelessWidget {
                             ),
                           ),
                         )
-                  : Container(),
+                  : const SizedBox.shrink(),
             ]
           : <Widget>[
               KeyBoardShortcuts(

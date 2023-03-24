@@ -15,7 +15,7 @@ class ReactionsPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.showEmojiPicker) return Container();
+    if (controller.showEmojiPicker) return const SizedBox.shrink();
     final display = controller.editEvent == null &&
         controller.replyEvent == null &&
         controller.room!.canSendDefaultMessages &&
@@ -29,7 +29,7 @@ class ReactionsPicker extends StatelessWidget {
         child: Builder(
           builder: (context) {
             if (!display) {
-              return Container();
+              return const SizedBox.shrink();
             }
             final proposals = proposeEmojis(
               controller.selectedEvents.first.plaintextBody,

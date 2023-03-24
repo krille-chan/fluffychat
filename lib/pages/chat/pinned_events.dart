@@ -49,7 +49,7 @@ class PinnedEvents extends StatelessWidget {
     final pinnedEventIds = controller.room!.pinnedEventIds;
 
     if (pinnedEventIds.isEmpty) {
-      return Container();
+      return const SizedBox.shrink();
     }
     final completers = pinnedEventIds.map<Completer<Event?>>((e) {
       final completer = Completer<Event?>();

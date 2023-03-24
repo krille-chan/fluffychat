@@ -62,7 +62,7 @@ class ParticipantListItem extends StatelessWidget {
                 ),
               ),
             membershipBatch[user.membership]!.isEmpty
-                ? Container()
+                ? const SizedBox.shrink()
                 : Container(
                     padding: const EdgeInsets.all(4),
                     margin: const EdgeInsets.symmetric(horizontal: 8),
