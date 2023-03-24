@@ -2554,5 +2554,7 @@
     }
   },
   "jumpToLastReadMessage": "Liigu viimase loetud sõnumini",
-  "@jumpToLastReadMessage": {}
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Siiamaani on loetud",
+  "@readUpToHere": {}
 }
