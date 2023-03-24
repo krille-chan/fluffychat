@@ -2554,5 +2554,7 @@
     }
   },
   "jumpToLastReadMessage": "Son okunan mesaja atla",
-  "@jumpToLastReadMessage": {}
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Buraya kadar oku",
+  "@readUpToHere": {}
 }
