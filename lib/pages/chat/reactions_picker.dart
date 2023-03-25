@@ -18,7 +18,7 @@ class ReactionsPicker extends StatelessWidget {
     if (controller.showEmojiPicker) return const SizedBox.shrink();
     final display = controller.editEvent == null &&
         controller.replyEvent == null &&
-        controller.room!.canSendDefaultMessages &&
+        controller.room.canSendDefaultMessages &&
         controller.selectedEvents.isNotEmpty;
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,

@@ -146,7 +146,7 @@ class ChatInputRow extends StatelessWidget {
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
-                      if (controller.room!
+                      if (controller.room
                           .getImagePacks(ImagePackUsage.sticker)
                           .isNotEmpty)
                         PopupMenuItem<String>(
@@ -227,7 +227,7 @@ class ChatInputRow extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: InputBar(
-                    room: controller.room!,
+                    room: controller.room,
                     minLines: 1,
                     maxLines: 8,
                     autofocus: !PlatformInfos.isMobile,

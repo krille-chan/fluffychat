@@ -16,9 +16,6 @@ class ChatAppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = controller.room;
-    if (room == null) {
-      return const SizedBox.shrink();
-    }
     if (controller.selectedEvents.isNotEmpty) {
       return Text(controller.selectedEvents.length.toString());
     }

@@ -35,17 +35,48 @@ import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 
-class Chat extends StatefulWidget {
+class ChatPage extends StatelessWidget {
   final Widget? sideView;
 
-  const Chat({Key? key, this.sideView}) : super(key: key);
+  const ChatPage({Key? key, this.sideView}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final roomId = context.vRouter.pathParameters['roomid'];
+    final room =
+        roomId == null ? null : Matrix.of(context).client.getRoomById(roomId);
+    if (room == null) {
+      return Scaffold(
+        appBar: AppBar(title: Text(L10n.of(context)!.oopsSomethingWentWrong)),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child:
+                Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+          ),
+        ),
+      );
+    }
+    return ChatPageWithRoom(sideView: sideView, room: room);
+  }
+}
+
+class ChatPageWithRoom extends StatefulWidget {
+  final Widget? sideView;
+  final Room room;
+
+  const ChatPageWithRoom({
+    Key? key,
+    required this.sideView,
+    required this.room,
+  }) : super(key: key);
 
   @override
   ChatController createState() => ChatController();
 }
 
-class ChatController extends State<Chat> {
-  Room? room;
+class ChatController extends State<ChatPageWithRoom> {
+  Room get room => widget.room;
 
   late Client sendingClient;
 
@@ -53,7 +84,7 @@ class ChatController extends State<Chat> {
 
   String? readMarkerEventId;
 
-  String? get roomId => context.vRouter.pathParameters['roomid'];
+  String get roomId => widget.room.id;
 
   final AutoScrollController scrollController = AutoScrollController();
 
@@ -95,7 +126,7 @@ class ChatController extends State<Chat> {
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
         files: matrixFiles,
-        room: room!,
+        room: room,
       ),
     );
   }
@@ -134,13 +165,13 @@ class ChatController extends State<Chat> {
 
   bool get lastReadEventVisible =>
       timeline == null ||
-      room!.fullyRead.isEmpty ||
-      timeline!.events.any((event) => event.eventId == room!.fullyRead);
+      room.fullyRead.isEmpty ||
+      timeline!.events.any((event) => event.eventId == room.fullyRead);
 
   void recreateChat() async {
     final room = this.room;
-    final userId = room?.directChatMatrixID;
-    if (room == null || userId == null) {
+    final userId = room.directChatMatrixID;
+    if (userId == null) {
       throw Exception(
         'Try to recreate a room with is not a DM room. This should not be possible from the UI!',
       );
@@ -162,12 +193,6 @@ class ChatController extends State<Chat> {
   }
 
   void leaveChat() async {
-    final room = this.room;
-    if (room == null) {
-      throw Exception(
-        'Leave room button clicked while room is null. This should not be possible from the UI!',
-      );
-    }
     final success = await showFutureLoadingDialog(
       context: context,
       future: room.leave,
@@ -262,12 +287,12 @@ class ChatController extends State<Chat> {
     if (timeline == null) {
       await Matrix.of(context).client.roomsLoading;
       await Matrix.of(context).client.accountDataLoading;
-      timeline = await room!.getTimeline(
+      timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
       );
       if (timeline!.events.isNotEmpty) {
-        if (room!.markedUnread) room!.markUnread(false);
+        if (room.markedUnread) room.markUnread(false);
         setReadMarker();
       }
 
@@ -293,8 +318,8 @@ class ChatController extends State<Chat> {
   void setReadMarker({String? eventId}) {
     if (_setReadMarkerFuture != null) return;
     if (lastReadEventVisible &&
-        !room!.hasNewMessages &&
-        room!.notificationCount == 0) {
+        !room.hasNewMessages &&
+        room.notificationCount == 0) {
       return;
     }
     if (!Matrix.of(context).webHasFocus) return;
@@ -312,7 +337,7 @@ class ChatController extends State<Chat> {
     _setReadMarkerFuture = timeline.setReadMarker(eventId).then((_) {
       _setReadMarkerFuture = null;
     });
-    room!.client.updateIosBadge();
+    room.client.updateIosBadge();
   }
 
   @override
@@ -331,7 +356,7 @@ class ChatController extends State<Chat> {
       // no need to have the setting typing to false be blocking
       typingCoolDown?.cancel();
       typingCoolDown = null;
-      room!.setTyping(false);
+      room.setTyping(false);
       currentlyTyping = false;
     }
     // then set the new sending client
@@ -351,7 +376,7 @@ class ChatController extends State<Chat> {
 
     final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
     if (commandMatch != null &&
-        !room!.client.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
+        !room.client.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
       final l10n = L10n.of(context)!;
       final dialogResult = await showOkCancelAlertDialog(
         context: context,
@@ -366,7 +391,7 @@ class ChatController extends State<Chat> {
     }
 
     // ignore: unawaited_futures
-    room!.sendTextEvent(
+    room.sendTextEvent(
       sendController.text,
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
@@ -403,7 +428,7 @@ class ChatController extends State<Chat> {
               ).detectFileType,
             )
             .toList(),
-        room: room!,
+        room: room,
       ),
     );
   }
@@ -428,7 +453,7 @@ class ChatController extends State<Chat> {
               ).detectFileType,
             )
             .toList(),
-        room: room!,
+        room: room,
       ),
     );
   }
@@ -449,7 +474,7 @@ class ChatController extends State<Chat> {
             name: file.path,
           )
         ],
-        room: room!,
+        room: room,
       ),
     );
   }
@@ -470,7 +495,7 @@ class ChatController extends State<Chat> {
             name: file.path,
           )
         ],
-        room: room!,
+        room: room,
       ),
     );
   }
@@ -478,7 +503,7 @@ class ChatController extends State<Chat> {
   void sendStickerAction() async {
     final sticker = await showAdaptiveBottomSheet<ImagePackImageContent>(
       context: context,
-      builder: (c) => StickerPickerDialog(room: room!),
+      builder: (c) => StickerPickerDialog(room: room),
     );
     if (sticker == null) return;
     final eventContent = <String, dynamic>{
@@ -487,7 +512,7 @@ class ChatController extends State<Chat> {
       'url': sticker.url.toString(),
     };
     // send the sticker
-    await room!.sendEvent(
+    await room.sendEvent(
       eventContent,
       type: EventTypes.Sticker,
     );
@@ -521,7 +546,7 @@ class ChatController extends State<Chat> {
       bytes: audioFile.readAsBytesSync(),
       name: audioFile.path,
     );
-    await room!.sendFileEvent(
+    await room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
       extraContent: {
@@ -571,7 +596,7 @@ class ChatController extends State<Chat> {
     await showDialog(
       context: context,
       useRootNavigator: false,
-      builder: (c) => SendLocationDialog(room: room!),
+      builder: (c) => SendLocationDialog(room: room),
     );
   }
 
@@ -677,7 +702,7 @@ class ChatController extends State<Chat> {
               if (client == null) {
                 return;
               }
-              final room = client.getRoomById(roomId!)!;
+              final room = client.getRoomById(roomId)!;
               await Event.fromJson(event.toJson(), room).redactEvent();
             }
           } else {
@@ -694,7 +719,7 @@ class ChatController extends State<Chat> {
 
   List<Client?> get currentRoomBundle {
     final clients = Matrix.of(context).currentBundle!;
-    clients.removeWhere((c) => c!.getRoomById(roomId!) == null);
+    clients.removeWhere((c) => c!.getRoomById(roomId) == null);
     return clients;
   }
 
@@ -808,7 +833,7 @@ class ChatController extends State<Chat> {
   void forgetRoom() async {
     final result = await showFutureLoadingDialog(
       context: context,
-      future: room!.forget,
+      future: room.forget,
     );
     if (result.error != null) return;
     VRouter.of(context).to('/archive');
@@ -857,7 +882,7 @@ class ChatController extends State<Chat> {
     final events = List<Event>.from(selectedEvents);
     setState(() => selectedEvents.clear());
     for (final event in events) {
-      await room!.sendReaction(
+      await room.sendReaction(
         event.eventId,
         emoji!,
       );
@@ -904,7 +929,7 @@ class ChatController extends State<Chat> {
           useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.goToTheNewRoom,
-          message: room!
+          message: room
               .getState(EventTypes.RoomTombstone)!
               .parsedTombstoneContent
               .body,
@@ -915,8 +940,8 @@ class ChatController extends State<Chat> {
     }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room!.client.joinRoom(
-        room!
+      future: () => room.client.joinRoom(
+        room
             .getState(EventTypes.RoomTombstone)!
             .parsedTombstoneContent
             .replacementRoom,
@@ -924,7 +949,7 @@ class ChatController extends State<Chat> {
     );
     await showFutureLoadingDialog(
       context: context,
-      future: room!.leave,
+      future: room.leave,
     );
     if (result.error == null) {
       VRouter.of(context).toSegments(['rooms', result.result!]);
@@ -1001,18 +1026,16 @@ class ChatController extends State<Chat> {
       cancelLabel: L10n.of(context)!.cancel,
     );
     if (response == OkCancelResult.ok) {
-      final events = room!.pinnedEventIds
+      final events = room.pinnedEventIds
         ..removeWhere((oldEvent) => oldEvent == eventId);
       showFutureLoadingDialog(
         context: context,
-        future: () => room!.setPinnedEvents(events),
+        future: () => room.setPinnedEvents(events),
       );
     }
   }
 
   void pinEvent() {
-    final room = this.room;
-    if (room == null) return;
     final pinnedEventIds = room.pinnedEventIds;
     final selectedEventIds = selectedEvents.map((e) => e.eventId).toSet();
     final unpin = selectedEventIds.length == 1 &&
@@ -1057,7 +1080,7 @@ class ChatController extends State<Chat> {
     typingCoolDown = Timer(const Duration(seconds: 2), () {
       typingCoolDown = null;
       currentlyTyping = false;
-      room!.setTyping(false);
+      room.setTyping(false);
     });
     typingTimeout ??= Timer(const Duration(seconds: 30), () {
       typingTimeout = null;
@@ -1065,14 +1088,13 @@ class ChatController extends State<Chat> {
     });
     if (!currentlyTyping) {
       currentlyTyping = true;
-      room!
-          .setTyping(true, timeout: const Duration(seconds: 30).inMilliseconds);
+      room.setTyping(true, timeout: const Duration(seconds: 30).inMilliseconds);
     }
     setState(() => inputText = text);
   }
 
   bool get isArchived =>
-      {Membership.leave, Membership.ban}.contains(room?.membership);
+      {Membership.leave, Membership.ban}.contains(room.membership);
 
   void showEventInfo([Event? event]) =>
       (event ?? selectedEvents.single).showInfoDialog(context);
@@ -1120,7 +1142,7 @@ class ChatController extends State<Chat> {
     if (success.result != null) {
       final voipPlugin = Matrix.of(context).voipPlugin;
       try {
-        await voipPlugin!.voip.inviteToCall(room!.id, callType);
+        await voipPlugin!.voip.inviteToCall(room.id, callType);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.toLocalizedString(context))),

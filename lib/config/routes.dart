@@ -72,7 +72,7 @@ class AppRoutes {
             ),
             VWidget(
               path: ':roomid',
-              widget: const Chat(),
+              widget: const ChatPage(),
               stackedRoutes: [
                 VWidget(
                   path: 'encryption',
@@ -100,7 +100,7 @@ class AppRoutes {
               stackedRoutes: [
                 VWidget(
                   path: ':roomid',
-                  widget: const Chat(),
+                  widget: const ChatPage(),
                   buildTransition: _dynamicTransition,
                 ),
               ],
@@ -174,14 +174,14 @@ class AppRoutes {
                 VNester(
                   path: ':roomid',
                   widgetBuilder: (child) => SideViewLayout(
-                    mainView: const Chat(),
+                    mainView: const ChatPage(),
                     sideView: child,
                   ),
                   buildTransition: _fadeTransition,
                   nestedRoutes: [
                     VWidget(
                       path: '',
-                      widget: const Chat(),
+                      widget: const ChatPage(),
                       buildTransition: _fadeTransition,
                     ),
                     VWidget(
@@ -245,7 +245,7 @@ class AppRoutes {
                 ),
                 VWidget(
                   path: ':roomid',
-                  widget: const Chat(),
+                  widget: const ChatPage(),
                   buildTransition: _dynamicTransition,
                 ),
               ],

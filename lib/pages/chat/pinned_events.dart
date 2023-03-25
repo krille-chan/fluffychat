@@ -46,14 +46,14 @@ class PinnedEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pinnedEventIds = controller.room!.pinnedEventIds;
+    final pinnedEventIds = controller.room.pinnedEventIds;
 
     if (pinnedEventIds.isEmpty) {
       return const SizedBox.shrink();
     }
     final completers = pinnedEventIds.map<Completer<Event?>>((e) {
       final completer = Completer<Event?>();
-      controller.room!
+      controller.room
           .getEventById(e)
           .then((value) => completer.complete(value));
       return completer;
@@ -86,11 +86,10 @@ class PinnedEvents extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   icon: const Icon(Icons.push_pin),
                   tooltip: L10n.of(context)!.unpin,
-                  onPressed: controller.room
-                              ?.canSendEvent(EventTypes.RoomPinnedEvents) ??
-                          false
-                      ? () => controller.unpinEvent(event.eventId)
-                      : null,
+                  onPressed:
+                      controller.room.canSendEvent(EventTypes.RoomPinnedEvents)
+                          ? () => controller.unpinEvent(event.eventId)
+                          : null,
                 ),
                 Expanded(
                   child: Padding(

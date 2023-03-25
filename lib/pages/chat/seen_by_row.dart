@@ -12,7 +12,7 @@ class SeenByRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final seenByUsers = controller.room!.getSeenByUsers(controller.timeline!);
+    final seenByUsers = controller.room.getSeenByUsers(controller.timeline!);
     const maxAvatars = 7;
     return Container(
       width: double.infinity,

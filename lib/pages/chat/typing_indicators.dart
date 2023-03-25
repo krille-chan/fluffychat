@@ -12,7 +12,7 @@ class TypingIndicators extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final typingUsers = controller.room!.typingUsers
+    final typingUsers = controller.room.typingUsers
       ..removeWhere((u) => u.stateKey == Matrix.of(context).client.userID);
     const topPadding = 20.0;
     const bottomPadding = 4.0;

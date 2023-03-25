@@ -125,37 +125,26 @@ class ChatView extends StatelessWidget {
     } else {
       return [
         if (Matrix.of(context).voipPlugin != null &&
-            controller.room!.isDirectChat)
+            controller.room.isDirectChat)
           IconButton(
             onPressed: controller.onPhoneButtonTap,
             icon: const Icon(Icons.call_outlined),
             tooltip: L10n.of(context)!.placeCall,
           ),
-        EncryptionButton(controller.room!),
-        ChatSettingsPopupMenu(controller.room!, !controller.room!.isDirectChat),
+        EncryptionButton(controller.room),
+        ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
       ];
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.room = controller.sendingClient.getRoomById(controller.roomId!);
-    controller.readMarkerEventId ??= controller.room!.fullyRead;
-    if (controller.room == null) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(L10n.of(context)!.oopsSomethingWentWrong),
-        ),
-        body: Center(
-          child: Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
-        ),
-      );
-    }
+    controller.readMarkerEventId ??= controller.room.fullyRead;
 
-    if (controller.room!.membership == Membership.invite) {
+    if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(
         context: context,
-        future: () => controller.room!.join(),
+        future: () => controller.room.join(),
       );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
@@ -175,7 +164,7 @@ class ChatView extends StatelessWidget {
         onTapDown: (_) => controller.setReadMarker(),
         behavior: HitTestBehavior.opaque,
         child: StreamBuilder(
-          stream: controller.room!.onUpdate.stream
+          stream: controller.room.onUpdate.stream
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, snapshot) => FutureBuilder(
             future: controller.getTimeline(),
@@ -196,7 +185,7 @@ class ChatView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                         )
                       : UnreadRoomsBadge(
-                          filter: (r) => r.id != controller.roomId!,
+                          filter: (r) => r.id != controller.roomId,
                           badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                           child: const Center(child: BackButton()),
                         ),
@@ -269,8 +258,8 @@ class ChatView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            if (controller.room!.canSendDefaultMessages &&
-                                controller.room!.membership == Membership.join)
+                            if (controller.room.canSendDefaultMessages &&
+                                controller.room.membership == Membership.join)
                               Container(
                                 margin: EdgeInsets.only(
                                   bottom: bottomSheetPadding,
@@ -295,7 +284,7 @@ class ChatView extends StatelessWidget {
                                           Brightness.light
                                       ? Colors.white
                                       : Colors.black,
-                                  child: controller.room?.isAbandonedDMRoom ==
+                                  child: controller.room.isAbandonedDMRoom ==
                                           true
                                       ? Row(
                                           mainAxisAlignment:
@@ -359,14 +348,14 @@ class ChatView extends StatelessWidget {
                             child: FloatingActionButton.extended(
                               icon: const Icon(Icons.arrow_upward_outlined),
                               onPressed: () => controller
-                                  .scrollToEventId(controller.room!.fullyRead),
+                                  .scrollToEventId(controller.room.fullyRead),
                               label: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(L10n.of(context)!.jumpToLastReadMessage),
                                   IconButton(
                                     onPressed: () => controller.setReadMarker(
-                                      eventId: controller.room!.fullyRead,
+                                      eventId: controller.room.fullyRead,
                                     ),
                                     icon: const Icon(Icons.close),
                                   ),
