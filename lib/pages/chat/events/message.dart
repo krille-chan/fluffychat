@@ -354,12 +354,30 @@ class Message extends StatelessWidget {
           if (displayReadMarker)
             Row(
               children: [
-                const Expanded(child: Divider()),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(L10n.of(context)!.readUpToHere),
+                Expanded(
+                  child: Divider(color: Theme.of(context).colorScheme.primary),
                 ),
-                const Expanded(child: Divider()),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  margin: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  child: Text(
+                    L10n.of(context)!.readUpToHere,
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                  ),
+                ),
+                Expanded(
+                  child: Divider(color: Theme.of(context).colorScheme.primary),
+                ),
               ],
             ),
         ],

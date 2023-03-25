@@ -124,7 +124,8 @@ class ChatEventList extends StatelessWidget {
                         .any((e) => e.eventId == event.eventId),
                     timeline: controller.timeline!,
                     displayReadMarker:
-                        controller.readMarkerEventId == event.eventId,
+                        controller.readMarkerEventId == event.eventId &&
+                            controller.timeline?.allowNewEvent == false,
                     nextEvent: i < controller.timeline!.events.length
                         ? controller.timeline!.events[i]
                         : null,

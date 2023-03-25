@@ -139,8 +139,6 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.readMarkerEventId ??= controller.room.fullyRead;
-
     if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(
         context: context,
@@ -167,7 +165,7 @@ class ChatView extends StatelessWidget {
           stream: controller.room.onUpdate.stream
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, snapshot) => FutureBuilder(
-            future: controller.getTimeline(),
+            future: controller.loadTimelineFuture,
             builder: (BuildContext context, snapshot) {
               return Scaffold(
                 appBar: AppBar(

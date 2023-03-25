@@ -276,6 +276,8 @@ class ChatController extends State<ChatPageWithRoom> {
     _loadDraft();
     super.initState();
     sendingClient = Matrix.of(context).client;
+    readMarkerEventId = room.fullyRead;
+    loadTimelineFuture = _getTimeline();
   }
 
   void updateView() {
@@ -283,33 +285,34 @@ class ChatController extends State<ChatPageWithRoom> {
     setState(() {});
   }
 
-  Future<void> getTimeline([String? eventContextId]) async {
-    if (timeline == null) {
-      await Matrix.of(context).client.roomsLoading;
-      await Matrix.of(context).client.accountDataLoading;
-      timeline = await room.getTimeline(
-        onUpdate: updateView,
-        eventContextId: eventContextId,
-      );
-      if (timeline!.events.isNotEmpty) {
-        if (room.markedUnread) room.markUnread(false);
-        setReadMarker();
-      }
+  Future<void>? loadTimelineFuture;
 
-      // when the scroll controller is attached we want to scroll to an event id, if specified
-      // and update the scroll controller...which will trigger a request history, if the
-      // "load more" button is visible on the screen
-      SchedulerBinding.instance.addPostFrameCallback((_) async {
-        if (mounted) {
-          final event = VRouter.of(context).queryParameters['event'];
-          if (event != null) {
-            scrollToEventId(event);
-          }
-          _updateScrollController();
-        }
-      });
+  Future<void> _getTimeline([String? eventContextId]) async {
+    await Matrix.of(context).client.roomsLoading;
+    await Matrix.of(context).client.accountDataLoading;
+    final timeline = this.timeline = await room.getTimeline(
+      onUpdate: updateView,
+      eventContextId: eventContextId,
+    );
+    if (timeline.events.isNotEmpty) {
+      if (room.markedUnread) room.markUnread(false);
+      setReadMarker();
     }
-    timeline!.requestKeys(onlineKeyBackupOnly: false);
+
+    // when the scroll controller is attached we want to scroll to an event id, if specified
+    // and update the scroll controller...which will trigger a request history, if the
+    // "load more" button is visible on the screen
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (mounted) {
+        final event = VRouter.of(context).queryParameters['event'];
+        if (event != null) {
+          scrollToEventId(event);
+        }
+        _updateScrollController();
+      }
+    });
+
+    timeline.requestKeys(onlineKeyBackupOnly: false);
     return;
   }
 
@@ -317,7 +320,8 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void setReadMarker({String? eventId}) {
     if (_setReadMarkerFuture != null) return;
-    if (lastReadEventVisible &&
+    if (eventId == null &&
+        lastReadEventVisible &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
       return;
@@ -784,8 +788,9 @@ class ChatController extends State<ChatPageWithRoom> {
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
+        loadTimelineFuture = _getTimeline(eventId);
       });
-      await getTimeline(eventId);
+      await loadTimelineFuture;
       eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
     }
     if (!mounted) {
@@ -802,8 +807,9 @@ class ChatController extends State<ChatPageWithRoom> {
     if (!timeline!.allowNewEvent) {
       setState(() {
         timeline = null;
+        loadTimelineFuture = _getTimeline();
       });
-      await getTimeline();
+      await loadTimelineFuture;
       setReadMarker(eventId: timeline!.events.first.eventId);
     }
     scrollController.jumpTo(0);
