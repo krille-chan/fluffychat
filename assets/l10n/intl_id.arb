@@ -2553,5 +2553,7 @@
     }
   },
   "jumpToLastReadMessage": "Pergi ke pesan terakhir dibaca",
-  "@jumpToLastReadMessage": {}
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Baca sampai sini",
+  "@readUpToHere": {}
 }
