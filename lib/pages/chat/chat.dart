@@ -47,7 +47,7 @@ class Chat extends StatefulWidget {
 class ChatController extends State<Chat> {
   Room? room;
 
-  Client? sendingClient;
+  late Client sendingClient;
 
   Timeline? timeline;
 
@@ -250,6 +250,7 @@ class ChatController extends State<Chat> {
     inputFocus.addListener(_inputFocusListener);
     _loadDraft();
     super.initState();
+    sendingClient = Matrix.of(context).client;
   }
 
   void updateView() {
@@ -324,7 +325,7 @@ class ChatController extends State<Chat> {
 
   TextEditingController sendController = TextEditingController();
 
-  void setSendingClient(Client? c) {
+  void setSendingClient(Client c) {
     // first cancle typing with the old sending client
     if (currentlyTyping) {
       // no need to have the setting typing to false be blocking
