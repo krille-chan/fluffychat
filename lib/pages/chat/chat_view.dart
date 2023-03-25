@@ -139,8 +139,7 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.matrix ??= Matrix.of(context);
-    final client = controller.matrix!.client;
+    final client = Matrix.of(context).client;
     controller.sendingClient ??= client;
     controller.room = controller.sendingClient!.getRoomById(controller.roomId!);
     controller.readMarkerEventId ??= controller.room!.fullyRead;

@@ -51,8 +51,6 @@ class ChatController extends State<Chat> {
 
   Timeline? timeline;
 
-  MatrixState? matrix;
-
   String? readMarkerEventId;
 
   String? get roomId => context.vRouter.pathParameters['roomid'];
@@ -694,14 +692,14 @@ class ChatController extends State<Chat> {
   }
 
   List<Client?> get currentRoomBundle {
-    final clients = matrix!.currentBundle!;
+    final clients = Matrix.of(context).currentBundle!;
     clients.removeWhere((c) => c!.getRoomById(roomId!) == null);
     return clients;
   }
 
   bool get canRedactSelectedEvents {
     if (isArchived) return false;
-    final clients = matrix!.currentBundle;
+    final clients = Matrix.of(context).currentBundle;
     for (final event in selectedEvents) {
       if (event.canRedact == false &&
           !(clients!.any((cl) => event.senderId == cl!.userID))) return false;
@@ -1039,7 +1037,7 @@ class ChatController extends State<Chat> {
       await prefs.setString('draft_$roomId', text);
     });
     setReadMarker();
-    if (text.endsWith(' ') && matrix!.hasComplexBundles) {
+    if (text.endsWith(' ') && Matrix.of(context).hasComplexBundles) {
       final clients = currentRoomBundle;
       for (final client in clients) {
         final prefix = client!.sendPrefix;
