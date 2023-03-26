@@ -452,12 +452,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Comparez les emojis suivants avec ceux de l'autre appareil et assurez-vous qu'ils correspondent :",
+  "compareEmojiMatch": "Veuillez comparer les émojis",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Comparez les chiffres suivants avec ceux de l'autre appareil et assurez-vous qu'ils correspondent :",
+  "compareNumbersMatch": "Veuillez comparer les chiffres",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -2543,5 +2543,18 @@
   "noOtherDevicesFound": "Aucun autre appareil trouvé",
   "@noOtherDevicesFound": {},
   "noBackupWarning": "Attention ! Sans l'activation de la sauvegarde de la discussion, vous perdrez l'accès à vos messages chiffrés. Il est fortement recommandé d'activer la sauvegarde de la discussion avant de se déconnecter.",
-  "@noBackupWarning": {}
+  "@noBackupWarning": {},
+  "fileHasBeenSavedAt": "Le fichier a été enregistré dans {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "fileIsTooBigForServer": "Le serveur signale que le fichier est trop volumineux pour être envoyé.",
+  "@fileIsTooBigForServer": {},
+  "jumpToLastReadMessage": "Aller au dernier message lu",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Lisez jusqu’ici",
+  "@readUpToHere": {}
 }
