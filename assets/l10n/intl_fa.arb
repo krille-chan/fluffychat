@@ -1872,5 +1872,106 @@
     "placeholders": {}
   },
   "recoveryKeyLost": "کلید بازیابی را گم کردید؟",
-  "@recoveryKeyLost": {}
+  "@recoveryKeyLost": {},
+  "fileHasBeenSavedAt": "فایل در {path} ذخیره شده است",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "enterSpace": "ورود به فضا",
+  "@enterSpace": {},
+  "wasDirectChatDisplayName": "گپ خالی ({oldDisplayName} بود)",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "newSpaceDescription": "فضاها به شما امکان می‌دهند گپ‌های خود را یکپارچه کنید و جوامع خصوصی یا عمومی بسازید.",
+  "@newSpaceDescription": {},
+  "encryptThisChat": "این گپ را رمزنگاری کنید",
+  "@encryptThisChat": {},
+  "endToEndEncryption": "رمزنگاری سرتاسری",
+  "@endToEndEncryption": {},
+  "sorryThatsNotPossible": "متاسفم... این امکان‌پذیر نیست",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "کلیدهای دستگاه:",
+  "@deviceKeys": {},
+  "enterInviteLinkOrMatrixId": "پیوند دعوت یا شناسه ماتریکس را وارد کنید...",
+  "@enterInviteLinkOrMatrixId": {},
+  "fileIsTooBigForServer": "سرور گزارش می‌دهد که فایل برای ارسال بسیار بزرگ است.",
+  "@fileIsTooBigForServer": {},
+  "jumpToLastReadMessage": "پرش به آخرین پیام خوانده شده",
+  "@jumpToLastReadMessage": {},
+  "hideUnimportantStateEvents": "رویدادهای غیر مهم دولتی را پنهان کنید",
+  "@hideUnimportantStateEvents": {},
+  "doNotShowAgain": "دوباره نشان نده",
+  "@doNotShowAgain": {},
+  "readUpToHere": "تا اینجا بخوانید",
+  "@readUpToHere": {},
+  "noBackupWarning": "هشدار! بدون فعال کردن پشتیبان گپ، دسترسی به پیام های رمزگذاری شده خود را از دست خواهید داد. به شدت توصیه می‌شود قبل از خروج از سیستم، ابتدا پشتیبان‌گیری گپ را فعال کنید.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "دستگاه دیگری پیدا نشد",
+  "@noOtherDevicesFound": {},
+  "countFiles": "{count} پوشه‌ها",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "callingAccountDetails": "به FluffyChat اجازه می‌دهد تا از برنامه شماره گیر بومی اندروید استفاده کند.",
+  "@callingAccountDetails": {},
+  "noKeyForThisMessage": "اگر پیام قبل از ورود به حساب خود در این دستگاه ارسال شده باشد، ممکن است این اتفاق بیفتد.\n\nهمچنین ممکن است فرستنده دستگاه شما را مسدود کرده باشد یا مشکلی در اتصال اینترنت رخ داده باشد.\n\nآیا می توانید پیام را در نشست دیگری بخوانید؟ سپس می توانید پیام را از آن منتقل کنید! به تنظیمات > دستگاه‌ها بروید و مطمئن شوید که دستگاه های شما یکدیگر را تأیید کرده اند. هنگامی که دفعه بعد اتاق را باز می‌کنید و هر دو جلسه در پیش زمینه هستند، کلیدها به طور خودکار منتقل می‌شوند.\n\nآیا نمی خواهید هنگام خروج از سیستم یا تعویض دستگاه، کلیدها را گم کنید؟ مطمئن شوید که پشتیبان گپ را در تنظیمات فعال کرده‌اید.",
+  "@noKeyForThisMessage": {},
+  "numChats": "{number} گپ‌ها",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "disableEncryptionWarning": "به دلایل امنیتی نمی‌توانید رمزنگاری را در گپ غیرفعال کنید، جایی که قبلاً فعال شده است.",
+  "@disableEncryptionWarning": {},
+  "letsStart": "بیا شروع کنیم",
+  "@letsStart": {},
+  "enterRoom": "ورود به اتاق",
+  "@enterRoom": {},
+  "newGroup": "گروه جدید",
+  "@newGroup": {},
+  "foregroundServiceRunning": "این اعلان زمانی ظاهر می شود که سرویس پیش زمینه در حال اجرا است.",
+  "@foregroundServiceRunning": {},
+  "appearOnTopDetails": "به برنامه اجازه می‌دهد در بالا ظاهر شود (اگر قبلاً Fluffychat را به عنوان حساب تماس تنظیم کرده‌اید، لازم نیست)",
+  "@appearOnTopDetails": {},
+  "storeSecurlyOnThisDevice": "به طور ایمن در دستگاه ذخیره کنید",
+  "@storeSecurlyOnThisDevice": {},
+  "screenSharingDetail": "شما صفحه خود را در FuffyChat به اشتراک می‌گذارید",
+  "@screenSharingDetail": {},
+  "newSpace": "فضای جدید",
+  "@newSpace": {},
+  "saveKeyManuallyDescription": "این کلید را به صورت دستی با فعال کردن گفتگوی اشتراک گذاری سیستم یا کلیپ بورد ذخیره کنید.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "در Android KeyStore ذخیره کنید",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "در Apple KeyChain ذخیره کنید",
+  "@storeInAppleKeyChain": {},
+  "user": "کاربر",
+  "@user": {},
+  "custom": "سفارشی",
+  "@custom": {},
+  "screenSharingTitle": "اشتراک گذاری صفحه نمایش",
+  "@screenSharingTitle": {},
+  "callingPermissions": "مجوزهای تماس",
+  "@callingPermissions": {},
+  "callingAccount": "حساب تماس",
+  "@callingAccount": {},
+  "appearOnTop": "در بالا ظاهر شود",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "میکروفون، دوربین و سایر مجوزهای FluffyChat",
+  "@otherCallingPermissions": {},
+  "whyIsThisMessageEncrypted": "چرا این پیام قابل خواندن نیست؟",
+  "@whyIsThisMessageEncrypted": {},
+  "reopenChat": "گپ را دوباره باز کنید",
+  "@reopenChat": {}
 }
