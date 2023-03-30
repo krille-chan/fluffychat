@@ -308,12 +308,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Jämför och se till att följande emoji matchar den andra enheten:",
+  "compareEmojiMatch": "Vänligen jämför uttryckssymbolerna",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Jämför och se till att följande nummer matchar den andra enheten:",
+  "compareNumbersMatch": "Vänligen jämför siffrorna",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -1060,7 +1060,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Oops, någonting gick fel…",
+  "oopsSomethingWentWrong": "Hoppsan, något gick fel…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2244,7 +2244,7 @@
   "@thisUserHasNotPostedAnythingYet": {},
   "storyPrivacyWarning": "Notera att användare kan se och kontakta varandra i din berättelse. Din berättelse är synlig i 24 timmar, men det finns ingen garanti för att berättelser raderas från alla enheter och servrar.",
   "@storyPrivacyWarning": {},
-  "emojis": "Emojis",
+  "emojis": "Uttryckssymboler",
   "@emojis": {},
   "placeCall": "Ring",
   "@placeCall": {},
@@ -2303,7 +2303,7 @@
   "@errorAddingWidget": {},
   "editWidgets": "Redigera widgetar",
   "@editWidgets": {},
-  "widgetJitsi": "Jitsi Meet",
+  "widgetJitsi": "Jitsi-möte",
   "@widgetJitsi": {},
   "widgetNameError": "Vänligen ange ett visningsnamn.",
   "@widgetNameError": {},
@@ -2440,7 +2440,7 @@
   },
   "screenSharingTitle": "skärmdelning",
   "@screenSharingTitle": {},
-  "noKeyForThisMessage": "Detta kan hända om meddelandet skickas innan du har loggat in på ditt konto på denna enhet.\n\nDet kan också vara så att avsändaren har blockerat din enhet eller att något gick fel med Internetanslutningen.\n\nKan du läsa meddelandet i en annan session? Isåfall kan du överföra meddelandet från den sessionen! Gå till Inställningar > Enhet och säkerställ att dina enheter har verifierat varandra. När du öppnar rummet nästa gång och båda sessionerna är i förgrunden, så kommer nycklarna att överföras automatiskt.\n\nOm du vill behålla nycklarna när du loggar ut eller byter enhet, kontrollera att du har aktiverat säkerhetskopiering av chattar i inställningarna.",
+  "noKeyForThisMessage": "Detta kan hända om meddelandet skickades innan du loggade in på ditt konto i den här enheten.\n\nDet kan också vara så att avsändaren har blockerat din enhet eller att något gick fel med internetanslutningen.\n\nKan du läsa meddelandet i en annan session? I sådana fall kan du överföra meddelandet från den sessionen! Gå till Inställningar > Enhet och säkerställ att dina enheter har verifierat varandra. När du öppnar rummet nästa gång och båda sessionerna är i förgrunden, så kommer nycklarna att överföras automatiskt.\n\nVill du inte förlora nycklarna vid utloggning eller när du byter enhet? Säkerställ att du har aktiverat säkerhetskopiering för chatten i inställningarna.",
   "@noKeyForThisMessage": {},
   "fileIsTooBigForServer": "Servern informerar om att filen är för stor för att skickas.",
   "@fileIsTooBigForServer": {},
@@ -2544,5 +2544,16 @@
   "newSpaceDescription": "Utrymmen möjliggör konsolidering av chattar och att bygga privata eller offentliga gemenskaper.",
   "@newSpaceDescription": {},
   "reopenChat": "Återöppna chatt",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "jumpToLastReadMessage": "Hoppa till det senast lästa meddelandet",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Läs upp till hit",
+  "@readUpToHere": {},
+  "fileHasBeenSavedAt": "Filen har sparats i {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  }
 }
