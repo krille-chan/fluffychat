@@ -783,7 +783,7 @@ class ChatController extends State<ChatPageWithRoom> {
     inputFocus.requestFocus();
   }
 
-  void scrollToEventId(String eventId) async {
+  void scrollToEventId(String eventId, {Duration? duration}) async {
     var eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
       setState(() {
@@ -799,6 +799,7 @@ class ChatController extends State<ChatPageWithRoom> {
     await scrollController.scrollToIndex(
       eventIndex,
       preferPosition: AutoScrollPosition.middle,
+      duration: duration ?? scrollAnimationDuration,
     );
     _updateScrollController();
   }

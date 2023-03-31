@@ -345,8 +345,10 @@ class ChatView extends StatelessWidget {
                           child: Center(
                             child: FloatingActionButton.extended(
                               icon: const Icon(Icons.arrow_upward_outlined),
-                              onPressed: () => controller
-                                  .scrollToEventId(controller.room.fullyRead),
+                              onPressed: () => controller.scrollToEventId(
+                                controller.room.fullyRead,
+                                duration: Duration.zero,
+                              ),
                               label: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
