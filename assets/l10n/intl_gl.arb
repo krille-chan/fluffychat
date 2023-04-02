@@ -2554,5 +2554,7 @@
     }
   },
   "jumpToLastReadMessage": "Ir á última mensaxe lida",
-  "@jumpToLastReadMessage": {}
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Lin ate aquí",
+  "@readUpToHere": {}
 }
