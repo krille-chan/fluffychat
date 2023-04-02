@@ -347,7 +347,6 @@ class ChatView extends StatelessWidget {
                               icon: const Icon(Icons.arrow_upward_outlined),
                               onPressed: () => controller.scrollToEventId(
                                 controller.room.fullyRead,
-                                duration: Duration.zero,
                               ),
                               label: Row(
                                 mainAxisSize: MainAxisSize.min,

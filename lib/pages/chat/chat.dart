@@ -308,7 +308,6 @@ class ChatController extends State<ChatPageWithRoom> {
         if (event != null) {
           scrollToEventId(event);
         }
-        _updateScrollController();
       }
     });
 
@@ -783,23 +782,22 @@ class ChatController extends State<ChatPageWithRoom> {
     inputFocus.requestFocus();
   }
 
-  void scrollToEventId(String eventId, {Duration? duration}) async {
-    var eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
+  void scrollToEventId(String eventId) async {
+    final eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
         loadTimelineFuture = _getTimeline(eventId);
       });
       await loadTimelineFuture;
-      eventIndex = timeline!.events.indexWhere((e) => e.eventId == eventId);
-    }
-    if (!mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        scrollToEventId(eventId);
+      });
       return;
     }
     await scrollController.scrollToIndex(
       eventIndex,
       preferPosition: AutoScrollPosition.middle,
-      duration: duration ?? scrollAnimationDuration,
     );
     _updateScrollController();
   }
