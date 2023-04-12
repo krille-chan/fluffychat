@@ -179,15 +179,15 @@ Future<void> _tryPushHelper(
   final id = await mapRoomIdToInt(event.room.id);
 
   // Show notification
+  final person = Person(
+    name: event.senderFromMemoryOrFallback.calcDisplayname(),
+    icon:
+        avatarFile == null ? null : BitmapFilePathAndroidIcon(avatarFile.path),
+  );
   final newMessage = Message(
     body,
     event.originServerTs,
-    Person(
-      name: event.senderFromMemoryOrFallback.calcDisplayname(),
-      icon: avatarFile == null
-          ? null
-          : BitmapFilePathAndroidIcon(avatarFile.path),
-    ),
+    person,
   );
 
   final messagingStyleInformation = PlatformInfos.isAndroid
@@ -203,7 +203,7 @@ Future<void> _tryPushHelper(
     number: notification.counts?.unread,
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
-          Person(name: event.room.client.userID),
+          person,
           conversationTitle: event.room.getLocalizedDisplayname(
             MatrixLocals(l10n),
           ),
@@ -212,7 +212,7 @@ Future<void> _tryPushHelper(
         ),
     ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
     importance: Importance.max,
-    priority: Priority.high,
+    priority: Priority.max,
     groupKey: event.room.id,
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
