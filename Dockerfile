@@ -1,4 +1,4 @@
-FROM cirrusci/flutter as builder
+FROM ghcr.io/cirruslabs/flutter as builder
 RUN sudo apt update && sudo apt install curl -y
 COPY . /app
 WORKDIR /app
