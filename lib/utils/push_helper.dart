@@ -58,7 +58,7 @@ Future<void> pushHelper(
           number: notification.counts?.unread,
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
-          priority: Priority.high,
+          priority: Priority.max,
         ),
       ),
     );
@@ -196,17 +196,19 @@ Future<void> _tryPushHelper(
       : null;
   messagingStyleInformation?.messages?.add(newMessage);
 
+  final roomName = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
+
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-    AppConfig.pushNotificationsChannelId,
-    AppConfig.pushNotificationsChannelName,
-    channelDescription: AppConfig.pushNotificationsChannelDescription,
+    event.room.id,
+    roomName,
+    channelDescription:
+        event.room.isDirectChat ? l10n.directChats : l10n.groups,
     number: notification.counts?.unread,
+    category: AndroidNotificationCategory.message,
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
           person,
-          conversationTitle: event.room.getLocalizedDisplayname(
-            MatrixLocals(l10n),
-          ),
+          conversationTitle: roomName,
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
