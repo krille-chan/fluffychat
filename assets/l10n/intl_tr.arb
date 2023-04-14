@@ -2556,5 +2556,7 @@
   "jumpToLastReadMessage": "Son okunan mesaja atla",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Buraya kadar oku",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "jump": "Atla",
+  "@jump": {}
 }
