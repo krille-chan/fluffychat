@@ -336,33 +336,6 @@ class ChatView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      if (!controller.lastReadEventVisible &&
-                          controller.timeline!.allowNewEvent)
-                        Positioned(
-                          top: 16,
-                          left: 0,
-                          right: 0,
-                          child: Center(
-                            child: FloatingActionButton.extended(
-                              icon: const Icon(Icons.arrow_upward_outlined),
-                              onPressed: () => controller.scrollToEventId(
-                                controller.room.fullyRead,
-                              ),
-                              label: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(L10n.of(context)!.jumpToLastReadMessage),
-                                  IconButton(
-                                    onPressed: () => controller.setReadMarker(
-                                      eventId: controller.room.fullyRead,
-                                    ),
-                                    icon: const Icon(Icons.close),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
                       if (controller.dragging)
                         Container(
                           color: Theme.of(context)

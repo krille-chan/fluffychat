@@ -2528,5 +2528,6 @@
         }
     },
     "jumpToLastReadMessage": "Jump to last read message",
-    "readUpToHere": "Read up to here"
+    "readUpToHere": "Read up to here",
+    "jump": "Jump"
 }

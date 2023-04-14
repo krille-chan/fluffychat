@@ -163,11 +163,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
   bool showEmojiPicker = false;
 
-  bool get lastReadEventVisible =>
-      timeline == null ||
-      room.fullyRead.isEmpty ||
-      timeline!.events.any((event) => event.eventId == room.fullyRead);
-
   void recreateChat() async {
     final room = this.room;
     final userId = room.directChatMatrixID;
@@ -287,14 +282,36 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Future<void>? loadTimelineFuture;
 
-  Future<void> _getTimeline([String? eventContextId]) async {
+  Future<void> _getTimeline({
+    String? eventContextId,
+    Duration timeout = const Duration(seconds: 5),
+  }) async {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;
-    final timeline = this.timeline = await room.getTimeline(
-      onUpdate: updateView,
-      eventContextId: eventContextId,
-    );
-    if (timeline.events.isNotEmpty) {
+    eventContextId ??= room.fullyRead;
+    try {
+      timeline = await room
+          .getTimeline(
+            onUpdate: updateView,
+            eventContextId: eventContextId,
+          )
+          .timeout(timeout);
+    } on TimeoutException catch (_) {
+      if (!mounted) return;
+      timeline = await room.getTimeline(onUpdate: updateView);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.jumpToLastReadMessage),
+          action: SnackBarAction(
+            label: L10n.of(context)!.jump,
+            onPressed: () => scrollToEventId(eventContextId!),
+          ),
+        ),
+      );
+    }
+    timeline!.requestKeys(onlineKeyBackupOnly: false);
+    if (timeline!.events.isNotEmpty) {
       if (room.markedUnread) room.markUnread(false);
       setReadMarker();
     }
@@ -311,7 +328,6 @@ class ChatController extends State<ChatPageWithRoom> {
       }
     });
 
-    timeline.requestKeys(onlineKeyBackupOnly: false);
     return;
   }
 
@@ -320,7 +336,6 @@ class ChatController extends State<ChatPageWithRoom> {
   void setReadMarker({String? eventId}) {
     if (_setReadMarkerFuture != null) return;
     if (eventId == null &&
-        lastReadEventVisible &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
       return;
@@ -329,10 +344,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
-
-    if (eventId == null && !lastReadEventVisible) {
-      return;
-    }
 
     eventId ??= timeline.events.first.eventId;
     Logs().v('Set read marker...', eventId);
@@ -787,7 +798,10 @@ class ChatController extends State<ChatPageWithRoom> {
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
-        loadTimelineFuture = _getTimeline(eventId);
+        loadTimelineFuture = _getTimeline(
+          eventContextId: eventId,
+          timeout: const Duration(seconds: 30),
+        );
       });
       await loadTimelineFuture;
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
