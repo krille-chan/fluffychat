@@ -2556,5 +2556,7 @@
   "jumpToLastReadMessage": "Перейти до останнього прочитаного повідомлення",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Читати тут",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "jump": "Перейти",
+  "@jump": {}
 }
