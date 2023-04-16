@@ -2555,5 +2555,7 @@
   "jumpToLastReadMessage": "Pergi ke pesan terakhir dibaca",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Baca sampai sini",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "jump": "Lompat",
+  "@jump": {}
 }
