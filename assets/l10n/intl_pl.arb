@@ -2530,5 +2530,26 @@
   "newSpaceDescription": "Przestrzenie pozwalają na konsolidację czatów i budowanie prywatnych lub publicznych społeczności.",
   "@newSpaceDescription": {},
   "reopenChat": "Otwórz ponownie czat",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "fileHasBeenSavedAt": "Plik został zapisany w ścieżce {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "addToBundle": "Dodaj do pakietu",
+  "@addToBundle": {},
+  "bundleName": "Nazwa pakietu",
+  "@bundleName": {},
+  "editBundlesForAccount": "Edytuj paczki dla tego konta",
+  "@editBundlesForAccount": {},
+  "jumpToLastReadMessage": "Przejdź do ostatnio przeczytanej wiadomości",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Czytaj do tego miejsca",
+  "@readUpToHere": {},
+  "jump": "Przejdź",
+  "@jump": {},
+  "removeFromBundle": "Usuń z tej paczki",
+  "@removeFromBundle": {}
 }
