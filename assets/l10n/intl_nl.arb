@@ -451,12 +451,12 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "compareEmojiMatch": "Vergelijk of de volgende emoji overeenkomen met die van het andere apparaat:",
+  "compareEmojiMatch": "Vergelijk de emoji's",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Vergelijk of de volgende nummers overeenkomen met die van het andere apparaat:",
+  "compareNumbersMatch": "Vergelijk de cijfers",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -2555,5 +2555,7 @@
   "jumpToLastReadMessage": "Spring naar het laatst gelezen bericht",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Lees tot hier",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "jump": "Spring",
+  "@jump": {}
 }
