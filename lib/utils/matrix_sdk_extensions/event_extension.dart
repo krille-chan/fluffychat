@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +24,7 @@ extension LocalizedBody on Event {
 
   void shareFile(BuildContext context) async {
     final matrixFile = await _getFile(context);
+    inspect(matrixFile);
 
     matrixFile.result?.share(context);
   }

@@ -73,7 +73,7 @@ extension MatrixFileExtension on MatrixFile {
       href: html.Url.createObjectUrlFromBlob(
         html.Blob(
           [bytes],
-          'application/octet-stream',
+          mimeType,
         ),
       ),
     )
@@ -87,7 +87,7 @@ extension MatrixFileExtension on MatrixFile {
     final box = context.findRenderObject() as RenderBox?;
 
     await Share.shareXFiles(
-      [XFile.fromData(bytes)],
+      [XFile.fromData(bytes, name: name, mimeType: mimeType)],
       sharePositionOrigin:
           box == null ? null : box.localToGlobal(Offset.zero) & box.size,
     );
