@@ -34,7 +34,7 @@ widget_test:
   script: [ flutter test ]
 
 # the basic integration test configuration testing FLOSS builds on Synapse
-integration_test:
+.integration_test:
   image: registry.gitlab.com/famedly/company/frontend/flutter-dockerimages/integration/stable:${FLUTTER_VERSION}
   stage: test
   services:
@@ -88,7 +88,7 @@ integration_test:
 # integration tests for Linux builds
 ### disabled because of Linux headless issues
 .integration_test_linux:
-  extends: integration_test
+  extends: .integration_test
   parallel:
     matrix:
       - HOMESERVER_IMPLEMENTATION:
@@ -102,8 +102,8 @@ integration_test:
   artifacts:
 
 # extending the default tests to test the Google-flavored builds
-integration_test_proprietary:
-  extends: integration_test
+.integration_test_proprietary:
+  extends: .integration_test
   parallel:
     matrix:
       - HOMESERVER_IMPLEMENTATION:
