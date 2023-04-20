@@ -1,3 +1,6 @@
+## v1.11.1 - 2023-04-20
+- fix: Download files on web and iOS with correct mimetype
+
 ## v1.11.0 - 2023-04-14
 - feat: Add visual read marker (Krille)
 - feat: Jump to last read event (Krille)
