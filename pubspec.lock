@@ -345,6 +345,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.6.2"
+  easy_idb:
+    dependency: transitive
+    description:
+      name: easy_idb
+      sha256: "06c3e834f2d42cc20d78caf44441b3125767961d7687f58b56385ee8f7fcbd61"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   emoji_picker_flutter:
     dependency: "direct main"
     description:
@@ -858,6 +866,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  idb_shim:
+    dependency: "direct main"
+    description:
+      name: idb_shim
+      sha256: "3ac9d6a90c29e2192d35c8386d7b20cb3865756f5b299d74a829d5b888776d26"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0+2"
   image:
     dependency: transitive
     description:
@@ -1059,11 +1075,12 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "2b07709bce975d2be4dc4cd3cc1196fcd6c0397d4e250b42a498e35523fc28f3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.20.1"
+      path: "."
+      ref: "krille/easy_idb_database"
+      resolved-ref: "44c9a17961c46e6c1e8f9367fa210cea4953cadb"
+      url: "https://gitlab.com/famedly/company/frontend/famedlysdk.git"
+    source: git
+    version: "0.18.3"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1576,6 +1593,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2"
+  sembast:
+    dependency: transitive
+    description:
+      name: sembast
+      sha256: "24829715d11c2c437e67b413f29ff91b5325daa9632f851d44deeea7a29bde9e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.3+1"
   sentiment_dart:
     dependency: transitive
     description:

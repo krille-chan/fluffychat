@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:idb_shim/idb_io.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
@@ -109,7 +110,18 @@ abstract class ClientManager {
         EventTypes.RoomPowerLevels,
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      databaseBuilder: (client) async {
+        final path =
+            await FlutterHiveCollectionsDatabase.findDatabasePath(client);
+        Logs().v('Store data at:', path);
+        final db = EasyIdbDatabase(
+          'database_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
+          factory: getIdbFactoryPersistent(path),
+        );
+        await db.open();
+        return db;
+      },
+      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,

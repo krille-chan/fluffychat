@@ -51,6 +51,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
+  idb_shim: ^2.3.0+2
   image_picker: ^0.8.4+8
   intl: any
   just_audio: ^0.9.30
@@ -166,3 +167,5 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  matrix:
+    path: ../famedlysdk/
