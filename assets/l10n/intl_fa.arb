@@ -171,7 +171,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatDescriptionTo": "{username} توصیف گپ را تغییر داد: «{description}»",
+  "changedTheChatDescriptionTo": "{username} توصیف گپ را تغییر داد به: «{description}»",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -2548,5 +2548,7 @@
   "enableAutoBackups": "فعال‌سازی پشتیبان‌گیری خودکار",
   "@enableAutoBackups": {},
   "storeInSecureStorageDescription": "کلید بازیابی را در محل ذخیره‌سازی امن این دستگاه ذخیره کنید.",
-  "@storeInSecureStorageDescription": {}
+  "@storeInSecureStorageDescription": {},
+  "jump": "پرش",
+  "@jump": {}
 }
