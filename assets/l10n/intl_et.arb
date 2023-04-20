@@ -2556,5 +2556,7 @@
   "jumpToLastReadMessage": "Liigu viimase loetud sõnumini",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Siiamaani on loetud",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "jump": "Hüppa",
+  "@jump": {}
 }
