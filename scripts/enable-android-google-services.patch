@@ -1,5 +1,5 @@
 diff --git a/android/app/build.gradle b/android/app/build.gradle
-index 001fbd72..339b35af 100644
+index bf972f30..46cebdc6 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
 @@ -68,6 +68,10 @@ android {
@@ -28,13 +28,15 @@ index 001fbd72..339b35af 100644
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
 diff --git a/android/app/proguard-rules.pro b/android/app/proguard-rules.pro
-new file mode 100644
-index 00000000..40570865
---- /dev/null
+index d0e0fbc9..0a546da0 100644
+--- a/android/app/proguard-rules.pro
 +++ b/android/app/proguard-rules.pro
-@@ -0,0 +1,41 @@
+@@ -1 +1,42 @@
+--keep class net.sqlcipher.** { *; }
+\ No newline at end of file
 +-optimizationpasses 5
 +## Flutter wrapper
++-keep class net.sqlcipher.** { *; }
 +-keep class io.flutter.app.** { *; }
 +-keep class io.flutter.plugin.**  { *; }
 +-keep class io.flutter.util.**  { *; }
@@ -110,7 +112,7 @@ index 1afc4606..894d1571 100644
          return provideEngine(this)
      }
 diff --git a/android/build.gradle b/android/build.gradle
-index 85aa8647..3b7e09e7 100644
+index bd394967..2e9d54de 100644
 --- a/android/build.gradle
 +++ b/android/build.gradle
 @@ -8,7 +8,7 @@ buildscript {
@@ -145,7 +147,7 @@ index 8e67ae92..da4da5c3 100644
    DateTime? lastReceivedPush;
  
 diff --git a/pubspec.yaml b/pubspec.yaml
-index 6999d0b8..b2c9144f 100644
+index 193e6ed6..f70e48d4 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -26,7 +26,7 @@ dependencies:
