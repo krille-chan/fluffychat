@@ -356,7 +356,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "Isključi korisnika iz ove sobe",
+  "commandHint_ban": "Isključi navedenog korisnika iz ove sobe",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -366,17 +366,17 @@
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHint_invite": "Pozovi korisnika u ovu sobu",
+  "commandHint_invite": "Pozovi navedenog korisnika u ovu sobu",
   "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Pridruži se zadanoj sobi",
+  "commandHint_join": "Pridruži se navedenoj sobi",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHint_kick": "Ukloni korisnika iz ove sobe",
+  "commandHint_kick": "Ukloni navedenog korisnika iz ove sobe",
   "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
@@ -391,7 +391,7 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_myroomavatar": "Postavi svoju sliku za ovu sobu",
+  "commandHint_myroomavatar": "Postavi svoju sliku za ovu sobu (mxc-uri)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -401,7 +401,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHint_op": "Postavi razinu prava zadanog korisnika (standardno: 50)",
+  "commandHint_op": "Postavi razinu prava navedenog korisnika (standardno: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -421,7 +421,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHint_unban": "Ponovo uključi korisnika u ovu sobu",
+  "commandHint_unban": "Ponovo uključi navedenog korisnika u ovu sobu",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -2558,5 +2558,7 @@
   "noKeyForThisMessage": "To se može dogoditi ako je poruka poslana prije prijave na tvoj račun na ovom uređaju.\n\nTakođer je moguće da je pošiljatelj blokirao tvoj uređaj ili je došlo do greške s internetskom vezom.\n\nMožeš li pročitati poruku na jednoj drugoj sesiji? U tom slučaju možeš prenijeti poruku iz nje! Idi na Postavke > Uređaji i uvjeri se da su se tvoji uređaji međusobno provjerili. Kada sljedeći put otvoriš sobu i obje sesije su u prednjem planu, ključevi će se automatski prenijeti.\n\nNe želiš izgubiti ključeve kada se odjaviš ili zamijeniš uređaje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama.",
   "@noKeyForThisMessage": {},
   "reopenChat": "Ponovo otvori razgovor",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "openLinkInBrowser": "Otvori poveznicu u pregledniku",
+  "@openLinkInBrowser": {}
 }
