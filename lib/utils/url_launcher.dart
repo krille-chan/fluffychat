@@ -22,7 +22,7 @@ class UrlLauncher {
 
   const UrlLauncher(this.context, this.url);
 
-  void launchUrl() {
+  void launchUrl() async {
     if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
         url!.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url![0]) ||
@@ -37,6 +37,15 @@ class UrlLauncher {
       );
       return;
     }
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.openLinkInBrowser,
+      message: url,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (consent != OkCancelResult.ok) return;
+
     if (!{'https', 'http'}.contains(uri.scheme)) {
       // just launch non-https / non-http uris directly
 

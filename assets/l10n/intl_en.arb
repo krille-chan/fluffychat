@@ -2529,5 +2529,6 @@
     },
     "jumpToLastReadMessage": "Jump to last read message",
     "readUpToHere": "Read up to here",
-    "jump": "Jump"
+    "jump": "Jump",
+    "openLinkInBrowser": "Open link in browser"
 }

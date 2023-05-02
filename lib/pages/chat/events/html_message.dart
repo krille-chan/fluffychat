@@ -7,7 +7,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../../config/setting_keys.dart';
-import '../../../pages/image_viewer/image_viewer.dart';
 import '../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../utils/url_launcher.dart';
 
@@ -83,24 +82,7 @@ class HtmlMessage extends StatelessWidget {
             )
             .toString();
       },
-      onImageTap: (String mxc) => showDialog(
-        context: Matrix.of(context).navigatorContext,
-        useRootNavigator: false,
-        builder: (_) => ImageViewer(
-          Event(
-            type: EventTypes.Message,
-            content: <String, dynamic>{
-              'body': mxc,
-              'url': mxc,
-              'msgtype': MessageTypes.Image,
-            },
-            senderId: room.client.userID!,
-            originServerTs: DateTime.now(),
-            eventId: 'fake_event',
-            room: room,
-          ),
-        ),
-      ),
+      onImageTap: (url) => UrlLauncher(context, url).launchUrl(),
       setCodeLanguage: (String key, String value) async {
         await matrix.store.setItem('${SettingKeys.codeLanguage}.$key', value);
       },
