@@ -2551,5 +2551,7 @@
   "jump": "Przejdź",
   "@jump": {},
   "removeFromBundle": "Usuń z tej paczki",
-  "@removeFromBundle": {}
+  "@removeFromBundle": {},
+  "openLinkInBrowser": "Otwórz link w przeglądarce",
+  "@openLinkInBrowser": {}
 }
