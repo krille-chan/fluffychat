@@ -2558,5 +2558,7 @@
   "readUpToHere": "Читати тут",
   "@readUpToHere": {},
   "jump": "Перейти",
-  "@jump": {}
+  "@jump": {},
+  "openLinkInBrowser": "Відкрити посилання у браузері",
+  "@openLinkInBrowser": {}
 }
