@@ -2557,5 +2557,7 @@
   "readUpToHere": "Lees tot hier",
   "@readUpToHere": {},
   "jump": "Spring",
-  "@jump": {}
+  "@jump": {},
+  "openLinkInBrowser": "Link in browser openen",
+  "@openLinkInBrowser": {}
 }
