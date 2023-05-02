@@ -2556,5 +2556,7 @@
   "jumpToLastReadMessage": "Ir á última mensaxe lida",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "Lin ate aquí",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "openLinkInBrowser": "Abrir ligazón no navegador",
+  "@openLinkInBrowser": {}
 }
