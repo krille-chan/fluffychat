@@ -2558,5 +2558,7 @@
   "readUpToHere": "Siiamaani on loetud",
   "@readUpToHere": {},
   "jump": "Hüppa",
-  "@jump": {}
+  "@jump": {},
+  "openLinkInBrowser": "Ava link veebibrauseris",
+  "@openLinkInBrowser": {}
 }
