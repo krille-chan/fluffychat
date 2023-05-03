@@ -2558,5 +2558,7 @@
   "readUpToHere": "Buraya kadar oku",
   "@readUpToHere": {},
   "jump": "Atla",
-  "@jump": {}
+  "@jump": {},
+  "openLinkInBrowser": "Bağlantıyı tarayıcıda aç",
+  "@openLinkInBrowser": {}
 }
