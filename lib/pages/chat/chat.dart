@@ -289,6 +289,9 @@ class ChatController extends State<ChatPageWithRoom> {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;
     eventContextId ??= room.fullyRead;
+    if (!eventContextId.isValidMatrixId || eventContextId.sigil != '\$') {
+      eventContextId = null;
+    }
     try {
       timeline = await room
           .getTimeline(
