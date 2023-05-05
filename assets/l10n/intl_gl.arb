@@ -2558,5 +2558,7 @@
   "readUpToHere": "Lin ate aquí",
   "@readUpToHere": {},
   "openLinkInBrowser": "Abrir ligazón no navegador",
-  "@openLinkInBrowser": {}
+  "@openLinkInBrowser": {},
+  "jump": "Ir alá",
+  "@jump": {}
 }
