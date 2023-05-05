@@ -1,3 +1,14 @@
+## v1.11.2
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (Polish) (Eryk Michalak)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- feat: Permission dialog before open link in browser (Krille)
+- fix: Chats do not load (Krille)
+
 ## v1.11.1 - 2023-04-20
 - fix: Download files on web and iOS with correct mimetype
 
