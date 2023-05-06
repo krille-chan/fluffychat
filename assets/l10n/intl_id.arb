@@ -2557,5 +2557,7 @@
   "readUpToHere": "Baca sampai sini",
   "@readUpToHere": {},
   "jump": "Lompat",
-  "@jump": {}
+  "@jump": {},
+  "openLinkInBrowser": "Buka tautan dalam peramban",
+  "@openLinkInBrowser": {}
 }
