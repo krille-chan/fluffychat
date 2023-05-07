@@ -2639,5 +2639,21 @@
   "continueWith": "",
   "@continueWith": {},
   "indexedDbErrorTitle": "",
-  "@indexedDbErrorTitle": {}
+  "@indexedDbErrorTitle": {},
+  "googlyEyesContent": "",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "",
+  "@commandHint_googly": {}
 }
