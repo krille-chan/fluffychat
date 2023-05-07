@@ -2655,5 +2655,7 @@
   "invite": "",
   "@invite": {},
   "continueWith": "",
-  "@continueWith": {}
+  "@continueWith": {},
+  "openLinkInBrowser": "",
+  "@openLinkInBrowser": {}
 }
