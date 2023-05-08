@@ -376,6 +376,10 @@ class ChatController extends State<ChatPageWithRoom> {
       room.setTyping(false);
       currentlyTyping = false;
     }
+    // then cancel the old timeline
+    // fixes bug with read reciepts and quick switching
+    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead);
+
     // then set the new sending client
     setState(() => sendingClient = c);
   }
