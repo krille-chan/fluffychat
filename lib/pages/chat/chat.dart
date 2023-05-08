@@ -76,7 +76,7 @@ class ChatPageWithRoom extends StatefulWidget {
 }
 
 class ChatController extends State<ChatPageWithRoom> {
-  Room get room => widget.room;
+  Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
 
@@ -368,7 +368,7 @@ class ChatController extends State<ChatPageWithRoom> {
   TextEditingController sendController = TextEditingController();
 
   void setSendingClient(Client c) {
-    // first cancle typing with the old sending client
+    // first cancel typing with the old sending client
     if (currentlyTyping) {
       // no need to have the setting typing to false be blocking
       typingCoolDown?.cancel();
@@ -393,7 +393,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
     final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
     if (commandMatch != null &&
-        !room.client.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
+        !sendingClient.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
       final l10n = L10n.of(context)!;
       final dialogResult = await showOkCancelAlertDialog(
         context: context,
