@@ -272,7 +272,7 @@ class ChatController extends State<ChatPageWithRoom> {
     super.initState();
     sendingClient = Matrix.of(context).client;
     readMarkerEventId = room.fullyRead;
-    loadTimelineFuture = _getTimeline();
+    loadTimelineFuture = _getTimeline(eventContextId: readMarkerEventId);
   }
 
   void updateView() {
@@ -288,8 +288,8 @@ class ChatController extends State<ChatPageWithRoom> {
   }) async {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;
-    eventContextId ??= room.fullyRead;
-    if (!eventContextId.isValidMatrixId || eventContextId.sigil != '\$') {
+    if (eventContextId != null &&
+        (!eventContextId.isValidMatrixId || eventContextId.sigil != '\$')) {
       eventContextId = null;
     }
     try {
