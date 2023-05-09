@@ -143,8 +143,6 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # Until all dependencies are compatible. Missing: flutter_matrix_html
-  ffi: ^2.0.0
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_matrix_html:
