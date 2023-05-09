@@ -351,7 +351,7 @@ class ChatController extends State<ChatPageWithRoom> {
     eventId ??= timeline.events.first.eventId;
     Logs().v('Set read marker...', eventId);
     // ignore: unawaited_futures
-    _setReadMarkerFuture = timeline.setReadMarker(eventId).then((_) {
+    _setReadMarkerFuture = timeline.setReadMarker(eventId: eventId).then((_) {
       _setReadMarkerFuture = null;
     });
     room.client.updateIosBadge();

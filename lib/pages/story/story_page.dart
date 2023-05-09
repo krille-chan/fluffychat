@@ -481,7 +481,7 @@ class StoryPageController extends State<StoryPage> {
       return;
     }
     if (!currentSeenByUsers.any((u) => u.id == u.room.client.userID)) {
-      timeline!.setReadMarker(currentEvent.eventId);
+      timeline!.setReadMarker(eventId: currentEvent.eventId);
     }
   }
 

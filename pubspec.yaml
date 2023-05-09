@@ -44,7 +44,7 @@ dependencies:
   flutter_secure_storage: ^7.0.1
   flutter_typeahead: ^4.3.2
   flutter_web_auth_2: ^2.1.1
-  flutter_webrtc: ^0.9.24
+  flutter_webrtc: ^0.9.29+hotfix.1
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   handy_window: ^0.1.9
@@ -57,7 +57,7 @@ dependencies:
   just_audio_mpv: ^0.1.6
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
-  matrix: ^0.18.0
+  matrix: ^0.20.1
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
@@ -86,7 +86,7 @@ dependencies:
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
   wakelock: ^0.6.1+1
-  webrtc_interface: ^1.0.10
+  webrtc_interface: ^1.0.13
 
 dev_dependencies:
   dart_code_metrics: ^4.10.1
@@ -147,13 +147,14 @@ dependency_overrides:
   ffi: ^2.0.0
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
+  flutter_matrix_html:
+    git:
+      url: https://github.com/Sorunome/flutter_matrix_html.git
+      ref: krille/update-dependencies
   flutter_secure_storage_windows:
     git:
       url: https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git
       ref: main
-  # Because of https://github.com/flutter-webrtc/flutter-webrtc/issues/1212
-  flutter_webrtc:
-    git: https://github.com/radzio-it/flutter-webrtc.git
   geolocator_android:
     hosted:
       name: geolocator_android

@@ -101,10 +101,10 @@ packages:
     dependency: "direct main"
     description:
       name: blurhash_dart
-      sha256: d18fa567dce8bc897d31e14e084d2b1a4306e6bfde30a0e72ebf5f5ff549ced9
+      sha256: "43955b6c2e30a7d440028d1af0fa185852f3534b795cc6eb81fbf397b464409f"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -181,10 +181,10 @@ packages:
     dependency: transitive
     description:
       name: cli_util
-      sha256: "66f86e916d285c1a93d3b79587d94bd71984a66aac4ff74e524cfa7877f1395c"
+      sha256: b8db3080e59b2503ca9e7922c3df2072cf13992354d5e944074ffa836fba43b7
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.5"
+    version: "0.4.0"
   clock:
     dependency: transitive
     description:
@@ -285,18 +285,18 @@ packages:
     dependency: transitive
     description:
       name: dart_webrtc
-      sha256: a8244b36b6b673649f489f4f13a011e6fb029de678f6c606dc3f072a088b6ea8
+      sha256: a34e59ac1559cac954e48c9fe156164992163d2f4b7e75d5b0e927ee2f1e4922
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.15"
+    version: "1.0.16"
   dbus:
     dependency: transitive
     description:
       name: dbus
-      sha256: "4f814fc7e73057f78f307a6c4714fe2ffb4bdb994ab1970540a068ec4d5a45be"
+      sha256: "6f07cba3f7b3448d42d015bfd3d53fe12e5b36da2423f23838efc1d5fb31a263"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.3"
+    version: "0.7.8"
   desktop_drop:
     dependency: "direct main"
     description:
@@ -572,26 +572,27 @@ packages:
     dependency: transitive
     description:
       name: flutter_math_fork
-      sha256: cfec964c4975c6becc64291eb9b782fe70df5e0c5bfe0763d9e856432fcc6fcd
+      sha256: fa511bdcb91fc35eac155ec5790883886dd9de6572fea549f1ad4660ef6804e9
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2+2"
+    version: "0.6.3+1"
   flutter_matrix_html:
     dependency: "direct main"
     description:
-      name: flutter_matrix_html
-      sha256: "78db9930ffd8a3fed18fd04f024b56b6f545553ad4fc5a07bfdc3ec9eaba5298"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "krille/update-dependencies"
+      resolved-ref: "167fdbb8fa7d61f8edadbbfcdd3b0d26d0e46c67"
+      url: "https://github.com/Sorunome/flutter_matrix_html.git"
+    source: git
     version: "1.1.0"
   flutter_native_splash:
     dependency: "direct dev"
     description:
       name: flutter_native_splash
-      sha256: bd36d1a7f05ff8378cad17d20c33ca904630bfd3fcf8b15c9e8237efbccfad0a
+      sha256: af665ef80a213a9ed502845a3d7a61b9acca4100ee7e9f067a7440bc3acd6730
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0+1"
+    version: "2.2.19"
   flutter_olm:
     dependency: "direct main"
     description:
@@ -677,10 +678,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_svg
-      sha256: "9ac1967e2f72a08af11b05b39167920f90d043cf67163d13a544a358c8f31afa"
+      sha256: "6ff9fa12892ae074092de2fa6a9938fb21dbabfdaa2ff57dc697ff912fc8d4b2"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.0"
+    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -718,12 +719,11 @@ packages:
   flutter_webrtc:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "5e634009ebbba856bfe2b825f7e5d59596ae1452"
-      url: "https://github.com/radzio-it/flutter-webrtc.git"
-    source: git
-    version: "0.9.24"
+      name: flutter_webrtc
+      sha256: "25df2c05e937548d95181228c58070cb2a20a48c5465efdc27f53c547f66d3c1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.29+hotfix.1"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -861,10 +861,10 @@ packages:
     dependency: transitive
     description:
       name: image
-      sha256: "02bafd3b4f399bfeb10034deba9753d93b55ce41cd0c4d3d8b355626f80e5b32"
+      sha256: a72242c9a0ffb65d03de1b7113bc4e189686fc07c7147b8b41811d0dd0e0d9bf
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.3"
+    version: "4.0.17"
   image_picker:
     dependency: "direct main"
     description:
@@ -1007,14 +1007,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.1"
-  lint:
-    dependency: transitive
-    description:
-      name: lint
-      sha256: "4a539aa34ec5721a2c7574ae2ca0336738ea4adc2a34887d54b7596310b33c85"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.10.0"
   lints:
     dependency: transitive
     description:
@@ -1067,18 +1059,18 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "8c07fa7b558d28891ea2609542295e4bb3e8360545540b434abaf055dde3a59c"
+      sha256: "2b07709bce975d2be4dc4cd3cc1196fcd6c0397d4e250b42a498e35523fc28f3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.0"
+    version: "0.20.1"
   matrix_api_lite:
     dependency: transitive
     description:
       name: matrix_api_lite
-      sha256: "7c1af53ccdcaf69db1372f607cba48f4ac360595c9bc9e1420768adb2f1c3814"
+      sha256: "16d74a065a085adf30985e6068c9cc001e130979d1f186e40f733450a6583725"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.10"
+    version: "1.6.1"
   matrix_homeserver_recommendations:
     dependency: "direct main"
     description:
@@ -1139,10 +1131,10 @@ packages:
     dependency: "direct dev"
     description:
       name: msix
-      sha256: e3de4d9f52543ad6e4b0f534991e1303cbd379d24be28dd241ac60bd9439a201
+      sha256: "2b094025eb77940d2cea64ec2d1d918a6bf87ef4518eb9155def9a8855831bdc"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.0"
+    version: "3.11.1"
   native_imaging:
     dependency: "direct main"
     description:
@@ -1251,18 +1243,18 @@ packages:
     dependency: transitive
     description:
       name: path_drawing
-      sha256: "3bdd251dae9ffaef944450b73f168610db7e968e7b20daf0c3907f8b4aafc8a2"
+      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1+1"
+    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
-      sha256: ee5c47c1058ad66b4a41746ec3996af9593d0858872807bcd64ac118f0700337
+      sha256: e3e67b1629e6f7e8100b367d3db6ba6af4b1f0bb80f64db18ef1fbabd2fa9ccf
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.1"
+    version: "1.0.1"
   path_provider:
     dependency: "direct main"
     description:
@@ -2128,10 +2120,10 @@ packages:
     dependency: "direct main"
     description:
       name: webrtc_interface
-      sha256: fb79e2dbf594a61bfeed6dc52fa3209d63594ac59930043a9e98371d2d40000c
+      sha256: "0ac4693f921c81005edefd2f43b9fe84b0ed54481474fe1ee16b789b0c84a77c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.11"
+    version: "1.0.13"
   win32:
     dependency: transitive
     description:
@@ -2168,10 +2160,10 @@ packages:
     dependency: transitive
     description:
       name: xml
-      sha256: "80d494c09849dc3f899d227a78c30c5b949b985ededf884cb3f3bcd39f4b447a"
+      sha256: "979ee37d622dec6365e2efa4d906c37470995871fe9ae080d967e192d88286b5"
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.1"
+    version: "6.2.2"
   yaml:
     dependency: transitive
     description:
