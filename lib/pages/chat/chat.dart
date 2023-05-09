@@ -151,7 +151,10 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Event? editEvent;
 
-  bool showScrollDownButton = false;
+  bool _scrolledUp = false;
+
+  bool get showScrollDownButton =>
+      _scrolledUp || timeline?.allowNewEvent == false;
 
   bool get selectMode => selectedEvents.isNotEmpty;
 
@@ -247,11 +250,10 @@ class ChatController extends State<ChatPageWithRoom> {
       requestFuture();
     }
     if (timeline?.allowNewEvent == false ||
-        scrollController.position.pixels > 0 && showScrollDownButton == false) {
-      setState(() => showScrollDownButton = true);
-    } else if (scrollController.position.pixels == 0 &&
-        showScrollDownButton == true) {
-      setState(() => showScrollDownButton = false);
+        scrollController.position.pixels > 0 && _scrolledUp == false) {
+      setState(() => _scrolledUp = true);
+    } else if (scrollController.position.pixels == 0 && _scrolledUp == true) {
+      setState(() => _scrolledUp = false);
     }
   }
 
@@ -805,6 +807,7 @@ class ChatController extends State<ChatPageWithRoom> {
     if (eventIndex == -1) {
       setState(() {
         timeline = null;
+        _scrolledUp = false;
         loadTimelineFuture = _getTimeline(
           eventContextId: eventId,
           timeout: const Duration(seconds: 30),
@@ -827,6 +830,7 @@ class ChatController extends State<ChatPageWithRoom> {
     if (!timeline!.allowNewEvent) {
       setState(() {
         timeline = null;
+        _scrolledUp = false;
         loadTimelineFuture = _getTimeline();
       });
       await loadTimelineFuture;
