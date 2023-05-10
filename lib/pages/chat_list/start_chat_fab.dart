@@ -8,7 +8,7 @@ import 'chat_list.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
   final ActiveFilter activeFilter;
-  final bool scrolledToTop;
+  final ValueNotifier<bool> scrolledToTop;
   final bool roomsIsEmpty;
 
   const StartChatFloatingActionButton({
@@ -61,27 +61,30 @@ class StartChatFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
-      width: roomsIsEmpty
-          ? null
-          : scrolledToTop
-              ? 144
-              : 56,
-      child: scrolledToTop
-          ? FloatingActionButton.extended(
-              onPressed: () => _onPressed(context),
-              icon: Icon(icon),
-              label: Text(
-                getLabel(context),
-                overflow: TextOverflow.fade,
+    return ValueListenableBuilder<bool>(
+      valueListenable: scrolledToTop,
+      builder: (context, scrolledToTop, _) => AnimatedContainer(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+        width: roomsIsEmpty
+            ? null
+            : scrolledToTop
+                ? 144
+                : 56,
+        child: scrolledToTop
+            ? FloatingActionButton.extended(
+                onPressed: () => _onPressed(context),
+                icon: Icon(icon),
+                label: Text(
+                  getLabel(context),
+                  overflow: TextOverflow.fade,
+                ),
+              )
+            : FloatingActionButton(
+                onPressed: () => _onPressed(context),
+                child: Icon(icon),
               ),
-            )
-          : FloatingActionButton(
-              onPressed: () => _onPressed(context),
-              child: Icon(icon),
-            ),
+      ),
     );
   }
 }

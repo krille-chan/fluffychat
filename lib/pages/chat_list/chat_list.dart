@@ -253,7 +253,7 @@ class ChatListController extends State<ChatList>
   BoxConstraints? snappingSheetContainerSize;
 
   final ScrollController scrollController = ScrollController();
-  bool scrolledToTop = true;
+  final ValueNotifier<bool> scrolledToTop = ValueNotifier(true);
 
   final StreamController<Client> _clientStream = StreamController.broadcast();
 
@@ -263,10 +263,8 @@ class ChatListController extends State<ChatList>
 
   void _onScroll() {
     final newScrolledToTop = scrollController.position.pixels <= 0;
-    if (newScrolledToTop != scrolledToTop) {
-      setState(() {
-        scrolledToTop = newScrolledToTop;
-      });
+    if (newScrolledToTop != scrolledToTop.value) {
+      scrolledToTop.value = newScrolledToTop;
     }
   }
 
