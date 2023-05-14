@@ -244,8 +244,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool webHasFocus = true;
 
-  String? get activeRoomId =>
-      VRouter.of(navigatorContext).pathParameters['roomid'];
+  String? get activeRoomId => navigatorContext.vRouter.pathParameters['roomid'];
 
   final linuxNotifications =
       PlatformInfos.isLinux ? NotificationsClient() : null;
