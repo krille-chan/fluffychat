@@ -142,8 +142,11 @@ class ChatDetailsView extends StatelessWidget {
                                       .bodyMedium!
                                       .color,
                                 ),
-                                onLinkTap: (url) =>
-                                    UrlLauncher(context, url).launchUrl(),
+                                beforeLaunch: (url) {
+                                  UrlLauncher(context, url.toString())
+                                      .launchUrl();
+                                  return false;
+                                },
                               ),
                             ),
                           const SizedBox(height: 8),

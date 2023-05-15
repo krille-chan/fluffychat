@@ -580,8 +580,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/update-dependencies"
-      resolved-ref: "167fdbb8fa7d61f8edadbbfcdd3b0d26d0e46c67"
+      ref: HEAD
+      resolved-ref: "81d8988584506d1eff0e28abd2a13af96fecb638"
       url: "https://github.com/Sorunome/flutter_matrix_html.git"
     source: git
     version: "1.1.0"

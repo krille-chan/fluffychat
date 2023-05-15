@@ -260,7 +260,10 @@ class MessageContent extends StatelessWidget {
                     decoration: TextDecoration.underline,
                     decorationColor: textColor.withAlpha(150),
                   ),
-                  onLinkTap: (url) => UrlLauncher(context, url).launchUrl(),
+                  beforeLaunch: (url) {
+                    UrlLauncher(context, url.toString()).launchUrl();
+                    return false;
+                  },
                 );
               },
             );
