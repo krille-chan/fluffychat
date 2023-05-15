@@ -47,7 +47,6 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         case AuthenticationTypes.emailIdentity:
-          final currentThreepidCreds = this.currentThreepidCreds;
           if (currentThreepidCreds == null) {
             return uiaRequest.cancel(
               UiaException(L10n.of(widget.context)!.serverRequiresEmail),
@@ -57,7 +56,7 @@ extension UiaRequestManager on MatrixState {
             session: uiaRequest.session,
             type: AuthenticationTypes.emailIdentity,
             threepidCreds: ThreepidCreds(
-              sid: currentThreepidCreds.sid,
+              sid: currentThreepidCreds!.sid,
               clientSecret: currentClientSecret,
             ),
           );

@@ -4,7 +4,7 @@ publish_to: none
 version: 1.11.2+3360
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   adaptive_dialog: ^1.8.0+1
@@ -61,7 +61,7 @@ dependencies:
   matrix_homeserver_recommendations: ^0.3.0
   matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
-  package_info_plus: ^1.3.0
+  package_info_plus: ^4.0.0
   path_provider: ^2.0.9
   permission_handler: ^10.0.0
   pin_code_text_field: ^1.8.0
@@ -72,7 +72,7 @@ dependencies:
   receive_sharing_intent: ^1.4.5
   record: ^4.4.4
   scroll_to_index: ^3.0.1
-  share_plus: ^6.3.1
+  share_plus: ^7.0.0
   shared_preferences: 2.0.15 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
@@ -85,7 +85,7 @@ dependencies:
   video_compress: ^3.1.1
   video_player: ^2.2.18
   vrouter: ^1.2.0+21
-  wakelock: ^0.6.1+1
+  wakelock: ^0.6.2
   webrtc_interface: ^1.0.13
 
 dev_dependencies:
@@ -143,12 +143,14 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # fake secure storage plugin for Windows
-  # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
+  # null safety
+  flutter_math_fork: ">=0.7.0"
   flutter_matrix_html:
     git:
       url: https://github.com/Sorunome/flutter_matrix_html.git
       ref: krille/update-dependencies
+  # fake secure storage plugin for Windows
+  # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:
     git:
       url: https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git
@@ -166,3 +168,21 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  # null safety
+  # https://github.com/macosui/macos_ui/pull/426
+  macos_ui:
+    git:
+      url: https://github.com/the-best-is-best/macos_ui.git
+      ref: 5bbc2de46f8c032ca6f8d1b01377316eefe00e54
+  # https://github.com/Sorunome/matrix_link_text/pull/2
+  matrix_link_text:
+    git:
+      url: https://github.com/TheOneWithTheBraid/matrix_link_text.git
+      ref: 9b4d5c28dc602c17757d0eb689aafffe02719f26
+  # blocked upgrade of package_info_plus for null safety
+  # https://github.com/creativecreatorormaybenot/wakelock/pull/203
+  wakelock_windows:
+    git:
+      url: https://github.com/timsneath/wakelock.git
+      ref: 2a9bca63a540771f241d688562351482b2cf234c
+      path: wakelock_windows

@@ -82,7 +82,7 @@ Future<void> _tryPushHelper(
   if (!isBackgroundMessage &&
       activeRoomId == notification.roomId &&
       activeRoomId != null &&
-      client?.syncPresence == null) {
+      client.syncPresence == null) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
@@ -144,7 +144,7 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  l10n ??= await L10n.delegate.load(window.locale);
+  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
