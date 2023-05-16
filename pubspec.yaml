@@ -7,7 +7,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^1.8.0+1
+  adaptive_dialog: ^1.9.0-no-macos.2
   animations: ^2.0.7
   badges: ^2.0.3
   blurhash_dart: ^1.1.0
@@ -165,12 +165,6 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
-  # null safety
-  # https://github.com/macosui/macos_ui/pull/426
-  macos_ui:
-    git:
-      url: https://github.com/the-best-is-best/macos_ui.git
-      ref: 5bbc2de46f8c032ca6f8d1b01377316eefe00e54
   # https://github.com/Sorunome/matrix_link_text/pull/2
   matrix_link_text:
     git:

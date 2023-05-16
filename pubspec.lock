@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: adaptive_dialog
-      sha256: "5dea5b051a217d127b57587686990131488f964a9d2ea1142401f101e18795df"
+      sha256: "844143591ca5ca38c0e1fd7c736f3c9457fe69420b90140b5d4ac4673a2ea9e4"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.2"
+    version: "1.9.0-no-macos.2"
   analyzer:
     dependency: transitive
     description:
@@ -1023,23 +1023,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-  macos_ui:
-    dependency: "direct overridden"
-    description:
-      path: "."
-      ref: "5bbc2de46f8c032ca6f8d1b01377316eefe00e54"
-      resolved-ref: "5bbc2de46f8c032ca6f8d1b01377316eefe00e54"
-      url: "https://github.com/the-best-is-best/macos_ui.git"
-    source: git
-    version: "2.0.0-beta.1"
-  macos_window_utils:
-    dependency: transitive
-    description:
-      name: macos_window_utils
-      sha256: "510de576b5432dd9ef9e4c258abcc021c6dfbb17a78a344688848a6784b352b8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   markdown:
     dependency: transitive
     description:
@@ -2153,4 +2136,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=3.0.0 <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"
