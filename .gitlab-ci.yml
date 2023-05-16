@@ -360,7 +360,7 @@ upload_android:
   extends: .release
   script:
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
 
 upload_web:
   extends: .release
@@ -368,21 +368,21 @@ upload_web:
     # workaround bug of Flutter engine
     - tar czf package.tar.gz --ignore-failed-read -C build/web/ .
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
 
 upload_linux_x86:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/x64/release/bundle/ .
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-x86.tar.gz
 
 upload_linux_arm64:
   extends: .release
   script:
     - tar czf package.tar.gz -C build/linux/arm64/release/bundle/ .
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-linux-arm64.tar.gz
 
 upload_windows:
   extends: .release
@@ -392,8 +392,8 @@ upload_windows:
     - mv build/windows/runner/Release/fluffychat.msix fluffychat.msix
     - cd build/windows/runner/Release; zip -r ../../../../package.zip  . ; cd -
     - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file fluffychat.msix ${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file fluffychat.msix ${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix
 
 deploy_playstore:
   stage: deploy
