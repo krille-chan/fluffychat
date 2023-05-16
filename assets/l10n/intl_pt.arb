@@ -10,21 +10,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "monday": "segunda-feira",
-    "@monday": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saturday": "sábado",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "quarta-feira",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "about": "Sobre",
     "@about": {
         "type": "text",
@@ -107,11 +92,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "tuesday": "terça-feira",
-    "@tuesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "logout": "Terminar sessão",
     "@logout": {
         "type": "text",
@@ -119,11 +99,6 @@
     },
     "search": "Pesquisar",
     "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sunday": "domingo",
-    "@sunday": {
         "type": "text",
         "placeholders": {}
     },
@@ -141,15 +116,5 @@
             "month": {},
             "day": {}
         }
-    },
-    "friday": "sexta-feira",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "quinta-feira",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
     }
 }

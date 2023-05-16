@@ -76,11 +76,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Stanza archiviata",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Gli utenti ospiti possono partecipare",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -432,11 +427,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Firma incrociata abilitata",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Attualmente attivo",
     "@currentlyActive": {
         "type": "text",
@@ -519,11 +509,6 @@
     },
     "directChats": "Discussioni dirette",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Scopri",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -676,11 +661,6 @@
     },
     "forward": "Inoltra",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "venerdì",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -874,11 +854,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Le chiave sono memorizzate nella cache",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} ha espulso {targetName}",
     "@kicked": {
         "type": "text",
@@ -993,11 +968,6 @@
     },
     "moderator": "Moderatore",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "lunedì",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1346,11 +1316,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "sabato",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "search": "Cerca",
     "@search": {
         "type": "text",
@@ -1550,11 +1515,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "domenica",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "Sistema",
     "@systemTheme": {
         "type": "text",
@@ -1567,16 +1527,6 @@
     },
     "theyMatch": "Corrispondono",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Questa stanza è stata archiviata.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "giovedì",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1613,11 +1563,6 @@
     },
     "tryToSendAgain": "Prova a inviare di nuovo",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "martedì",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1791,11 +1736,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "mercoledì",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "Ti abbiamo inviato un'e-mail",
     "@weSentYouAnEmail": {
         "type": "text",
@@ -1936,8 +1876,6 @@
     "@passwordsDoNotMatch": {},
     "pleaseEnterValidEmail": "Inserire un indirizzo email valido.",
     "@pleaseEnterValidEmail": {},
-    "yourUserId": "Il tuo ID utente:",
-    "@yourUserId": {},
     "commandHint_leave": "Lascia questa stanza",
     "@commandHint_leave": {
         "type": "text",

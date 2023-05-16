@@ -81,11 +81,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Sala arquivada",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Usuários convidados podem participar",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -543,11 +538,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Assinatura cruzada ativada",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Ativo",
     "@currentlyActive": {
         "type": "text",
@@ -630,11 +620,6 @@
     },
     "directChats": "Conversas diretas",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Desvendar",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -801,11 +786,6 @@
     },
     "forward": "Encaminhar",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Sexta-feira",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -999,11 +979,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Chaves guardadas",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "👞 {username} enxotou {targetName}",
     "@kicked": {
         "type": "text",
@@ -1135,11 +1110,6 @@
     },
     "moderator": "Moderador",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Segunda-feira",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1536,11 +1506,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Sábado",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "saveFile": "Salvar arquivo",
     "@saveFile": {
         "type": "text",
@@ -1779,11 +1744,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Domingo",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "synchronizingPleaseWait": "Sincronizando… Por favor, aguarde.",
     "@synchronizingPleaseWait": {
         "type": "text",
@@ -1801,16 +1761,6 @@
     },
     "theyMatch": "Correspondem",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Esta sala foi arquivada.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Quinta-feira",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1847,11 +1797,6 @@
     },
     "tryToSendAgain": "Tente enviar novamente",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Terça-feira",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2025,11 +1970,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "Quarta-feira",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "Enviamos um e-mail para você",
     "@weSentYouAnEmail": {
         "type": "text",
@@ -2102,8 +2042,6 @@
     },
     "shareYourInviteLink": "Compartilhar o link do convite",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "Digitar o link do convite manualmente...",
-    "@typeInInviteLinkManually": {},
     "oneClientLoggedOut": "Um dos seus clientes foi desvinculado",
     "@oneClientLoggedOut": {},
     "addAccount": "Adicionar conta",
@@ -2176,8 +2114,6 @@
     "@sendOnEnter": {},
     "homeserver": "Servidor matriz",
     "@homeserver": {},
-    "yourUserId": "Seu ID de usuário:",
-    "@yourUserId": {},
     "chatHasBeenAddedToThisSpace": "A conversa foi adicionada a este espaço",
     "@chatHasBeenAddedToThisSpace": {},
     "commandHint_clearcache": "Limpar dados temporários",
@@ -2419,8 +2355,6 @@
     "@commandHint_markasdm": {},
     "commandHint_markasgroup": "Marcar como grupo",
     "@commandHint_markasgroup": {},
-    "dehydrateShare": "Este é seu extrato FluffyChat. Cuidado para não perdê-lo e o mantenha privado.",
-    "@dehydrateShare": {},
     "hydrateTor": "Usuários TOR: Importar sessão",
     "@hydrateTor": {},
     "hydrateTorLong": "Você exportou sua última sessão no TOR? Importe ela rapidamente e continue conversando.",
@@ -2491,8 +2425,6 @@
     "@dehydrateWarning": {},
     "dehydrateTorLong": "Para usuários TOR, é recomendado exportar a sessão antes de fechar a janela.",
     "@dehydrateTorLong": {},
-    "enableAutoBackups": "Habilitar backups automáticos",
-    "@enableAutoBackups": {},
     "whyIsThisMessageEncrypted": "Por que esta mensagem está ilegível?",
     "@whyIsThisMessageEncrypted": {},
     "screenSharingTitle": "Compartilhar tela",

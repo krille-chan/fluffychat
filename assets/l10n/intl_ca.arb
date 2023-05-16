@@ -71,11 +71,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Sala arxivada",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Accés dels usuaris convidats",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -400,11 +395,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Signatura creuada activada",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Actiu actualment",
     "@currentlyActive": {
         "type": "text",
@@ -602,11 +592,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "divendres",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "fromJoining": "Des de la unió",
     "@fromJoining": {
         "type": "text",
@@ -772,11 +757,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Les claus estan desades a la memòria cau",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} ha expulsat a {targetName}",
     "@kicked": {
         "type": "text",
@@ -903,11 +883,6 @@
     },
     "moderator": "Moderador",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "dilluns",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1201,11 +1176,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "dissabte",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "security": "Seguretat",
     "@security": {
         "type": "text",
@@ -1394,11 +1364,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "diumenge",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "Sistema",
     "@systemTheme": {
         "type": "text",
@@ -1411,16 +1376,6 @@
     },
     "theyMatch": "Coincideixen",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Aquesta sala ha estat arxivada.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "dijous",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1442,11 +1397,6 @@
     },
     "tryToSendAgain": "Intenta tornar a enviar",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "dimarts",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1607,11 +1557,6 @@
     },
     "warning": "Atenció!",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "dimecres",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1801,8 +1746,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "El vostre id. d’usuari:",
-    "@yourUserId": {},
     "enableEncryption": "Activa el xifratge",
     "@enableEncryption": {
         "type": "text",
@@ -2064,11 +2007,6 @@
             "serverVersions": {},
             "supportedVersions": {}
         }
-    },
-    "discover": "Descobreix",
-    "@discover": {
-        "type": "text",
-        "placeholders": {}
     },
     "editChatPermissions": "Edita els permisos del xat",
     "@editChatPermissions": {

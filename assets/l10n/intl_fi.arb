@@ -100,11 +100,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Arkistoitu huone",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Sallitaanko vieraiden liittyminen",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -314,8 +309,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "Käyttäjätunnuksesi:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "Keskustelujesi varmuuskopiointi on asetettu.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Keskustelun varmuuskopiointi",
@@ -494,11 +487,6 @@
     },
     "directChats": "Suorat keskustelut",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Löydä",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -908,11 +896,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "monday": "maanantaina",
-    "@monday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "muteChat": "Vaienna keskustelu",
     "@muteChat": {
         "type": "text",
@@ -963,8 +946,6 @@
     },
     "shareYourInviteLink": "Jaa kutsulinkkisi",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "Kirjoita kutsulinkki käsin...",
-    "@typeInInviteLinkManually": {},
     "scanQrCode": "Skannaa QR-koodi",
     "@scanQrCode": {},
     "none": "Ei yhtään",
@@ -1036,11 +1017,6 @@
     },
     "changeYourAvatar": "Vaihda profiilikuvasi",
     "@changeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "crossSigningEnabled": "Ristiinvarmennus on käytössä",
-    "@crossSigningEnabled": {
         "type": "text",
         "placeholders": {}
     },
@@ -1231,11 +1207,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "perjantaina",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "iHaveClickedOnLink": "Olen klikannut linkkiä",
     "@iHaveClickedOnLink": {
         "type": "text",
@@ -1252,11 +1223,6 @@
         "placeholders": {
             "username": {}
         }
-    },
-    "keysCached": "Avaimet ovat välimuistissa",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
     },
     "notificationsEnabledForThisAccount": "Tämän tunnuksen ilmoitukset ovat käytössä",
     "@notificationsEnabledForThisAccount": {
@@ -1654,16 +1620,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "thisRoomHasBeenArchived": "Tämä huone on arkistoitu.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "torstaina",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
@@ -1830,11 +1786,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "keskiviikkona",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "Lähetimme sinulle sähköpostia",
     "@weSentYouAnEmail": {
         "type": "text",
@@ -1932,11 +1883,6 @@
     },
     "roomHasBeenUpgraded": "Huone on päivitetty",
     "@roomHasBeenUpgraded": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saturday": "lauantaina",
-    "@saturday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2077,11 +2023,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "sunnuntaina",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "unreadChats": "{unreadCount, plural, =1{1 lukematon keskustelu} other{{unreadCount} lukematonta keskustelua}}",
     "@unreadChats": {
         "type": "text",
@@ -2110,11 +2051,6 @@
     },
     "toggleFavorite": "Suosikki-kytkin",
     "@toggleFavorite": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "tiistaina",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2359,8 +2295,6 @@
     },
     "noEmailWarning": "Syötä oikea sähköposti-osoite. Muutoin et voi palauttaa salasanaasi. Jollet halua, paina näppäintä uudelleen jatkaaksesi.",
     "@noEmailWarning": {},
-    "dehydrateShare": "Tämä on yksityinen FluffyChat-vientisi. Varmista ettet hukkaa sitä ja pidät sen yksityisenä.",
-    "@dehydrateShare": {},
     "dehydrateTor": "TOR-käyttäjät: vie istunto",
     "@dehydrateTor": {},
     "hydrateTor": "TOR-käyttäjät: tuo viety istunto",
@@ -2385,8 +2319,6 @@
     "@stories": {},
     "users": "Käyttäjät",
     "@users": {},
-    "enableAutoBackups": "Ota automaattiset varmuuskopiot käyttöön",
-    "@enableAutoBackups": {},
     "storeSecurlyOnThisDevice": "Tallenna turvallisesti tälle laitteelle",
     "@storeSecurlyOnThisDevice": {},
     "pleaseEnterRecoveryKeyDescription": "Avataksesi vanhojen viestiesi salauksen, syötä palautusavaimesi, joka luotiin edellisessä istunnossa. Palautusavaimesi EI OLE salasanasi.",

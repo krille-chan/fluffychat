@@ -61,11 +61,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "חדר בארכיון",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "האם משתמשים אורחים מורשים להצטרף",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -343,8 +338,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "מזהה המשתמש שלך:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "גיבוי צ'אט",
@@ -477,11 +470,6 @@
             "username": {}
         }
     },
-    "crossSigningEnabled": "חתימה צולבת על",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "פעיל כעת",
     "@currentlyActive": {
         "type": "text",
@@ -540,11 +528,6 @@
     },
     "directChats": "צ'אטים ישירים",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "לגלות",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -627,11 +610,6 @@
     },
     "forward": "העבר",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "יום שישי",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -752,11 +730,6 @@
     },
     "joinRoom": "הצטרף לחדר",
     "@joinRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "keysCached": "המפתחות נשמרים במטמון",
-    "@keysCached": {
         "type": "text",
         "placeholders": {}
     },
@@ -1146,8 +1119,6 @@
     },
     "shareYourInviteLink": "שתף את קישור ההזמנה שלך",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "הקלד את קישור ההזמנה באופן ידני...",
-    "@typeInInviteLinkManually": {},
     "noRoomsFound": "לא נמצאו חדרים…",
     "@noRoomsFound": {
         "type": "text",
@@ -1309,11 +1280,6 @@
     },
     "newMessageInFluffyChat": "הודעה חדשה ב-FluffyChat",
     "@newMessageInFluffyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "יום שני",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },

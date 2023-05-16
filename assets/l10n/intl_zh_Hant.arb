@@ -76,11 +76,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "已封存的對話",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "是否允許訪客加入",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -427,11 +422,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "第三方登入已啟用",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "目前活躍",
     "@currentlyActive": {
         "type": "text",
@@ -514,11 +504,6 @@
     },
     "directChats": "直接傳訊",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "探索",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -671,11 +656,6 @@
     },
     "forward": "轉發",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "星期五",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -864,11 +844,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "金鑰已被快取",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username}踢了{targetName}",
     "@kicked": {
         "type": "text",
@@ -983,11 +958,6 @@
     },
     "moderator": "版主",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "星期一",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1326,11 +1296,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "星期六",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "search": "搜尋",
     "@search": {
         "type": "text",
@@ -1530,11 +1495,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "星期日",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "自動",
     "@systemTheme": {
         "type": "text",
@@ -1547,16 +1507,6 @@
     },
     "theyMatch": "它們相符",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "這個聊天室已被封存。",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "星期四",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1593,11 +1543,6 @@
     },
     "tryToSendAgain": "再次嘗試傳送",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "星期二",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1768,11 +1713,6 @@
     },
     "warning": "警告！",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "星期三",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1972,8 +1912,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "您的ID：",
-    "@yourUserId": {},
     "chatHasBeenAddedToThisSpace": "聊天室已添加到此空間",
     "@chatHasBeenAddedToThisSpace": {},
     "clearArchive": "清除存檔",

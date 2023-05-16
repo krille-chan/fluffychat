@@ -71,11 +71,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Arhivirana soba",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "askSSSSSign": "Če želite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni ključ.",
     "@askSSSSSign": {
         "type": "text",
@@ -259,8 +254,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "Vaš ID uporabnika:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "Varnostna kopija klepeta je nastavljena.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Varnostno kopiranje klepeta",
@@ -555,11 +548,6 @@
     },
     "createNewSpace": "Nov prostor",
     "@createNewSpace": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "crossSigningEnabled": "Navzkrižno podpisovanje DA",
-    "@crossSigningEnabled": {
         "type": "text",
         "placeholders": {}
     },

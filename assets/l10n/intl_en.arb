@@ -134,11 +134,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Archived Room",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Are guest users allowed to join",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -388,8 +383,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "Your user ID:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Chat backup",
@@ -633,11 +626,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Cross-signing on",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Currently active",
     "@currentlyActive": {
         "type": "text",
@@ -720,11 +708,6 @@
     },
     "directChats": "Direct Chats",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Discover",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -893,11 +876,6 @@
     },
     "forward": "Forward",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Friday",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1091,11 +1069,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Keys are cached",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "👞 {username} kicked {targetName}",
     "@kicked": {
         "type": "text",
@@ -1160,8 +1133,6 @@
     "@dehydrate": {},
     "dehydrateWarning": "This action cannot be undone. Ensure you safely store the backup file.",
     "@dehydrateWarning": {},
-    "dehydrateShare": "This is your private FluffyChat export. Ensure you don't lose it and keep it private.",
-    "@dehydrateShare": {},
     "dehydrateTor": "TOR Users: Export session",
     "@dehydrateTor": {},
     "dehydrateTorLong": "For TOR users, it is recommended to export the session before closing the window.",
@@ -1236,14 +1207,8 @@
         "type": "text",
         "placeholders": {}
     },
-    "noSearchResult": "No matching search results.",
     "moderator": "Moderator",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Monday",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1312,8 +1277,6 @@
     },
     "shareYourInviteLink": "Share your invite link",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "Type in invite link manually...",
-    "@typeInInviteLinkManually": {},
     "scanQrCode": "Scan QR code",
     "@scanQrCode": {},
     "none": "None",
@@ -1671,11 +1634,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Saturday",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "saveFile": "Save file",
     "@saveFile": {
         "type": "text",
@@ -1929,11 +1887,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Sunday",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "synchronizingPleaseWait": "Synchronizing… Please wait.",
     "@synchronizingPleaseWait": {
         "type": "text",
@@ -1951,16 +1904,6 @@
     },
     "theyMatch": "They Match",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "This room has been archived.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Thursday",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1997,11 +1940,6 @@
     },
     "tryToSendAgain": "Try to send again",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Tuesday",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2174,11 +2112,6 @@
     },
     "warning": "Warning!",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "Wednesday",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2436,8 +2369,6 @@
     "@stories": {},
     "users": "Users",
     "@users": {},
-    "enableAutoBackups": "Enable auto backups",
-    "@enableAutoBackups": {},
     "unlockOldMessages": "Unlock old messages",
     "@unlockOldMessages": {},
     "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",

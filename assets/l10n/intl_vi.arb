@@ -61,11 +61,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Phòng hội thảo đã lưu trữ",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Khách vãng lai có được tham gia không",
     "@areGuestsAllowedToJoin": {
         "type": "text",

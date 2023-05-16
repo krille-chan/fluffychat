@@ -71,11 +71,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Arkivert rom",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Skal gjester tillates å ta del",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -401,11 +396,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Videreformidling av tillit på",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Aktiv nå",
     "@currentlyActive": {
         "type": "text",
@@ -488,11 +478,6 @@
     },
     "directChats": "Direktesludringer",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Oppdag",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -645,11 +630,6 @@
     },
     "forward": "Videre",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Fredag",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -838,11 +818,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Nøkler hurtiglagret",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} kastet ut {targetName}",
     "@kicked": {
         "type": "text",
@@ -957,11 +932,6 @@
     },
     "moderator": "Moderator",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Mandag",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1275,11 +1245,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Lørdag",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "search": "Søk",
     "@search": {
         "type": "text",
@@ -1474,11 +1439,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Søndag",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "System",
     "@systemTheme": {
         "type": "text",
@@ -1491,16 +1451,6 @@
     },
     "theyMatch": "Samsvarer",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Dette rommet har blitt arkivert.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Torsdag",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1522,11 +1472,6 @@
     },
     "tryToSendAgain": "Prøv å sende igjen",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Tirsdag",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1685,11 +1630,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "Onsdag",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "Du har fått en e-post",
     "@weSentYouAnEmail": {
         "type": "text",
@@ -1839,7 +1779,5 @@
     "@changeYourAvatar": {
         "type": "text",
         "placeholders": {}
-    },
-    "yourUserId": "Din bruker ID:",
-    "@yourUserId": {}
+    }
 }

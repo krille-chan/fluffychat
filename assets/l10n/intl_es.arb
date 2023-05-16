@@ -67,11 +67,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Sala archivada",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "¿Pueden unirse los usuarios visitantes?",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -400,11 +395,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "La confirmación cruzada está habilitada",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Actualmente activo",
     "@currentlyActive": {
         "type": "text",
@@ -592,11 +582,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "Viernes",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "fromJoining": "Desde que se unió",
     "@fromJoining": {
         "type": "text",
@@ -752,11 +737,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Las claves están en caché",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} echó a {targetName}",
     "@kicked": {
         "type": "text",
@@ -861,11 +841,6 @@
     },
     "moderator": "Moderador",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Lunes",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1127,11 +1102,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Sábado",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "seenByUser": "Visto por {username}",
     "@seenByUser": {
         "type": "text",
@@ -1306,11 +1276,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Domingo",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "Sistema",
     "@systemTheme": {
         "type": "text",
@@ -1323,16 +1288,6 @@
     },
     "theyMatch": "Coinciden",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Esta sala ha sido archivada.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Jueves",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1349,11 +1304,6 @@
     },
     "tryToSendAgain": "Intentar enviar nuevamente",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Martes",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1524,11 +1474,6 @@
     },
     "warning": "¡Advertencia!",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "Miércoles",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1949,11 +1894,6 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    "discover": "Descubrir",
-    "@discover": {
-        "type": "text",
-        "placeholders": {}
-    },
     "editChatPermissions": "Editar permisos de chat",
     "@editChatPermissions": {
         "type": "text",
@@ -1961,8 +1901,6 @@
     },
     "shareYourInviteLink": "Compartir tu enlace de invitación",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "Escriba el enlace de invitación manualmente...",
-    "@typeInInviteLinkManually": {},
     "scanQrCode": "Escanear código QR",
     "@scanQrCode": {},
     "homeserver": "Homeserver",
@@ -2137,8 +2075,6 @@
     "@yourChatBackupHasBeenSetUp": {},
     "unverified": "No verificado",
     "@unverified": {},
-    "yourUserId": "Su id. de usuario:",
-    "@yourUserId": {},
     "commandHint_clearcache": "Limpiar cache",
     "@commandHint_clearcache": {
         "type": "text",
