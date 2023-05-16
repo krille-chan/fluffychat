@@ -20,7 +20,6 @@ class NotificationSettingsItem {
       '.m.rule.message',
       (c) => L10n.of(c)!.allRooms,
     ),
- 
     NotificationSettingsItem(
       PushRuleKind.underride,
       '.m.rule.room_one_to_one',
