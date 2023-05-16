@@ -37,14 +37,17 @@ class MessageDownloadContent extends StatelessWidget {
                   color: textColor,
                 ),
                 const SizedBox(width: 16),
-                Text(
-                  filename,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.bold,
+                Flexible(
+                  child: Text(
+                    filename,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
+                )
               ],
             ),
           ),
