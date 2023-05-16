@@ -581,7 +581,7 @@ packages:
     description:
       path: "."
       ref: "krille/fix-trying-modify-unmodifiable-list"
-      resolved-ref: "201bd3322b6881da8128e60d49bd26a6af6eeda2"
+      resolved-ref: "97ab2982ff0429167436e15c3ae3c1b23d630c05"
       url: "https://github.com/Sorunome/flutter_matrix_html.git"
     source: git
     version: "1.1.0"
