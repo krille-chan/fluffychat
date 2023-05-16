@@ -2,15 +2,6 @@ diff --git a/android/app/build.gradle b/android/app/build.gradle
 index 001fbd72..339b35af 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -44,7 +44,7 @@ android {
- 
-     defaultConfig {
-         applicationId "chat.fluffy.fluffychat"
--        minSdkVersion 16
-+        minSdkVersion 19
-         targetSdkVersion 31
-         versionCode flutterVersionCode.toInteger()
-         versionName flutterVersionName
 @@ -68,6 +68,10 @@ android {
          }
          release {
