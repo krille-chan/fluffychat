@@ -17,6 +17,12 @@ class NotificationSettingsItem {
   static List<NotificationSettingsItem> items = [
     NotificationSettingsItem(
       PushRuleKind.underride,
+      '.m.rule.message',
+      (c) => L10n.of(c)!.allRooms,
+    ),
+ 
+    NotificationSettingsItem(
+      PushRuleKind.underride,
       '.m.rule.room_one_to_one',
       (c) => L10n.of(c)!.directChats,
     ),
