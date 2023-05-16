@@ -23,6 +23,7 @@ import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -274,7 +275,10 @@ class ChatController extends State<ChatPageWithRoom> {
     super.initState();
     sendingClient = Matrix.of(context).client;
     readMarkerEventId = room.fullyRead;
-    loadTimelineFuture = _getTimeline(eventContextId: readMarkerEventId);
+    loadTimelineFuture =
+        _getTimeline(eventContextId: readMarkerEventId).onError(
+      ErrorReporter(context, 'Unable to load timeline').onErrorCallback,
+    );
   }
 
   void updateView() {
@@ -380,7 +384,12 @@ class ChatController extends State<ChatPageWithRoom> {
     }
     // then cancel the old timeline
     // fixes bug with read reciepts and quick switching
-    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead);
+    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead).onError(
+      ErrorReporter(
+        context,
+        'Unable to load timeline after changing sending Client',
+      ).onErrorCallback,
+    );
 
     // then set the new sending client
     setState(() => sendingClient = c);
@@ -811,6 +820,9 @@ class ChatController extends State<ChatPageWithRoom> {
         loadTimelineFuture = _getTimeline(
           eventContextId: eventId,
           timeout: const Duration(seconds: 30),
+        ).onError(
+          ErrorReporter(context, 'Unable to load timeline after scroll to ID')
+              .onErrorCallback,
         );
       });
       await loadTimelineFuture;
@@ -831,7 +843,10 @@ class ChatController extends State<ChatPageWithRoom> {
       setState(() {
         timeline = null;
         _scrolledUp = false;
-        loadTimelineFuture = _getTimeline();
+        loadTimelineFuture = _getTimeline().onError(
+          ErrorReporter(context, 'Unable to load timeline after scroll down')
+              .onErrorCallback,
+        );
       });
       await loadTimelineFuture;
       setReadMarker(eventId: timeline!.events.first.eventId);

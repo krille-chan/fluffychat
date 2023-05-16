@@ -33,6 +33,11 @@ abstract class AppConfig {
   static const String sourceCodeUrl = 'https://gitlab.com/famedly/fluffychat';
   static const String supportUrl =
       'https://gitlab.com/famedly/fluffychat/issues';
+  static final Uri newIssueUrl = Uri(
+    scheme: 'https',
+    host: 'gitlab.com',
+    path: '/famedly/fluffychat/-/issues/new',
+  );
   static const bool enableSentry = true;
   static const String sentryDns =
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';

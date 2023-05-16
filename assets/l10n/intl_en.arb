@@ -2461,5 +2461,7 @@
     "jumpToLastReadMessage": "Jump to last read message",
     "readUpToHere": "Read up to here",
     "jump": "Jump",
-    "openLinkInBrowser": "Open link in browser"
+    "openLinkInBrowser": "Open link in browser",
+    "reportErrorDescription": "Oh no. Something went wrong. Please try again later. If you want, you can report the bug to the developers.",
+    "report": "report"
 }
