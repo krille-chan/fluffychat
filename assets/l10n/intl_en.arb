@@ -711,6 +711,16 @@
         "type": "text",
         "placeholders": {}
     },
+"allRooms": "All Group Chats",
+    "@allRooms": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "discover": "Discover",
+    "@discover": {
+        "type": "text",
+        "placeholders": {}
+    },
     "displaynameHasBeenChanged": "Displayname has been changed",
     "@displaynameHasBeenChanged": {
         "type": "text",
