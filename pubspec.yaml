@@ -146,7 +146,9 @@ dependency_overrides:
   # null safety
   flutter_math_fork: ">=0.7.0"
   flutter_matrix_html:
-    git: https://github.com/Sorunome/flutter_matrix_html.git
+    git:
+      url: https://github.com/Sorunome/flutter_matrix_html.git
+      ref: krille/fix-trying-modify-unmodifiable-list
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:

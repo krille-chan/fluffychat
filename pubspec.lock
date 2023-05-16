@@ -580,8 +580,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "81d8988584506d1eff0e28abd2a13af96fecb638"
+      ref: "krille/fix-trying-modify-unmodifiable-list"
+      resolved-ref: "201bd3322b6881da8128e60d49bd26a6af6eeda2"
       url: "https://github.com/Sorunome/flutter_matrix_html.git"
     source: git
     version: "1.1.0"
