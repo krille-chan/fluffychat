@@ -76,11 +76,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Архивирана соба",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Да ли је гостима дозвољен приступ",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -504,11 +499,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Међу-потписивање укључено",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Тренутно активно",
     "@currentlyActive": {
         "type": "text",
@@ -591,11 +581,6 @@
     },
     "directChats": "Директна ћаскања",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Истражи",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -753,11 +738,6 @@
     },
     "forward": "Напред",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "петак",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -951,11 +931,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Кључеви су кеширани",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} избаци корисника {targetName}",
     "@kicked": {
         "type": "text",
@@ -1077,11 +1052,6 @@
     },
     "moderator": "Модератор",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "понедељак",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1460,11 +1430,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "субота",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "search": "Претражи",
     "@search": {
         "type": "text",
@@ -1674,11 +1639,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "недеља",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "системски",
     "@systemTheme": {
         "type": "text",
@@ -1691,16 +1651,6 @@
     },
     "theyMatch": "Поклапају се",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Ова соба је архивирана.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "четвртак",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1737,11 +1687,6 @@
     },
     "tryToSendAgain": "Покушај слање поново",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "уторак",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1912,11 +1857,6 @@
     },
     "warning": "Упозорење!",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "среда",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },

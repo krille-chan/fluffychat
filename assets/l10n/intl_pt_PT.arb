@@ -90,11 +90,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Sala arquivada",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Todos os visitantes podem entrar",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -294,8 +289,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "O teu ID de utilizador:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "A cópia de segurança foi configurada.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Cópia de segurança de conversas",
@@ -515,11 +508,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Assinatura cruzada ativada",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Ativo(a) agora",
     "@currentlyActive": {
         "type": "text",
@@ -602,11 +590,6 @@
     },
     "directChats": "Conversas diretas",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Descobrir",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -775,11 +758,6 @@
     },
     "forward": "Reencaminhar",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Sexta-feira",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -963,11 +941,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Chaves estão armazenadas em cache",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} expulsou {targetName}",
     "@kicked": {
         "type": "text",
@@ -1097,11 +1070,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "monday": "Segunda-feira",
-    "@monday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "muteChat": "Silenciar conversa",
     "@muteChat": {
         "type": "text",
@@ -1167,8 +1135,6 @@
     },
     "shareYourInviteLink": "Partilhar a ligação de convite",
     "@shareYourInviteLink": {},
-    "typeInInviteLinkManually": "Escrever a ligação de convite manualmente...",
-    "@typeInInviteLinkManually": {},
     "none": "Nenhum",
     "@none": {
         "type": "text",
@@ -1581,11 +1547,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Sábado",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "saveFile": "Guardar ficheiro",
     "@saveFile": {
         "type": "text",
@@ -1709,8 +1670,6 @@
     "@dehydrate": {},
     "dehydrateWarning": "Esta ação não pode ser revertida. Assegura-te que guardas bem a cópia de segurança.",
     "@dehydrateWarning": {},
-    "dehydrateShare": "Esta é a tua exportação privada do FluffyChat. Assegura-te que não a perdes e que a manténs privada.",
-    "@dehydrateShare": {},
     "hydrateTorLong": "Exportaste a tua sessão na última vez que estiveste no TOR? Importa-a rapidamente e continua a conversar.",
     "@hydrateTorLong": {},
     "dehydrateTor": "Utilizadores do TOR: Exportar sessão",

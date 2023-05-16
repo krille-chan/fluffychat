@@ -82,11 +82,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Архивированная комната",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Разрешено ли гостям присоединяться",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -544,11 +539,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Кросс-подпись включена",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "В настоящее время активен(а)",
     "@currentlyActive": {
         "type": "text",
@@ -631,11 +621,6 @@
     },
     "directChats": "Личные чаты",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Обзор",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -802,11 +787,6 @@
     },
     "forward": "Переслать",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Пятница",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1000,11 +980,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Ключи сохранены в кэше",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} исключил(а) {targetName}",
     "@kicked": {
         "type": "text",
@@ -1136,11 +1111,6 @@
     },
     "moderator": "Модератор",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Понедельник",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1537,11 +1507,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Суббота",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "saveFile": "Сохранить файл",
     "@saveFile": {
         "type": "text",
@@ -1780,11 +1745,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Воскресенье",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "synchronizingPleaseWait": "Синхронизация… Пожалуйста, подождите.",
     "@synchronizingPleaseWait": {
         "type": "text",
@@ -1802,16 +1762,6 @@
     },
     "theyMatch": "Они совпадают",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Эта комната была заархивирована.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Четверг",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1848,11 +1798,6 @@
     },
     "tryToSendAgain": "Попробуйте отправить ещё раз",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Вторник",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -2026,11 +1971,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "Среда",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "Мы отправили вам электронное письмо",
     "@weSentYouAnEmail": {
         "type": "text",
@@ -2107,8 +2047,6 @@
     "@addToSpace": {},
     "scanQrCode": "Сканировать QR-код",
     "@scanQrCode": {},
-    "typeInInviteLinkManually": "Введите ссылку приглашения...",
-    "@typeInInviteLinkManually": {},
     "shareYourInviteLink": "Поделиться ссылкой приглашения",
     "@shareYourInviteLink": {},
     "sendOnEnter": "Отправлять по Enter",
@@ -2135,8 +2073,6 @@
     "@oneClientLoggedOut": {},
     "yourChatBackupHasBeenSetUp": "Резервное копирование чата настроено.",
     "@yourChatBackupHasBeenSetUp": {},
-    "yourUserId": "Ваш ID пользователя:",
-    "@yourUserId": {},
     "unverified": "Не проверено",
     "@unverified": {},
     "passwordsDoNotMatch": "Пароли не совпадают!",
@@ -2374,8 +2310,6 @@
     "@stories": {},
     "users": "Пользователи",
     "@users": {},
-    "enableAutoBackups": "Включить автоматическое резервное копирование",
-    "@enableAutoBackups": {},
     "unlockOldMessages": "Разблокировать старые сообщения",
     "@unlockOldMessages": {},
     "storeInSecureStorageDescription": "Сохраните ключ восстановления в безопасном хранилище этого устройства.",
@@ -2417,8 +2351,6 @@
     "@indexedDbErrorLong": {},
     "custom": "Пользовательское",
     "@custom": {},
-    "dehydrateShare": "Это ваш личный экспорт FluffyChat. Убедитесь, что вы не потеряете его и держите его в тайне.",
-    "@dehydrateShare": {},
     "updateAvailable": "Доступно обновление для FluffyChat",
     "@updateAvailable": {},
     "updateNow": "Обновить в фоновом режиме",

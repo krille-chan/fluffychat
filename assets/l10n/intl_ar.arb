@@ -62,11 +62,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "غرفة مؤرشفة",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "هل يُسمح للزوار الدخول",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -337,11 +332,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "التأكد المتبادل مفعل",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "نشطٌ حاليا",
     "@currentlyActive": {
         "type": "text",
@@ -504,11 +494,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "الجمعة",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "fromJoining": "من بعد الانضمام",
     "@fromJoining": {
         "type": "text",
@@ -654,11 +639,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "المفاتيح محفوظة على ذاكرة التخزين المؤقتة",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} طرد {targetName}",
     "@kicked": {
         "type": "text",
@@ -758,11 +738,6 @@
     },
     "moderator": "مشرف",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "الثلاثاء",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -984,11 +959,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "السبت",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "seenByUser": "رآه {username}",
     "@seenByUser": {
         "type": "text",
@@ -1153,11 +1123,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "الأحد",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "النظام",
     "@systemTheme": {
         "type": "text",
@@ -1173,16 +1138,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "thisRoomHasBeenArchived": "أُرشِفت هته الغرفة.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "الخميس",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "title": "فلافي-شات",
     "@title": {
         "description": "Title for the application",
@@ -1191,11 +1146,6 @@
     },
     "tryToSendAgain": "حاول إعادة الارسال",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "الثلاثاء",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1359,11 +1309,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "الأربعاء",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "whoIsAllowedToJoinThisGroup": "من يسمح له الانضمام للمجموعة",
     "@whoIsAllowedToJoinThisGroup": {
         "type": "text",
@@ -1411,8 +1356,6 @@
     },
     "scanQrCode": "امسح رمز الاستجابة السريعة",
     "@scanQrCode": {},
-    "typeInInviteLinkManually": "اكتب رابط الدعوة...",
-    "@typeInInviteLinkManually": {},
     "shareYourInviteLink": "شارك رابط الدعوة",
     "@shareYourInviteLink": {},
     "noMatrixServer": "{server1} ليس خادم ماتريكس، بدلًا منه أتريد استخدام {server2}؟",
@@ -1546,11 +1489,6 @@
     },
     "edit": "عدّل",
     "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "اكتشف",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -2052,8 +1990,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "معرّف المستخدم:",
-    "@yourUserId": {},
     "passwordsDoNotMatch": "كلمتا السر لا تتطبقان!",
     "@passwordsDoNotMatch": {},
     "pleaseEnterValidEmail": "رجاءً أدخل بيردًا إلكترونيًا صالحًا.",

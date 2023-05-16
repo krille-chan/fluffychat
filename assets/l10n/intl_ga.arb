@@ -9,11 +9,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "wednesday": "Dé Céadaoin",
-    "@wednesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "warning": "Rabhadh!",
     "@warning": {
         "type": "text",
@@ -49,29 +44,14 @@
         "type": "text",
         "placeholders": {}
     },
-    "tuesday": "Dé Máirt",
-    "@tuesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
         "type": "text",
         "placeholders": {}
     },
-    "thursday": "Déardaoin",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "Córas",
     "@systemTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sunday": "Dé Domhnaigh",
-    "@sunday": {
         "type": "text",
         "placeholders": {}
     },
@@ -117,11 +97,6 @@
     },
     "search": "Cuardaigh",
     "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saturday": "Dé Sathairn",
-    "@saturday": {
         "type": "text",
         "placeholders": {}
     },
@@ -205,11 +180,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Tá cros-shíniú tosaithe",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "createNewSpace": "Spás nua",
     "@createNewSpace": {
         "type": "text",
@@ -264,11 +234,6 @@
     },
     "next": "Ar Aghaidh",
     "@next": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Dé Luain",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -352,11 +317,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "Dé hAoine",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "forward": "Seol ar aghaidh",
     "@forward": {
         "type": "text",
@@ -381,11 +341,6 @@
     },
     "edit": "Cuir in eagar",
     "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Tar ar",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -534,11 +489,6 @@
     },
     "sendOnEnter": "Seol ar iontráil",
     "@sendOnEnter": {},
-    "archivedRoom": "Seomra cartlainne",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "archive": "Cartlann",
     "@archive": {
         "type": "text",
@@ -1312,8 +1262,6 @@
     },
     "scanQrCode": "Scan cód QR",
     "@scanQrCode": {},
-    "typeInInviteLinkManually": "Clóscríobh an nasc cuiridh de láimh...",
-    "@typeInInviteLinkManually": {},
     "inviteText": "Thug {username} cuireadh duit chuig FluffyChat.\n1. Suiteáil FluffyChat: https://fluffychat.im\n2. Cláraigh nó sínigh isteach\n3. Oscail an nasc cuiridh: {link}",
     "@inviteText": {
         "type": "text",
@@ -1450,11 +1398,6 @@
             "username": {},
             "targetName": {}
         }
-    },
-    "keysCached": "Cuirtear eochracha i dtaisce",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
     },
     "joinedTheChat": "Tháinig {username} isteach sa chomhrá",
     "@joinedTheChat": {
@@ -1737,11 +1680,6 @@
     },
     "tooManyRequestsWarning": "An iomarca iarratas. Bain triail eile as níos déanaí!",
     "@tooManyRequestsWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Tá an seomra seo curtha i gcartlann.",
-    "@thisRoomHasBeenArchived": {
         "type": "text",
         "placeholders": {}
     },
@@ -2153,8 +2091,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourUserId": "D'aitheantas úsáideora:",
-    "@yourUserId": {},
     "yourChatBackupHasBeenSetUp": "Bunaíodh do chúltaca comhrá.",
     "@yourChatBackupHasBeenSetUp": {},
     "openVideoCamera": "Oscail físcheamara",

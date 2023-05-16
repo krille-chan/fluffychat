@@ -55,11 +55,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Archivovaná miestnosť",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Môžu sa pripojiť hostia",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -330,11 +325,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Vzájomné overenie je zapnuté",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Momentálne prítomní",
     "@currentlyActive": {
         "type": "text",
@@ -480,11 +470,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "friday": "Piatok",
-    "@friday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "fromJoining": "Od pripojenia",
     "@fromJoining": {
         "type": "text",
@@ -610,11 +595,6 @@
             "username": {}
         }
     },
-    "keysCached": "Kľúče sú uložené",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} vyhodili {targetName}",
     "@kicked": {
         "type": "text",
@@ -714,11 +694,6 @@
     },
     "moderator": "Moderátor",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Pondelok",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -920,11 +895,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Sobota",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "seenByUser": "Videné užívateľom {username}",
     "@seenByUser": {
         "type": "text",
@@ -1060,11 +1030,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Nedeľa",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "systemTheme": "Systémová farba",
     "@systemTheme": {
         "type": "text",
@@ -1080,16 +1045,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "thisRoomHasBeenArchived": "Táto miestnosť bola archivovaná.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Štvrtok",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
@@ -1098,11 +1053,6 @@
     },
     "tryToSendAgain": "Skúsiť znova odoslať",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Utorok",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1253,11 +1203,6 @@
     },
     "wallpaper": "Pozadie",
     "@wallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "Streda",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1440,8 +1385,6 @@
     },
     "sendOnEnter": "Odoslať pri vstupe",
     "@sendOnEnter": {},
-    "yourUserId": "Vaše užívateľské ID:",
-    "@yourUserId": {},
     "ignoredUsers": "Ignorovaní užívatelia",
     "@ignoredUsers": {
         "type": "text",

@@ -34,11 +34,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "discover": "Decovrir",
-    "@discover": {
-        "type": "text",
-        "placeholders": {}
-    },
     "containsUserName": "Contene li nómine",
     "@containsUserName": {
         "type": "text",
@@ -189,11 +184,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Claves es in cache",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "lastActiveAgo": "Ultim activité: {localizedTimeShort}",
     "@lastActiveAgo": {
         "type": "text",
@@ -340,11 +330,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "tuesday": "Mardí",
-    "@tuesday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "unavailable": "Índisponibil",
     "@unavailable": {
         "type": "text",
@@ -465,11 +450,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Saturdí",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "dateWithYear": "{day}.{month}.{year}",
     "@dateWithYear": {
         "type": "text",
@@ -491,11 +471,6 @@
     },
     "devices": "Aparates",
     "@devices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Venerdí",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -529,11 +504,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "thursday": "Jovedí",
-    "@thursday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "username": "Nómine de usator",
     "@username": {
         "type": "text",
@@ -541,11 +511,6 @@
     },
     "verify": "Verificar",
     "@verify": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "Mercurdí",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -680,11 +645,6 @@
     "@repeatPassword": {},
     "addEmail": "Adjunter e-post",
     "@addEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "archivedRoom": "Archivat chambre",
-    "@archivedRoom": {
         "type": "text",
         "placeholders": {}
     },
@@ -970,8 +930,6 @@
     },
     "updateAvailable": "Un actualisament de FluffyChat es disponibil",
     "@updateAvailable": {},
-    "yourUserId": "Vor ID de usator:",
-    "@yourUserId": {},
     "editWidgets": "Modificar li widgets",
     "@editWidgets": {},
     "widgetEtherpad": "Textual nota",
@@ -1165,11 +1123,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "monday": "Lunedí",
-    "@monday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "newGroup": "Crear un gruppe",
     "@newGroup": {},
     "newSpace": "Crear un spacie",
@@ -1215,11 +1168,6 @@
     },
     "status": "Statu",
     "@status": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sunday": "Soledí",
-    "@sunday": {
         "type": "text",
         "placeholders": {}
     },

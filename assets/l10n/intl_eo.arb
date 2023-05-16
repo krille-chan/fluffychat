@@ -81,11 +81,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Arĥivita ĉambro",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Ĉu gastoj rajtas aliĝi",
     "@areGuestsAllowedToJoin": {
         "type": "text",
@@ -533,11 +528,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "crossSigningEnabled": "Delegaj subskriboj estas ŝaltitaj",
-    "@crossSigningEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
     "currentlyActive": "Nun aktiva",
     "@currentlyActive": {
         "type": "text",
@@ -620,11 +610,6 @@
     },
     "directChats": "Rektaj babiloj",
     "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Trovi",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -791,11 +776,6 @@
     },
     "forward": "Plusendi",
     "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "friday": "Vendredo",
-    "@friday": {
         "type": "text",
         "placeholders": {}
     },
@@ -989,11 +969,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "keysCached": "Ŝlosiloj estas kaŝmemoritaj",
-    "@keysCached": {
-        "type": "text",
-        "placeholders": {}
-    },
     "kicked": "{username} forpelis uzanton {targetName}",
     "@kicked": {
         "type": "text",
@@ -1115,11 +1090,6 @@
     },
     "moderator": "Reguligisto",
     "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "monday": "Lundo",
-    "@monday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1503,11 +1473,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "saturday": "Sabato",
-    "@saturday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "saveFile": "Konservi dosieron",
     "@saveFile": {
         "type": "text",
@@ -1742,11 +1707,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "sunday": "Dimanĉo",
-    "@sunday": {
-        "type": "text",
-        "placeholders": {}
-    },
     "synchronizingPleaseWait": "Spegulante… Bonvolu atendi.",
     "@synchronizingPleaseWait": {
         "type": "text",
@@ -1764,16 +1724,6 @@
     },
     "theyMatch": "Ili akordas",
     "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thisRoomHasBeenArchived": "Ĉi tiu ĉambro arĥiviĝis.",
-    "@thisRoomHasBeenArchived": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "thursday": "Ĵaŭdo",
-    "@thursday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1810,11 +1760,6 @@
     },
     "tryToSendAgain": "Reprovi sendi",
     "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tuesday": "Mardo",
-    "@tuesday": {
         "type": "text",
         "placeholders": {}
     },
@@ -1985,11 +1930,6 @@
     },
     "warning": "Averto!",
     "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wednesday": "Merkredo",
-    "@wednesday": {
         "type": "text",
         "placeholders": {}
     },

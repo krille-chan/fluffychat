@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -59,22 +60,8 @@ extension DateTimeExtension on DateTime {
     if (sameDay) {
       return localizedTimeOfDay(context);
     } else if (sameWeek) {
-      switch (weekday) {
-        case 1:
-          return L10n.of(context)!.monday;
-        case 2:
-          return L10n.of(context)!.tuesday;
-        case 3:
-          return L10n.of(context)!.wednesday;
-        case 4:
-          return L10n.of(context)!.thursday;
-        case 5:
-          return L10n.of(context)!.friday;
-        case 6:
-          return L10n.of(context)!.saturday;
-        case 7:
-          return L10n.of(context)!.sunday;
-      }
+      return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
+          .format(this);
     } else if (sameYear) {
       return L10n.of(context)!.dateWithoutYear(
         month.toString().padLeft(2, '0'),

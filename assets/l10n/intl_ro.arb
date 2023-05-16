@@ -61,11 +61,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "archivedRoom": "Grup arhivat",
-    "@archivedRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
     "areGuestsAllowedToJoin": "Vizitatorii \"guest\" se pot alătura",
     "@areGuestsAllowedToJoin": {
         "type": "text",
