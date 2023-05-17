@@ -33,11 +33,14 @@ dependencies:
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
   flutter_foreground_task: ^3.10.0
+  flutter_highlighter: ^0.1.1
+  flutter_html: ^3.0.0-beta.1
+  flutter_linkify: ^6.0.0
   flutter_local_notifications: ^12.0.2
   flutter_localizations:
     sdk: flutter
   flutter_map: ^3.1.0
-  flutter_matrix_html: ^1.1.0
+  flutter_math_fork: ^0.7.1
   flutter_olm: ^1.2.0
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
@@ -59,7 +62,6 @@ dependencies:
   latlong2: ^0.8.1
   matrix: ^0.20.1
   matrix_homeserver_recommendations: ^0.3.0
-  matrix_link_text: ^1.0.2
   native_imaging: ^0.1.0
   package_info_plus: ^4.0.0
   path_provider: ^2.0.9
@@ -143,12 +145,6 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # null safety
-  flutter_math_fork: ">=0.7.0"
-  flutter_matrix_html:
-    git:
-      url: https://github.com/Sorunome/flutter_matrix_html.git
-      ref: krille/fix-trying-modify-unmodifiable-list
   # fake secure storage plugin for Windows
   # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
   flutter_secure_storage_windows:
@@ -165,11 +161,6 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
-  # https://github.com/Sorunome/matrix_link_text/pull/2
-  matrix_link_text:
-    git:
-      url: https://github.com/TheOneWithTheBraid/matrix_link_text.git
-      ref: 9b4d5c28dc602c17757d0eb689aafffe02719f26
   # blocked upgrade of package_info_plus for null safety
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203
   wakelock_windows:

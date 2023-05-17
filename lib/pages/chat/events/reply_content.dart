@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../config/app_config.dart';
-import 'html_message.dart';
 
 class ReplyContent extends StatelessWidget {
   final Event replyEvent;
@@ -26,47 +25,23 @@ class ReplyContent extends StatelessWidget {
     final displayEvent =
         timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    if (AppConfig.renderHtml &&
-        [EventTypes.Message, EventTypes.Encrypted]
-            .contains(displayEvent.type) &&
-        [MessageTypes.Text, MessageTypes.Notice, MessageTypes.Emote]
-            .contains(displayEvent.messageType) &&
-        !displayEvent.redacted &&
-        displayEvent.content['format'] == 'org.matrix.custom.html' &&
-        displayEvent.content['formatted_body'] is String) {
-      String? html = displayEvent.content['formatted_body'];
-      if (displayEvent.messageType == MessageTypes.Emote) {
-        html = '* $html';
-      }
-      replyBody = HtmlMessage(
-        html: html!,
-        defaultTextStyle: TextStyle(
-          color: ownMessage
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.onBackground,
-          fontSize: fontSize,
-        ),
-        maxLines: 1,
-        room: displayEvent.room,
-        emoteSize: fontSize * 1.5,
-      );
-    } else {
-      replyBody = Text(
-        displayEvent.calcLocalizedBodyFallback(
-          MatrixLocals(L10n.of(context)!),
-          withSenderNamePrefix: false,
-          hideReply: true,
-        ),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 1,
-        style: TextStyle(
-          color: ownMessage
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.onBackground,
-          fontSize: fontSize,
-        ),
-      );
-    }
+
+    replyBody = Text(
+      displayEvent.calcLocalizedBodyFallback(
+        MatrixLocals(L10n.of(context)!),
+        withSenderNamePrefix: false,
+        hideReply: true,
+      ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: TextStyle(
+        color: ownMessage
+            ? Theme.of(context).colorScheme.onPrimary
+            : Theme.of(context).colorScheme.onBackground,
+        fontSize: fontSize,
+      ),
+    );
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[

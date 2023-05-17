@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix_link_text/link_text.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -101,7 +101,7 @@ class PinnedEvents extends StatelessWidget {
                         hideReply: true,
                       ),
                       builder: (context, snapshot) {
-                        return LinkText(
+                        return Linkify(
                           text: snapshot.data ??
                               event.calcLocalizedBodyFallback(
                                 MatrixLocals(L10n.of(context)!),
@@ -109,7 +109,7 @@ class PinnedEvents extends StatelessWidget {
                                 hideReply: true,
                               ),
                           maxLines: 2,
-                          textStyle: TextStyle(
+                          style: TextStyle(
                             color:
                                 Theme.of(context).colorScheme.onSurfaceVariant,
                             overflow: TextOverflow.ellipsis,
@@ -126,10 +126,8 @@ class PinnedEvents extends StatelessWidget {
                             decorationColor:
                                 Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
-                          beforeLaunch: (url) {
-                            UrlLauncher(context, url.toString()).launchUrl();
-                            return false;
-                          },
+                          onOpen: (url) =>
+                              UrlLauncher(context, url.url).launchUrl(),
                         );
                       },
                     ),
