@@ -127,7 +127,8 @@ class HtmlMessage extends StatelessWidget {
     'caption',
     'pre',
     'span',
-    'img',
+    // TODO: Implement image extension for Mxc URIs
+    //'img',
     'details',
     'summary'
   };
