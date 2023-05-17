@@ -59,6 +59,15 @@ class HtmlMessage extends StatelessWidget {
         'h4': Style(fontSize: FontSize(fontSize * 1.75)),
         'h5': Style(fontSize: FontSize(fontSize * 1.5)),
         'h6': Style(fontSize: FontSize(fontSize * 1.25)),
+        'blockquote': Style(
+          border: Border(
+            left: BorderSide(
+              width: 3,
+              color: textColor ?? Colors.black,
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 6),
+        ),
         // Otherwise list tiles are all in the same row$$
         'li': Style(display: Display.block),
       },
