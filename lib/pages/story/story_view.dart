@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix_link_text/link_text.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -273,15 +273,13 @@ class StoryView extends StatelessWidget {
                     controller.storyThemeData.alignmentY.toDouble() / 100,
                   ),
                   child: SafeArea(
-                    child: LinkText(
+                    child: Linkify(
                       text: controller.loadingMode
                           ? L10n.of(context)!.loadingPleaseWait
                           : event.content.tryGet<String>('body') ?? '',
                       textAlign: TextAlign.center,
-                      beforeLaunch: (url) {
-                        UrlLauncher(context, url.toString()).launchUrl();
-                        return false;
-                      },
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
                       linkStyle: TextStyle(
                         fontSize: 24,
                         color: Colors.blue.shade50,
@@ -291,7 +289,7 @@ class StoryView extends StatelessWidget {
                             ? null
                             : textShadows,
                       ),
-                      textStyle: TextStyle(
+                      style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
                         shadows: event.messageType == MessageTypes.Text

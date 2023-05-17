@@ -113,30 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  cached_network_image:
-    dependency: transitive
-    description:
-      name: cached_network_image
-      sha256: fd3d0dc1d451f9a252b32d95d3f0c3c487bc41a75eba2e6097cb0b9c71491b15
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.3"
-  cached_network_image_platform_interface:
-    dependency: transitive
-    description:
-      name: cached_network_image_platform_interface
-      sha256: bb2b8403b4ccdc60ef5f25c70dead1f3d32d24b9d6117cfc087f496b178594a7
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
-  cached_network_image_web:
-    dependency: transitive
-    description:
-      name: cached_network_image_web
-      sha256: b8eb814ebfcb4dea049680f8c1ffb2df399e4d03bf7a352c775e26fa06e02fa0
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   callkeep:
     dependency: "direct main"
     description:
@@ -467,14 +443,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.10.0"
-  flutter_highlight:
-    dependency: transitive
+  flutter_highlighter:
+    dependency: "direct main"
     description:
-      name: flutter_highlight
-      sha256: "7b96333867aa07e122e245c033b8ad622e4e3a42a1a2372cbb098a2541d8782c"
+      name: flutter_highlighter
+      sha256: "93173afd47a9ada53f3176371755e7ea4a1065362763976d06d6adfb4d946e10"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.1.1"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      name: flutter_html
+      sha256: "850c07bc6c1ed060d3eb3e88469a598260a13eb45d8978b197c1348e0a2b101f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-beta.1"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -523,6 +507,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  flutter_linkify:
+    dependency: "direct main"
+    description:
+      name: flutter_linkify
+      sha256: "74669e06a8f358fee4512b4320c0b80e51cffc496607931de68d28f099254073"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -569,22 +561,13 @@ packages:
     source: hosted
     version: "3.1.0"
   flutter_math_fork:
-    dependency: "direct overridden"
-    description:
-      name: flutter_math_fork
-      sha256: "012ca684618b74286ab84fcc2f0e8d66b03ad623b8f79aea738f6b9c287f432c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.0"
-  flutter_matrix_html:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/fix-trying-modify-unmodifiable-list"
-      resolved-ref: "97ab2982ff0429167436e15c3ae3c1b23d630c05"
-      url: "https://github.com/Sorunome/flutter_matrix_html.git"
-    source: git
-    version: "1.1.0"
+      name: flutter_math_fork
+      sha256: a143a3a89131b578043ecbdb5e759c1033a1b3e9174f5cd1b979d93f4a7fb41c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.1"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -678,10 +661,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_svg
-      sha256: "6ff9fa12892ae074092de2fa6a9938fb21dbabfdaa2ff57dc697ff912fc8d4b2"
+      sha256: f991fdb1533c3caeee0cdc14b04f50f0c3916f0dbcbc05237ccbe4e3c6b93f3f
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.6"
+    version: "2.0.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -801,14 +784,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.9"
-  highlight:
+  highlighter:
     dependency: transitive
     description:
-      name: highlight
-      sha256: "5353a83ffe3e3eca7df0abfb72dcf3fa66cc56b953728e7113ad4ad88497cf21"
+      name: highlighter
+      sha256: "92180c72b9da8758e1acf39a45aa305a97dcfe2fdc8f3d1d2947c23f2772bfbc"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.1.1"
   hive:
     dependency: "direct main"
     description:
@@ -829,10 +812,10 @@ packages:
     dependency: transitive
     description:
       name: html
-      sha256: "79d498e6d6761925a34ee5ea8fa6dfef38607781d2fa91e37523474282af55cb"
+      sha256: "58e3491f7bf0b6a4ea5110c0c688877460d1a6366731155c4a4580e7ded773e8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.15.2"
+    version: "0.15.3"
   html_unescape:
     dependency: transitive
     description:
@@ -934,14 +917,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.0"
-  isolate:
-    dependency: transitive
-    description:
-      name: isolate
-      sha256: "3554ab10fdeec965d27e0074c913ccb2229887633da080d2b35a6322da14938b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   js:
     dependency: transitive
     description:
@@ -1007,6 +982,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.1"
+  linkify:
+    dependency: transitive
+    description:
+      name: linkify
+      sha256: "4139ea77f4651ab9c315b577da2dd108d9aa0bd84b5d03d33323f1970c645832"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
   lints:
     dependency: transitive
     description:
@@ -1015,6 +998,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  list_counter:
+    dependency: transitive
+    description:
+      name: list_counter
+      sha256: c447ae3dfcd1c55f0152867090e67e219d42fe6d4f2807db4bbe8b8d69912237
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   lists:
     dependency: transitive
     description:
@@ -1071,15 +1062,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
-  matrix_link_text:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "9b4d5c28dc602c17757d0eb689aafffe02719f26"
-      resolved-ref: "9b4d5c28dc602c17757d0eb689aafffe02719f26"
-      url: "https://github.com/TheOneWithTheBraid/matrix_link_text.git"
-    source: git
-    version: "1.1.0"
   meta:
     dependency: transitive
     description:
@@ -1152,14 +1134,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
-  octo_image:
-    dependency: transitive
-    description:
-      name: octo_image
-      sha256: "107f3ed1330006a3bea63615e81cf637433f5135a52466c7caa0e7152bca9143"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   olm:
     dependency: transitive
     description:
@@ -1200,14 +1174,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  path_drawing:
-    dependency: transitive
-    description:
-      name: path_drawing
-      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
@@ -1933,6 +1899,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
+  vector_graphics:
+    dependency: transitive
+    description:
+      name: vector_graphics
+      sha256: ea8d3fc7b2e0f35de38a7465063ecfcf03d8217f7962aa2a6717132cb5d43a79
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.5"
+  vector_graphics_codec:
+    dependency: transitive
+    description:
+      name: vector_graphics_codec
+      sha256: a5eaa5d19e123ad4f61c3718ca1ed921c4e6254238d9145f82aa214955d9aced
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.5"
+  vector_graphics_compiler:
+    dependency: transitive
+    description:
+      name: vector_graphics_compiler
+      sha256: "15edc42f7eaa478ce854eaf1fbb9062a899c0e4e56e775dd73b7f4709c97c4ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.5"
   vector_math:
     dependency: transitive
     description:
