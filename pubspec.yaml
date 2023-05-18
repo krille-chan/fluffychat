@@ -47,7 +47,7 @@ dependencies:
   flutter_secure_storage: ^7.0.1
   flutter_typeahead: ^4.3.2
   flutter_web_auth_2: ^2.1.1
-  flutter_webrtc: ^0.9.30
+  flutter_webrtc: ^0.9.30+hotfix.2
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
   handy_window: ^0.1.9

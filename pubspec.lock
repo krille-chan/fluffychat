@@ -703,10 +703,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_webrtc
-      sha256: "95dd0b832a97ffa28887846bb1d24c7e026b97ec9d57669182abb790c0f53924"
+      sha256: "54d31a29e45ebae28860f2400a9d8353cbff95dffe631c58436661a3e6456324"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.30"
+    version: "0.9.30+hotfix.2"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
