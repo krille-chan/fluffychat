@@ -291,7 +291,6 @@ build_linux_x86:
   tags:
     - docker
     - famedly
-  allow_failure: true
   artifacts:
     when: on_success
     paths:
