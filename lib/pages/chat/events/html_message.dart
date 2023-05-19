@@ -14,13 +14,13 @@ import '../../../utils/url_launcher.dart';
 class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
-  final Color? textColor;
+  final Color textColor;
 
   const HtmlMessage({
     Key? key,
     required this.html,
     required this.room,
-    this.textColor,
+    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -52,24 +52,45 @@ class HtmlMessage extends StatelessWidget {
           margin: Margins.all(0),
           fontSize: FontSize(fontSize),
         ),
-        'a': Style(color: textColor?.withAlpha(150)),
-        'h1': Style(fontSize: FontSize(fontSize * 3)),
-        'h2': Style(fontSize: FontSize(fontSize * 2.5)),
-        'h3': Style(fontSize: FontSize(fontSize * 2)),
-        'h4': Style(fontSize: FontSize(fontSize * 1.75)),
-        'h5': Style(fontSize: FontSize(fontSize * 1.5)),
-        'h6': Style(fontSize: FontSize(fontSize * 1.25)),
+        'a': Style(color: textColor.withAlpha(150)),
+        'h1': Style(
+          fontSize: FontSize(fontSize * 2),
+          lineHeight: LineHeight.number(1.5),
+          fontWeight: FontWeight.w600,
+        ),
+        'h2': Style(
+          fontSize: FontSize(fontSize * 1.75),
+          lineHeight: LineHeight.number(1.5),
+          fontWeight: FontWeight.w500,
+        ),
+        'h3': Style(
+          fontSize: FontSize(fontSize * 1.5),
+          lineHeight: LineHeight.number(1.5),
+        ),
+        'h4': Style(
+          fontSize: FontSize(fontSize * 1.25),
+          lineHeight: LineHeight.number(1.5),
+        ),
+        'h5': Style(
+          fontSize: FontSize(fontSize * 1.25),
+          lineHeight: LineHeight.number(1.5),
+        ),
+        'h6': Style(
+          fontSize: FontSize(fontSize),
+          lineHeight: LineHeight.number(1.5),
+        ),
         'blockquote': Style(
           border: Border(
             left: BorderSide(
               width: 3,
-              color: textColor ?? Colors.black,
+              color: textColor,
             ),
           ),
-          padding: const EdgeInsets.only(left: 6),
+          padding: const EdgeInsets.only(left: 6, bottom: 0),
         ),
-        // Otherwise list tiles are all in the same row$$
-        'li': Style(display: Display.block),
+        'hr': Style(
+          border: Border.all(color: textColor, width: 0.5),
+        ),
       },
       extensions: [
         UserPillExtension(context, room),
