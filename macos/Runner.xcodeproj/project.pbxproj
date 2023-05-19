@@ -447,7 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FluffyChat";
 			};
 			name = Profile;
 		};
@@ -601,7 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FluffyChat";
 			};
 			name = Debug;
 		};
@@ -609,7 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FluffyChat";
 			};
 			name = Release;
 		};
