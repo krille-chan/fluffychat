@@ -459,6 +459,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0-beta.1"
+  flutter_html_table:
+    dependency: "direct main"
+    description:
+      name: flutter_html_table
+      sha256: "0fd718e55dcd280c25b18beb01c491147525e7bebe73d6973b9a7bde9c4dcc9a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0-beta.1"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -507,6 +515,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  flutter_layout_grid:
+    dependency: transitive
+    description:
+      name: flutter_layout_grid
+      sha256: "31728ce6e9c8eaa48f8a3f928a7c308da4b74ab867aec2dc5b80b0c9f9b79d0d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
   flutter_linkify:
     dependency: "direct main"
     description:
@@ -1406,6 +1422,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      sha256: b1c1ac5ce6688d77f65f3375a9abb9319b3cb32486bdc7a1e0fdf004d7ba4e47
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   random_string:
     dependency: transitive
     description:

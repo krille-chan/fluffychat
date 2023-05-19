@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html_table/flutter_html_table.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:matrix/matrix.dart';
 
@@ -91,6 +92,19 @@ class HtmlMessage extends StatelessWidget {
         'hr': Style(
           border: Border.all(color: textColor, width: 0.5),
         ),
+        'table': Style(
+          border: Border.all(color: textColor, width: 0.5),
+        ),
+        'tr': Style(
+          border: Border.all(color: textColor, width: 0.5),
+        ),
+        'td': Style(
+          border: Border.all(color: textColor, width: 0.5),
+          padding: const EdgeInsets.all(2),
+        ),
+        'th': Style(
+          border: Border.all(color: textColor, width: 0.5),
+        ),
       },
       extensions: [
         UserPillExtension(context, room),
@@ -99,6 +113,7 @@ class HtmlMessage extends StatelessWidget {
         MatrixMathExtension(
           style: TextStyle(fontSize: fontSize, color: textColor),
         ),
+        const TableHtmlExtension(),
       ],
       onLinkTap: (url, _, __) => UrlLauncher(context, url).launchUrl(),
       onlyRenderTheseTags: const {
