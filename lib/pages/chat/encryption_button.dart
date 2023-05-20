@@ -20,7 +20,9 @@ class EncryptionButton extends StatelessWidget {
           .where((s) => s.deviceLists != null),
       builder: (context, snapshot) {
         return FutureBuilder<EncryptionHealthState>(
-          future: room.calcEncryptionHealthState(),
+          future: room.encrypted
+              ? room.calcEncryptionHealthState()
+              : Future.value(EncryptionHealthState.allVerified),
           builder: (BuildContext context, snapshot) => IconButton(
             tooltip: room.encrypted
                 ? L10n.of(context)!.encrypted
