@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
@@ -105,6 +106,12 @@ class HtmlMessage extends StatelessWidget {
         'th': Style(
           border: Border.all(color: textColor, width: 0.5),
         ),
+        'li': Style(
+          // https://github.com/Sub6Resources/flutter_html/issues/1280
+          // Workaround for list items printed in the same line. This will
+          // remove the dots/numbers. Hours wasted: 4
+          display: Display.block,
+        ),
       },
       extensions: [
         UserPillExtension(context, room),
@@ -114,6 +121,9 @@ class HtmlMessage extends StatelessWidget {
           style: TextStyle(fontSize: fontSize, color: textColor),
         ),
         const TableHtmlExtension(),
+        SpoilerExtension(textColor: textColor),
+        const ImageExtension(),
+        FontColorExtension(),
       ],
       onLinkTap: (url, _, __) => UrlLauncher(context, url).launchUrl(),
       onlyRenderTheseTags: const {
@@ -163,11 +173,133 @@ class HtmlMessage extends StatelessWidget {
     'caption',
     'pre',
     'span',
-    // TODO: Implement image extension for Mxc URIs
-    //'img',
+    'img',
     'details',
     'summary'
   };
+}
+
+class FontColorExtension extends HtmlExtension {
+  static const String colorAttribute = 'color';
+  static const String mxColorAttribute = 'data-mx-color';
+  static const String bgColorAttribute = 'data-mx-bg-color';
+
+  @override
+  Set<String> get supportedTags => {'font', 'span'};
+
+  @override
+  bool matches(ExtensionContext context) {
+    if (!supportedTags.contains(context.elementName)) return false;
+    return context.element?.attributes.keys.any(
+          {
+            colorAttribute,
+            mxColorAttribute,
+            bgColorAttribute,
+          }.contains,
+        ) ??
+        false;
+  }
+
+  Color? hexToColor(String? hexCode) {
+    if (hexCode == null) return null;
+    if (hexCode.startsWith('#')) hexCode = hexCode.substring(1);
+    if (hexCode.length == 6) hexCode = 'FF$hexCode';
+    final colorValue = int.tryParse(hexCode, radix: 16);
+    return colorValue == null ? null : Color(colorValue);
+  }
+
+  @override
+  InlineSpan build(
+    ExtensionContext context,
+    Map<StyledElement, InlineSpan> Function() parseChildren,
+  ) {
+    final colorText = context.element?.attributes[colorAttribute] ??
+        context.element?.attributes[mxColorAttribute];
+    final bgColor = context.element?.attributes[bgColorAttribute];
+    return TextSpan(
+      style: TextStyle(
+        color: hexToColor(colorText),
+        backgroundColor: hexToColor(bgColor),
+      ),
+      text: context.innerHtml,
+    );
+  }
+}
+
+class ImageExtension extends HtmlExtension {
+  final double defaultDimension;
+
+  const ImageExtension({this.defaultDimension = 64});
+
+  @override
+  Set<String> get supportedTags => {'img'};
+
+  @override
+  InlineSpan build(
+    ExtensionContext context,
+    Map<StyledElement, InlineSpan> Function() parseChildren,
+  ) {
+    final mxcUrl = Uri.tryParse(context.attributes['href'] ?? '');
+    if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
+      return TextSpan(text: context.attributes['alt']);
+    }
+
+    final width =
+        double.tryParse(context.attributes['width'] ?? '') ?? defaultDimension;
+    final height =
+        double.tryParse(context.attributes['height'] ?? '') ?? defaultDimension;
+
+    return WidgetSpan(
+      child: MxcImage(
+        uri: mxcUrl,
+        width: width,
+        height: height,
+      ),
+    );
+  }
+}
+
+class SpoilerExtension extends HtmlExtension {
+  final Color textColor;
+
+  const SpoilerExtension({required this.textColor});
+
+  @override
+  Set<String> get supportedTags => {'span'};
+
+  static const String customDataAttribute = 'data-mx-spoiler';
+
+  @override
+  bool matches(ExtensionContext context) {
+    if (context.elementName != 'span') return false;
+    return context.element?.attributes.containsKey(customDataAttribute) ??
+        false;
+  }
+
+  @override
+  InlineSpan build(
+    ExtensionContext context,
+    Map<StyledElement, InlineSpan> Function() parseChildren,
+  ) {
+    var obscure = true;
+    return WidgetSpan(
+      child: StatefulBuilder(
+        builder: (context, setState) {
+          return InkWell(
+            onTap: () => setState(() {
+              obscure = !obscure;
+            }),
+            child: RichText(
+              text: TextSpan(
+                style: obscure ? TextStyle(backgroundColor: textColor) : null,
+                children: parseChildren().values.toList(),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 class MatrixMathExtension extends HtmlExtension {
