@@ -239,21 +239,23 @@ class ImageExtension extends HtmlExtension {
     ExtensionContext context,
     Map<StyledElement, InlineSpan> Function() parseChildren,
   ) {
-    final mxcUrl = Uri.tryParse(context.attributes['href'] ?? '');
+    final mxcUrl = Uri.tryParse(context.attributes['src'] ?? '');
     if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
       return TextSpan(text: context.attributes['alt']);
     }
 
-    final width =
-        double.tryParse(context.attributes['width'] ?? '') ?? defaultDimension;
-    final height =
-        double.tryParse(context.attributes['height'] ?? '') ?? defaultDimension;
+    final width = double.tryParse(context.attributes['width'] ?? '');
+    final height = double.tryParse(context.attributes['height'] ?? '');
 
     return WidgetSpan(
-      child: MxcImage(
-        uri: mxcUrl,
-        width: width,
-        height: height,
+      child: SizedBox(
+        width: width ?? height ?? defaultDimension,
+        height: height ?? width ?? defaultDimension,
+        child: MxcImage(
+          uri: mxcUrl,
+          width: width ?? height ?? defaultDimension,
+          height: height ?? width ?? defaultDimension,
+        ),
       ),
     );
   }
