@@ -129,6 +129,7 @@ class ChatDetailsView extends StatelessWidget {
                                 text: room.topic.isEmpty
                                     ? L10n.of(context)!.addGroupDescription
                                     : room.topic,
+                                options: const LinkifyOptions(humanize: false),
                                 linkStyle:
                                     const TextStyle(color: Colors.blueAccent),
                                 style: TextStyle(

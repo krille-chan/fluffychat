@@ -108,6 +108,7 @@ class PinnedEvents extends StatelessWidget {
                                 withSenderNamePrefix: true,
                                 hideReply: true,
                               ),
+                          options: const LinkifyOptions(humanize: false),
                           maxLines: 2,
                           style: TextStyle(
                             color:

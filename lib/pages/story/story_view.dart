@@ -278,6 +278,7 @@ class StoryView extends StatelessWidget {
                           ? L10n.of(context)!.loadingPleaseWait
                           : event.content.tryGet<String>('body') ?? '',
                       textAlign: TextAlign.center,
+                      options: const LinkifyOptions(humanize: false),
                       onOpen: (url) =>
                           UrlLauncher(context, url.url).launchUrl(),
                       linkStyle: TextStyle(

@@ -241,6 +241,7 @@ class MessageContent extends StatelessWidget {
                     decoration:
                         event.redacted ? TextDecoration.lineThrough : null,
                   ),
+                  options: const LinkifyOptions(humanize: false),
                   linkStyle: TextStyle(
                     color: textColor.withAlpha(150),
                     fontSize: bigEmotes ? fontSize * 3 : fontSize,
