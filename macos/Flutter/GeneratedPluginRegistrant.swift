@@ -23,7 +23,7 @@ import package_info_plus
 import path_provider_foundation
 import record_macos
 import share_plus
-import shared_preferences_foundation
+import shared_preferences_macos
 import sqflite
 import url_launcher_macos
 import video_compress
