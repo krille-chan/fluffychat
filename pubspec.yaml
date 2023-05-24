@@ -152,6 +152,8 @@ dependency_overrides:
     git:
       url: https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git
       ref: main
+  flutter_webrtc:
+    git: https://github.com/krille-chan/flutter-webrtc.git
   geolocator_android:
     hosted:
       name: geolocator_android

@@ -8,7 +8,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   emoji_picker_flutter
   flutter_secure_storage_linux
-  flutter_webrtc
   handy_window
   record_linux
   url_launcher_linux
