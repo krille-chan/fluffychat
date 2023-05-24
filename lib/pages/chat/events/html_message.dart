@@ -114,8 +114,7 @@ class HtmlMessage extends StatelessWidget {
         ),
       },
       extensions: [
-        UserPillExtension(context, room),
-        RoomPillExtension(context, room.client),
+        RoomPillExtension(context, room),
         CodeExtension(fontSize: fontSize),
         MatrixMathExtension(
           style: TextStyle(fontSize: fontSize, color: textColor),
@@ -378,24 +377,21 @@ class CodeExtension extends HtmlExtension {
       );
 }
 
-class UserPillExtension extends HtmlExtension {
+class RoomPillExtension extends HtmlExtension {
   final Room room;
   final BuildContext context;
 
-  UserPillExtension(this.context, this.room);
+  RoomPillExtension(this.context, this.room);
   @override
   Set<String> get supportedTags => {'a'};
 
   @override
   bool matches(ExtensionContext context) {
     if (context.elementName != 'a') return false;
-    final href = context.element?.attributes['href'];
-    if (href == null) return false;
-    final uri = Uri.tryParse(href);
-    if (uri == null || uri.host != 'matrix.to') return false;
-    final userId = uri.fragment.split('/').last;
-    if (userId.sigil != '@') return false;
-    return true;
+    final userId = context.element?.attributes['href']
+        ?.parseIdentifierIntoParts()
+        ?.primaryIdentifier;
+    return userId != null;
   }
 
   @override
@@ -403,83 +399,40 @@ class UserPillExtension extends HtmlExtension {
     ExtensionContext context,
     Map<StyledElement, InlineSpan> Function() parseChildren,
   ) {
-    final href = context.element!.attributes['href']!;
-    final uri = Uri.parse(href);
-    final userId = uri.fragment.split('/').last;
-    final user = room.unsafeGetUserFromMemoryOrFallback(userId);
-    return WidgetSpan(
-      child: MatrixPill(
-        name: user.calcDisplayname(),
-        avatar: user.avatarUrl,
-        uri: href,
-        outerContext: this.context,
-      ),
-    );
-  }
-}
-
-class RoomPillExtension extends HtmlExtension {
-  final Client client;
-  final BuildContext context;
-
-  RoomPillExtension(this.context, this.client);
-  @override
-  Set<String> get supportedTags => {'a'};
-
-  @override
-  bool matches(ExtensionContext context) {
-    if (context.elementName != 'a') return false;
     final href = context.element?.attributes['href'];
-    if (href == null) return false;
-    final uri = Uri.tryParse(href);
-    if (uri == null || uri.host != 'matrix.to') return false;
-    final roomId = Uri.decodeComponent(uri.fragment.split('/').last);
-    if (!{'#', '!'}.contains(roomId.sigil)) return false;
-    return true;
-  }
-
-  @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) {
-    final href = context.element!.attributes['href']!;
-    final uri = Uri.parse(href);
-    final roomId = Uri.decodeComponent(uri.fragment.split('/').last);
-
-    final room = roomId.sigil == '!'
-        ? client.getRoomById(roomId)
-        : client.getRoomByAlias(roomId);
-    if (room != null) {
+    final matrixId = href?.parseIdentifierIntoParts()?.primaryIdentifier;
+    if (href == null || matrixId == null) {
+      return TextSpan(text: context.innerHtml);
+    }
+    if (matrixId.sigil == '@') {
+      final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
       return WidgetSpan(
         child: MatrixPill(
-          name: room.getLocalizedDisplayname(),
-          avatar: room.avatar,
+          key: Key('user_pill_$matrixId'),
+          name: user.calcDisplayname(),
+          avatar: user.avatarUrl,
           uri: href,
           outerContext: this.context,
         ),
       );
     }
-
-    return WidgetSpan(
-      child: FutureBuilder<QueryPublicRoomsResponse>(
-        future: client.queryPublicRooms(
-          server: roomId.domain,
-          filter: PublicRoomQueryFilter(
-            genericSearchTerm: roomId,
-          ),
-        ),
-        builder: (context, snapshot) {
-          final room = snapshot.data;
-          return MatrixPill(
-            name: room?.chunk.singleOrNull?.name ?? roomId,
-            avatar: room?.chunk.singleOrNull?.avatarUrl,
+    if (matrixId.sigil == '#' || matrixId.sigil == '!') {
+      final room = matrixId.sigil == '!'
+          ? this.room.client.getRoomById(matrixId)
+          : this.room.client.getRoomByAlias(matrixId);
+      if (room != null) {
+        return WidgetSpan(
+          child: MatrixPill(
+            name: room.getLocalizedDisplayname(),
+            avatar: room.avatar,
             uri: href,
             outerContext: this.context,
-          );
-        },
-      ),
-    );
+          ),
+        );
+      }
+    }
+
+    return TextSpan(text: context.innerHtml);
   }
 }
 
