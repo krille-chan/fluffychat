@@ -1000,7 +1000,7 @@ packages:
     source: hosted
     version: "0.8.1"
   linkify:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: linkify
       sha256: "4139ea77f4651ab9c315b577da2dd108d9aa0bd84b5d03d33323f1970c645832"

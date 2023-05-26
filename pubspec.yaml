@@ -61,6 +61,7 @@ dependencies:
   just_audio_mpv: ^0.1.6
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
+  linkify: ^5.0.0
   matrix: ^0.20.1
   matrix_homeserver_recommendations: ^0.3.0
   native_imaging: ^0.1.0

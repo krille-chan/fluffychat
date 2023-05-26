@@ -6,6 +6,7 @@ import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html_table/flutter_html_table.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:linkify/linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -45,16 +46,30 @@ class HtmlMessage extends StatelessWidget {
 
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
 
+    final linkifiedRenderHtml = linkify(
+      renderHtml,
+      options: const LinkifyOptions(humanize: false),
+    ).map(
+      (element) {
+        if (element is! UrlElement || element.text.contains('>')) {
+          return element.text;
+        }
+        return '<a href="${element.url}">${element.text}</a>';
+      },
+    ).join('');
+
+    final linkColor = textColor.withAlpha(150);
+
     // there is no need to pre-validate the html, as we validate it while rendering
     return Html(
-      data: renderHtml,
+      data: linkifiedRenderHtml,
       style: {
         '*': Style(
           color: textColor,
           margin: Margins.all(0),
           fontSize: FontSize(fontSize),
         ),
-        'a': Style(color: textColor.withAlpha(150)),
+        'a': Style(color: linkColor, textDecorationColor: linkColor),
         'h1': Style(
           fontSize: FontSize(fontSize * 2),
           lineHeight: LineHeight.number(1.5),
@@ -369,7 +384,10 @@ class CodeExtension extends HtmlExtension {
                       .last ??
                   'md',
               theme: shadesOfPurpleTheme,
-              padding: const EdgeInsets.all(6),
+              padding: EdgeInsets.symmetric(
+                horizontal: 6,
+                vertical: context.element?.parent?.localName == 'pre' ? 6 : 0,
+              ),
               textStyle: TextStyle(fontSize: fontSize),
             ),
           ),
