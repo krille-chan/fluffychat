@@ -359,13 +359,12 @@ upload_android:
   extends: .release
   script:
     - |
-      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/android/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
+      curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file build/app/outputs/apk/release/app-release.apk ${PACKAGE_REGISTRY_URL}/fluffychat.apk
 
 upload_web:
   extends: .release
   script:
-    # workaround bug of Flutter engine
-    - tar czf package.tar.gz --ignore-failed-read -C build/web/ .
+    - tar czf package.tar.gz -C build/web/ .
     - |
       curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.tar.gz ${PACKAGE_REGISTRY_URL}/fluffychat-web.tar.gz
 
