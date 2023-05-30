@@ -51,7 +51,10 @@ class HtmlMessage extends StatelessWidget {
       options: const LinkifyOptions(humanize: false),
     ).map(
       (element) {
-        if (element is! UrlElement || element.text.contains('>')) {
+        if (element is! UrlElement ||
+            element.text.contains('<') ||
+            element.text.contains('>') ||
+            element.text.contains('"')) {
           return element.text;
         }
         return '<a href="${element.url}">${element.text}</a>';
