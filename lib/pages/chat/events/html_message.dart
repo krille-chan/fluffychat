@@ -49,17 +49,20 @@ class HtmlMessage extends StatelessWidget {
     final linkifiedRenderHtml = linkify(
       renderHtml,
       options: const LinkifyOptions(humanize: false),
-    ).map(
-      (element) {
-        if (element is! UrlElement ||
-            element.text.contains('<') ||
-            element.text.contains('>') ||
-            element.text.contains('"')) {
-          return element.text;
-        }
-        return '<a href="${element.url}">${element.text}</a>';
-      },
-    ).join('');
+    )
+        .map(
+          (element) {
+            if (element is! UrlElement ||
+                element.text.contains('<') ||
+                element.text.contains('>') ||
+                element.text.contains('"')) {
+              return element.text;
+            }
+            return '<a href="${element.url}">${element.text}</a>';
+          },
+        )
+        .join('')
+        .replaceAll('\n', '');
 
     final linkColor = textColor.withAlpha(150);
 
