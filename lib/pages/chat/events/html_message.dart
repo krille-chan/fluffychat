@@ -422,6 +422,11 @@ class RoomPillExtension extends HtmlExtension {
     return userId != null;
   }
 
+  static final _cachedUsers = <String, User?>{};
+
+  Future<User?> _fetchUser(String matrixId) async =>
+      _cachedUsers[room.id + matrixId] ??= await room.requestUser(matrixId);
+
   @override
   InlineSpan build(
     ExtensionContext context,
@@ -433,14 +438,18 @@ class RoomPillExtension extends HtmlExtension {
       return TextSpan(text: context.innerHtml);
     }
     if (matrixId.sigil == '@') {
-      final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
       return WidgetSpan(
-        child: MatrixPill(
-          key: Key('user_pill_$matrixId'),
-          name: user.calcDisplayname(),
-          avatar: user.avatarUrl,
-          uri: href,
-          outerContext: this.context,
+        child: FutureBuilder<User?>(
+          future: _fetchUser(matrixId),
+          builder: (context, snapshot) => MatrixPill(
+            key: Key('user_pill_$matrixId'),
+            name: _cachedUsers[room.id + matrixId]?.calcDisplayname() ??
+                matrixId.localpart ??
+                matrixId,
+            avatar: _cachedUsers[room.id + matrixId]?.avatarUrl,
+            uri: href,
+            outerContext: this.context,
+          ),
         ),
       );
     }
