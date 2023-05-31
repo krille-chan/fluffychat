@@ -195,7 +195,11 @@ class HtmlMessage extends StatelessWidget {
     'span',
     'img',
     'details',
-    'summary'
+    'summary',
+    // Not in the allowlist of the matrix spec yet but should be harmless:
+    'ruby',
+    'rp',
+    'rt',
   };
 }
 
