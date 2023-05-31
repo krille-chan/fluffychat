@@ -290,7 +290,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Future<void> _getTimeline({
     String? eventContextId,
-    Duration timeout = const Duration(seconds: 5),
+    Duration timeout = const Duration(seconds: 7),
   }) async {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;
@@ -305,19 +305,22 @@ class ChatController extends State<ChatPageWithRoom> {
             eventContextId: eventContextId,
           )
           .timeout(timeout);
-    } on TimeoutException catch (_) {
+    } catch (e, s) {
+      Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
       timeline = await room.getTimeline(onUpdate: updateView);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.jumpToLastReadMessage),
-          action: SnackBarAction(
-            label: L10n.of(context)!.jump,
-            onPressed: () => scrollToEventId(eventContextId!),
+      if (e is TimeoutException || e is IOException) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context)!.jumpToLastReadMessage),
+            action: SnackBarAction(
+              label: L10n.of(context)!.jump,
+              onPressed: () => scrollToEventId(eventContextId!),
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (timeline!.events.isNotEmpty) {
