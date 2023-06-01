@@ -109,7 +109,7 @@ class HtmlMessage extends StatelessWidget {
               color: textColor,
             ),
           ),
-          padding: const EdgeInsets.only(left: 6, bottom: 0),
+          padding: HtmlPaddings.only(left: 6, bottom: 0),
         ),
         'hr': Style(
           border: Border.all(color: textColor, width: 0.5),
@@ -122,7 +122,7 @@ class HtmlMessage extends StatelessWidget {
         ),
         'td': Style(
           border: Border.all(color: textColor, width: 0.5),
-          padding: const EdgeInsets.all(2),
+          padding: HtmlPaddings.all(2),
         ),
         'th': Style(
           border: Border.all(color: textColor, width: 0.5),
@@ -235,7 +235,6 @@ class FontColorExtension extends HtmlExtension {
   @override
   InlineSpan build(
     ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
   ) {
     final colorText = context.element?.attributes[colorAttribute] ??
         context.element?.attributes[mxColorAttribute];
@@ -259,10 +258,7 @@ class ImageExtension extends HtmlExtension {
   Set<String> get supportedTags => {'img'};
 
   @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) {
+  InlineSpan build(ExtensionContext context) {
     final mxcUrl = Uri.tryParse(context.attributes['src'] ?? '');
     if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
       return TextSpan(text: context.attributes['alt']);
@@ -304,11 +300,9 @@ class SpoilerExtension extends HtmlExtension {
   }
 
   @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) {
+  InlineSpan build(ExtensionContext context) {
     var obscure = true;
+    final children = context.inlineSpanChildren;
     return WidgetSpan(
       child: StatefulBuilder(
         builder: (context, setState) {
@@ -319,7 +313,7 @@ class SpoilerExtension extends HtmlExtension {
             child: RichText(
               text: TextSpan(
                 style: obscure ? TextStyle(backgroundColor: textColor) : null,
-                children: parseChildren().values.toList(),
+                children: children,
               ),
             ),
           );
@@ -344,10 +338,7 @@ class MatrixMathExtension extends HtmlExtension {
   }
 
   @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) {
+  InlineSpan build(ExtensionContext context) {
     final data = context.element?.attributes['data-mx-maths'] ?? '';
     return WidgetSpan(
       child: Math.tex(
@@ -373,11 +364,7 @@ class CodeExtension extends HtmlExtension {
   Set<String> get supportedTags => {'code'};
 
   @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) =>
-      WidgetSpan(
+  InlineSpan build(ExtensionContext context) => WidgetSpan(
         child: Material(
           clipBehavior: Clip.hardEdge,
           borderRadius: BorderRadius.circular(4),
@@ -428,10 +415,7 @@ class RoomPillExtension extends HtmlExtension {
       _cachedUsers[room.id + matrixId] ??= await room.requestUser(matrixId);
 
   @override
-  InlineSpan build(
-    ExtensionContext context,
-    Map<StyledElement, InlineSpan> Function() parseChildren,
-  ) {
+  InlineSpan build(ExtensionContext context) {
     final href = context.element?.attributes['href'];
     final matrixId = href?.parseIdentifierIntoParts()?.primaryIdentifier;
     if (href == null || matrixId == null) {
