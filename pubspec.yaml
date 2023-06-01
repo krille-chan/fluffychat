@@ -34,7 +34,7 @@ dependencies:
   flutter_cache_manager: ^3.3.0
   flutter_foreground_task: ^3.10.0
   flutter_highlighter: ^0.1.1
-  flutter_html: ^3.0.0-beta.1
+  flutter_html: ^3.0.0-beta.2
   flutter_html_table: ^3.0.0-beta.1
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^12.0.2

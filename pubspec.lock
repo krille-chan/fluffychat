@@ -455,10 +455,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_html
-      sha256: "850c07bc6c1ed060d3eb3e88469a598260a13eb45d8978b197c1348e0a2b101f"
+      sha256: "02ad69e813ecfc0728a455e4bf892b9379983e050722b1dce00192ee2e41d1ee"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0-beta.1"
+    version: "3.0.0-beta.2"
   flutter_html_table:
     dependency: "direct main"
     description:
