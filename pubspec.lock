@@ -463,10 +463,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_html_table
-      sha256: "0fd718e55dcd280c25b18beb01c491147525e7bebe73d6973b9a7bde9c4dcc9a"
+      sha256: e20c72d67ea2512e7b4949f6f7dd13d004e773b0f82c586a21f895e6bd90383c
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0-beta.1"
+    version: "3.0.0-beta.2"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
