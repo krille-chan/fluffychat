@@ -127,12 +127,6 @@ class HtmlMessage extends StatelessWidget {
         'th': Style(
           border: Border.all(color: textColor, width: 0.5),
         ),
-        'li': Style(
-          // https://github.com/Sub6Resources/flutter_html/issues/1280
-          // Workaround for list items printed in the same line. This will
-          // remove the dots/numbers. Hours wasted: 4
-          display: Display.block,
-        ),
       },
       extensions: [
         RoomPillExtension(context, room),
