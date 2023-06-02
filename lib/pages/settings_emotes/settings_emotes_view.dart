@@ -212,16 +212,20 @@ class EmotesSettingsView extends StatelessWidget {
 
 class _EmoteImage extends StatelessWidget {
   final Uri mxc;
+
   const _EmoteImage(this.mxc);
 
   @override
   Widget build(BuildContext context) {
     const size = 38.0;
-    return MxcImage(
-      uri: mxc,
-      fit: BoxFit.contain,
-      width: size,
-      height: size,
+    return SizedBox.square(
+      dimension: size,
+      child: MxcImage(
+        uri: mxc,
+        fit: BoxFit.contain,
+        width: size,
+        height: size,
+      ),
     );
   }
 }

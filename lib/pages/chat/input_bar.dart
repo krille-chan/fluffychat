@@ -263,6 +263,8 @@ class InputBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             MxcImage(
+              // ensure proper ordering ...
+              key: ValueKey(suggestion['name']),
               uri: suggestion['mxc'] is String
                   ? Uri.parse(suggestion['mxc'] ?? '')
                   : null,
