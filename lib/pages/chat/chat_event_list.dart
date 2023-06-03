@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -54,13 +53,10 @@ class ChatEventList extends StatelessWidget {
               );
             }
             if (controller.timeline!.canRequestFuture) {
-              Center(
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  ),
+              return Center(
+                child: IconButton(
                   onPressed: controller.requestFuture,
-                  child: Text(L10n.of(context)!.loadMore),
+                  icon: const Icon(Icons.refresh_outlined),
                 ),
               );
             }
@@ -81,13 +77,10 @@ class ChatEventList extends StatelessWidget {
               );
             }
             if (controller.timeline!.canRequestHistory) {
-              Center(
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  ),
+              return Center(
+                child: IconButton(
                   onPressed: controller.requestHistory,
-                  child: Text(L10n.of(context)!.loadMore),
+                  icon: const Icon(Icons.refresh_outlined),
                 ),
               );
             }
