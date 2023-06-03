@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -29,7 +30,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             onPressed: () =>
                 VRouter.of(context).toSegments(['rooms', controller.roomId!]),
           ),
-          title: Text(L10n.of(context)!.endToEndEncryption),
+          title: Text(L10n.of(context)!.encryption),
           actions: [
             TextButton(
               onPressed: () => launchUrlString(AppConfig.encryptionTutorial),
@@ -50,13 +51,12 @@ class ChatEncryptionSettingsView extends StatelessWidget {
               value: room.encrypted,
               onChanged: controller.enableEncryption,
             ),
-            Center(
-              child: Image.asset(
-                'assets/encryption.png',
-                width: 212,
-              ),
+            Icon(
+              CupertinoIcons.lock_shield,
+              size: 128,
+              color: Theme.of(context).colorScheme.onInverseSurface,
             ),
-            const Divider(height: 1),
+            const Divider(),
             if (room.isDirectChat)
               Padding(
                 padding: const EdgeInsets.all(16.0),

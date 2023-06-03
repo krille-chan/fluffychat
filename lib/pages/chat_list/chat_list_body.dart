@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
@@ -8,7 +9,6 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pages/chat_list/start_chat_fab.dart';
 import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
@@ -197,22 +197,11 @@ class ChatListViewBody extends StatelessWidget {
                           !controller.isSearchMode) ...[
                         Padding(
                           padding: const EdgeInsets.all(32.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/start_chat.png',
-                                height: 256,
-                              ),
-                              const Divider(height: 1),
-                            ],
-                          ),
-                        ),
-                        Center(
-                          child: StartChatFloatingActionButton(
-                            activeFilter: controller.activeFilter,
-                            roomsIsEmpty: true,
-                            scrolledToTop: controller.scrolledToTop,
+                          child: Icon(
+                            CupertinoIcons.chat_bubble_2,
+                            size: 128,
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
                           ),
                         ),
                       ],

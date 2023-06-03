@@ -192,7 +192,6 @@ class ChatListView extends StatelessWidget {
                           VRouter.of(context).to('/newprivatechat'),
                       helpLabel: L10n.of(context)!.newChat,
                       child: selectMode == SelectMode.normal &&
-                              controller.filteredRooms.isNotEmpty &&
                               !controller.isSearchMode
                           ? StartChatFloatingActionButton(
                               activeFilter: controller.activeFilter,
