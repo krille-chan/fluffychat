@@ -191,14 +191,13 @@ class ChatView extends StatelessWidget {
                   title: ChatAppBarTitle(controller),
                   actions: _appBarActions(context),
                 ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerFloat,
                 floatingActionButton: controller.showScrollDownButton &&
                         controller.selectedEvents.isEmpty
                     ? Padding(
                         padding: const EdgeInsets.only(bottom: 56.0),
                         child: FloatingActionButton(
                           onPressed: controller.scrollDown,
+                          heroTag: null,
                           mini: true,
                           child: const Icon(Icons.arrow_downward_outlined),
                         ),
