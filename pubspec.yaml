@@ -132,6 +132,11 @@ flutter:
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
+    - family: Noto Color Emoji Compat
+      fonts:
+        # This file is gathered from https://mvnrepository.com/artifact/androidx.emoji/emoji-bundled/
+        # Was a hazzle to find it.
+        - asset: fonts/NotoColorEmojiCompat.ttf
 
 msix_config:
   display_name: FluffyChat
