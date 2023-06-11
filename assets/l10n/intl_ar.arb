@@ -2504,5 +2504,11 @@
   "jumpToLastReadMessage": "الانتقال إلى آخر رسالة مقروءة",
   "@jumpToLastReadMessage": {},
   "readUpToHere": "اقرأ حتى هنا",
-  "@readUpToHere": {}
+  "@readUpToHere": {},
+  "signInWithPassword": "سجل الدخول بكلمة السر",
+  "@signInWithPassword": {},
+  "continueWith": "أكمل ب:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "رجاء حاول مجددا أو اختر خادما مختلفا.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
 }
