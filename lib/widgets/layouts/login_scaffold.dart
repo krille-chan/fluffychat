@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 class LoginScaffold extends StatelessWidget {
   final Widget body;
@@ -17,6 +21,7 @@ class LoginScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobileMode = !FluffyThemes.isColumnMode(context);
     final scaffold = Scaffold(
+      key: const Key('LoginScaffold'),
       backgroundColor: isMobileMode ? null : Colors.transparent,
       appBar: appBar == null
           ? null
@@ -33,31 +38,102 @@ class LoginScaffold extends StatelessWidget {
       extendBodyBehindAppBar: true,
       extendBody: true,
       body: body,
+      bottomNavigationBar: isMobileMode
+          ? Material(
+              color: Theme.of(context).colorScheme.onInverseSurface,
+              child: const _PrivacyButtons(
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+            )
+          : null,
     );
     if (isMobileMode) return scaffold;
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/login_wallpaper.png'),
-          fit: BoxFit.cover,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: [
+            colorScheme.primaryContainer.withAlpha(64),
+            colorScheme.secondaryContainer.withAlpha(64),
+            colorScheme.tertiaryContainer.withAlpha(64),
+            colorScheme.primaryContainer.withAlpha(64),
+          ],
         ),
       ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Material(
-            color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.925),
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            clipBehavior: Clip.hardEdge,
-            elevation: 10,
-            shadowColor: Colors.black,
-            child: ConstrainedBox(
-              constraints: isMobileMode
-                  ? const BoxConstraints()
-                  : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-              child: scaffold,
+      child: Column(
+        children: [
+          const SizedBox(height: 64),
+          Expanded(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Material(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  clipBehavior: Clip.hardEdge,
+                  elevation:
+                      Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
+                  shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                  child: ConstrainedBox(
+                    constraints: isMobileMode
+                        ? const BoxConstraints()
+                        : const BoxConstraints(maxWidth: 960, maxHeight: 640),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: Image.asset(
+                            'assets/login_wallpaper.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Container(
+                          width: 1,
+                          color: Theme.of(context).dividerTheme.color,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: scaffold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
+          const _PrivacyButtons(mainAxisAlignment: MainAxisAlignment.end),
+        ],
+      ),
+    );
+  }
+}
+
+class _PrivacyButtons extends StatelessWidget {
+  final MainAxisAlignment mainAxisAlignment;
+  const _PrivacyButtons({required this.mainAxisAlignment});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 64,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment,
+          children: [
+            TextButton(
+              onPressed: () => PlatformInfos.showDialog(context),
+              child: Text(L10n.of(context)!.about),
+            ),
+            TextButton(
+              onPressed: () => launchUrlString(AppConfig.privacyUrl),
+              child: Text(L10n.of(context)!.privacy),
+            ),
+          ],
         ),
       ),
     );

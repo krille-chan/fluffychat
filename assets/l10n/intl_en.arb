@@ -2473,5 +2473,8 @@
     "jump": "Jump",
     "openLinkInBrowser": "Open link in browser",
     "reportErrorDescription": "Oh no. Something went wrong. Please try again later. If you want, you can report the bug to the developers.",
-    "report": "report"
+    "report": "report",
+    "signInWithPassword": "Sign in with password",
+    "continueWith": "Continue with:",
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server."
 }

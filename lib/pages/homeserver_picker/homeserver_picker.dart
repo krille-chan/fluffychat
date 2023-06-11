@@ -7,16 +7,16 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
-import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_bottom_sheet.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
@@ -35,14 +35,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   final TextEditingController homeserverController = TextEditingController(
     text: AppConfig.defaultHomeserver,
   );
-  final FocusNode homeserverFocusNode = FocusNode();
-  String? error;
-  List<HomeserverBenchmarkResult>? benchmarkResults;
-  bool displayServerList = false;
 
-  bool get loadingHomeservers =>
-      AppConfig.allowOtherHomeservers && benchmarkResults == null;
-  String searchTerm = '';
+  String? error;
 
   bool isTorBrowser = false;
 
@@ -65,98 +59,34 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     isTorBrowser = isTor;
   }
 
-  void _updateFocus() {
-    if (benchmarkResults == null) _loadHomeserverList();
-    if (homeserverFocusNode.hasFocus) {
-      setState(() {
-        displayServerList = true;
-      });
-    }
-  }
-
-  void showServerInfo(HomeserverBenchmarkResult server) =>
-      showAdaptiveBottomSheet(
-        context: context,
-        builder: (_) => HomeserverBottomSheet(
-          homeserver: server,
-        ),
-      );
-
-  void onChanged(String text) => setState(() {
-        searchTerm = text;
-      });
-
-  List<HomeserverBenchmarkResult> get filteredHomeservers => benchmarkResults!
-      .where(
-        (element) =>
-            element.homeserver.baseUrl.host.contains(searchTerm) ||
-            (element.homeserver.description?.contains(searchTerm) ?? false),
-      )
-      .toList();
-
-  void _loadHomeserverList() async {
-    try {
-      final homeserverList =
-          await const JoinmatrixOrgParser().fetchHomeservers();
-      final benchmark = await HomeserverListProvider.benchmarkHomeserver(
-        homeserverList,
-        timeout: const Duration(seconds: 10),
-      );
-      if (!mounted) return;
-      setState(() {
-        benchmarkResults = benchmark;
-      });
-    } catch (e, s) {
-      Logs().e('Homeserver benchmark failed', e, s);
-      benchmarkResults = [];
-    }
-  }
-
-  void setServer(String server) => setState(() {
-        homeserverController.text = server;
-        searchTerm = '';
-        homeserverFocusNode.unfocus();
-        displayServerList = false;
-      });
+  String? _lastCheckedUrl;
 
   /// Starts an analysis of the given homeserver. It uses the current domain and
   /// makes sure that it is prefixed with https. Then it searches for the
   /// well-known information and forwards to the login page depending on the
   /// login type.
-  Future<void> checkHomeserverAction() async {
+  Future<void> checkHomeserverAction([_]) async {
+    homeserverController.text =
+        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
+    if (homeserverController.text == _lastCheckedUrl) return;
+    _lastCheckedUrl = homeserverController.text;
     setState(() {
-      homeserverFocusNode.unfocus();
-      error = null;
+      error = _rawLoginTypes = loginHomeserverSummary = null;
       isLoading = true;
-      searchTerm = '';
-      displayServerList = false;
     });
 
     try {
-      homeserverController.text =
-          homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
       var homeserver = Uri.parse(homeserverController.text);
       if (homeserver.scheme.isEmpty) {
         homeserver = Uri.https(homeserverController.text, '');
       }
-      final matrix = Matrix.of(context);
-      matrix.loginHomeserverSummary =
-          await matrix.getLoginClient().checkHomeserver(homeserver);
-      final ssoSupported = matrix.loginHomeserverSummary!.loginFlows
-          .any((flow) => flow.type == 'm.login.sso');
-
-      try {
-        await Matrix.of(context).getLoginClient().register();
-        matrix.loginRegistrationSupported = true;
-      } on MatrixException catch (e) {
-        matrix.loginRegistrationSupported = e.requireAdditionalAuthentication;
-      }
-
-      if (!ssoSupported && matrix.loginRegistrationSupported == false) {
-        // Server does not support SSO or registration. We can skip to login page:
-        VRouter.of(context).to('login');
-      } else {
-        VRouter.of(context).to('connect');
+      final client = Matrix.of(context).getLoginClient();
+      loginHomeserverSummary = await client.checkHomeserver(homeserver);
+      if (supportsSso) {
+        _rawLoginTypes = await client.request(
+          RequestType.GET,
+          '/client/r0/login',
+        );
       }
     } catch (e) {
       setState(() => error = (e).toLocalizedString(context));
@@ -167,17 +97,71 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
-  @override
-  void dispose() {
-    homeserverFocusNode.removeListener(_updateFocus);
-    super.dispose();
+  HomeserverSummary? loginHomeserverSummary;
+
+  bool _supportsFlow(String flowType) =>
+      loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
+      false;
+
+  bool get supportsSso => _supportsFlow('m.login.sso');
+
+  bool isDefaultPlatform =
+      (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
+
+  bool get supportsPasswordLogin => _supportsFlow('m.login.password');
+
+  Map<String, dynamic>? _rawLoginTypes;
+
+  void ssoLoginAction(String id) async {
+    final redirectUrl = kIsWeb
+        ? '${html.window.origin!}/web/auth.html'
+        : isDefaultPlatform
+            ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
+            : 'http://localhost:3001//login';
+    final url =
+        '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
+    final urlScheme = isDefaultPlatform
+        ? Uri.parse(redirectUrl).scheme
+        : "http://localhost:3001";
+    final result = await FlutterWebAuth2.authenticate(
+      url: url,
+      callbackUrlScheme: urlScheme,
+    );
+    final token = Uri.parse(result).queryParameters['loginToken'];
+    if (token?.isEmpty ?? false) return;
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).getLoginClient().login(
+            LoginType.mLoginToken,
+            token: token,
+            initialDeviceDisplayName: PlatformInfos.clientName,
+          ),
+    );
   }
+
+  List<IdentityProvider>? get identityProviders {
+    final loginTypes = _rawLoginTypes;
+    if (loginTypes == null) return null;
+    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
+          (flow) => flow['type'] == AuthenticationTypes.sso,
+        )['identity_providers'];
+    final list = (rawProviders as List)
+        .map((json) => IdentityProvider.fromJson(json))
+        .toList();
+    if (PlatformInfos.isCupertinoStyle) {
+      list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
+    }
+    return list;
+  }
+
+  void login() => VRouter.of(context).to('login');
 
   @override
   void initState() {
-    homeserverFocusNode.addListener(_updateFocus);
     _checkTorBrowser();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 
   @override
@@ -203,4 +187,21 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       },
     );
   }
+}
+
+class IdentityProvider {
+  final String? id;
+  final String? name;
+  final String? icon;
+  final String? brand;
+
+  IdentityProvider({this.id, this.name, this.icon, this.brand});
+
+  factory IdentityProvider.fromJson(Map<String, dynamic> json) =>
+      IdentityProvider(
+        id: json['id'],
+        name: json['name'],
+        icon: json['icon'],
+        brand: json['brand'],
+      );
 }
