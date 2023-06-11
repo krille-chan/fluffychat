@@ -383,6 +383,7 @@ upload_windows:
     - |
       curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file package.zip ${PACKAGE_REGISTRY_URL}/fluffychat-windows.zip
       curl --fail-with-body --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file fluffychat.msix ${PACKAGE_REGISTRY_URL}/fluffychat-windows.msix
+  allow_failure: true
 
 deploy_playstore:
   stage: deploy
