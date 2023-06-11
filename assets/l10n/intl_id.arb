@@ -2503,5 +2503,11 @@
   "report": "laporkan",
   "@report": {},
   "reportErrorDescription": "Aduh. Ada yang salah. Silakan coba lahi nanti. Jika kamu mau, kamu bisa melaporkan kutu ini kepada para pengembang.",
-  "@reportErrorDescription": {}
+  "@reportErrorDescription": {},
+  "signInWithPassword": "Masuk dengan kata sandi",
+  "@signInWithPassword": {},
+  "continueWith": "Lanjutkan dengan:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Silakan coba lagi nanti atau pilih server yang lain.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
 }
