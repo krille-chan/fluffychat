@@ -2504,5 +2504,11 @@
     "placeholders": {}
   },
   "reportErrorDescription": "Oh appike! Midagi läks valesti. Palun proovi hiljem uuesti. Kui soovid, võid sellest veast arendajatele teatada.",
-  "@reportErrorDescription": {}
+  "@reportErrorDescription": {},
+  "continueWith": "Jätkamiseks kasuta:",
+  "@continueWith": {},
+  "signInWithPassword": "Logi sisse salasõnaga",
+  "@signInWithPassword": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Palun proovi hiljem uuesti või muuda serveri nime.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
 }
