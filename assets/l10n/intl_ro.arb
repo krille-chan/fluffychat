@@ -2496,5 +2496,11 @@
     "placeholders": {}
   },
   "reopenChat": "Deschide din nou chatul",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "continueWith": "Continuați cu:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Vă rugăm să încercați din nou mai târziu sau să alegeți un server diferit.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWithPassword": "Conectați-vă cu parolă",
+  "@signInWithPassword": {}
 }
