@@ -2504,5 +2504,11 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "signInWithPassword": "Accede con contrasinal",
+  "@signInWithPassword": {},
+  "continueWith": "Continuar con:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Inténtao máis tarde ou elixe un servidor diferente.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
 }
