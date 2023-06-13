@@ -204,6 +204,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void requestHistory() async {
     if (!timeline!.canRequestHistory) return;
+    Logs().v('Requesting history...');
     try {
       await timeline!.requestHistory(historyCount: _loadHistoryCount);
     } catch (err) {
@@ -222,6 +223,7 @@ class ChatController extends State<ChatPageWithRoom> {
     final timeline = this.timeline;
     if (timeline == null) return;
     if (!timeline.canRequestFuture) return;
+    Logs().v('Requesting future...');
     try {
       final mostRecentEventId = timeline.events.first.eventId;
       await timeline.requestFuture(historyCount: _loadHistoryCount);
@@ -244,12 +246,6 @@ class ChatController extends State<ChatPageWithRoom> {
     }
     setReadMarker();
     if (!scrollController.hasClients) return;
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      requestHistory();
-    } else if (scrollController.position.pixels == 0) {
-      requestFuture();
-    }
     if (timeline?.allowNewEvent == false ||
         scrollController.position.pixels > 0 && _scrolledUp == false) {
       setState(() => _scrolledUp = true);
