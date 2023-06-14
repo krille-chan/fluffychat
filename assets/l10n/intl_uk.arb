@@ -2504,5 +2504,11 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Спробуйте пізніше або виберіть інший сервер.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWithPassword": "Увійти за допомогою пароля",
+  "@signInWithPassword": {},
+  "continueWith": "Продовжити за допомогою:",
+  "@continueWith": {}
 }
