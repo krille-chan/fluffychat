@@ -2252,9 +2252,9 @@
   "@hydrateTor": {},
   "commandHint_googly": "أرسل بعض عيون googly",
   "@commandHint_googly": {},
-  "commandHint_cuddle": "إرسال عناق",
+  "commandHint_cuddle": "أرسل عناق",
   "@commandHint_cuddle": {},
-  "commandHint_hug": "إرسال عناق",
+  "commandHint_hug": "إرسال حضن",
   "@commandHint_hug": {},
   "cuddleContent": "{senderName} يحتضنك",
   "@cuddleContent": {
