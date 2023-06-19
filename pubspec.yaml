@@ -169,6 +169,6 @@ dependency_overrides:
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203
   wakelock_windows:
     git:
-      url: https://github.com/timsneath/wakelock.git
-      ref: 2a9bca63a540771f241d688562351482b2cf234c
-      path: wakelock_windows
+      url: https://github.com/chandrabezzo/wakelock.git
+      ref: main
+      path: wakelock_windows/
