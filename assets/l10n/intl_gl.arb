@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "🔐 {username} activou o cifrado extremo-a-extremo",
+  "activatedEndToEndEncryption": "🔐 {username} activou a cifraxe extremo-a-extremo",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -314,7 +314,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "O cifrado está corrompido",
+  "channelCorruptedDecryptError": "A cifraxe está estragada",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -704,12 +704,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "Activar cifrado",
+  "enableEncryption": "Activar cifraxe",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Non poderás desactivar o cifrado posteriormente, tes certeza?",
+  "enableEncryptionWarning": "Non poderás desactivar a cifraxe posteriormente, tes certeza?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -719,12 +719,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "Cifrado",
+  "encryption": "Cifraxe",
   "@encryption": {
     "type": "text",
     "placeholders": {}
   },
-  "encryptionNotEnabled": "O cifrado non está activado",
+  "encryptionNotEnabled": "A cifraxe non está activada",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1119,7 +1119,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "Ten en conta que polo de agora precisas Pantalaimon para o cifrado extremo-a-extremo.",
+  "needPantalaimonWarning": "Ten en conta que polo de agora precisas Pantalaimon para a cifraxe extremo-a-extremo.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1159,7 +1159,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "Só podes activar o cifrado tan pronto como a sala non sexa públicamente accesible.",
+  "noEncryptionForPublicRooms": "Só podes activar a cifraxe tan pronto como a sala non sexa públicamente accesible.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -1824,7 +1824,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEncryptionAlgorithm": "Algoritmo de cifrado descoñecido",
+  "unknownEncryptionAlgorithm": "Algoritmo de cifraxe descoñecido",
   "@unknownEncryptionAlgorithm": {
     "type": "text",
     "placeholders": {}
@@ -2103,7 +2103,7 @@
     "type": "text",
     "description": "Usage hint for the command /discardsession"
   },
-  "commandHint_create": "Crear un grupo de conversa baleiro\nUsa --no-encryption para desactivar o cifrado",
+  "commandHint_create": "Crear un grupo de conversa baleiro\nUsa --no-encryption para desactivar a cifraxe",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -2113,7 +2113,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_dm": "Iniciar un chat directo\nUsa --no-encryption para desactivar o cifrado",
+  "commandHint_dm": "Iniciar un chat directo\nUsa --no-encryption para desactivar a cifraxe",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2447,9 +2447,9 @@
   "@enterInviteLinkOrMatrixId": {},
   "encryptThisChat": "Cifrar esta conversa",
   "@encryptThisChat": {},
-  "endToEndEncryption": "Cifrado de extremo a extremo",
+  "endToEndEncryption": "Cifraxe de extremo a extremo",
   "@endToEndEncryption": {},
-  "disableEncryptionWarning": "Por razóns de seguridade non podes desactivar o cifrado dunha conversa onde foi activado previamente.",
+  "disableEncryptionWarning": "Por razóns de seguridade non podes desactivar a cifraxe dunha conversa onde foi activada previamente.",
   "@disableEncryptionWarning": {},
   "sorryThatsNotPossible": "Lamentámolo... iso non é posible",
   "@sorryThatsNotPossible": {},
