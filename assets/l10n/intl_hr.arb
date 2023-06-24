@@ -2503,6 +2503,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportErrorDescription": "Dogodila se greška. Pokušaj ponovo kasnije. Ako želiš grešku možeš prijaviti programerima.",
-  "@reportErrorDescription": {}
+  "reportErrorDescription": "Dogodila se greška. Pokušaj ponovo kasnije. Ako želiš, grešku možeš prijaviti programerima.",
+  "@reportErrorDescription": {},
+  "signInWithPassword": "Prijavi se s lozinkom",
+  "@signInWithPassword": {},
+  "continueWith": "Nastavi sa:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Pokušaj ponovo kasnije ili odaberi jedan drugi poslužitelj.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
 }
