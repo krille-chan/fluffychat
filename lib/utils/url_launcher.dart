@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -37,14 +38,36 @@ class UrlLauncher {
       );
       return;
     }
-    final consent = await showOkCancelAlertDialog(
+    final consent = await showConfirmationDialog(
       context: context,
       title: L10n.of(context)!.openLinkInBrowser,
       message: url,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      actions: [
+        AlertDialogAction(
+          key: null,
+          label: L10n.of(context)!.cancel,
+        ),
+        AlertDialogAction(
+          key: _LaunchUrlResponse.copy,
+          label: L10n.of(context)!.copy,
+        ),
+        AlertDialogAction(
+          key: _LaunchUrlResponse.launch,
+          label: L10n.of(context)!.ok,
+        ),
+      ],
     );
-    if (consent != OkCancelResult.ok) return;
+    if (consent == _LaunchUrlResponse.copy) {
+      await Clipboard.setData(ClipboardData(text: uri.toString()));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.copiedToClipboard),
+        ),
+      );
+      return;
+    }
+
+    if (consent != _LaunchUrlResponse.launch) return;
 
     if (!{'https', 'http'}.contains(uri.scheme)) {
       // just launch non-https / non-http uris directly
@@ -214,4 +237,9 @@ class UrlLauncher {
       );
     }
   }
+}
+
+enum _LaunchUrlResponse {
+  launch,
+  copy,
 }
