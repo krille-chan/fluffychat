@@ -198,11 +198,33 @@ Future<void> _tryPushHelper(
 
   final roomName = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
+  final notificationGroupId =
+      event.room.isDirectChat ? 'directChats' : 'groupChats';
+  final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
+
+  final messageRooms = AndroidNotificationChannelGroup(
+    notificationGroupId,
+    groupName,
+  );
+  final roomsChannel = AndroidNotificationChannel(
+    event.room.id,
+    roomName,
+    groupId: notificationGroupId,
+  );
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannelGroup(messageRooms);
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(roomsChannel);
+
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
     event.room.id,
     roomName,
-    channelDescription:
-        event.room.isDirectChat ? l10n.directChats : l10n.groups,
+    channelDescription: groupName,
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
     styleInformation: messagingStyleInformation ??
@@ -215,7 +237,7 @@ Future<void> _tryPushHelper(
     ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
     importance: Importance.max,
     priority: Priority.max,
-    groupKey: event.room.id,
+    groupKey: notificationGroupId,
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
