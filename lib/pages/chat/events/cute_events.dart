@@ -36,19 +36,16 @@ class _CuteContentState extends State<CuteContent> {
 
         return GestureDetector(
           onTap: addOverlay,
-          child: SizedBox.square(
-            dimension: 300,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  widget.event.text,
-                  style: const TextStyle(fontSize: 150),
-                ),
-                if (label != null) Text(label)
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.event.text,
+                style: const TextStyle(fontSize: 150),
+              ),
+              if (label != null) Text(label)
+            ],
           ),
         );
       },
@@ -144,24 +141,26 @@ class _CuteEventOverlayState extends State<CuteEventOverlay>
           return SizedBox(
             height: constraints.maxHeight,
             width: constraints.maxWidth,
-            child: Stack(
-              alignment: Alignment.bottomLeft,
-              fit: StackFit.expand,
-              children: items
-                  .map(
-                    (position) => Positioned(
-                      left: position.width * width,
-                      bottom: (height *
-                              .25 *
-                              position.height *
-                              (controller?.value ?? 0)) -
-                          _CuteOverlayContent.size,
-                      child: _CuteOverlayContent(
-                        emoji: widget.emoji,
+            child: OverflowBox(
+              child: Stack(
+                alignment: Alignment.bottomLeft,
+                fit: StackFit.expand,
+                children: items
+                    .map(
+                      (position) => Positioned(
+                        left: position.width * width,
+                        bottom: (height *
+                                .25 *
+                                position.height *
+                                (controller?.value ?? 0)) -
+                            _CuteOverlayContent.size,
+                        child: _CuteOverlayContent(
+                          emoji: widget.emoji,
+                        ),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
             ),
           );
         },
