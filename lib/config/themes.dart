@@ -41,6 +41,22 @@ abstract class FluffyThemes {
     titleSmall: fallbackTextStyle,
   );
 
+  static LinearGradient backgroundGradient(
+    BuildContext context,
+    int alpha,
+  ) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return LinearGradient(
+      begin: Alignment.topCenter,
+      colors: [
+        colorScheme.primaryContainer.withAlpha(alpha),
+        colorScheme.secondaryContainer.withAlpha(alpha),
+        colorScheme.tertiaryContainer.withAlpha(alpha),
+        colorScheme.primaryContainer.withAlpha(alpha),
+      ],
+    );
+  }
+
   static const Duration animationDuration = Duration(milliseconds: 250);
   static const Curve animationCurve = Curves.easeInOut;
 

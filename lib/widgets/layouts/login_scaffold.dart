@@ -48,18 +48,9 @@ class LoginScaffold extends StatelessWidget {
           : null,
     );
     if (isMobileMode) return scaffold;
-    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          colors: [
-            colorScheme.primaryContainer.withAlpha(64),
-            colorScheme.secondaryContainer.withAlpha(64),
-            colorScheme.tertiaryContainer.withAlpha(64),
-            colorScheme.primaryContainer.withAlpha(64),
-          ],
-        ),
+        gradient: FluffyThemes.backgroundGradient(context, 156),
       ),
       child: Column(
         children: [

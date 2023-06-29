@@ -146,7 +146,6 @@ class ChatView extends StatelessWidget {
       );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
-    final colorScheme = Theme.of(context).colorScheme;
 
     return VWidgetGuard(
       onSystemPop: (redirector) async {
@@ -220,14 +219,9 @@ class ChatView extends StatelessWidget {
                       else
                         Container(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              colors: [
-                                colorScheme.primaryContainer.withAlpha(64),
-                                colorScheme.secondaryContainer.withAlpha(64),
-                                colorScheme.tertiaryContainer.withAlpha(64),
-                                colorScheme.primaryContainer.withAlpha(64),
-                              ],
+                            gradient: FluffyThemes.backgroundGradient(
+                              context,
+                              64,
                             ),
                           ),
                         ),
