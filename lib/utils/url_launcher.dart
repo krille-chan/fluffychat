@@ -38,22 +38,20 @@ class UrlLauncher {
       );
       return;
     }
-    final consent = await showConfirmationDialog(
+    final consent = await showModalActionSheet<_LaunchUrlResponse>(
       context: context,
-      title: L10n.of(context)!.openLinkInBrowser,
-      message: url,
+      title: url,
+      style: AdaptiveStyle.material,
       actions: [
-        AlertDialogAction(
-          key: null,
-          label: L10n.of(context)!.cancel,
-        ),
-        AlertDialogAction(
+        SheetAction(
           key: _LaunchUrlResponse.copy,
+          icon: Icons.copy_outlined,
           label: L10n.of(context)!.copy,
         ),
-        AlertDialogAction(
+        SheetAction(
           key: _LaunchUrlResponse.launch,
-          label: L10n.of(context)!.ok,
+          icon: Icons.launch_outlined,
+          label: L10n.of(context)!.openLinkInBrowser,
         ),
       ],
     );
