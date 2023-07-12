@@ -39,6 +39,20 @@ class EmotesSettingsView extends StatelessWidget {
                   vertical: 8.0,
                 ),
                 child: ListTile(
+                  title: Text(L10n.of(context)!.importFromZipFile),
+                  trailing: IconButton(
+                    tooltip: L10n.of(context)!.importZipFile,
+                    icon: const Icon(Icons.file_open),
+                    onPressed: controller.importEmojiZip,
+                  ),
+                ),
+              ),
+            if (!controller.readonly)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8.0,
+                ),
+                child: ListTile(
                   leading: Container(
                     width: 180.0,
                     height: 38,
@@ -202,6 +216,11 @@ class EmotesSettingsView extends StatelessWidget {
                         );
                       },
                     ),
+            ),
+            const Divider(),
+            ListTile(
+              title: Text(L10n.of(context)!.exportEmotePack),
+              onTap: controller.exportAsZip,
             ),
           ],
         ),
