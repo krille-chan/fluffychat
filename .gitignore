@@ -54,6 +54,7 @@ android/Gemfile.lock
 lib/l10n_old
 ios/Flutter/.last_build_id
 ios/Podfile.lock
+ios/Runner.ipa
 
 /windows/out
 /winuwp/out
