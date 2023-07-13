@@ -109,6 +109,10 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
     Widget body;
     final buttons = <Widget>[];
     switch (widget.request.state) {
+      case KeyVerificationState.showQRSuccess:
+      case KeyVerificationState.confirmQRScan:
+      case KeyVerificationState.askChoice:
+        throw 'Not implemented';
       case KeyVerificationState.askSSSS:
         // prompt the user for their ssss passphrase / key
         final textEditingController = TextEditingController();

@@ -183,12 +183,13 @@ class InputBar extends StatelessWidget {
         final state = r.getState(EventTypes.RoomCanonicalAlias);
         if ((state != null &&
                 ((state.content['alias'] is String &&
-                        state.content['alias']
+                        state.content
+                            .tryGet<String>('alias')!
                             .split(':')[0]
                             .toLowerCase()
                             .contains(roomSearch)) ||
                     (state.content['alt_aliases'] is List &&
-                        state.content['alt_aliases'].any(
+                        (state.content['alt_aliases'] as List).any(
                           (l) =>
                               l is String &&
                               l

@@ -40,16 +40,14 @@ class MultipleEmotesSettingsView extends StatelessWidget {
             itemCount: keys.length,
             itemBuilder: (BuildContext context, int i) {
               final event = packs[keys[i]];
-              String? packName = keys[i].isNotEmpty ? keys[i] : 'Default Pack';
-              if (event != null && event.content['pack'] is Map) {
-                if (event.content['pack']['displayname'] is String) {
-                  packName = event.content['pack']['displayname'];
-                } else if (event.content['pack']['name'] is String) {
-                  packName = event.content['pack']['name'];
-                }
-              }
+              final eventPack =
+                  event?.content.tryGetMap<String, Object?>('pack');
+              final packName = eventPack?.tryGet<String>('displayname') ??
+                  eventPack?.tryGet<String>('name') ??
+                  (keys[i].isNotEmpty ? keys[i] : 'Default Pack');
+
               return ListTile(
-                title: Text(packName!),
+                title: Text(packName),
                 onTap: () async {
                   VRouter.of(context).toSegments(
                     ['rooms', room.id, 'details', 'emotes', keys[i]],

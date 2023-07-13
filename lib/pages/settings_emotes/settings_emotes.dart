@@ -151,12 +151,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
   bool isGloballyActive(Client? client) =>
       room != null &&
-      client!.accountData['im.ponies.emote_rooms']?.content is Map &&
-      client.accountData['im.ponies.emote_rooms']!.content['rooms'] is Map &&
-      client.accountData['im.ponies.emote_rooms']!.content['rooms'][room!.id]
-          is Map &&
-      client.accountData['im.ponies.emote_rooms']!.content['rooms'][room!.id]
-          [stateKey ?? ''] is Map;
+      client!.accountData['im.ponies.emote_rooms']?.content
+              .tryGetMap<String, Object?>('rooms')
+              ?.tryGetMap<String, Object?>(room!.id)
+              ?.tryGetMap<String, Object?>(stateKey ?? '') !=
+          null;
 
   bool get readonly =>
       room == null ? false : !(room!.canSendEvent('im.ponies.room_emotes'));
