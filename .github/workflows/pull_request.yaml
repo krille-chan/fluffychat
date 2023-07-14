@@ -3,8 +3,8 @@ name: Pull Request Workflow
 on: [pull_request]
 
 env:
-  FLUTTER_VERSION: '3.10.6'
-  JAVA_VERSION: '11.0'
+  FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
+  JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
 
 jobs:
   analyze:

@@ -5,8 +5,12 @@ on:
     branches:
       - main
 
+env:
+  FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
+  JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
+
 jobs:
-  build_web:
+  deploy_web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,14 +20,22 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install node -y
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
         run: flutter build web --release --verbose --source-maps
+      - name: Build Website
+        run: |
+          npx tailwindcss -o ./tailwind.css --minify
+          mv docs public
+          mv repo public || true
+          mv build/web/ public/web
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./public
           publish_branch: gh-pages
