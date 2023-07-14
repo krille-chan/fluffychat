@@ -1,6 +1,6 @@
-name: Flutter Analyze
+name: Pull Request Workflow
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   FLUTTER_VERSION: '3.10.6'
