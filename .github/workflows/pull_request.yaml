@@ -1,6 +1,6 @@
 name: Pull Request Workflow
 
-on: [pull_request]
+on: [push, pull_request]
 
 env:
   FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
@@ -58,6 +58,9 @@ jobs:
 
   build_debug_linux:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [x64, arm64]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
