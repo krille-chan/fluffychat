@@ -20,19 +20,20 @@ abstract class AppConfig {
   static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl =
-      'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';
+      'https://github.com/krille-chan/fluffychat/-/blob/main/PRIVACY.md';
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
-      'https://gitlab.com/famedly/fluffychat/-/wikis/Push-Notifications-without-Google-Services';
+      'https://github.com/krille-chan/fluffychat/wiki/User-Guide:-Push-Notifications';
   static const String encryptionTutorial =
-      'https://gitlab.com/famedly/fluffychat/-/wikis/How-to-use-end-to-end-encryption-in-FluffyChat';
+      'https://github.com/krille-chan/fluffychat/wiki/User-Guide:-End-To-End-Encryption';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
-  static const String sourceCodeUrl = 'https://gitlab.com/famedly/fluffychat';
+  static const String sourceCodeUrl =
+      'https://github.com/krille-chan/fluffychat';
   static const String supportUrl =
-      'https://gitlab.com/famedly/fluffychat/issues';
+      'https://github.com/krille-chan/fluffychat/issues';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'gitlab.com',
