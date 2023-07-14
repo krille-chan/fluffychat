@@ -4,16 +4,17 @@ on: [push, pull_request]
 
 env:
   FLUTTER_VERSION: '3.10.6'
+  JAVA_VERSION: '11.0'
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v1
         with:
-          distribution: 'adopt'
-      - uses: subosito/flutter-action@v1
+          java-version: ${{ env.JAVA_VERSION }}
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
       - run: flutter pub get
@@ -25,4 +26,4 @@ jobs:
       - name: Apply google services patch
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter analyze
-
+      - run: flutter test
