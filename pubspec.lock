@@ -13,10 +13,10 @@ packages:
     dependency: "direct main"
     description:
       name: adaptive_dialog
-      sha256: "16040e94819f6f7b2f5c6478ac3eb145c513ebdff733ac5043ff9b6d8a63247e"
+      sha256: "2dc70b30899398ed0d2949e1ea9b1ee467fe700b4181ec33457737eaaf06b488"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0-x-macos-beta.0"
+    version: "1.9.0-x-macos-beta.1"
   analyzer:
     dependency: transitive
     description:

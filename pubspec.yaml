@@ -7,7 +7,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^1.9.0-no-macos.2
+  adaptive_dialog: ^1.9.0-x-macos-beta.1
   animations: ^2.0.7
   badges: ^2.0.3
   blurhash_dart: ^1.1.0
