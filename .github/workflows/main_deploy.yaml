@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: main_deploy
+  cancel-in-progress: true
+
 env:
   FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
   JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
