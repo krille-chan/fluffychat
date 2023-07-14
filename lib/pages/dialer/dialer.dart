@@ -139,7 +139,7 @@ class MyCallingPage extends State<Calling> {
   Room? get room => call.room;
 
   String get displayName => call.room.getLocalizedDisplayname(
-        MatrixLocals(L10n.of(context)!),
+        MatrixLocals(L10n.of(widget.context)!),
       );
 
   String get callId => widget.callId;
@@ -248,18 +248,18 @@ class MyCallingPage extends State<Calling> {
 
   void _resizeLocalVideo(Orientation orientation) {
     final shortSide = min(
-      MediaQuery.of(context).size.width,
-      MediaQuery.of(context).size.height,
+      MediaQuery.of(widget.context).size.width,
+      MediaQuery.of(widget.context).size.height,
     );
     _localVideoMargin = remoteStream != null
         ? const EdgeInsets.only(top: 20.0, right: 20.0)
         : EdgeInsets.zero;
     _localVideoWidth = remoteStream != null
         ? shortSide / 3
-        : MediaQuery.of(context).size.width;
+        : MediaQuery.of(widget.context).size.width;
     _localVideoHeight = remoteStream != null
         ? shortSide / 4
-        : MediaQuery.of(context).size.height;
+        : MediaQuery.of(widget.context).size.height;
   }
 
   void _handleCallState(CallState state) {
@@ -309,14 +309,15 @@ class MyCallingPage extends State<Calling> {
           androidNotificationOptions: AndroidNotificationOptions(
             channelId: 'notification_channel_id',
             channelName: 'Foreground Notification',
-            channelDescription: L10n.of(context)!.foregroundServiceRunning,
+            channelDescription:
+                L10n.of(widget.context)!.foregroundServiceRunning,
           ),
           iosNotificationOptions: const IOSNotificationOptions(),
           foregroundTaskOptions: const ForegroundTaskOptions(),
         );
         FlutterForegroundTask.startService(
-          notificationTitle: L10n.of(context)!.screenSharingTitle,
-          notificationText: L10n.of(context)!.screenSharingDetail,
+          notificationTitle: L10n.of(widget.context)!.screenSharingTitle,
+          notificationText: L10n.of(widget.context)!.screenSharingDetail,
         );
       } else {
         FlutterForegroundTask.stopService();
@@ -379,7 +380,7 @@ class MyCallingPage extends State<Calling> {
       child: Icon(_speakerOn ? Icons.volume_up : Icons.volume_off),
       onPressed: _switchSpeaker,
       foregroundColor: Colors.black54,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(widget.context).backgroundColor,
     );
     */
     final hangupButton = FloatingActionButton(
@@ -481,7 +482,7 @@ class MyCallingPage extends State<Calling> {
       var title = '';
       if (call.localHold) {
         title = '${call.room.getLocalizedDisplayname(
-          MatrixLocals(L10n.of(context)!),
+          MatrixLocals(L10n.of(widget.context)!),
         )} held the call.';
       } else if (call.remoteOnHold) {
         title = 'You held the call.';
