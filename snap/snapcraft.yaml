@@ -1,0 +1,134 @@
+name: fluffychat
+title: FluffyChat
+base: core22
+adopt-info: fluffychat
+summary: The cutest messenger in the Matrix network
+description: |
+  FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
+
+
+  ## Features
+
+  - Send all kinds of messages, images and files
+  - Voice messages
+  - Location sharing
+  - Push notifications
+  - Unlimited private and public group chats
+  - Public channels with thousands of participants
+  - Feature rich group moderation including all matrix features
+  - Discover and join public groups
+  - Dark mode
+  - Hides complexity of Matrix IDs behind simple QR codes
+  - Custom emotes and stickers
+  - Video calls via sharing links to Jitsi
+  - Spaces
+  - Compatible with Element, Nheko, NeoChat and all other Matrix apps
+  - End to end encryption
+  - Emoji verification & cross signing
+  - And much more...
+
+
+  ## FluffyChat comes with a dream
+
+  Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
+
+  A world where there are no companies spying on you when you send selfies to friends and lovers.
+
+  And a world where apps are made for fluffyness and not for profit. ♥
+
+  Join the community: https://matrix.to/#/#fluffychat:matrix.org
+  Website: http://fluffychat.im
+  Microblog: https://metalhead.club/@krille
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
+parts:
+  olm:
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+    source: https://gitlab.matrix.org/matrix-org/olm.git
+    source-type: git
+    source-tag: '3.2.14'
+    build-packages:
+      - g++
+
+  flutter-git:
+    source: https://github.com/flutter/flutter.git
+    source-tag: 3.10.6
+    plugin: nil
+    override-build: |
+      set -eux
+      mkdir -p $CRAFT_PART_INSTALL/usr/bin
+      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
+      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
+      ln -sf $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
+      export PATH="$CRAFT_PART_INSTALL/usr/bin:$PATH"
+      flutter doctor
+    build-packages:
+      - clang
+      - cmake
+      - curl
+      - ninja-build
+      - unzip
+    override-prime: ''
+
+  fluffychat:
+    after: [ flutter-git ]
+    plugin: flutter
+    source: .
+    override-build: |
+      craftctl set version=$(git describe --always --tag)
+      set -eux
+      flutter pub get || true
+      flutter build linux --release -v
+      mkdir -p $CRAFT_PART_INSTALL/bin
+      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
+    build-packages:
+      - libjsoncpp-dev
+      - execstack
+    stage-packages:
+      - libsecret-1-dev
+      - libjsoncpp-dev
+      - mpv
+      - zenity
+    override-prime: |
+      craftctl default
+      rm $CRAFT_PRIME/usr/lib/*/libc_malloc_debug.so
+
+slots:
+  dbus-svc:
+    interface: dbus
+    bus: session
+    name: chat.fluffy.fluffychat
+
+apps:
+  fluffychat:
+    command: bin/fluffychat
+    extensions: [gnome]
+    plugs:
+      - audio-playback
+      - desktop
+      - desktop-legacy
+      - home
+      - network
+      - network-manager
+      - network-manager-observe
+      - opengl
+      - removable-media
+      - browser-support
+      - password-manager-service
+    slots:
+      - dbus-svc
+    # Workaround for:
+    # https://github.com/flutter-webrtc/flutter-webrtc/issues/1212#issuecomment-1611899344
+    environment:
+      XDG_DATA_HOME: $SNAP_USER_DATA
+      XDG_DATA_DIRS: $SNAP/usr/share
+      GDK_GL: gles
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/bin/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
