@@ -21,7 +21,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install node -y
+        run: sudo apt-get update && sudo apt-get install nodejs -y
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
