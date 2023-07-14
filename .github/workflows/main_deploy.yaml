@@ -29,7 +29,7 @@ jobs:
         run: flutter build web --release --verbose --source-maps
       - name: Build Website
         run: |
-          npx tailwindcss -o ./tailwind.css --minify
+          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
           mv docs public
           mv repo public || true
           mv build/web/ public/web
