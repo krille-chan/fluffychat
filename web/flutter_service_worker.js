@@ -3,8 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"index.html": "1e20b2ac96763778db007f624d6883bb",
-"/": "1e20b2ac96763778db007f624d6883bb",
+const RESOURCES = {"index.html": "8a82eda9975db0cb36252b4da2f2a996",
+"/": "8a82eda9975db0cb36252b4da2f2a996",
 "flutter.js": "6fef97aeca90b426343ba6c5c9dc5d4a",
 "favicon.png": "a409751f0ecf6dee76fb350d7402f9be",
 "main.dart.js": "e80ea5e8eee89536e43e9526ea31ebe9",
@@ -36,7 +36,7 @@ const RESOURCES = {"index.html": "1e20b2ac96763778db007f624d6883bb",
 "assets/fonts/NotoEmoji/NotoColorEmoji.ttf": "ed84f46d3d5564a08541cd64bddd495c",
 "assets/AssetManifest.bin": "b9118f8e8a0ad8d181d0a70316102217",
 "assets/AssetManifest.json": "612b25e02d4c7e76e7bdcfb2af88fbc3",
-"assets/NOTICES": "033cb1791b1271c0360e6f4ac1bad4b1",
+"assets/NOTICES": "bf01cc3c0830cc4a5d8dbad5d93dd48a",
 "assets/FontManifest.json": "1114a5860d5e995c8dc48419a7a6a9e7",
 "assets/packages/wakelock_plus/assets/no_sleep.js": "7748a45cd593f33280669b29c2c8919a",
 "assets/packages/flutter_math_fork/lib/katex_fonts/fonts/KaTeX_Fraktur-Regular.ttf": "dede6f2c7dad4402fa205644391b3a94",

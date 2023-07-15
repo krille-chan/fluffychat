@@ -10647,6 +10647,7 @@ flutter_secure_storage_linux
 flutter_secure_storage_macos
 flutter_secure_storage_platform_interface
 flutter_secure_storage_web
+flutter_secure_storage_windows
 
 BSD 3-Clause License
 
@@ -10677,10 +10678,6 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
---------------------------------------------------------------------------------
-flutter_secure_storage_windows
-
-WTFPL
 --------------------------------------------------------------------------------
 flutter_svg
 
