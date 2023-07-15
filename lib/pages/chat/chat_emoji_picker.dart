@@ -62,7 +62,7 @@ class _ChatEmojiPickerState extends State<ChatEmojiPicker> {
                     icon: const Icon(Icons.arrow_back_outlined),
                     onPressed: () {
                       _searchController.text = '';
-                      _searchResults.clear();
+                      _searchResults = List.empty();
                       _searchFocusNode.unfocus();
                     },
                     color: Theme.of(context).colorScheme.onBackground,
@@ -76,7 +76,7 @@ class _ChatEmojiPickerState extends State<ChatEmojiPicker> {
                 : IconButton(
                     onPressed: () {
                       _searchController.text = '';
-                      _searchResults.clear();
+                      _searchResults = List.empty();;
                     },
                     icon: Icon(
                       Icons.clear_outlined,
@@ -134,7 +134,7 @@ class _ChatEmojiPickerState extends State<ChatEmojiPicker> {
   Widget build(BuildContext context) {
     if (!widget.controller.showEmojiPicker) {
       _searchController.text = '';
-      _searchResults.clear();
+      _searchResults = List.empty();
     }
 
     return AnimatedContainer(
