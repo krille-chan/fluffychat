@@ -83,12 +83,12 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v2
-      - name: Build Snap
-        run: snapcraft
-      - name: Publish Snap
-        run: snapcraft push ./*.snap
+      - uses: snapcore/action-build@v1
+        id: snapcraft
+      - uses: actions/upload-artifact@v3
+        with:
+          name: fluffychat
+          path: ${{ steps.snapcraft.outputs.snap }}
       - name: Promote Snap
         run: |
           RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
