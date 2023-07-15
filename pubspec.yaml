@@ -147,12 +147,6 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # fake secure storage plugin for Windows
-  # See: https://gitlab.com/gitlab-com/gl-infra/reliability/-/issues/15161
-  flutter_secure_storage_windows:
-    git:
-      url: https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git
-      ref: main
   geolocator_android:
     hosted:
       name: geolocator_android

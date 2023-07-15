@@ -705,14 +705,13 @@ packages:
     source: hosted
     version: "1.1.1"
   flutter_secure_storage_windows:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "."
-      ref: main
-      resolved-ref: "3751da0df5eede20d64816ceb79ca78ace7389b3"
-      url: "https://gitlab.com/TheOneWithTheBraid/flutter_secure_storage_windows.git"
-    source: git
-    version: "1.1.2"
+      name: flutter_secure_storage_windows
+      sha256: fc2910ec9b28d60598216c29ea763b3a96c401f0ce1d13cdf69ccb0e5c93c3ee
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter_svg:
     dependency: transitive
     description:
