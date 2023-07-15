@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/wi7RlVt.png)
 
 <p align="center">
-  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://metalhead.club/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://famedly.com/kontakt">Server hosting and professional support</a>
+  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://mastodon.art/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://famedly.com/kontakt">Server hosting and professional support</a>
  </p>
 
 
