@@ -12,9 +12,6 @@ concurrency:
 env:
   FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
   JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
-  FDROID_KEY: ${{ secrets.FDROID_KEY }}
-  FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
-  PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
 
 jobs:
   deploy_web:
@@ -67,19 +64,11 @@ jobs:
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter pub get
       - name: Prepare Android Release Build
-        run: |
-          cd android
-          echo $FDROID_KEY | base64 --decode --ignore-garbage > key.jks
-          echo "storePassword=${FDROID_KEY_PASS}" >> key.properties
-          echo "keyPassword=${FDROID_KEY_PASS}" >> key.properties
-          echo "keyAlias=key" >> key.properties
-          echo "storeFile=../key.jks" >> key.properties
-          echo $PLAYSTORE_DEPLOY_KEY >> keys.json
-          ls | grep key
-          bundle install
-          bundle update fastlane
-          bundle exec fastlane set_build_code_internal
-          cd ..
+        env:
+          FDROID_KEY: ${{ secrets.FDROID_KEY }}
+          FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
+          PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
+        run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
       - name: Deploy Android Release

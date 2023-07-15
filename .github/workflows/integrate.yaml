@@ -7,7 +7,7 @@ env:
   JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
 
 jobs:
-  analyze:
+  code_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
