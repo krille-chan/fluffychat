@@ -9,18 +9,12 @@ concurrency:
   group: main_deploy
   cancel-in-progress: true
 
-env:
-  FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
-  JAVA_VERSION: ${{ secrets.JAVA_VERSION }}
-
 jobs:
   deploy_web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -48,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
           java-version: ${{ env.JAVA_VERSION }}
