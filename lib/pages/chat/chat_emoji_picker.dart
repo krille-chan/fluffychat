@@ -158,6 +158,11 @@ class _ChatEmojiPickerState extends State<ChatEmojiPicker> {
                               onBackspacePressed:
                                   widget.controller.emojiPickerBackspace,
                               config: Config(
+                                noRecents: Text(
+                                  L10n.of(context)!.noRecentEmojis,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  textAlign: TextAlign.center,
+                                ),
                                 bgColor: Theme.of(context)
                                     .canvasColor, // TODO: needs to match color of input_bar
                               ),
