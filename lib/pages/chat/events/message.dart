@@ -77,13 +77,14 @@ class Message extends StatelessWidget {
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
     final sameSender = nextEvent != null &&
-            [
-              EventTypes.Message,
-              EventTypes.Sticker,
-              EventTypes.Encrypted,
-            ].contains(nextEvent!.type)
-        ? nextEvent!.senderId == event.senderId && !displayTime
-        : false;
+        [
+          EventTypes.Message,
+          EventTypes.Sticker,
+          EventTypes.Encrypted,
+        ].contains(nextEvent!.type) &&
+        nextEvent?.relationshipType == null &&
+        nextEvent!.senderId == event.senderId &&
+        !displayTime;
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onBackground;
