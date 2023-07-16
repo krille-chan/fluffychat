@@ -1,7 +1,7 @@
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
@@ -47,7 +47,7 @@ class InputBar extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  List<Map<String, String?>> getSuggestions(String text) {
+  Future<List<Map<String, String?>>> getSuggestions(String text) async {
     if (controller!.selection.baseOffset !=
             controller!.selection.extentOffset ||
         controller!.selection.baseOffset < 0) {
@@ -119,34 +119,14 @@ class InputBar extends StatelessWidget {
         }
       }
       // aside of emote packs, also propose normal (tm) unicode emojis
-      final matchingUnicodeEmojis = Emoji.all()
-          .where(
-            (element) => [element.name, ...element.keywords]
-                .any((element) => element.toLowerCase().contains(emoteSearch)),
-          )
-          .toList();
-      // sort by the index of the search term in the name in order to have
-      // best matches first
-      // (thanks for the hint by github.com/nextcloud/circles devs)
-      matchingUnicodeEmojis.sort((a, b) {
-        final indexA = a.name.indexOf(emoteSearch);
-        final indexB = b.name.indexOf(emoteSearch);
-        if (indexA == -1 || indexB == -1) {
-          if (indexA == indexB) return 0;
-          if (indexA == -1) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }
-        return indexA.compareTo(indexB);
-      });
+      final matchingUnicodeEmojis = await EmojiPickerUtils().searchEmoji(emoteSearch, defaultEmojiSet);
+
       for (final emoji in matchingUnicodeEmojis) {
         ret.add({
           'type': 'emoji',
-          'emoji': emoji.char,
+          'emoji': emoji.emoji,
           // don't include sub-group names, splitting at `:` hence
-          'label': '${emoji.char} - ${emoji.name.split(':').first}',
+          'label': '${emoji.emoji} - ${emoji.name.split(':').first}',
           'current_word': ':$emoteSearch',
         });
         if (ret.length > maxResults) {
