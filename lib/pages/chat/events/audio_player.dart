@@ -42,6 +42,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   String? statusText;
   int currentPosition = 0;
   double maxPosition = 0;
+  double thisPosition = 0;
 
   MatrixFile? matrixFile;
   File? audioFile;
@@ -118,7 +119,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         currentPosition = ((state.inMilliseconds.toDouble() / maxPosition) *
                 AudioPlayerWidget.wavesCount)
             .round();
+        thisPosition = state.inMilliseconds.toDouble();
       });
+      if (thisPosition == maxPosition) {
+        audioPlayer.stop();
+        audioPlayer.seek(null);
+      }
+
     });
     onDurationChanged ??= audioPlayer.durationStream.listen((max) {
       if (max == null || max == Duration.zero) return;
