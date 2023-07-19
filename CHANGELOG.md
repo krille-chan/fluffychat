@@ -1,3 +1,8 @@
+## v1.12.1
+- Switch the dev hosting platform from GitLab to GitHub
+- Updated translations and dependencies
+- New onboarding screen with SSO as first class feature
+
 ## v1.12.0
 - Added translation using Weblate (Toki Pona) (Mæve Rey)
 - Translated using Weblate (Arabic) (Rex_sa)
