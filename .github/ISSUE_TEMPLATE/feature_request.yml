@@ -19,14 +19,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: functionality
-    attributes:
-      label: "Functionality"
-      description: "Describe what the feature would do and how it should work."
-      placeholder: "Describe the functionality of the feature here..."
-    validations:
-      required: true
-  - type: input
     id: mockup
     attributes:
       label: "Mockup"
