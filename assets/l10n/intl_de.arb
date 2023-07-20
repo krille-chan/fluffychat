@@ -2496,5 +2496,19 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Bitte versuche es später noch einmal oder wähle einen anderen Server.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "jump": "Springen",
+  "@jump": {},
+  "openLinkInBrowser": "Link im Browser öffnen",
+  "@openLinkInBrowser": {},
+  "reportErrorDescription": "Hoppla. Etwas ist schief gelaufen. Bitte versuche es später noch einmal. Wenn du möchtest, kannst du den Fehler bei den Entwicklern melden.",
+  "@reportErrorDescription": {},
+  "report": "Melden",
+  "@report": {},
+  "signInWithPassword": "Anmelden mit Passwort",
+  "@signInWithPassword": {},
+  "continueWith": "Fortfahren mit:",
+  "@continueWith": {}
 }
