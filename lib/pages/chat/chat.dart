@@ -464,6 +464,22 @@ class ChatController extends State<ChatPageWithRoom> {
     );
   }
 
+  void sendImageFromClipBoard(Uint8List? image) async {
+    await showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (c) => SendFileDialog(
+        files: [
+          MatrixFile(
+            bytes: image!,
+            name: "image from Clipboard",
+          ).detectFileType,
+        ],
+        room: room,
+      ),
+    );
+  }
+
   void sendImageAction() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
