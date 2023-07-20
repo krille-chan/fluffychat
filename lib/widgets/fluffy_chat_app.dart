@@ -17,6 +17,7 @@ class FluffyChatApp extends StatefulWidget {
   final List<Client> clients;
   final Map<String, String>? queryParameters;
   static GlobalKey<VRouterState> routerKey = GlobalKey<VRouterState>();
+  static GlobalKey<MatrixState> matrixKey = GlobalKey<MatrixState>();
   const FluffyChatApp({
     Key? key,
     this.testWidget,
@@ -75,6 +76,7 @@ class FluffyChatAppState extends State<FluffyChatApp> {
             initialUrl: _initialUrl ?? '/',
             routes: AppRoutes(columnMode ?? false).routes,
             builder: (context, child) => Matrix(
+              key: FluffyChatApp.matrixKey,
               context: context,
               router: FluffyChatApp.routerKey,
               clients: widget.clients,

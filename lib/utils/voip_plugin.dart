@@ -61,7 +61,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   void addCallingOverlay(String callId, CallSession call) {
     final context = kIsWeb
         ? ChatList.contextForVoip!
-        : FluffyChatApp.routerKey.currentContext!; // web is weird
+        : FluffyChatApp.matrixKey.currentContext!; // web is weird
+
     if (overlayEntry != null) {
       Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
       overlayEntry!.remove();
@@ -165,7 +166,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         addCallingOverlay(call.callId, call);
         try {
           if (!hasCallingAccount) {
-            ScaffoldMessenger.of(FluffyChatApp.routerKey.currentContext!)
+            ScaffoldMessenger.of(FluffyChatApp.matrixKey.currentContext!)
                 .showSnackBar(
               const SnackBar(
                 content: Text(
