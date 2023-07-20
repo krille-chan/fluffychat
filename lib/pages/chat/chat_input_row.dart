@@ -235,6 +235,7 @@ class ChatInputRow extends StatelessWidget {
                     textInputAction:
                         AppConfig.sendOnEnter ? TextInputAction.send : null,
                     onSubmitted: controller.onInputBarSubmitted,
+                    onSubmitImage: controller.sendImageFromClipBoard,
                     focusNode: controller.inputFocus,
                     controller: controller.sendController,
                     decoration: InputDecoration(

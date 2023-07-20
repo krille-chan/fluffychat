@@ -66,6 +66,7 @@ dependencies:
   matrix_homeserver_recommendations: ^0.3.0
   native_imaging: ^0.1.0
   package_info_plus: ^4.0.0
+  pasteboard: ^0.2.0
   path_provider: ^2.0.9
   permission_handler: ^10.0.0
   pin_code_text_field: ^1.8.0
