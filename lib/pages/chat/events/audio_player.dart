@@ -119,6 +119,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 AudioPlayerWidget.wavesCount)
             .round();
       });
+      if (state.inMilliseconds.toDouble() == maxPosition) {
+        audioPlayer.stop();
+        audioPlayer.seek(null);
+      }
     });
     onDurationChanged ??= audioPlayer.durationStream.listen((max) {
       if (max == null || max == Duration.zero) return;
