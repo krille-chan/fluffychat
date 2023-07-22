@@ -146,17 +146,22 @@ class SettingsStyleView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Material(
-                color: Theme.of(context).colorScheme.primary,
-                elevation: 6,
-                shadowColor:
-                    Theme.of(context).secondaryHeaderColor.withAlpha(100),
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                color: Theme.of(context).colorScheme.primaryContainer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  side: BorderSide(
+                    color: Theme.of(context).dividerColor,
+                  ),
+                ),
                 child: Padding(
-                  padding: EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16 * AppConfig.bubbleSizeFactor,
+                    vertical: 8 * AppConfig.bubbleSizeFactor,
+                  ),
                   child: Text(
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
                       fontSize:
                           AppConfig.messageFontSize * AppConfig.fontSizeFactor,
                     ),

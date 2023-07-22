@@ -90,9 +90,6 @@ abstract class FluffyThemes {
           filled: true,
         ),
         appBarTheme: AppBarTheme(
-          surfaceTintColor:
-              brightness == Brightness.light ? Colors.white : Colors.black,
-          shadowColor: Colors.black.withAlpha(64),
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: brightness.reversed,

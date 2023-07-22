@@ -168,7 +168,6 @@ class ChatView extends StatelessWidget {
             builder: (BuildContext context, snapshot) {
               return Scaffold(
                 appBar: AppBar(
-                  elevation: 3,
                   actionsIconTheme: IconThemeData(
                     color: controller.selectedEvents.isEmpty
                         ? null
@@ -215,15 +214,6 @@ class ChatView extends StatelessWidget {
                           height: double.infinity,
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.medium,
-                        )
-                      else
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: FluffyThemes.backgroundGradient(
-                              context,
-                              64,
-                            ),
-                          ),
                         ),
                       SafeArea(
                         child: Column(

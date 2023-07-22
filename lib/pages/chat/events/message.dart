@@ -86,7 +86,7 @@ class Message extends StatelessWidget {
         nextEvent!.senderId == event.senderId &&
         !displayTime;
     final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimary
+        ? Theme.of(context).colorScheme.onPrimaryContainer
         : Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
@@ -116,7 +116,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).colorScheme.primary;
+          : Theme.of(context).colorScheme.primaryContainer;
     }
 
     final rowChildren = <Widget>[
@@ -187,9 +187,15 @@ class Message extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
               child: Material(
                 color: noBubble ? Colors.transparent : color,
-                elevation: event.type == EventTypes.Sticker ? 0 : 4,
-                shadowColor: Colors.black.withAlpha(64),
-                borderRadius: borderRadius,
+                shape: RoundedRectangleBorder(
+                  borderRadius: borderRadius,
+                  side: noBubble
+                      ? BorderSide.none
+                      : BorderSide(
+                          color: Theme.of(context).dividerTheme.color ??
+                              Theme.of(context).dividerColor,
+                        ),
+                ),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onHover: (b) => useMouse = true,
@@ -205,7 +211,10 @@ class Message extends StatelessWidget {
                     ),
                     padding: noBubble || noPadding
                         ? EdgeInsets.zero
-                        : EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
+                        : EdgeInsets.symmetric(
+                            horizontal: 16 * AppConfig.bubbleSizeFactor,
+                            vertical: 8 * AppConfig.bubbleSizeFactor,
+                          ),
                     constraints: const BoxConstraints(
                       maxWidth: FluffyThemes.columnWidth * 1.5,
                     ),
