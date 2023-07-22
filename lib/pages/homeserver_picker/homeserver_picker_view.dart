@@ -21,6 +21,7 @@ class HomeserverPickerView extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         titleSpacing: 12,
+        automaticallyImplyLeading: false,
         title: HomeserverAppBar(controller: controller),
       ),
       body: SafeArea(
@@ -54,10 +55,14 @@ class HomeserverPickerView extends StatelessWidget {
                   ? const Center(child: CircularProgressIndicator.adaptive())
                   : ListView(
                       children: [
-                        Image.asset(
-                          'assets/info-logo.png',
-                          height: 96,
-                        ),
+                        if (FluffyThemes.isColumnMode(context))
+                          Image.asset(
+                            'assets/info-logo.png',
+                            height: 96,
+                          )
+                        else
+                          Image.asset('assets/banner_transparent.png'),
+                        const SizedBox(height: 12),
                         if (errorText != null) ...[
                           const Center(
                             child: Icon(
@@ -163,8 +168,7 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 12),
       alignment: Alignment.center,
       child: SizedBox(
         width: 256,
