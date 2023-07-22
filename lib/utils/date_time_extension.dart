@@ -24,7 +24,7 @@ extension DateTimeExtension on DateTime {
   /// Two message events can belong to the same environment. That means that they
   /// don't need to display the time they were sent because they are close
   /// enaugh.
-  static const minutesBetweenEnvironments = 5;
+  static const minutesBetweenEnvironments = 10;
 
   /// Checks if two DateTimes are close enough to belong to the same
   /// environment.
