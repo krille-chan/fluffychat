@@ -147,12 +147,7 @@ class SettingsStyleView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Material(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  side: BorderSide(
-                    color: Theme.of(context).dividerColor,
-                  ),
-                ),
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 16 * AppConfig.bubbleSizeFactor,

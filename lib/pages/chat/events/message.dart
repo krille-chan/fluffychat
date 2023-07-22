@@ -70,9 +70,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).brightness == Brightness.light
-        ? Colors.white
-        : Theme.of(context).colorScheme.surfaceVariant;
+    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -187,15 +185,7 @@ class Message extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8),
               child: Material(
                 color: noBubble ? Colors.transparent : color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: borderRadius,
-                  side: noBubble
-                      ? BorderSide.none
-                      : BorderSide(
-                          color: Theme.of(context).dividerTheme.color ??
-                              Theme.of(context).dividerColor,
-                        ),
-                ),
+                borderRadius: borderRadius,
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   onHover: (b) => useMouse = true,
@@ -394,6 +384,10 @@ class Message extends StatelessWidget {
       );
     } else {
       container = row;
+    }
+
+    if (event.messageType == MessageTypes.BadEncrypted) {
+      container = Opacity(opacity: 0.33, child: container);
     }
 
     return Swipeable(
