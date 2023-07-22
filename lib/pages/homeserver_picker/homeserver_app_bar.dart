@@ -59,6 +59,7 @@ class HomeserverAppBar extends StatelessWidget {
                   icon: const Icon(Icons.arrow_back),
                 )
               : null,
+          fillColor: Theme.of(context).colorScheme.onInverseSurface,
           prefixText: '${L10n.of(context)!.homeserver}: ',
           hintText: L10n.of(context)!.enterYourHomeserver,
           suffixIcon: const Icon(Icons.search),

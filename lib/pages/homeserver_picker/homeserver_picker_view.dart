@@ -21,10 +21,7 @@ class HomeserverPickerView extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         titleSpacing: 12,
-        title: Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: HomeserverAppBar(controller: controller),
-        ),
+        title: HomeserverAppBar(controller: controller),
       ),
       body: SafeArea(
         child: Column(
@@ -60,34 +57,6 @@ class HomeserverPickerView extends StatelessWidget {
                         Image.asset(
                           'assets/info-logo.png',
                           height: 96,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1,
-                                  height: 1,
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Text(
-                                  L10n.of(context)!.continueWith,
-                                  style: const TextStyle(fontSize: 12),
-                                ),
-                              ),
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1,
-                                  height: 1,
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
                         if (errorText != null) ...[
                           const Center(
@@ -140,9 +109,8 @@ class HomeserverPickerView extends StatelessWidget {
                                         height: 24,
                                       ),
                                     ),
-                              label: provider.name ??
-                                  provider.brand ??
-                                  L10n.of(context)!.singlesignon,
+                              label:
+                                  'Sign in with ${provider.name ?? provider.brand ?? L10n.of(context)!.singlesignon}',
                               onPressed: () =>
                                   controller.ssoLoginAction(provider.id!),
                             ),
@@ -156,12 +124,18 @@ class HomeserverPickerView extends StatelessWidget {
                           ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
+                          child: Center(
+                            child: SizedBox(
+                              width: 256,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
+                                ),
+                                onPressed: controller.restoreBackup,
+                                child: Text(L10n.of(context)!.hydrate),
+                              ),
                             ),
-                            onPressed: controller.restoreBackup,
-                            child: Text(L10n.of(context)!.hydrate),
                           ),
                         ),
                       ],
@@ -191,14 +165,30 @@ class _LoginButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       margin: const EdgeInsets.only(bottom: 16),
-      width: double.infinity,
-      child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 12),
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: 256,
+        child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(90),
+            ),
+            foregroundColor: Theme.of(context).colorScheme.onBackground,
+          ),
+          onPressed: onPressed,
+          child: Row(
+            children: [
+              icon,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  label,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
-        onPressed: onPressed,
-        icon: icon,
-        label: Text(label),
       ),
     );
   }

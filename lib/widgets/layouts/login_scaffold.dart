@@ -54,7 +54,7 @@ class LoginScaffold extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SizedBox(height: 64),
+          const SizedBox(height: 16),
           Expanded(
             child: Center(
               child: Padding(
