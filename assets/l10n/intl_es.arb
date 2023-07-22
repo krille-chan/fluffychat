@@ -2169,5 +2169,7 @@
   "youAcceptedTheInvitation": "👍 Aceptaste la invitación",
   "@youAcceptedTheInvitation": {},
   "widgetEtherpad": "Nota de texto",
-  "@widgetEtherpad": {}
+  "@widgetEtherpad": {},
+  "noRecentEmojis": "Ninguno habitual de momento",
+  "@noRecentEmojis": {}
 }

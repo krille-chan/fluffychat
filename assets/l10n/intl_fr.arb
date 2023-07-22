@@ -2486,5 +2486,7 @@
     "jumpToLastReadMessage": "Aller au dernier message lu",
     "@jumpToLastReadMessage": {},
     "readUpToHere": "Lisez jusqu’ici",
-    "@readUpToHere": {}
+    "@readUpToHere": {},
+    "noRecentEmojis": "Pas d'emojis récents",
+    "@noRecentEmojis": {}
 }
