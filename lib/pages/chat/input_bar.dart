@@ -1,7 +1,7 @@
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
@@ -119,7 +119,8 @@ class InputBar extends StatelessWidget {
         }
       }
       // aside of emote packs, also propose normal (tm) unicode emojis
-      final matchingUnicodeEmojis = await EmojiPickerUtils().searchEmoji(emoteSearch, defaultEmojiSet);
+      final matchingUnicodeEmojis =
+          await EmojiPickerUtils().searchEmoji(emoteSearch, defaultEmojiSet);
 
       for (final emoji in matchingUnicodeEmojis) {
         ret.add({
