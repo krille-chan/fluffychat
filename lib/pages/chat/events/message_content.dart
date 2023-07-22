@@ -99,8 +99,7 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    final buttonTextColor =
-        event.senderId == Matrix.of(context).client.userID ? textColor : null;
+    final buttonTextColor = textColor;
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
@@ -304,13 +303,13 @@ class _ButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton.icon(
+    return TextButton.icon(
       onPressed: onPressed,
       icon: icon,
       label: Text(label, overflow: TextOverflow.ellipsis),
-      style: OutlinedButton.styleFrom(
+      style: TextButton.styleFrom(
         foregroundColor: textColor,
-        backgroundColor: Colors.white.withAlpha(64),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
     );
   }
