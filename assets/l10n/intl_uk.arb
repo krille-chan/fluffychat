@@ -2510,5 +2510,12 @@
   "signInWithPassword": "Увійти за допомогою пароля",
   "@signInWithPassword": {},
   "continueWith": "Продовжити за допомогою:",
-  "@continueWith": {}
+  "@continueWith": {},
+  "signInWith": "Увійти через {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }
