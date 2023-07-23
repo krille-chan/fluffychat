@@ -36,8 +36,8 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat/issues';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
-    host: 'gitlab.com',
-    path: '/famedly/fluffychat/-/issues/new',
+    host: 'github.com',
+    path: '/krille-chan/fluffychat/issues/new',
   );
   static const bool enableSentry = true;
   static const String sentryDns =

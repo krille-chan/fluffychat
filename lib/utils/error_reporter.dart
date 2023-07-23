@@ -44,8 +44,8 @@ $stackTrace
       AppConfig.newIssueUrl.resolveUri(
         Uri(
           queryParameters: {
-            'issue[title]': '[BUG]: ${message ?? error.toString()}',
-            'issue[description]': description,
+            'title': '[BUG]: ${message ?? error.toString()}',
+            'body': description,
           },
         ),
       ),
