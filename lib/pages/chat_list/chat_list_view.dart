@@ -176,7 +176,12 @@ class ChatListView extends StatelessWidget {
                     body: ChatListViewBody(controller),
                     bottomNavigationBar: controller.displayNavigationBar
                         ? NavigationBar(
+                            elevation: 4,
                             height: 64,
+                            shadowColor:
+                                Theme.of(context).colorScheme.onBackground,
+                            surfaceTintColor:
+                                Theme.of(context).colorScheme.background,
                             selectedIndex: controller.selectedIndex,
                             onDestinationSelected:
                                 controller.onDestinationSelected,
