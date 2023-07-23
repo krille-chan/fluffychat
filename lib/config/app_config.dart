@@ -20,12 +20,12 @@ abstract class AppConfig {
   static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl =
-      'https://github.com/krille-chan/fluffychat/-/blob/main/PRIVACY.md';
+      'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/User-Guide:-Push-Notifications';
+      'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/User-Guide:-End-To-End-Encryption';
+      'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
