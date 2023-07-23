@@ -2399,7 +2399,7 @@
   "@whyIsThisMessageEncrypted": {},
   "newGroup": "Neue Gruppe",
   "@newGroup": {},
-  "newSpace": "Neuer Raum",
+  "newSpace": "Neuer Space",
   "@newSpace": {},
   "enterSpace": "Raum betreten",
   "@enterSpace": {},
@@ -2510,5 +2510,12 @@
   "signInWithPassword": "Anmelden mit Passwort",
   "@signInWithPassword": {},
   "continueWith": "Fortfahren mit:",
-  "@continueWith": {}
+  "@continueWith": {},
+  "signInWith": "Anmelden mit {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }
