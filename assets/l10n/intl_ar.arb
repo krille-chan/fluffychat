@@ -801,7 +801,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "عفوا ، حدث خطأ ما …",
+  "oopsSomethingWentWrong": "عذراً، هناك خطأ ما…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2464,7 +2464,7 @@
   },
   "jump": "قفز",
   "@jump": {},
-  "report": "تقرير",
+  "report": "التقرير",
   "@report": {},
   "noKeyForThisMessage": "يمكن أن يحدث هذا إذا تم إرسال الرسالة قبل تسجيل الدخول إلى حسابك على هذا الجهاز.\n\nمن الممكن أيضا أن يكون المرسل قد حظر جهازك أو حدث خطأ ما في الاتصال بالإنترنت.\n\nهل يمكنك قراءة الرسالة في جلسة أخرى؟ ثم يمكنك نقل الرسالة منه! انتقل إلى الإعدادات > الأجهزة وتأكد من أن أجهزتك قد تحققت من بعضها البعض. عندما تفتح الغرفة في المرة التالية وتكون كلتا الجلستين في المقدمة ، سيتم إرسال المفاتيح تلقائيا.\n\nألا تريد أن تفقد المفاتيح عند تسجيل الخروج أو تبديل الأجهزة؟ تأكد من تمكين النسخ الاحتياطي للدردشة في الإعدادات.",
   "@noKeyForThisMessage": {},
@@ -2510,5 +2510,12 @@
   "continueWith": "أكمل ب:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "رجاء حاول مجددا أو اختر خادما مختلفا.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "تسجيل الدخول باستخدام {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }
