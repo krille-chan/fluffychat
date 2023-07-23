@@ -55,13 +55,15 @@ class HomeserverPickerView extends StatelessWidget {
                   ? const Center(child: CircularProgressIndicator.adaptive())
                   : ListView(
                       children: [
-                        if (FluffyThemes.isColumnMode(context))
-                          Image.asset(
-                            'assets/info-logo.png',
-                            height: 96,
-                          )
-                        else
-                          Image.asset('assets/banner_transparent.png'),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: FluffyThemes.isColumnMode(context)
+                              ? Image.asset(
+                                  'assets/info-logo.png',
+                                  height: 96,
+                                )
+                              : Image.asset('assets/banner_transparent.png'),
+                        ),
                         const SizedBox(height: 12),
                         if (errorText != null) ...[
                           const Center(
@@ -114,8 +116,11 @@ class HomeserverPickerView extends StatelessWidget {
                                         height: 24,
                                       ),
                                     ),
-                              label:
-                                  'Sign in with ${provider.name ?? provider.brand ?? L10n.of(context)!.singlesignon}',
+                              label: L10n.of(context)!.signInWith(
+                                provider.name ??
+                                    provider.brand ??
+                                    L10n.of(context)!.singlesignon,
+                              ),
                               onPressed: () =>
                                   controller.ssoLoginAction(provider.id!),
                             ),

@@ -2476,5 +2476,12 @@
     "report": "report",
     "signInWithPassword": "Sign in with password",
     "continueWith": "Continue with:",
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server."
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
+    "signInWith": "Sign in with {provider}",
+    "@signInWith": {
+        "type": "text",
+        "placeholders": {
+            "provider": {}
+        }
+    }
 }

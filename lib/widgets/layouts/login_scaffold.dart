@@ -40,7 +40,8 @@ class LoginScaffold extends StatelessWidget {
       body: body,
       bottomNavigationBar: isMobileMode
           ? Material(
-              color: Theme.of(context).colorScheme.onInverseSurface,
+              elevation: 4,
+              shadowColor: Theme.of(context).colorScheme.onBackground,
               child: const _PrivacyButtons(
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
