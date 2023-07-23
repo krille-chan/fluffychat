@@ -386,7 +386,7 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    if (event.messageType == MessageTypes.BadEncrypted) {
+    if (event.messageType == MessageTypes.BadEncrypted || event.redacted) {
       container = Opacity(opacity: 0.33, child: container);
     }
 
