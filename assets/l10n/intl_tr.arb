@@ -2510,5 +2510,12 @@
   "continueWith": "Devam et:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Lütfen daha sonra tekrar deneyin veya farklı bir sunucu seçin.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "{provider} ile oturum aç",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }
