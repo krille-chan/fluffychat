@@ -10,6 +10,8 @@ import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
+enum PopupMenuEmojiActions { import, export }
+
 class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
 
@@ -23,6 +25,31 @@ class EmotesSettingsView extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButton(),
         title: Text(L10n.of(context)!.emoteSettings),
+        actions: [
+          PopupMenuButton<PopupMenuEmojiActions>(
+            onSelected: (value) {
+              switch (value) {
+                case PopupMenuEmojiActions.export:
+                  controller.exportAsZip();
+                  break;
+                case PopupMenuEmojiActions.import:
+                  controller.importEmojiZip();
+                  break;
+              }
+            },
+            enabled: !controller.readonly,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: PopupMenuEmojiActions.import,
+                child: Text(L10n.of(context)!.importFromZipFile),
+              ),
+              PopupMenuItem(
+                value: PopupMenuEmojiActions.export,
+                child: Text(L10n.of(context)!.exportEmotePack),
+              ),
+            ],
+          ),
+        ],
       ),
       floatingActionButton: controller.showSave
           ? FloatingActionButton(
@@ -33,20 +60,6 @@ class EmotesSettingsView extends StatelessWidget {
       body: MaxWidthBody(
         child: Column(
           children: <Widget>[
-            if (!controller.readonly)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                ),
-                child: ListTile(
-                  title: Text(L10n.of(context)!.importFromZipFile),
-                  trailing: IconButton(
-                    tooltip: L10n.of(context)!.importZipFile,
-                    icon: const Icon(Icons.file_open),
-                    onPressed: controller.importEmojiZip,
-                  ),
-                ),
-              ),
             if (!controller.readonly)
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -216,11 +229,6 @@ class EmotesSettingsView extends StatelessWidget {
                         );
                       },
                     ),
-            ),
-            const Divider(),
-            ListTile(
-              title: Text(L10n.of(context)!.exportEmotePack),
-              onTap: controller.exportAsZip,
             ),
           ],
         ),
