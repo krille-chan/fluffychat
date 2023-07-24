@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +10,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
@@ -343,32 +340,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
         if (output == null) return;
 
-        if (kIsWeb || PlatformInfos.isMobile) {
-          await Share.shareXFiles(
-            [XFile(fileName, bytes: Uint8List.fromList(output))],
-          );
-        } else {
-          String? savePath = await FilePicker.platform
-              .saveFile(fileName: fileName, allowedExtensions: ['zip']);
-
-          if (savePath == null) {
-            // workaround for broken `xdg-desktop-portal-termfilechooser`
-            if (PlatformInfos.isLinux) {
-              final dir = await getDownloadsDirectory();
-              if (dir == null) return;
-              savePath = dir.uri.resolve(fileName).toFilePath();
-            } else {
-              return;
-            }
-          }
-
-          final file = File(savePath);
-          await file.writeAsBytes(output);
-
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(L10n.of(context)!.savedEmotePack(savePath))),
-          );
-        }
+        MatrixFile(
+          name: fileName,
+          bytes: Uint8List.fromList(output),
+        ).save(context);
       },
     );
   }
