@@ -19,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -62,6 +63,7 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
+
   SharedPreferences get store => widget.store;
 
   HomeserverSummary? loginHomeserverSummary;
@@ -446,8 +448,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.separateChatTypes) ??
             AppConfig.separateChatTypes;
 
-    AppConfig.autoplayImages =
-        store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
+    AppConfig.autoplayImages = store.getBool(SettingKeys.autoplayImages) ??
+        client.autoplayAnimatedContent ??
+        AppConfig.autoplayImages;
+
+    // migrating stored autoplay preferences to account data
+    if (AppConfig.autoplayImages != client.autoplayAnimatedContent) {
+      unawaited(
+        client
+            .setAutoplayAnimatedContent(AppConfig.autoplayImages)
+            .then((value) => store.remove(SettingKeys.autoplayImages)),
+      );
+    }
 
     AppConfig.sendTypingNotifications =
         store.getBool(SettingKeys.sendTypingNotifications) ??

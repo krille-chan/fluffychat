@@ -1,19 +1,30 @@
-import 'dart:typed_data';
+import 'dart:async';
+import 'dart:ui' as ui show Image;
+import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'animated_emoji_plain_text.dart';
+
+enum AnimationState { userDefined, forced, disabled }
 
 class MxcImage extends StatefulWidget {
   final Uri? uri;
   final Event? event;
   final double? width;
   final double? height;
+  final double? watermarkSize;
+  final Color? watermarkColor;
+  final bool forceAnimation;
+  final bool disableTapHandler;
   final BoxFit? fit;
   final bool isThumbnail;
   final bool animated;
@@ -38,6 +49,10 @@ class MxcImage extends StatefulWidget {
     this.animationCurve = FluffyThemes.animationCurve,
     this.thumbnailMethod = ThumbnailMethod.scale,
     this.cacheKey,
+    this.watermarkSize,
+    this.watermarkColor,
+    this.forceAnimation = false,
+    this.disableTapHandler = false,
     super.key,
   });
 
@@ -46,14 +61,42 @@ class MxcImage extends StatefulWidget {
 }
 
 class _MxcImageState extends State<MxcImage> {
-  static final Map<String, Uint8List> _imageDataCache = {};
-  Uint8List? _imageDataNoCache;
-  Uint8List? get _imageData {
+  static final Map<String, ImageFutureResponse> _imageDataCache = {};
+  ImageFutureResponse? _imageDataNoCache;
+
+  ImageFutureResponse? get _imageData {
     final cacheKey = widget.cacheKey;
     return cacheKey == null ? _imageDataNoCache : _imageDataCache[cacheKey];
   }
 
-  set _imageData(Uint8List? data) {
+  /// asynchronously
+  Future<ImageFutureResponse> removeImageAnimations(Uint8List data) async {
+    final provider = MemoryImage(data);
+
+    final codec = await instantiateImageCodecWithSize(
+      await ImmutableBuffer.fromUint8List(data),
+    );
+    if (codec.frameCount > 1) {
+      final frame = await codec.getNextFrame();
+      return ThumbnailImageResponse(
+        thumbnail: frame.image,
+        imageProvider: provider,
+      );
+    } else {
+      return ImageProviderFutureResponse(provider);
+    }
+  }
+
+  Future<ImageFutureResponse> _renderImageFrame(Uint8List data) async {
+    if (widget.forceAnimation ||
+        (Matrix.of(context).client.autoplayAnimatedContent ?? !kIsWeb)) {
+      return ImageProviderFutureResponse(MemoryImage(data));
+    } else {
+      return await removeImageAnimations(data);
+    }
+  }
+
+  set _imageData(ImageFutureResponse? data) {
     if (data == null) return;
     final cacheKey = widget.cacheKey;
     cacheKey == null
@@ -90,9 +133,9 @@ class _MxcImageState extends State<MxcImage> {
       if (_isCached == null) {
         final cachedData = await client.database?.getFile(storeKey);
         if (cachedData != null) {
+          _imageData = await _renderImageFrame(cachedData);
           if (!mounted) return;
           setState(() {
-            _imageData = cachedData;
             _isCached = true;
           });
           return;
@@ -109,10 +152,9 @@ class _MxcImageState extends State<MxcImage> {
       }
       final remoteData = response.bodyBytes;
 
+      _imageData = await _renderImageFrame(remoteData);
       if (!mounted) return;
-      setState(() {
-        _imageData = remoteData;
-      });
+      setState(() {});
       await client.database?.storeFile(storeKey, remoteData, 0);
     }
 
@@ -121,10 +163,9 @@ class _MxcImageState extends State<MxcImage> {
         getThumbnail: widget.isThumbnail,
       );
       if (data.detectFileType is MatrixImageFile) {
+        _imageData = await _renderImageFrame(data.bytes);
         if (!mounted) return;
-        setState(() {
-          _imageData = data.bytes;
-        });
+        setState(() {});
         return;
       }
     }
@@ -157,26 +198,75 @@ class _MxcImageState extends State<MxcImage> {
   Widget build(BuildContext context) {
     final data = _imageData;
 
+    Widget child;
+    if (data is ThumbnailImageResponse) {
+      child = AnimationEnabledContainerView(
+        builder: (bool animate) => animate
+            ? _buildImageProvider(data.imageProvider)
+            : _buildFrameImage(data.thumbnail),
+        disableTapHandler: widget.disableTapHandler,
+        iconSize: widget.watermarkSize ?? 0,
+        textColor: widget.watermarkColor ?? Colors.transparent,
+      );
+    } else if (data is ImageProviderFutureResponse) {
+      child = _buildImageProvider(data.imageProvider);
+    } else {
+      child = const SizedBox.shrink();
+    }
+
     return AnimatedCrossFade(
       duration: widget.animationDuration,
       crossFadeState:
           data == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: placeholder(context),
-      secondChild: data == null || data.isEmpty
-          ? const SizedBox.shrink()
-          : Image.memory(
-              data,
-              width: widget.width,
-              height: widget.height,
-              fit: widget.fit,
-              filterQuality: FilterQuality.medium,
-              errorBuilder: (context, __, ___) {
-                _isCached = false;
-                _imageData = null;
-                WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
-                return placeholder(context);
-              },
-            ),
+      secondChild: child,
     );
   }
+
+  Widget _buildFrameImage(ui.Image image) {
+    return RawImage(
+      key: ValueKey(image),
+      image: image,
+      width: widget.width,
+      height: widget.height,
+      fit: widget.fit,
+      filterQuality: FilterQuality.medium,
+    );
+  }
+
+  Widget _buildImageProvider(ImageProvider image) {
+    return Image(
+      key: ValueKey(image),
+      image: image,
+      width: widget.width,
+      height: widget.height,
+      fit: widget.fit,
+      filterQuality: FilterQuality.medium,
+      errorBuilder: (context, __, ___) {
+        _isCached = false;
+        _imageData = null;
+        WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+        return placeholder(context);
+      },
+    );
+  }
+}
+
+abstract class ImageFutureResponse {
+  const ImageFutureResponse();
+}
+
+class ImageProviderFutureResponse extends ImageFutureResponse {
+  final ImageProvider imageProvider;
+
+  const ImageProviderFutureResponse(this.imageProvider);
+}
+
+class ThumbnailImageResponse extends ImageProviderFutureResponse {
+  final ui.Image thumbnail;
+
+  const ThumbnailImageResponse({
+    required this.thumbnail,
+    required ImageProvider imageProvider,
+  }) : super(imageProvider);
 }

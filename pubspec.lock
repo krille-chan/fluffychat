@@ -249,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dart_animated_emoji:
+    dependency: "direct main"
+    description:
+      name: dart_animated_emoji
+      sha256: bede7cf617a42b77376ed426d68fc7aebc09672cbc3021298bafd36445a3678c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   dart_code_metrics:
     dependency: "direct dev"
     description:
@@ -361,6 +369,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1"
+  emoji_regex:
+    dependency: "direct main"
+    description:
+      name: emoji_regex
+      sha256: "3a25dd4d16f98b6f76dc37cc9ae49b8511891ac4b87beac9443a1e9f4634b6c7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   emojis:
     dependency: "direct main"
     description:
@@ -1117,6 +1133,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  lottie:
+    dependency: "direct main"
+    description:
+      name: lottie
+      sha256: f461105d3a35887b27089abf9c292334478dd292f7b47ecdccb6ae5c37a22c80
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   macos_ui:
     dependency: transitive
     description:

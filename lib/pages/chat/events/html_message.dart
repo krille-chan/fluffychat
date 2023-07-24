@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Element;
 
 import 'package:collection/collection.dart';
+import 'package:dart_animated_emoji/dart_animated_emoji.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -10,6 +11,7 @@ import 'package:linkify/linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/animated_emoji_plain_text.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
@@ -18,12 +20,14 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
+  final bool isEmojiOnly;
 
   const HtmlMessage({
     super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
+    this.isEmojiOnly = false,
   });
 
   @override
@@ -44,7 +48,9 @@ class HtmlMessage extends StatelessWidget {
       '',
     );
 
-    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+    double fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+
+    if (isEmojiOnly) fontSize *= 3;
 
     final linkifiedRenderHtml = linkify(
       renderHtml,
@@ -60,6 +66,16 @@ class HtmlMessage extends StatelessWidget {
         return '<a href="${element.url}">${element.text}</a>';
       },
     ).join('');
+
+    final emojifiedHtml = linkifiedRenderHtml.replaceAllMapped(
+      RegExp(
+        '(${AnimatedEmoji.all.reversed.map((e) => e.fallback).join('|')})',
+      ),
+      (match) {
+        final emoji = linkifiedRenderHtml.substring(match.start, match.end);
+        return '<span data-fluffy-animated-emoji="$emoji">$emoji</span>';
+      },
+    );
 
     final linkColor = textColor.withAlpha(150);
 
@@ -77,7 +93,7 @@ class HtmlMessage extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.text,
       child: Html(
-        data: linkifiedRenderHtml,
+        data: emojifiedHtml,
         style: {
           '*': Style(
             color: textColor,
@@ -138,8 +154,15 @@ class HtmlMessage extends StatelessWidget {
           ),
           const TableHtmlExtension(),
           SpoilerExtension(textColor: textColor),
-          const ImageExtension(),
+          ImageExtension(
+            isEmojiOnly: isEmojiOnly,
+            watermarkColor: textColor,
+          ),
           FontColorExtension(),
+          AnimatedEmojiExtension(
+            isEmojiOnly: isEmojiOnly,
+            defaultTextColor: textColor,
+          ),
         ],
         onLinkTap: (url, _, element) => UrlLauncher(
           context,
@@ -254,8 +277,14 @@ class FontColorExtension extends HtmlExtension {
 
 class ImageExtension extends HtmlExtension {
   final double defaultDimension;
+  final bool isEmojiOnly;
+  final Color watermarkColor;
 
-  const ImageExtension({this.defaultDimension = 64});
+  const ImageExtension({
+    this.defaultDimension = 64,
+    this.isEmojiOnly = false,
+    required this.watermarkColor,
+  });
 
   @override
   Set<String> get supportedTags => {'img'};
@@ -267,18 +296,34 @@ class ImageExtension extends HtmlExtension {
       return TextSpan(text: context.attributes['alt']);
     }
 
-    final width = double.tryParse(context.attributes['width'] ?? '');
-    final height = double.tryParse(context.attributes['height'] ?? '');
+    double? width, height;
 
+    // in case it's an emoji only message or a custom emoji image,
+    // force the default font size
+    if (isEmojiOnly) {
+      width = height =
+          AppConfig.messageFontSize * AppConfig.fontSizeFactor * 3 * 1.2;
+    } else if (context.attributes.containsKey('data-mx-emoticon') ||
+        context.attributes.containsKey('data-mx-emoji')) {
+      // in case the image is a custom emote, get the surrounding font size
+      width = height = (tryGetParentFontSize(context) ??
+              FontSize(AppConfig.messageFontSize * AppConfig.fontSizeFactor))
+          .emValue;
+    } else {
+      width = double.tryParse(context.attributes['width'] ?? '');
+      height = double.tryParse(context.attributes['height'] ?? '');
+    }
     return WidgetSpan(
       child: SizedBox(
         width: width ?? height ?? defaultDimension,
         height: height ?? width ?? defaultDimension,
         child: MxcImage(
+          watermarkSize: (width ?? height ?? defaultDimension) / 2.5,
           uri: mxcUrl,
           width: width ?? height ?? defaultDimension,
           height: height ?? width ?? defaultDimension,
           cacheKey: mxcUrl.toString(),
+          watermarkColor: watermarkColor,
         ),
       ),
     );
@@ -330,6 +375,7 @@ class MatrixMathExtension extends HtmlExtension {
   final TextStyle? style;
 
   MatrixMathExtension({this.style});
+
   @override
   Set<String> get supportedTags => {'div'};
 
@@ -359,10 +405,65 @@ class MatrixMathExtension extends HtmlExtension {
   }
 }
 
+class AnimatedEmojiExtension extends HtmlExtension {
+  final bool isEmojiOnly;
+  final Color defaultTextColor;
+
+  const AnimatedEmojiExtension({
+    this.isEmojiOnly = false,
+    required this.defaultTextColor,
+  });
+
+  @override
+  Set<String> get supportedTags => {'span'};
+
+  @override
+  bool matches(ExtensionContext context) {
+    if (context.elementName != 'span') return false;
+    final emojiData = context.element?.attributes['data-fluffy-animated-emoji'];
+    return emojiData != null;
+  }
+
+  @override
+  InlineSpan build(
+    ExtensionContext context,
+  ) {
+    final emojiText = context.element?.innerHtml;
+    try {
+      final emoji = AnimatedEmoji.all.firstWhere(
+        (element) => element.fallback == emojiText,
+      );
+
+      double size;
+
+      // in case it's an emoji only message, we can use the default emoji-only
+      // font size
+      if (isEmojiOnly) {
+        size = AppConfig.messageFontSize * AppConfig.fontSizeFactor * 3 * 1.125;
+      } else {
+        // otherwise try to gather the parenting element's font size.
+        final fontSize = (tryGetParentFontSize(context) ??
+            FontSize(AppConfig.messageFontSize * AppConfig.fontSizeFactor));
+        size = fontSize.emValue * 1.125;
+      }
+      return WidgetSpan(
+        child: AnimatedEmojiLottieView(
+          emoji: emoji,
+          size: size,
+          textColor: defaultTextColor,
+        ),
+      );
+    } catch (_) {
+      return TextSpan(text: emojiText);
+    }
+  }
+}
+
 class CodeExtension extends HtmlExtension {
   final double fontSize;
 
   CodeExtension({required this.fontSize});
+
   @override
   Set<String> get supportedTags => {'code'};
 
@@ -400,6 +501,7 @@ class RoomPillExtension extends HtmlExtension {
   final BuildContext context;
 
   RoomPillExtension(this.context, this.room);
+
   @override
   Set<String> get supportedTags => {'a'};
 
@@ -510,4 +612,16 @@ class MatrixPill extends StatelessWidget {
       ),
     );
   }
+}
+
+FontSize? tryGetParentFontSize(ExtensionContext context) {
+  var currentElement = context.element;
+  while (currentElement?.parent != null) {
+    currentElement = currentElement?.parent;
+    final size = context.parser.style[(currentElement!.localName!)]?.fontSize;
+    if (size != null) {
+      return size;
+    }
+  }
+  return null;
 }

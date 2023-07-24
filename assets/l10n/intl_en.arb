@@ -2484,6 +2484,8 @@
             "oldDisplayName": {}
         }
     },
+    "autoplayAnimations": "Automatically play animations",
+    "defaultEmojiTone": "Default emoji tone",
     "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
     "encryptThisChat": "Encrypt this chat",
     "endToEndEncryption": "End to end encryption",

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:emoji_regex/emoji_regex.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/widgets/animated_emoji_plain_text.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
@@ -115,12 +116,16 @@ class MessageContent extends StatelessWidget {
               height: 300,
               fit: BoxFit.cover,
               borderRadius: borderRadius,
+              watermarkColor: textColor,
             );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
-            return Sticker(event);
+            return Sticker(
+              event,
+              watermarkColor: textColor,
+            );
           case CuteEventContent.eventType:
-            return CuteContent(event);
+            return CuteContent(event, color: textColor);
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile ||
                     PlatformInfos.isMacOS ||
@@ -157,6 +162,7 @@ class MessageContent extends StatelessWidget {
                 html: html,
                 textColor: textColor,
                 room: event.room,
+                isEmojiOnly: event.onlyEmotes,
               );
             }
             // else we fall through to the normal message rendering
@@ -232,7 +238,12 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
-            final bigEmotes = event.onlyEmotes &&
+            final bigEmotes = (event.onlyEmotes ||
+                    emojiRegex()
+                            .allMatches(event.text)
+                            .map((e) => e[0])
+                            .join() ==
+                        event.text) &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
             return FutureBuilder<String>(
@@ -241,26 +252,17 @@ class MessageContent extends StatelessWidget {
                 hideReply: true,
               ),
               builder: (context, snapshot) {
-                return Linkify(
-                  text: snapshot.data ??
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                        hideReply: true,
-                      ),
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: textColor.withAlpha(150),
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: textColor.withAlpha(150),
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                final text = snapshot.data ??
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                      hideReply: true,
+                    );
+                return TextLinkifyEmojify(
+                  text,
+                  fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                  textDecoration:
+                      event.redacted ? TextDecoration.lineThrough : null,
+                  textColor: textColor,
                 );
               },
             );

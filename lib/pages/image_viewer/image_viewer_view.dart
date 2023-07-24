@@ -62,7 +62,7 @@ class ImageViewerView extends StatelessWidget {
               event: controller.widget.event,
               fit: BoxFit.contain,
               isThumbnail: false,
-              animated: true,
+              forceAnimation: true,
             ),
           ),
         ),

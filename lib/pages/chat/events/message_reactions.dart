@@ -5,6 +5,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/animated_emoji_plain_text.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -110,7 +111,7 @@ class _Reaction extends StatelessWidget {
         ? Colors.white
         : Colors.black;
     final color = Theme.of(context).scaffoldBackgroundColor;
-    final fontSize = DefaultTextStyle.of(context).style.fontSize;
+    final fontSize = DefaultTextStyle.of(context).style.fontSize ?? 12;
     Widget content;
     if (reactionKey!.startsWith('mxc://')) {
       content = Row(
@@ -120,6 +121,8 @@ class _Reaction extends StatelessWidget {
             uri: Uri.parse(reactionKey!),
             width: 9999,
             height: fontSize,
+            watermarkColor: color,
+            watermarkSize: fontSize / 1.5,
           ),
           const SizedBox(width: 4),
           Text(
@@ -136,12 +139,10 @@ class _Reaction extends StatelessWidget {
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
-      content = Text(
+      content = TextLinkifyEmojify(
         '$renderKey $count',
-        style: TextStyle(
-          color: textColor,
-          fontSize: DefaultTextStyle.of(context).style.fontSize,
-        ),
+        textColor: textColor,
+        fontSize: fontSize,
       );
     }
     return InkWell(
@@ -218,7 +219,12 @@ class _AdaptableReactorsDialog extends StatelessWidget {
       ),
     );
 
-    final title = Center(child: Text(reactionEntry!.key!));
+    final title = Center(
+      child: TextLinkifyEmojify(
+        reactionEntry!.key!,
+        fontSize: Theme.of(context).textTheme.headlineLarge?.fontSize ?? 24,
+      ),
+    );
 
     return AlertDialog.adaptive(
       title: title,

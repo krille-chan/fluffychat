@@ -187,8 +187,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
   final int _loadHistoryCount = 100;
 
-  String inputText = '';
-
   String pendingText = '';
 
   bool showEmojiPicker = false;
@@ -295,7 +293,6 @@ class ChatController extends State<ChatPageWithRoom> {
     final draft = prefs.getString('draft_$roomId');
     if (draft != null && draft.isNotEmpty) {
       sendController.text = draft;
-      setState(() => inputText = draft);
     }
   }
 
@@ -472,18 +469,18 @@ class ChatController extends State<ChatPageWithRoom> {
 
     // ignore: unawaited_futures
     room.sendTextEvent(
-      sendController.text,
+      sendController.text.trim(),
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
       parseCommands: parseCommands,
     );
+    // TextEditingValue required due to potential selection present
     sendController.value = TextEditingValue(
       text: pendingText,
       selection: const TextSelection.collapsed(offset: 0),
     );
 
     setState(() {
-      inputText = pendingText;
       replyEvent = null;
       editEvent = null;
       pendingText = '';
@@ -1051,7 +1048,7 @@ class ChatController extends State<ChatPageWithRoom> {
     setState(() {
       pendingText = sendController.text;
       editEvent = selectedEvents.first;
-      inputText = sendController.text =
+      sendController.text =
           editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 withSenderNamePrefix: false,
@@ -1206,10 +1203,9 @@ class ChatController extends State<ChatPageWithRoom> {
         if ((prefix.isNotEmpty) &&
             text.toLowerCase() == '${prefix.toLowerCase()} ') {
           setSendingClient(client);
-          setState(() {
-            inputText = '';
-            sendController.text = '';
-          });
+
+          sendController.text = '';
+
           return;
         }
       }
@@ -1233,7 +1229,6 @@ class ChatController extends State<ChatPageWithRoom> {
         );
       }
     }
-    setState(() => inputText = text);
   }
 
   bool get isArchived =>
@@ -1302,7 +1297,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {
-          inputText = sendController.text = pendingText;
+          sendController.text = pendingText;
           pendingText = '';
         }
         replyEvent = null;

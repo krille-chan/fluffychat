@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
+import '../../utils/platform_infos.dart';
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
@@ -56,13 +56,11 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.hideUnimportantStateEvents,
                 defaultValue: AppConfig.hideUnimportantStateEvents,
               ),
-              if (PlatformInfos.isMobile)
-                SettingsSwitchListTile.adaptive(
-                  title: L10n.of(context)!.autoplayImages,
-                  onChanged: (b) => AppConfig.autoplayImages = b,
-                  storeKey: SettingKeys.autoplayImages,
-                  defaultValue: AppConfig.autoplayImages,
-                ),
+              SwitchListTile.adaptive(
+                title: Text(L10n.of(context)!.autoplayAnimations),
+                value: controller.autoplayAnimations,
+                onChanged: controller.setAutoplayAnimations,
+              ),
               const Divider(),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendTypingNotifications,

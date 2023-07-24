@@ -18,6 +18,7 @@ dependencies:
   chewie: ^1.7.1
   collection: ^1.17.2
   cupertino_icons: any
+  dart_animated_emoji: ^0.0.1
   desktop_drop: ^0.4.4
   desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
@@ -25,6 +26,7 @@ dependencies:
   dynamic_color: ^1.6.8
   emoji_picker_flutter: ^1.6.3
   emoji_proposal: ^0.0.1
+  emoji_regex: ^0.0.5
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
   file_picker: ^6.1.1
@@ -62,6 +64,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
+  lottie: ^2.4.0
   matrix: ^0.22.6
   matrix_homeserver_recommendations: ^0.3.0
   native_imaging: ^0.1.0
@@ -118,6 +121,10 @@ flutter:
     - assets/js/package/
 
   fonts:
+    # The roboto font must be named exactly this way.
+    #
+    # Issue : https://github.com/flutter/flutter/issues/77580#issuecomment-1112333700
+    # Source : https://github.com/flutter/engine/blob/3.10.2/lib/web_ui/lib/src/engine/canvaskit/fonts.dart#L133
     - family: Roboto
       fonts:
         - asset: fonts/Roboto/Roboto-Regular.ttf
@@ -125,12 +132,22 @@ flutter:
           style: italic
         - asset: fonts/Roboto/Roboto-Bold.ttf
           weight: 700
-    - family: RobotoMono
+    - family: Roboto Mono
       fonts:
         - asset: fonts/Roboto/RobotoMono-Regular.ttf
-    - family: NotoEmoji
+    # These three Noto font families are hardcoded in the Flutter engine to be loaded as fallback
+    # from Google Fonts in case characters are supposed to be displayed that are not available in
+    # the provided fonts.
+    #
+    # The fonts may NOT be renamed in their family name we use in Dart.
+    #
+    # Source : https://github.com/flutter/engine/blob/3.10.2/lib/web_ui/lib/src/engine/canvaskit/font_fallback_data.dart
+    - family: Noto Color Emoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
+    - family: Noto Sans Symbols
+      fonts:
+        - asset: fonts/NotoSansSymbols-VariableFont_wght.ttf
 
 msix_config:
   display_name: FluffyChat

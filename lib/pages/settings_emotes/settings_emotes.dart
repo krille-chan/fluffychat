@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:emojis/emoji.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -273,6 +274,19 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
   }
 
+  fitzpatrick get defaultTone => Matrix.of(context).client.defaultEmojiTone;
+
+  Future<void> setDefaultTone(fitzpatrick value) async {
+    try {
+      final client = Matrix.of(context).client;
+      await client.setDefaultEmojiTone(value);
+    } catch (e) {
+      Logs().w('Error storing animation preferences.', e);
+    } finally {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return EmotesSettingsView(this);
@@ -353,5 +367,49 @@ class EmotesSettingsController extends State<EmotesSettings> {
         ).save(context);
       },
     );
+  }
+}
+
+extension DefaultEmojiTone on Client {
+  static const _emoteConfigKey = 'im.fluffychat.emote_config';
+
+  /// returns whether user preferences configured to autoplay motion
+  /// message content such as gifs, webp, apng, videos or animations.
+  fitzpatrick get defaultEmojiTone {
+    if (!accountData.containsKey(_emoteConfigKey)) return fitzpatrick.None;
+    try {
+      final elementWebData = accountData[_emoteConfigKey]?.content;
+      final encoded = elementWebData?['tone'] as String?;
+      switch (encoded) {
+        case 'light':
+          return fitzpatrick.light;
+        case 'mediumLight':
+          return fitzpatrick.mediumLight;
+        case 'medium':
+          return fitzpatrick.medium;
+        case 'mediumDark':
+          return fitzpatrick.mediumDark;
+        case 'dark':
+          return fitzpatrick.dark;
+        default:
+          return fitzpatrick.None;
+      }
+    } catch (e) {
+      return fitzpatrick.None;
+    }
+  }
+
+  Future<void> setDefaultEmojiTone(fitzpatrick tone) async {
+    final elementWebData = accountData[_emoteConfigKey]?.content ?? {};
+    final name = tone == fitzpatrick.None ? null : tone.name;
+    elementWebData['tone'] = name;
+    final uid = userID;
+    if (uid != null) {
+      await setAccountData(
+        uid,
+        _emoteConfigKey,
+        elementWebData,
+      );
+    }
   }
 }

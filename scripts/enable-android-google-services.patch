@@ -148,9 +148,9 @@ diff --git a/pubspec.yaml b/pubspec.yaml
 index 6999d0b8..b2c9144f 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
-@@ -26,7 +26,7 @@ dependencies:
-   emoji_picker_flutter: ^1.6.3
+@@ -27,7 +27,7 @@ dependencies:
    emoji_proposal: ^0.0.1
+   emoji_regex: ^0.0.5
    emojis: ^0.9.9
 -  #fcm_shared_isolate: ^0.1.0
 +  fcm_shared_isolate: ^0.1.0

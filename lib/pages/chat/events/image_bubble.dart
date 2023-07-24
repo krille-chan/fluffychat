@@ -19,6 +19,7 @@ class ImageBubble extends StatelessWidget {
   final double height;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
+  final Color? watermarkColor;
 
   const ImageBubble(
     this.event, {
@@ -30,6 +31,7 @@ class ImageBubble extends StatelessWidget {
     this.width = 400,
     this.height = 300,
     this.animated = false,
+    this.watermarkColor,
     this.onTap,
     this.borderRadius,
     super.key,
@@ -102,13 +104,17 @@ class ImageBubble extends StatelessWidget {
                   )
                 : const BoxConstraints.expand(),
             child: MxcImage(
+              key: ValueKey(event.eventId),
               event: event,
               width: width,
               height: height,
               fit: fit,
               animated: animated,
+              disableTapHandler: true,
               isThumbnail: thumbnailOnly,
               placeholder: _buildPlaceholder,
+              watermarkSize: width / 2.5,
+              watermarkColor: watermarkColor,
             ),
           ),
         ),

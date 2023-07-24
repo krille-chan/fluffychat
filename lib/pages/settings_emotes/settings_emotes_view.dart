@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:dart_animated_emoji/dart_animated_emoji.dart';
+import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:lottie/lottie.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/animated_emoji_plain_text.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
 enum PopupMenuEmojiActions { import, export }
+
+const colorPickerSize = 32.0;
 
 class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
@@ -61,6 +67,64 @@ class EmotesSettingsView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            if (controller.room == null) ...[
+              ListTile(
+                title: Text(L10n.of(context)!.defaultEmojiTone),
+              ),
+              SizedBox(
+                height: colorPickerSize + 24,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: fitzpatrick.values
+                      .map(
+                        (tone) => Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: InkWell(
+                            borderRadius:
+                                BorderRadius.circular(colorPickerSize),
+                            onTap: () => controller.setDefaultTone(tone),
+                            child: Material(
+                              elevation: 6,
+                              borderRadius:
+                                  BorderRadius.circular(colorPickerSize),
+                              child: SizedBox(
+                                width: colorPickerSize,
+                                height: colorPickerSize,
+                                child: controller.defaultTone == tone
+                                    ? Center(
+                                        child: Lottie.memory(
+                                          Uint8List.fromList(
+                                            AnimatedEmoji.all
+                                                .firstWhere(
+                                                  (e) =>
+                                                      e.fallback ==
+                                                      Emoji.modify(
+                                                        '\u{1f44b}',
+                                                        tone,
+                                                      ),
+                                                )
+                                                .lottieAnimation
+                                                .codeUnits,
+                                          ),
+                                        ),
+                                      )
+                                    : Center(
+                                        child: Text(
+                                          Emoji.modify('\u{1f44b}', tone),
+                                          style: const TextStyle(fontSize: 24),
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+              const Divider(),
+            ],
             if (!controller.readonly)
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -122,9 +186,9 @@ class EmotesSettingsView extends StatelessWidget {
                 ? Center(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
-                      child: Text(
+                      child: TextLinkifyEmojify(
                         L10n.of(context)!.noEmotesFound,
-                        style: const TextStyle(fontSize: 20),
+                        fontSize: 20,
                       ),
                     ),
                   )
@@ -247,6 +311,7 @@ class _EmoteImage extends StatelessWidget {
         fit: BoxFit.contain,
         width: size,
         height: size,
+        forceAnimation: true,
       ),
     );
   }

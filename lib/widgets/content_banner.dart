@@ -54,7 +54,6 @@ class ContentBanner extends StatelessWidget {
                   : MxcImage(
                       key: Key(mxContent?.toString() ?? 'NoKey'),
                       uri: mxContent,
-                      animated: true,
                       fit: BoxFit.cover,
                       placeholder: placeholder,
                       height: 400,

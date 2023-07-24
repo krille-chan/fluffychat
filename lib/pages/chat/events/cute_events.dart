@@ -1,16 +1,24 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
+import 'package:fluffychat/widgets/animated_emoji_plain_text.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class CuteContent extends StatefulWidget {
   final Event event;
+  final Color color;
 
-  const CuteContent(this.event, {super.key});
+  const CuteContent(
+    this.event, {
+    super.key,
+    required this.color,
+  });
 
   @override
   State<CuteContent> createState() => _CuteContentState();
@@ -18,17 +26,18 @@ class CuteContent extends StatefulWidget {
 
 class _CuteContentState extends State<CuteContent> {
   static bool _isOverlayShown = false;
-
-  @override
-  void initState() {
-    if (AppConfig.autoplayImages && !_isOverlayShown) {
-      addOverlay();
-    }
-    super.initState();
-  }
+  bool initialized = false;
 
   @override
   Widget build(BuildContext context) {
+    if (initialized == false) {
+      initialized = true;
+
+      if (Matrix.of(context).client.autoplayAnimatedContent ??
+          !kIsWeb && !_isOverlayShown) {
+        addOverlay();
+      }
+    }
     return FutureBuilder<User?>(
       future: widget.event.fetchSenderUser(),
       builder: (context, snapshot) {
@@ -40,9 +49,10 @@ class _CuteContentState extends State<CuteContent> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              TextLinkifyEmojify(
                 widget.event.text,
-                style: const TextStyle(fontSize: 150),
+                fontSize: 150,
+                textColor: widget.color,
               ),
               if (label != null) Text(label),
             ],
@@ -183,11 +193,14 @@ class _CuteOverlayContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: size,
-      child: Text(
-        emoji,
-        style: const TextStyle(fontSize: 48),
+    return SizedOverflowBox(
+      size: const Size.square(size),
+      child: ClipRect(
+        clipBehavior: Clip.hardEdge,
+        child: Text(
+          emoji,
+          style: const TextStyle(fontSize: 56),
+        ),
       ),
     );
   }
