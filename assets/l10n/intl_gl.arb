@@ -2510,5 +2510,12 @@
   "continueWith": "Continuar con:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Inténtao máis tarde ou elixe un servidor diferente.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Accede con {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }

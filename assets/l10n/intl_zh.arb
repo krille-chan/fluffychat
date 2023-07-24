@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username} 已接受邀请",
+  "acceptedTheInvitation": "👍 {username} 接受了邀请",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -486,7 +486,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "couldNotDecryptMessage": "不能解密消息:{error}",
+  "couldNotDecryptMessage": "不能解密消息: {error}",
   "@couldNotDecryptMessage": {
     "type": "text",
     "placeholders": {
@@ -1053,7 +1053,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "提到",
+  "mention": "提及",
   "@mention": {
     "type": "text",
     "placeholders": {}
@@ -1979,7 +1979,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMatrixServer": "{server1} 不是一个Matrix服务器,试试{server2}?",
+  "noMatrixServer": "{server1} 不是一个 Matrix 服务器,试试 {server2}？",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
@@ -1987,12 +1987,12 @@
       "server2": {}
     }
   },
-  "locationPermissionDeniedNotice": "位置权限被拒绝.请授予此权限以分享你的位置.",
+  "locationPermissionDeniedNotice": "位置权限被拒绝。请授予此权限以分享你的位置.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "locationDisabledNotice": "位置服务已禁用.请启用此服务以分享你的位置.",
+  "locationDisabledNotice": "位置服务已禁用。请启用此服务以分享你的位置.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
@@ -2403,7 +2403,7 @@
   "@screenSharingTitle": {},
   "callingAccount": "呼叫账户",
   "@callingAccount": {},
-  "screenSharingDetail": "你正在 FluffyChat 共享屏幕",
+  "screenSharingDetail": "你正在 FluffyChat 中共享屏幕",
   "@screenSharingDetail": {},
   "numChats": "{number} 个聊天",
   "@numChats": {
@@ -2470,5 +2470,52 @@
   "@discover": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "enterInviteLinkOrMatrixId": "输入邀请链接或 Matrix ID...",
+  "@enterInviteLinkOrMatrixId": {},
+  "fileIsTooBigForServer": "服务器报告文件过大，无法发送。",
+  "@fileIsTooBigForServer": {},
+  "noOtherDevicesFound": "未找到其它设备",
+  "@noOtherDevicesFound": {},
+  "jumpToLastReadMessage": "跳转到上次已读的消息",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "读到此处",
+  "@readUpToHere": {},
+  "jump": "跳转",
+  "@jump": {},
+  "openLinkInBrowser": "在浏览器中打开链接",
+  "@openLinkInBrowser": {},
+  "signInWith": "使用 {provider} 登录",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "allRooms": "所有群聊",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "letsStart": "让我们开始吧",
+  "@letsStart": {},
+  "fileHasBeenSavedAt": "文件已保存在 {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "reportErrorDescription": "哦不。出了点差错。请稍后重试。如果您愿意，可以向开发人员报告此错误。",
+  "@reportErrorDescription": {},
+  "noBackupWarning": "警告！如果不启用聊天备份，您将无法访问加密消息。强烈建议在注销前先启用聊天备份。",
+  "@noBackupWarning": {},
+  "signInWithPassword": "使用密码登录",
+  "@signInWithPassword": {},
+  "continueWith": "继续：",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "请稍后再试或选择其它服务器。",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "reopenChat": "重新打开聊天",
+  "@reopenChat": {}
 }
