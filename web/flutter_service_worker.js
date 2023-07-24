@@ -3,11 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"index.html": "38b5b80a1ba5e356d0558f2509f772e7",
-"/": "38b5b80a1ba5e356d0558f2509f772e7",
+const RESOURCES = {"index.html": "9cbae4a1b3e1a78576bee937e64a22d5",
+"/": "9cbae4a1b3e1a78576bee937e64a22d5",
 "flutter.js": "6fef97aeca90b426343ba6c5c9dc5d4a",
 "favicon.png": "a409751f0ecf6dee76fb350d7402f9be",
-"main.dart.js": "abf6684bf9c72d82564ab21d99d236d5",
+"main.dart.js": "4885f924f11577ff0ccf3f937e5d7b87",
 "version.json": "3d2c5936ebd30d387213be0f97763677",
 "splash/style.css": "d284d01cad91aeea699e23fe4698ccf1",
 "splash/img/light-4x.png": "e0346148103c17a87682a35525499afe",
@@ -28,7 +28,7 @@ const RESOURCES = {"index.html": "38b5b80a1ba5e356d0558f2509f772e7",
 "manifest.json": "cc4b6aa791018840b65fd0b0e325b201",
 "auth.html": "f03ff41ec673844136dfbd81be79aa80",
 "assets/shaders/ink_sparkle.frag": "f8b80e740d33eb157090be4e995febdf",
-"assets/fonts/MaterialIcons-Regular.otf": "702e1989d15ce50a009ecaf4c4cdf9e4",
+"assets/fonts/MaterialIcons-Regular.otf": "7ddb4a8e2683c141bdf274ca4bd3d12b",
 "assets/fonts/Roboto/RobotoMono-Regular.ttf": "7e173cf37bb8221ac504ceab2acfb195",
 "assets/fonts/Roboto/Roboto-Regular.ttf": "8a36205bd9b83e03af0591a004bc97f4",
 "assets/fonts/Roboto/Roboto-Italic.ttf": "cebd892d1acfcc455f5e52d4104f2719",
