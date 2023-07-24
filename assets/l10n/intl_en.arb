@@ -14,6 +14,21 @@
             "min": {}
         }
     },
+    "notAnImage": "Not an image file.",
+    "remove": "Replace",
+    "importNow": "Import now",
+    "importEmojis": "Import Emojis",
+    "importFromZipFile": "Import from .zip file",
+    "importZipFile": "Import .zip file",
+    "exportEmotePack": "Export Emote pack as .zip",
+    "replace": "Replace",
+    "savedEmotePack": "Saved emote pack to {path}!",
+    "@savedEmotePack": {
+        "type": "text",
+        "placeholders": {
+            "path": {}
+        }
+    },
     "about": "About",
     "@about": {
         "type": "text",
