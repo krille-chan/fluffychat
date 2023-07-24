@@ -1,7 +1,8 @@
 name: fluffychat
 title: FluffyChat
 base: core22
-adopt-info: fluffychat
+version: git
+license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
   FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
@@ -38,7 +39,7 @@ description: |
 
   Join the community: https://matrix.to/#/#fluffychat:matrix.org
   Website: http://fluffychat.im
-  Microblog: https://metalhead.club/@krille
+  Microblog: https://mastodon.art/@krille
 
 grade: stable
 confinement: strict
@@ -83,7 +84,6 @@ parts:
     plugin: flutter
     source: .
     override-build: |
-      craftctl set version=$(git describe --always --tag)
       set -eux
       flutter pub get || true
       flutter build linux --release -v

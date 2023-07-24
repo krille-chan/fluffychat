@@ -3,7 +3,8 @@ RUN sudo apt update && sudo apt install curl -y
 COPY . /app
 WORKDIR /app
 RUN ./scripts/prepare-web.sh
-RUN ./scripts/build-web.sh
+RUN flutter pub get
+RUN flutter build web --release --source-maps
 
 FROM docker.io/nginx:alpine
 RUN rm -rf /usr/share/nginx/html
