@@ -2510,5 +2510,12 @@
   "signInWithPassword": "Logi sisse salasõnaga",
   "@signInWithPassword": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Palun proovi hiljem uuesti või muuda serveri nime.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Logi sisse kasutades teenusepakkujat {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  }
 }
