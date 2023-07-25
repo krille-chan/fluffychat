@@ -1,7 +1,10 @@
-## v1.12.1
+## v1.13.0
 - Switch the dev hosting platform from GitLab to GitHub
 - Updated translations and dependencies
 - New onboarding screen with SSO as first class feature
+- Import/Export emoji packs from/to zip file
+- New more compact chat bubble design and other design tweaks
+- Login now shows SSO more prominent and deprecates in-app registration in favor of SSO registration
 
 ## v1.12.0
 - Added translation using Weblate (Toki Pona) (Mæve Rey)
