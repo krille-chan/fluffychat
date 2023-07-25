@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "添加一条群组介绍",
+  "addGroupDescription": "添加群组描述",
   "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "已开始与 {senderName} 通话",
+  "answeredTheCall": "{senderName} 接听了通话",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -77,34 +77,34 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "是否允许游客加入",
+  "areGuestsAllowedToJoin": "是否允许访客加入",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "您确定吗？",
+  "areYouSure": "你确定吗？",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "您确定要注销吗？",
+  "areYouSureYouWantToLogout": "你确定要注销吗？",
   "@areYouSureYouWantToLogout": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "请输入您的安全存储的密码短语或恢复密钥，以向对方签名。",
+  "askSSSSSign": "请输入你的安全存储的密码短语或恢复密钥，以向对方签名。",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "是否接受来自 {username} 的验证申请？",
+  "askVerificationRequest": "是否接受来自 {username} 的验证请求？",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "badServerLoginTypesException": "主服务器支持的登录方式：\n{serverVersions}\n但本应用仅支持：\n{supportedVersions}",
+  "badServerLoginTypesException": "主服务器支持的登录方式：\n{serverVersions}\n但此应用仅支持：\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -112,7 +112,7 @@
       "supportedVersions": {}
     }
   },
-  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但本应用仅支持 {supportedVersions} 版本",
+  "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但此应用仅支持 {supportedVersions} 版本",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -120,12 +120,12 @@
       "supportedVersions": {}
     }
   },
-  "banFromChat": "从对话中封禁",
+  "banFromChat": "从聊天中封禁",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "banned": "已被封禁",
+  "banned": "已封禁",
   "@banned": {
     "type": "text",
     "placeholders": {}
@@ -163,7 +163,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} 更改了会话头像",
+  "changedTheChatAvatar": "{username} 更改了聊天头像",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -186,14 +186,14 @@
       "chatname": {}
     }
   },
-  "changedTheChatPermissions": "{username} 更改了会话权限",
+  "changedTheChatPermissions": "{username} 更改了聊天权限",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} 将展示名称更改为：'{displayname}'",
+  "changedTheDisplaynameTo": "{username} 将昵称更改为：'{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -201,14 +201,14 @@
       "displayname": {}
     }
   },
-  "changedTheGuestAccessRules": "{username} 更改了游客访问规则",
+  "changedTheGuestAccessRules": "{username} 更改了访客访问规则",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} 更改了游客访问规则为：{rules}",
+  "changedTheGuestAccessRulesTo": "{username} 更改了访客访问规则为：{rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -216,14 +216,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username} 更改了历史记录观察状态",
+  "changedTheHistoryVisibility": "{username} 更改了历史记录可见性",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username} 更改了历史记录观察状态到：{rules}",
+  "changedTheHistoryVisibilityTo": "{username} 更改了历史记录可见性为：{rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -282,7 +282,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "更改了群组名称",
+  "changeTheNameOfTheGroup": "更改群组名称",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -292,7 +292,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeYourAvatar": "更改您的头像",
+  "changeYourAvatar": "更改你的头像",
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -302,7 +302,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "会话",
+  "chat": "聊天",
   "@chat": {
     "type": "text",
     "placeholders": {}
@@ -312,12 +312,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "您的旧信息受恢复密钥保护。请确保您不会丢失它。",
+  "chatBackupDescription": "你的旧消息受恢复密钥保护。请确保你不会丢失它。",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "会话详情",
+  "chatDetails": "聊天详情",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -332,7 +332,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "输入一个昵称",
+  "chooseAUsername": "输入一个用户名",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -344,7 +344,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "在此聊天室封禁该用户",
+  "commandHint_ban": "在此聊天室封禁指定用户",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -354,22 +354,22 @@
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "commandHint_invite": "邀请该用户加入此聊天室",
+  "commandHint_invite": "邀请指定用户加入此聊天室",
   "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "加入该聊天室",
+  "commandHint_join": "加入指定聊天室",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHint_kick": "将该用户移出此聊天室",
+  "commandHint_kick": "在此聊天室移除指定用户",
   "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "commandHint_leave": "退出该聊天室",
+  "commandHint_leave": "退出此聊天室",
   "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
@@ -379,17 +379,17 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "commandHint_myroomavatar": "设置您的聊天室头像（通过 mxc-uri）",
+  "commandHint_myroomavatar": "设置你在此聊天室的头像（通过 mxc-uri）",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHint_myroomnick": "设置您的聊天室昵称",
+  "commandHint_myroomnick": "设置你在此聊天室的昵称",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "commandHint_op": "设置该用户的权限等级（默认：50）",
+  "commandHint_op": "设置指定用户的权限等级（默认：50）",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -399,7 +399,7 @@
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHint_react": "将回复作为响应发送",
+  "commandHint_react": "将回复作为回应发送",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
@@ -409,7 +409,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHint_unban": "在此聊天室解封该用户",
+  "commandHint_unban": "在此聊天室解封指定用户",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -456,7 +456,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "包含显示名称",
+  "containsDisplayName": "包含昵称",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -552,7 +552,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "这将停用您的用户账户。这不能被撤销，您确定吗？",
+  "deactivateAccountWarning": "这将停用你的用户账户。这不能被撤销！你确定吗？",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -597,12 +597,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "一对一聊天",
+  "directChats": "私聊",
   "@directChats": {
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "显示名称已被改变",
+  "displaynameHasBeenChanged": "昵称已更改",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -617,7 +617,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editBlockedServers": "编辑被阻止的服务器",
+  "editBlockedServers": "编辑被屏蔽的服务器",
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
@@ -627,7 +627,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editDisplayname": "编辑显示名称",
+  "editDisplayname": "编辑昵称",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -667,7 +667,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "您需要选择一个表情快捷码和一张图片！",
+  "emoteWarnNeedToPick": "你需要选择一个表情快捷码和一张图片！",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -687,12 +687,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "您之后将无法停用加密，确定吗？",
+  "enableEncryptionWarning": "你之后将无法停用加密，确定吗？",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypted": "加密的",
+  "encrypted": "已加密",
   "@encrypted": {
     "type": "text",
     "placeholders": {}
@@ -724,7 +724,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enterYourHomeserver": "输入您的主服务器地址",
+  "enterYourHomeserver": "输入你的主服务器地址",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -799,19 +799,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "名称为{displayname}的群组",
+  "groupWith": "名称为 {displayname} 的群组",
   "@groupWith": {
     "type": "text",
     "placeholders": {
       "displayname": {}
     }
   },
-  "guestsAreForbidden": "游客被禁止",
+  "guestsAreForbidden": "访客禁止加入",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "guestsCanJoin": "游客可以加入",
+  "guestsCanJoin": "访客可以加入",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -829,12 +829,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "隐藏编辑事件",
+  "hideRedactedEvents": "隐藏已删除的事件",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "隐藏未知事件",
+  "hideUnknownEvents": "隐藏未知的事件",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -864,7 +864,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "您可以忽略打扰您的用户。您将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
+  "ignoreListDescription": "你可以忽略打扰你的用户。你将不会收到来自忽略列表中用户的任何消息或聊天室邀请。",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -919,12 +919,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteForMe": "来自我的邀请",
+  "inviteForMe": "发给我的邀请",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} 邀请您使用 FluffyChat。 \n1. 安装 FluffyChat：https://fluffychat.im \n2. 注册或登录 \n3. 打开该邀请链接：{link}",
+  "inviteText": "{username} 邀请你使用 FluffyChat。 \n1. 安装 FluffyChat：https://fluffychat.im \n2. 注册或登录 \n3. 打开邀请链接：{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -949,7 +949,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "👞 {username} 踢了 {targetName}",
+  "kicked": "👞 {username} 踢出了 {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -957,7 +957,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "🙅 {username} 踢出 {targetName} 并将其封禁",
+  "kickedAndBanned": "🙅 {username} 踢出并封禁了 {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1043,7 +1043,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeSureTheIdentifierIsValid": "确保识别码正确",
+  "makeSureTheIdentifierIsValid": "确保标识符正确",
   "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
@@ -1068,17 +1068,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "moderator": "监管者",
+  "moderator": "协管员",
   "@moderator": {
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "将该聊天静音",
+  "muteChat": "静音聊天",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "请注意当前您需要 Pantalaimon 以使用端到端加密功能。",
+  "needPantalaimonWarning": "请注意当前你需要 Pantalaimon 以使用端到端加密功能。",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -1103,12 +1103,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "no": "不",
+  "no": "否",
   "@no": {
     "type": "text",
     "placeholders": {}
   },
-  "noConnectionToTheServer": "未与服务器建立连接",
+  "noConnectionToTheServer": "无法连接服务器",
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
@@ -1118,12 +1118,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "您只能在聊天室不可被公众访问时才能启用加密。",
+  "noEncryptionForPublicRooms": "你只能在聊天室不可被公众访问时才能启用加密。",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起来您手机上没有谷歌服务框架。这对保护您的隐私而言是个好决定！要接收 FluffyChat 的推送通知，推荐您使用 https://microg.org/ 或 https://unifiedpush.org/。",
+  "noGoogleServicesWarning": "看起来你手机上没有谷歌服务框架。这对保护你的隐私而言是个好决定！要接收 FluffyChat 的推送通知，推荐你使用 https://microg.org/ 或 https://unifiedpush.org/。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1133,7 +1133,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "您尚未添加恢复密码的方法。",
+  "noPasswordRecoveryDescription": "你尚未添加恢复密码的方法。",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1260,7 +1260,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pin": "固定",
+  "pin": "置顶",
   "@pin": {
     "type": "text",
     "placeholders": {}
@@ -1302,17 +1302,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPassword": "请输入您的密码",
+  "pleaseEnterYourPassword": "请输入你的密码",
   "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPin": "请输入您的 PIN",
+  "pleaseEnterYourPin": "请输入你的 PIN",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "请输入您的用户名",
+  "pleaseEnterYourUsername": "请输入你的用户名",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -1347,14 +1347,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} 编辑了一个事件",
+  "redactedAnEvent": "{username} 删除了一个事件",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "redactMessage": "重新编辑信息",
+  "redactMessage": "删除消息",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -1386,12 +1386,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeAllOtherDevices": "移除其他全部设备",
+  "removeAllOtherDevices": "移除所有其它设备",
   "@removeAllOtherDevices": {
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "被{username}移除",
+  "removedBy": "被 {username} 移除",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -1403,12 +1403,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "解禁聊天",
+  "unbanFromChat": "从聊天中解封",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "removeYourAvatar": "移除您的头像",
+  "removeYourAvatar": "移除你的头像",
   "@removeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -1418,7 +1418,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "replaceRoomWithNewerVersion": "用较新的版本替换聊天室",
+  "replaceRoomWithNewerVersion": "更新聊天室至新版本",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -1661,7 +1661,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "statusExampleMessage": "您今天怎么样？",
+  "statusExampleMessage": "你今天怎么样？",
   "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
@@ -1712,12 +1712,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "tooManyRequestsWarning": "请求太多。请稍后再试！",
+  "tooManyRequestsWarning": "请求过多。请稍后再试！",
   "@tooManyRequestsWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "transferFromAnotherDevice": "从其他设备传输",
+  "transferFromAnotherDevice": "从其它设备传输",
   "@transferFromAnotherDevice": {
     "type": "text",
     "placeholders": {}
@@ -1740,7 +1740,7 @@
       "targetName": {}
     }
   },
-  "unblockDevice": "解锁设备",
+  "unblockDevice": "解除屏蔽设备",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
@@ -1762,17 +1762,17 @@
       "type": {}
     }
   },
-  "unmuteChat": "解除聊天的静音",
+  "unmuteChat": "取消静音聊天",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
   },
-  "unpin": "取消固定",
+  "unpin": "取消置顶",
   "@unpin": {
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} 个未读聊天}}",
+  "unreadChats": "{unreadCount, plural, =1{1 个未读聊天} other{{unreadCount} 个未读聊天}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1837,12 +1837,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "verifySuccess": "您已成功验证！",
+  "verifySuccess": "你已成功验证！",
   "@verifySuccess": {
     "type": "text",
     "placeholders": {}
   },
-  "verifyTitle": "验证其他账户",
+  "verifyTitle": "验证其它账户",
   "@verifyTitle": {
     "type": "text",
     "placeholders": {}
@@ -1897,7 +1897,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "我们向您发送了一封电子邮件",
+  "weSentYouAnEmail": "我们向你发送了一封电子邮件",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -1907,22 +1907,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "谁被允许加入本群组",
+  "whoIsAllowedToJoinThisGroup": "谁可以加入此群组",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "whyDoYouWantToReportThis": "您举报的理由是什么？",
+  "whyDoYouWantToReportThis": "你举报的理由是什么？",
   "@whyDoYouWantToReportThis": {
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "确定要清除您的聊天记录备份以创建新的恢复密钥吗？",
+  "wipeChatBackup": "确定要清除你的聊天记录备份以创建新的恢复密钥吗？",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "通过这些地址，您可以恢复密码。",
+  "withTheseAddressesRecoveryDescription": "通过这些地址，你可以恢复密码。",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1937,49 +1937,49 @@
     "type": "text",
     "placeholders": {}
   },
-  "you": "您",
+  "you": "你",
   "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "您被邀请到该聊天",
+  "youAreInvitedToThisChat": "你被邀请到此聊天",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "您已不再参与此聊天",
+  "youAreNoLongerParticipatingInThisChat": "你已不再参与此聊天",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youCannotInviteYourself": "您不能邀请您自己",
+  "youCannotInviteYourself": "你不能邀请你自己",
   "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "您已被该聊天封禁",
+  "youHaveBeenBannedFromThisChat": "你已被此聊天封禁",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "yourPublicKey": "您的公钥",
+  "yourPublicKey": "你的公钥",
   "@yourPublicKey": {
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "所有会话",
+  "allChats": "所有聊天",
   "@allChats": {
     "type": "text",
     "placeholders": {}
   },
-  "addToSpace": "加入空间",
+  "addToSpace": "添加到空间",
   "@addToSpace": {},
   "obtainingLocation": "获取位置中…",
   "@obtainingLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "noMatrixServer": "{server1} 不是一个 Matrix 服务器,试试 {server2}？",
+  "noMatrixServer": "{server1} 不是一个 Matrix 服务器，试试 {server2}？",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
@@ -2011,7 +2011,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "cantOpenUri": "无法打开URI {uri}",
+  "cantOpenUri": "无法打开 URI {uri}",
   "@cantOpenUri": {
     "type": "text",
     "placeholders": {
@@ -2054,39 +2054,39 @@
       "min": {}
     }
   },
-  "yourChatBackupHasBeenSetUp": "您的聊天记录备份已设置。",
+  "yourChatBackupHasBeenSetUp": "你的聊天记录备份已设置。",
   "@yourChatBackupHasBeenSetUp": {},
   "scanQrCode": "扫描二维码",
   "@scanQrCode": {},
-  "chatHasBeenAddedToThisSpace": "会话已添加到此空间",
+  "chatHasBeenAddedToThisSpace": "聊天已添加到此空间",
   "@chatHasBeenAddedToThisSpace": {},
   "homeserver": "服务器",
   "@homeserver": {},
-  "oneClientLoggedOut": "您的一个客户端已登出",
+  "oneClientLoggedOut": "你的一个客户端已登出",
   "@oneClientLoggedOut": {},
   "removeFromBundle": "从此集合中移除",
   "@removeFromBundle": {},
-  "unverified": "未认证",
+  "unverified": "未经验证",
   "@unverified": {},
   "pleaseEnterValidEmail": "请输入一个有效的电子邮件地址。",
   "@pleaseEnterValidEmail": {},
-  "repeatPassword": "再次输入密码",
+  "repeatPassword": "重复输入密码",
   "@repeatPassword": {},
-  "shareYourInviteLink": "分享您的邀请链接",
+  "shareYourInviteLink": "分享你的邀请链接",
   "@shareYourInviteLink": {},
   "addAccount": "添加账户",
   "@addAccount": {},
-  "editBundlesForAccount": "编辑该账户的集合",
+  "editBundlesForAccount": "编辑此账户的集合",
   "@editBundlesForAccount": {},
-  "enableMultiAccounts": "（测试功能）在本设备上添加多个账户",
+  "enableMultiAccounts": "（测试功能）在此设备上添加多个账户",
   "@enableMultiAccounts": {},
-  "addToBundle": "添加到集合中",
+  "addToBundle": "添加到集合",
   "@addToBundle": {},
   "bundleName": "集合名称",
   "@bundleName": {},
   "link": "链接",
   "@link": {},
-  "serverRequiresEmail": "此服务器需要验证您的电子邮件地址以进行注册。",
+  "serverRequiresEmail": "此服务器需要验证你的电子邮件地址以进行注册。",
   "@serverRequiresEmail": {},
   "messageType": "消息类型",
   "@messageType": {},
@@ -2102,7 +2102,7 @@
   "@loginWithOneClick": {},
   "addToSpaceDescription": "选择一个空间以添加此聊天。",
   "@addToSpaceDescription": {},
-  "removeFromSpace": "从空间删除",
+  "removeFromSpace": "从此空间中移除",
   "@removeFromSpace": {},
   "start": "开始",
   "@start": {},
@@ -2111,7 +2111,7 @@
     "type": "text",
     "description": "Usage hint for the command /discardsession"
   },
-  "commandHint_dm": "启动一对一聊天\n使用 --no-encryption 选项来禁用加密",
+  "commandHint_dm": "创建私聊\n使用 --no-encryption 选项来禁用加密",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2139,11 +2139,11 @@
   "@whoCanSeeMyStories": {},
   "unsubscribeStories": "取消 Story 订阅",
   "@unsubscribeStories": {},
-  "thisUserHasNotPostedAnythingYet": "该用户尚未在 Story 发布任何内容",
+  "thisUserHasNotPostedAnythingYet": "此用户尚未在 Story 发布任何内容",
   "@thisUserHasNotPostedAnythingYet": {},
   "yourStory": "你的 Story",
   "@yourStory": {},
-  "replyHasBeenSent": "已发送回复",
+  "replyHasBeenSent": "回复已发送",
   "@replyHasBeenSent": {},
   "videoWithSize": "视频 ({size})",
   "@videoWithSize": {
@@ -2171,11 +2171,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "storyPrivacyWarning": "请注意，人们可以在你的 Story 中看到和联系彼此。您的故事在 24 小时内可见，但不能保证它们将从所有设备和服务器上删除。",
+  "storyPrivacyWarning": "请注意，人们可以在你的 Story 中看到和联系彼此。你的故事在 24 小时内可见，但不能保证它们将从所有设备和服务器上删除。",
   "@storyPrivacyWarning": {},
   "iUnderstand": "我了解",
   "@iUnderstand": {},
-  "dismiss": "驳回",
+  "dismiss": "忽略",
   "@dismiss": {},
   "markAsRead": "标为已读",
   "@markAsRead": {},
@@ -2185,7 +2185,7 @@
   "@openChat": {},
   "matrixWidgets": "Matrix 小部件",
   "@matrixWidgets": {},
-  "reactedWith": "{sender} 通过 {reaction} 进行了回应",
+  "reactedWith": "{sender} 回应了 {reaction}",
   "@reactedWith": {
     "type": "text",
     "placeholders": {
@@ -2193,11 +2193,11 @@
       "reaction": {}
     }
   },
-  "confirmEventUnpin": "你确定要永久性取消置顶这一活动吗？",
+  "confirmEventUnpin": "你确定要永久性取消置顶此事件吗？",
   "@confirmEventUnpin": {},
   "pinMessage": "置顶到聊天室",
   "@pinMessage": {},
-  "emojis": "颜文字",
+  "emojis": "表情符号",
   "@emojis": {},
   "unsupportedAndroidVersionLong": "这个功能需要较新版本的 Android 系统。请检查更新或 Lineage OS 支持。",
   "@unsupportedAndroidVersionLong": {},
@@ -2205,7 +2205,7 @@
   "@unsupportedAndroidVersion": {},
   "voiceCall": "语音通话",
   "@voiceCall": {},
-  "placeCall": "打电话",
+  "placeCall": "发起通话",
   "@placeCall": {},
   "videoCallsBetaWarning": "请注意，视频通话目前处于测试阶段。它们可能不能像预期的那样工作，或者在所有平台上都不能工作。",
   "@videoCallsBetaWarning": {},
@@ -2232,7 +2232,7 @@
   "@widgetJitsi": {},
   "widgetCustom": "自定义",
   "@widgetCustom": {},
-  "widgetNameError": "请提供显示名称。",
+  "widgetNameError": "请提供昵称。",
   "@widgetNameError": {},
   "errorAddingWidget": "添加小部件出错。",
   "@errorAddingWidget": {},
@@ -2264,7 +2264,7 @@
       "user": {}
     }
   },
-  "youInvitedBy": "📩 你受到 {user} 的邀请",
+  "youInvitedBy": "📩 你受到了 {user} 的邀请",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
@@ -2276,7 +2276,7 @@
       "user": {}
     }
   },
-  "youKicked": "👞你踢掉了 {user}",
+  "youKicked": "👞 你踢出了 {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
@@ -2296,7 +2296,7 @@
       "user": {}
     }
   },
-  "youKickedAndBanned": "🙅你踢掉并封禁了 {user}",
+  "youKickedAndBanned": "🙅 你踢出并封禁了 {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2308,7 +2308,7 @@
   "@storeInSecureStorageDescription": {},
   "storeInAppleKeyChain": "存储在 Apple KeyChain 中",
   "@storeInAppleKeyChain": {},
-  "unlockOldMessages": "解锁旧信息",
+  "unlockOldMessages": "解锁旧消息",
   "@unlockOldMessages": {},
   "pleaseEnterRecoveryKey": "请输入你的恢复密钥：",
   "@pleaseEnterRecoveryKey": {},
@@ -2316,7 +2316,7 @@
   "@recoveryKey": {},
   "recoveryKeyLost": "丢失了恢复密钥？",
   "@recoveryKeyLost": {},
-  "pleaseEnterRecoveryKeyDescription": "要解锁您的旧邮件，请输入你在之前会话中生成的恢复密钥。 你的恢复密钥不是你的密码。",
+  "pleaseEnterRecoveryKeyDescription": "要解锁你的旧邮件，请输入你在之前会话中生成的恢复密钥。 你的恢复密钥不是你的密码。",
   "@pleaseEnterRecoveryKeyDescription": {},
   "saveKeyManuallyDescription": "通过触发系统共享对话框或剪贴板手动保存此密钥。",
   "@saveKeyManuallyDescription": {},
@@ -2346,9 +2346,9 @@
   "@dehydrate": {},
   "dehydrateWarning": "此操作无法撤消。 确保你安全地存储备份文件。",
   "@dehydrateWarning": {},
-  "indexedDbErrorTitle": "私人模式问题",
+  "indexedDbErrorTitle": "私有模式问题",
   "@indexedDbErrorTitle": {},
-  "indexedDbErrorLong": "遗憾的是，默认情况下未在私有模式下启用消息存储。\n请访问\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\n否则，无法运行 FluffyChat。",
+  "indexedDbErrorLong": "遗憾的是，默认情况下未在私有模式下启用消息存储。\n请访问\n - about:config\n - 将 dom.indexedDB.privateBrowsing.enabled 设置为 true\n否则，无法运行 FluffyChat。",
   "@indexedDbErrorLong": {},
   "hydrateTorLong": "你上次是否导出 TOR 会话？ 快速导入它并继续聊天。",
   "@hydrateTorLong": {},
@@ -2358,9 +2358,9 @@
   "@custom": {},
   "updateAvailable": "FluffyChat 更新可用",
   "@updateAvailable": {},
-  "updateNow": "在后台开始更新",
+  "updateNow": "开始后台更新",
   "@updateNow": {},
-  "confirmMatrixId": "要删除账户，请确认你的 Matrix ID。",
+  "confirmMatrixId": "请确认你的 Matrix ID 以删除账户。",
   "@confirmMatrixId": {},
   "supposedMxid": "应为 {mxid}",
   "@supposedMxid": {
@@ -2379,7 +2379,7 @@
   "@noKeyForThisMessage": {},
   "newGroup": "新群组",
   "@newGroup": {},
-  "newSpace": "新空间",
+  "newSpace": "新的空间",
   "@newSpace": {},
   "enterSpace": "进入空间",
   "@enterSpace": {},
@@ -2387,11 +2387,11 @@
   "@enterRoom": {},
   "allSpaces": "所有空间",
   "@allSpaces": {},
-  "appearOnTop": "显示在其他应用上方",
+  "appearOnTop": "显示在其它应用上方",
   "@appearOnTop": {},
   "appearOnTopDetails": "允许应用显示在顶部（如果你已经将 Fluffychat 设置为呼叫账户，则不需要授予此权限）",
   "@appearOnTopDetails": {},
-  "otherCallingPermissions": "麦克风、摄像头和其他 FluffyChat 权限",
+  "otherCallingPermissions": "麦克风、摄像头和其它 FluffyChat 权限",
   "@otherCallingPermissions": {},
   "callingPermissions": "呼叫权限",
   "@callingPermissions": {},
@@ -2416,27 +2416,27 @@
   "@hideUnimportantStateEvents": {},
   "doNotShowAgain": "不再显示",
   "@doNotShowAgain": {},
-  "googlyEyesContent": "{senderName} 给你发送了“大眼”表情",
+  "googlyEyesContent": "{senderName} 向你发送了“大眼”表情",
   "@googlyEyesContent": {
     "type": "text",
     "placeholders": {
       "senderName": {}
     }
   },
-  "commandHint_googly": "发送 一些“大眼”",
+  "commandHint_googly": "发送“大眼”表情",
   "@commandHint_googly": {},
-  "commandHint_cuddle": "发送“拥抱”",
+  "commandHint_cuddle": "发送“搂抱”",
   "@commandHint_cuddle": {},
-  "commandHint_hug": "发送“搂抱”",
+  "commandHint_hug": "发送“拥抱”",
   "@commandHint_hug": {},
-  "cuddleContent": "{senderName} 拥抱了你",
+  "cuddleContent": "{senderName} 搂抱了你",
   "@cuddleContent": {
     "type": "text",
     "placeholders": {
       "senderName": {}
     }
   },
-  "hugContent": "{senderName} 搂抱了你",
+  "hugContent": "{senderName} 拥抱了你",
   "@hugContent": {
     "type": "text",
     "placeholders": {
@@ -2452,13 +2452,13 @@
   },
   "startFirstChat": "发起你的第一个聊天",
   "@startFirstChat": {},
-  "newSpaceDescription": "空间让您可以整合聊天并建立私人或公共讨论区。",
+  "newSpaceDescription": "空间让你可以整合聊天并建立私人或公共社区。",
   "@newSpaceDescription": {},
-  "encryptThisChat": "加密这个对话",
+  "encryptThisChat": "加密此聊天",
   "@encryptThisChat": {},
   "endToEndEncryption": "端对端加密",
   "@endToEndEncryption": {},
-  "disableEncryptionWarning": "出于安全考虑 ，您不能在之前已启用的对话中禁用加密。",
+  "disableEncryptionWarning": "出于安全考虑 ，你不能在之前已启用加密的聊天中禁用加密。",
   "@disableEncryptionWarning": {},
   "sorryThatsNotPossible": "非常抱歉……这是做不到的",
   "@sorryThatsNotPossible": {},
@@ -2506,9 +2506,9 @@
       "path": {}
     }
   },
-  "reportErrorDescription": "哦不。出了点差错。请稍后重试。如果您愿意，可以向开发人员报告此错误。",
+  "reportErrorDescription": "哦不。出了点差错。请稍后重试。如果你愿意，可以向开发人员报告此错误。",
   "@reportErrorDescription": {},
-  "noBackupWarning": "警告！如果不启用聊天备份，您将无法访问加密消息。强烈建议在注销前先启用聊天备份。",
+  "noBackupWarning": "警告！如果不启用聊天备份，你将无法访问加密消息。强烈建议在注销前先启用聊天备份。",
   "@noBackupWarning": {},
   "signInWithPassword": "使用密码登录",
   "@signInWithPassword": {},
@@ -2517,5 +2517,26 @@
   "pleaseTryAgainLaterOrChooseDifferentServer": "请稍后再试或选择其它服务器。",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "reopenChat": "重新打开聊天",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "importEmojis": "导入表情包",
+  "@importEmojis": {},
+  "savedEmotePack": "已将表情包保存至 {path}！",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "notAnImage": "不是图像文件。",
+  "@notAnImage": {},
+  "importNow": "立即导入",
+  "@importNow": {},
+  "importFromZipFile": "从 .zip 文件导入",
+  "@importFromZipFile": {},
+  "replace": "替换",
+  "@replace": {},
+  "importZipFile": "导入 .zip 文件",
+  "@importZipFile": {},
+  "exportEmotePack": "以 .zip 格式导出表情包",
+  "@exportEmotePack": {}
 }
