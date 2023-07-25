@@ -82,7 +82,7 @@ jobs:
         env:
           SNAPCRAFT_TOKEN: ${{ secrets.SNAPCRAFT_TOKEN }}
         run: |
-          echo "${{ env.SNAPCRAFT_TOKEN }}" >> snapcrafttoken.txt
+          echo $SNAPCRAFT_TOKEN >> snapcrafttoken.txt
           snapcraft login --with snapcrafttoken.txt
           RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
           if [ "$RELEASE_TYPE" = "rc" ]; then
