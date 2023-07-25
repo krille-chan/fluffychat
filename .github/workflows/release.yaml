@@ -71,18 +71,15 @@ jobs:
 
   promote_snapcraft:
     runs-on: ubuntu-latest
+    env:
+      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
-      - name: Install Snapcraft with LXD
+      - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v2
-        with:
-          use_lxd: ${{ matrix.os == 'ubuntu-18.04' }}
       - name: Promote Snap
-        env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
         run: |
-          snapcraft login
           RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
           if [ "$RELEASE_TYPE" = "rc" ]; then
               snapcraft promote fluffychat --from-channel edge --to-channel candidate
