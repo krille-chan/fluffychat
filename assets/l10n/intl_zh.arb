@@ -1078,7 +1078,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "请注意当前您需要Pantalaimon以使用端到端加密功能。",
+  "needPantalaimonWarning": "请注意当前您需要 Pantalaimon 以使用端到端加密功能。",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
