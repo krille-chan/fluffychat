@@ -2517,5 +2517,26 @@
     "placeholders": {
       "provider": {}
     }
+  },
+  "importFromZipFile": "Impordi zip-failist",
+  "@importFromZipFile": {},
+  "importZipFile": "Impordi zip-fail",
+  "@importZipFile": {},
+  "exportEmotePack": "Ekspordi emotikonide pakk zip-failina",
+  "@exportEmotePack": {},
+  "replace": "Asenda",
+  "@replace": {},
+  "notAnImage": "See pole pildifail.",
+  "@notAnImage": {},
+  "importNow": "Impordi kohe",
+  "@importNow": {},
+  "importEmojis": "Impordi emojid",
+  "@importEmojis": {},
+  "savedEmotePack": "Salvestasime emotikonide paki asukohta {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
   }
 }
