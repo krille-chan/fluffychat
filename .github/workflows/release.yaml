@@ -69,24 +69,6 @@ jobs:
       - name: Create archive
         run: tar -czf fluffychat-linux-${{ matrix.architecture }}-${{ github.ref }}.tar.gz build/linux/${{ matrix.architecture }}/release/bundle/
 
-  promote_snapcraft:
-    runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v2
-      - name: Promote Snap
-        run: |
-          RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
-          if [ "$RELEASE_TYPE" = "rc" ]; then
-              snapcraft promote fluffychat --from-channel edge --to-channel candidate --yes
-          else
-              snapcraft promote fluffychat --from-channel edge --to-channel stable --yes
-          fi
-
   deploy_playstore:
     runs-on: ubuntu-latest
     steps:
