@@ -19,6 +19,7 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vrouter/vrouter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
@@ -1139,19 +1140,24 @@ class ChatController extends State<ChatPageWithRoom> {
         }
       }
     }
-    typingCoolDown?.cancel();
-    typingCoolDown = Timer(const Duration(seconds: 2), () {
-      typingCoolDown = null;
-      currentlyTyping = false;
-      room.setTyping(false);
-    });
-    typingTimeout ??= Timer(const Duration(seconds: 30), () {
-      typingTimeout = null;
-      currentlyTyping = false;
-    });
-    if (!currentlyTyping) {
-      currentlyTyping = true;
-      room.setTyping(true, timeout: const Duration(seconds: 30).inMilliseconds);
+    if (AppConfig.sendTypingNotifications) {
+      typingCoolDown?.cancel();
+      typingCoolDown = Timer(const Duration(seconds: 2), () {
+        typingCoolDown = null;
+        currentlyTyping = false;
+        room.setTyping(false);
+      });
+      typingTimeout ??= Timer(const Duration(seconds: 30), () {
+        typingTimeout = null;
+        currentlyTyping = false;
+      });
+      if (!currentlyTyping) {
+        currentlyTyping = true;
+        room.setTyping(
+          true,
+          timeout: const Duration(seconds: 30).inMilliseconds,
+        );
+      }
     }
     setState(() => inputText = text);
   }

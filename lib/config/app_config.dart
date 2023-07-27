@@ -49,6 +49,7 @@ abstract class AppConfig {
   static bool showDirectChatsInSpaces = true;
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
+  static bool sendTypingNotifications = true;
   static bool sendOnEnter = false;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
