@@ -2516,5 +2516,26 @@
     "placeholders": {
       "provider": {}
     }
-  }
+  },
+  "notAnImage": "Bukan berkas gambar.",
+  "@notAnImage": {},
+  "importNow": "Impor sekarang",
+  "@importNow": {},
+  "importFromZipFile": "Impor dari berkas .zip",
+  "@importFromZipFile": {},
+  "importZipFile": "Impor berkas .zip",
+  "@importZipFile": {},
+  "exportEmotePack": "Ekspor paket Emote sebagai .zip",
+  "@exportEmotePack": {},
+  "replace": "Ganti",
+  "@replace": {},
+  "savedEmotePack": "Paket emote disimpan ke {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "importEmojis": "Impor Emoji",
+  "@importEmojis": {}
 }
