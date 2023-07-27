@@ -2517,5 +2517,26 @@
     "placeholders": {
       "provider": {}
     }
-  }
+  },
+  "importNow": "استيراد الآن",
+  "@importNow": {},
+  "importEmojis": "استيراد الرموز التعبيرية",
+  "@importEmojis": {},
+  "importZipFile": "استيراد ملف .zip",
+  "@importZipFile": {},
+  "exportEmotePack": "تصدير حزمة الرموز التعبيرية بتنسيق zip",
+  "@exportEmotePack": {},
+  "savedEmotePack": "تم حفظ حزمة الرموز إلى {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "notAnImage": "ليس ملف صورة.",
+  "@notAnImage": {},
+  "importFromZipFile": "الاستيراد من ملف .zip",
+  "@importFromZipFile": {},
+  "replace": "استبدال",
+  "@replace": {}
 }

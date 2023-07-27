@@ -2517,5 +2517,26 @@
     "placeholders": {
       "provider": {}
     }
-  }
+  },
+  "notAnImage": "Не файл зображення.",
+  "@notAnImage": {},
+  "importNow": "Імпортувати зараз",
+  "@importNow": {},
+  "importEmojis": "Імпорт емодзі",
+  "@importEmojis": {},
+  "importFromZipFile": "Імпорт з файлу .zip",
+  "@importFromZipFile": {},
+  "importZipFile": "Імпортувати файл .zip",
+  "@importZipFile": {},
+  "savedEmotePack": "Набір емотиконів збережено в {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "replace": "Замінити",
+  "@replace": {},
+  "exportEmotePack": "Експортувати набір емотиконів у форматі .zip",
+  "@exportEmotePack": {}
 }
