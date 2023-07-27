@@ -189,6 +189,8 @@
             "supportedVersions": {}
         }
     },
+    "sendTypingNotifications": "Send typing notifications",
+    "@sendTypingNotifications": {},
     "sendOnEnter": "Send on enter",
     "@sendOnEnter": {},
     "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
