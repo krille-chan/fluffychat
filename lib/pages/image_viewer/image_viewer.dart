@@ -8,10 +8,15 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/event_extension.dart';
 
+/// A widget showing an image in fullscreen, allowing users to zoom in and out.
+///
+/// Either an event or an uri of the image must be provided.
+/// When providing an event, the top bar additionally allows users to reply to, share, or download the image.
 class ImageViewer extends StatefulWidget {
-  final Event event;
+  final Event? event;
+  final Uri? uri;
 
-  const ImageViewer(this.event, {Key? key}) : super(key: key);
+  const ImageViewer(this.event, this.uri, {Key? key}) : super(key: key);
 
   @override
   ImageViewerController createState() => ImageViewerController();
@@ -20,15 +25,16 @@ class ImageViewer extends StatefulWidget {
 class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
   void forwardAction() {
-    Matrix.of(context).shareContent = widget.event.content;
+    Matrix.of(context).shareContent = widget.event?.content;
     context.go('/rooms');
   }
 
-  /// Save this file with a system call.
-  void saveFileAction(BuildContext context) => widget.event.saveFile(context);
+  /// Save this file with a system call. Only ever will be called for events.
+  void saveFileAction(BuildContext context) => widget.event?.saveFile(context);
 
-  /// Save this file with a system call.
-  void shareFileAction(BuildContext context) => widget.event.shareFile(context);
+  /// Save this file with a system call. Only ever will be called for events.
+  void shareFileAction(BuildContext context) =>
+      widget.event?.shareFile(context);
 
   static const maxScaleFactor = 1.5;
 

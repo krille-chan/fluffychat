@@ -6,12 +6,22 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import '../../widgets/matrix.dart';
+import '../image_viewer/image_viewer.dart';
 import 'user_bottom_sheet.dart';
 
 class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;
 
   const UserBottomSheetView(this.controller, {Key? key}) : super(key: key);
+
+  void _onTap(BuildContext context) {
+    if (controller.widget.user?.avatarUrl == null) return;
+    showDialog(
+      context: Matrix.of(context).navigatorContext,
+      useRootNavigator: false,
+      builder: (_) => ImageViewer(null, controller.widget.user?.avatarUrl),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +86,7 @@ class UserBottomSheetView extends StatelessWidget {
                       name: displayname,
                       size: Avatar.defaultSize * 2.5,
                       fontSize: 18 * 2.5,
+                      onTap: () => _onTap(context),
                     ),
                   ),
                 ),

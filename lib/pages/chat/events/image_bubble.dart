@@ -74,7 +74,7 @@ class ImageBubble extends StatelessWidget {
     showDialog(
       context: Matrix.of(context).navigatorContext,
       useRootNavigator: false,
-      builder: (_) => ImageViewer(event),
+      builder: (_) => ImageViewer(event, null),
     );
   }
 

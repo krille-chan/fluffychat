@@ -25,31 +25,33 @@ class ImageViewerView extends StatelessWidget {
           tooltip: L10n.of(context)!.close,
         ),
         backgroundColor: const Color(0x44000000),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.reply_outlined),
-            onPressed: controller.forwardAction,
-            color: Colors.white,
-            tooltip: L10n.of(context)!.share,
-          ),
-          if (!PlatformInfos.isIOS)
-            IconButton(
-              icon: const Icon(Icons.download_outlined),
-              onPressed: () => controller.saveFileAction(context),
-              color: Colors.white,
-              tooltip: L10n.of(context)!.downloadFile,
-            ),
-          if (PlatformInfos.isMobile)
-            // Use builder context to correctly position the share dialog on iPad
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () => controller.shareFileAction(context),
-                tooltip: L10n.of(context)!.share,
-                color: Colors.white,
-                icon: Icon(Icons.adaptive.share_outlined),
-              ),
-            )
-        ],
+        actions: controller.widget.event != null
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.reply_outlined),
+                  onPressed: controller.forwardAction,
+                  color: Colors.white,
+                  tooltip: L10n.of(context)!.share,
+                ),
+                if (!PlatformInfos.isIOS)
+                  IconButton(
+                    icon: const Icon(Icons.download_outlined),
+                    onPressed: () => controller.saveFileAction(context),
+                    color: Colors.white,
+                    tooltip: L10n.of(context)!.downloadFile,
+                  ),
+                if (PlatformInfos.isMobile)
+                  // Use builder context to correctly position the share dialog on iPad
+                  Builder(
+                    builder: (context) => IconButton(
+                      onPressed: () => controller.shareFileAction(context),
+                      tooltip: L10n.of(context)!.share,
+                      color: Colors.white,
+                      icon: Icon(Icons.adaptive.share_outlined),
+                    ),
+                  ),
+              ]
+            : null,
       ),
       body: InteractiveViewer(
         minScale: 1.0,
@@ -57,8 +59,9 @@ class ImageViewerView extends StatelessWidget {
         onInteractionEnd: controller.onInteractionEnds,
         child: Center(
           child: Hero(
-            tag: controller.widget.event.eventId,
+            tag: controller.widget.event?.eventId ?? controller.widget.uri!,
             child: MxcImage(
+              uri: controller.widget.uri,
               event: controller.widget.event,
               fit: BoxFit.contain,
               isThumbnail: false,
