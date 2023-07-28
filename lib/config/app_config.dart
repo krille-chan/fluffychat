@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:matrix/matrix.dart';
 
+import '../pages/chat_list/chat_list.dart';
+
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
   static String get applicationName => _applicationName;
@@ -43,6 +45,7 @@ abstract class AppConfig {
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
   static bool separateChatTypes = false;
+  static ActiveFilter startFilter = ActiveFilter.allChats;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
   static bool sendOnEnter = false;

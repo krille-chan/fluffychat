@@ -27,6 +27,7 @@ import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
+import '../pages/chat_list/chat_list.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
@@ -446,6 +447,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     AppConfig.separateChatTypes =
         store.getBool(SettingKeys.separateChatTypes) ??
             AppConfig.separateChatTypes;
+
+    AppConfig.startFilter = ActiveFilter.values.byName(
+      store.getString(SettingKeys.startFilter) ?? AppConfig.startFilter.name,
+    );
 
     AppConfig.autoplayImages =
         store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
