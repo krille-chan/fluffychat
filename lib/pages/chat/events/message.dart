@@ -75,11 +75,11 @@ class Message extends StatelessWidget {
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
     final sameSender = nextEvent != null &&
-        [
+        {
           EventTypes.Message,
           EventTypes.Sticker,
           EventTypes.Encrypted,
-        ].contains(nextEvent!.type) &&
+        }.contains(nextEvent!.type) &&
         nextEvent?.relationshipType == null &&
         nextEvent!.senderId == event.senderId &&
         !displayTime;
@@ -407,13 +407,11 @@ class Message extends StatelessWidget {
               : Theme.of(context).primaryColor.withAlpha(0),
           constraints:
               const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0 * AppConfig.bubbleSizeFactor,
-            ),
-            child: container,
+          padding: EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 4.0 * AppConfig.bubbleSizeFactor,
           ),
+          child: container,
         ),
       ),
     );
