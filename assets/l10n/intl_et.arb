@@ -2538,5 +2538,7 @@
     "placeholders": {
       "path": {}
     }
-  }
+  },
+  "sendTypingNotifications": "Saada kirjutamise teavitusi",
+  "@sendTypingNotifications": {}
 }
