@@ -2538,5 +2538,7 @@
   "importFromZipFile": "الاستيراد من ملف .zip",
   "@importFromZipFile": {},
   "replace": "استبدال",
-  "@replace": {}
+  "@replace": {},
+  "sendTypingNotifications": "إرسال إشعارات الكتابة",
+  "@sendTypingNotifications": {}
 }
