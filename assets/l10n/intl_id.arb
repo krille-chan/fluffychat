@@ -2537,5 +2537,7 @@
     }
   },
   "importEmojis": "Impor Emoji",
-  "@importEmojis": {}
+  "@importEmojis": {},
+  "sendTypingNotifications": "Kirim notifikasi pengetikan",
+  "@sendTypingNotifications": {}
 }
