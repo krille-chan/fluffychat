@@ -15,11 +15,21 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
+import '../image_viewer/image_viewer.dart';
 
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
 
   const ChatDetailsView(this.controller, {Key? key}) : super(key: key);
+
+  void _onTap(BuildContext context, Uri? avatar) {
+    if (avatar == null) return;
+    showDialog(
+      context: Matrix.of(context).navigatorContext,
+      useRootNavigator: false,
+      builder: (_) => ImageViewer(null, avatar),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +122,8 @@ class ChatDetailsView extends StatelessWidget {
                                         name: displayname,
                                         size: Avatar.defaultSize * 2.5,
                                         fontSize: 18 * 2.5,
+                                        onTap: () =>
+                                            _onTap(context, room.avatar),
                                       ),
                                     ),
                                   ),

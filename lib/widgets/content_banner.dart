@@ -12,6 +12,7 @@ class ContentBanner extends StatelessWidget {
   final Client? client;
   final double opacity;
   final WidgetBuilder? placeholder;
+  final void Function()? onTap;
 
   const ContentBanner({
     this.mxContent,
@@ -21,61 +22,68 @@ class ContentBanner extends StatelessWidget {
     this.client,
     this.opacity = 0.75,
     this.placeholder,
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final onEdit = this.onEdit;
-    return Container(
-      height: height,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
-      ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: Opacity(
-              opacity: opacity,
-              child: mxContent == null
-                  ? Center(
-                      child: Icon(
-                        defaultIcon,
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                        size: 128,
+    return GestureDetector(
+      onTap: () {
+        if (onTap != null) onTap!();
+      },
+      child: Container(
+        height: height,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+        ),
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Opacity(
+                opacity: opacity,
+                child: mxContent == null
+                    ? Center(
+                        child: Icon(
+                          defaultIcon,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          size: 128,
+                        ),
+                      )
+                    : MxcImage(
+                        key: Key(mxContent?.toString() ?? 'NoKey'),
+                        uri: mxContent,
+                        animated: true,
+                        fit: BoxFit.cover,
+                        placeholder: placeholder,
+                        height: 400,
+                        width: 800,
                       ),
-                    )
-                  : MxcImage(
-                      key: Key(mxContent?.toString() ?? 'NoKey'),
-                      uri: mxContent,
-                      animated: true,
-                      fit: BoxFit.cover,
-                      placeholder: placeholder,
-                      height: 400,
-                      width: 800,
-                    ),
-            ),
-          ),
-          if (onEdit != null)
-            Container(
-              margin: const EdgeInsets.all(8),
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                mini: true,
-                heroTag: null,
-                onPressed: onEdit,
-                backgroundColor: Theme.of(context).colorScheme.background,
-                foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
-                child: const Icon(Icons.camera_alt_outlined),
               ),
             ),
-        ],
+            if (onEdit != null)
+              Container(
+                margin: const EdgeInsets.all(8),
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  mini: true,
+                  heroTag: null,
+                  onPressed: onEdit,
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  foregroundColor: Theme.of(context).textTheme.bodyLarge?.color,
+                  child: const Icon(Icons.camera_alt_outlined),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
