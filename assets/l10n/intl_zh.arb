@@ -2538,5 +2538,7 @@
   "importZipFile": "导入 .zip 文件",
   "@importZipFile": {},
   "exportEmotePack": "以 .zip 格式导出表情包",
-  "@exportEmotePack": {}
+  "@exportEmotePack": {},
+  "sendTypingNotifications": "发送正在输入通知",
+  "@sendTypingNotifications": {}
 }
