@@ -2538,5 +2538,7 @@
   "notAnImage": "Keine Bilddatei.",
   "@notAnImage": {},
   "replace": "Ersetzen",
-  "@replace": {}
+  "@replace": {},
+  "sendTypingNotifications": "Tippbenachrichtigungen senden",
+  "@sendTypingNotifications": {}
 }
