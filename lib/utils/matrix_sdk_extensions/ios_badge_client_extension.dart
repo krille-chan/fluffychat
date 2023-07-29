@@ -6,15 +6,14 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 extension IosBadgeClientExtension on Client {
   void updateIosBadge() {
-    if (PlatformInfos.isIOS) {
-      // Workaround for iOS not clearing notifications with fcm_shared_isolate
-      if (!rooms.any(
-        (r) => r.membership == Membership.invite || (r.notificationCount > 0),
-      )) {
-        // ignore: unawaited_futures
-        FlutterLocalNotificationsPlugin().cancelAll();
-        FlutterAppBadger.removeBadge();
-      }
+    if (!PlatformInfos.isIOS) return;
+    final unreadCount = rooms.where((room) => room.isUnreadOrInvited).length;
+    if (unreadCount == 0) {
+      FlutterAppBadger.removeBadge();
+      FlutterLocalNotificationsPlugin()
+          .cancelAll(); // Workaround for iOS not clearing notifications with fcm_shared_isolate
+    } else {
+      FlutterAppBadger.updateBadgeCount(unreadCount);
     }
   }
 }
