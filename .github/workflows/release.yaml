@@ -24,10 +24,23 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
-        run: flutter build web --release --verbose --source-maps
+        run: flutter build web --release --source-maps
       - name: Create archive
-        run: tar -czf fluffychat-web-${{ github.ref }}.tar.gz build/web/
-
+        run: tar -czf fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz build/web/
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v2
+        with:
+          name: Web Build
+          path: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
+      - name: Upload to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_name: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_content_type: application/gzip
 
   build_apk:
     runs-on: ubuntu-latest
@@ -50,6 +63,15 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - run: flutter build apk --release
+      - name: Upload to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          asset_content_type: application/vnd.android.package-archive
 
   build_linux:
     runs-on: ubuntu-latest
@@ -67,7 +89,16 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.architecture }}-${{ github.ref }}.tar.gz build/linux/${{ matrix.architecture }}/release/bundle/
+        run: tar -czf fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz build/linux/${{ matrix.architecture }}/release/bundle/
+      - name: Upload to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_name: fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_content_type: application/gzip
 
   deploy_playstore:
     runs-on: ubuntu-latest
@@ -108,67 +139,10 @@ jobs:
           bundle install
           bundle update fastlane
           bundle exec fastlane deploy_internal_test
-          RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
+          RELEASE_TYPE=$(echo "${{ GITHUB_REF_NAME }}" | awk -F"/" '{print $3}')
           if [ "$RELEASE_TYPE" = "rc" ]; then
               bundle exec fastlane deploy_candidate
           else
               bundle exec fastlane deploy_release
           fi
           cd ..
-
-  release:
-    needs: [build_linux, build_web, build_apk]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload Linux (x64) Build
-        uses: actions/upload-artifact@v2
-        with:
-          name: Linux Build
-          path: fluffychat-linux-x64-${{ github.ref }}.tar.gz
-      - name: Upload Linux (arm64) Build
-        uses: actions/upload-artifact@v2
-        with:
-          name: Linux Build
-          path: fluffychat-linux-arm64-${{ github.ref }}.tar.gz
-      - name: Upload Web Build
-        uses: actions/upload-artifact@v2
-        with:
-          name: Web Build
-          path: fluffychat-web-${{ github.ref }}.tar.gz
-      - name: Upload APK Build
-        uses: actions/upload-artifact@v2
-        with:
-          name: APK Build
-          path: build/app/outputs/apk/release/app-release.apk
-      - name: Get Release URL
-        id: get_release_url
-        run: echo "::set-output name=url::$(echo ${{ github.event.repository.html_url }}/releases/tag/${{ github.ref }})"
-      - name: Add Download Links to Release Description
-        run: |
-          echo "Download the built artifacts from the following links:" >> release_description.txt
-          echo "- Linux(x64): [Download](${{ needs.build_linux.outputs.artifact_url }})" >> release_description.txt
-          echo "- Linux(arm64): [Download](${{ needs.build_linux.outputs.artifact_url }})" >> release_description.txt
-          echo "- Web: [Download](${{ needs.build_web.outputs.artifact_url }})" >> release_description.txt
-          echo "- APK: [Download](${{ needs.build_apk.outputs.artifact_url }})" >> release_description.txt
-          cat release_description.txt | gh release upload ${{ github.ref }} -
-      - name: Publish Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-        with:
-          upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: release_description.txt
-          asset_name: release_description.txt
-          asset_content_type: text/plain
