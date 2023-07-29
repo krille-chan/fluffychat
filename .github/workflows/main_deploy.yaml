@@ -31,6 +31,7 @@ jobs:
           mv docs public
           mv repo public || true
           mv build/web/ public/web
+          echo "fluffychat.im" > ./public/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
