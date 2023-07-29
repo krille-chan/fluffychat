@@ -26,20 +26,20 @@ jobs:
       - name: Build Release Web
         run: flutter build web --release --source-maps
       - name: Create archive
-        run: tar -czf fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz build/web/
+        run: tar -czf fluffychat-web-${GITHUB_REF_NAME}.tar.gz build/web/
       - name: Upload Web Build
         uses: actions/upload-artifact@v2
         with:
           name: Web Build
-          path: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
+          path: fluffychat-web-${GITHUB_REF_NAME}.tar.gz
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
-          asset_name: fluffychat-web-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_path: fluffychat-web-${GITHUB_REF_NAME}.tar.gz
+          asset_name: fluffychat-web-${GITHUB_REF_NAME}.tar.gz
           asset_content_type: application/gzip
 
   build_apk:
@@ -89,15 +89,15 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz build/linux/${{ matrix.arch }}/release/bundle/
+        run: tar -czf fluffychat-linux-${{ matrix.arch }}-${GITHUB_REF_NAME}.tar.gz build/linux/${{ matrix.arch }}/release/bundle/
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz
-          asset_name: fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_path: fluffychat-linux-${{ matrix.arch }}-${GITHUB_REF_NAME}.tar.gz
+          asset_name: fluffychat-linux-${{ matrix.arch }}-${GITHUB_REF_NAME}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:
@@ -139,7 +139,7 @@ jobs:
           bundle install
           bundle update fastlane
           bundle exec fastlane deploy_internal_test
-          RELEASE_TYPE=$(echo "${{ GITHUB_REF_NAME }}" | awk -F"/" '{print $3}')
+          RELEASE_TYPE=$(echo "${GITHUB_REF_NAME}" | awk -F"/" '{print $3}')
           if [ "$RELEASE_TYPE" = "rc" ]; then
               bundle exec fastlane deploy_candidate
           else
