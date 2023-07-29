@@ -2510,5 +2510,35 @@
   "continueWith": "Nastavi sa:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Pokušaj ponovo kasnije ili odaberi jedan drugi poslužitelj.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Prijavi se pomoću {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "notAnImage": "Nije slikovna datoteka.",
+  "@notAnImage": {},
+  "importNow": "Uvezi sada",
+  "@importNow": {},
+  "importEmojis": "Uvezi emoji slike",
+  "@importEmojis": {},
+  "importFromZipFile": "Uvezi iz .zip datoteke",
+  "@importFromZipFile": {},
+  "importZipFile": "Uvezi .zip datoteku",
+  "@importZipFile": {},
+  "replace": "Zamijeni",
+  "@replace": {},
+  "savedEmotePack": "Paket emotikona spremljen u {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "exportEmotePack": "Izvezi paket emotikona kao .zip",
+  "@exportEmotePack": {},
+  "sendTypingNotifications": "Pošalji pismene obavijesti",
+  "@sendTypingNotifications": {}
 }
