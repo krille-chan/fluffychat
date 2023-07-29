@@ -1,10 +1,20 @@
 ## v1.13.0
-- Switch the dev hosting platform from GitLab to GitHub
-- Updated translations and dependencies
-- New onboarding screen with SSO as first class feature
-- Import/Export emoji packs from/to zip file
-- New more compact chat bubble design and other design tweaks
-- Login now shows SSO more prominent and deprecates in-app registration in favor of SSO registration
+- feat: option to not send typing notifications (Bnyro)
+- feat: small performance tweaks for Message (gilice)
+- feat: New onboarding screen with SSO as first class feature
+- feat: Import/Export emoji packs from/to zip file
+- fix: Set iOS badge (Krille)
+- refactor: Switch the dev hosting platform from GitLab to GitHub
+- design: New more compact chat bubble design and other design tweaks
+- design: Login now shows SSO more prominent and deprecates in-app registration in favor of SSO registration
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Chinese (Simplified)) (Poesty Li)
+- Translated using Weblate (Chinese (Simplified)) (Poesty Li)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (German) (nautilusx)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.12.0
 - Added translation using Weblate (Toki Pona) (Mæve Rey)
