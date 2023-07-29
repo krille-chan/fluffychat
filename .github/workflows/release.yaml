@@ -89,15 +89,15 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz build/linux/${{ matrix.architecture }}/release/bundle/
+        run: tar -czf fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz build/linux/${{ matrix.arch }}/release/bundle/
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz
-          asset_name: fluffychat-linux-${{ matrix.architecture }}-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_path: fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz
+          asset_name: fluffychat-linux-${{ matrix.arch }}-${{ GITHUB_REF_NAME }}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:
