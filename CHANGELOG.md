@@ -9,8 +9,6 @@
 - design: Login now shows SSO more prominent and deprecates in-app registration in favor of SSO registration
 - Translated using Weblate (Arabic) (Rex_sa)
 - Translated using Weblate (Chinese (Simplified)) (Poesty Li)
-- Translated using Weblate (Chinese (Simplified)) (Poesty Li)
-- Translated using Weblate (Estonian) (Priit Jõerüüt)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
 - Translated using Weblate (German) (nautilusx)
 - Translated using Weblate (Indonesian) (Linerly)
