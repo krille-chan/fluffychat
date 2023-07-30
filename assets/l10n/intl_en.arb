@@ -441,7 +441,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "commandHint_markasdm": "Mark as direct message room",
+    "commandHint_markasdm": "Mark as direct message room for the giving Matrix ID",
     "@commandHint_markasdm": {},
     "commandHint_markasgroup": "Mark as group",
     "@commandHint_markasgroup": {},
