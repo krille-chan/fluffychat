@@ -24,7 +24,8 @@ jobs:
       - name: Prepare web
         run: |
           ./scripts/prepare-web.sh
-          sed -i 's/href="\/"/href="\/web\/"/' web/index.html      - name: Build Release Web
+          sed -i 's/href="\/"/href="\/web\/"/' web/index.html
+      - name: Build Release Web
         run: flutter build web --release --verbose --source-maps
       - name: Build Website
         run: |
