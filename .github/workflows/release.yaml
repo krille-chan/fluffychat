@@ -89,7 +89,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz build/linux/${{ matrix.arch }}/release/bundle/
+        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz build/linux/*/release/bundle/
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
