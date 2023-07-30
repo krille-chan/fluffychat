@@ -22,8 +22,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install nodejs -y
       - run: flutter pub get
       - name: Prepare web
-        run: ./scripts/prepare-web.sh
-      - name: Build Release Web
+        run: |
+          ./scripts/prepare-web.sh
+          sed -i 's/href="\/"/href="\/web\/"/' web/index.html      - name: Build Release Web
         run: flutter build web --release --verbose --source-maps
       - name: Build Website
         run: |
