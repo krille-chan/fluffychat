@@ -2538,5 +2538,7 @@
   "replace": "Замінити",
   "@replace": {},
   "exportEmotePack": "Експортувати набір емотиконів у форматі .zip",
-  "@exportEmotePack": {}
+  "@exportEmotePack": {},
+  "sendTypingNotifications": "Надсилати сповіщення про ввід тексту",
+  "@sendTypingNotifications": {}
 }

@@ -349,7 +349,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "Escolle un nome de usuaria",
+  "chooseAUsername": "Elixe un identificador",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -1341,7 +1341,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAUsername": "Escolle un nome de usuaria",
+  "pleaseChooseAUsername": "Elixe un identificador",
   "@pleaseChooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -1440,7 +1440,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "remove": "Eliminar",
+  "remove": "Quitar",
   "@remove": {
     "type": "text",
     "placeholders": {}
@@ -2517,5 +2517,28 @@
     "placeholders": {
       "provider": {}
     }
-  }
+  },
+  "notAnImage": "Non é un ficheiro de imaxe.",
+  "@notAnImage": {},
+  "importNow": "Importar agora",
+  "@importNow": {},
+  "importEmojis": "Importar Emojis",
+  "@importEmojis": {},
+  "importFromZipFile": "Importar desde ficheiro .zip",
+  "@importFromZipFile": {},
+  "importZipFile": "Importar ficheiro .zip",
+  "@importZipFile": {},
+  "exportEmotePack": "Exportar paquete Emote como .zip",
+  "@exportEmotePack": {},
+  "replace": "Substituír",
+  "@replace": {},
+  "savedEmotePack": "Paquete emote gardado en {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "sendTypingNotifications": "Enviar notificación de escritura",
+  "@sendTypingNotifications": {}
 }
