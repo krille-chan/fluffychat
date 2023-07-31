@@ -118,23 +118,26 @@ class _Reaction extends StatelessWidget {
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
     Widget content;
     if (reactionKey!.startsWith('mxc://')) {
-      content = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          MxcImage(
-            uri: Uri.parse(reactionKey!),
-            width: 9999,
-            height: fontSize,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            count.toString(),
-            style: TextStyle(
-              color: textColor,
-              fontSize: DefaultTextStyle.of(context).style.fontSize,
+      content = SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            MxcImage(
+              uri: Uri.parse(reactionKey!),
+              width: fontSize == null ? 99.0 : fontSize * 2,
+              height: fontSize,
             ),
-          ),
-        ],
+            const SizedBox(width: 4),
+            Text(
+              count.toString(),
+              style: TextStyle(
+                color: textColor,
+                fontSize: DefaultTextStyle.of(context).style.fontSize,
+              ),
+            ),
+          ],
+        ),
       );
     } else {
       var renderKey = Characters(reactionKey!);
