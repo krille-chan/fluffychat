@@ -2495,5 +2495,50 @@
   "encryptThisChat": "Зашифровать этот чат",
   "@encryptThisChat": {},
   "reopenChat": "Открыть чат заново",
-  "@reopenChat": {}
+  "@reopenChat": {},
+  "commandHint_googly": "Отправить выпученные глаза",
+  "@commandHint_googly": {},
+  "signInWith": "Войти с {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "notAnImage": "Это не картинка.",
+  "@notAnImage": {},
+  "importNow": "Импортировать сейчас",
+  "@importNow": {},
+  "importEmojis": "Импортировать эмодзи",
+  "@importEmojis": {},
+  "importFromZipFile": "Импортировать из ZIP файла",
+  "@importFromZipFile": {},
+  "importZipFile": "Импортировать ZIP файл",
+  "@importZipFile": {},
+  "exportEmotePack": "Экспортировать набор эмодзи как ZIP",
+  "@exportEmotePack": {},
+  "replace": "Заменить",
+  "@replace": {},
+  "savedEmotePack": "Набор эмодзи сохранены в {path}.",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "googlyEyesContent": "{senderName} выпучил глаза",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "signInWithPassword": "Войти с помощью пароля",
+  "@signInWithPassword": {},
+  "continueWith": "Продолжить с:",
+  "@continueWith": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Повторите попытку позже или выберите другой сервер.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "sendTypingNotifications": "Отправлять уведомления о наборе текста",
+  "@sendTypingNotifications": {}
 }
