@@ -12,6 +12,7 @@ import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
@@ -20,7 +21,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';

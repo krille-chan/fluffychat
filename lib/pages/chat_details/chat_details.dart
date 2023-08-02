@@ -6,9 +6,9 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';

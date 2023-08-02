@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/utils/platform_infos.dart';

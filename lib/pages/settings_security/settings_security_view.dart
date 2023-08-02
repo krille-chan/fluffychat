@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';

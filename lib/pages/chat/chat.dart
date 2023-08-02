@@ -12,12 +12,12 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';

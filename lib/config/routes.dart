@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:vrouter/vrouter.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/pages/add_story/add_story.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
