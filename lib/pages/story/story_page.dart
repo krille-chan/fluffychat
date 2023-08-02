@@ -17,7 +17,6 @@ import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/ios_badge_client_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/utils/story_theme_data.dart';
@@ -474,8 +473,6 @@ class StoryPageController extends State<StoryPage> {
   void maybeSetReadMarker() {
     final currentEvent = this.currentEvent;
     if (currentEvent == null) return;
-    final room = currentEvent.room;
-    room.client.updateIosBadge();
     if (index == events.length - 1) {
       timeline!.setReadMarker();
       return;
