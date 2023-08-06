@@ -70,7 +70,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: build/app/outputs/apk/release/app-release.apk
-          asset_name: app-release.apk
+          asset_name: fluffychat.apk
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
