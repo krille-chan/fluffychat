@@ -2371,7 +2371,7 @@
   "@confirmMatrixId": {},
   "commandHint_markasgroup": "Позначити групою",
   "@commandHint_markasgroup": {},
-  "commandHint_markasdm": "Позначити кімнатою особистого спілкування",
+  "commandHint_markasdm": "Позначити кімнатою особистого спілкування для надання Matrix ID",
   "@commandHint_markasdm": {},
   "whyIsThisMessageEncrypted": "Чому це повідомлення нечитабельне?",
   "@whyIsThisMessageEncrypted": {},
