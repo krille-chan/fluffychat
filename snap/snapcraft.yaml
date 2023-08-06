@@ -62,6 +62,10 @@ parts:
   fluffychat:
     plugin: flutter
     source: .
+    override-build: |
+      # Workaround for Flutter build error:
+      rm -f build/linux/x64/release/CMakeCache.txt
+      snapcraftctl build
     build-packages:
       - libjsoncpp-dev
       - execstack
