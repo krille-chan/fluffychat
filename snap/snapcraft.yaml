@@ -70,6 +70,7 @@ parts:
     build-packages:
       - libjsoncpp-dev
       - execstack
+      - curl
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
