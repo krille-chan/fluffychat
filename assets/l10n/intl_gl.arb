@@ -463,7 +463,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "connect": "Acceder",
+  "connect": "Conectar",
   "@connect": {
     "type": "text",
     "placeholders": {}
@@ -1079,7 +1079,7 @@
       "brand": {}
     }
   },
-  "logout": "Saír",
+  "logout": "Pechar sesión",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -2369,7 +2369,7 @@
       "mxid": {}
     }
   },
-  "commandHint_markasdm": "Marcar como sala de mensaxe directa",
+  "commandHint_markasdm": "Marcar como sala de mensaxe directa para o ID Matrix indicado",
   "@commandHint_markasdm": {},
   "commandHint_markasgroup": "Marcar como grupo",
   "@commandHint_markasgroup": {},
@@ -2401,7 +2401,7 @@
   "@enterSpace": {},
   "enterRoom": "Entrar na sala",
   "@enterRoom": {},
-  "allSpaces": "Tódolos espazos",
+  "allSpaces": "Todos os espazos",
   "@allSpaces": {},
   "screenSharingDetail": "Estás compartindo a túa pantalla en FluffyChat",
   "@screenSharingDetail": {},
@@ -2455,7 +2455,7 @@
   "@sorryThatsNotPossible": {},
   "deviceKeys": "Chaves do dispositivo:",
   "@deviceKeys": {},
-  "newSpaceDescription": "Os Espazos permítenche fortalecer as túas conversas e construir comunidades públicas ou privadas.",
+  "newSpaceDescription": "Os Espazos permítenche consolidar as túas conversas e construir comunidades públicas ou privadas.",
   "@newSpaceDescription": {},
   "letsStart": "Imos alá",
   "@letsStart": {},
