@@ -33,6 +33,7 @@ import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';
+import 'fluffy_chat_app.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -40,7 +41,7 @@ import 'local_notifications_extension.dart';
 class Matrix extends StatefulWidget {
   final Widget? child;
 
-  final GlobalKey<VRouterState>? router;
+  GlobalKey<VRouterState> get router => FluffyChatApp.routerKey;
 
   final BuildContext context;
 
@@ -50,7 +51,6 @@ class Matrix extends StatefulWidget {
 
   const Matrix({
     this.child,
-    required this.router,
     required this.context,
     required this.clients,
     this.queryParameters,
@@ -177,7 +177,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ClientManager.addClientNameToStore(_loginClientCandidate!.clientName);
         _registerSubs(_loginClientCandidate!.clientName);
         _loginClientCandidate = null;
-        widget.router!.currentState!.to('/rooms');
+        widget.router.currentState!.to('/rooms');
       });
     return candidate;
   }
@@ -334,15 +334,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
 
         if (state != LoginState.loggedIn) {
-          widget.router?.currentState?.to(
+          widget.router.currentState?.to(
             '/rooms',
-            queryParameters: widget.router?.currentState?.queryParameters ?? {},
+            queryParameters: widget.router.currentState?.queryParameters ?? {},
           );
         }
       } else {
-        widget.router?.currentState?.to(
+        widget.router.currentState?.to(
           state == LoginState.loggedIn ? '/rooms' : '/home',
-          queryParameters: widget.router?.currentState?.queryParameters ?? {},
+          queryParameters: widget.router.currentState?.queryParameters ?? {},
         );
       }
     });
@@ -407,7 +407,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       backgroundPush = BackgroundPush(
         client,
         context,
-        widget.router,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,

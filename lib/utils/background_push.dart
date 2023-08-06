@@ -36,6 +36,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.
 import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
+import '../widgets/fluffy_chat_app.dart';
 import 'famedlysdk_store.dart';
 import 'platform_infos.dart';
 
@@ -51,7 +52,7 @@ class BackgroundPush {
       FlutterLocalNotificationsPlugin();
   Client client;
   BuildContext? context;
-  GlobalKey<VRouterState>? router;
+  GlobalKey<VRouterState> get router => FluffyChatApp.routerKey;
   String? _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
@@ -82,7 +83,7 @@ class BackgroundPush {
         ),
         client: client,
         l10n: l10n,
-        activeRoomId: router?.currentState?.pathParameters['roomid'],
+        activeRoomId: router.currentState?.pathParameters['roomid'],
         onSelectNotification: goToRoom,
       ),
     );
@@ -103,14 +104,11 @@ class BackgroundPush {
 
   factory BackgroundPush(
     Client client,
-    BuildContext context,
-    GlobalKey<VRouterState>? router, {
+    BuildContext context, {
     final void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
     final instance = BackgroundPush.clientOnly(client);
     instance.context = context;
-    // ignore: prefer_initializing_formals
-    instance.router = router;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
     return instance;
@@ -233,7 +231,7 @@ class BackgroundPush {
       if (details == null ||
           !details.didNotificationLaunchApp ||
           _wentToRoomOnStartup ||
-          router == null) {
+          router.currentState == null) {
         return;
       }
       _wentToRoomOnStartup = true;
@@ -285,7 +283,7 @@ class BackgroundPush {
     try {
       final roomId = response?.payload;
       Logs().v('[Push] Attempting to go to room $roomId...');
-      if (router == null || roomId == null) {
+      if (router.currentState == null || roomId == null) {
         return;
       }
       await client.roomsLoading;
@@ -296,7 +294,7 @@ class BackgroundPush {
               ?.content
               .tryGet<String>('type') ==
           ClientStoriesExtension.storiesRoomType;
-      router!.currentState!.toSegments([isStory ? 'stories' : 'rooms', roomId]);
+      router.currentState!.toSegments([isStory ? 'stories' : 'rooms', roomId]);
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }
@@ -376,7 +374,7 @@ class BackgroundPush {
       PushNotification.fromJson(data),
       client: client,
       l10n: l10n,
-      activeRoomId: router?.currentState?.pathParameters['roomid'],
+      activeRoomId: router.currentState?.pathParameters['roomid'],
     );
   }
 
