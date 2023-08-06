@@ -65,7 +65,7 @@ parts:
     override-build: |
       # Workaround for Flutter build error:
       rm -f build/linux/x64/release/CMakeCache.txt
-      flutter clean && flutter pub get
+      flutter clean
       snapcraftctl build
     build-packages:
       - libjsoncpp-dev
