@@ -25,6 +25,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
@@ -112,6 +113,25 @@ class BackgroundPush {
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
     return instance;
+  }
+
+  Future<void> cancelNotification(String roomId) async {
+    Logs().v('Cancel notification for room', roomId);
+    final id = await mapRoomIdToInt(roomId);
+    await FlutterLocalNotificationsPlugin().cancel(id);
+
+    // Workaround for app icon badge not updating
+    if (Platform.isIOS) {
+      final unreadCount = client.rooms
+          .where((room) => room.isUnreadOrInvited && room.id != roomId)
+          .length;
+      if (unreadCount == 0) {
+        FlutterAppBadger.removeBadge();
+      } else {
+        FlutterAppBadger.updateBadgeCount(unreadCount);
+      }
+      return;
+    }
   }
 
   StreamSubscription<SyncUpdate>? onRoomSync;
@@ -388,26 +408,6 @@ class BackgroundPush {
         (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}',
       ),
     );
-  }
-
-  Future<int> mapRoomIdToInt(String roomId) async {
-    await _loadIdMap();
-    int? currentInt;
-    try {
-      currentInt = idMap[roomId];
-    } catch (_) {
-      currentInt = null;
-    }
-    if (currentInt != null) {
-      return currentInt;
-    }
-    var nCurrentInt = 0;
-    while (idMap.values.contains(currentInt)) {
-      nCurrentInt++;
-    }
-    idMap[roomId] = nCurrentInt;
-    await store.setItem(SettingKeys.notificationCurrentIds, json.encode(idMap));
-    return nCurrentInt;
   }
 
   bool _clearingPushLock = false;

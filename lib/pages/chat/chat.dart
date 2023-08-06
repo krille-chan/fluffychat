@@ -359,6 +359,9 @@ class ChatController extends State<ChatPageWithRoom> {
     _setReadMarkerFuture = timeline.setReadMarker(eventId: eventId).then((_) {
       _setReadMarkerFuture = null;
     });
+    if (eventId == timeline.events.first.eventId) {
+      Matrix.of(context).backgroundPush?.cancelNotification(roomId);
+    }
   }
 
   @override

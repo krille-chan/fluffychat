@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 
 import 'package:desktop_lifecycle/desktop_lifecycle.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
@@ -32,18 +31,6 @@ extension LocalNotificationsExtension on MatrixState {
       return;
     }
     if (room.notificationCount == 0) return;
-
-    // Workaround for app icon badge not updating
-    if (Platform.isIOS) {
-      final unreadCount =
-          client.rooms.where((room) => room.isUnreadOrInvited).length;
-      if (unreadCount == 0) {
-        FlutterAppBadger.removeBadge();
-      } else {
-        FlutterAppBadger.updateBadgeCount(unreadCount);
-      }
-      return;
-    }
 
     final event = Event.fromJson(eventUpdate.content, room);
     final title =
