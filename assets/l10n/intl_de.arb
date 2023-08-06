@@ -2369,7 +2369,7 @@
       "mxid": {}
     }
   },
-  "commandHint_markasdm": "Als Direktnachrichtenraum markieren",
+  "commandHint_markasdm": "Als Direktnachrichtenraum für die angegebene Matrix-ID markieren",
   "@commandHint_markasdm": {},
   "commandHint_markasgroup": "Als Gruppe markieren",
   "@commandHint_markasgroup": {},
