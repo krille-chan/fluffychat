@@ -65,7 +65,7 @@ parts:
     override-build: |
       # Workaround for Flutter build error:
       rm -rf build
-      snapcraftctl build
+      craftctl default
     build-packages:
       - libjsoncpp-dev
       - execstack
