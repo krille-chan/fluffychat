@@ -2265,7 +2265,7 @@
   },
   "unlockOldMessages": "إلغاء قفل الرسائل القديمة",
   "@unlockOldMessages": {},
-  "commandHint_markasdm": "وضع علامة كغرفة رسائل مباشرة",
+  "commandHint_markasdm": "وضع علامة على أنها غرفة رسائل مباشرة لمعرف المصفوفة",
   "@commandHint_markasdm": {},
   "allRooms": "جميع الدردشات الجماعية",
   "@allRooms": {
