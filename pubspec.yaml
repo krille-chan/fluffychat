@@ -52,7 +52,6 @@ dependencies:
   flutter_webrtc: ^0.9.35
   future_loading_dialog: ^0.2.3
   geolocator: ^7.6.2
-  handy_window: ^0.3.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
