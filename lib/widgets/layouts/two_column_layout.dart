@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../config/themes.dart';
-
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
+  final bool displayNavigationRail;
 
   const TwoColumnLayout({
     Key? key,
     required this.mainView,
     required this.sideView,
+    required this.displayNavigationRail,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,7 @@ class TwoColumnLayout extends StatelessWidget {
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(),
-              width: 360.0 +
-                  (FluffyThemes.getDisplayNavigationRail(context) ? 64 : 0),
+              width: 360.0 + (displayNavigationRail ? 64 : 0),
               child: mainView,
             ),
             Container(

@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/add_story/add_story.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -28,351 +30,402 @@ import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
-import 'package:fluffychat/widgets/layouts/loading_view.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 
 class AppRoutes {
-  final bool columnMode;
+  final List<Client> clients;
 
-  AppRoutes(this.columnMode);
+  bool get isLoggedIn => clients.any((client) => client.isLogged());
 
-  List<VRouteElement> get routes => [
-        ..._homeRoutes,
-        if (columnMode) ..._tabletRoutes,
-        if (!columnMode) ..._mobileRoutes,
-      ];
+  AppRoutes(this.clients);
 
-  List<VRouteElement> get _mobileRoutes => [
-        VWidget(
-          path: '/rooms',
-          widget: const ChatList(),
-          stackedRoutes: [
-            VWidget(
-              path: '/stories/create',
-              widget: const AddStoryPage(),
-            ),
-            VWidget(
-              path: '/stories/:roomid',
-              widget: const StoryPage(),
-              stackedRoutes: [
-                VWidget(
-                  path: 'share',
-                  widget: const AddStoryPage(),
-                ),
-              ],
-            ),
-            VWidget(
-              path: '/spaces/:roomid',
-              widget: const ChatDetails(),
-              stackedRoutes: _chatDetailsRoutes,
-            ),
-            VWidget(
-              path: ':roomid',
-              widget: const ChatPage(),
-              stackedRoutes: [
-                VWidget(
-                  path: 'encryption',
-                  widget: const ChatEncryptionSettings(),
-                ),
-                VWidget(
-                  path: 'invite',
-                  widget: const InvitationSelection(),
-                ),
-                VWidget(
-                  path: 'details',
-                  widget: const ChatDetails(),
-                  stackedRoutes: _chatDetailsRoutes,
-                ),
-              ],
-            ),
-            VWidget(
-              path: '/settings',
-              widget: const Settings(),
-              stackedRoutes: _settingsRoutes,
-            ),
-            VWidget(
-              path: '/archive',
-              widget: const Archive(),
-              stackedRoutes: [
-                VWidget(
-                  path: ':roomid',
-                  widget: const ChatPage(),
-                  buildTransition: _dynamicTransition,
-                ),
-              ],
-            ),
-            VWidget(
-              path: '/newprivatechat',
-              widget: const NewPrivateChat(),
-            ),
-            VWidget(
-              path: '/newgroup',
-              widget: const NewGroup(),
-            ),
-            VWidget(
-              path: '/newspace',
-              widget: const NewSpace(),
-            ),
-          ],
+  List<RouteBase> get routes => [
+        GoRoute(
+          path: '/',
+          redirect: (context, state) => isLoggedIn ? '/rooms' : '/home',
         ),
-      ];
-  List<VRouteElement> get _tabletRoutes => [
-        VNester(
-          path: '/rooms',
-          widgetBuilder: (child) => TwoColumnLayout(
-            mainView: const ChatList(),
-            sideView: child,
-          ),
-          buildTransition: _fadeTransition,
-          nestedRoutes: [
-            VWidget(
-              path: '',
-              widget: const EmptyPage(),
-              buildTransition: _fadeTransition,
-              stackedRoutes: [
-                VWidget(
-                  path: '/stories/create',
-                  buildTransition: _fadeTransition,
-                  widget: const AddStoryPage(),
-                ),
-                VWidget(
-                  path: '/stories/:roomid',
-                  buildTransition: _fadeTransition,
-                  widget: const StoryPage(),
-                  stackedRoutes: [
-                    VWidget(
-                      path: 'share',
-                      widget: const AddStoryPage(),
-                    ),
-                  ],
-                ),
-                VWidget(
-                  path: '/spaces/:roomid',
-                  widget: const ChatDetails(),
-                  buildTransition: _fadeTransition,
-                  stackedRoutes: _chatDetailsRoutes,
-                ),
-                VWidget(
-                  path: '/newprivatechat',
-                  widget: const NewPrivateChat(),
-                  buildTransition: _fadeTransition,
-                ),
-                VWidget(
-                  path: '/newgroup',
-                  widget: const NewGroup(),
-                  buildTransition: _fadeTransition,
-                ),
-                VWidget(
-                  path: '/newspace',
-                  widget: const NewSpace(),
-                  buildTransition: _fadeTransition,
-                ),
-                VNester(
-                  path: ':roomid',
-                  widgetBuilder: (child) => SideViewLayout(
-                    mainView: const ChatPage(),
-                    sideView: child,
-                  ),
-                  buildTransition: _fadeTransition,
-                  nestedRoutes: [
-                    VWidget(
-                      path: '',
-                      widget: const ChatPage(),
-                      buildTransition: _fadeTransition,
-                    ),
-                    VWidget(
-                      path: 'encryption',
-                      widget: const ChatEncryptionSettings(),
-                      buildTransition: _fadeTransition,
-                    ),
-                    VWidget(
-                      path: 'details',
-                      widget: const ChatDetails(),
-                      buildTransition: _fadeTransition,
-                      stackedRoutes: _chatDetailsRoutes,
-                    ),
-                    VWidget(
-                      path: 'invite',
-                      widget: const InvitationSelection(),
-                      buildTransition: _fadeTransition,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-        VWidget(
-          path: '/rooms',
-          widget: const TwoColumnLayout(
-            mainView: ChatList(),
-            sideView: EmptyPage(),
-          ),
-          buildTransition: _fadeTransition,
-          stackedRoutes: [
-            VNester(
-              path: '/settings',
-              widgetBuilder: (child) => TwoColumnLayout(
-                mainView: const Settings(),
-                sideView: child,
-              ),
-              buildTransition: _dynamicTransition,
-              nestedRoutes: [
-                VWidget(
-                  path: '',
-                  widget: const EmptyPage(),
-                  buildTransition: _dynamicTransition,
-                  stackedRoutes: _settingsRoutes,
-                ),
-              ],
-            ),
-            VNester(
-              path: '/archive',
-              widgetBuilder: (child) => TwoColumnLayout(
-                mainView: const Archive(),
-                sideView: child,
-              ),
-              buildTransition: _fadeTransition,
-              nestedRoutes: [
-                VWidget(
-                  path: '',
-                  widget: const EmptyPage(),
-                  buildTransition: _dynamicTransition,
-                ),
-                VWidget(
-                  path: ':roomid',
-                  widget: const ChatPage(),
-                  buildTransition: _dynamicTransition,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ];
-
-  List<VRouteElement> get _homeRoutes => [
-        VWidget(path: '/', widget: const LoadingView()),
-        VWidget(
+        GoRoute(
           path: '/home',
-          widget: const HomeserverPicker(),
-          buildTransition: _fadeTransition,
-          stackedRoutes: [
-            VWidget(
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const HomeserverPicker(),
+          ),
+          redirect: (context, state) => isLoggedIn ? '/rooms' : null,
+          routes: [
+            GoRoute(
               path: 'login',
-              widget: const Login(),
-              buildTransition: _fadeTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const Login(),
+              ),
+              redirect: (context, state) => isLoggedIn ? '/rooms' : null,
             ),
-            VWidget(
-              path: 'logs',
-              widget: const LogViewer(),
-              buildTransition: _dynamicTransition,
+          ],
+        ),
+        GoRoute(
+          path: '/logs',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const LogViewer(),
+          ),
+        ),
+        ShellRoute(
+          pageBuilder: (context, state, child) => defaultPageBuilder(
+            context,
+            FluffyThemes.isColumnMode(context) &&
+                    state.fullPath?.startsWith('/rooms/settings') == false
+                ? TwoColumnLayout(
+                    displayNavigationRail:
+                        state.path?.startsWith('/rooms/settings') != true,
+                    mainView: ChatList(
+                      activeChat: state.pathParameters['roomid'],
+                      displayNavigationRail:
+                          state.path?.startsWith('/rooms/settings') != true,
+                    ),
+                    sideView: child,
+                  )
+                : child,
+          ),
+          routes: [
+            GoRoute(
+              path: '/rooms',
+              redirect: (context, state) => !isLoggedIn ? '/home' : null,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                FluffyThemes.isColumnMode(context)
+                    ? const EmptyPage()
+                    : ChatList(
+                        activeChat: state.pathParameters['roomid'],
+                      ),
+              ),
+              routes: [
+                GoRoute(
+                  path: 'stories/create',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const AddStoryPage(),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                GoRoute(
+                  path: 'stories/:roomid',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const StoryPage(),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                  routes: [
+                    GoRoute(
+                      path: 'share',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const AddStoryPage(),
+                      ),
+                      redirect: (context, state) =>
+                          !isLoggedIn ? '/home' : null,
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: 'spaces/:roomid',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    ChatDetails(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  routes: _chatDetailsRoutes,
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                GoRoute(
+                  path: 'archive',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const Archive(),
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: ':roomid',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        ChatPage(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: (context, state) =>
+                          !isLoggedIn ? '/home' : null,
+                    ),
+                  ],
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                GoRoute(
+                  path: 'newprivatechat',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const NewPrivateChat(),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                GoRoute(
+                  path: 'newgroup',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const NewGroup(),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                GoRoute(
+                  path: 'newspace',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const NewSpace(),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                ),
+                ShellRoute(
+                  pageBuilder: (context, state, child) => defaultPageBuilder(
+                    context,
+                    FluffyThemes.isColumnMode(context)
+                        ? TwoColumnLayout(
+                            mainView: const Settings(),
+                            sideView: child,
+                            displayNavigationRail: false,
+                          )
+                        : child,
+                  ),
+                  routes: [
+                    GoRoute(
+                      path: 'settings',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        FluffyThemes.isColumnMode(context)
+                            ? const EmptyPage()
+                            : const Settings(),
+                      ),
+                      routes: _settingsRoutes,
+                      redirect: (context, state) =>
+                          !isLoggedIn ? '/home' : null,
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: ':roomid',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    ChatPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                  routes: [
+                    GoRoute(
+                      path: 'encryption',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const ChatEncryptionSettings(),
+                      ),
+                      redirect: (context, state) =>
+                          !isLoggedIn ? '/home' : null,
+                    ),
+                    GoRoute(
+                      path: 'invite',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const InvitationSelection(),
+                      ),
+                      redirect: (context, state) =>
+                          !isLoggedIn ? '/home' : null,
+                    ),
+                    ShellRoute(
+                      pageBuilder: (context, state, child) =>
+                          defaultPageBuilder(
+                        context,
+                        !FluffyThemes.isThreeColumnMode(context)
+                            ? child
+                            : SideViewLayout(
+                                mainView: ChatPage(
+                                  roomId: state.pathParameters['roomid']!,
+                                ),
+                                sideView: child,
+                              ),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'details',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            ChatDetails(
+                              roomId: state.pathParameters['roomid']!,
+                            ),
+                          ),
+                          routes: _chatDetailsRoutes,
+                          redirect: (context, state) =>
+                              !isLoggedIn ? '/home' : null,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
       ];
 
-  List<VRouteElement> get _chatDetailsRoutes => [
-        VWidget(
+  List<RouteBase> get _chatDetailsRoutes => [
+        GoRoute(
           path: 'permissions',
-          widget: const ChatPermissionsSettings(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const ChatPermissionsSettings(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'invite',
-          widget: const InvitationSelection(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const InvitationSelection(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'multiple_emotes',
-          widget: const MultipleEmotesSettings(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const MultipleEmotesSettings(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'emotes',
-          widget: const EmotesSettings(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const EmotesSettings(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'emotes/:state_key',
-          widget: const EmotesSettings(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const EmotesSettings(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
       ];
 
-  List<VRouteElement> get _settingsRoutes => [
-        VWidget(
+  List<RouteBase> get _settingsRoutes => [
+        GoRoute(
           path: 'notifications',
-          widget: const SettingsNotifications(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsNotifications(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'style',
-          widget: const SettingsStyle(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsStyle(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'devices',
-          widget: const DevicesSettings(),
-          buildTransition: _dynamicTransition,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const DevicesSettings(),
+          ),
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'chat',
-          widget: const SettingsChat(),
-          buildTransition: _dynamicTransition,
-          stackedRoutes: [
-            VWidget(
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsChat(),
+          ),
+          routes: [
+            GoRoute(
               path: 'emotes',
-              widget: const EmotesSettings(),
-              buildTransition: _dynamicTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const EmotesSettings(),
+              ),
             ),
           ],
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
-        VWidget(
+        GoRoute(
           path: 'addaccount',
-          widget: const HomeserverPicker(),
-          buildTransition: _fadeTransition,
-          stackedRoutes: [
-            VWidget(
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const HomeserverPicker(),
+          ),
+          routes: [
+            GoRoute(
               path: 'login',
-              widget: const Login(),
-              buildTransition: _fadeTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const Login(),
+              ),
+              redirect: (context, state) => !isLoggedIn ? '/home' : null,
             ),
           ],
         ),
-        VWidget(
+        GoRoute(
           path: 'security',
-          widget: const SettingsSecurity(),
-          buildTransition: _dynamicTransition,
-          stackedRoutes: [
-            VWidget(
+          redirect: (context, state) => !isLoggedIn ? '/home' : null,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsSecurity(),
+          ),
+          routes: [
+            GoRoute(
               path: 'stories',
-              widget: const SettingsStories(),
-              buildTransition: _dynamicTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const SettingsStories(),
+              ),
+              redirect: (context, state) => !isLoggedIn ? '/home' : null,
             ),
-            VWidget(
+            GoRoute(
               path: 'ignorelist',
-              widget: const SettingsIgnoreList(),
-              buildTransition: _dynamicTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const SettingsIgnoreList(),
+              ),
+              redirect: (context, state) => !isLoggedIn ? '/home' : null,
             ),
-            VWidget(
+            GoRoute(
               path: '3pid',
-              widget: const Settings3Pid(),
-              buildTransition: _dynamicTransition,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const Settings3Pid(),
+              ),
+              redirect: (context, state) => !isLoggedIn ? '/home' : null,
             ),
           ],
-        ),
-        VWidget(
-          path: 'logs',
-          widget: const LogViewer(),
-          buildTransition: _dynamicTransition,
         ),
       ];
 
-  FadeTransition Function(dynamic, dynamic, dynamic)? get _dynamicTransition =>
-      columnMode ? _fadeTransition : null;
-
-  FadeTransition _fadeTransition(animation1, _, child) =>
-      FadeTransition(opacity: animation1, child: child);
+  Page defaultPageBuilder(BuildContext context, Widget child) =>
+      CustomTransitionPage(
+        child: child,
+        transitionDuration: FluffyThemes.animationDuration,
+        reverseTransitionDuration: FluffyThemes.animationDuration,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FluffyThemes.isColumnMode(context)
+                ? FadeTransition(opacity: animation, child: child)
+                : CupertinoPageTransition(
+                    primaryRouteAnimation: animation,
+                    secondaryRouteAnimation: secondaryAnimation,
+                    linearTransition: false,
+                    child: child,
+                  ),
+      );
 }

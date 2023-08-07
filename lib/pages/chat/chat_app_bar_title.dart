@@ -36,8 +36,7 @@ class ChatAppBarTitle extends StatelessWidget {
               )
           : controller.isArchived
               ? null
-              : () =>
-                  VRouter.of(context).toSegments(['rooms', room.id, 'details']),
+              : () => context.go(['', 'rooms', room.id, 'details'].join('/')),
       child: Row(
         children: [
           Hero(

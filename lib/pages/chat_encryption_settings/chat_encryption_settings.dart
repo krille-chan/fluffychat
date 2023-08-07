@@ -20,7 +20,7 @@ class ChatEncryptionSettings extends StatefulWidget {
 }
 
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
 
   Room get room => Matrix.of(context).client.getRoomById(roomId!)!;
 

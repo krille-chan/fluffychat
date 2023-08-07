@@ -31,7 +31,7 @@ class NewPrivateChatView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextButton(
-              onPressed: () => VRouter.of(context).to('/newgroup'),
+              onPressed: () => context.go('/rooms/newgroup'),
               child: Text(
                 L10n.of(context)!.createNewGroup,
                 style:

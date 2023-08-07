@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/config/themes.dart';
 
 class SideViewLayout extends StatelessWidget {
@@ -12,14 +10,12 @@ class SideViewLayout extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var currentUrl = Uri.decodeFull(VRouter.of(context).url);
-    if (!currentUrl.endsWith('/')) currentUrl += '/';
-    final hideSideView = currentUrl.split('/').length == 4;
     final sideView = this.sideView;
+    final hideSideView =
+        !FluffyThemes.isThreeColumnMode(context) || sideView == null;
     return sideView == null
         ? mainView
-        : MediaQuery.of(context).size.width < FluffyThemes.columnWidth * 3.5 &&
-                !hideSideView
+        : hideSideView
             ? sideView
             : Row(
                 children: [

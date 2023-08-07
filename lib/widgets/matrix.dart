@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +16,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -33,7 +30,6 @@ import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import '../utils/famedlysdk_store.dart';
-import 'fluffy_chat_app.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -41,8 +37,7 @@ import 'local_notifications_extension.dart';
 class Matrix extends StatefulWidget {
   final Widget? child;
 
-  GlobalKey<VRouterState> get router => FluffyChatApp.routerKey;
-
+  @Deprecated('')
   final BuildContext context;
 
   final List<Client> clients;
@@ -177,7 +172,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ClientManager.addClientNameToStore(_loginClientCandidate!.clientName);
         _registerSubs(_loginClientCandidate!.clientName);
         _loginClientCandidate = null;
-        widget.router.currentState!.to('/rooms');
+        navigatorContext.go('/rooms');
       });
     return candidate;
   }
@@ -244,7 +239,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool webHasFocus = true;
 
-  String? get activeRoomId => navigatorContext.vRouter.pathParameters['roomid'];
+  String? get activeRoomId =>
+      GoRouterState.of(navigatorContext).pathParameters['roomid'];
 
   final linuxNotifications =
       PlatformInfos.isLinux ? NotificationsClient() : null;
@@ -334,15 +330,21 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
 
         if (state != LoginState.loggedIn) {
-          widget.router.currentState?.to(
-            '/rooms',
-            queryParameters: widget.router.currentState?.queryParameters ?? {},
+          navigatorContext.go(
+            Uri(
+              path: '/rooms',
+              queryParameters:
+                  GoRouterState.of(navigatorContext).uri.queryParameters,
+            ).toString(),
           );
         }
       } else {
-        widget.router.currentState?.to(
-          state == LoginState.loggedIn ? '/rooms' : '/home',
-          queryParameters: widget.router.currentState?.queryParameters ?? {},
+        navigatorContext.go(
+          Uri(
+            path: state == LoginState.loggedIn ? '/rooms' : '/home',
+            queryParameters:
+                GoRouterState.of(navigatorContext).uri.queryParameters,
+          ).toString(),
         );
       }
     });
@@ -375,23 +377,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initMatrix() {
-    // Display the app lock
-    if (PlatformInfos.isMobile) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ([TargetPlatform.linux].contains(Theme.of(context).platform)
-                ? SharedPreferences.getInstance()
-                    .then((prefs) => prefs.getString(SettingKeys.appLockKey))
-                : const FlutterSecureStorage()
-                    .read(key: SettingKeys.appLockKey))
-            .then((lock) {
-          if (lock?.isNotEmpty ?? false) {
-            AppLock.of(widget.context)!.enable();
-            AppLock.of(widget.context)!.showLockScreen();
-          }
-        });
-      });
-    }
-
     _initWithStore();
 
     for (final c in widget.clients) {
@@ -405,8 +390,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     if (PlatformInfos.isMobile) {
       backgroundPush = BackgroundPush(
-        client,
-        context,
+        this,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
@@ -435,7 +419,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       voipPlugin = null;
       return;
     }
-    voipPlugin = webrtcIsSupported ? VoipPlugin(client) : null;
+    voipPlugin = webrtcIsSupported ? VoipPlugin(this) : null;
   }
 
   @override
@@ -526,30 +510,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       create: (_) => this,
       child: widget.child,
     );
-  }
-}
-
-class FixedThreepidCreds extends ThreepidCreds {
-  FixedThreepidCreds({
-    required String sid,
-    required String clientSecret,
-    String? idServer,
-    String? idAccessToken,
-  }) : super(
-          sid: sid,
-          clientSecret: clientSecret,
-          idServer: idServer,
-          idAccessToken: idAccessToken,
-        );
-
-  @override
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['sid'] = sid;
-    data['client_secret'] = clientSecret;
-    if (idServer != null) data['id_server'] = idServer;
-    if (idAccessToken != null) data['id_access_token'] = idAccessToken;
-    return data;
   }
 }
 

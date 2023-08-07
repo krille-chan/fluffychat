@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
 
@@ -17,8 +15,8 @@ abstract class FluffyThemes {
   static bool isColumnMode(BuildContext context) =>
       isColumnModeByWidth(MediaQuery.of(context).size.width);
 
-  static bool getDisplayNavigationRail(BuildContext context) =>
-      !VRouter.of(context).path.startsWith('/settings');
+  static bool isThreeColumnMode(BuildContext context) =>
+      MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
 
   static const fallbackTextStyle = TextStyle(
     fontFamily: 'Roboto',

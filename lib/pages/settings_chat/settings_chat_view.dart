@@ -29,7 +29,7 @@ class SettingsChatView extends StatelessWidget {
             children: [
               ListTile(
                 title: Text(L10n.of(context)!.emoteSettings),
-                onTap: () => VRouter.of(context).to('emotes'),
+                onTap: () => context.go('/rooms/settings/chat/emotes'),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 leading: const Icon(Icons.emoji_emotions_outlined),
               ),

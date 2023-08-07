@@ -22,13 +22,13 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        VRouter.of(context).to('/newprivatechat');
+        context.go('/rooms/newprivatechat');
         break;
       case ActiveFilter.groups:
-        VRouter.of(context).to('/newgroup');
+        context.go('/rooms/newgroup');
         break;
       case ActiveFilter.spaces:
-        VRouter.of(context).to('/newspace');
+        context.go('/rooms/newspace');
         break;
     }
   }

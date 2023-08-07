@@ -21,7 +21,7 @@ class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
   void forwardAction() {
     Matrix.of(context).shareContent = widget.event.content;
-    VRouter.of(context).to('/rooms');
+    context.go('/rooms');
   }
 
   /// Save this file with a system call.

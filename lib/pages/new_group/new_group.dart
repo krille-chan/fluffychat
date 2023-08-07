@@ -37,7 +37,7 @@ class NewGroupController extends State<NewGroup> {
       },
     );
     if (roomID.error == null) {
-      VRouter.of(context).toSegments(['rooms', roomID.result!, 'invite']);
+      context.go(['', 'rooms', roomID.result!, 'invite'].join('/'));
     }
   }
 

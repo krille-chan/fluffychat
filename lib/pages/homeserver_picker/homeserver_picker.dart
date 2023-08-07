@@ -155,7 +155,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
 
-  void login() => VRouter.of(context).to('login');
+  void login() => context.go('/home/login');
 
   @override
   void initState() {

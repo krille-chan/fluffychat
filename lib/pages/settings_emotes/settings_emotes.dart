@@ -29,12 +29,12 @@ class EmotesSettings extends StatefulWidget {
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
 
   Room? get room =>
       roomId != null ? Matrix.of(context).client.getRoomById(roomId!) : null;
 
-  String? get stateKey => VRouter.of(context).pathParameters['state_key'];
+  String? get stateKey => GoRouterState.of(context).pathParameters['state_key'];
 
   bool showSave = false;
   TextEditingController newImageCodeController = TextEditingController();

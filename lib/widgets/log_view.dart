@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 class LogViewer extends StatefulWidget {
@@ -22,7 +23,9 @@ class LogViewerState extends State<LogViewer> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(logLevel.toString()),
-        leading: const BackButton(),
+        leading: BackButton(
+          onPressed: () => context.go('/'),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.zoom_in_outlined),

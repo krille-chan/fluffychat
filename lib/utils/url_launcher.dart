@@ -172,17 +172,20 @@ class UrlLauncher {
       if (room != null) {
         if (room.isSpace) {
           // TODO: Implement navigate to space
-          VRouter.of(context).toSegments(['rooms']);
+          context.go(['', 'rooms'].join('/'));
+
           return;
         }
         // we have the room, so....just open it
         if (event != null) {
-          VRouter.of(context).toSegments(
-            ['rooms', room.id],
-            queryParameters: {'event': event},
+          context.go(
+            Uri(
+              pathSegments: ['rooms', room.id],
+              queryParameters: {'event': event},
+            ).toString(),
           );
         } else {
-          VRouter.of(context).toSegments(['rooms', room.id]);
+          context.go(['', 'rooms', room.id].join('/'));
         }
         return;
       } else {
@@ -216,12 +219,14 @@ class UrlLauncher {
             future: () => Future.delayed(const Duration(seconds: 2)),
           );
           if (event != null) {
-            VRouter.of(context).toSegments(
-              ['rooms', response.result!],
-              queryParameters: {'event': event},
+            context.go(
+              Uri(
+                pathSegments: ['rooms', response.result!],
+                queryParameters: {'event': event},
+              ).toString(),
             );
           } else {
-            VRouter.of(context).toSegments(['rooms', response.result!]);
+            context.go(['', 'rooms', response.result!].join('/'));
           }
         }
       }

@@ -38,8 +38,8 @@ class EncryptionButton extends StatelessWidget {
                       ? Colors.orange
                       : null,
             ),
-            onPressed: () => VRouter.of(context)
-                .toSegments(['rooms', room.id, 'encryption']),
+            onPressed: () =>
+                context.go(['', 'rooms', room.id, 'encryption'].join('/')),
           ),
         );
       },

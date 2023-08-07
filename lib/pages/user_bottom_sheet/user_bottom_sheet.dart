@@ -147,8 +147,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           future: () => widget.user.startDirectChat(),
         );
         if (roomIdResult.error != null) return;
-        VRouter.of(widget.outerContext)
-            .toSegments(['rooms', roomIdResult.result!]);
+        widget.outerContext.go(['', 'rooms', roomIdResult.result!].join('/'));
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case UserBottomSheetAction.ignore:

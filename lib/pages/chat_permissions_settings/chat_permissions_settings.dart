@@ -21,7 +21,7 @@ class ChatPermissionsSettings extends StatefulWidget {
 }
 
 class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
   void editPowerLevel(
     BuildContext context,
     String key,
@@ -105,7 +105,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     await showFutureLoadingDialog(
       context: context,
       future: () => room.client.upgradeRoom(roomId!, newVersion),
-    ).then((_) => VRouter.of(context).pop());
+    ).then((_) => context.pop());
   }
 
   @override

@@ -38,14 +38,17 @@ import 'sticker_picker_dialog.dart';
 
 class ChatPage extends StatelessWidget {
   final Widget? sideView;
+  final String roomId;
 
-  const ChatPage({Key? key, this.sideView}) : super(key: key);
+  const ChatPage({
+    Key? key,
+    this.sideView,
+    required this.roomId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final roomId = context.vRouter.pathParameters['roomid'];
-    final room =
-        roomId == null ? null : Matrix.of(context).client.getRoomById(roomId);
+    final room = Matrix.of(context).client.getRoomById(roomId);
     if (room == null) {
       return Scaffold(
         appBar: AppBar(title: Text(L10n.of(context)!.oopsSomethingWentWrong)),
@@ -58,7 +61,11 @@ class ChatPage extends StatelessWidget {
         ),
       );
     }
-    return ChatPageWithRoom(sideView: sideView, room: room);
+    return ChatPageWithRoom(
+      key: Key('chat_page_$roomId'),
+      sideView: sideView,
+      room: room,
+    );
   }
 }
 
@@ -188,7 +195,7 @@ class ChatController extends State<ChatPageWithRoom> {
     );
     final roomId = success.result;
     if (roomId == null) return;
-    VRouter.of(context).toSegments(['rooms', roomId]);
+    context.go(['', 'rooms', roomId].join('/'));
   }
 
   void leaveChat() async {
@@ -197,7 +204,7 @@ class ChatController extends State<ChatPageWithRoom> {
       future: room.leave,
     );
     if (success.error != null) return;
-    VRouter.of(context).to('/rooms');
+    context.go('/rooms');
   }
 
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
@@ -329,7 +336,7 @@ class ChatController extends State<ChatPageWithRoom> {
     // "load more" button is visible on the screen
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        final event = VRouter.of(context).queryParameters['event'];
+        final event = GoRouterState.of(context).uri.queryParameters['event'];
         if (event != null) {
           scrollToEventId(event);
         }
@@ -803,7 +810,7 @@ class ChatController extends State<ChatPageWithRoom> {
       };
     }
     setState(() => selectedEvents.clear());
-    VRouter.of(context).to('/rooms');
+    context.go('/rooms');
   }
 
   void sendAgainAction() {
@@ -901,7 +908,7 @@ class ChatController extends State<ChatPageWithRoom> {
       future: room.forget,
     );
     if (result.error != null) return;
-    VRouter.of(context).to('/archive');
+    context.go('/rooms/archive');
   }
 
   void typeEmoji(Emoji? emoji) {
@@ -1017,7 +1024,7 @@ class ChatController extends State<ChatPageWithRoom> {
       future: room.leave,
     );
     if (result.error == null) {
-      VRouter.of(context).toSegments(['rooms', result.result!]);
+      context.go(['', 'rooms', result.result!].join('/'));
     }
   }
 

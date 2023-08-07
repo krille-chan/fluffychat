@@ -46,20 +46,29 @@ abstract class PlatformInfos {
     final version = await PlatformInfos.getVersion();
     showAboutDialog(
       context: context,
-      useRootNavigator: false,
       children: [
         Text('Version: $version'),
-        OutlinedButton(
+        TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
-          child: Text(L10n.of(context)!.sourceCode),
+          icon: const Icon(Icons.source_outlined),
+          label: Text(L10n.of(context)!.sourceCode),
         ),
-        OutlinedButton(
+        TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
-          child: const Text(AppConfig.emojiFontName),
+          icon: const Icon(Icons.emoji_emotions_outlined),
+          label: const Text(AppConfig.emojiFontName),
         ),
-        OutlinedButton(
-          onPressed: () => VRouter.of(context).to('logs'),
-          child: const Text('Logs'),
+        Builder(
+          builder: (context) {
+            return TextButton.icon(
+              onPressed: () {
+                Navigator.of(context).pop();
+                context.go('/logs');
+              },
+              icon: const Icon(Icons.list_outlined),
+              label: const Text('Logs'),
+            );
+          },
         ),
       ],
       applicationIcon: Image.asset(

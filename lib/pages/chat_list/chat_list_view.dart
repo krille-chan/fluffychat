@@ -86,13 +86,12 @@ class ChatListView extends StatelessWidget {
       stream: Matrix.of(context).onShareContentChanged.stream,
       builder: (_, __) {
         final selectMode = controller.selectMode;
-        return VWidgetGuard(
-          onSystemPop: (redirector) async {
+        return WillPopScope(
+          onWillPop: () async {
             final selMode = controller.selectMode;
             if (selMode != SelectMode.normal) {
               controller.cancelAction();
-              redirector.stopRedirection();
-              return;
+              return false;
             }
             if (controller.activeFilter !=
                 (AppConfig.separateChatTypes
@@ -100,14 +99,14 @@ class ChatListView extends StatelessWidget {
                     : ActiveFilter.allChats)) {
               controller
                   .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
-              redirector.stopRedirection();
-              return;
+              return false;
             }
+            return true;
           },
           child: Row(
             children: [
               if (FluffyThemes.isColumnMode(context) &&
-                  FluffyThemes.getDisplayNavigationRail(context)) ...[
+                  controller.widget.displayNavigationRail) ...[
                 Builder(
                   builder: (context) {
                     final allSpaces =
@@ -193,8 +192,7 @@ class ChatListView extends StatelessWidget {
                         LogicalKeyboardKey.controlLeft,
                         LogicalKeyboardKey.keyN
                       },
-                      onKeysPressed: () =>
-                          VRouter.of(context).to('/newprivatechat'),
+                      onKeysPressed: () => context.go('/rooms/newprivatechat'),
                       helpLabel: L10n.of(context)!.newChat,
                       child: selectMode == SelectMode.normal &&
                               !controller.isSearchMode

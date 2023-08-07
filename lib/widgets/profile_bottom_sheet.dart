@@ -25,7 +25,8 @@ class ProfileBottomSheet extends StatelessWidget {
       future: () => client.startDirectChat(userId),
     );
     if (result.error == null) {
-      VRouter.of(context).toSegments(['rooms', result.result!]);
+      context.go(['', 'rooms', result.result!].join('/'));
+
       Navigator.of(context, rootNavigator: false).pop();
       return;
     }

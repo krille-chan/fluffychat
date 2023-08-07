@@ -61,7 +61,7 @@ class ChatListItem extends StatelessWidget {
     }
 
     if (room.membership == Membership.leave) {
-      VRouter.of(context).toSegments(['archive', room.id]);
+      context.go(['', 'archive', room.id].join('/'));
     }
 
     if (room.membership == Membership.join) {
@@ -86,7 +86,7 @@ class ChatListItem extends StatelessWidget {
         Matrix.of(context).shareContent = null;
       }
 
-      VRouter.of(context).toSegments(['rooms', room.id]);
+      context.go(['', 'rooms', room.id].join('/'));
     }
   }
 

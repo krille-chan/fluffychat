@@ -154,7 +154,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     future: () => widget.room.leave(),
                   );
                   if (success.error == null) {
-                    VRouter.of(context).to('/rooms');
+                    context.go('/rooms');
                   }
                 }
                 break;
@@ -195,10 +195,10 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         );
 
   void _showChatDetails() {
-    if (VRouter.of(context).path.endsWith('/details')) {
-      VRouter.of(context).toSegments(['rooms', widget.room.id]);
+    if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+      context.go(['', 'rooms', widget.room.id].join('/'));
     } else {
-      VRouter.of(context).toSegments(['rooms', widget.room.id, 'details']);
+      context.go(['', 'rooms', widget.room.id, 'details'].join('/'));
     }
   }
 }

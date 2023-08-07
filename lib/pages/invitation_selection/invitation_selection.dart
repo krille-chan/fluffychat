@@ -28,7 +28,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
   List<Profile> foundProfiles = [];
   Timer? coolDown;
 
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
 
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;

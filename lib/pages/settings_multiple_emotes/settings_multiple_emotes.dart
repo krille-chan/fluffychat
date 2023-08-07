@@ -13,7 +13,7 @@ class MultipleEmotesSettings extends StatefulWidget {
 }
 
 class MultipleEmotesSettingsController extends State<MultipleEmotesSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
   @override
   Widget build(BuildContext context) => MultipleEmotesSettingsView(this);
 }

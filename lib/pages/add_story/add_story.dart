@@ -207,7 +207,7 @@ class AddStoryController extends State<AddStoryPage> {
       },
     );
     if (postResult.error == null) {
-      VRouter.of(context).pop();
+      context.pop();
     }
   }
 

@@ -19,7 +19,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
-  const ChatDetails({Key? key}) : super(key: key);
+  final String roomId;
+
+  const ChatDetails({
+    Key? key,
+    required this.roomId,
+  }) : super(key: key);
 
   @override
   ChatDetailsController createState() => ChatDetailsController();
@@ -32,7 +37,7 @@ class ChatDetailsController extends State<ChatDetails> {
   void toggleDisplaySettings() =>
       setState(() => displaySettings = !displaySettings);
 
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => widget.roomId;
 
   void setDisplaynameAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
@@ -257,9 +262,9 @@ class ChatDetailsController extends State<ChatDetails> {
     if ((room.states['im.ponies.room_emotes'] ?? <String, Event>{})
         .keys
         .any((String s) => s.isNotEmpty)) {
-      VRouter.of(context).to('multiple_emotes');
+      context.go('/rooms/${room.id}/details/multiple_emotes');
     } else {
-      VRouter.of(context).to('emotes');
+      context.go('/rooms/${room.id}/details/emotes');
     }
   }
 
