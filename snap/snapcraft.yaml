@@ -59,43 +59,17 @@ parts:
     build-packages:
       - g++
 
-  flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-tag: 3.10.0
-    plugin: nil
-    override-build: |
-      set -eux
-      mkdir -p $CRAFT_PART_INSTALL/usr/bin
-      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
-      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
-      ln -sf $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
-      export PATH="$CRAFT_PART_INSTALL/usr/bin:$PATH"
-      flutter doctor
-    build-packages:
-      - clang
-      - cmake
-      - curl
-      - ninja-build
-      - unzip
-    override-prime: ''
-
   fluffychat:
-    after: [ flutter-git ]
-    plugin: nil
+    plugin: flutter
     source: .
     override-build: |
-      set -eux
-      flutter pub get || true
-      flutter build linux --release -v
-      craftctl set version="$(jq -r '.version' build/flutter_assets/version.json)"
-      mkdir -p $CRAFT_PART_INSTALL/bin
-      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
-      sed -i -e 's|\(Icon=\).*|\1/bin/data/flutter_assets/assets/software.png|' \
-          $CRAFT_PART_INSTALL/bin/data/flutter_assets/assets/software.desktop
+      # Workaround for Flutter build error:
+      rm -rf build
+      craftctl default
     build-packages:
       - libjsoncpp-dev
       - execstack
-      - jq
+      - curl
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
@@ -110,8 +84,10 @@ slots:
 
 apps:
   fluffychat:
-    command: bin/software
+    command: fluffychat
     extensions: [gnome]
+    environment:
+      LD_LIBRARY_PATH: $SNAP/lib
     plugs:
       - audio-playback
       - desktop
