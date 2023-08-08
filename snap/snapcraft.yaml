@@ -75,9 +75,6 @@ parts:
       - libjsoncpp-dev
       - mpv
       - zenity
-      - libegl1-mesa
-      - libgl1-mesa-dri
-      - libgl1-mesa-glx
 
 slots:
   dbus-svc:
