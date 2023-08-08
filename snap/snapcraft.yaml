@@ -86,8 +86,6 @@ apps:
   fluffychat:
     command: fluffychat
     extensions: [gnome]
-    environment:
-      LD_LIBRARY_PATH: $SNAP/lib
     plugs:
       - audio-playback
       - desktop
@@ -108,4 +106,4 @@ apps:
       XDG_DATA_HOME: $SNAP_USER_DATA
       XDG_DATA_DIRS: $SNAP/usr/share
       GDK_GL: gles
-      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/bin/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
