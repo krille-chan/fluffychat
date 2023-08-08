@@ -149,6 +149,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  flutter_webrtc:
+    git: https://github.com/krille-chan/flutter-webrtc.git
   geolocator_android:
     hosted:
       name: geolocator_android
