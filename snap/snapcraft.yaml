@@ -100,3 +100,10 @@ apps:
       - password-manager-service
     slots:
       - dbus-svc
+    # Workaround for:
+    # https://github.com/flutter-webrtc/flutter-webrtc/issues/1212#issuecomment-1611899344
+    environment:
+      XDG_DATA_HOME: $SNAP_USER_DATA
+      XDG_DATA_DIRS: $SNAP/usr/share
+      GDK_GL: gles
+      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
