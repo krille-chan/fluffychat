@@ -2044,7 +2044,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordForgotten": "Ahaztu zait pasahitza",
+  "passwordForgotten": "Pasahitza ahaztu dut",
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
@@ -2503,5 +2503,35 @@
   "continueWith": "Jarraitu honekin:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Saiatu geroago edo hautatu beste zerbitzari bat.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Saioa {provider}(e)kin hasita",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "notAnImage": "Ez da irudi-fitxategia.",
+  "@notAnImage": {},
+  "importNow": "Inportatu orain",
+  "@importNow": {},
+  "importEmojis": "Inportatu emojiak",
+  "@importEmojis": {},
+  "importFromZipFile": "Inportatu .zip fitxategi batetik",
+  "@importFromZipFile": {},
+  "importZipFile": "Inportatu .zip fitxategia",
+  "@importZipFile": {},
+  "exportEmotePack": "Esportatu emote sorta .zip gisa",
+  "@exportEmotePack": {},
+  "replace": "Ordezkatu",
+  "@replace": {},
+  "savedEmotePack": "Emote sorta {path} bidean gorde da!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "sendTypingNotifications": "Jakinarazi idazten nagoela",
+  "@sendTypingNotifications": {}
 }
