@@ -22,7 +22,6 @@ class LoginScaffold extends StatelessWidget {
     final isMobileMode = !FluffyThemes.isColumnMode(context);
     final scaffold = Scaffold(
       key: const Key('LoginScaffold'),
-      backgroundColor: isMobileMode ? null : Colors.transparent,
       appBar: appBar == null
           ? null
           : AppBar(
@@ -51,7 +50,7 @@ class LoginScaffold extends StatelessWidget {
     if (isMobileMode) return scaffold;
     return Container(
       decoration: BoxDecoration(
-        gradient: FluffyThemes.backgroundGradient(context, 156),
+        gradient: FluffyThemes.backgroundGradient(context, 255),
       ),
       child: Column(
         children: [

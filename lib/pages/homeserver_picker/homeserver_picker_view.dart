@@ -143,7 +143,10 @@ class HomeserverPickerView extends StatelessWidget {
                                       const EdgeInsets.symmetric(vertical: 12),
                                 ),
                                 onPressed: controller.restoreBackup,
-                                child: Text(L10n.of(context)!.hydrate),
+                                child: Text(
+                                  L10n.of(context)!.hydrate,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                             ),
                           ),
