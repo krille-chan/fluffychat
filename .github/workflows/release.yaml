@@ -145,23 +145,24 @@ jobs:
 
   deploy_snap:
     runs-on: ubuntu-latest
+    if: false # Until snap is fixed
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
-    - uses: actions/checkout@v3
-    - uses: snapcore/action-build@v1
-      id: build-snap
-    - name: Set release type
-      id: set-release
-      run: |
-        if [[ "${GITHUB_REF_NAME}" == rc* ]]; then
-          echo "::set-output name=release::candidate"
-        else
-          echo "::set-output name=release::stable"
-        fi
-    - uses: snapcore/action-publish@v1
-      env:
-        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-      with:
-        snap: ${{ steps.build-snap.outputs.snap }}
-        release: ${{ steps.set-release.outputs.release }}
+      - uses: actions/checkout@v3
+      - uses: snapcore/action-build@v1
+        id: build-snap
+      - name: Set release type
+        id: set-release
+        run: |
+          if [[ "${GITHUB_REF_NAME}" == rc* ]]; then
+            echo "::set-output name=release::candidate"
+          else
+            echo "::set-output name=release::stable"
+          fi
+      - uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+        with:
+          snap: ${{ steps.build-snap.outputs.snap }}
+          release: ${{ steps.set-release.outputs.release }}
