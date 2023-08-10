@@ -2371,7 +2371,7 @@
   },
   "commandHint_markasgroup": "Grup olarak işaretle",
   "@commandHint_markasgroup": {},
-  "commandHint_markasdm": "Doğrudan mesaj odası olarak işaretle",
+  "commandHint_markasdm": "Verilen Matrix kimliği için doğrudan mesaj odası olarak işaretle",
   "@commandHint_markasdm": {},
   "whyIsThisMessageEncrypted": "Bu mesaj neden okunamıyor?",
   "@whyIsThisMessageEncrypted": {},
@@ -2517,5 +2517,28 @@
     "placeholders": {
       "provider": {}
     }
-  }
+  },
+  "notAnImage": "Bir resim dosyası değil.",
+  "@notAnImage": {},
+  "importNow": "Şimdi içe aktar",
+  "@importNow": {},
+  "importEmojis": "İfadeleri İçe Aktar",
+  "@importEmojis": {},
+  "importFromZipFile": ".zip dosyasından içe aktar",
+  "@importFromZipFile": {},
+  "importZipFile": ".zip dosyasını içe aktar",
+  "@importZipFile": {},
+  "exportEmotePack": "İfade paketini .zip olarak dışa aktar",
+  "@exportEmotePack": {},
+  "replace": "Değiştir",
+  "@replace": {},
+  "savedEmotePack": "İfade paketi {path} konumuna kaydedildi!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "sendTypingNotifications": "Yazma bildirimleri gönder",
+  "@sendTypingNotifications": {}
 }

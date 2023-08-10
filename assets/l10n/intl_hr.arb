@@ -2380,7 +2380,7 @@
   "@fileIsTooBigForServer": {},
   "jumpToLastReadMessage": "Skoči na zadnju pročitanu poruku",
   "@jumpToLastReadMessage": {},
-  "commandHint_markasdm": "Označi kao sobu za izravnu razmjenu poruka",
+  "commandHint_markasdm": "Označi kao sobu za izravnu razmjenu poruka za zadani Matrix ID",
   "@commandHint_markasdm": {},
   "commandHint_markasgroup": "Označi kao grupu",
   "@commandHint_markasgroup": {},
