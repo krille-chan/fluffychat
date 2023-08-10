@@ -28,12 +28,25 @@ static void my_application_activate(GApplication* application) {
   // If running on Wayland assume the header bar will work (may need changing
   // if future cases occur).
   gboolean use_header_bar = TRUE;
+  // Lines added to the template start
+  // Please re-add these lines after updating the linux build files
+  // If the user explicitly requests to disable the header bar, switch back to 
+  // using a traditional title bar
+  const gchar* gtk_csd_env = g_getenv("GTK_CSD");
+  if (gtk_csd_env != nullptr && g_strcmp0(gtk_csd_env, "1") != 0)
+    use_header_bar = FALSE;
+  // Lines added to the template end
 #ifdef GDK_WINDOWING_X11
   GdkScreen* screen = gtk_window_get_screen(window);
   if (GDK_IS_X11_SCREEN(screen)) {
     const gchar* wm_name = gdk_x11_screen_get_window_manager_name(screen);
     if (g_strcmp0(wm_name, "GNOME Shell") != 0) {
       use_header_bar = FALSE;
+      // Lines added to the template start
+      // Please re-add these lines after updating the linux build files
+      // Disable libhandy here, otherwise the close button disappears on KDE X11
+      g_setenv("GTK_CSD", "0", TRUE);
+      // Lines added to the template end
     }
   }
 #endif
@@ -56,7 +69,6 @@ static void my_application_activate(GApplication* application) {
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(view));
 
   fl_register_plugins(FL_PLUGIN_REGISTRY(view));
-
   gtk_widget_show(GTK_WIDGET(window));
   gtk_widget_show(GTK_WIDGET(view));
 
