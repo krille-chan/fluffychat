@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../config/themes.dart';
 import 'chat_list.dart';
@@ -22,13 +22,13 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        VRouter.of(context).to('/newprivatechat');
+        context.go('/rooms/newprivatechat');
         break;
       case ActiveFilter.groups:
-        VRouter.of(context).to('/newgroup');
+        context.go('/rooms/newgroup');
         break;
       case ActiveFilter.spaces:
-        VRouter.of(context).to('/newspace');
+        context.go('/rooms/newspace');
         break;
     }
   }

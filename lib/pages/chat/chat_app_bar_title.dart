@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:vrouter/vrouter.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
@@ -36,8 +36,7 @@ class ChatAppBarTitle extends StatelessWidget {
               )
           : controller.isArchived
               ? null
-              : () =>
-                  VRouter.of(context).toSegments(['rooms', room.id, 'details']),
+              : () => context.go(['', 'rooms', room.id, 'details'].join('/')),
       child: Row(
         children: [
           Hero(

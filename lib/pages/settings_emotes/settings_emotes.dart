@@ -8,9 +8,9 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -29,12 +29,12 @@ class EmotesSettings extends StatefulWidget {
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
 
   Room? get room =>
       roomId != null ? Matrix.of(context).client.getRoomById(roomId!) : null;
 
-  String? get stateKey => VRouter.of(context).pathParameters['state_key'];
+  String? get stateKey => GoRouterState.of(context).pathParameters['state_key'];
 
   bool showSave = false;
   TextEditingController newImageCodeController = TextEditingController();

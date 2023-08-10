@@ -4,8 +4,8 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
@@ -73,13 +73,13 @@ class _SpaceViewState extends State<SpaceView> {
     }
     if (spaceChild.roomType == 'm.space') {
       if (spaceChild.roomId == widget.controller.activeSpaceId) {
-        VRouter.of(context).toSegments(['spaces', spaceChild.roomId]);
+        context.go('/rooms/spaces/${spaceChild.roomId}');
       } else {
         widget.controller.setActiveSpace(spaceChild.roomId);
       }
       return;
     }
-    VRouter.of(context).toSegments(['rooms', spaceChild.roomId]);
+    context.go(['', 'rooms', spaceChild.roomId].join('/'));
   }
 
   void _onSpaceChildContextMenu([
@@ -234,13 +234,13 @@ class _SpaceViewState extends State<SpaceView> {
         );
         final spaceChildren = response.rooms;
         final canLoadMore = response.nextBatch != null;
-        return VWidgetGuard(
-          onSystemPop: (redirector) async {
+        return WillPopScope(
+          onWillPop: () async {
             if (parentSpace != null) {
               widget.controller.setActiveSpace(parentSpace.id);
-              redirector.stopRedirection();
-              return;
+              return false;
             }
+            return true;
           },
           child: CustomScrollView(
             controller: widget.scrollController,

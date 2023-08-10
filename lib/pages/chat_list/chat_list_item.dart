@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -61,7 +61,7 @@ class ChatListItem extends StatelessWidget {
     }
 
     if (room.membership == Membership.leave) {
-      VRouter.of(context).toSegments(['archive', room.id]);
+      context.go(['', 'archive', room.id].join('/'));
     }
 
     if (room.membership == Membership.join) {
@@ -86,7 +86,7 @@ class ChatListItem extends StatelessWidget {
         Matrix.of(context).shareContent = null;
       }
 
-      VRouter.of(context).toSegments(['rooms', room.id]);
+      context.go(['', 'rooms', room.id].join('/'));
     }
   }
 

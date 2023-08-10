@@ -12,14 +12,15 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../../utils/famedlysdk_store.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
+import '../widgets/matrix.dart';
 
 class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
-  final Client client;
-  VoipPlugin(this.client) {
+  final MatrixState matrix;
+  Client get client => matrix.client;
+  VoipPlugin(this.matrix) {
     voip = VoIP(client, this);
     Connectivity()
         .onConnectivityChanged
@@ -40,6 +41,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   late VoIP voip;
   ConnectivityResult? _currentConnectivity;
   OverlayEntry? overlayEntry;
+  BuildContext get context => matrix.navigatorContext;
 
   void _handleNetworkChanged(ConnectivityResult result) async {
     /// Got a new connectivity status!
@@ -59,9 +61,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   void addCallingOverlay(String callId, CallSession call) {
-    final context = kIsWeb
-        ? ChatList.contextForVoip!
-        : FluffyChatApp.matrixKey.currentContext!; // web is weird
+    final context =
+        kIsWeb ? ChatList.contextForVoip! : this.context; // web is weird
 
     if (overlayEntry != null) {
       Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
@@ -166,8 +167,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         addCallingOverlay(call.callId, call);
         try {
           if (!hasCallingAccount) {
-            ScaffoldMessenger.of(FluffyChatApp.matrixKey.currentContext!)
-                .showSnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text(
                   'No calling accounts found (used for native calls UI)',

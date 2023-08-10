@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -49,8 +49,9 @@ class MultipleEmotesSettingsView extends StatelessWidget {
               return ListTile(
                 title: Text(packName),
                 onTap: () async {
-                  VRouter.of(context).toSegments(
-                    ['rooms', room.id, 'details', 'emotes', keys[i]],
+                  context.go(
+                    ['', 'rooms', room.id, 'details', 'emotes', keys[i]]
+                        .join('/'),
                   );
                 },
               );

@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat/edit_widgets_dialog.dart';
@@ -154,7 +154,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                     future: () => widget.room.leave(),
                   );
                   if (success.error == null) {
-                    VRouter.of(context).to('/rooms');
+                    context.go('/rooms');
                   }
                 }
                 break;
@@ -195,10 +195,10 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         );
 
   void _showChatDetails() {
-    if (VRouter.of(context).path.endsWith('/details')) {
-      VRouter.of(context).toSegments(['rooms', widget.room.id]);
+    if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+      context.go(['', 'rooms', widget.room.id].join('/'));
     } else {
-      VRouter.of(context).toSegments(['rooms', widget.room.id, 'details']);
+      context.go(['', 'rooms', widget.room.id, 'details'].join('/'));
     }
   }
 }

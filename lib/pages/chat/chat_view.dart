@@ -5,7 +5,6 @@ import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -147,15 +146,16 @@ class ChatView extends StatelessWidget {
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
 
-    return VWidgetGuard(
-      onSystemPop: (redirector) async {
+    return WillPopScope(
+      onWillPop: () async {
         if (controller.selectedEvents.isNotEmpty) {
           controller.clearSelectedEvents();
-          redirector.stopRedirection();
+          return false;
         } else if (controller.showEmojiPicker) {
           controller.emojiPickerAction();
-          redirector.stopRedirection();
+          return false;
         }
+        return true;
       },
       child: GestureDetector(
         onTapDown: (_) => controller.setReadMarker(),

@@ -831,6 +831,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: b3cadd2cd59a4103fd5f6bc572ca75111264698784e927aa471921c3477d5475
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.0.0"
   handy_window:
     dependency: "direct main"
     description:
@@ -1093,6 +1101,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   macos_ui:
     dependency: transitive
     description:
@@ -1181,14 +1197,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
-  move_to_background:
-    dependency: transitive
-    description:
-      name: move_to_background
-      sha256: "00caad17a6ce149910777131503f43f8ed80025681f94684e3a6a87d979b914c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   mpv_dart:
     dependency: transitive
     description:
@@ -1986,14 +1994,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  url_strategy:
-    dependency: transitive
-    description:
-      name: url_strategy
-      sha256: "42b68b42a9864c4d710401add17ad06e28f1c1d5500c93b98c431f6b0ea4ab87"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   uuid:
     dependency: transitive
     description:
@@ -2106,14 +2106,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "11.3.0"
-  vrouter:
-    dependency: "direct main"
-    description:
-      name: vrouter
-      sha256: "5eff3c2f1371c9e11c50334522b35a31e6d42290273d022e944544d4e177cea0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
   wakelock:
     dependency: "direct main"
     description:

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 import '../../widgets/matrix.dart';
@@ -147,8 +147,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           future: () => widget.user.startDirectChat(),
         );
         if (roomIdResult.error != null) return;
-        VRouter.of(widget.outerContext)
-            .toSegments(['rooms', roomIdResult.result!]);
+        widget.outerContext.go(['', 'rooms', roomIdResult.result!].join('/'));
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case UserBottomSheetAction.ignore:

@@ -4,8 +4,8 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -23,7 +23,7 @@ class StoriesHeader extends StatelessWidget {
   const StoriesHeader({required this.filter, Key? key}) : super(key: key);
 
   void _addToStoryAction(BuildContext context) =>
-      VRouter.of(context).to('/stories/create');
+      context.go('/rooms/stories/create');
 
   void _goToStoryAction(BuildContext context, String roomId) async {
     final room = Matrix.of(context).client.getRoomById(roomId);
@@ -35,7 +35,7 @@ class StoriesHeader extends StatelessWidget {
       );
       if (result.error != null) return;
     }
-    VRouter.of(context).toSegments(['stories', roomId]);
+    context.go(['', 'stories', roomId].join('/'));
   }
 
   void _contextualActions(BuildContext context, Room room) async {
@@ -249,7 +249,7 @@ class _StoryButton extends StatelessWidget {
                               child: FloatingActionButton.small(
                                 heroTag: null,
                                 onPressed: () =>
-                                    VRouter.of(context).to('/stories/create'),
+                                    context.go('/rooms/stories/create'),
                                 child: const Icon(
                                   Icons.add_outlined,
                                   size: 16,

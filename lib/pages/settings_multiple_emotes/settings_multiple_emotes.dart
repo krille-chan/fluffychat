@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:vrouter/vrouter.dart';
+import 'package:go_router/go_router.dart';
 
 import 'settings_multiple_emotes_view.dart';
 
@@ -13,7 +13,7 @@ class MultipleEmotesSettings extends StatefulWidget {
 }
 
 class MultipleEmotesSettingsController extends State<MultipleEmotesSettings> {
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
   @override
   Widget build(BuildContext context) => MultipleEmotesSettingsView(this);
 }

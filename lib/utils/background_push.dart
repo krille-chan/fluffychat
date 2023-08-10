@@ -28,16 +28,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
-import '../widgets/fluffy_chat_app.dart';
+import '../widgets/matrix.dart';
 import 'famedlysdk_store.dart';
 import 'platform_infos.dart';
 
@@ -52,8 +52,8 @@ class BackgroundPush {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Client client;
-  BuildContext? context;
-  GlobalKey<VRouterState> get router => FluffyChatApp.routerKey;
+  MatrixState? matrix;
+  BuildContext? get context => matrix?.navigatorContext;
   String? _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
@@ -77,6 +77,7 @@ class BackgroundPush {
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
+    final context = this.context;
     firebase?.setListeners(
       onMessage: (message) => pushHelper(
         PushNotification.fromJson(
@@ -84,7 +85,9 @@ class BackgroundPush {
         ),
         client: client,
         l10n: l10n,
-        activeRoomId: router.currentState?.pathParameters['roomid'],
+        activeRoomId: context == null
+            ? null
+            : GoRouterState.of(context).pathParameters['roomid'],
         onSelectNotification: goToRoom,
       ),
     );
@@ -104,12 +107,11 @@ class BackgroundPush {
   }
 
   factory BackgroundPush(
-    Client client,
-    BuildContext context, {
+    MatrixState matrix, {
     final void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
-    final instance = BackgroundPush.clientOnly(client);
-    instance.context = context;
+    final instance = BackgroundPush.clientOnly(matrix.client);
+    instance.matrix = matrix;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
     return instance;
@@ -250,8 +252,7 @@ class BackgroundPush {
         .then((details) {
       if (details == null ||
           !details.didNotificationLaunchApp ||
-          _wentToRoomOnStartup ||
-          router.currentState == null) {
+          _wentToRoomOnStartup) {
         return;
       }
       _wentToRoomOnStartup = true;
@@ -303,7 +304,7 @@ class BackgroundPush {
     try {
       final roomId = response?.payload;
       Logs().v('[Push] Attempting to go to room $roomId...');
-      if (router.currentState == null || roomId == null) {
+      if (roomId == null) {
         return;
       }
       await client.roomsLoading;
@@ -314,7 +315,7 @@ class BackgroundPush {
               ?.content
               .tryGet<String>('type') ==
           ClientStoriesExtension.storiesRoomType;
-      router.currentState!.toSegments([isStory ? 'stories' : 'rooms', roomId]);
+      context?.go(['', isStory ? 'stories' : 'rooms', roomId].join('/'));
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }
@@ -390,11 +391,14 @@ class BackgroundPush {
     );
     // UP may strip the devices list
     data['devices'] ??= [];
+    final context = this.context;
     await pushHelper(
       PushNotification.fromJson(data),
       client: client,
       l10n: l10n,
-      activeRoomId: router.currentState?.pathParameters['roomid'],
+      activeRoomId: context == null
+          ? null
+          : GoRouterState.of(context).pathParameters['roomid'],
     );
   }
 

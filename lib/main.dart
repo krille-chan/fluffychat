@@ -1,18 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 import 'widgets/lock_screen.dart';
 
 void main() async {
+  Logs().i('Welcome to FluffyChat');
+
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
@@ -26,29 +28,24 @@ void main() async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
+  String? pin;
   if (PlatformInfos.isMobile) {
     BackgroundPush.clientOnly(clients.first);
-  }
-
-  final queryParameters = <String, String>{};
-  if (kIsWeb) {
-    queryParameters
-        .addAll(Uri.parse(html.window.location.href).queryParameters);
+    try {
+      pin =
+          await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
+    } catch (e, s) {
+      Logs().d('Unable to read PIN from Secure storage', e, s);
+    }
   }
 
   runApp(
     PlatformInfos.isMobile
         ? AppLock(
-            builder: (args) => FluffyChatApp(
-              clients: clients,
-              queryParameters: queryParameters,
-            ),
+            builder: (args) => FluffyChatApp(clients: clients),
             lockScreen: const LockScreen(),
-            enabled: false,
+            enabled: pin?.isNotEmpty ?? false,
           )
-        : FluffyChatApp(
-            clients: clients,
-            queryParameters: queryParameters,
-          ),
+        : FluffyChatApp(clients: clients),
   );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -20,12 +20,12 @@ class InvitationSelectionView extends StatelessWidget {
     final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
     return Scaffold(
       appBar: AppBar(
-        leading: VRouter.of(context).path.startsWith('/spaces/')
+        leading: GoRouterState.of(context).uri.path.startsWith('/spaces/')
             ? null
             : IconButton(
                 icon: const Icon(Icons.close_outlined),
-                onPressed: () => VRouter.of(context)
-                    .toSegments(['rooms', controller.roomId!]),
+                onPressed: () =>
+                    context.go(['', 'rooms', controller.roomId!].join('/')),
               ),
         titleSpacing: 0,
         title: SizedBox(

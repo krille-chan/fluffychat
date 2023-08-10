@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -28,7 +28,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
   List<Profile> foundProfiles = [];
   Timer? coolDown;
 
-  String? get roomId => VRouter.of(context).pathParameters['roomid'];
+  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
 
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;

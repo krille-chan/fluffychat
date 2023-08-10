@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:video_player/video_player.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/add_story/add_story_view.dart';
 import 'package:fluffychat/pages/add_story/invite_story_page.dart';
@@ -207,7 +207,7 @@ class AddStoryController extends State<AddStoryPage> {
       },
     );
     if (postResult.error == null) {
-      VRouter.of(context).pop();
+      context.pop();
     }
   }
 

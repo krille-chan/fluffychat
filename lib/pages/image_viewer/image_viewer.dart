@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/pages/image_viewer/image_viewer_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -21,7 +21,7 @@ class ImageViewerController extends State<ImageViewer> {
   /// Forward this image to another room.
   void forwardAction() {
     Matrix.of(context).shareContent = widget.event.content;
-    VRouter.of(context).to('/rooms');
+    context.go('/rooms');
   }
 
   /// Save this file with a system call.

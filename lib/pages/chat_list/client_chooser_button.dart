@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -261,16 +261,16 @@ class ClientChooserButton extends StatelessWidget {
             cancelLabel: L10n.of(context)!.cancel,
           );
           if (consent != OkCancelResult.ok) return;
-          VRouter.of(context).to('/settings/addaccount');
+          context.go('/rooms/settings/addaccount');
           break;
         case SettingsAction.newStory:
-          VRouter.of(context).to('/stories/create');
+          context.go('/rooms/stories/create');
           break;
         case SettingsAction.newGroup:
-          VRouter.of(context).to('/newgroup');
+          context.go('/rooms/newgroup');
           break;
         case SettingsAction.newSpace:
-          VRouter.of(context).to('/newspace');
+          context.go('/rooms/newspace');
           break;
         case SettingsAction.invite:
           FluffyShare.share(
@@ -282,10 +282,10 @@ class ClientChooserButton extends StatelessWidget {
           );
           break;
         case SettingsAction.settings:
-          VRouter.of(context).to('/settings');
+          context.go('/rooms/settings');
           break;
         case SettingsAction.archive:
-          VRouter.of(context).to('/archive');
+          context.go('/rooms/archive');
           break;
       }
     }
