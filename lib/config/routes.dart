@@ -416,8 +416,6 @@ class AppRoutes {
   Page defaultPageBuilder(BuildContext context, Widget child) =>
       CustomTransitionPage(
         child: child,
-        transitionDuration: FluffyThemes.animationDuration,
-        reverseTransitionDuration: FluffyThemes.animationDuration,
         transitionsBuilder: (context, animation, secondaryAnimation, child) =>
             FluffyThemes.isColumnMode(context)
                 ? FadeTransition(opacity: animation, child: child)
