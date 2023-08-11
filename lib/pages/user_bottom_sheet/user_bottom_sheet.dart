@@ -21,17 +21,66 @@ enum UserBottomSheetAction {
   ignore,
 }
 
+class LoadProfileBottomSheet extends StatelessWidget {
+  final String userId;
+  final BuildContext outerContext;
+
+  const LoadProfileBottomSheet({
+    super.key,
+    required this.userId,
+    required this.outerContext,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<ProfileInformation>(
+      future: Matrix.of(context)
+          .client
+          .getUserProfile(userId)
+          .timeout(const Duration(seconds: 3)),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: CloseButton(
+                onPressed: Navigator.of(context, rootNavigator: false).pop,
+              ),
+            ),
+            body: const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+          );
+        }
+        return UserBottomSheet(
+          outerContext: outerContext,
+          profile: Profile(
+            userId: userId,
+            avatarUrl: snapshot.data?.avatarUrl,
+            displayName: snapshot.data?.displayname,
+          ),
+          profileSearchError: snapshot.error,
+        );
+      },
+    );
+  }
+}
+
 class UserBottomSheet extends StatefulWidget {
-  final User user;
+  final User? user;
+  final Profile? profile;
   final Function? onMention;
   final BuildContext outerContext;
+  final Object? profileSearchError;
 
   const UserBottomSheet({
     Key? key,
-    required this.user,
+    this.user,
+    this.profile,
     required this.outerContext,
     this.onMention,
-  }) : super(key: key);
+    this.profileSearchError,
+  })  : assert(user != null || profile != null),
+        super(key: key);
 
   @override
   UserBottomSheetController createState() => UserBottomSheetController();
@@ -39,6 +88,9 @@ class UserBottomSheet extends StatefulWidget {
 
 class UserBottomSheetController extends State<UserBottomSheet> {
   void participantAction(UserBottomSheetAction action) async {
+    final user = widget.user;
+    final userId = user?.id ?? widget.profile?.userId;
+    if (userId == null) throw ('user or profile must not be null!');
     // ignore: prefer_function_declarations_over_variables
     final Function askConfirmation = () async => (await showOkCancelAlertDialog(
           useRootNavigator: false,
@@ -50,7 +102,8 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         OkCancelResult.ok);
     switch (action) {
       case UserBottomSheetAction.report:
-        final event = widget.user;
+        if (user == null) throw ('User must not be null for this action!');
+
         final score = await showConfirmationDialog<int>(
           context: context,
           title: L10n.of(context)!.reportUser,
@@ -85,8 +138,8 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         final result = await showFutureLoadingDialog(
           context: context,
           future: () => Matrix.of(context).client.reportContent(
-                event.roomId!,
-                event.eventId,
+                user.roomId!,
+                user.eventId,
                 reason: reason.single,
                 score: score,
               ),
@@ -97,46 +150,51 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         break;
       case UserBottomSheetAction.mention:
+        if (user == null) throw ('User must not be null for this action!');
         Navigator.of(context, rootNavigator: false).pop();
         widget.onMention!();
         break;
       case UserBottomSheetAction.ban:
+        if (user == null) throw ('User must not be null for this action!');
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
-            future: () => widget.user.ban(),
+            future: () => user.ban(),
           );
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case UserBottomSheetAction.unban:
+        if (user == null) throw ('User must not be null for this action!');
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
-            future: () => widget.user.unban(),
+            future: () => user.unban(),
           );
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case UserBottomSheetAction.kick:
+        if (user == null) throw ('User must not be null for this action!');
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
-            future: () => widget.user.kick(),
+            future: () => user.kick(),
           );
           Navigator.of(context, rootNavigator: false).pop();
         }
         break;
       case UserBottomSheetAction.permission:
+        if (user == null) throw ('User must not be null for this action!');
         final newPermission = await showPermissionChooser(
           context,
-          currentLevel: widget.user.powerLevel,
+          currentLevel: user.powerLevel,
         );
         if (newPermission != null) {
           if (newPermission == 100 && await askConfirmation() == false) break;
           await showFutureLoadingDialog(
             context: context,
-            future: () => widget.user.setPower(newPermission),
+            future: () => user.setPower(newPermission),
           );
           Navigator.of(context, rootNavigator: false).pop();
         }
@@ -144,7 +202,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.message:
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
-          future: () => widget.user.startDirectChat(),
+          future: () => Matrix.of(context)
+              .client
+              .startDirectChat(user?.id ?? widget.profile!.userId),
         );
         if (roomIdResult.error != null) return;
         widget.outerContext.go(['', 'rooms', roomIdResult.result!].join('/'));
@@ -154,7 +214,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
-            future: () => Matrix.of(context).client.ignoreUser(widget.user.id),
+            future: () => Matrix.of(context)
+                .client
+                .ignoreUser(user?.id ?? widget.profile!.userId),
           );
         }
     }

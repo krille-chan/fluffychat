@@ -11,9 +11,9 @@ import 'package:punycode/punycode.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/profile_bottom_sheet.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
@@ -233,7 +233,7 @@ class UrlLauncher {
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       await showAdaptiveBottomSheet(
         context: context,
-        builder: (c) => ProfileBottomSheet(
+        builder: (c) => LoadProfileBottomSheet(
           userId: identityParts.primaryIdentifier,
           outerContext: context,
         ),

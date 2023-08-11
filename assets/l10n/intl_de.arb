@@ -2540,5 +2540,6 @@
   "replace": "Ersetzen",
   "@replace": {},
   "sendTypingNotifications": "Tippbenachrichtigungen senden",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "profileNotFound": "Der Benutzer konnte auf dem Server nicht gefunden werden. Vielleicht gibt es ein Verbindungsproblem oder der Benutzer existiert nicht."
 }

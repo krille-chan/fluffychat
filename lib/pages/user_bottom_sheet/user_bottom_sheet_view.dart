@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import '../../utils/matrix_sdk_extensions/presence_extension.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
@@ -17,24 +16,38 @@ class UserBottomSheetView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = controller.widget.user;
+    final userId = (user?.id ?? controller.widget.profile?.userId)!;
+    final displayname = (user?.calcDisplayname() ??
+        controller.widget.profile?.displayName ??
+        controller.widget.profile?.userId.localpart)!;
+    final avatarUrl = user?.avatarUrl ?? controller.widget.profile?.avatarUrl;
+
     final client = Matrix.of(context).client;
-    final presence = client.presences[user.id];
+    final profileSearchError = controller.widget.profileSearchError;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
-          title: Text(user.calcDisplayname()),
           actions: [
-            if (user.id != client.userID)
+            if (userId != client.userID &&
+                !client.ignoredUsers.contains(userId))
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton.icon(
+                  label: Text(
+                    L10n.of(context)!.ignore,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                  icon: Icon(
+                    Icons.shield_outlined,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
                   onPressed: () => controller
-                      .participantAction(UserBottomSheetAction.message),
-                  icon: const Icon(Icons.forum_outlined),
-                  label: Text(L10n.of(context)!.sendAMessage),
+                      .participantAction(UserBottomSheetAction.ignore),
                 ),
               ),
           ],
@@ -45,31 +58,81 @@ class UserBottomSheetView extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Avatar(
-                    mxContent: user.avatarUrl,
-                    name: user.calcDisplayname(),
-                    size: Avatar.defaultSize * 2,
-                    fontSize: 24,
+                  child: Material(
+                    elevation:
+                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
+                            4,
+                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        Avatar.defaultSize * 2.5,
+                      ),
+                    ),
+                    child: Avatar(
+                      mxContent: avatarUrl,
+                      name: displayname,
+                      size: Avatar.defaultSize * 2.5,
+                      fontSize: 18 * 2.5,
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.only(right: 16.0),
-                    title: Text(user.id),
-                    subtitle: presence == null
-                        ? null
-                        : Text(presence.getLocalizedLastActiveAgo(context)),
-                    trailing: IconButton(
-                      icon: Icon(Icons.adaptive.share),
-                      onPressed: () => FluffyShare.share(
-                        user.id,
-                        context,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton.icon(
+                        onPressed: () => FluffyShare.share(userId, context),
+                        icon: Icon(
+                          Icons.adaptive.share_outlined,
+                          size: 16,
+                        ),
+                        style: TextButton.styleFrom(
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onBackground,
+                        ),
+                        label: Text(
+                          displayname,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          //  style: const TextStyle(fontSize: 18),
+                        ),
                       ),
-                    ),
+                      TextButton.icon(
+                        onPressed: () => FluffyShare.share(userId, context),
+                        icon: const Icon(
+                          Icons.copy_outlined,
+                          size: 14,
+                        ),
+                        style: TextButton.styleFrom(
+                          foregroundColor:
+                              Theme.of(context).colorScheme.secondary,
+                        ),
+                        label: Text(
+                          userId,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          //    style: const TextStyle(fontSize: 12),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
+            if (userId != client.userID)
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ElevatedButton.icon(
+                  onPressed: () => controller
+                      .participantAction(UserBottomSheetAction.message),
+                  icon: const Icon(Icons.forum_outlined),
+                  label: Text(L10n.of(context)!.sendAMessage),
+                ),
+              ),
             if (controller.widget.onMention != null)
               ListTile(
                 leading: const Icon(Icons.alternate_email_outlined),
@@ -77,52 +140,57 @@ class UserBottomSheetView extends StatelessWidget {
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.mention),
               ),
-            if (user.canChangePowerLevel)
+            if (user != null && user.canChangePowerLevel)
               ListTile(
                 title: Text(L10n.of(context)!.setPermissionsLevel),
                 leading: const Icon(Icons.edit_attributes_outlined),
                 onTap: () => controller
                     .participantAction(UserBottomSheetAction.permission),
               ),
-            if (user.canKick)
+            if (user != null && user.canKick)
               ListTile(
                 title: Text(L10n.of(context)!.kickFromChat),
                 leading: const Icon(Icons.exit_to_app_outlined),
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.kick),
               ),
-            if (user.canBan && user.membership != Membership.ban)
+            if (user != null &&
+                user.canBan &&
+                user.membership != Membership.ban)
               ListTile(
                 title: Text(L10n.of(context)!.banFromChat),
                 leading: const Icon(Icons.warning_sharp),
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.ban),
               )
-            else if (user.canBan && user.membership == Membership.ban)
+            else if (user != null &&
+                user.canBan &&
+                user.membership == Membership.ban)
               ListTile(
                 title: Text(L10n.of(context)!.unbanFromChat),
                 leading: const Icon(Icons.warning_outlined),
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.unban),
               ),
-            if (user.id != client.userID &&
-                !client.ignoredUsers.contains(user.id))
+            if (user != null && user.id != client.userID)
               ListTile(
                 textColor: Theme.of(context).colorScheme.onErrorContainer,
                 iconColor: Theme.of(context).colorScheme.onErrorContainer,
-                title: Text(L10n.of(context)!.ignore),
-                leading: const Icon(Icons.block),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.ignore),
-              ),
-            if (user.id != client.userID)
-              ListTile(
-                textColor: Theme.of(context).colorScheme.error,
-                iconColor: Theme.of(context).colorScheme.error,
                 title: Text(L10n.of(context)!.reportUser),
-                leading: const Icon(Icons.shield_outlined),
+                leading: const Icon(Icons.report_outlined),
                 onTap: () =>
                     controller.participantAction(UserBottomSheetAction.report),
+              ),
+            if (profileSearchError != null)
+              ListTile(
+                leading: const Icon(
+                  Icons.warning_outlined,
+                  color: Colors.orange,
+                ),
+                subtitle: Text(
+                  L10n.of(context)!.profileNotFound,
+                  style: const TextStyle(color: Colors.orange),
+                ),
               ),
           ],
         ),
