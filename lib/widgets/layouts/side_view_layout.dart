@@ -4,16 +4,20 @@ import 'package:fluffychat/config/themes.dart';
 
 class SideViewLayout extends StatelessWidget {
   final Widget mainView;
-  final Widget? sideView;
+  final Widget sideView;
+  final bool hideSideView;
 
-  const SideViewLayout({Key? key, required this.mainView, this.sideView})
-      : super(key: key);
+  const SideViewLayout({
+    Key? key,
+    required this.mainView,
+    required this.sideView,
+    required this.hideSideView,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final sideView = this.sideView;
-    final hideSideView =
-        !FluffyThemes.isThreeColumnMode(context) || sideView == null;
     const sideViewWidth = 360.0;
+    final threeColumnMode = FluffyThemes.isThreeColumnMode(context);
     return Stack(
       children: [
         AnimatedPositioned(
@@ -22,7 +26,7 @@ class SideViewLayout extends StatelessWidget {
           top: 0,
           left: 0,
           bottom: 0,
-          right: hideSideView ? 0 : sideViewWidth,
+          right: !threeColumnMode || hideSideView ? 0 : sideViewWidth,
           child: ClipRRect(child: mainView),
         ),
         AnimatedPositioned(
@@ -31,12 +35,10 @@ class SideViewLayout extends StatelessWidget {
           bottom: 0,
           top: 0,
           right: 0,
-          left: !FluffyThemes.isThreeColumnMode(context) && sideView != null
+          left: !threeColumnMode && !hideSideView ? 0 : null,
+          width: hideSideView
               ? 0
-              : null,
-          width: sideView == null
-              ? 0
-              : !FluffyThemes.isThreeColumnMode(context)
+              : !threeColumnMode
                   ? null
                   : sideViewWidth,
           child: Container(

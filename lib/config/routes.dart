@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/add_story/add_story.dart';
@@ -33,235 +34,236 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
-class AppRoutes {
-  final List<Client> clients;
+abstract class AppRoutes {
+  static FutureOr<String?> loggedInRedirect(
+    BuildContext context,
+    GoRouterState state,
+  ) =>
+      Matrix.of(context).client.isLogged() ? '/rooms' : null;
 
-  bool get isLoggedIn => clients.any((client) => client.isLogged());
+  static FutureOr<String?> loggedOutRedirect(
+    BuildContext context,
+    GoRouterState state,
+  ) =>
+      Matrix.of(context).client.isLogged() ? null : '/home';
 
-  AppRoutes(this.clients);
+  AppRoutes();
 
-  List<RouteBase> get routes => [
+  static final List<RouteBase> routes = [
+    GoRoute(
+      path: '/',
+      redirect: (context, state) =>
+          Matrix.of(context).client.isLogged() ? '/rooms' : '/home',
+    ),
+    GoRoute(
+      path: '/home',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const HomeserverPicker(),
+      ),
+      redirect: loggedInRedirect,
+      routes: [
         GoRoute(
-          path: '/',
-          redirect: (context, state) => isLoggedIn ? '/rooms' : '/home',
-        ),
-        GoRoute(
-          path: '/home',
+          path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
-            const HomeserverPicker(),
+            const Login(),
           ),
-          redirect: (context, state) => isLoggedIn ? '/rooms' : null,
+          redirect: loggedInRedirect,
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/logs',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const LogViewer(),
+      ),
+    ),
+    ShellRoute(
+      pageBuilder: (context, state, child) => defaultPageBuilder(
+        context,
+        FluffyThemes.isColumnMode(context) &&
+                state.fullPath?.startsWith('/rooms/settings') == false
+            ? TwoColumnLayout(
+                displayNavigationRail:
+                    state.path?.startsWith('/rooms/settings') != true,
+                mainView: ChatList(
+                  activeChat: state.pathParameters['roomid'],
+                  displayNavigationRail:
+                      state.path?.startsWith('/rooms/settings') != true,
+                ),
+                sideView: child,
+              )
+            : child,
+      ),
+      routes: [
+        GoRoute(
+          path: '/rooms',
+          redirect: loggedOutRedirect,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            FluffyThemes.isColumnMode(context)
+                ? const EmptyPage()
+                : ChatList(
+                    activeChat: state.pathParameters['roomid'],
+                  ),
+          ),
           routes: [
             GoRoute(
-              path: 'login',
+              path: 'stories/create',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                const Login(),
+                const AddStoryPage(),
               ),
-              redirect: (context, state) => isLoggedIn ? '/rooms' : null,
+              redirect: loggedOutRedirect,
             ),
-          ],
-        ),
-        GoRoute(
-          path: '/logs',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const LogViewer(),
-          ),
-        ),
-        ShellRoute(
-          pageBuilder: (context, state, child) => defaultPageBuilder(
-            context,
-            FluffyThemes.isColumnMode(context) &&
-                    state.fullPath?.startsWith('/rooms/settings') == false
-                ? TwoColumnLayout(
-                    displayNavigationRail:
-                        state.path?.startsWith('/rooms/settings') != true,
-                    mainView: ChatList(
-                      activeChat: state.pathParameters['roomid'],
-                      displayNavigationRail:
-                          state.path?.startsWith('/rooms/settings') != true,
-                    ),
-                    sideView: child,
-                  )
-                : child,
-          ),
-          routes: [
             GoRoute(
-              path: '/rooms',
-              redirect: (context, state) => !isLoggedIn ? '/home' : null,
+              path: 'stories/:roomid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                FluffyThemes.isColumnMode(context)
-                    ? const EmptyPage()
-                    : ChatList(
-                        activeChat: state.pathParameters['roomid'],
-                      ),
+                const StoryPage(),
               ),
+              redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
-                  path: 'stories/create',
+                  path: 'share',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     const AddStoryPage(),
                   ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                  redirect: loggedOutRedirect,
                 ),
+              ],
+            ),
+            GoRoute(
+              path: 'spaces/:roomid',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                ChatDetails(
+                  roomId: state.pathParameters['roomid']!,
+                ),
+              ),
+              routes: _chatDetailsRoutes,
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'archive',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const Archive(),
+              ),
+              routes: [
                 GoRoute(
-                  path: 'stories/:roomid',
+                  path: ':roomid',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
-                    const StoryPage(),
-                  ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
-                  routes: [
-                    GoRoute(
-                      path: 'share',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const AddStoryPage(),
-                      ),
-                      redirect: (context, state) =>
-                          !isLoggedIn ? '/home' : null,
-                    ),
-                  ],
-                ),
-                GoRoute(
-                  path: 'spaces/:roomid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    ChatDetails(
+                    ChatPage(
                       roomId: state.pathParameters['roomid']!,
                     ),
                   ),
-                  routes: _chatDetailsRoutes,
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
+                  redirect: loggedOutRedirect,
                 ),
+              ],
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'newprivatechat',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const NewPrivateChat(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'newgroup',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const NewGroup(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'newspace',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const NewSpace(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            ShellRoute(
+              pageBuilder: (context, state, child) => defaultPageBuilder(
+                context,
+                FluffyThemes.isColumnMode(context)
+                    ? TwoColumnLayout(
+                        mainView: const Settings(),
+                        sideView: child,
+                        displayNavigationRail: false,
+                      )
+                    : child,
+              ),
+              routes: [
                 GoRoute(
-                  path: 'archive',
+                  path: 'settings',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
-                    const Archive(),
+                    FluffyThemes.isColumnMode(context)
+                        ? const EmptyPage()
+                        : const Settings(),
                   ),
+                  routes: _settingsRoutes,
+                  redirect: loggedOutRedirect,
+                ),
+              ],
+            ),
+            ShellRoute(
+              pageBuilder: (context, state, child) => defaultPageBuilder(
+                context,
+                SideViewLayout(
+                  mainView: ChatPage(
+                    roomId: state.pathParameters['roomid']!,
+                  ),
+                  sideView: child,
+                  hideSideView: state.fullPath == '/rooms/:roomid',
+                ),
+              ),
+              routes: [
+                GoRoute(
+                  path: ':roomid',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    const SizedBox.shrink(),
+                  ),
+                  redirect: loggedOutRedirect,
                   routes: [
                     GoRoute(
-                      path: ':roomid',
+                      path: 'encryption',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
-                        ChatPage(
+                        const ChatEncryptionSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'invite',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const InvitationSelection(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'details',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        ChatDetails(
                           roomId: state.pathParameters['roomid']!,
                         ),
                       ),
-                      redirect: (context, state) =>
-                          !isLoggedIn ? '/home' : null,
-                    ),
-                  ],
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
-                ),
-                GoRoute(
-                  path: 'newprivatechat',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    const NewPrivateChat(),
-                  ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
-                ),
-                GoRoute(
-                  path: 'newgroup',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    const NewGroup(),
-                  ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
-                ),
-                GoRoute(
-                  path: 'newspace',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    const NewSpace(),
-                  ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
-                ),
-                ShellRoute(
-                  pageBuilder: (context, state, child) => defaultPageBuilder(
-                    context,
-                    FluffyThemes.isColumnMode(context)
-                        ? TwoColumnLayout(
-                            mainView: const Settings(),
-                            sideView: child,
-                            displayNavigationRail: false,
-                          )
-                        : child,
-                  ),
-                  routes: [
-                    GoRoute(
-                      path: 'settings',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        FluffyThemes.isColumnMode(context)
-                            ? const EmptyPage()
-                            : const Settings(),
-                      ),
-                      routes: _settingsRoutes,
-                      redirect: (context, state) =>
-                          !isLoggedIn ? '/home' : null,
-                    ),
-                  ],
-                ),
-                ShellRoute(
-                  pageBuilder: (context, state, child) => defaultPageBuilder(
-                    context,
-                    SideViewLayout(
-                      mainView: ChatPage(
-                        roomId: state.pathParameters['roomid']!,
-                      ),
-                      sideView:
-                          state.fullPath == '/rooms/:roomid' ? null : child,
-                    ),
-                  ),
-                  routes: [
-                    GoRoute(
-                      path: ':roomid',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const EmptyPage(),
-                      ),
-                      redirect: (context, state) =>
-                          !isLoggedIn ? '/home' : null,
-                      routes: [
-                        GoRoute(
-                          path: 'encryption',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const ChatEncryptionSettings(),
-                          ),
-                          redirect: (context, state) =>
-                              !isLoggedIn ? '/home' : null,
-                        ),
-                        GoRoute(
-                          path: 'invite',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const InvitationSelection(),
-                          ),
-                          redirect: (context, state) =>
-                              !isLoggedIn ? '/home' : null,
-                        ),
-                        GoRoute(
-                          path: 'details',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            ChatDetails(
-                              roomId: state.pathParameters['roomid']!,
-                            ),
-                          ),
-                          routes: _chatDetailsRoutes,
-                          redirect: (context, state) =>
-                              !isLoggedIn ? '/home' : null,
-                        ),
-                      ],
+                      routes: _chatDetailsRoutes,
+                      redirect: loggedOutRedirect,
                     ),
                   ],
                 ),
@@ -269,148 +271,150 @@ class AppRoutes {
             ),
           ],
         ),
-      ];
+      ],
+    ),
+  ];
 
-  List<RouteBase> get _chatDetailsRoutes => [
-        GoRoute(
-          path: 'permissions',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const ChatPermissionsSettings(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'invite',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const InvitationSelection(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'multiple_emotes',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const MultipleEmotesSettings(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
+  static final List<RouteBase> _chatDetailsRoutes = [
+    GoRoute(
+      path: 'permissions',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const ChatPermissionsSettings(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'invite',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const InvitationSelection(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'multiple_emotes',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const MultipleEmotesSettings(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'emotes',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const EmotesSettings(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'emotes/:state_key',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const EmotesSettings(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+  ];
+
+  static final List<RouteBase> _settingsRoutes = [
+    GoRoute(
+      path: 'notifications',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const SettingsNotifications(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'style',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const SettingsStyle(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'devices',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const DevicesSettings(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'chat',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const SettingsChat(),
+      ),
+      routes: [
         GoRoute(
           path: 'emotes',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             const EmotesSettings(),
           ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
         ),
+      ],
+      redirect: loggedOutRedirect,
+    ),
+    GoRoute(
+      path: 'addaccount',
+      redirect: loggedOutRedirect,
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const HomeserverPicker(),
+      ),
+      routes: [
         GoRoute(
-          path: 'emotes/:state_key',
+          path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
-            const EmotesSettings(),
+            const Login(),
           ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
+          redirect: loggedOutRedirect,
         ),
-      ];
+      ],
+    ),
+    GoRoute(
+      path: 'security',
+      redirect: loggedOutRedirect,
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const SettingsSecurity(),
+      ),
+      routes: [
+        GoRoute(
+          path: 'stories',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsStories(),
+          ),
+          redirect: loggedOutRedirect,
+        ),
+        GoRoute(
+          path: 'ignorelist',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SettingsIgnoreList(),
+          ),
+          redirect: loggedOutRedirect,
+        ),
+        GoRoute(
+          path: '3pid',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const Settings3Pid(),
+          ),
+          redirect: loggedOutRedirect,
+        ),
+      ],
+    ),
+  ];
 
-  List<RouteBase> get _settingsRoutes => [
-        GoRoute(
-          path: 'notifications',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsNotifications(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'style',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsStyle(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'devices',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const DevicesSettings(),
-          ),
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'chat',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsChat(),
-          ),
-          routes: [
-            GoRoute(
-              path: 'emotes',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const EmotesSettings(),
-              ),
-            ),
-          ],
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-        ),
-        GoRoute(
-          path: 'addaccount',
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const HomeserverPicker(),
-          ),
-          routes: [
-            GoRoute(
-              path: 'login',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const Login(),
-              ),
-              redirect: (context, state) => !isLoggedIn ? '/home' : null,
-            ),
-          ],
-        ),
-        GoRoute(
-          path: 'security',
-          redirect: (context, state) => !isLoggedIn ? '/home' : null,
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsSecurity(),
-          ),
-          routes: [
-            GoRoute(
-              path: 'stories',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const SettingsStories(),
-              ),
-              redirect: (context, state) => !isLoggedIn ? '/home' : null,
-            ),
-            GoRoute(
-              path: 'ignorelist',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const SettingsIgnoreList(),
-              ),
-              redirect: (context, state) => !isLoggedIn ? '/home' : null,
-            ),
-            GoRoute(
-              path: '3pid',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const Settings3Pid(),
-              ),
-              redirect: (context, state) => !isLoggedIn ? '/home' : null,
-            ),
-          ],
-        ),
-      ];
-
-  Page defaultPageBuilder(BuildContext context, Widget child) =>
+  static Page defaultPageBuilder(BuildContext context, Widget child) =>
       CustomTransitionPage(
         child: child,
         transitionsBuilder: (context, animation, secondaryAnimation, child) =>

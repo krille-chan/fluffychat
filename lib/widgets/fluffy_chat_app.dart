@@ -26,6 +26,10 @@ class FluffyChatApp extends StatelessWidget {
   /// in with qr code or magic link.
   static bool gotInitialLink = false;
 
+  // Router must be outside of build method so that hot reload does not reset
+  // the current path.
+  static final GoRouter router = GoRouter(routes: AppRoutes.routes);
+
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
@@ -37,11 +41,11 @@ class FluffyChatApp extends StatelessWidget {
         scrollBehavior: CustomScrollBehavior(),
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
-        routerConfig: GoRouter(routes: AppRoutes(clients).routes),
+        routerConfig: router,
         builder: (context, child) => Matrix(
           context: context,
           clients: clients,
-          child: child,
+          child: testWidget ?? child,
         ),
       ),
     );
