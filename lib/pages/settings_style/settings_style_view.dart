@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
@@ -26,6 +27,15 @@ class SettingsStyleView extends StatelessWidget {
         withScrolling: true,
         child: Column(
           children: [
+            ListTile(
+              title: Text(
+                L10n.of(context)!.setColorTheme,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             SizedBox(
               height: colorPickerSize + 24,
               child: ListView(
@@ -40,17 +50,59 @@ class SettingsStyleView extends StatelessWidget {
                           onTap: () => controller.setChatColor(color),
                           child: color == null
                               ? Material(
-                                  elevation:
-                                      AppConfig.colorSchemeSeed?.value == null
-                                          ? 100
-                                          : 0,
+                                  elevation: 6,
                                   shadowColor: AppConfig.colorSchemeSeed,
                                   borderRadius:
                                       BorderRadius.circular(colorPickerSize),
-                                  child: Image.asset(
-                                    'assets/colors.png',
-                                    width: colorPickerSize,
-                                    height: colorPickerSize,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        colorPickerSize,
+                                      ),
+                                      gradient: FluffyThemes.backgroundGradient(
+                                        context,
+                                        255,
+                                      ),
+                                    ),
+                                    child: SizedBox(
+                                      height: colorPickerSize,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0,
+                                        ),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              if (controller.currentColor ==
+                                                  null)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    right: 8.0,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.check,
+                                                    size: 16,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onBackground,
+                                                  ),
+                                                ),
+                                              Text(
+                                                L10n.of(context)!.systemTheme,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onBackground,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 )
                               : Material(
@@ -78,7 +130,17 @@ class SettingsStyleView extends StatelessWidget {
                     .toList(),
               ),
             ),
+            const SizedBox(height: 8),
             const Divider(height: 1),
+            ListTile(
+              title: Text(
+                L10n.of(context)!.setTheme,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             RadioListTile<ThemeMode>(
               groupValue: controller.currentTheme,
               value: ThemeMode.system,
@@ -135,7 +197,7 @@ class SettingsStyleView extends StatelessWidget {
             const Divider(height: 1),
             ListTile(
               title: Text(
-                L10n.of(context)!.messages,
+                L10n.of(context)!.messagesStyle,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,

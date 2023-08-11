@@ -46,13 +46,13 @@ class SettingsStyleController extends State<SettingsStyle> {
   Color? get currentColor => ThemeController.of(context).primaryColor;
 
   static final List<Color?> customColors = [
+    null,
     AppConfig.chatColor,
     Colors.indigo,
     Colors.green,
     Colors.orange,
     Colors.pink,
     Colors.blueGrey,
-    null,
   ];
 
   void switchTheme(ThemeMode? newTheme) {

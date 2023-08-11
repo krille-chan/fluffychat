@@ -1225,6 +1225,7 @@
         "placeholders": {}
     },
     "messages": "Messages",
+    "messagesStyle": "Messages:",
     "@messages": {
         "type": "text",
         "placeholders": {}
@@ -2132,7 +2133,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "wallpaper": "Wallpaper",
+    "wallpaper": "Wallpaper:",
     "@wallpaper": {
         "type": "text",
         "placeholders": {}
@@ -2501,5 +2502,7 @@
             "provider": {}
         }
     },
-  "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist."
+  "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
+  "setTheme": "Set theme:",
+  "setColorTheme": "Set color theme:"
 }
