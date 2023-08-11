@@ -39,7 +39,8 @@ class LoadProfileBottomSheet extends StatelessWidget {
           .getUserProfile(userId)
           .timeout(const Duration(seconds: 3)),
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
+        if (snapshot.connectionState != ConnectionState.done &&
+            snapshot.data != null) {
           return Scaffold(
             appBar: AppBar(
               leading: CloseButton(
