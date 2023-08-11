@@ -41,17 +41,19 @@ class SideViewLayout extends StatelessWidget {
               : !threeColumnMode
                   ? null
                   : sideViewWidth,
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  color: Theme.of(context).dividerColor,
+          child: hideSideView
+              ? const SizedBox.shrink()
+              : Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  ),
+                  child: sideView,
                 ),
-              ),
-            ),
-            child: sideView,
-          ),
         ),
       ],
     );
