@@ -13,28 +13,45 @@ class SideViewLayout extends StatelessWidget {
     final sideView = this.sideView;
     final hideSideView =
         !FluffyThemes.isThreeColumnMode(context) || sideView == null;
-    return sideView == null
-        ? mainView
-        : hideSideView
-            ? sideView
-            : Row(
-                children: [
-                  Expanded(
-                    child: ClipRRect(child: mainView),
-                  ),
-                  Container(
-                    width: 1.0,
-                    color: Theme.of(context).dividerColor,
-                  ),
-                  AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(),
-                    width: hideSideView ? 0 : 360.0,
-                    child: hideSideView ? null : sideView,
-                  ),
-                ],
-              );
+    const sideViewWidth = 360.0;
+    return Stack(
+      children: [
+        AnimatedPositioned(
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: hideSideView ? 0 : sideViewWidth,
+          child: ClipRRect(child: mainView),
+        ),
+        AnimatedPositioned(
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          bottom: 0,
+          top: 0,
+          right: 0,
+          left: !FluffyThemes.isThreeColumnMode(context) && sideView != null
+              ? 0
+              : null,
+          width: sideView == null
+              ? 0
+              : !FluffyThemes.isThreeColumnMode(context)
+                  ? null
+                  : sideViewWidth,
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  color: Theme.of(context).dividerColor,
+                ),
+              ),
+            ),
+            child: sideView,
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -210,48 +210,45 @@ class AppRoutes {
                     ),
                   ],
                 ),
-                GoRoute(
-                  path: ':roomid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
+                ShellRoute(
+                  pageBuilder: (context, state, child) => defaultPageBuilder(
                     context,
-                    ChatPage(
-                      roomId: state.pathParameters['roomid']!,
+                    SideViewLayout(
+                      mainView: ChatPage(
+                        roomId: state.pathParameters['roomid']!,
+                      ),
+                      sideView:
+                          state.fullPath == '/rooms/:roomid' ? null : child,
                     ),
                   ),
-                  redirect: (context, state) => !isLoggedIn ? '/home' : null,
                   routes: [
                     GoRoute(
-                      path: 'encryption',
+                      path: ':roomid',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
-                        const ChatEncryptionSettings(),
+                        const EmptyPage(),
                       ),
                       redirect: (context, state) =>
                           !isLoggedIn ? '/home' : null,
-                    ),
-                    GoRoute(
-                      path: 'invite',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const InvitationSelection(),
-                      ),
-                      redirect: (context, state) =>
-                          !isLoggedIn ? '/home' : null,
-                    ),
-                    ShellRoute(
-                      pageBuilder: (context, state, child) =>
-                          defaultPageBuilder(
-                        context,
-                        !FluffyThemes.isThreeColumnMode(context)
-                            ? child
-                            : SideViewLayout(
-                                mainView: ChatPage(
-                                  roomId: state.pathParameters['roomid']!,
-                                ),
-                                sideView: child,
-                              ),
-                      ),
                       routes: [
+                        GoRoute(
+                          path: 'encryption',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const ChatEncryptionSettings(),
+                          ),
+                          redirect: (context, state) =>
+                              !isLoggedIn ? '/home' : null,
+                        ),
+                        GoRoute(
+                          path: 'invite',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const InvitationSelection(),
+                          ),
+                          redirect: (context, state) =>
+                              !isLoggedIn ? '/home' : null,
+                        ),
                         GoRoute(
                           path: 'details',
                           pageBuilder: (context, state) => defaultPageBuilder(
