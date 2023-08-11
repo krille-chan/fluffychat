@@ -89,6 +89,10 @@ class ChatListView extends StatelessWidget {
         return WillPopScope(
           onWillPop: () async {
             final selMode = controller.selectMode;
+            if (controller.isSearchMode) {
+              controller.cancelSearch();
+              return false;
+            }
             if (selMode != SelectMode.normal) {
               controller.cancelAction();
               return false;
