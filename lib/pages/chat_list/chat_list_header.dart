@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
@@ -48,10 +47,10 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   textInputAction: TextInputAction.search,
                   onChanged: controller.onSearchEnter,
                   decoration: InputDecoration(
+                    fillColor: Theme.of(context).colorScheme.secondaryContainer,
                     border: UnderlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
+                      borderRadius: BorderRadius.circular(99),
                     ),
                     hintText: L10n.of(context)!.search,
                     floatingLabelBehavior: FloatingLabelBehavior.never,

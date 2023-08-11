@@ -59,11 +59,11 @@ abstract class PlatformInfos {
           label: const Text(AppConfig.emojiFontName),
         ),
         Builder(
-          builder: (context) {
+          builder: (innerContext) {
             return TextButton.icon(
               onPressed: () {
-                Navigator.of(context).pop();
                 context.go('/logs');
+                Navigator.of(innerContext).pop();
               },
               icon: const Icon(Icons.list_outlined),
               label: const Text('Logs'),

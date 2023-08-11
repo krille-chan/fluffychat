@@ -633,11 +633,7 @@
             "username": {}
         }
     },
-    "createNewGroup": "Create new group",
-    "@createNewGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "createGroup": "Create group",
     "createNewSpace": "New space",
     "@createNewSpace": {
         "type": "text",
@@ -1071,7 +1067,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "inviteText": "{username} invited you to FluffyChat. \n1. Install FluffyChat: https://fluffychat.im \n2. Sign up or sign in \n3. Open the invite link: {link}",
+    "inviteText": "{username} invited you to FluffyChat.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
     "@inviteText": {
         "type": "text",
         "placeholders": {
@@ -1303,8 +1299,7 @@
             "server2": {}
         }
     },
-    "shareYourInviteLink": "Share your invite link",
-    "@shareYourInviteLink": {},
+    "shareInviteLink": "Share invite link",
     "scanQrCode": "Scan QR code",
     "@scanQrCode": {},
     "none": "None",

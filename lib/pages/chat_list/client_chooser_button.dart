@@ -44,7 +44,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.group_add_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createNewGroup),
+            Text(L10n.of(context)!.createGroup),
           ],
         ),
       ),
@@ -221,7 +221,7 @@ class ClientChooserButton extends StatelessWidget {
                 mxContent: snapshot.data?.avatarUrl,
                 name: snapshot.data?.displayName ??
                     matrix.client.userID!.localpart,
-                size: 28,
+                size: 32,
                 fontSize: 12,
               ),
             ),
@@ -273,13 +273,7 @@ class ClientChooserButton extends StatelessWidget {
           context.go('/rooms/newspace');
           break;
         case SettingsAction.invite:
-          FluffyShare.share(
-            L10n.of(context)!.inviteText(
-              Matrix.of(context).client.userID!,
-              'https://matrix.to/#/${Matrix.of(context).client.userID}?client=im.fluffychat',
-            ),
-            context,
-          );
+          FluffyShare.shareInviteLink(context);
           break;
         case SettingsAction.settings:
           context.go('/rooms/settings');

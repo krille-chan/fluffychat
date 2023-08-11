@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import '../widgets/matrix.dart';
 
 abstract class FluffyShare {
   static Future<void> share(
@@ -26,5 +27,17 @@ abstract class FluffyShare {
       SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
     );
     return;
+  }
+
+  static Future<void> shareInviteLink(BuildContext context) async {
+    final client = Matrix.of(context).client;
+    final ownProfile = await client.fetchOwnProfile();
+    await FluffyShare.share(
+      L10n.of(context)!.inviteText(
+        ownProfile.displayName ?? client.userID!,
+        'https://matrix.to/#/${client.userID}?client=im.fluffychat',
+      ),
+      context,
+    );
   }
 }

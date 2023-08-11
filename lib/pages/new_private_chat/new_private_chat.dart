@@ -57,10 +57,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     return null;
   }
 
-  void inviteAction() => FluffyShare.share(
-        'https://matrix.to/#/${Matrix.of(context).client.userID}',
-        context,
-      );
+  void inviteAction() => FluffyShare.shareInviteLink(context);
 
   void openScannerAction() async {
     if (PlatformInfos.isAndroid) {

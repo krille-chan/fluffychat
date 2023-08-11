@@ -33,7 +33,7 @@ class NewPrivateChatView extends StatelessWidget {
             child: TextButton(
               onPressed: () => context.go('/rooms/newgroup'),
               child: Text(
-                L10n.of(context)!.createNewGroup,
+                L10n.of(context)!.createGroup,
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
@@ -72,7 +72,7 @@ class NewPrivateChatView extends StatelessWidget {
                           foregroundColor: Colors.black,
                         ),
                         icon: Icon(Icons.adaptive.share_outlined),
-                        label: Text(L10n.of(context)!.shareYourInviteLink),
+                        label: Text(L10n.of(context)!.shareInviteLink),
                         onPressed: controller.inviteAction,
                       ),
                       const SizedBox(height: 8),

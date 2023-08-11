@@ -14,7 +14,7 @@ class NewGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.createNewGroup),
+        title: Text(L10n.of(context)!.createGroup),
       ),
       body: MaxWidthBody(
         child: Column(

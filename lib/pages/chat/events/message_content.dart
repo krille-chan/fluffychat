@@ -164,6 +164,7 @@ class MessageContent extends StatelessWidget {
               onPressed: () => _verifyOrRequestKey(context),
               icon: const Icon(Icons.lock_outline),
               label: L10n.of(context)!.encrypted,
+              fontSize: fontSize,
             );
           case MessageTypes.Location:
             final geoUri =
@@ -215,6 +216,7 @@ class MessageContent extends StatelessWidget {
                     icon: const Icon(Icons.delete_outlined),
                     textColor: buttonTextColor,
                     onPressed: () => onInfoTab!(event),
+                    fontSize: fontSize,
                   );
                 },
               );
@@ -264,6 +266,7 @@ class MessageContent extends StatelessWidget {
               icon: const Icon(Icons.phone_outlined),
               textColor: buttonTextColor,
               onPressed: () => onInfoTab!(event),
+              fontSize: fontSize,
             );
           },
         );
@@ -280,6 +283,7 @@ class MessageContent extends StatelessWidget {
               icon: const Icon(Icons.info_outlined),
               textColor: buttonTextColor,
               onPressed: () => onInfoTab!(event),
+              fontSize: fontSize,
             );
           },
         );
@@ -292,24 +296,35 @@ class _ButtonContent extends StatelessWidget {
   final String label;
   final Icon icon;
   final Color? textColor;
+  final double fontSize;
 
   const _ButtonContent({
     required this.label,
     required this.icon,
     required this.textColor,
     required this.onPressed,
+    required this.fontSize,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: onPressed,
-      icon: icon,
-      label: Text(label, overflow: TextOverflow.ellipsis),
-      style: TextButton.styleFrom(
-        foregroundColor: textColor,
-        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+    return InkWell(
+      onTap: onPressed,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon,
+          const SizedBox(width: 8),
+          Text(
+            label,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize,
+            ),
+          ),
+        ],
       ),
     );
   }
