@@ -9,6 +9,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
   required Widget Function(BuildContext) builder,
   bool isDismissible = true,
   bool isScrollControlled = true,
+  double maxHeight = 480.0,
 }) =>
     showModalBottomSheet(
       context: context,
@@ -16,8 +17,8 @@ Future<T?> showAdaptiveBottomSheet<T>({
       useRootNavigator: !PlatformInfos.isMobile,
       isDismissible: isDismissible,
       isScrollControlled: isScrollControlled,
-      constraints: const BoxConstraints(
-        maxHeight: 480,
+      constraints: BoxConstraints(
+        maxHeight: maxHeight,
         maxWidth: FluffyThemes.columnWidth * 1.5,
       ),
       clipBehavior: Clip.hardEdge,

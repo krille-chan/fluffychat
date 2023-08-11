@@ -13,6 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_flat_button.dart';
+import '../../utils/adaptive_bottom_sheet.dart';
 import '../key_verification/key_verification_dialog.dart';
 
 class BootstrapDialog extends StatefulWidget {
@@ -24,19 +25,11 @@ class BootstrapDialog extends StatefulWidget {
     required this.client,
   }) : super(key: key);
 
-  Future<bool?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        )
-      : showDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        );
+  Future<bool?> show(BuildContext context) => showAdaptiveBottomSheet(
+        context: context,
+        builder: (context) => this,
+        maxHeight: 600,
+      );
 
   @override
   BootstrapDialogState createState() => BootstrapDialogState();
