@@ -85,7 +85,10 @@ class UserBottomSheetView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextButton.icon(
-                        onPressed: () => FluffyShare.share(userId, context),
+                        onPressed: () => FluffyShare.share(
+                          'https://matrix.to/#/$userId}',
+                          context,
+                        ),
                         icon: Icon(
                           Icons.adaptive.share_outlined,
                           size: 16,
@@ -102,7 +105,11 @@ class UserBottomSheetView extends StatelessWidget {
                         ),
                       ),
                       TextButton.icon(
-                        onPressed: () => FluffyShare.share(userId, context),
+                        onPressed: () => FluffyShare.share(
+                          userId,
+                          context,
+                          copyOnly: true,
+                        ),
                         icon: const Icon(
                           Icons.copy_outlined,
                           size: 14,
@@ -125,7 +132,10 @@ class UserBottomSheetView extends StatelessWidget {
             ),
             if (userId != client.userID)
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
                 child: ElevatedButton.icon(
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.message),

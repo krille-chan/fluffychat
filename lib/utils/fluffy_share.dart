@@ -7,8 +7,12 @@ import 'package:share_plus/share_plus.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 abstract class FluffyShare {
-  static Future<void> share(String text, BuildContext context) async {
-    if (PlatformInfos.isMobile) {
+  static Future<void> share(
+    String text,
+    BuildContext context, {
+    bool copyOnly = false,
+  }) async {
+    if (PlatformInfos.isMobile && !copyOnly) {
       final box = context.findRenderObject() as RenderBox;
       return Share.share(
         text,
