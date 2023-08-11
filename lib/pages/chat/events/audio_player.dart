@@ -8,7 +8,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -186,7 +185,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   Widget build(BuildContext context) {
     final statusText = this.statusText ??= _durationString ?? '00:00';
     return Padding(
-      padding: EdgeInsets.all(16 * AppConfig.bubbleSizeFactor),
+      padding: const EdgeInsets.all(16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

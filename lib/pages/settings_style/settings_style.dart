@@ -79,14 +79,6 @@ class SettingsStyleController extends State<SettingsStyle> {
         );
   }
 
-  void changeBubbleSizeFactor(double d) {
-    setState(() => AppConfig.bubbleSizeFactor = d);
-    Matrix.of(context).store.setItem(
-          SettingKeys.bubbleSizeFactor,
-          AppConfig.bubbleSizeFactor.toString(),
-        );
-  }
-
   @override
   Widget build(BuildContext context) => SettingsStyleView(this);
 }

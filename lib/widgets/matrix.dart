@@ -444,10 +444,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           (value) => AppConfig.fontSizeFactor =
               double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor,
         );
-    store.getItem(SettingKeys.bubbleSizeFactor).then(
-          (value) => AppConfig.bubbleSizeFactor =
-              double.tryParse(value ?? '') ?? AppConfig.bubbleSizeFactor,
-        );
     store
         .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
         .then((value) => AppConfig.renderHtml = value);

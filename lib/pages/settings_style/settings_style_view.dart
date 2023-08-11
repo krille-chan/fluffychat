@@ -149,9 +149,9 @@ class SettingsStyleView extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16 * AppConfig.bubbleSizeFactor,
-                    vertical: 8 * AppConfig.bubbleSizeFactor,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
                   ),
                   child: Text(
                     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
@@ -175,18 +175,6 @@ class SettingsStyleView extends StatelessWidget {
               value: AppConfig.fontSizeFactor,
               semanticFormatterCallback: (d) => d.toString(),
               onChanged: controller.changeFontSizeFactor,
-            ),
-            ListTile(
-              title: Text(L10n.of(context)!.bubbleSize),
-              trailing: Text('× ${AppConfig.bubbleSizeFactor}'),
-            ),
-            Slider.adaptive(
-              min: 0.5,
-              max: 1.5,
-              divisions: 4,
-              value: AppConfig.bubbleSizeFactor,
-              semanticFormatterCallback: (d) => d.toString(),
-              onChanged: controller.changeBubbleSizeFactor,
             ),
           ],
         ),
