@@ -86,7 +86,7 @@ class UserBottomSheetView extends StatelessWidget {
                     children: [
                       TextButton.icon(
                         onPressed: () => FluffyShare.share(
-                          'https://matrix.to/#/$userId}',
+                          'https://matrix.to/#/$userId',
                           context,
                         ),
                         icon: Icon(
