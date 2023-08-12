@@ -924,7 +924,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} 邀请你使用 FluffyChat。 \n1. 安装 FluffyChat：https://fluffychat.im \n2. 注册或登录 \n3. 打开邀请链接：{link}",
+  "inviteText": "{username} 邀请你使用 FluffyChat。 \n1. 安装 FluffyChat：https://fluffychat.im \n2. 注册或登录 \n3. 打开邀请链接：\n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1887,7 +1887,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "壁纸",
+  "wallpaper": "壁纸：",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
