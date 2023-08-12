@@ -98,11 +98,14 @@ class ChatDetailsView extends StatelessWidget {
                                         Avatar.defaultSize * 2.5,
                                       ),
                                     ),
-                                    child: Avatar(
-                                      mxContent: room.avatar,
-                                      name: displayname,
-                                      size: Avatar.defaultSize * 2.5,
-                                      fontSize: 18 * 2.5,
+                                    child: Hero(
+                                      tag: 'content_banner',
+                                      child: Avatar(
+                                        mxContent: room.avatar,
+                                        name: displayname,
+                                        size: Avatar.defaultSize * 2.5,
+                                        fontSize: 18 * 2.5,
+                                      ),
                                     ),
                                   ),
                                   if (room.canChangeStateEvent(
@@ -212,7 +215,7 @@ class ChatDetailsView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16.0,
                           ),
-                          child: Linkify(
+                          child: SelectableLinkify(
                             text: room.topic.isEmpty
                                 ? L10n.of(context)!.noGroupDescriptionYet
                                 : room.topic,

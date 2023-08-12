@@ -21,6 +21,7 @@ class ChatAppBarTitle extends StatelessWidget {
     }
     final directChatMatrixID = room.directChatMatrixID;
     return InkWell(
+      hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: directChatMatrixID != null
