@@ -24,7 +24,6 @@ class SettingsChatView extends StatelessWidget {
       body: ListTileTheme(
         iconColor: Theme.of(context).textTheme.bodyLarge!.color,
         child: MaxWidthBody(
-          withScrolling: true,
           child: Column(
             children: [
               ListTile(

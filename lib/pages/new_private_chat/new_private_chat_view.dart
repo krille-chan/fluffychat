@@ -45,7 +45,7 @@ class NewPrivateChatView extends StatelessWidget {
         children: [
           Expanded(
             child: MaxWidthBody(
-              withScrolling: true,
+              withFrame: false,
               child: Container(
                 margin: const EdgeInsets.all(_qrCodePadding),
                 alignment: Alignment.center,
@@ -98,7 +98,6 @@ class NewPrivateChatView extends StatelessWidget {
             ),
           ),
           MaxWidthBody(
-            withScrolling: false,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Form(

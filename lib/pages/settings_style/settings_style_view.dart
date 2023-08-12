@@ -24,7 +24,6 @@ class SettingsStyleView extends StatelessWidget {
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: MaxWidthBody(
-        withScrolling: true,
         child: Column(
           children: [
             ListTile(

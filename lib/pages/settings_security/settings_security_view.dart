@@ -20,7 +20,6 @@ class SettingsSecurityView extends StatelessWidget {
       body: ListTileTheme(
         iconColor: Theme.of(context).colorScheme.onBackground,
         child: MaxWidthBody(
-          withScrolling: true,
           child: Column(
             children: [
               ListTile(

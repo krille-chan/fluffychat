@@ -1037,6 +1037,14 @@
         "type": "text",
         "placeholders": {}
     },
+    "inviteContactToGroupQuestion": "Do you want to invite {contact} to the chat \"{groupName}\"?",
+    "@inviteContactToGroup": {
+        "type": "text",
+        "placeholders": {
+            "contact": {},
+            "groupName": {}
+        }
+    },
     "inviteContactToGroup": "Invite contact to {groupName}",
     "@inviteContactToGroup": {
         "type": "text",
@@ -1044,6 +1052,10 @@
             "groupName": {}
         }
     },
+    "noGroupDescriptionYet": "No group description created yet.",
+    "anyoneCanKnock": "Anyone can knock",
+    "noOneCanJoin": "No one can join",
+    "tryAgain": "Try again",
     "invited": "Invited",
     "@invited": {
         "type": "text",
@@ -2499,5 +2511,6 @@
     },
   "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
   "setTheme": "Set theme:",
-  "setColorTheme": "Set color theme:"
+  "setColorTheme": "Set color theme:",
+  "invite": "Invite"
 }

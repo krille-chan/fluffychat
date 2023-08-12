@@ -33,7 +33,6 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
   void removeDevicesAction(List<Device> devices) async {
     if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
@@ -68,7 +67,6 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
   void renameDeviceAction(Device device) async {
     final displayName = await showTextInputDialog(
-      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.changeDeviceName,
       okLabel: L10n.of(context)!.ok,

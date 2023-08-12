@@ -39,6 +39,8 @@ class DevicesSettingsView extends StatelessWidget {
               );
             }
             return ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.notThisDevice.length + 1,
               itemBuilder: (BuildContext context, int i) {
                 if (i == 0) {

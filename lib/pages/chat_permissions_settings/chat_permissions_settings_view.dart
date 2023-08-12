@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
@@ -19,17 +18,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GoRouterState.of(context).uri.path.startsWith('/spaces/')
-            ? null
-            : IconButton(
-                icon: const Icon(Icons.close_outlined),
-                onPressed: () =>
-                    context.go(['', 'rooms', controller.roomId!].join('/')),
-              ),
+        leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.editChatPermissions),
       ),
       body: MaxWidthBody(
-        withScrolling: true,
         child: StreamBuilder(
           stream: controller.onChanged,
           builder: (context, _) {

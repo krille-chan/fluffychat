@@ -23,7 +23,6 @@ class SettingsNotificationsView extends StatelessWidget {
         title: Text(L10n.of(context)!.notifications),
       ),
       body: MaxWidthBody(
-        withScrolling: true,
         child: StreamBuilder(
           stream: Matrix.of(context)
               .client

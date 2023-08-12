@@ -58,7 +58,11 @@ abstract class FluffyThemes {
   static const Duration animationDuration = Duration(milliseconds: 250);
   static const Curve animationCurve = Curves.easeInOut;
 
-  static ThemeData buildTheme(Brightness brightness, [Color? seed]) {
+  static ThemeData buildTheme(
+    BuildContext context,
+    Brightness brightness, [
+    Color? seed,
+  ]) {
     final colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
       seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
@@ -92,6 +96,9 @@ abstract class FluffyThemes {
         filled: true,
       ),
       appBarTheme: AppBarTheme(
+        toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
+        shadowColor: Colors.grey.withAlpha(64),
+        surfaceTintColor: colorScheme.background,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,

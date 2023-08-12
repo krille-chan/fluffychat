@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
@@ -14,7 +13,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
 class InvitationSelection extends StatefulWidget {
-  const InvitationSelection({Key? key}) : super(key: key);
+  final String roomId;
+  const InvitationSelection({
+    Key? key,
+    required this.roomId,
+  }) : super(key: key);
 
   @override
   InvitationSelectionController createState() =>
@@ -28,7 +31,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
   List<Profile> foundProfiles = [];
   Timer? coolDown;
 
-  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  String? get roomId => widget.roomId;
 
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;
@@ -37,12 +40,10 @@ class InvitationSelectionController extends State<InvitationSelection> {
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
-    final participantsIds = participants.map((p) => p.stateKey).toList();
     final contacts = client.rooms
         .where((r) => r.isDirectChat)
         .map((r) => r.unsafeGetUserFromMemoryOrFallback(r.directChatMatrixID!))
-        .toList()
-      ..removeWhere((u) => participantsIds.contains(u.stateKey));
+        .toList();
     contacts.sort(
       (a, b) => a.calcDisplayname().toLowerCase().compareTo(
             b.calcDisplayname().toLowerCase(),
@@ -51,17 +52,19 @@ class InvitationSelectionController extends State<InvitationSelection> {
     return contacts;
   }
 
-  void inviteAction(BuildContext context, String id) async {
+  void inviteAction(BuildContext context, String id, String displayname) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context)!.inviteContactToGroup(
+          title: L10n.of(context)!.inviteContact,
+          message: L10n.of(context)!.inviteContactToGroupQuestion(
+            displayname,
             room.getLocalizedDisplayname(
               MatrixLocals(L10n.of(context)!),
             ),
           ),
-          okLabel: L10n.of(context)!.yes,
+          okLabel: L10n.of(context)!.invite,
           cancelLabel: L10n.of(context)!.cancel,
         )) {
       return;
@@ -118,19 +121,6 @@ class InvitationSelectionController extends State<InvitationSelection> {
           ],
         );
       }
-      final participants = Matrix.of(context)
-          .client
-          .getRoomById(roomId!)!
-          .getParticipants()
-          .where(
-            (user) =>
-                [Membership.join, Membership.invite].contains(user.membership),
-          )
-          .toList();
-      foundProfiles.removeWhere(
-        (profile) =>
-            participants.indexWhere((u) => u.id == profile.userId) != -1,
-      );
     });
   }
 

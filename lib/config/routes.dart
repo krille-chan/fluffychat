@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
@@ -31,7 +32,6 @@ import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
-import 'package:fluffychat/widgets/layouts/side_view_layout.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -218,54 +218,42 @@ abstract class AppRoutes {
                 ),
               ],
             ),
-            ShellRoute(
-              pageBuilder: (context, state, child) => defaultPageBuilder(
+            GoRoute(
+              path: ':roomid',
+              pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                SideViewLayout(
-                  mainView: ChatPage(
-                    roomId: state.pathParameters['roomid']!,
-                  ),
-                  sideView: child,
-                  hideSideView: state.fullPath == '/rooms/:roomid',
-                ),
+                ChatPage(roomId: state.pathParameters['roomid']!),
               ),
+              redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
-                  path: ':roomid',
+                  path: 'encryption',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
-                    const SizedBox.shrink(),
+                    const ChatEncryptionSettings(),
                   ),
                   redirect: loggedOutRedirect,
-                  routes: [
-                    GoRoute(
-                      path: 'encryption',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const ChatEncryptionSettings(),
-                      ),
-                      redirect: loggedOutRedirect,
+                ),
+                GoRoute(
+                  path: 'invite',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    InvitationSelection(
+                      roomId: state.pathParameters['roomid']!,
                     ),
-                    GoRoute(
-                      path: 'invite',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const InvitationSelection(),
-                      ),
-                      redirect: loggedOutRedirect,
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
+                GoRoute(
+                  path: 'details',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    ChatDetails(
+                      roomId: state.pathParameters['roomid']!,
                     ),
-                    GoRoute(
-                      path: 'details',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        ChatDetails(
-                          roomId: state.pathParameters['roomid']!,
-                        ),
-                      ),
-                      routes: _chatDetailsRoutes,
-                      redirect: loggedOutRedirect,
-                    ),
-                  ],
+                  ),
+                  routes: _chatDetailsRoutes,
+                  redirect: loggedOutRedirect,
                 ),
               ],
             ),
@@ -276,6 +264,16 @@ abstract class AppRoutes {
   ];
 
   static final List<RouteBase> _chatDetailsRoutes = [
+    GoRoute(
+      path: 'members',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        ChatMembersPage(
+          roomId: state.pathParameters['roomid']!,
+        ),
+      ),
+      redirect: loggedOutRedirect,
+    ),
     GoRoute(
       path: 'permissions',
       pageBuilder: (context, state) => defaultPageBuilder(
@@ -288,7 +286,7 @@ abstract class AppRoutes {
       path: 'invite',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
-        const InvitationSelection(),
+        InvitationSelection(roomId: state.pathParameters['roomid']!),
       ),
       redirect: loggedOutRedirect,
     ),

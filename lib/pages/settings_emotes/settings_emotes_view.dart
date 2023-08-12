@@ -59,6 +59,7 @@ class EmotesSettingsView extends StatelessWidget {
           : null,
       body: MaxWidthBody(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (!controller.readonly)
               Container(
@@ -116,120 +117,114 @@ class EmotesSettingsView extends StatelessWidget {
                 onChanged: controller.setIsGloballyActive,
               ),
             if (!controller.readonly || controller.room != null)
-              Divider(
-                height: 2,
-                thickness: 2,
-                color: Theme.of(context).primaryColor,
-              ),
-            Expanded(
-              child: imageKeys.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          L10n.of(context)!.noEmotesFound,
-                          style: const TextStyle(fontSize: 20),
-                        ),
+              const Divider(thickness: 1),
+            imageKeys.isEmpty
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        L10n.of(context)!.noEmotesFound,
+                        style: const TextStyle(fontSize: 20),
                       ),
-                    )
-                  : ListView.separated(
-                      separatorBuilder: (BuildContext context, int i) =>
-                          const SizedBox.shrink(),
-                      itemCount: imageKeys.length + 1,
-                      itemBuilder: (BuildContext context, int i) {
-                        if (i >= imageKeys.length) {
-                          return Container(height: 70);
-                        }
-                        final imageCode = imageKeys[i];
-                        final image = controller.pack!.images[imageCode]!;
-                        final textEditingController = TextEditingController();
-                        textEditingController.text = imageCode;
-                        final useShortCuts =
-                            (PlatformInfos.isWeb || PlatformInfos.isDesktop);
-                        return ListTile(
-                          leading: Container(
-                            width: 180.0,
-                            height: 38,
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              color: Theme.of(context).secondaryHeaderColor,
-                            ),
-                            child: Shortcuts(
-                              shortcuts: !useShortCuts
+                    ),
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (BuildContext context, int i) =>
+                        const SizedBox.shrink(),
+                    itemCount: imageKeys.length + 1,
+                    itemBuilder: (BuildContext context, int i) {
+                      if (i >= imageKeys.length) {
+                        return Container(height: 70);
+                      }
+                      final imageCode = imageKeys[i];
+                      final image = controller.pack!.images[imageCode]!;
+                      final textEditingController = TextEditingController();
+                      textEditingController.text = imageCode;
+                      final useShortCuts =
+                          (PlatformInfos.isWeb || PlatformInfos.isDesktop);
+                      return ListTile(
+                        leading: Container(
+                          width: 180.0,
+                          height: 38,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            color: Theme.of(context).secondaryHeaderColor,
+                          ),
+                          child: Shortcuts(
+                            shortcuts: !useShortCuts
+                                ? {}
+                                : {
+                                    LogicalKeySet(LogicalKeyboardKey.enter):
+                                        SubmitLineIntent(),
+                                  },
+                            child: Actions(
+                              actions: !useShortCuts
                                   ? {}
                                   : {
-                                      LogicalKeySet(LogicalKeyboardKey.enter):
-                                          SubmitLineIntent(),
+                                      SubmitLineIntent: CallbackAction(
+                                        onInvoke: (i) {
+                                          controller.submitImageAction(
+                                            imageCode,
+                                            textEditingController.text,
+                                            image,
+                                            textEditingController,
+                                          );
+                                          return null;
+                                        },
+                                      ),
                                     },
-                              child: Actions(
-                                actions: !useShortCuts
-                                    ? {}
-                                    : {
-                                        SubmitLineIntent: CallbackAction(
-                                          onInvoke: (i) {
-                                            controller.submitImageAction(
-                                              imageCode,
-                                              textEditingController.text,
-                                              image,
-                                              textEditingController,
-                                            );
-                                            return null;
-                                          },
-                                        ),
-                                      },
-                                child: TextField(
-                                  readOnly: controller.readonly,
-                                  controller: textEditingController,
-                                  autocorrect: false,
-                                  minLines: 1,
-                                  maxLines: 1,
-                                  decoration: InputDecoration(
-                                    hintText: L10n.of(context)!.emoteShortcode,
-                                    prefixText: ': ',
-                                    suffixText: ':',
-                                    prefixStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    suffixStyle: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    border: InputBorder.none,
+                              child: TextField(
+                                readOnly: controller.readonly,
+                                controller: textEditingController,
+                                autocorrect: false,
+                                minLines: 1,
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  hintText: L10n.of(context)!.emoteShortcode,
+                                  prefixText: ': ',
+                                  suffixText: ':',
+                                  prefixStyle: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  onSubmitted: (s) =>
-                                      controller.submitImageAction(
-                                    imageCode,
-                                    s,
-                                    image,
-                                    textEditingController,
+                                  suffixStyle: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.bold,
                                   ),
+                                  border: InputBorder.none,
+                                ),
+                                onSubmitted: (s) =>
+                                    controller.submitImageAction(
+                                  imageCode,
+                                  s,
+                                  image,
+                                  textEditingController,
                                 ),
                               ),
                             ),
                           ),
-                          title: _EmoteImage(image.url),
-                          trailing: controller.readonly
-                              ? null
-                              : InkWell(
-                                  onTap: () =>
-                                      controller.removeImageAction(imageCode),
-                                  child: const Icon(
-                                    Icons.delete_outlined,
-                                    color: Colors.red,
-                                    size: 32.0,
-                                  ),
+                        ),
+                        title: _EmoteImage(image.url),
+                        trailing: controller.readonly
+                            ? null
+                            : InkWell(
+                                onTap: () =>
+                                    controller.removeImageAction(imageCode),
+                                child: const Icon(
+                                  Icons.delete_outlined,
+                                  color: Colors.red,
+                                  size: 32.0,
                                 ),
-                        );
-                      },
-                    ),
-            ),
+                              ),
+                      );
+                    },
+                  ),
           ],
         ),
       ),
