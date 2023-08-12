@@ -2552,5 +2552,36 @@
   "setTheme": "تعيين السمة:",
   "@setTheme": {},
   "setColorTheme": "تعيين لون السمة:",
-  "@setColorTheme": {}
+  "@setColorTheme": {},
+  "inviteContactToGroupQuestion": "هل تريد دعوة {contact} إلى المحادثة \"{groupName}\"؟?",
+  "@inviteContactToGroupQuestion": {},
+  "noGroupDescriptionYet": "لا يوجد وصف للمجموعة.",
+  "@noGroupDescriptionYet": {},
+  "anyoneCanKnock": "يمكن لأي شخص أن يطرق الباب",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "لا أحد يستطيع الانضمام",
+  "@noOneCanJoin": {},
+  "tryAgain": "أعد المحاولة",
+  "@tryAgain": {},
+  "redactMessageDescription": "سيتم تنقيح الرسالة لجميع المشاركين في هذه المحادثة. هذا لا يمكن التراجع عنها.",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "(اختياري) سبب تنقيح هذه الرسالة ...",
+  "@optionalRedactReason": {},
+  "redactedBy": "منقح بواسطة {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "تم حجبه بواسطة {username} بسبب: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "invite": "دعوة",
+  "@invite": {}
 }
