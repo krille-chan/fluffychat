@@ -1577,6 +1577,7 @@
             "username": {}
         }
     },
+    "directChat": "Direct chat",
     "redactedByBecause": "Redacted by {username} because: \"{reason}\"",
     "@redactedByBecause": {
         "type": "text",

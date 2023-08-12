@@ -35,6 +35,8 @@ class ChatDetailsView extends StatelessWidget {
       );
     }
 
+    final isEmbedded = GoRouterState.of(context).fullPath == '/rooms/:roomid';
+
     return StreamBuilder(
       stream: room.onUpdate.stream,
       builder: (context, snapshot) {
@@ -49,24 +51,27 @@ class ChatDetailsView extends StatelessWidget {
           MatrixLocals(L10n.of(context)!),
         );
         return Scaffold(
-          appBar: AppBar(
-            leading: const Center(child: BackButton()),
-            elevation: Theme.of(context).appBarTheme.elevation,
-            actions: <Widget>[
-              if (room.canonicalAlias.isNotEmpty)
-                IconButton(
-                  tooltip: L10n.of(context)!.share,
-                  icon: Icon(Icons.adaptive.share_outlined),
-                  onPressed: () => FluffyShare.share(
-                    AppConfig.inviteLinkPrefix + room.canonicalAlias,
-                    context,
-                  ),
+          appBar: isEmbedded
+              ? null
+              : AppBar(
+                  leading: const Center(child: BackButton()),
+                  elevation: Theme.of(context).appBarTheme.elevation,
+                  actions: <Widget>[
+                    if (room.canonicalAlias.isNotEmpty)
+                      IconButton(
+                        tooltip: L10n.of(context)!.share,
+                        icon: Icon(Icons.adaptive.share_outlined),
+                        onPressed: () => FluffyShare.share(
+                          AppConfig.inviteLinkPrefix + room.canonicalAlias,
+                          context,
+                        ),
+                      ),
+                    ChatSettingsPopupMenu(room, false)
+                  ],
+                  title: Text(L10n.of(context)!.chatDetails),
+                  backgroundColor:
+                      Theme.of(context).appBarTheme.backgroundColor,
                 ),
-              ChatSettingsPopupMenu(room, false)
-            ],
-            title: Text(L10n.of(context)!.chatDetails),
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-          ),
           body: MaxWidthBody(
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -99,7 +104,9 @@ class ChatDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                     child: Hero(
-                                      tag: 'content_banner',
+                                      tag: isEmbedded
+                                          ? 'embedded_content_banner'
+                                          : 'content_banner',
                                       child: Avatar(
                                         mxContent: room.avatar,
                                         name: displayname,
@@ -108,9 +115,10 @@ class ChatDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  if (room.canChangeStateEvent(
-                                    EventTypes.RoomAvatar,
-                                  ))
+                                  if (!room.isDirectChat &&
+                                      room.canChangeStateEvent(
+                                        EventTypes.RoomAvatar,
+                                      ))
                                     Positioned(
                                       bottom: 0,
                                       right: 0,
@@ -131,21 +139,25 @@ class ChatDetailsView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   TextButton.icon(
-                                    onPressed: () => room.canChangeStateEvent(
-                                      EventTypes.RoomName,
-                                    )
-                                        ? controller.setDisplaynameAction()
-                                        : FluffyShare.share(
-                                            displayname,
-                                            context,
-                                            copyOnly: true,
-                                          ),
+                                    onPressed: () => room.isDirectChat
+                                        ? null
+                                        : room.canChangeStateEvent(
+                                            EventTypes.RoomName,
+                                          )
+                                            ? controller.setDisplaynameAction()
+                                            : FluffyShare.share(
+                                                displayname,
+                                                context,
+                                                copyOnly: true,
+                                              ),
                                     icon: Icon(
-                                      room.canChangeStateEvent(
-                                        EventTypes.RoomName,
-                                      )
-                                          ? Icons.edit_outlined
-                                          : Icons.copy_outlined,
+                                      room.isDirectChat
+                                          ? Icons.chat_bubble_outline
+                                          : room.canChangeStateEvent(
+                                              EventTypes.RoomName,
+                                            )
+                                              ? Icons.edit_outlined
+                                              : Icons.copy_outlined,
                                       size: 16,
                                     ),
                                     style: TextButton.styleFrom(
@@ -154,16 +166,20 @@ class ChatDetailsView extends StatelessWidget {
                                           .onBackground,
                                     ),
                                     label: Text(
-                                      displayname,
+                                      room.isDirectChat
+                                          ? L10n.of(context)!.directChat
+                                          : displayname,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       //  style: const TextStyle(fontSize: 18),
                                     ),
                                   ),
                                   TextButton.icon(
-                                    onPressed: () => context.go(
-                                      '/rooms/${controller.roomId}/details/members',
-                                    ),
+                                    onPressed: () => room.isDirectChat
+                                        ? null
+                                        : context.push(
+                                            '/rooms/${controller.roomId}/details/members',
+                                          ),
                                     icon: const Icon(
                                       Icons.group_outlined,
                                       size: 14,
@@ -272,44 +288,46 @@ class ChatDetailsView extends StatelessWidget {
                           onTap: controller.goToEmoteSettings,
                           trailing: const Icon(Icons.chevron_right_outlined),
                         ),
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(Icons.shield_outlined),
+                        if (!room.isDirectChat)
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(Icons.shield_outlined),
+                            ),
+                            title: Text(
+                              L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+                            ),
+                            trailing: const Icon(Icons.chevron_right_outlined),
+                            subtitle: Text(
+                              room.joinRules?.getLocalizedString(
+                                    MatrixLocals(L10n.of(context)!),
+                                  ) ??
+                                  L10n.of(context)!.none,
+                            ),
+                            onTap: controller.setJoinRules,
                           ),
-                          title: Text(
-                            L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+                        if (!room.isDirectChat)
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(Icons.visibility_outlined),
+                            ),
+                            trailing: const Icon(Icons.chevron_right_outlined),
+                            title: Text(
+                              L10n.of(context)!.visibilityOfTheChatHistory,
+                            ),
+                            subtitle: Text(
+                              room.historyVisibility?.getLocalizedString(
+                                    MatrixLocals(L10n.of(context)!),
+                                  ) ??
+                                  L10n.of(context)!.none,
+                            ),
+                            onTap: controller.setHistoryVisibility,
                           ),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          subtitle: Text(
-                            room.joinRules?.getLocalizedString(
-                                  MatrixLocals(L10n.of(context)!),
-                                ) ??
-                                L10n.of(context)!.none,
-                          ),
-                          onTap: controller.setJoinRules,
-                        ),
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(Icons.visibility_outlined),
-                          ),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          title: Text(
-                            L10n.of(context)!.visibilityOfTheChatHistory,
-                          ),
-                          subtitle: Text(
-                            room.historyVisibility?.getLocalizedString(
-                                  MatrixLocals(L10n.of(context)!),
-                                ) ??
-                                L10n.of(context)!.none,
-                          ),
-                          onTap: controller.setHistoryVisibility,
-                        ),
                         if (room.joinRules == JoinRules.public)
                           ListTile(
                             leading: CircleAvatar(
@@ -331,23 +349,24 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                             onTap: controller.setGuestAccess,
                           ),
-                        ListTile(
-                          title: Text(L10n.of(context)!.editChatPermissions),
-                          subtitle: Text(
-                            L10n.of(context)!.whoCanPerformWhichAction,
-                          ),
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(
-                              Icons.edit_attributes_outlined,
+                        if (!room.isDirectChat)
+                          ListTile(
+                            title: Text(L10n.of(context)!.editChatPermissions),
+                            subtitle: Text(
+                              L10n.of(context)!.whoCanPerformWhichAction,
                             ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.edit_attributes_outlined,
+                              ),
+                            ),
+                            trailing: const Icon(Icons.chevron_right_outlined),
+                            onTap: () => context
+                                .push('/rooms/${room.id}/details/permissions'),
                           ),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          onTap: () => context
-                              .go('/rooms/${room.id}/details/permissions'),
-                        ),
                         Divider(
                           height: 1,
                           color: Theme.of(context).dividerColor,
@@ -363,7 +382,7 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (room.canInvite)
+                        if (!room.isDirectChat && room.canInvite)
                           ListTile(
                             title: Text(L10n.of(context)!.inviteContact),
                             leading: CircleAvatar(
@@ -393,7 +412,7 @@ class ChatDetailsView extends StatelessWidget {
                               color: Colors.grey,
                             ),
                           ),
-                          onTap: () => context.go(
+                          onTap: () => context.push(
                             '/rooms/${controller.roomId!}/details/members',
                           ),
                           trailing: const Icon(Icons.chevron_right_outlined),

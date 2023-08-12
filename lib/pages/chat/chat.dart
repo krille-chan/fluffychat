@@ -20,9 +20,11 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
+import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
@@ -61,10 +63,31 @@ class ChatPage extends StatelessWidget {
         ),
       );
     }
-    return ChatPageWithRoom(
-      key: Key('chat_page_$roomId'),
-      sideView: sideView,
-      room: room,
+
+    return Row(
+      children: [
+        Expanded(
+          child: ChatPageWithRoom(
+            key: Key('chat_page_$roomId'),
+            sideView: sideView,
+            room: room,
+          ),
+        ),
+        if (FluffyThemes.isThreeColumnMode(context))
+          Container(
+            width: FluffyThemes.columnWidth,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(
+                  width: 1,
+                  color: Theme.of(context).dividerColor,
+                ),
+              ),
+            ),
+            child: ChatDetails(roomId: roomId),
+          ),
+      ],
     );
   }
 }

@@ -131,7 +131,7 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context)!.placeCall,
           ),
         EncryptionButton(controller.room),
-        ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
+        ChatSettingsPopupMenu(controller.room, true),
       ];
     }
   }

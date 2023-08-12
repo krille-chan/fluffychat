@@ -318,9 +318,9 @@ class ChatDetailsController extends State<ChatDetails> {
     if ((room.states['im.ponies.room_emotes'] ?? <String, Event>{})
         .keys
         .any((String s) => s.isNotEmpty)) {
-      context.go('/rooms/${room.id}/details/multiple_emotes');
+      context.push('/rooms/${room.id}/details/multiple_emotes');
     } else {
-      context.go('/rooms/${room.id}/details/emotes');
+      context.push('/rooms/${room.id}/details/emotes');
     }
   }
 
