@@ -42,12 +42,13 @@ class ChatMembersView extends StatelessWidget {
           L10n.of(context)!.countParticipants(roomCount),
         ),
         actions: [
-          IconButton(
-            onPressed: () => context.go('/rooms/${room.id}/invite'),
-            icon: const Icon(
-              Icons.person_add_outlined,
+          if (room.canInvite)
+            IconButton(
+              onPressed: () => context.go('/rooms/${room.id}/invite'),
+              icon: const Icon(
+                Icons.person_add_outlined,
+              ),
             ),
-          ),
         ],
       ),
       body: MaxWidthBody(
