@@ -385,8 +385,8 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    if (event.messageType == MessageTypes.BadEncrypted || event.redacted) {
-      container = Opacity(opacity: 0.33, child: container);
+    if (event.messageType == MessageTypes.BadEncrypted) {
+      container = Opacity(opacity: 0.4, child: container);
     }
 
     return Swipeable(

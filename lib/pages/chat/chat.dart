@@ -734,22 +734,28 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void redactEventsAction() async {
-    final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.messageWillBeRemovedWarning,
-          okLabel: L10n.of(context)!.remove,
-          cancelLabel: L10n.of(context)!.cancel,
-        ) ==
-        OkCancelResult.ok;
-    if (!confirmed) return;
+    final reasonInput = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context)!.redactMessage,
+      message: L10n.of(context)!.redactMessageDescription,
+      isDestructiveAction: true,
+      textFields: [
+        DialogTextField(
+          hintText: L10n.of(context)!.optionalRedactReason,
+        ),
+      ],
+      okLabel: L10n.of(context)!.remove,
+      cancelLabel: L10n.of(context)!.cancel,
+    );
+    if (reasonInput == null) return;
+    final reason = reasonInput.single.isEmpty ? null : reasonInput.single;
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
         context: context,
         future: () async {
           if (event.status.isSent) {
             if (event.canRedact) {
-              await event.redactEvent();
+              await event.redactEvent(reason: reason);
             } else {
               final client = currentRoomBundle.firstWhere(
                 (cl) => selectedEvents.first.senderId == cl!.userID,
@@ -759,7 +765,9 @@ class ChatController extends State<ChatPageWithRoom> {
                 return;
               }
               final room = client.getRoomById(roomId)!;
-              await Event.fromJson(event.toJson(), room).redactEvent();
+              await Event.fromJson(event.toJson(), room).redactEvent(
+                reason: reason,
+              );
             }
           } else {
             await event.remove();

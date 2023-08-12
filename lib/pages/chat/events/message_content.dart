@@ -162,7 +162,7 @@ class MessageContent extends StatelessWidget {
             return _ButtonContent(
               textColor: buttonTextColor,
               onPressed: () => _verifyOrRequestKey(context),
-              icon: const Icon(Icons.lock_outline),
+              icon: '🔒',
               label: L10n.of(context)!.encrypted,
               fontSize: fontSize,
             );
@@ -208,12 +208,19 @@ class MessageContent extends StatelessWidget {
               return FutureBuilder<User?>(
                 future: event.redactedBecause?.fetchSenderUser(),
                 builder: (context, snapshot) {
+                  final reason =
+                      event.redactedBecause?.content.tryGet<String>('reason');
+                  final redactedBy = snapshot.data?.calcDisplayname() ??
+                      event.redactedBecause?.senderId.localpart ??
+                      L10n.of(context)!.user;
                   return _ButtonContent(
-                    label: L10n.of(context)!.redactedAnEvent(
-                      snapshot.data?.calcDisplayname() ??
-                          event.senderFromMemoryOrFallback.calcDisplayname(),
-                    ),
-                    icon: const Icon(Icons.delete_outlined),
+                    label: reason == null
+                        ? L10n.of(context)!.redactedBy(redactedBy)
+                        : L10n.of(context)!.redactedByBecause(
+                            redactedBy,
+                            reason,
+                          ),
+                    icon: '🗑️',
                     textColor: buttonTextColor,
                     onPressed: () => onInfoTab!(event),
                     fontSize: fontSize,
@@ -263,7 +270,7 @@ class MessageContent extends StatelessWidget {
                 snapshot.data?.calcDisplayname() ??
                     event.senderFromMemoryOrFallback.calcDisplayname(),
               ),
-              icon: const Icon(Icons.phone_outlined),
+              icon: '📞',
               textColor: buttonTextColor,
               onPressed: () => onInfoTab!(event),
               fontSize: fontSize,
@@ -280,7 +287,7 @@ class MessageContent extends StatelessWidget {
                     event.senderFromMemoryOrFallback.calcDisplayname(),
                 event.type,
               ),
-              icon: const Icon(Icons.info_outlined),
+              icon: 'ℹ️',
               textColor: buttonTextColor,
               onPressed: () => onInfoTab!(event),
               fontSize: fontSize,
@@ -294,7 +301,7 @@ class MessageContent extends StatelessWidget {
 class _ButtonContent extends StatelessWidget {
   final void Function() onPressed;
   final String label;
-  final Icon icon;
+  final String icon;
   final Color? textColor;
   final double fontSize;
 
@@ -311,20 +318,12 @@ class _ButtonContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          icon,
-          const SizedBox(width: 8),
-          Text(
-            label,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: textColor,
-              fontSize: fontSize,
-            ),
-          ),
-        ],
+      child: Text(
+        '$icon  $label',
+        style: TextStyle(
+          color: textColor,
+          fontSize: fontSize,
+        ),
       ),
     );
   }

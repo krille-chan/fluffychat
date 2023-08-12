@@ -1061,6 +1061,8 @@
         "type": "text",
         "placeholders": {}
     },
+    "redactMessageDescription": "The message will be redacted for all participants in this conversation. This cannot be undone.",
+    "optionalRedactReason": "(Optional) Reason for redacting this message...",
     "invitedUser": "📩 {username} invited {targetName}",
     "@invitedUser": {
         "type": "text",
@@ -1567,6 +1569,21 @@
     "@recording": {
         "type": "text",
         "placeholders": {}
+    },
+    "redactedBy": "Redacted by {username}",
+    "@redactedBy": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
+    "redactedByBecause": "Redacted by {username} because: \"{reason}\"",
+    "@redactedByBecause": {
+        "type": "text",
+        "placeholders": {
+            "username": {},
+            "reason": {}
+        }
     },
     "redactedAnEvent": "{username} redacted an event",
     "@redactedAnEvent": {
