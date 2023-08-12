@@ -116,7 +116,12 @@ abstract class FluffyThemes {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
+          side: BorderSide(
+            width: 1,
+            color: colorScheme.primary,
+          ),
           shape: RoundedRectangleBorder(
+            side: BorderSide(color: colorScheme.primary),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
         ),

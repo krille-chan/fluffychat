@@ -188,26 +188,26 @@ class ChatDetailsView extends StatelessWidget {
                           height: 1,
                           color: Theme.of(context).dividerColor,
                         ),
-                        ListTile(
-                          onTap: room.canSendEvent(EventTypes.RoomTopic)
-                              ? controller.setTopicAction
-                              : null,
-                          trailing: room.canSendEvent(EventTypes.RoomTopic)
-                              ? Icon(
-                                  Icons.edit_outlined,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                )
-                              : null,
-                          title: Text(
-                            L10n.of(context)!.groupDescription,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontWeight: FontWeight.bold,
+                        if (!room.canChangeStateEvent(EventTypes.RoomTopic))
+                          ListTile(
+                            title: Text(
+                              L10n.of(context)!.groupDescription,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        else
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: OutlinedButton.icon(
+                              onPressed: controller.setTopicAction,
+                              label:
+                                  Text(L10n.of(context)!.setGroupDescription),
+                              icon: const Icon(Icons.edit_outlined),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16.0,
