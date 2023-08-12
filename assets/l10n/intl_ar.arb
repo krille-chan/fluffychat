@@ -614,7 +614,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "دعاك {username} لاستخدام فلافي-شات. \n1. ثبت فلافي-شات: https://fluffychat.im \n2. لج أو سجل\n3. افتح رابط الدعوة: {link}",
+  "inviteText": "دعاك {username} إلى FluffyChat.\n1. قم بزيارة موقع fluffychat.im وقم بتثبيت التطبيق\n2. قم بإنشاءحساب أو تسجيل الدخول\n3. افتح رابط الدعوة:\n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1299,7 +1299,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "الخلفية",
+  "wallpaper": "الخلفية:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2540,5 +2540,17 @@
   "replace": "استبدال",
   "@replace": {},
   "sendTypingNotifications": "إرسال إشعارات الكتابة",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "إنشاء مجموعة",
+  "@createGroup": {},
+  "messagesStyle": "الرسائل:",
+  "@messagesStyle": {},
+  "shareInviteLink": "شارك رابط الدعوة",
+  "@shareInviteLink": {},
+  "profileNotFound": "لا يمكن العثور على المستخدم على الخادم. ربما هناك مشكلة في الاتصال أو المستخدم غير موجود.",
+  "@profileNotFound": {},
+  "setTheme": "تعيين السمة:",
+  "@setTheme": {},
+  "setColorTheme": "تعيين لون السمة:",
+  "@setColorTheme": {}
 }
