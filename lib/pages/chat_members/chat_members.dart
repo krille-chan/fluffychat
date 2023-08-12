@@ -52,6 +52,8 @@ class ChatMembersController extends State<ChatMembersPage> {
           .getRoomById(widget.roomId)
           ?.requestParticipants();
 
+      if (!mounted) return;
+
       setState(() {
         members = participants;
       });

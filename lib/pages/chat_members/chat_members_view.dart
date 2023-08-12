@@ -43,7 +43,7 @@ class ChatMembersView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () => context.go('/rooms/{room.id}/invite'),
+            onPressed: () => context.go('/rooms/${room.id}/invite'),
             icon: const Icon(
               Icons.person_add_outlined,
             ),

@@ -15,7 +15,19 @@ class InvitationSelectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(controller.roomId!)!;
+    final room =
+        Matrix.of(context).client.getRoomById(controller.widget.roomId);
+    if (room == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(L10n.of(context)!.oopsSomethingWentWrong),
+        ),
+        body: Center(
+          child: Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+        ),
+      );
+    }
+
     final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
     return Scaffold(
       appBar: AppBar(
