@@ -11,7 +11,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 import '../../utils/adaptive_bottom_sheet.dart';
 import '../key_verification/key_verification_dialog.dart';
 
@@ -89,7 +88,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
   @override
   Widget build(BuildContext context) {
     _wipe ??= widget.wipe;
-    final buttons = <AdaptiveFlatButton>[];
+    final buttons = <Widget>[];
     Widget body = const CircularProgressIndicator.adaptive();
     titleText = L10n.of(context)!.loadingPleaseWait;
 
@@ -411,12 +410,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.error:
           titleText = L10n.of(context)!.oopsSomethingWentWrong;
-          body = const Icon(Icons.error_outline, color: Colors.red, size: 40);
+          body = const Icon(Icons.error_outline, color: Colors.red, size: 80);
           buttons.add(
-            AdaptiveFlatButton(
-              label: L10n.of(context)!.close,
+            OutlinedButton(
               onPressed: () =>
                   Navigator.of(context, rootNavigator: false).pop<bool>(false),
+              child: Text(L10n.of(context)!.close),
             ),
           );
           break;
@@ -430,10 +429,10 @@ class BootstrapDialogState extends State<BootstrapDialog> {
             ],
           );
           buttons.add(
-            AdaptiveFlatButton(
-              label: L10n.of(context)!.close,
+            OutlinedButton(
               onPressed: () =>
                   Navigator.of(context, rootNavigator: false).pop<bool>(false),
+              child: Text(L10n.of(context)!.close),
             ),
           );
           break;
@@ -442,10 +441,24 @@ class BootstrapDialogState extends State<BootstrapDialog> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Center(
+          child: CloseButton(
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: false).pop<bool>(true),
+          ),
+        ),
         title: Text(titleText ?? L10n.of(context)!.loadingPleaseWait),
       ),
-      body: Center(child: body),
-      bottomNavigationBar: Row(children: buttons),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            body,
+            const SizedBox(height: 8),
+            ...buttons,
+          ],
+        ),
+      ),
     );
   }
 }
