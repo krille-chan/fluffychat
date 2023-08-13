@@ -339,13 +339,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           );
         }
       } else {
-        navigatorContext.go(
-          Uri(
-            path: state == LoginState.loggedIn ? '/rooms' : '/home',
-            queryParameters:
-                GoRouterState.of(navigatorContext).uri.queryParameters,
-          ).toString(),
-        );
+        navigatorContext.go(state == LoginState.loggedIn ? '/rooms' : '/home');
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);

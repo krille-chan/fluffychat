@@ -165,10 +165,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    Matrix.of(context).navigatorContext = context;
-    return HomeserverPickerView(this);
-  }
+  Widget build(BuildContext context) => HomeserverPickerView(this);
 
   Future<void> restoreBackup() async {
     final picked = await FilePicker.platform.pickFiles(withData: true);
