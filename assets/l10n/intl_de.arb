@@ -2583,5 +2583,21 @@
   "messagesStyle": "Nachrichten:",
   "@messagesStyle": {},
   "noGroupDescriptionYet": "Noch keine Gruppenbeschreibung erstellt.",
-  "@noGroupDescriptionYet": {}
+  "@noGroupDescriptionYet": {},
+  "chatPermissions": "Chatberechtigungen",
+  "@chatPermissions": {},
+  "chatDescription": "Chatbeschreibung",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Chatbeschreibung geändert",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Noch keine Chatbeschreibung vorhanden.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Ungültiger Servername",
+  "@invalidServerName": {},
+  "directChat": "Privater Chat",
+  "@directChat": {},
+  "addChatDescription": "Chatbeschreibung hinzufügen",
+  "@addChatDescription": {},
+  "setChatDescription": "Chatbeschreibung festlegen",
+  "@setChatDescription": {}
 }
