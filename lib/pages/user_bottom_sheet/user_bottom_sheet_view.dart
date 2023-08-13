@@ -22,7 +22,7 @@ class UserBottomSheetView extends StatelessWidget {
         controller.widget.profile?.userId.localpart)!;
     final avatarUrl = user?.avatarUrl ?? controller.widget.profile?.avatarUrl;
 
-    final client = Matrix.of(context).client;
+    final client = Matrix.of(controller.widget.outerContext).client;
     final profileSearchError = controller.widget.profileSearchError;
     return SafeArea(
       child: Scaffold(
