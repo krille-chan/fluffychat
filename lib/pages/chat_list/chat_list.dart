@@ -192,10 +192,12 @@ class ChatListController extends State<ChatList>
     setState(() {
       searchServer = newServer.single;
     });
-    onSearchEnter(searchController.text);
+    _coolDown?.cancel();
+    _coolDown = Timer(const Duration(milliseconds: 500), _search);
   }
 
   final TextEditingController searchController = TextEditingController();
+  final FocusNode searchFocusNode = FocusNode();
 
   void _search() async {
     final client = Matrix.of(context).client;
@@ -251,6 +253,9 @@ class ChatListController extends State<ChatList>
     setState(() {
       isSearchMode = true;
     });
+    searchFocusNode.requestFocus();
+    _coolDown?.cancel();
+    _coolDown = Timer(const Duration(milliseconds: 500), _search);
   }
 
   void cancelSearch({bool unfocus = true}) {
@@ -260,7 +265,7 @@ class ChatListController extends State<ChatList>
       roomSearchResult = userSearchResult = null;
       isSearching = false;
     });
-    if (unfocus) FocusManager.instance.primaryFocus?.unfocus();
+    if (unfocus) searchFocusNode.unfocus();
   }
 
   bool isTorBrowser = false;

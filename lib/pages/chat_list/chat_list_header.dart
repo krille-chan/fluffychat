@@ -45,6 +45,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 )
               : TextField(
                   controller: controller.searchController,
+                  focusNode: controller.searchFocusNode,
                   textInputAction: TextInputAction.search,
                   onChanged: controller.onSearchEnter,
                   decoration: InputDecoration(
