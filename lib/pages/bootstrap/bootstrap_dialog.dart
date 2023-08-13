@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -8,9 +7,9 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
-import 'package:share_plus/share_plus.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_flat_button.dart';
 import '../../utils/adaptive_bottom_sheet.dart';
@@ -91,9 +90,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
   Widget build(BuildContext context) {
     _wipe ??= widget.wipe;
     final buttons = <AdaptiveFlatButton>[];
-    Widget body = PlatformInfos.isCupertinoStyle
-        ? const CupertinoActivityIndicator()
-        : const LinearProgressIndicator();
+    Widget body = const CircularProgressIndicator.adaptive();
     titleText = L10n.of(context)!.loadingPleaseWait;
 
     if (bootstrap.newSsssKey?.recoveryKey != null &&
@@ -163,12 +160,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   value: _recoveryKeyCopied,
                   activeColor: Theme.of(context).colorScheme.primary,
                   onChanged: (b) {
-                    final box = context.findRenderObject() as RenderBox;
-                    Share.share(
-                      key!,
-                      sharePositionOrigin:
-                          box.localToGlobal(Offset.zero) & box.size,
-                    );
+                    FluffyShare.share(key!, context);
                     setState(() => _recoveryKeyCopied = true);
                   },
                   title: Text(L10n.of(context)!.copyToClipboard),
@@ -295,18 +287,31 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 _recoveryKeyInputLoading = true;
                               });
                               try {
-                                final key =
-                                    _recoveryKeyTextEditingController.text;
+                                final key = _recoveryKeyTextEditingController
+                                    .text
+                                    .trim();
                                 await bootstrap.newSsssKey!.unlock(
                                   keyOrPassphrase: key,
                                 );
-                                Logs().d('SSSS unlocked');
-                                await bootstrap.client.encryption!.crossSigning
-                                    .selfSign(
-                                  keyOrPassphrase: key,
-                                );
-                                Logs().d('Successful elfsigned');
                                 await bootstrap.openExistingSsss();
+                                Logs().d('SSSS unlocked');
+                                if (bootstrap.encryption.crossSigning.enabled) {
+                                  Logs().v(
+                                    'Cross signing is already enabled. Try to self-sign',
+                                  );
+                                  try {
+                                    await bootstrap
+                                        .client.encryption!.crossSigning
+                                        .selfSign(recoveryKey: key);
+                                    Logs().d('Successful selfsigned');
+                                  } catch (e, s) {
+                                    Logs().e(
+                                      'Unable to self sign with recovery key after successfully open existing SSSS',
+                                      e,
+                                      s,
+                                    );
+                                  }
+                                }
                               } catch (e, s) {
                                 Logs().w('Unable to unlock SSSS', e, s);
                                 setState(
@@ -435,18 +440,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
       }
     }
 
-    final title = Text(titleText!);
-    if (PlatformInfos.isCupertinoStyle) {
-      return CupertinoAlertDialog(
-        title: title,
-        content: body,
-        actions: buttons,
-      );
-    }
-    return AlertDialog(
-      title: title,
-      content: body,
-      actions: buttons,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(titleText ?? L10n.of(context)!.loadingPleaseWait),
+      ),
+      body: Center(child: body),
+      bottomNavigationBar: Row(children: buttons),
     );
   }
 }
