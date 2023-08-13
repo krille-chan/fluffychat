@@ -76,11 +76,7 @@
             "mxid": {}
         }
     },
-    "addGroupDescription": "Add a group description",
-    "@addGroupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "addChatDescription": "Add a chat description",
     "addToSpace": "Add to space",
     "@addToSpace": {},
     "admin": "Admin",
@@ -922,16 +918,8 @@
         "type": "text",
         "placeholders": {}
     },
-    "groupDescription": "Group description",
-    "@groupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupDescriptionHasBeenChanged": "Group description changed",
-    "@groupDescriptionHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "chatDescription": "Chat description",
+    "chatDescriptionHasBeenChanged": "Chat description changed",
     "groupIsPublic": "Group is public",
     "@groupIsPublic": {
         "type": "text",
@@ -1052,7 +1040,7 @@
             "groupName": {}
         }
     },
-    "noGroupDescriptionYet": "No group description created yet.",
+    "noChatDescriptionYet": "No chat description created yet.",
     "anyoneCanKnock": "Anyone can knock",
     "noOneCanJoin": "No one can join",
     "tryAgain": "Try again",
@@ -1835,11 +1823,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "setGroupDescription": "Set group description",
-    "@setGroupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "setChatDescription": "Set chat description",
     "setInvitationLink": "Set invitation link",
     "@setInvitationLink": {
         "type": "text",

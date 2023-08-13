@@ -199,12 +199,12 @@ class ChatDetailsController extends State<ChatDetails> {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.setGroupDescription,
+      title: L10n.of(context)!.setChatDescription,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.noGroupDescriptionYet,
+          hintText: L10n.of(context)!.noChatDescriptionYet,
           initialText: room.topic,
           minLines: 4,
           maxLines: 8,
@@ -219,7 +219,7 @@ class ChatDetailsController extends State<ChatDetails> {
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged),
+          content: Text(L10n.of(context)!.chatDescriptionHasBeenChanged),
         ),
       );
     }

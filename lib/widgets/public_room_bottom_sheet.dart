@@ -147,7 +147,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
                 if (profile?.topic?.isNotEmpty ?? false)
                   ListTile(
                     title: Text(
-                      L10n.of(context)!.groupDescription,
+                      L10n.of(context)!.chatDescription,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                       ),

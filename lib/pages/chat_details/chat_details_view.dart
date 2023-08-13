@@ -210,7 +210,7 @@ class ChatDetailsView extends StatelessWidget {
                         if (!room.canChangeStateEvent(EventTypes.RoomTopic))
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.groupDescription,
+                              L10n.of(context)!.chatDescription,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -222,8 +222,7 @@ class ChatDetailsView extends StatelessWidget {
                             padding: const EdgeInsets.all(16.0),
                             child: OutlinedButton.icon(
                               onPressed: controller.setTopicAction,
-                              label:
-                                  Text(L10n.of(context)!.setGroupDescription),
+                              label: Text(L10n.of(context)!.setChatDescription),
                               icon: const Icon(Icons.edit_outlined),
                             ),
                           ),
@@ -233,7 +232,7 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                           child: SelectableLinkify(
                             text: room.topic.isEmpty
-                                ? L10n.of(context)!.noGroupDescriptionYet
+                                ? L10n.of(context)!.noChatDescriptionYet
                                 : room.topic,
                             options: const LinkifyOptions(humanize: false),
                             linkStyle:
