@@ -45,7 +45,7 @@ class PermissionsListTile extends StatelessWidget {
         case EventTypes.RoomName:
           return L10n.of(context)!.changeTheNameOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context)!.editChatPermissions;
+          return L10n.of(context)!.chatPermissions;
         case EventTypes.HistoryVisibility:
           return L10n.of(context)!.visibilityOfTheChatHistory;
         case EventTypes.RoomCanonicalAlias:

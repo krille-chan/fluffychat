@@ -19,7 +19,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.editChatPermissions),
+        title: Text(L10n.of(context)!.chatPermissions),
       ),
       body: MaxWidthBody(
         child: StreamBuilder(

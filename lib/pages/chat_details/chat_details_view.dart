@@ -298,14 +298,18 @@ class ChatDetailsView extends StatelessWidget {
                             title: Text(
                               L10n.of(context)!.whoIsAllowedToJoinThisGroup,
                             ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
+                            trailing: room.canChangeJoinRules
+                                ? const Icon(Icons.chevron_right_outlined)
+                                : null,
                             subtitle: Text(
                               room.joinRules?.getLocalizedString(
                                     MatrixLocals(L10n.of(context)!),
                                   ) ??
                                   L10n.of(context)!.none,
                             ),
-                            onTap: controller.setJoinRules,
+                            onTap: room.canChangeJoinRules
+                                ? controller.setJoinRules
+                                : null,
                           ),
                         if (!room.isDirectChat)
                           ListTile(
@@ -315,7 +319,9 @@ class ChatDetailsView extends StatelessWidget {
                               foregroundColor: iconColor,
                               child: const Icon(Icons.visibility_outlined),
                             ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
+                            trailing: room.canChangeHistoryVisibility
+                                ? const Icon(Icons.chevron_right_outlined)
+                                : null,
                             title: Text(
                               L10n.of(context)!.visibilityOfTheChatHistory,
                             ),
@@ -325,7 +331,9 @@ class ChatDetailsView extends StatelessWidget {
                                   ) ??
                                   L10n.of(context)!.none,
                             ),
-                            onTap: controller.setHistoryVisibility,
+                            onTap: room.canChangeHistoryVisibility
+                                ? controller.setHistoryVisibility
+                                : null,
                           ),
                         if (room.joinRules == JoinRules.public)
                           ListTile(
@@ -337,7 +345,9 @@ class ChatDetailsView extends StatelessWidget {
                                 Icons.person_add_alt_1_outlined,
                               ),
                             ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
+                            trailing: room.canChangeGuestAccess
+                                ? const Icon(Icons.chevron_right_outlined)
+                                : null,
                             title: Text(
                               L10n.of(context)!.areGuestsAllowedToJoin,
                             ),
@@ -346,11 +356,13 @@ class ChatDetailsView extends StatelessWidget {
                                 MatrixLocals(L10n.of(context)!),
                               ),
                             ),
-                            onTap: controller.setGuestAccess,
+                            onTap: room.canChangeGuestAccess
+                                ? controller.setGuestAccess
+                                : null,
                           ),
                         if (!room.isDirectChat)
                           ListTile(
-                            title: Text(L10n.of(context)!.editChatPermissions),
+                            title: Text(L10n.of(context)!.chatPermissions),
                             subtitle: Text(
                               L10n.of(context)!.whoCanPerformWhichAction,
                             ),

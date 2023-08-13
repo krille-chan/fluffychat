@@ -750,11 +750,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "editChatPermissions": "Edit chat permissions",
-    "@editChatPermissions": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "chatPermissions": "Chat permissions",
     "editDisplayname": "Edit displayname",
     "@editDisplayname": {
         "type": "text",
