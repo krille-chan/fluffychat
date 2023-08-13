@@ -10,7 +10,6 @@ import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
@@ -24,6 +23,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
@@ -37,16 +37,12 @@ import 'local_notifications_extension.dart';
 class Matrix extends StatefulWidget {
   final Widget? child;
 
-  @Deprecated('')
-  final BuildContext context;
-
   final List<Client> clients;
 
   final Map<String, String>? queryParameters;
 
   const Matrix({
     this.child,
-    required this.context,
     required this.clients,
     this.queryParameters,
     Key? key,
@@ -64,7 +60,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
   Store store = Store();
-  late BuildContext navigatorContext;
 
   HomeserverSummary? loginHomeserverSummary;
   XFile? loginAvatar;
@@ -172,7 +167,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ClientManager.addClientNameToStore(_loginClientCandidate!.clientName);
         _registerSubs(_loginClientCandidate!.clientName);
         _loginClientCandidate = null;
-        navigatorContext.go('/rooms');
+        FluffyChatApp.router.go('/rooms');
       });
     return candidate;
   }
@@ -239,8 +234,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   bool webHasFocus = true;
 
-  String? get activeRoomId =>
-      GoRouterState.of(navigatorContext).pathParameters['roomid'];
+  String? get activeRoomId {
+    final route = FluffyChatApp.router.routeInformationProvider.value.location;
+    if (route == null || !route.startsWith('/rooms/')) return null;
+    return route.split('/')[2];
+  }
 
   final linuxNotifications =
       PlatformInfos.isLinux ? NotificationsClient() : null;
@@ -309,13 +307,13 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (!hidPopup &&
             {KeyVerificationState.done, KeyVerificationState.error}
                 .contains(request.state)) {
-          Navigator.of(navigatorContext).pop('dialog');
+          Navigator.of(context).pop('dialog');
         }
         hidPopup = true;
       };
       request.onUpdate = null;
       hidPopup = true;
-      await KeyVerificationDialog(request: request).show(navigatorContext);
+      await KeyVerificationDialog(request: request).show(context);
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
@@ -330,16 +328,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         );
 
         if (state != LoginState.loggedIn) {
-          navigatorContext.go(
-            Uri(
-              path: '/rooms',
-              queryParameters:
-                  GoRouterState.of(navigatorContext).uri.queryParameters,
-            ).toString(),
-          );
+          FluffyChatApp.router.go('/rooms');
         }
       } else {
-        navigatorContext.go(state == LoginState.loggedIn ? '/rooms' : '/home');
+        FluffyChatApp.router
+            .go(state == LoginState.loggedIn ? '/rooms' : '/home');
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);

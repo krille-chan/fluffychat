@@ -43,10 +43,13 @@ class FluffyChatApp extends StatelessWidget {
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
-        builder: (context, child) => Matrix(
-          context: context,
-          clients: clients,
-          child: testWidget ?? child,
+        builder: (context, child) => Navigator(
+          onGenerateRoute: (_) => MaterialPageRoute(
+            builder: (_) => Matrix(
+              clients: clients,
+              child: testWidget ?? child,
+            ),
+          ),
         ),
       ),
     );

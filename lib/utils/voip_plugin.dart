@@ -41,7 +41,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   late VoIP voip;
   ConnectivityResult? _currentConnectivity;
   OverlayEntry? overlayEntry;
-  BuildContext get context => matrix.navigatorContext;
+  BuildContext get context => matrix.context;
 
   void _handleNetworkChanged(ConnectivityResult result) async {
     /// Got a new connectivity status!
