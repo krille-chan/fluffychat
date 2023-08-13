@@ -38,8 +38,7 @@ class EncryptionButton extends StatelessWidget {
                       ? Colors.orange
                       : null,
             ),
-            onPressed: () =>
-                context.go(['', 'rooms', room.id, 'encryption'].join('/')),
+            onPressed: () => context.go('/rooms/${room.id}/encryption'),
           ),
         );
       },

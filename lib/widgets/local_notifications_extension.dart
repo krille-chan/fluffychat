@@ -113,7 +113,7 @@ extension LocalNotificationsExtension on MatrixState {
             room.setReadMarker(event.eventId, mRead: event.eventId);
             break;
           case DesktopNotificationActions.openChat:
-            context.go(['', 'rooms', room.id].join('/'));
+            context.go('/rooms/${room.id}');
             break;
         }
       });

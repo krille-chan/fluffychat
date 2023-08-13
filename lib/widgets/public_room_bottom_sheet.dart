@@ -53,7 +53,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
       navigator.pop();
       // don't open the room if the joined room is a space
       if (!client.getRoomById(result.result!)!.isSpace) {
-        context.go(['', 'rooms', result.result!].join('/'));
+        context.go('/rooms/${result.result!}');
       }
       return;
     }

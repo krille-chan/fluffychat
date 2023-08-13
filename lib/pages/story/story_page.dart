@@ -497,7 +497,7 @@ class StoryPageController extends State<StoryPage> {
               currentEvent!.senderFromMemoryOrFallback.startDirectChat(),
         );
         if (roomIdResult.error != null) return;
-        context.go(['', 'rooms', roomIdResult.result!].join('/'));
+        context.go('/rooms/${roomIdResult.result!}');
 
         break;
     }

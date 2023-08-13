@@ -196,9 +196,9 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
 
   void _showChatDetails() {
     if (GoRouterState.of(context).uri.path.endsWith('/details')) {
-      context.go(['', 'rooms', widget.room.id].join('/'));
+      context.go('/rooms/${widget.room.id}');
     } else {
-      context.go(['', 'rooms', widget.room.id, 'details'].join('/'));
+      context.go('/rooms/${widget.room.id}/details');
     }
   }
 }

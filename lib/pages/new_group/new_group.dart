@@ -37,7 +37,7 @@ class NewGroupController extends State<NewGroup> {
       },
     );
     if (roomID.error == null) {
-      context.go(['', 'rooms', roomID.result!, 'invite'].join('/'));
+      context.go('/rooms/${roomID.result!}/invite');
     }
   }
 

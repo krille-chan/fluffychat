@@ -35,7 +35,7 @@ class StoriesHeader extends StatelessWidget {
       );
       if (result.error != null) return;
     }
-    context.go(['', 'stories', roomId].join('/'));
+    context.go('/stories/$roomId');
   }
 
   void _contextualActions(BuildContext context, Room room) async {

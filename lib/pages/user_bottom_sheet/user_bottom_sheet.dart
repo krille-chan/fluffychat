@@ -208,7 +208,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
               .startDirectChat(user?.id ?? widget.profile!.userId),
         );
         if (roomIdResult.error != null) return;
-        widget.outerContext.go(['', 'rooms', roomIdResult.result!].join('/'));
+        widget.outerContext.go('/rooms/${roomIdResult.result!}');
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case UserBottomSheetAction.ignore:

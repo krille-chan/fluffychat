@@ -172,7 +172,7 @@ class UrlLauncher {
       if (room != null) {
         if (room.isSpace) {
           // TODO: Implement navigate to space
-          context.go(['', 'rooms'].join('/'));
+          context.go('/rooms/${room.id}');
 
           return;
         }
@@ -185,7 +185,7 @@ class UrlLauncher {
             ).toString(),
           );
         } else {
-          context.go(['', 'rooms', room.id].join('/'));
+          context.go('/rooms/${room.id}');
         }
         return;
       } else {
@@ -226,7 +226,7 @@ class UrlLauncher {
               ).toString(),
             );
           } else {
-            context.go(['', 'rooms', response.result!].join('/'));
+            context.go('/rooms/${response.result!}');
           }
         }
       }

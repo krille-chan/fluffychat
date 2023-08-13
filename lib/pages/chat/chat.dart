@@ -218,7 +218,7 @@ class ChatController extends State<ChatPageWithRoom> {
     );
     final roomId = success.result;
     if (roomId == null) return;
-    context.go(['', 'rooms', roomId].join('/'));
+    context.go('/rooms/$roomId');
   }
 
   void leaveChat() async {
@@ -1055,7 +1055,7 @@ class ChatController extends State<ChatPageWithRoom> {
       future: room.leave,
     );
     if (result.error == null) {
-      context.go(['', 'rooms', result.result!].join('/'));
+      context.go('/rooms/${result.result!}');
     }
   }
 

@@ -79,7 +79,7 @@ class _SpaceViewState extends State<SpaceView> {
       }
       return;
     }
-    context.go(['', 'rooms', spaceChild.roomId].join('/'));
+    context.go('/rooms/${spaceChild.roomId}');
   }
 
   void _onSpaceChildContextMenu([
