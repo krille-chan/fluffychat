@@ -2552,5 +2552,36 @@
   "setColorTheme": "Cor do decorado:",
   "@setColorTheme": {},
   "setTheme": "Establecer decorado:",
-  "@setTheme": {}
+  "@setTheme": {},
+  "inviteContactToGroupQuestion": "Queres convidar a {contact} para que se una á conversa \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "noGroupDescriptionYet": "Aínda non hai unha descrición do grupo.",
+  "@noGroupDescriptionYet": {},
+  "anyoneCanKnock": "Calquera pode chamar",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Ninguén pode unirse",
+  "@noOneCanJoin": {},
+  "tryAgain": "Intentar outra vez",
+  "@tryAgain": {},
+  "optionalRedactReason": "(Optativo) Razón para editar a mensaxe...",
+  "@optionalRedactReason": {},
+  "redactedBy": "Editada por {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "Editada por {username} debido a: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "redactMessageDescription": "A mensaxe vai ser editada para todas as participantes na conversa. Non ten volta atrás.",
+  "@redactMessageDescription": {},
+  "invite": "Convidar",
+  "@invite": {}
 }
