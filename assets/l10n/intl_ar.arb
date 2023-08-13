@@ -2583,5 +2583,21 @@
     }
   },
   "invite": "دعوة",
-  "@invite": {}
+  "@invite": {},
+  "addChatDescription": "أضف وصفًا للدردشة",
+  "@addChatDescription": {},
+  "chatPermissions": "صلاحيات المحادثة",
+  "@chatPermissions": {},
+  "chatDescription": "وصف الدردشة",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "تغير وصف المجموعة",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "لم يتم إنشاء وصف للمحادثة حتى الآن.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "اسم الخادم غير متاح",
+  "@invalidServerName": {},
+  "setChatDescription": "تعيين وصفًا للدردشة",
+  "@setChatDescription": {},
+  "directChat": "محادثة مباشرة",
+  "@directChat": {}
 }
