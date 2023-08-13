@@ -78,12 +78,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     return widget.clients[_activeClient];
   }
 
-  bool get webrtcIsSupported =>
-      kIsWeb ||
-      PlatformInfos.isMobile ||
-      PlatformInfos.isWindows ||
-      PlatformInfos.isMacOS;
-
   VoipPlugin? voipPlugin;
 
   bool get isMultiAccount => widget.clients.length > 1;
@@ -406,7 +400,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       voipPlugin = null;
       return;
     }
-    voipPlugin = webrtcIsSupported ? VoipPlugin(this) : null;
+    voipPlugin = VoipPlugin(this);
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -77,18 +76,17 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter,
               ),
-              if (Matrix.of(context).webrtcIsSupported)
-                SettingsSwitchListTile.adaptive(
-                  title: L10n.of(context)!.experimentalVideoCalls,
-                  onChanged: (b) {
-                    AppConfig.experimentalVoip = b;
-                    Matrix.of(context).createVoipPlugin();
-                    return;
-                  },
-                  storeKey: SettingKeys.experimentalVoip,
-                  defaultValue: AppConfig.experimentalVoip,
-                ),
-              if (Matrix.of(context).webrtcIsSupported && !kIsWeb)
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.experimentalVideoCalls,
+                onChanged: (b) {
+                  AppConfig.experimentalVoip = b;
+                  Matrix.of(context).createVoipPlugin();
+                  return;
+                },
+                storeKey: SettingKeys.experimentalVoip,
+                defaultValue: AppConfig.experimentalVoip,
+              ),
+              if (PlatformInfos.isMobile)
                 ListTile(
                   title: Text(L10n.of(context)!.callingPermissions),
                   onTap: () =>
