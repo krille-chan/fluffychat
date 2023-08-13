@@ -68,13 +68,9 @@ parts:
       craftctl default
     build-packages:
       - libjsoncpp-dev
-      - execstack
-      - curl
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
-      - mpv
-      - zenity
 
 slots:
   dbus-svc:
