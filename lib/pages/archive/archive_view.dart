@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
 class ArchiveView extends StatelessWidget {
   final ArchiveController controller;
@@ -32,35 +33,38 @@ class ArchiveView extends StatelessWidget {
               )
           ],
         ),
-        body: Builder(
-          builder: (BuildContext context) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                  L10n.of(context)!.oopsSomethingWentWrong,
-                  textAlign: TextAlign.center,
-                ),
-              );
-            }
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-              );
-            } else {
-              archive = snapshot.data;
-              if (archive == null || archive!.isEmpty) {
-                return const Center(
-                  child: Icon(Icons.archive_outlined, size: 80),
+        body: MaxWidthBody(
+          withScrolling: false,
+          child: Builder(
+            builder: (BuildContext context) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    L10n.of(context)!.oopsSomethingWentWrong,
+                    textAlign: TextAlign.center,
+                  ),
                 );
               }
-              return ListView.builder(
-                itemCount: archive!.length,
-                itemBuilder: (BuildContext context, int i) => ChatListItem(
-                  archive![i],
-                ),
-              );
-            }
-          },
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                );
+              } else {
+                archive = snapshot.data;
+                if (archive == null || archive!.isEmpty) {
+                  return const Center(
+                    child: Icon(Icons.archive_outlined, size: 80),
+                  );
+                }
+                return ListView.builder(
+                  itemCount: archive!.length,
+                  itemBuilder: (BuildContext context, int i) => ChatListItem(
+                    archive![i],
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

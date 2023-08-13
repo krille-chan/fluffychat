@@ -291,7 +291,7 @@ class ChatListController extends State<ChatList>
   void editSpace(BuildContext context, String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
     if (mounted) {
-      context.go('/rooms/spaces/$spaceId');
+      context.push('/rooms/$spaceId/details');
     }
   }
 

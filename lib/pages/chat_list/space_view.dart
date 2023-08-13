@@ -73,7 +73,7 @@ class _SpaceViewState extends State<SpaceView> {
     }
     if (spaceChild.roomType == 'm.space') {
       if (spaceChild.roomId == widget.controller.activeSpaceId) {
-        context.go('/rooms/spaces/${spaceChild.roomId}');
+        context.go('/rooms/${spaceChild.roomId}');
       } else {
         widget.controller.setActiveSpace(spaceChild.roomId);
       }

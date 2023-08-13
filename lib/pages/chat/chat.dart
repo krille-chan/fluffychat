@@ -39,12 +39,10 @@ import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 
 class ChatPage extends StatelessWidget {
-  final Widget? sideView;
   final String roomId;
 
   const ChatPage({
     Key? key,
-    this.sideView,
     required this.roomId,
   }) : super(key: key);
 
@@ -69,11 +67,11 @@ class ChatPage extends StatelessWidget {
         Expanded(
           child: ChatPageWithRoom(
             key: Key('chat_page_$roomId'),
-            sideView: sideView,
             room: room,
           ),
         ),
-        if (FluffyThemes.isThreeColumnMode(context))
+        if (FluffyThemes.isThreeColumnMode(context) &&
+            room.membership == Membership.join)
           Container(
             width: FluffyThemes.columnWidth,
             clipBehavior: Clip.hardEdge,
@@ -93,12 +91,10 @@ class ChatPage extends StatelessWidget {
 }
 
 class ChatPageWithRoom extends StatefulWidget {
-  final Widget? sideView;
   final Room room;
 
   const ChatPageWithRoom({
     Key? key,
-    required this.sideView,
     required this.room,
   }) : super(key: key);
 

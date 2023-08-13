@@ -139,17 +139,6 @@ abstract class AppRoutes {
               ],
             ),
             GoRoute(
-              path: 'spaces/:roomid',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                ChatDetails(
-                  roomId: state.pathParameters['roomid']!,
-                ),
-              ),
-              routes: _chatDetailsRoutes,
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
               path: 'archive',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
@@ -213,7 +202,101 @@ abstract class AppRoutes {
                         ? const EmptyPage()
                         : const Settings(),
                   ),
-                  routes: _settingsRoutes,
+                  routes: [
+                    GoRoute(
+                      path: 'notifications',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SettingsNotifications(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'style',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SettingsStyle(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'devices',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const DevicesSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'chat',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SettingsChat(),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'emotes',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const EmotesSettings(),
+                          ),
+                        ),
+                      ],
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'addaccount',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const HomeserverPicker(),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'login',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const Login(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                      ],
+                    ),
+                    GoRoute(
+                      path: 'security',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SettingsSecurity(),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'stories',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const SettingsStories(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                        GoRoute(
+                          path: 'ignorelist',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const SettingsIgnoreList(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                        GoRoute(
+                          path: '3pid',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const Settings3Pid(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                      ],
+                    ),
+                  ],
                   redirect: loggedOutRedirect,
                 ),
               ],
@@ -252,161 +335,65 @@ abstract class AppRoutes {
                       roomId: state.pathParameters['roomid']!,
                     ),
                   ),
-                  routes: _chatDetailsRoutes,
+                  routes: [
+                    GoRoute(
+                      path: 'members',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        ChatMembersPage(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'permissions',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const ChatPermissionsSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'invite',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        InvitationSelection(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'multiple_emotes',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const MultipleEmotesSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'emotes',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const EmotesSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'emotes/:state_key',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const EmotesSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                  ],
                   redirect: loggedOutRedirect,
                 ),
               ],
             ),
           ],
-        ),
-      ],
-    ),
-  ];
-
-  static final List<RouteBase> _chatDetailsRoutes = [
-    GoRoute(
-      path: 'members',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        ChatMembersPage(
-          roomId: state.pathParameters['roomid']!,
-        ),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'permissions',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const ChatPermissionsSettings(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'invite',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        InvitationSelection(roomId: state.pathParameters['roomid']!),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'multiple_emotes',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const MultipleEmotesSettings(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'emotes',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const EmotesSettings(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'emotes/:state_key',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const EmotesSettings(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-  ];
-
-  static final List<RouteBase> _settingsRoutes = [
-    GoRoute(
-      path: 'notifications',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const SettingsNotifications(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'style',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const SettingsStyle(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'devices',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const DevicesSettings(),
-      ),
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'chat',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const SettingsChat(),
-      ),
-      routes: [
-        GoRoute(
-          path: 'emotes',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const EmotesSettings(),
-          ),
-        ),
-      ],
-      redirect: loggedOutRedirect,
-    ),
-    GoRoute(
-      path: 'addaccount',
-      redirect: loggedOutRedirect,
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const HomeserverPicker(),
-      ),
-      routes: [
-        GoRoute(
-          path: 'login',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const Login(),
-          ),
-          redirect: loggedOutRedirect,
-        ),
-      ],
-    ),
-    GoRoute(
-      path: 'security',
-      redirect: loggedOutRedirect,
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        const SettingsSecurity(),
-      ),
-      routes: [
-        GoRoute(
-          path: 'stories',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsStories(),
-          ),
-          redirect: loggedOutRedirect,
-        ),
-        GoRoute(
-          path: 'ignorelist',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const SettingsIgnoreList(),
-          ),
-          redirect: loggedOutRedirect,
-        ),
-        GoRoute(
-          path: '3pid',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            const Settings3Pid(),
-          ),
-          redirect: loggedOutRedirect,
         ),
       ],
     ),

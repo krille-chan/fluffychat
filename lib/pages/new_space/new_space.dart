@@ -38,7 +38,7 @@ class NewSpaceController extends State<NewSpace> {
       ),
     );
     if (roomID.error == null) {
-      context.go('/rooms/spaces/${roomID.result!}');
+      context.go('/rooms/${roomID.result!}');
     }
   }
 
