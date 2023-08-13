@@ -68,6 +68,7 @@ parts:
       craftctl default
     build-packages:
       - libjsoncpp-dev
+      - curl
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
