@@ -19,7 +19,7 @@ class SettingsStyleView extends StatelessWidget {
     final wallpaper = Matrix.of(context).wallpaper;
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.changeTheme),
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,

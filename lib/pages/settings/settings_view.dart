@@ -22,8 +22,10 @@ class SettingsView extends StatelessWidget {
     final showChatBackupBanner = controller.showChatBackupBanner;
     return Scaffold(
       appBar: AppBar(
-        leading: CloseButton(
-          onPressed: () => context.go('/rooms'),
+        leading: Center(
+          child: CloseButton(
+            onPressed: () => context.go('/rooms'),
+          ),
         ),
         title: Text(L10n.of(context)!.settings),
         actions: [

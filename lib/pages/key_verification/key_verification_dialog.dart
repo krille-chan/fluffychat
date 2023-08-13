@@ -344,7 +344,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
     }
     return Scaffold(
       appBar: AppBar(
-        leading: const CloseButton(),
+        leading: const Center(child: CloseButton()),
         title: title,
       ),
       body: ListView(

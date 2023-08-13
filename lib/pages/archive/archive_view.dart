@@ -19,7 +19,7 @@ class ArchiveView extends StatelessWidget {
       future: controller.getArchive(context),
       builder: (BuildContext context, snapshot) => Scaffold(
         appBar: AppBar(
-          leading: const BackButton(),
+          leading: const Center(child: BackButton()),
           title: Text(L10n.of(context)!.archive),
           actions: [
             if (snapshot.data?.isNotEmpty ?? false)

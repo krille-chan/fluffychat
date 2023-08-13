@@ -23,7 +23,7 @@ class EmotesSettingsView extends StatelessWidget {
     final imageKeys = controller.pack!.images.keys.toList();
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.emoteSettings),
         actions: [
           PopupMenuButton<PopupMenuEmojiActions>(

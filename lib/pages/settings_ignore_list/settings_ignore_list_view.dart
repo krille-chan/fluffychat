@@ -19,7 +19,7 @@ class SettingsIgnoreListView extends StatelessWidget {
     final client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(),
+        leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.ignoredUsers),
       ),
       body: MaxWidthBody(
