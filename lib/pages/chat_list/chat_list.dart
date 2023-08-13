@@ -181,6 +181,9 @@ class ChatListController extends State<ChatList>
           initialText: searchServer,
           keyboardType: TextInputType.url,
           autocorrect: false,
+          validator: (server) => server?.contains('.') == true
+              ? null
+              : L10n.of(context)!.invalidServerName,
         )
       ],
     );
@@ -242,6 +245,12 @@ class ChatListController extends State<ChatList>
     });
     _coolDown?.cancel();
     _coolDown = Timer(const Duration(milliseconds: 500), _search);
+  }
+
+  void startSearch() {
+    setState(() {
+      isSearchMode = true;
+    });
   }
 
   void cancelSearch({bool unfocus = true}) {

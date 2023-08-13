@@ -62,9 +62,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             onPressed: controller.cancelSearch,
                             color: Theme.of(context).colorScheme.onBackground,
                           )
-                        : Icon(
-                            Icons.search_outlined,
-                            color: Theme.of(context).colorScheme.onBackground,
+                        : IconButton(
+                            onPressed: controller.startSearch,
+                            icon: Icon(
+                              Icons.search_outlined,
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
                           ),
                     suffixIcon: controller.isSearchMode
                         ? controller.isSearching
@@ -80,12 +83,16 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                                   ),
                                 ),
                               )
-                            : TextButton(
+                            : TextButton.icon(
                                 onPressed: controller.setServer,
                                 style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(99),
+                                  ),
                                   textStyle: const TextStyle(fontSize: 12),
                                 ),
-                                child: Text(
+                                icon: const Icon(Icons.edit_outlined, size: 16),
+                                label: Text(
                                   controller.searchServer ??
                                       Matrix.of(context)
                                           .client
