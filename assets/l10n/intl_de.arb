@@ -1393,7 +1393,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} hat ein Ereignis entfernt",
+  "redactedAnEvent": "{username} hat ein Ereignis gelöscht",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1948,7 +1948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Hintergrund",
+  "wallpaper": "Hintergrund:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2541,5 +2541,47 @@
   "@replace": {},
   "sendTypingNotifications": "Tippbenachrichtigungen senden",
   "@sendTypingNotifications": {},
-  "profileNotFound": "Der Benutzer konnte auf dem Server nicht gefunden werden. Vielleicht gibt es ein Verbindungsproblem oder der Benutzer existiert nicht."
+  "profileNotFound": "Der Benutzer konnte auf dem Server nicht gefunden werden. Vielleicht gibt es ein Verbindungsproblem oder der Benutzer existiert nicht.",
+  "@profileNotFound": {},
+  "createGroup": "Gruppe erstellen",
+  "@createGroup": {},
+  "shareInviteLink": "Einladungslink teilen",
+  "@shareInviteLink": {},
+  "inviteContactToGroupQuestion": "Willst du {contact} zum Chat {groupName} einladen?",
+  "@inviteContactToGroupQuestion": {},
+  "tryAgain": "Neuer Versuch",
+  "@tryAgain": {},
+  "anyoneCanKnock": "Jeder kann anklopfen",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Niemand darf beitreten",
+  "@noOneCanJoin": {},
+  "redactMessageDescription": "Die Nachricht wird für alle Teilnehmer dieses Gesprächs gelöscht. Dies kann nicht rückgängig gemacht werden.",
+  "@redactMessageDescription": {},
+  "redactedBy": "Gelöscht von {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "Gelöscht von {username} weil: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "setTheme": "Design festlegen:",
+  "@setTheme": {},
+  "setColorTheme": "Farbdesign einstellen:",
+  "@setColorTheme": {},
+  "invite": "Einladen",
+  "@invite": {},
+  "optionalRedactReason": "(Optional) Grund für die Löschung dieser Nachricht...",
+  "@optionalRedactReason": {},
+  "messagesStyle": "Nachrichten:",
+  "@messagesStyle": {},
+  "noGroupDescriptionYet": "Noch keine Gruppenbeschreibung erstellt.",
+  "@noGroupDescriptionYet": {}
 }
