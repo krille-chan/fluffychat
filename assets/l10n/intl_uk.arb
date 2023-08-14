@@ -2540,5 +2540,11 @@
   "exportEmotePack": "Експортувати набір емотиконів у форматі .zip",
   "@exportEmotePack": {},
   "sendTypingNotifications": "Надсилати сповіщення про ввід тексту",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "Створити групу",
+  "@createGroup": {},
+  "inviteContactToGroupQuestion": "Хочете запросити {contact} до бесіди \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "noGroupDescriptionYet": "Опис групи ще не створено.",
+  "@noGroupDescriptionYet": {}
 }

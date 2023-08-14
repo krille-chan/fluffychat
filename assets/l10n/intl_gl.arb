@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "allChats": "Tódolos chats",
+  "allChats": "Todas as conversas",
   "@allChats": {
     "type": "text",
     "placeholders": {}
@@ -180,7 +180,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username} cambiou o avatar do chat",
+  "changedTheChatAvatar": "{username} cambiou o avatar da conversa",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -304,7 +304,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Mudar fondo do chat",
+  "changeWallpaper": "Cambiar imaxe de fondo",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
@@ -319,12 +319,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Chat",
+  "chat": "Conversa",
   "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "chatBackup": "Copia de apoio do chat",
+  "chatBackup": "Copia de apoio",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -334,12 +334,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Detalles do chat",
+  "chatDetails": "Detalles da conversa",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
   },
-  "chats": "Chats",
+  "chats": "Conversas",
   "@chats": {
     "type": "text",
     "placeholders": {}
@@ -453,7 +453,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "Configurar chat",
+  "configureChat": "Configurar conversa",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -619,7 +619,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Chats Directos",
+  "directChats": "Conversas Directas",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -644,7 +644,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "editChatPermissions": "Editar permisos do chat",
+  "editChatPermissions": "Editar permisos da conversa",
   "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
@@ -694,7 +694,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Chat baleiro",
+  "emptyChat": "Conversa baleira",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -955,7 +955,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} convidoute a FluffyChat.\n1. instala FluffyChat: https://fluffychat.im \n2. Rexístrate ou conéctate\n3. Abre a ligazón do convite: {link}",
+  "inviteText": "{username} convidoute a FluffyChat.\n1. Visita fluffychat.im e instala a app\n2. Crea unha conta ou Accede\n3. Abre a ligazón do convite: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -968,14 +968,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "👋 {username} uníuse ao chat",
+  "joinedTheChat": "👋 {username} uníuse á conversa",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "joinRoom": "Entrar na sala",
+  "joinRoom": "Unirse á sala",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
@@ -1114,7 +1114,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Acalar chat",
+  "muteChat": "Acalar conversa",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -1124,7 +1124,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Novo chat",
+  "newChat": "Nova conversa",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -1462,7 +1462,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Retirar veto no chat",
+  "unbanFromChat": "Retirar veto na conversa",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1846,7 +1846,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 chat non lido} other{{unreadCount} chats non lidos}}",
+  "unreadChats": "{unreadCount, plural, =1{1 conversa sen ler} other{{unreadCount} conversas sen ler}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1961,7 +1961,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Fondo da conversa",
+  "wallpaper": "Imaxe de fondo:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1991,7 +1991,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Eliminar a copia de apoio do chat e crear unha nova chave de recuperación?",
+  "wipeChatBackup": "Queres eliminar a copia de apoio da conversa e crear unha nova chave de recuperación?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2016,7 +2016,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Estás convidada a este chat",
+  "youAreInvitedToThisChat": "Convidáronte a esta conversa",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
@@ -2041,7 +2041,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "O chat foi engadido a este espazo",
+  "chatHasBeenAddedToThisSpace": "Engadiuse a conversa a este espazo",
   "@chatHasBeenAddedToThisSpace": {},
   "addToSpace": "Engadir ao espazo",
   "@addToSpace": {},
@@ -2088,7 +2088,7 @@
   "@sender": {},
   "openGallery": "Galería pública",
   "@openGallery": {},
-  "addToSpaceDescription": "Elixe un espazo ao que engadir este chat.",
+  "addToSpaceDescription": "Elixe un espazo ao que engadir esta conversa.",
   "@addToSpaceDescription": {},
   "loginWithOneClick": "Conéctate cun click",
   "@loginWithOneClick": {},
@@ -2173,7 +2173,7 @@
   "@markAsRead": {},
   "reportUser": "Denunciar usuaria",
   "@reportUser": {},
-  "openChat": "Abrir Chat",
+  "openChat": "Abrir Conversa",
   "@openChat": {},
   "voiceCall": "Chamada de voz",
   "@voiceCall": {},
@@ -2249,7 +2249,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "showDirectChatsInSpaces": "Mostrar os Chats Directos nos Espazos",
+  "showDirectChatsInSpaces": "Mostrar Conversas Directas relacionadas nos Espazos",
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
@@ -2338,7 +2338,7 @@
   "@dehydrateTorLong": {},
   "hydrateTor": "Usuarias TOR: Importar a sesión exportada",
   "@hydrateTor": {},
-  "hydrateTorLong": "Exportaches a túa sesión a última vez en TOR? Importaa rápidamente e continúa cos teus chats.",
+  "hydrateTorLong": "Exportaches a túa sesión a última vez en TOR? Importaa rápidamente e segue conversando.",
   "@hydrateTorLong": {},
   "hydrate": "Restablecer desde copia de apoio",
   "@hydrate": {},
@@ -2393,7 +2393,7 @@
   "@callingPermissions": {},
   "callingAccount": "Conta que chama",
   "@callingAccount": {},
-  "callingAccountDetails": "Permite a FluffyChat usar a app marcador nativa de android.",
+  "callingAccountDetails": "Permítelle a FluffyChat usar a app marcador nativa de android.",
   "@callingAccountDetails": {},
   "appearOnTopDetails": "Permítelle á app aparecer por enrriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
   "@appearOnTopDetails": {},
@@ -2405,7 +2405,7 @@
   "@allSpaces": {},
   "screenSharingDetail": "Estás compartindo a túa pantalla en FluffyChat",
   "@screenSharingDetail": {},
-  "numChats": "{number} chats",
+  "numChats": "{number} conversas",
   "@numChats": {
     "type": "number",
     "placeholders": {
@@ -2472,7 +2472,7 @@
   "@reopenChat": {},
   "noOtherDevicesFound": "Non se atopan outros dispositivos",
   "@noOtherDevicesFound": {},
-  "noBackupWarning": "Aviso! Se non activas a copia de apoio do chat, perderás o acceso ás túas mensaxes cifradas. É totalmente recomendable activar a copia de apoio do chat antes de pechar a sesión.",
+  "noBackupWarning": "Aviso! Se non activas a copia de apoio da conversa, perderás o acceso ás túas mensaxes cifradas. É moi recomendable activar a copia de apoio da conversa antes de pechar a sesión.",
   "@noBackupWarning": {},
   "fileIsTooBigForServer": "O servidor informa de que o ficheiro é demasiado grande para envialo.",
   "@fileIsTooBigForServer": {},
@@ -2540,5 +2540,48 @@
     }
   },
   "sendTypingNotifications": "Enviar notificación de escritura",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "Crear grupo",
+  "@createGroup": {},
+  "messagesStyle": "Mensaxes:",
+  "@messagesStyle": {},
+  "profileNotFound": "Non se atopa a usuaria no servidor. Pode que haxa un problema coa conexión ou que a usuaria non exista.",
+  "@profileNotFound": {},
+  "shareInviteLink": "Comparte ligazón de convite",
+  "@shareInviteLink": {},
+  "setColorTheme": "Cor do decorado:",
+  "@setColorTheme": {},
+  "setTheme": "Establecer decorado:",
+  "@setTheme": {},
+  "inviteContactToGroupQuestion": "Queres convidar a {contact} para que se una á conversa \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "noGroupDescriptionYet": "Aínda non hai unha descrición do grupo.",
+  "@noGroupDescriptionYet": {},
+  "anyoneCanKnock": "Calquera pode chamar",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Ninguén pode unirse",
+  "@noOneCanJoin": {},
+  "tryAgain": "Intentar outra vez",
+  "@tryAgain": {},
+  "optionalRedactReason": "(Optativo) Razón para editar a mensaxe...",
+  "@optionalRedactReason": {},
+  "redactedBy": "Editada por {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "Editada por {username} debido a: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "redactMessageDescription": "A mensaxe vai ser editada para todas as participantes na conversa. Non ten volta atrás.",
+  "@redactMessageDescription": {},
+  "invite": "Convidar",
+  "@invite": {}
 }

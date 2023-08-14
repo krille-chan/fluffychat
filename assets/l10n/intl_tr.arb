@@ -959,7 +959,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} sizi FluffyChat'e davet etti. \n1. FluffyChat kurun: https://fluffychat.im \n2. Kaydolun veya giriş yapın \n3. Davet bağlantısını açın: {link}",
+  "inviteText": "{username} sizi FluffyChat'e davet etti.\n1. fluffychat.im adresini ziyaret edin ve uygulamayı kurun \n2. Kaydolun veya oturum açın \n3. Davet bağlantısını açın: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1965,7 +1965,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Duvar kağıdı",
+  "wallpaper": "Duvar kağıdı:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2540,5 +2540,17 @@
     }
   },
   "sendTypingNotifications": "Yazma bildirimleri gönder",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "messagesStyle": "Mesajlar:",
+  "@messagesStyle": {},
+  "createGroup": "Grup oluştur",
+  "@createGroup": {},
+  "shareInviteLink": "Davet bağlantısını paylaş",
+  "@shareInviteLink": {},
+  "profileNotFound": "Kullanıcı sunucuda bulunamadı. Belki bir bağlantı sorunu vardır veya kullanıcı mevcut değildir.",
+  "@profileNotFound": {},
+  "setTheme": "Temayı ayarla:",
+  "@setTheme": {},
+  "setColorTheme": "Renk temasını ayarla:",
+  "@setColorTheme": {}
 }
