@@ -99,7 +99,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} mengundang kamu ke FluffyChat. \n1. Instal FluffyChat: https://fluffychat.im \n2. Daftar atau masuk \n3. Buka tautan undangan: {link}",
+  "inviteText": "{username} mengundang kamu ke FluffyChat. \n1. Kunjungi fluffychat.im dan instal aplikasi\n2. Daftar atau masuk \n3. Buka tautan undangan: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1156,7 +1156,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Latar belakang",
+  "wallpaper": "Latar belakang:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2539,5 +2539,62 @@
   "importEmojis": "Impor Emoji",
   "@importEmojis": {},
   "sendTypingNotifications": "Kirim notifikasi pengetikan",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "Buat grup",
+  "@createGroup": {},
+  "inviteContactToGroupQuestion": "Apakah kamu ingin mengundang {contact} ke chat \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "anyoneCanKnock": "Siapa pun dapat mengetuk",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Tidak ada siapa pun yang dapat bergabung",
+  "@noOneCanJoin": {},
+  "tryAgain": "Coba ulang",
+  "@tryAgain": {},
+  "messagesStyle": "Pesan:",
+  "@messagesStyle": {},
+  "shareInviteLink": "Bagikan tautan undangan",
+  "@shareInviteLink": {},
+  "setTheme": "Atur tema:",
+  "@setTheme": {},
+  "invalidServerName": "Nama server tidak valid",
+  "@invalidServerName": {},
+  "addChatDescription": "Tambahkan deskripsi chat",
+  "@addChatDescription": {},
+  "chatPermissions": "Perizinan chat",
+  "@chatPermissions": {},
+  "chatDescription": "Deskripsi chat",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Deskripsi chat diubah",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Deskripsi chat belum dibuat.",
+  "@noChatDescriptionYet": {},
+  "redactMessageDescription": "Pesan akan dihilangkan untuk semua anggota dalam percakapan ini. Ini tidak dapat diurungkan.",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "(Opsional) Alasan menghilangkan pesan ini...",
+  "@optionalRedactReason": {},
+  "redactedBy": "Dihilangkan oleh {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "directChat": "Chat langsung",
+  "@directChat": {},
+  "redactedByBecause": "Dihilangkan oleh {username} karena: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "setChatDescription": "Lihat deskripsi chat",
+  "@setChatDescription": {},
+  "profileNotFound": "Pengguna ini tidak dapat ditemukan di server. Mungkin ada masalah koneksi atau penggunanya tidak ada.",
+  "@profileNotFound": {},
+  "setColorTheme": "Atur tema warna:",
+  "@setColorTheme": {},
+  "invite": "Undang",
+  "@invite": {}
 }

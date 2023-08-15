@@ -955,7 +955,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} kutsus sind kasutama Matrix'i-põhist suhtlusrakendust FluffyChat. \n1. Paigalda FluffyChat: https://fluffychat.im \n2. Liitu kasutajaks või logi sisse olemasoleva Matrix'i kasutajakontoga\n3. Ava kutse link: {link}",
+  "inviteText": "{username} kutsus sind kasutama Matrix'i-põhist suhtlusrakendust FluffyChat. \n1. Ava fluffychat.im ja paigalda FluffyChat'i rakendus \n2. Liitu kasutajaks või logi sisse olemasoleva Matrix'i kasutajakontoga\n3. Ava kutse link: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1961,7 +1961,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Taustapilt",
+  "wallpaper": "Taustapilt:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2371,7 +2371,7 @@
   },
   "commandHint_markasgroup": "Märgi vestlusrühmaks",
   "@commandHint_markasgroup": {},
-  "commandHint_markasdm": "Märgi otsevestusluseks",
+  "commandHint_markasdm": "Märgi otsevestusluseks antud Matrixi ID jaoks",
   "@commandHint_markasdm": {},
   "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
   "@whyIsThisMessageEncrypted": {},
@@ -2540,5 +2540,62 @@
     }
   },
   "sendTypingNotifications": "Saada kirjutamise teavitusi",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "Loo vestlusrühm",
+  "@createGroup": {},
+  "setTheme": "Vali teema:",
+  "@setTheme": {},
+  "inviteContactToGroupQuestion": "Kas sa soovid kutsuda kasutajat {contact} „{groupName}“ jututuppa?",
+  "@inviteContactToGroupQuestion": {},
+  "anyoneCanKnock": "Kõik võivad koputada",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Mitte keegi ei tohi liituda",
+  "@noOneCanJoin": {},
+  "tryAgain": "Proovi uuesti",
+  "@tryAgain": {},
+  "chatPermissions": "Vestluse õigused",
+  "@chatPermissions": {},
+  "chatDescription": "Vestluse kirjeldus",
+  "@chatDescription": {},
+  "noChatDescriptionYet": "Vestluse kirjeldus on puudu.",
+  "@noChatDescriptionYet": {},
+  "optionalRedactReason": "(Kui soovid lisada) Sõnumi muutmise põhjus...",
+  "@optionalRedactReason": {},
+  "messagesStyle": "Sõnumid:",
+  "@messagesStyle": {},
+  "shareInviteLink": "Jaga kutse linki",
+  "@shareInviteLink": {},
+  "directChat": "Otsevestlus",
+  "@directChat": {},
+  "setChatDescription": "Lisa vestluse kirjeldus",
+  "@setChatDescription": {},
+  "profileNotFound": "Sellist kasutajat serveris ei leidu. Tegemist võib olla kas võrguühenduse probleemiga või sellist kasutajat tõesti pole olemas.",
+  "@profileNotFound": {},
+  "setColorTheme": "Vali värviteema:",
+  "@setColorTheme": {},
+  "invite": "Kutsu",
+  "@invite": {},
+  "invalidServerName": "Vigane serveri nimi",
+  "@invalidServerName": {},
+  "addChatDescription": "Lisa vestluse kirjeldus",
+  "@addChatDescription": {},
+  "chatDescriptionHasBeenChanged": "Vestluse kirjeldus on muutunud",
+  "@chatDescriptionHasBeenChanged": {},
+  "redactMessageDescription": "Sõnumi muudatus kehtib kõikidele vestluses osalejatele. Seda muudatust ei saa tagasi pöörata.",
+  "@redactMessageDescription": {},
+  "redactedBy": "Muutja: {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "Muutja {username} märkis põhjuseks: „{reason}“",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  }
 }

@@ -589,7 +589,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} запрошує вас у FluffyChat. \n1. Установіть FluffyChat: http://fluffychat.im \n2. Зареєструйтесь або увійдіть \n3. Відкрийте запрошувальне посилання: {link}",
+  "inviteText": "{username} запрошує вас у FluffyChat. \n1. Перейдіть на fluffychat.im й установіть застосунок \n2. Зареєструйтесь або ввійдіть \n3. Відкрийте запрошувальне посилання:\n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1200,7 +1200,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Тло",
+  "wallpaper": "Шпалери:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2546,5 +2546,58 @@
   "inviteContactToGroupQuestion": "Хочете запросити {contact} до бесіди \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
   "noGroupDescriptionYet": "Опис групи ще не створено.",
-  "@noGroupDescriptionYet": {}
+  "@noGroupDescriptionYet": {},
+  "messagesStyle": "Повідомлення:",
+  "@messagesStyle": {},
+  "shareInviteLink": "Надіслати запрошувальне посилання",
+  "@shareInviteLink": {},
+  "anyoneCanKnock": "Будь-хто може приєднатися",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Ніхто не може приєднатися",
+  "@noOneCanJoin": {},
+  "tryAgain": "Повторіть спробу",
+  "@tryAgain": {},
+  "setTheme": "Налаштувати тему:",
+  "@setTheme": {},
+  "setColorTheme": "Налаштувати колірну тему:",
+  "@setColorTheme": {},
+  "addChatDescription": "Додати опис бесіди",
+  "@addChatDescription": {},
+  "chatPermissions": "Дозволи бесіди",
+  "@chatPermissions": {},
+  "chatDescription": "Опис бесіди",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Опис бесіди змінено",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Опис бесіди ще не створено.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Недійсна назва сервера",
+  "@invalidServerName": {},
+  "optionalRedactReason": "(Необов'язково) Причина редагування цього повідомлення...",
+  "@optionalRedactReason": {},
+  "redactedBy": "Відредаговано {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "directChat": "Особисте повідомлення",
+  "@directChat": {},
+  "redactedByBecause": "Відредаговано {username}, тому що: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "profileNotFound": "Не вдалося знайти користувача на сервері. Можливо, проблема зі з'єднанням або користувач не існує.",
+  "@profileNotFound": {},
+  "invite": "Запросити",
+  "@invite": {},
+  "redactMessageDescription": "Повідомлення буде відредаговано для всіх учасників цієї розмови. Це не можна скасувати.",
+  "@redactMessageDescription": {},
+  "setChatDescription": "Налаштувати опис бесіди",
+  "@setChatDescription": {}
 }
