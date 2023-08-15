@@ -37,9 +37,7 @@ prime
 /build/
 
 # Web related
-docs/build/
-docs/.jekyll-cache/
-docs/_site/
+docs/tailwind.css
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
