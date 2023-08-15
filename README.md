@@ -1,31 +1,43 @@
 ![](https://i.imgur.com/wi7RlVt.png)
 
-<p align="center">
-  <a href="https://matrix.to/#/#fluffychat:matrix.org" target="new">Join the community</a> - <a href="https://mastodon.art/@krille" target="new">Follow me on Mastodon</a> - <a href="https://hosted.weblate.org/projects/fluffychat/" target="new">Translate FluffyChat</a> - <a href="https://fluffychat.im" target="new">Website</a> - <a href="https://famedly.com/kontakt">Server hosting and professional support</a>
- </p>
+FluffyChat is an open source, nonprofit and cute [matrix](https://matrix.org) messenger written in Flutter. The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
+### Links:
 
-FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
+- 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
+- 🌍 [[m] Join the community](https://matrix.to/#/#fluffychat:matrix.org)
+- 📰 [[Mastodon] Follow me on social media](https://mastodon.art/@krille)
+- 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
+- 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
 
-## Features
+<a href='https://ko-fi.com/C1C86VN53' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-- Send all kinds of messages, images and files
-- Voice messages
-- Location sharing
-- Push notifications
-- Unlimited private and public group chats
-- Public channels with thousands of participants
-- Feature rich group moderation including all matrix features
-- Discover and join public groups
-- Dark mode
-- Custom themes
-- Hides complexity of Matrix IDs behind simple QR codes
-- Custom emotes and stickers
-- Spaces
-- Compatible with Element, Nheko, NeoChat and all other Matrix apps
-- End to end encryption
-- Emoji verification & cross signing
-- And much more...
+### Screenshots:
+
+![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/product.jpeg?raw=true)
+
+# Features
+
+- 📩 Send all kinds of messages, images and files
+- 🎙️ Voice messages
+- 📍 Location sharing
+- 🔔 Push notifications
+- 💬 Unlimited private and public group chats
+- 📣 Public channels with thousands of participants
+- 🛠️ Feature rich group moderation including all matrix features
+- 🔍 Discover and join public groups
+- 🌙 Dark mode
+- 🎨 Material You design
+- 📟 Hides complexity of Matrix IDs behind simple QR codes
+- 😄 Custom emotes and stickers
+- 🌌 Spaces
+- 🔄 Compatible with Element, Nheko, NeoChat and all other Matrix apps
+- 🔐 End to end encryption
+- 🔒 Encrypted chat backup
+- 😀 Emoji verification & cross signing
+
+... and much more.
+
 
 # Installation
 
