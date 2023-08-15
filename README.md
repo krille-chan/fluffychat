@@ -1,12 +1,12 @@
-![](https://i.imgur.com/wi7RlVt.png)
+![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
 
-FluffyChat is an open source, nonprofit and cute [matrix](https://matrix.org) messenger written in Flutter. The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+[FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
 ### Links:
 
 - 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
 - 🌍 [[m] Join the community](https://matrix.to/#/#fluffychat:matrix.org)
-- 📰 [[Mastodon] Follow me on social media](https://mastodon.art/@krille)
+- 📰 [[Mastodon] Get updates on social media](https://mastodon.art/@krille)
 - 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
 - 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
 
@@ -41,15 +41,15 @@ FluffyChat is an open source, nonprofit and cute [matrix](https://matrix.org) me
 
 # Installation
 
-Please visit our website for installation instructions:
+Please visit the website for installation instructions:
 
-https://fluffychat.im
+- https://fluffychat.im
 
 # How to build
 
-Please visit our Wiki for build instructions:
+Please visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for build instructions:
 
-https://github.com/krille-chan/fluffychat/wiki/How-To-Build
+- https://github.com/krille-chan/fluffychat/wiki/How-To-Build
 
 
 # Special thanks
