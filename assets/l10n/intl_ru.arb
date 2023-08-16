@@ -955,7 +955,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Установите FluffyChat: https://fluffychat.im \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: {link}",
+  "inviteText": "{username} пригласил(а) вас в FluffyChat. \n1. Посетите https://fluffychat.im и установите приложение \n2. Зарегистрируйтесь или войдите \n3. Откройте ссылку приглашения: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -2540,5 +2540,31 @@
   "pleaseTryAgainLaterOrChooseDifferentServer": "Повторите попытку позже или выберите другой сервер.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "sendTypingNotifications": "Отправлять уведомления о наборе текста",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "Создать группу",
+  "@createGroup": {},
+  "inviteContactToGroupQuestion": "Вы хотите пригласить {contact} в чат \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "anyoneCanKnock": "Вход по разрешению",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Вход воспрещён",
+  "@noOneCanJoin": {},
+  "tryAgain": "Повторите попытку",
+  "@tryAgain": {},
+  "addChatDescription": "Добавить описание чата",
+  "@addChatDescription": {},
+  "chatPermissions": "Права в чате",
+  "@chatPermissions": {},
+  "chatDescription": "Описание чата",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Описание чата изменено",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Описание чата не создано.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Неверное имя сервера",
+  "@invalidServerName": {},
+  "optionalRedactReason": "(Необязательно) Причина редактирования...",
+  "@optionalRedactReason": {},
+  "redactMessageDescription": "Сообщение будет отредактировано для всех участников. Это необратимо.",
+  "@redactMessageDescription": {}
 }
