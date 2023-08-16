@@ -10,6 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../config/themes.dart';
 
 enum ContextualRoomAction {
   mute,
@@ -108,7 +109,7 @@ class StoriesHeader extends StatelessWidget {
       ...client.storiesRooms..remove(ownStoryRoom),
     ];
     return SizedBox(
-      height: 96,
+      height: 104,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         scrollDirection: Axis.horizontal,
@@ -157,7 +158,7 @@ extension on Room {
   }
 }
 
-class _StoryButton extends StatelessWidget {
+class _StoryButton extends StatefulWidget {
   final Profile profile;
   final bool showEditFab;
   final bool unread;
@@ -178,26 +179,43 @@ class _StoryButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<_StoryButton> createState() => _StoryButtonState();
+}
+
+class _StoryButtonState extends State<_StoryButton> {
+  bool _hovered = false;
+
+  void _onHover(bool hover) {
+    if (hover == _hovered) return;
+    setState(() {
+      _hovered = hover;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 78,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(7),
-        onTap: onPressed,
-        onLongPress: onLongPressed,
-        child: Opacity(
-          opacity: hasPosts ? 1 : 0.4,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Column(
-              children: [
-                const SizedBox(height: 8),
-                Material(
+    return InkWell(
+      onHover: _onHover,
+      borderRadius: BorderRadius.circular(7),
+      onTap: widget.onPressed,
+      onLongPress: widget.onLongPressed,
+      child: Opacity(
+        opacity: widget.hasPosts ? 1 : 0.4,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Column(
+            children: [
+              const SizedBox(height: 8),
+              AnimatedScale(
+                scale: _hovered ? 1.15 : 1.0,
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+                child: Material(
                   borderRadius: BorderRadius.circular(Avatar.defaultSize),
                   child: Container(
                     padding: const EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                      gradient: unread
+                      gradient: widget.unread
                           ? const LinearGradient(
                               colors: [
                                 Colors.red,
@@ -208,38 +226,23 @@ class _StoryButton extends StatelessWidget {
                               end: Alignment.bottomRight,
                             )
                           : null,
-                      color: unread
+                      color: widget.unread
                           ? null
                           : Theme.of(context).colorScheme.surfaceVariant,
                       borderRadius: BorderRadius.circular(Avatar.defaultSize),
                     ),
                     child: Stack(
                       children: [
-                        Material(
-                          color: Theme.of(context).colorScheme.surface,
-                          borderRadius:
-                              BorderRadius.circular(Avatar.defaultSize),
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: CircleAvatar(
-                              radius: 30,
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.surface,
-                              foregroundColor:
-                                  Theme.of(context).textTheme.bodyLarge?.color,
-                              child: Hero(
-                                tag: heroTag,
-                                child: Avatar(
-                                  mxContent: profile.avatarUrl,
-                                  name: profile.displayName,
-                                  size: 100,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ),
+                        Hero(
+                          tag: widget.heroTag,
+                          child: Avatar(
+                            mxContent: widget.profile.avatarUrl,
+                            name: widget.profile.displayName,
+                            size: 72,
+                            fontSize: 26,
                           ),
                         ),
-                        if (showEditFab)
+                        if (widget.showEditFab)
                           Positioned(
                             right: 0,
                             bottom: 0,
@@ -261,19 +264,19 @@ class _StoryButton extends StatelessWidget {
                     ),
                   ),
                 ),
-                Center(
-                  child: Text(
-                    profile.displayName ?? '',
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: unread ? FontWeight.bold : null,
-                    ),
+              ),
+              Center(
+                child: Text(
+                  widget.profile.displayName ?? '',
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: widget.unread ? FontWeight.bold : null,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

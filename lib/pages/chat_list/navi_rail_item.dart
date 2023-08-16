@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/app_config.dart';
 import '../../config/themes.dart';
 
-class NaviRailItem extends StatelessWidget {
+class NaviRailItem extends StatefulWidget {
   final String toolTip;
   final bool isSelected;
   final void Function() onTap;
@@ -20,7 +20,22 @@ class NaviRailItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<NaviRailItem> createState() => _NaviRailItemState();
+}
+
+class _NaviRailItemState extends State<NaviRailItem> {
+  bool _hovered = false;
+
+  void _onHover(bool hover) {
+    if (hover == _hovered) return;
+    setState(() {
+      _hovered = hover;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
     return SizedBox(
       height: 64,
       width: 64,
@@ -31,7 +46,7 @@ class NaviRailItem extends StatelessWidget {
             bottom: 16,
             left: 0,
             child: AnimatedContainer(
-              width: isSelected ? 4 : 0,
+              width: widget.isSelected ? 4 : 0,
               duration: FluffyThemes.animationDuration,
               curve: FluffyThemes.animationCurve,
               decoration: BoxDecoration(
@@ -44,20 +59,31 @@ class NaviRailItem extends StatelessWidget {
             ),
           ),
           Center(
-            child: IconButton(
-              onPressed: onTap,
-              tooltip: toolTip,
-              icon: Material(
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                color: isSelected
+            child: AnimatedScale(
+              scale: _hovered ? 1.2 : 1.0,
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
+              child: Material(
+                borderRadius: borderRadius,
+                color: widget.isSelected
                     ? Theme.of(context).colorScheme.primaryContainer
                     : Theme.of(context).colorScheme.background,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 8.0,
+                child: Tooltip(
+                  message: widget.toolTip,
+                  child: InkWell(
+                    borderRadius: borderRadius,
+                    onTap: widget.onTap,
+                    onHover: _onHover,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 8.0,
+                      ),
+                      child: widget.isSelected
+                          ? widget.selectedIcon ?? widget.icon
+                          : widget.icon,
+                    ),
                   ),
-                  child: isSelected ? selectedIcon ?? icon : icon,
                 ),
               ),
             ),
