@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,10 +10,6 @@ import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat/cupertino_widgets_bottom_sheet.dart';
-import 'package:fluffychat/pages/chat/edit_widgets_dialog.dart';
-import 'package:fluffychat/pages/chat/widgets_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -48,16 +43,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           (u) => setState(() {}),
         );
     final items = <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        value: 'widgets',
-        child: Row(
-          children: [
-            const Icon(Icons.widgets_outlined),
-            const SizedBox(width: 12),
-            Text(L10n.of(context)!.matrixWidgets),
-          ],
-        ),
-      ),
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: 'mute',
@@ -117,29 +102,9 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           onKeysPressed: _showChatDetails,
           child: const SizedBox.shrink(),
         ),
-        KeyBoardShortcuts(
-          keysToPress: {
-            LogicalKeyboardKey.controlLeft,
-            LogicalKeyboardKey.keyW
-          },
-          helpLabel: L10n.of(context)!.matrixWidgets,
-          onKeysPressed: _showWidgets,
-          child: const SizedBox.shrink(),
-        ),
         PopupMenuButton(
           onSelected: (String choice) async {
             switch (choice) {
-              case 'widgets':
-                if (widget.room.widgets.isNotEmpty) {
-                  _showWidgets();
-                } else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => EditWidgetsDialog(room: widget.room),
-                    useRootNavigator: false,
-                  );
-                }
-                break;
               case 'leave':
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
@@ -182,17 +147,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       ],
     );
   }
-
-  void _showWidgets() => [TargetPlatform.iOS, TargetPlatform.macOS]
-          .contains(Theme.of(context).platform)
-      ? showCupertinoModalPopup(
-          context: context,
-          builder: (context) => CupertinoWidgetsBottomSheet(room: widget.room),
-        )
-      : showAdaptiveBottomSheet(
-          context: context,
-          builder: (context) => WidgetsBottomSheet(room: widget.room),
-        );
 
   void _showChatDetails() {
     if (GoRouterState.of(context).uri.path.endsWith('/details')) {
