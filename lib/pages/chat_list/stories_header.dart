@@ -194,89 +194,92 @@ class _StoryButtonState extends State<_StoryButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onHover: _onHover,
-      borderRadius: BorderRadius.circular(7),
-      onTap: widget.onPressed,
-      onLongPress: widget.onLongPressed,
-      child: Opacity(
-        opacity: widget.hasPosts ? 1 : 0.4,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Column(
-            children: [
-              const SizedBox(height: 8),
-              AnimatedScale(
-                scale: _hovered ? 1.15 : 1.0,
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-                child: Material(
-                  borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                  child: Container(
-                    padding: const EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      gradient: widget.unread
-                          ? const LinearGradient(
-                              colors: [
-                                Colors.red,
-                                Colors.purple,
-                                Colors.orange,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            )
-                          : null,
-                      color: widget.unread
-                          ? null
-                          : Theme.of(context).colorScheme.surfaceVariant,
-                      borderRadius: BorderRadius.circular(Avatar.defaultSize),
-                    ),
-                    child: Stack(
-                      children: [
-                        Hero(
-                          tag: widget.heroTag,
-                          child: Avatar(
-                            mxContent: widget.profile.avatarUrl,
-                            name: widget.profile.displayName,
-                            size: 72,
-                            fontSize: 26,
+    return SizedBox(
+      width: 82,
+      child: InkWell(
+        onHover: _onHover,
+        borderRadius: BorderRadius.circular(7),
+        onTap: widget.onPressed,
+        onLongPress: widget.onLongPressed,
+        child: Opacity(
+          opacity: widget.hasPosts ? 1 : 0.4,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Column(
+              children: [
+                const SizedBox(height: 8),
+                AnimatedScale(
+                  scale: _hovered ? 1.15 : 1.0,
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  child: Material(
+                    borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                    child: Container(
+                      padding: const EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        gradient: widget.unread
+                            ? const LinearGradient(
+                                colors: [
+                                  Colors.red,
+                                  Colors.purple,
+                                  Colors.orange,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              )
+                            : null,
+                        color: widget.unread
+                            ? null
+                            : Theme.of(context).colorScheme.surfaceVariant,
+                        borderRadius: BorderRadius.circular(Avatar.defaultSize),
+                      ),
+                      child: Stack(
+                        children: [
+                          Hero(
+                            tag: widget.heroTag,
+                            child: Avatar(
+                              mxContent: widget.profile.avatarUrl,
+                              name: widget.profile.displayName,
+                              size: 72,
+                              fontSize: 26,
+                            ),
                           ),
-                        ),
-                        if (widget.showEditFab)
-                          Positioned(
-                            right: 0,
-                            bottom: 0,
-                            child: SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: FloatingActionButton.small(
-                                heroTag: null,
-                                onPressed: () =>
-                                    context.go('/rooms/stories/create'),
-                                child: const Icon(
-                                  Icons.add_outlined,
-                                  size: 16,
+                          if (widget.showEditFab)
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: FloatingActionButton.small(
+                                  heroTag: null,
+                                  onPressed: () =>
+                                      context.go('/rooms/stories/create'),
+                                  child: const Icon(
+                                    Icons.add_outlined,
+                                    size: 16,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Center(
-                child: Text(
-                  widget.profile.displayName ?? '',
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: widget.unread ? FontWeight.bold : null,
+                Center(
+                  child: Text(
+                    widget.profile.displayName ?? '',
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: widget.unread ? FontWeight.bold : null,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
