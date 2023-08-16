@@ -1961,7 +1961,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Обои",
+  "wallpaper": "Обои:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2566,5 +2566,36 @@
   "optionalRedactReason": "(Необязательно) Причина редактирования...",
   "@optionalRedactReason": {},
   "redactMessageDescription": "Сообщение будет отредактировано для всех участников. Это необратимо.",
-  "@redactMessageDescription": {}
+  "@redactMessageDescription": {},
+  "messagesStyle": "Сообщения:",
+  "@messagesStyle": {},
+  "shareInviteLink": "Поделиться приглашением",
+  "@shareInviteLink": {},
+  "redactedBy": "{username} отредактировал это событие",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "directChat": "Личный чат",
+  "@directChat": {},
+  "profileNotFound": "Пользователь не найден на сервере. Это может быть проблемой подключения или пользователь не существует.",
+  "@profileNotFound": {},
+  "setTheme": "Тема:",
+  "@setTheme": {},
+  "redactedByBecause": "{username} отредактировал это событие. Причина: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "setChatDescription": "Изменить описание чата",
+  "@setChatDescription": {},
+  "setColorTheme": "Цветовая тема:",
+  "@setColorTheme": {},
+  "invite": "Пригласить",
+  "@invite": {}
 }
