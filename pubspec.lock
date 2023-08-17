@@ -392,7 +392,7 @@ packages:
       sha256: b1729fc96627dd44012d0a901558177418818d6bd428df59dcfeb594e5f66432
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.2"
+    version: "5.3.3"
   file_selector_linux:
     dependency: transitive
     description:
