@@ -7,7 +7,9 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
@@ -130,6 +132,11 @@ class StoriesHeader extends StatelessWidget {
               avatarUrl: avatarUrl,
               userId: userId ?? 'Unknown',
             ),
+            lastMessage: room.lastEvent?.calcLocalizedBodyFallback(
+              MatrixLocals(
+                L10n.of(context)!,
+              ),
+            ),
             heroTag: 'stories_${room.id}',
             hasPosts: room.hasPosts || room == ownStoryRoom,
             showEditFab: userId == client.userID,
@@ -166,11 +173,13 @@ class _StoryButton extends StatefulWidget {
   final void Function() onPressed;
   final void Function()? onLongPressed;
   final String heroTag;
+  final String? lastMessage;
 
   const _StoryButton({
     required this.profile,
     required this.onPressed,
     required this.heroTag,
+    required this.lastMessage,
     this.showEditFab = false,
     this.hasPosts = true,
     this.unread = false,
@@ -194,6 +203,12 @@ class _StoryButtonState extends State<_StoryButton> {
 
   @override
   Widget build(BuildContext context) {
+    final lastMessage = widget.lastMessage;
+    final lastMessageBubbleElevation =
+        Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4;
+    final lastMessageBubbleShadowColor =
+        Theme.of(context).appBarTheme.shadowColor;
+    final lastMessageBubbleColor = Colors.white.withAlpha(245);
     return SizedBox(
       width: 82,
       child: InkWell(
@@ -262,6 +277,59 @@ class _StoryButtonState extends State<_StoryButton> {
                                 ),
                               ),
                             ),
+                          if (lastMessage != null) ...[
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              right: 8,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Material(
+                                    elevation: lastMessageBubbleElevation,
+                                    shadowColor: lastMessageBubbleShadowColor,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 2,
+                                    ),
+                                    color: lastMessageBubbleColor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Text(
+                                        lastMessage,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 11,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 26.0,
+                                      top: 4.0,
+                                    ),
+                                    child: Center(
+                                      child: SizedBox(
+                                        width: 12,
+                                        height: 12,
+                                        child: Material(
+                                          elevation: lastMessageBubbleElevation,
+                                          shadowColor:
+                                              lastMessageBubbleShadowColor,
+                                          borderRadius:
+                                              BorderRadius.circular(99),
+                                          color: lastMessageBubbleColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ]
                         ],
                       ),
                     ),
