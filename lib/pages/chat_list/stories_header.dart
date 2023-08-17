@@ -132,11 +132,13 @@ class StoriesHeader extends StatelessWidget {
               avatarUrl: avatarUrl,
               userId: userId ?? 'Unknown',
             ),
-            lastMessage: room.lastEvent?.calcLocalizedBodyFallback(
-              MatrixLocals(
-                L10n.of(context)!,
-              ),
-            ),
+            lastMessage: room.hasPosts
+                ? room.lastEvent?.calcLocalizedBodyFallback(
+                    MatrixLocals(
+                      L10n.of(context)!,
+                    ),
+                  )
+                : null,
             heroTag: 'stories_${room.id}',
             hasPosts: room.hasPosts || room == ownStoryRoom,
             showEditFab: userId == client.userID,
