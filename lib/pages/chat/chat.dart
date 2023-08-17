@@ -816,6 +816,17 @@ class ChatController extends State<ChatPageWithRoom> {
     return true;
   }
 
+  bool get canPinSelectedEvents {
+    if (isArchived ||
+        !room.canChangeStateEvent(EventTypes.RoomPinnedEvents) ||
+        selectedEvents.length != 1 ||
+        !selectedEvents.single.status.isSent) {
+      return false;
+    }
+    return currentRoomBundle
+        .any((cl) => selectedEvents.first.senderId == cl!.userID);
+  }
+
   bool get canEditSelectedEvents {
     if (isArchived ||
         selectedEvents.length != 1 ||

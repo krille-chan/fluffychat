@@ -54,17 +54,18 @@ class ChatView extends StatelessWidget {
               onPressed: () => controller.saveSelectedEvent(context),
             ),
           ),
+        if (controller.canPinSelectedEvents)
+          IconButton(
+            icon: const Icon(Icons.push_pin_outlined),
+            onPressed: controller.pinEvent,
+            tooltip: L10n.of(context)!.pinMessage,
+          ),
         if (controller.canRedactSelectedEvents)
           IconButton(
             icon: const Icon(Icons.delete_outlined),
             tooltip: L10n.of(context)!.redactMessage,
             onPressed: controller.redactEventsAction,
           ),
-        IconButton(
-          icon: const Icon(Icons.push_pin_outlined),
-          onPressed: controller.pinEvent,
-          tooltip: L10n.of(context)!.pinMessage,
-        ),
         if (controller.selectedEvents.length == 1)
           PopupMenuButton<_EventContextAction>(
             onSelected: (action) {
