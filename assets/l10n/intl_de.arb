@@ -329,7 +329,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Gruppeninfo",
+  "chatDetails": "Chatdetails",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
