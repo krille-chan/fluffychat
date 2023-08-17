@@ -30,6 +30,7 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
+          title: Text(displayname.trim().split(' ').first),
           actions: [
             if (userId != client.userID &&
                 !client.ignoredUsers.contains(userId))
