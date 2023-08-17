@@ -30,8 +30,8 @@ void main() async {
 
   String? pin;
   if (PlatformInfos.isMobile) {
-    for(client in clients) {
-      BackgroundPush.clientOnly(clients);
+    for (client in clients) {
+      BackgroundPush.clientOnly(client);
     }
     try {
       pin =

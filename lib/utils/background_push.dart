@@ -48,7 +48,7 @@ class NoTokenException implements Exception {
 }
 
 class BackgroundPush {
-  static BackgroundPush? _instance;
+  static Map<String, BackgroundPush?> _instances = {};
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Client client;
@@ -99,8 +99,12 @@ class BackgroundPush {
   }
 
   factory BackgroundPush.clientOnly(Client client) {
-    _instance ??= BackgroundPush._(client);
-    return _instance!;
+    var instance = _instances[client.deviceID];
+    if (instance == null) {
+      instance = BackgroundPush._(client);
+      _instances[client.deviceID] = instance;
+    }
+    return instance!;
   }
 
   factory BackgroundPush(
