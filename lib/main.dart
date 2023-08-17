@@ -30,7 +30,9 @@ void main() async {
 
   String? pin;
   if (PlatformInfos.isMobile) {
-    BackgroundPush.clientOnly(clients.first);
+    for(client in clients) {
+      BackgroundPush.clientOnly(clients);
+    }
     try {
       pin =
           await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
