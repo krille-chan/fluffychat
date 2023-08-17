@@ -2511,5 +2511,8 @@
   "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
   "setTheme": "Set theme:",
   "setColorTheme": "Set color theme:",
-  "invite": "Invite"
+  "invite": "Invite",
+  "requests": "Requests",
+  "inviteGroupChat": "📨 Invite group chat",
+  "invitePrivateChat": "📨 Invite private chat"
 }

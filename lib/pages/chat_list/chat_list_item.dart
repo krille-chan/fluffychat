@@ -37,6 +37,33 @@ class ChatListItem extends StatelessWidget {
     if (onTap != null) return onTap!();
     if (activeChat) return;
     if (room.membership == Membership.invite) {
+      final inviterId =
+          room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
+      final profile = inviterId == null
+          ? null
+          : await showFutureLoadingDialog(
+              context: context,
+              future: () => room.client.getProfileFromUserId(inviterId),
+            );
+      final consent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context)!.inviteForMe,
+        message: L10n.of(context)!.youInvitedBy(
+          profile?.result?.displayName ??
+              profile?.result?.userId.localpart ??
+              L10n.of(context)!.user,
+        ),
+        okLabel: L10n.of(context)!.joinRoom,
+        cancelLabel: L10n.of(context)!.delete,
+        barrierDismissible: false,
+      );
+      if (consent == OkCancelResult.cancel) {
+        await showFutureLoadingDialog(
+          context: context,
+          future: room.leave,
+        );
+        return;
+      }
       final joinResult = await showFutureLoadingDialog(
         context: context,
         future: () async {
@@ -119,8 +146,8 @@ class ChatListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
-    final ownMessage =
-        room.lastEvent?.senderId == Matrix.of(context).client.userID;
+    final lastEvent = room.lastEvent;
+    final ownMessage = lastEvent?.senderId == Matrix.of(context).client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
     final unreadBubbleSize = unread || room.hasNewMessages
         ? room.notificationCount > 0
@@ -183,7 +210,7 @@ class ChatListItem extends StatelessWidget {
                     size: 16,
                   ),
                 ),
-              if (room.isFavourite)
+              if (room.isFavourite || room.membership == Membership.invite)
                 Padding(
                   padding: EdgeInsets.only(
                     right: room.notificationCount > 0 ? 4.0 : 0.0,
@@ -194,18 +221,19 @@ class ChatListItem extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsets.only(left: 4.0),
-                child: Text(
-                  room.timeCreated.localizedTimeShort(context),
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: unread
-                        ? Theme.of(context).colorScheme.secondary
-                        : Theme.of(context).textTheme.bodyMedium!.color,
+              if (lastEvent != null && room.membership != Membership.invite)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Text(
+                    lastEvent.originServerTs.localizedTimeShort(context),
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: unread
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).textTheme.bodyMedium!.color,
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
           subtitle: Row(
@@ -259,7 +287,9 @@ class ChatListItem extends StatelessWidget {
                         builder: (context, snapshot) {
                           return Text(
                             room.membership == Membership.invite
-                                ? L10n.of(context)!.youAreInvitedToThisChat
+                                ? room.isDirectChat
+                                    ? L10n.of(context)!.invitePrivateChat
+                                    : L10n.of(context)!.inviteGroupChat
                                 : snapshot.data ??
                                     room.lastEvent?.calcLocalizedBodyFallback(
                                       MatrixLocals(L10n.of(context)!),
