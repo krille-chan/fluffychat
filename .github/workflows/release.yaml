@@ -143,26 +143,28 @@ jobs:
           fi
           cd ..
 
-  deploy_snap:
+  promote_snapcraft:
     runs-on: ubuntu-latest
-    if: false # Until snap is fixed
-    outputs:
-      snap-file: ${{ steps.build-snap.outputs.snap }}
+    env:
+      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: snapcore/action-build@v1
-        id: build-snap
-      - name: Set release type
-        id: set-release
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v2
+      - run: snapcraft
+      - name: Install expect
+        run: sudo apt-get update && sudo apt-get install -y expect
+      - name: Promote Snap
         run: |
-          if [[ "${GITHUB_REF_NAME}" == rc* ]]; then
-            echo "::set-output name=release::candidate"
+          RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
+          if [ "$RELEASE_TYPE" = "rc" ]; then
+              expect -c "
+              spawn snapcraft promote fluffychat --from-channel edge --to-channel candidate
+              expect \"Do you want to promote the current set to the 'candidate' channel? [y/N]:\"
+              send \"y\r\"
+              expect eof
+              "
           else
-            echo "::set-output name=release::stable"
+              snapcraft promote fluffychat --from-channel candidate --to-channel stable --yes
           fi
-      - uses: snapcore/action-publish@v1
-        env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-        with:
-          snap: ${{ steps.build-snap.outputs.snap }}
-          release: ${{ steps.set-release.outputs.release }}
