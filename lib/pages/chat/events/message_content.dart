@@ -88,7 +88,7 @@ class MessageContent extends StatelessWidget {
                 event.calcLocalizedBodyFallback(
                   MatrixLocals(l10n),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -229,8 +229,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   bool webHasFocus = true;
 
   String? get activeRoomId {
-    final route = FluffyChatApp.router.routeInformationProvider.value.location;
-    if (route == null || !route.startsWith('/rooms/')) return null;
+    final route = FluffyChatApp.router.routeInformationProvider.value.uri.path;
+    if (!route.startsWith('/rooms/')) return null;
     return route.split('/')[2];
   }
 

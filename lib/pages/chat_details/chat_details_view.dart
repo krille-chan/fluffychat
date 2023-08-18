@@ -66,7 +66,7 @@ class ChatDetailsView extends StatelessWidget {
                           context,
                         ),
                       ),
-                    ChatSettingsPopupMenu(room, false)
+                    ChatSettingsPopupMenu(room, false),
                   ],
                   title: Text(L10n.of(context)!.chatDetails),
                   backgroundColor:

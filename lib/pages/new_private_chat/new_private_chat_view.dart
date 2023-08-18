@@ -38,7 +38,7 @@ class NewPrivateChatView extends StatelessWidget {
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
             ),
-          )
+          ),
         ],
       ),
       body: Column(

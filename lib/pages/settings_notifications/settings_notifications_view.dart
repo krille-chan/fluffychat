@@ -57,7 +57,7 @@ class SettingsNotificationsView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  for (var item in NotificationSettingsItem.items)
+                  for (final item in NotificationSettingsItem.items)
                     SwitchListTile.adaptive(
                       value: controller.getNotificationSetting(item) ?? true,
                       title: Text(item.title(context)),

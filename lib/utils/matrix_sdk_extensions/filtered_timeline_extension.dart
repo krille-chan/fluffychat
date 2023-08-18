@@ -40,6 +40,6 @@ extension IsStateExtension on Event {
   bool get isState => !{
         EventTypes.Message,
         EventTypes.Sticker,
-        EventTypes.Encrypted
+        EventTypes.Encrypted,
       }.contains(type);
 }

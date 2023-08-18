@@ -45,7 +45,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    for (var entry in powerLevels.entries)
+                    for (final entry in powerLevels.entries)
                       PermissionsListTile(
                         permissionKey: entry.key,
                         permission: entry.value,
@@ -95,7 +95,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    for (var entry in eventsPowerLevels.entries)
+                    for (final entry in eventsPowerLevels.entries)
                       PermissionsListTile(
                         permissionKey: entry.key,
                         category: 'events',

@@ -61,7 +61,7 @@ Future<int?> showPermissionChooser(
             initialText: currentLevel.toString(),
             keyboardType: TextInputType.number,
             autocorrect: false,
-          )
+          ),
         ],
       );
       if (customLevel == null) return null;

@@ -47,7 +47,7 @@ class MessageDownloadContent extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                )
+                ),
               ],
             ),
           ),

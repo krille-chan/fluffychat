@@ -331,7 +331,7 @@ class _StoryButtonState extends State<_StoryButton> {
                                 ],
                               ),
                             ),
-                          ]
+                          ],
                         ],
                       ),
                     ),

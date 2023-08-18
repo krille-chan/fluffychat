@@ -100,7 +100,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                 child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
               ),
             ],
-          )
+          ),
         ],
       );
     } else {

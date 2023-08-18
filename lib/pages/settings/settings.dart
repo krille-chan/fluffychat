@@ -43,7 +43,7 @@ class SettingsController extends State<Settings> {
         DialogTextField(
           initialText: profile?.displayName ??
               Matrix.of(context).client.userID!.localpart,
-        )
+        ),
       ],
     );
     if (input == null) return;

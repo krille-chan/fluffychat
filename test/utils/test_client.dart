@@ -25,7 +25,7 @@ Future<Client> prepareTestClient({
     databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
     supportedLoginTypes: {
       AuthenticationTypes.password,
-      AuthenticationTypes.sso
+      AuthenticationTypes.sso,
     },
   );
   await client.checkHomeserver(homeserver);

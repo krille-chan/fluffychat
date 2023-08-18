@@ -48,7 +48,7 @@ class ImageViewerView extends StatelessWidget {
                 color: Colors.white,
                 icon: Icon(Icons.adaptive.share_outlined),
               ),
-            )
+            ),
         ],
       ),
       body: InteractiveViewer(

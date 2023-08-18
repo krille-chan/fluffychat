@@ -212,7 +212,7 @@ class _SpaceViewState extends State<SpaceView> {
               IconButton(
                 onPressed: _refresh,
                 icon: const Icon(Icons.refresh_outlined),
-              )
+              ),
             ],
           );
         }

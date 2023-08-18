@@ -54,7 +54,7 @@ class Message extends StatelessWidget {
       EventTypes.Message,
       EventTypes.Sticker,
       EventTypes.Encrypted,
-      EventTypes.CallInvite
+      EventTypes.CallInvite,
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
         return const SizedBox.shrink();
@@ -103,7 +103,7 @@ class Message extends StatelessWidget {
     final noBubble = {
           MessageTypes.Video,
           MessageTypes.Image,
-          MessageTypes.Sticker
+          MessageTypes.Sticker,
         }.contains(event.messageType) &&
         !event.redacted;
     final noPadding = {
@@ -222,7 +222,7 @@ class Message extends StatelessWidget {
                                           eventId: event.relationshipEventId!,
                                           content: {
                                             'msgtype': 'm.text',
-                                            'body': '...'
+                                            'body': '...',
                                           },
                                           senderId: event.senderId,
                                           type: 'm.room.message',

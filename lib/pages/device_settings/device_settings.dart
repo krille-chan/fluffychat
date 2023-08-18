@@ -74,7 +74,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
       textFields: [
         DialogTextField(
           hintText: device.displayName,
-        )
+        ),
       ],
     );
     if (displayName == null) return;

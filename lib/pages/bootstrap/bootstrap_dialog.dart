@@ -377,7 +377,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 setState(() => _createBootstrap(true));
                               }
                             },
-                    )
+                    ),
                   ],
                 ),
               ),

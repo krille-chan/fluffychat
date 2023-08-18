@@ -111,7 +111,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
           label: L10n.of(context)!.delete,
           isDestructiveAction: true,
           key: true,
-        )
+        ),
       ],
     );
     if (delete != true) return;
