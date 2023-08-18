@@ -258,7 +258,7 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
                   child: TextField(
                     controller: controller,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'^[-\w]+$'))
+                      FilteringTextInputFormatter.allow(RegExp(r'^[-\w]+$')),
                     ],
                     autocorrect: false,
                     minLines: 1,

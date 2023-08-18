@@ -60,7 +60,7 @@ class VerificationRequestContent extends StatelessWidget {
                         : (started
                             ? L10n.of(context)!.loadingPleaseWait
                             : L10n.of(context)!.newVerificationRequest)),
-              )
+              ),
             ],
           ),
         ),

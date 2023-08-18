@@ -32,7 +32,7 @@ extension UiaRequestManager on MatrixState {
                     maxLines: 1,
                     obscureText: true,
                     hintText: '******',
-                  )
+                  ),
                 ],
               ))
                   ?.single;

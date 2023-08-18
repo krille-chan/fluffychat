@@ -44,7 +44,7 @@ class _CuteContentState extends State<CuteContent> {
                 widget.event.text,
                 style: const TextStyle(fontSize: 150),
               ),
-              if (label != null) Text(label)
+              if (label != null) Text(label),
             ],
           ),
         );

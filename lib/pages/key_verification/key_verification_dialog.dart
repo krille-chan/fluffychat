@@ -179,7 +179,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             const SizedBox(height: 16),
             Text(
               L10n.of(context)!.askVerificationRequest(displayName),
-            )
+            ),
           ],
         );
         buttons.add(

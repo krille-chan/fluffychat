@@ -248,7 +248,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         ),
                       ),
                     ),
-                  )
+                  ),
               ],
             ),
           ),

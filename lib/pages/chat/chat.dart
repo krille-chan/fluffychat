@@ -547,7 +547,7 @@ class ChatController extends State<ChatPageWithRoom> {
           MatrixImageFile(
             bytes: bytes,
             name: file.path,
-          )
+          ),
         ],
         room: room,
       ),
@@ -568,7 +568,7 @@ class ChatController extends State<ChatPageWithRoom> {
           MatrixVideoFile(
             bytes: bytes,
             name: file.path,
-          )
+          ),
         ],
         room: room,
       ),

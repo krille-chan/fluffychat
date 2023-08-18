@@ -407,7 +407,7 @@ class InputBar extends StatelessWidget {
               LogicalKeySet(
                 LogicalKeyboardKey.controlLeft,
                 LogicalKeyboardKey.keyM,
-              ): PasteLineIntent()
+              ): PasteLineIntent(),
             },
       child: Actions(
         actions: !useShortCuts
@@ -443,7 +443,7 @@ class InputBar extends StatelessWidget {
                     }
                     return null;
                   },
-                )
+                ),
               },
         child: TypeAheadField<Map<String, String?>>(
           direction: AxisDirection.up,

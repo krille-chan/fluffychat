@@ -67,7 +67,7 @@ class AddWidgetTileView extends StatelessWidget {
               child: Text(L10n.of(context)!.addWidget),
             ),
           ],
-        )
+        ),
       ],
     );
   }

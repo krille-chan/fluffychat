@@ -120,7 +120,7 @@ class ChatView extends StatelessWidget {
             icon: const Icon(Icons.delete_forever_outlined),
             label: Text(L10n.of(context)!.delete),
           ),
-        )
+        ),
       ];
     } else {
       return [

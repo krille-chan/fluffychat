@@ -217,7 +217,7 @@ class _AdaptableReactorsDialog extends StatelessWidget {
         runSpacing: 4.0,
         alignment: WrapAlignment.center,
         children: <Widget>[
-          for (var reactor in reactionEntry!.reactors!)
+          for (final reactor in reactionEntry!.reactors!)
             Chip(
               avatar: Avatar(
                 mxContent: reactor.avatarUrl,

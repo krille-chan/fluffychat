@@ -24,7 +24,7 @@ class Settings3PidView extends StatelessWidget {
             icon: const Icon(Icons.add_outlined),
             onPressed: controller.add3PidAction,
             tooltip: L10n.of(context)!.addEmail,
-          )
+          ),
         ],
       ),
       body: MaxWidthBody(

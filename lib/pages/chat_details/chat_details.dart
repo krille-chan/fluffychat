@@ -53,7 +53,7 @@ class ChatDetailsController extends State<ChatDetails> {
               L10n.of(context)!,
             ),
           ),
-        )
+        ),
       ],
     );
     if (input == null) return;
@@ -184,7 +184,7 @@ class ChatDetailsController extends State<ChatDetails> {
           suffixText: domain,
           hintText: L10n.of(context)!.alias,
           initialText: room.canonicalAlias.localpart,
-        )
+        ),
       ],
     );
     if (input == null) return;
@@ -208,7 +208,7 @@ class ChatDetailsController extends State<ChatDetails> {
           initialText: room.topic,
           minLines: 4,
           maxLines: 8,
-        )
+        ),
       ],
     );
     if (input == null) return;

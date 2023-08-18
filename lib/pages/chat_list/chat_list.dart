@@ -184,7 +184,7 @@ class ChatListController extends State<ChatList>
           validator: (server) => server?.contains('.') == true
               ? null
               : L10n.of(context)!.invalidServerName,
-        )
+        ),
       ],
     );
     if (newServer == null) return;

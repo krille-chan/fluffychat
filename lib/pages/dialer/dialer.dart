@@ -108,7 +108,7 @@ class _StreamView extends StatelessWidget {
                 color: Colors.white,
                 size: 18.0,
               ),
-            )
+            ),
         ],
       ),
     );
@@ -503,7 +503,7 @@ class MyCallingPage extends State<Calling> {
                   color: Colors.white,
                   fontSize: 24.0,
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -639,7 +639,7 @@ class MyCallingPage extends State<Calling> {
                             PIPView.of(context)?.setFloating(true);
                           },
                         ),
-                      )
+                      ),
                   ],
                 ),
               );
