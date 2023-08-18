@@ -2583,5 +2583,21 @@
   "redactMessageDescription": "A mensaxe vai ser editada para todas as participantes na conversa. Non ten volta atrás.",
   "@redactMessageDescription": {},
   "invite": "Convidar",
-  "@invite": {}
+  "@invite": {},
+  "addChatDescription": "Engadir descrición da conversa",
+  "@addChatDescription": {},
+  "chatPermissions": "Permisos da conversa",
+  "@chatPermissions": {},
+  "chatDescription": "Descrición da conversa",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Cambiou a descrición da conversa",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Aínda non se escribeu a descrición da conversa.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Nome de servidor non válido",
+  "@invalidServerName": {},
+  "directChat": "Conversa Directa",
+  "@directChat": {},
+  "setChatDescription": "Escribir descrición da conversa",
+  "@setChatDescription": {}
 }
