@@ -59,6 +59,11 @@ parts:
     build-packages:
       - g++
 
+  zenity-integration:
+    plugin: nil
+    stage-snaps:
+      - zenity-integration
+
   fluffychat:
     plugin: flutter
     source: .
