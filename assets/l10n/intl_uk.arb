@@ -2599,5 +2599,11 @@
   "redactMessageDescription": "Повідомлення буде відредаговано для всіх учасників цієї розмови. Це не можна скасувати.",
   "@redactMessageDescription": {},
   "setChatDescription": "Налаштувати опис бесіди",
-  "@setChatDescription": {}
+  "@setChatDescription": {},
+  "requests": "Запити",
+  "@requests": {},
+  "inviteGroupChat": "📨 Запросити до групової бесіди",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Запросити до приватної бесіди",
+  "@invitePrivateChat": {}
 }
