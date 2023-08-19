@@ -2540,5 +2540,62 @@
   "exportEmotePack": "以 .zip 格式导出表情包",
   "@exportEmotePack": {},
   "sendTypingNotifications": "发送正在输入通知",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "createGroup": "创建群组",
+  "@createGroup": {},
+  "shareInviteLink": "分享邀请链接",
+  "@shareInviteLink": {},
+  "profileNotFound": "服务器上找不到此用户。可能是连接有问题或者用户不存在。",
+  "@profileNotFound": {},
+  "inviteContactToGroupQuestion": "你是否要邀请 {contact} 参与聊天 \"{groupName}\"？",
+  "@inviteContactToGroupQuestion": {},
+  "anyoneCanKnock": "任何人都可以请求加入",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "没有人可以加入",
+  "@noOneCanJoin": {},
+  "tryAgain": "重试",
+  "@tryAgain": {},
+  "addChatDescription": "添加聊天说明",
+  "@addChatDescription": {},
+  "chatPermissions": "聊天权限",
+  "@chatPermissions": {},
+  "chatDescription": "聊天描述",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "聊天描述已被更改",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "尚未创建聊天描述。",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "服务器名称无效",
+  "@invalidServerName": {},
+  "redactMessageDescription": "消息将为此对话中所有参与者删除。此操作无法撤销。",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "（可选）删除此消息的原因...",
+  "@optionalRedactReason": {},
+  "setChatDescription": "设置聊天描述",
+  "@setChatDescription": {},
+  "setTheme": "设置主题：",
+  "@setTheme": {},
+  "setColorTheme": "设置颜色主题：",
+  "@setColorTheme": {},
+  "invite": "邀请",
+  "@invite": {},
+  "messagesStyle": "消息：",
+  "@messagesStyle": {},
+  "redactedBy": "已被 {username} 删除",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "directChat": "私聊",
+  "@directChat": {},
+  "redactedByBecause": "已被 {username} 删除，原因：\"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  }
 }
