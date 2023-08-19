@@ -33,7 +33,14 @@ class UnreadRoomsBadge extends StatelessWidget {
             .where((r) => (r.isUnread || r.membership == Membership.invite))
             .length;
         return b.Badge(
-          alignment: Alignment.bottomRight,
+          badgeStyle: b.BadgeStyle(
+            badgeColor: Theme.of(context).colorScheme.primary,
+            elevation: 4,
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.background,
+              width: 2,
+            ),
+          ),
           badgeContent: Text(
             unreadCount.toString(),
             style: TextStyle(
@@ -42,14 +49,8 @@ class UnreadRoomsBadge extends StatelessWidget {
             ),
           ),
           showBadge: unreadCount != 0,
-          animationType: b.BadgeAnimationType.scale,
-          badgeColor: Theme.of(context).colorScheme.primary,
-          position: badgePosition,
-          elevation: 4,
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.background,
-            width: 2,
-          ),
+          badgeAnimation: const b.BadgeAnimation.scale(),
+          position: badgePosition ?? b.BadgePosition.bottomEnd(),
           child: child,
         );
       },

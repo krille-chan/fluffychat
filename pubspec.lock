@@ -85,10 +85,10 @@ packages:
     dependency: "direct main"
     description:
       name: badges
-      sha256: "727580d938b7a1ff47ea42df730d581415606b4224cfa708671c10287f8d3fe6"
+      sha256: "6e7f3ec561ec08f47f912cfe349d4a1707afdc8dda271e17b046aa6d42c89e77"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "3.1.1"
   base58check:
     dependency: transitive
     description:
