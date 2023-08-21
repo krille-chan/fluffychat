@@ -230,7 +230,7 @@ class ChatDetailsController extends State<ChatDetails> {
     final currentGuestAccess = room.guestAccess;
     final newGuestAccess = await showConfirmationDialog<GuestAccess>(
       context: context,
-      title: L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+      title: L10n.of(context)!.areGuestsAllowedToJoin,
       actions: GuestAccess.values
           .map(
             (guestAccess) => AlertDialogAction(
@@ -255,7 +255,7 @@ class ChatDetailsController extends State<ChatDetails> {
     final newHistoryVisibility =
         await showConfirmationDialog<HistoryVisibility>(
       context: context,
-      title: L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+      title: L10n.of(context)!.visibilityOfTheChatHistory,
       actions: HistoryVisibility.values
           .map(
             (visibility) => AlertDialogAction(
