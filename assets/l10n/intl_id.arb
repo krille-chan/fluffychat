@@ -2596,5 +2596,11 @@
   "setColorTheme": "Atur tema warna:",
   "@setColorTheme": {},
   "invite": "Undang",
-  "@invite": {}
+  "@invite": {},
+  "requests": "Permintaan",
+  "@requests": {},
+  "inviteGroupChat": "📨 Undang percakapan grup",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Undang percakapan privat",
+  "@invitePrivateChat": {}
 }
