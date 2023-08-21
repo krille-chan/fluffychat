@@ -2597,5 +2597,7 @@
   "setColorTheme": "Цветовая тема:",
   "@setColorTheme": {},
   "invite": "Пригласить",
-  "@invite": {}
+  "@invite": {},
+  "requests": "Запросы",
+  "@requests": {}
 }
