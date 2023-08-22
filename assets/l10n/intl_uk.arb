@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username} погоджується на запрошення",
+  "acceptedTheInvitation": "👍 {username} прийняв запрошення",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -2075,13 +2075,13 @@
   "@editBundlesForAccount": {},
   "addToBundle": "Додати до вузлів",
   "@addToBundle": {},
-  "pleaseEnterValidEmail": "Введіть дійсну адресу е-пошти.",
+  "pleaseEnterValidEmail": "Будь ласка, введіть дійсну адресу е-пошти.",
   "@pleaseEnterValidEmail": {},
   "passwordsDoNotMatch": "Паролі не збігаються!",
   "@passwordsDoNotMatch": {},
-  "repeatPassword": "Повторити пароль",
+  "repeatPassword": "Повторіть пароль",
   "@repeatPassword": {},
-  "pleaseChooseAtLeastChars": "Виберіть принаймні {min} символів.",
+  "pleaseChooseAtLeastChars": "Будь ласка, введіть не менше {min} символів.",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
@@ -2367,7 +2367,7 @@
       "mxid": {}
     }
   },
-  "confirmMatrixId": "Підтвердьте свій Matrix ID, щоб видалити свій обліковий запис.",
+  "confirmMatrixId": "Будь ласка, підтвердіть свій Matrix ID, щоб видалити свій обліковий запис.",
   "@confirmMatrixId": {},
   "commandHint_markasgroup": "Позначити групою",
   "@commandHint_markasgroup": {},
@@ -2528,7 +2528,7 @@
   "@importFromZipFile": {},
   "importZipFile": "Імпортувати файл .zip",
   "@importZipFile": {},
-  "savedEmotePack": "Набір емотиконів збережено в {path}!",
+  "savedEmotePack": "Набір смайликів збережено до {path}!",
   "@savedEmotePack": {
     "type": "text",
     "placeholders": {
@@ -2537,7 +2537,7 @@
   },
   "replace": "Замінити",
   "@replace": {},
-  "exportEmotePack": "Експортувати набір емотиконів у форматі .zip",
+  "exportEmotePack": "Експортувати набір смайликів у форматі .zip",
   "@exportEmotePack": {},
   "sendTypingNotifications": "Надсилати сповіщення про ввід тексту",
   "@sendTypingNotifications": {},
