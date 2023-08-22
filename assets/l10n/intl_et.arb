@@ -2597,5 +2597,11 @@
       "username": {},
       "reason": {}
     }
-  }
+  },
+  "requests": "Päringud",
+  "@requests": {},
+  "inviteGroupChat": "📨 Kutsu vestlusrühma",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Kutsu omavahelisele vestlusele",
+  "@invitePrivateChat": {}
 }

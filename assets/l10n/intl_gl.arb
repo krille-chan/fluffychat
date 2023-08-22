@@ -2599,5 +2599,11 @@
   "directChat": "Conversa Directa",
   "@directChat": {},
   "setChatDescription": "Escribir descrición da conversa",
-  "@setChatDescription": {}
+  "@setChatDescription": {},
+  "requests": "Solicitudes",
+  "@requests": {},
+  "inviteGroupChat": "📨 Convidar a conversa en grupo",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Convidar a conversa privada",
+  "@invitePrivateChat": {}
 }

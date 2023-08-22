@@ -2599,5 +2599,11 @@
   "setChatDescription": "تعيين وصفًا للدردشة",
   "@setChatDescription": {},
   "directChat": "محادثة مباشرة",
-  "@directChat": {}
+  "@directChat": {},
+  "requests": "الطلبات",
+  "@requests": {},
+  "inviteGroupChat": "📨 دعوة الدردشة الجماعية",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 دعوة دردشة خاصة",
+  "@invitePrivateChat": {}
 }

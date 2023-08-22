@@ -2597,5 +2597,11 @@
       "username": {},
       "reason": {}
     }
-  }
+  },
+  "requests": "请求",
+  "@requests": {},
+  "inviteGroupChat": "📨 邀请至群聊",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 邀请至私聊",
+  "@invitePrivateChat": {}
 }

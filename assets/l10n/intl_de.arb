@@ -2599,5 +2599,11 @@
   "addChatDescription": "Chatbeschreibung hinzufügen",
   "@addChatDescription": {},
   "setChatDescription": "Chatbeschreibung festlegen",
-  "@setChatDescription": {}
+  "@setChatDescription": {},
+  "requests": "Anfragen",
+  "@requests": {},
+  "inviteGroupChat": "📨 Einladungen zum Gruppenchat",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Einladungen zum privaten Chat",
+  "@invitePrivateChat": {}
 }
