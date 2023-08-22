@@ -2367,7 +2367,7 @@
       "mxid": {}
     }
   },
-  "confirmMatrixId": "Будь ласка, підтвердіть свій Matrix ID, щоб видалити свій обліковий запис.",
+  "confirmMatrixId": "Підтвердьте свій Matrix ID, щоб видалити свій обліковий запис.",
   "@confirmMatrixId": {},
   "commandHint_markasgroup": "Позначити групою",
   "@commandHint_markasgroup": {},
