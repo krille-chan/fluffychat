@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username} прийняв запрошення",
+  "acceptedTheInvitation": "👍 {username} приймає запрошення",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -2075,13 +2075,13 @@
   "@editBundlesForAccount": {},
   "addToBundle": "Додати до вузлів",
   "@addToBundle": {},
-  "pleaseEnterValidEmail": "Будь ласка, введіть дійсну адресу е-пошти.",
+  "pleaseEnterValidEmail": "Введіть дійсну адресу е-пошти.",
   "@pleaseEnterValidEmail": {},
   "passwordsDoNotMatch": "Паролі не збігаються!",
   "@passwordsDoNotMatch": {},
   "repeatPassword": "Повторіть пароль",
   "@repeatPassword": {},
-  "pleaseChooseAtLeastChars": "Будь ласка, введіть не менше {min} символів.",
+  "pleaseChooseAtLeastChars": "Введіть не менше ніж {min} символів.",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
