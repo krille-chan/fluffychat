@@ -154,6 +154,7 @@ class ChatListItem extends StatelessWidget {
             ? 20.0
             : 14.0
         : 0.0;
+    final hasNotifications = room.notificationCount > 0;
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
@@ -197,9 +198,9 @@ class ChatListItem extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
-                  style: TextStyle(
-                    fontWeight: unread ? FontWeight.bold : null,
-                  ),
+                  style: unread
+                      ? const TextStyle(fontWeight: FontWeight.bold)
+                      : null,
                 ),
               ),
               if (isMuted)
@@ -213,7 +214,7 @@ class ChatListItem extends StatelessWidget {
               if (room.isFavourite || room.membership == Membership.invite)
                 Padding(
                   padding: EdgeInsets.only(
-                    right: room.notificationCount > 0 ? 4.0 : 0.0,
+                    right: hasNotifications ? 4.0 : 0.0,
                   ),
                   child: Icon(
                     Icons.push_pin,
@@ -325,9 +326,7 @@ class ChatListItem extends StatelessWidget {
                 curve: FluffyThemes.animationCurve,
                 padding: const EdgeInsets.symmetric(horizontal: 7),
                 height: unreadBubbleSize,
-                width: room.notificationCount == 0 &&
-                        !unread &&
-                        !room.hasNewMessages
+                width: !hasNotifications && !unread && !room.hasNewMessages
                     ? 0
                     : (unreadBubbleSize - 9) *
                             room.notificationCount.toString().length +
@@ -336,19 +335,19 @@ class ChatListItem extends StatelessWidget {
                   color: room.highlightCount > 0 ||
                           room.membership == Membership.invite
                       ? Colors.red
-                      : room.notificationCount > 0 || room.markedUnread
+                      : hasNotifications || room.markedUnread
                           ? Theme.of(context).colorScheme.primary
                           : Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
                 child: Center(
-                  child: room.notificationCount > 0
+                  child: hasNotifications
                       ? Text(
                           room.notificationCount.toString(),
                           style: TextStyle(
                             color: room.highlightCount > 0
                                 ? Colors.white
-                                : room.notificationCount > 0
+                                : hasNotifications
                                     ? Theme.of(context).colorScheme.onPrimary
                                     : Theme.of(context)
                                         .colorScheme
