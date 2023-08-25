@@ -60,3 +60,5 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+web/sqflite_sw.js
+web/sqlite3.wasm

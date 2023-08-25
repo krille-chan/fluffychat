@@ -4,3 +4,4 @@ cd assets/js/ && curl -L 'https://gitlab.com/famedly/company/frontend/libraries/
 cd assets/js/ && unzip olm.zip && cd ../../
 cd assets/js/ && rm olm.zip && cd ../../
 cd assets/js/ && mv javascript package && cd ../../
+dart run sqflite_common_ffi_web:setup --force
