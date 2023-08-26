@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/desktop_drop_downloader.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
@@ -64,6 +66,9 @@ Future<void> startGui(List<Client> clients) async {
       Logs().d('Unable to read PIN from Secure storage', e, s);
     }
   }
+
+  DesktopDropPlugin.onUnsupportedUriHandler =
+      DesktopDropDownloader.unsupportedUriCallback;
 
   // Start rendering the Flutter app and wrap it in an Applock.
   // We do this only for mobile applications as we saw routing

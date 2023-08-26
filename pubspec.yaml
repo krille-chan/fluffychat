@@ -148,6 +148,11 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  desktop_drop:
+    git:
+      url: https://github.com/TheOneWithTheBraid/flutter-plugins.git
+      path: packages/desktop_drop
+      ref: braid/unsupported-uri-scheme-callback
   geolocator_android:
     hosted:
       name: geolocator_android
