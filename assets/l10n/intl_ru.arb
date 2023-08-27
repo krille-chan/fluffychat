@@ -1249,7 +1249,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Упс! Что-то пошло не так…",
+  "oopsSomethingWentWrong": "Упс, что-то пошло не так…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1545,7 +1545,7 @@
       "username2": {}
     }
   },
-  "send": "Отправить",
+  "send": "Прислать",
   "@send": {
     "type": "text",
     "placeholders": {}
@@ -2474,7 +2474,7 @@
   "@noOtherDevicesFound": {},
   "reportErrorDescription": "О, нет. Что-то пошло не так. Пожалуйста, повторите попытку позже. При желании вы можете сообщить об ошибке разработчикам.",
   "@reportErrorDescription": {},
-  "report": "сообщить",
+  "report": "пожаловаться",
   "@report": {},
   "allRooms": "Все группы",
   "@allRooms": {
@@ -2519,7 +2519,7 @@
   "@exportEmotePack": {},
   "replace": "Заменить",
   "@replace": {},
-  "savedEmotePack": "Набор эмодзи сохранены в {path}.",
+  "savedEmotePack": "Набор эмодзи сохранены в {path}!",
   "@savedEmotePack": {
     "type": "text",
     "placeholders": {
