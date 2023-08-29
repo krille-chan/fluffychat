@@ -1137,10 +1137,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "8fa5d10ca27880fbf98143a36099f4d610d4772f847e6d97fa94dc20c11e450e"
+      sha256: "10389562a4562db6150291b538e025a9a1b7a79998a71d38cb5c78a34ca6b007"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.2"
+    version: "0.22.3"
   matrix_api_lite:
     dependency: transitive
     description:
