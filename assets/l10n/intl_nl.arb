@@ -958,7 +958,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Installeer FluffyChat: https://fluffychat.im\n2. Registreer of log in\n3. Open deze uitnodigingslink: {link}",
+  "inviteText": "{username} heeft je uitgenodigd voor FluffyChat.\n1. Bezoek https://fluffychat.im en installeer de app\n2. Registreer of log in\n3. Open deze uitnodigingslink:\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1334,7 +1334,7 @@
       "fileName": {}
     }
   },
-  "pleaseChoose": "Kies",
+  "pleaseChoose": "Maak een keuze",
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
@@ -1416,7 +1416,7 @@
       "username": {}
     }
   },
-  "redactMessage": "Verwijder",
+  "redactMessage": "Aangepast bericht",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -1426,7 +1426,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reject": "Weigeren",
+  "reject": "Afwijzen",
   "@reject": {
     "type": "text",
     "placeholders": {}
@@ -1639,12 +1639,12 @@
       "senderName": {}
     }
   },
-  "setAsCanonicalAlias": "Instellen als hoofdalias",
+  "setAsCanonicalAlias": "Als hoofdalias instellen",
   "@setAsCanonicalAlias": {
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Aangepaste emoticons inschakelen",
+  "setCustomEmotes": "Aangepaste emoticons instellen",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -1743,7 +1743,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "submit": "Verstuur",
+  "submit": "Indienen",
   "@submit": {
     "type": "text",
     "placeholders": {}
@@ -1964,7 +1964,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Achtergrond",
+  "wallpaper": "Achtergrond:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2368,7 +2368,7 @@
       "mxid": {}
     }
   },
-  "commandHint_markasdm": "Markeer als privéberichtenkamer",
+  "commandHint_markasdm": "Markeer als privéberichtenkamer voor Matrix ID",
   "@commandHint_markasdm": {},
   "commandHint_markasgroup": "Markeer als groep",
   "@commandHint_markasgroup": {},
@@ -2539,5 +2539,68 @@
   "pleaseTryAgainLaterOrChooseDifferentServer": "Probeer het later nog eens of kies een andere server.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "signInWithPassword": "Aanmelden met wachtwoord",
-  "@signInWithPassword": {}
+  "@signInWithPassword": {},
+  "chatPermissions": "Chat toestemmingen",
+  "@chatPermissions": {},
+  "chatDescription": "Chatbeschrijving",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Chatbeschrijving gewijzigd",
+  "@chatDescriptionHasBeenChanged": {},
+  "noChatDescriptionYet": "Nog geen chatbeschrijving gemaakt.",
+  "@noChatDescriptionYet": {},
+  "tryAgain": "Opnieuw proberen",
+  "@tryAgain": {},
+  "redactMessageDescription": "Het bericht zal worden aangepast voor alle deelnemers in dit gesprek. Dit kan niet ongedaan gemaakt worden.",
+  "@redactMessageDescription": {},
+  "redactedByBecause": "Aangepast door {username}, reden: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "profileNotFound": "De persoon kan niet gevonden worden op de server. Misschien is er een verbindingsprobleem of de persoon bestaat niet.",
+  "@profileNotFound": {},
+  "createGroup": "Groep aanmaken",
+  "@createGroup": {},
+  "inviteContactToGroupQuestion": "Wil je {contact} uitnodigingen voor de chat \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "anyoneCanKnock": "Iedereen kan kloppen",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Niemand kan toetreden",
+  "@noOneCanJoin": {},
+  "optionalRedactReason": "(Optioneel) Reden voor aanpassing van dit bericht...",
+  "@optionalRedactReason": {},
+  "addChatDescription": "Voeg een chatbeschrijving toe",
+  "@addChatDescription": {},
+  "invalidServerName": "Foute servernaam",
+  "@invalidServerName": {},
+  "messagesStyle": "Berichten:",
+  "@messagesStyle": {},
+  "shareInviteLink": "Uitnodigingslink delen",
+  "@shareInviteLink": {},
+  "redactedBy": "Aangepast door {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "directChat": "Directe chat",
+  "@directChat": {},
+  "setChatDescription": "Chatbeschrijving instellen",
+  "@setChatDescription": {},
+  "setTheme": "Thema instellen:",
+  "@setTheme": {},
+  "setColorTheme": "Kleurthema instellen:",
+  "@setColorTheme": {},
+  "invite": "Uitnodigen",
+  "@invite": {},
+  "requests": "Verzoeken",
+  "@requests": {},
+  "inviteGroupChat": "📨 Groeps-chat uitnodiging",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Privé-chat uitnodiging",
+  "@invitePrivateChat": {}
 }
