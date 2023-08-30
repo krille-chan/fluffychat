@@ -6,7 +6,7 @@ const ftypAtom = 0x66747970; // 'ftyp'
 const metaAtom = 0x6d657461; // 'meta'
 const freeAtom = 0x66726565; // 'free'
 
-void metadataNuller(Uint8List file) {
+void nullMetadata(Uint8List file) {
   final blob = ByteData.sublistView(file);
   final bool isMp4Container =
       blob.getUint32(uint32Size, Endian.big) == ftypAtom;
