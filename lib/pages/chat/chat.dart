@@ -31,6 +31,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/utils/metadata_nuller.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -617,8 +618,10 @@ class ChatController extends State<ChatPageWithRoom> {
     );
     if (result == null) return;
     final audioFile = File(result.path);
+    var audioFileBytes = audioFile.readAsBytesSync();
+    nullMetadata(audioFileBytes);
     final file = MatrixAudioFile(
-      bytes: audioFile.readAsBytesSync(),
+      bytes: audioFileBytes,
       name: audioFile.path,
     );
     await room.sendFileEvent(
