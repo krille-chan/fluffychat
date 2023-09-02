@@ -776,6 +776,11 @@
         "type": "text",
         "placeholders": {}
     },
+    "emoteKeyboardNoRecents": "Recently-used emotes will appear here...",
+    "@emoteKeyboardNoRecents": {
+        "type": "text",
+        "placeholders": {}
+    },
     "emotePacks": "Emote packs for room",
     "@emotePacks": {
         "type": "text",
