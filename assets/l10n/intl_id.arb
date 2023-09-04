@@ -2602,5 +2602,10 @@
   "inviteGroupChat": "📨 Undang percakapan grup",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Undang percakapan privat",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Emote yang telah digunakan akan muncul di sini...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
