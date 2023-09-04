@@ -2605,5 +2605,10 @@
   "inviteGroupChat": "📨 دعوة الدردشة الجماعية",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 دعوة دردشة خاصة",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "التعبيرات المستخدمة مؤخرًا ستظهر هنا ...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
