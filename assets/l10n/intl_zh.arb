@@ -2603,5 +2603,10 @@
   "inviteGroupChat": "📨 邀请至群聊",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 邀请至私聊",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "最近使用过的表情会出现在这里...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
