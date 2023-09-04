@@ -2557,11 +2557,11 @@
   "@anyoneCanKnock": {},
   "noOneCanJoin": "Kimse katılamaz",
   "@noOneCanJoin": {},
-  "inviteContactToGroupQuestion": "{contact} kişisini \"{groupName}\" sohbetine davet etmek istiyor misiniz",
+  "inviteContactToGroupQuestion": "{contact} kişisini \"{groupName}\" sohbetine davet etmek istiyor musunuz?",
   "@inviteContactToGroupQuestion": {},
   "tryAgain": "Tekrar deneyin",
   "@tryAgain": {},
-  "redactMessageDescription": "Bu mesaj bu görüşmedeki herkes için düzenlencek. Bu işlem geri alınamaz.",
+  "redactMessageDescription": "Bu mesaj bu görüşmedeki herkes için düzenlenecek. Bu işlem geri alınamaz.",
   "@redactMessageDescription": {},
   "optionalRedactReason": "(İsteğe bağlı) Bu mesajı düzenleme nedeni…",
   "@optionalRedactReason": {},
@@ -2603,5 +2603,10 @@
   "inviteGroupChat": "📨 Grup sohbetine davet et",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Gizli sohbete davet et",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Son kullanılan ifadeler burada görünecek...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
