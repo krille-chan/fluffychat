@@ -18,6 +18,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
       - run: flutter pub get
@@ -50,6 +51,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
