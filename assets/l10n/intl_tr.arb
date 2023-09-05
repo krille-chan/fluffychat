@@ -1578,7 +1578,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendMessages": "Mesaj gönder",
+  "sendMessages": "Mesajları gönder",
   "@sendMessages": {
     "type": "text",
     "placeholders": {}
@@ -2552,5 +2552,61 @@
   "setTheme": "Temayı ayarla:",
   "@setTheme": {},
   "setColorTheme": "Renk temasını ayarla:",
-  "@setColorTheme": {}
+  "@setColorTheme": {},
+  "anyoneCanKnock": "Herkes tıklatabilir",
+  "@anyoneCanKnock": {},
+  "noOneCanJoin": "Kimse katılamaz",
+  "@noOneCanJoin": {},
+  "inviteContactToGroupQuestion": "{contact} kişisini \"{groupName}\" sohbetine davet etmek istiyor musunuz?",
+  "@inviteContactToGroupQuestion": {},
+  "tryAgain": "Tekrar deneyin",
+  "@tryAgain": {},
+  "redactMessageDescription": "Bu mesaj bu görüşmedeki herkes için düzenlenecek. Bu işlem geri alınamaz.",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "(İsteğe bağlı) Bu mesajı düzenleme nedeni…",
+  "@optionalRedactReason": {},
+  "invite": "Davet et",
+  "@invite": {},
+  "addChatDescription": "Sohbet açıklaması ekle",
+  "@addChatDescription": {},
+  "chatPermissions": "Sohbet izinleri",
+  "@chatPermissions": {},
+  "chatDescription": "Sohbet açıklaması",
+  "@chatDescription": {},
+  "noChatDescriptionYet": "Daha sohbet açıklaması oluşturulmadı.",
+  "@noChatDescriptionYet": {},
+  "invalidServerName": "Geçersiz sunucu adı",
+  "@invalidServerName": {},
+  "redactedBy": "{username} tarafından düzenlendi",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "redactedByBecause": "{username} tarafından \"{reason}\" nedeniyle düzenlendi",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "setChatDescription": "Sohbet açıklamasını ayarla",
+  "@setChatDescription": {},
+  "chatDescriptionHasBeenChanged": "Sohbet açıklaması değişti",
+  "@chatDescriptionHasBeenChanged": {},
+  "directChat": "Doğrudan sohbet",
+  "@directChat": {},
+  "requests": "İstek",
+  "@requests": {},
+  "inviteGroupChat": "📨 Grup sohbetine davet et",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Gizli sohbete davet et",
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Son kullanılan ifadeler burada görünecek...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
