@@ -2603,5 +2603,10 @@
   "inviteGroupChat": "📨 Kutsu vestlusrühma",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Kutsu omavahelisele vestlusele",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Hiljuti kasutatud emotikonid kuvame siin...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }

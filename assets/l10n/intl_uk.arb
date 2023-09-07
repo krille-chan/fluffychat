@@ -2605,5 +2605,10 @@
   "inviteGroupChat": "📨 Запросити до групової бесіди",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Запросити до приватної бесіди",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Тут з'являться нещодавно використані смайлики...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
