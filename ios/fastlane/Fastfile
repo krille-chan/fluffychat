@@ -20,14 +20,22 @@ platform :ios do
   lane :beta do
     increment_build_number(
       xcodeproj: "Runner.xcodeproj",
-      build_number: latest_testflight_build_number + 1
+      build_number: latest_testflight_build_number(api_key_path: "fastlane/api_key.json") + 1
     )
     re = /version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*/i
     config = File.read("../../pubspec.yaml")
     version_name = config.match(re).captures[0]
     increment_version_number(version_number: version_name)
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    upload_to_testflight(distribute_external: true, groups: "FluffyChat Betatest", changelog: "Bugfixes and performance improvements.")
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner"
+    )
+    upload_to_testflight(
+      distribute_external: true,
+      groups: "FluffyChat Betatest",
+      changelog: "Bugfixes and performance improvements.",
+      api_key_path: "fastlane/api_key.json"
+    )
   end
 end
 

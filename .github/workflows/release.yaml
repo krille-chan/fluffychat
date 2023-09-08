@@ -1,9 +1,10 @@
 name: Release Workflow
 
 on:
-  release:
-    types:
-      - created
+  pull_request:
+  #release:
+  #  types:
+  #    - created
 
 concurrency:
   group: release_workflow
@@ -11,6 +12,7 @@ concurrency:
 
 jobs:
   build_web:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,6 +47,7 @@ jobs:
 
   build_apk:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -77,6 +80,7 @@ jobs:
 
   build_linux:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -102,6 +106,7 @@ jobs:
 
   deploy_playstore:
     runs-on: ubuntu-latest
+    if: false
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -160,8 +165,6 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Setup Xcode version
-        uses: maxim-lobanov/setup-xcode@v1.5.1
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -171,21 +174,64 @@ jobs:
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter pub get
       - name: Update fastlane
-        run: bundle install && bundle update fastlane
+        run: bundle install
         working-directory: ios
-      - name: Import iOS Certificates
-        run: print('TODO') # https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install Cocoapod Dependencies
         working-directory: ios
         run: pod install
+      - name: Provide api key file
+        working-directory: ios/fastlane
+        env:
+          APPSTORE_API_KEY: ${{ secrets.APPSTORE_API_KEY }}
+        run: echo $APPSTORE_API_KEY >> api_key.json
+      - name: Install the Apple certificate and provisioning profile
+        # To update this job or the secrets in it, take a look at:
+        # https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          SHARE_PROVISION_PROFILE_BASE64: ${{ secrets.SHARE_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          SHARE_PATH=$RUNNER_TEMP/share_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          echo -n "$SHARE_PROVISION_PROFILE_BASE64" | base64 --decode -o $SHARE_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $SHARE_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Push a new beta build to TestFlight
         working-directory: ios
         env:
-          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          FASTLANE_DONT_STORE_PASSWORD: 1
         run: bundle exec fastlane beta
+      - name: Clean up keychain and provisioning profile
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
 
   promote_snapcraft:
     runs-on: ubuntu-latest
+    if: false
     env:
       SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
     steps:

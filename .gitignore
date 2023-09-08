@@ -53,6 +53,7 @@ lib/l10n_old
 ios/Flutter/.last_build_id
 ios/Podfile.lock
 ios/Runner.ipa
+ios/Gemfile.lock
 
 /windows/out
 /winuwp/out
@@ -60,3 +61,4 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+ios/fastlane/api_key.json
