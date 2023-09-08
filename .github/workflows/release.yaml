@@ -132,20 +132,57 @@ jobs:
       - name: Get Tag Name
         id: tag_name
         run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-      - name: Deploy Android Release
+      - name: Copy aab file to build dir
         run: |
           mkdir -p build/android
           cp build/app/outputs/bundle/release/app-release.aab build/android/
-          cd android
-          bundle install
-          bundle update fastlane
-          bundle exec fastlane deploy_internal_test
+      - name: Update fastlane
+        run: bundle install && bundle update fastlane
+        working-directory: android
+      - name: Deploy to Internal test
+        working-directory: android
+        run: bundle exec fastlane deploy_internal_test
+      - name: Deploy Android Release
+        working-directory: android
+        run: |
           if [[ $GITHUB_REF_NAME == rc* ]]; then
               bundle exec fastlane deploy_candidate
           else
               bundle exec fastlane deploy_release
           fi
-          cd ..
+
+  deploy_testflight:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Setup Xcode version
+        uses: maxim-lobanov/setup-xcode@v1.5.1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - run: gem install fastlane -NV
+      - name: Apply Google Services Patch
+        run: git apply ./scripts/enable-android-google-services.patch
+      - run: flutter pub get
+      - name: Update fastlane
+        run: bundle install && bundle update fastlane
+        working-directory: ios
+      - name: Import iOS Certificates
+        run: print('TODO') # https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+      - name: Install Cocoapod Dependencies
+        working-directory: ios
+        run: pod install
+      - name: Push a new beta build to TestFlight
+        working-directory: ios
+        env:
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        run: bundle exec fastlane beta
 
   promote_snapcraft:
     runs-on: ubuntu-latest
