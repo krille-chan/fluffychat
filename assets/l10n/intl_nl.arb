@@ -2602,5 +2602,10 @@
   "inviteGroupChat": "📨 Groeps-chat uitnodiging",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Privé-chat uitnodiging",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Recent-gebruikte emoticons zullen hier verschijnen...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
