@@ -938,7 +938,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} te je pozvao/la u FluffyChat. \n1. Instaliraj FluffyChat: https://fluffychat.im \n2. Registriraj ili prijavi se \n3. Otvori poveznicu poziva: {link}",
+  "inviteText": "{username} te je pozvao/la u FluffyChat. \n1. Posjeti strnicu fluffychat.im i instaliraj aplikaciju \n2. Registriraj ili prijavi se \n3. Otvori poveznicu poziva: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1911,7 +1911,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Slika pozadine",
+  "wallpaper": "Pozadina:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2540,5 +2540,73 @@
   "exportEmotePack": "Izvezi paket emotikona kao .zip",
   "@exportEmotePack": {},
   "sendTypingNotifications": "Pošalji pismene obavijesti",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "setColorTheme": "Postavi boju teme:",
+  "@setColorTheme": {},
+  "requests": "Zahtjevi",
+  "@requests": {},
+  "tryAgain": "Pokušaj ponovo",
+  "@tryAgain": {},
+  "messagesStyle": "Poruke:",
+  "@messagesStyle": {},
+  "chatDescription": "Opis razgovora",
+  "@chatDescription": {},
+  "invalidServerName": "Neispravno ime servera",
+  "@invalidServerName": {},
+  "chatPermissions": "Dozvole za razgovor",
+  "@chatPermissions": {},
+  "setChatDescription": "Postavi opis rzgovora",
+  "@setChatDescription": {},
+  "redactedBy": "Preuređeno od {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "optionalRedactReason": "(Opcionalno) Razlog za redigiranje ove poruke …",
+  "@optionalRedactReason": {},
+  "inviteContactToGroupQuestion": "Želiš li pozvati {contact} u razgovor grupe „{groupName}”?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "Preuređeno od {username} zbog: „{reason}”",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "anyoneCanKnock": "Svatko smije pokucati",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "Poruka će se redigirati za sve sudionike u ovom razgovoru. To se ne može poništiti.",
+  "@redactMessageDescription": {},
+  "addChatDescription": "Dodaj opis razgovora",
+  "@addChatDescription": {},
+  "directChat": "Izravni razgovor",
+  "@directChat": {},
+  "noOneCanJoin": "Nitko se ne može pridružiti",
+  "@noOneCanJoin": {},
+  "inviteGroupChat": "📨 Pozovi u grupni razgovor",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Pozovi u privatni razgovor",
+  "@invitePrivateChat": {},
+  "noChatDescriptionYet": "Opis razgovora još nije stvoren.",
+  "@noChatDescriptionYet": {},
+  "chatDescriptionHasBeenChanged": "Opis razgovora je promijenjen",
+  "@chatDescriptionHasBeenChanged": {},
+  "profileNotFound": "Korisnik nije pronađen na poslužitelju. Možda postoji problem s vezom ili korisnik ne postoji.",
+  "@profileNotFound": {},
+  "shareInviteLink": "Dijeli poveznicu za poziv",
+  "@shareInviteLink": {},
+  "emoteKeyboardNoRecents": "Ovdje će se pojaviti nedavno korišteni emotikoni …",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "Postavi temu:",
+  "@setTheme": {},
+  "createGroup": "Stvori grupu",
+  "@createGroup": {},
+  "invite": "Pozovi",
+  "@invite": {}
 }
