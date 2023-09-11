@@ -35,6 +35,10 @@ platform :android do
     end
   end
 
+  lane :internal_test_changelog do
+    changelog_from_git_commits(commits_count: 1)
+  end
+
   lane :deploy_internal_test do
     versions = google_play_track_version_codes(
         track: "internal",
