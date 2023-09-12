@@ -35,17 +35,18 @@ platform :android do
     end
   end
 
-  lane :internal_test_changelog do
-    changelog_from_git_commits(commits_count: 1)
-  end
-
   lane :deploy_internal_test do
     versions = google_play_track_version_codes(
         track: "internal",
         json_key: "./keys.json"
       )
     last_version = versions[0].to_i
-    upload_to_play_store(track: 'internal', aab: '../build/app/outputs/bundle/release/app-release.aab', version_code: "#{last_version+1}")
+    upload_to_play_store(
+      track: 'internal',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      version_code: "#{last_version+1}",
+      changelog: changelog_from_git_commits(commits_count: 1)
+    )
   end
 
   lane :deploy_candidate do

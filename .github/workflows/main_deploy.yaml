@@ -76,6 +76,5 @@ jobs:
           cd android
           bundle install
           bundle update fastlane
-          bundle exec fastlane internal_test_changelog
           bundle exec fastlane deploy_internal_test
           cd ..
