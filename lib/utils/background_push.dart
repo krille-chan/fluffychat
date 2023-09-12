@@ -20,9 +20,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app_badger/flutter_app_badger.dart';
@@ -174,7 +173,11 @@ class BackgroundPush {
           currentPushers.first.lang == 'en' &&
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppConfig.pushNotificationsPusherFormat) {
+              AppConfig.pushNotificationsPusherFormat &&
+          mapEquals(
+            currentPushers.single.data.additionalProperties,
+            {"data_message": pusherDataMessageFormat},
+          )) {
         Logs().i('[Push] Pusher already set');
       } else {
         Logs().i('Need to set new pusher');
@@ -211,6 +214,7 @@ class BackgroundPush {
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
               format: AppConfig.pushNotificationsPusherFormat,
+              additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
           ),
@@ -221,6 +225,12 @@ class BackgroundPush {
       }
     }
   }
+
+  final pusherDataMessageFormat = Platform.isAndroid
+      ? 'android'
+      : Platform.isIOS
+          ? 'ios'
+          : null;
 
   bool _wentToRoomOnStartup = false;
 
