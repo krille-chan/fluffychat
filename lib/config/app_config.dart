@@ -62,7 +62,7 @@ abstract class AppConfig {
       'Push notifications for FluffyChat';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
   static const String pushNotificationsGatewayUrl =
-      'https://push.fluffychat.im/_matrix/push/v1/notify';
+      'https://push-qa.fluffychat.im/_matrix/push/v1/notify';
   static const String pushNotificationsPusherFormat = 'event_id_only';
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
