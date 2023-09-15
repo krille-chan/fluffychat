@@ -89,7 +89,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release --target-platform linux-x64
       - name: Create archive
-        run: tar -czf fluffychat-linux-x64.tar.gz build/linux/x64/release/bundle/
+        run: tar -czf fluffychat-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
