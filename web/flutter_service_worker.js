@@ -81,11 +81,11 @@ const RESOURCES = {"canvaskit/chromium/canvaskit.js": "96ae916cd2d1b7320fff853ee
 "splash/img/light-2x.png": "9371a9e18df59f2bbe9b32e04c3fc5d4",
 "splash/img/light-1x.png": "db5b72b7f4b38640c974f20d9c90f464",
 "splash/img/dark-2x.png": "9371a9e18df59f2bbe9b32e04c3fc5d4",
-"index.html": "d13a74e6f5adc86012d43e2e488567a0",
-"/": "d13a74e6f5adc86012d43e2e488567a0",
+"index.html": "61ce4c2f5997e0bbaf9241f60672ab03",
+"/": "61ce4c2f5997e0bbaf9241f60672ab03",
 "favicon.png": "a409751f0ecf6dee76fb350d7402f9be",
 "auth.html": "f03ff41ec673844136dfbd81be79aa80",
-"main.dart.js": "ea08bc90e2c991ff491b1afb3b359904",
+"main.dart.js": "9df26b46261817f650e14f4b103b56ba",
 "manifest.json": "cc4b6aa791018840b65fd0b0e325b201"};
 // The application shell files that are downloaded before a service worker can
 // start.
