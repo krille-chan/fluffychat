@@ -2605,5 +2605,10 @@
   "inviteGroupChat": "📨 Convidar a conversa en grupo",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Convidar a conversa privada",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "emoteKeyboardNoRecents": "Os emotes usados recentemente aparecerán aquí...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
