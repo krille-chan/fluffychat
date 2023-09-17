@@ -146,27 +146,3 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
-
-  promote_snapcraft:
-    runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v2
-      - name: Install expect
-        run: sudo apt-get update && sudo apt-get install -y expect
-      - name: Promote Snap
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              expect -c "
-              spawn snapcraft promote fluffychat --from-channel edge --to-channel candidate
-              expect \"Do you want to promote the current set to the 'candidate' channel? [y/N]:\"
-              send \"y\r\"
-              expect eof
-              "
-          else
-              snapcraft promote fluffychat --from-channel candidate --to-channel stable --yes
-          fi

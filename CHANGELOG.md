@@ -1,3 +1,6 @@
+## v1.14.1
+- fix: Routing bug when adding second account via password login
+
 ## v1.14.0
 Release with a lot of bugfixes and refactorings under the hood. FluffyChat now uses go_router instead of vrouter, works with the newest Flutter SDK and supports "reason" field for redactions. For Android there is a new "background-fetch mode" for Push Notifications which should make notifications in background faster and more reliable and reduce battery-usage.
 
