@@ -155,7 +155,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
 
-  void login() => context.go('/home/login');
+  void login() => context.go('${GoRouterState.of(context).fullPath}/login');
 
   @override
   void initState() {
