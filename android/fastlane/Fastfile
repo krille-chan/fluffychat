@@ -45,16 +45,36 @@ platform :android do
       track: 'internal',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
       version_code: "#{last_version+1}",
-      # Set root url as workaround for https://github.com/fastlane/fastlane/issues/21507#issuecomment-1720229951
-      root_url: "https://androidpublisher.googleapis.com/"
+      # Workaround for https://github.com/fastlane/fastlane/issues/21507#issuecomment-1720229951
+      root_url: "https://androidpublisher.googleapis.com/",
+      skip_upload_images: true,
+      skip_upload_screenshots: true
     )
   end
 
   lane :deploy_candidate do
-    upload_to_play_store(track: 'internal', track_promote_to: "beta", deactivate_on_promote: false, skip_upload_changelogs: true)
+    upload_to_play_store(
+      track: 'internal',
+      track_promote_to: "beta",
+      deactivate_on_promote: false,
+      skip_upload_changelogs: true,
+      # Workaround for https://github.com/fastlane/fastlane/issues/21507#issuecomment-1720229951
+      root_url: "https://androidpublisher.googleapis.com/",
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
   end
 
   lane :deploy_release do
-    upload_to_play_store(track: 'internal', track_promote_to: "production", deactivate_on_promote: false, skip_upload_changelogs: true)
+    upload_to_play_store(
+      track: 'internal',
+      track_promote_to: "production",
+      deactivate_on_promote: false,
+      skip_upload_changelogs: true,
+      # Workaround for https://github.com/fastlane/fastlane/issues/21507#issuecomment-1720229951
+      root_url: "https://androidpublisher.googleapis.com/",
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
   end
 end
