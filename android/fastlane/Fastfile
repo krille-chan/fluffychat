@@ -41,7 +41,13 @@ platform :android do
         json_key: "./keys.json"
       )
     last_version = versions[0].to_i
-    upload_to_play_store(track: 'internal', aab: '../build/app/outputs/bundle/release/app-release.aab', version_code: "#{last_version+1}")
+    upload_to_play_store(
+      track: 'internal',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      version_code: "#{last_version+1}",
+      # Set root url as workaround for https://github.com/fastlane/fastlane/issues/21507#issuecomment-1720229951
+      root_url: "https://androidpublisher.googleapis.com/"
+    )
   end
 
   lane :deploy_candidate do
