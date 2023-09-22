@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
 import '../../widgets/mxc_image.dart';
 import 'homeserver_app_bar.dart';
@@ -19,6 +20,7 @@ class HomeserverPickerView extends StatelessWidget {
     final identityProviders = controller.identityProviders;
     final errorText = controller.error;
     return LoginScaffold(
+      enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
         titleSpacing: 12,
         automaticallyImplyLeading: false,

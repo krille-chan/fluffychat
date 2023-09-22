@@ -6,22 +6,23 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class LoginScaffold extends StatelessWidget {
   final Widget body;
   final AppBar? appBar;
+  final bool enforceMobileMode;
 
   const LoginScaffold({
     Key? key,
     required this.body,
     this.appBar,
+    this.enforceMobileMode = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final isMobileMode = Matrix.of(context).client.isLogged() ||
-        !FluffyThemes.isColumnMode(context);
+    final isMobileMode =
+        enforceMobileMode || !FluffyThemes.isColumnMode(context);
     final scaffold = Scaffold(
       key: const Key('LoginScaffold'),
       appBar: appBar == null

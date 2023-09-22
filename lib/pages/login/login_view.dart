@@ -14,6 +14,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginScaffold(
+      enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
         leading: controller.loading ? null : const BackButton(),
         automaticallyImplyLeading: !controller.loading,
