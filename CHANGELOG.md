@@ -1,3 +1,6 @@
+## v1.14.2
+- hotfix for broken applock screen
+
 ## v1.14.1
 - fix: Routing bug when adding second account via password login
 
