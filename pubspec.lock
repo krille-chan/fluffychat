@@ -1357,14 +1357,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-  pin_code_text_field:
-    dependency: "direct main"
-    description:
-      name: pin_code_text_field
-      sha256: "3484c3ed4731327688734596d1fba1741f75da19366055116ecedcdffd87741a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.8.0"
   platform:
     dependency: transitive
     description:

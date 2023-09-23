@@ -70,7 +70,6 @@ dependencies:
   pasteboard: ^0.2.0
   path_provider: ^2.0.9
   permission_handler: ^10.0.0
-  pin_code_text_field: ^1.8.0
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.0

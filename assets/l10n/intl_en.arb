@@ -2519,5 +2519,13 @@
   "invite": "Invite",
   "requests": "Requests",
   "inviteGroupChat": "📨 Invite group chat",
-  "invitePrivateChat": "📨 Invite private chat"
+  "invitePrivateChat": "📨 Invite private chat",
+  "invalidInput": "Invalid input!",
+  "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+        "seconds": {}
+    }
+  }
 }
