@@ -31,7 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
-  flutter_app_lock: ^3.0.0
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
   flutter_foreground_task: ^6.0.0+1

@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -13,6 +12,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_security_view.dart';
@@ -65,7 +65,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     final currentLock =
         await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
     if (currentLock?.isNotEmpty ?? false) {
-      await AppLock.of(context)!.showLockScreen();
+      AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
       useRootNavigator: false,
@@ -86,17 +86,12 @@ class SettingsSecurityController extends State<SettingsSecurity> {
           obscureText: true,
           maxLines: 1,
           minLines: 1,
+          maxLength: 4,
         ),
       ],
     );
     if (newLock != null) {
-      await const FlutterSecureStorage()
-          .write(key: SettingKeys.appLockKey, value: newLock.single);
-      if (newLock.single.isEmpty) {
-        AppLock.of(context)!.disable();
-      } else {
-        AppLock.of(context)!.enable();
-      }
+      await AppLock.of(context).changePincode(newLock.single);
     }
   }
 

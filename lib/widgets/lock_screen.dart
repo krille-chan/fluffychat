@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 
 class LockScreen extends StatefulWidget {
@@ -40,25 +37,15 @@ class _LockScreenState extends State<LockScreen> {
       return;
     }
 
-    final correctPin = int.tryParse(
-      await const FlutterSecureStorage().read(key: SettingKeys.appLockKey) ??
-          '',
-    );
-    if (correctPin == null) {
-      ErrorReporter(
-        context,
-        'Lockscreen was displayed but pin was not stored correctly',
-      ).onErrorCallback(
-        Exception(),
-      );
-      AppLock.of(context)!.didUnlock();
+    if (AppLock.of(context).unlock(enteredPin.toString())) {
+      setState(() {
+        _inputBlocked = false;
+        _errorText = null;
+      });
+      _textEditingController.clear();
       return;
     }
 
-    if (correctPin == enteredPin) {
-      AppLock.of(context)!.didUnlock();
-      return;
-    }
     setState(() {
       _errorText = L10n.of(context)!.wrongPinEntered(_coolDownSeconds);
       _inputBlocked = true;
@@ -102,12 +89,10 @@ class _LockScreenState extends State<LockScreen> {
                     shrinkWrap: true,
                     children: [
                       Center(
-                        child: _inputBlocked
-                            ? const CircularProgressIndicator.adaptive()
-                            : Image.asset(
-                                'assets/info-logo.png',
-                                width: 256,
-                              ),
+                        child: Image.asset(
+                          'assets/info-logo.png',
+                          width: 256,
+                        ),
                       ),
                       TextField(
                         controller: _textEditingController,
@@ -125,6 +110,11 @@ class _LockScreenState extends State<LockScreen> {
                           hintText: '****',
                         ),
                       ),
+                      if (_inputBlocked)
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: LinearProgressIndicator(),
+                        ),
                     ],
                   ),
                 ),

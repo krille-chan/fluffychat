@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 import '../config/app_config.dart';
 import '../utils/custom_scroll_behaviour.dart';
@@ -14,11 +15,13 @@ import 'matrix.dart';
 class FluffyChatApp extends StatelessWidget {
   final Widget? testWidget;
   final List<Client> clients;
+  final String? pincode;
 
   const FluffyChatApp({
     Key? key,
     this.testWidget,
     required this.clients,
+    this.pincode,
   }) : super(key: key);
 
   /// getInitialLink may rereturn the value multiple times if this view is
@@ -43,12 +46,11 @@ class FluffyChatApp extends StatelessWidget {
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
-        builder: (context, child) => Navigator(
-          onGenerateRoute: (_) => MaterialPageRoute(
-            builder: (_) => Matrix(
-              clients: clients,
-              child: testWidget ?? child,
-            ),
+        builder: (context, child) => AppLockWidget(
+          pincode: pincode,
+          child: Matrix(
+            clients: clients,
+            child: testWidget ?? child,
           ),
         ),
       ),

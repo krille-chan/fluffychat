@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_app_lock/flutter_app_lock.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 
@@ -11,7 +10,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
-import 'widgets/lock_screen.dart';
 
 void main() async {
   Logs().i('Welcome to ${AppConfig.applicationName} <3');
@@ -65,18 +63,7 @@ Future<void> startGui(List<Client> clients) async {
     }
   }
 
-  // Start rendering the Flutter app and wrap it in an Applock.
-  // We do this only for mobile applications as we saw routing
-  // problems on other platforms if we wrap it always.
-  runApp(
-    PlatformInfos.isMobile
-        ? AppLock(
-            builder: (args) => FluffyChatApp(clients: clients),
-            lockScreen: const LockScreen(),
-            enabled: pin?.isNotEmpty ?? false,
-          )
-        : FluffyChatApp(clients: clients),
-  );
+  runApp(FluffyChatApp(clients: clients, pincode: pin));
 }
 
 /// Watches the lifecycle changes to start the application when it
