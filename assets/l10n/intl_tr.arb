@@ -2608,5 +2608,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "Geçersiz giriş!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Yanlış PIN girildi! {seconds} saniye sonra tekrar deneyin...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }
