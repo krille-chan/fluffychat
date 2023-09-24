@@ -24,12 +24,15 @@ class AppLockWidget extends StatefulWidget {
 class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   String? _pincode;
   bool _isLocked = false;
-  bool get isActive => _pincode != null;
+  bool get isActive =>
+      _pincode != null &&
+      int.tryParse(_pincode!) != null &&
+      _pincode!.length == 4;
 
   @override
   void initState() {
     _pincode = widget.pincode;
-    _isLocked = widget.pincode != null;
+    _isLocked = isActive;
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
