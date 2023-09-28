@@ -753,19 +753,21 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void redactEventsAction() async {
-    final reasonInput = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context)!.redactMessage,
-      message: L10n.of(context)!.redactMessageDescription,
-      isDestructiveAction: true,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context)!.optionalRedactReason,
-        ),
-      ],
-      okLabel: L10n.of(context)!.remove,
-      cancelLabel: L10n.of(context)!.cancel,
-    );
+    final reasonInput = selectedEvents.any((event) => event.status.isSent)
+        ? await showTextInputDialog(
+            context: context,
+            title: L10n.of(context)!.redactMessage,
+            message: L10n.of(context)!.redactMessageDescription,
+            isDestructiveAction: true,
+            textFields: [
+              DialogTextField(
+                hintText: L10n.of(context)!.optionalRedactReason,
+              ),
+            ],
+            okLabel: L10n.of(context)!.remove,
+            cancelLabel: L10n.of(context)!.cancel,
+          )
+        : <String>[];
     if (reasonInput == null) return;
     final reason = reasonInput.single.isEmpty ? null : reasonInput.single;
     for (final event in selectedEvents) {
