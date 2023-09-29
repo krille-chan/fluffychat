@@ -2260,5 +2260,15 @@
   "storeSecurlyOnThisDevice": "",
   "@storeSecurlyOnThisDevice": {},
   "iUnderstand": "",
-  "@iUnderstand": {}
+  "@iUnderstand": {},
+  "encryptThisChat": "",
+  "@encryptThisChat": {},
+  "letsStart": "",
+  "@letsStart": {},
+  "endToEndEncryption": "",
+  "@endToEndEncryption": {},
+  "openChat": "",
+  "@openChat": {},
+  "screenSharingDetail": "",
+  "@screenSharingDetail": {}
 }
