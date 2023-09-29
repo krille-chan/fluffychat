@@ -2245,5 +2245,14 @@
   "markAsRead": "Marcar como leído",
   "@markAsRead": {},
   "widgetName": "Nombre",
-  "@widgetName": {}
+  "@widgetName": {},
+  "updateNow": "Empezar actualización en segundo plano",
+  "@updateNow": {},
+  "bubbleSize": "Tamaño de la burbuja",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replace": "Reemplazar",
+  "@replace": {}
 }
