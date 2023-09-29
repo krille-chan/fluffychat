@@ -60,7 +60,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     return;
   }
 
-  bool unlock(String pincode) {
+  bool unlock(String? pincode) {
     final isCorrect = pincode == _pincode;
     if (isCorrect) {
       setState(() {

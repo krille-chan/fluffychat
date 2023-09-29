@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 
 class LockScreen extends StatefulWidget {
@@ -21,6 +22,20 @@ class _LockScreenState extends State<LockScreen> {
   int _coolDownSeconds = 5;
   bool _inputBlocked = false;
   final TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoggedIn();
+  }
+
+  void _checkLoggedIn() async {
+    if (Matrix.of(context).client.isLogged()) return;
+
+    final appLock = AppLock.of(context);
+    await appLock.changePincode(null);
+    appLock.unlock(null);
+  }
 
   void tryUnlock(BuildContext context) async {
     setState(() {
