@@ -379,13 +379,12 @@ class ChatController extends State<ChatPageWithRoom> {
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
 
-    eventId ??= timeline.events.first.eventId;
     Logs().v('Set read marker...', eventId);
     // ignore: unawaited_futures
     _setReadMarkerFuture = timeline.setReadMarker(eventId: eventId).then((_) {
       _setReadMarkerFuture = null;
     });
-    if (eventId == timeline.events.first.eventId) {
+    if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
       Matrix.of(context).backgroundPush?.cancelNotification(roomId);
     }
   }
