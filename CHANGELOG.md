@@ -1,3 +1,7 @@
+## v1.14.3
+- hotfix app lock still displayed even when account is logged out
+- Update to Flutter 3.13.6
+
 ## v1.14.2
 - hotfix for broken applock screen
 
