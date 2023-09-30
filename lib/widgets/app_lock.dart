@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -11,9 +12,11 @@ class AppLockWidget extends StatefulWidget {
   const AppLockWidget({
     required this.child,
     required this.pincode,
+    required this.clients,
     super.key,
   });
 
+  final List<Client> clients;
   final String? pincode;
   final Widget child;
 
@@ -35,6 +38,16 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     _isLocked = isActive;
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback(_checkLoggedIn);
+  }
+
+  void _checkLoggedIn(_) async {
+    if (widget.clients.any((client) => client.isLogged())) return;
+
+    await changePincode(null);
+    setState(() {
+      _isLocked = false;
+    });
   }
 
   @override
@@ -60,7 +73,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     return;
   }
 
-  bool unlock(String? pincode) {
+  bool unlock(String pincode) {
     final isCorrect = pincode == _pincode;
     if (isCorrect) {
       setState(() {

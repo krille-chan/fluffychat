@@ -48,6 +48,7 @@ class FluffyChatApp extends StatelessWidget {
         routerConfig: router,
         builder: (context, child) => AppLockWidget(
           pincode: pincode,
+          clients: clients,
           child: Matrix(
             clients: clients,
             child: testWidget ?? child,
