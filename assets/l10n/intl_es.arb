@@ -2169,5 +2169,43 @@
   "youAcceptedTheInvitation": "👍 Aceptaste la invitación",
   "@youAcceptedTheInvitation": {},
   "widgetEtherpad": "Nota de texto",
-  "@widgetEtherpad": {}
+  "@widgetEtherpad": {},
+  "commandHint_cuddle": "Mandar una carantoña",
+  "@commandHint_cuddle": {},
+  "supposedMxid": "Esto debería ser {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "importFromZipFile": "Importar de un archivo .zip",
+  "@importFromZipFile": {},
+  "updateAvailable": "Actualización para FluffyChat disponible!",
+  "@updateAvailable": {},
+  "exportEmotePack": "Exportar paquete de emotes como .zip",
+  "@exportEmotePack": {},
+  "savedEmotePack": "Paquete de emotes guardado en {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "importZipFile": "Importar archivo .zip",
+  "@importZipFile": {},
+  "addChatDescription": "Añadir una descripción del chat",
+  "@addChatDescription": {},
+  "sendTypingNotifications": "Enviar notificaciones \"está escribiendo\"",
+  "@sendTypingNotifications": {},
+  "importEmojis": "Importar emojis",
+  "@importEmojis": {},
+  "confirmMatrixId": "Por favor confirma tu Matrix ID para borrar tu cuenta.",
+  "@confirmMatrixId": {},
+  "notAnImage": "El archivo no es una imagen.",
+  "@notAnImage": {},
+  "commandHint_hug": "Mandar un abrazo",
+  "@commandHint_hug": {},
+  "importNow": "Importar ahora",
+  "@importNow": {}
 }

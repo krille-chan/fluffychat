@@ -2608,5 +2608,14 @@
   "createGroup": "Stvori grupu",
   "@createGroup": {},
   "invite": "Pozovi",
-  "@invite": {}
+  "@invite": {},
+  "invalidInput": "Neispravan unos!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Unesen je pogrešan PIN! Pokušaj ponovo za {seconds} sekunde …",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  }
 }

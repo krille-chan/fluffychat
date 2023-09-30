@@ -2610,5 +2610,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "مدخل غير صالح!",
+  "@invalidInput": {},
+  "wrongPinEntered": "تم إدخال رمز خاطئ! حاول مرة أخرى خلال {seconds} ثانية...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }

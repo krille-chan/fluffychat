@@ -2608,5 +2608,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "Vigane sisend!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Sisestasid vale PIN-koodi! Proovi uuesti {seconds} sekundi pärast...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }

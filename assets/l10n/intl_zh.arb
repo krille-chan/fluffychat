@@ -2608,5 +2608,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "无效的输入！",
+  "@invalidInput": {},
+  "wrongPinEntered": "输入的 PIN 码不正确！请 {seconds} 秒后重试…",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }

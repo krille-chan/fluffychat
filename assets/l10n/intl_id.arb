@@ -2607,5 +2607,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "Masukan tidak valid!",
+  "@invalidInput": {},
+  "wrongPinEntered": "PIN yang dimasukkan salah! Coba lagi dalam {seconds} detik...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }

@@ -2610,5 +2610,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "Недійсний ввід!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Введено неправильний PIN! Повторіть спробу за {seconds} секунд...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }

@@ -2607,5 +2607,14 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
+  },
+  "invalidInput": "Ongeldige invoer!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Verkeerde pin ingevoerd! Probeer het nog eens over {seconds} seconden...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
   }
 }
