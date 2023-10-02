@@ -322,7 +322,7 @@ class BackgroundPush {
               ?.content
               .tryGet<String>('type') ==
           ClientStoriesExtension.storiesRoomType;
-      FluffyChatApp.router.go('/${isStory ? 'stories' : 'rooms'}/$roomId');
+      FluffyChatApp.router.go('/${isStory ? 'rooms/stories' : 'rooms'}/$roomId');
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }
