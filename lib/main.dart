@@ -22,11 +22,6 @@ void main() async {
   Logs().nativeColors = !PlatformInfos.isIOS;
   final clients = await ClientManager.getClients();
 
-  // Preload first client
-  final firstClient = clients.firstOrNull;
-  await firstClient?.roomsLoading;
-  await firstClient?.accountDataLoading;
-
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
   // currently only supported on Android.
@@ -62,6 +57,11 @@ Future<void> startGui(List<Client> clients) async {
       Logs().d('Unable to read PIN from Secure storage', e, s);
     }
   }
+
+  // Preload first client
+  final firstClient = clients.firstOrNull;
+  await firstClient?.roomsLoading;
+  await firstClient?.accountDataLoading;
 
   runApp(FluffyChatApp(clients: clients, pincode: pin));
 }
