@@ -737,7 +737,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "{username} echó a {targetName}",
+  "kicked": "👞{username} echó a {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -745,7 +745,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "{username} echó y vetó a {targetName}",
+  "kickedAndBanned": "🙅{username} echó y vetó a {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1467,7 +1467,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Fondo de pantalla",
+  "wallpaper": "Fondo de pantalla:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2207,5 +2207,52 @@
   "commandHint_hug": "Mandar un abrazo",
   "@commandHint_hug": {},
   "importNow": "Importar ahora",
-  "@importNow": {}
+  "@importNow": {},
+  "hugContent": "{senderName} te abraza",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "otherCallingPermissions": "Micrófono, cámara y otros permisos de FluffyChat",
+  "@otherCallingPermissions": {},
+  "emailOrUsername": "Correo electrónico o nombre de usuario",
+  "@emailOrUsername": {},
+  "countFiles": "{count} archivos",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "discover": "Descubrir",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportUser": "Reportar usuario",
+  "@reportUser": {},
+  "voiceCall": "Llamada de voz",
+  "@voiceCall": {},
+  "reactedWith": "{sender} reaccionó con {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "markAsRead": "Marcar como leído",
+  "@markAsRead": {},
+  "widgetName": "Nombre",
+  "@widgetName": {},
+  "updateNow": "Empezar actualización en segundo plano",
+  "@updateNow": {},
+  "bubbleSize": "Tamaño de la burbuja",
+  "@bubbleSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "replace": "Reemplazar",
+  "@replace": {}
 }
