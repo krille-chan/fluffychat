@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:animations/animations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -61,8 +62,6 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   }
 
   bool get isLocked => _isLocked;
-  CrossFadeState get _crossFadeState =>
-      _isLocked ? CrossFadeState.showSecond : CrossFadeState.showFirst;
 
   Future<void> changePincode(String? pincode) async {
     await const FlutterSecureStorage().write(
@@ -95,11 +94,22 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) => Provider<AppLock>(
         create: (_) => this,
-        child: AnimatedCrossFade(
-          firstChild: widget.child,
-          secondChild: const LockScreen(),
-          crossFadeState: _crossFadeState,
+        child: PageTransitionSwitcher(
+          transitionBuilder: (
+            Widget child,
+            Animation<double> primaryAnimation,
+            Animation<double> secondaryAnimation,
+          ) {
+            return SharedAxisTransition(
+              animation: primaryAnimation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.vertical,
+              fillColor: Theme.of(context).scaffoldBackgroundColor,
+              child: child,
+            );
+          },
           duration: FluffyThemes.animationDuration,
+          child: _isLocked ? const LockScreen() : widget.child,
         ),
       );
 }
