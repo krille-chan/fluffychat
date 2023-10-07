@@ -50,7 +50,12 @@ extension MatrixFileExtension on MatrixFile {
 
   Future<String> getDownloadPathAndroid() async {
     final directory = await getDownloadDirectoryAndroid();
-    return '${directory.path}/$name';
+    var counter = 1;
+    var path = '${directory.path}/$name';
+    while (await File(path).exists()) {
+      path = '${directory.path}/(${counter++})$name';
+    }
+    return path;
   }
 
   Future<Directory> getDownloadDirectoryAndroid() async {
