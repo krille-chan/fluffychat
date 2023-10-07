@@ -57,8 +57,7 @@ extension LocalNotificationsExtension on MatrixState {
         );
     if (kIsWeb) {
       html.AudioElement()
-        ..src =
-            'assets/assets/sounds/WoodenBeaver_stereo_message-new-instant.ogg'
+        ..src = 'assets/assets/sounds/notification.ogg'
         ..autoplay = true
         ..load();
       html.Notification(
