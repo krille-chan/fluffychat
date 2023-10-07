@@ -180,6 +180,8 @@ class ChatListView extends StatelessWidget {
                     bottomNavigationBar: controller.displayNavigationBar
                         ? NavigationBar(
                             elevation: 4,
+                            labelBehavior:
+                                NavigationDestinationLabelBehavior.alwaysHide,
                             height: 64,
                             shadowColor:
                                 Theme.of(context).colorScheme.onBackground,
