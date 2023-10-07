@@ -1,7 +1,11 @@
 ## v1.14.4
+Minor bugfix release. Please note that because of a Flutter update FluffyChat is no longer
+compatible with iOS 11.
+
 - Translated using Weblate (Spanish) (José Muñoz)
 - Translated using Weblate (Spanish) (Yotta Mxt)
 - build: Add custom iOS notification sound (Krille)
+- build: Set minimum iOS version to 12
 - design: Hide Navigationbar labels (krille-chan)
 - design: New notification sound (krille-chan)
 - fix: Flutter warnings because of applock animation (krille-chan)
