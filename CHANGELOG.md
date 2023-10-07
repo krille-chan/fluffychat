@@ -1,3 +1,14 @@
+## v1.14.4
+- Translated using Weblate (Spanish) (José Muñoz)
+- Translated using Weblate (Spanish) (Yotta Mxt)
+- build: Add custom iOS notification sound (Krille)
+- design: Hide Navigationbar labels (krille-chan)
+- design: New notification sound (krille-chan)
+- fix: Flutter warnings because of applock animation (krille-chan)
+- fix: UIA requests with navigator (krille-chan)
+- fix: open story from push notification (Krille-chan)
+- refactor: Only preload client for GUI start (krille-chan)
+
 ## v1.14.3
 - hotfix app lock still displayed even when account is logged out
 - Update to Flutter 3.13.6
