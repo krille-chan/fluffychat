@@ -30,6 +30,7 @@ import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -469,9 +470,11 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void sendFileAction() async {
-    final result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      withData: true,
+    final result = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(
+        allowMultiple: true,
+        withData: true,
+      ),
     );
     if (result == null || result.files.isEmpty) return;
     await showDialog(
@@ -508,10 +511,13 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void sendImageAction() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      withData: true,
-      allowMultiple: true,
+    //AppLock.of(context).pauseWhile();
+    final result = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: true,
+        allowMultiple: true,
+      ),
     );
     if (result == null || result.files.isEmpty) return;
 

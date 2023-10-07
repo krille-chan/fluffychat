@@ -17,6 +17,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/utils/resize_image.dart';
 import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:fluffychat/utils/string_color.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/client_stories_extension.dart';
 
@@ -69,9 +70,11 @@ class AddStoryController extends State<AddStoryPage> {
   }
 
   void importMedia() async {
-    final picked = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      withData: true,
+    final picked = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: true,
+      ),
     );
     final file = picked?.files.firstOrNull;
     if (file == null) return;

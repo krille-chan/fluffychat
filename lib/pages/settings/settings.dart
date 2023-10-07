@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_view.dart';
@@ -135,9 +136,11 @@ class SettingsController extends State<Settings> {
         name: result.path,
       );
     } else {
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.image,
-        withData: true,
+      final result = await AppLock.of(context).pauseWhile(
+        FilePicker.platform.pickFiles(
+          type: FileType.image,
+          withData: true,
+        ),
       );
       final pickedFile = result?.files.firstOrNull;
       if (pickedFile == null) return;

@@ -17,6 +17,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
@@ -168,7 +169,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   Widget build(BuildContext context) => HomeserverPickerView(this);
 
   Future<void> restoreBackup() async {
-    final picked = await FilePicker.platform.pickFiles(withData: true);
+    final picked = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(withData: true),
+    );
     final file = picked?.files.firstOrNull;
     if (file == null) return;
     await showFutureLoadingDialog(

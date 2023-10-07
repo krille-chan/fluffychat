@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
@@ -18,9 +19,11 @@ class SettingsStyle extends StatefulWidget {
 
 class SettingsStyleController extends State<SettingsStyle> {
   void setWallpaperAction() async {
-    final picked = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      withData: false,
+    final picked = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: false,
+      ),
     );
     final pickedFile = picked?.files.firstOrNull;
 

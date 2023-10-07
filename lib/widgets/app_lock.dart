@@ -28,10 +28,12 @@ class AppLockWidget extends StatefulWidget {
 class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   String? _pincode;
   bool _isLocked = false;
+  bool _paused = false;
   bool get isActive =>
       _pincode != null &&
       int.tryParse(_pincode!) != null &&
-      _pincode!.length == 4;
+      _pincode!.length == 4 &&
+      !_paused;
 
   @override
   void initState() {
@@ -85,6 +87,15 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   void showLockScreen() => setState(() {
         _isLocked = true;
       });
+
+  Future<T> pauseWhile<T>(Future<T> future) async {
+    _paused = true;
+    try {
+      return await future;
+    } finally {
+      _paused = false;
+    }
+  }
 
   static AppLock of(BuildContext context) => Provider.of<AppLock>(
         context,

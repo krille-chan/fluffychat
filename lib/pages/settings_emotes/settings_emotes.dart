@@ -14,6 +14,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
@@ -221,9 +222,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
   void imagePickerAction(
     ValueNotifier<ImagePackImageContent?> controller,
   ) async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      withData: true,
+    final result = await AppLock.of(context).pauseWhile(
+      FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: true,
+      ),
     );
     final pickedFile = result?.files.firstOrNull;
     if (pickedFile == null) return;
@@ -279,14 +282,16 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final result = await showFutureLoadingDialog<Archive?>(
       context: context,
       future: () async {
-        final result = await FilePicker.platform.pickFiles(
-          type: FileType.custom,
-          allowedExtensions: [
-            'zip',
-            // TODO: add further encoders
-          ],
-          // TODO: migrate to stream, currently brrrr because of `archive_io`.
-          withData: true,
+        final result = await AppLock.of(context).pauseWhile(
+          FilePicker.platform.pickFiles(
+            type: FileType.custom,
+            allowedExtensions: [
+              'zip',
+              // TODO: add further encoders
+            ],
+            // TODO: migrate to stream, currently brrrr because of `archive_io`.
+            withData: true,
+          ),
         );
 
         if (result == null) return null;
