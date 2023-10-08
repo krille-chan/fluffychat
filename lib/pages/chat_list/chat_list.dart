@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -384,6 +385,11 @@ class ChatListController extends State<ChatList>
         searchServer = await Store().getItem(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
+
+      // Workaround for system UI overlay style not applied on app start
+      SystemChrome.setSystemUIOverlayStyle(
+        Theme.of(context).appBarTheme.systemOverlayStyle!,
+      );
     });
 
     _checkTorBrowser();
