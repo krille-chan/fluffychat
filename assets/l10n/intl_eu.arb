@@ -2533,5 +2533,76 @@
     }
   },
   "sendTypingNotifications": "Jakinarazi idazten nagoela",
-  "@sendTypingNotifications": {}
+  "@sendTypingNotifications": {},
+  "setColorTheme": "Ezarri kolore-gaia:",
+  "@setColorTheme": {},
+  "requests": "Eskaerak",
+  "@requests": {},
+  "tryAgain": "Saiatu berriro",
+  "@tryAgain": {},
+  "messagesStyle": "Mezuak:",
+  "@messagesStyle": {},
+  "chatDescription": "Txataren deskribapena",
+  "@chatDescription": {},
+  "invalidServerName": "Zerbitzari-izenak ez du balio",
+  "@invalidServerName": {},
+  "chatPermissions": "Txataren baimenak",
+  "@chatPermissions": {},
+  "setChatDescription": "Ezarri berriketaren deskribapena",
+  "@setChatDescription": {},
+  "redactedBy": "{username}(e)k atzera bota du",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "optionalRedactReason": "(Aukerakoa) Mezua atzera botatzearen arrazoia…",
+  "@optionalRedactReason": {},
+  "inviteContactToGroupQuestion": "{contact} \"{groupName}\" txatera gonbidatu nahi duzu?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "{username}(e)k atzera bota du \"{reason}\" dela-eta",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "anyoneCanKnock": "Edonork jo dezake atean",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
+  "@redactMessageDescription": {},
+  "addChatDescription": "Gehitu txat honen deskribapena",
+  "@addChatDescription": {},
+  "directChat": "Txat zuzena",
+  "@directChat": {},
+  "noOneCanJoin": "Ezin du inork bat egin",
+  "@noOneCanJoin": {},
+  "wrongPinEntered": "PIN okerra! Saiatu berriro {seconds} segundu barru…",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "noChatDescriptionYet": "Ez da txaterako deskribapenik sortu oraindik.",
+  "@noChatDescriptionYet": {},
+  "chatDescriptionHasBeenChanged": "Txataren deskribapena aldatu da",
+  "@chatDescriptionHasBeenChanged": {},
+  "profileNotFound": "Ezin izan da erabiltzailea zerbitzarian aurkitu. Agian arazo bat dago konexioarekin edo erabiltzailea ez da existitzen.",
+  "@profileNotFound": {},
+  "shareInviteLink": "Partekatu gonbidapen-esteka",
+  "@shareInviteLink": {},
+  "emoteKeyboardNoRecents": "Berriki erabilitako emoteak hemen ageriko dira…",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "Ezarri gaia:",
+  "@setTheme": {},
+  "createGroup": "Sortu taldea",
+  "@createGroup": {},
+  "invite": "Gonbidatu",
+  "@invite": {}
 }
