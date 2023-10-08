@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:animations/animations.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/lock_screen.dart';
 
 class AppLockWidget extends StatefulWidget {
@@ -105,22 +103,11 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) => Provider<AppLock>(
         create: (_) => this,
-        child: PageTransitionSwitcher(
-          transitionBuilder: (
-            Widget child,
-            Animation<double> primaryAnimation,
-            Animation<double> secondaryAnimation,
-          ) {
-            return SharedAxisTransition(
-              animation: primaryAnimation,
-              secondaryAnimation: secondaryAnimation,
-              transitionType: SharedAxisTransitionType.vertical,
-              fillColor: Theme.of(context).scaffoldBackgroundColor,
-              child: child,
-            );
-          },
-          duration: FluffyThemes.animationDuration,
-          child: _isLocked ? const LockScreen() : widget.child,
+        child: Stack(
+          children: [
+            widget.child,
+            if (isLocked) const LockScreen(),
+          ],
         ),
       );
 }

@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -62,9 +60,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
   }
 
   void setAppLockAction() async {
-    final currentLock =
-        await const FlutterSecureStorage().read(key: SettingKeys.appLockKey);
-    if (currentLock?.isNotEmpty ?? false) {
+    if (AppLock.of(context).isActive) {
       AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
