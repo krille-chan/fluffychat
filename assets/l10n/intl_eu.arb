@@ -6,12 +6,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "accept": "Ados",
+  "accept": "Onartu",
   "@accept": {
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username}-(e)k gonbidapena onartu du",
+  "acceptedTheInvitation": "👍 {username}(e)k gonbidapena onartu du",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -23,7 +23,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "🔐 {username}(e)k puntuz puntuko zifraketa gaitu du",
+  "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifraketa gaitu du",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -52,49 +52,49 @@
       "senderName": {}
     }
   },
-  "anyoneCanJoin": "Edonork egin dezake bat",
+  "anyoneCanJoin": "Edonor batu daiteke",
   "@anyoneCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "archive": "Artxibatu",
+  "archive": "Fitxategia",
   "@archive": {
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Ba al dute gonbidatutako erabiltzaileek bat egiteko baimenik?",
+  "areGuestsAllowedToJoin": "Batu daitezke bisitan dauden erabiltzaileak?",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "Ziur al zaude?",
+  "areYouSure": "Ziur zaude?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Beste pertsona ziurtatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze gakoa.",
+  "askSSSSSign": "Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
   },
-  "askVerificationRequest": "{username}(r)en egiaztatze eskaera onartu?",
+  "askVerificationRequest": "{username}(r)en egiaztaketa-eskaera onartu?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "banFromChat": "Berriketa debekatu",
+  "banFromChat": "Kanporatu txatetik",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
   },
-  "banned": "Debekatuta",
+  "banned": "Kanporatuta",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username}(e)k {targetName} debekatu du",
+  "bannedUser": "{username}(e)k {targetName}(r)i debekua ezarri dio",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -112,7 +112,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheChatAvatar": "{username}(e)k berriketako abatarra aldatu du",
+  "changedTheChatAvatar": "{username}(e)k txataren abatarra aldatu du",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -127,7 +127,7 @@
       "description": {}
     }
   },
-  "changedTheChatNameTo": "{username}(e)k berriketaren izena '{chatname}'-(e)ra aldatu du",
+  "changedTheChatNameTo": "{username}(e)k txataren izena '{chatname}'(e)ra aldatu du",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -135,14 +135,14 @@
       "chatname": {}
     }
   },
-  "changedTheChatPermissions": "{username}(e)k berriketaren baimenak aldatu ditu",
+  "changedTheChatPermissions": "{username}(e)k txataren baimenak aldatu ditu",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username}(e)k bere izena aldatu du. Aurrerantzean '{displayname}' izango da",
+  "changedTheDisplaynameTo": "{username}(e)k bere ezizena aldatu du. Aurrerantzean '{displayname}' izango da",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -150,14 +150,14 @@
       "displayname": {}
     }
   },
-  "changedTheGuestAccessRules": "{username}(e)k gonbidatuen sarbide-arauak aldatu ditu",
+  "changedTheGuestAccessRules": "{username}(e)k bisitarien sarbide-arauak aldatu ditu",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username}(e)k gonbidatuen arauak aldatu ditu: {rules}",
+  "changedTheGuestAccessRulesTo": "{username}(e)k bisitarien arauak aldatu ditu: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -165,14 +165,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username}(e)k historiaren ikusgarritasuna aldatu du",
+  "changedTheHistoryVisibility": "{username}(e)k historiaren ikusgaitasuna aldatu du",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username}(e)k historiaren ikusgarritasuna {rules}-(e)ra aldatu du",
+  "changedTheHistoryVisibilityTo": "{username}(e)k historiaren ikusgaitasuna {rules}-(e)ra aldatu du",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -180,14 +180,14 @@
       "rules": {}
     }
   },
-  "changedTheJoinRules": "{username}(e)k batze arauak aldatu ditu",
+  "changedTheJoinRules": "{username}(e)k batzeko arauak aldatu ditu",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username}(e)k batzeko arauak {joinRules}-(e)ra aldatu ditu",
+  "changedTheJoinRulesTo": "{username}(e)k batzeko arauak aldatu ditu: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -209,7 +209,7 @@
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "{username}(e)k gonbidapen esteka aldatu du",
+  "changedTheRoomInvitationLink": "{username}(e)k gonbidapen-esteka aldatu du",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -231,7 +231,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Aldatu atzekaldea",
+  "changeWallpaper": "Aldatu horma-irudia",
   "@changeWallpaper": {
     "type": "text",
     "placeholders": {}
@@ -241,12 +241,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "chat": "Berriketa",
+  "chat": "Txata",
   "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "Berriketaren xehetasunak",
+  "chatDetails": "Txataren xehetasunak",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -256,7 +256,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAUsername": "Aukeratu erabiltzaile izen bat",
+  "chooseAUsername": "Aukeratu erabiltzaile-izen bat",
   "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
@@ -266,12 +266,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Konparatu ondorengo emojiak:",
+  "compareEmojiMatch": "Konparatu emojiak",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "Konparatu ondorengo zenbakiak:",
+  "compareNumbersMatch": "Konparatu zenbakiak",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
@@ -286,12 +286,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "contactHasBeenInvitedToTheGroup": "Kontaktua taldera gonbidatua izan da",
+  "contactHasBeenInvitedToTheGroup": "Kontaktua taldera gonbidatu da",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
   },
-  "copiedToClipboard": "Arbelera kopiatua",
+  "copiedToClipboard": "Arbelera kopiatu da",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -320,7 +320,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "💬 {username}(e)k berriketa sortu du",
+  "createdTheChat": "💬 {username}(e)k txata sortu du",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -332,7 +332,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentlyActive": "Unean aktibo",
+  "currentlyActive": "Une honetan aktibo",
   "@currentlyActive": {
     "type": "text",
     "placeholders": {}
@@ -392,7 +392,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "Pantaila-izena aldatu da",
+  "displaynameHasBeenChanged": "Ezizena aldatu da",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -417,27 +417,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteSettings": "Emote ezarpenak",
+  "emoteSettings": "Emote-ezarpenak",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Emote laburdurak",
+  "emoteShortcode": "Laburdura",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Emote laburdura eta irudi bat aukeratu behar dituzu!",
+  "emoteWarnNeedToPick": "Emote-laburdura eta irudi bat aukeratu behar dituzu!",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "Hutsik dago",
+  "emptyChat": "Txata hutsik dago",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryptionWarning": "Ezingo duzu zifraketa desgaitu. Ziur zaude?",
+  "enableEncryptionWarning": "Ezingo duzu zifraketa ezgaitu. Ziur zaude?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -479,12 +479,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "Berbidali",
+  "forward": "Birbidali",
   "@forward": {
     "type": "text",
     "placeholders": {}
   },
-  "fromJoining": "Bat egiteaz geroztik",
+  "fromJoining": "Batzeaz geroztik",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
@@ -521,17 +521,17 @@
       "displayname": {}
     }
   },
-  "guestsAreForbidden": "Gonbidatuak debekatuta daude",
+  "guestsAreForbidden": "Bisitariak debekatuta daude",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "guestsCanJoin": "Gonbidatuak batu daitezke",
+  "guestsCanJoin": "Bisitariak batu daitezke",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username}(e)k {targetName}(r)en gonbidapena baliogabetu du",
+  "hasWithdrawnTheInvitationFor": "{username}(e)k {targetName}(r)en gonbidapena atzera bota du",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -549,12 +549,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "identity": "Nortasuna",
+  "identity": "Identitatea",
   "@identity": {
     "type": "text",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "Pasaesaldi edo segurtasun gakoa ez da zuzena",
+  "incorrectPassphraseOrKey": "Pasaesaldi edo berreskuratze-gakoa ez da zuzena",
   "@incorrectPassphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -589,7 +589,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username}(e)k FluffyChatera gonbidatu zaitu.\n1. Instalatu FluffyChat: https://fluffychat.im\n2. Eman izena edo hasi saioa\n3. Ireki gonbidapen esteka: {link}",
+  "inviteText": "{username}(e)k FluffyChatera gonbidatu zaitu.\n1. Bisitatu https://fluffychat.im eta instalatu aplikazioa\n2. Eman izena edo hasi saioa\n3. Ireki gonbidapen-esteka:\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -602,7 +602,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "👋 {username} berriketara batu da",
+  "joinedTheChat": "👋 {username} txatera batu da",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -614,7 +614,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "👞 {username}(e)k {targetName} kaleratu du",
+  "kicked": "👞 {username}(e)k {targetName} kanporatu du",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -622,7 +622,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "🙅 {username}(e)k {targetName} kaleratu eta debekua ezarri dio",
+  "kickedAndBanned": "🙅 {username}(e)k {targetName} kanporatu eta debekua ezarri dio",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -630,7 +630,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "Kaleratu berriketatik",
+  "kickFromChat": "Kanporatu txatetik",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -642,7 +642,7 @@
       "localizedTimeShort": {}
     }
   },
-  "lastSeenLongTimeAgo": "Duela denbora luze",
+  "lastSeenLongTimeAgo": "Luze da ikusi zenetik",
   "@lastSeenLongTimeAgo": {
     "type": "text",
     "placeholders": {}
@@ -652,7 +652,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leftTheChat": "Berriketatik irten da",
+  "leftTheChat": "Txatetik irten da",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -667,7 +667,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "Kargatu {count} partehartzaile gehiago",
+  "loadCountMoreParticipants": "Kargatu {count} partaide gehiago",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -706,7 +706,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "messageWillBeRemovedWarning": "Mezua partehartzaile guztientzat ezabatuko da",
+  "messageWillBeRemovedWarning": "Mezua partaide guztientzat ezabatuko da",
   "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
@@ -716,7 +716,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "muteChat": "Mututu berriketa",
+  "muteChat": "Mututu txata",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
@@ -731,7 +731,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "Egiaztaketa eskaera berria!",
+  "newVerificationRequest": "Egiaztaketa-eskaera berria!",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -756,7 +756,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPermission": "Baimenik ez",
+  "noPermission": "Baimenik gabe",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
@@ -796,7 +796,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "pasaesaldia edo berreskuratzeko gakoa",
+  "passphraseOrKey": "pasaesaldia edo berreskuratze-gakoa",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -811,7 +811,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pin": "Iltzatu",
+  "pin": "Finkatu",
   "@pin": {
     "type": "text",
     "placeholders": {}
@@ -853,7 +853,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username}(e)k gertaera bat izkutatu du",
+  "redactedAnEvent": "{username}(e)k gertaera bat atzera bota du",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -899,7 +899,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Baimendu berriketan",
+  "unbanFromChat": "Kendu txatean duen debekua",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -995,7 +995,7 @@
       "username": {}
     }
   },
-  "sentASticker": "😊 {username}(e)k stickerra bidali du",
+  "sentASticker": "😊 {username}(e)k pegatina bidali du",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
@@ -1021,7 +1021,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "setInvitationLink": "Ezarri gonbidapen esteka",
+  "setInvitationLink": "Ezarri gonbidapen-esteka",
   "@setInvitationLink": {
     "type": "text",
     "placeholders": {}
@@ -1106,7 +1106,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username}(e)k {targetName} baimendu du",
+  "unbannedUser": "{username}(e)k {targetName}(r)i debekua kendu dio",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1141,7 +1141,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unpin": "Kendu iltzea",
+  "unpin": "Utzi finkatzeari",
   "@unpin": {
     "type": "text",
     "placeholders": {}
@@ -1169,7 +1169,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "🚪 {username} berriketatik irten da",
+  "userLeftTheChat": "🚪 {username}(e)k txata utzi du",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1214,12 +1214,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "visibilityOfTheChatHistory": "Berriketa-historiaren ikusgarritasuna",
+  "visibilityOfTheChatHistory": "Txat-historiaren ikusgaitasuna",
   "@visibilityOfTheChatHistory": {
     "type": "text",
     "placeholders": {}
   },
-  "visibleForAllParticipants": "Partehartzaile guztientzat ikusgai",
+  "visibleForAllParticipants": "Partaide guztientzat ikusgai",
   "@visibleForAllParticipants": {
     "type": "text",
     "placeholders": {}
@@ -1234,27 +1234,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Bikotearen zain eskaera onartu dezan…",
+  "waitingPartnerAcceptRequest": "Kideak eskaera onartuko zain…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Bikotearen zain emojia onartu dezan…",
+  "waitingPartnerEmoji": "Kideak emojia onartuko zain…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerNumbers": "Bikotearen zain zenbakiak onartu ditzan…",
+  "waitingPartnerNumbers": "Kideak zenbakiak onartuko zain…",
   "@waitingPartnerNumbers": {
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Horma-irudia",
+  "wallpaper": "Horma-irudia:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Nork duen baimena talde honetara batzeko",
+  "whoIsAllowedToJoinThisGroup": "Nor batu daiteke talde honetara?",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "text",
     "placeholders": {}
@@ -1274,12 +1274,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Berriketa honetara gonbidatu zaituzte",
+  "youAreInvitedToThisChat": "Txat honetara gonbidatu zaituzte",
   "@youAreInvitedToThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Ez duzu berriketa honetan parte hartzen honezkero",
+  "youAreNoLongerParticipatingInThisChat": "Ez duzu txat honetan parte hartzen honezkero",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1289,17 +1289,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Berriketa honetan debekatu zaituzte",
+  "youHaveBeenBannedFromThisChat": "Txat honetan debekua ezarri dizute",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "editRoomAliases": "Editatu gelako goitizenak",
+  "editRoomAliases": "Editatu gelaren aliasak",
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
   },
-  "chats": "Berriketak",
+  "chats": "Txatak",
   "@chats": {
     "type": "text",
     "placeholders": {}
@@ -1319,17 +1319,17 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "commandHint_clearcache": "Ezabatu cachea",
+  "commandHint_clearcache": "Ezabatu katxea",
   "@commandHint_clearcache": {
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "commandHint_create": "Sortu taldeko-gela huts bat\nErabili --no-encyption zifratzea desgaitzeko",
+  "commandHint_create": "Sortu taldeko-txat huts bat\nErabili --no-encyption zifratzea desgaitzeko",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
   },
-  "commandHint_op": "Zehaztu erabiltzaile honen botere-maila (lehenetsia: 50)",
+  "commandHint_op": "Zehaztu erabiltzaile honen botere-maila (defektuz: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -1339,7 +1339,7 @@
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "commandHint_react": "Bidali erantzuna erreakzioa bailitzan",
+  "commandHint_react": "Bidali erantzuna erreakzio gisa",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
@@ -1410,12 +1410,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Izkutatu ezabatutako gertaerak",
+  "hideRedactedEvents": "Ezkutatu atzera botatako gertaerak",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Izkutatu gertaera ezezagunak",
+  "hideUnknownEvents": "Ezkutatu gertaera ezezagunak",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -1427,7 +1427,7 @@
   },
   "shareYourInviteLink": "Partekatu gonbidapen esteka",
   "@shareYourInviteLink": {},
-  "notificationsEnabledForThisAccount": "Kontu honentzat gaitutako jakinarazpenak",
+  "notificationsEnabledForThisAccount": "Gaitu kontu honentzako jakinarazpenak",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -1444,13 +1444,13 @@
     "type": "text",
     "placeholders": {}
   },
-  "oneClientLoggedOut": "Zure gailuetako batek saioa itxi du",
+  "oneClientLoggedOut": "Zure gailuetako batek saioa amaitu du",
   "@oneClientLoggedOut": {},
   "addAccount": "Gehitu kontua",
   "@addAccount": {},
-  "editBundlesForAccount": "Moldatu kontu honetarako sortak",
+  "editBundlesForAccount": "Editatu kontu honetarako sortak",
   "@editBundlesForAccount": {},
-  "oopsPushError": "Hara! Zoritxarrez, errore bat gertatu da jakinarazpenak ezartzerakoan.",
+  "oopsPushError": "Hara! Zoritxarrez, errore bat gertatu da push jakinarazpenak ezartzerakoan.",
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
@@ -1479,7 +1479,7 @@
   },
   "iUnderstand": "Ulertzen dut",
   "@iUnderstand": {},
-  "videoCallsBetaWarning": "Kontuan izan bideo deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
+  "videoCallsBetaWarning": "Kontuan izan bideo-deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
   "@videoCallsBetaWarning": {},
   "toggleMuted": "Ikusi / Ezkutatu mutututakoak",
   "@toggleMuted": {
@@ -1539,7 +1539,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Izkutatu mezua",
+  "redactMessage": "Bota mezua atzera",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -1549,12 +1549,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseFollowInstructionsOnWeb": "Jarrai itzazu webguneko argibideak eta sakatu 'Hurrengoa'.",
+  "pleaseFollowInstructionsOnWeb": "Jarraitu webguneko argibideak eta sakatu 'Hurrengoa'.",
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
   },
-  "reason": "Zergatia",
+  "reason": "Arrazoia",
   "@reason": {
     "type": "text",
     "placeholders": {}
@@ -1596,7 +1596,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "mention": "Aipamena",
+  "mention": "Aipatu",
   "@mention": {
     "type": "text",
     "placeholders": {}
@@ -1618,7 +1618,7 @@
       "min": {}
     }
   },
-  "addEmail": "Gehitu eposta",
+  "addEmail": "Gehitu ePosta",
   "@addEmail": {
     "type": "text",
     "placeholders": {}
@@ -1643,14 +1643,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "autoplayImages": "Automatikoki abiarazi sticker eta emote animatuak",
+  "autoplayImages": "Automatikoki abiarazi pegatina eta emote animatuak",
   "@autoplayImages": {
     "type": "text",
     "placeholder": {}
   },
   "sendOnEnter": "Bidali enter sakatuz",
   "@sendOnEnter": {},
-  "badServerVersionsException": "Zerbitzariak ondorengo ezaugarriak onartzen ditu:\n{serverVersions}\nBaina aplikazioak hauek baino ez: {supportedVersions}",
+  "badServerVersionsException": "Zerbitzariak ondorengo ezaugarriak onartzen ditu:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu bakarrik: {supportedVersions}",
   "@badServerVersionsException": {
     "type": "text",
     "placeholders": {
@@ -1695,9 +1695,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Berriketa gune honetara gehitu da",
+  "chatHasBeenAddedToThisSpace": "Txata gune honetara gehitu da",
   "@chatHasBeenAddedToThisSpace": {},
-  "configureChat": "Konfiguratu berriketa",
+  "configureChat": "Konfiguratu txata",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
@@ -1712,17 +1712,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "setAsCanonicalAlias": "Ezarri goitizen nagusi bezala",
+  "setAsCanonicalAlias": "Ezarri alias nagusi bezala",
   "@setAsCanonicalAlias": {
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "Ezarri neurrira egindako emoteak",
+  "setCustomEmotes": "Ezarri zure emoteak",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
   },
-  "appLock": "Blokeatu aplikazioa",
+  "appLock": "Aplikazioa blokeatzea",
   "@appLock": {
     "type": "text",
     "placeholders": {}
@@ -1734,7 +1734,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "badServerLoginTypesException": "Zerbitzariak ondorengo aukerak ditu saioa hasteko:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu:\n{supportedVersions}",
+  "badServerLoginTypesException": "Zerbitzariak ondorengo aukerak onartzen ditu saioa hasteko:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu bakarrik:\n{supportedVersions}",
   "@badServerLoginTypesException": {
     "type": "text",
     "placeholders": {
@@ -1747,7 +1747,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_dm": "Hasi berriketa bat\nErabili --no-encryption zifratzea desgaitu nahi baduzu",
+  "commandHint_dm": "Hasi banakako txat bat\nErabili --no-encyption zifratzea desgaitzeko",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -1766,7 +1766,7 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "commandHint_myroomnick": "Ezarri zure izengoitia gela honetarako",
+  "commandHint_myroomnick": "Ezarri zure ezizena gela honetarako",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
@@ -1776,22 +1776,22 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Erabiltzaile izena dauka",
+  "containsUserName": "Erabiltzaile-izena dauka",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "Pantaila-izena dauka",
+  "containsDisplayName": "Ezizena dauka",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
   },
-  "locationDisabledNotice": "Kokapen zerbitzuak ez daude gaituta. Gaitu zure kokapena partekatu ahal izateko.",
+  "locationDisabledNotice": "Kokapen zerbitzuak ezgaituta daude. Gaitu zure kokapena partekatu ahal izateko.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Berriketa zuzenak",
+  "directChats": "Banakako txatak",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -1801,7 +1801,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreUsername": "Ezikusi erabiltzailea",
+  "ignoreUsername": "Ezikusi erabiltzaile-izena",
   "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
@@ -1858,11 +1858,11 @@
       "size": {}
     }
   },
-  "openGallery": "Ireki galeria",
+  "openGallery": "Ireki bilduma",
   "@openGallery": {},
   "storyPrivacyWarning": "Kontuan izan jendeak bata bestea ikus dezakeela eta bata bestearekin harremanetan jar daitekeela. Zure storya 24 orduz egongo da ikusgai baina ezin da ziurtatu gailu eta zerbitzari guztietatik ezabatuko denik denbora pasatakoan.",
   "@storyPrivacyWarning": {},
-  "pinMessage": "Iltzatu gelan",
+  "pinMessage": "Finkatu gelan",
   "@pinMessage": {},
   "reactedWith": "{sender}(e)k {reaction}(r)ekin erreakzionatu du",
   "@reactedWith": {
@@ -1872,11 +1872,11 @@
       "reaction": {}
     }
   },
-  "confirmEventUnpin": "Ziur zaude gertaerari iltzea kendu nahi diozula?",
+  "confirmEventUnpin": "Ziur zaude gertaera finaktzeari utzi nahi diozula?",
   "@confirmEventUnpin": {},
   "nextAccount": "Hurrengo kontua",
   "@nextAccount": {},
-  "markAsRead": "Markatu irakurrita gisa",
+  "markAsRead": "Markatu irakurritzat",
   "@markAsRead": {},
   "yourChatBackupHasBeenSetUp": "Txaten babeskopiak ezarri dira.",
   "@yourChatBackupHasBeenSetUp": {},
@@ -1892,7 +1892,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Batu gela horretara",
+  "commandHint_join": "Batu gelara",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -1912,7 +1912,7 @@
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
   },
-  "commandHint_unban": "Baimendu erabiltzailea gela honetan",
+  "commandHint_unban": "Kendu erabiltzaileak gela honetan duen debekua",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -1950,12 +1950,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "Emote sortak gelarako",
+  "emotePacks": "Gelarako emote-sortak",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
-  "enableEmotesGlobally": "Gaitu emote sorta berriketa guztietarako",
+  "enableEmotesGlobally": "Gaitu emote-sorta txat guztietarako",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1970,7 +1970,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Molestatzen zaituzten erabiltzaileak ezikusi ditzakezu. Ez duzu ezikusitako pertsonen zerrendan daudenen mezurik edota gonbidapenik jasoko.",
+  "ignoreListDescription": "Gogaitzen zaituzten erabiltzaileak ezikusi ditzakezu. Ez duzu ezikusitako pertsonen zerrendan daudenen mezurik edota gonbidapenik jasoko.",
   "@ignoreListDescription": {
     "type": "text",
     "placeholders": {}
@@ -1980,7 +1980,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Kokapen baimena ukatu da. Eman ezazu zure kokapena partekatzeko baimena.",
+  "locationPermissionDeniedNotice": "Kokapen baimena ukatu da. Eman zure kokapena partekatzeko baimena.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
@@ -1990,7 +1990,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Berriketa berria",
+  "newChat": "Txat berria",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -2039,7 +2039,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "Partehartzailea",
+  "participant": "Partaide",
   "@participant": {
     "type": "text",
     "placeholders": {}
@@ -2064,17 +2064,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAPasscode": "Aukeratu kode bat",
+  "pleaseChooseAPasscode": "Aukeratu sartzeko kode bat",
   "@pleaseChooseAPasscode": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Sakatu epostako estekan eta ondoren jarraitu.",
+  "pleaseClickOnLink": "Sakatu ePostako estekan eta ondoren jarraitu.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPin": "Sartu zure zenbakia",
+  "pleaseEnterYourPin": "Sartu zure PINa",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
@@ -2106,12 +2106,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendSticker": "Bidali stickerra",
+  "sendSticker": "Bidali pegatina",
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Ezarri baimen maila",
+  "setPermissionsLevel": "Ezarri baimen-maila",
   "@setPermissionsLevel": {
     "type": "text",
     "placeholders": {}
@@ -2146,7 +2146,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "toggleUnread": "Markatu irakurrita / irakurri gabe gisa",
+  "toggleUnread": "Markatu irakurrita / irakurri gabe",
   "@toggleUnread": {
     "type": "text",
     "placeholders": {}
@@ -2183,7 +2183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "whoCanPerformWhichAction": "Nork egin dezakeen zer",
+  "whoCanPerformWhichAction": "Nork zer egin dezakeen",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
@@ -2199,7 +2199,7 @@
   "@sender": {},
   "removeFromSpace": "Kendu gunetik",
   "@removeFromSpace": {},
-  "addToSpaceDescription": "Aukeratu gune bat berriketa hau gehitzeko.",
+  "addToSpaceDescription": "Hautatu gune bat txat hau bertara gehitzeko.",
   "@addToSpaceDescription": {},
   "start": "Hasi",
   "@start": {},
@@ -2215,11 +2215,11 @@
   "@thisUserHasNotPostedAnythingYet": {},
   "reportUser": "Salatu erabiltzailea",
   "@reportUser": {},
-  "openChat": "Ireki berriketa",
+  "openChat": "Ireki txata",
   "@openChat": {},
   "addWidget": "Gehitu widgeta",
   "@addWidget": {},
-  "showDirectChatsInSpaces": "Erakutsi zerikusia duten Mezu Zuzenak guneetan",
+  "showDirectChatsInSpaces": "Erakutsi zerikusia duten banakako mezuak guneetan",
   "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
@@ -2236,7 +2236,7 @@
   "@widgetCustom": {},
   "widgetName": "Izena",
   "@widgetName": {},
-  "youJoinedTheChat": "Berriketara batu zara",
+  "youJoinedTheChat": "Txatera batu zara",
   "@youJoinedTheChat": {},
   "youAcceptedTheInvitation": "👍 Gonbidapena onartu duzu",
   "@youAcceptedTheInvitation": {},
@@ -2284,22 +2284,22 @@
   },
   "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
   "@youRejectedTheInvitation": {},
-  "separateChatTypes": "Bereizi zuzeneko mezuak eta taldeak",
+  "separateChatTypes": "Bereizi banakako mezuak eta taldeak",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
   },
-  "widgetUrlError": "Ez da baliozko URL bat.",
+  "widgetUrlError": "Ez da baliozko URLa.",
   "@widgetUrlError": {},
-  "widgetNameError": "Zehaztu goitizen bat.",
+  "widgetNameError": "Zehaztu ezizen bat.",
   "@widgetNameError": {},
   "errorAddingWidget": "Errorea widgeta gehitzerakoan.",
   "@errorAddingWidget": {},
-  "pleaseEnterRecoveryKey": "Idatzi berreskuratze-gakoa:",
+  "pleaseEnterRecoveryKey": "Sartu berreskuratze-gakoa:",
   "@pleaseEnterRecoveryKey": {},
   "recoveryKey": "Berreskuratze-gakoa",
   "@recoveryKey": {},
-  "recoveryKeyLost": "Berreskuratze-gakoa galdu al duzu?",
+  "recoveryKeyLost": "Berreskuratze-gakoa galdu duzu?",
   "@recoveryKeyLost": {},
   "users": "Erabiltzaileak",
   "@users": {},
@@ -2309,7 +2309,7 @@
   "@dehydrate": {},
   "dehydrateWarning": "Ekintza hau ezin da desegin. Egiaztatu babeskopia toki seguruan gorde duzula.",
   "@dehydrateWarning": {},
-  "hydrate": "Berreskuratu babeskopia bat erabiliz",
+  "hydrate": "Lehengoratu babeskopia bat erabiliz",
   "@hydrate": {},
   "pleaseEnterRecoveryKeyDescription": "Mezu zaharrak ikusi ahal izateko, sartu aurreko saioan sortu zen berreskuratze-gakoa. Berreskuratze-gakoa EZ da zure pasahitza.",
   "@pleaseEnterRecoveryKeyDescription": {},
@@ -2327,7 +2327,7 @@
   "@user": {},
   "custom": "Neurrira egindakoa",
   "@custom": {},
-  "updateAvailable": "FluffyChaten eguneraketa bat dago",
+  "updateAvailable": "FluffyChaten eguneraketa bat dago eskuragai",
   "@updateAvailable": {},
   "updateNow": "Abiarazi eguneraketa atzeko planoan",
   "@updateNow": {},
@@ -2341,7 +2341,7 @@
   "@dehydrateTorLong": {},
   "hydrateTorLong": "Esportatu al zenuen zure saioa TOR erabili zenuen azken aldian? Inportatu segidan eta jarraitu txateatzen.",
   "@hydrateTorLong": {},
-  "noEmailWarning": "Sartu baliozko posta helbide bat. Bestela ezingo duzu pasahitza berrezarri. Hala ere nahi ez baduzu, sakatu berriro botoia aurrera egiteko.",
+  "noEmailWarning": "Sartu baliozko ePosta helbide bat, bestela ezingo duzu pasahitza berrezarri. Hala ere nahi ez baduzu, sakatu berriro botoia aurrera egiteko.",
   "@noEmailWarning": {},
   "dehydrateTor": "TOR Erabiltzaileak: Esportatu saioa",
   "@dehydrateTor": {},
@@ -2351,13 +2351,13 @@
   "@stories": {},
   "saveKeyManuallyDescription": "Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz.",
   "@saveKeyManuallyDescription": {},
-  "indexedDbErrorTitle": "Modu pribatuaren arazoak",
+  "indexedDbErrorTitle": "Arazoak modu pribatuan",
   "@indexedDbErrorTitle": {},
-  "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatzeko.",
+  "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
   "@confirmMatrixId": {},
   "newSpace": "Gune berria",
   "@newSpace": {},
-  "enterRoom": "Batu gelara",
+  "enterRoom": "Sartu gelara",
   "@enterRoom": {},
   "whyIsThisMessageEncrypted": "Zergatik ezin da mezu hau irakurri?",
   "@whyIsThisMessageEncrypted": {},
@@ -2365,34 +2365,34 @@
   "@allSpaces": {},
   "newGroup": "Talde berria",
   "@newGroup": {},
-  "enterSpace": "Batu gunera",
+  "enterSpace": "Sartu gunera",
   "@enterSpace": {},
-  "appearOnTopDetails": "Aplikazioa goikaldean agertzea baimentzen du (ez da beharrezkoa FluffyChat dei egiteko kontua bezala ezarri baduzu)",
+  "appearOnTopDetails": "Aplikazioa goikaldean agertzea baimentzen du (ez da beharrezkoa FluffyChat deitzeko kontutzat ezarri baduzu)",
   "@appearOnTopDetails": {},
-  "screenSharingTitle": "pantaila partekatzen",
+  "screenSharingTitle": "pantaila-partekatzea",
   "@screenSharingTitle": {},
   "screenSharingDetail": "Pantaila FluffyChaten partekatzen ari zara",
   "@screenSharingDetail": {},
-  "callingPermissions": "Deiak egiteko baimenak",
+  "callingPermissions": "Deitzeko baimenak",
   "@callingPermissions": {},
-  "callingAccount": "Deia egiteko kontua",
+  "callingAccount": "Deitzen ari den kontua",
   "@callingAccount": {},
-  "callingAccountDetails": "Baimendu FluffyCaht Android gailuko telefono markagailua erabiltzea.",
+  "callingAccountDetails": "Baimendu FluffyChat Android gailuko telefono-markagailua erabiltzea.",
   "@callingAccountDetails": {},
   "appearOnTop": "Gainean erakutsi",
   "@appearOnTop": {},
   "otherCallingPermissions": "Mikrofono, kamera eta FluffyChaten beste baimen batzuk",
   "@otherCallingPermissions": {},
-  "numChats": "{number} berriketa",
+  "numChats": "{number} txat",
   "@numChats": {
     "type": "number",
     "placeholders": {
       "number": {}
     }
   },
-  "hideUnimportantStateEvents": "Izkutatu garrantzirik gabeko gertaerak",
+  "hideUnimportantStateEvents": "Ezkutatu garrantzirik gabeko gertaerak",
   "@hideUnimportantStateEvents": {},
-  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irakiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan berriketen babeskopiak gaituta dituzula.",
+  "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irakiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
   "@noKeyForThisMessage": {},
   "supposedMxid": "Hau {mxid} izan behar da",
   "@supposedMxid": {
@@ -2405,7 +2405,7 @@
   "@commandHint_markasgroup": {},
   "foregroundServiceRunning": "Jakinarazpen hau zerbitzua martxan dagoenean agertzen da.",
   "@foregroundServiceRunning": {},
-  "commandHint_markasdm": "Markatu mezu-zuzen gela bezala",
+  "commandHint_markasdm": "Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat",
   "@commandHint_markasdm": {},
   "wasDirectChatDisplayName": "Txata hutsik dago ({oldDisplayName} zen lehen)",
   "@wasDirectChatDisplayName": {
@@ -2430,7 +2430,7 @@
   "@startFirstChat": {},
   "newSpaceDescription": "Guneek txatak taldekatzea ahalbidetzen dute eta komunitate pribatu edo publikoak osatzea.",
   "@newSpaceDescription": {},
-  "endToEndEncryption": "Ertzetik ertzerako zifratzea",
+  "endToEndEncryption": "Ertzetik ertzerako zifraketa",
   "@endToEndEncryption": {},
   "disableEncryptionWarning": "Segurtasun arrazoiak direla-eta, ezin duzu lehendik zifratuta zegoen txat bateko zifraketa ezgaitu.",
   "@disableEncryptionWarning": {},
@@ -2453,7 +2453,7 @@
   "@reopenChat": {},
   "commandHint_googly": "Bidali begi dibertigarri batzuk",
   "@commandHint_googly": {},
-  "commandHint_cuddle": "Bidali besarkada goxoa",
+  "commandHint_cuddle": "Bidali besarkada samurra",
   "@commandHint_cuddle": {},
   "googlyEyesContent": "{senderName}(e)k begi dibertigarri batzuk bidali dizkizu",
   "@googlyEyesContent": {
@@ -2469,7 +2469,7 @@
   },
   "jumpToLastReadMessage": "Joan irakurritako azken mezura",
   "@jumpToLastReadMessage": {},
-  "reportErrorDescription": "Ez! Zerbaitek huts egin du. Saiatu berriro geroago. Nahi izanez gero, eman garatzaileei errorearen berri.",
+  "reportErrorDescription": "O ez! Zerbaitek huts egin du. Saiatu berriro geroago. Nahi izanez gero, eman garatzaileei errorearen berri.",
   "@reportErrorDescription": {},
   "cuddleContent": "{senderName}(e)k samurki besarkatu zaitu",
   "@cuddleContent": {
@@ -2480,7 +2480,7 @@
   },
   "readUpToHere": "Honaino irakurrita",
   "@readUpToHere": {},
-  "discover": "Deskubritu",
+  "discover": "Arakatu",
   "@discover": {
     "type": "text",
     "placeholders": {}
@@ -2496,15 +2496,15 @@
   "@jump": {},
   "openLinkInBrowser": "Ireki esteka nabigatzailean",
   "@openLinkInBrowser": {},
-  "report": "eman berri",
+  "report": "salatu",
   "@report": {},
   "signInWithPassword": "Hasi saioa pasahitzarekin",
   "@signInWithPassword": {},
   "continueWith": "Jarraitu honekin:",
   "@continueWith": {},
-  "pleaseTryAgainLaterOrChooseDifferentServer": "Saiatu geroago edo hautatu beste zerbitzari bat.",
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Saiatu geroago edo aukeratu beste zerbitzari bat.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "Saioa {provider}(e)kin hasita",
+  "signInWith": "Hasi saioa {provider}(e)kin",
   "@signInWith": {
     "type": "text",
     "placeholders": {
@@ -2521,11 +2521,11 @@
   "@importFromZipFile": {},
   "importZipFile": "Inportatu .zip fitxategia",
   "@importZipFile": {},
-  "exportEmotePack": "Esportatu emote sorta .zip gisa",
+  "exportEmotePack": "Esportatu emote-sorta .zip gisa",
   "@exportEmotePack": {},
   "replace": "Ordezkatu",
   "@replace": {},
-  "savedEmotePack": "Emote sorta {path} bidean gorde da!",
+  "savedEmotePack": "Emote-sorta {path}(e)n gorde da!",
   "@savedEmotePack": {
     "type": "text",
     "placeholders": {
@@ -2548,7 +2548,7 @@
   "@invalidServerName": {},
   "chatPermissions": "Txataren baimenak",
   "@chatPermissions": {},
-  "setChatDescription": "Ezarri berriketaren deskribapena",
+  "setChatDescription": "Ezarri txataren deskribapena",
   "@setChatDescription": {},
   "redactedBy": "{username}(e)k atzera bota du",
   "@redactedBy": {
@@ -2569,15 +2569,15 @@
       "reason": {}
     }
   },
-  "anyoneCanKnock": "Edonork jo dezake atean",
+  "anyoneCanKnock": "Edonork egin dezake batzeko eskaera",
   "@anyoneCanKnock": {},
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
   "@redactMessageDescription": {},
   "addChatDescription": "Gehitu txat honen deskribapena",
   "@addChatDescription": {},
-  "directChat": "Txat zuzena",
+  "directChat": "Banakako txata",
   "@directChat": {},
-  "noOneCanJoin": "Ezin du inork bat egin",
+  "noOneCanJoin": "Ezin da inor batu",
   "@noOneCanJoin": {},
   "wrongPinEntered": "PIN okerra! Saiatu berriro {seconds} segundu barru…",
   "@wrongPinEntered": {
@@ -2594,7 +2594,7 @@
   "@profileNotFound": {},
   "shareInviteLink": "Partekatu gonbidapen-esteka",
   "@shareInviteLink": {},
-  "emoteKeyboardNoRecents": "Berriki erabilitako emoteak hemen ageriko dira…",
+  "emoteKeyboardNoRecents": "Oraintsu erabilitako emoteak hemen ageriko dira…",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
@@ -2604,5 +2604,11 @@
   "createGroup": "Sortu taldea",
   "@createGroup": {},
   "invite": "Gonbidatu",
-  "@invite": {}
+  "@invite": {},
+  "invalidInput": "Sarrerak ez du balio!",
+  "@invalidInput": {},
+  "inviteGroupChat": "📨 Gonbidatu taldeko txatera",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Gonbidatu txat pribatura",
+  "@invitePrivateChat": {}
 }
