@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -45,7 +45,7 @@ class RecordingDialogState extends State<RecordingDialog> {
         setState(() => error = true);
         return;
       }
-      await Wakelock.enable();
+      await WakelockPlus.enable();
       await _audioRecorder.start(
         path: _recordedPath,
         bitRate: bitRate,
@@ -77,7 +77,7 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   @override
   void dispose() {
-    Wakelock.disable();
+    WakelockPlus.disable();
     _recorderSubscription?.cancel();
     _audioRecorder.stop();
     super.dispose();
