@@ -1,3 +1,7 @@
+## v1.14.5
+- Hotfix iOS crashes on start
+- Hotfix cannot reset applock
+
 ## v1.14.4
 Minor bugfix release. Please note that because of a Flutter update FluffyChat is no longer
 compatible with iOS 11.
