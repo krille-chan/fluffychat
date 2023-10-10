@@ -2605,5 +2605,7 @@
   "inviteGroupChat": "📨 Einladungen zum Gruppenchat",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Einladungen zum privaten Chat",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "invalidInput": "Ungültige Eingabe!",
+  "@invalidInput": {}
 }
