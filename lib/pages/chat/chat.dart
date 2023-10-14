@@ -297,12 +297,38 @@ class ChatController extends State<ChatPageWithRoom> {
     _loadDraft();
     super.initState();
     sendingClient = Matrix.of(context).client;
-    readMarkerEventId = room.fullyRead;
-    loadTimelineFuture =
-        _getTimeline(eventContextId: readMarkerEventId).onError(
-      ErrorReporter(context, 'Unable to load timeline').onErrorCallback,
-    );
+    _tryLoadTimeline();
   }
+
+  void _tryLoadTimeline() async {
+    loadTimelineFuture = _getTimeline();
+    try {
+      await loadTimelineFuture;
+      final fullyRead = room.fullyRead;
+      if (fullyRead.isEmpty) return;
+      if (timeline!.events.any((event) => event.eventId == fullyRead)) {
+        Logs().v('Scroll up to visible event', fullyRead);
+        scrollToEventId(fullyRead);
+        setReadMarker();
+        return;
+      }
+      if (!mounted) return;
+      _showScrollUpMaterialBanner(fullyRead);
+    } catch (e, s) {
+      ErrorReporter(context, 'Unable to load timeline').onErrorCallback(e, s);
+      rethrow;
+    }
+  }
+
+  String? scrollUpBannerEventId;
+
+  void discardScrollUpBannerEventId() => setState(() {
+        scrollUpBannerEventId = null;
+      });
+
+  void _showScrollUpMaterialBanner(String eventId) => setState(() {
+        scrollUpBannerEventId = eventId;
+      });
 
   void updateView() {
     if (!mounted) return;
@@ -313,7 +339,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Future<void> _getTimeline({
     String? eventContextId,
-    Duration timeout = const Duration(seconds: 7),
   }) async {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;
@@ -322,34 +347,21 @@ class ChatController extends State<ChatPageWithRoom> {
       eventContextId = null;
     }
     try {
-      timeline = await room
-          .getTimeline(
-            onUpdate: updateView,
-            eventContextId: eventContextId,
-          )
-          .timeout(timeout);
+      timeline = await room.getTimeline(
+        onUpdate: updateView,
+        eventContextId: eventContextId,
+      );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
       timeline = await room.getTimeline(onUpdate: updateView);
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.of(context)!.jumpToLastReadMessage),
-            action: SnackBarAction(
-              label: L10n.of(context)!.jump,
-              onPressed: () => scrollToEventId(eventContextId!),
-            ),
-          ),
-        );
+        _showScrollUpMaterialBanner(eventContextId!);
       }
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
-    if (timeline!.events.isNotEmpty) {
-      if (room.markedUnread) room.markUnread(false);
-      setReadMarker();
-    }
+    if (room.markedUnread) room.markUnread(false);
 
     // when the scroll controller is attached we want to scroll to an event id, if specified
     // and update the scroll controller...which will trigger a request history, if the
@@ -370,6 +382,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void setReadMarker({String? eventId}) {
     if (_setReadMarkerFuture != null) return;
+    if (scrollUpBannerEventId != null) return;
     if (eventId == null &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
@@ -380,7 +393,7 @@ class ChatController extends State<ChatPageWithRoom> {
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
 
-    Logs().v('Set read marker...', eventId);
+    Logs().d('Set read marker...', eventId);
     // ignore: unawaited_futures
     _setReadMarkerFuture = timeline.setReadMarker(eventId: eventId).then((_) {
       _setReadMarkerFuture = null;
@@ -886,10 +899,7 @@ class ChatController extends State<ChatPageWithRoom> {
       setState(() {
         timeline = null;
         _scrolledUp = false;
-        loadTimelineFuture = _getTimeline(
-          eventContextId: eventId,
-          timeout: const Duration(seconds: 30),
-        ).onError(
+        loadTimelineFuture = _getTimeline(eventContextId: eventId).onError(
           ErrorReporter(context, 'Unable to load timeline after scroll to ID')
               .onErrorCallback,
         );
@@ -902,7 +912,7 @@ class ChatController extends State<ChatPageWithRoom> {
     }
     await scrollController.scrollToIndex(
       eventIndex,
-      preferPosition: AutoScrollPosition.middle,
+      preferPosition: AutoScrollPosition.end,
     );
     _updateScrollController();
   }

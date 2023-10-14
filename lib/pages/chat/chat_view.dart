@@ -146,6 +146,7 @@ class ChatView extends StatelessWidget {
       );
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
+    final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
     return WillPopScope(
       onWillPop: () async {
@@ -220,6 +221,39 @@ class ChatView extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             TombstoneDisplay(controller),
+                            if (scrollUpBannerEventId != null)
+                              Material(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
+                                child: ListTile(
+                                  leading: IconButton(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    icon: const Icon(Icons.close),
+                                    tooltip: L10n.of(context)!.close,
+                                    onPressed: () {
+                                      controller.discardScrollUpBannerEventId();
+                                      controller.setReadMarker();
+                                    },
+                                  ),
+                                  title: Text(
+                                    L10n.of(context)!.jumpToLastReadMessage,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 8),
+                                  trailing: TextButton(
+                                    onPressed: () {
+                                      controller.scrollToEventId(
+                                        scrollUpBannerEventId,
+                                      );
+                                      controller.discardScrollUpBannerEventId();
+                                    },
+                                    child: Text(L10n.of(context)!.jump),
+                                  ),
+                                ),
+                              ),
                             PinnedEvents(controller),
                             Expanded(
                               child: GestureDetector(
