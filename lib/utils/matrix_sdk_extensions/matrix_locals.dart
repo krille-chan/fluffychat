@@ -197,7 +197,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String removedBy(Event redactedEvent) {
-    return l10n.removedBy(
+    return l10n.redactedBy(
       redactedEvent.senderFromMemoryOrFallback.calcDisplayname(),
     );
   }
