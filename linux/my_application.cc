@@ -30,7 +30,7 @@ static void my_application_activate(GApplication* application) {
   gboolean use_header_bar = TRUE;
   // Lines added to the template start
   // Please re-add these lines after updating the linux build files
-  // If the user explicitly requests to disable the header bar, switch back to 
+  // If the user explicitly requests to disable the header bar, switch back to
   // using a traditional title bar
   const gchar* gtk_csd_env = g_getenv("GTK_CSD");
   if (gtk_csd_env != nullptr && g_strcmp0(gtk_csd_env, "1") != 0)

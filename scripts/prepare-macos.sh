@@ -5,4 +5,3 @@ if ! type "flutter" > /dev/null; then
 fi
 
 brew install libolm
-
