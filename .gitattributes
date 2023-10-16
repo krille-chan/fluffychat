@@ -1,0 +1,6 @@
+# Automatic EOL for local platform
+* text=auto
+# Windows line endings
+windows/** eol=crlf
+# git built-in for -diff -merge -text
+*.svg binary
