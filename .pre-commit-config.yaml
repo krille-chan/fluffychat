@@ -12,13 +12,12 @@ repos:
       - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
-        exclude_types: [svg]
+        exclude_types: [svg, kotlin]
       - id: fix-byte-order-marker
       - id: trailing-whitespace
         args: ["--markdown-linebreak-ext", "md,markdown"]
         exclude_types: [svg]
       - id: check-merge-conflict
-      - id: check-toml
       - id: check-xml
       - id: mixed-line-ending
         args: [--fix=auto]

@@ -4,3 +4,11 @@
 windows/** eol=crlf
 # git built-in for -diff -merge -text
 *.svg binary
+
+# Exclude from EOL normalization, but display diff
+build.gradle -text diff
+proguard-rules.pro -text diff
+FcmPushService.kt -text diff
+MainActivity.kt -text diff
+background_push.dart -text diff
+pubspec.yaml -text diff
