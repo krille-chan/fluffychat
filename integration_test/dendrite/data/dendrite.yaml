@@ -226,7 +226,7 @@ federation_api:
 media_api:
   database:
     connection_string: file:media_api.db
-  
+
   # Storage path for uploaded media. May be relative or absolute.
   base_path: ./media_store
 
@@ -277,7 +277,7 @@ key_server:
 room_server:
   database:
     connection_string: file:room_server.db
-  
+
 
 # Configuration for the User API.
 user_api:
@@ -324,4 +324,3 @@ logging:
     level: info
     params:
       path: ./logs
-

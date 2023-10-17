@@ -899,7 +899,7 @@ This release fixes a bug which makes it impossible to send images in unencrypted
 - fix: Open matrix.to urls
 - fix: Padding and colors
 - fix: Sharing invite link
-- fix: Unread bubbles on iOS 
+- fix: Unread bubbles on iOS
 - fix: Sending images in unencrypted rooms
 
 ## v0.38.0 - 2021-08-22
