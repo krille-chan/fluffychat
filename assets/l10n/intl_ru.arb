@@ -599,7 +599,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deny": "Отклонить",
+  "deny": "Запретить",
   "@deny": {
     "type": "text",
     "placeholders": {}
@@ -1423,7 +1423,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "reject": "Отклонить",
+  "reject": "Отказать",
   "@reject": {
     "type": "text",
     "placeholders": {}
@@ -2193,7 +2193,7 @@
       "reaction": {}
     }
   },
-  "emojis": "Эмоджи",
+  "emojis": "Эмодзи",
   "@emojis": {},
   "voiceCall": "Голосовой звонок",
   "@voiceCall": {},
@@ -2561,7 +2561,7 @@
   "@chatDescriptionHasBeenChanged": {},
   "noChatDescriptionYet": "Описание чата не создано.",
   "@noChatDescriptionYet": {},
-  "invalidServerName": "Неверное имя сервера",
+  "invalidServerName": "Недопустимое имя сервера",
   "@invalidServerName": {},
   "optionalRedactReason": "(Необязательно) Причина редактирования...",
   "@optionalRedactReason": {},
@@ -2603,5 +2603,19 @@
   "invitePrivateChat": "📨 Пригласить в приватный чат",
   "@invitePrivateChat": {},
   "inviteGroupChat": "📨 Пригласить в групповой чат",
-  "@inviteGroupChat": {}
+  "@inviteGroupChat": {},
+  "invalidInput": "Недопустимый ввод!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Введён неверный пин-код! Повторите попытку через {seconds} секунд...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "emoteKeyboardNoRecents": "Недавно использованные эмодзи появятся здесь...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
