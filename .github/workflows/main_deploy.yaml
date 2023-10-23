@@ -22,7 +22,8 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
       - run: flutter pub get
-      - run: dcarbone/install-jq-action@v2
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
