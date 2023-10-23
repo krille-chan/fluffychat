@@ -225,7 +225,13 @@ class ChatView extends StatelessWidget {
                               Material(
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .secondaryContainer,
+                                    .surfaceVariant,
+                                shape: Border(
+                                  bottom: BorderSide(
+                                    width: 1,
+                                    color: Theme.of(context).dividerColor,
+                                  ),
+                                ),
                                 child: ListTile(
                                   leading: IconButton(
                                     color: Theme.of(context)

@@ -73,6 +73,12 @@ class PinnedEvents extends StatelessWidget {
         final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
         return Material(
           color: Theme.of(context).colorScheme.surfaceVariant,
+          shape: Border(
+            bottom: BorderSide(
+              width: 1,
+              color: Theme.of(context).dividerColor,
+            ),
+          ),
           child: InkWell(
             onTap: () => _displayPinnedEventsDialog(
               context,
