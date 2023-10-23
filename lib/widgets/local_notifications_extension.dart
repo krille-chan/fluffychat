@@ -17,6 +17,10 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
+  static final html.AudioElement _audioPlayer = html.AudioElement()
+    ..src = 'assets/assets/sounds/notification.ogg'
+    ..load();
+
   void showLocalNotification(EventUpdate eventUpdate) async {
     final roomId = eventUpdate.roomID;
     if (activeRoomId == roomId) {
@@ -56,10 +60,7 @@ extension LocalNotificationsExtension on MatrixState {
           method: ThumbnailMethod.crop,
         );
     if (kIsWeb) {
-      html.AudioElement()
-        ..src = 'assets/assets/sounds/notification.ogg'
-        ..autoplay = true
-        ..load();
+      _audioPlayer.play();
       html.Notification(
         title,
         body: body,
