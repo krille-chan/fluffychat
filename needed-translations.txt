@@ -747,7 +747,9 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound"
+    "noTeachersFound",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "bn": [
@@ -2097,7 +2099,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "bo": [
@@ -3451,7 +3455,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ca": [
@@ -4428,7 +4434,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "cs": [
@@ -5216,7 +5224,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "de": [
@@ -5967,7 +5977,9 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound"
+    "noTeachersFound",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "el": [
@@ -7321,7 +7333,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "eo": [
@@ -8299,7 +8313,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "es": [
@@ -8364,7 +8380,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "et": [
@@ -9115,7 +9133,9 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound"
+    "noTeachersFound",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "eu": [
@@ -9866,7 +9886,9 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound"
+    "noTeachersFound",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "fa": [
@@ -10673,7 +10695,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "fi": [
@@ -11438,7 +11462,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "fr": [
@@ -12243,7 +12269,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ga": [
@@ -13202,7 +13230,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "gl": [
@@ -13954,7 +13984,9 @@
     "reportMessageTitle",
     "reportMessageBody",
     "noTeachersFound",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "he": [
@@ -15035,7 +15067,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "hi": [
@@ -16389,7 +16423,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "hr": [
@@ -17156,7 +17192,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "hu": [
@@ -18127,7 +18165,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "id": [
@@ -18896,7 +18936,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ie": [
@@ -19985,7 +20027,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "it": [
@@ -20972,7 +21016,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ja": [
@@ -21811,7 +21857,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ko": [
@@ -22717,7 +22765,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "lt": [
@@ -23557,7 +23607,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "lv": [
@@ -24911,7 +24963,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "nb": [
@@ -25938,7 +25992,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "nl": [
@@ -26707,7 +26763,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "pl": [
@@ -27476,7 +27534,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "pt": [
@@ -28808,7 +28868,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "pt_BR": [
@@ -29629,7 +29691,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "pt_PT": [
@@ -30655,7 +30719,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ro": [
@@ -31462,7 +31528,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ru": [
@@ -32231,7 +32299,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "sk": [
@@ -33326,7 +33396,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "sl": [
@@ -34569,7 +34641,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "sr": [
@@ -35569,7 +35643,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "sv": [
@@ -36385,7 +36461,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "ta": [
@@ -37736,7 +37814,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "th": [
@@ -39034,7 +39114,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "tr": [
@@ -39803,7 +39885,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "uk": [
@@ -40554,7 +40638,9 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound"
+    "noTeachersFound",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "vi": [
@@ -41829,7 +41915,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "zh": [
@@ -42596,7 +42684,9 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ],
 
   "zh_Hant": [
@@ -43594,6 +43684,8 @@
     "editTodo",
     "pleaseAddATitle",
     "todoListChangedError",
-    "todosUnencrypted"
+    "todosUnencrypted",
+    "noAddToSpacePermissions",
+    "alreadyInSpace"
   ]
 }

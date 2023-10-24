@@ -3923,5 +3923,7 @@
   "editTodo": "Edit todo",
   "pleaseAddATitle": "Please add a title",
   "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
-  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted."
+  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
+    "noAddToSpacePermissions": "You can't add a chat to this space",
+    "alreadyInSpace": "The chat is already in this space"
 }

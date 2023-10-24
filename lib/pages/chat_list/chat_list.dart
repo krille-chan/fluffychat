@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/add_to_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -647,11 +648,19 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () async {
         final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
-        if (space.canSendDefaultStates) {
-          for (final roomId in selectedRoomIds) {
-            await space.setSpaceChild(roomId);
-          }
-        }
+        // #Pangea
+        await pangeaAddToSpace(
+          space,
+          selectedRoomIds.toList(),
+          context,
+          pangeaController,
+        );
+        // if (space.canSendDefaultStates) {
+        //   for (final roomId in selectedRoomIds) {
+        //     await space.setSpaceChild(roomId);
+        //   }
+        // }
+        // Pangea#
       },
     );
     if (result.error == null) {
