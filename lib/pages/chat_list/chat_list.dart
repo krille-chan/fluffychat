@@ -115,6 +115,15 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  // #Pangea
+  bool isSelected(int i) {
+    if (activeFilter == ActiveFilter.spaces && activeSpaceId != null) {
+      return false;
+    }
+    return i == selectedIndex;
+  }
+  // Pangea#
+
   ActiveFilter getActiveFilterByDestination(int? i) {
     switch (i) {
       case 1:

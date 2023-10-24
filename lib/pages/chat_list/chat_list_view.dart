@@ -148,7 +148,10 @@ class ChatListView extends StatelessWidget {
                         itemBuilder: (context, i) {
                           if (i < destinations.length) {
                             return NaviRailItem(
-                              isSelected: i == controller.selectedIndex,
+                              // #Pangea
+                              // isSelected: i == controller.selectedIndex,
+                              isSelected: controller.isSelected(i),
+                              // Pangea#
                               onTap: () => controller.onDestinationSelected(i),
                               icon: destinations[i].icon,
                               selectedIcon: destinations[i].selectedIcon,
