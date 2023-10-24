@@ -149,6 +149,13 @@ class ChatListController extends State<ChatList>
       // Pangea#
       activeFilter = getActiveFilterByDestination(i);
     });
+    // #Pangea
+    final bool clickedAllSpaces = (!AppConfig.separateChatTypes && i == 1) ||
+        (AppConfig.separateChatTypes && i == 2);
+    if (clickedAllSpaces) {
+      setActiveSpace(null);
+    }
+    // Pangea#
   }
 
   ActiveFilter activeFilter = AppConfig.separateChatTypes
