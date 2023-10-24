@@ -46,7 +46,16 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
+
+      // We try to pick Opus where supported, since that is a codec optimized
+      // for speech as well as what the voice messages MSC uses.
+      final audioCodec =
+          (await _audioRecorder.isEncoderSupported(AudioEncoder.opus))
+              ? AudioEncoder.opus
+              : AudioEncoder.aacLc;
+
       await _audioRecorder.start(
+        encoder: audioCodec,
         path: _recordedPath,
         bitRate: bitRate,
         samplingRate: samplingRate,
