@@ -167,7 +167,7 @@ class _SpaceViewState extends State<SpaceView> {
           future: () async {
             await room!.leave();
             if (Matrix.of(context).activeRoomId == room.id) {
-              VRouter.of(context).to('/rooms');
+              context.go('/rooms');
             }
           },
           // Pangea#

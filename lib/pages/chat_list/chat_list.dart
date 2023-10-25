@@ -598,7 +598,7 @@ class ChatListController extends State<ChatList>
     setState(() {});
     // #Pangea
     if (archivedActiveRoom) {
-      VRouter.of(context).to('/rooms');
+      context.go('/rooms');
     }
     // Pangea#
   }
