@@ -162,7 +162,15 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.leave:
         await showFutureLoadingDialog(
           context: context,
-          future: room!.leave,
+          // #Pangea
+          // future: room!.leave,
+          future: () async {
+            await room!.leave();
+            if (Matrix.of(context).activeRoomId == room.id) {
+              VRouter.of(context).to('/rooms');
+            }
+          },
+          // Pangea#
         );
         break;
       case SpaceChildContextAction.removeFromSpace:

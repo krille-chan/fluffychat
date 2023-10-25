@@ -587,11 +587,20 @@ class ChatListController extends State<ChatList>
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
+    // #Pangea
+    final bool archivedActiveRoom =
+        selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+    // Pangea#
     await showFutureLoadingDialog(
       context: context,
       future: () => _archiveSelectedRooms(),
     );
     setState(() {});
+    // #Pangea
+    if (archivedActiveRoom) {
+      VRouter.of(context).to('/rooms');
+    }
+    // Pangea#
   }
 
   void setStatus() async {
