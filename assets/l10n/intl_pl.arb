@@ -844,7 +844,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} zaprosił/-a cię do FluffyChat. \n1. Zainstaluj FluffyChat: https://fluffychat.im \n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia: {link}",
+  "inviteText": "{username} zaprosił/-a cię do FluffyChat. \n1. Odwiedź fluffychat.im i zainstaluj aplikację\n2. Zarejestuj się lub zaloguj \n3. Otwórz link zaproszenia:\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1490,7 +1490,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Tapeta",
+  "wallpaper": "Tapeta:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1827,7 +1827,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Przekaż wiadomość",
+  "redactMessage": "Utajnij wiadomość",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -1992,7 +1992,7 @@
   "@whoCanSeeMyStoriesDesc": {},
   "shareYourInviteLink": "Udostępnij swój link zaproszenia",
   "@shareYourInviteLink": {},
-  "separateChatTypes": "Oddzielenie czatów bezpośrednich i grup",
+  "separateChatTypes": "Oddzielenie czatów bezpośrednich i grupowych",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -2202,7 +2202,7 @@
       "mxid": {}
     }
   },
-  "commandHint_markasdm": "Oznacz jako pokój wiadomości bezpośrednich",
+  "commandHint_markasdm": "Oznacz jako pokój wiadomości bezpośrednich dla podanego Matrix ID",
   "@commandHint_markasdm": {},
   "confirmMatrixId": "Potwierdź swój identyfikator Matrix w celu usunięcia konta.",
   "@confirmMatrixId": {},
@@ -2483,5 +2483,132 @@
   "removeFromBundle": "Usuń z tej paczki",
   "@removeFromBundle": {},
   "openLinkInBrowser": "Otwórz link w przeglądarce",
-  "@openLinkInBrowser": {}
+  "@openLinkInBrowser": {},
+  "allRooms": "Wszystkie czaty grupowe",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportErrorDescription": "O nie. Coś poszło nie tak. Spróbuj ponownie później. Jeśli chcesz, możesz zgłosić błąd programistom.",
+  "@reportErrorDescription": {},
+  "setColorTheme": "Ustal styl kolorów:",
+  "@setColorTheme": {},
+  "requests": "Żądania",
+  "@requests": {},
+  "tryAgain": "Spróbuj ponownie",
+  "@tryAgain": {},
+  "messagesStyle": "Wiadomości:",
+  "@messagesStyle": {},
+  "chatDescription": "Opis czatu",
+  "@chatDescription": {},
+  "invalidServerName": "Nieprawidłowa nazwa serwera",
+  "@invalidServerName": {},
+  "chatPermissions": "Uprawnienia czatu",
+  "@chatPermissions": {},
+  "signInWithPassword": "Zaloguj się z hasłem",
+  "@signInWithPassword": {},
+  "setChatDescription": "Ustaw opis czatu",
+  "@setChatDescription": {},
+  "importFromZipFile": "Zaimportuj z pliku .zip",
+  "@importFromZipFile": {},
+  "discover": "Odkrywanie",
+  "@discover": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedBy": "Utajnione przez {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signInWith": "Zaloguj się z {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "optionalRedactReason": "(Opcjonalnie) Powód utajnienia tej wiadomości...",
+  "@optionalRedactReason": {},
+  "exportEmotePack": "Eksportuj pakiet Emotikon jako .zip",
+  "@exportEmotePack": {},
+  "savedEmotePack": "Zapisano pakiet emotikon do {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "inviteContactToGroupQuestion": "Czy chcesz zaprosić {contact} do czatu „{groupName}”?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "Utajnione przez {username} z powodu: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "importZipFile": "Zaimportuj plik .zip",
+  "@importZipFile": {},
+  "anyoneCanKnock": "Każdy może zapukać",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "Wiadomość zostanie utajniona u wszystkich uczestników tej rozmowy. Nie można tego cofnąć.",
+  "@redactMessageDescription": {},
+  "invalidInput": "Nieprawidłowe dane!",
+  "@invalidInput": {},
+  "report": "raport",
+  "@report": {},
+  "addChatDescription": "Dodaj opis tego czatu",
+  "@addChatDescription": {},
+  "directChat": "Rozmowa bezpośrednia",
+  "@directChat": {},
+  "noOneCanJoin": "Nikt nie może dołączyć",
+  "@noOneCanJoin": {},
+  "wrongPinEntered": "Wprowadzono nieprawidłowy kod PIN! Spróbuj ponownie za {seconds} sekund...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendTypingNotifications": "Wysyłaj powiadomienie o pisaniu",
+  "@sendTypingNotifications": {},
+  "inviteGroupChat": "📨 Zaproszenie do rozmowy grupowej",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Zaproszenie do rozmowy prywatnej",
+  "@invitePrivateChat": {},
+  "importEmojis": "Zaimportuj Emoji",
+  "@importEmojis": {},
+  "noChatDescriptionYet": "Nie utworzono jeszcze opisu czatu.",
+  "@noChatDescriptionYet": {},
+  "notAnImage": "To nie jest plik obrazu.",
+  "@notAnImage": {},
+  "chatDescriptionHasBeenChanged": "Zmieniono opis czatu",
+  "@chatDescriptionHasBeenChanged": {},
+  "profileNotFound": "Nie można odnaleźć użytkownika na serwerze. Być może wystąpił problem z połączeniem lub użytkownik nie istnieje.",
+  "@profileNotFound": {},
+  "shareInviteLink": "Udostępnij link zaproszenia",
+  "@shareInviteLink": {},
+  "emoteKeyboardNoRecents": "Tutaj pojawiają się ostatnio używane emotikony...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "Ustaw wygląd:",
+  "@setTheme": {},
+  "replace": "Zastąp",
+  "@replace": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Spróbuj ponownie później lub wybierz inny serwer.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "createGroup": "Utwórz grupę",
+  "@createGroup": {},
+  "importNow": "Zaimportuj",
+  "@importNow": {},
+  "invite": "Zaproszenie",
+  "@invite": {},
+  "continueWith": "Kontynuuj z:",
+  "@continueWith": {}
 }
