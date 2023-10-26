@@ -328,6 +328,7 @@ class ChatInputRow extends StatelessWidget {
                     ),
                   if (!PlatformInfos.isMobile ||
                       controller.inputText.isNotEmpty)
+                    // #Pangea
                     ChoreographerSendButton(controller: controller),
                   // Container(
                   //   height: 56,
@@ -338,6 +339,7 @@ class ChatInputRow extends StatelessWidget {
                   //     tooltip: L10n.of(context)!.send,
                   //   ),
                   // ),
+                  // Pangea#
                 ],
         ),
       ],
