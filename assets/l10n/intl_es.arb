@@ -1551,7 +1551,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "botMessages": "Mensajes de bot",
+  "botMessages": "Mensajes de bots",
   "@botMessages": {
     "type": "text",
     "placeholders": {}
@@ -1972,7 +1972,7 @@
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "containsDisplayName": "Contiene nombre para mostrar",
+  "containsDisplayName": "Contiene alias del usuario",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -2254,5 +2254,47 @@
     "placeholders": {}
   },
   "replace": "Reemplazar",
-  "@replace": {}
+  "@replace": {},
+  "createGroup": "Crear grupo",
+  "@createGroup": {},
+  "setColorTheme": "Establecer color del tema:",
+  "@setColorTheme": {},
+  "setTheme": "Establecer tema",
+  "@setTheme": {},
+  "messagesStyle": "Mensajes:",
+  "@messagesStyle": {},
+  "allRooms": "Todos los grupos",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnimportantStateEvents": "Ocultar eventos de estados irrelevantes",
+  "@hideUnimportantStateEvents": {},
+  "experimentalVideoCalls": "Videollamadas experimentales",
+  "@experimentalVideoCalls": {},
+  "callingPermissions": "Permisos de llamadas",
+  "@callingPermissions": {},
+  "callingAccount": "Cuenta de llamadas",
+  "@callingAccount": {},
+  "callingAccountDetails": "Permite que FluffyChat utilice la aplicación nativa de marcación de Android",
+  "@callingAccountDetails": {},
+  "appearOnTopDetails": "Permite que la aplicación aparezca en la parte superior (no es necesario si ya tienes configurado Fluffychat como una cuenta de llamadas)",
+  "@appearOnTopDetails": {},
+  "separateChatTypes": "Separar chats directos y grupos",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrate": "Exportar sesión y borrar dispositivo",
+  "@dehydrateTorLong": {},
+  "whoCanSeeMyStoriesDesc": "Ten en cuenta que las personas pueden ver y ponerse en contacto entre sí en tu historia.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "shareInviteLink": "Compartir enlace de invitación",
+  "@shareInviteLink": {},
+  "enterInviteLinkOrMatrixId": "Ingresar enlace de invitación o ID de Matrix...",
+  "@enterInviteLinkOrMatrixId": {},
+  "newSpaceDescription": "Los espacios te permiten consolidar tus chats y construir comunidades privadas o públicas.",
+  "@newSpaceDescription": {},
+  "addToStory": "Añadir historia",
+  "@addToStory": {}
 }
