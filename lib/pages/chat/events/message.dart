@@ -84,7 +84,7 @@ class Message extends StatelessWidget {
         nextEvent!.senderId == event.senderId &&
         !displayTime;
     final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimary
+        ? Theme.of(context).colorScheme.onPrimaryContainer
         : Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
@@ -114,7 +114,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).colorScheme.primary;
+          : Theme.of(context).colorScheme.primaryContainer;
     }
 
     final row = Row(
