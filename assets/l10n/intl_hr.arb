@@ -2309,7 +2309,7 @@
       "user": {}
     }
   },
-  "youUnbannedUser": "Ponovo si uključio/la si korisnika {user}",
+  "youUnbannedUser": "Ponovo si uključio/la korisnika {user}",
   "@youUnbannedUser": {
     "placeholders": {
       "user": {}
@@ -2617,5 +2617,13 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "hasKnocked": "{user} je pokucao/la",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "pleaseEnterANumber": "Upiši broj veći od 0",
+  "@pleaseEnterANumber": {}
 }
