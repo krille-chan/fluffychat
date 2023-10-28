@@ -31,8 +31,7 @@ class RecordingDialogState extends State<RecordingDialog> {
   final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
-  static const int bitRate = 64000;
-  static const int samplingRate = 22050;
+  static const int bitRate = 16000;
 
   Future<void> startRecording() async {
     try {
@@ -61,7 +60,6 @@ class RecordingDialogState extends State<RecordingDialog> {
           noiseSuppress: true,
           echoCancel: true,
           bitRate: bitRate,
-          sampleRate: samplingRate,
         ),
         path: path,
       );
