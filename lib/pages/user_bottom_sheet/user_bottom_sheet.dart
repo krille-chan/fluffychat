@@ -34,7 +34,7 @@ class LoadProfileBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ProfileInformation>(
-      future: Matrix.of(context)
+      future: Matrix.of(outerContext)
           .client
           .getUserProfile(userId)
           .timeout(const Duration(seconds: 3)),
@@ -138,7 +138,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (reason == null || reason.single.isEmpty) return;
         final result = await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(context).client.reportContent(
+          future: () => Matrix.of(widget.outerContext).client.reportContent(
                 user.roomId!,
                 user.eventId,
                 reason: reason.single,
@@ -203,7 +203,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.message:
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(context)
+          future: () => Matrix.of(widget.outerContext)
               .client
               .startDirectChat(user?.id ?? widget.profile!.userId),
         );
@@ -215,7 +215,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (await askConfirmation()) {
           await showFutureLoadingDialog(
             context: context,
-            future: () => Matrix.of(context)
+            future: () => Matrix.of(widget.outerContext)
                 .client
                 .ignoreUser(user?.id ?? widget.profile!.userId),
           );
