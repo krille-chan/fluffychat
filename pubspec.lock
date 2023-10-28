@@ -1081,10 +1081,10 @@ packages:
     dependency: transitive
     description:
       name: markdown
-      sha256: "01512006c8429f604eb10f9848717baeaedf99e991d14a50d540d9beff08e5c6"
+      sha256: acf35edccc0463a9d7384e437c015a3535772e09714cf60e07eeef3a15870dcd
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "7.1.1"
   matcher:
     dependency: transitive
     description:
@@ -1105,10 +1105,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "10389562a4562db6150291b538e025a9a1b7a79998a71d38cb5c78a34ca6b007"
+      sha256: "1e4bef4923fa1e33124843aa59932739e69a5507178f18313ec1067c046156f3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.3"
+    version: "0.22.6"
   matrix_api_lite:
     dependency: transitive
     description:
