@@ -376,14 +376,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
             context: context,
-            title: L10n.of(context)!.oopsSomethingWentWrong,
+            title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
-            okLabel:
-                link == null ? L10n.of(context)!.ok : L10n.of(context)!.help,
+            fullyCapitalizedForMaterial: false,
+            okLabel: link == null
+                ? L10n.of(context)!.ok
+                : L10n.of(context)!.learnMore,
             cancelLabel: L10n.of(context)!.doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
-            launchUrlString(link.toString());
+            launchUrlString(
+              link.toString(),
+              mode: LaunchMode.externalApplication,
+            );
           }
           if (result == OkCancelResult.cancel) {
             await store.setItemBool(SettingKeys.showNoGoogle, true);

@@ -271,7 +271,7 @@ class BackgroundPush {
     if (matrix == null) {
       return;
     }
-    if (await store.getItemBool(SettingKeys.showNoGoogle, true) == true) {
+    if (await store.getItemBool(SettingKeys.showNoGoogle, false) == true) {
       return;
     }
     await loadLocale();
