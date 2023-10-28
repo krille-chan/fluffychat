@@ -2543,5 +2543,11 @@
   "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
   "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
   "pushNotificationsNotAvailable": "Push notifications not available",
-  "learnMore": "Learn more"
+  "learnMore": "Learn more",
+  "todoLists": "(Beta) Todolists",
+  "newTodo": "New todo",
+  "noTodosYet": "No todos have been added to this chat yet. Create your first todo and start cooperating with others. 📝",
+  "editTodo": "Edit todo",
+  "pleaseAddATitle": "Please add a title",
+  "todoListChangedError": "Oops... The todo list has been changed while you edited it."
 }

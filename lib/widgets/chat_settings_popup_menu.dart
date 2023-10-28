@@ -64,6 +64,16 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               ),
             ),
       PopupMenuItem<String>(
+        value: 'todos',
+        child: Row(
+          children: [
+            const Icon(Icons.task_alt_outlined),
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.todoLists),
+          ],
+        ),
+      ),
+      PopupMenuItem<String>(
         value: 'leave',
         child: Row(
           children: [
@@ -136,6 +146,9 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   future: () =>
                       widget.room.setPushRuleState(PushRuleState.notify),
                 );
+                break;
+              case 'todos':
+                context.go('/rooms/${widget.room.id}/tasks');
                 break;
               case 'details':
                 _showChatDetails();
