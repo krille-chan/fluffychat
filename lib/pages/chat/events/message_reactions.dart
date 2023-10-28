@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
@@ -6,7 +5,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -191,19 +189,12 @@ class _AdaptableReactorsDialog extends StatelessWidget {
     this.reactionEntry,
   });
 
-  Future<bool?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        )
-      : showDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        );
+  Future<bool?> show(BuildContext context) => showAdaptiveDialog(
+        context: context,
+        builder: (context) => this,
+        barrierDismissible: true,
+        useRootNavigator: false,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -228,14 +219,9 @@ class _AdaptableReactorsDialog extends StatelessWidget {
 
     final title = Center(child: Text(reactionEntry!.key!));
 
-    return PlatformInfos.isCupertinoStyle
-        ? CupertinoAlertDialog(
-            title: title,
-            content: body,
-          )
-        : AlertDialog(
-            title: title,
-            content: body,
-          );
+    return AlertDialog.adaptive(
+      title: title,
+      content: body,
+    );
   }
 }

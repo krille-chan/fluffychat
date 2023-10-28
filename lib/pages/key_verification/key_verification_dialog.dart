@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,7 +13,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
-  Future<void> show(BuildContext context) => showDialog(
+  Future<void> show(BuildContext context) => showAdaptiveDialog(
         context: context,
         builder: (context) => this,
         barrierDismissible: false,
@@ -342,23 +341,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
     }
-    if ({TargetPlatform.iOS, TargetPlatform.macOS}
-        .contains(Theme.of(context).platform)) {
-      return CupertinoAlertDialog(
-        title: title,
-        content: SizedBox(
-          height: 256,
-          width: 256,
-          child: ListView(
-            padding: const EdgeInsets.only(top: 16),
-            children: [body],
-          ),
-        ),
-        actions: buttons,
-      );
-    }
 
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: title,
       content: SizedBox(
         height: 256,
