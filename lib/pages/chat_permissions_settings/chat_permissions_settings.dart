@@ -99,6 +99,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
               okLabel: L10n.of(context)!.yes,
               cancelLabel: L10n.of(context)!.cancel,
               title: L10n.of(context)!.areYouSure,
+              message: L10n.of(context)!.roomUpgradeDescription,
             )) {
       return;
     }

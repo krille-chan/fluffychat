@@ -2534,5 +2534,12 @@
         "seconds": {}
     }
   },
-  "pleaseEnterANumber": "Please enter a number greater than 0"
+  "pleaseEnterANumber": "Please enter a number greater than 0",
+  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
+  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
+  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
+  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
+  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
+  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you."
 }

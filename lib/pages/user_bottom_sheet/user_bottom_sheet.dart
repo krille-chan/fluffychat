@@ -92,15 +92,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     final user = widget.user;
     final userId = user?.id ?? widget.profile?.userId;
     if (userId == null) throw ('user or profile must not be null!');
-    // ignore: prefer_function_declarations_over_variables
-    final Function askConfirmation = () async => (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.no,
-        ) ==
-        OkCancelResult.ok);
+
     switch (action) {
       case UserBottomSheetAction.report:
         if (user == null) throw ('User must not be null for this action!');
@@ -157,7 +149,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.ban:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.banUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.ban(),
@@ -167,7 +167,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.unban:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.unbanUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.unban(),
@@ -177,7 +185,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.kick:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.kickUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.kick(),
@@ -192,7 +208,16 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           currentLevel: user.powerLevel,
         );
         if (newPermission != null) {
-          if (newPermission == 100 && await askConfirmation() == false) break;
+          if (newPermission == 100 &&
+              await showOkCancelAlertDialog(
+                    useRootNavigator: false,
+                    context: context,
+                    title: L10n.of(context)!.areYouSure,
+                    okLabel: L10n.of(context)!.yes,
+                    cancelLabel: L10n.of(context)!.no,
+                    message: L10n.of(context)!.makeAdminDescription,
+                  ) ==
+                  OkCancelResult.ok) break;
           await showFutureLoadingDialog(
             context: context,
             future: () => user.setPower(newPermission),
@@ -212,14 +237,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         Navigator.of(context, rootNavigator: false).pop();
         break;
       case UserBottomSheetAction.ignore:
-        if (await askConfirmation()) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => Matrix.of(widget.outerContext)
-                .client
-                .ignoreUser(user?.id ?? widget.profile!.userId),
-          );
-        }
+        context.go('/rooms/settings/security/ignorelist');
     }
   }
 

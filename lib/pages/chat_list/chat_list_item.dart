@@ -132,6 +132,7 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context)!.areYouSure,
         okLabel: L10n.of(context)!.yes,
         cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
