@@ -2402,6 +2402,12 @@
             "user": {}
         }
     },
+    "hasKnocked": "{user} has knocked",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {}
+        }
+    },
     "noEmailWarning": "Please enter a valid email address. Otherwise you won't be able to reset your password. If you don't want to, tap again on the button to continue.",
     "@noEmailWarning": {},
     "stories": "Stories",
