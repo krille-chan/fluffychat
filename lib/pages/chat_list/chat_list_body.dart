@@ -25,7 +25,7 @@ import 'chat_list_header.dart';
 class ChatListViewBody extends StatelessWidget {
   final ChatListController controller;
 
-  const ChatListViewBody(this.controller, {Key? key}) : super(key: key);
+  const ChatListViewBody(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -313,8 +313,7 @@ class _SearchItem extends StatelessWidget {
     required this.title,
     this.avatar,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => InkWell(

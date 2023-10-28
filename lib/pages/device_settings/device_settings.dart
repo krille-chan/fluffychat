@@ -13,7 +13,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
-  const DevicesSettings({Key? key}) : super(key: key);
+  const DevicesSettings({super.key});
 
   @override
   DevicesSettingsController createState() => DevicesSettingsController();

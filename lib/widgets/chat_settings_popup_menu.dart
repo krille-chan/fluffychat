@@ -16,8 +16,7 @@ class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
   final bool displayChatDetails;
 
-  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {Key? key})
-      : super(key: key);
+  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {super.key});
 
   @override
   ChatSettingsPopupMenuState createState() => ChatSettingsPopupMenuState();

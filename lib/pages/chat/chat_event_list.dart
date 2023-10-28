@@ -16,9 +16,9 @@ import 'package:fluffychat/utils/platform_infos.dart';
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
   const ChatEventList({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

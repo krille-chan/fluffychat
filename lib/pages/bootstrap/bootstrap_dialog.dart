@@ -18,10 +18,10 @@ class BootstrapDialog extends StatefulWidget {
   final bool wipe;
   final Client client;
   const BootstrapDialog({
-    Key? key,
+    super.key,
     this.wipe = false,
     required this.client,
-  }) : super(key: key);
+  });
 
   Future<bool?> show(BuildContext context) => showAdaptiveBottomSheet(
         context: context,

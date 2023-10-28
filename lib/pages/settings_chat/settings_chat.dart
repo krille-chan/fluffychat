@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'settings_chat_view.dart';
 
 class SettingsChat extends StatefulWidget {
-  const SettingsChat({Key? key}) : super(key: key);
+  const SettingsChat({super.key});
 
   @override
   SettingsChatController createState() => SettingsChatController();

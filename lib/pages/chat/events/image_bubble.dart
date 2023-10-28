@@ -29,8 +29,8 @@ class ImageBubble extends StatelessWidget {
     this.height = 300,
     this.animated = false,
     this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   Widget _buildPlaceholder(BuildContext context) {
     if (event.messageType == MessageTypes.Sticker) {

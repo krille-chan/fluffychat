@@ -14,8 +14,7 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
 
-  const ChatEncryptionSettingsView(this.controller, {Key? key})
-      : super(key: key);
+  const ChatEncryptionSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

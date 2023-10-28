@@ -29,7 +29,7 @@ enum _EventContextAction { info, report }
 class ChatView extends StatelessWidget {
   final ChatController controller;
 
-  const ChatView(this.controller, {Key? key}) : super(key: key);
+  const ChatView(this.controller, {super.key});
 
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {

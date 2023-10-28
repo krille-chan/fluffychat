@@ -23,7 +23,7 @@ import 'package:archive/archive.dart'
     if (dart.library.io) 'package:archive/archive_io.dart';
 
 class EmotesSettings extends StatefulWidget {
-  const EmotesSettings({Key? key}) : super(key: key);
+  const EmotesSettings({super.key});
 
   @override
   EmotesSettingsController createState() => EmotesSettingsController();

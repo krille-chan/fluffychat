@@ -11,7 +11,7 @@ import 'user_bottom_sheet.dart';
 class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;
 
-  const UserBottomSheetView(this.controller, {Key? key}) : super(key: key);
+  const UserBottomSheetView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

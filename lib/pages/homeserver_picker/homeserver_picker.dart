@@ -25,7 +25,7 @@ import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 class HomeserverPicker extends StatefulWidget {
-  const HomeserverPicker({Key? key}) : super(key: key);
+  const HomeserverPicker({super.key});
 
   @override
   HomeserverPickerController createState() => HomeserverPickerController();

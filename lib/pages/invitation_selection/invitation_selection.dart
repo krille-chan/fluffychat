@@ -15,9 +15,9 @@ import '../../utils/localized_exception_extension.dart';
 class InvitationSelection extends StatefulWidget {
   final String roomId;
   const InvitationSelection({
-    Key? key,
+    super.key,
     required this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   InvitationSelectionController createState() =>

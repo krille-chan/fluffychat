@@ -10,7 +10,7 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 class ArchiveView extends StatelessWidget {
   final ArchiveController controller;
 
-  const ArchiveView(this.controller, {Key? key}) : super(key: key);
+  const ArchiveView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -16,8 +16,8 @@ class SendLocationDialog extends StatefulWidget {
 
   const SendLocationDialog({
     required this.room,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   SendLocationDialogState createState() => SendLocationDialogState();

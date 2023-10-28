@@ -12,11 +12,11 @@ class StartChatFloatingActionButton extends StatelessWidget {
   final bool roomsIsEmpty;
 
   const StartChatFloatingActionButton({
-    Key? key,
+    super.key,
     required this.activeFilter,
     required this.scrolledToTop,
     required this.roomsIsEmpty,
-  }) : super(key: key);
+  });
 
   void _onPressed(BuildContext context) {
     switch (activeFilter) {

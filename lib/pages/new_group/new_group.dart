@@ -8,7 +8,7 @@ import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
-  const NewGroup({Key? key}) : super(key: key);
+  const NewGroup({super.key});
 
   @override
   NewGroupController createState() => NewGroupController();

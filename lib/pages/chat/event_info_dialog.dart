@@ -24,8 +24,8 @@ class EventInfoDialog extends StatelessWidget {
   const EventInfoDialog({
     required this.event,
     required this.l10n,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   String get prettyJson {
     const JsonDecoder decoder = JsonDecoder();

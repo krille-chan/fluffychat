@@ -11,7 +11,7 @@ import '../../config/themes.dart';
 class ReactionsPicker extends StatelessWidget {
   final ChatController controller;
 
-  const ReactionsPicker(this.controller, {Key? key}) : super(key: key);
+  const ReactionsPicker(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

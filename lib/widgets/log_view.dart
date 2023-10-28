@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 class LogViewer extends StatefulWidget {
-  const LogViewer({Key? key}) : super(key: key);
+  const LogViewer({super.key});
 
   @override
   LogViewerState createState() => LogViewerState();

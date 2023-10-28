@@ -17,7 +17,7 @@ import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_view.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   SettingsController createState() => SettingsController();

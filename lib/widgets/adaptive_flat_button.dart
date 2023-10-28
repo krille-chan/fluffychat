@@ -9,11 +9,11 @@ class AdaptiveFlatButton extends StatelessWidget {
   final void Function()? onPressed;
 
   const AdaptiveFlatButton({
-    Key? key,
+    super.key,
     required this.label,
     this.textColor,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

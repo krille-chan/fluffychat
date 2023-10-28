@@ -8,7 +8,7 @@ import 'settings_ignore_list_view.dart';
 class SettingsIgnoreList extends StatefulWidget {
   final String? initialUserId;
 
-  const SettingsIgnoreList({Key? key, this.initialUserId}) : super(key: key);
+  const SettingsIgnoreList({super.key, this.initialUserId});
 
   @override
   SettingsIgnoreListController createState() => SettingsIgnoreListController();

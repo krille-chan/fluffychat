@@ -9,12 +9,12 @@ class SettingsSwitchListTile extends StatefulWidget {
   final Function(bool)? onChanged;
 
   const SettingsSwitchListTile.adaptive({
-    Key? key,
+    super.key,
     this.defaultValue = false,
     required this.storeKey,
     required this.title,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   SettingsSwitchListTileState createState() => SettingsSwitchListTileState();

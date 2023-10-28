@@ -41,8 +41,8 @@ class Message extends StatelessWidget {
     required this.onSwipe,
     this.selected = false,
     required this.timeline,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Indicates wheither the user may use a mouse instead
   /// of touchscreen.

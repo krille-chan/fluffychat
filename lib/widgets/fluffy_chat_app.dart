@@ -18,11 +18,11 @@ class FluffyChatApp extends StatelessWidget {
   final String? pincode;
 
   const FluffyChatApp({
-    Key? key,
+    super.key,
     this.testWidget,
     required this.clients,
     this.pincode,
-  }) : super(key: key);
+  });
 
   /// getInitialLink may rereturn the value multiple times if this view is
   /// opened multiple times for example if the user logs out after they logged

@@ -61,10 +61,10 @@ class ChatList extends StatefulWidget {
   final String? activeChat;
 
   const ChatList({
-    Key? key,
+    super.key,
     this.displayNavigationRail = false,
     required this.activeChat,
-  }) : super(key: key);
+  });
 
   @override
   ChatListController createState() => ChatListController();

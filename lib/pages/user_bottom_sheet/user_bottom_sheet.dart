@@ -74,14 +74,13 @@ class UserBottomSheet extends StatefulWidget {
   final Object? profileSearchError;
 
   const UserBottomSheet({
-    Key? key,
+    super.key,
     this.user,
     this.profile,
     required this.outerContext,
     this.onMention,
     this.profileSearchError,
-  })  : assert(user != null || profile != null),
-        super(key: key);
+  }) : assert(user != null || profile != null);
 
   @override
   UserBottomSheetController createState() => UserBottomSheetController();

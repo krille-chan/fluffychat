@@ -204,11 +204,11 @@ class _EmojiImportPreview extends StatefulWidget {
   final VoidCallback onRemove;
 
   const _EmojiImportPreview({
-    Key? key,
+    super.key,
     required this.entry,
     required this.onNameChanged,
     required this.onRemove,
-  }) : super(key: key);
+  });
 
   @override
   State<_EmojiImportPreview> createState() => _EmojiImportPreviewState();

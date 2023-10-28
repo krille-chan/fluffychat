@@ -18,7 +18,7 @@ import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {
   final Event event;
-  const EventVideoPlayer(this.event, {Key? key}) : super(key: key);
+  const EventVideoPlayer(this.event, {super.key});
 
   @override
   EventVideoPlayerState createState() => EventVideoPlayerState();

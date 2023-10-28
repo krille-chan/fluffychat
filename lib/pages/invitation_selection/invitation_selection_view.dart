@@ -11,7 +11,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 class InvitationSelectionView extends StatelessWidget {
   final InvitationSelectionController controller;
 
-  const InvitationSelectionView(this.controller, {Key? key}) : super(key: key);
+  const InvitationSelectionView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +142,12 @@ class _InviteContactListTile extends StatelessWidget {
   final void Function() onTap;
 
   const _InviteContactListTile({
-    Key? key,
     required this.userId,
     required this.displayname,
     required this.avatarUrl,
     required this.isMember,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

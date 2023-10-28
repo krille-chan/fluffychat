@@ -10,7 +10,7 @@ import '../user_bottom_sheet/user_bottom_sheet.dart';
 class ParticipantListItem extends StatelessWidget {
   final User user;
 
-  const ParticipantListItem(this.user, {Key? key}) : super(key: key);
+  const ParticipantListItem(this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {

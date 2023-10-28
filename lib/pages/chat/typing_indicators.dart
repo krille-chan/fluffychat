@@ -8,7 +8,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class TypingIndicators extends StatelessWidget {
   final ChatController controller;
-  const TypingIndicators(this.controller, {Key? key}) : super(key: key);
+  const TypingIndicators(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -21,9 +21,9 @@ class SpaceView extends StatefulWidget {
   final ScrollController scrollController;
   const SpaceView(
     this.controller, {
-    Key? key,
+    super.key,
     required this.scrollController,
-  }) : super(key: key);
+  });
 
   @override
   State<SpaceView> createState() => _SpaceViewState();

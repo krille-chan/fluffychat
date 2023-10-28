@@ -15,8 +15,8 @@ class SendFileDialog extends StatefulWidget {
   const SendFileDialog({
     required this.room,
     required this.files,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   SendFileDialogState createState() => SendFileDialogState();

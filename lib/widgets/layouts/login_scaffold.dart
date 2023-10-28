@@ -13,11 +13,11 @@ class LoginScaffold extends StatelessWidget {
   final bool enforceMobileMode;
 
   const LoginScaffold({
-    Key? key,
+    super.key,
     required this.body,
     this.appBar,
     this.enforceMobileMode = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

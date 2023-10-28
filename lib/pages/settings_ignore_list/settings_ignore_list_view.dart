@@ -12,7 +12,7 @@ import 'settings_ignore_list.dart';
 class SettingsIgnoreListView extends StatelessWidget {
   final SettingsIgnoreListController controller;
 
-  const SettingsIgnoreListView(this.controller, {Key? key}) : super(key: key);
+  const SettingsIgnoreListView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

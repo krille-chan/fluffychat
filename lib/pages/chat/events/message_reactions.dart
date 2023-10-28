@@ -15,8 +15,7 @@ class MessageReactions extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const MessageReactions(this.event, this.timeline, {Key? key})
-      : super(key: key);
+  const MessageReactions(this.event, this.timeline, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,36 +49,34 @@ class MessageReactions extends StatelessWidget {
       spacing: 4.0,
       runSpacing: 4.0,
       children: [
-        ...reactionList
-            .map(
-              (r) => _Reaction(
-                reactionKey: r.key,
-                count: r.count,
-                reacted: r.reacted,
-                onTap: () {
-                  if (r.reacted) {
-                    final evt = allReactionEvents.firstWhereOrNull(
-                      (e) =>
-                          e.senderId == e.room.client.userID &&
-                          e.content.tryGetMap('m.relates_to')?['key'] == r.key,
-                    );
-                    if (evt != null) {
-                      showFutureLoadingDialog(
-                        context: context,
-                        future: () => evt.redactEvent(),
-                      );
-                    }
-                  } else {
-                    event.room.sendReaction(event.eventId, r.key!);
-                  }
-                },
-                onLongPress: () async => await _AdaptableReactorsDialog(
-                  client: client,
-                  reactionEntry: r,
-                ).show(context),
-              ),
-            )
-            .toList(),
+        ...reactionList.map(
+          (r) => _Reaction(
+            reactionKey: r.key,
+            count: r.count,
+            reacted: r.reacted,
+            onTap: () {
+              if (r.reacted) {
+                final evt = allReactionEvents.firstWhereOrNull(
+                  (e) =>
+                      e.senderId == e.room.client.userID &&
+                      e.content.tryGetMap('m.relates_to')?['key'] == r.key,
+                );
+                if (evt != null) {
+                  showFutureLoadingDialog(
+                    context: context,
+                    future: () => evt.redactEvent(),
+                  );
+                }
+              } else {
+                event.room.sendReaction(event.eventId, r.key!);
+              }
+            },
+            onLongPress: () async => await _AdaptableReactorsDialog(
+              client: client,
+              reactionEntry: r,
+            ).show(context),
+          ),
+        ),
         if (allReactionEvents.any((e) => e.status.isSending))
           const SizedBox(
             width: 28,
@@ -190,10 +187,9 @@ class _AdaptableReactorsDialog extends StatelessWidget {
   final _ReactionEntry? reactionEntry;
 
   const _AdaptableReactorsDialog({
-    Key? key,
     this.client,
     this.reactionEntry,
-  }) : super(key: key);
+  });
 
   Future<bool?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
       ? showCupertinoDialog(

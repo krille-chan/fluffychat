@@ -14,7 +14,7 @@ import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
   final SettingsChatController controller;
-  const SettingsChatView(this.controller, {Key? key}) : super(key: key);
+  const SettingsChatView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

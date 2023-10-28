@@ -14,7 +14,7 @@ import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewPrivateChat extends StatefulWidget {
-  const NewPrivateChat({Key? key}) : super(key: key);
+  const NewPrivateChat({super.key});
 
   @override
   NewPrivateChatController createState() => NewPrivateChatController();

@@ -38,10 +38,9 @@ import 'pip/pip_view.dart';
 class _StreamView extends StatelessWidget {
   const _StreamView(
     this.wrappedStream, {
-    Key? key,
     this.mainView = false,
     required this.matrixClient,
-  }) : super(key: key);
+  });
 
   final WrappedMediaStream wrappedStream;
   final Client matrixClient;
@@ -128,8 +127,8 @@ class Calling extends StatefulWidget {
     required this.client,
     required this.callId,
     this.onClear,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   MyCallingPage createState() => MyCallingPage();

@@ -15,8 +15,8 @@ import 'events/audio_player.dart';
 class RecordingDialog extends StatefulWidget {
   static const String recordingFileType = 'm4a';
   const RecordingDialog({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   RecordingDialogState createState() => RecordingDialogState();

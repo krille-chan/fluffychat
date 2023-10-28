@@ -10,12 +10,12 @@ class PermissionsListTile extends StatelessWidget {
   final void Function()? onTap;
 
   const PermissionsListTile({
-    Key? key,
+    super.key,
     required this.permissionKey,
     required this.permission,
     this.category,
     this.onTap,
-  }) : super(key: key);
+  });
 
   String getLocalizedPowerLevelString(BuildContext context) {
     if (category == null) {

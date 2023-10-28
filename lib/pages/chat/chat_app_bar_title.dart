@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final ChatController controller;
-  const ChatAppBarTitle(this.controller, {Key? key}) : super(key: key);
+  const ChatAppBarTitle(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -30,8 +30,8 @@ class ChatListItem extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.onLongPress,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   void clickAction(BuildContext context) async {
     if (onTap != null) return onTap!();

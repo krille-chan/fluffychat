@@ -8,7 +8,7 @@ import 'add_story.dart';
 
 class AddStoryView extends StatelessWidget {
   final AddStoryController controller;
-  const AddStoryView(this.controller, {Key? key}) : super(key: key);
+  const AddStoryView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

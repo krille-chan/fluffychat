@@ -13,7 +13,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 
 class ChatPermissionsSettings extends StatefulWidget {
-  const ChatPermissionsSettings({Key? key}) : super(key: key);
+  const ChatPermissionsSettings({super.key});
 
   @override
   ChatPermissionsSettingsController createState() =>

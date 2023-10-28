@@ -8,8 +8,7 @@ import 'package:fluffychat/pages/chat/add_widget_tile.dart';
 class AddWidgetTileView extends StatelessWidget {
   final AddWidgetTileState controller;
 
-  const AddWidgetTileView({Key? key, required this.controller})
-      : super(key: key);
+  const AddWidgetTileView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

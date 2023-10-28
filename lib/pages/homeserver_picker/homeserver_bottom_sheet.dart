@@ -5,8 +5,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeserverBottomSheet extends StatelessWidget {
   final HomeserverBenchmarkResult homeserver;
-  const HomeserverBottomSheet({required this.homeserver, Key? key})
-      : super(key: key);
+  const HomeserverBottomSheet({required this.homeserver, super.key});
 
   @override
   Widget build(BuildContext context) {

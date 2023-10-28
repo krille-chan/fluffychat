@@ -8,7 +8,7 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 class NewGroupView extends StatelessWidget {
   final NewGroupController controller;
 
-  const NewGroupView(this.controller, {Key? key}) : super(key: key);
+  const NewGroupView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

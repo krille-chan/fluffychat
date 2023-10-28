@@ -19,7 +19,7 @@ import '../../config/themes.dart';
 
 class StoryView extends StatelessWidget {
   final StoryPageController controller;
-  const StoryView(this.controller, {Key? key}) : super(key: key);
+  const StoryView(this.controller, {super.key});
 
   static const List<Shadow> textShadows = [
     Shadow(

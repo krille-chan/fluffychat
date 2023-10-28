@@ -14,9 +14,9 @@ class ReplyContent extends StatelessWidget {
   const ReplyContent(
     this.replyEvent, {
     this.ownMessage = false,
-    Key? key,
+    super.key,
     this.timeline,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

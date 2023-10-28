@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class EmptyPage extends StatelessWidget {
   final bool loading;
   static const double _width = 300;
-  const EmptyPage({this.loading = false, Key? key}) : super(key: key);
+  const EmptyPage({this.loading = false, super.key});
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;

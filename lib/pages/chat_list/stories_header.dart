@@ -23,7 +23,7 @@ enum ContextualRoomAction {
 class StoriesHeader extends StatelessWidget {
   final String filter;
 
-  const StoriesHeader({required this.filter, Key? key}) : super(key: key);
+  const StoriesHeader({required this.filter, super.key});
 
   void _addToStoryAction(BuildContext context) =>
       context.go('/rooms/stories/create');
@@ -186,8 +186,7 @@ class _StoryButton extends StatefulWidget {
     this.hasPosts = true,
     this.unread = false,
     this.onLongPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   State<_StoryButton> createState() => _StoryButtonState();

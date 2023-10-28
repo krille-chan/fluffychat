@@ -12,8 +12,7 @@ import 'settings_notifications.dart';
 class SettingsNotificationsView extends StatelessWidget {
   final SettingsNotificationsController controller;
 
-  const SettingsNotificationsView(this.controller, {Key? key})
-      : super(key: key);
+  const SettingsNotificationsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

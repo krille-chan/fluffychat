@@ -10,7 +10,7 @@ import '../../widgets/matrix.dart';
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
 
-  const ChatListHeader({Key? key, required this.controller}) : super(key: key);
+  const ChatListHeader({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

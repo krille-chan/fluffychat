@@ -6,11 +6,11 @@ class TwoColumnLayout extends StatelessWidget {
   final bool displayNavigationRail;
 
   const TwoColumnLayout({
-    Key? key,
+    super.key,
     required this.mainView,
     required this.sideView,
     required this.displayNavigationRail,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return ScaffoldMessenger(

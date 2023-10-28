@@ -44,8 +44,8 @@ class InputBar extends StatelessWidget {
     this.autofocus,
     this.textInputAction,
     this.readOnly = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   List<Map<String, String?>> getSuggestions(String text) {
     if (controller!.selection.baseOffset !=

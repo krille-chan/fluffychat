@@ -43,9 +43,9 @@ class ChatPage extends StatelessWidget {
   final String roomId;
 
   const ChatPage({
-    Key? key,
+    super.key,
     required this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,9 +95,9 @@ class ChatPageWithRoom extends StatefulWidget {
   final Room room;
 
   const ChatPageWithRoom({
-    Key? key,
+    super.key,
     required this.room,
-  }) : super(key: key);
+  });
 
   @override
   ChatController createState() => ChatController();

@@ -16,8 +16,8 @@ class NaviRailItem extends StatefulWidget {
     required this.onTap,
     required this.icon,
     this.selectedIcon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<NaviRailItem> createState() => _NaviRailItemState();

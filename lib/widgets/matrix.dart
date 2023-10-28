@@ -45,8 +45,8 @@ class Matrix extends StatefulWidget {
     this.child,
     required this.clients,
     this.queryParameters,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   MatrixState createState() => MatrixState();

@@ -20,7 +20,7 @@ import 'start_chat_fab.dart';
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
 
-  const ChatListView(this.controller, {Key? key}) : super(key: key);
+  const ChatListView(this.controller, {super.key});
 
   List<NavigationDestination> getNavigationDestinations(BuildContext context) {
     final badgePosition = BadgePosition.topEnd(top: -12, end: -8);

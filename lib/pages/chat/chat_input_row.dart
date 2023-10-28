@@ -17,7 +17,7 @@ import 'input_bar.dart';
 class ChatInputRow extends StatelessWidget {
   final ChatController controller;
 
-  const ChatInputRow(this.controller, {Key? key}) : super(key: key);
+  const ChatInputRow(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +278,7 @@ class ChatInputRow extends StatelessWidget {
 class _ChatAccountPicker extends StatelessWidget {
   final ChatController controller;
 
-  const _ChatAccountPicker(this.controller, {Key? key}) : super(key: key);
+  const _ChatAccountPicker(this.controller);
 
   void _popupMenuButtonSelected(String mxid, BuildContext context) {
     final client = Matrix.of(context)

@@ -8,8 +8,7 @@ class MessageDownloadContent extends StatelessWidget {
   final Event event;
   final Color textColor;
 
-  const MessageDownloadContent(this.event, this.textColor, {Key? key})
-      : super(key: key);
+  const MessageDownloadContent(this.event, this.textColor, {super.key});
 
   @override
   Widget build(BuildContext context) {

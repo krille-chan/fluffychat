@@ -8,7 +8,7 @@ import 'new_space.dart';
 class NewSpaceView extends StatelessWidget {
   final NewSpaceController controller;
 
-  const NewSpaceView(this.controller, {Key? key}) : super(key: key);
+  const NewSpaceView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

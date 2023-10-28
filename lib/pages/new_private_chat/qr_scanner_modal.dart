@@ -9,7 +9,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 
 class QrScannerModal extends StatefulWidget {
-  const QrScannerModal({Key? key}) : super(key: key);
+  const QrScannerModal({super.key});
 
   @override
   QrScannerModalState createState() => QrScannerModalState();

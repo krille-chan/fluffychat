@@ -21,8 +21,8 @@ class ContentBanner extends StatelessWidget {
     this.client,
     this.opacity = 0.75,
     this.placeholder,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

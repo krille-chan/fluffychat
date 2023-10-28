@@ -20,11 +20,11 @@ class HtmlMessage extends StatelessWidget {
   final Color textColor;
 
   const HtmlMessage({
-    Key? key,
+    super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

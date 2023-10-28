@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/archive/archive_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Archive extends StatefulWidget {
-  const Archive({Key? key}) : super(key: key);
+  const Archive({super.key});
 
   @override
   ArchiveController createState() => ArchiveController();
