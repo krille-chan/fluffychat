@@ -12,3 +12,4 @@ jobs:
       - uses: reitermarkus/automerge@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: rebase
