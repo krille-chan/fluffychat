@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -30,7 +31,8 @@ class RecordingDialogState extends State<RecordingDialog> {
   final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
-  static const int bitRate = 16000;
+  static const int bitRate =
+      64000; // Lower makes the audio messages unplayable on iOS for some reason
 
   Future<void> startRecording() async {
     try {
@@ -46,6 +48,7 @@ class RecordingDialogState extends State<RecordingDialog> {
       final path = _recordedPath =
           '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.$fileExtension';
 
+      Logs().v('Store audio file at', path);
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
         setState(() => error = true);
