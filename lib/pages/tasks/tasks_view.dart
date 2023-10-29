@@ -69,6 +69,15 @@ class TasksView extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                             ),
+                            const SizedBox(height: 16),
+                            SizedBox(
+                              width: 256,
+                              child: Text(
+                                L10n.of(context)!.todosUnencrypted,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(color: Colors.orange),
+                              ),
+                            ),
                           ],
                         )
                       : ReorderableListView.builder(

@@ -2549,5 +2549,6 @@
   "noTodosYet": "No todos have been added to this chat yet. Create your first todo and start cooperating with others. 📝",
   "editTodo": "Edit todo",
   "pleaseAddATitle": "Please add a title",
-  "todoListChangedError": "Oops... The todo list has been changed while you edited it."
+  "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
+  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted."
 }
