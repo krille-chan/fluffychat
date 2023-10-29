@@ -14,7 +14,6 @@ class ArchiveView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var archive = controller.archive;
     return FutureBuilder<List<Room>>(
       future: controller.getArchive(context),
       builder: (BuildContext context, snapshot) => Scaffold(
@@ -50,16 +49,16 @@ class ArchiveView extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
               } else {
-                archive = snapshot.data;
-                if (archive == null || archive!.isEmpty) {
+                if (controller.archive.isEmpty) {
                   return const Center(
                     child: Icon(Icons.archive_outlined, size: 80),
                   );
                 }
                 return ListView.builder(
-                  itemCount: archive!.length,
+                  itemCount: controller.archive.length,
                   itemBuilder: (BuildContext context, int i) => ChatListItem(
-                    archive![i],
+                    controller.archive[i],
+                    onForget: () => controller.forgetRoomAction(i),
                   ),
                 );
               }

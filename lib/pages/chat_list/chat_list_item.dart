@@ -23,6 +23,7 @@ class ChatListItem extends StatelessWidget {
   final bool selected;
   final void Function()? onTap;
   final void Function()? onLongPress;
+  final void Function()? onForget;
 
   const ChatListItem(
     this.room, {
@@ -30,6 +31,7 @@ class ChatListItem extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.onLongPress,
+    this.onForget,
     super.key,
   });
 
@@ -362,6 +364,12 @@ class ChatListItem extends StatelessWidget {
             ],
           ),
           onTap: () => clickAction(context),
+          trailing: onForget == null
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.delete_outlined),
+                  onPressed: onForget,
+                ),
         ),
       ),
     );

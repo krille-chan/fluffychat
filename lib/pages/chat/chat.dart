@@ -949,15 +949,6 @@ class ChatController extends State<ChatPageWithRoom> {
     return sendEmojiAction(emoji.emoji);
   }
 
-  void forgetRoom() async {
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: room.forget,
-    );
-    if (result.error != null) return;
-    context.go('/rooms/archive');
-  }
-
   void typeEmoji(Emoji? emoji) {
     if (emoji == null) return;
     final text = sendController.text;

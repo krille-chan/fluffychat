@@ -108,21 +108,7 @@ class ChatView extends StatelessWidget {
             ],
           ),
       ];
-    } else if (controller.isArchived) {
-      return [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextButton.icon(
-            onPressed: controller.forgetRoom,
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
-            icon: const Icon(Icons.delete_forever_outlined),
-            label: Text(L10n.of(context)!.delete),
-          ),
-        ),
-      ];
-    } else {
+    } else if (!controller.room.isArchived) {
       return [
         if (Matrix.of(context).voipPlugin != null &&
             controller.room.isDirectChat)
@@ -135,6 +121,7 @@ class ChatView extends StatelessWidget {
         ChatSettingsPopupMenu(controller.room, true),
       ];
     }
+    return [];
   }
 
   @override

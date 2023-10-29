@@ -16,17 +16,29 @@ class Archive extends StatefulWidget {
 }
 
 class ArchiveController extends State<Archive> {
-  List<Room>? archive;
+  List<Room> archive = [];
 
   Future<List<Room>> getArchive(BuildContext context) async {
-    final archive = this.archive;
-    if (archive != null) return archive;
-    return this.archive = await Matrix.of(context).client.loadArchive();
+    if (archive.isNotEmpty) return archive;
+    return archive = await Matrix.of(context).client.loadArchive();
+  }
+
+  void forgetRoomAction(int i) async {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
+        await archive[i].forget();
+        archive.removeAt(i);
+      },
+    );
+    setState(() {});
   }
 
   void forgetAllAction() async {
     final archive = this.archive;
-    if (archive == null) return;
+    final client = Matrix.of(context).client;
+    if (archive.isEmpty) return;
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
@@ -48,6 +60,7 @@ class ArchiveController extends State<Archive> {
         }
       },
     );
+    client.clearArchivesFromCache();
     setState(() {});
   }
 
