@@ -1159,7 +1159,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Firebase Cloud Messaging scheint auf Ihrem Gerät nicht verfügbar zu sein. Um trotzdem Push-Benachrichtigungen zu erhalten, empfehlen wir die Installation von MicroG oder Unified Push.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging scheint auf deinem Gerät nicht verfügbar zu sein. Um trotzdem Push-Benachrichtigungen zu erhalten, empfehlen wir die Installation von ntfy. Mit ntfy oder einem anderen Unified Push Anbieter kannst du Push-Benachrichtigungen datensicher empfangen. Du kannst ntfy im PlayStore oder bei F-Droid herunterladen.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
