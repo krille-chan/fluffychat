@@ -17,6 +17,7 @@
 - fix: Use correct localization for redactedBy (krille-chan)
 - fix: noFCM warning dialog (krille-chan)
 - fix: render tg-forward as blockquote style (krille-chan)
+- fix: Archive does not update its state
 - refactor: Change audio codec to opus where supported to have better compatibility with Element (Krille)
 - refactor: Make file dialog adaptive and adjust design (krille-chan)
 - refactor: Preload notification sound on web (Krille)
