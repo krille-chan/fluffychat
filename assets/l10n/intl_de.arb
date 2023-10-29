@@ -2607,5 +2607,25 @@
   "invitePrivateChat": "📨 Einladungen zum privaten Chat",
   "@invitePrivateChat": {},
   "invalidInput": "Ungültige Eingabe!",
-  "@invalidInput": {}
+  "@invalidInput": {},
+  "hasKnocked": "{user} hat angeklopft",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "wrongPinEntered": "Falsche PIN eingegeben! Bitte in {seconds} Sekunden erneut versuchen ...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "pleaseEnterANumber": "Bitte eine Zahl größer 0 eingeben",
+  "@pleaseEnterANumber": {},
+  "emoteKeyboardNoRecents": "Kürzlich verwendete Emotes werden hier angezeigt ...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  }
 }
