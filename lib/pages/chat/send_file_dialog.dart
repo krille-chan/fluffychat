@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
@@ -84,29 +85,31 @@ class SendFileDialogState extends State<SendFileDialog> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Flexible(
-            child: Image.memory(
-              widget.files.first.bytes,
-              fit: BoxFit.contain,
+            child: Material(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              elevation:
+                  Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
+              shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              child: Image.memory(
+                widget.files.first.bytes,
+                fit: BoxFit.contain,
+                height: 256,
+              ),
             ),
           ),
-          Row(
-            children: <Widget>[
-              Checkbox(
-                value: origImage,
-                onChanged: (v) => setState(() => origImage = v ?? false),
-              ),
-              InkWell(
-                onTap: () => setState(() => origImage = !origImage),
-                child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
-              ),
-            ],
+          SwitchListTile.adaptive(
+            value: origImage,
+            contentPadding: EdgeInsets.zero,
+            onChanged: (v) => setState(() => origImage = v),
+            title: Text(L10n.of(context)!.sendOriginal),
+            subtitle: Text(sizeString),
           ),
         ],
       );
     } else {
       contentWidget = Text('$fileName ($sizeString)');
     }
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(sendStr),
       content: contentWidget,
       actions: <Widget>[

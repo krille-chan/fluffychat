@@ -149,7 +149,7 @@ class ChatController extends State<ChatPageWithRoom> {
       );
     }
 
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -490,7 +490,7 @@ class ChatController extends State<ChatPageWithRoom> {
       ),
     );
     if (result == null || result.files.isEmpty) return;
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -508,7 +508,7 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void sendImageFromClipBoard(Uint8List? image) async {
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -533,7 +533,7 @@ class ChatController extends State<ChatPageWithRoom> {
     );
     if (result == null || result.files.isEmpty) return;
 
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -556,7 +556,7 @@ class ChatController extends State<ChatPageWithRoom> {
     final file = await ImagePicker().pickImage(source: ImageSource.camera);
     if (file == null) return;
     final bytes = await file.readAsBytes();
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -580,7 +580,7 @@ class ChatController extends State<ChatPageWithRoom> {
     );
     if (file == null) return;
     final bytes = await file.readAsBytes();
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendFileDialog(
@@ -688,7 +688,7 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   void sendLocationAction() async {
-    await showDialog(
+    await showAdaptiveDialog(
       context: context,
       useRootNavigator: false,
       builder: (c) => SendLocationDialog(room: room),

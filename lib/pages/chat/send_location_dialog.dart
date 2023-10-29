@@ -9,7 +9,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/events/map_bubble.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 
 class SendLocationDialog extends StatefulWidget {
   final Room room;
@@ -111,23 +110,7 @@ class SendLocationDialogState extends State<SendLocationDialog> {
         ],
       );
     }
-    if (PlatformInfos.isCupertinoStyle) {
-      return CupertinoAlertDialog(
-        title: Text(L10n.of(context)!.shareLocation),
-        content: contentWidget,
-        actions: [
-          CupertinoDialogAction(
-            onPressed: Navigator.of(context, rootNavigator: false).pop,
-            child: Text(L10n.of(context)!.cancel),
-          ),
-          CupertinoDialogAction(
-            onPressed: isSending ? null : sendAction,
-            child: Text(L10n.of(context)!.send),
-          ),
-        ],
-      );
-    }
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(L10n.of(context)!.shareLocation),
       content: contentWidget,
       actions: [
