@@ -90,6 +90,7 @@ class SendFileDialogState extends State<SendFileDialog> {
               elevation:
                   Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
               shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              clipBehavior: Clip.hardEdge,
               child: Image.memory(
                 widget.files.first.bytes,
                 fit: BoxFit.contain,
