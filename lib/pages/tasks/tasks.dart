@@ -99,18 +99,19 @@ class TasksController extends State<TasksPage> {
         update: (todos) => todos..removeWhere((t) => t.done),
       );
 
-  void onReorder(int oldindex, int newindex) => updateTodos(
-        update: (todos) {
-          if (newindex > oldindex) {
-            newindex -= 1;
-          }
-          final todo = todos.removeAt(oldindex);
-          todos.insert(newindex, todo);
-
-          return todos;
-        },
-        tmpTodo: true,
-      );
+  void onReorder(int oldindex, int newindex) {
+    if (newindex > oldindex) {
+      newindex -= 1;
+    }
+    updateTodos(
+      update: (todos) {
+        final todo = todos.removeAt(oldindex);
+        todos.insert(newindex, todo);
+        return todos;
+      },
+      tmpTodo: true,
+    );
+  }
 
   void updateTodos({
     required List<MatrixTodo> Function(List<MatrixTodo>) update,
@@ -122,6 +123,7 @@ class TasksController extends State<TasksPage> {
     });
     try {
       final newTodos = update(todos);
+      assert(todos != newTodos);
       if (tmpTodo) {
         setState(() {
           _tmpTodos = newTodos;
@@ -130,17 +132,23 @@ class TasksController extends State<TasksPage> {
           _tmpTodos = null;
         });
       }
-      await widget.room.updateMatrixTodos(newTodos);
+      await widget.room
+          .updateMatrixTodos(newTodos)
+          .timeout(const Duration(seconds: 30));
       onSuccess?.call();
     } on MatrixException catch (e) {
-      if (e.error != MatrixError.M_LIMIT_EXCEEDED) rethrow;
-      Logs().w('Rate limit! Try again in ${e.raw['retry_after_ms']}ms');
-      await Future.delayed(
-        Duration(milliseconds: e.raw['retry_after_ms'] as int),
-      );
+      final retryAfterMs = e.retryAfterMs;
+      if (retryAfterMs == null) rethrow;
+      Logs().w('Rate limit! Try again in $retryAfterMs ms');
+      await Future.delayed(Duration(milliseconds: retryAfterMs));
       updateTodos(update: update, onSuccess: onSuccess);
     } catch (e, s) {
-      Logs().w('Unable to toggle done', e, s);
+      Logs().w('Unable to update todo list', e, s);
+      if (_tmpTodos != null) {
+        setState(() {
+          _tmpTodos = null;
+        });
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           duration: const Duration(seconds: 20),
@@ -151,7 +159,13 @@ class TasksController extends State<TasksPage> {
                 color: Theme.of(context).colorScheme.background,
               ),
               const SizedBox(width: 16),
-              Text(e.toLocalizedString(context)),
+              Expanded(
+                child: Text(
+                  e.toLocalizedString(context),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
           action: e is TodoListChangedException
@@ -206,6 +220,13 @@ class TasksController extends State<TasksPage> {
       },
     );
   }
+
+  void deleteTodo(int i) => updateTodos(
+        update: (list) {
+          list.removeAt(i);
+          return list;
+        },
+      );
 
   void editTodoDueDate(int i, MatrixTodo todo) async {
     final now = DateTime.now();
