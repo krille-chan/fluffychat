@@ -13,7 +13,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'm4a';
   const RecordingDialog({
     super.key,
   });
@@ -28,17 +27,24 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  final _audioRecorder = Record();
+  final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
-  static const int bitRate = 64000;
-  static const int samplingRate = 22050;
+  static const int bitRate = 16000;
 
   Future<void> startRecording() async {
     try {
+      // We try to pick Opus where supported, since that is a codec optimized
+      // for speech as well as what the voice messages MSC uses.
+      final audioCodec =
+          (await _audioRecorder.isEncoderSupported(AudioEncoder.opus))
+              ? AudioEncoder.opus
+              : AudioEncoder.aacLc;
+      // see https://pub.dev/documentation/record/latest/record/AudioEncoder.html
+      final fileExtension = audioCodec == AudioEncoder.opus ? "opus" : "m4a";
       final tempDir = await getTemporaryDirectory();
-      _recordedPath =
-          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
+      final path = _recordedPath =
+          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.$fileExtension';
 
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
@@ -46,10 +52,16 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
+
       await _audioRecorder.start(
-        path: _recordedPath,
-        bitRate: bitRate,
-        samplingRate: samplingRate,
+        RecordConfig(
+          encoder: audioCodec,
+          autoGain: true,
+          noiseSuppress: true,
+          echoCancel: true,
+          bitRate: bitRate,
+        ),
+        path: path,
       );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
