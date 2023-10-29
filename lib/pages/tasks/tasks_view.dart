@@ -74,6 +74,7 @@ class TasksView extends StatelessWidget {
                       : ReorderableListView.builder(
                           onReorder: controller.onReorder,
                           itemCount: list.length,
+                          buildDefaultDragHandles: false,
                           itemBuilder: (context, i) {
                             final todo = list[i];
                             final description = todo.description;
@@ -158,7 +159,11 @@ class TasksView extends StatelessWidget {
                                     ),
                                     onPressed: () => controller.deleteTodo(i),
                                   ),
-                                  const SizedBox(width: 8),
+                                  ReorderableDragStartListener(
+                                    index: i,
+                                    child:
+                                        const Icon(Icons.drag_handle_outlined),
+                                  ),
                                 ],
                               ),
                             );
