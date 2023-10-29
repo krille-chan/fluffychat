@@ -1159,7 +1159,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Es sieht so aus, als hättest du keine Google-Dienste auf deinem Gerät. Das ist eine gute Entscheidung für deine Privatsphäre! Um Push-Benachrichtigungen in FluffyChat zu erhalten, empfehlen wir die Verwendung von microG https://microg.org/ oder Unified Push https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging scheint auf Ihrem Gerät nicht verfügbar zu sein. Um trotzdem Push-Benachrichtigungen zu erhalten, empfehlen wir die Installation von MicroG oder Unified Push.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2627,5 +2627,35 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "banUserDescription": "Der Benutzer wird aus dem Chat gebannt und kann den Chat erst wieder betreten, wenn die Verbannung aufgehoben wird.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Du wirst von diesem Gerät abgemeldet und kannst dann dort keine Nachrichten mehr empfangen.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "Der Benutzer kann den Chat dann wieder betreten, wenn er es versucht.",
+  "@unbanUserDescription": {},
+  "todoLists": "(Beta) Aufgabenlisten",
+  "@todoLists": {},
+  "editTodo": "Aufgabe bearbeiten",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Push-Benachrichtigungen nicht verfügbar",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Bitte einen Titel hinzufügen",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Sobald du diesen Benutzer zum Administrator gemacht hast, kannst du das möglicherweise nicht mehr rückgängig machen, da er dann über dieselben Berechtigungen wie du verfügt.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Zu diesem Chat wurden noch keine Aufgaben hinzugefügt. Erstellen die erste Aufgabe und fange an, mit anderen zusammenzuarbeiten. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "Der Chat wird in das Archiv verschoben. Andere Benutzer können sehen, dass du den Chat verlassen hast.",
+  "@archiveRoomDescription": {},
+  "newTodo": "Neue Aufgabe",
+  "@newTodo": {},
+  "learnMore": "Erfahre mehr",
+  "@learnMore": {},
+  "todoListChangedError": "Hoppla ... Die Aufgabenliste wurde geändert, während Sie sie bearbeitet haben.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "Der Chat wird dann mit der neuen Raumversion neu erstellt. Alle Teilnehmer werden benachrichtigt, dass sie zum neuen Chat wechseln müssen. Mehr über Raumversionen erfährst du unter https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "kickUserDescription": "Der Benutzer wird aus dem Chat geworfen, aber nicht gebannt. In öffentlichen Chats kann der Benutzer jederzeit wieder beitreten.",
+  "@kickUserDescription": {}
 }
