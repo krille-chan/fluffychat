@@ -2617,5 +2617,13 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "hasKnocked": "{user} 请求了加入聊天室的邀请",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "pleaseEnterANumber": "请输入大于 0 的数",
+  "@pleaseEnterANumber": {}
 }

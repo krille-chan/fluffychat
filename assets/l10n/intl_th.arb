@@ -1,1 +1,250 @@
-{}
+{
+  "hugContent": "{senderName} กอดคุณ",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_cuddle": "ส่งเคล้าเคลียให้",
+  "@commandHint_cuddle": {},
+  "admin": "แอดมิน",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "supposedMxid": "อันนี้ควรเป็น {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "askSSSSSign": "เพื่อให้สามารถลงนามบุคคลอื่นได้ โปรดป้อนรหัสผ่านร้านค้าที่ปลอดภัยหรือรหัสกู้คืนของคุณ",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "ลบออก",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "ผู้ใช้ทั่วไปได้รับอนุญาตให้เข้าร่วมหรือไม่",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterValidEmail": "กรุณาใส่อีเมล์ที่ถูกต้อง",
+  "@pleaseEnterValidEmail": {},
+  "sendOnEnter": "ส่งเมื่อกด enter",
+  "@sendOnEnter": {},
+  "answeredTheCall": "{senderName} รับสายแล้ว",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "pleaseChooseAtLeastChars": "กรุณาใส่รหัสอย่างน้อย {min} ตัว",
+  "@pleaseChooseAtLeastChars": {
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "alias": "นามแฝง",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "ทั้งหมด",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "โฮมเซิร์ฟเวอร์รองรับประเภทการเข้าสู่ระบบ:\n{serverVersions}\nแต่แอปนี้รองรับเฉพาะ:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "updateNow": "เริ่มการอัปเดตในเบื้องหลัง",
+  "@updateNow": {},
+  "edit": "แก้ไข",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "คัดลอก",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importFromZipFile": "นำเข้าจากไฟล์ .zip",
+  "@importFromZipFile": {},
+  "autoplayImages": "เล่นสติ๊กเกอร์และอิโมจิแบบเคลื่อนไหวโดยอัตโนมัติ",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "updateAvailable": "มีการอัปเดต FluffyChat แล้ว",
+  "@updateAvailable": {},
+  "help": "ช่วยเหลือ",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "รายละเอียดแชท",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatPassword": "ใส่รหัสผ่านอีกรอบ",
+  "@repeatPassword": {},
+  "delete": "ลบออก",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 {username} ได้รับการชวนแล้ว",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "send": "ส่ง",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "exportEmotePack": "ส่งอิโมจิแพ็คออกเป็นไฟล์ .zip",
+  "@exportEmotePack": {},
+  "account": "บัญชี",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "savedEmotePack": "บันท฿กแพ็คอิโมจิไว้ที่ {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "chat": "แชท",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "คุณแน่ใจไหม?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "แชททั้งหมด",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordsDoNotMatch": "รหัสผ่านของคุณไม่ตรงกัน",
+  "@passwordsDoNotMatch": {},
+  "addToSpace": "เพิ่มไปที่ space",
+  "@addToSpace": {},
+  "importZipFile": "นำเข้าไฟล์ .zip",
+  "@importZipFile": {},
+  "about": "เกี่ยวกับ",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} เปิดใช้งาน end to end encryption",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googlyEyesContent": "{senderName} ส่งตากวนๆให้คุณ",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "addChatDescription": "เพิ่มคำอธิบายการแชท",
+  "@addChatDescription": {},
+  "appLock": "ล็อคแอป",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendTypingNotifications": "ส่งการแจ้งเตือนการพิมพ์",
+  "@sendTypingNotifications": {},
+  "importEmojis": "นำเข้าอ๊โมจิ",
+  "@importEmojis": {},
+  "confirmMatrixId": "กรุณายืนยัน Matrix ID ของคุณเพื่อลบบัญชีของคุณ",
+  "@confirmMatrixId": {},
+  "notAnImage": "ไม่ใช่ไฟล์รูปภาพ",
+  "@notAnImage": {},
+  "areYouSureYouWantToLogout": "คุณแน่ใจว่าคุณต้องการที่จะออกจากระบบ?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cuddleContent": "{senderName} เคล้าเคลียคุณ",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "askVerificationRequest": "ยอมรับคำขอยืนยันนี้จาก {username} หรือไม่",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "addEmail": "เพิ่มอีเมล",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_hug": "ส่งกอดให้",
+  "@commandHint_hug": {},
+  "replace": "แทนที่",
+  "@replace": {},
+  "archive": "คลังเก็บ",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "ยอมรับ",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_googly": "ส่งสายตากวนๆ มาให้หน่อย",
+  "@commandHint_googly": {},
+  "pin": "ปักหมุด",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importNow": "นำเข้าเลย",
+  "@importNow": {},
+  "anyoneCanJoin": "ใครๆ ก็สามารถเข้าร่วมได้",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

@@ -2619,5 +2619,13 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "hasKnocked": "لقد طرق {user}",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "pleaseEnterANumber": "الرجاء إدخال رقم أكبر من 0",
+  "@pleaseEnterANumber": {}
 }
