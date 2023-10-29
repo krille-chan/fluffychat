@@ -63,6 +63,16 @@ class HtmlMessage extends StatelessWidget {
 
     final linkColor = textColor.withAlpha(150);
 
+    final blockquoteStyle = Style(
+      border: Border(
+        left: BorderSide(
+          width: 3,
+          color: textColor,
+        ),
+      ),
+      padding: HtmlPaddings.only(left: 6, bottom: 0),
+    );
+
     // there is no need to pre-validate the html, as we validate it while rendering
     return Html(
       data: linkifiedRenderHtml,
@@ -99,15 +109,8 @@ class HtmlMessage extends StatelessWidget {
           fontSize: FontSize(fontSize),
           lineHeight: LineHeight.number(1.5),
         ),
-        'blockquote': Style(
-          border: Border(
-            left: BorderSide(
-              width: 3,
-              color: textColor,
-            ),
-          ),
-          padding: HtmlPaddings.only(left: 6, bottom: 0),
-        ),
+        'blockquote': blockquoteStyle,
+        'tg-forward': blockquoteStyle,
         'hr': Style(
           border: Border.all(color: textColor, width: 0.5),
         ),
@@ -191,6 +194,8 @@ class HtmlMessage extends StatelessWidget {
     'ruby',
     'rp',
     'rt',
+    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
+    'tg-forward',
   };
 }
 
