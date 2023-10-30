@@ -31,9 +31,6 @@ class RecordingDialogState extends State<RecordingDialog> {
   final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
-  static const int bitRate =
-      64000; // Lower makes the audio messages unplayable on iOS for some reason
-
   Future<void> startRecording() async {
     try {
       // We try to pick Opus where supported, since that is a codec optimized
@@ -60,7 +57,6 @@ class RecordingDialogState extends State<RecordingDialog> {
           autoGain: true,
           noiseSuppress: true,
           echoCancel: true,
-          bitRate: bitRate,
         ),
         path: path,
       );
