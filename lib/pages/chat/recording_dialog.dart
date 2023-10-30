@@ -38,12 +38,10 @@ class RecordingDialogState extends State<RecordingDialog> {
     try {
       // We try to pick Opus where supported, since that is a codec optimized
       // for speech as well as what the voice messages MSC uses.
-      final audioCodec =
-          (await _audioRecorder.isEncoderSupported(AudioEncoder.opus))
-              ? AudioEncoder.opus
-              : AudioEncoder.aacLc;
+      // Notice: Opus seems not to work on iOS.
+      const audioCodec = AudioEncoder.aacLc;
       // see https://pub.dev/documentation/record/latest/record/AudioEncoder.html
-      final fileExtension = audioCodec == AudioEncoder.opus ? "opus" : "m4a";
+      const fileExtension = "m4a";
       final tempDir = await getTemporaryDirectory();
       final path = _recordedPath =
           '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.$fileExtension';
@@ -57,7 +55,7 @@ class RecordingDialogState extends State<RecordingDialog> {
       await WakelockPlus.enable();
 
       await _audioRecorder.start(
-        RecordConfig(
+        const RecordConfig(
           encoder: audioCodec,
           autoGain: true,
           noiseSuppress: true,
