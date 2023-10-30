@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -14,6 +13,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
+  static const String recordingFileType = 'm4a';
   const RecordingDialog({
     super.key,
   });
@@ -28,37 +28,28 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  final _audioRecorder = AudioRecorder();
+  final _audioRecorder = Record();
   final List<double> amplitudeTimeline = [];
+
+  static const int bitRate = 64000;
+  static const int samplingRate = 22050;
 
   Future<void> startRecording() async {
     try {
-      // We try to pick Opus where supported, since that is a codec optimized
-      // for speech as well as what the voice messages MSC uses.
-      // Notice: Opus seems not to work on iOS.
-      const audioCodec = AudioEncoder.aacLc;
-      // see https://pub.dev/documentation/record/latest/record/AudioEncoder.html
-      const fileExtension = "m4a";
       final tempDir = await getTemporaryDirectory();
-      final path = _recordedPath =
-          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.$fileExtension';
+      _recordedPath =
+          '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
-      Logs().v('Store audio file at', path);
       final result = await _audioRecorder.hasPermission();
       if (result != true) {
         setState(() => error = true);
         return;
       }
       await WakelockPlus.enable();
-
       await _audioRecorder.start(
-        const RecordConfig(
-          encoder: audioCodec,
-          autoGain: true,
-          noiseSuppress: true,
-          echoCancel: true,
-        ),
-        path: path,
+        path: _recordedPath,
+        bitRate: bitRate,
+        samplingRate: samplingRate,
       );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
