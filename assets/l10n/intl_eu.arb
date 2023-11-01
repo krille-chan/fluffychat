@@ -84,7 +84,7 @@
       "username": {}
     }
   },
-  "banFromChat": "Kanporatu txatetik",
+  "banFromChat": "Ezarri txatera batzeko debekua",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -746,7 +746,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Dirudienez ez daukazu Googleren zerbitzurik zure mugikorrean. Primerako erabakia zure pribatutasunerako! FluffyChaten jakinarazpenak jasotzeko https://microg.org/ edo https://unifiedpush.org/ erabiltzea gomendatzen dugu.",
+  "noGoogleServicesWarning": "Dirudienez Firebase Cloud Messaging ez dago erabilgarri zure mugikorrean. Jakinarazpenak jasotzeko MicroG edo Unified Push instalatzea gomendatzen dugu.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2166,7 +2166,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unverified": "Egiaztatu gabe",
+  "unverified": "Egiaztatu gabe(a)",
   "@unverified": {},
   "verified": "Egiaztatuta",
   "@verified": {
@@ -2569,7 +2569,7 @@
       "reason": {}
     }
   },
-  "anyoneCanKnock": "Edonork egin dezake batzeko eskaera",
+  "anyoneCanKnock": "Edonork eska dezake batzeko baimena",
   "@anyoneCanKnock": {},
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
   "@redactMessageDescription": {},
@@ -2605,10 +2605,48 @@
   "@createGroup": {},
   "invite": "Gonbidatu",
   "@invite": {},
-  "invalidInput": "Sarrerak ez du balio!",
+  "invalidInput": "Sartu duzunak ez du balio!",
   "@invalidInput": {},
   "inviteGroupChat": "📨 Gonbidatu taldeko txatera",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Gonbidatu txat pribatura",
-  "@invitePrivateChat": {}
+  "@invitePrivateChat": {},
+  "banUserDescription": "Erabiltzailea txatetik kanporatu eta berriro sartzeko debekua ezarriko zaio; ezingo da berriro sartu debekua kendu arte.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Gailu honetako saioa amaituko da eta ezingo duzu mezurik jaso aurrerantzean.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "Erabiltzailea txatera berriro sartu ahal izango da berak nahi izanez gero.",
+  "@unbanUserDescription": {},
+  "todoLists": "(Beta) Zeregin-zerrendak",
+  "@todoLists": {},
+  "editTodo": "Editatu zeregina",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Push jakinarazpenak ez daude erabilgarri",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Gehitu izenburua",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Behin erabiltzaile hau administratzaile eginda, litekeena da desegin ezin izatea zuk dituzun baimenak izango dituelako.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Oraindik ez da zereginik gehitu txat honetara. Sortu lehen zeregina eta hasi elkarlanean besteekin. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "Txata artxibategira mugituko da. Beste erabiltzaileek txatetik alde egin duzula ikusi ahal izango dute.",
+  "@archiveRoomDescription": {},
+  "hasKnocked": "{user}(e)k baimena eskatu du",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newTodo": "Zeregin berria",
+  "@newTodo": {},
+  "learnMore": "Gehiago irakurri",
+  "@learnMore": {},
+  "todoListChangedError": "Hara… zeregin-zerrenda aldatu da editatzen ari zinen bitartean.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "Gela bertsio berri gisa birsortuko da txata. Partehartzaile guztiei jakinaraziko zaie txat berrira aldatu behar direla. Gehiago irakur dezakezu gela bertsioei buruz ondorengo estekan: https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Sartu 0 baino zenbaki handiago bat",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "Erabiltzailea txatetik kanporatu da baina ez zaio debekua ezarri. Txat publikoen kasuan, edozein momentutan batu daiteke berriro.",
+  "@kickUserDescription": {}
 }

@@ -1123,7 +1123,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "看起来你手机上没有谷歌服务框架。这对保护你的隐私而言是个好决定！要接收 FluffyChat 的推送通知，推荐你使用 https://microg.org/ 或 https://unifiedpush.org/。",
+  "noGoogleServicesWarning": "看起来你手机上没有 Firebase Cloud Messaging。如果仍希望接收 FluffyChat 的推送通知，推荐安装 MicroG 或 Unified Push。",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}

@@ -1164,7 +1164,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Google teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad https://microg.org või https://unifiedpush.org liidestust.",
+  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Firebase Cloud Messaging teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad MicroG või Unified Push liidestust.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2617,5 +2617,43 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "banUserDescription": "Sellele kasutajale on nüüd selles jututoas seatud suhtluskeeld ning ta ei saa vestluses osaleda seni, kuni suhtluskeeld pole eemaldatud.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Sind logitakse sellest seadmest välja ja sa enam ei saa sõnumeid.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "Uuesti proovimisel saab see kasutaja nüüd vestlusega liituda.",
+  "@unbanUserDescription": {},
+  "todoLists": "Tegemiste loendid (beetaversioon)",
+  "@todoLists": {},
+  "editTodo": "Muuda tegevust",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Tõuketeavitused pole saadaval",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Palun lisa pealkiri",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Kui annad sellele kasutajale peakasutaja õigused, siis kuna tal on sinuga samad õigused, sa ei saa seda toimingut enam tagasi pöörata.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Siia vestlusesse pole veel lisatud ühtegi tegemiste loendit. Tee esimene ja jätka selle täitmist üheskoos teistega. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "Selle vestluse tõstame nüüd arhiivi. Muud osalejad näevad, et sa oled vestlusest lahkunud.",
+  "@archiveRoomDescription": {},
+  "hasKnocked": "{user} on jututoa uksele koputanud",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newTodo": "Uus tegevus",
+  "@newTodo": {},
+  "learnMore": "Loe lisaks",
+  "@learnMore": {},
+  "todoListChangedError": "Hopsti... Seda tegevuste loendit on keegi muutnud just samal ajal, kui sina olid seda muutmas.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "See vestlus luuakse nüüd uuesti jututoa uue versioonina. Kõik senised osalejad saavad teate, et nad peavad liituma uue vestlusega. Jututubade versioonide kohta leiad teavet https://spec.matrix.org/latest/rooms/ lehelt",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Palun sisesta 0'st suurem number",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "See kasutaja on nüüd jutuoast välja müksatud, kuid talle pole seatud suhtluskeeldu. Avaliku jututoa puhul saab ta alati uuesti liituda.",
+  "@kickUserDescription": {}
 }
