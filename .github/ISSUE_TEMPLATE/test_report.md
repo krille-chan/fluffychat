@@ -1,5 +1,5 @@
 ---
-name: Test
+name: 📝 Test
 about: A detailed protocol for testing all features
 title: 'Test Report'
 ---
