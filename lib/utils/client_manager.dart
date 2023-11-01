@@ -1,21 +1,22 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'famedlysdk_store.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
-  static Future<List<Client>> getClients({bool initialize = true}) async {
+  static Future<List<Client>> getClients({
+    bool initialize = true,
+    required SharedPreferences store,
+  }) async {
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
@@ -23,19 +24,15 @@ abstract class ClientManager {
     }
     final clientNames = <String>{};
     try {
-      final rawClientNames = await Store().getItem(clientNamespace);
-      if (rawClientNames != null) {
-        final clientNamesList =
-            (jsonDecode(rawClientNames) as List).cast<String>();
-        clientNames.addAll(clientNamesList);
-      }
+      final clientNamesList = store.getStringList(clientNamespace) ?? [];
+      clientNames.addAll(clientNamesList);
     } catch (e, s) {
       Logs().w('Client names in store are corrupted', e, s);
-      await Store().deleteItem(clientNamespace);
+      await store.remove(clientNamespace);
     }
     if (clientNames.isEmpty) {
       clientNames.add(PlatformInfos.clientName);
-      await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
+      await store.setStringList(clientNamespace, clientNames.toList());
     }
     final clients = clientNames.map(createClient).toList();
     if (initialize) {
@@ -61,31 +58,27 @@ abstract class ClientManager {
         clientNames.remove(client.clientName);
         clients.remove(client);
       }
-      await Store().setItem(clientNamespace, jsonEncode(clientNames.toList()));
+      await store.setStringList(clientNamespace, clientNames.toList());
     }
     return clients;
   }
 
-  static Future<void> addClientNameToStore(String clientName) async {
-    final clientNamesList = <String>[];
-    final rawClientNames = await Store().getItem(clientNamespace);
-    if (rawClientNames != null) {
-      final stored = (jsonDecode(rawClientNames) as List).cast<String>();
-      clientNamesList.addAll(stored);
-    }
+  static Future<void> addClientNameToStore(
+    String clientName,
+    SharedPreferences store,
+  ) async {
+    final clientNamesList = store.getStringList(clientNamespace) ?? [];
     clientNamesList.add(clientName);
-    await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
+    await store.setStringList(clientNamespace, clientNamesList);
   }
 
-  static Future<void> removeClientNameFromStore(String clientName) async {
-    final clientNamesList = <String>[];
-    final rawClientNames = await Store().getItem(clientNamespace);
-    if (rawClientNames != null) {
-      final stored = (jsonDecode(rawClientNames) as List).cast<String>();
-      clientNamesList.addAll(stored);
-    }
+  static Future<void> removeClientNameFromStore(
+    String clientName,
+    SharedPreferences store,
+  ) async {
+    final clientNamesList = store.getStringList(clientNamespace) ?? [];
     clientNamesList.remove(clientName);
-    await Store().setItem(clientNamespace, jsonEncode(clientNamesList));
+    await store.setStringList(clientNamespace, clientNamesList);
   }
 
   static NativeImplementations get nativeImplementations => kIsWeb
