@@ -1888,7 +1888,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "verify": "Bestätigen",
+  "verify": "Verifizieren",
   "@verify": {
     "type": "text",
     "placeholders": {}
@@ -2211,7 +2211,7 @@
   "@openChat": {},
   "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
   "@confirmEventUnpin": {},
-  "dismiss": "Ablehnen",
+  "dismiss": "Verwerfen",
   "@dismiss": {},
   "switchToAccount": "Zu Konto {number} wechseln",
   "@switchToAccount": {
@@ -2657,5 +2657,7 @@
   "roomUpgradeDescription": "Der Chat wird dann mit der neuen Raumversion neu erstellt. Alle Teilnehmer werden benachrichtigt, dass sie zum neuen Chat wechseln müssen. Mehr über Raumversionen erfährst du unter https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "kickUserDescription": "Der Benutzer wird aus dem Chat geworfen, aber nicht gebannt. In öffentlichen Chats kann der Benutzer jederzeit wieder beitreten.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "todosUnencrypted": "Bitte beachte, dass Todos für jeden im Chat sichtbar und nicht Ende zu Ende verschlüsselt sind.",
+  "@todosUnencrypted": {}
 }
