@@ -7,11 +7,14 @@ title: 'Test Report'
 1. App receives push notifications over Firebase Cloud Messaging when it is in background/terminated:
 	- [ ] Android
 	- [ ] iOS
-2. - [ ] Android receives push notifications over Unified Push when it is in background/terminated
+2. App receives push notifications over Unified Push when it is in background/terminated:
+	- [ ] Android
 3. Notifications for rooms, which are not in foreground, are working:
 	- [ ] Web
 	- [ ] Linux
-4. - [ ] QR Code scanner can still scan links to start a new chat
+4. QR Code scanner can still scan links to start a new chat:
+	- [ ] Android
+	- [ ] iOS
 5. Recording and playing voice messages works:
 	- [ ] Android
 	- [ ] iOS
