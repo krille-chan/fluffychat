@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import 'package:fluffychat/utils/url_launcher.dart';
-
 class QrScannerModal extends StatefulWidget {
-  const QrScannerModal({super.key});
+  final void Function(String) onScan;
+  const QrScannerModal({required this.onScan, super.key});
 
   @override
   QrScannerModalState createState() => QrScannerModalState();
@@ -69,7 +68,8 @@ class QrScannerModalState extends State<QrScannerModal> {
     sub = controller.scannedDataStream.listen((scanData) {
       sub.cancel();
       Navigator.of(context).pop();
-      UrlLauncher(context, scanData.code).openMatrixToUrl();
+      final data = scanData.code;
+      if (data != null) widget.onScan(data);
     });
   }
 

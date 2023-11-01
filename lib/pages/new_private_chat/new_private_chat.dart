@@ -75,7 +75,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     }
     await showAdaptiveBottomSheet(
       context: context,
-      builder: (_) => const QrScannerModal(),
+      builder: (_) => QrScannerModal(
+        onScan: (link) => UrlLauncher(context, link).openMatrixToUrl(),
+      ),
     );
   }
 
