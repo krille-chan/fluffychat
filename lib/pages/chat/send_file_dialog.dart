@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -98,12 +99,30 @@ class SendFileDialogState extends State<SendFileDialog> {
               ),
             ),
           ),
-          SwitchListTile.adaptive(
-            value: origImage,
-            contentPadding: EdgeInsets.zero,
-            onChanged: (v) => setState(() => origImage = v),
-            title: Text(L10n.of(context)!.sendOriginal),
-            subtitle: Text(sizeString),
+          const SizedBox(height: 16),
+          // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CupertinoSwitch(
+                value: origImage,
+                onChanged: (v) => setState(() => origImage = v),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      L10n.of(context)!.sendOriginal,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(sizeString),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       );
