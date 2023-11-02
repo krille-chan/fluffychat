@@ -764,7 +764,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username} kutsui sinutFluffyChattiin. \n1. Asenna FluffyChat osoitteesta: https://fluffychat.im \n2. Rekisteröidy tai kirjaudu sisään\n3. Avaa kutsulinkki: {link}",
+  "inviteText": "{username} kutsui sinut FluffyChattiin.\n1. Viereaile sivulla: https://fluffychat.im ja asenna sovellus\n2. Rekisteröidy tai kirjaudu sisään\n3. Avaa kutsulinkki:\n{link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1249,7 +1249,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Vaikuttaa siltä, ettei puhelimessasi ole Google-palveluita. Se on hyvä päätös yksityisyytesi kannalta! Vastaanottaaksesi push-notifikaatioita FluffyChätissä suosittelemme https://microg.org/ tai https://unifiedpush.org/ käyttämistä.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging -palvelu ei vaikuta olevan saatavilla laitteellasi. Saadaksesi push-ilmoituksia silti, suosittelemme Ntfy-sovelluksen asentamista. Käyttämällä Ntfy-sovellusta tai muuta Unified Push -tarjoajaa, saat push-ilmoitukset tietoturvallisella tavalla. Voit ladata Ntfy-sovelluksen Play Kaupasta tai F-Droidista.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1776,7 +1776,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Taustakuva",
+  "wallpaper": "Taustakuva:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -2366,7 +2366,7 @@
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "Tämä voi tapahtua mikäli viesti lähetettiin ennen sisäänkirjautumistasi tälle laitteelle.\n\nOn myös mahdollista, että lähettäjä on estänyt tämän laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytkö lukemaan viestin toisella istunnolla? Siinä tapauksessa voit siirtää viestin siltä! Mene Asetukset > Laitteet ja varmista, että laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirretään automaattisesti.\n\nHaluatko varmistaa ettet menetä avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion käytössäolo asetuksista.",
   "@noKeyForThisMessage": {},
-  "commandHint_markasdm": "Merkitse yksityiskeskusteluksi",
+  "commandHint_markasdm": "Merkitse yksityiskeskusteluksi syötetyn Matrix IDn kanssa",
   "@commandHint_markasdm": {},
   "foregroundServiceRunning": "Tämä ilmoitus näkyy etualapalvelun ollessa käynnissä.",
   "@foregroundServiceRunning": {},
@@ -2501,5 +2501,124 @@
   "continueWith": "Jatka käyttäen:",
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Yritä myöhemmin uudelleen tai valitse toinen palvelin.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {}
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "setColorTheme": "Aseta väriteema:",
+  "@setColorTheme": {},
+  "requests": "Pyynnöt",
+  "@requests": {},
+  "tryAgain": "Yritä uudelleen",
+  "@tryAgain": {},
+  "messagesStyle": "Viestit:",
+  "@messagesStyle": {},
+  "chatDescription": "Keskustelun kuvaus",
+  "@chatDescription": {},
+  "invalidServerName": "Virheellinen palvelimen nimi",
+  "@invalidServerName": {},
+  "chatPermissions": "Keskustelun oikeudet",
+  "@chatPermissions": {},
+  "setChatDescription": "Asetti keskustelun kuvauksen",
+  "@setChatDescription": {},
+  "importFromZipFile": "Tuo .zip -tiedostosta",
+  "@importFromZipFile": {},
+  "redactedBy": "Poistanut {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signInWith": "Kirjaudu sisään palvelulla {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "optionalRedactReason": "(Vapaaehtoinen) Syy tämän viestin poistamiselle...",
+  "@optionalRedactReason": {},
+  "archiveRoomDescription": "Keskustelu siirretään arkistoon. Muut käyttäjät näkevät sinun poistuneen keskustelusta.",
+  "@archiveRoomDescription": {},
+  "exportEmotePack": "Vie emotepaketti .zip-tiedostona",
+  "@exportEmotePack": {},
+  "savedEmotePack": "Tallennettiin emotepaketti sijaintiin {path}!",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "inviteContactToGroupQuestion": "Tahdotko kutsua yhteystiedon {contact} keskusteluun \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "Poistanut {username} syystä: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "importZipFile": "Tuo zip-tiedosto",
+  "@importZipFile": {},
+  "anyoneCanKnock": "Kaikki voivat koputtaa",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "Viesti poistetaan kaikilta keskustelun osallistujilta. Tätä ei voida kumota.",
+  "@redactMessageDescription": {},
+  "invalidInput": "Virheellinen syöte!",
+  "@invalidInput": {},
+  "addChatDescription": "Lisää keskustelulle kuvaus",
+  "@addChatDescription": {},
+  "hasKnocked": "{user} on koputtanut",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "directChat": "Yksityiskeskustelu",
+  "@directChat": {},
+  "noOneCanJoin": "Kukaan ei voi liittyä",
+  "@noOneCanJoin": {},
+  "wrongPinEntered": "Väärä pin-koodi! Yritä uudelleen {seconds} sekuntin kuluttua...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendTypingNotifications": "Lähetä kirjoitusilmoituksia",
+  "@sendTypingNotifications": {},
+  "inviteGroupChat": "Kutsu ryhmäkeskusteluun",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "Kutsu yksityiskeskusteluun",
+  "@invitePrivateChat": {},
+  "importEmojis": "Tuo emojit",
+  "@importEmojis": {},
+  "noChatDescriptionYet": "Keskustelun kuvausta ei ole vielä luotu.",
+  "@noChatDescriptionYet": {},
+  "notAnImage": "Tämä ei ole kuvatiedosto.",
+  "@notAnImage": {},
+  "chatDescriptionHasBeenChanged": "Keskustelun kuvaus muutettu",
+  "@chatDescriptionHasBeenChanged": {},
+  "roomUpgradeDescription": "Keskustelu luodaan uudelleen uudella huoneversiolla. Kaikille osallistujille ilmoitetaan, että heidän tulee siirtyä uuteen keskusteluun. Voit lukea lisää huoneversioista osoitteesta https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Syötä suurempi luku kuin 0",
+  "@pleaseEnterANumber": {},
+  "profileNotFound": "Käyttäjää ei löydy palvelimelta. Tämä voi olla yhteysongelma tai käyttäjä ei ole olemassa.",
+  "@profileNotFound": {},
+  "shareInviteLink": "Jaa kutsulinkki",
+  "@shareInviteLink": {},
+  "emoteKeyboardNoRecents": "Viimeaikoina käytetyt emotet tulevat näkymään täällä...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "Aseta teema:",
+  "@setTheme": {},
+  "replace": "Korvaa",
+  "@replace": {},
+  "createGroup": "Luo ryhmä",
+  "@createGroup": {},
+  "importNow": "Tuo nyt",
+  "@importNow": {},
+  "invite": "Kutsu",
+  "@invite": {}
 }
