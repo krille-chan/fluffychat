@@ -1164,7 +1164,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Firebase Cloud Messaging teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad MicroG või Unified Push liidestust.",
+  "noGoogleServicesWarning": "Tundub, et sinu nutiseadmes pole Firebase Cloud Messaging teenuseid. Sinu privaatsuse mõttes on see kindlasti hea otsus! Kui sa soovid FluffyChat'is näha tõuketeavitusi, siis soovitame, et selle jaoks kasutad ntfy liidestust. Kasutades ntfy'd või mõnda muud Unified Push standardil põhinevat liidestust saad tõuketeavitusi turvalisel moel. Ntfy rakendus on saadaval nii PlayStore kui F-Droid'i rakendusepoodides.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2655,5 +2655,7 @@
   "pleaseEnterANumber": "Palun sisesta 0'st suurem number",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "See kasutaja on nüüd jutuoast välja müksatud, kuid talle pole seatud suhtluskeeldu. Avaliku jututoa puhul saab ta alati uuesti liituda.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "todosUnencrypted": "Palun arvesta, et tegemiste loend on nähtav kõikidele vestluses osalejatele ja pole läbivalt krüptitud.",
+  "@todosUnencrypted": {}
 }
