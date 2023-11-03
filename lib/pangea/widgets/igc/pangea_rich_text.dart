@@ -48,20 +48,26 @@ class PangeaRichTextState extends State<PangeaRichText> {
   final PangeaController pangeaController = MatrixState.pangeaController;
   bool _fetchingRepresentation = false;
   bool _fetchingTokens = false;
+  double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
+  List<TextSpan> textSpan = [];
 
   @override
   void initState() {
     super.initState();
+    setState(() => textSpan = getTextSpan(context));
+  }
+
+  @override
+  void didUpdateWidget(PangeaRichText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    textSpan = getTextSpan(context);
+    setState(() => textSpan = getTextSpan(context));
   }
 
   @override
   Widget build(BuildContext context) {
     //TODO - take out of build function of every message
     // if (areLanguagesSet) {
-
-    final List<TextSpan> textSpan = getTextSpan(context);
-
-    final double blur = _fetchingRepresentation && widget.immersionMode ? 5 : 0;
 
     if (!widget.selected &&
         widget.selectedDisplayLang != null &&
