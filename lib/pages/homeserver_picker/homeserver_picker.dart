@@ -113,19 +113,23 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   Map<String, dynamic>? _rawLoginTypes;
 
-  void ssoLoginAction(String id) async {
+  void ssoLoginAction(String? id) async {
     final redirectUrl = kIsWeb
         ? '${html.window.origin!}/web/auth.html'
         : isDefaultPlatform
             ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
             : 'http://localhost:3001//login';
-    final url =
-        '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
+
+    final url = Matrix.of(context).getLoginClient().homeserver!.replace(
+      path: '/_matrix/client/r0/login/sso/redirect${id == null ? '' : '/$id'}',
+      queryParameters: {'redirectUrl': redirectUrl},
+    );
+
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
     final result = await FlutterWebAuth2.authenticate(
-      url: url,
+      url: url.toString(),
       callbackUrlScheme: urlScheme,
     );
     final token = Uri.parse(result).queryParameters['loginToken'];
@@ -144,9 +148,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   List<IdentityProvider>? get identityProviders {
     final loginTypes = _rawLoginTypes;
     if (loginTypes == null) return null;
-    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
-          (flow) => flow['type'] == AuthenticationTypes.sso,
-        )['identity_providers'];
+    final List? rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
+              (flow) => flow['type'] == AuthenticationTypes.sso,
+            )['identity_providers'] ??
+        [
+          {'id': null},
+        ];
     final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();

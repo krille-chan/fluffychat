@@ -124,7 +124,7 @@ class HomeserverPickerView extends StatelessWidget {
                                     L10n.of(context)!.singlesignon,
                               ),
                               onPressed: () =>
-                                  controller.ssoLoginAction(provider.id!),
+                                  controller.ssoLoginAction(provider.id),
                             ),
                           ),
                         ],
