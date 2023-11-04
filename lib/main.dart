@@ -21,19 +21,15 @@ void main() async {
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
 
-  final backgroundMode = PlatformInfos.isAndroid &&
-      AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState;
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
-  final clients = await ClientManager.getClients(
-    store: store,
-    initialize: !backgroundMode,
-  );
+  final clients = await ClientManager.getClients(store: store);
 
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
   // currently only supported on Android.
-  if (backgroundMode) {
+  if (PlatformInfos.isAndroid &&
+      AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
     // In the background fetch mode we do not want to waste ressources with
     // starting the Flutter engine but process incoming push notifications.
     BackgroundPush.clientOnly(clients.first);
