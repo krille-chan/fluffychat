@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -16,11 +17,13 @@ class FluffyChatApp extends StatelessWidget {
   final Widget? testWidget;
   final List<Client> clients;
   final String? pincode;
+  final SharedPreferences store;
 
   const FluffyChatApp({
     super.key,
     this.testWidget,
     required this.clients,
+    required this.store,
     this.pincode,
   });
 
@@ -55,6 +58,7 @@ class FluffyChatApp extends StatelessWidget {
             onGenerateRoute: (_) => MaterialPageRoute(
               builder: (_) => Matrix(
                 clients: clients,
+                store: store,
                 child: testWidget ?? child,
               ),
             ),

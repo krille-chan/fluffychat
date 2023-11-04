@@ -30,13 +30,13 @@ class SettingsStyleController extends State<SettingsStyle> {
     if (pickedFile == null) return;
     await Matrix.of(context)
         .store
-        .setItem(SettingKeys.wallpaper, pickedFile.path);
+        .setString(SettingKeys.wallpaper, pickedFile.path!);
     setState(() {});
   }
 
   void deleteWallpaperAction() async {
     Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.deleteItem(SettingKeys.wallpaper);
+    await Matrix.of(context).store.remove(SettingKeys.wallpaper);
     setState(() {});
   }
 
@@ -76,7 +76,7 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   void changeFontSizeFactor(double d) {
     setState(() => AppConfig.fontSizeFactor = d);
-    Matrix.of(context).store.setItem(
+    Matrix.of(context).store.setString(
           SettingKeys.fontSizeFactor,
           AppConfig.fontSizeFactor.toString(),
         );

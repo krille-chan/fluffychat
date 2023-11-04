@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -29,7 +30,6 @@ import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
-import '../utils/famedlysdk_store.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -41,9 +41,12 @@ class Matrix extends StatefulWidget {
 
   final Map<String, String>? queryParameters;
 
+  final SharedPreferences store;
+
   const Matrix({
     this.child,
     required this.clients,
+    required this.store,
     this.queryParameters,
     super.key,
   });
@@ -59,7 +62,7 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
-  Store store = Store();
+  SharedPreferences get store => widget.store;
 
   HomeserverSummary? loginHomeserverSummary;
   XFile? loginAvatar;
@@ -158,7 +161,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         if (!widget.clients.contains(_loginClientCandidate)) {
           widget.clients.add(_loginClientCandidate!);
         }
-        ClientManager.addClientNameToStore(_loginClientCandidate!.clientName);
+        ClientManager.addClientNameToStore(
+          _loginClientCandidate!.clientName,
+          store,
+        );
         _registerSubs(_loginClientCandidate!.clientName);
         _loginClientCandidate = null;
         FluffyChatApp.router.go('/rooms');
@@ -187,7 +193,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     try {
       if (client.isLogged()) {
         // TODO: Figure out how this works in multi account
-        final statusMsg = await store.getItem(SettingKeys.ownStatusMessage);
+        final statusMsg = store.getString(SettingKeys.ownStatusMessage);
         if (statusMsg?.isNotEmpty ?? false) {
           Logs().v('Send cached status message: "$statusMsg"');
           await client.setPresence(
@@ -314,7 +320,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
-        ClientManager.removeClientNameFromStore(c.clientName);
+        ClientManager.removeClientNameFromStore(c.clientName, store);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context)!.oneClientLoggedOut),
@@ -391,7 +397,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             );
           }
           if (result == OkCancelResult.cancel) {
-            await store.setItemBool(SettingKeys.showNoGoogle, true);
+            await store.setBool(SettingKeys.showNoGoogle, true);
           }
         },
       );
@@ -401,7 +407,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void createVoipPlugin() async {
-    if (await store.getItemBool(SettingKeys.experimentalVoip) == false) {
+    if (store.getBool(SettingKeys.experimentalVoip) == false) {
       voipPlugin = null;
       return;
     }
@@ -419,47 +425,40 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initSettings() {
-    store.getItem(SettingKeys.wallpaper).then((final path) async {
-      if (path == null) return;
-      final file = File(path);
-      if (await file.exists()) {
-        wallpaper = file;
-      }
-    });
-    store.getItem(SettingKeys.fontSizeFactor).then(
-          (value) => AppConfig.fontSizeFactor =
-              double.tryParse(value ?? '') ?? AppConfig.fontSizeFactor,
-        );
-    store
-        .getItemBool(SettingKeys.renderHtml, AppConfig.renderHtml)
-        .then((value) => AppConfig.renderHtml = value);
-    store
-        .getItemBool(
-          SettingKeys.hideRedactedEvents,
-          AppConfig.hideRedactedEvents,
-        )
-        .then((value) => AppConfig.hideRedactedEvents = value);
-    store
-        .getItemBool(SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
-        .then((value) => AppConfig.hideUnknownEvents = value);
-    store
-        .getItemBool(SettingKeys.separateChatTypes, AppConfig.separateChatTypes)
-        .then((value) => AppConfig.separateChatTypes = value);
-    store
-        .getItemBool(SettingKeys.autoplayImages, AppConfig.autoplayImages)
-        .then((value) => AppConfig.autoplayImages = value);
-    store
-        .getItemBool(
-          SettingKeys.sendTypingNotifications,
-          AppConfig.sendTypingNotifications,
-        )
-        .then((value) => AppConfig.sendTypingNotifications = value);
-    store
-        .getItemBool(SettingKeys.sendOnEnter, AppConfig.sendOnEnter)
-        .then((value) => AppConfig.sendOnEnter = value);
-    store
-        .getItemBool(SettingKeys.experimentalVoip, AppConfig.experimentalVoip)
-        .then((value) => AppConfig.experimentalVoip = value);
+    final path = store.getString(SettingKeys.wallpaper);
+    if (path != null) wallpaper = File(path);
+
+    AppConfig.fontSizeFactor =
+        double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
+            AppConfig.fontSizeFactor;
+
+    AppConfig.renderHtml =
+        store.getBool(SettingKeys.renderHtml) ?? AppConfig.renderHtml;
+
+    AppConfig.hideRedactedEvents =
+        store.getBool(SettingKeys.hideRedactedEvents) ??
+            AppConfig.hideRedactedEvents;
+
+    AppConfig.hideUnknownEvents =
+        store.getBool(SettingKeys.hideUnknownEvents) ??
+            AppConfig.hideUnknownEvents;
+
+    AppConfig.separateChatTypes =
+        store.getBool(SettingKeys.separateChatTypes) ??
+            AppConfig.separateChatTypes;
+
+    AppConfig.autoplayImages =
+        store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
+
+    AppConfig.sendTypingNotifications =
+        store.getBool(SettingKeys.sendTypingNotifications) ??
+            AppConfig.sendTypingNotifications;
+
+    AppConfig.sendOnEnter =
+        store.getBool(SettingKeys.sendOnEnter) ?? AppConfig.sendOnEnter;
+
+    AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
+        AppConfig.experimentalVoip;
   }
 
   @override

@@ -37,7 +37,6 @@ import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
-import 'famedlysdk_store.dart';
 import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
@@ -55,8 +54,7 @@ class BackgroundPush {
   String? _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
-  Store? _store;
-  Store get store => _store ??= Store();
+
   Future<void> loadLocale() async {
     final context = matrix?.context;
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
@@ -271,7 +269,7 @@ class BackgroundPush {
     if (matrix == null) {
       return;
     }
-    if (await store.getItemBool(SettingKeys.showNoGoogle, false) == true) {
+    if ((matrix?.store.getBool(SettingKeys.showNoGoogle) ?? false) == true) {
       return;
     }
     await loadLocale();
@@ -374,16 +372,17 @@ class BackgroundPush {
       oldTokens: oldTokens,
       useDeviceSpecificAppId: true,
     );
-    await store.setItem(SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await store.setItemBool(SettingKeys.unifiedPushRegistered, true);
+    await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
+    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
   }
 
   Future<void> _upUnregistered(String i) async {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
-    final oldEndpoint = await store.getItem(SettingKeys.unifiedPushEndpoint);
-    await store.setItemBool(SettingKeys.unifiedPushRegistered, false);
-    await store.deleteItem(SettingKeys.unifiedPushEndpoint);
+    final oldEndpoint =
+        matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
+    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
+    await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
     if (oldEndpoint?.isNotEmpty ?? false) {
       // remove the old pusher
       await setupPusher(
@@ -409,12 +408,12 @@ class BackgroundPush {
 
   /// Workaround for the problem that local notification IDs must be int but we
   /// sort by [roomId] which is a String. To make sure that we don't have duplicated
-  /// IDs we map the [roomId] to a number and store this number.
+  /// IDs we map the [roomId] to a number and matrix?.store this number.
   late Map<String, int> idMap;
   Future<void> _loadIdMap() async {
     idMap = Map<String, int>.from(
       json.decode(
-        (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}',
+        (matrix?.store.getString(SettingKeys.notificationCurrentIds)) ?? '{}',
       ),
     );
   }
@@ -488,7 +487,7 @@ class BackgroundPush {
         }
       }
       if (changed) {
-        await store.setItem(
+        await matrix?.store.setString(
           SettingKeys.notificationCurrentIds,
           json.encode(idMap),
         );

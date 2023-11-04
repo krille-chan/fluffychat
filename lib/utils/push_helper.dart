@@ -98,7 +98,11 @@ Future<void> _tryPushHelper(
     //onDidReceiveBackgroundNotificationResponse: onSelectNotification,
   );
 
-  client ??= (await ClientManager.getClients(initialize: false)).first;
+  client ??= (await ClientManager.getClients(
+    initialize: false,
+    store: await SharedPreferences.getInstance(),
+  ))
+      .first;
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: isBackgroundMessage,
