@@ -275,8 +275,18 @@ class ChatController extends State<ChatPageWithRoom> {
     if (timeline?.allowNewEvent == false ||
         scrollController.position.pixels > 0 && _scrolledUp == false) {
       setState(() => _scrolledUp = true);
-    } else if (scrollController.position.pixels == 0 && _scrolledUp == true) {
+    } else if (scrollController.position.pixels <= 0 && _scrolledUp == true) {
       setState(() => _scrolledUp = false);
+    }
+
+    if (scrollController.position.pixels == 0 ||
+        scrollController.position.pixels == 64) {
+      requestFuture();
+    } else if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent ||
+        scrollController.position.pixels + 64 ==
+            scrollController.position.maxScrollExtent) {
+      requestHistory();
     }
   }
 
@@ -904,7 +914,7 @@ class ChatController extends State<ChatPageWithRoom> {
     }
     await scrollController.scrollToIndex(
       eventIndex,
-      preferPosition: AutoScrollPosition.end,
+      preferPosition: AutoScrollPosition.middle,
     );
     _updateScrollController();
   }

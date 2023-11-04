@@ -53,18 +53,11 @@ class ChatEventList extends StatelessWidget {
               );
             }
             if (controller.timeline!.canRequestFuture) {
-              return Builder(
-                builder: (context) {
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) => controller.requestFuture(),
-                  );
-                  return Center(
-                    child: IconButton(
-                      onPressed: controller.requestFuture,
-                      icon: const Icon(Icons.refresh_outlined),
-                    ),
-                  );
-                },
+              return Center(
+                child: IconButton(
+                  onPressed: controller.requestFuture,
+                  icon: const Icon(Icons.refresh_outlined),
+                ),
               );
             }
             return Column(
@@ -84,18 +77,11 @@ class ChatEventList extends StatelessWidget {
               );
             }
             if (controller.timeline!.canRequestHistory) {
-              return Builder(
-                builder: (context) {
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) => controller.requestHistory(),
-                  );
-                  return Center(
-                    child: IconButton(
-                      onPressed: controller.requestHistory,
-                      icon: const Icon(Icons.refresh_outlined),
-                    ),
-                  );
-                },
+              return Center(
+                child: IconButton(
+                  onPressed: controller.requestHistory,
+                  icon: const Icon(Icons.refresh_outlined),
+                ),
               );
             }
             return const SizedBox.shrink();
