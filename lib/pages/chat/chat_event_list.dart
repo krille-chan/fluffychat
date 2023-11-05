@@ -98,8 +98,7 @@ class ChatEventList extends StatelessWidget {
               child: event.isVisibleInGui
                   ? Message(
                       event,
-                      onSwipe: (direction) =>
-                          controller.replyAction(replyTo: event),
+                      onSwipe: () => controller.replyAction(replyTo: event),
                       onInfoTab: controller.showEventInfo,
                       onAvatarTab: (Event event) => showAdaptiveBottomSheet(
                         context: context,
