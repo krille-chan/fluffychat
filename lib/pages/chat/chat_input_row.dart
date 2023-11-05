@@ -30,18 +30,36 @@ class ChatInputRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: controller.selectMode
           ? <Widget>[
-              SizedBox(
-                height: 56,
-                child: TextButton(
-                  onPressed: controller.forwardEventsAction,
-                  child: Row(
-                    children: <Widget>[
-                      const Icon(Icons.keyboard_arrow_left_outlined),
-                      Text(L10n.of(context)!.forward),
-                    ],
+              if (controller.selectedEvents
+                  .every((event) => event.status == EventStatus.error))
+                SizedBox(
+                  height: 56,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                    onPressed: controller.deleteErrorEventsAction,
+                    child: Row(
+                      children: <Widget>[
+                        const Icon(Icons.delete),
+                        Text(L10n.of(context)!.delete),
+                      ],
+                    ),
+                  ),
+                )
+              else
+                SizedBox(
+                  height: 56,
+                  child: TextButton(
+                    onPressed: controller.forwardEventsAction,
+                    child: Row(
+                      children: <Widget>[
+                        const Icon(Icons.keyboard_arrow_left_outlined),
+                        Text(L10n.of(context)!.forward),
+                      ],
+                    ),
                   ),
                 ),
-              ),
               controller.selectedEvents.length == 1
                   ? controller.selectedEvents.first
                           .getDisplayEvent(controller.timeline!)

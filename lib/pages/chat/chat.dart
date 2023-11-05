@@ -772,6 +772,24 @@ class ChatController extends State<ChatPageWithRoom> {
     );
   }
 
+  void deleteErrorEventsAction() async {
+    try {
+      if (selectedEvents.any((event) => event.status != EventStatus.error)) {
+        throw Exception(
+          'Tried to delete failed to send events but one event is not failed to sent',
+        );
+      }
+      for (final event in selectedEvents) {
+        await event.remove();
+      }
+    } catch (e, s) {
+      ErrorReporter(
+        context,
+        'Error while delete error events action',
+      ).onErrorCallback(e, s);
+    }
+  }
+
   void redactEventsAction() async {
     final reasonInput = selectedEvents.any((event) => event.status.isSent)
         ? await showTextInputDialog(
@@ -832,6 +850,7 @@ class ChatController extends State<ChatPageWithRoom> {
     if (isArchived) return false;
     final clients = Matrix.of(context).currentBundle;
     for (final event in selectedEvents) {
+      if (!event.status.isSent) return false;
       if (event.canRedact == false &&
           !(clients!.any((cl) => event.senderId == cl!.userID))) return false;
     }
