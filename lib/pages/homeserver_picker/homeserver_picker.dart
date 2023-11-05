@@ -8,7 +8,6 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
@@ -33,6 +32,8 @@ class HomeserverPicker extends StatefulWidget {
 
 class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
+  bool isLoggingIn = false;
+
   final TextEditingController homeserverController = TextEditingController(
     text: AppConfig.defaultHomeserver,
   );
@@ -135,14 +136,27 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
 
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).getLoginClient().login(
+    setState(() {
+      error = null;
+      isLoading = isLoggingIn = true;
+    });
+    try {
+      await Matrix.of(context).getLoginClient().login(
             LoginType.mLoginToken,
             token: token,
             initialDeviceDisplayName: PlatformInfos.clientName,
-          ),
-    );
+          );
+    } catch (e) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = isLoggingIn = false;
+        });
+      }
+    }
   }
 
   List<IdentityProvider>? get identityProviders {
@@ -181,18 +195,25 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
     final file = picked?.files.firstOrNull;
     if (file == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        try {
-          final client = Matrix.of(context).getLoginClient();
-          await client.importDump(String.fromCharCodes(file.bytes!));
-          Matrix.of(context).initMatrix();
-        } catch (e, s) {
-          Logs().e('Future error:', e, s);
-        }
-      },
-    );
+    setState(() {
+      error = null;
+      isLoading = isLoggingIn = true;
+    });
+    try {
+      final client = Matrix.of(context).getLoginClient();
+      await client.importDump(String.fromCharCodes(file.bytes!));
+      Matrix.of(context).initMatrix();
+    } catch (e) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = isLoggingIn = false;
+        });
+      }
+    }
   }
 }
 

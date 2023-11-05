@@ -57,15 +57,6 @@ class HomeserverPickerView extends StatelessWidget {
                   ? const Center(child: CircularProgressIndicator.adaptive())
                   : ListView(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: FluffyThemes.isColumnMode(context)
-                              ? Image.asset(
-                                  'assets/info-logo.png',
-                                  height: 96,
-                                )
-                              : Image.asset('assets/banner_transparent.png'),
-                        ),
                         const SizedBox(height: 12),
                         if (errorText != null) ...[
                           const Center(
@@ -97,8 +88,18 @@ class HomeserverPickerView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 12),
-                        ],
+                          const SizedBox(height: 36),
+                        ] else
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: FluffyThemes.isColumnMode(context)
+                                ? Image.asset(
+                                    'assets/info-logo.png',
+                                    height: 96,
+                                  )
+                                : Image.asset('assets/banner_transparent.png'),
+                          ),
                         if (identityProviders != null) ...[
                           ...identityProviders.map(
                             (provider) => _LoginButton(
@@ -143,6 +144,8 @@ class HomeserverPickerView extends StatelessWidget {
                                 style: TextButton.styleFrom(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 12),
+                                  foregroundColor:
+                                      Theme.of(context).colorScheme.secondary,
                                 ),
                                 onPressed: controller.restoreBackup,
                                 child: Text(
