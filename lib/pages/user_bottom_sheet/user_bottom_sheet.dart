@@ -233,7 +233,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         if (roomIdResult.error != null) return;
         widget.outerContext.go('/rooms/${roomIdResult.result!}');
-        Navigator.of(context, rootNavigator: false).pop();
+        Navigator.of(context, rootNavigator: false)
+          ..pop()
+          ..pop();
+        widget.outerContext.go('/rooms/${roomIdResult.result!}');
         break;
       case UserBottomSheetAction.ignore:
         context.go('/rooms/settings/security/ignorelist');
