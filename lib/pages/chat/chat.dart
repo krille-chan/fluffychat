@@ -782,6 +782,7 @@ class ChatController extends State<ChatPageWithRoom> {
       for (final event in selectedEvents) {
         await event.remove();
       }
+      setState(selectedEvents.clear);
     } catch (e, s) {
       ErrorReporter(
         context,
