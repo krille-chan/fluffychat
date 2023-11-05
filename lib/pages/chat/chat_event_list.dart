@@ -31,104 +31,106 @@ class ChatEventList extends StatelessWidget {
       thisEventsKeyMap[controller.timeline!.events[i].eventId] = i;
     }
 
-    return ListView.custom(
-      padding: EdgeInsets.only(
-        top: 16,
-        bottom: 4,
-        left: horizontalPadding,
-        right: horizontalPadding,
-      ),
-      reverse: true,
-      controller: controller.scrollController,
-      keyboardDismissBehavior: PlatformInfos.isIOS
-          ? ScrollViewKeyboardDismissBehavior.onDrag
-          : ScrollViewKeyboardDismissBehavior.manual,
-      childrenDelegate: SliverChildBuilderDelegate(
-        (BuildContext context, int i) {
-          // Footer to display typing indicator and read receipts:
-          if (i == 0) {
-            if (controller.timeline!.isRequestingFuture) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+    return SelectionArea(
+      child: ListView.custom(
+        padding: EdgeInsets.only(
+          top: 16,
+          bottom: 4,
+          left: horizontalPadding,
+          right: horizontalPadding,
+        ),
+        reverse: true,
+        controller: controller.scrollController,
+        keyboardDismissBehavior: PlatformInfos.isIOS
+            ? ScrollViewKeyboardDismissBehavior.onDrag
+            : ScrollViewKeyboardDismissBehavior.manual,
+        childrenDelegate: SliverChildBuilderDelegate(
+          (BuildContext context, int i) {
+            // Footer to display typing indicator and read receipts:
+            if (i == 0) {
+              if (controller.timeline!.isRequestingFuture) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                );
+              }
+              if (controller.timeline!.canRequestFuture) {
+                return Center(
+                  child: IconButton(
+                    onPressed: controller.requestFuture,
+                    icon: const Icon(Icons.refresh_outlined),
+                  ),
+                );
+              }
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SeenByRow(controller),
+                  TypingIndicators(controller),
+                ],
               );
             }
-            if (controller.timeline!.canRequestFuture) {
-              return Center(
-                child: IconButton(
-                  onPressed: controller.requestFuture,
-                  icon: const Icon(Icons.refresh_outlined),
-                ),
-              );
-            }
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SeenByRow(controller),
-                TypingIndicators(controller),
-              ],
-            );
-          }
 
-          // Request history button or progress indicator:
-          if (i == controller.timeline!.events.length + 1) {
-            if (controller.timeline!.isRequestingHistory) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-              );
+            // Request history button or progress indicator:
+            if (i == controller.timeline!.events.length + 1) {
+              if (controller.timeline!.isRequestingHistory) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                );
+              }
+              if (controller.timeline!.canRequestHistory) {
+                return Center(
+                  child: IconButton(
+                    onPressed: controller.requestHistory,
+                    icon: const Icon(Icons.refresh_outlined),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
             }
-            if (controller.timeline!.canRequestHistory) {
-              return Center(
-                child: IconButton(
-                  onPressed: controller.requestHistory,
-                  icon: const Icon(Icons.refresh_outlined),
-                ),
-              );
-            }
-            return const SizedBox.shrink();
-          }
 
-          // The message at this index:
-          final event = controller.timeline!.events[i - 1];
+            // The message at this index:
+            final event = controller.timeline!.events[i - 1];
 
-          return AutoScrollTag(
-            key: ValueKey(event.eventId),
-            index: i - 1,
-            controller: controller.scrollController,
-            child: event.isVisibleInGui
-                ? Message(
-                    event,
-                    onSwipe: (direction) =>
-                        controller.replyAction(replyTo: event),
-                    onInfoTab: controller.showEventInfo,
-                    onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                      context: context,
-                      builder: (c) => UserBottomSheet(
-                        user: event.senderFromMemoryOrFallback,
-                        outerContext: context,
-                        onMention: () => controller.sendController.text +=
-                            '${event.senderFromMemoryOrFallback.mention} ',
+            return AutoScrollTag(
+              key: ValueKey(event.eventId),
+              index: i - 1,
+              controller: controller.scrollController,
+              child: event.isVisibleInGui
+                  ? Message(
+                      event,
+                      onSwipe: (direction) =>
+                          controller.replyAction(replyTo: event),
+                      onInfoTab: controller.showEventInfo,
+                      onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                        context: context,
+                        builder: (c) => UserBottomSheet(
+                          user: event.senderFromMemoryOrFallback,
+                          outerContext: context,
+                          onMention: () => controller.sendController.text +=
+                              '${event.senderFromMemoryOrFallback.mention} ',
+                        ),
                       ),
-                    ),
-                    onSelect: controller.onSelectMessage,
-                    scrollToEventId: (String eventId) =>
-                        controller.scrollToEventId(eventId),
-                    longPressSelect: controller.selectedEvents.isNotEmpty,
-                    selected: controller.selectedEvents
-                        .any((e) => e.eventId == event.eventId),
-                    timeline: controller.timeline!,
-                    displayReadMarker:
-                        controller.readMarkerEventId == event.eventId &&
-                            controller.timeline?.allowNewEvent == false,
-                    nextEvent: i < controller.timeline!.events.length
-                        ? controller.timeline!.events[i]
-                        : null,
-                  )
-                : const SizedBox.shrink(),
-          );
-        },
-        childCount: controller.timeline!.events.length + 2,
-        findChildIndexCallback: (key) =>
-            controller.findChildIndexCallback(key, thisEventsKeyMap),
+                      onSelect: controller.onSelectMessage,
+                      scrollToEventId: (String eventId) =>
+                          controller.scrollToEventId(eventId),
+                      longPressSelect: controller.selectedEvents.isNotEmpty,
+                      selected: controller.selectedEvents
+                          .any((e) => e.eventId == event.eventId),
+                      timeline: controller.timeline!,
+                      displayReadMarker:
+                          controller.readMarkerEventId == event.eventId &&
+                              controller.timeline?.allowNewEvent == false,
+                      nextEvent: i < controller.timeline!.events.length
+                          ? controller.timeline!.events[i]
+                          : null,
+                    )
+                  : const SizedBox.shrink(),
+            );
+          },
+          childCount: controller.timeline!.events.length + 2,
+          findChildIndexCallback: (key) =>
+              controller.findChildIndexCallback(key, thisEventsKeyMap),
+        ),
       ),
     );
   }

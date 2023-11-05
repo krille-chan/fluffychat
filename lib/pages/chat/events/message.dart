@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
+import '../../../widgets/hover_builder.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
 import 'reply_content.dart';
@@ -43,10 +44,6 @@ class Message extends StatelessWidget {
     required this.timeline,
     super.key,
   });
-
-  /// Indicates wheither the user may use a mouse instead
-  /// of touchscreen.
-  static bool useMouse = false;
 
   @override
   Widget build(BuildContext context) {
@@ -117,31 +114,42 @@ class Message extends StatelessWidget {
           : Theme.of(context).colorScheme.primaryContainer;
     }
 
-    final row = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: rowMainAxisAlignment,
-      children: [
-        sameSender || ownMessage
-            ? SizedBox(
+    final row = InkWell(
+      onTap: longPressSelect ? () => onSelect!(event) : null,
+      onLongPress: () => onSelect!(event),
+      child: HoverBuilder(
+        builder: (context, hovered) => Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: rowMainAxisAlignment,
+          children: [
+            if (hovered || selected)
+              SizedBox(
                 width: Avatar.defaultSize,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Center(
-                    child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: event.status == EventStatus.sending
-                          ? const CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
-                            )
-                          : event.status == EventStatus.error
-                              ? const Icon(Icons.error, color: Colors.red)
-                              : null,
-                    ),
+                height: Avatar.defaultSize - 8,
+                child: Checkbox.adaptive(
+                  value: selected,
+                  onChanged: (_) => onSelect?.call(event),
+                ),
+              )
+            else if (sameSender || ownMessage)
+              SizedBox(
+                width: Avatar.defaultSize,
+                child: Center(
+                  child: SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: event.status == EventStatus.sending
+                        ? const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2,
+                          )
+                        : event.status == EventStatus.error
+                            ? const Icon(Icons.error, color: Colors.red)
+                            : null,
                   ),
                 ),
               )
-            : FutureBuilder<User?>(
+            else
+              FutureBuilder<User?>(
                 future: event.fetchSenderUser(),
                 builder: (context, snapshot) {
                   final user =
@@ -153,61 +161,59 @@ class Message extends StatelessWidget {
                   );
                 },
               ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (!sameSender)
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                  child: ownMessage || event.room.isDirectChat
-                      ? const SizedBox(height: 12)
-                      : FutureBuilder<User?>(
-                          future: event.fetchSenderUser(),
-                          builder: (context, snapshot) {
-                            final displayname =
-                                snapshot.data?.calcDisplayname() ??
-                                    event.senderFromMemoryOrFallback
-                                        .calcDisplayname();
-                            return Text(
-                              displayname,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: (Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? displayname.color
-                                    : displayname.lightColorText),
-                              ),
-                            );
-                          },
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (!sameSender)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, bottom: 4),
+                      child: ownMessage || event.room.isDirectChat
+                          ? const SizedBox(height: 12)
+                          : FutureBuilder<User?>(
+                              future: event.fetchSenderUser(),
+                              builder: (context, snapshot) {
+                                final displayname =
+                                    snapshot.data?.calcDisplayname() ??
+                                        event.senderFromMemoryOrFallback
+                                            .calcDisplayname();
+                                return Text(
+                                  displayname,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: (Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? displayname.color
+                                        : displayname.lightColorText),
+                                  ),
+                                );
+                              },
+                            ),
+                    ),
+                  Container(
+                    alignment: alignment,
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Material(
+                      color: noBubble ? Colors.transparent : color,
+                      borderRadius: borderRadius,
+                      clipBehavior: Clip.antiAlias,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius),
                         ),
-                ),
-              Container(
-                alignment: alignment,
-                padding: const EdgeInsets.only(left: 8),
-                child: Material(
-                  color: noBubble ? Colors.transparent : color,
-                  borderRadius: borderRadius,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                    ),
-                    padding: noBubble || noPadding
-                        ? EdgeInsets.zero
-                        : const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth * 1.5,
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Column(
+                        padding: noBubble || noPadding
+                            ? EdgeInsets.zero
+                            : const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                        constraints: const BoxConstraints(
+                          maxWidth: FluffyThemes.columnWidth * 1.5,
+                        ),
+                        child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -284,15 +290,15 @@ class Message extends StatelessWidget {
                               ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
@@ -392,26 +398,18 @@ class Message extends StatelessWidget {
       direction: SwipeDirection.endToStart,
       onSwipe: onSwipe,
       child: Center(
-        child: MouseRegion(
-          onEnter: (_) => useMouse = true,
-          onExit: (_) => useMouse = false,
-          child: InkWell(
-            onTap: longPressSelect || useMouse ? () => onSelect!(event) : null,
-            onLongPress: () => onSelect!(event),
-            child: Container(
-              color: selected
-                  ? Theme.of(context).primaryColor.withAlpha(100)
-                  : Theme.of(context).primaryColor.withAlpha(0),
-              constraints: const BoxConstraints(
-                maxWidth: FluffyThemes.columnWidth * 2.5,
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 4.0,
-              ),
-              child: container,
-            ),
+        child: Container(
+          color: selected
+              ? Theme.of(context).primaryColor.withAlpha(100)
+              : Theme.of(context).primaryColor.withAlpha(0),
+          constraints: const BoxConstraints(
+            maxWidth: FluffyThemes.columnWidth * 2.5,
           ),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 4.0,
+          ),
+          child: container,
         ),
       ),
     );
