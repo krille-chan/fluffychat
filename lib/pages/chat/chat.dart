@@ -865,8 +865,7 @@ class ChatController extends State<ChatPageWithRoom> {
         !selectedEvents.single.status.isSent) {
       return false;
     }
-    return currentRoomBundle
-        .any((cl) => selectedEvents.first.senderId == cl!.userID);
+    return true;
   }
 
   bool get canEditSelectedEvents {
