@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:callkeep/callkeep.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -167,7 +168,26 @@ class CallKeepManager {
     Logs().v('[onPushKitToken] token => ${event.token}');
   }
 
-  Future<void> initialize() async {
+  Future<void> initialize({BuildContext? context}) async {
+    tryReadPhoneStatePermission().then((pStatus) {
+      if (context != null) {
+        if (pStatus == PermissionStatus.denied ||
+            pStatus == PermissionStatus.permanentlyDenied) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                L10n.of(context)!.phonePermissionDeniedNotice,
+              ),
+              action: SnackBarAction(
+                label: L10n.of(context)!.settings,
+                onPressed: openAppSettings,
+              ),
+            ),
+          );
+        }
+      }
+    });
+
     _callKeep.on(CallKeepPerformAnswerCallAction(), answerCall);
     _callKeep.on(CallKeepDidPerformDTMFAction(), didPerformDTMFAction);
     _callKeep.on(
@@ -364,4 +384,9 @@ class CallKeepManager {
     }
     setCallHeld(event.callUUID, event.hold);
   }
+}
+
+Future<PermissionStatus?> tryReadPhoneStatePermission() async {
+  final info = await DeviceInfoPlugin().androidInfo;
+  return info.version.sdkInt > 30 ? await Permission.phone.request() : null;
 }
