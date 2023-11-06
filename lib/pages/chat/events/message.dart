@@ -115,7 +115,7 @@ class Message extends StatelessWidget {
     }
 
     final row = InkWell(
-      onTap: longPressSelect ? () => onSelect!(event) : null,
+      onTap: () => onSelect!(event),
       child: HoverBuilder(
         builder: (context, hovered) => Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -397,7 +397,7 @@ class Message extends StatelessWidget {
         ),
       ),
       direction: SwipeDirection.endToStart,
-      onSwipe: (_) => onSelect?.call(event),
+      onSwipe: (_) => onSwipe(),
       child: Center(
         child: Container(
           color: selected
