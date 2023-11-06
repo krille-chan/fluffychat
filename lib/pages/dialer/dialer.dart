@@ -367,11 +367,13 @@ class MyCallingPage extends State<Calling> {
       return [];
     }
 
-    final switchCameraButton = FloatingActionButton(
-      heroTag: 'switchCamera',
-      onPressed: _switchCamera,
-      backgroundColor: Colors.black45,
-      child: const Icon(Icons.switch_camera),
+    final switchCameraButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'switchCamera',
+        onPressed: _switchCamera,
+        backgroundColor: Colors.black45,
+        child: const Icon(Icons.switch_camera),
+      ),
     );
     /*
     var switchSpeakerButton = FloatingActionButton(
@@ -382,52 +384,65 @@ class MyCallingPage extends State<Calling> {
       backgroundColor: Theme.of(widget.context).backgroundColor,
     );
     */
-    final hangupButton = FloatingActionButton(
-      heroTag: 'hangup',
-      onPressed: _hangUp,
-      tooltip: 'Hangup',
-      backgroundColor: _state == CallState.kEnded ? Colors.black45 : Colors.red,
-      child: const Icon(Icons.call_end),
+    final hangupButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'hangup',
+        onPressed: _hangUp,
+        tooltip: 'Hangup',
+        backgroundColor:
+            _state == CallState.kEnded ? Colors.black45 : Colors.red,
+        child: const Icon(Icons.call_end),
+      ),
     );
 
-    final answerButton = FloatingActionButton(
-      heroTag: 'answer',
-      onPressed: _answerCall,
-      tooltip: 'Answer',
-      backgroundColor: Colors.green,
-      child: const Icon(Icons.phone),
+    final answerButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'answer',
+        onPressed: _answerCall,
+        tooltip: 'Answer',
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.phone),
+      ),
     );
 
-    final muteMicButton = FloatingActionButton(
-      heroTag: 'muteMic',
-      onPressed: _muteMic,
-      foregroundColor: isMicrophoneMuted ? Colors.black26 : Colors.white,
-      backgroundColor: isMicrophoneMuted ? Colors.white : Colors.black45,
-      child: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
+    final muteMicButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'muteMic',
+        onPressed: _muteMic,
+        foregroundColor: isMicrophoneMuted ? Colors.black26 : Colors.white,
+        backgroundColor: isMicrophoneMuted ? Colors.white : Colors.black45,
+        child: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
+      ),
     );
 
-    final screenSharingButton = FloatingActionButton(
-      heroTag: 'screenSharing',
-      onPressed: _screenSharing,
-      foregroundColor: isScreensharingEnabled ? Colors.black26 : Colors.white,
-      backgroundColor: isScreensharingEnabled ? Colors.white : Colors.black45,
-      child: const Icon(Icons.desktop_mac),
+    final screenSharingButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'screenSharing',
+        onPressed: _screenSharing,
+        foregroundColor: isScreensharingEnabled ? Colors.black26 : Colors.white,
+        backgroundColor: isScreensharingEnabled ? Colors.white : Colors.black45,
+        child: const Icon(Icons.desktop_mac),
+      ),
     );
 
-    final holdButton = FloatingActionButton(
-      heroTag: 'hold',
-      onPressed: _remoteOnHold,
-      foregroundColor: isRemoteOnHold ? Colors.black26 : Colors.white,
-      backgroundColor: isRemoteOnHold ? Colors.white : Colors.black45,
-      child: const Icon(Icons.pause),
+    final holdButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'hold',
+        onPressed: _remoteOnHold,
+        foregroundColor: isRemoteOnHold ? Colors.black26 : Colors.white,
+        backgroundColor: isRemoteOnHold ? Colors.white : Colors.black45,
+        child: const Icon(Icons.pause),
+      ),
     );
 
-    final muteCameraButton = FloatingActionButton(
-      heroTag: 'muteCam',
-      onPressed: _muteCamera,
-      foregroundColor: isLocalVideoMuted ? Colors.black26 : Colors.white,
-      backgroundColor: isLocalVideoMuted ? Colors.white : Colors.black45,
-      child: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
+    final muteCameraButton = Flexible(
+      child: FloatingActionButton(
+        heroTag: 'muteCam',
+        onPressed: _muteCamera,
+        foregroundColor: isLocalVideoMuted ? Colors.black26 : Colors.white,
+        backgroundColor: isLocalVideoMuted ? Colors.white : Colors.black45,
+        child: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
+      ),
     );
 
     switch (_state) {
