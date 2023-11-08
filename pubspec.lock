@@ -863,6 +863,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  icons_plus:
+    dependency: "direct main"
+    description:
+      name: icons_plus
+      sha256: b613ec1deac96e9ef5c8065f2d7325967818bc3f4e118a375e50292761849ea6
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   image:
     dependency: transitive
     description:

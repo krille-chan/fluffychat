@@ -1,6 +1,9 @@
 import 'dart:math';
 
+import 'package:fluffychat/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/platform_infos.dart';
 
 class EmptyPage extends StatelessWidget {
   final bool loading;
@@ -38,6 +41,10 @@ class EmptyPage extends StatelessWidget {
                 child: const LinearProgressIndicator(),
               ),
             ),
+
+          // Button for add bridge when no conversation
+          if(PlatformInfos.isWeb)
+            const AddChatNetwork(),
         ],
       ),
     );
