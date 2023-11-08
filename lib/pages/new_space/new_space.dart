@@ -215,7 +215,7 @@ class NewSpaceController extends State<NewSpace> {
         .setActiveSpaceIdInChatListController(roomID.result!);
 
     if (roomID.error == null) {
-      context.go('/spaces/${roomID.result!}');
+      context.push('/spaces/${roomID.result!}');
     }
     // if (roomID.error == null) {
     //   context.go('/rooms/${roomID.result!}');

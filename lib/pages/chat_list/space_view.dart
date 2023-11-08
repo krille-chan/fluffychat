@@ -478,7 +478,9 @@ class _SpaceViewState extends State<SpaceView> {
                         ),
                         // #Pangea
                         // onTap: () => _onJoinSpaceChild(spaceChild),
-                        onTap: () => context.go('/spaces/${spaceChild.roomId}'),
+                        onTap: () => context.push(
+                          '/spaces/${spaceChild.roomId}',
+                        ),
                         // Pangea#
                       );
                     }
