@@ -1,21 +1,17 @@
-import 'package:flutter/cupertino.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
+import 'package:fluffychat/utils/beautify_string_extension.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
-import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-
 class ChatEncryptionSettingsView extends StatelessWidget {
   final ChatEncryptionSettingsController controller;
 
-  const ChatEncryptionSettingsView(this.controller, {Key? key})
-      : super(key: key);
+  const ChatEncryptionSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +50,13 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 value: room.encrypted,
                 onChanged: controller.enableEncryption,
               ),
-              Icon(
-                CupertinoIcons.lock_shield,
-                size: 128,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-              ),
+              // #Pangea
+              // Icon(
+              //   CupertinoIcons.lock_shield,
+              //   size: 128,
+              //   color: Theme.of(context).colorScheme.onInverseSurface,
+              // ),
+              // Pangea#
               const Divider(),
               if (room.isDirectChat)
                 Padding(

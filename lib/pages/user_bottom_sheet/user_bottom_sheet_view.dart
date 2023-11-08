@@ -1,17 +1,16 @@
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
 class UserBottomSheetView extends StatelessWidget {
   final UserBottomSheetController controller;
 
-  const UserBottomSheetView(this.controller, {Key? key}) : super(key: key);
+  const UserBottomSheetView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

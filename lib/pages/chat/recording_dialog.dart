@@ -1,15 +1,14 @@
 import 'dart:async';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
@@ -46,7 +45,16 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
+
+      // We try to pick Opus where supported, since that is a codec optimized
+      // for speech as well as what the voice messages MSC uses.
+      final audioCodec =
+          (await _audioRecorder.isEncoderSupported(AudioEncoder.opus))
+              ? AudioEncoder.opus
+              : AudioEncoder.aacLc;
+
       await _audioRecorder.start(
+        encoder: audioCodec,
         path: _recordedPath,
         bitRate: bitRate,
         samplingRate: samplingRate,

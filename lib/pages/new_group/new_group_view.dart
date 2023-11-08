@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pages/new_group/new_group.dart';
+import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
+import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class NewGroupView extends StatelessWidget {
   final NewGroupController controller;
 
-  const NewGroupView(this.controller, {Key? key}) : super(key: key);
+  const NewGroupView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +29,38 @@ class NewGroupView extends StatelessWidget {
                 textInputAction: TextInputAction.go,
                 onSubmitted: controller.submitAction,
                 decoration: InputDecoration(
-                  labelText: L10n.of(context)!.optionalGroupName,
+                  // #Pangea
+                  labelText: L10n.of(context)!.enterAGroupName,
+                  // labelText: L10n.of(context)!.optionalGroupName,
                   prefixIcon: const Icon(Icons.people_outlined),
-                  hintText: L10n.of(context)!.enterAGroupName,
+                  // hintText: L10n.of(context)!.enterAGroupName,
+                  // Pangea#
                 ),
               ),
             ),
-            SwitchListTile.adaptive(
-              secondary: const Icon(Icons.public_outlined),
-              title: Text(L10n.of(context)!.groupIsPublic),
-              value: controller.publicGroup,
-              onChanged: controller.setPublicGroup,
+            // #Pangea
+            // SwitchListTile.adaptive(
+            //   secondary: const Icon(Icons.public_outlined),
+            //   title: Text(L10n.of(context)!.groupIsPublic),
+            //   value: controller.publicGroup,
+            //   onChanged: controller.setPublicGroup,
+            // ),
+            // SwitchListTile.adaptive(
+            //   secondary: const Icon(Icons.lock_outlined),
+            //   title: Text(L10n.of(context)!.enableEncryption),
+            //   value: !controller.publicGroup,
+            //   onChanged: null,
+            // ),
+            AddToSpaceToggles(
+              key: controller.addToSpaceKey,
+              startOpen: false,
+              activeSpaceId: controller.activeSpaceId,
+              mode: AddToClassMode.chat,
             ),
-            SwitchListTile.adaptive(
-              secondary: const Icon(Icons.lock_outlined),
-              title: Text(L10n.of(context)!.enableEncryption),
-              value: !controller.publicGroup,
-              onChanged: null,
+            const SizedBox(
+              height: 50,
             ),
+            // Pangea#
           ],
         ),
       ),

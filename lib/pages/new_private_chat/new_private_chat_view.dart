@@ -1,15 +1,11 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
@@ -59,12 +55,14 @@ class NewPrivateChatView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      QrImageView(
-                        data:
-                            'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                        version: QrVersions.auto,
-                        size: qrCodeSize,
-                      ),
+                      //#Pangea - commenting this out because it's not super important and is throwing an error
+                      // QrImageView(
+                      //   data:
+                      //       'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                      //   version: QrVersions.auto,
+                      //   size: qrCodeSize,
+                      // ),
+                      // Pangea#
                       TextButton.icon(
                         style: TextButton.styleFrom(
                           fixedSize:

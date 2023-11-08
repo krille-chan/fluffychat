@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 
 enum ContextualRoomAction {
@@ -23,7 +22,7 @@ enum ContextualRoomAction {
 class StoriesHeader extends StatelessWidget {
   final String filter;
 
-  const StoriesHeader({required this.filter, Key? key}) : super(key: key);
+  const StoriesHeader({required this.filter, super.key});
 
   void _addToStoryAction(BuildContext context) =>
       context.go('/rooms/stories/create');
@@ -186,8 +185,7 @@ class _StoryButton extends StatefulWidget {
     this.hasPosts = true,
     this.unread = false,
     this.onLongPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   State<_StoryButton> createState() => _StoryButtonState();

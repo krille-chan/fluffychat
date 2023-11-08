@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/get_chat_list_item_subtitle.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
@@ -23,6 +24,7 @@ class ChatListItem extends StatelessWidget {
   final bool selected;
   final void Function()? onTap;
   final void Function()? onLongPress;
+  final void Function()? onForget;
 
   const ChatListItem(
     this.room, {
@@ -30,8 +32,9 @@ class ChatListItem extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.onLongPress,
-    Key? key,
-  }) : super(key: key);
+    this.onForget,
+    super.key,
+  });
 
   void clickAction(BuildContext context) async {
     if (onTap != null) return onTap!();
@@ -132,6 +135,7 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context)!.areYouSure,
         okLabel: L10n.of(context)!.yes,
         cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
@@ -189,6 +193,9 @@ class ChatListItem extends StatelessWidget {
                   mxContent: room.avatar,
                   name: displayname,
                   onTap: onLongPress,
+                  //#Pangea
+                  littleIcon: room.roomTypeIcon,
+                  // Pangea#
                 ),
           title: Row(
             children: <Widget>[
@@ -274,17 +281,26 @@ class ChatListItem extends StatelessWidget {
                         softWrap: false,
                       )
                     : FutureBuilder<String>(
-                        future: room.lastEvent?.calcLocalizedBody(
-                              MatrixLocals(L10n.of(context)!),
-                              hideReply: true,
-                              hideEdit: true,
-                              plaintextBody: true,
-                              removeMarkdown: true,
-                              withSenderNamePrefix: !room.isDirectChat ||
-                                  room.directChatMatrixID !=
-                                      room.lastEvent?.senderId,
-                            ) ??
-                            Future.value(L10n.of(context)!.emptyChat),
+                        // #Pangea
+                        // future: room.lastEvent?.calcLocalizedBody(
+                        //       MatrixLocals(L10n.of(context)!),
+                        //       hideReply: true,
+                        //       hideEdit: true,
+                        //       plaintextBody: true,
+                        //       removeMarkdown: true,
+                        //       withSenderNamePrefix: !room.isDirectChat ||
+                        //           room.directChatMatrixID !=
+                        //               room.lastEvent?.senderId,
+                        //     ) ??
+                        //     Future.value(L10n.of(context)!.emptyChat),
+                        future: room.lastEvent != null
+                            ? GetChatListItemSubtitle().getSubtitle(
+                                context,
+                                room.lastEvent,
+                                MatrixState.pangeaController,
+                              )
+                            : Future.value(L10n.of(context)!.emptyChat),
+                        // Pangea#
                         builder: (context, snapshot) {
                           return Text(
                             room.membership == Membership.invite
@@ -361,6 +377,12 @@ class ChatListItem extends StatelessWidget {
             ],
           ),
           onTap: () => clickAction(context),
+          trailing: onForget == null
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.delete_outlined),
+                  onPressed: onForget,
+                ),
         ),
       ),
     );

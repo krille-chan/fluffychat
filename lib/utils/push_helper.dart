@@ -2,18 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/callkeep_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -44,11 +45,14 @@ Future<void> pushHelper(
       onDidReceiveBackgroundNotificationResponse: onSelectNotification,
     );
 
-    l10n ??= lookupL10n(const Locale('en'));
+    // #Pangea
+    debugPrint('Push notification ${notification.content}');
+    // l10n ??= lookupL10n(const Locale('en'));
+    // Pangea#
     flutterLocalNotificationsPlugin.show(
       0,
-      l10n.newMessageInFluffyChat,
-      l10n.openAppToReadMessages,
+      l10n?.newMessageInFluffyChat,
+      l10n?.openAppToReadMessages,
       NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
@@ -56,7 +60,7 @@ Future<void> pushHelper(
           AppConfig.pushNotificationsChannelName,
           channelDescription: AppConfig.pushNotificationsChannelDescription,
           number: notification.counts?.unread,
-          ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
+          ticker: l10n?.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.max,
         ),
@@ -174,6 +178,9 @@ Future<void> _tryPushHelper(
         : await DefaultCacheManager().getSingleFile(avatar);
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
+    // #Pangea
+    ErrorHandler.logError(e: e, s: s);
+    // Pangea#
   }
 
   final id = await mapRoomIdToInt(event.room.id);

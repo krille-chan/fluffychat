@@ -24,13 +24,20 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="FluffyChat">
+  <!-- #Pangea -->
+  <!-- <meta name="apple-mobile-web-app-title" content="FluffyChat"> -->
+  <meta name="apple-mobile-web-app-title" content="Pangea Chat" />
+  <!-- Pangea# -->
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
 
-  <title>FluffyChat</title>
+  <!-- #Pangea -->
+  <!-- <title>FluffyChat</title> -->
+  <title>Pangea Chat</title>
+  <script src="splash/splash.js"></script>
+  <!-- Pangea# -->
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="splash/style.css">
 
@@ -45,9 +52,13 @@
 
 <body>
   <script>
+    console.log("SERVICE WORKER VERSION: ", serviceWorkerVersion)
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
+        // #Pangea
+        entrypointUrl: "main.dart.js?v=" + serviceWorkerVersion,
+        // Pangea#
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
@@ -60,13 +71,21 @@
     });
   </script>
   <picture id="splash">
-    <source
+    <!-- #Pangea -->
+    <!-- <source
       srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
       media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)">
     <source
       srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
       media="(prefers-color-scheme: dark)">
-    <img class="center" src="splash/img/light-1x.png" />
+    <img class="center" src="splash/img/light-1x.png" /> -->
+    <div class="center">
+      <div class="image">
+        <img src="splash/img/light-1x.png" />
+      </div>
+      <div class="custom-loader"></div>
+    </div>
+    <!-- Pangea# -->
   </picture>
 </body>
 

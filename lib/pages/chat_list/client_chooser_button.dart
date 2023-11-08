@@ -1,80 +1,165 @@
+import 'dart:developer';
+
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/utils/class_code.dart';
+import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
+import 'package:fluffychat/pangea/utils/logout.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
   final ChatListController controller;
 
-  const ClientChooserButton(this.controller, {Key? key}) : super(key: key);
+  const ClientChooserButton(this.controller, {super.key});
 
   List<PopupMenuEntry<Object>> _bundleMenuItems(BuildContext context) {
     final matrix = Matrix.of(context);
-    final bundles = matrix.accountBundles.keys.toList()
-      ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
-            ? 0
-            : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
-      );
+    // #Pangea
+    // final bundles = matrix.accountBundles.keys.toList()
+    //   ..sort(
+    //     (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+    //         ? 0
+    //         : a.isValidMatrixId && !b.isValidMatrixId
+    //             ? -1
+    //             : 1,
+    //   );
+    // Pangea#
     return <PopupMenuEntry<Object>>[
+      // #Pangea
+      // PopupMenuItem(
+      //   value: SettingsAction.newStory,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.camera_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.yourStory),
+      //     ],
+      //   ),
+      // ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newGroup,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.group_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.createGroup),
+      //     ],
+      //   ),
+      // ),
       PopupMenuItem(
-        value: SettingsAction.newStory,
+        value: SettingsAction.joinWithClassCode,
         child: Row(
           children: [
-            const Icon(Icons.camera_outlined),
+            const Icon(Icons.join_full_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.yourStory),
+            Expanded(child: Text(L10n.of(context)!.joinWithClassCode)),
           ],
         ),
       ),
       PopupMenuItem(
-        value: SettingsAction.newGroup,
+        enabled: matrix.client.classesAndExchangesImTeaching.isNotEmpty,
+        value: SettingsAction.classAnalytics,
         child: Row(
           children: [
-            const Icon(Icons.group_add_outlined),
+            const Icon(Icons.analytics_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createGroup),
+            Expanded(child: Text(L10n.of(context)!.classAnalytics)),
           ],
         ),
       ),
       PopupMenuItem(
-        value: SettingsAction.newSpace,
+        enabled: matrix.client.classesImIn.isNotEmpty,
+        value: SettingsAction.myAnalytics,
         child: Row(
           children: [
-            const Icon(Icons.workspaces_outlined),
+            const Icon(Icons.analytics_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createNewSpace),
+            Expanded(child: Text(L10n.of(context)!.myLearning)),
           ],
         ),
       ),
       PopupMenuItem(
-        value: SettingsAction.invite,
+        value: SettingsAction.newClass,
         child: Row(
           children: [
-            Icon(Icons.adaptive.share_outlined),
+            const Icon(Icons.school),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.inviteContact),
+            Expanded(child: Text(L10n.of(context)!.createNewClass)),
           ],
         ),
       ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newSpace,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.workspaces_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.createNewSpace),
+      //     ],
+      //   ),
+      // ),
+      PopupMenuItem(
+        value: SettingsAction.newExchange,
+        child: Row(
+          children: [
+            const Icon(Icons.connecting_airports),
+            const SizedBox(width: 18),
+            Expanded(child: Text(L10n.of(context)!.newExchange)),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.findAClass,
+        enabled: false,
+        child: Row(
+          children: [
+            const Icon(Icons.class_outlined),
+            const SizedBox(width: 18),
+            Expanded(child: Text(L10n.of(context)!.findAClass)),
+          ],
+        ),
+      ),
+      if (controller.pangeaController.permissionsController.isUser18())
+        PopupMenuItem(
+          value: SettingsAction.findAConversationPartner,
+          child: Row(
+            children: [
+              const Icon(Icons.add_circle_outline),
+              const SizedBox(width: 18),
+              Expanded(child: Text(L10n.of(context)!.findALanguagePartner)),
+            ],
+          ),
+        ),
+      // PopupMenuItem(
+      //   value: SettingsAction.invite,
+      //   child: Row(
+      //     children: [
+      //       Icon(Icons.adaptive.share_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.inviteContact),
+      //     ],
+      //   ),
+      // ),
+      // Pangea#
       PopupMenuItem(
         value: SettingsAction.archive,
         child: Row(
           children: [
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.archive),
+            // #Pangea
+            // Text(L10n.of(context)!.archive),
+            Expanded(child: Text(L10n.of(context)!.archive)),
+            // Pangea#
           ],
         ),
       ),
@@ -84,87 +169,99 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.settings_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.settings),
+            // #Pangea
+            // Text(L10n.of(context)!.settings),
+            Expanded(child: Text(L10n.of(context)!.settings)),
+            // Pangea#
           ],
         ),
       ),
-      const PopupMenuItem(
-        value: null,
-        child: Divider(height: 1),
-      ),
-      for (final bundle in bundles) ...[
-        if (matrix.accountBundles[bundle]!.length != 1 ||
-            matrix.accountBundles[bundle]!.single!.userID != bundle)
-          PopupMenuItem(
-            value: null,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  bundle!,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                    fontSize: 14,
-                  ),
-                ),
-                const Divider(height: 1),
-              ],
-            ),
-          ),
-        ...matrix.accountBundles[bundle]!
-            .map(
-              (client) => PopupMenuItem(
-                value: client,
-                child: FutureBuilder<Profile?>(
-                  // analyzer does not understand this type cast for error
-                  // handling
-                  //
-                  // ignore: unnecessary_cast
-                  future: (client!.fetchOwnProfile() as Future<Profile?>)
-                      .onError((e, s) => null),
-                  builder: (context, snapshot) => Row(
-                    children: [
-                      Avatar(
-                        mxContent: snapshot.data?.avatarUrl,
-                        name: snapshot.data?.displayName ??
-                            client.userID!.localpart,
-                        size: 32,
-                        fontSize: 12,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          snapshot.data?.displayName ??
-                              client.userID!.localpart!,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () => controller.editBundlesForAccount(
-                          client.userID,
-                          bundle,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-            .toList(),
-      ],
+      // #Pangea
+      // const PopupMenuItem(
+      //   value: null,
+      //   child: Divider(height: 1),
+      // ),
+      // for (final bundle in bundles) ...[
+      //   if (matrix.accountBundles[bundle]!.length != 1 ||
+      //       matrix.accountBundles[bundle]!.single!.userID != bundle)
+      //     PopupMenuItem(
+      //       value: null,
+      //       child: Column(
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         mainAxisSize: MainAxisSize.min,
+      //         children: [
+      //           Text(
+      //             bundle!,
+      //             style: TextStyle(
+      //               color: Theme.of(context).textTheme.titleMedium!.color,
+      //               fontSize: 14,
+      //             ),
+      //           ),
+      //           const Divider(height: 1),
+      //         ],
+      //       ),
+      //     ),
+      //   ...matrix.accountBundles[bundle]!.map(
+      //     (client) => PopupMenuItem(
+      //       value: client,
+      //       child: FutureBuilder<Profile?>(
+      //         // analyzer does not understand this type cast for error
+      //         // handling
+      //         //
+      //         // ignore: unnecessary_cast
+      //         future: (client!.fetchOwnProfile() as Future<Profile?>)
+      //             .onError((e, s) => null),
+      //         builder: (context, snapshot) => Row(
+      //           children: [
+      //             Avatar(
+      //               mxContent: snapshot.data?.avatarUrl,
+      //               name:
+      //                   snapshot.data?.displayName ?? client.userID!.localpart,
+      //               size: 32,
+      //               fontSize: 12,
+      //             ),
+      //             const SizedBox(width: 12),
+      //             Expanded(
+      //               child: Text(
+      //                 snapshot.data?.displayName ?? client.userID!.localpart!,
+      //                 overflow: TextOverflow.ellipsis,
+      //               ),
+      //             ),
+      //             const SizedBox(width: 12),
+      //             IconButton(
+      //               icon: const Icon(Icons.edit_outlined),
+      //               onPressed: () => controller.editBundlesForAccount(
+      //                 client.userID,
+      //                 bundle,
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ],
+      // PopupMenuItem(
+      //   value: SettingsAction.addAccount,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.person_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.addAccount),
+      //     ],
+      //   ),
+      // ),
       PopupMenuItem(
-        value: SettingsAction.addAccount,
+        value: SettingsAction.logout,
         child: Row(
           children: [
-            const Icon(Icons.person_add_outlined),
+            const Icon(Icons.logout_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.addAccount),
+            Expanded(child: Text(L10n.of(context)!.logout)),
           ],
         ),
       ),
+      // Pangea#
     ];
   }
 
@@ -214,17 +311,32 @@ class ClientChooserButton extends StatelessWidget {
           PopupMenuButton<Object>(
             onSelected: (o) => _clientSelected(o, context),
             itemBuilder: _bundleMenuItems,
+            // #Pangea
             child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(99),
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
-                size: 32,
-                fontSize: 12,
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+              clipBehavior: Clip.hardEdge,
+              child: ListTile(
+                tileColor: Theme.of(context).scaffoldBackgroundColor,
+                hoverColor: Theme.of(context).colorScheme.onSurfaceVariant,
+                leading: const Icon(Icons.settings_outlined),
+                title: Text(L10n.of(context)!.mainMenu),
               ),
             ),
+            // child: Material(
+            //   color: Colors.transparent,
+            //   borderRadius: BorderRadius.circular(99),
+            //   child: Avatar(
+            //     mxContent: snapshot.data?.avatarUrl,
+            //     name: snapshot.data?.displayName ??
+            //         matrix.client.userID!.localpart,
+            //     size: 32,
+            //     fontSize: 12,
+            //   ),
+            // ),
+            // Pangea#
           ),
         ],
       ),
@@ -252,26 +364,28 @@ class ClientChooserButton extends StatelessWidget {
       controller.setActiveBundle(object);
     } else if (object is SettingsAction) {
       switch (object) {
-        case SettingsAction.addAccount:
-          final consent = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context)!.addAccount,
-            message: L10n.of(context)!.enableMultiAccounts,
-            okLabel: L10n.of(context)!.next,
-            cancelLabel: L10n.of(context)!.cancel,
-          );
-          if (consent != OkCancelResult.ok) return;
-          context.go('/rooms/settings/addaccount');
-          break;
-        case SettingsAction.newStory:
-          context.go('/rooms/stories/create');
-          break;
-        case SettingsAction.newGroup:
-          context.go('/rooms/newgroup');
-          break;
-        case SettingsAction.newSpace:
-          context.go('/rooms/newspace');
-          break;
+        // #Pangea
+        // case SettingsAction.addAccount:
+        //   final consent = await showOkCancelAlertDialog(
+        //     context: context,
+        //     title: L10n.of(context)!.addAccount,
+        //     message: L10n.of(context)!.enableMultiAccounts,
+        //     okLabel: L10n.of(context)!.next,
+        //     cancelLabel: L10n.of(context)!.cancel,
+        //   );
+        //   if (consent != OkCancelResult.ok) return;
+        //   context.go('/rooms/settings/addaccount');
+        //   break;
+        // case SettingsAction.newStory:
+        //   context.go('/rooms/stories/create');
+        //   break;
+        // case SettingsAction.newGroup:
+        //   context.go('/rooms/newgroup');
+        //   break;
+        // case SettingsAction.newSpace:
+        //   context.go('/rooms/newspace');
+        //   break;
+        // Pangea#
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
@@ -281,6 +395,39 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.archive:
           context.go('/rooms/archive');
           break;
+        // #Pangea
+        case SettingsAction.newClass:
+          context.go('/rooms/newspace');
+          break;
+        case SettingsAction.newExchange:
+          context.go('/rooms/newspace/exchange');
+          break;
+        case SettingsAction.joinWithClassCode:
+          ClassCodeUtil.joinWithClassCodeDialog(
+            context,
+            controller.pangeaController,
+            null,
+          );
+          break;
+        case SettingsAction.findAConversationPartner:
+          findConversationPartnerDialog(
+            context,
+            controller.pangeaController,
+          );
+          break;
+        case SettingsAction.classAnalytics:
+          context.go('/rooms/analytics');
+          break;
+        case SettingsAction.myAnalytics:
+          context.go('/rooms/mylearning');
+          break;
+        case SettingsAction.findAClass:
+          debugger(when: kDebugMode, message: "left to implement");
+          break;
+        case SettingsAction.logout:
+          pLogoutAction(context);
+          break;
+        // Pangea#
       }
     }
   }
@@ -356,11 +503,23 @@ class ClientChooserButton extends StatelessWidget {
 }
 
 enum SettingsAction {
-  addAccount,
-  newStory,
-  newGroup,
-  newSpace,
+  // #Pangea
+  // addAccount,
+  // newStory,
+  // newGroup,
+  // newSpace,
+  // Pangea#
   invite,
   settings,
   archive,
+  // #Pangea
+  joinWithClassCode,
+  classAnalytics,
+  myAnalytics,
+  findAClass,
+  findAConversationPartner,
+  logout,
+  newClass,
+  newExchange
+  // Pangea#
 }

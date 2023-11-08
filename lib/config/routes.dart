@@ -1,15 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
-
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/add_story/add_story.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
@@ -30,24 +24,46 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
-import 'package:fluffychat/pages/story/story_page.dart';
+import 'package:fluffychat/pangea/guard/p_vguard.dart';
+import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
+import 'package:fluffychat/pangea/pages/class_settings/class_settings_page.dart';
+import 'package:fluffychat/pangea/pages/exchange/add_exchange_to_class.dart';
+import 'package:fluffychat/pangea/pages/find_partner/find_partner.dart';
+import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
+import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
+import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription.dart';
+import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
+import 'package:fluffychat/pangea/widgets/class/join_with_link.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+
+import '../pangea/pages/analytics/class_analytics/class_analytics.dart';
+import '../pangea/pages/analytics/class_list/class_list.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? '/rooms' : null;
+  ) {
+    // #Pangea
+    // Matrix.of(context).client.isLogged() ? '/rooms' : null;
+    return PAuthGaurd.loggedInRedirect(context, state);
+    // Pangea#
+  }
 
   static FutureOr<String?> loggedOutRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? null : '/home';
+  ) {
+    // #Pangea
+    // Matrix.of(context).client.isLogged() ? null : '/home';
+    return PAuthGaurd.loggedOutRedirect(context, state);
+    // Pangea#
+  }
 
   AppRoutes();
 
@@ -73,6 +89,16 @@ abstract class AppRoutes {
           ),
           redirect: loggedInRedirect,
         ),
+        // #Pangea
+        GoRoute(
+          path: 'signup',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const SignupPage(),
+          ),
+          redirect: loggedInRedirect,
+        ),
+        // Pangea#
       ],
     ),
     GoRoute(
@@ -100,6 +126,26 @@ abstract class AppRoutes {
             : child,
       ),
       routes: [
+        // #Pangea
+        GoRoute(
+          path: '/spaces/:roomid',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            ChatDetails(
+              roomId: state.pathParameters['roomid']!,
+            ),
+          ),
+          redirect: loggedOutRedirect,
+        ),
+        GoRoute(
+          path: '/join_with_link',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            const JoinClassWithLink(),
+          ),
+          redirect: loggedOutRedirect,
+        ),
+        // Pangea#
         GoRoute(
           path: '/rooms',
           redirect: loggedOutRedirect,
@@ -112,32 +158,68 @@ abstract class AppRoutes {
                   ),
           ),
           routes: [
+            // #Pangea
             GoRoute(
-              path: 'stories/create',
+              path: 'user_age',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                const AddStoryPage(),
+                const PUserAge(),
               ),
               redirect: loggedOutRedirect,
             ),
             GoRoute(
-              path: 'stories/:roomid',
+              path: 'mylearning',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                const StoryPage(),
+                const StudentAnalyticsPage(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'analytics',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const AnalyticsClassList(),
               ),
               redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
-                  path: 'share',
+                  path: ':classid',
+                  redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
-                    const AddStoryPage(),
+                    const ClassAnalyticsPage(),
                   ),
-                  redirect: loggedOutRedirect,
                 ),
               ],
             ),
+            // GoRoute(
+            //   path: 'stories/create',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     const AddStoryPage(),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            // ),
+            // GoRoute(
+            //   path: 'stories/:roomid',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     const StoryPage(),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            //   routes: [
+            //     GoRoute(
+            //       path: 'share',
+            //       pageBuilder: (context, state) => defaultPageBuilder(
+            //         context,
+            //         const AddStoryPage(),
+            //       ),
+            //       redirect: loggedOutRedirect,
+            //     ),
+            //   ],
+            // ),
+            // Pangea#
             GoRoute(
               path: 'archive',
               pageBuilder: (context, state) => defaultPageBuilder(
@@ -167,7 +249,10 @@ abstract class AppRoutes {
               redirect: loggedOutRedirect,
             ),
             GoRoute(
-              path: 'newgroup',
+              // #Pangea
+              // path: 'newgroup',
+              path: 'newgroup/:spaceid',
+              // Pangea#
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 const NewGroup(),
@@ -182,6 +267,32 @@ abstract class AppRoutes {
               ),
               redirect: loggedOutRedirect,
             ),
+            // #Pangea
+            GoRoute(
+              path: 'newspace/:newexchange',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const NewSpace(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'join_exchange/:exchangeid',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const AddExchangeToClass(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'partner',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                const FindPartner(),
+              ),
+              redirect: loggedOutRedirect,
+            ),
+            // Pangea#
             ShellRoute(
               pageBuilder: (context, state, child) => defaultPageBuilder(
                 context,
@@ -244,24 +355,26 @@ abstract class AppRoutes {
                       ],
                       redirect: loggedOutRedirect,
                     ),
-                    GoRoute(
-                      path: 'addaccount',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const HomeserverPicker(),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'login',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const Login(),
-                          ),
-                          redirect: loggedOutRedirect,
-                        ),
-                      ],
-                    ),
+                    // #Pangea
+                    // GoRoute(
+                    //   path: 'addaccount',
+                    //   redirect: loggedOutRedirect,
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     const HomeserverPicker(),
+                    //   ),
+                    //   routes: [
+                    //     GoRoute(
+                    //       path: 'login',
+                    //       pageBuilder: (context, state) => defaultPageBuilder(
+                    //         context,
+                    //         const Login(),
+                    //       ),
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //   ],
+                    // ),
+                    // Pangea#
                     GoRoute(
                       path: 'security',
                       redirect: loggedOutRedirect,
@@ -296,6 +409,24 @@ abstract class AppRoutes {
                         ),
                       ],
                     ),
+                    // #Pangea
+                    GoRoute(
+                      path: 'learning',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SettingsLearning(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'subscription',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SubscriptionManagement(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    // Pangea#
                   ],
                   redirect: loggedOutRedirect,
                 ),
@@ -309,14 +440,16 @@ abstract class AppRoutes {
               ),
               redirect: loggedOutRedirect,
               routes: [
-                GoRoute(
-                  path: 'encryption',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    const ChatEncryptionSettings(),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
+                // #Pangea
+                // GoRoute(
+                //   path: 'encryption',
+                //   pageBuilder: (context, state) => defaultPageBuilder(
+                //     context,
+                //     const ChatEncryptionSettings(),
+                //   ),
+                //   redirect: loggedOutRedirect,
+                // ),
+                // Pangea#
                 GoRoute(
                   path: 'invite',
                   pageBuilder: (context, state) => defaultPageBuilder(
@@ -354,6 +487,16 @@ abstract class AppRoutes {
                       ),
                       redirect: loggedOutRedirect,
                     ),
+                    // #Pangea
+                    GoRoute(
+                      path: 'class_settings',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const ClassSettingsPage(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    // Pangea#
                     GoRoute(
                       path: 'invite',
                       pageBuilder: (context, state) => defaultPageBuilder(
@@ -391,6 +534,17 @@ abstract class AppRoutes {
                   ],
                   redirect: loggedOutRedirect,
                 ),
+                // GoRoute(
+                //   path: 'tasks',
+                //   pageBuilder: (context, state) => defaultPageBuilder(
+                //     context,
+                //     TasksPage(
+                //       room: Matrix.of(context)
+                //           .client
+                //           .getRoomById(state.pathParameters['roomid']!)!,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],

@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
-import '../../widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
 
-  const ChatListHeader({Key? key, required this.controller}) : super(key: key);
+  const ChatListHeader({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -43,80 +40,85 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   controller.selectedRoomIds.length.toString(),
                   key: const ValueKey(SelectMode.select),
                 )
-              : TextField(
-                  controller: controller.searchController,
-                  focusNode: controller.searchFocusNode,
-                  textInputAction: TextInputAction.search,
-                  onChanged: controller.onSearchEnter,
-                  decoration: InputDecoration(
-                    fillColor: Theme.of(context).colorScheme.secondaryContainer,
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(99),
-                    ),
-                    hintText: L10n.of(context)!.search,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    prefixIcon: controller.isSearchMode
-                        ? IconButton(
-                            tooltip: L10n.of(context)!.cancel,
-                            icon: const Icon(Icons.close_outlined),
-                            onPressed: controller.cancelSearch,
-                            color: Theme.of(context).colorScheme.onBackground,
-                          )
-                        : IconButton(
-                            onPressed: controller.startSearch,
-                            icon: Icon(
-                              Icons.search_outlined,
-                              color: Theme.of(context).colorScheme.onBackground,
-                            ),
-                          ),
-                    suffixIcon: controller.isSearchMode
-                        ? controller.isSearching
-                            ? const Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 10.0,
-                                  horizontal: 12,
-                                ),
-                                child: SizedBox.square(
-                                  dimension: 24,
-                                  child: CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2,
-                                  ),
-                                ),
-                              )
-                            : TextButton.icon(
-                                onPressed: controller.setServer,
-                                style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(99),
-                                  ),
-                                  textStyle: const TextStyle(fontSize: 12),
-                                ),
-                                icon: const Icon(Icons.edit_outlined, size: 16),
-                                label: Text(
-                                  controller.searchServer ??
-                                      Matrix.of(context)
-                                          .client
-                                          .homeserver!
-                                          .host,
-                                  maxLines: 2,
-                                ),
-                              )
-                        : SizedBox(
-                            width: 0,
-                            child: ClientChooserButton(controller),
-                          ),
-                  ),
-                ),
+              // #Pangea
+              : ClientChooserButton(controller),
+      // : TextField(
+      //     controller: controller.searchController,
+      //     focusNode: controller.searchFocusNode,
+      //     textInputAction: TextInputAction.search,
+      //     onChanged: controller.onSearchEnter,
+      //     decoration: InputDecoration(
+      //       fillColor: Theme.of(context).colorScheme.secondaryContainer,
+      //       border: UnderlineInputBorder(
+      //         borderSide: BorderSide.none,
+      //         borderRadius: BorderRadius.circular(99),
+      //       ),
+      //       hintText: L10n.of(context)!.search,
+      //       floatingLabelBehavior: FloatingLabelBehavior.never,
+      //       prefixIcon: controller.isSearchMode
+      //           ? IconButton(
+      //               tooltip: L10n.of(context)!.cancel,
+      //               icon: const Icon(Icons.close_outlined),
+      //               onPressed: controller.cancelSearch,
+      //               color: Theme.of(context).colorScheme.onBackground,
+      //             )
+      //           : IconButton(
+      //               onPressed: controller.startSearch,
+      //               icon: Icon(
+      //                 Icons.search_outlined,
+      //                 color: Theme.of(context).colorScheme.onBackground,
+      //               ),
+      //             ),
+      //       suffixIcon: controller.isSearchMode
+      //           ? controller.isSearching
+      //               ? const Padding(
+      //                   padding: EdgeInsets.symmetric(
+      //                     vertical: 10.0,
+      //                     horizontal: 12,
+      //                   ),
+      //                   child: SizedBox.square(
+      //                     dimension: 24,
+      //                     child: CircularProgressIndicator.adaptive(
+      //                       strokeWidth: 2,
+      //                     ),
+      //                   ),
+      //                 )
+      //               : TextButton.icon(
+      //                   onPressed: controller.setServer,
+      //                   style: TextButton.styleFrom(
+      //                     shape: RoundedRectangleBorder(
+      //                       borderRadius: BorderRadius.circular(99),
+      //                     ),
+      //                     textStyle: const TextStyle(fontSize: 12),
+      //                   ),
+      //                   icon: const Icon(Icons.edit_outlined, size: 16),
+      //                   label: Text(
+      //                     controller.searchServer ??
+      //                         Matrix.of(context)
+      //                             .client
+      //                             .homeserver!
+      //                             .host,
+      //                     maxLines: 2,
+      //                   ),
+      //                 )
+      //           : SizedBox(
+      //               width: 0,
+      //               child: ClientChooserButton(controller),
+      //             ),
+      //     ),
+      //   ),
+      // Pangea#
       actions: selectMode == SelectMode.share
           ? [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 8.0,
-                ),
-                child: ClientChooserButton(controller),
-              ),
+              // #Pangea
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(
+              //     horizontal: 16.0,
+              //     vertical: 8.0,
+              //   ),
+              //   child: ClientChooserButton(controller),
+              // ),
+              // Pangea#
             ]
           : selectMode == SelectMode.select
               ? [
@@ -154,7 +156,10 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: controller.toggleMuted,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.delete_outlined),
+                    // #Pangea
+                    // icon: const Icon(Icons.delete_outlined),
+                    icon: const Icon(Icons.archive_outlined),
+                    // Pangea#
                     tooltip: L10n.of(context)!.archive,
                     onPressed: controller.archiveAction,
                   ),

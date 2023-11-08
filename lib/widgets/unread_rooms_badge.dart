@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart' as b;
+import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
@@ -11,11 +10,11 @@ class UnreadRoomsBadge extends StatelessWidget {
   final Widget? child;
 
   const UnreadRoomsBadge({
-    Key? key,
+    super.key,
     required this.filter,
     this.badgePosition,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +25,22 @@ class UnreadRoomsBadge extends StatelessWidget {
           .stream
           .where((syncUpdate) => syncUpdate.hasRoomUpdate),
       builder: (context, _) {
-        final unreadCount = Matrix.of(context)
+        // #Pangea
+        // final unreadCount = Matrix.of(context)
+        //     .client
+        //     .rooms
+        //     .where(filter)
+        //     .where((r) => (r.isUnread || r.membership == Membership.invite))
+        //     .length;
+        final unreadCounts = Matrix.of(context)
             .client
             .rooms
             .where(filter)
             .where((r) => (r.isUnread || r.membership == Membership.invite))
-            .length;
+            .map((r) => r.notificationCount);
+        final unreadCount =
+            unreadCounts.isEmpty ? 0 : unreadCounts.reduce((a, b) => a + b);
+        // Pangea#
         return b.Badge(
           badgeStyle: b.BadgeStyle(
             badgeColor: Theme.of(context).colorScheme.primary,

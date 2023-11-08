@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class Avatar extends StatelessWidget {
   final Uri? mxContent;
@@ -13,6 +11,9 @@ class Avatar extends StatelessWidget {
   static const double defaultSize = 44;
   final Client? client;
   final double fontSize;
+  //#Pangea
+  final IconData? littleIcon;
+  // Pangea#
 
   const Avatar({
     this.mxContent,
@@ -21,6 +22,9 @@ class Avatar extends StatelessWidget {
     this.onTap,
     this.client,
     this.fontSize = 18,
+    //#Pangea
+    this.littleIcon,
+    // Pangea#
     Key? key,
   }) : super(key: key);
 
@@ -48,27 +52,74 @@ class Avatar extends StatelessWidget {
       ),
     );
     final borderRadius = BorderRadius.circular(size / 2);
-    final container = ClipRRect(
-      borderRadius: borderRadius,
-      child: Container(
-        width: size,
-        height: size,
-        color: noPic
-            ? name?.lightColorAvatar
-            : Theme.of(context).secondaryHeaderColor,
-        child: noPic
-            ? textWidget
-            : MxcImage(
-                key: Key(mxContent.toString()),
-                uri: mxContent,
-                fit: BoxFit.cover,
-                width: size,
-                height: size,
-                placeholder: (_) => textWidget,
-                cacheKey: mxContent.toString(),
+    // #Pangea
+    // final container = ClipRRect(
+    //     borderRadius: borderRadius,
+    //     child: Container(
+    //       width: size,
+    //       height: size,
+    //       color: noPic
+    //           ? name?.lightColorAvatar
+    //           : Theme.of(context).secondaryHeaderColor,
+    //       child: noPic
+    //           ? textWidget
+    //           : MxcImage(
+    //               key: Key(mxContent.toString()),
+    //               uri: mxContent,
+    //               fit: BoxFit.cover,
+    //               width: size,
+    //               height: size,
+    //               placeholder: (_) => textWidget,
+    //               cacheKey: mxContent.toString(),
+    //             ),
+    //     ),
+    //   );
+    final container = Stack(
+      children: [
+        ClipRRect(
+          borderRadius: borderRadius,
+          child: Container(
+            width: size,
+            height: size,
+            color: noPic
+                ? name?.lightColorAvatar
+                : Theme.of(context).secondaryHeaderColor,
+            child: noPic
+                ? textWidget
+                : MxcImage(
+                    key: Key(mxContent.toString()),
+                    uri: mxContent,
+                    fit: BoxFit.cover,
+                    width: size,
+                    height: size,
+                    placeholder: (_) => textWidget,
+                    cacheKey: mxContent.toString(),
+                  ),
+          ),
+        ),
+        if (littleIcon != null)
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: ClipRRect(
+              borderRadius: borderRadius,
+              child: Container(
+                height: 16,
+                width: 16,
+                color: Colors.white,
+                child: Icon(
+                  littleIcon,
+                  color: noPic
+                      ? name?.lightColorAvatar
+                      : Theme.of(context).secondaryHeaderColor,
+                  size: 14,
+                ),
               ),
-      ),
+            ),
+          ),
+      ],
     );
+    // Pangea#
     if (onTap == null) return container;
     return InkWell(
       onTap: onTap,

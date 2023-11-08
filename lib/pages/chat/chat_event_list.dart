@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
@@ -76,6 +76,14 @@ class ChatEventList extends StatelessWidget {
             );
           }
 
+          // #Pangea
+          if (i == 1) {
+            return controller.room.locked && !controller.room.isRoomAdmin
+                ? const LockedChatMessage()
+                : const SizedBox.shrink();
+          }
+          // Pangea#
+
           // Request history button or progress indicator:
           if (i == controller.timeline!.events.length + 1) {
             if (controller.timeline!.isRequestingHistory) {
@@ -102,11 +110,17 @@ class ChatEventList extends StatelessWidget {
           }
 
           // The message at this index:
-          final event = controller.timeline!.events[i - 1];
+          // #Pangea
+          // final event = controller.timeline!.events[i - 1];
+          final event = controller.timeline!.events[i - 2];
+          // Pangea#
 
           return AutoScrollTag(
             key: ValueKey(event.eventId),
-            index: i - 1,
+            // #Pangea
+            // index: i - 1,
+            index: i - 2,
+            // Pangea#
             controller: controller.scrollController,
             child: event.isVisibleInGui
                 ? Message(
@@ -126,7 +140,13 @@ class ChatEventList extends StatelessWidget {
                     onSelect: controller.onSelectMessage,
                     scrollToEventId: (String eventId) =>
                         controller.scrollToEventId(eventId),
-                    longPressSelect: controller.selectedEvents.isNotEmpty,
+                    // #Pangea
+                    // longPressSelect: controller.selectedEvents.isEmpty,
+                    selectedDisplayLang: controller
+                        .choreographer.messageOptions.selectedDisplayLang,
+                    immersionMode: controller.choreographer.immersionMode,
+                    definitions: controller.choreographer.definitionsEnabled,
+                    // Pangea#
                     selected: controller.selectedEvents
                         .any((e) => e.eventId == event.eventId),
                     timeline: controller.timeline!,

@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
@@ -15,7 +14,7 @@ enum PopupMenuEmojiActions { import, export }
 class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
 
-  const EmotesSettingsView(this.controller, {Key? key}) : super(key: key);
+  const EmotesSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

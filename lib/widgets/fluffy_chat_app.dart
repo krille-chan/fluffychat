@@ -1,13 +1,15 @@
+import 'package:country_picker/country_picker.dart';
+import 'package:fluffychat/config/routes.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/theme_builder.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/routes.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/theme_builder.dart';
 import '../config/app_config.dart';
 import '../utils/custom_scroll_behaviour.dart';
 import 'matrix.dart';
@@ -18,11 +20,11 @@ class FluffyChatApp extends StatelessWidget {
   final String? pincode;
 
   const FluffyChatApp({
-    Key? key,
+    super.key,
     this.testWidget,
     required this.clients,
     this.pincode,
-  }) : super(key: key);
+  });
 
   /// getInitialLink may rereturn the value multiple times if this view is
   /// opened multiple times for example if the user logs out after they logged
@@ -31,7 +33,14 @@ class FluffyChatApp extends StatelessWidget {
 
   // Router must be outside of build method so that hot reload does not reset
   // the current path.
-  static final GoRouter router = GoRouter(routes: AppRoutes.routes);
+  static final GoRouter router = GoRouter(
+    routes: AppRoutes.routes,
+    // #Pangea
+    observers: [
+      GoogleAnalytics.getAnalyticsObserver(),
+    ],
+    // Pangea#
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +52,16 @@ class FluffyChatApp extends StatelessWidget {
         darkTheme:
             FluffyThemes.buildTheme(context, Brightness.dark, primaryColor),
         scrollBehavior: CustomScrollBehavior(),
-        localizationsDelegates: L10n.localizationsDelegates,
+        // #Pangea
+        // localizationsDelegates: L10n.localizationsDelegates,
+        localizationsDelegates: const [
+          L10n.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          CountryLocalizations.delegate,
+        ],
+        // Pangea#
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
         builder: (context, child) => AppLockWidget(

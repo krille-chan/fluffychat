@@ -1,22 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
+import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/utils/set_class_name.dart';
+import 'package:fluffychat/pangea/utils/set_class_topic.dart';
+import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
-import 'package:fluffychat/pages/settings/settings.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
 
@@ -40,34 +41,42 @@ class ChatDetailsController extends State<ChatDetails> {
 
   String? get roomId => widget.roomId;
 
-  void setDisplaynameAction() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context)!.changeTheNameOfTheGroup,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      textFields: [
-        DialogTextField(
-          initialText: room.getLocalizedDisplayname(
-            MatrixLocals(
-              L10n.of(context)!,
-            ),
-          ),
-        ),
-      ],
-    );
-    if (input == null) return;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setName(input.single),
-    );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.displaynameHasBeenChanged)),
-      );
-    }
-  }
+  // #Pangea
+  final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
+
+  bool displayAddStudentOptions = false;
+  void toggleAddStudentOptions() =>
+      setState(() => displayAddStudentOptions = !displayAddStudentOptions);
+  void setDisplaynameAction() => setClassDisplayname(context, roomId);
+  // void setDisplaynameAction() async {
+  //   final room = Matrix.of(context).client.getRoomById(roomId!)!;
+  //   final input = await showTextInputDialog(
+  //     context: context,
+  //     title: L10n.of(context)!.changeTheNameOfTheGroup,
+  //     okLabel: L10n.of(context)!.ok,
+  //     cancelLabel: L10n.of(context)!.cancel,
+  //     textFields: [
+  //       DialogTextField(
+  //         initialText: room.getLocalizedDisplayname(
+  //           MatrixLocals(
+  //             L10n.of(context)!,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  //   if (input == null) return;
+  //   final success = await showFutureLoadingDialog(
+  //     context: context,
+  //     future: () => room.setName(input.single),
+  //   );
+  //   if (success.error == null) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text(L10n.of(context)!.displaynameHasBeenChanged)),
+  //     );
+  //   }
+  // }
+  // Pangea#
 
   void editAliases() async {
     final room = Matrix.of(context).client.getRoomById(roomId!);
@@ -103,6 +112,9 @@ class ChatDetailsController extends State<ChatDetails> {
       return setAliasAction();
     }
     final select = await showConfirmationDialog(
+      // #Pangea
+      useRootNavigator: false,
+      // Pangea#
       context: context,
       title: L10n.of(context)!.editRoomAliases,
       actions: [
@@ -175,6 +187,9 @@ class ChatDetailsController extends State<ChatDetails> {
     final domain = room.client.userID!.domain;
 
     final input = await showTextInputDialog(
+      // #Pangea
+      useRootNavigator: false,
+      // Pangea#
       context: context,
       title: L10n.of(context)!.setInvitationLink,
       okLabel: L10n.of(context)!.ok,
@@ -198,32 +213,35 @@ class ChatDetailsController extends State<ChatDetails> {
 
   void setTopicAction() async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    final input = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context)!.setChatDescription,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      textFields: [
-        DialogTextField(
-          hintText: L10n.of(context)!.noChatDescriptionYet,
-          initialText: room.topic,
-          minLines: 4,
-          maxLines: 8,
-        ),
-      ],
-    );
-    if (input == null) return;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => room.setDescription(input.single),
-    );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.chatDescriptionHasBeenChanged),
-        ),
-      );
-    }
+    // #Pangea
+    setClassTopic(room, context);
+    // final input = await showTextInputDialog(
+    //   context: context,
+    //   title: L10n.of(context)!.setChatDescription,
+    //   okLabel: L10n.of(context)!.ok,
+    //   cancelLabel: L10n.of(context)!.cancel,
+    //   textFields: [
+    //     DialogTextField(
+    //       hintText: L10n.of(context)!.noChatDescriptionYet,
+    //       initialText: room.topic,
+    //       minLines: 4,
+    //       maxLines: 8,
+    //     ),
+    //   ],
+    // );
+    // if (input == null) return;
+    // final success = await showFutureLoadingDialog(
+    //   context: context,
+    //   future: () => room.setDescription(input.single),
+    // );
+    // if (success.error == null) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text(L10n.of(context)!.chatDescriptionHasBeenChanged),
+    //     ),
+    //   );
+    // }
+    // Pangea#
   }
 
   void setGuestAccess() async {
@@ -400,4 +418,10 @@ class ChatDetailsController extends State<ChatDetails> {
 
   @override
   Widget build(BuildContext context) => ChatDetailsView(this);
+
+  // #Pangea
+  bool showEditNameIcon = false;
+  void hoverEditNameIcon(bool hovering) =>
+      setState(() => showEditNameIcon = !showEditNameIcon);
+  // Pangea#
 }

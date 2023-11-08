@@ -1,16 +1,16 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/utils/custom_http_client.dart';
+import 'package:fluffychat/utils/custom_image_resizer.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/utils/custom_http_client.dart';
-import 'package:fluffychat/utils/custom_image_resizer.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'famedlysdk_store.dart';
 
 abstract class ClientManager {
@@ -107,6 +107,13 @@ abstract class ClientManager {
         'im.ponies.room_emotes',
         // To check which story room we can post in
         EventTypes.RoomPowerLevels,
+        // #Pangea
+        PangeaEventTypes.classSettings,
+        PangeaEventTypes.rules,
+        PangeaEventTypes.vocab,
+        EventTypes.RoomTopic,
+        EventTypes.RoomAvatar,
+        // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,

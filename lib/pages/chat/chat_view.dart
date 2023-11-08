@@ -1,25 +1,28 @@
-import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
-import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pages/chat/tombstone_display.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/language_display_toggle.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
@@ -34,6 +37,9 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
+        // #Pangea
+        LanguageDisplayToggle(controller: controller),
+        // Pangea#
         if (controller.canEditSelectedEvents)
           IconButton(
             icon: const Icon(Icons.edit_outlined),
@@ -108,33 +114,40 @@ class ChatView extends StatelessWidget {
             ],
           ),
       ];
-    } else if (controller.isArchived) {
-      return [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextButton.icon(
-            onPressed: controller.forgetRoom,
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
-            icon: const Icon(Icons.delete_forever_outlined),
-            label: Text(L10n.of(context)!.delete),
-          ),
-        ),
-      ];
-    } else {
-      return [
-        if (Matrix.of(context).voipPlugin != null &&
-            controller.room.isDirectChat)
-          IconButton(
-            onPressed: controller.onPhoneButtonTap,
-            icon: const Icon(Icons.call_outlined),
-            tooltip: L10n.of(context)!.placeCall,
-          ),
-        EncryptionButton(controller.room),
-        ChatSettingsPopupMenu(controller.room, true),
-      ];
     }
+    // #Pangea
+    // else if (controller.isArchived) {
+    //   return [
+    //     Padding(
+    //       padding: const EdgeInsets.all(8.0),
+    //       child: TextButton.icon(
+    //         onPressed: controller.forgetRoom,
+    //         style: TextButton.styleFrom(
+    //           foregroundColor: Theme.of(context).colorScheme.error,
+    //         ),
+    //         icon: const Icon(Icons.delete_forever_outlined),
+    //         label: Text(L10n.of(context)!.delete),
+    //       ),
+    //     ),
+    //   ];
+    // }
+    //else {
+    //   return [
+    //     if (Matrix.of(context).voipPlugin != null &&
+    //         controller.room.isDirectChat)
+    //       IconButton(
+    //         onPressed: controller.onPhoneButtonTap,
+    //         icon: const Icon(Icons.call_outlined),
+    //         tooltip: L10n.of(context)!.placeCall,
+    //       ),
+    //     EncryptionButton(controller.room),
+    //     ChatSettingsPopupMenu(controller.room, true),
+    //   ];
+    // }
+    return [
+      ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
+    ];
+    // Pangea#
   }
 
   @override
@@ -183,7 +196,12 @@ class ChatView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                         )
                       : UnreadRoomsBadge(
-                          filter: (r) => r.id != controller.roomId,
+                          filter: (r) =>
+                              r.id != controller.roomId
+                              // #Pangea
+                              &&
+                              !r.isAnalyticsRoom,
+                          // Pangea#
                           badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                           child: const Center(child: BackButton()),
                         ),
@@ -191,17 +209,34 @@ class ChatView extends StatelessWidget {
                   title: ChatAppBarTitle(controller),
                   actions: _appBarActions(context),
                 ),
-                floatingActionButton: controller.showScrollDownButton &&
-                        controller.selectedEvents.isEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: 56.0),
-                        child: FloatingActionButton(
-                          onPressed: controller.scrollDown,
-                          heroTag: null,
-                          mini: true,
-                          child: const Icon(Icons.arrow_downward_outlined),
-                        ),
-                      )
+                // #Pangea
+                // floatingActionButton: controller.showScrollDownButton &&
+                //         controller.selectedEvents.isEmpty
+                floatingActionButton: controller.selectedEvents.isEmpty
+                    ? (controller.showScrollDownButton
+                        // Pangea#
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: 56.0),
+                            child: FloatingActionButton(
+                              onPressed: controller.scrollDown,
+                              heroTag: null,
+                              mini: true,
+                              child: const Icon(Icons.arrow_downward_outlined),
+                            ),
+                          )
+                        // #Pangea
+                        : controller.choreographer.errorService.error != null
+                            ? ChoreographerHasErrorButton(
+                                controller.pangeaController,
+                                controller.choreographer.errorService.error!,
+                              )
+                            : controller.showPermissionsError
+                                ? LanguagePermissionsButtons(
+                                    choreographer: controller.choreographer,
+                                    roomID: controller.roomId,
+                                  )
+                                : null)
+                    // Pangea#
                     : null,
                 body: DropTarget(
                   onDragDone: controller.onDragDone,
@@ -284,95 +319,122 @@ class ChatView extends StatelessWidget {
                             ),
                             if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join)
-                              Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
-                                constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 2.5,
-                                ),
-                                alignment: Alignment.center,
-                                child: Material(
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(AppConfig.borderRadius),
-                                    bottomRight:
-                                        Radius.circular(AppConfig.borderRadius),
-                                  ),
-                                  elevation: 4,
-                                  shadowColor: Colors.black.withAlpha(64),
-                                  clipBehavior: Clip.hardEdge,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.white
-                                      : Colors.black,
-                                  child: controller.room.isAbandonedDMRoom ==
-                                          true
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            TextButton.icon(
-                                              style: TextButton.styleFrom(
-                                                padding:
-                                                    const EdgeInsets.all(16),
-                                                foregroundColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .error,
-                                              ),
-                                              icon: const Icon(
-                                                Icons.archive_outlined,
-                                              ),
-                                              onPressed: controller.leaveChat,
-                                              label: Text(
-                                                L10n.of(context)!.leave,
-                                              ),
-                                            ),
-                                            TextButton.icon(
-                                              style: TextButton.styleFrom(
-                                                padding:
-                                                    const EdgeInsets.all(16),
-                                              ),
-                                              icon: const Icon(
-                                                Icons.forum_outlined,
-                                              ),
-                                              onPressed:
-                                                  controller.recreateChat,
-                                              label: Text(
-                                                L10n.of(context)!.reopenChat,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const ConnectionStatusHeader(),
-                                            ReactionsPicker(controller),
-                                            ReplyDisplay(controller),
-                                            ChatInputRow(controller),
-                                            ChatEmojiPicker(controller),
-                                          ],
+                              // #Pangea
+                              ConditionalFlexible(
+                                isScroll: controller.isRowScrollable,
+                                child: ConditionalScroll(
+                                  isScroll: controller.isRowScrollable,
+                                  child: MeasurableWidget(
+                                    onChange: (size, position) {
+                                      controller.inputRowSize = size!.height;
+                                    },
+                                    child:
+                                        // Pangea#
+                                        Container(
+                                      margin: EdgeInsets.only(
+                                        bottom: bottomSheetPadding,
+                                        left: bottomSheetPadding,
+                                        right: bottomSheetPadding,
+                                      ),
+                                      constraints: const BoxConstraints(
+                                        maxWidth:
+                                            FluffyThemes.columnWidth * 2.5,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Material(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          bottomRight: Radius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
                                         ),
+                                        elevation: 4,
+                                        shadowColor: Colors.black.withAlpha(64),
+                                        clipBehavior: Clip.hardEdge,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                        child: controller
+                                                    .room.isAbandonedDMRoom ==
+                                                true
+                                            ? Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  TextButton.icon(
+                                                    style: TextButton.styleFrom(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                        16,
+                                                      ),
+                                                      foregroundColor:
+                                                          Theme.of(context)
+                                                              .colorScheme
+                                                              .error,
+                                                    ),
+                                                    icon: const Icon(
+                                                      Icons.archive_outlined,
+                                                    ),
+                                                    onPressed:
+                                                        controller.leaveChat,
+                                                    label: Text(
+                                                      L10n.of(context)!.leave,
+                                                    ),
+                                                  ),
+                                                  TextButton.icon(
+                                                    style: TextButton.styleFrom(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                        16,
+                                                      ),
+                                                    ),
+                                                    icon: const Icon(
+                                                      Icons.forum_outlined,
+                                                    ),
+                                                    onPressed:
+                                                        controller.recreateChat,
+                                                    label: Text(
+                                                      L10n.of(context)!
+                                                          .reopenChat,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            : Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const ConnectionStatusHeader(),
+                                                  ReactionsPicker(controller),
+                                                  ReplyDisplay(controller),
+                                                  ChatInputRow(controller),
+                                                  ChatEmojiPicker(controller),
+                                                ],
+                                              ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                           ],
                         ),
+                        // #Pangea
+                        // if (controller.dragging)
+                        //   Container(
+                        //     color: Theme.of(context)
+                        //         .scaffoldBackgroundColor
+                        //         .withOpacity(0.9),
+                        //     alignment: Alignment.center,
+                        //     child: const Icon(
+                        //       Icons.upload_outlined,
+                        //       size: 100,
+                        //     ),
+                        //   ),
+                        // Pangea#
                       ),
-                      if (controller.dragging)
-                        Container(
-                          color: Theme.of(context)
-                              .scaffoldBackgroundColor
-                              .withOpacity(0.9),
-                          alignment: Alignment.center,
-                          child: const Icon(
-                            Icons.upload_outlined,
-                            size: 100,
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -384,3 +446,35 @@ class ChatView extends StatelessWidget {
     );
   }
 }
+
+// #Pangea
+Widget ConditionalFlexible({required bool isScroll, required Widget child}) {
+  if (isScroll) {
+    return Flexible(
+      flex: 9999999,
+      child: child,
+    );
+  }
+  return child;
+}
+
+class ConditionalScroll extends StatelessWidget {
+  final bool isScroll;
+  final Widget child;
+  const ConditionalScroll({
+    super.key,
+    required this.isScroll,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (isScroll) {
+      return SingleChildScrollView(
+        child: child,
+      );
+    }
+    return child;
+  }
+}
+// #Pangea

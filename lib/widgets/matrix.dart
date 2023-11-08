@@ -2,12 +2,19 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/utils/any_state_holder.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/uia_request_manager.dart';
+import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
@@ -18,12 +25,6 @@ import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:fluffychat/utils/voip_plugin.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
@@ -45,8 +46,8 @@ class Matrix extends StatefulWidget {
     this.child,
     required this.clients,
     this.queryParameters,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   MatrixState createState() => MatrixState();
@@ -60,6 +61,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
   Store store = Store();
+  // #Pangea
+  static late PangeaController pangeaController;
+  static PangeaAnyState pAnyState = PangeaAnyState();
+  // Pangea#
 
   HomeserverSummary? loginHomeserverSummary;
   XFile? loginAvatar;
@@ -249,6 +254,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       initSettings();
     }
     initLoadingDialog();
+    // #Pangea
+    pangeaController = PangeaController(matrix: widget, matrixState: this);
+    // PAuthGaurd.isLogged = client.isLogged();
+    // Pangea#
   }
 
   void initLoadingDialog() {
@@ -309,8 +318,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       hidPopup = true;
       await KeyVerificationDialog(request: request).show(context);
     });
-    onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
+    onLoginStateChanged[name] ??=
+        c.onLoginStateChanged.stream.listen((state) async {
       final loggedInWithMultipleClients = widget.clients.length > 1;
+      // #Pangea
+      // PAuthGaurd.isLogged = state == LoginState.loggedIn;
+      // Pangea#
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
@@ -325,8 +338,23 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           FluffyChatApp.router.go('/rooms');
         }
       } else {
-        FluffyChatApp.router
-            .go(state == LoginState.loggedIn ? '/rooms' : '/home');
+        // #Pangea
+        if (state == LoginState.loggedIn) {
+          await (await pangeaController.userController.completer).future;
+        }
+        String routeDestination;
+        if (state == LoginState.loggedIn) {
+          routeDestination = await pangeaController
+                  .userController.isUserDataAvailableAndDateOfBirthSet
+              ? '/rooms'
+              : "/rooms/user_age";
+        } else {
+          routeDestination = '/home';
+        }
+        FluffyChatApp.router.go(routeDestination);
+        // FluffyChatApp.router
+        //     .go(state == LoginState.loggedIn ? '/rooms' : '/home');
+        // Pangea#
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
@@ -376,14 +404,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
             context: context,
-            title: L10n.of(context)!.oopsSomethingWentWrong,
+            title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
-            okLabel:
-                link == null ? L10n.of(context)!.ok : L10n.of(context)!.help,
+            fullyCapitalizedForMaterial: false,
+            okLabel: link == null
+                ? L10n.of(context)!.ok
+                : L10n.of(context)!.learnMore,
             cancelLabel: L10n.of(context)!.doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
-            launchUrlString(link.toString());
+            launchUrlString(
+              link.toString(),
+              mode: LaunchMode.externalApplication,
+            );
           }
           if (result == OkCancelResult.cancel) {
             await store.setItemBool(SettingKeys.showNoGoogle, true);
@@ -437,12 +470,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     store
         .getItemBool(SettingKeys.hideUnknownEvents, AppConfig.hideUnknownEvents)
         .then((value) => AppConfig.hideUnknownEvents = value);
-    store
-        .getItemBool(
-          SettingKeys.showDirectChatsInSpaces,
-          AppConfig.showDirectChatsInSpaces,
-        )
-        .then((value) => AppConfig.showDirectChatsInSpaces = value);
     store
         .getItemBool(SettingKeys.separateChatTypes, AppConfig.separateChatTypes)
         .then((value) => AppConfig.separateChatTypes = value);

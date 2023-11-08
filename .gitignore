@@ -36,6 +36,9 @@ prime
 .pub/
 /build/
 
+# Gitlab runner locally
+/builds/
+
 # Web related
 docs/tailwind.css
 
@@ -53,6 +56,7 @@ lib/l10n_old
 ios/Flutter/.last_build_id
 ios/Podfile.lock
 ios/Runner.ipa
+scripts/.credentials
 
 /windows/out
 /winuwp/out
@@ -60,3 +64,5 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+
+needed-translations.txt

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
@@ -23,12 +24,15 @@ class EmptyPage extends StatelessWidget {
           Center(
             child: Hero(
               tag: 'info-logo',
-              child: Image.asset(
-                'assets/favicon.png',
-                width: width,
-                height: width,
-                filterQuality: FilterQuality.medium,
-              ),
+              // #Pangea
+              // child: Image.asset(
+              //   'assets/favicon.png',
+              //   width: width,
+              //   height: width,
+              //   filterQuality: FilterQuality.medium,
+              // ),
+              child: PangeaLogoSvg(width: width),
+              // Pangea#
             ),
           ),
           if (loading)

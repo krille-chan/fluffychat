@@ -1,6 +1,6 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import '../../config/themes.dart';
 
 class NaviRailItem extends StatefulWidget {
@@ -16,8 +16,8 @@ class NaviRailItem extends StatefulWidget {
     required this.onTap,
     required this.icon,
     this.selectedIcon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<NaviRailItem> createState() => _NaviRailItemState();

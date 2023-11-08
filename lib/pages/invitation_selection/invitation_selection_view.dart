@@ -1,17 +1,15 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 class InvitationSelectionView extends StatelessWidget {
   final InvitationSelectionController controller;
 
-  const InvitationSelectionView(this.controller, {Key? key}) : super(key: key);
+  const InvitationSelectionView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,9 @@ class InvitationSelectionView extends StatelessWidget {
       );
     }
 
-    final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
+    // #Pangea
+    // final groupName = room.name.isEmpty ? L10n.of(context)!.group : room.name;
+    // Pangea#
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -43,7 +43,12 @@ class InvitationSelectionView extends StatelessWidget {
               child: TextField(
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.inviteContactToGroup(groupName),
+                  // #Pangea
+                  hintText: controller.mode == InvitationSelectionMode.admin
+                      ? L10n.of(context)!.inviteUsersFromPangea
+                      : L10n.of(context)!.inviteStudentByUserName,
+                  // hintText: L10n.of(context)!.inviteContactToGroup(groupName),
+                  // Pangea#
                   prefixIcon: controller.loading
                       ? const Padding(
                           padding: EdgeInsets.symmetric(
@@ -92,7 +97,12 @@ class InvitationSelectionView extends StatelessWidget {
                         ),
                       )
                     : FutureBuilder<List<User>>(
-                        future: controller.getContacts(context),
+                        // #Pangea
+                        future: controller.mode == InvitationSelectionMode.admin
+                            ? controller.getContacts(context)
+                            : controller.eligibleStudents(context, ""),
+                        // future: controller.getContacts(context),
+                        // Pangea#
                         builder: (BuildContext context, snapshot) {
                           if (!snapshot.hasData) {
                             return const Center(
@@ -142,13 +152,12 @@ class _InviteContactListTile extends StatelessWidget {
   final void Function() onTap;
 
   const _InviteContactListTile({
-    Key? key,
     required this.userId,
     required this.displayname,
     required this.avatarUrl,
     required this.isMember,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

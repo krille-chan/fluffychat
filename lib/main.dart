@@ -1,18 +1,40 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:matrix/matrix.dart';
+
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 
 void main() async {
   Logs().i('Welcome to ${AppConfig.applicationName} <3');
+
+  // #Pangea
+  await dotenv.load(fileName: Environment.fileName);
+
+  await Future.wait([
+    ErrorHandler.initialize(),
+    PangeaLanguage.initialize(),
+    GoogleAnalytics.initialize(),
+  ]);
+
+  ///
+  /// PangeaLanguage must be initialized before the runApp
+  /// Then where ever you need language functions simply call PangeaLanguage pangeaLanguage = PangeaLanguage()
+  /// pangeaLanguage.getList or whatever function you need
+  ///
+  await GetStorage.init();
+  // Pangea#
 
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the

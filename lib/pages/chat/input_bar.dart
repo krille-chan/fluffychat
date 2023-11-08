@@ -1,19 +1,15 @@
+import 'package:emojis/emoji.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:emojis/emoji.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
-import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
-import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -24,7 +20,10 @@ class InputBar extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final ValueChanged<Uint8List?>? onSubmitImage;
   final FocusNode? focusNode;
-  final TextEditingController? controller;
+  // #Pangea
+  // final TextEditingController? controller;
+  final PangeaTextController? controller;
+  // Pangea#
   final InputDecoration? decoration;
   final ValueChanged<String>? onChanged;
   final bool? autofocus;
@@ -48,14 +47,19 @@ class InputBar extends StatelessWidget {
   }) : super(key: key);
 
   List<Map<String, String?>> getSuggestions(String text) {
-    if (controller!.selection.baseOffset !=
-            controller!.selection.extentOffset ||
-        controller!.selection.baseOffset < 0) {
-      return []; // no entries if there is selected text
-    }
+    // #Pangea
+    final List<Map<String, String?>> ret = <Map<String, String?>>[];
+    // if (controller!.selection.baseOffset !=
+    //         controller!.selection.extentOffset ||
+    //     controller!.selection.baseOffset < 0) {
+    //   return []; // no entries if there is selected text
+    // }
+    // Pangea#
     final searchText =
         controller!.text.substring(0, controller!.selection.baseOffset);
-    final List<Map<String, String?>> ret = <Map<String, String?>>[];
+    // #Pangea
+    // final List<Map<String, String?>> ret = <Map<String, String?>>[];
+    // Pangea#
     const maxResults = 30;
 
     final commandMatch = RegExp(r'^/(\w*)$').firstMatch(searchText);
@@ -221,104 +225,106 @@ class InputBar extends StatelessWidget {
     Map<String, String?> suggestion,
     Client? client,
   ) {
-    const size = 30.0;
-    const padding = EdgeInsets.all(4.0);
-    if (suggestion['type'] == 'command') {
-      final command = suggestion['name']!;
-      final hint = commandHint(L10n.of(context)!, command);
-      return Tooltip(
-        message: hint,
-        waitDuration: const Duration(days: 1), // don't show on hover
-        child: Container(
-          padding: padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '/$command',
-                style: const TextStyle(fontFamily: 'monospace'),
-              ),
-              Text(
-                hint,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-    if (suggestion['type'] == 'emoji') {
-      final label = suggestion['label']!;
-      return Tooltip(
-        message: label,
-        waitDuration: const Duration(days: 1), // don't show on hover
-        child: Container(
-          padding: padding,
-          child: Text(label, style: const TextStyle(fontFamily: 'monospace')),
-        ),
-      );
-    }
-    if (suggestion['type'] == 'emote') {
-      return Container(
-        padding: padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            MxcImage(
-              // ensure proper ordering ...
-              key: ValueKey(suggestion['name']),
-              uri: suggestion['mxc'] is String
-                  ? Uri.parse(suggestion['mxc'] ?? '')
-                  : null,
-              width: size,
-              height: size,
-            ),
-            const SizedBox(width: 6),
-            Text(suggestion['name']!),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Opacity(
-                  opacity: suggestion['pack_avatar_url'] != null ? 0.8 : 0.5,
-                  child: suggestion['pack_avatar_url'] != null
-                      ? Avatar(
-                          mxContent: Uri.tryParse(
-                            suggestion.tryGet<String>('pack_avatar_url') ?? '',
-                          ),
-                          name: suggestion.tryGet<String>('pack_display_name'),
-                          size: size * 0.9,
-                          client: client,
-                        )
-                      : Text(suggestion['pack_display_name']!),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-    if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
-      final url = Uri.parse(suggestion['avatar_url'] ?? '');
-      return Container(
-        padding: padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Avatar(
-              mxContent: url,
-              name: suggestion.tryGet<String>('displayname') ??
-                  suggestion.tryGet<String>('mxid'),
-              size: size,
-              client: client,
-            ),
-            const SizedBox(width: 6),
-            Text(suggestion['displayname'] ?? suggestion['mxid']!),
-          ],
-        ),
-      );
-    }
+    // #Pangea
+    // const size = 30.0;
+    // const padding = EdgeInsets.all(4.0);
+    // if (suggestion['type'] == 'command') {
+    //   final command = suggestion['name']!;
+    //   final hint = commandHint(L10n.of(context)!, command);
+    //   return Tooltip(
+    //     message: hint,
+    //     waitDuration: const Duration(days: 1), // don't show on hover
+    //     child: Container(
+    //       padding: padding,
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [
+    //           Text(
+    //             '/$command',
+    //             style: const TextStyle(fontFamily: 'monospace'),
+    //           ),
+    //           Text(
+    //             hint,
+    //             maxLines: 1,
+    //             overflow: TextOverflow.ellipsis,
+    //             style: Theme.of(context).textTheme.bodySmall,
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }
+    // if (suggestion['type'] == 'emoji') {
+    //   final label = suggestion['label']!;
+    //   return Tooltip(
+    //     message: label,
+    //     waitDuration: const Duration(days: 1), // don't show on hover
+    //     child: Container(
+    //       padding: padding,
+    //       child: Text(label, style: const TextStyle(fontFamily: 'monospace')),
+    //     ),
+    //   );
+    // }
+    // if (suggestion['type'] == 'emote') {
+    //   return Container(
+    //     padding: padding,
+    //     child: Row(
+    //       crossAxisAlignment: CrossAxisAlignment.center,
+    //       children: <Widget>[
+    //         MxcImage(
+    //           // ensure proper ordering ...
+    //           key: ValueKey(suggestion['name']),
+    //           uri: suggestion['mxc'] is String
+    //               ? Uri.parse(suggestion['mxc'] ?? '')
+    //               : null,
+    //           width: size,
+    //           height: size,
+    //         ),
+    //         const SizedBox(width: 6),
+    //         Text(suggestion['name']!),
+    //         Expanded(
+    //           child: Align(
+    //             alignment: Alignment.centerRight,
+    //             child: Opacity(
+    //               opacity: suggestion['pack_avatar_url'] != null ? 0.8 : 0.5,
+    //               child: suggestion['pack_avatar_url'] != null
+    //                   ? Avatar(
+    //                       mxContent: Uri.tryParse(
+    //                         suggestion.tryGet<String>('pack_avatar_url') ?? '',
+    //                       ),
+    //                       name: suggestion.tryGet<String>('pack_display_name'),
+    //                       size: size * 0.9,
+    //                       client: client,
+    //                     )
+    //                   : Text(suggestion['pack_display_name']!),
+    //             ),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // }
+    // if (suggestion['type'] == 'user' || suggestion['type'] == 'room') {
+    //   final url = Uri.parse(suggestion['avatar_url'] ?? '');
+    //   return Container(
+    //     padding: padding,
+    //     child: Row(
+    //       crossAxisAlignment: CrossAxisAlignment.center,
+    //       children: <Widget>[
+    //         Avatar(
+    //           mxContent: url,
+    //           name: suggestion.tryGet<String>('displayname') ??
+    //               suggestion.tryGet<String>('mxid'),
+    //           size: size,
+    //           client: client,
+    //         ),
+    //         const SizedBox(width: 6),
+    //         Text(suggestion['displayname'] ?? suggestion['mxid']!),
+    //       ],
+    //     ),
+    //   );
+    // }
+    // Pangea#
     return const SizedBox.shrink();
   }
 
@@ -445,45 +451,61 @@ class InputBar extends StatelessWidget {
                   },
                 ),
               },
-        child: TypeAheadField<Map<String, String?>>(
-          direction: AxisDirection.up,
-          hideOnEmpty: true,
-          hideOnLoading: true,
-          keepSuggestionsOnSuggestionSelected: true,
-          debounceDuration: const Duration(milliseconds: 50),
-          // show suggestions after 50ms idle time (default is 300)
-          textFieldConfiguration: TextFieldConfiguration(
-            minLines: minLines,
-            maxLines: maxLines,
-            keyboardType: keyboardType!,
-            textInputAction: textInputAction,
-            autofocus: autofocus!,
-            onSubmitted: (text) {
-              // fix for library for now
-              // it sets the types for the callback incorrectly
-              onSubmitted!(text);
-            },
-            controller: controller,
-            decoration: decoration!,
-            focusNode: focusNode,
-            onChanged: (text) {
-              // fix for the library for now
-              // it sets the types for the callback incorrectly
-              onChanged!(text);
-            },
-            textCapitalization: TextCapitalization.sentences,
+        // #Pangea
+        child: CompositedTransformTarget(
+          link: controller!.choreographer.inputLayerLinkAndKey.link,
+          // Pangea#
+          child: TypeAheadField<Map<String, String?>>(
+            direction: AxisDirection.up,
+            hideOnEmpty: true,
+            hideOnLoading: true,
+            keepSuggestionsOnSuggestionSelected: true,
+            debounceDuration: const Duration(milliseconds: 50),
+            // show suggestions after 50ms idle time (default is 300)
+            // #Pangea
+            key: controller!.choreographer.inputLayerLinkAndKey.key,
+            // Pangea#
+            textFieldConfiguration: TextFieldConfiguration(
+              minLines: minLines,
+              maxLines: maxLines,
+              keyboardType: keyboardType!,
+              textInputAction: textInputAction,
+              autofocus: autofocus!,
+              onSubmitted: (text) {
+                // fix for library for now
+                // it sets the types for the callback incorrectly
+                onSubmitted!(text);
+              },
+              // #Pangea
+              onTap: () {
+                controller!.onInputTap(
+                  context,
+                  fNode: focusNode!,
+                );
+              },
+              // Pangea#
+              controller: controller,
+              decoration: decoration!,
+              focusNode: focusNode,
+              onChanged: (text) {
+                // fix for the library for now
+                // it sets the types for the callback incorrectly
+                onChanged!(text);
+              },
+              textCapitalization: TextCapitalization.sentences,
+            ),
+            suggestionsCallback: getSuggestions,
+            itemBuilder: (c, s) =>
+                buildSuggestion(c, s, Matrix.of(context).client),
+            onSuggestionSelected: (Map<String, String?> suggestion) =>
+                insertSuggestion(context, suggestion),
+            errorBuilder: (BuildContext context, Object? error) =>
+                const SizedBox.shrink(),
+            loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
+            // fix loading briefly flickering a dark box
+            noItemsFoundBuilder: (BuildContext context) => const SizedBox
+                .shrink(), // fix loading briefly showing no suggestions
           ),
-          suggestionsCallback: getSuggestions,
-          itemBuilder: (c, s) =>
-              buildSuggestion(c, s, Matrix.of(context).client),
-          onSuggestionSelected: (Map<String, String?> suggestion) =>
-              insertSuggestion(context, suggestion),
-          errorBuilder: (BuildContext context, Object? error) =>
-              const SizedBox.shrink(),
-          loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
-          // fix loading briefly flickering a dark box
-          noItemsFoundBuilder: (BuildContext context) => const SizedBox
-              .shrink(), // fix loading briefly showing no suggestions
         ),
       ),
     );
