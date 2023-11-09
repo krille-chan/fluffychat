@@ -298,9 +298,10 @@ class ChatListViewBody extends StatelessWidget {
                       childCount: rooms.length,
                     ),
                   ),
-                if(
-                client.prevBatch != null && !PlatformInfos.isWeb && client.rooms.isEmpty
-                ) //Change to client.rooms.isEmpty for final version !!!!!!!!!
+                if (client.prevBatch != null &&
+                    !PlatformInfos.isWeb &&
+                    client.rooms
+                        .isEmpty) //Change to client.rooms.isEmpty for final version
                   const SliverToBoxAdapter(
                     child: AddChatNetwork(),
                   ),

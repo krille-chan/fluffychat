@@ -43,8 +43,7 @@ class EmptyPage extends StatelessWidget {
             ),
 
           // Button for add bridge when no conversation
-          if(PlatformInfos.isWeb)
-            const AddChatNetwork(),
+          if (PlatformInfos.isWeb) const AddChatNetwork(),
         ],
       ),
     );

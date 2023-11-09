@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../widgets/matrix.dart';
 
 class SocialNetwork {
   final Widget logo; // The path to social media image
@@ -20,7 +21,6 @@ class SocialNetwork {
   });
 }
 
-
 class AddBridgeBody extends StatefulWidget {
   final Client client;
   const AddBridgeBody({super.key, required this.client});
@@ -29,27 +29,20 @@ class AddBridgeBody extends StatefulWidget {
   State<AddBridgeBody> createState() => _AddBridgeBodyState();
 }
 
-
-
 class _AddBridgeBodyState extends State<AddBridgeBody> {
-
-
   @override
   Widget build(BuildContext context) {
-
     final List<SocialNetwork> socialNetwork = [
       SocialNetwork(
         logo: Logo(Logos.facebook_messenger),
         name: "Facebook Messenger",
         chatBot: "",
       ),
-
       SocialNetwork(
         logo: Logo(Logos.instagram),
         name: "Instagram",
         chatBot: "@instagrambot:loveto.party",
       ),
-
       SocialNetwork(
         logo: Logo(Logos.whatsapp),
         name: "Whatsapp",
@@ -66,8 +59,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         context: context,
         builder: (BuildContext context) {
           return SingleChildScrollView(
-            child:
-            AlertDialog(
+            child: AlertDialog(
               title: Text(
                 "${L10n.of(context)!.connectYourSocialAccount} ${network.name}",
                 style: TextStyle(
@@ -86,7 +78,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       height: 5,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(labelText: L10n.of(context)!.username),
+                      decoration: InputDecoration(
+                          labelText: L10n.of(context)!.username),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return L10n.of(context)!.pleaseEnterYourUsername;
@@ -103,7 +96,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       height: 10,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(labelText: L10n.of(context)!.password),
+                      decoration: InputDecoration(
+                          labelText: L10n.of(context)!.password),
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
@@ -133,18 +127,16 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       try {
-
                         Navigator.of(context).pop(); // To close ShowDialog
                       } catch (e) {
-
                         Navigator.of(context).pop();
                         // Display an error message
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text('Error'),
-                              content: Text('An error has occurred: $e'),
+                              title: Text('Erreur'),
+                              content: Text('Une erreur s\'est produite : $e'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
@@ -196,7 +188,9 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             ),
             Center(
               child: SizedBox(
-                width: PlatformInfos.isWeb ?MediaQuery.of(context).size.width/2 :null,
+                width: PlatformInfos.isWeb
+                    ? MediaQuery.of(context).size.width / 2
+                    : null,
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -209,16 +203,17 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       ),
                       subtitle: Text(
                         socialNetwork[index].connected
-                            ?L10n.of(context)!.connected :L10n.of(context)!.notConnected,
+                            ? L10n.of(context)!.connected
+                            : L10n.of(context)!.notConnected,
                         style: TextStyle(
-                          color: socialNetwork[index].connected
-                            ?Colors.green :Colors.grey
-                        ),
+                            color: socialNetwork[index].connected
+                                ? Colors.green
+                                : Colors.grey),
                       ),
                       trailing: const Icon(
                         CupertinoIcons.right_chevron,
                       ),
-                      onTap: (){
+                      onTap: () {
                         showNetworkDialog(context, socialNetwork[index]);
                       },
                     );
@@ -232,4 +227,3 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     );
   }
 }
-

@@ -11,12 +11,12 @@ class AddChatNetwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 3.5,
-      width: PlatformInfos.isWeb ?MediaQuery.of(context).size.width/2 :null,
+      width: PlatformInfos.isWeb ? MediaQuery.of(context).size.width / 2 : null,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            if(!PlatformInfos.isWeb)
+            if (!PlatformInfos.isWeb)
               Text(
                 L10n.of(context)!.youDonTHaveConversation,
               ),
@@ -25,7 +25,9 @@ class AddChatNetwork extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return AddBridgeBody(client: Matrix.of(context).client,);
+                      return AddBridgeBody(
+                        client: Matrix.of(context).client,
+                      );
                     },
                   ),
                 );
