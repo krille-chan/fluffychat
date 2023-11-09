@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_det
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
+import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
@@ -495,12 +496,58 @@ class ChatDetailsView extends StatelessWidget {
                                 : AddToClassMode.chat,
                           ),
                         const Divider(height: 1),
+                        if (!room.isSpace || (room.isSpace && room.isRoomAdmin))
+                          ListTile(
+                            title: Text(
+                              room.isSpace
+                                  ? L10n.of(context)!.archiveSpace
+                                  : L10n.of(context)!.archive,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.archive_outlined,
+                              ),
+                            ),
+                            onTap: () => showFutureLoadingDialog(
+                              context: context,
+                              future: () async {
+                                room.isSpace
+                                    ? await archiveSpace(
+                                        room,
+                                        Matrix.of(context).client,
+                                      )
+                                    : await room.leave();
+                                context.go('/rooms');
+                              },
+                            ),
+                          ),
                         if (room.isRoomAdmin)
                           SwitchListTile.adaptive(
                             activeColor: AppConfig.activeToggleColor,
-                            title: room.isSpace
-                                ? Text(L10n.of(context)!.lockSpace)
-                                : Text(L10n.of(context)!.lockChat),
+                            title: Text(
+                              room.isSpace
+                                  ? L10n.of(context)!.lockSpace
+                                  : L10n.of(context)!.lockChat,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            secondary: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.lock_outlined,
+                              ),
+                            ),
                             value: room.locked,
                             onChanged: (value) => showFutureLoadingDialog(
                               context: context,
