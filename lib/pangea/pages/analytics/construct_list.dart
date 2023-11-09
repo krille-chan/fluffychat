@@ -154,19 +154,16 @@ class ConstructListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!init) {
-      return const SizedBox(
-        height: 400,
+      return const Expanded(
         child: Center(child: CircularProgressIndicator()),
       );
     }
     if (constructs.isEmpty) {
-      return SizedBox(
-        height: 400,
+      return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
     }
-    return SizedBox(
-      height: 400,
+    return Expanded(
       child: ListView.builder(
         itemCount: constructs.length,
         itemBuilder: (context, index) {

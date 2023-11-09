@@ -33,13 +33,12 @@ class BarChartCard extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 14),
-            AspectRatio(
-              aspectRatio: 2,
-              child: loadingData
+            Expanded(
+              child: loadingData || barChart == null
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : barChart,
+                  : barChart!,
             ),
             const SizedBox(height: 10),
             legend,

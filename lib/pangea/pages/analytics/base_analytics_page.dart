@@ -197,8 +197,12 @@ class BaseAnalyticsView extends StatelessWidget {
         withScrolling: false,
         child: Column(
           children: [
-            chartView(context),
             Expanded(
+              flex: 1,
+              child: chartView(context),
+            ),
+            Expanded(
+              flex: 1,
               child: DefaultTabController(
                 length: 2,
                 child: Column(
