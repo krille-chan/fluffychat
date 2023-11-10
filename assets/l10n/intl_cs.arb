@@ -2343,7 +2343,7 @@
   "@notAnImage": {},
   "importNow": "Importovat nyní",
   "@importNow": {},
-  "redactedByBecause": "Redigováno uživatelem {username} s důvodem: \"{reason}\"",
+  "redactedByBecause": "Smazáno uživatelem {username} s důvodem: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2415,7 +2415,7 @@
   "@jumpToLastReadMessage": {},
   "signInWithPassword": "Přihlásit se pomocí hesla",
   "@signInWithPassword": {},
-  "redactedBy": "Redigováno uživatelem {username}",
+  "redactedBy": "Smazáno uživatelem {username}",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
@@ -2432,9 +2432,9 @@
   "@noOneCanJoin": {},
   "tryAgain": "Zkuste to znovu",
   "@tryAgain": {},
-  "redactMessageDescription": "Tato zpráva bude skryta pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
+  "redactMessageDescription": "Tato zpráva bude smazána pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
   "@redactMessageDescription": {},
-  "optionalRedactReason": "(Nepovinné) Důvod redakce této zprávy…",
+  "optionalRedactReason": "(Nepovinné) Důvod smazání této zprávy…",
   "@optionalRedactReason": {},
   "messagesStyle": "Zprávy:",
   "@messagesStyle": {},
