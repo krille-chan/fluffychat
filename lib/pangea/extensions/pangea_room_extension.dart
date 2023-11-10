@@ -969,4 +969,16 @@ extension PangeaRoom on Room {
       return;
     }
   }
+
+  Future<List<Room>> getChildRooms() async {
+    final List<Room> children = [];
+    for (final child in spaceChildren) {
+      if (child.roomId == null) continue;
+      final Room? room = client.getRoomById(child.roomId!);
+      if (room != null) {
+        children.add(room);
+      }
+    }
+    return children;
+  }
 }

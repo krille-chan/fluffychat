@@ -1,17 +1,6 @@
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:matrix/matrix.dart';
-
-Future<List<Room>> getChildRooms(Room space, Client client) async {
-  final List<Room> children = [];
-  for (final child in space.spaceChildren) {
-    if (child.roomId == null) continue;
-    final Room? room = client.getRoomById(child.roomId!);
-    if (room != null) {
-      children.add(room);
-    }
-  }
-  return children;
-}
 
 Future<void> archiveSpace(Room? space, Client client) async {
   if (space == null) {
@@ -22,7 +11,7 @@ Future<void> archiveSpace(Room? space, Client client) async {
     return;
   }
 
-  final List<Room> children = await getChildRooms(space, client);
+  final List<Room> children = await space.getChildRooms();
   for (final Room child in children) {
     await child.leave();
   }
