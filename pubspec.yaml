@@ -1,7 +1,7 @@
 name: fluffychat
 description: Learn a language while texting your friends.
 publish_to: none
-version: 1.11.2+3451
+version: 1.11.2+3452
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
