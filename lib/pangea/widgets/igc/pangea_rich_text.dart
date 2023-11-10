@@ -60,7 +60,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
   @override
   void didUpdateWidget(PangeaRichText oldWidget) {
     super.didUpdateWidget(oldWidget);
-    textSpan = getTextSpan(context);
     setState(() => textSpan = getTextSpan(context));
   }
 
