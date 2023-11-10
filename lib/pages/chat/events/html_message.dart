@@ -19,11 +19,11 @@ class HtmlMessage extends StatelessWidget {
   final Color textColor;
 
   const HtmlMessage({
-    Key? key,
+    super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,87 +62,93 @@ class HtmlMessage extends StatelessWidget {
 
     final linkColor = textColor.withAlpha(150);
 
-    // there is no need to pre-validate the html, as we validate it while rendering
-    return Html(
-      data: linkifiedRenderHtml,
-      style: {
-        '*': Style(
+    final blockquoteStyle = Style(
+      border: Border(
+        left: BorderSide(
+          width: 3,
           color: textColor,
-          margin: Margins.all(0),
-          fontSize: FontSize(fontSize),
         ),
-        'a': Style(color: linkColor, textDecorationColor: linkColor),
-        'h1': Style(
-          fontSize: FontSize(fontSize * 2),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w600,
-        ),
-        'h2': Style(
-          fontSize: FontSize(fontSize * 1.75),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w500,
-        ),
-        'h3': Style(
-          fontSize: FontSize(fontSize * 1.5),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h4': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h5': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h6': Style(
-          fontSize: FontSize(fontSize),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'blockquote': Style(
-          border: Border(
-            left: BorderSide(
-              width: 3,
-              color: textColor,
-            ),
+      ),
+      padding: HtmlPaddings.only(left: 6, bottom: 0),
+    );
+
+    // there is no need to pre-validate the html, as we validate it while rendering
+    return MouseRegion(
+      cursor: SystemMouseCursors.text,
+      child: Html(
+        data: linkifiedRenderHtml,
+        style: {
+          '*': Style(
+            color: textColor,
+            margin: Margins.all(0),
+            fontSize: FontSize(fontSize),
           ),
-          padding: HtmlPaddings.only(left: 6, bottom: 0),
-        ),
-        'hr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'table': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'tr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'td': Style(
-          border: Border.all(color: textColor, width: 0.5),
-          padding: HtmlPaddings.all(2),
-        ),
-        'th': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-      },
-      extensions: [
-        RoomPillExtension(context, room),
-        CodeExtension(fontSize: fontSize),
-        MatrixMathExtension(
-          style: TextStyle(fontSize: fontSize, color: textColor),
-        ),
-        const TableHtmlExtension(),
-        SpoilerExtension(textColor: textColor),
-        const ImageExtension(),
-        FontColorExtension(),
-      ],
-      onLinkTap: (url, _, __) => UrlLauncher(context, url).launchUrl(),
-      onlyRenderTheseTags: const {
-        ...allowedHtmlTags,
-        // Needed to make it work properly
-        'body',
-        'html',
-      },
-      shrinkWrap: true,
+          'a': Style(color: linkColor, textDecorationColor: linkColor),
+          'h1': Style(
+            fontSize: FontSize(fontSize * 2),
+            lineHeight: LineHeight.number(1.5),
+            fontWeight: FontWeight.w600,
+          ),
+          'h2': Style(
+            fontSize: FontSize(fontSize * 1.75),
+            lineHeight: LineHeight.number(1.5),
+            fontWeight: FontWeight.w500,
+          ),
+          'h3': Style(
+            fontSize: FontSize(fontSize * 1.5),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h4': Style(
+            fontSize: FontSize(fontSize * 1.25),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h5': Style(
+            fontSize: FontSize(fontSize * 1.25),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h6': Style(
+            fontSize: FontSize(fontSize),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'blockquote': blockquoteStyle,
+          'tg-forward': blockquoteStyle,
+          'hr': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'table': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'tr': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'td': Style(
+            border: Border.all(color: textColor, width: 0.5),
+            padding: HtmlPaddings.all(2),
+          ),
+          'th': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+        },
+        extensions: [
+          RoomPillExtension(context, room),
+          CodeExtension(fontSize: fontSize),
+          MatrixMathExtension(
+            style: TextStyle(fontSize: fontSize, color: textColor),
+          ),
+          const TableHtmlExtension(),
+          SpoilerExtension(textColor: textColor),
+          const ImageExtension(),
+          FontColorExtension(),
+        ],
+        onLinkTap: (url, _, __) => UrlLauncher(context, url).launchUrl(),
+        onlyRenderTheseTags: const {
+          ...allowedHtmlTags,
+          // Needed to make it work properly
+          'body',
+          'html',
+        },
+        shrinkWrap: true,
+      ),
     );
   }
 
@@ -190,6 +196,8 @@ class HtmlMessage extends StatelessWidget {
     'ruby',
     'rp',
     'rt',
+    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
+    'tg-forward',
   };
 }
 

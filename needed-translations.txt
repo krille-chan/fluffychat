@@ -4,10 +4,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -751,13 +747,7 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "noTeachersFound"
   ],
 
   "bn": [
@@ -2099,7 +2089,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "bo": [
@@ -3445,7 +3443,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ca": [
@@ -4414,7 +4420,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "cs": [
@@ -5194,7 +5208,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "de": [
@@ -5202,12 +5224,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "emoteKeyboardNoRecents",
-    "hasKnocked",
-    "wrongPinEntered",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -5951,13 +5967,7 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "noTeachersFound"
   ],
 
   "el": [
@@ -7303,7 +7313,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "eo": [
@@ -8273,7 +8291,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "es": [
@@ -8330,7 +8356,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "et": [
@@ -8338,10 +8372,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -9085,13 +9115,7 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "noTeachersFound"
   ],
 
   "eu": [
@@ -9099,10 +9123,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -9846,13 +9866,7 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "noTeachersFound"
   ],
 
   "fa": [
@@ -10651,56 +10665,22 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "fi": [
-    "notAnImage",
-    "importNow",
-    "importEmojis",
-    "importFromZipFile",
-    "importZipFile",
-    "exportEmotePack",
-    "replace",
-    "savedEmotePack",
     "accountInformation",
     "addNewFriend",
     "alreadyHaveAnAccount",
-    "sendTypingNotifications",
     "classes",
-    "createGroup",
-    "chatPermissions",
-    "emoteKeyboardNoRecents",
-    "chatDescription",
-    "chatDescriptionHasBeenChanged",
-    "inviteContactToGroupQuestion",
-    "noChatDescriptionYet",
-    "anyoneCanKnock",
-    "noOneCanJoin",
-    "tryAgain",
-    "invalidServerName",
-    "redactMessageDescription",
-    "optionalRedactReason",
-    "messagesStyle",
-    "shareInviteLink",
-    "redactedBy",
-    "directChat",
-    "redactedByBecause",
-    "setChatDescription",
-    "hasKnocked",
-    "signInWith",
-    "profileNotFound",
-    "setTheme",
-    "setColorTheme",
-    "invite",
-    "requests",
-    "inviteGroupChat",
-    "invitePrivateChat",
-    "invalidInput",
-    "wrongPinEntered",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -11450,7 +11430,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "fr": [
@@ -12247,7 +12235,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ga": [
@@ -13198,7 +13194,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "gl": [
@@ -13206,12 +13210,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "invalidInput",
-    "wrongPinEntered",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -13956,12 +13954,7 @@
     "reportMessageTitle",
     "reportMessageBody",
     "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "todosUnencrypted"
   ],
 
   "he": [
@@ -15034,7 +15027,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "hi": [
@@ -16380,7 +16381,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "hr": [
@@ -16388,8 +16397,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
     "archiveRoomDescription",
     "roomUpgradeDescription",
     "allCorrect",
@@ -17141,7 +17148,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "hu": [
@@ -18104,7 +18119,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "id": [
@@ -18865,7 +18888,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ie": [
@@ -19946,7 +19977,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "it": [
@@ -20925,7 +20964,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ja": [
@@ -21756,7 +21803,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ko": [
@@ -22654,7 +22709,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "lt": [
@@ -23486,7 +23549,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "lv": [
@@ -24832,7 +24903,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "nb": [
@@ -25851,7 +25930,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "nl": [
@@ -26612,60 +26699,23 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "pl": [
-    "notAnImage",
-    "importNow",
-    "importEmojis",
-    "importFromZipFile",
-    "importZipFile",
-    "exportEmotePack",
-    "replace",
-    "savedEmotePack",
     "accountInformation",
     "addNewFriend",
     "alreadyHaveAnAccount",
-    "sendTypingNotifications",
     "classes",
-    "createGroup",
-    "allRooms",
-    "discover",
-    "chatPermissions",
-    "emoteKeyboardNoRecents",
-    "chatDescription",
-    "chatDescriptionHasBeenChanged",
-    "inviteContactToGroupQuestion",
-    "noChatDescriptionYet",
-    "anyoneCanKnock",
-    "noOneCanJoin",
-    "tryAgain",
-    "invalidServerName",
-    "redactMessageDescription",
-    "optionalRedactReason",
-    "messagesStyle",
-    "shareInviteLink",
-    "redactedBy",
-    "directChat",
-    "redactedByBecause",
-    "setChatDescription",
     "hasKnocked",
-    "reportErrorDescription",
-    "report",
-    "signInWithPassword",
-    "continueWith",
-    "pleaseTryAgainLaterOrChooseDifferentServer",
-    "signInWith",
-    "profileNotFound",
-    "setTheme",
-    "setColorTheme",
-    "invite",
-    "requests",
-    "inviteGroupChat",
-    "invitePrivateChat",
-    "invalidInput",
-    "wrongPinEntered",
     "pleaseEnterANumber",
     "archiveRoomDescription",
     "roomUpgradeDescription",
@@ -27418,7 +27468,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "pt": [
@@ -28742,7 +28800,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "pt_BR": [
@@ -29555,7 +29621,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "pt_PT": [
@@ -30573,7 +30647,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ro": [
@@ -31372,7 +31454,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ru": [
@@ -32133,7 +32223,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "sk": [
@@ -33220,7 +33318,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "sl": [
@@ -34455,7 +34561,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "sr": [
@@ -35447,7 +35561,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "sv": [
@@ -36255,7 +36377,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "ta": [
@@ -37598,61 +37728,22 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "th": [
-    "passwordsDoNotMatch",
-    "pleaseEnterValidEmail",
-    "repeatPassword",
-    "pleaseChooseAtLeastChars",
-    "notAnImage",
-    "remove",
-    "importNow",
-    "importEmojis",
-    "importFromZipFile",
-    "importZipFile",
-    "exportEmotePack",
-    "replace",
-    "savedEmotePack",
-    "about",
-    "updateAvailable",
-    "updateNow",
-    "accept",
-    "acceptedTheInvitation",
-    "account",
     "accountInformation",
-    "activatedEndToEndEncryption",
-    "addEmail",
-    "confirmMatrixId",
-    "supposedMxid",
     "addGroupDescription",
     "addNewFriend",
-    "addToSpace",
-    "admin",
-    "alias",
-    "all",
-    "allChats",
     "alreadyHaveAnAccount",
-    "commandHint_googly",
-    "commandHint_cuddle",
-    "commandHint_hug",
-    "googlyEyesContent",
-    "cuddleContent",
-    "hugContent",
-    "answeredTheCall",
-    "anyoneCanJoin",
-    "appLock",
-    "archive",
-    "areGuestsAllowedToJoin",
-    "areYouSure",
-    "areYouSureYouWantToLogout",
-    "askSSSSSign",
-    "askVerificationRequest",
-    "autoplayImages",
-    "badServerLoginTypesException",
-    "sendTypingNotifications",
-    "sendOnEnter",
     "badServerVersionsException",
     "banFromChat",
     "banned",
@@ -37685,11 +37776,9 @@
     "changeWallpaper",
     "changeYourAvatar",
     "channelCorruptedDecryptError",
-    "chat",
     "yourChatBackupHasBeenSetUp",
     "chatBackup",
     "chatBackupDescription",
-    "chatDetails",
     "chatHasBeenAddedToThisSpace",
     "chats",
     "classes",
@@ -37729,7 +37818,6 @@
     "containsUserName",
     "contentHasBeenReported",
     "copiedToClipboard",
-    "copy",
     "copyToClipboard",
     "couldNotDecryptMessage",
     "countParticipants",
@@ -37745,7 +37833,6 @@
     "dateWithYear",
     "deactivateAccountWarning",
     "defaultPermissionLevel",
-    "delete",
     "deleteAccount",
     "deleteMessage",
     "deny",
@@ -37757,7 +37844,6 @@
     "discover",
     "displaynameHasBeenChanged",
     "downloadFile",
-    "edit",
     "editBlockedServers",
     "chatPermissions",
     "editChatPermissions",
@@ -37788,7 +37874,6 @@
     "everythingReady",
     "extremeOffensive",
     "fileName",
-    "fluffychat",
     "fontSize",
     "forward",
     "fromJoining",
@@ -37805,7 +37890,6 @@
     "guestsAreForbidden",
     "guestsCanJoin",
     "hasWithdrawnTheInvitationFor",
-    "help",
     "hideRedactedEvents",
     "hideUnknownEvents",
     "howOffensiveIsThisContent",
@@ -37920,7 +38004,6 @@
     "passwordRecovery",
     "people",
     "pickImage",
-    "pin",
     "play",
     "pleaseChoose",
     "pleaseChooseAPasscode",
@@ -37967,7 +38050,6 @@
     "seenByUser",
     "seenByUserAndCountOthers",
     "seenByUserAndUser",
-    "send",
     "sendAMessage",
     "sendAsText",
     "sendAudio",
@@ -38944,7 +39026,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "tr": [
@@ -39705,7 +39795,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "uk": [
@@ -39713,10 +39811,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
-    "archiveRoomDescription",
-    "roomUpgradeDescription",
     "allCorrect",
     "newWayAllGood",
     "othersAreBetter",
@@ -40460,13 +40554,7 @@
     "reportToTeacher",
     "reportMessageTitle",
     "reportMessageBody",
-    "noTeachersFound",
-    "pushNotificationsNotAvailable",
-    "learnMore",
-    "banUserDescription",
-    "unbanUserDescription",
-    "kickUserDescription",
-    "makeAdminDescription"
+    "noTeachersFound"
   ],
 
   "vi": [
@@ -41733,7 +41821,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "zh": [
@@ -41741,8 +41837,6 @@
     "addNewFriend",
     "alreadyHaveAnAccount",
     "classes",
-    "hasKnocked",
-    "pleaseEnterANumber",
     "archiveRoomDescription",
     "roomUpgradeDescription",
     "allCorrect",
@@ -42494,7 +42588,15 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ],
 
   "zh_Hant": [
@@ -43484,6 +43586,14 @@
     "banUserDescription",
     "unbanUserDescription",
     "kickUserDescription",
-    "makeAdminDescription"
+    "makeAdminDescription",
+    "removeDevicesDescription",
+    "todoLists",
+    "newTodo",
+    "noTodosYet",
+    "editTodo",
+    "pleaseAddATitle",
+    "todoListChangedError",
+    "todosUnencrypted"
   ]
 }

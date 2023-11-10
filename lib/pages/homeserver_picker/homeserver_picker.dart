@@ -33,6 +33,8 @@ class HomeserverPicker extends StatefulWidget {
 
 class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
+  bool isLoggingIn = false;
+
   final TextEditingController homeserverController = TextEditingController(
     text: AppConfig.defaultHomeserver,
   );
@@ -133,7 +135,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
     final result = await FlutterWebAuth2.authenticate(
-      url: url,
+      url: url.toString(),
       callbackUrlScheme: urlScheme,
     );
     final token = Uri.parse(result).queryParameters['loginToken'];
@@ -160,9 +162,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   List<IdentityProvider>? get identityProviders {
     final loginTypes = _rawLoginTypes;
     if (loginTypes == null) return null;
-    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
-          (flow) => flow['type'] == AuthenticationTypes.sso,
-        )['identity_providers'];
+    final List? rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
+              (flow) => flow['type'] == AuthenticationTypes.sso,
+            )['identity_providers'] ??
+        [
+          {'id': null},
+        ];
     final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();

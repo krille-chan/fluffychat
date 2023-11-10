@@ -11,7 +11,7 @@ import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
   final SettingsChatController controller;
-  const SettingsChatView(this.controller, {Key? key}) : super(key: key);
+  const SettingsChatView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +100,6 @@ class SettingsChatView extends StatelessWidget {
                   ),
                 ),
               const Divider(height: 1),
-              // #Pangea
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.showDirectChatsInSpaces,
-                onChanged: (b) => AppConfig.showDirectChatsInSpaces = b,
-                storeKey: SettingKeys.showDirectChatsInSpaces,
-                defaultValue: AppConfig.showDirectChatsInSpaces,
-              ),
-              // Pangea#
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,

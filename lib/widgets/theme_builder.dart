@@ -19,8 +19,8 @@ class ThemeBuilder extends StatefulWidget {
     required this.builder,
     this.themeModeSettingsKey = 'theme_mode',
     this.primaryColorSettingsKey = 'primary_color',
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ThemeBuilder> createState() => ThemeController();

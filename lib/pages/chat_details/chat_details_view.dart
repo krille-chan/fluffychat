@@ -27,7 +27,7 @@ import 'package:matrix/matrix.dart';
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
 
-  const ChatDetailsView(this.controller, {Key? key}) : super(key: key);
+  const ChatDetailsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,8 +6,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 class AddWidgetTileView extends StatelessWidget {
   final AddWidgetTileState controller;
 
-  const AddWidgetTileView({Key? key, required this.controller})
-      : super(key: key);
+  const AddWidgetTileView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,6 @@ import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
-import '../../utils/famedlysdk_store.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
@@ -132,7 +131,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       } else {
         try {
           final wasForeground = await FlutterForegroundTask.isAppOnForeground;
-          await Store().setItem(
+
+          await matrix.store.setString(
             'wasForeground',
             wasForeground == true ? 'true' : 'false',
           );
@@ -171,7 +171,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       if (PlatformInfos.isAndroid) {
         FlutterForegroundTask.setOnLockScreenVisibility(false);
         FlutterForegroundTask.stopService();
-        final wasForeground = await Store().getItem('wasForeground');
+        final wasForeground = matrix.store.getString('wasForeground');
         wasForeground == 'false' ? FlutterForegroundTask.minimizeApp() : null;
       }
     }

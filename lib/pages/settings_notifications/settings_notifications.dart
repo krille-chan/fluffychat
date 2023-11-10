@@ -53,7 +53,7 @@ class NotificationSettingsItem {
 }
 
 class SettingsNotifications extends StatefulWidget {
-  const SettingsNotifications({Key? key}) : super(key: key);
+  const SettingsNotifications({super.key});
 
   @override
   SettingsNotificationsController createState() =>

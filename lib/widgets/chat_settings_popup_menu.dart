@@ -108,6 +108,16 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       // ),
       // Pangea#
       PopupMenuItem<String>(
+        value: 'todos',
+        child: Row(
+          children: [
+            const Icon(Icons.task_alt_outlined),
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.todoLists),
+          ],
+        ),
+      ),
+      PopupMenuItem<String>(
         value: 'leave',
         child: Row(
           children: [

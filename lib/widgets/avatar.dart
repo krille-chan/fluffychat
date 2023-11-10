@@ -25,8 +25,8 @@ class Avatar extends StatelessWidget {
     //#Pangea
     this.littleIcon,
     // Pangea#
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

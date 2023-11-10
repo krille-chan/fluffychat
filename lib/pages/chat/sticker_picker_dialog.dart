@@ -9,7 +9,7 @@ import 'events/image_bubble.dart';
 class StickerPickerDialog extends StatefulWidget {
   final Room room;
 
-  const StickerPickerDialog({required this.room, Key? key}) : super(key: key);
+  const StickerPickerDialog({required this.room, super.key});
 
   @override
   StickerPickerDialogState createState() => StickerPickerDialogState();

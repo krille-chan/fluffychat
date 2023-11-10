@@ -40,7 +40,7 @@ class MessageContent extends StatelessWidget {
   const MessageContent(
     this.event, {
     this.onInfoTab,
-    Key? key,
+    super.key,
     required this.textColor,
     // #Pangea
     required this.selected,
@@ -49,7 +49,7 @@ class MessageContent extends StatelessWidget {
     required this.immersionMode,
     required this.definitions,
     // Pangea#
-  }) : super(key: key);
+  });
 
   void _verifyOrRequestKey(BuildContext context) async {
     final l10n = L10n.of(context)!;
@@ -359,8 +359,7 @@ class _ButtonContent extends StatelessWidget {
     required this.textColor,
     required this.onPressed,
     required this.fontSize,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

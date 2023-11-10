@@ -9,8 +9,7 @@ import 'package:matrix/matrix.dart';
 class ChatPermissionsSettingsView extends StatelessWidget {
   final ChatPermissionsSettingsController controller;
 
-  const ChatPermissionsSettingsView(this.controller, {Key? key})
-      : super(key: key);
+  const ChatPermissionsSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

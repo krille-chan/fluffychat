@@ -13,8 +13,8 @@ class SearchTitle extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Material(

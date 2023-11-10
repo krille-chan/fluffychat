@@ -12,7 +12,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class NewPrivateChat extends StatefulWidget {
-  const NewPrivateChat({Key? key}) : super(key: key);
+  const NewPrivateChat({super.key});
 
   @override
   NewPrivateChatController createState() => NewPrivateChatController();
@@ -73,7 +73,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     }
     await showAdaptiveBottomSheet(
       context: context,
-      builder: (_) => const QrScannerModal(),
+      builder: (_) => QrScannerModal(
+        onScan: (link) => UrlLauncher(context, link).openMatrixToUrl(),
+      ),
     );
   }
 

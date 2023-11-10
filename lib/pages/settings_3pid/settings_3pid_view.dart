@@ -7,7 +7,7 @@ import 'package:matrix/matrix.dart';
 class Settings3PidView extends StatelessWidget {
   final Settings3PidController controller;
 
-  const Settings3PidView(this.controller, {Key? key}) : super(key: key);
+  const Settings3PidView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

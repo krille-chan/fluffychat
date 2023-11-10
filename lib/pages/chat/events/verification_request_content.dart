@@ -11,8 +11,8 @@ class VerificationRequestContent extends StatelessWidget {
   const VerificationRequestContent({
     required this.event,
     required this.timeline,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

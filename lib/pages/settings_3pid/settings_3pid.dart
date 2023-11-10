@@ -11,7 +11,7 @@ import 'settings_3pid_view.dart';
 class Settings3Pid extends StatefulWidget {
   static int sendAttempt = 0;
 
-  const Settings3Pid({Key? key}) : super(key: key);
+  const Settings3Pid({super.key});
 
   @override
   Settings3PidController createState() => Settings3PidController();

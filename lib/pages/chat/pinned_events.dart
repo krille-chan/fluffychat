@@ -13,7 +13,7 @@ import 'package:matrix/matrix.dart';
 class PinnedEvents extends StatelessWidget {
   final ChatController controller;
 
-  const PinnedEvents(this.controller, {Key? key}) : super(key: key);
+  const PinnedEvents(this.controller, {super.key});
 
   Future<void> _displayPinnedEventsDialog(
     BuildContext context,

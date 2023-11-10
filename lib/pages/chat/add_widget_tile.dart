@@ -8,7 +8,7 @@ import 'package:fluffychat/pages/chat/add_widget_tile_view.dart';
 class AddWidgetTile extends StatefulWidget {
   final Room room;
 
-  const AddWidgetTile({Key? key, required this.room}) : super(key: key);
+  const AddWidgetTile({super.key, required this.room});
 
   @override
   State<AddWidgetTile> createState() => AddWidgetTileState();

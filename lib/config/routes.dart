@@ -534,6 +534,7 @@ abstract class AppRoutes {
                   ],
                   redirect: loggedOutRedirect,
                 ),
+                // #Pangea
                 // GoRoute(
                 //   path: 'tasks',
                 //   pageBuilder: (context, state) => defaultPageBuilder(
@@ -545,6 +546,7 @@ abstract class AppRoutes {
                 //     ),
                 //   ),
                 // ),
+                // Pangea#
               ],
             ),
           ],

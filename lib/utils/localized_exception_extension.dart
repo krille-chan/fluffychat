@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pages/tasks/tasks.dart';
 import 'uia_request_manager.dart';
 
 extension LocalizedExceptionExtension on Object {
@@ -18,6 +19,9 @@ extension LocalizedExceptionExtension on Object {
         default:
           return (this as MatrixException).errorMessage;
       }
+    }
+    if (this is TodoListChangedException) {
+      return L10n.of(context)!.todoListChangedError;
     }
     if (this is FileTooBigMatrixException) {
       return L10n.of(context)!.fileIsTooBigForServer;

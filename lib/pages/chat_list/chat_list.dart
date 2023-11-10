@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
-import 'package:fluffychat/utils/famedlysdk_store.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -241,7 +240,7 @@ class ChatListController extends State<ChatList>
       ],
     );
     if (newServer == null) return;
-    Store().setItem(_serverStoreNamespace, newServer.single);
+    Matrix.of(context).store.setString(_serverStoreNamespace, newServer.single);
     setState(() {
       searchServer = newServer.single;
     });
@@ -439,7 +438,8 @@ class ChatListController extends State<ChatList>
     CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        searchServer = await Store().getItem(_serverStoreNamespace);
+        searchServer =
+            Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
 

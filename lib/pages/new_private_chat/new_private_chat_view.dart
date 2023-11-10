@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
 
-  const NewPrivateChatView(this.controller, {Key? key}) : super(key: key);
+  const NewPrivateChatView(this.controller, {super.key});
 
   static const double _qrCodePadding = 8;
 

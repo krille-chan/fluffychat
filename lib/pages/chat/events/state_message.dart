@@ -8,7 +8,7 @@ import '../../../config/app_config.dart';
 
 class StateMessage extends StatelessWidget {
   final Event event;
-  const StateMessage(this.event, {Key? key}) : super(key: key);
+  const StateMessage(this.event, {super.key});
 
   @override
   Widget build(BuildContext context) {

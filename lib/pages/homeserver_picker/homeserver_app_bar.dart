@@ -49,6 +49,7 @@ class HomeserverAppBar extends StatelessWidget {
         controller.checkHomeserverAction();
       },
       textFieldConfiguration: TextFieldConfiguration(
+        enabled: !controller.isLoggingIn,
         controller: controller.homeserverController,
         decoration: InputDecoration(
           prefixIcon: Navigator.of(context).canPop()

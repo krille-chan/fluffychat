@@ -22,7 +22,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 
 class StoryPage extends StatefulWidget {
-  const StoryPage({Key? key}) : super(key: key);
+  const StoryPage({super.key});
 
   @override
   StoryPageController createState() => StoryPageController();

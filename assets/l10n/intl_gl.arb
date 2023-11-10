@@ -1164,7 +1164,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Semella que non tes os servizos de google no teu dispositivo. Ben feito! a túa privacidade agradécecho! Para recibir notificacións push en FluffyChat recomendamos usar https://microg.org/ ou https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Semella que non tes Firebase Cloud Messaging dispoñible no teu dispositivo. Para recibir notificacións push recomendamos que instales MicroG ou Unified Push.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2610,5 +2610,52 @@
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "banUserDescription": "Vaise vetar a usuaria na conversa e non poderá entrar outra vez ata que se retire o veto.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Vas pechar a sesión neste dispositivo e xa non poderás recibir mensaxes nel.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "A usuaria vai poder entrar outra vez na conversa se quere.",
+  "@unbanUserDescription": {},
+  "todoLists": "(Beta) Lista de tarefas",
+  "@todoLists": {},
+  "editTodo": "Editar tarefa",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Non están dispoñibles as notificacións push",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Engade un título",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Cando convirtas a esta usuaria en admin non poderás desfacer a acción xa que terá os mesmos permisos ca ti.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Non se engadiron tarefas aínda a este chat. Crea primeiro a túa lista de tarefas e comeza a colaborar con outras. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "Vaise mover o chat ao arquivo. Outras usuarias poderán ver que saíches da conversa.",
+  "@archiveRoomDescription": {},
+  "invalidInput": "Contido non válido!",
+  "@invalidInput": {},
+  "hasKnocked": "déronlle unha labazada a {user}",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "wrongPinEntered": "PIN incorrecto! Inténtao outra vez en {seconds} segundos...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "newTodo": "Nova tarefa",
+  "@newTodo": {},
+  "learnMore": "Saber máis",
+  "@learnMore": {},
+  "todoListChangedError": "Ooi... A lista cambiou mentras ti a editabas.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "Vaise recrear o chat coa nova versión da sala. Todas as participantes recibirán unha notificación para que cambien ao novo chat. Podes ler máis información acerca das versións das salas en https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Escribe un número maior de cero",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "A usuaria foi expulsada pero non vetada. En conversas públicas a usuaria pode volver cando queira.",
+  "@kickUserDescription": {}
 }

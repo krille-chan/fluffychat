@@ -32,7 +32,7 @@ enum _EventContextAction { info, report }
 class ChatView extends StatelessWidget {
   final ChatController controller;
 
-  const ChatView(this.controller, {Key? key}) : super(key: key);
+  const ChatView(this.controller, {super.key});
 
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
@@ -97,41 +97,31 @@ class ChatView extends StatelessWidget {
                   ],
                 ),
               ),
-              PopupMenuItem(
-                value: _EventContextAction.report,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.shield_outlined,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.reportMessage),
-                  ],
+              if (controller.selectedEvents.single.status.isSent)
+                PopupMenuItem(
+                  value: _EventContextAction.report,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.shield_outlined,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context)!.reportMessage),
+                    ],
+                  ),
                 ),
-              ),
             ],
           ),
       ];
+      // #Pangea
+    } else {
+      return [
+        ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
+      ];
     }
-    // #Pangea
-    // else if (controller.isArchived) {
-    //   return [
-    //     Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: TextButton.icon(
-    //         onPressed: controller.forgetRoom,
-    //         style: TextButton.styleFrom(
-    //           foregroundColor: Theme.of(context).colorScheme.error,
-    //         ),
-    //         icon: const Icon(Icons.delete_forever_outlined),
-    //         label: Text(L10n.of(context)!.delete),
-    //       ),
-    //     ),
-    //   ];
-    // }
-    //else {
+    // } else if (!controller.room.isArchived) {
     //   return [
     //     if (Matrix.of(context).voipPlugin != null &&
     //         controller.room.isDirectChat)
@@ -144,9 +134,7 @@ class ChatView extends StatelessWidget {
     //     ChatSettingsPopupMenu(controller.room, true),
     //   ];
     // }
-    return [
-      ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
-    ];
+    // return [];
     // Pangea#
   }
 
@@ -236,7 +224,7 @@ class ChatView extends StatelessWidget {
                                     roomID: controller.roomId,
                                   )
                                 : null)
-                    // Pangea#
+                    // #Pangea
                     : null,
                 body: DropTarget(
                   onDragDone: controller.onDragDone,
@@ -320,6 +308,7 @@ class ChatView extends StatelessWidget {
                             if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join)
                               // #Pangea
+                              // Container(
                               ConditionalFlexible(
                                 isScroll: controller.isRowScrollable,
                                 child: ConditionalScroll(
@@ -328,9 +317,8 @@ class ChatView extends StatelessWidget {
                                     onChange: (size, position) {
                                       controller.inputRowSize = size!.height;
                                     },
-                                    child:
-                                        // Pangea#
-                                        Container(
+                                    child: Container(
+                                      // Pangea#
                                       margin: EdgeInsets.only(
                                         bottom: bottomSheetPadding,
                                         left: bottomSheetPadding,
@@ -419,21 +407,19 @@ class ChatView extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                            if (controller.dragging)
+                              Container(
+                                color: Theme.of(context)
+                                    .scaffoldBackgroundColor
+                                    .withOpacity(0.9),
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.upload_outlined,
+                                  size: 100,
+                                ),
+                              ),
                           ],
                         ),
-                        // #Pangea
-                        // if (controller.dragging)
-                        //   Container(
-                        //     color: Theme.of(context)
-                        //         .scaffoldBackgroundColor
-                        //         .withOpacity(0.9),
-                        //     alignment: Alignment.center,
-                        //     child: const Icon(
-                        //       Icons.upload_outlined,
-                        //       size: 100,
-                        //     ),
-                        //   ),
-                        // Pangea#
                       ),
                     ],
                   ),
@@ -478,3 +464,4 @@ class ConditionalScroll extends StatelessWidget {
   }
 }
 // #Pangea
+

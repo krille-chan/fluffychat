@@ -3,16 +3,16 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vrouter/vrouter.dart';
 
 class DeleteSpaceTile extends StatelessWidget {
   final Room room;
 
   const DeleteSpaceTile({
-    Key? key,
+    super.key,
     required this.room,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,12 @@ class DeleteSpaceTile extends StatelessWidget {
         );
       }
       deleteRoom(room.id, client);
-      VRouter.of(context).to('/rooms');
+      context.go('/rooms');
       return;
     }
 
     Future<void> deleteChat() {
-      VRouter.of(context).to('/rooms');
+      context.go('/rooms');
       return deleteRoom(room.id, Matrix.of(context).client);
     }
 
@@ -81,7 +81,7 @@ class DeleteSpaceTile extends StatelessWidget {
                           fontSize: 14,
                         ),
                         textAlign: TextAlign.center,
-                      )
+                      ),
                   ],
                 ),
                 content: room.isSpace
@@ -124,7 +124,7 @@ class DeleteSpaceTile extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                  )
+                  ),
                 ],
               );
             },

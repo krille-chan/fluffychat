@@ -68,7 +68,6 @@ abstract class AppConfig {
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
-  static bool showDirectChatsInSpaces = true;
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;

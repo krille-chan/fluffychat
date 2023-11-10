@@ -16,9 +16,9 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
   const ChatEventList({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,138 +31,121 @@ class ChatEventList extends StatelessWidget {
       thisEventsKeyMap[controller.timeline!.events[i].eventId] = i;
     }
 
-    return ListView.custom(
-      padding: EdgeInsets.only(
-        top: 16,
-        bottom: 4,
-        left: horizontalPadding,
-        right: horizontalPadding,
-      ),
-      reverse: true,
-      controller: controller.scrollController,
-      keyboardDismissBehavior: PlatformInfos.isIOS
-          ? ScrollViewKeyboardDismissBehavior.onDrag
-          : ScrollViewKeyboardDismissBehavior.manual,
-      childrenDelegate: SliverChildBuilderDelegate(
-        (BuildContext context, int i) {
-          // Footer to display typing indicator and read receipts:
-          if (i == 0) {
-            if (controller.timeline!.isRequestingFuture) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+    return SelectionArea(
+      child: ListView.custom(
+        padding: EdgeInsets.only(
+          top: 16,
+          bottom: 4,
+          left: horizontalPadding,
+          right: horizontalPadding,
+        ),
+        reverse: true,
+        controller: controller.scrollController,
+        keyboardDismissBehavior: PlatformInfos.isIOS
+            ? ScrollViewKeyboardDismissBehavior.onDrag
+            : ScrollViewKeyboardDismissBehavior.manual,
+        childrenDelegate: SliverChildBuilderDelegate(
+          (BuildContext context, int i) {
+            // Footer to display typing indicator and read receipts:
+            if (i == 0) {
+              if (controller.timeline!.isRequestingFuture) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                );
+              }
+              if (controller.timeline!.canRequestFuture) {
+                return Center(
+                  child: IconButton(
+                    onPressed: controller.requestFuture,
+                    icon: const Icon(Icons.refresh_outlined),
+                  ),
+                );
+              }
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SeenByRow(controller),
+                  TypingIndicators(controller),
+                ],
               );
             }
-            if (controller.timeline!.canRequestFuture) {
-              return Builder(
-                builder: (context) {
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) => controller.requestFuture(),
-                  );
-                  return Center(
-                    child: IconButton(
-                      onPressed: controller.requestFuture,
-                      icon: const Icon(Icons.refresh_outlined),
-                    ),
-                  );
-                },
-              );
-            }
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SeenByRow(controller),
-                TypingIndicators(controller),
-              ],
-            );
-          }
 
-          // #Pangea
-          if (i == 1) {
-            return controller.room.locked && !controller.room.isRoomAdmin
-                ? const LockedChatMessage()
-                : const SizedBox.shrink();
-          }
-          // Pangea#
-
-          // Request history button or progress indicator:
-          if (i == controller.timeline!.events.length + 1) {
-            if (controller.timeline!.isRequestingHistory) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-              );
-            }
-            if (controller.timeline!.canRequestHistory) {
-              return Builder(
-                builder: (context) {
-                  WidgetsBinding.instance.addPostFrameCallback(
-                    (_) => controller.requestHistory(),
-                  );
-                  return Center(
-                    child: IconButton(
-                      onPressed: controller.requestHistory,
-                      icon: const Icon(Icons.refresh_outlined),
-                    ),
-                  );
-                },
-              );
-            }
-            return const SizedBox.shrink();
-          }
-
-          // The message at this index:
-          // #Pangea
-          // final event = controller.timeline!.events[i - 1];
-          final event = controller.timeline!.events[i - 2];
-          // Pangea#
-
-          return AutoScrollTag(
-            key: ValueKey(event.eventId),
             // #Pangea
-            // index: i - 1,
-            index: i - 2,
+            if (i == 1) {
+              return controller.room.locked && !controller.room.isRoomAdmin
+                  ? const LockedChatMessage()
+                  : const SizedBox.shrink();
+            }
             // Pangea#
-            controller: controller.scrollController,
-            child: event.isVisibleInGui
-                ? Message(
-                    event,
-                    onSwipe: (direction) =>
-                        controller.replyAction(replyTo: event),
-                    onInfoTab: controller.showEventInfo,
-                    onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                      context: context,
-                      builder: (c) => UserBottomSheet(
-                        user: event.senderFromMemoryOrFallback,
-                        outerContext: context,
-                        onMention: () => controller.sendController.text +=
-                            '${event.senderFromMemoryOrFallback.mention} ',
+
+            // Request history button or progress indicator:
+            if (i == controller.timeline!.events.length + 1) {
+              if (controller.timeline!.isRequestingHistory) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                );
+              }
+              if (controller.timeline!.canRequestHistory) {
+                return Center(
+                  child: IconButton(
+                    onPressed: controller.requestHistory,
+                    icon: const Icon(Icons.refresh_outlined),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            }
+            // The message at this index:
+            // #Pangea
+            // final event = controller.timeline!.events[i - 1];
+            final event = controller.timeline!.events[i - 2];
+            // Pangea#
+
+            return AutoScrollTag(
+              key: ValueKey(event.eventId),
+              index: i - 1,
+              controller: controller.scrollController,
+              child: event.isVisibleInGui
+                  ? Message(
+                      event,
+                      onSwipe: () => controller.replyAction(replyTo: event),
+                      onInfoTab: controller.showEventInfo,
+                      onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                        context: context,
+                        builder: (c) => UserBottomSheet(
+                          user: event.senderFromMemoryOrFallback,
+                          outerContext: context,
+                          onMention: () => controller.sendController.text +=
+                              '${event.senderFromMemoryOrFallback.mention} ',
+                        ),
                       ),
-                    ),
-                    onSelect: controller.onSelectMessage,
-                    scrollToEventId: (String eventId) =>
-                        controller.scrollToEventId(eventId),
-                    // #Pangea
-                    // longPressSelect: controller.selectedEvents.isEmpty,
-                    selectedDisplayLang: controller
-                        .choreographer.messageOptions.selectedDisplayLang,
-                    immersionMode: controller.choreographer.immersionMode,
-                    definitions: controller.choreographer.definitionsEnabled,
-                    // Pangea#
-                    selected: controller.selectedEvents
-                        .any((e) => e.eventId == event.eventId),
-                    timeline: controller.timeline!,
-                    displayReadMarker:
-                        controller.readMarkerEventId == event.eventId &&
-                            controller.timeline?.allowNewEvent == false,
-                    nextEvent: i < controller.timeline!.events.length
-                        ? controller.timeline!.events[i]
-                        : null,
-                  )
-                : const SizedBox.shrink(),
-          );
-        },
-        childCount: controller.timeline!.events.length + 2,
-        findChildIndexCallback: (key) =>
-            controller.findChildIndexCallback(key, thisEventsKeyMap),
+                      onSelect: controller.onSelectMessage,
+                      scrollToEventId: (String eventId) =>
+                          controller.scrollToEventId(eventId),
+                      // #Pangea
+                      // longPressSelect: controller.selectedEvents.isEmpty,
+                      selectedDisplayLang: controller
+                          .choreographer.messageOptions.selectedDisplayLang,
+                      immersionMode: controller.choreographer.immersionMode,
+                      definitions: controller.choreographer.definitionsEnabled,
+                      // Pangea#
+                      selected: controller.selectedEvents
+                          .any((e) => e.eventId == event.eventId),
+                      timeline: controller.timeline!,
+                      displayReadMarker:
+                          controller.readMarkerEventId == event.eventId &&
+                              controller.timeline?.allowNewEvent == false,
+                      nextEvent: i < controller.timeline!.events.length
+                          ? controller.timeline!.events[i]
+                          : null,
+                    )
+                  : const SizedBox.shrink(),
+            );
+          },
+          childCount: controller.timeline!.events.length + 2,
+          findChildIndexCallback: (key) =>
+              controller.findChildIndexCallback(key, thisEventsKeyMap),
+        ),
       ),
     );
   }

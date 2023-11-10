@@ -17,8 +17,8 @@ class MapBubble extends StatelessWidget {
     this.width = 400,
     this.height = 400,
     this.radius = 10.0,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

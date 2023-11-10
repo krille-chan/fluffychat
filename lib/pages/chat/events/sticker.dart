@@ -10,7 +10,7 @@ import 'image_bubble.dart';
 class Sticker extends StatefulWidget {
   final Event event;
 
-  const Sticker(this.event, {Key? key}) : super(key: key);
+  const Sticker(this.event, {super.key});
 
   @override
   StickerState createState() => StickerState();

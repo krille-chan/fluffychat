@@ -21,8 +21,8 @@ class PublicRoomBottomSheet extends StatelessWidget {
     required this.outerContext,
     this.chunk,
     this.onRoomJoined,
-    Key? key,
-  }) : super(key: key) {
+    super.key,
+  }) {
     assert(roomAlias != null || chunk != null);
   }
 

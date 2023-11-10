@@ -21,10 +21,10 @@ packages:
     dependency: "direct main"
     description:
       name: adaptive_dialog
-      sha256: "3b8abc7d1ba0834061759ee0be8e623eff5bffbcd1e6df5608a11983cfad6b2b"
+      sha256: "2861f072027046912caaaec9a688e50e10b712ab11ea18d266ef83c391e5f4d6"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.0+2"
   analyzer:
     dependency: transitive
     description:
@@ -74,7 +74,7 @@ packages:
     source: hosted
     version: "2.4.2"
   async:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: async
       sha256: "947bfcf187f74dbc5e146c9eb9c0f10c9f8b30743e341481c1e2ed3ecc18c20c"
@@ -428,10 +428,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "21145c9c268d54b1f771d8380c195d2d6f655e0567dc1ca2f9c134c02c819e0a"
+      sha256: be325344c1f3070354a1d84a231a1ba75ea85d413774ec4bdf444c023342e030
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.3"
+    version: "5.5.0"
   file_selector_linux:
     dependency: transitive
     description:
@@ -694,18 +694,18 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "2118df84ef0c3ca93f96123a616ae8540879991b8b57af2f81b76a7ada49b2a4"
+      sha256: ad76540d21c066228ee3f9d1dad64a9f7e46530e8bb7c85011a88bc1fd874bc5
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "3.0.0"
   flutter_local_notifications:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: "3cc40fe8c50ab8383f3e053a499f00f975636622ecdc8e20a77418ece3b1e975"
+      sha256: "6d11ea777496061e583623aaf31923f93a9409ef8fcaeeefdd6cd78bf4fe5bb3"
       url: "https://pub.dev"
     source: hosted
-    version: "15.1.0+1"
+    version: "16.1.0"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -787,10 +787,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_secure_storage
-      sha256: "98352186ee7ad3639ccc77ad7924b773ff6883076ab952437d20f18a61f0a7c5"
+      sha256: "22dbf16f23a4bcf9d35e51be1c84ad5bb6f627750565edd70dab70f3ff5fff8f"
       url: "https://pub.dev"
     source: hosted
-    version: "8.0.0"
+    version: "8.1.0"
   flutter_secure_storage_linux:
     dependency: transitive
     description:
@@ -827,10 +827,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_secure_storage_windows
-      sha256: fc2910ec9b28d60598216c29ea763b3a96c401f0ce1d13cdf69ccb0e5c93c3ee
+      sha256: "38f9501c7cb6f38961ef0e1eacacee2b2d4715c63cc83fe56449c4d3d0b47255"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -856,18 +856,18 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_web_auth_2
-      sha256: "70e4df72940183b8e269c4163f78dd5bf9102ba3329bfe00c0f2373f30fb32d0"
+      sha256: "75613aa4d8e43df3de0fc3d93df36ae5b4ba2e94070384c5a9baeda99f5a235f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.5"
+    version: "3.0.3"
   flutter_web_auth_2_platform_interface:
     dependency: transitive
     description:
       name: flutter_web_auth_2_platform_interface
-      sha256: f6fa7059ff3428c19cd756c02fef8eb0147131c7e64591f9060c90b5ab84f094
+      sha256: "9124824cbd21e12680bf58190e27b77f251c897e80ec81cd557ec1fde9aecabf"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "3.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -898,10 +898,10 @@ packages:
     dependency: "direct main"
     description:
       name: future_loading_dialog
-      sha256: "6227dddb32ad5c7d233a54668f862acb4beb5a5e0dde072de372347cc0799e63"
+      sha256: "2718b1a308db452da32ab9bca9ad496ff92b683e217add9e92cf50520f90537e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.4"
+    version: "0.3.0"
   geolocator:
     dependency: "direct main"
     description:
@@ -1264,10 +1264,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
+      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "3.0.0"
   list_counter:
     dependency: transitive
     description:
@@ -1312,10 +1312,10 @@ packages:
     dependency: transitive
     description:
       name: markdown
-      sha256: "01512006c8429f604eb10f9848717baeaedf99e991d14a50d540d9beff08e5c6"
+      sha256: acf35edccc0463a9d7384e437c015a3535772e09714cf60e07eeef3a15870dcd
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "7.1.1"
   matcher:
     dependency: transitive
     description:
@@ -1336,10 +1336,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "10389562a4562db6150291b538e025a9a1b7a79998a71d38cb5c78a34ca6b007"
+      sha256: "1e4bef4923fa1e33124843aa59932739e69a5507178f18313ec1067c046156f3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.3"
+    version: "0.22.6"
   matrix_api_lite:
     dependency: transitive
     description:
@@ -1448,10 +1448,10 @@ packages:
     dependency: "direct main"
     description:
       name: package_info_plus
-      sha256: "6ff267fcd9d48cb61c8df74a82680e8b82e940231bb5f68356672fde0397334a"
+      sha256: "7e76fad405b3e4016cd39d08f455a4eb5199723cf594cd1b8916d47140d93017"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0"
   package_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -1536,18 +1536,18 @@ packages:
     dependency: "direct main"
     description:
       name: permission_handler
-      sha256: "63e5216aae014a72fe9579ccd027323395ce7a98271d9defa9d57320d001af81"
+      sha256: "284a66179cabdf942f838543e10413246f06424d960c92ba95c84439154fcac8"
       url: "https://pub.dev"
     source: hosted
-    version: "10.4.3"
+    version: "11.0.1"
   permission_handler_android:
     dependency: transitive
     description:
       name: permission_handler_android
-      sha256: "2ffaf52a21f64ac9b35fe7369bb9533edbd4f698e5604db8645b1064ff4cf221"
+      sha256: f9fddd3b46109bd69ff3f9efa5006d2d309b7aec0f3c1c5637a60a2d5659e76e
       url: "https://pub.dev"
     source: hosted
-    version: "10.3.3"
+    version: "11.1.0"
   permission_handler_apple:
     dependency: transitive
     description:
@@ -1560,10 +1560,10 @@ packages:
     dependency: transitive
     description:
       name: permission_handler_platform_interface
-      sha256: "7c6b1500385dd1d2ca61bb89e2488ca178e274a69144d26bbd65e33eae7c02a9"
+      sha256: "6760eb5ef34589224771010805bea6054ad28453906936f843a8cc4d3a55c4a4"
       url: "https://pub.dev"
     source: hosted
-    version: "3.11.3"
+    version: "3.12.0"
   permission_handler_windows:
     dependency: transitive
     description:
@@ -2349,10 +2349,10 @@ packages:
     dependency: "direct main"
     description:
       name: wakelock_plus
-      sha256: aac3f3258f01781ec9212df94eecef1eb9ba9350e106728def405baa096ba413
+      sha256: f45a6c03aa3f8322e0a9d7f4a0482721c8789cb41d555407367650b8f9c26018
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.3"
   wakelock_plus_platform_interface:
     dependency: transitive
     description:

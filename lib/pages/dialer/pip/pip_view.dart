@@ -15,13 +15,13 @@ class PIPView extends StatefulWidget {
   ) builder;
 
   const PIPView({
-    Key? key,
+    super.key,
     required this.builder,
     this.initialCorner = PIPViewCorner.topRight,
     this.floatingWidth,
     this.floatingHeight,
     this.avoidKeyboard = true,
-  }) : super(key: key);
+  });
 
   @override
   PIPViewState createState() => PIPViewState();

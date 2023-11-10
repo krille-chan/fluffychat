@@ -25,9 +25,9 @@ class ChatDetails extends StatefulWidget {
   final String roomId;
 
   const ChatDetails({
-    Key? key,
+    super.key,
     required this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   ChatDetailsController createState() => ChatDetailsController();
@@ -121,8 +121,7 @@ class ChatDetailsController extends State<ChatDetails> {
         if (adminMode)
           AlertDialogAction(label: L10n.of(context)!.create, key: 'new'),
         ...aliases.result!
-            .map((alias) => AlertDialogAction(key: alias, label: alias))
-            .toList(),
+            .map((alias) => AlertDialogAction(key: alias, label: alias)),
       ],
     );
     if (select == null) return;

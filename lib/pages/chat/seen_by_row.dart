@@ -8,7 +8,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
   final ChatController controller;
-  const SeenByRow(this.controller, {Key? key}) : super(key: key);
+  const SeenByRow(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +38,13 @@ class SeenByRow extends StatelessWidget {
                     ? seenByUsers.sublist(0, maxAvatars)
                     : seenByUsers)
                 .map(
-                  (user) => Avatar(
-                    mxContent: user.avatarUrl,
-                    name: user.calcDisplayname(),
-                    size: 16,
-                    fontSize: 9,
-                  ),
-                )
-                .toList(),
+              (user) => Avatar(
+                mxContent: user.avatarUrl,
+                name: user.calcDisplayname(),
+                size: 16,
+                fontSize: 9,
+              ),
+            ),
             if (seenByUsers.length > maxAvatars)
               SizedBox(
                 width: 16,
