@@ -84,8 +84,8 @@ class Avatar extends StatelessWidget {
             final dotColor = presence.presence.isOnline
                 ? Colors.green
                 : presence.presence.isUnavailable
-                    ? Colors.orange
-                    : Colors.red;
+                    ? Colors.red
+                    : Colors.grey;
             return Positioned(
               bottom: -4,
               right: -4,

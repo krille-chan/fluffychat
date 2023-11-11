@@ -32,46 +32,52 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
-          title: ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(displayname.trim().split(' ').first),
-            subtitle: PresenceBuilder(
-              userId: userId,
-              client: client,
-              builder: (context, presence) {
-                if (presence == null) return const SizedBox.shrink();
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(displayname),
+              PresenceBuilder(
+                userId: userId,
+                client: client,
+                builder: (context, presence) {
+                  if (presence == null) return const SizedBox.shrink();
 
-                final dotColor = presence.presence.isOnline
-                    ? Colors.green
-                    : presence.presence.isUnavailable
-                        ? Colors.orange
-                        : Colors.red;
+                  final dotColor = presence.presence.isOnline
+                      ? Colors.green
+                      : presence.presence.isUnavailable
+                          ? Colors.red
+                          : Colors.grey;
 
-                final lastActiveTimestamp = presence.lastActiveTimestamp;
+                  final lastActiveTimestamp = presence.lastActiveTimestamp;
 
-                return Row(
-                  children: [
-                    Container(
-                      width: 8,
-                      height: 8,
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        color: dotColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    if (presence.currentlyActive == true)
-                      Text(L10n.of(context)!.currentlyActive),
-                    if (lastActiveTimestamp != null)
-                      Text(
-                        L10n.of(context)!.lastActiveAgo(
-                          lastActiveTimestamp.localizedTimeShort(context),
+                  return Row(
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        margin: const EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color: dotColor,
+                          borderRadius: BorderRadius.circular(16),
                         ),
                       ),
-                  ],
-                );
-              },
-            ),
+                      if (presence.currentlyActive == true)
+                        Text(
+                          L10n.of(context)!.currentlyActive,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      if (lastActiveTimestamp != null)
+                        Text(
+                          L10n.of(context)!.lastActiveAgo(
+                            lastActiveTimestamp.localizedTimeShort(context),
+                          ),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ],
           ),
           actions: [
             if (userId != client.userID &&
