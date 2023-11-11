@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
@@ -79,19 +80,23 @@ class ImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => _onTap(context),
-      child: Hero(
-        tag: event.eventId,
-        child: AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
-          child: Container(
+    return Material(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        side: BorderSide(color: Theme.of(context).dividerColor),
+      ),
+      child: InkWell(
+        onTap: () => _onTap(context),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        child: Hero(
+          tag: event.eventId,
+          child: ConstrainedBox(
             constraints: maxSize
                 ? BoxConstraints(
                     maxWidth: width,
                     maxHeight: height,
                   )
-                : null,
+                : const BoxConstraints.expand(),
             child: MxcImage(
               event: event,
               width: width,
