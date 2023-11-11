@@ -30,6 +30,11 @@ void main() async {
   // currently only supported on Android.
   if (PlatformInfos.isAndroid &&
       AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
+    // Do not send online presences when app is in background fetch mode.
+    for (final client in clients) {
+      client.syncPresence = PresenceType.offline;
+    }
+
     // In the background fetch mode we do not want to waste ressources with
     // starting the Flutter engine but process incoming push notifications.
     BackgroundPush.clientOnly(clients.first);
@@ -87,6 +92,10 @@ class AppStarter with WidgetsBindingObserver {
     Logs().i(
       '${AppConfig.applicationName} switches from the detached background-fetch mode to ${state.name} mode. Rendering GUI...',
     );
+    // Switching to foreground mode needs to reenable send online sync presence.
+    for (final client in clients) {
+      client.syncPresence = PresenceType.online;
+    }
     startGui(clients, store);
     // We must make sure that the GUI is only started once.
     guiStarted = true;
