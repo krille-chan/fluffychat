@@ -51,6 +51,7 @@ class UserBottomSheetView extends StatelessWidget {
                   final lastActiveTimestamp = presence.lastActiveTimestamp;
 
                   return Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         width: 8,
@@ -64,13 +65,15 @@ class UserBottomSheetView extends StatelessWidget {
                       if (presence.currentlyActive == true)
                         Text(
                           L10n.of(context)!.currentlyActive,
+                          overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      if (lastActiveTimestamp != null)
+                        )
+                      else if (lastActiveTimestamp != null)
                         Text(
                           L10n.of(context)!.lastActiveAgo(
                             lastActiveTimestamp.localizedTimeShort(context),
                           ),
+                          overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                     ],
