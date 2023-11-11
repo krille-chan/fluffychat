@@ -142,6 +142,7 @@ class Message extends StatelessWidget {
               return Avatar(
                 mxContent: user.avatarUrl,
                 name: user.calcDisplayname(),
+                presenceUserId: user.stateKey,
                 onTap: () => onAvatarTab(event),
               );
             },

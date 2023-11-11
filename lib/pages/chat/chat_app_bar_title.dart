@@ -4,8 +4,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/presence_builder.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final ChatController controller;
@@ -34,16 +36,37 @@ class ChatAppBarTitle extends StatelessWidget {
                 MatrixLocals(L10n.of(context)!),
               ),
               size: 32,
+              presenceUserId: room.directChatMatrixID,
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 16,
+            child: ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              subtitle: PresenceBuilder(
+                userId: room.directChatMatrixID,
+                builder: (context, presence) {
+                  final lastActiveTimestamp = presence?.lastActiveTimestamp;
+                  if (presence?.currentlyActive == true) {
+                    return Text(L10n.of(context)!.currentlyActive);
+                  }
+                  if (lastActiveTimestamp != null) {
+                    return Text(
+                      L10n.of(context)!.lastActiveAgo(
+                        lastActiveTimestamp.localizedTimeShort(context),
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
             ),
           ),

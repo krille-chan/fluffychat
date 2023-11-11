@@ -43,6 +43,7 @@ class SeenByRow extends StatelessWidget {
                 name: user.calcDisplayname(),
                 size: 16,
                 fontSize: 9,
+                presenceUserId: user.stateKey,
               ),
             ),
             if (seenByUsers.length > maxAvatars)
