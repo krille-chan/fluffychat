@@ -80,6 +80,7 @@ class MessageContent extends StatelessWidget {
                 leading: Avatar(
                   mxContent: sender.avatarUrl,
                   name: sender.calcDisplayname(),
+                  presenceUserId: sender.stateKey,
                 ),
                 title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),

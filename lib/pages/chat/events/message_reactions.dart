@@ -210,6 +210,7 @@ class _AdaptableReactorsDialog extends StatelessWidget {
                 mxContent: reactor.avatarUrl,
                 name: reactor.displayName,
                 client: client,
+                presenceUserId: reactor.stateKey,
               ),
               label: Text(reactor.displayName!),
             ),

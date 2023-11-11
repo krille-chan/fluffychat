@@ -158,6 +158,11 @@ class ChatListItem extends StatelessWidget {
             : 14.0
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
+    final backgroundColor = selected
+        ? Theme.of(context).colorScheme.primaryContainer
+        : activeChat
+            ? Theme.of(context).colorScheme.secondaryContainer
+            : null;
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
@@ -169,11 +174,7 @@ class ChatListItem extends StatelessWidget {
       child: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
-        color: selected
-            ? Theme.of(context).colorScheme.primaryContainer
-            : activeChat
-                ? Theme.of(context).colorScheme.secondaryContainer
-                : Colors.transparent,
+        color: backgroundColor,
         child: ListTile(
           visualDensity: const VisualDensity(vertical: -0.5),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -192,6 +193,8 @@ class ChatListItem extends StatelessWidget {
                   mxContent: room.avatar,
                   name: displayname,
                   onTap: onLongPress,
+                  presenceUserId: room.directChatMatrixID,
+                  presenceBackgroundColor: backgroundColor,
                 ),
           title: Row(
             children: <Widget>[

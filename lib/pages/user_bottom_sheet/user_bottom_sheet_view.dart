@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/presence_builder.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
@@ -30,7 +32,47 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
-          title: Text(displayname.trim().split(' ').first),
+          title: ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(displayname.trim().split(' ').first),
+            subtitle: PresenceBuilder(
+              userId: userId,
+              client: client,
+              builder: (context, presence) {
+                if (presence == null) return const SizedBox.shrink();
+
+                final dotColor = presence.presence.isOnline
+                    ? Colors.green
+                    : presence.presence.isUnavailable
+                        ? Colors.orange
+                        : Colors.red;
+
+                final lastActiveTimestamp = presence.lastActiveTimestamp;
+
+                return Row(
+                  children: [
+                    Container(
+                      width: 8,
+                      height: 8,
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        color: dotColor,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    if (presence.currentlyActive == true)
+                      Text(L10n.of(context)!.currentlyActive),
+                    if (lastActiveTimestamp != null)
+                      Text(
+                        L10n.of(context)!.lastActiveAgo(
+                          lastActiveTimestamp.localizedTimeShort(context),
+                        ),
+                      ),
+                  ],
+                );
+              },
+            ),
+          ),
           actions: [
             if (userId != client.userID &&
                 !client.ignoredUsers.contains(userId))
