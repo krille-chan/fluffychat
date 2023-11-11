@@ -25,95 +25,79 @@
 	</style>
 </head>
 
-<body
-	class="flex flex-col items-center justify-center min-h-screen w-screen bg-gradient-to-t from-purple-200 to-blue-50 dark:from-gray-800 dark:to-slate-900 p-4"
-	style="font-family: 'Zen Kurenaido', sans-serif;">
-	<img src="favicon.png" class="h-10" />
-	<h1 class="flex text-4xl items-center mb-4">
-		<span style="color: #5625BA">Fluffy</span>
-		<span style="color: #41a2bc">Chat</span>
-	</h1>
-	<img src="screenshots/screenshots.png" class="sm:max-w-lg max-w-screen mb-8" />
+<body>
+	<div id="background"
+		class="w-screen min-h-screen bg-gradient-to-t from-purple-50 to-transparent bg-opacity-50 pb-16">
+		<div id="content" class="max-w-7xl mx-auto">
 
-	<div class="max-w-lg mb-8 flex justify-center flex-wrap">
-		<a href="https://apps.apple.com/app/fluffychat/id1551469600"><img src="appstore-badge.png"
-				class="w-36 pr-2 mb-2 inline hover:scale-105 transition-transform"></a>
-		<a href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat"><img src="google-play-badge.png"
-				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline">
-		</a><a href="https://f-droid.org/packages/chat.fluffy.fluffychat/"><img src="fdroid_button.png"
-				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline">
-		</a>
-		<a href="https://fluffychat.im/web">
-			<img src="browser-badge.png" class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
-		<a href="https://snapcraft.io/fluffychat"><img
-				src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
-				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
-		<a href="https://flathub.org/apps/details/im.fluffychat.Fluffychat"><img src="flathub-badge-en.png"
-				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
+			<nav class="h-24 bg-white dark:bg-black bg-opacity-80 flex items-center">
+				<img src="favicon.png" class="h-14">
+				<h1 class="text-2xl m-3"><span class="text-primary">Fluffy</span><span
+						class="text-secondary">Chat</span>
+				</h1>
+
+				<div id="spacer" class="flex-grow"> </div>
+
+				<a class="text-gray-500 dark:text-gray-100 m-3 hover:text-black dark:hover:text-white transition-colors"
+					href="https://ko-fi.com/krille">Blog</a>
+				<a class="text-gray-500 dark:text-gray-100 m-3 hover:text-black dark:hover:text-white transition-colors"
+					href="https://matrix.to/#/#fluffychat:matrix.org">Community</a>
+				<a class="m-3 hover:scale-125 transition-transform" href="https://mastodon.art/krille"><img class="h-6"
+						src="images/mastodon.png" /></a>
+				<a class="m-3 hover:scale-125 transition-transform"
+					href="https://github.com/krille-chan/fluffychat"><img class="h-6" src="images/github.png" /></a>
+				<a class="ml-3 px-6 py-3 rounded-xl flex items-center text-white shadow hover:shadow-xl bg-primary hover:bg-opacity-90 transition-all"
+					target="_blank" href="/web">Open in
+					browser <img class="ml-2 h-4" src="images/external_link_dark.png" /></a>
+			</nav>
+
+			<div id="intro-container"
+				class="rounded-3xl shadow shadow-gray-500/20 bg-gradient-to-r from-pink-50 via-purple-100 to-blue-50 flex mb-16">
+
+				<div id="intro-left-half" class="flex-1 flex flex-col justify-center p-16">
+					<h1 class="text-gray-700 text-4xl mb-4">The cutest instant messenger in [matrix]</h1>
+					<h2 class="text-gray-600 mb-4">Chat with your friends from any device, any operating system, and in
+						any
+						network. Compatible with other <a class="text-purple-500 hover:text-purple-700"
+							href="https://matrix.org/ecosystem/clients/" target="_blank">[matrix]</a> apps
+						and connectabel with other messaging platforms via <a
+							class="text-purple-500 hover:text-purple-700" href="https://matrix.org/ecosystem/bridges/"
+							target="_blank">bridges</a>. Designed to be accessible by
+						everyone.
+					</h2>
+
+					<div id="app-install-buttons" class="max-w-lg flex mt-4 flex-wrap">
+						<a href="https://apps.apple.com/app/fluffychat/id1551469600"><img src="appstore-badge.png"
+								class="w-36 pr-2 mb-2 inline hover:scale-105 transition-transform"></a>
+						<a href="https://play.google.com/store/apps/details?id=chat.fluffy.fluffychat"><img
+								src="google-play-badge.png"
+								class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline">
+						</a><a href="https://f-droid.org/packages/chat.fluffy.fluffychat/"><img src="fdroid_button.png"
+								class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline">
+						</a>
+						<a href="https://fluffychat.im/web">
+							<img src="browser-badge.png"
+								class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
+						<a href="https://snapcraft.io/fluffychat"><img
+								src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
+								class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
+						<a href="https://flathub.org/apps/details/im.fluffychat.Fluffychat"><img
+								src="flathub-badge-en.png"
+								class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
+					</div>
+
+				</div>
+
+				<div id="intro-right-half" class="flex-1 flex justify-center p-16">
+					<img class="rounded-3xl border-white shadow-xl border-8 w-80" src="screenshots/mobile.png" />
+				</div>
+
+			</div>
+
+
+
+		</div>
 	</div>
-
-	<div class="flex mb-8 justify-center content-center">
-		<a rel="me"
-			class="inline-block text-indigo-500 no-underline hover:text-indigo-900 hover:scale-105 transition-all text-center h-auto p-4"
-			rel="me" href="https://mastodon.art/@krille">
-			<svg class="fill-current h-6" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
-				style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
-				<clipPath id="_clip1">
-					<rect x="33.6" y="-0.035" width="932.844" height="1000" />
-				</clipPath>
-				<g clip-path="url(#_clip1)">
-					<path
-						d="M946.586,599.455c-13.713,70.541 -122.816,147.742 -248.121,162.703c-65.341,7.796 -129.674,14.962 -198.275,11.815c-112.191,-5.139 -200.716,-26.776 -200.716,-26.776c0,10.92 0.673,21.319 2.02,31.044c14.586,110.711 109.787,117.344 199.967,120.436c91.021,3.114 172.068,-22.44 172.068,-22.44l3.74,82.281c0,0 -63.666,34.185 -177.079,40.473c-62.539,3.437 -140.192,-1.573 -230.636,-25.511c-196.158,-51.916 -229.893,-260.996 -235.055,-473.143c-1.573,-62.987 -0.603,-122.381 -0.603,-172.056c0,-216.931 142.142,-280.516 142.142,-280.516c71.672,-32.914 194.655,-46.755 322.508,-47.8l3.142,0c127.853,1.045 250.917,14.886 322.583,47.8c0,0 142.138,63.585 142.138,280.516c0,0 1.783,160.053 -19.823,271.174"
-						style="fill-rule:nonzero;" />
-					<path
-						d="M798.748,345.11l0,262.667l-104.07,0l0,-254.946c0,-53.743 -22.614,-81.021 -67.847,-81.021c-50.012,0 -75.077,32.359 -75.077,96.343l0,139.547l-103.457,0l0,-139.547c0,-63.984 -25.07,-96.343 -75.082,-96.343c-45.233,0 -67.847,27.278 -67.847,81.021l0,254.946l-104.07,0l0,-262.667c0,-53.683 13.669,-96.343 41.127,-127.904c28.314,-31.561 65.395,-47.741 111.425,-47.741c53.256,0 93.585,20.468 120.251,61.41l25.922,43.451l25.927,-43.451c26.66,-40.942 66.99,-61.41 120.251,-61.41c46.025,0 83.106,16.18 111.425,47.741c27.453,31.561 41.122,74.221 41.122,127.904"
-						style="fill:#fff;fill-rule:nonzero;" />
-				</g>
-			</svg>
-		</a>
-		<a class="inline-block text-indigo-500 no-underline hover:text-indigo-900 hover:scale-105 transition-all text-center h-auto p-4"
-			href="https://matrix.to/#/#fluffychat:matrix.org">
-			<svg class="fill-current h-6" enable-background="new -91 49.217 56.693 56.693" id="Layer_1" version="1.1"
-				viewBox="-91 49.217 56.693 56.693" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink">
-				<path
-					d="M-38.3289,79.8244c-0.7526-2.2362-3.1756-3.4388-5.4117-2.6861l-4.5351,1.5264l-3.0737-9.1321l4.4169-1.4866  c2.2362-0.7526,3.4388-3.1756,2.6861-5.4117c-0.7526-2.2362-3.1756-3.4388-5.4117-2.6861l-4.4168,1.4866l-1.4877-4.4201  c-0.7527-2.2362-3.1756-3.4388-5.4117-2.6861v0c-2.2362,0.7526-3.4388,3.1756-2.6861,5.4117l1.4877,4.4201l-9.3246,3.1385  l-1.4697-4.3666c-0.7527-2.2362-3.1756-3.4388-5.4117-2.6861c-2.2362,0.7527-3.4388,3.1756-2.6861,5.4117l1.4697,4.3666  l-4.445,1.4961c-2.2362,0.7527-3.4388,3.1756-2.6861,5.4117v0c0.7526,2.2362,3.1756,3.4388,5.4117,2.6861l4.445-1.4961  l3.0737,9.1321l-4.3268,1.4563c-2.2362,0.7527-3.4388,3.1756-2.6861,5.4117c0.7526,2.2362,3.1756,3.4388,5.4117,2.6861  l4.3268-1.4563l1.5778,4.6877c0.7527,2.2362,3.1756,3.4388,5.4117,2.6861c2.2362-0.7527,3.4388-3.1756,2.6861-5.4117l-1.5778-4.6877  l9.3246-3.1385l1.5598,4.6342c0.7527,2.2362,3.1756,3.4388,5.4117,2.6861c2.2362-0.7527,3.4388-3.1756,2.6861-5.4117l-1.5598-4.6342  l4.5351-1.5264C-38.7789,84.4835-37.5762,82.0606-38.3289,79.8244z M-65.6982,84.5288l-3.0737-9.1321l9.3246-3.1385l3.0737,9.1321  L-65.6982,84.5288z" />
-			</svg>
-		</a>
-		<a class="inline-block no-underline hover:scale-105 transition-all text-center h-auto p-4"
-			href="https://ko-fi.com/krille">
-			<img src="kofi_button_dark.png" class="h-6 fill-current" />
-		</a>
-	</div>
-
-	<!--Footer-->
-	<div class="w-full text-sm text-center max-w-lg">
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://github.com/krille-chan/fluffychat">Source
-			code</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://github.com/krille-chan/fluffychat/-/blob/main/PRIVACY.md">Privacy</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://github.com/krille-chan/fluffychat/-/blob/main/CHANGELOG.md">Changelog</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://hosted.weblate.org/projects/fluffychat/">Translations</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://github.com/krille-chan/fluffychat/-/blob/main/docs/fdroid_repo.md">FluffyChat F-Droid
-			repository</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://keys.mailvelope.com/pks/lookup?op=get&search=christian-pauly%40posteo.de">Contact</a>
-		-
-		<a class="text-slate-700 dark:text-slate-200 no-underline hover:text-purple-800"
-			href="https://krillefear.gitlab.io">Created
-			by Krille Fear</a>
-	</div>
-
 </body>
 
 </html>

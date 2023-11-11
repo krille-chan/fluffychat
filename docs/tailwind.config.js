@@ -1,14 +1,18 @@
 module.exports = {
-    purge: [
-      './index.html'
-    ],
-    darkMode: false,
-    theme: {
-      extend: {},
+  content: [
+    './index.html'
+  ],
+  darkMode: true,
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#5625BA',
+        'secondary': '#41a2bc'
+      }
     },
-    variants: {
-      extend: {},
-    },
-    plugins: [],
-  }
-  
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
