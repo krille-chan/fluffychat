@@ -18,6 +18,7 @@ class ImageBubble extends StatelessWidget {
   final double width;
   final double height;
   final void Function()? onTap;
+  final BorderRadius? borderRadius;
 
   const ImageBubble(
     this.event, {
@@ -30,6 +31,7 @@ class ImageBubble extends StatelessWidget {
     this.height = 300,
     this.animated = false,
     this.onTap,
+    this.borderRadius,
     super.key,
   });
 
@@ -80,14 +82,16 @@ class ImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius =
+        this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
     return Material(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        borderRadius: borderRadius,
         side: BorderSide(color: Theme.of(context).dividerColor),
       ),
       child: InkWell(
         onTap: () => _onTap(context),
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        borderRadius: borderRadius,
         child: Hero(
           tag: event.eventId,
           child: ConstrainedBox(
