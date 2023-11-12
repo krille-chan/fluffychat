@@ -17,8 +17,13 @@ import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
+  /// The url to open.
   final String? url;
+
+  /// The visible name in the GUI. For example the name of a markdown link
+  /// which may differ from the actual url to open.
   final String? name;
+
   final BuildContext context;
 
   const UrlLauncher(this.context, this.url, [this.name]);
@@ -39,7 +44,9 @@ class UrlLauncher {
       return;
     }
 
-    if (url != name) {
+    if (name != null && url != name) {
+      // If there is a name which differs from the url, we need to make sure
+      // that the user can see the actual url before opening the browser.
       final consent = await showOkCancelAlertDialog(
         context: context,
         title: L10n.of(context)!.openLinkInBrowser,
