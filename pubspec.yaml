@@ -146,6 +146,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
+  flutter_secure_storage_linux: 1.1.3
   geolocator_android:
     hosted:
       name: geolocator_android
