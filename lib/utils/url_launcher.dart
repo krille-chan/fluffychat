@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
@@ -19,9 +18,10 @@ import 'platform_infos.dart';
 
 class UrlLauncher {
   final String? url;
+  final String? name;
   final BuildContext context;
 
-  const UrlLauncher(this.context, this.url);
+  const UrlLauncher(this.context, this.url, [this.name]);
 
   void launchUrl() async {
     if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
@@ -38,34 +38,17 @@ class UrlLauncher {
       );
       return;
     }
-    final consent = await showModalActionSheet<_LaunchUrlResponse>(
-      context: context,
-      title: url,
-      style: AdaptiveStyle.material,
-      actions: [
-        SheetAction(
-          key: _LaunchUrlResponse.copy,
-          icon: Icons.copy_outlined,
-          label: L10n.of(context)!.copy,
-        ),
-        SheetAction(
-          key: _LaunchUrlResponse.launch,
-          icon: Icons.launch_outlined,
-          label: L10n.of(context)!.openLinkInBrowser,
-        ),
-      ],
-    );
-    if (consent == _LaunchUrlResponse.copy) {
-      await Clipboard.setData(ClipboardData(text: uri.toString()));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.copiedToClipboard),
-        ),
-      );
-      return;
-    }
 
-    if (consent != _LaunchUrlResponse.launch) return;
+    if (url != name) {
+      final consent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context)!.openLinkInBrowser,
+        message: url,
+        okLabel: L10n.of(context)!.yes,
+        cancelLabel: L10n.of(context)!.cancel,
+      );
+      if (consent != OkCancelResult.ok) return;
+    }
 
     if (!{'https', 'http'}.contains(uri.scheme)) {
       // just launch non-https / non-http uris directly
@@ -240,9 +223,4 @@ class UrlLauncher {
       );
     }
   }
-}
-
-enum _LaunchUrlResponse {
-  launch,
-  copy,
 }
