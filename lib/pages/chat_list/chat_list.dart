@@ -378,7 +378,7 @@ class ChatListController extends State<ChatList>
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
-    CallKeepManager().initialize();
+    CallKeepManager().initialize(context: context);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =

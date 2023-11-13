@@ -1190,6 +1190,16 @@
         "type": "text",
         "placeholders": {}
     },
+    "phonePermissionDeniedNotice": "Phone permission denied. Please grant it to be able to properly send and recieve calls.",
+    "@phonePermissionDeniedNotice": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "phonePermissionPermanentlyDeniedNotice": "Phone permission permanently denied. Calling functionality will not work as intended. Visit settings to set the right permission.",
+    "@phonePermissionPermanentlyDeniedNotice": {
+        "type": "text",
+        "placeholders": {}
+    },
     "login": "Login",
     "@login": {
         "type": "text",

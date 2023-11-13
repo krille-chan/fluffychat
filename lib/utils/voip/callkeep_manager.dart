@@ -1,13 +1,16 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
 import 'package:callkeep/callkeep.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 
 class CallKeeper {
@@ -167,7 +170,33 @@ class CallKeepManager {
     Logs().v('[onPushKitToken] token => ${event.token}');
   }
 
-  Future<void> initialize() async {
+  Future<void> initialize({BuildContext? context}) async {
+    if (PlatformInfos.isAndroid) {
+      tryReadPhoneStatePermission().then((pStatus) {
+        log(pStatus.toString());
+        if (context != null) {
+          if (pStatus == PermissionStatus.denied ||
+              pStatus == PermissionStatus.permanentlyDenied) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                duration: const Duration(seconds: 4),
+                content: Text(
+                  pStatus == PermissionStatus.denied
+                      ? L10n.of(context)!.phonePermissionDeniedNotice
+                      : L10n.of(context)!
+                          .phonePermissionPermanentlyDeniedNotice,
+                ),
+                action: SnackBarAction(
+                  label: L10n.of(context)!.settings,
+                  onPressed: openAppSettings,
+                ),
+              ),
+            );
+          }
+        }
+      });
+    }
+
     _callKeep.on(CallKeepPerformAnswerCallAction(), answerCall);
     _callKeep.on(CallKeepDidPerformDTMFAction(), didPerformDTMFAction);
     _callKeep.on(
@@ -364,4 +393,9 @@ class CallKeepManager {
     }
     setCallHeld(event.callUUID, event.hold);
   }
+}
+
+Future<PermissionStatus?> tryReadPhoneStatePermission() async {
+  final info = await DeviceInfoPlugin().androidInfo;
+  return info.version.sdkInt > 30 ? await Permission.phone.request() : null;
 }
