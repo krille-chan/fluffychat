@@ -93,6 +93,7 @@ dependencies:
 
   # Add for Tawkie
   icons_plus: ^4.0.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   dart_code_metrics: ^5.7.5

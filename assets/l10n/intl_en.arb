@@ -2559,10 +2559,10 @@
   "notConnected": "Not connected",
   "connectYourSocialAccount": "Login to your account",
   "enterYourDetails": "Enter your details :",
-  "username": "Username",
-  "pleaseEnterYourUsername": "Please enter your username",
-  "password": "Password",
   "pleaseEnterPassword": "Please enter your password",
-  "cancel": "Cancel",
-  "login": "Login"
+    "usernameNotFound": "The username you entered doesn't appear to belong to an account. Please check your username and try again.",
+    "passwordIncorrect": "Password incorrect",
+    "rateLimit": "An error has occurred, please wait a few minutes before try again",
+    "err_": "Error",
+    "err_desc": "An error has occurred:"
 }

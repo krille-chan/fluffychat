@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import '../../widgets/matrix.dart';
 import '../add_bridge/add_bridge_body.dart';
 
+// Shows a button redirecting to the bridge bots social network chat connection page
 class AddChatNetwork extends StatelessWidget {
   const AddChatNetwork({super.key});
 
@@ -32,9 +33,9 @@ class AddChatNetwork extends StatelessWidget {
                   ),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFEEA77),
-              ),
+              // style: ElevatedButton.styleFrom(
+              //   backgroundColor: const Color(0xFFFEEA77),
+              // ),
               child: Text(
                 L10n.of(context)!.connectChatNetworks,
               ),
