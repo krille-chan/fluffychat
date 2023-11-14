@@ -152,6 +152,13 @@ class SettingsView extends StatelessWidget {
                 onChanged: controller.firstRunBootstrapAction,
               ),
             const Divider(thickness: 1),
+            // ListTile redirects to bots bridges page
+            ListTile(
+              leading: const Icon(Icons.account_tree_outlined),
+              title: Text(L10n.of(context)!.bridgeBot_menuItemTitle),
+              onTap: () => context.go('/rooms/settings/addbridgebot'),
+              trailing: const Icon(Icons.chevron_right_outlined),
+            ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),

@@ -46,18 +46,11 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // The "go back" provided by the AppBar may no longer be useful now that this page opens with the settings page on Web
-      appBar: !PlatformInfos.isWeb ? AppBar() : null,
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            // Small space for the web version
-            PlatformInfos.isWeb
-                ? const SizedBox(
-                    height: 20,
-                  )
-                : Container(),
             buildHeaderBridgeText(context),
             buildHeaderBridgeSubText(context),
             Center(
