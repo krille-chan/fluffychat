@@ -2564,5 +2564,6 @@
     "passwordIncorrect": "Password incorrect",
     "rateLimit": "An error has occurred, please wait a few minutes before try again",
     "err_": "Error",
-    "err_desc": "An error has occurred:"
+    "err_desc": "An error has occurred:",
+    "bridgeBot_menuItemTitle" : "Connected social networks"
 }

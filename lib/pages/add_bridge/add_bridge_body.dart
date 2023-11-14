@@ -4,17 +4,15 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
 
+import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
 import 'model/social_network.dart';
 
 // Page offering brigde bot connections to social network chats
-// Takes the user's Client ( Matrix ) as parameter
 class AddBridgeBody extends StatefulWidget {
-  final Client client;
-  const AddBridgeBody({super.key, required this.client});
+  const AddBridgeBody({super.key,});
 
   @override
   State<AddBridgeBody> createState() => _AddBridgeBodyState();
@@ -29,7 +27,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 
   @override
   void initState() {
-    botConnection = BotBridgeConnection(client: widget.client);
+    final client = Matrix.of(context).client;
+    botConnection = BotBridgeConnection(client: client);
     super.initState();
     _initStateAsync();
   }
@@ -46,11 +45,15 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      // The "go back" provided by the AppBar may no longer be useful now that this page opens with the settings page on Web
+      appBar: !PlatformInfos.isWeb ?AppBar() :null,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            // Small space for the web version
+            PlatformInfos.isWeb
+                ?const SizedBox(height: 20,) :Container(),
             buildHeaderBridgeText(context),
             buildHeaderBridgeSubText(context),
             Center(

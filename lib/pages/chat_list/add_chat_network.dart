@@ -1,6 +1,7 @@
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import '../../widgets/matrix.dart';
 import '../add_bridge/add_bridge_body.dart';
 
@@ -23,15 +24,8 @@ class AddChatNetwork extends StatelessWidget {
               ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return AddBridgeBody(
-                        client: Matrix.of(context).client,
-                      );
-                    },
-                  ),
-                );
+                // Redirect to bot social network connection page via route
+                context.go('/rooms/settings/addbridgebot');
               },
               // style: ElevatedButton.styleFrom(
               //   backgroundColor: const Color(0xFFFEEA77),
