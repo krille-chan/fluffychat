@@ -2565,5 +2565,7 @@
     "rateLimit": "An error has occurred, please wait a few minutes before try again",
     "err_": "Error",
     "err_desc": "An error has occurred:",
-    "bridgeBot_menuItemTitle" : "Connected social networks"
+    "bridgeBot_menuItemTitle" : "Connected social networks",
+    "bridgeBot_deleteConvTitle": "Delete Conversation",
+    "bridgeBot_deleteConvDescription": "Do you want to delete the conversation with the bot?"
 }

@@ -89,7 +89,7 @@ void showCatchErrorDialog(BuildContext context, Object e) {
               Navigator.of(context).pop();
             },
             child: Text(
-                L10n.of(context)!.ok,
+              L10n.of(context)!.ok,
             ),
           ),
         ],

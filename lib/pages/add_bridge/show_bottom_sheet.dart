@@ -9,11 +9,10 @@ import 'model/social_network.dart';
 
 // Disconnect button display
 Future<bool> showBottomSheetBridge(
-    BuildContext context,
-    SocialNetwork network,
-    BotBridgeConnection botConnection,
-    ) async {
-
+  BuildContext context,
+  SocialNetwork network,
+  BotBridgeConnection botConnection,
+) async {
   final Completer<bool> completer = Completer<bool>();
 
   showModalBottomSheet(
@@ -30,20 +29,22 @@ Future<bool> showBottomSheetBridge(
               ),
             ),
             onTap: () async {
-              try{
+              try {
                 bool result = true;
                 Navigator.pop(context);
 
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
-                    if(network.name == "Instagram") result = await botConnection.disconnectToInstagram();
+                    if (network.name == "Instagram") {
+                      result = await botConnection.disconnectToInstagram();
+                    }
 
                     // Returns True if disconnection has been made
                     completer.complete(true);
                   },
                 );
-              }catch (e) {
+              } catch (e) {
                 Navigator.of(context).pop();
                 //To view other catch-related errors
                 showCatchErrorDialog(context, e);
@@ -57,4 +58,3 @@ Future<bool> showBottomSheetBridge(
 
   return completer.future;
 }
-

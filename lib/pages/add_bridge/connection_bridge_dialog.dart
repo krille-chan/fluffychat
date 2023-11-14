@@ -11,7 +11,8 @@ import 'model/social_network.dart';
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 // ShowDialog for Instagram connection
-Future<bool> connectToInstagram(BuildContext context, SocialNetwork network, BotBridgeConnection botConnection) async {
+Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
+    BotBridgeConnection botConnection) async {
   String? username;
   String? password;
 
@@ -40,7 +41,8 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network, Bot
                   Text(L10n.of(context)!.enterYourDetails),
                   const SizedBox(height: 5),
                   TextFormField(
-                    decoration: InputDecoration(labelText: L10n.of(context)!.username),
+                    decoration:
+                        InputDecoration(labelText: L10n.of(context)!.username),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return L10n.of(context)!.pleaseEnterYourUsername;
@@ -48,12 +50,14 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network, Bot
                       return null;
                     },
                     onSaved: (value) {
-                      username = value; // Saves the value in the username variable
+                      username =
+                          value; // Saves the value in the username variable
                     },
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
-                    decoration: InputDecoration(labelText: L10n.of(context)!.password),
+                    decoration:
+                        InputDecoration(labelText: L10n.of(context)!.password),
                     obscureText: true,
                     enableSuggestions: false,
                     autocorrect: false,
@@ -64,7 +68,8 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network, Bot
                       return null;
                     },
                     onSaved: (value) {
-                      password = value; // Saves the value in the password variable
+                      password =
+                          value; // Saves the value in the password variable
                     },
                   ),
                 ],
@@ -84,35 +89,33 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network, Bot
                     formKey.currentState!.save(); // Save form values
 
                     try {
-                      String result = ""; // Variable to store the result of the connection
+                      String result =
+                          ""; // Variable to store the result of the connection
 
                       // To show Loading while executing the function
                       await showFutureLoadingDialog(
                         context: context,
                         future: () async {
-
-                          if (network.name == "Instagram"){
-                            result = await botConnection.createBridgeInstagram(username!, password!);
+                          if (network.name == "Instagram") {
+                            result = await botConnection.createBridgeInstagram(
+                                username!, password!);
                           }
                         },
                       );
 
-                      if(result == "success"){
+                      if (result == "success") {
                         Navigator.of(context).pop();
-                        completer.complete(true); // returns True if the connection is successful
-
-                      }else if(result == "errorUsername"){
+                        completer.complete(
+                            true); // returns True if the connection is successful
+                      } else if (result == "errorUsername") {
                         // Display a showDialog with an error message related to the identifier
                         showErrorUsernameDialog(context);
-
-                      }else if(result == "errorPassword"){
+                      } else if (result == "errorPassword") {
                         // Display a showDialog with an error message related to the password
                         showErrorPasswordDialog(context);
-
-                      }else if(result == "rateLimitError"){
+                      } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
                         showRateLimitDialog(context);
-
                       }
                     } catch (e) {
                       Navigator.of(context).pop();
