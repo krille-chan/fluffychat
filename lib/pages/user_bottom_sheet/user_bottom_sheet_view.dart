@@ -40,7 +40,11 @@ class UserBottomSheetView extends StatelessWidget {
                 userId: userId,
                 client: client,
                 builder: (context, presence) {
-                  if (presence == null) return const SizedBox.shrink();
+                  if (presence == null ||
+                      (presence.presence == PresenceType.offline &&
+                          presence.lastActiveTimestamp == null)) {
+                    return const SizedBox.shrink();
+                  }
 
                   final dotColor = presence.presence.isOnline
                       ? Colors.green
