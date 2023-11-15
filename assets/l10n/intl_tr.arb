@@ -2617,5 +2617,45 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "todoLists": "",
+  "@todoLists": {},
+  "editTodo": "",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "noTodosYet": "",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newTodo": "",
+  "@newTodo": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "todoListChangedError": "",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "",
+  "@kickUserDescription": {}
 }
