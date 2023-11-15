@@ -2514,5 +2514,146 @@
   "createGroup": "Créer un groupe",
   "@createGroup": {},
   "importNow": "Importer maintenant",
-  "@importNow": {}
+  "@importNow": {},
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "setColorTheme": "",
+  "@setColorTheme": {},
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "requests": "",
+  "@requests": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "tryAgain": "",
+  "@tryAgain": {},
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "todoLists": "",
+  "@todoLists": {},
+  "messagesStyle": "",
+  "@messagesStyle": {},
+  "chatDescription": "",
+  "@chatDescription": {},
+  "editTodo": "",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "invalidServerName": "",
+  "@invalidServerName": {},
+  "signInWithPassword": "",
+  "@signInWithPassword": {},
+  "pleaseAddATitle": "",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "setChatDescription": "",
+  "@setChatDescription": {},
+  "redactedBy": "",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "signInWith": "",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "noTodosYet": "",
+  "@noTodosYet": {},
+  "optionalRedactReason": "",
+  "@optionalRedactReason": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "exportEmotePack": "",
+  "@exportEmotePack": {},
+  "savedEmotePack": "",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "redactedByBecause": "",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "anyoneCanKnock": "",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "",
+  "@redactMessageDescription": {},
+  "invalidInput": "",
+  "@invalidInput": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {},
+  "report": "",
+  "@report": {},
+  "addChatDescription": "",
+  "@addChatDescription": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "directChat": "",
+  "@directChat": {},
+  "noOneCanJoin": "",
+  "@noOneCanJoin": {},
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendTypingNotifications": "",
+  "@sendTypingNotifications": {},
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "noChatDescriptionYet": "",
+  "@noChatDescriptionYet": {},
+  "newTodo": "",
+  "@newTodo": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "todoListChangedError": "",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "profileNotFound": "",
+  "@profileNotFound": {},
+  "jump": "",
+  "@jump": {},
+  "shareInviteLink": "",
+  "@shareInviteLink": {},
+  "emoteKeyboardNoRecents": "",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "",
+  "@setTheme": {},
+  "replace": "",
+  "@replace": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "invite": "",
+  "@invite": {},
+  "continueWith": "",
+  "@continueWith": {}
 }
