@@ -146,6 +146,16 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  # https://github.com/fluttercommunity/flutter_blurhash/pull/58
+  flutter_blurhash:
+    git:
+      url: https://github.com/Craftplacer/flutter_blurhash.git
+      ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
+  # https://github.com/simpleclub-extended/flutter_math_fork/pull/87
+  flutter_math_fork:
+    git:
+      url: https://github.com/The-Redhat/flutter_math_fork.git
+      ref: 3442b36a436880ce1c023e25c868d6f4004c4c24
   # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
   flutter_secure_storage_linux: 1.1.3
   geolocator_android:
