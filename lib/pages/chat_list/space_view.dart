@@ -234,13 +234,13 @@ class _SpaceViewState extends State<SpaceView> {
         );
         final spaceChildren = response.rooms;
         final canLoadMore = response.nextBatch != null;
-        return WillPopScope(
-          onWillPop: () async {
+        return PopScope(
+          canPop: parentSpace == null,
+          onPopInvoked: (pop) async {
+            if (pop) return;
             if (parentSpace != null) {
               widget.controller.setActiveSpace(parentSpace.id);
-              return false;
             }
-            return true;
           },
           child: CustomScrollView(
             controller: widget.scrollController,
