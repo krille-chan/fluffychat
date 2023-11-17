@@ -2566,5 +2566,96 @@
     }
   },
   "requests": "Žádosti",
-  "@requests": {}
+  "@requests": {},
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "todoLists": "",
+  "@todoLists": {},
+  "editTodo": "",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "noTodosYet": "",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "savedEmotePack": "",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "invalidInput": "",
+  "@invalidInput": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {},
+  "report": "",
+  "@report": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "newTodo": "",
+  "@newTodo": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "todoListChangedError": "",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "emoteKeyboardNoRecents": "",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "invite": "",
+  "@invite": {},
+  "indexedDbErrorLong": "",
+  "@indexedDbErrorLong": {},
+  "callingAccount": "",
+  "@callingAccount": {},
+  "enterSpace": "",
+  "@enterSpace": {},
+  "noKeyForThisMessage": "",
+  "@noKeyForThisMessage": {},
+  "readUpToHere": "",
+  "@readUpToHere": {},
+  "appearOnTopDetails": "",
+  "@appearOnTopDetails": {},
+  "enterRoom": "",
+  "@enterRoom": {},
+  "hideUnimportantStateEvents": "",
+  "@hideUnimportantStateEvents": {},
+  "noBackupWarning": "",
+  "@noBackupWarning": {},
+  "indexedDbErrorTitle": "",
+  "@indexedDbErrorTitle": {}
 }

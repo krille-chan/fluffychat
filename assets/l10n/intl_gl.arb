@@ -2657,5 +2657,7 @@
   "pleaseEnterANumber": "Escribe un número maior de cero",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "A usuaria foi expulsada pero non vetada. En conversas públicas a usuaria pode volver cando queira.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {}
 }
