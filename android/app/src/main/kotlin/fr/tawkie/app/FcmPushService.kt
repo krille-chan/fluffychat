@@ -1,8 +1,8 @@
-/*package chat.fluffy.fluffychat
+/*package fr.tawkie.app
 
 import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
 
-import chat.fluffy.fluffychat.MainActivity
+import fr.tawkie.app.MainActivity
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
