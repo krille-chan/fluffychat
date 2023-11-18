@@ -2,7 +2,7 @@ diff --git a/android/app/build.gradle b/android/app/build.gradle
 index 001fbd72..339b35af 100644
 --- a/android/app/build.gradle
 +++ b/android/app/build.gradle
-@@ -68,6 +68,10 @@ android {
+@@ -70,6 +70,10 @@
          }
          release {
              signingConfig signingConfigs.release
@@ -12,7 +12,7 @@ index 001fbd72..339b35af 100644
 +            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
          }
      }
- }
+     // https://stackoverflow.com/a/77494454/8222484
 @@ -78,8 +82,11 @@ flutter {
  
  dependencies {
