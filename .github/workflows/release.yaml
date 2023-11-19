@@ -140,9 +140,9 @@ jobs:
           bundle install
           bundle update fastlane
           bundle exec fastlane deploy_internal_test
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              bundle exec fastlane deploy_candidate
-          else
-              bundle exec fastlane deploy_release
+          # if [[ $GITHUB_REF_NAME == rc* ]]; then
+          #     bundle exec fastlane deploy_candidate
+          # else
+          #     bundle exec fastlane deploy_release
           fi
           cd ..
