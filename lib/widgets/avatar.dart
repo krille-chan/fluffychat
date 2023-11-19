@@ -78,6 +78,7 @@ class Avatar extends StatelessWidget {
           ),
         ),
         PresenceBuilder(
+          client: client,
           userId: presenceUserId,
           builder: (context, presence) {
             if (presence == null ||
