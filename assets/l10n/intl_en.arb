@@ -2550,5 +2550,14 @@
   "editTodo": "Edit todo",
   "pleaseAddATitle": "Please add a title",
   "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
-  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted."
+  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
+  "yourGlobalUserIdIs": "Your global user-ID is: ",
+  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+        "query": {}
+    }
+  },
+  "searchChatsRooms": "Search for #chats, @users..."
 }
