@@ -144,5 +144,5 @@ jobs:
           #     bundle exec fastlane deploy_candidate
           # else
           #     bundle exec fastlane deploy_release
-          fi
+          # fi
           cd ..
