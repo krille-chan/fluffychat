@@ -76,7 +76,7 @@
             "mxid": {}
         }
     },
-    "addChatDescription": "Add a chat description",
+    "addChatDescription": "Add a chat description...",
     "addToSpace": "Add to space",
     "@addToSpace": {},
     "admin": "Admin",
@@ -2559,5 +2559,8 @@
         "query": {}
     }
   },
-  "searchChatsRooms": "Search for #chats, @users..."
+  "searchChatsRooms": "Search for #chats, @users...",
+  "groupName": "Group name",
+  "createGroupAndInviteUsers": "Create a group and invite users",
+  "groupCanBeFoundViaSearch": "Group can be found via search"
 }

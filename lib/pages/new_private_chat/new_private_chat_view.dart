@@ -11,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -28,6 +29,7 @@ class NewPrivateChatView extends StatelessWidget {
         min(MediaQuery.of(context).size.width - 16, 256).toDouble();
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: Theme.of(context).appBarTheme.elevation,
         leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -121,18 +123,18 @@ class NewPrivateChatView extends StatelessWidget {
                         onPressed: controller.copyUserId,
                       ),
                     ),
-                    //if (PlatformInfos.isMobile)
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        foregroundColor:
-                            Theme.of(context).colorScheme.onPrimaryContainer,
-                        child: const Icon(Icons.qr_code_scanner_outlined),
+                    if (PlatformInfos.isMobile)
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          child: const Icon(Icons.qr_code_scanner_outlined),
+                        ),
+                        title: Text(L10n.of(context)!.scanQrCode),
+                        onTap: controller.openScannerAction,
                       ),
-                      title: Text(L10n.of(context)!.scanQrCode),
-                      onTap: controller.openScannerAction,
-                    ),
                     ListTile(
                       leading: CircleAvatar(
                         backgroundColor:
@@ -234,6 +236,7 @@ class NewPrivateChatView extends StatelessWidget {
                           leading: Avatar(
                             name: displayname,
                             mxContent: contact.avatarUrl,
+                            presenceUserId: contact.userId,
                           ),
                           title: Text(displayname),
                           subtitle: Text(contact.userId),
