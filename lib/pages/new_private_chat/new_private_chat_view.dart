@@ -29,7 +29,7 @@ class NewPrivateChatView extends StatelessWidget {
         min(MediaQuery.of(context).size.width - 16, 256).toDouble();
     return Scaffold(
       appBar: AppBar(
-        scrolledUnderElevation: Theme.of(context).appBarTheme.elevation,
+        scrolledUnderElevation: 0,
         leading: const Center(child: BackButton()),
         title: Text(L10n.of(context)!.newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

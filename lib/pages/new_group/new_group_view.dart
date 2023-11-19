@@ -42,11 +42,14 @@ class NewGroupView extends StatelessWidget {
                       radius: Avatar.defaultSize / 2,
                       child: avatar == null
                           ? const Icon(Icons.camera_alt_outlined)
-                          : Image.memory(
-                              avatar,
-                              width: Avatar.defaultSize,
-                              height: Avatar.defaultSize,
-                              fit: BoxFit.cover,
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(90),
+                              child: Image.memory(
+                                avatar,
+                                width: Avatar.defaultSize,
+                                height: Avatar.defaultSize,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                     ),
                   ),
