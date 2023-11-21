@@ -33,10 +33,18 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
+    final Room? roomBot = client.getRoomById(directChat);
+
     bool result = false; // Variable to track the result of the connection
 
     // Get the latest messages from the room (limited to the specified number)
     while (true) {
+
+      // Send the "ping" message to the bot
+      await roomBot?.sendTextEvent("ping");
+      await Future.delayed(const Duration(seconds: 2)); // Wait 2 sec
+
+      // To take latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -50,24 +58,7 @@ class BotBridgeConnection {
             latestMessages.first.content['body'].toString() ?? '';
 
         // to find out if we're connected
-        if (!onlineMatch.hasMatch(latestMessage) &&
-            !notLoggedMatch.hasMatch(latestMessage) &&
-            !alreadySuccessMatch.hasMatch(latestMessage) &&
-            !successfullyMatch.hasMatch(latestMessage) &&
-            !disconnectMatch.hasMatch(latestMessage)) {
-          // Send the "ping" message to the bot
-          final Map<String, Object?> messageBody = {
-            'msgtype': 'm.text',
-            'body': "ping",
-          };
-          await client.sendMessage(
-            directChat,
-            'm.room.message',
-            const Uuid().v4(), // Generate random txnId
-            messageBody,
-          );
-          await Future.delayed(const Duration(seconds: 1)); // Wait 2 sec
-        } else if (onlineMatch.hasMatch(latestMessage) ||
+        if (onlineMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch.hasMatch(latestMessage) ||
             successfullyMatch.hasMatch(latestMessage)) {
           print("You're logged");
@@ -104,21 +95,15 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
+    final Room? roomBot = client.getRoomById(directChat);
+
     String result = ""; // Variable to track the result of the connection
 
     // Get the latest messages from the room (limited to the specified number)
     while (true) {
+
       // Send the "login" message to the bot
-      final Map<String, Object?> messageBody = {
-        'msgtype': 'm.text',
-        'body': "login $username $password",
-      };
-      await client.sendMessage(
-        directChat,
-        'm.room.message',
-        const Uuid().v4(), // Generate random txnId
-        messageBody,
-      );
+      await roomBot?.sendTextEvent("login $username $password");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -175,20 +160,14 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
+    final Room? roomBot = client.getRoomById(directChat);
+
     bool result = true; // Variable to track the result of the connection
 
     while (true) {
+
       // Send the "logout" message to the bot
-      final Map<String, Object?> messageBody = {
-        'msgtype': 'm.text',
-        'body': "logout",
-      };
-      await client.sendMessage(
-        directChat,
-        'm.room.message',
-        const Uuid().v4(), // Generate random txnId
-        messageBody,
-      );
+      await roomBot?.sendTextEvent("logout");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
       // Get the latest messages from the room (limited to the specified number)
