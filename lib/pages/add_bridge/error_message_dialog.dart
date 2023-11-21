@@ -81,6 +81,9 @@ void showCatchErrorDialog(BuildContext context, Object e) {
       return AlertDialog(
         title: Text(
           L10n.of(context)!.err_,
+          style: const TextStyle(
+            color: Colors.red,
+          ),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,

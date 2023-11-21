@@ -17,7 +17,7 @@ class BotBridgeConnection {
   });
 
   // Ping to find out if we're connected to Instagram
-  Future<bool> instagramPing() async {
+  Future<String> instagramPing() async {
     const String botUserId = '@instagrambot:loveto.party';
 
     // Message to spot when we're online
@@ -35,13 +35,18 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    bool result = false; // Variable to track the result of the connection
+    String result = ''; // Variable to track the result of the connection
+
+    // variable for loop limit
+    const int maxIterations = 2;
+    int currentIteration = 0;
 
     // Get the latest messages from the room (limited to the specified number)
-    while (true) {
+    while (currentIteration < maxIterations) {
+
       // Send the "ping" message to the bot
       await roomBot?.sendTextEvent("ping");
-      await Future.delayed(const Duration(seconds: 2)); // Wait 2 sec
+      await Future.delayed(const Duration(seconds: 3)); // Wait 2 sec
 
       // To take latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -62,17 +67,26 @@ class BotBridgeConnection {
             successfullyMatch.hasMatch(latestMessage)) {
           print("You're logged");
 
-          result = true;
+          result = 'Connected';
 
           break; // Exit the loop if bridge is connected
         } else if (notLoggedMatch.hasMatch(latestMessage) ||
             disconnectMatch.hasMatch(latestMessage)) {
           print('Not connected');
 
+          result = 'Not Connected';
           break; // Exit the loop if bridge is disconnected
         }
       }
+      currentIteration++;
     }
+
+    if(currentIteration == maxIterations){
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
     return result;
   }
 
@@ -98,8 +112,13 @@ class BotBridgeConnection {
 
     String result = ""; // Variable to track the result of the connection
 
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
     // Get the latest messages from the room (limited to the specified number)
-    while (true) {
+    while (currentIteration < maxIterations) {
+
       // Send the "login" message to the bot
       await roomBot?.sendTextEvent("login $username $password");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -143,12 +162,20 @@ class BotBridgeConnection {
           break;
         }
       }
+      currentIteration++;
     }
+
+    if(currentIteration == maxIterations){
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
     return result;
   }
 
   // To disconnect from Instagram
-  Future<bool> disconnectToInstagram() async {
+  Future<String> disconnectToInstagram() async {
     const String botUserId = '@instagrambot:loveto.party';
 
     final RegExp successMatch = RegExp(r"Successfully logged out");
@@ -161,9 +188,13 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    bool result = true; // Variable to track the result of the connection
+    String result = "Connected"; // Variable to track the result of the connection
 
-    while (true) {
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
       // Send the "logout" message to the bot
       await roomBot?.sendTextEvent("logout");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -185,17 +216,25 @@ class BotBridgeConnection {
         if (!successMatch.hasMatch(latestMessage) &&
             !aldreadyLogoutMatch.hasMatch(latestMessage)) {
           print("You're always connected");
-          result = true;
+          result = 'Connected';
           break;
         } else if (successMatch.hasMatch(latestMessage) ||
             aldreadyLogoutMatch.hasMatch(latestMessage)) {
           print("You're disconnected");
 
-          result = false;
+          result = 'Not Connected';
           break; // Exit the loop if bridge is connected
         }
       }
+      currentIteration++;
     }
+
+    if(currentIteration == maxIterations){
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
     return result;
   }
 
@@ -216,8 +255,8 @@ class BotBridgeConnection {
   }
 
   // Function to manage missed deadlines
-  Future<bool> pingWithTimeout(
-      BuildContext context, Future<bool> pingFunction) async {
+  Future<String> pingWithTimeout(
+      BuildContext context, Future<String> pingFunction) async {
     try {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));

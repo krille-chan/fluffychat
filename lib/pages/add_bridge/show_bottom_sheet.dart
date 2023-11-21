@@ -30,9 +30,12 @@ Future<bool> showBottomSheetBridge(
             ),
             onTap: () async {
               try {
-                bool result = true;
-                Navigator.pop(context);
+                Navigator.of(context).pop();
 
+                String result =
+                    ""; // Variable to store the result of the connection
+
+                // To show Loading while executing the function
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
@@ -40,23 +43,33 @@ Future<bool> showBottomSheetBridge(
                       case "Instagram":
                         result = await botConnection.disconnectToInstagram();
                         break;
-                      // For other networks
-                    }
-
-                    if (result != false) {
-                      completer.complete(false);
+                    // For other networks
                     }
                   },
                 );
 
-                completer.complete(true);
-              } catch (e) {
-                print("error: $e");
+                if (result == "Not Connected") {
 
+                  completer.complete(
+                      true,); // returns true if is not connected
+
+                } else if (result == "error" || result == 'Connected') {
+                  completer.complete(
+                    false,);
+                  // Display a showDialog with an unknown error message
+                  showCatchErrorDialog(
+                    context,
+                    L10n.of(context)!.err_tryAgain,
+                  );
+                }
+              } catch (e) {
                 Navigator.of(context).pop();
+                print(('Error: $e'));
+
                 //To view other catch-related errors
-                showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+                showCatchErrorDialog(context, e);
               }
+
             },
           ),
         ],

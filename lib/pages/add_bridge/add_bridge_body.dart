@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
@@ -27,7 +28,6 @@ class AddBridgeBody extends StatefulWidget {
 
 class _AddBridgeBodyState extends State<AddBridgeBody> {
   late BotBridgeConnection botConnection;
-
   bool timeoutErrorOccurred = false;
 
   @override
@@ -38,19 +38,30 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     _initStateAsync();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 // Online status update when page is opened
   Future<void> _initStateAsync() async {
     try {
       final instagramConnected = await botConnection.pingWithTimeout(
-          context, botConnection.instagramPing());
-      setState(() {
-        socialNetwork
-            .firstWhere((element) => element.name == "Instagram")
-            .connected = instagramConnected;
-        socialNetwork
-            .firstWhere((element) => element.name == "Instagram")
-            .loading = false;
-      });
+          context, botConnection.instagramPing(),);
+      if(instagramConnected != 'error' && mounted){
+        setState(() {
+          socialNetwork
+              .firstWhere((element) => element.name == "Instagram")
+              .connected = instagramConnected == 'Connected' ? true : false;
+          socialNetwork
+              .firstWhere((element) => element.name == "Instagram")
+              .loading = false;
+        });
+      }else{
+        showCatchErrorDialog(
+          context,
+          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",);
+      }
     } on TimeoutException {
       // To indicate that the time-out error has occurred
       timeoutErrorOccurred = true;
@@ -58,9 +69,11 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       print("Error pinging Instagram: $error");
       await Future.delayed(
           const Duration(seconds: 1)); // Precaution to let the page load
-      if (!timeoutErrorOccurred) {
-        showCatchErrorDialog(context,
-            "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}");
+      if (mounted && !timeoutErrorOccurred) {
+        showCatchErrorDialog(
+          context,
+          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
+        );
       }
     }
   }

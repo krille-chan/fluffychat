@@ -96,9 +96,14 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
                       await showFutureLoadingDialog(
                         context: context,
                         future: () async {
-                          if (network.name == "Instagram") {
-                            result = await botConnection.createBridgeInstagram(
-                                username!, password!);
+                          switch (network.name) {
+                            case "Instagram":
+                              result = await botConnection.createBridgeInstagram(
+                                username!,
+                                password!,
+                              );
+                              break;
+                          // Other network
                           }
                         },
                       );
@@ -116,6 +121,12 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
                       } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
                         showRateLimitDialog(context);
+                      } else if (result == "error") {
+                        // Display a showDialog with an unknown error message
+                        showCatchErrorDialog(
+                          context,
+                          L10n.of(context)!.err_tryAgain,
+                        );
                       }
                     } catch (e) {
                       Navigator.of(context).pop();

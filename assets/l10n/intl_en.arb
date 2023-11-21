@@ -2567,6 +2567,7 @@
     "err_desc": "An error has occurred:",
     "err_toConnect": "A problem occurred when connecting to",
     "err_timeOut": "A network problem has been detected",
+    "err_tryAgain": "Please try again",
     "bridgeBot_menuItemTitle" : "Connected social networks",
     "bridgeBot_deleteConvTitle": "Delete Conversation",
     "bridgeBot_deleteConvDescription": "Do you want to delete the conversation with the bot?",
