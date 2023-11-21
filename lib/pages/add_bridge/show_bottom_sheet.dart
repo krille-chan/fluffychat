@@ -37,8 +37,11 @@ Future<bool> showBottomSheetBridge(
                   context: context,
                   future: () async {
 
-                    if (network.name == "Instagram") {
-                      result = await botConnection.disconnectToInstagram();
+                    switch (network.name) {
+                      case "Instagram":
+                        result = await botConnection.disconnectToInstagram();
+                        break;
+                    // For other networks
                     }
 
                     if(result != false){

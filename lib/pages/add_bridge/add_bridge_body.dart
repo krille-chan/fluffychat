@@ -109,15 +109,22 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   void handleSocialNetworkAction(SocialNetwork network) async {
     if (network.loading == false) {
       if (network.connected != true) {
-        if(network.name == "Instagram"){
+        bool success = false;
+        switch (network.name) {
+
+          case "Instagram":
           // Trying to connect to Instagram
-          final bool success =
-          await connectToInstagram(context, network, botConnection);
-          if (success) {
-            setState(() {
-              network.connected = true;
-            });
-          }
+            success =
+            await connectToInstagram(context, network, botConnection);
+            break;
+
+        // For other networks
+
+        }
+        if (success) {
+          setState(() {
+            network.connected = true;
+          });
         }
       } else {
         // Disconnect button, for the moment only this choice
