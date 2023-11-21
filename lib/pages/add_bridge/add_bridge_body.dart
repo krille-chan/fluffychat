@@ -4,6 +4,7 @@ import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:fluffychat/pages/add_bridge/show_delete_conversation_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/platform_size.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             Center(
               child: SizedBox(
                 width: PlatformInfos.isWeb
-                    ? MediaQuery.of(context).size.width / 2
+                    ? PlatformWidth.webWidth
                     : null,
                 child: ListView.builder(
                   shrinkWrap: true,

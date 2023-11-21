@@ -11,6 +11,7 @@ import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 import '../config/app_config.dart';
 import '../utils/custom_scroll_behaviour.dart';
+import '../utils/platform_size.dart';
 import 'matrix.dart';
 
 class FluffyChatApp extends StatelessWidget {
@@ -38,6 +39,7 @@ class FluffyChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PlatformWidth.initialize(context); // To initialize size variables according to platform
     return ThemeBuilder(
       builder: (context, themeMode, primaryColor) => MaterialApp.router(
         title: AppConfig.applicationName,
