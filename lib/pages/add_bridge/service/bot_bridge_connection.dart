@@ -39,7 +39,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (true) {
-
       // Send the "ping" message to the bot
       await roomBot?.sendTextEvent("ping");
       await Future.delayed(const Duration(seconds: 2)); // Wait 2 sec
@@ -101,7 +100,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (true) {
-
       // Send the "login" message to the bot
       await roomBot?.sendTextEvent("login $username $password");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -154,7 +152,8 @@ class BotBridgeConnection {
     const String botUserId = '@instagrambot:loveto.party';
 
     final RegExp successMatch = RegExp(r"Successfully logged out");
-    final RegExp aldreadyLogoutMatch = RegExp(r"That command requires you to be logged in.");
+    final RegExp aldreadyLogoutMatch =
+        RegExp(r"That command requires you to be logged in.");
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -165,7 +164,6 @@ class BotBridgeConnection {
     bool result = true; // Variable to track the result of the connection
 
     while (true) {
-
       // Send the "logout" message to the bot
       await roomBot?.sendTextEvent("logout");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -189,8 +187,8 @@ class BotBridgeConnection {
           print("You're always connected");
           result = true;
           break;
-        } else if (successMatch.hasMatch(latestMessage)
-            || aldreadyLogoutMatch.hasMatch(latestMessage)) {
+        } else if (successMatch.hasMatch(latestMessage) ||
+            aldreadyLogoutMatch.hasMatch(latestMessage)) {
           print("You're disconnected");
 
           result = false;
@@ -218,7 +216,8 @@ class BotBridgeConnection {
   }
 
   // Function to manage missed deadlines
-  Future<bool> pingWithTimeout(BuildContext context, Future<bool> pingFunction) async {
+  Future<bool> pingWithTimeout(
+      BuildContext context, Future<bool> pingFunction) async {
     try {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));

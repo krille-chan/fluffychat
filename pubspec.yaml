@@ -42,7 +42,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^4.0.0
-  flutter_math_fork: ^0.7.1
+  flutter_math_fork: ^0.7.2
   flutter_olm: ^1.2.0
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1

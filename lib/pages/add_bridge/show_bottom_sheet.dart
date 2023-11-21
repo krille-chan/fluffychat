@@ -36,22 +36,20 @@ Future<bool> showBottomSheetBridge(
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
-
                     switch (network.name) {
                       case "Instagram":
                         result = await botConnection.disconnectToInstagram();
                         break;
-                    // For other networks
+                      // For other networks
                     }
 
-                    if(result != false){
+                    if (result != false) {
                       completer.complete(false);
                     }
                   },
                 );
 
                 completer.complete(true);
-
               } catch (e) {
                 print("error: $e");
 

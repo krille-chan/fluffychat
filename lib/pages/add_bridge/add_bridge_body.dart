@@ -41,23 +41,28 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 // Online status update when page is opened
   Future<void> _initStateAsync() async {
     try {
-
-      final instagramConnected = await botConnection.pingWithTimeout(context, botConnection.instagramPing());
+      final instagramConnected = await botConnection.pingWithTimeout(
+          context, botConnection.instagramPing());
       setState(() {
-        socialNetwork.firstWhere((element) => element.name == "Instagram").connected = instagramConnected;
-        socialNetwork.firstWhere((element) => element.name == "Instagram").loading = false;
+        socialNetwork
+            .firstWhere((element) => element.name == "Instagram")
+            .connected = instagramConnected;
+        socialNetwork
+            .firstWhere((element) => element.name == "Instagram")
+            .loading = false;
       });
     } on TimeoutException {
       // To indicate that the time-out error has occurred
       timeoutErrorOccurred = true;
     } catch (error) {
       print("Error pinging Instagram: $error");
-      await Future.delayed(const Duration(seconds: 1)); // Precaution to let the page load
+      await Future.delayed(
+          const Duration(seconds: 1)); // Precaution to let the page load
       if (!timeoutErrorOccurred) {
-        showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}");
+        showCatchErrorDialog(context,
+            "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}");
       }
     }
-
   }
 
   @override
@@ -72,9 +77,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             buildHeaderBridgeSubText(context),
             Center(
               child: SizedBox(
-                width: PlatformInfos.isWeb
-                    ? PlatformWidth.webWidth
-                    : null,
+                width: PlatformInfos.isWeb ? PlatformWidth.webWidth : null,
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -111,15 +114,12 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       if (network.connected != true) {
         bool success = false;
         switch (network.name) {
-
           case "Instagram":
-          // Trying to connect to Instagram
-            success =
-            await connectToInstagram(context, network, botConnection);
+            // Trying to connect to Instagram
+            success = await connectToInstagram(context, network, botConnection);
             break;
 
-        // For other networks
-
+          // For other networks
         }
         if (success) {
           setState(() {
@@ -141,7 +141,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 
           // Show the dialog for deleting the conversation
           await showDeleteConversationDialog(context, network, botConnection);
-        }else{
+        } else {
           // Display error message to warn user
           showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
         }
@@ -164,9 +164,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             ? L10n.of(context)!.connected
             : L10n.of(context)!.notConnected,
         style: TextStyle(
-          color: network.connected == true
-              ? Colors.green
-              : Colors.grey,
+          color: network.connected == true ? Colors.green : Colors.grey,
         ),
       );
     }

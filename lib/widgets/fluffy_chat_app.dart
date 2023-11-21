@@ -39,7 +39,8 @@ class FluffyChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PlatformWidth.initialize(context); // To initialize size variables according to platform
+    PlatformWidth.initialize(
+        context); // To initialize size variables according to platform
     return ThemeBuilder(
       builder: (context, themeMode, primaryColor) => MaterialApp.router(
         title: AppConfig.applicationName,
