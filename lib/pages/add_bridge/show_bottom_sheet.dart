@@ -36,18 +36,25 @@ Future<bool> showBottomSheetBridge(
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
+
                     if (network.name == "Instagram") {
                       result = await botConnection.disconnectToInstagram();
                     }
 
-                    // Returns True if disconnection has been made
-                    completer.complete(true);
+                    if(result != false){
+                      completer.complete(false);
+                    }
                   },
                 );
+
+                completer.complete(true);
+
               } catch (e) {
+                print("error: $e");
+
                 Navigator.of(context).pop();
                 //To view other catch-related errors
-                showCatchErrorDialog(context, e);
+                showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
               }
             },
           ),

@@ -1,5 +1,11 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:matrix/matrix.dart';
 import 'package:uuid/uuid.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import '../error_message_dialog.dart';
 
 // For all bot bridge conversations
 // For the moment, rooms are DirectChat
@@ -163,6 +169,7 @@ class BotBridgeConnection {
     const String botUserId = '@instagrambot:loveto.party';
 
     final RegExp successMatch = RegExp(r"Successfully logged out");
+    final RegExp aldreadyLogoutMatch = RegExp(r"That command requires you to be logged in.");
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -170,8 +177,21 @@ class BotBridgeConnection {
 
     bool result = true; // Variable to track the result of the connection
 
-    // Get the latest messages from the room (limited to the specified number)
     while (true) {
+      // Send the "logout" message to the bot
+      final Map<String, Object?> messageBody = {
+        'msgtype': 'm.text',
+        'body': "logout",
+      };
+      await client.sendMessage(
+        directChat,
+        'm.room.message',
+        const Uuid().v4(), // Generate random txnId
+        messageBody,
+      );
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+      // Get the latest messages from the room (limited to the specified number)
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -185,20 +205,13 @@ class BotBridgeConnection {
             latestMessages.first.content['body'].toString() ?? '';
 
         // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage)) {
-          // Send the "logout" message to the bot
-          final Map<String, Object?> messageBody = {
-            'msgtype': 'm.text',
-            'body': "logout",
-          };
-          await client.sendMessage(
-            directChat,
-            'm.room.message',
-            const Uuid().v4(), // Generate random txnId
-            messageBody,
-          );
-          await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-        } else if (successMatch.hasMatch(latestMessage)) {
+        if (!successMatch.hasMatch(latestMessage) &&
+            !aldreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected");
+          result = true;
+          break;
+        } else if (successMatch.hasMatch(latestMessage)
+            || aldreadyLogoutMatch.hasMatch(latestMessage)) {
           print("You're disconnected");
 
           result = false;
@@ -222,6 +235,24 @@ class BotBridgeConnection {
       }
     } catch (e) {
       print('Error deleting conversation: $e');
+    }
+  }
+
+  // Function to manage missed deadlines
+  Future<bool> pingWithTimeout(BuildContext context, Future<bool> pingFunction) async {
+    try {
+      // Future.timeout to define a maximum waiting time
+      return await pingFunction.timeout(const Duration(seconds: 15));
+    } on TimeoutException {
+      print("Ping timeout");
+
+      // Display error message to warn user
+      showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+
+      throw TimeoutException("Ping timeout");
+    } catch (error) {
+      print("Error pinging: $error");
+      rethrow;
     }
   }
 }

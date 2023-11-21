@@ -42,7 +42,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   Future<void> _initStateAsync() async {
     try {
 
-      final instagramConnected = await _pingWithTimeout(botConnection.instagramPing());
+      final instagramConnected = await botConnection.pingWithTimeout(context, botConnection.instagramPing());
       setState(() {
         socialNetwork.firstWhere((element) => element.name == "Instagram").connected = instagramConnected;
         socialNetwork.firstWhere((element) => element.name == "Instagram").loading = false;
@@ -58,24 +58,6 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       }
     }
 
-  }
-
-// Function to manage missed deadlines
-  Future<bool> _pingWithTimeout(Future<bool> pingFunction) async {
-    try {
-      // Future.timeout to define a maximum waiting time
-      return await pingFunction.timeout(const Duration(seconds: 15));
-    } on TimeoutException {
-      print("Ping timeout");
-
-      // Display error message to warn user
-      showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
-
-      throw TimeoutException("Ping timeout");
-    } catch (error) {
-      print("Error pinging: $error");
-      rethrow;
-    }
   }
 
   @override
@@ -149,10 +131,13 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           setState(() {
             network.connected = false;
           });
-        }
 
-        // Show the dialog for deleting the conversation
-        await showDeleteConversationDialog(context, network, botConnection);
+          // Show the dialog for deleting the conversation
+          await showDeleteConversationDialog(context, network, botConnection);
+        }else{
+          // Display error message to warn user
+          showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+        }
       }
     }
   }
