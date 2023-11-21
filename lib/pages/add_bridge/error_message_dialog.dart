@@ -82,7 +82,14 @@ void showCatchErrorDialog(BuildContext context, Object e) {
         title: Text(
           L10n.of(context)!.err_,
         ),
-        content: Text('${L10n.of(context)!.err_desc} $e'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(L10n.of(context)!.err_desc),
+            Text(e.toString()),
+          ],
+        ),
         actions: <Widget>[
           TextButton(
             onPressed: () {

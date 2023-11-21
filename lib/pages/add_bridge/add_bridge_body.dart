@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:fluffychat/pages/add_bridge/show_delete_conversation_dialog.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
+import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
 // Page offering brigde bot connections to social network chats
@@ -22,10 +25,9 @@ class AddBridgeBody extends StatefulWidget {
 }
 
 class _AddBridgeBodyState extends State<AddBridgeBody> {
-  bool instagramConnected = false;
-  bool loadingInstagram = true;
-
   late BotBridgeConnection botConnection;
+
+  bool timeoutErrorOccurred = false;
 
   @override
   void initState() {
@@ -35,12 +37,44 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     _initStateAsync();
   }
 
-  // Online status update when page is opened
+// Online status update when page is opened
   Future<void> _initStateAsync() async {
-    instagramConnected = await botConnection.instagramPing();
-    setState(() {
-      loadingInstagram = false;
-    });
+    try {
+
+      final instagramConnected = await _pingWithTimeout(botConnection.instagramPing());
+      setState(() {
+        socialNetwork.firstWhere((element) => element.name == "Instagram").connected = instagramConnected;
+        socialNetwork.firstWhere((element) => element.name == "Instagram").loading = false;
+      });
+    } on TimeoutException {
+      // To indicate that the time-out error has occurred
+      timeoutErrorOccurred = true;
+    } catch (error) {
+      print("Error pinging Instagram: $error");
+      await Future.delayed(const Duration(seconds: 1)); // Precaution to let the page load
+      if (!timeoutErrorOccurred) {
+        showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}");
+      }
+    }
+
+  }
+
+// Function to manage missed deadlines
+  Future<bool> _pingWithTimeout(Future<bool> pingFunction) async {
+    try {
+      // Future.timeout to define a maximum waiting time
+      return await pingFunction.timeout(const Duration(seconds: 15));
+    } on TimeoutException {
+      print("Ping timeout");
+
+      // Display error message to warn user
+      showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+
+      throw TimeoutException("Ping timeout");
+    } catch (error) {
+      print("Error pinging: $error");
+      rethrow;
+    }
   }
 
   @override
@@ -90,41 +124,41 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 
   // Different ways of connecting and disconnecting depending on the social network, for now only Instagram
   void handleSocialNetworkAction(SocialNetwork network) async {
-    if (network.name == "Instagram") {
-      if (loadingInstagram == false) {
-        if (instagramConnected != true) {
+    if (network.loading == false) {
+      if (network.connected != true) {
+        if(network.name == "Instagram"){
           // Trying to connect to Instagram
           final bool success =
-              await connectToInstagram(context, network, botConnection);
+          await connectToInstagram(context, network, botConnection);
           if (success) {
             setState(() {
-              instagramConnected = true;
+              network.connected = true;
             });
           }
-        } else {
-          // Disconnect button, for the moment only this choice
-          final bool success = await showBottomSheetBridge(
-            context,
-            network,
-            botConnection,
-          );
-
-          if (success) {
-            setState(() {
-              instagramConnected = false;
-            });
-          }
-
-          // Show the dialog for deleting the conversation
-          await showDeleteConversationDialog(context, network, botConnection);
         }
+      } else {
+        // Disconnect button, for the moment only this choice
+        final bool success = await showBottomSheetBridge(
+          context,
+          network,
+          botConnection,
+        );
+
+        if (success) {
+          setState(() {
+            network.connected = false;
+          });
+        }
+
+        // Show the dialog for deleting the conversation
+        await showDeleteConversationDialog(context, network, botConnection);
       }
     }
   }
 
   // Different build of subtle depending on the social network, for now only Instagram
   Widget buildSubtitle(SocialNetwork network) {
-    if (loadingInstagram && network.name == "Instagram") {
+    if (network.loading == true) {
       return const Align(
         alignment: Alignment.centerLeft,
         child: CircularProgressIndicator(
@@ -133,11 +167,11 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       );
     } else {
       return Text(
-        network.name == "Instagram" && instagramConnected
+        network.connected == true
             ? L10n.of(context)!.connected
             : L10n.of(context)!.notConnected,
         style: TextStyle(
-          color: network.name == "Instagram" && instagramConnected
+          color: network.connected == true
               ? Colors.green
               : Colors.grey,
         ),
