@@ -205,7 +205,7 @@ class NewPrivateChatView extends StatelessWidget {
                         child: CircularProgressIndicator.adaptive(),
                       );
                     }
-                    if (result.results.isEmpty) {
+                    if (result.isEmpty) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -226,9 +226,9 @@ class NewPrivateChatView extends StatelessWidget {
                       );
                     }
                     return ListView.builder(
-                      itemCount: result.results.length,
+                      itemCount: result.length,
                       itemBuilder: (context, i) {
-                        final contact = result.results[i];
+                        final contact = result[i];
                         final displayname = contact.displayName ??
                             contact.userId.localpart ??
                             contact.userId;

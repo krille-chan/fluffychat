@@ -27,7 +27,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   final TextEditingController controller = TextEditingController();
   final FocusNode textFieldFocus = FocusNode();
 
-  Future<SearchUserDirectoryResponse>? searchResponse;
+  Future<List<Profile>>? searchResponse;
 
   Timer? _searchCoolDown;
 
@@ -46,10 +46,23 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     _searchCoolDown?.cancel();
     _searchCoolDown = Timer(_coolDown, () {
       setState(() {
-        searchResponse =
-            Matrix.of(context).client.searchUserDirectory(searchTerm);
+        searchResponse = _searchUser(searchTerm);
       });
     });
+  }
+
+  Future<List<Profile>> _searchUser(String searchTerm) async {
+    final result =
+        await Matrix.of(context).client.searchUserDirectory(searchTerm);
+    final profiles = result.results;
+
+    if (searchTerm.isValidMatrixId &&
+        searchTerm.sigil == '@' &&
+        !profiles.any((profile) => profile.userId == searchTerm)) {
+      profiles.add(Profile(userId: searchTerm));
+    }
+
+    return profiles;
   }
 
   void inviteAction() => FluffyShare.shareInviteLink(context);
