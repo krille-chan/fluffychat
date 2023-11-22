@@ -10,6 +10,7 @@ import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -102,7 +103,8 @@ abstract class ClientManager {
         EventTypes.RoomPowerLevels,
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      databaseBuilder: flutterMatrixSdkDatabaseBuilder,
+      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
