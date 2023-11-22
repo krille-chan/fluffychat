@@ -34,42 +34,55 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   @override
   void initState() {
     final client = Matrix.of(context).client;
-    String fullUrl = client.homeserver!.host;
+    final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
     botConnection = BotBridgeConnection(client: client, hostname: hostname);
     super.initState();
-    _initStateAsync();
+    _checkSocialNetworkConnections();
   }
 
   @override
   void dispose() {
     botConnection.stopProcess();
+
+    // Reset loading values to their original state by exiting the page
+    for (final element in socialNetwork) {
+      element.loading = true;
+    }
+
     super.dispose();
   }
 
+  // Retrieves the name of each network in the socialNetwork list
+  Future<void> _checkSocialNetworkConnections() async {
+    for (final network in socialNetwork) {
+      await _checkSocialNetworkConnection(network.name);
+    }
+  }
+
   // Online status update when page is opened
-  Future<void> _initStateAsync() async {
+  Future<void> _checkSocialNetworkConnection(String socialNetworkName) async {
     try {
-      final instagramConnected = await botConnection.pingWithTimeout(
+      final connected = await botConnection.pingWithTimeout(
         context,
-        botConnection.instagramPing(),
+        _getSocialNetworkPingFunction(socialNetworkName),
       );
       if (!mounted) return; // Check if the widget is still mounted
 
-      if (instagramConnected != 'error') {
+      if (connected != 'error') {
         setState(() {
           socialNetwork
-              .firstWhere((element) => element.name == "Instagram")
-              .connected = instagramConnected == 'Connected' ? true : false;
+              .firstWhere((element) => element.name == socialNetworkName)
+              .connected = connected == 'Connected' ? true : false;
           socialNetwork
-              .firstWhere((element) => element.name == "Instagram")
+              .firstWhere((element) => element.name == socialNetworkName)
               .loading = false;
         });
       } else {
         if (mounted) {
           showCatchErrorDialog(
             context,
-            "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
+            "${L10n.of(context)!.err_toConnect} $socialNetworkName",
           );
         }
       }
@@ -79,16 +92,30 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         timeoutErrorOccurred = true;
       }
     } catch (error) {
-      print("Error pinging Instagram: $error");
+      print("Error pinging $socialNetworkName: $error");
       await Future.delayed(
         const Duration(seconds: 1),
       ); // Precaution to let the page load
       if (mounted && !timeoutErrorOccurred) {
         showCatchErrorDialog(
           context,
-          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
+          "${L10n.of(context)!.err_toConnect} $socialNetworkName",
         );
       }
+    }
+  }
+
+  // Switch ping functions to networks
+  Future<String> _getSocialNetworkPingFunction(String socialNetworkName) {
+    switch (socialNetworkName) {
+      case "Instagram":
+        return botConnection.instagramPing();
+      case "Whatsapp":
+        return botConnection.whatsAppPing();
+      // case "Facebook Messenger":
+      //   return botConnection.facebookPing();
+      default:
+        throw Exception("Unsupported social network: $socialNetworkName");
     }
   }
 

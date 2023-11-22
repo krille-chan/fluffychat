@@ -18,11 +18,11 @@ class SocialNetwork {
 }
 
 final List<SocialNetwork> socialNetwork = [
-  SocialNetwork(
-    logo: Logo(Logos.facebook_messenger),
-    name: "Facebook Messenger",
-    chatBot: "@facebookbot:",
-  ),
+  // SocialNetwork(
+  //   logo: Logo(Logos.facebook_messenger),
+  //   name: "Facebook Messenger",
+  //   chatBot: "@facebookbot:",
+  // ),
   SocialNetwork(
     logo: Logo(Logos.instagram),
     name: "Instagram",
