@@ -26,6 +26,7 @@ class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
   final void Function(Event)? onInfoTab;
+  final BorderRadius borderRadius;
   // #Pangea
   final bool selected;
   final PangeaMessageEvent pangeaMessageEvent;
@@ -49,6 +50,7 @@ class MessageContent extends StatelessWidget {
     required this.immersionMode,
     required this.definitions,
     // Pangea#
+    required this.borderRadius,
   });
 
   void _verifyOrRequestKey(BuildContext context) async {
@@ -97,6 +99,7 @@ class MessageContent extends StatelessWidget {
                 leading: Avatar(
                   mxContent: sender.avatarUrl,
                   name: sender.calcDisplayname(),
+                  presenceUserId: sender.stateKey,
                 ),
                 title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),
@@ -130,6 +133,7 @@ class MessageContent extends StatelessWidget {
               width: 400,
               height: 300,
               fit: BoxFit.cover,
+              borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;

@@ -1167,7 +1167,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Het lijkt erop dat je geen Google-services op je telefoon hebt. Dat is een goede beslissing voor je privacy! Om pushmeldingen in FluffyChat te ontvangen raden we je https://microg.org/ of https://unifiedpush.org aan.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging lijkt niet beschikbaar op je apparaat. Om nog steeds meldingen te krijgen, adviseren we om ntfy te installeren. Met ntfy of een andere Unified Push provider kun je meldingen ontvangen op een veilige manier. Je kunt ntfy downloaden van de PlayStore of van F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2616,5 +2616,45 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "banUserDescription": "De persoon zal worden verbannen van de chat en kan niet meer toetreden totdat de verbanning is opgeheven.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Je wordt op dit apparaat uitgelogd en zal niet langer in staat zijn om berichten te ontvangen.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "De persoon zal weer in staat zijn om de chat te betreden als ze het proberen.",
+  "@unbanUserDescription": {},
+  "todoLists": "(Beta) Todo's",
+  "@todoLists": {},
+  "editTodo": "Wijzig todo",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Meldingen zijn niet beschikbaar",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Voeg een titel toe",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Wanneer je deze persoon beheerder maakt kun je dit niet ongedaan maken als jullie dezelfde rechten hebben.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Er zijn nog geen todo's toegevoegd aan deze chat. Maak je eerste todo en start met samenwerken met anderen. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "De chat zal naar het archief worden verplaatst. Andere personen zullen in staat zijn te zien dat je de chat hebt verlaten.",
+  "@archiveRoomDescription": {},
+  "todosUnencrypted": "Let op dat todo's zichtbaar zijn voor iedereen in de chat en niet zijn versleuteld.",
+  "@todosUnencrypted": {},
+  "hasKnocked": "{user} heeft geklopt",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newTodo": "Nieuwe todo",
+  "@newTodo": {},
+  "learnMore": "Lees meer",
+  "@learnMore": {},
+  "todoListChangedError": "Oeps... De todo's zijn aangepast terwijl je aan het bewerken was.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "De chat zal dan opnieuw gemaakt worden met de nieuwe kamerversie. Alle deelnemers worden geïnformeerd dat ze moeten overstappen naar de nieuwe chat. Je kan meer lezen over kamerversies op https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Vul een getal in groter dan 0",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "De persoon is verwijderd uit de chat, maar is niet verbannen. In publieke chats kan de persoon op elk moment opnieuw deelnemen.",
+  "@kickUserDescription": {}
 }

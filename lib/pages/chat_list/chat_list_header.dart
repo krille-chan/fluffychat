@@ -53,7 +53,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //         borderSide: BorderSide.none,
       //         borderRadius: BorderRadius.circular(99),
       //       ),
-      //       hintText: L10n.of(context)!.search,
+      //       hintText: L10n.of(context)!.searchChatsRooms,
       //       floatingLabelBehavior: FloatingLabelBehavior.never,
       //       prefixIcon: controller.isSearchMode
       //           ? IconButton(

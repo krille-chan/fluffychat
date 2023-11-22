@@ -12,7 +12,6 @@ import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../../../config/app_config.dart';
-import '../../../widgets/hover_builder.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
 import 'reply_content.dart';
@@ -23,10 +22,10 @@ class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final bool displayReadMarker;
-  final void Function(Event)? onSelect;
-  final void Function(Event)? onAvatarTab;
-  final void Function(Event)? onInfoTab;
-  final void Function(String)? scrollToEventId;
+  final void Function(Event) onSelect;
+  final void Function(Event) onAvatarTab;
+  final void Function(Event) onInfoTab;
+  final void Function(String) scrollToEventId;
   final void Function() onSwipe;
   final bool longPressSelect;
   final bool selected;
@@ -35,17 +34,17 @@ class Message extends StatelessWidget {
   final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
   final bool definitions;
-  // #Pangea
+  // Pangea#
 
   const Message(
     this.event, {
     this.nextEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
-    this.onSelect,
-    this.onInfoTab,
-    this.onAvatarTab,
-    this.scrollToEventId,
+    required this.onSelect,
+    required this.onInfoTab,
+    required this.onAvatarTab,
+    required this.scrollToEventId,
     required this.onSwipe,
     this.selected = false,
     required this.timeline,
@@ -53,7 +52,7 @@ class Message extends StatelessWidget {
     required this.selectedDisplayLang,
     required this.immersionMode,
     required this.definitions,
-    // #Pangea
+    // Pangea#
     super.key,
   });
 
@@ -129,231 +128,218 @@ class Message extends StatelessWidget {
           : Theme.of(context).colorScheme.primaryContainer;
     }
 
-    //#Pangea
+    // #Pangea
     final pangeaMessageEvent = PangeaMessageEvent(
       event: event,
       timeline: timeline,
       ownMessage: ownMessage,
       selected: selected,
     );
-    //#Pangea
+    // Pangea#
 
-    final row = HoverBuilder(
-      builder: (context, hovered) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: rowMainAxisAlignment,
-        children: [
-          if (hovered || selected)
-            SizedBox(
-              width: Avatar.defaultSize,
-              height: Avatar.defaultSize - 8,
-              child: Checkbox.adaptive(
-                value: selected,
-                onChanged: (_) => onSelect?.call(event),
+    final row = Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: rowMainAxisAlignment,
+      children: [
+        if (sameSender || ownMessage)
+          SizedBox(
+            width: Avatar.defaultSize,
+            child: Center(
+              child: SizedBox(
+                width: 16,
+                height: 16,
+                child: event.status == EventStatus.sending
+                    ? const CircularProgressIndicator.adaptive(
+                        strokeWidth: 2,
+                      )
+                    : event.status == EventStatus.error
+                        ? const Icon(Icons.error, color: Colors.red)
+                        : null,
               ),
-            )
-          else if (sameSender || ownMessage)
-            SizedBox(
-              width: Avatar.defaultSize,
-              child: Center(
-                child: SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: event.status == EventStatus.sending
-                      ? const CircularProgressIndicator.adaptive(
-                          strokeWidth: 2,
-                        )
-                      : event.status == EventStatus.error
-                          ? const Icon(Icons.error, color: Colors.red)
-                          : null,
-                ),
-              ),
-            )
-          else
-            FutureBuilder<User?>(
-              future: event.fetchSenderUser(),
-              builder: (context, snapshot) {
-                final user = snapshot.data ?? event.senderFromMemoryOrFallback;
-                return Avatar(
-                  mxContent: user.avatarUrl,
-                  name: user.calcDisplayname(),
-                  onTap: () => onAvatarTab!(event),
-                );
-              },
             ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (!sameSender)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                    child: ownMessage || event.room.isDirectChat
-                        ? const SizedBox(height: 12)
-                        : FutureBuilder<User?>(
-                            future: event.fetchSenderUser(),
-                            builder: (context, snapshot) {
-                              final displayname =
-                                  snapshot.data?.calcDisplayname() ??
-                                      event.senderFromMemoryOrFallback
-                                          .calcDisplayname();
-                              return Text(
-                                displayname,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: (Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? displayname.color
-                                      : displayname.lightColorText),
-                                ),
-                              );
-                            },
-                          ),
-                  ),
-                Container(
-                  alignment: alignment,
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Material(
-                    color: noBubble ? Colors.transparent : color,
-                    borderRadius: borderRadius,
-                    clipBehavior: Clip.antiAlias,
-                    // #Pangea
-                    child: CompositedTransformTarget(
-                      link: MatrixState.pAnyState
-                          .layerLinkAndKey(event.eventId)
-                          .link,
-                      child: Container(
-                        key: MatrixState.pAnyState
-                            .layerLinkAndKey(event.eventId)
-                            .key,
-                        // #Pangea
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
-                        ),
-                        padding: noBubble || noPadding
-                            ? EdgeInsets.zero
-                            : const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
+          )
+        else
+          FutureBuilder<User?>(
+            future: event.fetchSenderUser(),
+            builder: (context, snapshot) {
+              final user = snapshot.data ?? event.senderFromMemoryOrFallback;
+              return Avatar(
+                mxContent: user.avatarUrl,
+                name: user.calcDisplayname(),
+                presenceUserId: user.stateKey,
+                onTap: () => onAvatarTab(event),
+              );
+            },
+          ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (!sameSender)
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 4),
+                  child: ownMessage || event.room.isDirectChat
+                      ? const SizedBox(height: 12)
+                      : FutureBuilder<User?>(
+                          future: event.fetchSenderUser(),
+                          builder: (context, snapshot) {
+                            final displayname =
+                                snapshot.data?.calcDisplayname() ??
+                                    event.senderFromMemoryOrFallback
+                                        .calcDisplayname();
+                            return Text(
+                              displayname,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: (Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? displayname.color
+                                    : displayname.lightColorText),
                               ),
-                        constraints: const BoxConstraints(
-                          maxWidth: FluffyThemes.columnWidth * 1.5,
+                            );
+                          },
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            if (event.relationshipType ==
-                                RelationshipTypes.reply)
-                              FutureBuilder<Event?>(
-                                future: event.getReplyEvent(timeline),
-                                builder: (BuildContext context, snapshot) {
-                                  final replyEvent = snapshot.hasData
-                                      ? snapshot.data!
-                                      : Event(
-                                          eventId: event.relationshipEventId!,
-                                          content: {
-                                            'msgtype': 'm.text',
-                                            'body': '...',
-                                          },
-                                          senderId: event.senderId,
-                                          type: 'm.room.message',
-                                          room: event.room,
-                                          status: EventStatus.sent,
-                                          originServerTs: DateTime.now(),
-                                        );
-                                  return InkWell(
-                                    onTap: () {
-                                      if (scrollToEventId != null) {
-                                        scrollToEventId!(replyEvent.eventId);
-                                      }
-                                    },
-                                    child: AbsorbPointer(
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                          vertical: 4.0,
-                                        ),
-                                        child: ReplyContent(
-                                          replyEvent,
-                                          ownMessage: ownMessage,
-                                          timeline: timeline,
-                                        ),
+                ),
+              Container(
+                alignment: alignment,
+                padding: const EdgeInsets.only(left: 8),
+                child: Material(
+                  color: noBubble ? Colors.transparent : color,
+                  borderRadius: borderRadius,
+                  clipBehavior: Clip.antiAlias,
+                  // #Pangea
+                  child: CompositedTransformTarget(
+                    link: MatrixState.pAnyState
+                        .layerLinkAndKey(event.eventId)
+                        .link,
+                    child: Container(
+                      key: MatrixState.pAnyState
+                          .layerLinkAndKey(event.eventId)
+                          .key,
+                      // Pangea#
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
+                      ),
+                      padding: noBubble || noPadding
+                          ? EdgeInsets.zero
+                          : const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                      constraints: const BoxConstraints(
+                        maxWidth: FluffyThemes.columnWidth * 1.5,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          if (event.relationshipType == RelationshipTypes.reply)
+                            FutureBuilder<Event?>(
+                              future: event.getReplyEvent(timeline),
+                              builder: (BuildContext context, snapshot) {
+                                final replyEvent = snapshot.hasData
+                                    ? snapshot.data!
+                                    : Event(
+                                        eventId: event.relationshipEventId!,
+                                        content: {
+                                          'msgtype': 'm.text',
+                                          'body': '...',
+                                        },
+                                        senderId: event.senderId,
+                                        type: 'm.room.message',
+                                        room: event.room,
+                                        status: EventStatus.sent,
+                                        originServerTs: DateTime.now(),
+                                      );
+                                return InkWell(
+                                  onTap: () =>
+                                      scrollToEventId(replyEvent.eventId),
+                                  child: AbsorbPointer(
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                        vertical: 4.0,
+                                      ),
+                                      child: ReplyContent(
+                                        replyEvent,
+                                        ownMessage: ownMessage,
+                                        timeline: timeline,
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                            MessageContent(
-                              displayEvent,
-                              textColor: textColor,
-                              onInfoTab: onInfoTab,
-                              // #Pangea
-                              selected: selected,
-                              pangeaMessageEvent: pangeaMessageEvent,
-                              selectedDisplayLang: selectedDisplayLang,
-                              immersionMode: immersionMode,
-                              definitions: definitions,
-                              // Pangea#
+                                  ),
+                                );
+                              },
                             ),
-                            if (event.hasAggregatedEvents(
-                                      timeline,
-                                      RelationshipTypes.edit,
-                                    )
-                                    // #Pangea
-                                    ||
-                                    (pangeaMessageEvent.showUseType)
-                                // #Pangea
-                                )
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 4.0,
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    // #Pangea
-                                    if (pangeaMessageEvent.showUseType) ...[
-                                      pangeaMessageEvent.useType.iconView(
-                                        context,
-                                        textColor.withAlpha(164),
-                                      ),
-                                      const SizedBox(width: 4),
-                                    ],
-                                    if (event.hasAggregatedEvents(
-                                      timeline,
-                                      RelationshipTypes.edit,
-                                    )) ...[
-                                      // #Pangea
-                                      Icon(
-                                        Icons.edit_outlined,
-                                        color: textColor.withAlpha(164),
-                                        size: 14,
-                                      ),
-                                      Text(
-                                        ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                        style: TextStyle(
-                                          color: textColor.withAlpha(164),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ],
-                                ),
+                          MessageContent(
+                            displayEvent,
+                            textColor: textColor,
+                            onInfoTab: onInfoTab,
+                            borderRadius: borderRadius,
+                            // #Pangea
+                            selected: selected,
+                            pangeaMessageEvent: pangeaMessageEvent,
+                            selectedDisplayLang: selectedDisplayLang,
+                            immersionMode: immersionMode,
+                            definitions: definitions,
+                            // Pangea#
+                          ),
+                          if (event.hasAggregatedEvents(
+                                    timeline,
+                                    RelationshipTypes.edit,
+                                  )
+                                  // #Pangea
+                                  ||
+                                  (pangeaMessageEvent.showUseType)
+                              // Pangea#
+                              )
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 4.0,
                               ),
-                          ],
-                        ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // #Pangea
+                                  if (pangeaMessageEvent.showUseType) ...[
+                                    pangeaMessageEvent.useType.iconView(
+                                      context,
+                                      textColor.withAlpha(164),
+                                    ),
+                                    const SizedBox(width: 4),
+                                  ],
+                                  if (event.hasAggregatedEvents(
+                                    timeline,
+                                    RelationshipTypes.edit,
+                                  )) ...[
+                                    // Pangea#
+                                    Icon(
+                                      Icons.edit_outlined,
+                                      color: textColor.withAlpha(164),
+                                      size: 14,
+                                    ),
+                                    Text(
+                                      ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                      style: TextStyle(
+                                        color: textColor.withAlpha(164),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
@@ -452,23 +438,20 @@ class Message extends StatelessWidget {
       ),
       direction: SwipeDirection.endToStart,
       onSwipe: (_) => onSwipe(),
-      child: Center(
-        child: InkWell(
-          onTap: longPressSelect ? () => onSelect!(event) : null,
-          onLongPress: () => onSelect!(event),
-          child: Container(
-            color: selected
-                ? Theme.of(context).primaryColor.withAlpha(100)
-                : Theme.of(context).primaryColor.withAlpha(0),
-            constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth * 2.5,
-            ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
-            ),
-            child: container,
+      child: InkWell(
+        onTap: () => onSelect(event),
+        child: Container(
+          color: selected
+              ? Theme.of(context).primaryColor.withAlpha(100)
+              : Theme.of(context).primaryColor.withAlpha(0),
+          constraints: const BoxConstraints(
+            maxWidth: FluffyThemes.columnWidth * 2.5,
           ),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 4.0,
+          ),
+          child: container,
         ),
       ),
     );

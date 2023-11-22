@@ -3925,5 +3925,17 @@
   "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
   "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
     "noAddToSpacePermissions": "You can't add a chat to this space",
-    "alreadyInSpace": "The chat is already in this space"
+    "alreadyInSpace": "The chat is already in this space",
+  "yourGlobalUserIdIs": "Your global user-ID is: ",
+  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+        "query": {}
+    }
+  },
+  "searchChatsRooms": "Search for #chats, @users...",
+  "groupName": "Group name",
+  "createGroupAndInviteUsers": "Create a group and invite users",
+  "groupCanBeFoundViaSearch": "Group can be found via search"
 }

@@ -2343,7 +2343,7 @@
   "@notAnImage": {},
   "importNow": "Importovat nyní",
   "@importNow": {},
-  "redactedByBecause": "Redigováno uživatelem {username} s důvodem: \"{reason}\"",
+  "redactedByBecause": "Smazáno uživatelem {username} s důvodem: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2415,7 +2415,7 @@
   "@jumpToLastReadMessage": {},
   "signInWithPassword": "Přihlásit se pomocí hesla",
   "@signInWithPassword": {},
-  "redactedBy": "Redigováno uživatelem {username}",
+  "redactedBy": "Smazáno uživatelem {username}",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
@@ -2432,9 +2432,9 @@
   "@noOneCanJoin": {},
   "tryAgain": "Zkuste to znovu",
   "@tryAgain": {},
-  "redactMessageDescription": "Tato zpráva bude skryta pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
+  "redactMessageDescription": "Tato zpráva bude smazána pro všechny účastníky konverzace. Tuto akci nelze vzít zpět.",
   "@redactMessageDescription": {},
-  "optionalRedactReason": "(Nepovinné) Důvod redakce této zprávy…",
+  "optionalRedactReason": "(Nepovinné) Důvod smazání této zprávy…",
   "@optionalRedactReason": {},
   "messagesStyle": "Zprávy:",
   "@messagesStyle": {},
@@ -2566,5 +2566,96 @@
     }
   },
   "requests": "Žádosti",
-  "@requests": {}
+  "@requests": {},
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "todoLists": "",
+  "@todoLists": {},
+  "editTodo": "",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "noTodosYet": "",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "savedEmotePack": "",
+  "@savedEmotePack": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "invalidInput": "",
+  "@invalidInput": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {},
+  "report": "",
+  "@report": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "newTodo": "",
+  "@newTodo": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "todoListChangedError": "",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "emoteKeyboardNoRecents": "",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "invite": "",
+  "@invite": {},
+  "indexedDbErrorLong": "",
+  "@indexedDbErrorLong": {},
+  "callingAccount": "",
+  "@callingAccount": {},
+  "enterSpace": "",
+  "@enterSpace": {},
+  "noKeyForThisMessage": "",
+  "@noKeyForThisMessage": {},
+  "readUpToHere": "",
+  "@readUpToHere": {},
+  "appearOnTopDetails": "",
+  "@appearOnTopDetails": {},
+  "enterRoom": "",
+  "@enterRoom": {},
+  "hideUnimportantStateEvents": "",
+  "@hideUnimportantStateEvents": {},
+  "noBackupWarning": "",
+  "@noBackupWarning": {},
+  "indexedDbErrorTitle": "",
+  "@indexedDbErrorTitle": {}
 }

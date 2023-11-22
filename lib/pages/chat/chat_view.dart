@@ -149,16 +149,15 @@ class ChatView extends StatelessWidget {
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
+      onPopInvoked: (pop) async {
+        if (pop) return;
         if (controller.selectedEvents.isNotEmpty) {
           controller.clearSelectedEvents();
-          return false;
         } else if (controller.showEmojiPicker) {
           controller.emojiPickerAction();
-          return false;
         }
-        return true;
       },
       child: GestureDetector(
         onTapDown: (_) => controller.setReadMarker(),

@@ -746,7 +746,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Dirudienez Firebase Cloud Messaging ez dago erabilgarri zure mugikorrean. Jakinarazpenak jasotzeko MicroG edo Unified Push instalatzea gomendatzen dugu.",
+  "noGoogleServicesWarning": "Ez dirudi Firebase Cloud Messaging zure mugikorrean erabilgarri dagoenik. Jakinarazpenak jasotzeko ntfy instalatzea gomendatzen dugu. ntfy edo beste Unified Push hornitzaileren batekin, push jakinarazpenak jaso ditzazkezu datuentzako segurua den modu batean. ntfy PlayStore edo F-Droid dendetatik deskarga dezakezu.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2504,7 +2504,7 @@
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Saiatu geroago edo aukeratu beste zerbitzari bat.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "Hasi saioa {provider}(e)kin",
+  "signInWith": "Hasi saioa {provider}(r)ekin",
   "@signInWith": {
     "type": "text",
     "placeholders": {

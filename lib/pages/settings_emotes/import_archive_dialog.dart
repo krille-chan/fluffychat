@@ -33,6 +33,8 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
 
   bool _loading = false;
 
+  double _progress = 0;
+
   @override
   void initState() {
     _importFileMap();
@@ -44,7 +46,11 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
     return AlertDialog(
       title: Text(L10n.of(context)!.importEmojis),
       content: _loading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(
+                value: _progress,
+              ),
+            )
           : SingleChildScrollView(
               child: Wrap(
                 alignment: WrapAlignment.spaceEvenly,
@@ -97,6 +103,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
   Future<void> _addEmotePack() async {
     setState(() {
       _loading = true;
+      _progress = 0;
     });
     final imports = _importMap;
     final successfulUploads = <String>{};
@@ -134,52 +141,56 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
     }
 
     for (final entry in imports.entries) {
+      setState(() {
+        _progress += 1 / imports.length;
+      });
       final file = entry.key;
       final imageCode = entry.value;
 
-      // try {
-      var mxcFile = MatrixImageFile(
-        bytes: file.content,
-        name: file.name,
-      );
       try {
-        mxcFile = (await mxcFile.generateThumbnail(
+        var mxcFile = MatrixImageFile(
+          bytes: file.content,
+          name: file.name,
+        );
+
+        final thumbnail = (await mxcFile.generateThumbnail(
           nativeImplementations: ClientManager.nativeImplementations,
-        ))!;
-      } catch (e, s) {
-        Logs().w('Unable to create thumbnail', e, s);
-      }
-      final uri = await Matrix.of(context).client.uploadContent(
-            mxcFile.bytes,
-            filename: mxcFile.name,
-            contentType: mxcFile.mimeType,
-          );
-
-      final info = <String, dynamic>{
-        ...mxcFile.info,
-      };
-
-      // normalize width / height to 256, required for stickers
-      if (info['w'] is int && info['h'] is int) {
-        final ratio = info['w'] / info['h'];
-        if (info['w'] > info['h']) {
-          info['w'] = 256;
-          info['h'] = (256.0 / ratio).round();
+        ));
+        if (thumbnail == null) {
+          Logs().w('Unable to create thumbnail');
         } else {
-          info['h'] = 256;
-          info['w'] = (ratio * 256.0).round();
+          mxcFile = thumbnail;
         }
-      }
-      widget.controller.pack!.images[imageCode] =
-          ImagePackImageContent.fromJson(<String, dynamic>{
-        'url': uri.toString(),
-        'info': info,
-      });
-      successfulUploads.add(file.name);
-      /*} catch (e) {
+        final uri = await Matrix.of(context).client.uploadContent(
+              mxcFile.bytes,
+              filename: mxcFile.name,
+              contentType: mxcFile.mimeType,
+            );
 
-            Logs().d('Could not upload emote $imageCode');
-          }*/
+        final info = <String, dynamic>{
+          ...mxcFile.info,
+        };
+
+        // normalize width / height to 256, required for stickers
+        if (info['w'] is int && info['h'] is int) {
+          final ratio = info['w'] / info['h'];
+          if (info['w'] > info['h']) {
+            info['w'] = 256;
+            info['h'] = (256.0 / ratio).round();
+          } else {
+            info['h'] = 256;
+            info['w'] = (ratio * 256.0).round();
+          }
+        }
+        widget.controller.pack!.images[imageCode] =
+            ImagePackImageContent.fromJson(<String, dynamic>{
+          'url': uri.toString(),
+          'info': info,
+        });
+        successfulUploads.add(file.name);
+      } catch (e) {
+        Logs().d('Could not upload emote $imageCode');
+      }
     }
 
     await widget.controller.save(context);
@@ -188,6 +199,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
     );
 
     _loading = false;
+    _progress = 0;
 
     // in case we have unhandled / duplicated emotes left, don't pop
     if (mounted) setState(() {});

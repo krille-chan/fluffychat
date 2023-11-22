@@ -1,5 +1,7 @@
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/presence_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -29,7 +31,60 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
-          title: Text(displayname.trim().split(' ').first),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(displayname),
+              PresenceBuilder(
+                userId: userId,
+                client: client,
+                builder: (context, presence) {
+                  if (presence == null ||
+                      (presence.presence == PresenceType.offline &&
+                          presence.lastActiveTimestamp == null)) {
+                    return const SizedBox.shrink();
+                  }
+
+                  final dotColor = presence.presence.isOnline
+                      ? Colors.green
+                      : presence.presence.isUnavailable
+                          ? Colors.red
+                          : Colors.grey;
+
+                  final lastActiveTimestamp = presence.lastActiveTimestamp;
+
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        margin: const EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color: dotColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      if (presence.currentlyActive == true)
+                        Text(
+                          L10n.of(context)!.currentlyActive,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        )
+                      else if (lastActiveTimestamp != null)
+                        Text(
+                          L10n.of(context)!.lastActiveAgo(
+                            lastActiveTimestamp.localizedTimeShort(context),
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
           actions: [
             if (userId != client.userID &&
                 !client.ignoredUsers.contains(userId))

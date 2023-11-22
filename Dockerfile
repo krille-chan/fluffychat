@@ -1,5 +1,5 @@
 FROM ghcr.io/cirruslabs/flutter as builder
-RUN sudo apt update && sudo apt install curl -y
+RUN sudo apt update && sudo apt install curl jq -y
 COPY . /app
 WORKDIR /app
 RUN ./scripts/prepare-web.sh

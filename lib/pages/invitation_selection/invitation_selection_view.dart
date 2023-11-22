@@ -167,6 +167,7 @@ class _InviteContactListTile extends StatelessWidget {
         leading: Avatar(
           mxContent: avatarUrl,
           name: displayname,
+          presenceUserId: userId,
         ),
         title: Text(
           displayname,
