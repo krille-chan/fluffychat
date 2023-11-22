@@ -43,7 +43,11 @@ Future<bool> showBottomSheetBridge(
                       case "Instagram":
                         result = await botConnection.disconnectToInstagram();
                         break;
-                      // For other networks
+                      case "WhatsApp":
+                        result = await botConnection.disconnectToWhatsApp();
+                        break;
+
+                    // For other networks
                     }
                   },
                 );

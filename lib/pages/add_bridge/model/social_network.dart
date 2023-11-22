@@ -30,7 +30,7 @@ final List<SocialNetwork> socialNetwork = [
   ),
   SocialNetwork(
     logo: Logo(Logos.whatsapp),
-    name: "Whatsapp",
+    name: "WhatsApp",
     chatBot: "@whatsappbot:",
   ),
 ];

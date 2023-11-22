@@ -63,6 +63,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   // Online status update when page is opened
   Future<void> _checkSocialNetworkConnection(String socialNetworkName) async {
     try {
+      if (!mounted) return; // Checks if the widget is still mounted
+
       final connected = await botConnection.pingWithTimeout(
         context,
         _getSocialNetworkPingFunction(socialNetworkName),
@@ -110,7 +112,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     switch (socialNetworkName) {
       case "Instagram":
         return botConnection.instagramPing();
-      case "Whatsapp":
+      case "WhatsApp":
         return botConnection.whatsAppPing();
       // case "Facebook Messenger":
       //   return botConnection.facebookPing();
