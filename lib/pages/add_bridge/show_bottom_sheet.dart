@@ -47,7 +47,7 @@ Future<bool> showBottomSheetBridge(
                         result = await botConnection.disconnectToWhatsApp();
                         break;
 
-                    // For other networks
+                      // For other networks
                     }
                   },
                 );

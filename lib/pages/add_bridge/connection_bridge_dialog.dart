@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/add_bridge/qr_code_connect.dart';
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
+import 'package:fluffychat/pages/add_bridge/two_factor_demand.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -11,8 +14,11 @@ import 'model/social_network.dart';
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 // ShowDialog for Instagram connection
-Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
-    BotBridgeConnection botConnection) async {
+Future<bool> connectToInstagram(
+  BuildContext context,
+  SocialNetwork network,
+  BotBridgeConnection botConnection,
+) async {
   String? username;
   String? password;
 
@@ -112,7 +118,19 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
                       if (result == "success") {
                         Navigator.of(context).pop();
                         completer.complete(
-                            true); // returns True if the connection is successful
+                          true,
+                        ); // returns True if the connection is successful
+                      } else if (result == "twoFactorDemand") {
+                        bool success = false;
+                        // Display a showDialog to request a two-factor identification code
+                        success = await twoFactorDemandCode(
+                            context, network, botConnection);
+                        if (success) {
+                          Navigator.of(context).pop();
+                          completer.complete(
+                            true,
+                          ); // returns True if the connection is successful
+                        }
                       } else if (result == "errorUsername") {
                         // Display a showDialog with an error message related to the identifier
                         showErrorUsernameDialog(context);
@@ -128,6 +146,146 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
                           context,
                           L10n.of(context)!.err_tryAgain,
                         );
+                      }
+                    } catch (e) {
+                      Navigator.of(context).pop();
+                      //To view other catch-related errors
+                      showCatchErrorDialog(context, e);
+                    }
+                  }
+                },
+                child: Text(
+                  L10n.of(context)!.login,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+
+  return completer.future;
+}
+
+// ShowDialog for Instagram connection
+Future<bool> connectToWhatsApp(
+  BuildContext context,
+  SocialNetwork network,
+  BotBridgeConnection botConnection,
+) async {
+  String? phoneNumber;
+
+  final Completer<bool> completer = Completer<bool>();
+
+  final TextEditingController controller = TextEditingController();
+
+  // Retrieve the language used in the application
+  final String initialLanguage =
+      Localizations.localeOf(context).languageCode.toUpperCase();
+  PhoneNumber number = PhoneNumber(isoCode: initialLanguage);
+
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Center(
+        child: SingleChildScrollView(
+          child: AlertDialog(
+            title: Text(
+              "${L10n.of(context)!.connectYourSocialAccount} ${network.name}",
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                // color: Color(0xFFFAAB22),
+              ),
+            ),
+            content: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(L10n.of(context)!.enterYourDetails),
+                  const SizedBox(height: 5),
+                  InternationalPhoneNumberInput(
+                    onInputChanged: (PhoneNumber number) {
+                      phoneNumber = number.phoneNumber!;
+                    },
+                    selectorConfig: const SelectorConfig(
+                      selectorType: PhoneInputSelectorType.DIALOG,
+                    ),
+                    formatInput: false,
+
+                    // Initial country code via language used in Locale currentLocale
+                    initialValue: number,
+                    textFieldController: controller,
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  completer.complete(false);
+                },
+                child: Text(L10n.of(context)!.cancel),
+              ),
+              TextButton(
+                onPressed: () async {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save(); // Save form values
+
+                    try {
+                      WhatsAppResult?
+                          result; // Variable to store the result of the connection
+
+                      // To show Loading while executing the function
+                      await showFutureLoadingDialog(
+                        context: context,
+                        future: () async {
+                          result = await botConnection
+                              .createBridgeWhatsApp(phoneNumber!);
+                        },
+                      );
+
+                      if (result?.result == "success") {
+                        Navigator.of(context).pop();
+                        completer.complete(
+                          true,
+                        ); // returns True if the connection is successful
+                      } else if (result?.result == "scanTheCode") {
+                        // ShowDialog for code and QR Code login
+                        final bool success = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => QRCodeConnectPage(
+                                  qrCode: result!.qrCode!,
+                                  code: result!.code!,
+                                  botConnection: botConnection,
+                                ),
+                              ),
+                            ) ??
+                            false;
+
+                        if (success == true) {
+                          Navigator.of(context).pop();
+                          completer.complete(
+                            true,
+                          ); // returns True if the connection is successful
+                        }
+
+                        //showQRCodeConnectPage(context, result!.qrCode!, result!.code!, botConnection,);
+                      } else if (result?.result == "loginTimedOut") {
+                        // Display a showDialog with an error message related to the password
+                        showErrorPasswordDialog(context);
+                      } else if (result?.result == "rateLimitError") {
+                        // Display a showDialog with an error message related to the rate limit
+                        showRateLimitDialog(context);
                       }
                     } catch (e) {
                       Navigator.of(context).pop();

@@ -174,6 +174,10 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             // Trying to connect to Instagram
             success = await connectToInstagram(context, network, botConnection);
             break;
+          case "WhatsApp":
+            // Trying to connect to Instagram
+            success = await connectToWhatsApp(context, network, botConnection);
+            break;
 
           // For other networks
         }

@@ -35,6 +35,7 @@ final List<SocialNetwork> socialNetwork = [
   ),
 ];
 
+// Model for WhatsApp message response
 class WhatsAppResult {
   final String result;
   final String? code;
