@@ -11,10 +11,16 @@ import '../error_message_dialog.dart';
 // For the moment, rooms are DirectChat
 class BotBridgeConnection {
   Client client;
+  bool continueProcess = true;
 
   BotBridgeConnection({
     required this.client,
   });
+
+  // To stop loops (when leaving the page)
+  void stopProcess() {
+    continueProcess = false;
+  }
 
   // Ping to find out if we're connected to Instagram
   Future<String> instagramPing() async {
@@ -38,15 +44,15 @@ class BotBridgeConnection {
     String result = ''; // Variable to track the result of the connection
 
     // variable for loop limit
-    const int maxIterations = 2;
+    const int maxIterations = 5;
     int currentIteration = 0;
 
     // Get the latest messages from the room (limited to the specified number)
-    while (currentIteration < maxIterations) {
+    while (continueProcess && currentIteration < maxIterations) {
 
       // Send the "ping" message to the bot
       await roomBot?.sendTextEvent("ping");
-      await Future.delayed(const Duration(seconds: 3)); // Wait 2 sec
+      await Future.delayed(const Duration(seconds: 2)); // Wait sec
 
       // To take latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -85,6 +91,9 @@ class BotBridgeConnection {
       print("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
+    }else if(!continueProcess){
+      print(('ping stoping'));
+      result = 'stop';
     }
 
     return result;

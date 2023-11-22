@@ -9,7 +9,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
@@ -40,15 +39,21 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
 
   @override
   void dispose() {
+    botConnection.stopProcess();
     super.dispose();
   }
 
-// Online status update when page is opened
+
+  // Online status update when page is opened
   Future<void> _initStateAsync() async {
     try {
       final instagramConnected = await botConnection.pingWithTimeout(
-          context, botConnection.instagramPing(),);
-      if(instagramConnected != 'error' && mounted){
+        context,
+        botConnection.instagramPing(),
+      );
+      if (!mounted) return; // Check if the widget is still mounted
+
+      if (instagramConnected != 'error') {
         setState(() {
           socialNetwork
               .firstWhere((element) => element.name == "Instagram")
@@ -57,18 +62,23 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
               .firstWhere((element) => element.name == "Instagram")
               .loading = false;
         });
-      }else{
-        showCatchErrorDialog(
-          context,
-          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",);
+      } else {
+        if (mounted) {
+          showCatchErrorDialog(
+            context,
+            "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
+          );
+        }
       }
     } on TimeoutException {
       // To indicate that the time-out error has occurred
-      timeoutErrorOccurred = true;
+      if (mounted) {
+        timeoutErrorOccurred = true;
+      }
     } catch (error) {
       print("Error pinging Instagram: $error");
       await Future.delayed(
-          const Duration(seconds: 1)); // Precaution to let the page load
+          const Duration(seconds: 1),); // Precaution to let the page load
       if (mounted && !timeoutErrorOccurred) {
         showCatchErrorDialog(
           context,
@@ -77,6 +87,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
