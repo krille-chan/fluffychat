@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:matrix/matrix.dart';
-import 'package:uuid/uuid.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../error_message_dialog.dart';
@@ -11,10 +10,12 @@ import '../error_message_dialog.dart';
 // For the moment, rooms are DirectChat
 class BotBridgeConnection {
   Client client;
+  String hostname;
   bool continueProcess = true;
 
   BotBridgeConnection({
     required this.client,
+    required this.hostname,
   });
 
   // To stop loops (when leaving the page)
@@ -24,7 +25,7 @@ class BotBridgeConnection {
 
   // Ping to find out if we're connected to Instagram
   Future<String> instagramPing() async {
-    const String botUserId = '@instagrambot:loveto.party';
+    final String botUserId = '@instagrambot:$hostname';
 
     // Message to spot when we're online
     final RegExp onlineMatch = RegExp(r"MQTT connection is active");
@@ -49,7 +50,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (continueProcess && currentIteration < maxIterations) {
-
       // Send the "ping" message to the bot
       await roomBot?.sendTextEvent("ping");
       await Future.delayed(const Duration(seconds: 2)); // Wait sec
@@ -87,11 +87,11 @@ class BotBridgeConnection {
       currentIteration++;
     }
 
-    if(currentIteration == maxIterations){
+    if (currentIteration == maxIterations) {
       print("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
-    }else if(!continueProcess){
+    } else if (!continueProcess) {
       print(('ping stoping'));
       result = 'stop';
     }
@@ -101,7 +101,7 @@ class BotBridgeConnection {
 
   // Function for create and login bridge with bot
   Future<String> createBridgeInstagram(String username, String password) async {
-    const String botUserId = '@instagrambot:loveto.party';
+    final String botUserId = '@instagrambot:$hostname';
 
     // Success phrases to spot
     final RegExp successMatch = RegExp(r"Successfully logged in");
@@ -127,7 +127,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
-
       // Send the "login" message to the bot
       await roomBot?.sendTextEvent("login $username $password");
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -174,7 +173,7 @@ class BotBridgeConnection {
       currentIteration++;
     }
 
-    if(currentIteration == maxIterations){
+    if (currentIteration == maxIterations) {
       print("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
@@ -185,7 +184,7 @@ class BotBridgeConnection {
 
   // To disconnect from Instagram
   Future<String> disconnectToInstagram() async {
-    const String botUserId = '@instagrambot:loveto.party';
+    final String botUserId = '@instagrambot:$hostname';
 
     final RegExp successMatch = RegExp(r"Successfully logged out");
     final RegExp aldreadyLogoutMatch =
@@ -197,7 +196,8 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    String result = "Connected"; // Variable to track the result of the connection
+    String result =
+        "Connected"; // Variable to track the result of the connection
 
     // variable for loop limit
     const int maxIterations = 5;
@@ -238,7 +238,7 @@ class BotBridgeConnection {
       currentIteration++;
     }
 
-    if(currentIteration == maxIterations){
+    if (currentIteration == maxIterations) {
       print("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';

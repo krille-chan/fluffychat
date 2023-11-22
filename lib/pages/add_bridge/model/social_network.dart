@@ -21,17 +21,17 @@ final List<SocialNetwork> socialNetwork = [
   SocialNetwork(
     logo: Logo(Logos.facebook_messenger),
     name: "Facebook Messenger",
-    chatBot: "",
+    chatBot: "@facebookbot:",
   ),
   SocialNetwork(
     logo: Logo(Logos.instagram),
     name: "Instagram",
-    chatBot: "@instagrambot:loveto.party",
+    chatBot: "@instagrambot:",
   ),
   SocialNetwork(
     logo: Logo(Logos.whatsapp),
     name: "Whatsapp",
-    chatBot: "@whatsappbot:loveto.party",
+    chatBot: "@whatsappbot:",
   ),
 ];
 

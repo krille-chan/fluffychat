@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
+import 'package:fluffychat/pages/add_bridge/service/hostname.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:fluffychat/pages/add_bridge/show_delete_conversation_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -27,12 +28,15 @@ class AddBridgeBody extends StatefulWidget {
 
 class _AddBridgeBodyState extends State<AddBridgeBody> {
   late BotBridgeConnection botConnection;
+  late String hostname;
   bool timeoutErrorOccurred = false;
 
   @override
   void initState() {
     final client = Matrix.of(context).client;
-    botConnection = BotBridgeConnection(client: client);
+    String fullUrl = client.homeserver!.host;
+    hostname = extractHostName(fullUrl);
+    botConnection = BotBridgeConnection(client: client, hostname: hostname);
     super.initState();
     _initStateAsync();
   }
@@ -42,7 +46,6 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     botConnection.stopProcess();
     super.dispose();
   }
-
 
   // Online status update when page is opened
   Future<void> _initStateAsync() async {
@@ -78,7 +81,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     } catch (error) {
       print("Error pinging Instagram: $error");
       await Future.delayed(
-          const Duration(seconds: 1),); // Precaution to let the page load
+        const Duration(seconds: 1),
+      ); // Precaution to let the page load
       if (mounted && !timeoutErrorOccurred) {
         showCatchErrorDialog(
           context,
@@ -87,7 +91,6 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

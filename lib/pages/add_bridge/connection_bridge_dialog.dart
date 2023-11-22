@@ -98,12 +98,13 @@ Future<bool> connectToInstagram(BuildContext context, SocialNetwork network,
                         future: () async {
                           switch (network.name) {
                             case "Instagram":
-                              result = await botConnection.createBridgeInstagram(
+                              result =
+                                  await botConnection.createBridgeInstagram(
                                 username!,
                                 password!,
                               );
                               break;
-                          // Other network
+                            // Other network
                           }
                         },
                       );
