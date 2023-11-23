@@ -52,14 +52,10 @@ Future<bool> showBottomSheetBridge(
                   },
                 );
 
-                if (result == "Not Connected") {
-                  completer.complete(
-                    true,
-                  ); // returns true if is not connected
-                } else if (result == "error" || result == 'Connected') {
-                  completer.complete(
-                    false,
-                  );
+                // returns true if is not connected
+                completer.complete(result == "Not Connected");
+
+                if (result == "error" || result == 'Connected') {
                   // Display a showDialog with an unknown error message
                   showCatchErrorDialog(
                     context,
