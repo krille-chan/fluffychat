@@ -2571,6 +2571,7 @@
     "err_emptyField": "You cannot leave this field empty",
     "err_elapsedTime": "Elapsed time",
     "err_expiredSession": "Your connection code has expired, please try again.",
+    "err_loading": "Loading error",
     "bridgeBot_menuItemTitle" : "Connected social networks",
     "bridgeBot_deleteConvTitle": "Delete Conversation",
     "bridgeBot_deleteConvDescription": "Do you want to delete the conversation with the bot?",
