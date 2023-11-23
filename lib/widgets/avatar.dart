@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -5,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
+import 'package:fluffychat/widgets/scoped_color_seed_builder.dart';
 
 class Avatar extends StatelessWidget {
   final Uri? mxContent;
@@ -16,6 +19,7 @@ class Avatar extends StatelessWidget {
   final double fontSize;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
+  final ValueChanged<Color>? onProfileColorCallback;
 
   const Avatar({
     this.mxContent,
@@ -26,8 +30,21 @@ class Avatar extends StatelessWidget {
     this.fontSize = 18,
     this.presenceUserId,
     this.presenceBackgroundColor,
+    this.onProfileColorCallback,
     super.key,
   });
+
+  Future<void> _handleAvatarImageData(Uint8List data) async {
+    final color = await ScopedColorSeedController.imageHelper(data);
+    onProfileColorCallback?.call(color);
+  }
+
+  void _handleNoAvatarImageColor(Color color) {
+    final hsvColor = HSVColor.fromColor(color);
+    // dim the color since [String.lightColorAvatar] is quite intense
+    final dimmed = hsvColor.withSaturation(.25);
+    onProfileColorCallback?.call(dimmed.toColor());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +73,7 @@ class Avatar extends StatelessWidget {
     final presenceUserId = this.presenceUserId;
     final color =
         noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
+    if (noPic && color != null) _handleNoAvatarImageColor(color);
     final container = Stack(
       children: [
         ClipRRect(
@@ -74,6 +92,7 @@ class Avatar extends StatelessWidget {
                     height: size,
                     placeholder: (_) => textWidget,
                     cacheKey: mxContent.toString(),
+                    onImageDataCallback: _handleAvatarImageData,
                   ),
           ),
         ),

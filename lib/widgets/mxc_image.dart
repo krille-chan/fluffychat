@@ -23,6 +23,7 @@ class MxcImage extends StatefulWidget {
   final ThumbnailMethod thumbnailMethod;
   final Widget Function(BuildContext context)? placeholder;
   final String? cacheKey;
+  final ValueChanged<Uint8List>? onImageDataCallback;
 
   const MxcImage({
     this.uri,
@@ -38,6 +39,7 @@ class MxcImage extends StatefulWidget {
     this.animationCurve = FluffyThemes.animationCurve,
     this.thumbnailMethod = ThumbnailMethod.scale,
     this.cacheKey,
+    this.onImageDataCallback,
     super.key,
   });
 
@@ -48,6 +50,7 @@ class MxcImage extends StatefulWidget {
 class _MxcImageState extends State<MxcImage> {
   static final Map<String, Uint8List> _imageDataCache = {};
   Uint8List? _imageDataNoCache;
+
   Uint8List? get _imageData {
     final cacheKey = widget.cacheKey;
     return cacheKey == null ? _imageDataNoCache : _imageDataCache[cacheKey];
@@ -90,6 +93,7 @@ class _MxcImageState extends State<MxcImage> {
       if (_isCached == null) {
         final cachedData = await client.database?.getFile(storeKey);
         if (cachedData != null) {
+          widget.onImageDataCallback?.call(cachedData);
           if (!mounted) return;
           setState(() {
             _imageData = cachedData;
@@ -108,7 +112,7 @@ class _MxcImageState extends State<MxcImage> {
         throw Exception();
       }
       final remoteData = response.bodyBytes;
-
+      widget.onImageDataCallback?.call(remoteData);
       if (!mounted) return;
       setState(() {
         _imageData = remoteData;
@@ -122,8 +126,10 @@ class _MxcImageState extends State<MxcImage> {
       );
       if (data.detectFileType is MatrixImageFile) {
         if (!mounted) return;
+        final bytes = data.bytes;
+        widget.onImageDataCallback?.call(bytes);
         setState(() {
-          _imageData = data.bytes;
+          _imageData = bytes;
         });
         return;
       }
@@ -131,7 +137,11 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   void _tryLoad(_) async {
-    if (_imageData != null) return;
+    final data = _imageData;
+    if (data != null) {
+      widget.onImageDataCallback?.call(data);
+      return;
+    }
     try {
       await _load();
     } catch (_) {

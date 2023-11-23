@@ -7,6 +7,7 @@ import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
+import 'package:fluffychat/widgets/scoped_color_seed_builder.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
@@ -26,241 +27,251 @@ class UserBottomSheetView extends StatelessWidget {
 
     final client = Matrix.of(controller.widget.outerContext).client;
     final profileSearchError = controller.widget.profileSearchError;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: CloseButton(
-            onPressed: Navigator.of(context, rootNavigator: false).pop,
-          ),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(displayname),
-              PresenceBuilder(
-                userId: userId,
-                client: client,
-                builder: (context, presence) {
-                  if (presence == null ||
-                      (presence.presence == PresenceType.offline &&
-                          presence.lastActiveTimestamp == null)) {
-                    return const SizedBox.shrink();
-                  }
 
-                  final dotColor = presence.presence.isOnline
-                      ? Colors.green
-                      : presence.presence.isUnavailable
-                          ? Colors.red
-                          : Colors.grey;
+    return ScopedColorSeedBuilder(
+      controller: controller.colorSeedController,
+      builder: (context, color) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            appBar: AppBar(
+              leading: CloseButton(
+                onPressed: Navigator.of(context, rootNavigator: false).pop,
+              ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(displayname),
+                  PresenceBuilder(
+                    userId: userId,
+                    client: client,
+                    builder: (context, presence) {
+                      if (presence == null ||
+                          (presence.presence == PresenceType.offline &&
+                              presence.lastActiveTimestamp == null)) {
+                        return const SizedBox.shrink();
+                      }
 
-                  final lastActiveTimestamp = presence.lastActiveTimestamp;
+                      final dotColor = presence.presence.isOnline
+                          ? Colors.green
+                          : presence.presence.isUnavailable
+                              ? Colors.red
+                              : Colors.grey;
 
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 8,
-                        height: 8,
-                        margin: const EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          color: dotColor,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      if (presence.currentlyActive == true)
-                        Text(
-                          L10n.of(context)!.currentlyActive,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )
-                      else if (lastActiveTimestamp != null)
-                        Text(
-                          L10n.of(context)!.lastActiveAgo(
-                            lastActiveTimestamp.localizedTimeShort(context),
+                      final lastActiveTimestamp = presence.lastActiveTimestamp;
+
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            margin: const EdgeInsets.only(right: 8),
+                            decoration: BoxDecoration(
+                              color: dotColor,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
                           ),
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                    ],
-                  );
-                },
+                          if (presence.currentlyActive == true)
+                            Text(
+                              L10n.of(context)!.currentlyActive,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            )
+                          else if (lastActiveTimestamp != null)
+                            Text(
+                              L10n.of(context)!.lastActiveAgo(
+                                lastActiveTimestamp.localizedTimeShort(context),
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            if (userId != client.userID &&
-                !client.ignoredUsers.contains(userId))
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton.icon(
-                  label: Text(
-                    L10n.of(context)!.ignore,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
+              actions: [
+                if (userId != client.userID &&
+                    !client.ignoredUsers.contains(userId))
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton.icon(
+                      label: Text(
+                        L10n.of(context)!.ignore,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      icon: Icon(
+                        Icons.shield_outlined,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      onPressed: () => controller
+                          .participantAction(UserBottomSheetAction.ignore),
                     ),
                   ),
-                  icon: Icon(
-                    Icons.shield_outlined,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                  onPressed: () => controller
-                      .participantAction(UserBottomSheetAction.ignore),
-                ),
-              ),
-          ],
-        ),
-        body: ListView(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Material(
-                    elevation:
-                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
-                            4,
-                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        Avatar.defaultSize * 2.5,
-                      ),
-                    ),
-                    child: Avatar(
-                      mxContent: avatarUrl,
-                      name: displayname,
-                      size: Avatar.defaultSize * 2.5,
-                      fontSize: 18 * 2.5,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton.icon(
-                        onPressed: () => FluffyShare.share(
-                          'https://matrix.to/#/$userId',
-                          context,
-                        ),
-                        icon: Icon(
-                          Icons.adaptive.share_outlined,
-                          size: 16,
-                        ),
-                        style: TextButton.styleFrom(
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onBackground,
-                        ),
-                        label: Text(
-                          displayname,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          //  style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
-                      TextButton.icon(
-                        onPressed: () => FluffyShare.share(
-                          userId,
-                          context,
-                          copyOnly: true,
-                        ),
-                        icon: const Icon(
-                          Icons.copy_outlined,
-                          size: 14,
-                        ),
-                        style: TextButton.styleFrom(
-                          foregroundColor:
-                              Theme.of(context).colorScheme.secondary,
-                        ),
-                        label: Text(
-                          userId,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          //    style: const TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
-            if (userId != client.userID)
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 8.0,
+            body: ListView(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Material(
+                        elevation: Theme.of(context)
+                                .appBarTheme
+                                .scrolledUnderElevation ??
+                            4,
+                        shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: Theme.of(context).dividerColor,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            Avatar.defaultSize * 2.5,
+                          ),
+                        ),
+                        child: Avatar(
+                          mxContent: avatarUrl,
+                          name: displayname,
+                          size: Avatar.defaultSize * 2.5,
+                          fontSize: 18 * 2.5,
+                          onProfileColorCallback:
+                              controller.onProfileImageAvailable,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton.icon(
+                            onPressed: () => FluffyShare.share(
+                              'https://matrix.to/#/$userId',
+                              context,
+                            ),
+                            icon: Icon(
+                              Icons.adaptive.share_outlined,
+                              size: 16,
+                            ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onBackground,
+                            ),
+                            label: Text(
+                              displayname,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              //  style: const TextStyle(fontSize: 18),
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () => FluffyShare.share(
+                              userId,
+                              context,
+                              copyOnly: true,
+                            ),
+                            icon: const Icon(
+                              Icons.copy_outlined,
+                              size: 14,
+                            ),
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                            ),
+                            label: Text(
+                              userId,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              //    style: const TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                child: ElevatedButton.icon(
-                  onPressed: () => controller
-                      .participantAction(UserBottomSheetAction.message),
-                  icon: const Icon(Icons.forum_outlined),
-                  label: Text(L10n.of(context)!.sendAMessage),
-                ),
-              ),
-            if (controller.widget.onMention != null)
-              ListTile(
-                leading: const Icon(Icons.alternate_email_outlined),
-                title: Text(L10n.of(context)!.mention),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.mention),
-              ),
-            if (user != null && user.canChangePowerLevel)
-              ListTile(
-                title: Text(L10n.of(context)!.setPermissionsLevel),
-                leading: const Icon(Icons.edit_attributes_outlined),
-                onTap: () => controller
-                    .participantAction(UserBottomSheetAction.permission),
-              ),
-            if (user != null && user.canKick)
-              ListTile(
-                title: Text(L10n.of(context)!.kickFromChat),
-                leading: const Icon(Icons.exit_to_app_outlined),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.kick),
-              ),
-            if (user != null &&
-                user.canBan &&
-                user.membership != Membership.ban)
-              ListTile(
-                title: Text(L10n.of(context)!.banFromChat),
-                leading: const Icon(Icons.warning_sharp),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.ban),
-              )
-            else if (user != null &&
-                user.canBan &&
-                user.membership == Membership.ban)
-              ListTile(
-                title: Text(L10n.of(context)!.unbanFromChat),
-                leading: const Icon(Icons.warning_outlined),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.unban),
-              ),
-            if (user != null && user.id != client.userID)
-              ListTile(
-                textColor: Theme.of(context).colorScheme.onErrorContainer,
-                iconColor: Theme.of(context).colorScheme.onErrorContainer,
-                title: Text(L10n.of(context)!.reportUser),
-                leading: const Icon(Icons.report_outlined),
-                onTap: () =>
-                    controller.participantAction(UserBottomSheetAction.report),
-              ),
-            if (profileSearchError != null)
-              ListTile(
-                leading: const Icon(
-                  Icons.warning_outlined,
-                  color: Colors.orange,
-                ),
-                subtitle: Text(
-                  L10n.of(context)!.profileNotFound,
-                  style: const TextStyle(color: Colors.orange),
-                ),
-              ),
-          ],
-        ),
-      ),
+                if (userId != client.userID)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 8.0,
+                    ),
+                    child: ElevatedButton.icon(
+                      onPressed: () => controller
+                          .participantAction(UserBottomSheetAction.message),
+                      icon: const Icon(Icons.forum_outlined),
+                      label: Text(L10n.of(context)!.sendAMessage),
+                    ),
+                  ),
+                if (controller.widget.onMention != null)
+                  ListTile(
+                    leading: const Icon(Icons.alternate_email_outlined),
+                    title: Text(L10n.of(context)!.mention),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.mention),
+                  ),
+                if (user != null && user.canChangePowerLevel)
+                  ListTile(
+                    title: Text(L10n.of(context)!.setPermissionsLevel),
+                    leading: const Icon(Icons.edit_attributes_outlined),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.permission),
+                  ),
+                if (user != null && user.canKick)
+                  ListTile(
+                    title: Text(L10n.of(context)!.kickFromChat),
+                    leading: const Icon(Icons.exit_to_app_outlined),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.kick),
+                  ),
+                if (user != null &&
+                    user.canBan &&
+                    user.membership != Membership.ban)
+                  ListTile(
+                    title: Text(L10n.of(context)!.banFromChat),
+                    leading: const Icon(Icons.warning_sharp),
+                    onTap: () =>
+                        controller.participantAction(UserBottomSheetAction.ban),
+                  )
+                else if (user != null &&
+                    user.canBan &&
+                    user.membership == Membership.ban)
+                  ListTile(
+                    title: Text(L10n.of(context)!.unbanFromChat),
+                    leading: const Icon(Icons.warning_outlined),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.unban),
+                  ),
+                if (user != null && user.id != client.userID)
+                  ListTile(
+                    textColor: Theme.of(context).colorScheme.onErrorContainer,
+                    iconColor: Theme.of(context).colorScheme.onErrorContainer,
+                    title: Text(L10n.of(context)!.reportUser),
+                    leading: const Icon(Icons.report_outlined),
+                    onTap: () => controller
+                        .participantAction(UserBottomSheetAction.report),
+                  ),
+                if (profileSearchError != null)
+                  ListTile(
+                    leading: const Icon(
+                      Icons.warning_outlined,
+                      color: Colors.orange,
+                    ),
+                    subtitle: Text(
+                      L10n.of(context)!.profileNotFound,
+                      style: const TextStyle(color: Colors.orange),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

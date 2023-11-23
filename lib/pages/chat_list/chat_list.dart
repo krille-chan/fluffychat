@@ -21,6 +21,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/theme_builder.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
@@ -700,9 +701,6 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  @override
-  Widget build(BuildContext context) => ChatListView(this);
-
   void _hackyWebRTCFixForWeb() {
     ChatList.contextForVoip = context;
   }
@@ -715,6 +713,12 @@ class ChatListController extends State<ChatList>
 
   Future<void> dehydrate() =>
       SettingsSecurityController.dehydrateDevice(context);
+
+  void onProfileImageAvailable(Color color) =>
+      ThemeController.of(context).profileThemeSeed = color;
+
+  @override
+  Widget build(BuildContext context) => ChatListView(this);
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

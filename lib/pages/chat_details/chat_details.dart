@@ -17,6 +17,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/scoped_color_seed_builder.dart';
 
 enum AliasActions { copy, delete, setCanonical }
 
@@ -34,6 +35,8 @@ class ChatDetails extends StatefulWidget {
 
 class ChatDetailsController extends State<ChatDetails> {
   bool displaySettings = false;
+
+  ScopedColorSeedController colorSeedController = ScopedColorSeedController();
 
   void toggleDisplaySettings() =>
       setState(() => displaySettings = !displaySettings);
@@ -396,6 +399,9 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   static const fixedWidth = 360.0;
+
+  void onProfileImageAvailable(Color value) =>
+      colorSeedController.setSeed(value);
 
   @override
   Widget build(BuildContext context) => ChatDetailsView(this);

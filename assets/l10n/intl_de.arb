@@ -1742,6 +1742,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "dynamicTheme": "Dynamisch",
   "theyDontMatch": "Stimmen nicht überein",
   "@theyDontMatch": {
     "type": "text",
