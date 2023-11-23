@@ -65,14 +65,12 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
               .firstWhere((element) => element.name == "Instagram")
               .loading = false;
         });
-      } else {
-        if (mounted) {
+      } else if (mounted) {
           showCatchErrorDialog(
             context,
             "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
           );
         }
-      }
     } on TimeoutException {
       // To indicate that the time-out error has occurred
       if (mounted) {
