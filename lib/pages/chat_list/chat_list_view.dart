@@ -86,16 +86,23 @@ class ChatListView extends StatelessWidget {
       stream: Matrix.of(context).onShareContentChanged.stream,
       builder: (_, __) {
         final selectMode = controller.selectMode;
-        return WillPopScope(
-          onWillPop: () async {
+        return PopScope(
+          canPop: controller.selectMode == SelectMode.normal &&
+              !controller.isSearchMode &&
+              controller.activeFilter ==
+                  (AppConfig.separateChatTypes
+                      ? ActiveFilter.messages
+                      : ActiveFilter.allChats),
+          onPopInvoked: (pop) async {
+            if (pop) return;
             final selMode = controller.selectMode;
             if (controller.isSearchMode) {
               controller.cancelSearch();
-              return false;
+              return;
             }
             if (selMode != SelectMode.normal) {
               controller.cancelAction();
-              return false;
+              return;
             }
             if (controller.activeFilter !=
                 (AppConfig.separateChatTypes
@@ -103,9 +110,9 @@ class ChatListView extends StatelessWidget {
                     : ActiveFilter.allChats)) {
               controller
                   .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
-              return false;
+              return;
             }
-            return true;
+            return;
           },
           child: Row(
             children: [

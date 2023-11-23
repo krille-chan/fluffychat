@@ -13,7 +13,7 @@ GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 // ShowDialog for double-factor code (can be used for each social network)
 Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
-    BotBridgeConnection botConnection) async {
+    BotBridgeConnection botConnection,) async {
   String? code;
 
   final Completer<bool> completer = Completer<bool>();
@@ -86,15 +86,16 @@ Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
                           );
                         },
                       );
+                      
+                      print(result);
 
                       // Retrieves the answer to the code according to the social network
                       switch (network.name) {
                         case "Instagram":
-                          final RegExp successMatch =
-                              RegExp(r"Successfully logged in");
+                          final successfullyMatch = RegExp(r"Successfully logged in");
                           final RegExp alreadySuccessMatch =
                               RegExp(r"You're already logged in");
-                          if (successMatch.hasMatch(result) ||
+                          if (successfullyMatch.hasMatch(result) ||
                               alreadySuccessMatch.hasMatch(result)) {
                             Navigator.of(context).pop();
                             print('connected to Instagram');
@@ -103,7 +104,8 @@ Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
                             ); // returns True if the connection is successful
                           } else {
                             showCatchErrorDialog(
-                                context, L10n.of(context)!.err_timeOut);
+                                context, L10n.of(context)!.err_timeOut,);
+                            result = "";
                           }
                           break;
                         // For other networks

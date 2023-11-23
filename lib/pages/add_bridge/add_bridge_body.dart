@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/service/hostname.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
@@ -37,8 +35,14 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
     botConnection = BotBridgeConnection(client: client, hostname: hostname);
+
+    // Call the method that manages stream listening
+    setupPingResultsListener();
+
+    // Calling the ping method
+    botConnection.checkAllSocialNetworksConnections(socialNetwork);
+
     super.initState();
-    _checkSocialNetworkConnections();
   }
 
   @override
@@ -53,72 +57,31 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     super.dispose();
   }
 
-  // Retrieves the name of each network in the socialNetwork list
-  Future<void> _checkSocialNetworkConnections() async {
-    for (final network in socialNetwork) {
-      await _checkSocialNetworkConnection(network.name);
-    }
-  }
+  // Method for managing the ping results stream
+  void setupPingResultsListener() {
+    botConnection.pingResults.listen((result) {
+      String name = result['name'];
+      String pingResult = result['result'];
 
-  // Online status update when page is opened
-  Future<void> _checkSocialNetworkConnection(String socialNetworkName) async {
-    try {
-      if (!mounted) return; // Checks if the widget is still mounted
+      SocialNetwork network = socialNetwork.firstWhere((network) => network.name == name);
 
-      final connected = await botConnection.pingWithTimeout(
-        context,
-        _getSocialNetworkPingFunction(socialNetworkName),
-      );
-      if (!mounted) return; // Check if the widget is still mounted
-
-      if (connected != 'error') {
+      // Updated connection results for each social network
+      if (pingResult == 'Connected') {
         setState(() {
-          socialNetwork
-              .firstWhere((element) => element.name == socialNetworkName)
-              .connected = connected == 'Connected' ? true : false;
-          socialNetwork
-              .firstWhere((element) => element.name == socialNetworkName)
-              .loading = false;
+          network.updateConnectionResult(true);
         });
-      } else {
-        if (mounted) {
-          showCatchErrorDialog(
-            context,
-            "${L10n.of(context)!.err_toConnect} $socialNetworkName",
-          );
-        }
+      } else if (pingResult == 'Not Connected') {
+        setState(() {
+          network.updateConnectionResult(false);
+        });
+      } else if (pingResult == 'error') {
+        // Error management
+        setState(() {
+          network.setError(true);
+        });
+        showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
       }
-    } on TimeoutException {
-      // To indicate that the time-out error has occurred
-      if (mounted) {
-        timeoutErrorOccurred = true;
-      }
-    } catch (error) {
-      print("Error pinging $socialNetworkName: $error");
-      await Future.delayed(
-        const Duration(seconds: 1),
-      ); // Precaution to let the page load
-      if (mounted && !timeoutErrorOccurred) {
-        showCatchErrorDialog(
-          context,
-          "${L10n.of(context)!.err_toConnect} $socialNetworkName",
-        );
-      }
-    }
-  }
-
-  // Switch ping functions to networks
-  Future<String> _getSocialNetworkPingFunction(String socialNetworkName) {
-    switch (socialNetworkName) {
-      case "Instagram":
-        return botConnection.instagramPing();
-      case "WhatsApp":
-        return botConnection.whatsAppPing();
-      // case "Facebook Messenger":
-      //   return botConnection.facebookPing();
-      default:
-        throw Exception("Unsupported social network: $socialNetworkName");
-    }
+    });
   }
 
   @override
@@ -146,10 +109,13 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       ),
                       // Different build of subtle depending on the social network, for now only Instagram
                       subtitle: buildSubtitle(socialNetwork[index]),
-                      trailing: const Icon(
-                        CupertinoIcons.right_chevron,
-                      ),
-
+                      trailing: socialNetwork[index].error == false
+                          ?const Icon(
+                          CupertinoIcons.right_chevron,
+                          )
+                          :const Icon(
+                          CupertinoIcons.refresh_bold,
+                          ),
                       // Different ways of connecting and disconnecting depending on the social network
                       onTap: () =>
                           handleSocialNetworkAction(socialNetwork[index]),
@@ -167,26 +133,26 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   // Different ways of connecting and disconnecting depending on the social network, for now only Instagram
   void handleSocialNetworkAction(SocialNetwork network) async {
     if (network.loading == false) {
-      if (network.connected != true) {
+      if (network.connected != true && network.error == false) {
         bool success = false;
         switch (network.name) {
           case "Instagram":
-            // Trying to connect to Instagram
+          // Trying to connect to Instagram
             success = await connectToInstagram(context, network, botConnection);
             break;
           case "WhatsApp":
-            // Trying to connect to Instagram
+          // Trying to connect to Instagram
             success = await connectToWhatsApp(context, network, botConnection);
             break;
 
-          // For other networks
+        // For other networks
         }
         if (success) {
           setState(() {
             network.connected = true;
           });
         }
-      } else {
+      } else if(network.connected == true && network.error == false){
         // Disconnect button, for the moment only this choice
         final bool success = await showBottomSheetBridge(
           context,
@@ -206,6 +172,33 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
         }
       }
+
+      // If there is a ping error
+      if(network.error && network.connected == false){
+        setState(() {
+          network.loading = true;
+        });
+
+        // Reload pinging
+        final String pingResult = await botConnection.pingSocialNetwork(network);
+        if (pingResult == 'Connected') {
+          setState(() {
+            network.updateConnectionResult(true);
+            network.setError(false); // Reset error if retry successful
+          });
+        } else if (pingResult == 'Not Connected') {
+          setState(() {
+            network.updateConnectionResult(false);
+            network.setError(false);
+          });
+        } else if (pingResult == 'error') {
+          setState(() {
+            network.setError(true);
+          });
+          // error message
+          showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${network.name}");
+        }
+      }
     }
   }
 
@@ -219,14 +212,23 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         ),
       );
     } else {
-      return Text(
-        network.connected == true
-            ? L10n.of(context)!.connected
-            : L10n.of(context)!.notConnected,
-        style: TextStyle(
-          color: network.connected == true ? Colors.green : Colors.grey,
-        ),
-      );
+      if(!network.error){
+        return Text(
+          network.connected == true
+              ? L10n.of(context)!.connected
+              : L10n.of(context)!.notConnected,
+          style: TextStyle(
+            color: network.connected == true ? Colors.green : Colors.grey,
+          ),
+        );
+      }else{
+        return Text(
+          L10n.of(context)!.err_loading,
+          style: const TextStyle(
+            color: Colors.red,
+          ),
+        );
+      }
     }
   }
 }

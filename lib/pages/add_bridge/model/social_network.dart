@@ -7,6 +7,7 @@ class SocialNetwork {
   final String chatBot; // ChatBot for send demand
   bool? loading; // To find out if state is loading
   bool? connected; // To find out if state is disconnected
+  bool error; // Bool to indicate if there is an error
 
   SocialNetwork({
     required this.logo,
@@ -14,15 +15,28 @@ class SocialNetwork {
     required this.chatBot,
     this.loading = true, // Default value true for loading
     this.connected = false, // Default value false for connected
+    this.error = false, // Défaut à false
   });
+
+  // How to update connection results
+  void updateConnectionResult(bool connectedValue) {
+    loading = false;
+    connected = connectedValue;
+  }
+
+  // Error update
+  void setError(bool errorValue) {
+    loading = false;
+    error = errorValue;
+  }
 }
 
 final List<SocialNetwork> socialNetwork = [
-  // SocialNetwork(
-  //   logo: Logo(Logos.facebook_messenger),
-  //   name: "Facebook Messenger",
-  //   chatBot: "@facebookbot:",
-  // ),
+   SocialNetwork(
+     logo: Logo(Logos.facebook_messenger),
+     name: "Facebook Messenger",
+     chatBot: "@facebookbot:",
+   ),
   SocialNetwork(
     logo: Logo(Logos.instagram),
     name: "Instagram",
