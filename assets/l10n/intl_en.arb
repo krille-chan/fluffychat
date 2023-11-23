@@ -1306,6 +1306,16 @@
     "shareInviteLink": "Share invite link",
     "scanQrCode": "Scan QR code",
     "@scanQrCode": {},
+    "storagePermissionPermanentlyDeniedTitle": "Storage Permission Permanently Denied",
+    "@storagePermissionPermanentlyDeniedTitle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "storagePermissionPermanentlyDenied": "The app will not work as intended. Visit settings to set the media permission.",
+    "@storagePermissionPermanentlyDenied": {
+        "type": "text",
+        "placeholders": {}
+    },
     "none": "None",
     "@none": {
         "type": "text",

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -6,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:uni_links/uni_links.dart';
 
@@ -374,11 +377,11 @@ class ChatListController extends State<ChatList>
   @override
   void initState() {
     _initReceiveSharingIntent();
-
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
     CallKeepManager().initialize();
+    tryLegacyStoragePermissionAndroid();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =
@@ -395,6 +398,39 @@ class ChatListController extends State<ChatList>
     _checkTorBrowser();
 
     super.initState();
+  }
+
+  Future<void> tryLegacyStoragePermissionAndroid() async {
+    if (Platform.isAndroid) {
+      final androidSdkVersion =
+          (await DeviceInfoPlugin().androidInfo).version.sdkInt;
+
+      if (androidSdkVersion > 22 && androidSdkVersion < 30) {
+        Permission.storage.request().then((pStatus) async {
+          log(pStatus.toString());
+
+          if (pStatus == PermissionStatus.denied) {
+            tryLegacyStoragePermissionAndroid();
+          } else if (pStatus == PermissionStatus.permanentlyDenied) {
+            final action = await showAlertDialog(
+              barrierDismissible: false,
+              context: context,
+              title: L10n.of(context)!.storagePermissionPermanentlyDeniedTitle,
+              message: L10n.of(context)!.storagePermissionPermanentlyDenied,
+              actions: [
+                AlertDialogAction(
+                  key: "settings",
+                  label: L10n.of(context)!.settings,
+                ),
+              ],
+            );
+            if (action != null) {
+              openAppSettings();
+            }
+          }
+        });
+      }
+    }
   }
 
   @override
