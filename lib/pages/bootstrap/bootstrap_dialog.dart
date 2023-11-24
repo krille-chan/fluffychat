@@ -1,3 +1,5 @@
+import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -5,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
-import 'package:matrix/encryption/utils/bootstrap.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -311,11 +312,19 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                     );
                                   }
                                 }
-                              } catch (e, s) {
-                                Logs().w('Unable to unlock SSSS', e, s);
+                              } on InvalidPassphraseException catch (e) {
                                 setState(
                                   () => _recoveryKeyInputError =
-                                      L10n.of(context)!.oopsSomethingWentWrong,
+                                      e.toLocalizedString(context),
+                                );
+                              } catch (e, s) {
+                                ErrorReporter(
+                                  context,
+                                  'Unable to open SSSS with recovery key',
+                                ).onErrorCallback(e, s);
+                                setState(
+                                  () => _recoveryKeyInputError =
+                                      e.toLocalizedString(context),
                                 );
                               } finally {
                                 setState(
