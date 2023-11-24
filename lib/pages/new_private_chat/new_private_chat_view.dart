@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -25,8 +23,6 @@ class NewPrivateChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchResponse = controller.searchResponse;
-    final qrCodeSize =
-        min(MediaQuery.of(context).size.width - 16, 256).toDouble();
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -157,19 +153,22 @@ class NewPrivateChatView extends StatelessWidget {
                       title: Text(L10n.of(context)!.createGroup),
                       onTap: () => context.go('/rooms/newgroup'),
                     ),
-                    const SizedBox(height: 24),
                     Center(
-                      child: Material(
-                        borderRadius: BorderRadius.circular(12),
-                        elevation: 10,
-                        color: Colors.white,
-                        shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                        clipBehavior: Clip.hardEdge,
-                        child: QrImageView(
-                          data:
-                              'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                          version: QrVersions.auto,
-                          size: qrCodeSize,
+                      child: Padding(
+                        padding: const EdgeInsets.all(64.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(12),
+                          elevation: 10,
+                          color: Colors.white,
+                          shadowColor:
+                              Theme.of(context).appBarTheme.shadowColor,
+                          clipBehavior: Clip.hardEdge,
+                          child: QrImageView(
+                            data:
+                                'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                            version: QrVersions.auto,
+                            // size: qrCodeSize,
+                          ),
                         ),
                       ),
                     ),
