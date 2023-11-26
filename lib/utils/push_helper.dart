@@ -59,6 +59,7 @@ Future<void> pushHelper(
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.max,
+          fullScreenIntent: true, // To show notification popup
         ),
       ),
     );
@@ -242,6 +243,7 @@ Future<void> _tryPushHelper(
     importance: Importance.max,
     priority: Priority.max,
     groupKey: notificationGroupId,
+    fullScreenIntent: true, // To show notification popup
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
