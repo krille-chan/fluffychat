@@ -2555,7 +2555,7 @@
   "@noOneCanJoin": {},
   "tryAgain": "重试",
   "@tryAgain": {},
-  "addChatDescription": "添加聊天说明",
+  "addChatDescription": "添加聊天说明…",
   "@addChatDescription": {},
   "chatPermissions": "聊天权限",
   "@chatPermissions": {},
