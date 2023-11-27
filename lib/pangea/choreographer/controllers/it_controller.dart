@@ -1,15 +1,20 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:http/http.dart' as http;
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../models/custom_input_translation_model.dart';
 import '../../models/it_response_model.dart';
 import '../../models/it_step.dart';

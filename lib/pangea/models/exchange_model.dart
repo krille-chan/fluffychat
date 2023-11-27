@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'class_model.dart';
 
 class ExchangeModel {

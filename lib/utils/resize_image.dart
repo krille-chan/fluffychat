@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
 
+// Project imports:
 import 'package:fluffychat/utils/platform_infos.dart';
 
 extension ResizeImage on MatrixFile {

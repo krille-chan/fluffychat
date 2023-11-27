@@ -1,8 +1,21 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:video_player/video_player.dart';
+
+// Project imports:
 import 'package:fluffychat/pages/story/story_view.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -13,13 +26,6 @@ import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/utils/story_theme_data.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:video_player/video_player.dart';
 
 class StoryPage extends StatefulWidget {
   const StoryPage({super.key});

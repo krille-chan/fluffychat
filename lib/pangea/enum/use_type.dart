@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+// Project imports:
 import '../models/choreo_record.dart';
 import '../utils/bot_style.dart';
 

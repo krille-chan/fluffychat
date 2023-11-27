@@ -1,7 +1,9 @@
-import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Package imports:
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/pangea_event_types.dart';
 import 'message_data_models.dart';
 

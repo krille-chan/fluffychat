@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/link.dart';
 
+// Project imports:
 import 'edit_widgets_dialog.dart';
 
 class WidgetsBottomSheet extends StatelessWidget {

@@ -1,8 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/config/environment.dart';
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/config/environment.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 

@@ -1,8 +1,13 @@
-import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class Settings3PidView extends StatelessWidget {
   final Settings3PidController controller;

@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 
+// Package imports:
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:just_audio/just_audio.dart';
 
+// Project imports:
 import 'package:fluffychat/utils/platform_infos.dart';
 
 class UserMediaManager {

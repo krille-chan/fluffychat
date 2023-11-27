@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+// Package imports:
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 
 /// this class is contained within a [RepresentationEvent]
 /// this event is the child of a [EventTypes.Message]

@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/enum/time_span.dart';
-import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/enum/time_span.dart';
+import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import '../enum/use_type.dart';
 
 class TimeSeriesTotals {

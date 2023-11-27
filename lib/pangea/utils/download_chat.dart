@@ -1,12 +1,13 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-import 'package:csv/csv.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:csv/csv.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
@@ -17,6 +18,10 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:universal_html/html.dart' as webFile;
 
+// Project imports:
+import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../models/choreo_record.dart';
 
 enum DownloadType { txt, csv, xlsx }

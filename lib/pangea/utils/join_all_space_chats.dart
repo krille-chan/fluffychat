@@ -1,6 +1,11 @@
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 
 // Used in lock space. Handles case when child rooms return null from client.getRoomById
 // Because the user hasn't joined them

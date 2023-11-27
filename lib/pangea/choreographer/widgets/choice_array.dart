@@ -1,9 +1,14 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+// Project imports:
 import '../../utils/bot_style.dart';
 import 'it_shimmer.dart';
 

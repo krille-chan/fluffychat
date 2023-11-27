@@ -1,5 +1,18 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as sdk;
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
@@ -13,13 +26,6 @@ import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart' as sdk;
-import 'package:matrix/matrix.dart';
 
 class NewSpace extends StatefulWidget {
   const NewSpace({super.key});

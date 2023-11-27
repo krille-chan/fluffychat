@@ -1,7 +1,19 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -14,12 +26,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;

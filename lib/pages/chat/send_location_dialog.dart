@@ -1,13 +1,17 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
 import 'package:fluffychat/pages/chat/events/map_bubble.dart';
 
 class SendLocationDialog extends StatefulWidget {

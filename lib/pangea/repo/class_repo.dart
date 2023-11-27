@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/models/class_email_invite_model.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/models/class_email_invite_model.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 

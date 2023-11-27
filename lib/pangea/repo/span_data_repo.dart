@@ -1,11 +1,14 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
+import 'package:http/http.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
-import 'package:http/http.dart';
-
 import '../constants/model_keys.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';

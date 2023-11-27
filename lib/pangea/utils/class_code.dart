@@ -1,11 +1,16 @@
+// Dart imports:
 import 'dart:math';
 
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../controllers/pangea_controller.dart';
 
 class ClassCodeUtil {

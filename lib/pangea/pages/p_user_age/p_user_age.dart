@@ -1,16 +1,21 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl/intl.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age_view.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl/intl.dart';
-
 import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
 

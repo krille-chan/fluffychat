@@ -1,13 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../widgets/matrix.dart';
 import '../constants/language_keys.dart';
 import '../constants/model_keys.dart';

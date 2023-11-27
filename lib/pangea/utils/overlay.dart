@@ -1,12 +1,15 @@
+// Dart imports:
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/utils/any_state_holder.dart';
-import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';

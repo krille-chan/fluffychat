@@ -1,12 +1,17 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../../../widgets/matrix.dart';
 import '../../../controllers/pangea_controller.dart';
 import '../../../extensions/client_extension.dart';

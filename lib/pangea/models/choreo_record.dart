@@ -1,8 +1,9 @@
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
-
 import '../constants/choreo_constants.dart';
 import '../enum/construct_type_enum.dart';
 import 'constructs_analytics_model.dart';

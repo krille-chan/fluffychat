@@ -1,10 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:fl_chart/fl_chart.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/headwords.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-
 import 'bar_chart_card.dart';
 import 'messages_legend_widget.dart';
 

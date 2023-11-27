@@ -1,8 +1,12 @@
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../models/chat_topic_model.dart';
 import '../../models/lemma.dart';
 import '../../repo/topic_data_repo.dart';

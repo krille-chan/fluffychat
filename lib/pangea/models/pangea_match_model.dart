@@ -1,10 +1,13 @@
+// Dart imports:
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/enum/span_data_type.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/enum/span_data_type.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/match_rule_ids.dart';
 import 'igc_text_data_model.dart';
 import 'span_data.dart';

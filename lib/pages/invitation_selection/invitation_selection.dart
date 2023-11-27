@@ -1,6 +1,16 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -8,11 +18,6 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../utils/localized_exception_extension.dart';
 
 //#Pangea

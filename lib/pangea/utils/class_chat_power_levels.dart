@@ -1,7 +1,11 @@
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import '../../widgets/matrix.dart';
 import '../constants/class_default_values.dart';
 import '../extensions/pangea_room_extension.dart';

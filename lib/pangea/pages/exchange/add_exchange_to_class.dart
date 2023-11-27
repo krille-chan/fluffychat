@@ -1,9 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 
 class AddExchangeToClass extends StatefulWidget {
   const AddExchangeToClass({Key? key}) : super(key: key);

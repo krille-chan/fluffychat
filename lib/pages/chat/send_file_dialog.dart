@@ -1,12 +1,16 @@
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/size_string.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
 
 class SendFileDialog extends StatefulWidget {

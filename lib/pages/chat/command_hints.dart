@@ -1,5 +1,6 @@
 // This file is auto-generated using scripts/generate_command_hints_glue.sh.
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 String commandHint(L10n l10n, String command) {

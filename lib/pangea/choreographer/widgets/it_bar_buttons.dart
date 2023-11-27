@@ -1,8 +1,10 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-
 import '../../widgets/common/bot_face_svg.dart';
 import '../controllers/choreographer.dart';
 import '../controllers/it_controller.dart';

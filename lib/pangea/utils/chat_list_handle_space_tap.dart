@@ -1,12 +1,16 @@
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'error_handler.dart';
 
 // ignore: curly_braces_in_flow_control_structures

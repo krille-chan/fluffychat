@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+// Project imports:
 import '../../../config/app_config.dart';
 import '../../../pages/chat/chat.dart';
 

@@ -1,8 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/config/environment.dart';
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/config/environment.dart';
 import '../models/custom_input_translation_model.dart';
 import '../models/it_response_model.dart';
 import '../models/system_choice_translation_model.dart';

@@ -1,10 +1,13 @@
+// Dart imports:
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
-import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
+import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import '../../choreographer/controllers/choreographer.dart';
 import '../../enum/edit_type.dart';
 import '../../models/pangea_token_model.dart';

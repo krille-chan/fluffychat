@@ -1,10 +1,13 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Package imports:
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../config/environment.dart';
 import '../models/pangea_token_model.dart';
 import '../network/requests.dart';

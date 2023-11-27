@@ -1,8 +1,10 @@
-import 'package:fluffychat/utils/platform_infos.dart';
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Project imports:
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {

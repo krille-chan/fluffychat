@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:fluffychat/config/app_config.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
 
 class ItShimmer extends StatelessWidget {
   const ItShimmer({Key? key, required this.originalSpan}) : super(key: key);
