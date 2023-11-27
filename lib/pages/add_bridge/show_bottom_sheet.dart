@@ -46,7 +46,9 @@ Future<bool> showBottomSheetBridge(
                       case "WhatsApp":
                         result = await botConnection.disconnectToWhatsApp();
                         break;
-
+                      case "Facebook Messenger":
+                        result = await botConnection.disconnectToFacebook();
+                        break;
                       // For other networks
                     }
                   },

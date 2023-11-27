@@ -142,6 +142,10 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "ping" message to the bot
+    await roomBot?.sendTextEvent("ping");
+    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+
     String result = ''; // Variable to track the result of the connection
 
     // Variable for loop limit
@@ -149,10 +153,6 @@ class BotBridgeConnection {
     int currentIteration = 0;
 
     while (continueProcess && currentIteration < maxIterations) {
-      // Send the "ping" message to the bot
-      await roomBot?.sendTextEvent("ping");
-      await Future.delayed(const Duration(seconds: 1)); // Wait sec
-
       // To take the latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -312,6 +312,10 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
     String result =
         "Connected"; // Variable to track the result of the connection
 
@@ -320,10 +324,6 @@ class BotBridgeConnection {
     int currentIteration = 0;
 
     while (currentIteration < maxIterations) {
-      // Send the "logout" message to the bot
-      await roomBot?.sendTextEvent("logout");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
       // Get the latest messages from the room (limited to the specified number)
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -388,14 +388,14 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $phoneNumber");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
     WhatsAppResult result; // Variable to track the result of the connection
 
     // Get the latest messages from the room (limited to the specified number)
     while (true) {
-      // Send the "login" message to the bot
-      await roomBot?.sendTextEvent("login $phoneNumber");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -509,6 +509,10 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
     String result =
         "Connected"; // Variable to track the result of the connection
 
@@ -517,10 +521,70 @@ class BotBridgeConnection {
     int currentIteration = 0;
 
     while (currentIteration < maxIterations) {
-      // Send the "logout" message to the bot
-      await roomBot?.sendTextEvent("logout");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
 
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        // to find out if we're connected
+        if (!successMatch.hasMatch(latestMessage) &&
+            !alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected to WhatsApp");
+          result = 'Connected';
+          break;
+        } else if (successMatch.hasMatch(latestMessage) ||
+            alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're disconnected to WhatsApp");
+
+          result = 'Not Connected';
+          break; // Exit the loop if bridge is disconnected
+        }
+      }
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    return result;
+  }
+
+  //Facebook Messenger
+  Future<String> disconnectToFacebook() async {
+    final String botUserId = '@facebookbot:$hostname';
+
+    final RegExp successMatch = RegExp(r"Successfully logged out");
+    final RegExp alreadyLogoutMatch =
+        RegExp(r"That command requires you to be logged in.");
+
+    // Add a direct chat with the WhatsApp bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    String result =
+        "Connected"; // Variable to track the result of the connection
+
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
