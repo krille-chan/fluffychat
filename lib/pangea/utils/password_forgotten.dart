@@ -127,13 +127,13 @@ extension PangeaPasswordForgotten on LoginController {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    L10n.of(context)!
-                                      .passwordHasBeenChanged,
+                                    L10n.of(context)!.passwordHasBeenChanged,
                                   ),
                                 ),
                               );
                               usernameController.text = emailController.text;
-                              passwordController.text = newPasswordController.text;
+                              passwordController.text =
+                                  newPasswordController.text;
                               login();
                             }
                           },

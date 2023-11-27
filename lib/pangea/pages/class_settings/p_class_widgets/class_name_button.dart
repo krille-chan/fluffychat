@@ -22,10 +22,8 @@ class ClassNameButton extends StatelessWidget {
           onTap: controller.setDisplaynameAction,
           title: Text(
             room.isSpace
-              ? L10n.of(context)!
-                  .changeTheNameOfTheClass
-              : L10n.of(context)!
-                  .changeTheNameOfTheChat,
+                ? L10n.of(context)!.changeTheNameOfTheClass
+                : L10n.of(context)!.changeTheNameOfTheChat,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,

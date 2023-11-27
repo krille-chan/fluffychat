@@ -77,11 +77,11 @@ class SignupPageView extends StatelessWidget {
                     hintText: L10n.of(context)!.repeatPassword,
                     errorStyle: const TextStyle(color: Colors.orange),
                     // #Pangea
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .background
-                      .withOpacity(0.75),
-                  // #Pangea
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.75),
+                    // #Pangea
                   ),
                 ),
               ),

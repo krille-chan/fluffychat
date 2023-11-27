@@ -1,3 +1,1 @@
-enum EditDirection {
-  append, remove
-}
+enum EditDirection { append, remove }
