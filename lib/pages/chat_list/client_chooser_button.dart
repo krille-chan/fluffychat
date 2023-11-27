@@ -220,6 +220,7 @@ class ClientChooserButton extends StatelessWidget {
                     matrix.client.userID!.localpart,
                 size: 32,
                 fontSize: 12,
+                onProfileColorCallback: controller.onProfileImageAvailable,
               ),
             ),
           ),

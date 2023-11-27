@@ -1936,6 +1936,7 @@
         "type": "text",
         "placeholders": {}
     },
+    "dynamicTheme": "Dynamic",
     "theyDontMatch": "They Don't Match",
     "@theyDontMatch": {
         "type": "text",

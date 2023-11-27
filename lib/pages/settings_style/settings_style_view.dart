@@ -89,7 +89,7 @@ class SettingsStyleView extends StatelessWidget {
                                                   ),
                                                 ),
                                               Text(
-                                                L10n.of(context)!.systemTheme,
+                                                L10n.of(context)!.dynamicTheme,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: Theme.of(context)

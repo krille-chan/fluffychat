@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
+import 'package:fluffychat/widgets/scoped_color_seed_builder.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet_view.dart';
 
@@ -87,6 +88,8 @@ class UserBottomSheet extends StatefulWidget {
 }
 
 class UserBottomSheetController extends State<UserBottomSheet> {
+  ScopedColorSeedController colorSeedController = ScopedColorSeedController();
+
   void participantAction(UserBottomSheetAction action) async {
     final user = widget.user;
     final userId = user?.id ?? widget.profile?.userId;
@@ -242,6 +245,9 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         context.go('/rooms/settings/security/ignorelist');
     }
   }
+
+  void onProfileImageAvailable(Color value) =>
+      colorSeedController.setSeed(value);
 
   @override
   Widget build(BuildContext context) => UserBottomSheetView(this);

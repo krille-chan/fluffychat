@@ -5,12 +5,14 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+typedef FluffyThemeBuilder = Widget Function(
+  BuildContext context,
+  ThemeMode themeMode,
+  Color?,
+);
+
 class ThemeBuilder extends StatefulWidget {
-  final Widget Function(
-    BuildContext context,
-    ThemeMode themeMode,
-    Color? primaryColor,
-  ) builder;
+  final FluffyThemeBuilder builder;
 
   final String themeModeSettingsKey;
   final String primaryColorSettingsKey;
@@ -31,9 +33,20 @@ class ThemeController extends State<ThemeBuilder> {
   ThemeMode? _themeMode;
   Color? _primaryColor;
 
+  /// caching if ever set based on the profile pic
+  Color? _profileThemeSeed;
+
   ThemeMode get themeMode => _themeMode ?? ThemeMode.system;
 
   Color? get primaryColor => _primaryColor;
+
+  /// Sets the primaryColor at runtime
+  /// This won't store it but should rather be used for temporary theme changes
+  /// E.g. used for the profile picture based theme
+  ///
+  /// In case a custom theme is selected by the user, this call is ignored
+
+  set profileThemeSeed(Color? color) => _profileThemeSeed = color;
 
   static ThemeController of(BuildContext context) =>
       Provider.of<ThemeController>(
@@ -51,6 +64,7 @@ class ThemeController extends State<ThemeBuilder> {
     setState(() {
       _themeMode = ThemeMode.values
           .singleWhereOrNull((value) => value.name == rawThemeMode);
+
       _primaryColor = rawColor == null ? null : Color(rawColor);
     });
   }
@@ -94,7 +108,7 @@ class ThemeController extends State<ThemeBuilder> {
         builder: (light, _) => widget.builder(
           context,
           themeMode,
-          primaryColor ?? light?.primary,
+          primaryColor ?? _profileThemeSeed ?? light?.primary,
         ),
       ),
     );

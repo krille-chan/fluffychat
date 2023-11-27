@@ -38,6 +38,7 @@ class ChatAppBarTitle extends StatelessWidget {
               ),
               size: 32,
               presenceUserId: room.directChatMatrixID,
+              onProfileColorCallback: controller.onProfileImageAvailable,
             ),
           ),
           const SizedBox(width: 12),

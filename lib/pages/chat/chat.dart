@@ -32,6 +32,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/scoped_color_seed_builder.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -104,6 +105,8 @@ class ChatPageWithRoom extends StatefulWidget {
 }
 
 class ChatController extends State<ChatPageWithRoom> {
+  final colorSeedController = ScopedColorSeedController();
+
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
@@ -1307,6 +1310,9 @@ class ChatController extends State<ChatPageWithRoom> {
         replyEvent = null;
         editEvent = null;
       });
+
+  void onProfileImageAvailable(Color value) =>
+      colorSeedController.setSeed(value);
 
   @override
   Widget build(BuildContext context) => ChatView(this);
