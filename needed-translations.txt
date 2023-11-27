@@ -755,7 +755,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "bn": [
@@ -1519,7 +1520,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "bo": [
@@ -2283,7 +2285,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ca": [
@@ -3042,7 +3045,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "cs": [
@@ -3801,7 +3805,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "de": [
@@ -4560,7 +4565,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "el": [
@@ -5324,7 +5330,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "eo": [
@@ -6083,7 +6090,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "es": [
@@ -6106,7 +6114,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "et": [
@@ -6865,7 +6874,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "eu": [
@@ -7624,7 +7634,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "fa": [
@@ -8383,7 +8394,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "fi": [
@@ -9142,7 +9154,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "fr": [
@@ -9901,7 +9914,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ga": [
@@ -10660,7 +10674,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "gl": [
@@ -11419,7 +11434,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "he": [
@@ -12178,7 +12194,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "hi": [
@@ -12942,7 +12959,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "hr": [
@@ -13701,7 +13719,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "hu": [
@@ -14460,7 +14479,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "id": [
@@ -15219,7 +15239,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ie": [
@@ -15980,7 +16001,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "it": [
@@ -16739,7 +16761,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ja": [
@@ -17498,7 +17521,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ko": [
@@ -18257,7 +18281,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "lt": [
@@ -19016,7 +19041,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "lv": [
@@ -19780,7 +19806,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "nb": [
@@ -20539,7 +20566,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "nl": [
@@ -21298,7 +21326,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "pl": [
@@ -22057,7 +22086,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "pt": [
@@ -22821,7 +22851,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "pt_BR": [
@@ -23580,7 +23611,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "pt_PT": [
@@ -24339,7 +24371,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ro": [
@@ -25098,7 +25131,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ru": [
@@ -25857,7 +25891,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "sk": [
@@ -26617,7 +26652,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "sl": [
@@ -27379,7 +27415,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "sr": [
@@ -28138,7 +28175,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "sv": [
@@ -28897,7 +28935,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "ta": [
@@ -29661,7 +29700,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "th": [
@@ -30425,7 +30465,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "tr": [
@@ -31184,7 +31225,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "uk": [
@@ -31943,7 +31985,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "vi": [
@@ -32705,7 +32748,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "zh": [
@@ -33464,7 +33508,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ],
 
   "zh_Hant": [
@@ -34223,6 +34268,7 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "inNoSpaces"
   ]
 }

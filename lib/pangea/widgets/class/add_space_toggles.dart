@@ -20,13 +20,13 @@ class AddToSpaceToggles extends StatefulWidget {
   final String? activeSpaceId;
   final AddToClassMode mode;
 
-  const AddToSpaceToggles(
-      {Key? key,
-      this.roomId,
-      this.startOpen = false,
-      this.activeSpaceId,
-      required this.mode})
-      : super(key: key);
+  const AddToSpaceToggles({
+    super.key,
+    this.roomId,
+    this.startOpen = false,
+    this.activeSpaceId,
+    required this.mode,
+  });
 
   @override
   AddToSpaceState createState() => AddToSpaceState();
@@ -50,16 +50,20 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     possibleParents = Matrix.of(context)
         .client
         .rooms
-        .where(widget.mode == AddToClassMode.exchange
-            ? (Room r) => r.isPangeaClass && widget.roomId != r.id
-            : (Room r) =>
-                (r.isPangeaClass || r.isExchange) && widget.roomId != r.id)
+        .where(
+          widget.mode == AddToClassMode.exchange
+              ? (Room r) => r.isPangeaClass && widget.roomId != r.id
+              : (Room r) =>
+                  (r.isPangeaClass || r.isExchange) && widget.roomId != r.id,
+        )
         .toList();
 
     parents = widget.roomId != null
         ? possibleParents
-            .where((r) =>
-                r.spaceChildren.any((room) => room.roomId == widget.roomId))
+            .where(
+              (r) =>
+                  r.spaceChildren.any((room) => room.roomId == widget.roomId),
+            )
             .map((r) => SuggestionStatus(false, r))
             .cast<SuggestionStatus>()
             .toList()
@@ -110,8 +114,10 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
   Future<void> _addSingleSpace(String roomToAddId, Room newParent) {
     GoogleAnalytics.addParent(roomToAddId, newParent.classCode);
-    return newParent.setSpaceChild(roomToAddId,
-        suggested: isSuggestedInSpace(newParent));
+    return newParent.setSpaceChild(
+      roomToAddId,
+      suggested: isSuggestedInSpace(newParent),
+    );
   }
 
   Future<void> addSpaces(String roomToAddId) async {
@@ -136,8 +142,10 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     setState(
       () => add
           ? parents.add(SuggestionStatus(false, possibleParent))
-          : parents.removeWhere((suggestionStatus) =>
-              suggestionStatus.room.id == possibleParent.id),
+          : parents.removeWhere(
+              (suggestionStatus) =>
+                  suggestionStatus.room.id == possibleParent.id,
+            ),
     );
   }
 
@@ -241,29 +249,43 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
             setState(() => isOpen = !isOpen);
           },
         ),
-        if (isOpen)
-          Scrollbar(
-            controller: scrollController,
-            thumbVisibility: true,
-            child: SingleChildScrollView(
-              controller: scrollController,
-              child: Column(
-                children: [
-                  const Divider(height: 1),
-                  SizedBox(
-                    height: min(possibleParents.length * 55, 500),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: possibleParents.length,
-                      itemBuilder: (BuildContext context, int i) {
-                        return getAddToSpaceToggleItem(i);
-                      },
+        if (isOpen) ...[
+          const Divider(height: 1),
+          possibleParents.isNotEmpty
+              ? Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      children: [
+                        const Divider(height: 1),
+                        SizedBox(
+                          height: min(possibleParents.length * 55, 500),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: possibleParents.length,
+                            itemBuilder: (BuildContext context, int i) {
+                              return getAddToSpaceToggleItem(i);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                )
+              : Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      L10n.of(context)!.inNoSpaces,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                  ),
+                ),
+        ],
       ],
     );
   }
