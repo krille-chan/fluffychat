@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:matrix/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -108,25 +109,25 @@ class BotBridgeConnection {
 
     switch (socialNetwork.name) {
       case "WhatsApp":
-        onlineMatch = RegExp(r"connection to WhatsApp OK");
-        successfullyMatch = RegExp(r"Successfully logged in");
-        alreadySuccessMatch = RegExp(r"You're already logged in");
-        notLoggedMatch = RegExp(r"You're not logged into WhatsApp");
-        disconnectMatch = RegExp(r"Logged out successfully");
-        connectedButNotLoggedMatch = RegExp(r"Connected to WhatsApp, but not logged in");
+        onlineMatch = RegExpPatterns.pingWhatsAppOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingWhatsAppSuccessfullyMatch;
+        alreadySuccessMatch = RegExpPatterns.pingWhatsAppAlreadySuccessMatch;
+        notLoggedMatch = RegExpPatterns.pingWhatsAppNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingWhatsAppDisconnectMatch;
+        connectedButNotLoggedMatch = RegExpPatterns.pingWhatsAppConnectedButNotLoggedMatch;
         break;
       case "Facebook Messenger":
-        onlineMatch = RegExp(r"The Messenger MQTT listener is connected.");
-        successfullyMatch = RegExp(r"You're logged in as");
-        notLoggedMatch = RegExp(r"That command requires you to be logged in.");
-        disconnectMatch = RegExp(r"Successfully logged out");
+        onlineMatch = RegExpPatterns.pingFacebookOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingFacebookSuccessfullyMatch;
+        notLoggedMatch = RegExpPatterns.pingFacebookNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingFacebookDisconnectMatch;
         break;
       case "Instagram":
-        onlineMatch = RegExp(r"MQTT connection is active");
-        successfullyMatch = RegExp(r"Successfully logged in");
-        alreadySuccessMatch = RegExp(r"You're already logged in");
-        notLoggedMatch = RegExp(r"You're not logged into Instagram");
-        disconnectMatch = RegExp(r"Successfully logged out");
+        onlineMatch = RegExpPatterns.pingInstagramOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingInstagramSuccessfullyMatch;
+        alreadySuccessMatch = RegExpPatterns.pingInstagramAlreadySuccessMatch;
+        notLoggedMatch = RegExpPatterns.pingInstagramNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingInstagramDisconnectMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
