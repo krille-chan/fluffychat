@@ -66,11 +66,11 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
               .loading = false;
         });
       } else if (mounted) {
-          showCatchErrorDialog(
-            context,
-            "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
-          );
-        }
+        showCatchErrorDialog(
+          context,
+          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
+        );
+      }
     } on TimeoutException {
       // To indicate that the time-out error has occurred
       if (mounted) {

@@ -42,6 +42,10 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "ping" message to the bot
+    await roomBot?.sendTextEvent("ping");
+    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+
     String result = ''; // Variable to track the result of the connection
 
     // variable for loop limit
@@ -50,10 +54,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (continueProcess && currentIteration < maxIterations) {
-      // Send the "ping" message to the bot
-      await roomBot?.sendTextEvent("ping");
-      await Future.delayed(const Duration(seconds: 2)); // Wait sec
-
       // To take latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -108,9 +108,10 @@ class BotBridgeConnection {
     final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
 
     // Error phrase to spot
-    final RegExp usernameErrorMatch =
-        RegExp(r"Please check your username and try again");
+    final RegExp usernameErrorMatch = RegExp(r"Invalid username");
     final RegExp passwordErrorMatch = RegExp(r"Incorrect password");
+    final RegExp nameOrPasswordErrorMatch =
+        RegExp(r"Incorrect username or password");
     final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
 
     // Add a direct chat with the Instagram bot (if you haven't already)
@@ -118,6 +119,10 @@ class BotBridgeConnection {
     directChat ??= await client.startDirectChat(botUserId);
 
     final Room? roomBot = client.getRoomById(directChat);
+
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $username $password");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
     String result = ""; // Variable to track the result of the connection
 
@@ -127,10 +132,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
-      // Send the "login" message to the bot
-      await roomBot?.sendTextEvent("login $username $password");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -196,6 +197,10 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
     String result =
         "Connected"; // Variable to track the result of the connection
 
@@ -204,10 +209,6 @@ class BotBridgeConnection {
     int currentIteration = 0;
 
     while (currentIteration < maxIterations) {
-      // Send the "logout" message to the bot
-      await roomBot?.sendTextEvent("logout");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
       // Get the latest messages from the room (limited to the specified number)
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
