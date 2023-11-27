@@ -19,7 +19,6 @@ dependencies:
   collection: ^1.17.2
   cupertino_icons: any
   desktop_drop: ^0.4.4
-  desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8

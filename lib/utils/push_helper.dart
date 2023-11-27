@@ -81,10 +81,8 @@ Future<void> _tryPushHelper(
     notification.toJson(),
   );
 
-  if (!isBackgroundMessage &&
+  if (notification.roomId != null &&
       activeRoomId == notification.roomId &&
-      activeRoomId != null &&
-      client.syncPresence == null &&
       WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
