@@ -92,7 +92,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   void verifyDeviceAction(Device device) async {
-    final req = Matrix.of(context)
+    final req = await Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!
         .deviceKeys[device.deviceId]!
