@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -83,7 +84,8 @@ Future<void> _tryPushHelper(
   if (!isBackgroundMessage &&
       activeRoomId == notification.roomId &&
       activeRoomId != null &&
-      client.syncPresence == null) {
+      client.syncPresence == null &&
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
