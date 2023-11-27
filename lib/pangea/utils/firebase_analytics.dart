@@ -12,7 +12,6 @@ import '../enum/use_type.dart';
 
 // PageRoute import
 
-
 // Add import:
 // import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 // Call method: GoogleAnalytics.logout()

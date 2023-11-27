@@ -26,7 +26,6 @@ import 'settings_emotes_view.dart';
 import 'package:archive/archive.dart'
     if (dart.library.io) 'package:archive/archive_io.dart';
 
-
 class EmotesSettings extends StatefulWidget {
   const EmotesSettings({super.key});
 

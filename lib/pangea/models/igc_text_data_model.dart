@@ -23,7 +23,6 @@ import 'language_detection_model.dart';
 
 // import 'package:language_tool/language_tool.dart';
 
-
 class IGCTextData {
   List<LanguageDetection> detections;
   String originalInput;
