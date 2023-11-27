@@ -6,7 +6,8 @@ import 'package:fluffychat/pages/add_bridge/two_factor_demand.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -178,16 +179,15 @@ Future<bool> connectToWhatsApp(
   SocialNetwork network,
   BotBridgeConnection botConnection,
 ) async {
-  String? phoneNumber;
-
   final Completer<bool> completer = Completer<bool>();
 
   final TextEditingController controller = TextEditingController();
 
   // Retrieve the language used in the application
-  final String initialLanguage =
-      Localizations.localeOf(context).languageCode.toUpperCase();
-  PhoneNumber number = PhoneNumber(isoCode: initialLanguage);
+  String initialLanguage =
+      Localizations.localeOf(context).languageCode;
+
+  String? phoneNumber;
 
   showDialog(
     context: context,
@@ -211,18 +211,25 @@ Future<bool> connectToWhatsApp(
                 children: <Widget>[
                   Text(L10n.of(context)!.enterYourDetails),
                   const SizedBox(height: 5),
-                  InternationalPhoneNumberInput(
-                    onInputChanged: (PhoneNumber number) {
-                      phoneNumber = number.phoneNumber!;
+                  IntlPhoneField(
+                    initialCountryCode: initialLanguage.toUpperCase(),
+                    onChanged: (PhoneNumber phoneNumberField) {
+                      phoneNumber = phoneNumberField.completeNumber;
                     },
-                    selectorConfig: const SelectorConfig(
-                      selectorType: PhoneInputSelectorType.DIALOG,
-                    ),
-                    formatInput: false,
-
                     // Initial country code via language used in Locale currentLocale
-                    initialValue: number,
-                    textFieldController: controller,
+                    languageCode: initialLanguage,
+                    onCountryChanged: (country) {
+                      initialLanguage = country.code;
+                    },
+                    controller: controller,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    L10n.of(context)!.phoneField_explain,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    L10n.of(context)!.phoneField_initialZero,
                   ),
                 ],
               ),
@@ -240,6 +247,7 @@ Future<bool> connectToWhatsApp(
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save(); // Save form values
 
+                    print("Le numéro est: $phoneNumber");
                     try {
                       WhatsAppResult?
                           result; // Variable to store the result of the connection

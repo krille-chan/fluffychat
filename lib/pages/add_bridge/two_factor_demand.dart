@@ -86,25 +86,29 @@ Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
                           );
                         },
                       );
-                      
-                      print(result);
 
                       // Retrieves the answer to the code according to the social network
                       switch (network.name) {
                         case "Instagram":
                           final successfullyMatch = RegExp(r"Successfully logged in");
+                          final invalidMatch = RegExp(r"Invalid");
                           final RegExp alreadySuccessMatch =
                               RegExp(r"You're already logged in");
                           if (successfullyMatch.hasMatch(result) ||
-                              alreadySuccessMatch.hasMatch(result)) {
+                              alreadySuccessMatch.hasMatch(result)
+                              && !invalidMatch.hasMatch(result)) {
                             Navigator.of(context).pop();
                             print('connected to Instagram');
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
-                          } else {
+                          } else if(invalidMatch.hasMatch(result)){
                             showCatchErrorDialog(
-                                context, L10n.of(context)!.err_timeOut,);
+                              context, "Erreur, veuillez rentrer un nouveau code");
+                            result = "";
+                          } else{
+                            showCatchErrorDialog(
+                              context, L10n.of(context)!.err_timeOut,);
                             result = "";
                           }
                           break;

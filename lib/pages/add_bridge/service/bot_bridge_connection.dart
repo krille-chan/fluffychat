@@ -45,9 +45,9 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    // Send the "ping" message to the bot
+    // Send the "contentMessage" message to the bot
     await roomBot?.sendTextEvent(contentMessage.toString());
-    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     String result = ''; // Variable to track the result of the connection
 
@@ -71,7 +71,13 @@ class BotBridgeConnection {
 
         result = latestMessage;
       }
-      currentIteration++;
+      await Future.delayed(const Duration(seconds: 5)); // Wait sec
+
+      if(result != ''){
+        break;
+      }else{
+        currentIteration++;
+      }
     }
 
     if (currentIteration == maxIterations) {
@@ -201,8 +207,9 @@ class BotBridgeConnection {
 
     // Error phrase to spot
     final RegExp usernameErrorMatch =
-        RegExp(r"Please check your username and try again");
+        RegExp(r"Invalid username");
     final RegExp passwordErrorMatch = RegExp(r"Incorrect password");
+    final RegExp nameOrPasswordErrorMatch = RegExp(r"Incorrect username or password");
     final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
 
     // Code request message for two-factor identification
@@ -217,15 +224,16 @@ class BotBridgeConnection {
 
     String result = ""; // Variable to track the result of the connection
 
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $username $password");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
     // variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
 
     // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
-      // Send the "login" message to the bot
-      await roomBot?.sendTextEvent("login $username $password");
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -252,7 +260,7 @@ class BotBridgeConnection {
 
           break;
         } else if (!successMatch.hasMatch(latestMessage) &&
-            usernameErrorMatch.hasMatch(latestMessage)) {
+            usernameErrorMatch.hasMatch(latestMessage) || nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
           print("Login cannot be found");
 
           result = "errorUsername";
@@ -272,6 +280,7 @@ class BotBridgeConnection {
           break;
         }
       }
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
       currentIteration++;
     }
 
@@ -545,7 +554,6 @@ class BotBridgeConnection {
     return result;
   }
 
-  // Facebook Messenger
   // Function to delete a conversation with a bot
   Future<void> deleteConversation(String chatBot) async {
     final String botUserId = "$chatBot$hostname";
@@ -565,7 +573,7 @@ class BotBridgeConnection {
 
   // Function to manage missed deadlines
   Future<String> pingWithTimeout(
-      BuildContext context, Future<String> pingFunction) async {
+      BuildContext context, Future<String> pingFunction,) async {
     try {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));

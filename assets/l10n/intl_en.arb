@@ -2592,6 +2592,7 @@
     "whatsApp_qrExplainTen": "And scan this QR Code",
     "whatsApp_connectedText": "Successfully connected to WhatsApp!",
     "wellDone": "Well done",
-    "codeCopy": "code copied to clipboard"
-
+    "codeCopy": "code copied to clipboard",
+    "phoneField_explain": "Your numbers must be entered in international format!",
+    "phoneField_initialZero": "Depending on your country, the initial zero of the local number may not be included."
 }
