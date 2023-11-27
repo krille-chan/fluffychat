@@ -560,6 +560,108 @@ class BotBridgeConnection {
   }
 
   //Facebook Messenger
+  // Function to login Facebook
+  Future<String> createBridgeFacebook(String username, String password) async {
+    final String botUserId = '@facebookbot:$hostname';
+
+    // Success phrases to spot
+    final RegExp sendPassword =
+        RegExp(r"Please send your password here to log in");
+
+    // Code request message for two-factor identification
+    final RegExp twoFactorMatch =
+        RegExp(r"You have two-factor authentication turned on.");
+
+    // Error phrases to spot
+    final RegExp nameOrPasswordErrorMatch =
+        RegExp(r"Invalid username or password");
+    final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    String result = ""; // Variable to track the result of the connection
+
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $username");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    // Variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    // Flag to track whether the password has been sent
+    bool passwordSent = false;
+
+    while (currentIteration < maxIterations) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+      final String latestMessage =
+          latestMessages.first.content['body'].toString() ?? '';
+
+      if (latestMessages.isNotEmpty) {
+        if (sendPassword.hasMatch(latestMessage) && !passwordSent) {
+          print("Enter Password");
+
+          // Send the password message to the bot
+          await roomBot?.sendTextEvent(password);
+          await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+          // Set the flag to true after sending the password
+          passwordSent = true;
+        }
+
+        // Continue handling other cases...
+
+        if (twoFactorMatch.hasMatch(latestMessage)) {
+          print("Authenticator two-factor demand");
+
+          // Set the result to "twoFactorDemand"
+          result = "twoFactorDemand";
+
+          // Exit the loop
+          break;
+        } else if (nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
+          print("Incorrect username or password");
+
+          // Set the result to "errorNameOrPassword"
+          result = "errorNameOrPassword";
+
+          // Exit the loop
+          break;
+        } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
+          print("Rate limit error");
+
+          // Set the result to "rateLimitError"
+          result = "rateLimitError";
+
+          // Exit the loop
+          break;
+        }
+      }
+
+      await Future.delayed(const Duration(seconds: 3)); // Wait sec
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    return result;
+  }
+
+  // Function to logout
   Future<String> disconnectToFacebook() async {
     final String botUserId = '@facebookbot:$hostname';
 

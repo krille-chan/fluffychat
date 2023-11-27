@@ -140,7 +140,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         switch (network.name) {
           case "Instagram":
             // Trying to connect to Instagram
-            success = await connectToInstagram(
+            success = await connectWithTwoFields(
               context,
               network,
               botConnection,
@@ -149,6 +149,14 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           case "WhatsApp":
             // Trying to connect to Instagram
             success = await connectToWhatsApp(context, network, botConnection);
+            break;
+          case "Facebook Messenger":
+            // Trying to connect
+            success = await connectWithTwoFields(
+              context,
+              network,
+              botConnection,
+            );
             break;
 
           // For other networks

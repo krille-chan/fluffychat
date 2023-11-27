@@ -92,6 +92,7 @@ Future<bool> twoFactorDemandCode(
 
                       // Retrieves the answer to the code according to the social network
                       switch (network.name) {
+                        // Response for Instgram
                         case "Instagram":
                           final successfullyMatch =
                               RegExp(r"Successfully logged in");
@@ -108,7 +109,36 @@ Future<bool> twoFactorDemandCode(
                             ); // returns True if the connection is successful
                           } else if (invalidMatch.hasMatch(result)) {
                             showCatchErrorDialog(context,
-                                "Erreur, veuillez rentrer un nouveau code");
+                                L10n.of(context)!.err_invalidTwoFactorCode);
+                            result = "";
+                          } else {
+                            showCatchErrorDialog(
+                              context,
+                              L10n.of(context)!.err_timeOut,
+                            );
+                            result = "";
+                          }
+                          break;
+
+                        // Response for Facebook Messenger
+                        case "Facebook Messenger":
+                          final successfullyMatch =
+                              RegExp(r"Successfully logged in");
+                          final invalidMatch = RegExp(
+                              r"Incorrect two-factor authentication code. Please try again.");
+                          final RegExp alreadySuccessMatch =
+                              RegExp(r"You're already logged in");
+                          if (successfullyMatch.hasMatch(result) ||
+                              alreadySuccessMatch.hasMatch(result) &&
+                                  !invalidMatch.hasMatch(result)) {
+                            Navigator.of(context).pop();
+                            print('connected to Facebook Messenger');
+                            completer.complete(
+                              true,
+                            ); // returns True if the connection is successful
+                          } else if (invalidMatch.hasMatch(result)) {
+                            showCatchErrorDialog(context,
+                                L10n.of(context)!.err_invalidTwoFactorCode);
                             result = "";
                           } else {
                             showCatchErrorDialog(

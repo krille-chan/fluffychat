@@ -14,8 +14,8 @@ import 'model/social_network.dart';
 // Creation of a FormKey for entering identifiers for Connection ShowDialog
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-// ShowDialog for Instagram connection
-Future<bool> connectToInstagram(
+// ShowDialog for 2 fields connection
+Future<bool> connectWithTwoFields(
   BuildContext context,
   SocialNetwork network,
   BotBridgeConnection botConnection,
@@ -48,8 +48,16 @@ Future<bool> connectToInstagram(
                   Text(L10n.of(context)!.enterYourDetails),
                   const SizedBox(height: 5),
                   TextFormField(
-                    decoration:
-                        InputDecoration(labelText: L10n.of(context)!.username),
+                    decoration: InputDecoration(
+                      labelText: () {
+                        switch (network.name) {
+                          case "Instagram":
+                            return L10n.of(context)!.username;
+                          case "Facebook Messenger":
+                            return L10n.of(context)!.enterAnEmailAddress;
+                        }
+                      }(),
+                    ),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return L10n.of(context)!.pleaseEnterYourUsername;
@@ -111,6 +119,12 @@ Future<bool> connectToInstagram(
                                 password!,
                               );
                               break;
+                            case "Facebook Messenger":
+                              result = await botConnection.createBridgeFacebook(
+                                username!,
+                                password!,
+                              );
+                              break;
                             // Other network
                           }
                         },
@@ -125,7 +139,10 @@ Future<bool> connectToInstagram(
                         bool success = false;
                         // Display a showDialog to request a two-factor identification code
                         success = await twoFactorDemandCode(
-                            context, network, botConnection);
+                          context,
+                          network,
+                          botConnection,
+                        );
                         if (success) {
                           Navigator.of(context).pop();
                           completer.complete(
@@ -134,13 +151,20 @@ Future<bool> connectToInstagram(
                         }
                       } else if (result == "errorUsername") {
                         // Display a showDialog with an error message related to the identifier
-                        showErrorUsernameDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.usernameNotFound);
                       } else if (result == "errorPassword") {
                         // Display a showDialog with an error message related to the password
-                        showErrorPasswordDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.passwordIncorrect);
+                      } else if (result == "errorNameOrPassword") {
+                        // Display a showDialog with an error message related to the User/password error
+                        showCatchErrorDialog(
+                            context, "Invalid username or password");
                       } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
-                        showRateLimitDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.rateLimit);
                       } else if (result == "error") {
                         // Display a showDialog with an unknown error message
                         showCatchErrorDialog(
@@ -173,7 +197,7 @@ Future<bool> connectToInstagram(
   return completer.future;
 }
 
-// ShowDialog for Instagram connection
+// ShowDialog for WhatsApp connection
 Future<bool> connectToWhatsApp(
   BuildContext context,
   SocialNetwork network,
@@ -289,10 +313,12 @@ Future<bool> connectToWhatsApp(
                         //showQRCodeConnectPage(context, result!.qrCode!, result!.code!, botConnection,);
                       } else if (result?.result == "loginTimedOut") {
                         // Display a showDialog with an error message related to the password
-                        showErrorPasswordDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.passwordIncorrect);
                       } else if (result?.result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
-                        showRateLimitDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.rateLimit);
                       }
                     } catch (e) {
                       Navigator.of(context).pop();
