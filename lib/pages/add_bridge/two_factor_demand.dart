@@ -12,8 +12,11 @@ import 'model/social_network.dart';
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 // ShowDialog for double-factor code (can be used for each social network)
-Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
-    BotBridgeConnection botConnection,) async {
+Future<bool> twoFactorDemandCode(
+  BuildContext context,
+  SocialNetwork network,
+  BotBridgeConnection botConnection,
+) async {
   String? code;
 
   final Completer<bool> completer = Completer<bool>();
@@ -90,25 +93,28 @@ Future<bool> twoFactorDemandCode(BuildContext context, SocialNetwork network,
                       // Retrieves the answer to the code according to the social network
                       switch (network.name) {
                         case "Instagram":
-                          final successfullyMatch = RegExp(r"Successfully logged in");
+                          final successfullyMatch =
+                              RegExp(r"Successfully logged in");
                           final invalidMatch = RegExp(r"Invalid");
                           final RegExp alreadySuccessMatch =
                               RegExp(r"You're already logged in");
                           if (successfullyMatch.hasMatch(result) ||
-                              alreadySuccessMatch.hasMatch(result)
-                              && !invalidMatch.hasMatch(result)) {
+                              alreadySuccessMatch.hasMatch(result) &&
+                                  !invalidMatch.hasMatch(result)) {
                             Navigator.of(context).pop();
                             print('connected to Instagram');
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
-                          } else if(invalidMatch.hasMatch(result)){
-                            showCatchErrorDialog(
-                              context, "Erreur, veuillez rentrer un nouveau code");
+                          } else if (invalidMatch.hasMatch(result)) {
+                            showCatchErrorDialog(context,
+                                "Erreur, veuillez rentrer un nouveau code");
                             result = "";
-                          } else{
+                          } else {
                             showCatchErrorDialog(
-                              context, L10n.of(context)!.err_timeOut,);
+                              context,
+                              L10n.of(context)!.err_timeOut,
+                            );
                             result = "";
                           }
                           break;

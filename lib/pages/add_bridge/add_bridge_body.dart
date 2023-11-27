@@ -63,7 +63,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       String name = result['name'];
       String pingResult = result['result'];
 
-      SocialNetwork network = socialNetwork.firstWhere((network) => network.name == name);
+      SocialNetwork network =
+          socialNetwork.firstWhere((network) => network.name == name);
 
       // Updated connection results for each social network
       if (pingResult == 'Connected') {
@@ -79,7 +80,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         setState(() {
           network.setError(true);
         });
-        showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
+        showCatchErrorDialog(
+            context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
       }
     });
   }
@@ -110,12 +112,12 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       // Different build of subtle depending on the social network, for now only Instagram
                       subtitle: buildSubtitle(socialNetwork[index]),
                       trailing: socialNetwork[index].error == false
-                          ?const Icon(
-                          CupertinoIcons.right_chevron,
-                          )
-                          :const Icon(
-                          CupertinoIcons.refresh_bold,
-                          ),
+                          ? const Icon(
+                              CupertinoIcons.right_chevron,
+                            )
+                          : const Icon(
+                              CupertinoIcons.refresh_bold,
+                            ),
                       // Different ways of connecting and disconnecting depending on the social network
                       onTap: () =>
                           handleSocialNetworkAction(socialNetwork[index]),
@@ -137,22 +139,26 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         bool success = false;
         switch (network.name) {
           case "Instagram":
-          // Trying to connect to Instagram
-            success = await connectToInstagram(context, network, botConnection,);
+            // Trying to connect to Instagram
+            success = await connectToInstagram(
+              context,
+              network,
+              botConnection,
+            );
             break;
           case "WhatsApp":
-          // Trying to connect to Instagram
+            // Trying to connect to Instagram
             success = await connectToWhatsApp(context, network, botConnection);
             break;
 
-        // For other networks
+          // For other networks
         }
         if (success) {
           setState(() {
             network.connected = true;
           });
         }
-      } else if(network.connected == true && network.error == false){
+      } else if (network.connected == true && network.error == false) {
         // Disconnect button, for the moment only this choice
         final bool success = await showBottomSheetBridge(
           context,
@@ -174,13 +180,14 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       }
 
       // If there is a ping error
-      if(network.error && network.connected == false){
+      if (network.error && network.connected == false) {
         setState(() {
           network.loading = true;
         });
 
         // Reload pinging
-        final String pingResult = await botConnection.pingSocialNetwork(network);
+        final String pingResult =
+            await botConnection.pingSocialNetwork(network);
         if (pingResult == 'Connected') {
           setState(() {
             network.updateConnectionResult(true);
@@ -196,7 +203,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             network.setError(true);
           });
           // error message
-          showCatchErrorDialog(context, "${L10n.of(context)!.err_toConnect} ${network.name}");
+          showCatchErrorDialog(
+              context, "${L10n.of(context)!.err_toConnect} ${network.name}");
         }
       }
     }
@@ -212,7 +220,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         ),
       );
     } else {
-      if(!network.error){
+      if (!network.error) {
         return Text(
           network.connected == true
               ? L10n.of(context)!.connected
@@ -221,7 +229,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             color: network.connected == true ? Colors.green : Colors.grey,
           ),
         );
-      }else{
+      } else {
         return Text(
           L10n.of(context)!.err_loading,
           style: const TextStyle(

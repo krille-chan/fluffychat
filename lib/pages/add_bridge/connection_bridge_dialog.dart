@@ -184,8 +184,7 @@ Future<bool> connectToWhatsApp(
   final TextEditingController controller = TextEditingController();
 
   // Retrieve the language used in the application
-  String initialLanguage =
-      Localizations.localeOf(context).languageCode;
+  String initialLanguage = Localizations.localeOf(context).languageCode;
 
   String? phoneNumber;
 

@@ -19,7 +19,8 @@ class BotBridgeConnection {
     required this.hostname,
   });
 
-  final StreamController<Map<String, dynamic>> _pingResultsController = StreamController<Map<String, dynamic>>();
+  final StreamController<Map<String, dynamic>> _pingResultsController =
+      StreamController<Map<String, dynamic>>();
 
   Stream<Map<String, dynamic>> get pingResults => _pingResultsController.stream;
 
@@ -28,7 +29,8 @@ class BotBridgeConnection {
     continueProcess = false;
   }
 
-  Future<void> checkAllSocialNetworksConnections(List<SocialNetwork> socialNetwork) async {
+  Future<void> checkAllSocialNetworksConnections(
+      List<SocialNetwork> socialNetwork) async {
     for (final network in socialNetwork) {
       pingSocialNetwork(network).then((result) {
         _pingResultsController.add({'name': network.name, 'result': result});
@@ -74,9 +76,9 @@ class BotBridgeConnection {
       }
       await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-      if(result != ''){
+      if (result != '') {
         break;
-      }else{
+      } else {
         currentIteration++;
       }
     }
@@ -114,7 +116,8 @@ class BotBridgeConnection {
         alreadySuccessMatch = RegExpPatterns.pingWhatsAppAlreadySuccessMatch;
         notLoggedMatch = RegExpPatterns.pingWhatsAppNotLoggedMatch;
         disconnectMatch = RegExpPatterns.pingWhatsAppDisconnectMatch;
-        connectedButNotLoggedMatch = RegExpPatterns.pingWhatsAppConnectedButNotLoggedMatch;
+        connectedButNotLoggedMatch =
+            RegExpPatterns.pingWhatsAppConnectedButNotLoggedMatch;
         break;
       case "Facebook Messenger":
         onlineMatch = RegExpPatterns.pingFacebookOnlineMatch;
@@ -186,7 +189,8 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+      print(
+          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
 
       result = 'error';
     } else if (!continueProcess) {
@@ -207,10 +211,10 @@ class BotBridgeConnection {
     final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
 
     // Error phrase to spot
-    final RegExp usernameErrorMatch =
-        RegExp(r"Invalid username");
+    final RegExp usernameErrorMatch = RegExp(r"Invalid username");
     final RegExp passwordErrorMatch = RegExp(r"Incorrect password");
-    final RegExp nameOrPasswordErrorMatch = RegExp(r"Incorrect username or password");
+    final RegExp nameOrPasswordErrorMatch =
+        RegExp(r"Incorrect username or password");
     final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
 
     // Code request message for two-factor identification
@@ -235,7 +239,6 @@ class BotBridgeConnection {
 
     // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
-
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -261,7 +264,8 @@ class BotBridgeConnection {
 
           break;
         } else if (!successMatch.hasMatch(latestMessage) &&
-            usernameErrorMatch.hasMatch(latestMessage) || nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
+                usernameErrorMatch.hasMatch(latestMessage) ||
+            nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
           print("Login cannot be found");
 
           result = "errorUsername";
@@ -574,7 +578,9 @@ class BotBridgeConnection {
 
   // Function to manage missed deadlines
   Future<String> pingWithTimeout(
-      BuildContext context, Future<String> pingFunction,) async {
+    BuildContext context,
+    Future<String> pingFunction,
+  ) async {
     try {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));
