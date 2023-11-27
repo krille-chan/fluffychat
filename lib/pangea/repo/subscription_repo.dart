@@ -1,13 +1,18 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:collection/collection.dart';
+import 'package:http/http.dart' as http;
+
+// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
 import '../network/urls.dart';
 
 class SubscriptionRepo {

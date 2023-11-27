@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 
 class BotName {

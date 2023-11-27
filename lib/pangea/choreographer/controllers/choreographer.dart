@@ -1,6 +1,15 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+// Project imports:
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
@@ -16,10 +25,6 @@ import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/widget_measurement.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../../widgets/matrix.dart';
 import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';

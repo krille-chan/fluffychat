@@ -1,11 +1,16 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/pangea_event_types.dart';
 import 'chart_analytics_model.dart';
 

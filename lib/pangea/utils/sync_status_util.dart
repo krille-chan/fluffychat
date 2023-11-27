@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:fluffychat/utils/localized_exception_extension.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
 class PLoadingStatus extends StatefulWidget {

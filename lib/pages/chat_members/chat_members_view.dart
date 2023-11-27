@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+// Project imports:
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';

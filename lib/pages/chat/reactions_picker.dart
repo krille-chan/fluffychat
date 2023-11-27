@@ -1,10 +1,14 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:emoji_proposal/emoji_proposal.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../config/themes.dart';
 
 class ReactionsPicker extends StatelessWidget {

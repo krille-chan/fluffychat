@@ -4,10 +4,7 @@ on:
   push:
     branches:
       - main
-
-concurrency:
-  group: main_deploy
-  cancel-in-progress: true
+      - pangea-merge
 
 jobs:
   deploy_web:
@@ -40,45 +37,19 @@ jobs:
           publish_dir: ./public
           publish_branch: gh-pages
 
-  deploy_playstore_internal:
+  update_sentry:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Install Fastlane
-        run: gem install fastlane -NV
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
-      - run: flutter pub get
-      - name: Prepare Android Release Build
+          fetch-depth: 0
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
         env:
-          FDROID_KEY: ${{ secrets.FDROID_KEY }}
-          FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
-          PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
-        run: ./scripts/prepare-android-release.sh
-      - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-      - name: Deploy Android Release
-        run: |
-          mkdir -p build/android
-          cp build/app/outputs/bundle/release/app-release.aab build/android/
-          cd android
-          bundle install
-          bundle update fastlane
-          bundle exec fastlane deploy_internal_test
-          cd ..
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          # SENTRY_URL: https://sentry.io/
+        with:
+          environment: staging

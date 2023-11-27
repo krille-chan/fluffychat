@@ -1,6 +1,8 @@
-import 'package:fluffychat/pangea/constants/class_default_values.dart';
+// Package imports:
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'error_handler.dart';
 
 Future<void> deleteRoom(String? roomID, Client client) async {

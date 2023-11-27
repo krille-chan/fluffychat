@@ -1,14 +1,18 @@
-import 'package:emojis/emoji.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:emojis/emoji.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import '../../widgets/matrix.dart';
 
 class InputBar extends StatelessWidget {

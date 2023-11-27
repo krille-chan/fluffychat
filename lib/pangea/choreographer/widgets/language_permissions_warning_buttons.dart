@@ -1,16 +1,21 @@
+// Dart imports:
 import 'dart:developer';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../../../widgets/matrix.dart';
 
 class _ErrorCopy {

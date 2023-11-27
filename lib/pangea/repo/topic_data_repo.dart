@@ -1,8 +1,13 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
 import '../config/environment.dart';
 import '../models/chat_topic_model.dart';
 import '../models/lemma.dart';

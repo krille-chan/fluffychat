@@ -1,5 +1,8 @@
-import 'package:shared_preferences/shared_preferences.dart';
+// Dart imports:
 import 'dart:convert';
+
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyShared {
   static saveString(String key, String value) async {

@@ -1,5 +1,14 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
@@ -7,10 +16,6 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import '../../../widgets/matrix.dart';
 import '../../choreographer/widgets/choice_array.dart';
 import '../../controllers/pangea_controller.dart';

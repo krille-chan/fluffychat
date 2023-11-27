@@ -1,5 +1,13 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:url_launcher/url_launcher_string.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -7,8 +15,6 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription_view.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionManagement extends StatefulWidget {
   const SubscriptionManagement({Key? key}) : super(key: key);

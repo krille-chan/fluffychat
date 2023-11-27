@@ -1,3 +1,15 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:matrix/matrix.dart';
+import 'package:video_player/video_player.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/story/story_page.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -6,14 +18,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:matrix/matrix.dart';
-import 'package:video_player/video_player.dart';
-
 import '../../config/themes.dart';
 
 class StoryView extends StatelessWidget {

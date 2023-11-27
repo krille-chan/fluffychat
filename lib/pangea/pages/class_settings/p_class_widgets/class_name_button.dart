@@ -1,8 +1,13 @@
-import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class ClassNameButton extends StatelessWidget {
   final Room room;
@@ -22,10 +27,8 @@ class ClassNameButton extends StatelessWidget {
           onTap: controller.setDisplaynameAction,
           title: Text(
             room.isSpace
-              ? L10n.of(context)!
-                  .changeTheNameOfTheClass
-              : L10n.of(context)!
-                  .changeTheNameOfTheChat,
+                ? L10n.of(context)!.changeTheNameOfTheClass
+                : L10n.of(context)!.changeTheNameOfTheChat,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,

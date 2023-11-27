@@ -1,9 +1,12 @@
 //Question for Jordan - is this for an individual token or could it be a span?
 
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
 import '../config/environment.dart';
 import '../constants/model_keys.dart';
 import '../network/requests.dart';
@@ -75,12 +78,12 @@ class FullTextTranslationResponseModel {
 
   factory FullTextTranslationResponseModel.fromJson(Map<String, dynamic> json) {
     return FullTextTranslationResponseModel(
-        translations: (json["translations"] as Iterable)
-            .map<String>(
-              (e) => e,
-            )
-            .toList()
-            .cast<String>(),
+      translations: (json["translations"] as Iterable)
+          .map<String>(
+            (e) => e,
+          )
+          .toList()
+          .cast<String>(),
       source: json[ModelKey.srcLang],
       deepL: json['deepl_res'],
     );

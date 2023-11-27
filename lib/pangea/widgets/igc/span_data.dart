@@ -4,8 +4,10 @@
 // SpanChoice of text in message from options
 // Call to server for additional/followup info
 
+// Package imports:
 import 'package:collection/collection.dart';
 
+// Project imports:
 import '../../enum/span_choice_type.dart';
 import '../../enum/span_data_type.dart';
 
@@ -49,11 +51,10 @@ class SpanData {
       offset: json['offset'],
       length: json['length'],
       fullText: json['full_text'],
-      context: json['context'] != null
-          ? Context.fromJson(json['context'])
-          : null,
+      context:
+          json['context'] != null ? Context.fromJson(json['context']) : null,
       type: SpanDataTypeEnum.values.firstWhereOrNull(
-          (e) => e.toString() == 'SpanDataTypeEnum.${json['type']}') ??
+              (e) => e.toString() == 'SpanDataTypeEnum.${json['type']}') ??
           SpanDataTypeEnum.correction,
       rule: json['rule'] != null ? Rule.fromJson(json['rule']) : null,
     );
@@ -67,8 +68,7 @@ class SpanData {
       data['choices'] = choices!.map((x) => x.toJson()).toList();
     }
     if (replacements != null) {
-      data['replacements'] =
-          replacements!.map((x) => x.toJson()).toList();
+      data['replacements'] = replacements!.map((x) => x.toJson()).toList();
     }
     data['offset'] = offset;
     data['length'] = length;
@@ -83,6 +83,7 @@ class SpanData {
     return data;
   }
 }
+
 class Context {
   String sentence;
   int offset;
@@ -181,4 +182,3 @@ class SpanDataType {
     return data;
   }
 }
-

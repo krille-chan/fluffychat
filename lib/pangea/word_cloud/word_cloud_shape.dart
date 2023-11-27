@@ -39,6 +39,4 @@ class WordCloudEllipse extends WordCloudShape {
   double getMinorAxis() {
     return minoraxis;
   }
-
-
 }

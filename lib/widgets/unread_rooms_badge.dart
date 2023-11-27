@@ -1,7 +1,11 @@
-import 'package:badges/badges.dart' as b;
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:badges/badges.dart' as b;
 import 'package:matrix/matrix.dart';
 
+// Project imports:
 import 'matrix.dart';
 
 class UnreadRoomsBadge extends StatelessWidget {

@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:country_picker/country_picker.dart';
-import 'package:fluffychat/pangea/constants/model_keys.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../constants/language_keys.dart';
 import 'language_model.dart';
 

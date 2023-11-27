@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:fluffychat/pangea/config/environment.dart';
+// Package imports:
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/pangea/config/environment.dart';
 
 abstract class AppConfig {
   // #Pangea

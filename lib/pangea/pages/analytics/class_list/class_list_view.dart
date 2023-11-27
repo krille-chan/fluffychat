@@ -1,11 +1,15 @@
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
-import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
-import 'package:fluffychat/pangea/pages/analytics/time_span_menu_button.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
+import 'package:fluffychat/pangea/pages/analytics/time_span_menu_button.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../enum/time_span.dart';
 import '../base_analytics_page.dart';

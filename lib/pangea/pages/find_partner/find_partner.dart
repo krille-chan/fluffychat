@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:fluffychat/pangea/models/user_model.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../models/user_profile_search_model.dart';

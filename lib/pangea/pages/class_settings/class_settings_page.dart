@@ -1,14 +1,19 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/widgets/layouts/empty_page.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import '../../../widgets/matrix.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/set_class_name.dart';

@@ -1,7 +1,18 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -11,12 +22,6 @@ import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_header.dart';

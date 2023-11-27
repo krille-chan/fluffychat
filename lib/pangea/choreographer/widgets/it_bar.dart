@@ -1,5 +1,11 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
@@ -7,9 +13,6 @@ import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flo
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import '../../../config/app_config.dart';
 import '../../models/it_response_model.dart';
 import '../../utils/overlay.dart';

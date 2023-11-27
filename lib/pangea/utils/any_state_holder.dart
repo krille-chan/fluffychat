@@ -1,8 +1,13 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+// Project imports:
 import '../models/widget_measurement.dart';
 
 class PangeaAnyState {

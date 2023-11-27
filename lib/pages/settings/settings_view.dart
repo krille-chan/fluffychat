@@ -1,14 +1,18 @@
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'settings.dart';
 
 class SettingsView extends StatelessWidget {

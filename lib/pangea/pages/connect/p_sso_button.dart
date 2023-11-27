@@ -1,10 +1,15 @@
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:matrix/matrix.dart';
+
+// Project imports:
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class ButtonInfo {
   String iconPath;

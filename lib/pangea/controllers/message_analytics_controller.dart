@@ -1,14 +1,19 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/models/headwords.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-
 import '../constants/class_default_values.dart';
 import '../extensions/client_extension.dart';
 import '../extensions/pangea_room_extension.dart';

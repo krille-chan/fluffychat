@@ -1,5 +1,8 @@
-import 'package:fluffychat/pangea/enum/use_type.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluffychat/pangea/enum/use_type.dart';
 
 class MessagesLegendsListWidget extends StatelessWidget {
   const MessagesLegendsListWidget({

@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+// Project imports:
 import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
+import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
@@ -77,11 +80,11 @@ class SignupPageView extends StatelessWidget {
                     hintText: L10n.of(context)!.repeatPassword,
                     errorStyle: const TextStyle(color: Colors.orange),
                     // #Pangea
-                  fillColor: Theme.of(context)
-                      .colorScheme
-                      .background
-                      .withOpacity(0.75),
-                  // #Pangea
+                    fillColor: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.75),
+                    // #Pangea
                   ),
                 ),
               ),

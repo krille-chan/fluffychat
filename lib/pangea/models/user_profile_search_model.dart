@@ -1,6 +1,8 @@
+// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
+// Project imports:
 import 'user_model.dart';
 
 class UserProfileSearchResponse {

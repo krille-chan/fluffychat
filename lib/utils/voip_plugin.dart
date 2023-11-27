@@ -1,15 +1,20 @@
+// Dart imports:
 import 'dart:core';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/dialer/dialer.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
+// Project imports:
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pages/dialer/dialer.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';

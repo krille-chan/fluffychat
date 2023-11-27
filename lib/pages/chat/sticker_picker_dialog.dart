@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
 import '../../widgets/avatar.dart';
 import 'events/image_bubble.dart';
 

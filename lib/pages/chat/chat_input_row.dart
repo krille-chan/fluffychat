@@ -1,16 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:animations/animations.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';

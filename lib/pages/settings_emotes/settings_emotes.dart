@@ -1,24 +1,30 @@
+// Dart imports:
 import 'dart:async';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:archive/archive.dart'
-    if (dart.library.io) 'package:archive/archive_io.dart';
-import 'package:collection/collection.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
 
+// Project imports:
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
+
+import 'package:archive/archive.dart'
+    if (dart.library.io) 'package:archive/archive_io.dart';
 
 class EmotesSettings extends StatefulWidget {
   const EmotesSettings({super.key});

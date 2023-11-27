@@ -1,8 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+// Project imports:
 import 'add_widget_tile.dart';
 
 class EditWidgetsDialog extends StatelessWidget {

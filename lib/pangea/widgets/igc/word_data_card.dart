@@ -1,5 +1,16 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
+
+// Project imports:
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -11,12 +22,6 @@ import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
-
 import '../../models/word_data_model.dart';
 import '../flag.dart';
 import 'card_error_widget.dart';

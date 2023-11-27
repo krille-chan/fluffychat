@@ -1,6 +1,15 @@
+// Dart imports:
 import 'dart:developer';
 import 'dart:ui';
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
@@ -9,10 +18,6 @@ import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../models/igc_text_data_model.dart';
 import '../../models/language_detection_model.dart';
 import '../../models/pangea_match_model.dart';
