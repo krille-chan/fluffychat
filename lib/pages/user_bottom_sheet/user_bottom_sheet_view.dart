@@ -90,18 +90,9 @@ class UserBottomSheetView extends StatelessWidget {
             if (userId != client.userID &&
                 !client.ignoredUsers.contains(userId))
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton.icon(
-                  label: Text(
-                    L10n.of(context)!.ignore,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.shield_outlined,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
+                  icon: const Icon(Icons.block_outlined),
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.ignore),
                 ),
@@ -196,7 +187,11 @@ class UserBottomSheetView extends StatelessWidget {
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.message),
                   icon: const Icon(Icons.forum_outlined),
-                  label: Text(L10n.of(context)!.sendAMessage),
+                  label: Text(
+                    controller.widget.user == null
+                        ? L10n.of(context)!.startConversation
+                        : L10n.of(context)!.sendAMessage,
+                  ),
                 ),
               ),
             if (controller.widget.onMention != null)
