@@ -29,6 +29,50 @@ class PingPatterns {
   static RegExp facebookDisconnectMatch = RegExp(r"Successfully logged out");
 }
 
+// For login response
+class LoginRegex {
+  // Instagram
+  static final RegExp instagramSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp instagramAlreadySuccessMatch =
+      RegExp(r"You're already logged in");
+
+  static final RegExp instagramUsernameErrorMatch = RegExp(r"Invalid username");
+  static final RegExp instagramPasswordErrorMatch =
+      RegExp(r"Incorrect password");
+  static final RegExp instagramNameOrPasswordErrorMatch =
+      RegExp(r"Incorrect username or password");
+  static final RegExp instagramRateLimitErrorMatch =
+      RegExp(r"rate_limit_error");
+
+  static final RegExp instagramTwoFactorMatch =
+      RegExp(r"Send the code from your authenticator app here.");
+  static final RegExp instagramIncorrectTwoFactorMatch =
+      RegExp(r"Invalid 2-factor authentication code. Please try again");
+
+  // WhatsApp
+  static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp whatsAppAlreadySuccessMatch =
+      RegExp(r"You're already logged in");
+  static final RegExp whatsAppMeansCodeMatch =
+      RegExp(r"Scan the code below or enter the following code");
+  static final RegExp whatsAppTimeoutMatch =
+      RegExp(r"Login timed out. Please restart the login");
+
+  // Facebook
+  static final RegExp facebookSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp facebookSendPasswordMatch =
+      RegExp(r"Please send your password here to log in");
+  static final RegExp facebookTwoFactorMatch =
+      RegExp(r"You have two-factor authentication turned on.");
+  static final RegExp facebookNameOrPasswordErrorMatch =
+      RegExp(r"Invalid username or password");
+  static final RegExp facebookRateLimitErrorMatch = RegExp(r"rate_limit_error");
+  static final RegExp facebookAlreadyConnectedMatch =
+      RegExp(r"You're already logged in");
+  static final RegExp facebookIncorrectTwoFactorMatch =
+      RegExp(r"Incorrect two-factor authentication code. Please try again");
+}
+
 // For logout response
 class LogoutRegex {
   // Instagram

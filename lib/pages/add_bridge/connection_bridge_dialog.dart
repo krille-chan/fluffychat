@@ -165,7 +165,7 @@ Future<bool> connectWithTwoFields(
                         // Display a showDialog with an error message related to the User/password error
                         showCatchErrorDialog(
                           context,
-                          "Invalid username or password",
+                          L10n.of(context)!.err_usernameOrPassword,
                         );
                       } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit

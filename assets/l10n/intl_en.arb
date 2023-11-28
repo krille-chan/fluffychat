@@ -2574,6 +2574,7 @@
     "err_loading": "Loading error",
     "err_invalidTwoFactorCode": "Incorrect two-factor authentication code. Please try again.",
     "err_alreadyConnected": "You are already connected",
+    "err_usernameOrPassword": "Invalid username or password",
     "bridgeBot_menuItemTitle" : "Connected social networks",
     "bridgeBot_deleteConvTitle": "Delete Conversation",
     "bridgeBot_deleteConvDescription": "Do you want to delete the conversation with the bot?",

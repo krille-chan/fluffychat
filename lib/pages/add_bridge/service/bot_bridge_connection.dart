@@ -286,19 +286,18 @@ class BotBridgeConnection {
     final String botUserId = '@instagrambot:$hostname';
 
     // Success phrases to spot
-    final RegExp successMatch = RegExp(r"Successfully logged in");
-    final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
+    final RegExp successMatch = LoginRegex.instagramSuccessMatch;
+    final RegExp alreadySuccessMatch = LoginRegex.instagramAlreadySuccessMatch;
 
     // Error phrase to spot
-    final RegExp usernameErrorMatch = RegExp(r"Invalid username");
-    final RegExp passwordErrorMatch = RegExp(r"Incorrect password");
+    final RegExp usernameErrorMatch = LoginRegex.instagramUsernameErrorMatch;
+    final RegExp passwordErrorMatch = LoginRegex.instagramPasswordErrorMatch;
     final RegExp nameOrPasswordErrorMatch =
-        RegExp(r"Incorrect username or password");
-    final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
+        LoginRegex.instagramNameOrPasswordErrorMatch;
+    final RegExp rateLimitErrorMatch = LoginRegex.instagramRateLimitErrorMatch;
 
     // Code request message for two-factor identification
-    final RegExp twoFactorMatch =
-        RegExp(r"Send the code from your authenticator app here.");
+    final RegExp twoFactorMatch = LoginRegex.instagramTwoFactorMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -385,16 +384,14 @@ class BotBridgeConnection {
     final String botUserId = '@whatsappbot:$hostname';
 
     // Success phrases to spot
-    final RegExp successMatch = RegExp(r"Successfully logged in");
-    final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
+    final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
+    final RegExp alreadySuccessMatch = LoginRegex.whatsAppAlreadySuccessMatch;
 
     // Message of means of connexion
-    final RegExp meansCodeMatch =
-        RegExp(r"Scan the code below or enter the following code");
+    final RegExp meansCodeMatch = LoginRegex.whatsAppMeansCodeMatch;
 
     // Error phrase to spot
-    final RegExp timeOutMatch =
-        RegExp(r"Login timed out. Please restart the login");
+    final RegExp timeOutMatch = LoginRegex.whatsAppTimeoutMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -462,11 +459,10 @@ class BotBridgeConnection {
     const String botUserId = '@whatsappbot:loveto.party';
 
     // Success phrases to spot
-    final RegExp successMatch = RegExp(r"Successfully logged in");
+    final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
 
     // Error phrase to spot
-    final RegExp timeOutMatch =
-        RegExp(r"Login timed out. Please restart the login");
+    final RegExp timeOutMatch = LoginRegex.whatsAppTimeoutMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -516,19 +512,17 @@ class BotBridgeConnection {
     final String botUserId = '@facebookbot:$hostname';
 
     // Success phrases to spot
-    final RegExp sendPassword =
-        RegExp(r"Please send your password here to log in");
+    final RegExp sendPassword = LoginRegex.facebookSendPasswordMatch;
 
     // Code request message for two-factor identification
-    final RegExp twoFactorMatch =
-        RegExp(r"You have two-factor authentication turned on.");
+    final RegExp twoFactorMatch = LoginRegex.facebookTwoFactorMatch;
 
     // Error phrases to spot
     final RegExp nameOrPasswordErrorMatch =
-        RegExp(r"Invalid username or password");
-    final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
+        LoginRegex.facebookNameOrPasswordErrorMatch;
+    final RegExp rateLimitErrorMatch = LoginRegex.facebookRateLimitErrorMatch;
 
-    final RegExp alreadyConnected = RegExp(r"You're already logged in");
+    final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);

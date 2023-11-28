@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
+import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -95,10 +96,11 @@ Future<bool> twoFactorDemandCode(
                         // Response for Instgram
                         case "Instagram":
                           final successfullyMatch =
-                              RegExp(r"Successfully logged in");
-                          final invalidMatch = RegExp(r"Invalid");
+                              LoginRegex.instagramSuccessMatch;
+                          final invalidMatch =
+                              LoginRegex.instagramIncorrectTwoFactorMatch;
                           final RegExp alreadySuccessMatch =
-                              RegExp(r"You're already logged in");
+                              LoginRegex.instagramAlreadySuccessMatch;
                           if (successfullyMatch.hasMatch(result) ||
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
@@ -123,12 +125,11 @@ Future<bool> twoFactorDemandCode(
                         // Response for Facebook Messenger
                         case "Facebook Messenger":
                           final successfullyMatch =
-                              RegExp(r"Successfully logged in");
-                          final invalidMatch = RegExp(
-                            r"Incorrect two-factor authentication code. Please try again.",
-                          );
+                              LoginRegex.facebookSuccessMatch;
+                          final invalidMatch =
+                              LoginRegex.facebookIncorrectTwoFactorMatch;
                           final RegExp alreadySuccessMatch =
-                              RegExp(r"You're already logged in");
+                              LoginRegex.facebookAlreadyConnectedMatch;
                           if (successfullyMatch.hasMatch(result) ||
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
