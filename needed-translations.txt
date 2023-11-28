@@ -756,7 +756,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "bn": [
@@ -1521,7 +1523,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "bo": [
@@ -2286,7 +2290,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ca": [
@@ -3046,7 +3052,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "cs": [
@@ -3806,7 +3814,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "de": [
@@ -4566,7 +4576,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "el": [
@@ -5331,7 +5343,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "eo": [
@@ -6091,7 +6105,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "es": [
@@ -6115,7 +6131,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "et": [
@@ -6875,7 +6893,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "eu": [
@@ -7635,7 +7655,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "fa": [
@@ -8395,7 +8417,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "fi": [
@@ -9155,7 +9179,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "fr": [
@@ -9915,7 +9941,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ga": [
@@ -10675,7 +10703,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "gl": [
@@ -11435,7 +11465,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "he": [
@@ -12195,7 +12227,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "hi": [
@@ -12960,7 +12994,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "hr": [
@@ -13720,7 +13756,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "hu": [
@@ -14480,7 +14518,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "id": [
@@ -15240,7 +15280,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ie": [
@@ -16002,7 +16044,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "it": [
@@ -16762,7 +16806,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ja": [
@@ -17522,7 +17568,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ko": [
@@ -18282,7 +18330,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "lt": [
@@ -19042,7 +19092,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "lv": [
@@ -19807,7 +19859,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "nb": [
@@ -20567,7 +20621,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "nl": [
@@ -21327,7 +21383,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "pl": [
@@ -22087,7 +22145,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "pt": [
@@ -22852,7 +22912,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "pt_BR": [
@@ -23612,7 +23674,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "pt_PT": [
@@ -24372,7 +24436,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ro": [
@@ -25132,7 +25198,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ru": [
@@ -25892,7 +25960,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "sk": [
@@ -26653,7 +26723,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "sl": [
@@ -27416,7 +27488,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "sr": [
@@ -28176,7 +28250,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "sv": [
@@ -28936,7 +29012,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "ta": [
@@ -29701,7 +29779,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "th": [
@@ -30466,7 +30546,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "tr": [
@@ -31226,7 +31308,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "uk": [
@@ -31986,7 +32070,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "vi": [
@@ -32749,7 +32835,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "zh": [
@@ -33509,7 +33597,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ],
 
   "zh_Hant": [
@@ -34269,6 +34359,8 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "trialExpiration"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial"
   ]
 }

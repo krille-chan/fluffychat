@@ -3948,5 +3948,7 @@
         "placeholders": {
             "expiration": {}
         }
-    }
+    },
+    "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
+    "activateTrial": "Activate Trial"
 }

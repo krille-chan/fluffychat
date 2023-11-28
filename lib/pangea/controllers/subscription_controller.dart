@@ -60,8 +60,8 @@ class SubscriptionController extends BaseController {
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
       await subscription!.configure();
-      if (!isSubscribed) {
-        addNewAccountTrial();
+      if (activatedNewUserTrial) {
+        setNewUserTrial();
       }
 
       initialized = true;
@@ -78,31 +78,26 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  void addNewAccountTrial() {
-    // determine when profile was created
-    final String? profileCreatedAt =
-        _pangeaController.userController.userModel?.profile?.createdAt;
-    if (profileCreatedAt == null) {
-      ErrorHandler.logError(
-        m: "Null profileCreatedAt in addNewAccountTrial",
-        s: StackTrace.current,
-      );
-      return;
-    }
+  final String activatedTrialKey = 'activatedTrial';
 
+  bool get activatedNewUserTrial =>
+      _pangeaController.userController.inTrialWindow &&
+      (_pangeaController.pStoreService.read(activatedTrialKey) ?? false);
+
+  void activateNewUserTrial() {
+    _pangeaController.pStoreService.save(activatedTrialKey, true);
+    setNewUserTrial();
+  }
+
+  void setNewUserTrial() {
+    final String profileCreatedAt =
+        _pangeaController.userController.userModel!.profile!.createdAt;
     final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
-    final bool accountIsNew = creationTimestamp.isAfter(
-      DateTime.now().subtract(const Duration(days: 7)),
-    );
-
-    // if account qualifies, grant trial
-    if (accountIsNew) {
-      final int daysRemaining = DateTime.now()
-          .add(const Duration(days: 7))
-          .difference(creationTimestamp)
-          .inDays;
-      subscription?.setTrial(daysRemaining);
-    }
+    final int daysRemaining = DateTime.now()
+        .add(const Duration(days: 7))
+        .difference(creationTimestamp)
+        .inDays;
+    subscription?.setTrial(daysRemaining);
   }
 
   Future<void> updateCustomerInfo() async {
