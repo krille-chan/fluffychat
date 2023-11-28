@@ -125,7 +125,8 @@ Future<bool> twoFactorDemandCode(
                           final successfullyMatch =
                               RegExp(r"Successfully logged in");
                           final invalidMatch = RegExp(
-                              r"Incorrect two-factor authentication code. Please try again.");
+                            r"Incorrect two-factor authentication code. Please try again.",
+                          );
                           final RegExp alreadySuccessMatch =
                               RegExp(r"You're already logged in");
                           if (successfullyMatch.hasMatch(result) ||
@@ -137,13 +138,9 @@ Future<bool> twoFactorDemandCode(
                               true,
                             ); // returns True if the connection is successful
                           } else if (invalidMatch.hasMatch(result)) {
-                            showCatchErrorDialog(context,
-                                L10n.of(context)!.err_invalidTwoFactorCode);
-                            result = "";
-                          } else {
                             showCatchErrorDialog(
                               context,
-                              L10n.of(context)!.err_timeOut,
+                              L10n.of(context)!.err_invalidTwoFactorCode,
                             );
                             result = "";
                           }

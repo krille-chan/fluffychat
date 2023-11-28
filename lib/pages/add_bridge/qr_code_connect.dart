@@ -197,7 +197,6 @@ Future<void> showSuccessDialog(BuildContext context) async {
                   .connected = true;
 
               Navigator.of(context).pop();
-              // Goes back twice (closes current and previous pages)
               Navigator.pop(context, true);
             },
             child: Text(

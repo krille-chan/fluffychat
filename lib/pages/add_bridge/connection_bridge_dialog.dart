@@ -27,7 +27,7 @@ Future<bool> connectWithTwoFields(
 
   showDialog(
     context: context,
-    barrierDismissible: false,
+    useRootNavigator: false, // Close the showDialog by clicking on Back
     builder: (BuildContext context) {
       return Center(
         child: SingleChildScrollView(
@@ -152,24 +152,39 @@ Future<bool> connectWithTwoFields(
                       } else if (result == "errorUsername") {
                         // Display a showDialog with an error message related to the identifier
                         showCatchErrorDialog(
-                            context, L10n.of(context)!.usernameNotFound);
+                          context,
+                          L10n.of(context)!.usernameNotFound,
+                        );
                       } else if (result == "errorPassword") {
                         // Display a showDialog with an error message related to the password
                         showCatchErrorDialog(
-                            context, L10n.of(context)!.passwordIncorrect);
+                          context,
+                          L10n.of(context)!.passwordIncorrect,
+                        );
                       } else if (result == "errorNameOrPassword") {
                         // Display a showDialog with an error message related to the User/password error
                         showCatchErrorDialog(
-                            context, "Invalid username or password");
+                          context,
+                          "Invalid username or password",
+                        );
                       } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
                         showCatchErrorDialog(
-                            context, L10n.of(context)!.rateLimit);
+                          context,
+                          L10n.of(context)!.rateLimit,
+                        );
                       } else if (result == "error") {
                         // Display a showDialog with an unknown error message
                         showCatchErrorDialog(
                           context,
                           L10n.of(context)!.err_tryAgain,
+                        );
+                      } else if (result == "alreadyConnected") {
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.err_alreadyConnected);
+                        Navigator.of(context).pop();
+                        completer.complete(
+                          true,
                         );
                       }
                     } catch (e) {
@@ -214,7 +229,6 @@ Future<bool> connectToWhatsApp(
 
   showDialog(
     context: context,
-    barrierDismissible: false,
     builder: (BuildContext context) {
       return Center(
         child: SingleChildScrollView(

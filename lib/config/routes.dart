@@ -248,7 +248,7 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                     ),
                     GoRoute(
-                      path: 'addaccount',
+                      path: 'addAccount',
                       redirect: loggedOutRedirect,
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
@@ -269,7 +269,7 @@ abstract class AppRoutes {
                     // Route to social networking page via chat bot
                     // The entire path is: /rooms/settings/addbridgebot
                     GoRoute(
-                      path: 'addbridgebot',
+                      path: 'addBridgeBot',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         const AddBridgeBody(),

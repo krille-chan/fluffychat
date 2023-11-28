@@ -77,7 +77,7 @@ class BotBridgeConnection {
       }
       await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-      if (result != '') {
+      if (result != '' && result != contentMessage) {
         break;
       } else {
         currentIteration++;
@@ -528,6 +528,8 @@ class BotBridgeConnection {
         RegExp(r"Invalid username or password");
     final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
 
+    final RegExp alreadyConnected = RegExp(r"You're already logged in");
+
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
@@ -568,6 +570,11 @@ class BotBridgeConnection {
 
           // Set the flag to true after sending the password
           passwordSent = true;
+        } else if (alreadyConnected.hasMatch(latestMessage)) {
+          print("Already Connected to Facebook");
+          // Set the result to "twoFactorDemand"
+          result = "alreadyConnected";
+          break;
         }
 
         // Continue handling other cases...
