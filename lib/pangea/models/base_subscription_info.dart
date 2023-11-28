@@ -1,4 +1,5 @@
 // Project imports:
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/repo/subscription_repo.dart';
@@ -45,6 +46,9 @@ class SubscriptionInfo {
     allProducts = await SubscriptionRepo.getAllProducts();
   }
 
+  bool get isNewUserTrial =>
+      currentSubscriptionId == AppConfig.trialSubscriptionId;
+
   bool get currentSubscriptionIsPromotional =>
       currentSubscriptionId?.startsWith("rc_promo") ?? false;
 
@@ -69,6 +73,17 @@ class SubscriptionInfo {
   void resetSubscription() {
     currentSubscription = null;
     currentSubscriptionId = null;
+  }
+
+  void setTrial(int daysRemaining) {
+    if (currentSubscription != null) return;
+    expirationDate = DateTime.now().add(Duration(days: daysRemaining));
+    currentSubscriptionId = AppConfig.trialSubscriptionId;
+    currentSubscription = SubscriptionDetails(
+      price: 0,
+      id: AppConfig.trialSubscriptionId,
+      periodType: 'trial',
+    );
   }
 
   Future<void> setCustomerInfo() async {}

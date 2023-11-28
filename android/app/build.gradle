@@ -66,8 +66,10 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
+            // #Pangea - this causes errors with android debug build
+            // applicationIdSuffix ".debug"
+            // versionNameSuffix "-debug"
+            // Pangea#
         }
         release {
             signingConfig signingConfigs.release

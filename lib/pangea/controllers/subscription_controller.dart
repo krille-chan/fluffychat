@@ -2,17 +2,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
@@ -26,6 +17,12 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
@@ -63,6 +60,9 @@ class SubscriptionController extends BaseController {
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
       await subscription!.configure();
+      if (!isSubscribed) {
+        addNewAccountTrial();
+      }
 
       initialized = true;
 
@@ -75,6 +75,33 @@ class SubscriptionController extends BaseController {
     } catch (e, s) {
       debugPrint("Failed to initialize subscription controller");
       ErrorHandler.logError(e: e, s: s);
+    }
+  }
+
+  void addNewAccountTrial() {
+    // determine when profile was created
+    final String? profileCreatedAt =
+        _pangeaController.userController.userModel?.profile?.createdAt;
+    if (profileCreatedAt == null) {
+      ErrorHandler.logError(
+        m: "Null profileCreatedAt in addNewAccountTrial",
+        s: StackTrace.current,
+      );
+      return;
+    }
+
+    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
+    final bool accountIsNew = creationTimestamp.isAfter(
+      DateTime.now().subtract(const Duration(days: 7)),
+    );
+
+    // if account qualifies, grant trial
+    if (accountIsNew) {
+      final int daysRemaining = DateTime.now()
+          .add(const Duration(days: 7))
+          .difference(creationTimestamp)
+          .inDays;
+      subscription?.setTrial(daysRemaining);
     }
   }
 
@@ -91,8 +118,10 @@ class SubscriptionController extends BaseController {
     setState();
   }
 
-  Future<void> showPaywall(BuildContext context,
-      [bool forceShow = false]) async {
+  Future<void> showPaywall(
+    BuildContext context, [
+    bool forceShow = false,
+  ]) async {
     try {
       if (!initialized) {
         await initialize();
@@ -160,8 +189,10 @@ class SubscriptionController extends BaseController {
   }
 
   void submitSubscriptionChange(
-      SubscriptionDetails? selectedSubscription, BuildContext context,
-      {bool isPromo = false}) async {
+    SubscriptionDetails? selectedSubscription,
+    BuildContext context, {
+    bool isPromo = false,
+  }) async {
     if (selectedSubscription != null) {
       if (kIsWeb) {
         if (selectedSubscription.duration == null) {
@@ -191,7 +222,9 @@ class SubscriptionController extends BaseController {
       }
       try {
         GoogleAnalytics.beginPurchaseSubscription(
-            selectedSubscription, context);
+          selectedSubscription,
+          context,
+        );
         await Purchases.purchasePackage(selectedSubscription.package!);
         GoogleAnalytics.updateUserSubscriptionStatus(true);
       } catch (err) {
