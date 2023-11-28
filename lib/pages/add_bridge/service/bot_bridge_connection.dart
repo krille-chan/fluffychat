@@ -30,7 +30,8 @@ class BotBridgeConnection {
   }
 
   Future<void> checkAllSocialNetworksConnections(
-      List<SocialNetwork> socialNetwork) async {
+    List<SocialNetwork> socialNetwork,
+  ) async {
     for (final network in socialNetwork) {
       pingSocialNetwork(network).then((result) {
         _pingResultsController.add({'name': network.name, 'result': result});
@@ -111,26 +112,26 @@ class BotBridgeConnection {
 
     switch (socialNetwork.name) {
       case "WhatsApp":
-        onlineMatch = RegExpPatterns.pingWhatsAppOnlineMatch;
-        successfullyMatch = RegExpPatterns.pingWhatsAppSuccessfullyMatch;
-        alreadySuccessMatch = RegExpPatterns.pingWhatsAppAlreadySuccessMatch;
-        notLoggedMatch = RegExpPatterns.pingWhatsAppNotLoggedMatch;
-        disconnectMatch = RegExpPatterns.pingWhatsAppDisconnectMatch;
+        onlineMatch = PingPatterns.whatsAppOnlineMatch;
+        successfullyMatch = PingPatterns.whatsAppSuccessfullyMatch;
+        alreadySuccessMatch = PingPatterns.whatsAppAlreadySuccessMatch;
+        notLoggedMatch = PingPatterns.whatsAppNotLoggedMatch;
+        disconnectMatch = PingPatterns.whatsAppDisconnectMatch;
         connectedButNotLoggedMatch =
-            RegExpPatterns.pingWhatsAppConnectedButNotLoggedMatch;
+            PingPatterns.whatsAppConnectedButNotLoggedMatch;
         break;
       case "Facebook Messenger":
-        onlineMatch = RegExpPatterns.pingFacebookOnlineMatch;
-        successfullyMatch = RegExpPatterns.pingFacebookSuccessfullyMatch;
-        notLoggedMatch = RegExpPatterns.pingFacebookNotLoggedMatch;
-        disconnectMatch = RegExpPatterns.pingFacebookDisconnectMatch;
+        onlineMatch = PingPatterns.facebookOnlineMatch;
+        successfullyMatch = PingPatterns.facebookSuccessfullyMatch;
+        notLoggedMatch = PingPatterns.facebookNotLoggedMatch;
+        disconnectMatch = PingPatterns.facebookDisconnectMatch;
         break;
       case "Instagram":
-        onlineMatch = RegExpPatterns.pingInstagramOnlineMatch;
-        successfullyMatch = RegExpPatterns.pingInstagramSuccessfullyMatch;
-        alreadySuccessMatch = RegExpPatterns.pingInstagramAlreadySuccessMatch;
-        notLoggedMatch = RegExpPatterns.pingInstagramNotLoggedMatch;
-        disconnectMatch = RegExpPatterns.pingInstagramDisconnectMatch;
+        onlineMatch = PingPatterns.instagramOnlineMatch;
+        successfullyMatch = PingPatterns.instagramSuccessfullyMatch;
+        alreadySuccessMatch = PingPatterns.instagramAlreadySuccessMatch;
+        notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
+        disconnectMatch = PingPatterns.instagramDisconnectMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
@@ -196,6 +197,84 @@ class BotBridgeConnection {
     } else if (!continueProcess) {
       print(('ping stopping'));
       result = 'stop';
+    }
+
+    return result;
+  }
+
+  // Function to logout
+  Future<String> disconnectFromNetwork(SocialNetwork network) async {
+    final String botUserId = '${network.chatBot}$hostname';
+
+    RegExp successMatch;
+    RegExp alreadyLogoutMatch;
+
+    switch (network.name) {
+      case 'Instagram':
+        successMatch = LogoutRegex.instagramSuccessMatch;
+        alreadyLogoutMatch = LogoutRegex.instagramAlreadyLogoutMatch;
+        break;
+      case 'WhatsApp':
+        successMatch = LogoutRegex.whatsappSuccessMatch;
+        alreadyLogoutMatch = LogoutRegex.whatsappAlreadyLogoutMatch;
+        break;
+      case 'Facebook Messenger':
+        successMatch = LogoutRegex.facebookSuccessMatch;
+        alreadyLogoutMatch = LogoutRegex.facebookAlreadyLogoutMatch;
+        break;
+      default:
+        throw ArgumentError('Unsupported network: ${network.name}');
+    }
+
+    // Add a direct chat with the network bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    String result =
+        "Connected"; // Variable to track the result of the connection
+
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        // to find out if we're connected
+        if (!successMatch.hasMatch(latestMessage) &&
+            !alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected to ${network.name}");
+          result = 'Connected';
+          break;
+        } else if (successMatch.hasMatch(latestMessage) ||
+            alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're disconnected to ${network.name}");
+          result = 'Not Connected';
+          break; // Exit the loop if bridge is disconnected
+        }
+      }
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print("Maximum iterations reached, setting result to 'error'");
+      result = 'error';
     }
 
     return result;
@@ -286,71 +365,6 @@ class BotBridgeConnection {
         }
       }
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
-
-      result = 'error';
-    }
-
-    return result;
-  }
-
-  // To disconnect from Instagram
-  Future<String> disconnectToInstagram() async {
-    final String botUserId = '@instagrambot:$hostname';
-
-    final RegExp successMatch = RegExp(r"Successfully logged out");
-    final RegExp alreadyLogoutMatch =
-        RegExp(r"That command requires you to be logged in.");
-
-    // Add a direct chat with the Instagram bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
-
-    final Room? roomBot = client.getRoomById(directChat);
-
-    // Send the "logout" message to the bot
-    await roomBot?.sendTextEvent("logout");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
-    String result =
-        "Connected"; // Variable to track the result of the connection
-
-    // variable for loop limit
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (currentIteration < maxIterations) {
-      // Get the latest messages from the room (limited to the specified number)
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
-
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
-
-        // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage) &&
-            !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected to Instagram");
-          result = 'Connected';
-          break;
-        } else if (successMatch.hasMatch(latestMessage) ||
-            alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected to Instagram");
-
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is connected
-        }
-      }
       currentIteration++;
     }
 
@@ -496,69 +510,6 @@ class BotBridgeConnection {
     return result;
   }
 
-  // To disconnect from WhatsApp
-  Future<String> disconnectToWhatsApp() async {
-    final String botUserId = '@whatsappbot:$hostname';
-
-    final RegExp successMatch = RegExp(r"Logged out successfully.");
-    final RegExp alreadyLogoutMatch = RegExp(r"You're not logged in.");
-
-    // Add a direct chat with the WhatsApp bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
-
-    final Room? roomBot = client.getRoomById(directChat);
-
-    // Send the "logout" message to the bot
-    await roomBot?.sendTextEvent("logout");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
-    String result =
-        "Connected"; // Variable to track the result of the connection
-
-    // variable for loop limit
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (currentIteration < maxIterations) {
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
-
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
-
-        // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage) &&
-            !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected to WhatsApp");
-          result = 'Connected';
-          break;
-        } else if (successMatch.hasMatch(latestMessage) ||
-            alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected to WhatsApp");
-
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is disconnected
-        }
-      }
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
-
-      result = 'error';
-    }
-
-    return result;
-  }
-
   //Facebook Messenger
   // Function to login Facebook
   Future<String> createBridgeFacebook(String username, String password) async {
@@ -649,70 +600,6 @@ class BotBridgeConnection {
       }
 
       await Future.delayed(const Duration(seconds: 3)); // Wait sec
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
-
-      result = 'error';
-    }
-
-    return result;
-  }
-
-  // Function to logout
-  Future<String> disconnectToFacebook() async {
-    final String botUserId = '@facebookbot:$hostname';
-
-    final RegExp successMatch = RegExp(r"Successfully logged out");
-    final RegExp alreadyLogoutMatch =
-        RegExp(r"That command requires you to be logged in.");
-
-    // Add a direct chat with the WhatsApp bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
-
-    final Room? roomBot = client.getRoomById(directChat);
-
-    // Send the "logout" message to the bot
-    await roomBot?.sendTextEvent("logout");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
-    String result =
-        "Connected"; // Variable to track the result of the connection
-
-    // variable for loop limit
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (currentIteration < maxIterations) {
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
-
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
-
-        // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage) &&
-            !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected to WhatsApp");
-          result = 'Connected';
-          break;
-        } else if (successMatch.hasMatch(latestMessage) ||
-            alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected to WhatsApp");
-
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is disconnected
-        }
-      }
       currentIteration++;
     }
 

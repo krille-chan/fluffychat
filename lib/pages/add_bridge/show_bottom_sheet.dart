@@ -39,18 +39,7 @@ Future<bool> showBottomSheetBridge(
                 await showFutureLoadingDialog(
                   context: context,
                   future: () async {
-                    switch (network.name) {
-                      case "Instagram":
-                        result = await botConnection.disconnectToInstagram();
-                        break;
-                      case "WhatsApp":
-                        result = await botConnection.disconnectToWhatsApp();
-                        break;
-                      case "Facebook Messenger":
-                        result = await botConnection.disconnectToFacebook();
-                        break;
-                      // For other networks
-                    }
+                    result = await botConnection.disconnectFromNetwork(network);
                   },
                 );
 
