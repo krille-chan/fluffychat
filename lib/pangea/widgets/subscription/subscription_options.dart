@@ -1,13 +1,11 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SubscriptionOptions extends StatelessWidget {
   final PangeaController pangeaController;
@@ -19,23 +17,18 @@ class SubscriptionOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
-        children: [
-          const SizedBox(height: 20),
-          Wrap(
-            alignment: WrapAlignment.center,
-            direction: Axis.horizontal,
-            children: pangeaController
-                .subscriptionController.subscription!.availableSubscriptions
-                .map(
-                  (subscription) => SubscriptionCard(
-                    subscription: subscription,
-                    pangeaController: pangeaController,
-                  ),
-                )
-                .toList(),
-          ),
-        ],
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        direction: Axis.horizontal,
+        children: pangeaController
+            .subscriptionController.subscription!.availableSubscriptions
+            .map(
+              (subscription) => SubscriptionCard(
+                subscription: subscription,
+                pangeaController: pangeaController,
+              ),
+            )
+            .toList(),
       ),
     );
   }
@@ -46,10 +39,10 @@ class SubscriptionCard extends StatelessWidget {
   final PangeaController pangeaController;
 
   const SubscriptionCard({
-    Key? key,
+    super.key,
     required this.subscription,
     required this.pangeaController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +79,7 @@ class SubscriptionCard extends StatelessWidget {
                       .submitSubscriptionChange(subscription, context);
                 },
                 child: Text(L10n.of(context)!.subscribe),
-              )
+              ),
             ],
           ),
         ),

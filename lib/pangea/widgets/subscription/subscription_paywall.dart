@@ -30,32 +30,30 @@ class SubscriptionPaywall extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              if (pangeaController.matrixState.client.rooms.length > 1) ...[
-                Text(
-                  L10n.of(context)!.welcomeBack,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 20),
-              ],
+        child: ListView(
+          children: [
+            if (pangeaController.matrixState.client.rooms.length > 1) ...[
               Text(
-                L10n.of(context)!.subscriptionDesc,
+                L10n.of(context)!.welcomeBack,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 20),
-              pangeaController.userController.inTrialWindow
-                  ? FreeTrialCard(
-                      pangeaController: pangeaController,
-                    )
-                  : SubscriptionOptions(
-                      pangeaController: pangeaController,
-                    ),
             ],
-          ),
+            Text(
+              L10n.of(context)!.subscriptionDesc,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            pangeaController.userController.inTrialWindow
+                ? FreeTrialCard(
+                    pangeaController: pangeaController,
+                  )
+                : SubscriptionOptions(
+                    pangeaController: pangeaController,
+                  ),
+          ],
         ),
       ),
     );
@@ -68,40 +66,42 @@ class FreeTrialCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: AppConfig.primaryColorLight.withAlpha(64),
+    return Align(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: AppConfig.primaryColorLight.withAlpha(64),
+          ),
+          borderRadius: const BorderRadius.all(Radius.zero),
         ),
-        borderRadius: const BorderRadius.all(Radius.zero),
-      ),
-      child: SizedBox(
-        height: 250,
-        width: AppConfig.columnWidth * 0.75,
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                L10n.of(context)!.freeTrial,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24),
-              ),
-              Text(
-                L10n.of(context)!.freeTrialDesc,
-                textAlign: TextAlign.center,
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  pangeaController.subscriptionController
-                      .activateNewUserTrial();
-                  Navigator.of(context).pop();
-                },
-                child: Text(L10n.of(context)!.activateTrial),
-              ),
-            ],
+        child: SizedBox(
+          height: 250,
+          width: AppConfig.columnWidth * 0.75,
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  L10n.of(context)!.freeTrial,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 24),
+                ),
+                Text(
+                  L10n.of(context)!.freeTrialDesc,
+                  textAlign: TextAlign.center,
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    pangeaController.subscriptionController
+                        .activateNewUserTrial();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(L10n.of(context)!.activateTrial),
+                ),
+              ],
+            ),
           ),
         ),
       ),

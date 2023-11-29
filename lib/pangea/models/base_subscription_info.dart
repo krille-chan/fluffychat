@@ -75,9 +75,9 @@ class SubscriptionInfo {
     currentSubscriptionId = null;
   }
 
-  void setTrial(int daysRemaining) {
+  void setTrial(DateTime expiration) {
     if (currentSubscription != null) return;
-    expirationDate = DateTime.now().add(Duration(days: daysRemaining));
+    expirationDate = expiration;
     currentSubscriptionId = AppConfig.trialSubscriptionId;
     currentSubscription = SubscriptionDetails(
       price: 0,

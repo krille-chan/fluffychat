@@ -93,11 +93,10 @@ class SubscriptionController extends BaseController {
     final String profileCreatedAt =
         _pangeaController.userController.userModel!.profile!.createdAt;
     final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
-    final int daysRemaining = DateTime.now()
-        .add(const Duration(days: 7))
-        .difference(creationTimestamp)
-        .inDays;
-    subscription?.setTrial(daysRemaining);
+    final DateTime expirationDate = creationTimestamp.add(
+      const Duration(days: 7),
+    );
+    subscription?.setTrial(expirationDate);
   }
 
   Future<void> updateCustomerInfo() async {
