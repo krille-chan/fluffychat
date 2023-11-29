@@ -903,14 +903,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  idb_shim:
-    dependency: "direct main"
-    description:
-      name: idb_shim
-      sha256: cf1b3870ad63a6f5393edb351a9c9364e739731f2176c27f44d9645327c2cdd5
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.2"
   image:
     dependency: transitive
     description:
@@ -1160,11 +1152,10 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/add-matrix-sdk-database"
-      resolved-ref: "2b08db35972b47040da6d7aa84f564cbf68ed4f2"
-      url: "https://github.com/famedly/matrix-dart-sdk.git"
-    source: git
+      name: matrix
+      sha256: "155673171920dceb224bd209f51a3e41fc5c015f55ec780c9d95e54eb84ba582"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.24.0"
   matrix_api_lite:
     dependency: transitive
@@ -1622,14 +1613,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2"
-  sembast:
-    dependency: transitive
-    description:
-      name: sembast
-      sha256: "85ff944434f7b566fdc388be4f85b23e954736b7d6e51f965f4f419d966c15b1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.5.0+1"
   sentiment_dart:
     dependency: transitive
     description:
@@ -1732,7 +1715,7 @@ packages:
     source: hosted
     version: "1.10.0"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       sha256: "591f1602816e9c31377d5f008c2d9ef7b8aca8941c3f89cc5fd9d84da0c38a9a"
@@ -1747,30 +1730,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.0+2"
-  sqflite_common_ffi:
-    dependency: "direct main"
-    description:
-      name: sqflite_common_ffi
-      sha256: "35d2fce1e971707c227cc4775cc017d5eafe06c2654c3435ebd5c3ad6c170f5f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0+4"
-  sqflite_sqlcipher:
-    dependency: "direct main"
-    description:
-      name: sqflite_sqlcipher
-      sha256: e1dfb55bf21ee5a18c43f28faa4291272a801da4ab34a6ba9973b6c0e1ed77da
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.1"
-  sqlite3:
-    dependency: transitive
-    description:
-      name: sqlite3
-      sha256: db65233e6b99e99b2548932f55a987961bc06d82a31a0665451fa0b4fff4c3fb
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   stack_trace:
     dependency: transitive
     description:
