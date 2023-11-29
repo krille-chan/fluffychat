@@ -1,25 +1,23 @@
 // Dart imports:
 import 'dart:typed_data';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:matrix/matrix.dart';
-
 // Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:matrix/matrix.dart';
 
 class SignupButtons extends StatefulWidget {
-  const SignupButtons({Key? key}) : super(key: key);
+  const SignupButtons({super.key});
 
   @override
   State<SignupButtons> createState() => SignupButtonsState();
@@ -164,7 +162,10 @@ class SignupButtonsState extends State<SignupButtons> {
               prefixIcon: const Icon(Icons.account_box_outlined),
               hintText: L10n.of(context)!.chooseAUsername,
               errorText: signupError,
-              errorStyle: const TextStyle(color: Colors.orange),
+              errorStyle: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium?.color,
+                fontSize: 14,
+              ),
               fillColor:
                   Theme.of(context).colorScheme.background.withOpacity(0.75),
             ),

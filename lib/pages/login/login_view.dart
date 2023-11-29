@@ -1,12 +1,11 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 // Project imports:
 import 'package:fluffychat/pangea/utils/password_forgotten.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -56,7 +55,13 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
-                      errorStyle: const TextStyle(color: Colors.orange),
+                      // #Pangea
+                      // errorStyle: const TextStyle(color: Colors.orange),
+                      errorStyle: TextStyle(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        fontSize: 14,
+                      ),
+                      // Pangea#
                       hintText: L10n.of(context)!.emailOrUsername,
                       // #Pangea
                       fillColor: Theme.of(context)
@@ -81,8 +86,12 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
-                      errorStyle: const TextStyle(color: Colors.orange),
                       // #Pangea
+                      // errorStyle: const TextStyle(color: Colors.orange),
+                      errorStyle: TextStyle(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        fontSize: 14,
+                      ),
                       // prevent enter key from clicking show password button
                       suffixIcon: MouseRegion(
                         cursor: SystemMouseCursors.click,

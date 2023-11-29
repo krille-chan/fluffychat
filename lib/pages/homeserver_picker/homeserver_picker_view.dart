@@ -1,15 +1,14 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/connect/p_sso_button.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/widgets/signup/signup_buttons.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
