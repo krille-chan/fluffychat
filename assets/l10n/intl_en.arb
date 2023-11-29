@@ -2564,5 +2564,6 @@
   "createGroupAndInviteUsers": "Create a group and invite users",
   "groupCanBeFoundViaSearch": "Group can be found via search",
   "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
-  "startConversation": "Start conversation"
+  "startConversation": "Start conversation",
+  "commandHint_sendraw": "Send raw json"
 }
