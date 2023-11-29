@@ -1,4 +1,4 @@
-package fr.tawkie.app
+/*package fr.tawkie.app
 
 import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
 
@@ -32,4 +32,4 @@ class FcmPushService : FcmSharedIsolateService() {
             return engine
         }
     }
-}
+}*/
