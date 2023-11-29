@@ -636,10 +636,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_olm
-      sha256: "69aaac45d854e74d17d04dac8a0ca3f548266d271a0f0fa7600e006e81432417"
+      sha256: ea8da4b76b5005b1df80ff5afd705ba17a9e2db5ac8848512d3455a88b56fb67
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.2"
+    version: "1.4.0"
   flutter_openssl_crypto:
     dependency: "direct main"
     description:
