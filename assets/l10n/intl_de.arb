@@ -356,7 +356,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "Verbanne den übergebenen Benutzer aus diesen Raum",
+  "commandHint_ban": "Banne ausgewählten Benutzer aus diesen Raum",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -371,7 +371,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Betrete den übergebenen Raum",
+  "commandHint_join": "Betrete den ausgewählten Raum",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"

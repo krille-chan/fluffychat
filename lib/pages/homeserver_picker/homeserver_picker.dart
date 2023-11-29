@@ -51,7 +51,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           context: context,
           title: L10n.of(context)!.indexedDbErrorTitle,
           message: L10n.of(context)!.indexedDbErrorLong,
-          onWillPop: () async => false,
         );
         _checkTorBrowser();
       },

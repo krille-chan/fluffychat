@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -17,10 +18,18 @@ class PinnedEvents extends StatelessWidget {
 
   const PinnedEvents(this.controller, {super.key});
 
-  Future<void> _displayPinnedEventsDialog(
-    BuildContext context,
-    List<Event?> events,
-  ) async {
+  Future<void> _displayPinnedEventsDialog(BuildContext context) async {
+    final eventsResult = await showFutureLoadingDialog(
+      context: context,
+      future: () => Future.wait(
+        controller.room.pinnedEventIds.map(
+          (eventId) => controller.room.getEventById(eventId),
+        ),
+      ),
+    );
+    final events = eventsResult.result;
+    if (events == null) return;
+
     final eventId = events.length == 1
         ? events.single?.eventId
         : await showConfirmationDialog<String>(
@@ -51,23 +60,14 @@ class PinnedEvents extends StatelessWidget {
     if (pinnedEventIds.isEmpty) {
       return const SizedBox.shrink();
     }
-    final completers = pinnedEventIds.map<Completer<Event?>>((e) {
-      final completer = Completer<Event?>();
-      controller.room
-          .getEventById(e)
-          .then((value) => completer.complete(value));
-      return completer;
-    });
-    return FutureBuilder<List<Event?>>(
-      future: Future.wait(completers.map((e) => e.future).toList()),
-      builder: (context, snapshot) {
-        final pinnedEvents = snapshot.data;
-        final event = (pinnedEvents != null && pinnedEvents.isNotEmpty)
-            ? snapshot.data?.last
-            : null;
 
-        if (event == null || pinnedEvents == null) {
-          return Container();
+    return FutureBuilder<Event?>(
+      future: controller.room.getEventById(pinnedEventIds.last),
+      builder: (context, snapshot) {
+        final event = snapshot.data;
+
+        if (event == null) {
+          return const SizedBox.shrink();
         }
 
         final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
@@ -80,10 +80,7 @@ class PinnedEvents extends StatelessWidget {
             ),
           ),
           child: InkWell(
-            onTap: () => _displayPinnedEventsDialog(
-              context,
-              pinnedEvents,
-            ),
+            onTap: () => _displayPinnedEventsDialog(context),
             child: Row(
               children: [
                 IconButton(

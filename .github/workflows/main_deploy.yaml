@@ -60,6 +60,10 @@ jobs:
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:

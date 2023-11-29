@@ -26,12 +26,14 @@ class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
   final void Function(Event)? onInfoTab;
+  final BorderRadius borderRadius;
 
   const MessageContent(
     this.event, {
     this.onInfoTab,
     super.key,
     required this.textColor,
+    required this.borderRadius,
   });
 
   void _verifyOrRequestKey(BuildContext context) async {
@@ -78,6 +80,8 @@ class MessageContent extends StatelessWidget {
                 leading: Avatar(
                   mxContent: sender.avatarUrl,
                   name: sender.calcDisplayname(),
+                  presenceUserId: sender.stateKey,
+                  client: Matrix.of(context).client,
                 ),
                 title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),
@@ -111,6 +115,7 @@ class MessageContent extends StatelessWidget {
               width: 400,
               height: 300,
               fit: BoxFit.cover,
+              borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;

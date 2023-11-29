@@ -2093,9 +2093,9 @@
   },
   "passwordsDoNotMatch": "¡Las contraseñas no coinciden!",
   "@passwordsDoNotMatch": {},
-  "pleaseEnterValidEmail": "Por favor ingrese un correo electrónico válido.",
+  "pleaseEnterValidEmail": "Por favor, ingrese un correo electrónico válido.",
   "@pleaseEnterValidEmail": {},
-  "repeatPassword": "Repetir la contraseña",
+  "repeatPassword": "Repita la contraseña",
   "@repeatPassword": {},
   "pleaseChooseAtLeastChars": "Por favor elige al menos {min} carácteres.",
   "@pleaseChooseAtLeastChars": {
@@ -2181,7 +2181,7 @@
   },
   "importFromZipFile": "Importar de un archivo .zip",
   "@importFromZipFile": {},
-  "updateAvailable": "Actualización para FluffyChat disponible!",
+  "updateAvailable": "¡Actualización de FluffyChat disponible!",
   "@updateAvailable": {},
   "exportEmotePack": "Exportar paquete de emotes como .zip",
   "@exportEmotePack": {},
@@ -2254,5 +2254,408 @@
     "placeholders": {}
   },
   "replace": "Reemplazar",
-  "@replace": {}
+  "@replace": {},
+  "unsupportedAndroidVersionLong": "Esta característica requiere una versión más reciente de Android. Por favor, compruebe las actualizaciones o la compatibilidad de LineageOS.",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "Almacenar de forma segura en este dispositivo",
+  "@storeSecurlyOnThisDevice": {},
+  "iUnderstand": "Lo entiendo",
+  "@iUnderstand": {},
+  "encryptThisChat": "",
+  "@encryptThisChat": {},
+  "letsStart": "",
+  "@letsStart": {},
+  "endToEndEncryption": "",
+  "@endToEndEncryption": {},
+  "openChat": "Abrir chat",
+  "@openChat": {},
+  "screenSharingDetail": "Usted está compartiendo su pantalla en FluffyChat",
+  "@screenSharingDetail": {},
+  "jumpToLastReadMessage": "",
+  "@jumpToLastReadMessage": {},
+  "allRooms": "Todos los chats grupales",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetVideo": "Vídeo",
+  "@widgetVideo": {},
+  "dismiss": "Descartar",
+  "@dismiss": {},
+  "reportErrorDescription": "",
+  "@reportErrorDescription": {},
+  "unsupportedAndroidVersion": "Versión de Android no compatible",
+  "@unsupportedAndroidVersion": {},
+  "noEmailWarning": "Por favor, introduzca una dirección de correo electrónico válida. De otra forma, no podrá restablecer su contraseña. Si no desea hacerlo, pulse de nuevo el botón para continuar.",
+  "@noEmailWarning": {},
+  "indexedDbErrorLong": "El almacenamiento de mensajes, por desgracia, no está habilitado en el modo privado por defecto.\nPor favor, visite\n - about:config\n - Establezca dom.indexedDB.privateBrowsing.enabled a true\nDe otra forma, no es posible usar FluffyChat.",
+  "@indexedDbErrorLong": {},
+  "startFirstChat": "Comience su primer chat",
+  "@startFirstChat": {},
+  "callingAccount": "",
+  "@callingAccount": {},
+  "setColorTheme": "",
+  "@setColorTheme": {},
+  "commandHint_create": "Crear un chat grupal vacío\nUse --no-encryption para deshabilitar el cifrado",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "user": "Usuario",
+  "@user": {},
+  "banUserDescription": "",
+  "@banUserDescription": {},
+  "requests": "",
+  "@requests": {},
+  "addToStory": "Añadir a la historia",
+  "@addToStory": {},
+  "removeDevicesDescription": "",
+  "@removeDevicesDescription": {},
+  "separateChatTypes": "Separar chats directos de grupos",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryAgain": "Inténtelo de nuevo",
+  "@tryAgain": {},
+  "youKickedAndBanned": "🙅 Usted expulsó y prohibió el acceso a {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "showDirectChatsInSpaces": "Mostrar chats directos relacionados en los espacios",
+  "@showDirectChatsInSpaces": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbanUserDescription": "",
+  "@unbanUserDescription": {},
+  "todoLists": "",
+  "@todoLists": {},
+  "messagesStyle": "Mensajes:",
+  "@messagesStyle": {},
+  "newSpaceDescription": "",
+  "@newSpaceDescription": {},
+  "chatDescription": "Descripción del chat",
+  "@chatDescription": {},
+  "callingAccountDetails": "Permite a FluffyChat utilizar la aplicación de llamadas nativa de Android.",
+  "@callingAccountDetails": {},
+  "enterSpace": "Unirse al espacio",
+  "@enterSpace": {},
+  "reopenChat": "",
+  "@reopenChat": {},
+  "pleaseEnterRecoveryKey": "Por favor, introduzca su clave de recuperación:",
+  "@pleaseEnterRecoveryKey": {},
+  "widgetNameError": "Por favor, introduzca un nombre a mostrar.",
+  "@widgetNameError": {},
+  "addWidget": "Añadir widget",
+  "@addWidget": {},
+  "noKeyForThisMessage": "",
+  "@noKeyForThisMessage": {},
+  "editTodo": "",
+  "@editTodo": {},
+  "hydrateTor": "TOR: Importar sesión exportada",
+  "@hydrateTor": {},
+  "pushNotificationsNotAvailable": "",
+  "@pushNotificationsNotAvailable": {},
+  "storeInAppleKeyChain": "Almacenar en la KeyChain de Apple",
+  "@storeInAppleKeyChain": {},
+  "hydrate": "Restaurar desde fichero de copia de seguridad",
+  "@hydrate": {},
+  "invalidServerName": "Nombre del servidor no válido",
+  "@invalidServerName": {},
+  "chatPermissions": "Permisos del chat",
+  "@chatPermissions": {},
+  "sender": "Remitente",
+  "@sender": {},
+  "storeInAndroidKeystore": "Almacenar en la KeyStore de Android",
+  "@storeInAndroidKeystore": {},
+  "signInWithPassword": "",
+  "@signInWithPassword": {},
+  "pleaseAddATitle": "",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "",
+  "@makeAdminDescription": {},
+  "saveKeyManuallyDescription": "Compartir esta clave manualmente usando el diálogo de compartir del sistema o el portapapeles.",
+  "@saveKeyManuallyDescription": {},
+  "whyIsThisMessageEncrypted": "¿Por qué no se puede leer este mensaje?",
+  "@whyIsThisMessageEncrypted": {},
+  "setChatDescription": "Establecer descripción del chat",
+  "@setChatDescription": {},
+  "dehydrateWarning": "Esta acción no se puede deshacer. Asegúrese de que ha almacenado de forma segura el fichero de copia de seguridad.",
+  "@dehydrateWarning": {},
+  "noOtherDevicesFound": "",
+  "@noOtherDevicesFound": {},
+  "redactedBy": "Censurado por {username}",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "videoCallsBetaWarning": "Tenga en cuenta que las videollamadas están actualmente en fase beta. Es posible que no funcionen como se espera o que no funcionen de ninguna manera en algunas plataformas.",
+  "@videoCallsBetaWarning": {},
+  "storyPrivacyWarning": "Tenga en cuenta que la gente puede verse y contactarse en su historia. Sus historias serán visibles durante 24 horas, pero eso no garantiza que se habrán eliminado de todos los dispositivos y servidores.",
+  "@storyPrivacyWarning": {},
+  "matrixWidgets": "Widgets de Matrix",
+  "@matrixWidgets": {},
+  "signInWith": "",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "fileIsTooBigForServer": "",
+  "@fileIsTooBigForServer": {},
+  "noTodosYet": "",
+  "@noTodosYet": {},
+  "callingPermissions": "Permisos de llamadas",
+  "@callingPermissions": {},
+  "readUpToHere": "",
+  "@readUpToHere": {},
+  "unlockOldMessages": "Desbloquear mensajes viejos",
+  "@unlockOldMessages": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "optionalRedactReason": "(Opcional) Motivo para censurar este mensaje...",
+  "@optionalRedactReason": {},
+  "dehydrate": "Exportar sesión y limpiar dispositivo",
+  "@dehydrate": {},
+  "archiveRoomDescription": "",
+  "@archiveRoomDescription": {},
+  "switchToAccount": "Cambiar a la cuenta {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "experimentalVideoCalls": "Videollamadas experimentales",
+  "@experimentalVideoCalls": {},
+  "pleaseEnterRecoveryKeyDescription": "Para desbloquear sus viejos mensajes, introduzca su clave de recuperación que se generó en una sesión anterior. Su clave de recuperación NO es su contraseña.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "inviteContactToGroupQuestion": "¿Quieres invitar a {contact} al chat {groupName}?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "Censurado por {username} porque: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Usted retiró la invitación a {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "appearOnTopDetails": "",
+  "@appearOnTopDetails": {},
+  "enterRoom": "Unirse a la sala",
+  "@enterRoom": {},
+  "confirmEventUnpin": "¿Seguro que quiere desfijar permanentemente el evento?",
+  "@confirmEventUnpin": {},
+  "youInvitedUser": "📩 Usted invitó a {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "fileHasBeenSavedAt": "",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "anyoneCanKnock": "",
+  "@anyoneCanKnock": {},
+  "redactMessageDescription": "El mensaje será censurado para todas las personas participantes en la conversación. Esto no se puede deshacer.",
+  "@redactMessageDescription": {},
+  "recoveryKey": "Clave de recuperación",
+  "@recoveryKey": {},
+  "invalidInput": "",
+  "@invalidInput": {},
+  "todosUnencrypted": "",
+  "@todosUnencrypted": {},
+  "dehydrateTorLong": "Si está usando TOR, es recomendable exportar la sesión antes de cerrar la ventana.",
+  "@dehydrateTorLong": {},
+  "doNotShowAgain": "No mostrar de nuevo",
+  "@doNotShowAgain": {},
+  "report": "",
+  "@report": {},
+  "hideUnimportantStateEvents": "Ocultar eventos de estado no importantes",
+  "@hideUnimportantStateEvents": {},
+  "screenSharingTitle": "Compartir la pantalla",
+  "@screenSharingTitle": {},
+  "widgetCustom": "Personalizado",
+  "@widgetCustom": {},
+  "whoCanSeeMyStoriesDesc": "Tenga en cuenta que la gente puede verse y contactarse entre sí en su historia.",
+  "@whoCanSeeMyStoriesDesc": {},
+  "youBannedUser": "Usted prohibió el acceso a {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "unsubscribeStories": "Dar de baja historias",
+  "@unsubscribeStories": {},
+  "hasKnocked": "",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "openLinkInBrowser": "",
+  "@openLinkInBrowser": {},
+  "disableEncryptionWarning": "",
+  "@disableEncryptionWarning": {},
+  "directChat": "Chat directo",
+  "@directChat": {},
+  "noOneCanJoin": "Nadie puede unirse",
+  "@noOneCanJoin": {},
+  "wrongPinEntered": "",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "inviteGroupChat": "",
+  "@inviteGroupChat": {},
+  "appearOnTop": "Aparecer en la cima",
+  "@appearOnTop": {},
+  "invitePrivateChat": "",
+  "@invitePrivateChat": {},
+  "foregroundServiceRunning": "Esta notificación aparece cuando el servicio en segundo plano se está ejecutando.",
+  "@foregroundServiceRunning": {},
+  "wasDirectChatDisplayName": "Chat vacío (era {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "noChatDescriptionYet": "No se ha creado una descripción del chat aún.",
+  "@noChatDescriptionYet": {},
+  "newTodo": "",
+  "@newTodo": {},
+  "learnMore": "",
+  "@learnMore": {},
+  "chatDescriptionHasBeenChanged": "Se ha cambiado la descripción del chat",
+  "@chatDescriptionHasBeenChanged": {},
+  "dehydrateTor": "TOR: Exportar sesión",
+  "@dehydrateTor": {},
+  "todoListChangedError": "",
+  "@todoListChangedError": {},
+  "enterInviteLinkOrMatrixId": "",
+  "@enterInviteLinkOrMatrixId": {},
+  "roomUpgradeDescription": "",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "",
+  "@pleaseEnterANumber": {},
+  "youKicked": "👞 Usted expulsó a {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "profileNotFound": "",
+  "@profileNotFound": {},
+  "jump": "",
+  "@jump": {},
+  "sorryThatsNotPossible": "",
+  "@sorryThatsNotPossible": {},
+  "storyFrom": "Historia del {date}: \n{body}",
+  "@storyFrom": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "body": {}
+    }
+  },
+  "shareInviteLink": "Compartir enlace de invitación",
+  "@shareInviteLink": {},
+  "commandHint_markasdm": "Marcar como sala de mensajes directos para el ID de Matrix",
+  "@commandHint_markasdm": {},
+  "recoveryKeyLost": "¿Perdió su clave de recuperación?",
+  "@recoveryKeyLost": {},
+  "deviceKeys": "",
+  "@deviceKeys": {},
+  "emoteKeyboardNoRecents": "Los emotes usados recientemente aparecerán aquí...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "",
+  "@setTheme": {},
+  "youJoinedTheChat": "Usted se ha unido al chat",
+  "@youJoinedTheChat": {},
+  "thisUserHasNotPostedAnythingYet": "Esta persona no ha subido nada a su historia todavía",
+  "@thisUserHasNotPostedAnythingYet": {},
+  "errorAddingWidget": "Fallo al añadir el widget.",
+  "@errorAddingWidget": {},
+  "commandHint_dm": "Iniciar un chat directo\nUse --no-encryption para deshabilitar el cifrado",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "youUnbannedUser": "Usted volvió a permitir el acceso a {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "emojis": "Emojis",
+  "@emojis": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "createGroup": "Crear grupo",
+  "@createGroup": {},
+  "hydrateTorLong": "¿Exportó su sesión la última vez que estuvo en TOR? Impórtela rápidamente y continúe chateando.",
+  "@hydrateTorLong": {},
+  "custom": "Personalizado",
+  "@custom": {},
+  "noBackupWarning": "",
+  "@noBackupWarning": {},
+  "editWidgets": "Editar widgets",
+  "@editWidgets": {},
+  "storeInSecureStorageDescription": "Almacenar la clave de recuperación en el almacenamiento seguro de este dispositivo.",
+  "@storeInSecureStorageDescription": {},
+  "kickUserDescription": "",
+  "@kickUserDescription": {},
+  "pinMessage": "Anclar a la sala",
+  "@pinMessage": {},
+  "invite": "",
+  "@invite": {},
+  "continueWith": "",
+  "@continueWith": {},
+  "indexedDbErrorTitle": "Problemas con el modo privado",
+  "@indexedDbErrorTitle": {},
+  "googlyEyesContent": "{senderName} te manda ojos saltones",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "cuddleContent": "{senderName} se acurruca contigo",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_googly": "Enviar unos ojos saltones",
+  "@commandHint_googly": {},
+  "placeCall": "",
+  "@placeCall": {}
 }
