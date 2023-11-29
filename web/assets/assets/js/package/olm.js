@@ -98,9 +98,9 @@ olm_exports.Account=V;olm_exports.Session=X;olm_exports.Utility=Z;olm_exports.Pk
 
   return moduleArg.ready
 }
-
 );
 })();
+;
 if (typeof exports === 'object' && typeof module === 'object')
   module.exports = Module;
 else if (typeof define === 'function' && define['amd'])
