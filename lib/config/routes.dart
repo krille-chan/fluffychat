@@ -37,6 +37,8 @@ import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
+import '../pages/add_bridge/add_bridge_body.dart';
+
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
@@ -262,6 +264,17 @@ abstract class AppRoutes {
                           redirect: loggedOutRedirect,
                         ),
                       ],
+                    ),
+
+                    // Route to social networking page via chat bot
+                    // The entire path is: /rooms/settings/addbridgebot
+                    GoRoute(
+                      path: 'addbridgebot',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const AddBridgeBody(),
+                      ),
+                      redirect: loggedOutRedirect,
                     ),
                     GoRoute(
                       path: 'security',

@@ -162,6 +162,18 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+
+      // PopupMenuItem to redirect to the social network connections page via bot bridge
+      PopupMenuItem(
+        value: SettingsAction.addBridgeBot,
+        child: Row(
+          children: [
+            const Icon(Icons.account_tree_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.bridgeBot_menuItemTitle),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -278,6 +290,10 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.archive:
           context.go('/rooms/archive');
           break;
+        // Redirect to bot social network connection page
+        case SettingsAction.addBridgeBot:
+          context.go('/rooms/settings/addbridgebot');
+          break;
       }
     }
   }
@@ -353,6 +369,7 @@ class ClientChooserButton extends StatelessWidget {
 }
 
 enum SettingsAction {
+  addBridgeBot,
   addAccount,
   newStory,
   newGroup,

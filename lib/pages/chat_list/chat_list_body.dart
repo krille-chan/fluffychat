@@ -1,4 +1,6 @@
+import 'package:fluffychat/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
@@ -18,6 +20,7 @@ import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../config/themes.dart';
+import '../../utils/platform_infos.dart';
 import '../../widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_header.dart';
@@ -294,6 +297,13 @@ class ChatListViewBody extends StatelessWidget {
                       },
                       childCount: rooms.length,
                     ),
+                  ),
+                if (client.prevBatch != null &&
+                    !PlatformInfos.isWeb &&
+                    client.rooms
+                        .isEmpty) //Change to client.rooms.isEmpty for final version
+                  const SliverToBoxAdapter(
+                    child: AddChatNetwork(),
                   ),
               ],
             ),
