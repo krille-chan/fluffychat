@@ -4,14 +4,15 @@ import 'dart:developer';
 
 // Package imports:
 import 'package:collection/collection.dart';
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:matrix/matrix.dart' as matrix;
-
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 // Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:matrix/matrix.dart' as matrix;
+
 import '../constants/local.key.dart';
 import '../models/user_model.dart';
 import '../repo/user_repo.dart';
@@ -106,6 +107,25 @@ class UserController extends BaseController {
     try {
       final PUserModel? toCheck = userModel ?? (await fetchUserModel());
       return toCheck?.profile?.dateOfBirth != null ? true : false;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  Future<bool> get areUserLanguagesSet async {
+    try {
+      final PUserModel? toCheck = userModel ?? (await fetchUserModel());
+      if (toCheck?.profile == null) {
+        return false;
+      }
+      final String? srcLang = toCheck!.profile!.sourceLanguage;
+      final String? tgtLang = toCheck.profile!.targetLanguage;
+      return srcLang != null &&
+          tgtLang != null &&
+          srcLang.isNotEmpty &&
+          tgtLang.isNotEmpty &&
+          srcLang != LanguageKeys.unknownLanguage &&
+          tgtLang != LanguageKeys.unknownLanguage;
     } catch (err) {
       return false;
     }
