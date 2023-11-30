@@ -1,17 +1,16 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 // Project imports:
 import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
   final SignupPageController controller;
-  const SignupPageView(this.controller, {Key? key}) : super(key: key);
+  const SignupPageView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,13 @@ class SignupPageView extends StatelessWidget {
                     ),
                     onPressed: controller.toggleShowPassword,
                   ),
-                  errorStyle: const TextStyle(color: Colors.orange),
+                  // #Pangea
+                  // errorStyle: const TextStyle(color: Colors.orange),
+                  errorStyle: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                    fontSize: 14,
+                  ),
+                  // Pangea#
                   hintText: L10n.of(context)!.chooseAStrongPassword,
                   // #Pangea
                   fillColor: Theme.of(context)
@@ -78,8 +83,12 @@ class SignupPageView extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.repeat_outlined),
                     hintText: L10n.of(context)!.repeatPassword,
-                    errorStyle: const TextStyle(color: Colors.orange),
                     // #Pangea
+                    // errorStyle: const TextStyle(color: Colors.orange),
+                    errorStyle: TextStyle(
+                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                      fontSize: 14,
+                    ),
                     fillColor: Theme.of(context)
                         .colorScheme
                         .background
@@ -108,12 +117,16 @@ class SignupPageView extends StatelessWidget {
                       .colorScheme
                       .background
                       .withOpacity(0.75),
-                  // #Pangea
+                  // errorStyle: TextStyle(
+                  //   color: controller.emailController.text.isEmpty
+                  //       ? Colors.orangeAccent
+                  //       : Colors.orange,
+                  // ),
                   errorStyle: TextStyle(
-                    color: controller.emailController.text.isEmpty
-                        ? Colors.orangeAccent
-                        : Colors.orange,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
+                    fontSize: 14,
                   ),
+                  // Pangea#
                 ),
               ),
             ),
