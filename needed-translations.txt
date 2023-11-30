@@ -756,7 +756,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "bn": [
@@ -1521,7 +1524,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "bo": [
@@ -2286,7 +2292,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ca": [
@@ -3046,7 +3055,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "cs": [
@@ -3806,7 +3818,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "de": [
@@ -4566,7 +4581,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "el": [
@@ -5331,7 +5349,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "eo": [
@@ -6091,7 +6112,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "es": [
@@ -6115,7 +6139,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "et": [
@@ -6875,7 +6902,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "eu": [
@@ -7635,7 +7665,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "fa": [
@@ -8395,7 +8428,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "fi": [
@@ -9155,7 +9191,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "fr": [
@@ -9915,7 +9954,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ga": [
@@ -10675,7 +10717,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "gl": [
@@ -11435,7 +11480,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "he": [
@@ -12195,7 +12243,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "hi": [
@@ -12960,7 +13011,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "hr": [
@@ -13720,7 +13774,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "hu": [
@@ -14480,7 +14537,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "id": [
@@ -15240,7 +15300,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ie": [
@@ -16002,7 +16065,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "it": [
@@ -16762,7 +16828,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ja": [
@@ -17522,7 +17591,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ko": [
@@ -18282,7 +18354,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "lt": [
@@ -19042,7 +19117,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "lv": [
@@ -19807,7 +19885,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "nb": [
@@ -20567,7 +20648,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "nl": [
@@ -21327,7 +21411,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "pl": [
@@ -22087,7 +22174,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "pt": [
@@ -22852,7 +22942,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "pt_BR": [
@@ -23612,7 +23705,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "pt_PT": [
@@ -24372,7 +24468,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ro": [
@@ -25132,7 +25231,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ru": [
@@ -25892,7 +25994,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "sk": [
@@ -26653,7 +26758,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "sl": [
@@ -27416,7 +27524,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "sr": [
@@ -28176,7 +28287,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "sv": [
@@ -28936,7 +29050,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "ta": [
@@ -29701,7 +29818,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "th": [
@@ -30466,7 +30586,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "tr": [
@@ -31226,7 +31349,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "uk": [
@@ -31986,7 +32112,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "vi": [
@@ -32749,7 +32878,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "zh": [
@@ -33509,7 +33641,10 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ],
 
   "zh_Hant": [
@@ -34269,6 +34404,9 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "inNoSpaces",
+    "createClass",
+    "createExchange",
+    "viewArchive"
   ]
 }
