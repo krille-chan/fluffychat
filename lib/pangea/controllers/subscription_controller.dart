@@ -2,17 +2,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
@@ -26,6 +17,13 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
@@ -33,6 +31,7 @@ class SubscriptionController extends BaseController {
 
   //convert this logic to use completer
   bool initialized = false;
+  final StreamController subscriptionStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -68,7 +67,13 @@ class SubscriptionController extends BaseController {
 
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
-          (CustomerInfo info) => updateCustomerInfo(),
+          (CustomerInfo info) async {
+            final bool wasSubscribed = isSubscribed;
+            await updateCustomerInfo();
+            if (!wasSubscribed && isSubscribed) {
+              subscriptionStream.add(true);
+            }
+          },
         );
       }
       setState();
@@ -91,8 +96,10 @@ class SubscriptionController extends BaseController {
     setState();
   }
 
-  Future<void> showPaywall(BuildContext context,
-      [bool forceShow = false]) async {
+  Future<void> showPaywall(
+    BuildContext context, [
+    bool forceShow = false,
+  ]) async {
     try {
       if (!initialized) {
         await initialize();
@@ -160,8 +167,10 @@ class SubscriptionController extends BaseController {
   }
 
   void submitSubscriptionChange(
-      SubscriptionDetails? selectedSubscription, BuildContext context,
-      {bool isPromo = false}) async {
+    SubscriptionDetails? selectedSubscription,
+    BuildContext context, {
+    bool isPromo = false,
+  }) async {
     if (selectedSubscription != null) {
       if (kIsWeb) {
         if (selectedSubscription.duration == null) {
@@ -191,7 +200,9 @@ class SubscriptionController extends BaseController {
       }
       try {
         GoogleAnalytics.beginPurchaseSubscription(
-            selectedSubscription, context);
+          selectedSubscription,
+          context,
+        );
         await Purchases.purchasePackage(selectedSubscription.package!);
         GoogleAnalytics.updateUserSubscriptionStatus(true);
       } catch (err) {

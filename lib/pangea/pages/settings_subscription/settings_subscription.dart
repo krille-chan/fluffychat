@@ -1,12 +1,6 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:url_launcher/url_launcher_string.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
@@ -14,10 +8,16 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription_view.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
+import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+// Package imports:
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionManagement extends StatefulWidget {
-  const SubscriptionManagement({Key? key}) : super(key: key);
+  const SubscriptionManagement({super.key});
 
   @override
   SubscriptionManagementController createState() =>
@@ -28,6 +28,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   final PangeaController pangeaController = MatrixState.pangeaController;
   SubscriptionDetails? selectedSubscription;
   late StreamSubscription _settingsSubscription;
+  StreamSubscription? _subscriptionStatusStream;
 
   @override
   void initState() {
@@ -44,6 +45,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   void dispose() {
     super.dispose();
     _settingsSubscription.cancel();
+    _subscriptionStatusStream?.cancel();
   }
 
   bool get currentSubscriptionAvailable =>
@@ -120,6 +122,12 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
 
   @override
   Widget build(BuildContext context) {
+    _subscriptionStatusStream ??= pangeaController
+        .subscriptionController.subscriptionStream.stream
+        .listen((_) {
+      showSubscribedSnackbar(context);
+      context.go('/rooms');
+    });
     return SettingsSubscriptionView(this);
   }
 }

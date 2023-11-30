@@ -755,7 +755,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bn": [
@@ -1519,7 +1521,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bo": [
@@ -2283,7 +2287,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ca": [
@@ -3042,7 +3048,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "cs": [
@@ -3801,7 +3809,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "de": [
@@ -4560,7 +4570,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "el": [
@@ -5324,7 +5336,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eo": [
@@ -6083,7 +6097,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "es": [
@@ -6106,7 +6122,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "et": [
@@ -6865,7 +6883,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eu": [
@@ -7624,7 +7644,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fa": [
@@ -8383,7 +8405,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fi": [
@@ -9142,7 +9166,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fr": [
@@ -9901,7 +9927,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ga": [
@@ -10660,7 +10688,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "gl": [
@@ -11419,7 +11449,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "he": [
@@ -12178,7 +12210,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hi": [
@@ -12942,7 +12976,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hr": [
@@ -13701,7 +13737,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hu": [
@@ -14460,7 +14498,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "id": [
@@ -15219,7 +15259,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ie": [
@@ -15980,7 +16022,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "it": [
@@ -16739,7 +16783,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ja": [
@@ -17498,7 +17544,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ko": [
@@ -18257,7 +18305,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lt": [
@@ -19016,7 +19066,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lv": [
@@ -19780,7 +19832,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nb": [
@@ -20539,7 +20593,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nl": [
@@ -21298,7 +21354,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pl": [
@@ -22057,7 +22115,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt": [
@@ -22821,7 +22881,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_BR": [
@@ -23580,7 +23642,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_PT": [
@@ -24339,7 +24403,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ro": [
@@ -25098,7 +25164,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ru": [
@@ -25857,7 +25925,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sk": [
@@ -26617,7 +26687,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sl": [
@@ -27379,7 +27451,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sr": [
@@ -28138,7 +28212,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sv": [
@@ -28897,7 +28973,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ta": [
@@ -29661,7 +29739,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "th": [
@@ -30425,7 +30505,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "tr": [
@@ -31184,7 +31266,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "uk": [
@@ -31943,7 +32027,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "vi": [
@@ -32705,7 +32791,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh": [
@@ -33464,7 +33552,9 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh_Hant": [
@@ -34223,6 +34313,8 @@
     "searchChatsRooms",
     "groupName",
     "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch"
+    "groupCanBeFoundViaSearch",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ]
 }
