@@ -8,9 +8,9 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class ErrorReporter {
   final BuildContext context;

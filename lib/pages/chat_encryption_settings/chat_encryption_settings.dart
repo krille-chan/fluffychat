@@ -7,8 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/chat_encryption_settings/chat_encryption_settings_view.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../key_verification/key_verification_dialog.dart';
 
 class ChatEncryptionSettings extends StatefulWidget {

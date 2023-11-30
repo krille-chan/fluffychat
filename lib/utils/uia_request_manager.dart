@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 extension UiaRequestManager on MatrixState {
   Future uiaRequestHandler(UiaRequest uiaRequest) async {

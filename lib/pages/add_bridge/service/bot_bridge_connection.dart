@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
+import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:matrix/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

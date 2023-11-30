@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fluffychat/pages/chat_list/add_chat_network.dart';
+import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/platform_infos.dart';

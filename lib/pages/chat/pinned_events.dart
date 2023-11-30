@@ -8,10 +8,10 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/pages/chat/chat.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/url_launcher.dart';
 
 class PinnedEvents extends StatelessWidget {
   final ChatController controller;

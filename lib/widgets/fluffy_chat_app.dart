@@ -5,10 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:fluffychat/config/routes.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/theme_builder.dart';
+import 'package:tawkie/config/routes.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/theme_builder.dart';
 import '../config/app_config.dart';
 import '../utils/custom_scroll_behaviour.dart';
 import '../utils/platform_size.dart';

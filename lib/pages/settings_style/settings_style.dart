@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/theme_builder.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/theme_builder.dart';
 import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
 

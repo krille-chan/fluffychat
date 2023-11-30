@@ -1,5 +1,5 @@
-import 'package:fluffychat/pages/add_bridge/model/social_network.dart';
-import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
+import 'package:tawkie/pages/add_bridge/model/social_network.dart';
+import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';

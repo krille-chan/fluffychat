@@ -11,9 +11,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
-import 'package:fluffychat/pages/chat/events/image_bubble.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:tawkie/pages/chat/events/image_bubble.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/event_extension.dart';
 import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {

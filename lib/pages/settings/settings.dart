@@ -10,8 +10,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_view.dart';

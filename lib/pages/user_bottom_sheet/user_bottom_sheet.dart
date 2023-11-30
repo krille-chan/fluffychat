@@ -6,7 +6,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/widgets/permission_slider_dialog.dart';
+import 'package:tawkie/widgets/permission_slider_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet_view.dart';
 

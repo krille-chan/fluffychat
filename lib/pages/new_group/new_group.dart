@@ -6,8 +6,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 
-import 'package:fluffychat/pages/new_group/new_group_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/new_group/new_group_view.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
   const NewGroup({super.key});

@@ -7,11 +7,11 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../../config/themes.dart';
 
 enum ContextualRoomAction {

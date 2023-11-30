@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:tawkie/utils/voip_plugin.dart';
 
 class CallKeeper {
   CallKeeper(this.callKeepManager, this.call) {

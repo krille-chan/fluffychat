@@ -31,9 +31,9 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
-import 'package:fluffychat/utils/push_helper.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
+import 'package:tawkie/utils/push_helper.dart';
+import 'package:tawkie/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';

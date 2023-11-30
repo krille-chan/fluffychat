@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/image_viewer/image_viewer_view.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/image_viewer/image_viewer_view.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class ImageViewer extends StatefulWidget {

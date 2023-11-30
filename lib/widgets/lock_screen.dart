@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/theme_builder.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/theme_builder.dart';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});

@@ -4,12 +4,12 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/chat/events/video_player.dart';
+import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
+import 'package:tawkie/utils/date_time_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
