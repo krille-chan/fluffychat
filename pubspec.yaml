@@ -133,7 +133,6 @@ flutter:
   uses-material-design: true
   assets:
     - .env
-    - .env.prod
     - assets/
     - assets/pangea/
     - assets/pangea/bot_faces/
