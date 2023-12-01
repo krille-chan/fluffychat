@@ -1,17 +1,16 @@
 // Dart imports:
 import 'dart:developer';
 
+// Project imports:
+import 'package:fluffychat/pangea/models/class_model.dart';
 // Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
-import 'package:fluffychat/pangea/models/class_model.dart';
 import '../../../widgets/matrix.dart';
 import '../../constants/language_keys.dart';
 import '../../constants/language_level_type.dart';
@@ -28,9 +27,14 @@ import '../user_settings/p_question_container.dart';
 class ClassSettings extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
+  final ClassSettingsModel? initialSettings;
 
-  const ClassSettings({Key? key, this.roomId, this.startOpen = false})
-      : super(key: key);
+  const ClassSettings({
+    super.key,
+    this.roomId,
+    this.startOpen = false,
+    this.initialSettings,
+  });
 
   @override
   ClassSettingsState createState() => ClassSettingsState();
@@ -54,7 +58,8 @@ class ClassSettingsState extends State<ClassSettings> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
 
-    classSettings = room?.classSettings ?? ClassSettingsModel();
+    classSettings =
+        room?.classSettings ?? widget.initialSettings ?? ClassSettingsModel();
 
     isOpen = widget.startOpen;
 
@@ -139,8 +144,8 @@ class ClassSettingsState extends State<ClassSettings> {
                 child: Column(
                   children: [
                     PQuestionContainer(
-                        title:
-                            L10n.of(context)!.selectClassRoomDominantLanguage),
+                      title: L10n.of(context)!.selectClassRoomDominantLanguage,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) => updatePermission(() {
                         classSettings.dominantLanguage = p0.langCode;
@@ -153,7 +158,8 @@ class ClassSettingsState extends State<ClassSettings> {
                       showMultilingual: true,
                     ),
                     PQuestionContainer(
-                        title: L10n.of(context)!.selectTargetLanguage),
+                      title: L10n.of(context)!.selectTargetLanguage,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) => updatePermission(() {
                         classSettings.targetLanguage = p0.langCode;
@@ -165,7 +171,8 @@ class ClassSettingsState extends State<ClassSettings> {
                       languages: pangeaController.pLanguageStore.targetOptions,
                     ),
                     PQuestionContainer(
-                        title: L10n.of(context)!.whatIsYourClassLanguageLevel),
+                      title: L10n.of(context)!.whatIsYourClassLanguageLevel,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Container(
@@ -210,7 +217,9 @@ class ClassSettingsState extends State<ClassSettings> {
                               value: levelOption,
                               child: Text(
                                 LanguageLevelTextPicker.languageLevelText(
-                                    context, levelOption),
+                                  context,
+                                  levelOption,
+                                ),
                                 style: const TextStyle().copyWith(
                                   color: Theme.of(context)
                                       .textTheme

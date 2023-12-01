@@ -1,13 +1,12 @@
 // Flutter imports:
+// Project imports:
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
-import 'package:fluffychat/pangea/models/class_model.dart';
 import '../../../../config/app_config.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../constants/pangea_event_types.dart';
@@ -17,10 +16,15 @@ class RoomRulesEditor extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
   final bool showAdd;
+  final PangeaRoomRules? initialRules;
 
-  const RoomRulesEditor(
-      {Key? key, this.roomId, this.startOpen = true, this.showAdd = false})
-      : super(key: key);
+  const RoomRulesEditor({
+    super.key,
+    this.roomId,
+    this.startOpen = true,
+    this.showAdd = false,
+    this.initialRules,
+  });
 
   @override
   RoomRulesState createState() => RoomRulesState();
@@ -43,7 +47,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
 
-    rules = room?.pangeaRoomRules ?? PangeaRoomRules();
+    rules = room?.pangeaRoomRules ?? widget.initialRules ?? PangeaRoomRules();
 
     super.initState();
   }
@@ -161,14 +165,18 @@ class RoomRulesState extends State<RoomRulesEditor> {
                             onChanged: (value) {
                               updatePermission(() {
                                 rules.setLanguageToolSetting(
-                                    setting, value.toInt());
+                                  setting,
+                                  value.toInt(),
+                                );
                               });
                             },
                             divisions: 2,
                             max: 2,
                             min: 0,
                             label: rules.languageToolPermissionsText(
-                                context, setting),
+                              context,
+                              setting,
+                            ),
                           ),
                         ),
                       ],
