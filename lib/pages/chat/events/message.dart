@@ -368,30 +368,32 @@ class Message extends StatelessWidget {
       container = Opacity(opacity: 0.4, child: container);
     }
 
-    return Swipeable(
-      key: ValueKey(event.eventId),
-      background: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.0),
-        child: Center(
-          child: Icon(Icons.check_outlined),
+    return Center(
+      child: Swipeable(
+        key: ValueKey(event.eventId),
+        background: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          child: Center(
+            child: Icon(Icons.check_outlined),
+          ),
         ),
-      ),
-      direction: SwipeDirection.endToStart,
-      onSwipe: (_) => onSwipe(),
-      child: InkWell(
-        onTap: () => onSelect(event),
-        child: Container(
-          color: selected
-              ? Theme.of(context).primaryColor.withAlpha(100)
-              : Theme.of(context).primaryColor.withAlpha(0),
-          constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.columnWidth * 2.5,
+        direction: SwipeDirection.endToStart,
+        onSwipe: (_) => onSwipe(),
+        child: InkWell(
+          onTap: () => onSelect(event),
+          child: Container(
+            color: selected
+                ? Theme.of(context).primaryColor.withAlpha(100)
+                : Theme.of(context).primaryColor.withAlpha(0),
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.columnWidth * 2.5,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0,
+            ),
+            child: container,
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 4.0,
-          ),
-          child: container,
         ),
       ),
     );
