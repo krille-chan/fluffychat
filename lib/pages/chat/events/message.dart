@@ -66,7 +66,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.onInverseSurface;
+    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -294,9 +294,7 @@ class Message extends StatelessWidget {
           if (displayTime || selected)
             Padding(
               padding: displayTime
-                  ? const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                    )
+                  ? const EdgeInsets.symmetric(vertical: 8.0)
                   : EdgeInsets.zero,
               child: Center(
                 child: Material(
