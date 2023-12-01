@@ -12,16 +12,6 @@ class Environment {
       DateTime.utc(2023, 1, 25).isBefore(DateTime.now());
 
   static String get fileName {
-    // return '.env.prod';
-    if (kIsWeb) {
-      return '.env';
-    }
-    if (PlatformInfos.isMobile) {
-      if (kDebugMode) {
-        return '.env';
-      }
-      return '.env.prod';
-    }
     return ".env";
   }
 
