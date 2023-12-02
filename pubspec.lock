@@ -457,11 +457,12 @@ packages:
   flutter_blurhash:
     dependency: "direct main"
     description:
-      name: flutter_blurhash
-      sha256: "5e67678e479ac639069d7af1e133f4a4702311491188ff3e0227486430db0c06"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.8.2"
+      path: "."
+      ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
+      resolved-ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
+      url: "https://github.com/Craftplacer/flutter_blurhash.git"
+    source: git
+    version: "0.7.0"
   flutter_cache_manager:
     dependency: "direct main"
     description:
@@ -619,11 +620,12 @@ packages:
   flutter_math_fork:
     dependency: "direct main"
     description:
-      name: flutter_math_fork
-      sha256: "94bee4642892a94939af0748c6a7de0ff8318feee588379dcdfea7dc5cba06c8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.2"
+      path: "."
+      ref: "3442b36a436880ce1c023e25c868d6f4004c4c24"
+      resolved-ref: "3442b36a436880ce1c023e25c868d6f4004c4c24"
+      url: "https://github.com/The-Redhat/flutter_math_fork.git"
+    source: git
+    version: "0.7.1"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -1012,6 +1014,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
+  intl_phone_field:
+    dependency: "direct main"
+    description:
+      name: intl_phone_field
+      sha256: "73819d3dfcb68d2c85663606f6842597c3ddf6688ac777f051b17814fe767bbf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   io:
     dependency: transitive
     description:
@@ -1995,7 +2005,7 @@ packages:
     source: hosted
     version: "3.1.0"
   uuid:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: uuid
       sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
