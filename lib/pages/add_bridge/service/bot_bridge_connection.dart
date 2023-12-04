@@ -1,13 +1,14 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:matrix/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../error_message_dialog.dart';
+import '../model/social_network.dart';
 
 // For all bot bridge conversations
-// For the moment, rooms are DirectChat
 class BotBridgeConnection {
   Client client;
   String hostname;
@@ -18,23 +19,28 @@ class BotBridgeConnection {
     required this.hostname,
   });
 
+  final StreamController<Map<String, dynamic>> _pingResultsController =
+      StreamController<Map<String, dynamic>>();
+
+  Stream<Map<String, dynamic>> get pingResults => _pingResultsController.stream;
+
   // To stop loops (when leaving the page)
   void stopProcess() {
     continueProcess = false;
   }
 
-  // Ping to find out if we're connected to Instagram
-  Future<String> instagramPing() async {
-    final String botUserId = '@instagrambot:$hostname';
+  Future<void> checkAllSocialNetworksConnections(
+      List<SocialNetwork> socialNetwork) async {
+    for (final network in socialNetwork) {
+      pingSocialNetwork(network).then((result) {
+        _pingResultsController.add({'name': network.name, 'result': result});
+      });
+    }
+  }
 
-    // Message to spot when we're online
-    final RegExp onlineMatch = RegExp(r"MQTT connection is active");
-    final RegExp successfullyMatch = RegExp(r"Successfully logged in");
-    final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
-
-    // Message to spot when we're not online
-    final RegExp notLoggedMatch = RegExp(r"You're not logged into Instagram");
-    final RegExp disconnectMatch = RegExp(r"Successfully logged out");
+  // Send Message Function
+  Future<String> sendMessageToBot(String bot, String contentMessage) async {
+    final String botUserId = '$bot$hostname';
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -42,9 +48,9 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    // Send the "ping" message to the bot
-    await roomBot?.sendTextEvent("ping");
-    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+    // Send the "contentMessage" message to the bot
+    await roomBot?.sendTextEvent(contentMessage.toString());
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     String result = ''; // Variable to track the result of the connection
 
@@ -52,7 +58,6 @@ class BotBridgeConnection {
     const int maxIterations = 5;
     int currentIteration = 0;
 
-    // Get the latest messages from the room (limited to the specified number)
     while (continueProcess && currentIteration < maxIterations) {
       // To take latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -67,24 +72,15 @@ class BotBridgeConnection {
         final String latestMessage =
             latestMessages.first.content['body'].toString() ?? '';
 
-        // to find out if we're connected
-        if (onlineMatch.hasMatch(latestMessage) ||
-            alreadySuccessMatch.hasMatch(latestMessage) ||
-            successfullyMatch.hasMatch(latestMessage)) {
-          print("You're logged");
-
-          result = 'Connected';
-
-          break; // Exit the loop if bridge is connected
-        } else if (notLoggedMatch.hasMatch(latestMessage) ||
-            disconnectMatch.hasMatch(latestMessage)) {
-          print('Not connected');
-
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is disconnected
-        }
+        result = latestMessage;
       }
-      currentIteration++;
+      await Future.delayed(const Duration(seconds: 5)); // Wait sec
+
+      if (result != '') {
+        break;
+      } else {
+        currentIteration++;
+      }
     }
 
     if (currentIteration == maxIterations) {
@@ -99,7 +95,114 @@ class BotBridgeConnection {
     return result;
   }
 
-  // Function for create and login bridge with bot
+  // Ping function for each bot
+  Future<String> pingSocialNetwork(SocialNetwork socialNetwork) async {
+    final String botUserId = '${socialNetwork.chatBot}$hostname';
+
+    // Messages to spot when we're online
+    RegExp? onlineMatch;
+    RegExp? successfullyMatch;
+    RegExp? alreadySuccessMatch;
+
+    // Messages to spot when we're not online
+    RegExp? notLoggedMatch;
+    RegExp? disconnectMatch;
+    RegExp? connectedButNotLoggedMatch;
+
+    switch (socialNetwork.name) {
+      case "WhatsApp":
+        onlineMatch = RegExpPatterns.pingWhatsAppOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingWhatsAppSuccessfullyMatch;
+        alreadySuccessMatch = RegExpPatterns.pingWhatsAppAlreadySuccessMatch;
+        notLoggedMatch = RegExpPatterns.pingWhatsAppNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingWhatsAppDisconnectMatch;
+        connectedButNotLoggedMatch =
+            RegExpPatterns.pingWhatsAppConnectedButNotLoggedMatch;
+        break;
+      case "Facebook Messenger":
+        onlineMatch = RegExpPatterns.pingFacebookOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingFacebookSuccessfullyMatch;
+        notLoggedMatch = RegExpPatterns.pingFacebookNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingFacebookDisconnectMatch;
+        break;
+      case "Instagram":
+        onlineMatch = RegExpPatterns.pingInstagramOnlineMatch;
+        successfullyMatch = RegExpPatterns.pingInstagramSuccessfullyMatch;
+        alreadySuccessMatch = RegExpPatterns.pingInstagramAlreadySuccessMatch;
+        notLoggedMatch = RegExpPatterns.pingInstagramNotLoggedMatch;
+        disconnectMatch = RegExpPatterns.pingInstagramDisconnectMatch;
+        break;
+      default:
+        throw Exception("Unsupported social network: ${socialNetwork.name}");
+    }
+
+    // Add a direct chat with the bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    String result = ''; // Variable to track the result of the connection
+
+    // Variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (continueProcess && currentIteration < maxIterations) {
+      // Send the "ping" message to the bot
+      await roomBot?.sendTextEvent("ping");
+      await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+      // To take the latest message
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        // To find out if we're connected
+        if (onlineMatch.hasMatch(latestMessage) ||
+            alreadySuccessMatch?.hasMatch(latestMessage) == true ||
+            successfullyMatch.hasMatch(latestMessage) == true) {
+          print("You're logged to ${socialNetwork.name}");
+
+          result = 'Connected';
+
+          break; // Exit the loop if the bridge is connected
+        } else if (notLoggedMatch.hasMatch(latestMessage) == true ||
+            disconnectMatch.hasMatch(latestMessage) == true ||
+            connectedButNotLoggedMatch?.hasMatch(latestMessage) == true) {
+          print('Not connected to ${socialNetwork.name}');
+
+          result = 'Not Connected';
+
+          break; // Exit the loop if the bridge is disconnected
+        }
+      }
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print(
+          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+
+      result = 'error';
+    } else if (!continueProcess) {
+      print(('ping stopping'));
+      result = 'stop';
+    }
+
+    return result;
+  }
+
+  // Instagram
+  // Function for create and login bridge with instagram bot
   Future<String> createBridgeInstagram(String username, String password) async {
     final String botUserId = '@instagrambot:$hostname';
 
@@ -114,6 +217,10 @@ class BotBridgeConnection {
         RegExp(r"Incorrect username or password");
     final RegExp rateLimitErrorMatch = RegExp(r"rate_limit_error");
 
+    // Code request message for two-factor identification
+    final RegExp twoFactorMatch =
+        RegExp(r"Send the code from your authenticator app here.");
+
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
@@ -125,6 +232,10 @@ class BotBridgeConnection {
     await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
     String result = ""; // Variable to track the result of the connection
+
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $username $password");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
     // variable for loop limit
     const int maxIterations = 5;
@@ -150,8 +261,15 @@ class BotBridgeConnection {
           result = "success";
 
           break; // Exit the loop once the "login" message has been sent and is success
+        } else if (twoFactorMatch.hasMatch(latestMessage)) {
+          print("Authenticator two factor demand");
+
+          result = "twoFactorDemand";
+
+          break;
         } else if (!successMatch.hasMatch(latestMessage) &&
-            usernameErrorMatch.hasMatch(latestMessage)) {
+                usernameErrorMatch.hasMatch(latestMessage) ||
+            nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
           print("Login cannot be found");
 
           result = "errorUsername";
@@ -171,6 +289,7 @@ class BotBridgeConnection {
           break;
         }
       }
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
       currentIteration++;
     }
 
@@ -188,7 +307,7 @@ class BotBridgeConnection {
     final String botUserId = '@instagrambot:$hostname';
 
     final RegExp successMatch = RegExp(r"Successfully logged out");
-    final RegExp aldreadyLogoutMatch =
+    final RegExp alreadyLogoutMatch =
         RegExp(r"That command requires you to be logged in.");
 
     // Add a direct chat with the Instagram bot (if you haven't already)
@@ -224,13 +343,13 @@ class BotBridgeConnection {
 
         // to find out if we're connected
         if (!successMatch.hasMatch(latestMessage) &&
-            !aldreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected");
+            !alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected to Instagram");
           result = 'Connected';
           break;
         } else if (successMatch.hasMatch(latestMessage) ||
-            aldreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected");
+            alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're disconnected to Instagram");
 
           result = 'Not Connected';
           break; // Exit the loop if bridge is connected
@@ -248,8 +367,205 @@ class BotBridgeConnection {
     return result;
   }
 
+  // WhatsApp
+  // Function for create and login bridge with bot ti WhatsApp
+  Future<WhatsAppResult> createBridgeWhatsApp(
+    String phoneNumber,
+  ) async {
+    final String botUserId = '@whatsappbot:$hostname';
+
+    // Success phrases to spot
+    final RegExp successMatch = RegExp(r"Successfully logged in");
+    final RegExp alreadySuccessMatch = RegExp(r"You're already logged in");
+
+    // Message of means of connexion
+    final RegExp meansCodeMatch =
+        RegExp(r"Scan the code below or enter the following code");
+
+    // Error phrase to spot
+    final RegExp timeOutMatch =
+        RegExp(r"Login timed out. Please restart the login");
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    WhatsAppResult result; // Variable to track the result of the connection
+
+    // Get the latest messages from the room (limited to the specified number)
+    while (true) {
+      // Send the "login" message to the bot
+      await roomBot?.sendTextEvent("login $phoneNumber");
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 2, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      final String oldestMessage =
+          latestMessages.last.content['body'].toString() ?? '';
+
+      final String latestMessage =
+          latestMessages.first.content['body'].toString() ?? '';
+
+      if (latestMessages.isNotEmpty) {
+        if (successMatch.hasMatch(latestMessage) ||
+            alreadySuccessMatch.hasMatch(latestMessage)) {
+          print("You're logged to WhatsApp");
+
+          result = WhatsAppResult("success", "", "");
+
+          break; // Exit the loop once the "login" message has been sent and is success
+        } else if (!successMatch.hasMatch(latestMessage) &&
+            meansCodeMatch.hasMatch(oldestMessage)) {
+          print("scanTheCode");
+
+          // To note the simple code between the ** of the message
+          final RegExp regExp = RegExp(r"\*\*(.*?)\*\*");
+          final Match? match = regExp.firstMatch(oldestMessage);
+          final code = match?.group(1);
+
+          result = WhatsAppResult("scanTheCode", code, latestMessage);
+
+          break;
+        } else if (timeOutMatch.hasMatch(latestMessage)) {
+          print("Login timed out");
+
+          result = WhatsAppResult("loginTimedOut", "", "");
+
+          break;
+        }
+      }
+    }
+    return result;
+  }
+
+  Future<String> fetchDataWhatsApp() async {
+    print("Starting fetchDataWhatsApp");
+
+    const String botUserId = '@whatsappbot:loveto.party';
+
+    // Success phrases to spot
+    final RegExp successMatch = RegExp(r"Successfully logged in");
+
+    // Error phrase to spot
+    final RegExp timeOutMatch =
+        RegExp(r"Login timed out. Please restart the login");
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    String result; // Variable to track the result of the connection
+
+    // Get the latest messages from the room (limited to the specified number)
+    while (true) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 2, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      final String latestMessage =
+          latestMessages.first.content['body'].toString() ?? '';
+
+      if (latestMessages.isNotEmpty) {
+        if (successMatch.hasMatch(latestMessage)) {
+          print("You're logged to WhatsApp");
+
+          result = "success";
+
+          break; // Exit the loop once the "login" message has been sent and is success
+        } else if (timeOutMatch.hasMatch(latestMessage)) {
+          print("Login timed out");
+
+          result = "loginTimedOut";
+
+          break;
+        }
+      } else if (!successMatch.hasMatch(latestMessage) &&
+          !timeOutMatch.hasMatch(latestMessage)) {
+        print("waiting");
+        await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      }
+    }
+    return result;
+  }
+
+  // To disconnect from WhatsApp
+  Future<String> disconnectToWhatsApp() async {
+    final String botUserId = '@whatsappbot:$hostname';
+
+    final RegExp successMatch = RegExp(r"Logged out successfully.");
+    final RegExp alreadyLogoutMatch = RegExp(r"You're not logged in.");
+
+    // Add a direct chat with the WhatsApp bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    String result =
+        "Connected"; // Variable to track the result of the connection
+
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
+      // Send the "logout" message to the bot
+      await roomBot?.sendTextEvent("logout");
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        // to find out if we're connected
+        if (!successMatch.hasMatch(latestMessage) &&
+            !alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected to WhatsApp");
+          result = 'Connected';
+          break;
+        } else if (successMatch.hasMatch(latestMessage) ||
+            alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're disconnected to WhatsApp");
+
+          result = 'Not Connected';
+          break; // Exit the loop if bridge is disconnected
+        }
+      }
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    return result;
+  }
+
   // Function to delete a conversation with a bot
-  Future<void> deleteConversation(String botUserId) async {
+  Future<void> deleteConversation(String chatBot) async {
+    final String botUserId = "$chatBot$hostname";
     try {
       final roomId = client.getDirectChatFromUserId(botUserId);
       final room = client.getRoomById(roomId!);
@@ -266,7 +582,9 @@ class BotBridgeConnection {
 
   // Function to manage missed deadlines
   Future<String> pingWithTimeout(
-      BuildContext context, Future<String> pingFunction) async {
+    BuildContext context,
+    Future<String> pingFunction,
+  ) async {
     try {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));

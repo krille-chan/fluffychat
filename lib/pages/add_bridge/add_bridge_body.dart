@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/service/hostname.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
@@ -34,36 +32,53 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   @override
   void initState() {
     final client = Matrix.of(context).client;
-    String fullUrl = client.homeserver!.host;
+    final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
     botConnection = BotBridgeConnection(client: client, hostname: hostname);
+
+    // Call the method that manages stream listening
+    setupPingResultsListener();
+
+    // Calling the ping method
+    botConnection.checkAllSocialNetworksConnections(socialNetwork);
+
     super.initState();
-    _initStateAsync();
   }
 
   @override
   void dispose() {
     botConnection.stopProcess();
+
+    // Reset loading values to their original state by exiting the page
+    for (final element in socialNetwork) {
+      element.loading = true;
+    }
+
     super.dispose();
   }
 
-  // Online status update when page is opened
-  Future<void> _initStateAsync() async {
-    try {
-      final instagramConnected = await botConnection.pingWithTimeout(
-        context,
-        botConnection.instagramPing(),
-      );
-      if (!mounted) return; // Check if the widget is still mounted
+  // Method for managing the ping results stream
+  void setupPingResultsListener() {
+    botConnection.pingResults.listen((result) {
+      String name = result['name'];
+      String pingResult = result['result'];
 
-      if (instagramConnected != 'error') {
+      SocialNetwork network =
+          socialNetwork.firstWhere((network) => network.name == name);
+
+      // Updated connection results for each social network
+      if (pingResult == 'Connected') {
         setState(() {
-          socialNetwork
-              .firstWhere((element) => element.name == "Instagram")
-              .connected = instagramConnected == 'Connected' ? true : false;
-          socialNetwork
-              .firstWhere((element) => element.name == "Instagram")
-              .loading = false;
+          network.updateConnectionResult(true);
+        });
+      } else if (pingResult == 'Not Connected') {
+        setState(() {
+          network.updateConnectionResult(false);
+        });
+      } else if (pingResult == 'error') {
+        // Error management
+        setState(() {
+          network.setError(true);
         });
       } else if (mounted) {
         showCatchErrorDialog(
@@ -83,11 +98,9 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       ); // Precaution to let the page load
       if (mounted && !timeoutErrorOccurred) {
         showCatchErrorDialog(
-          context,
-          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
-        );
+            context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
       }
-    }
+    });
   }
 
   @override
@@ -115,10 +128,13 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       ),
                       // Different build of subtle depending on the social network, for now only Instagram
                       subtitle: buildSubtitle(socialNetwork[index]),
-                      trailing: const Icon(
-                        CupertinoIcons.right_chevron,
-                      ),
-
+                      trailing: socialNetwork[index].error == false
+                          ? const Icon(
+                              CupertinoIcons.right_chevron,
+                            )
+                          : const Icon(
+                              CupertinoIcons.refresh_bold,
+                            ),
                       // Different ways of connecting and disconnecting depending on the social network
                       onTap: () =>
                           handleSocialNetworkAction(socialNetwork[index]),
@@ -136,12 +152,20 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   // Different ways of connecting and disconnecting depending on the social network, for now only Instagram
   void handleSocialNetworkAction(SocialNetwork network) async {
     if (network.loading == false) {
-      if (network.connected != true) {
+      if (network.connected != true && network.error == false) {
         bool success = false;
         switch (network.name) {
           case "Instagram":
             // Trying to connect to Instagram
-            success = await connectToInstagram(context, network, botConnection);
+            success = await connectToInstagram(
+              context,
+              network,
+              botConnection,
+            );
+            break;
+          case "WhatsApp":
+            // Trying to connect to Instagram
+            success = await connectToWhatsApp(context, network, botConnection);
             break;
 
           // For other networks
@@ -151,7 +175,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             network.connected = true;
           });
         }
-      } else {
+      } else if (network.connected == true && network.error == false) {
         // Disconnect button, for the moment only this choice
         final bool success = await showBottomSheetBridge(
           context,
@@ -171,6 +195,35 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
         }
       }
+
+      // If there is a ping error
+      if (network.error && network.connected == false) {
+        setState(() {
+          network.loading = true;
+        });
+
+        // Reload pinging
+        final String pingResult =
+            await botConnection.pingSocialNetwork(network);
+        if (pingResult == 'Connected') {
+          setState(() {
+            network.updateConnectionResult(true);
+            network.setError(false); // Reset error if retry successful
+          });
+        } else if (pingResult == 'Not Connected') {
+          setState(() {
+            network.updateConnectionResult(false);
+            network.setError(false);
+          });
+        } else if (pingResult == 'error') {
+          setState(() {
+            network.setError(true);
+          });
+          // error message
+          showCatchErrorDialog(
+              context, "${L10n.of(context)!.err_toConnect} ${network.name}");
+        }
+      }
     }
   }
 
@@ -184,14 +237,23 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         ),
       );
     } else {
-      return Text(
-        network.connected == true
-            ? L10n.of(context)!.connected
-            : L10n.of(context)!.notConnected,
-        style: TextStyle(
-          color: network.connected == true ? Colors.green : Colors.grey,
-        ),
-      );
+      if (!network.error) {
+        return Text(
+          network.connected == true
+              ? L10n.of(context)!.connected
+              : L10n.of(context)!.notConnected,
+          style: TextStyle(
+            color: network.connected == true ? Colors.green : Colors.grey,
+          ),
+        );
+      } else {
+        return Text(
+          L10n.of(context)!.err_loading,
+          style: const TextStyle(
+            color: Colors.red,
+          ),
+        );
+      }
     }
   }
 }

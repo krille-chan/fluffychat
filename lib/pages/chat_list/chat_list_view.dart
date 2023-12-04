@@ -112,6 +112,7 @@ class ChatListView extends StatelessWidget {
                   .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
               return;
             }
+            return;
           },
           child: Row(
             children: [
