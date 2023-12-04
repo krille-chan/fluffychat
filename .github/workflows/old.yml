@@ -36,6 +36,17 @@ jobs:
           name: web-artifact
           path: ./build/web
  
+  upload_sentry:
+    runs-on: ubuntu-latest
+    needs: build_staging
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - run: echo "$WEB_APP_ENV" > .env
+      - name: Build web
+        run: ./scripts/upload-sentry.sh
+ 
   deploy_staging:
     runs-on: ubuntu-latest
     needs: build_staging
