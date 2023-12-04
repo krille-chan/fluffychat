@@ -49,6 +49,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ AWS_DEFAULT_REGION }}
 
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+
   build_production:
     runs-on: ubuntu-latest
     environment: production
@@ -74,10 +77,6 @@ jobs:
           name: web-artifact
           path: ./build/web
 
-  artifacts:
-    paths:
-      - ./build/web
-
   deploy_production:
     environment: production
     runs-on: ubuntu-latest
@@ -86,6 +85,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
 
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
