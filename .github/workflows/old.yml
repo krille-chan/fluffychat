@@ -38,14 +38,10 @@ jobs:
  
   deploy_staging:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
     needs: build_staging
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -53,7 +49,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ AWS_DEFAULT_REGION }}
 
-  build_staging:
+  build_production:
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -82,12 +78,10 @@ jobs:
     paths:
       - ./build/web
 
-  deploy_staging:
+  deploy_production:
     environment: production
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    needs: build_staging
+    needs: build_production
 
     steps:
       - name: Checkout code
