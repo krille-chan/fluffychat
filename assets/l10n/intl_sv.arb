@@ -469,7 +469,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "directChats": "Direkt Chatt",
+  "directChats": "Direkt chatt",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -963,7 +963,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få push notifikationer i FluffyChat rekommenderar vi att använda https://microg.org/ eller https://unifiedpush.org/ .",
+  "noGoogleServicesWarning": "De ser ut som att du inte har google-tjänster på din telefon. Det är ett bra beslut för din integritet! För att få aviseringar i FluffyChat rekommenderar vi att använda https://microg.org/ eller https://unifiedpush.org/ .",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -993,7 +993,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "Notifikationer är påslaget för detta konto",
+  "notificationsEnabledForThisAccount": "Aviseringar är påslaget för detta konto",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -1147,7 +1147,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushRules": "Push regler",
+  "pushRules": "Regler",
   "@pushRules": {
     "type": "text",
     "placeholders": {}
@@ -1829,7 +1829,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fontSize": "Teckensnitt storlek",
+  "fontSize": "Textstorlek",
   "@fontSize": {
     "type": "text",
     "placeholders": {}
@@ -1950,7 +1950,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsPushError": "Oj! Tyvärr uppstod ett fel vid upprättande av push notiser.",
+  "oopsPushError": "Oj! Tyvärr gick inte aviseringar att slå på.",
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
@@ -2360,7 +2360,7 @@
   "@storeInSecureStorageDescription": {},
   "storeInAppleKeyChain": "Lagra i Apples nyckelkedja (KeyChain)",
   "@storeInAppleKeyChain": {},
-  "foregroundServiceRunning": "Denna notifikation visas när förgrundstjänsten körs.",
+  "foregroundServiceRunning": "Denna avisering visas när förgrundstjänsten körs.",
   "@foregroundServiceRunning": {},
   "custom": "Anpassad",
   "@custom": {},
@@ -2491,14 +2491,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "allRooms": "",
+  "allRooms": "Alla gruppchattar",
   "@allRooms": {
     "type": "text",
     "placeholders": {}
   },
   "reportErrorDescription": "",
   "@reportErrorDescription": {},
-  "setColorTheme": "",
+  "setColorTheme": "Välj färgtema:",
   "@setColorTheme": {},
   "banUserDescription": "",
   "@banUserDescription": {},
@@ -2512,17 +2512,17 @@
   "@unbanUserDescription": {},
   "todoLists": "",
   "@todoLists": {},
-  "messagesStyle": "",
+  "messagesStyle": "Meddelanden:",
   "@messagesStyle": {},
   "chatDescription": "",
   "@chatDescription": {},
   "editTodo": "",
   "@editTodo": {},
-  "pushNotificationsNotAvailable": "",
+  "pushNotificationsNotAvailable": "Aviseringar är inte tillgängligt",
   "@pushNotificationsNotAvailable": {},
   "invalidServerName": "",
   "@invalidServerName": {},
-  "chatPermissions": "",
+  "chatPermissions": "Chatt-behörigheter",
   "@chatPermissions": {},
   "signInWithPassword": "",
   "@signInWithPassword": {},
@@ -2530,9 +2530,9 @@
   "@pleaseAddATitle": {},
   "makeAdminDescription": "",
   "@makeAdminDescription": {},
-  "setChatDescription": "",
+  "setChatDescription": "Ändra chattens beskrivning",
   "@setChatDescription": {},
-  "importFromZipFile": "",
+  "importFromZipFile": "Importera från .zip-fil",
   "@importFromZipFile": {},
   "redactedBy": "",
   "@redactedBy": {
@@ -2541,7 +2541,7 @@
       "username": {}
     }
   },
-  "signInWith": "",
+  "signInWith": "Logga in med {provider}",
   "@signInWith": {
     "type": "text",
     "placeholders": {
@@ -2573,7 +2573,7 @@
       "reason": {}
     }
   },
-  "importZipFile": "",
+  "importZipFile": "Importera .zip-fil",
   "@importZipFile": {},
   "anyoneCanKnock": "",
   "@anyoneCanKnock": {},
@@ -2612,15 +2612,15 @@
   "@inviteGroupChat": {},
   "invitePrivateChat": "",
   "@invitePrivateChat": {},
-  "importEmojis": "",
+  "importEmojis": "Importera emojier",
   "@importEmojis": {},
-  "noChatDescriptionYet": "",
+  "noChatDescriptionYet": "Ingen chatt-beskrivning än.",
   "@noChatDescriptionYet": {},
   "newTodo": "",
   "@newTodo": {},
   "learnMore": "",
   "@learnMore": {},
-  "notAnImage": "",
+  "notAnImage": "Inte en bildfil.",
   "@notAnImage": {},
   "chatDescriptionHasBeenChanged": "",
   "@chatDescriptionHasBeenChanged": {},
@@ -2641,9 +2641,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "setTheme": "",
+  "setTheme": "Välj tema:",
   "@setTheme": {},
-  "replace": "",
+  "replace": "Ersätt",
   "@replace": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
@@ -2651,7 +2651,7 @@
   "@createGroup": {},
   "kickUserDescription": "",
   "@kickUserDescription": {},
-  "importNow": "",
+  "importNow": "Importera nu",
   "@importNow": {},
   "invite": "",
   "@invite": {},

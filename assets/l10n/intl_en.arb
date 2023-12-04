@@ -986,26 +986,10 @@
         "type": "text",
         "placeholders": {}
     },
-    "ignore": "Ignore",
-    "@ignore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoredUsers": "Ignored users",
-    "@ignoredUsers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoreListDescription": "You can ignore users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal ignore list.",
-    "@ignoreListDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoreUsername": "Ignore username",
-    "@ignoreUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
+    "block": "block",
+    "blockedUsers": "Blocked users",
+    "blockListDescription": "You can block users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal block list.",
+    "blockUsername": "Ignore username",
     "iHaveClickedOnLink": "I have clicked on the link",
     "@iHaveClickedOnLink": {
         "type": "text",
@@ -2565,6 +2549,7 @@
   "groupCanBeFoundViaSearch": "Group can be found via search",
   "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
   "startConversation": "Start conversation",
+  "commandHint_sendraw": "Send raw json"
 
   "youDonTHaveConversation": "You don't have any conversation yet.",
   "connectChatNetworks": "Connect your chat networks",
