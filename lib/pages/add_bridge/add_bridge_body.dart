@@ -80,11 +80,8 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         setState(() {
           network.setError(true);
         });
-      } else if (mounted) {
         showCatchErrorDialog(
-          context,
-          "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
-        );
+            context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
       }
     });
   }
