@@ -28,7 +28,10 @@ void showEditFieldDialog(BuildContext context, String title) async {
     future: () async => null,
   );
   if (success.error == null) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged),),);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged),
+      ),
+    );
   }
 }

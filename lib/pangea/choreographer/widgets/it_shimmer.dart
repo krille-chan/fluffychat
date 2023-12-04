@@ -9,15 +9,19 @@ class ItShimmer extends StatelessWidget {
 
   final String originalSpan;
 
-  Iterable<Widget> renderShimmerIfListEmpty(BuildContext context,
-      {int noOfBars = 3,}) {
+  Iterable<Widget> renderShimmerIfListEmpty(
+    BuildContext context, {
+    int noOfBars = 3,
+  }) {
     final List<String> dummyStrings = [];
     for (int i = 0; i < noOfBars; i++) {
       dummyStrings.add(originalSpan);
     }
-    return dummyStrings.map((e) => ITShimmerElement(
-          text: e,
-        ),);
+    return dummyStrings.map(
+      (e) => ITShimmerElement(
+        text: e,
+      ),
+    );
   }
 
   // PTODO - bring this back, make it shimmer
@@ -57,14 +61,16 @@ class ITShimmerElement extends StatelessWidget {
         child: TextButton(
           style: ButtonStyle(
             padding: MaterialStateProperty.all(
-                const EdgeInsets.symmetric(horizontal: 7),),
+              const EdgeInsets.symmetric(horizontal: 7),
+            ),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
             backgroundColor: MaterialStateProperty.all<Color>(
-                AppConfig.primaryColor.withOpacity(0.2),),
+              AppConfig.primaryColor.withOpacity(0.2),
+            ),
           ),
           onPressed: () {},
           child: Text(

@@ -17,8 +17,10 @@ class PangeaAnyState {
     _layerLinkAndKeys.clear();
   }
 
-  LayerLinkAndKey layerLinkAndKey(String transformTargetId,
-      [throwErrorIfNotThere = false,]) {
+  LayerLinkAndKey layerLinkAndKey(
+    String transformTargetId, [
+    throwErrorIfNotThere = false,
+  ]) {
     if (_layerLinkAndKeys[transformTargetId] == null) {
       if (throwErrorIfNotThere) {
         Sentry.addBreadcrumb(Breadcrumb.fromJson(_layerLinkAndKeys));

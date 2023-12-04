@@ -30,13 +30,14 @@ class ITBar extends StatelessWidget {
       child: Container(
         key: choreographer.itBarLinkAndKey.key,
         decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.light
-                ? Colors.white
-                : Colors.black,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppConfig.borderRadius),
-              topRight: Radius.circular(AppConfig.borderRadius),
-            ),),
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.white
+              : Colors.black,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(AppConfig.borderRadius),
+            topRight: Radius.circular(AppConfig.borderRadius),
+          ),
+        ),
         width: double.infinity,
         padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
         child: Stack(
@@ -89,7 +90,8 @@ class ITBar extends StatelessWidget {
                                 ? ChoiceFeedbackText(controller: controller)
                                 : controller.isTranslationDone
                                     ? TranslationFeedback(
-                                        controller: controller,)
+                                        controller: controller,
+                                      )
                                     : ITChoices(controller: controller),
                       ),
                     ),
@@ -152,10 +154,11 @@ class OriginalText extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 50),
       padding: const EdgeInsets.only(left: 60.0, right: 40.0),
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(AppConfig.borderRadius),
-        topRight: Radius.circular(AppConfig.borderRadius),
-      ),),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppConfig.borderRadius),
+          topRight: Radius.circular(AppConfig.borderRadius),
+        ),
+      ),
       child: Row(
         //PTODO - does this already update after reset or we need to setState?
         mainAxisAlignment: MainAxisAlignment.center,
@@ -214,20 +217,25 @@ class ITChoices extends StatelessWidget {
     return controller.sourceText;
   }
 
-  void showCard(BuildContext context, int index,
-          [Color? borderColor, String? choiceFeedback,]) =>
+  void showCard(
+    BuildContext context,
+    int index, [
+    Color? borderColor,
+    String? choiceFeedback,
+  ]) =>
       OverlayUtil.showPositionedCard(
         context: context,
         cardToShow: WordDataCard(
-            word: controller.currentITStep!.continuances[index].text,
-            wordLang: controller.targetLangCode,
-            fullText: sourceText ?? controller.choreographer.currentText,
-            fullTextLang: sourceText != null
-                ? controller.sourceLangCode
-                : controller.targetLangCode,
-            hasInfo: controller.currentITStep!.continuances[index].hasInfo,
-            choiceFeedback: choiceFeedback,
-            room: controller.choreographer.chatController.room,),
+          word: controller.currentITStep!.continuances[index].text,
+          wordLang: controller.targetLangCode,
+          fullText: sourceText ?? controller.choreographer.currentText,
+          fullTextLang: sourceText != null
+              ? controller.sourceLangCode
+              : controller.targetLangCode,
+          hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+          choiceFeedback: choiceFeedback,
+          room: controller.choreographer.chatController.room,
+        ),
         cardSize: const Size(300, 300),
         borderColor: borderColor,
         transformTargetId: controller.choreographer.itBarTransformTargetKey,
@@ -259,8 +267,10 @@ class ITChoices extends StatelessWidget {
               controller.currentITStep!.continuances[index];
           debugPrint("is gold? ${continuance.gold}");
           if (continuance.level == 1 || continuance.wasClicked) {
-            Future.delayed(const Duration(milliseconds: 500),
-                () => controller.selectTranslation(index),);
+            Future.delayed(
+              const Duration(milliseconds: 500),
+              () => controller.selectTranslation(index),
+            );
           } else {
             showCard(
               context,
@@ -307,8 +317,9 @@ class ITError extends StatelessWidget {
               "${errorCopy.title}\n${errorCopy.body}",
               // Haga clic en su mensaje para ver los significados de las palabras.
               style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.error,),
+                fontStyle: FontStyle.italic,
+                color: Theme.of(context).colorScheme.error,
+              ),
             ),
           ),
           ITRestartButton(controller: controller),

@@ -112,7 +112,10 @@ class StudentAnalyticsEvent {
   }
 
   Future<TimeSeriesInterval> getTimeServiesInterval(
-      DateTime start, DateTime end, String? chatId,) async {
+    DateTime start,
+    DateTime end,
+    String? chatId,
+  ) async {
     final TimeSeriesInterval interval = TimeSeriesInterval(
       start: start,
       end: end,

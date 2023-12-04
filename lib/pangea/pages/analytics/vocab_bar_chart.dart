@@ -140,12 +140,14 @@ class VocabBarChartState extends State<VocabBarChart> {
     final List<BarChartGroupData> chartData = [];
 
     vocabHeadwords.lists.asMap().forEach((index, intervalGroup) {
-      chartData.add(BarChartGroupData(
-        x: index,
-        barsSpace: barSpace,
-        // barRods: intervalGroup.map(constructBarChartRodData).toList(),
-        barRods: constructBarChartRodData(intervalGroup),
-      ),);
+      chartData.add(
+        BarChartGroupData(
+          x: index,
+          barsSpace: barSpace,
+          // barRods: intervalGroup.map(constructBarChartRodData).toList(),
+          barRods: constructBarChartRodData(intervalGroup),
+        ),
+      );
     });
     return chartData;
   }

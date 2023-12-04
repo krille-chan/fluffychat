@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../../config/app_config.dart';
 import '../common/pangea_logo_svg.dart';
 

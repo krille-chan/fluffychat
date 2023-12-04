@@ -15,8 +15,12 @@ class RoomRulesEditor extends StatefulWidget {
   final bool startOpen;
   final bool showAdd;
 
-  const RoomRulesEditor(
-      {super.key, this.roomId, this.startOpen = true, this.showAdd = false,});
+  const RoomRulesEditor({
+    super.key,
+    this.roomId,
+    this.startOpen = true,
+    this.showAdd = false,
+  });
 
   @override
   RoomRulesState createState() => RoomRulesState();
@@ -157,14 +161,18 @@ class RoomRulesState extends State<RoomRulesEditor> {
                             onChanged: (value) {
                               updatePermission(() {
                                 rules.setLanguageToolSetting(
-                                    setting, value.toInt(),);
+                                  setting,
+                                  value.toInt(),
+                                );
                               });
                             },
                             divisions: 2,
                             max: 2,
                             min: 0,
                             label: rules.languageToolPermissionsText(
-                                context, setting,),
+                              context,
+                              setting,
+                            ),
                           ),
                         ),
                       ],

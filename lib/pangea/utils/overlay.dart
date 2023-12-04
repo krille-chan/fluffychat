@@ -47,7 +47,9 @@ class OverlayUtil {
                   color: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: OverlayContainer(
-                      cardToShow: cardToShow, borderColor: borderColor,),
+                    cardToShow: cardToShow,
+                    borderColor: borderColor,
+                  ),
                 ),
               ),
             ),
@@ -191,8 +193,10 @@ class ChatViewConstraints implements OverlayConstraints {
     x1 = mediaQueryData.size.width -
         max(mediaQueryData.viewPadding.right, mediaQueryData.viewInsets.right);
     y1 = mediaQueryData.size.height -
-        max(mediaQueryData.viewPadding.bottom,
-            mediaQueryData.viewInsets.bottom,);
+        max(
+          mediaQueryData.viewPadding.bottom,
+          mediaQueryData.viewInsets.bottom,
+        );
 
     // https://medium.com/flutter-community/a-flutter-guide-to-visual-overlap-padding-viewpadding-and-viewinsets-a63e214be6e8
     //   debugPrint(

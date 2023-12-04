@@ -13,8 +13,12 @@ class PLoadingStatus extends StatefulWidget {
 
   final Widget child;
   final Widget? shimmerChild;
-  const PLoadingStatus(
-      {super.key, required this.child, this.onFinish, this.shimmerChild,});
+  const PLoadingStatus({
+    super.key,
+    required this.child,
+    this.onFinish,
+    this.shimmerChild,
+  });
 
   @override
   PLoadingStatusState createState() => PLoadingStatusState();

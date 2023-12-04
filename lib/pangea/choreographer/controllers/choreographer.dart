@@ -228,10 +228,11 @@ class Choreographer {
   void onITChoiceSelect(ITStep step) {
     choreoRecord.addRecord(_textController.text, step: step);
     _textController.setSystemText(
-        _textController.text + step.continuances[step.chosen!].text,
-        step.continuances[step.chosen!].gold
-            ? EditType.itGold
-            : EditType.itStandard,);
+      _textController.text + step.continuances[step.chosen!].text,
+      step.continuances[step.chosen!].gold
+          ? EditType.itGold
+          : EditType.itStandard,
+    );
     _textController.selection =
         TextSelection.collapsed(offset: _textController.text.length);
     giveInputFocus();
@@ -328,15 +329,18 @@ class Choreographer {
       }
 
       igc.igcTextData!.matches[matchIndex].status = PangeaMatchStatus.ignored;
-      choreoRecord.addRecord(_textController.text,
-          match: igc.igcTextData!.matches[matchIndex],);
+      choreoRecord.addRecord(
+        _textController.text,
+        match: igc.igcTextData!.matches[matchIndex],
+      );
 
       igc.igcTextData!.matches.removeAt(matchIndex);
     } catch (err, stack) {
       debugger(when: kDebugMode);
       Sentry.addBreadcrumb(
         Breadcrumb.fromJson(
-            {"igcTextData": igc.igcTextData?.toJson(), "offset": cursorOffset},),
+          {"igcTextData": igc.igcTextData?.toJson(), "offset": cursorOffset},
+        ),
       );
       ErrorHandler.logError(
         e: err,

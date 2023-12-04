@@ -18,8 +18,11 @@ class MessagesBarChart extends StatefulWidget {
   final ChartAnalyticsModel? chartAnalytics;
   final String barChartTitle;
 
-  const MessagesBarChart(
-      {super.key, required this.chartAnalytics, required this.barChartTitle,});
+  const MessagesBarChart({
+    super.key,
+    required this.chartAnalytics,
+    required this.barChartTitle,
+  });
 
   @override
   State<StatefulWidget> createState() => MessagesBarChartState();
@@ -181,7 +184,10 @@ class MessagesBarChartState extends State<MessagesBarChart> {
   }
 
   bool isInSameGroup(
-      TimeSeriesInterval? t1, TimeSeriesInterval t2, TimeSpan timeSpan,) {
+    TimeSeriesInterval? t1,
+    TimeSeriesInterval t2,
+    TimeSpan timeSpan,
+  ) {
     final DateTime? date1 = t1?.end;
     final DateTime date2 = t2.end;
     if (timeSpan == TimeSpan.sixmonths || timeSpan == TimeSpan.year) {
@@ -230,12 +236,14 @@ class MessagesBarChartState extends State<MessagesBarChart> {
     final List<BarChartGroupData> chartData = [];
 
     intervalGroupings.asMap().forEach((index, intervalGroup) {
-      chartData.add(BarChartGroupData(
-        x: index,
-        barsSpace: barSpace,
-        // barRods: intervalGroup.map(constructBarChartRodData).toList(),
-        barRods: constructBarChartRodData(intervalGroup),
-      ),);
+      chartData.add(
+        BarChartGroupData(
+          x: index,
+          barsSpace: barSpace,
+          // barRods: intervalGroup.map(constructBarChartRodData).toList(),
+          barRods: constructBarChartRodData(intervalGroup),
+        ),
+      );
     });
     return chartData;
   }
@@ -258,7 +266,8 @@ class MessagesBarChartState extends State<MessagesBarChart> {
   // }
 
   List<BarChartRodData> constructBarChartRodData(
-      List<TimeSeriesInterval> timeSeriesIntervalGroup,) {
+    List<TimeSeriesInterval> timeSeriesIntervalGroup,
+  ) {
     int y1 = 0;
     int y2 = 0;
     int y3 = 0;
@@ -276,11 +285,20 @@ class MessagesBarChartState extends State<MessagesBarChart> {
         rodStackItems: [
           BarChartRodStackItem(0, y1.toDouble(), UseType.ta.color(context)),
           BarChartRodStackItem(
-              y1.toDouble(), y2.toDouble(), UseType.ga.color(context),),
+            y1.toDouble(),
+            y2.toDouble(),
+            UseType.ga.color(context),
+          ),
           BarChartRodStackItem(
-              y2.toDouble(), y3.toDouble(), UseType.wa.color(context),),
+            y2.toDouble(),
+            y3.toDouble(),
+            UseType.wa.color(context),
+          ),
           BarChartRodStackItem(
-              y3.toDouble(), y4.toDouble(), UseType.un.color(context),),
+            y3.toDouble(),
+            y4.toDouble(),
+            UseType.un.color(context),
+          ),
         ],
         borderRadius: BorderRadius.zero,
       ),

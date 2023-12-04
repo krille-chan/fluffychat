@@ -74,10 +74,13 @@ class ITController {
     // try {
     if (_itStartData == null || _itStartData!.text.isEmpty) {
       Sentry.addBreadcrumb(
-        Breadcrumb(message: "choreo context", data: {
-          "igcTextData": choreographer.igc.igcTextData?.toJson(),
-          "currentText": choreographer.currentText,
-        },),
+        Breadcrumb(
+          message: "choreo context",
+          data: {
+            "igcTextData": choreographer.igc.igcTextData?.toJson(),
+            "currentText": choreographer.currentText,
+          },
+        ),
       );
       throw Exception("null _itStartData or empty text in _setSourceText");
     }
@@ -122,10 +125,12 @@ class ITController {
       if (sourceText == null) await _setSourceText();
 
       if (useCustomInput && currentITStep != null) {
-        completedITSteps.add(ITStep(
-          currentITStep!.continuances,
-          customInput: currentText,
-        ),);
+        completedITSteps.add(
+          ITStep(
+            currentITStep!.continuances,
+            customInput: currentText,
+          ),
+        );
       }
 
       currentITStep = null;

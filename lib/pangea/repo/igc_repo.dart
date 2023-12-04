@@ -14,8 +14,10 @@ import '../network/requests.dart';
 import '../network/urls.dart';
 
 class IgcRepo {
-  static Future<IGCTextData> getIGC(String? accessToken,
-      {required IGCRequestBody igcRequest,}) async {
+  static Future<IGCTextData> getIGC(
+    String? accessToken, {
+    required IGCRequestBody igcRequest,
+  }) async {
     final Requests req = Requests(
       accessToken: accessToken,
       choreoApiKey: Environment.choreoApiKey,
@@ -50,21 +52,26 @@ class IgcRepo {
           lemmas: [Lemma(form: "be", text: "be", saveVocab: true)],
         ),
         PangeaToken(
-            text: PangeaTokenText(content: "a", offset: 8, length: 1),
-            hasInfo: false,
-            lemmas: [],),
+          text: PangeaTokenText(content: "a", offset: 8, length: 1),
+          hasInfo: false,
+          lemmas: [],
+        ),
         PangeaToken(
-            text: PangeaTokenText(content: "sample", offset: 10, length: 6),
-            hasInfo: false,
-            lemmas: [],),
+          text: PangeaTokenText(content: "sample", offset: 10, length: 6),
+          hasInfo: false,
+          lemmas: [],
+        ),
         PangeaToken(
-            text: PangeaTokenText(content: "text", offset: 17, length: 4),
-            hasInfo: false,
-            lemmas: [],),
+          text: PangeaTokenText(content: "text", offset: 17, length: 4),
+          hasInfo: false,
+          lemmas: [],
+        ),
       ],
       matches: [
         PangeaMatch(
-            match: spanDataRepomockSpan, status: PangeaMatchStatus.open,),
+          match: spanDataRepomockSpan,
+          status: PangeaMatchStatus.open,
+        ),
       ],
       originalInput: "This be a sample text",
       fullTextCorrection: "This is a sample text",

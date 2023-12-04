@@ -134,8 +134,8 @@ class ClassSettingsState extends State<ClassSettings> {
                 child: Column(
                   children: [
                     PQuestionContainer(
-                        title:
-                            L10n.of(context)!.selectClassRoomDominantLanguage,),
+                      title: L10n.of(context)!.selectClassRoomDominantLanguage,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) => updatePermission(() {
                         classSettings.dominantLanguage = p0.langCode;
@@ -148,7 +148,8 @@ class ClassSettingsState extends State<ClassSettings> {
                       showMultilingual: true,
                     ),
                     PQuestionContainer(
-                        title: L10n.of(context)!.selectTargetLanguage,),
+                      title: L10n.of(context)!.selectTargetLanguage,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) => updatePermission(() {
                         classSettings.targetLanguage = p0.langCode;
@@ -160,7 +161,8 @@ class ClassSettingsState extends State<ClassSettings> {
                       languages: pangeaController.pLanguageStore.targetOptions,
                     ),
                     PQuestionContainer(
-                        title: L10n.of(context)!.whatIsYourClassLanguageLevel,),
+                      title: L10n.of(context)!.whatIsYourClassLanguageLevel,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Container(
@@ -205,7 +207,9 @@ class ClassSettingsState extends State<ClassSettings> {
                               value: levelOption,
                               child: Text(
                                 LanguageLevelTextPicker.languageLevelText(
-                                    context, levelOption,),
+                                  context,
+                                  levelOption,
+                                ),
                                 style: const TextStyle().copyWith(
                                   color: Theme.of(context)
                                       .textTheme

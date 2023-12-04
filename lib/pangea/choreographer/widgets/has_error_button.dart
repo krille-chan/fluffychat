@@ -24,7 +24,8 @@ class ChoreographerHasErrorButton extends StatelessWidget {
               SnackBar(
                 duration: const Duration(seconds: 5),
                 content: Text(
-                    "${error.title(context)} ${error.description(context)}",),
+                  "${error.title(context)} ${error.description(context)}",
+                ),
               ),
             );
           } else if (error.type == ChoreoErrorType.unsubscribed) {

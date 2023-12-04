@@ -117,12 +117,14 @@ class RCProductsResponseModel {
     Map<String, dynamic> metadata,
   ) {
     return packageDetails['products']['items']
-        .map((productDetails) => SubscriptionDetails(
-              price: double.parse(metadata['$packageId.price']),
-              duration: metadata['$packageId.duration'],
-              id: productDetails['product']['store_identifier'],
-              appId: productDetails['product']['app_id'],
-            ),)
+        .map(
+          (productDetails) => SubscriptionDetails(
+            price: double.parse(metadata['$packageId.price']),
+            duration: metadata['$packageId.duration'],
+            id: productDetails['product']['store_identifier'],
+            appId: productDetails['product']['app_id'],
+          ),
+        )
         .toList()
         .cast<SubscriptionDetails>();
   }

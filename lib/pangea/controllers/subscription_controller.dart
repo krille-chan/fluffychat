@@ -87,8 +87,10 @@ class SubscriptionController extends BaseController {
     setState();
   }
 
-  Future<void> showPaywall(BuildContext context,
-      [bool forceShow = false,]) async {
+  Future<void> showPaywall(
+    BuildContext context, [
+    bool forceShow = false,
+  ]) async {
     try {
       if (!initialized) {
         await initialize();
@@ -156,8 +158,10 @@ class SubscriptionController extends BaseController {
   }
 
   void submitSubscriptionChange(
-      SubscriptionDetails? selectedSubscription, BuildContext context,
-      {bool isPromo = false,}) async {
+    SubscriptionDetails? selectedSubscription,
+    BuildContext context, {
+    bool isPromo = false,
+  }) async {
     if (selectedSubscription != null) {
       if (kIsWeb) {
         if (selectedSubscription.duration == null) {
@@ -187,7 +191,9 @@ class SubscriptionController extends BaseController {
       }
       try {
         GoogleAnalytics.beginPurchaseSubscription(
-            selectedSubscription, context,);
+          selectedSubscription,
+          context,
+        );
         await Purchases.purchasePackage(selectedSubscription.package!);
         GoogleAnalytics.updateUserSubscriptionStatus(true);
       } catch (err) {

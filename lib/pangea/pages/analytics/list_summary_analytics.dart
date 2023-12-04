@@ -56,14 +56,15 @@ class ListSummaryAnalytics extends StatelessWidget {
       text: TextSpan(
         children: [
           spacerIconText(
-              L10n.of(context) != null
-                  ? L10n.of(context)!.totalMessages
-                  : "Total messages sent",
-              "",
-              Icons.chat_bubble,
-              totals!.all,
-              Theme.of(context).textTheme.bodyLarge!.color,
-              false,),
+            L10n.of(context) != null
+                ? L10n.of(context)!.totalMessages
+                : "Total messages sent",
+            "",
+            Icons.chat_bubble,
+            totals!.all,
+            Theme.of(context).textTheme.bodyLarge!.color,
+            false,
+          ),
           if (totals!.all != 0) ...[
             spacerIconText(
               l10n != null ? l10n.taTooltip : "With translation assistance",

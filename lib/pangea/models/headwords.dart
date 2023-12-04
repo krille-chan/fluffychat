@@ -19,10 +19,12 @@ class VocabHeadwords {
   factory VocabHeadwords.fromJson(Map<String, dynamic> json) {
     final List<VocabList> lists = [];
     for (final entry in json.entries) {
-      lists.add(VocabList(
-        name: entry.key,
-        lemmas: (entry.value as Iterable).cast<String>().toList(),
-      ),);
+      lists.add(
+        VocabList(
+          name: entry.key,
+          lemmas: (entry.value as Iterable).cast<String>().toList(),
+        ),
+      );
     }
     return VocabHeadwords(lists: lists);
   }

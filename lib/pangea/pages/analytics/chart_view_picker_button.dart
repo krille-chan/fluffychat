@@ -7,8 +7,11 @@ import '../../enum/bar_chart_view_enum.dart';
 class ChartViewPickerButton extends StatelessWidget {
   final BarChartViewSelection selected;
   final void Function(BarChartViewSelection) onChange;
-  const ChartViewPickerButton(
-      {super.key, required this.selected, required this.onChange,});
+  const ChartViewPickerButton({
+    super.key,
+    required this.selected,
+    required this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {

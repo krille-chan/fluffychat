@@ -13,10 +13,12 @@
 class PClassAnalyticsRepo {
   /// deprecated in favor of new analytics
   static Future<dynamic> repoGetAnalyticsByIds(
-      String accessToken, String timeSpan,
-      {List<String>? classIds,
-      List<String>? userIds,
-      List<String>? chatIds,}) async {
+    String accessToken,
+    String timeSpan, {
+    List<String>? classIds,
+    List<String>? userIds,
+    List<String>? chatIds,
+  }) async {
     // if (!AnalyticsUtil.isValidSpan(timeSpan)) throw "Invalid span";
 
     // final Requests req = Requests(

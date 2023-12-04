@@ -70,11 +70,12 @@ class TokensResponseModel {
     Map<String, dynamic> json,
   ) =>
       TokensResponseModel(
-          tokens: (json[ModelKey.tokens] as Iterable)
-              .map<PangeaToken>(
-                (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
-              )
-              .toList()
-              .cast<PangeaToken>(),
-          lang: json[ModelKey.lang],);
+        tokens: (json[ModelKey.tokens] as Iterable)
+            .map<PangeaToken>(
+              (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
+            )
+            .toList()
+            .cast<PangeaToken>(),
+        lang: json[ModelKey.lang],
+      );
 }

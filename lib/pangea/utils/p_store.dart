@@ -9,8 +9,11 @@ class PLocalStore {
   PLocalStore({required this.pangeaController});
 
   /// save data in local
-  Future<void> save(String key, dynamic data,
-      {bool addClientIdToKey = true,}) async {
+  Future<void> save(
+    String key,
+    dynamic data, {
+    bool addClientIdToKey = true,
+  }) async {
     await _box.write(_key(key, addClientIdToKey: addClientIdToKey), data);
   }
 

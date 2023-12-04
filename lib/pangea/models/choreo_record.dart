@@ -67,8 +67,13 @@ class ChoreoRecord {
     if (match != null && step != null) {
       throw Exception("match and step should not both be defined");
     }
-    choreoSteps.add(ChoreoRecordStep(
-        text: text, acceptedOrIgnoredMatch: match, itStep: step,),);
+    choreoSteps.add(
+      ChoreoRecordStep(
+        text: text,
+        acceptedOrIgnoredMatch: match,
+        itStep: step,
+      ),
+    );
   }
 
   bool get hasAcceptedMatches => choreoSteps.any(
@@ -118,23 +123,30 @@ class ChoreoRecord {
   ///     for each continuance
   ///       if not within the final message, save ignIT/incIT
   List<OneConstructUse> toVocabUse(
-      List<PangeaToken> tokens, String chatId, String msgId,) {
+    List<PangeaToken> tokens,
+    String chatId,
+    String msgId,
+  ) {
     final List<OneConstructUse> uses = [];
     final DateTime now = DateTime.now();
     List<OneConstructUse> lemmasToVocabUses(
-        List<Lemma> lemmas, ConstructUseType type,) {
+      List<Lemma> lemmas,
+      ConstructUseType type,
+    ) {
       final List<OneConstructUse> uses = [];
       for (final lemma in lemmas) {
         if (lemma.saveVocab) {
-          uses.add(OneConstructUse(
-            useType: type,
-            chatId: chatId,
-            timeStamp: now,
-            lemma: lemma.text,
-            form: lemma.form,
-            msgId: msgId,
-            constructType: ConstructType.vocab,
-          ),);
+          uses.add(
+            OneConstructUse(
+              useType: type,
+              chatId: chatId,
+              timeStamp: now,
+              lemma: lemma.text,
+              form: lemma.form,
+              msgId: msgId,
+              constructType: ConstructType.vocab,
+            ),
+          );
         }
       }
       return uses;
@@ -145,9 +157,11 @@ class ChoreoRecord {
         /// if 1) accepted match 2) token is in the replacement and 3) replacement
         /// is in the overall step text, then token was a ga
         if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted &&
-            (step.acceptedOrIgnoredMatch!.match.choices?.any((r) =>
-                    r.value.contains(token.text.content) &&
-                    step.text.contains(r.value),) ??
+            (step.acceptedOrIgnoredMatch!.match.choices?.any(
+                  (r) =>
+                      r.value.contains(token.text.content) &&
+                      step.text.contains(r.value),
+                ) ??
                 false)) {
           return lemmasToVocabUses(token.lemmas, ConstructUseType.ga);
         }
@@ -204,15 +218,17 @@ class ChoreoRecord {
         final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
             step.acceptedOrIgnoredMatch!.match.shortMessage ??
             step.acceptedOrIgnoredMatch!.match.type.typeName.name;
-        uses.add(OneConstructUse(
-          useType: ConstructUseType.ga,
-          chatId: chatId,
-          timeStamp: now,
-          lemma: name,
-          form: name,
-          msgId: msgId,
-          constructType: ConstructType.grammar,
-        ),);
+        uses.add(
+          OneConstructUse(
+            useType: ConstructUseType.ga,
+            chatId: chatId,
+            timeStamp: now,
+            lemma: name,
+            form: name,
+            msgId: msgId,
+            constructType: ConstructType.grammar,
+          ),
+        );
       }
     }
     return uses;
@@ -252,11 +268,15 @@ class ChoreoRecordStep {
 
   ITStep? itStep;
 
-  ChoreoRecordStep(
-      {required this.text, this.acceptedOrIgnoredMatch, this.itStep,}) {
+  ChoreoRecordStep({
+    required this.text,
+    this.acceptedOrIgnoredMatch,
+    this.itStep,
+  }) {
     if (itStep != null && acceptedOrIgnoredMatch != null) {
       throw Exception(
-          "itStep and acceptedOrIgnoredMatch should not both be defined",);
+        "itStep and acceptedOrIgnoredMatch should not both be defined",
+      );
     }
   }
 

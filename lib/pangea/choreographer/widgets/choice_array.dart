@@ -63,13 +63,14 @@ class Choice {
 }
 
 class ChoiceItem extends StatelessWidget {
-  const ChoiceItem(
-      {super.key,
-      required this.theme,
-      required this.onLongPress,
-      required this.onPressed,
-      required this.entry,
-      required this.isSelected,});
+  const ChoiceItem({
+    super.key,
+    required this.theme,
+    required this.onLongPress,
+    required this.onPressed,
+    required this.entry,
+    required this.isSelected,
+  });
 
   final MapEntry<int, Choice> entry;
   final ThemeData theme;
@@ -101,7 +102,8 @@ class ChoiceItem extends StatelessWidget {
           child: TextButton(
             style: ButtonStyle(
               padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 7),),
+                const EdgeInsets.symmetric(horizontal: 7),
+              ),
               //if index is selected, then give the background a slight primary color
               backgroundColor: MaterialStateProperty.all<Color>(
                 entry.value.color != null

@@ -34,9 +34,11 @@ class PangeaLanguage {
         await _saveFlags(_langList);
         await saveLastFetchDate();
       }
-      _langList.removeWhere((element) =>
-          LanguageModel.codeFromNameOrCode(element.langCode) ==
-          LanguageKeys.unknownLanguage,);
+      _langList.removeWhere(
+        (element) =>
+            LanguageModel.codeFromNameOrCode(element.langCode) ==
+            LanguageKeys.unknownLanguage,
+      );
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
       _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {

@@ -1,6 +1,4 @@
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 
 class Environment {
   static bool get itIsTime =>

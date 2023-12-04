@@ -31,7 +31,8 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   void initState() {
     _pangeaController.matrixState.client
         .updateMyLearningAnalyticsForAllClassesImIn(
-            _pangeaController.pStoreService,);
+      _pangeaController.pStoreService,
+    );
     super.initState();
   }
 

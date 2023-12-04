@@ -98,8 +98,9 @@ class PangeaMatch {
       end = match.fullText.length;
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-          m: "match.offset + match.length > match.fullText.length",
-          data: match.toJson(),);
+        m: "match.offset + match.length > match.fullText.length",
+        data: match.toJson(),
+      );
     } else {
       end = match.offset + match.length;
     }

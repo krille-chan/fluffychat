@@ -292,21 +292,23 @@ class IGCTextData {
             ? topTokenMatch.textStyle(defaultStyle)
             : hasDefinitionStyle(defaultStyle);
 
-        items.add(TextSpan(
-          text: token.text.content,
-          style: tokenStyle,
-          recognizer: handleClick
-              ? (TapGestureRecognizer()
-                ..onTapDown = (details) => OverlayUtil.showPositionedCard(
-                      context: context,
-                      cardToShow: cardToShow,
-                      cardSize: topTokenMatch?.isITStart ?? false
-                          ? const Size(350, 220)
-                          : const Size(350, 400),
-                      transformTargetId: transformTargetId,
-                    ))
-              : null,
-        ),);
+        items.add(
+          TextSpan(
+            text: token.text.content,
+            style: tokenStyle,
+            recognizer: handleClick
+                ? (TapGestureRecognizer()
+                  ..onTapDown = (details) => OverlayUtil.showPositionedCard(
+                        context: context,
+                        cardToShow: cardToShow,
+                        cardSize: topTokenMatch?.isITStart ?? false
+                            ? const Size(350, 220)
+                            : const Size(350, 400),
+                        transformTargetId: transformTargetId,
+                      ))
+                : null,
+          ),
+        );
 
         final int charBetween = getAfterTokenSpacingByIndex(
           index,

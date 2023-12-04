@@ -74,12 +74,13 @@ class LanguageModel {
 
   //PTODO - add flag for unknown
   static LanguageModel get unknown => LanguageModel(
-      langCode: LanguageKeys.unknownLanguage,
-      languageType: 1,
-      languageFlag: "",
-      displayName: "Unknown",
-      l2: false,
-      l1: false,);
+        langCode: LanguageKeys.unknownLanguage,
+        languageType: 1,
+        languageFlag: "",
+        displayName: "Unknown",
+        l2: false,
+        l1: false,
+      );
 
   static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
         displayName: context != null

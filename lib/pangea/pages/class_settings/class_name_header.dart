@@ -31,10 +31,12 @@ class ClassNameHeader extends StatelessWidget {
           color: Theme.of(context).colorScheme.onBackground,
         ),
       ),
-      icon: room.nameAndRoomTypeIcon(TextStyle(
-        fontSize: 20,
-        color: Theme.of(context).textTheme.bodyLarge!.color,
-      ),),
+      icon: room.nameAndRoomTypeIcon(
+        TextStyle(
+          fontSize: 20,
+          color: Theme.of(context).textTheme.bodyLarge!.color,
+        ),
+      ),
       // icon: Text(
       //   room.getLocalizedDisplayname(
       //     MatrixLocals(L10n.of(context)!),

@@ -11,14 +11,17 @@ class Requests {
   late String? matrixAccessToken;
   late String? choreoApiKey;
   //Question: How can we make baseUrl optional?
-  Requests(
-      {this.accessToken,
-      this.baseUrl = '',
-      this.matrixAccessToken,
-      this.choreoApiKey,});
+  Requests({
+    this.accessToken,
+    this.baseUrl = '',
+    this.matrixAccessToken,
+    this.choreoApiKey,
+  });
 
-  Future<http.Response> post(
-      {required String url, required Map<dynamic, dynamic> body,}) async {
+  Future<http.Response> post({
+    required String url,
+    required Map<dynamic, dynamic> body,
+  }) async {
     dynamic encoded;
     encoded = jsonEncode(body);
 
@@ -34,8 +37,10 @@ class Requests {
     return response;
   }
 
-  Future<http.Response> put(
-      {required String url, required Map<dynamic, dynamic> body,}) async {
+  Future<http.Response> put({
+    required String url,
+    required Map<dynamic, dynamic> body,
+  }) async {
     dynamic encoded;
     encoded = jsonEncode(body);
 
@@ -84,8 +89,11 @@ class Requests {
     return json;
   }
 
-  void handleError(http.Response response,
-      {Map<dynamic, dynamic>? body, String? objectId,}) {
+  void handleError(
+    http.Response response, {
+    Map<dynamic, dynamic>? body,
+    String? objectId,
+  }) {
     //PTODO - handle 401 error - unauthorized call
     //kick them back to login?
 

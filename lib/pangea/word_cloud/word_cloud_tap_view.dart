@@ -65,7 +65,10 @@ class _WordCloudTapViewState extends State<WordCloudTapView> {
 
     wordcloudsetting.setMapSize(widget.mapwidth, widget.mapheight);
     wordcloudsetting.setFont(
-        widget.fontFamily, widget.fontStyle, widget.fontWeight,);
+      widget.fontFamily,
+      widget.fontStyle,
+      widget.fontWeight,
+    );
     wordcloudsetting.setColorList(widget.colorlist);
     wordcloudsetting.setInitial();
     wordcloudsetting.drawTextOptimized();
@@ -115,9 +118,12 @@ class WCTpaint extends CustomPainter {
     for (var i = 0; i < wordcloudpaint.getDataLength(); i++) {
       if (wordcloudpaint.isdrawed[i]) {
         wordcloudpaint.getTextPainter()[i].paint(
-            canvas,
-            Offset(wordcloudpaint.getWordPoint()[i][0],
-                wordcloudpaint.getWordPoint()[i][1],),);
+              canvas,
+              Offset(
+                wordcloudpaint.getWordPoint()[i][0],
+                wordcloudpaint.getWordPoint()[i][1],
+              ),
+            );
       }
     }
   }

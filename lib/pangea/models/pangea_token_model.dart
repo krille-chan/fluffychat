@@ -72,15 +72,19 @@ class PangeaTokenText {
   String content;
   int length;
 
-  PangeaTokenText(
-      {required this.offset, required this.content, required this.length,});
+  PangeaTokenText({
+    required this.offset,
+    required this.content,
+    required this.length,
+  });
 
   factory PangeaTokenText.fromJson(Map<String, dynamic> json) {
     debugger(when: kDebugMode && json[_offsetKey] == null);
     return PangeaTokenText(
-        offset: json[_offsetKey],
-        content: json[_contentKey],
-        length: json[_lengthKey] ?? (json[_contentKey] as String).length,);
+      offset: json[_offsetKey],
+      content: json[_contentKey],
+      length: json[_lengthKey] ?? (json[_contentKey] as String).length,
+    );
   }
 
   static const String _offsetKey = "offset";

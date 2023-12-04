@@ -14,7 +14,9 @@ class ErrorHandler {
 
   static Future<void> initialize() async {
     FutureOr<void> Function(Scope)? withScope(
-        Scope scope, FlutterErrorDetails details,) {
+      Scope scope,
+      FlutterErrorDetails details,
+    ) {
       // if (details.exception is http.Response) {
       //   final res = details.exception as http.Response;
       //   scope.addBreadcrumb(
@@ -60,24 +62,30 @@ class ErrorHandler {
     };
   }
 
-  static logError(
-      {Object? e, StackTrace? s, String? m, Map<String, dynamic>? data,}) async {
+  static logError({
+    Object? e,
+    StackTrace? s,
+    String? m,
+    Map<String, dynamic>? data,
+  }) async {
     if ((e ?? m) != null) debugPrint("error: ${e?.toString() ?? m}");
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
     }
-    FlutterError.reportError(FlutterErrorDetails(
-      exception: e ?? Exception(m ?? "no message supplied"),
-      stack: s,
-      library: 'Pangea',
-      context: ErrorSummary(e?.toString() ?? "error not defined"),
-      stackFilter: (input) => input.where(
-        (e) => !(e.contains("org-dartlang-sdk") ||
-            e.contains("future_impl") ||
-            e.contains("microtask") ||
-            e.contains("async_patch")),
+    FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: e ?? Exception(m ?? "no message supplied"),
+        stack: s,
+        library: 'Pangea',
+        context: ErrorSummary(e?.toString() ?? "error not defined"),
+        stackFilter: (input) => input.where(
+          (e) => !(e.contains("org-dartlang-sdk") ||
+              e.contains("future_impl") ||
+              e.contains("microtask") ||
+              e.contains("async_patch")),
+        ),
       ),
-    ),);
+    );
   }
 }
 

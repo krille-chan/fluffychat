@@ -7,8 +7,11 @@ import '../../enum/time_span.dart';
 class TimeSpanMenuButton extends StatelessWidget {
   final TimeSpan value;
   final void Function(TimeSpan) onChange;
-  const TimeSpanMenuButton(
-      {super.key, required this.value, required this.onChange,});
+  const TimeSpanMenuButton({
+    super.key,
+    required this.value,
+    required this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {

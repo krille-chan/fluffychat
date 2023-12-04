@@ -83,8 +83,10 @@ Future<List<SpaceTeacher>> getReportTeachers(
 
   final List<Room> reportRoomParentSpaces = room.spaceParents
       .where((parentSpace) => parentSpace.roomId != null)
-      .map((parentSpace) =>
-          Matrix.of(context).client.getRoomById(parentSpace.roomId!),)
+      .map(
+        (parentSpace) =>
+            Matrix.of(context).client.getRoomById(parentSpace.roomId!),
+      )
       .where((parentSpace) => parentSpace != null)
       .cast<Room>()
       .toList();

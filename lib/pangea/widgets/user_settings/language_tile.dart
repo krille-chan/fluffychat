@@ -47,34 +47,39 @@ class LanguageTile extends StatelessWidget {
       //     ]),
       title: Text(L10n.of(context)!.myLanguages),
       subtitle: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            LanguageFlag(
-              language: sourceLanguage,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(sourceLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.sourceLanguage,),
-            const SizedBox(
-              width: 10,
-            ),
-            const Icon(Icons.arrow_right_alt_outlined, size: 20),
-            const SizedBox(
-              width: 10,
-            ),
-            LanguageFlag(
-              language: targetLanguage,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(targetLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.targetLanguage,),
-          ],),
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          LanguageFlag(
+            language: sourceLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            sourceLanguage?.getDisplayName(context) ??
+                L10n.of(context)!.sourceLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          const Icon(Icons.arrow_right_alt_outlined, size: 20),
+          const SizedBox(
+            width: 10,
+          ),
+          LanguageFlag(
+            language: targetLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            targetLanguage?.getDisplayName(context) ??
+                L10n.of(context)!.targetLanguage,
+          ),
+        ],
+      ),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () => pLanguageDialog(context, () {}),
     );

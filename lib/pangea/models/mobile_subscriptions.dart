@@ -157,17 +157,22 @@ class MobileSubscriptionInfo extends SubscriptionInfo {
       );
     }
 
-    final List<EntitlementInfo> activeEntitlements = info
-        .entitlements.all.entries
-        .where((MapEntry<String, EntitlementInfo> entry) =>
-            entry.value.expirationDate == null ||
-            DateTime.parse(entry.value.expirationDate!).isAfter(DateTime.now()),)
-        .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
-        .toList();
+    final List<EntitlementInfo> activeEntitlements =
+        info.entitlements.all.entries
+            .where(
+              (MapEntry<String, EntitlementInfo> entry) =>
+                  entry.value.expirationDate == null ||
+                  DateTime.parse(entry.value.expirationDate!)
+                      .isAfter(DateTime.now()),
+            )
+            .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
+            .toList();
 
     allEntitlements = info.entitlements.all.entries
-        .map((MapEntry<String, EntitlementInfo> entry) =>
-            entry.value.productIdentifier,)
+        .map(
+          (MapEntry<String, EntitlementInfo> entry) =>
+              entry.value.productIdentifier,
+        )
         .cast<String>()
         .toList();
 

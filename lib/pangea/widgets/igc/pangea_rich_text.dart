@@ -150,7 +150,8 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     if (repEvent.event?.eventId.contains("web") ?? false) {
       Sentry.addBreadcrumb(
-          Breadcrumb.fromJson({"repEvent.event": repEvent.event?.toJson()}),);
+        Breadcrumb.fromJson({"repEvent.event": repEvent.event?.toJson()}),
+      );
       Sentry.addBreadcrumb(
         Breadcrumb(
           message:
@@ -206,7 +207,9 @@ class PangeaRichTextState extends State<PangeaRichText> {
       ];
 
   List<TextSpan> textWithBotStyle(
-          RepresentationEvent repEvent, BuildContext context,) =>
+    RepresentationEvent repEvent,
+    BuildContext context,
+  ) =>
       [
         TextSpan(
           text: repEvent.text,
@@ -218,8 +221,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
       // !repEvent.botAuthored
       true
           ? widget.existingStyle
-          : BotStyle.text(context,
-              existingStyle: widget.existingStyle, setColor: false,);
+          : BotStyle.text(
+              context,
+              existingStyle: widget.existingStyle,
+              setColor: false,
+            );
 
   bool get areLanguagesSet =>
       userL2LangCode != null && userL2LangCode != LanguageKeys.unknownLanguage;
@@ -243,7 +249,9 @@ class PangeaRichTextState extends State<PangeaRichText> {
   }
 
   Future<void> onReplacementSelect(
-      PangeaMatch pangeaMatch, String replacement,) async {
+    PangeaMatch pangeaMatch,
+    String replacement,
+  ) async {
     debugPrint("PTODO implement onReplacementSelect");
   }
 

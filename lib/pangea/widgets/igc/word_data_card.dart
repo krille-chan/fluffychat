@@ -166,8 +166,9 @@ class WordDataCardView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CardHeader(
-                text: controller.widget.word,
-                botExpression: BotExpression.down,),
+              text: controller.widget.word,
+              botExpression: BotExpression.down,
+            ),
             if (controller.widget.choiceFeedback != null)
               Text(
                 controller.widget.choiceFeedback!,

@@ -11,8 +11,10 @@ import '../network/urls.dart';
 
 /// accepts ChatTopic and calls an API for a list of Lemma
 class TopicDataRepo {
-  static Future<ChatTopic> generate(String? accessToken,
-      {required TopicDataRequest request,}) async {
+  static Future<ChatTopic> generate(
+    String? accessToken, {
+    required TopicDataRequest request,
+  }) async {
     final Requests req = Requests(
       accessToken: accessToken,
       choreoApiKey: Environment.choreoApiKey,

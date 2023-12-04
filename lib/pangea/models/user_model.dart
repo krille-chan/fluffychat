@@ -66,9 +66,11 @@ class Profile {
 
   factory Profile.fromJson(Map<String, dynamic> json) {
     final l2 = LanguageModel.codeFromNameOrCode(
-        json[ModelKey.l2LanguageKey] ?? LanguageKeys.unknownLanguage,);
+      json[ModelKey.l2LanguageKey] ?? LanguageKeys.unknownLanguage,
+    );
     final l1 = LanguageModel.codeFromNameOrCode(
-        json[ModelKey.l1LanguageKey] ?? LanguageKeys.unknownLanguage,);
+      json[ModelKey.l1LanguageKey] ?? LanguageKeys.unknownLanguage,
+    );
 
     return Profile(
       // fullName: json[ModelKey.userFullName],

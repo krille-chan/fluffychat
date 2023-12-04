@@ -29,9 +29,11 @@ class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
           Icons.add,
         ),
       ),
-      trailing: Icon(controller.displayAddStudentOptions
-          ? Icons.keyboard_arrow_down_outlined
-          : Icons.keyboard_arrow_right_outlined,),
+      trailing: Icon(
+        controller.displayAddStudentOptions
+            ? Icons.keyboard_arrow_down_outlined
+            : Icons.keyboard_arrow_right_outlined,
+      ),
       onTap: controller.toggleAddStudentOptions,
     );
   }

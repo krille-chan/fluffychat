@@ -31,7 +31,9 @@ class PClassRepo {
   //Question for Lala: In this widget, controller, repo framework, where are
   // errors handled? How are they passed?
   static Future<ClassSettingsModel?> getClassByCode(
-      String classCode, String accessToken,) async {
+    String classCode,
+    String accessToken,
+  ) async {
     final Requests req =
         Requests(baseUrl: PApiUrls.baseAPI, accessToken: accessToken);
     final Response res =
@@ -49,8 +51,11 @@ class PClassRepo {
 
   static searchClass(String text) async {}
 
-  static sendEmailToJoinClass(List<ClassEmailInviteData> data, String roomId,
-      String teacherName,) async {}
+  static sendEmailToJoinClass(
+    List<ClassEmailInviteData> data,
+    String roomId,
+    String teacherName,
+  ) async {}
 
   static inviteAction(BuildContext context, String id, String roomId) async {}
 

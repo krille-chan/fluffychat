@@ -21,27 +21,32 @@ class StudentAnalyticsView extends StatelessWidget {
       type: AnalyticsEntryType.room,
       icon: Icons.chat_bubble_outline,
       items: chats
-          .map((c) => TabItem(
-                avatar: c.avatar,
-                displayName:
-                    c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-                id: c.id,
-              ),)
+          .map(
+            (c) => TabItem(
+              avatar: c.avatar,
+              displayName:
+                  c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              id: c.id,
+            ),
+          )
           .toList(),
       allowNavigateOnSelect: false,
     );
     final TabData classTabData = TabData(
-        type: AnalyticsEntryType.space,
-        icon: Icons.workspaces,
-        items: spaces
-            .map((c) => TabItem(
-                  avatar: c.avatar,
-                  displayName: c
-                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-                  id: c.id,
-                ),)
-            .toList(),
-        allowNavigateOnSelect: false,);
+      type: AnalyticsEntryType.space,
+      icon: Icons.workspaces,
+      items: spaces
+          .map(
+            (c) => TabItem(
+              avatar: c.avatar,
+              displayName:
+                  c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              id: c.id,
+            ),
+          )
+          .toList(),
+      allowNavigateOnSelect: false,
+    );
 
     return controller.userId != null
         ? BaseAnalyticsPage(
@@ -49,14 +54,16 @@ class StudentAnalyticsView extends StatelessWidget {
             tabData1: chatTabData,
             tabData2: classTabData,
             defaultAnalyticsSelected: AnalyticsSelected(
-                controller.userId!,
-                AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses,),
+              controller.userId!,
+              AnalyticsEntryType.student,
+              L10n.of(context)!.allChatsAndClasses,
+            ),
             refreshData: controller.getClassAndChatAnalytics,
             alwaysSelected: AnalyticsSelected(
-                controller.userId!,
-                AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses,),
+              controller.userId!,
+              AnalyticsEntryType.student,
+              L10n.of(context)!.allChatsAndClasses,
+            ),
           )
         : const SizedBox();
   }

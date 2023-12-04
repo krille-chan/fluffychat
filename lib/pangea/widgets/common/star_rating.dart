@@ -8,12 +8,13 @@ class StarRating extends StatelessWidget {
   final RatingChangeCallback? onRatingChanged;
   final Color color;
 
-  const StarRating(
-      {super.key,
-      this.starCount = 5,
-      this.rating = 0,
-      this.onRatingChanged,
-      required this.color,});
+  const StarRating({
+    super.key,
+    this.starCount = 5,
+    this.rating = 0,
+    this.onRatingChanged,
+    required this.color,
+  });
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
@@ -48,8 +49,8 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-        mainAxisSize: MainAxisSize.min,
-        children:
-            List.generate(starCount, (index) => buildStar(context, index)),);
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(starCount, (index) => buildStar(context, index)),
+    );
   }
 }

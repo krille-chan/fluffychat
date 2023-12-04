@@ -22,12 +22,14 @@ class WordController extends BaseController {
     required String? userL1,
     required String? userL2,
   }) =>
-      _wordData.firstWhereOrNull((e) => e.isMatch(
-            w: word,
-            f: fullText,
-            l1: userL1,
-            l2: userL2,
-          ),);
+      _wordData.firstWhereOrNull(
+        (e) => e.isMatch(
+          w: word,
+          f: fullText,
+          l1: userL1,
+          l2: userL2,
+        ),
+      );
 
   Future<WordData> getWordDataGlobal({
     required String word,

@@ -33,11 +33,13 @@ class ClassAnalyticsView extends StatelessWidget {
       type: AnalyticsEntryType.student,
       icon: Icons.people_outline,
       items: controller.students
-          .map((s) => TabItem(
-                avatar: s.avatarUrl,
-                displayName: s.displayName ?? "unknown",
-                id: s.id,
-              ),)
+          .map(
+            (s) => TabItem(
+              avatar: s.avatarUrl,
+              displayName: s.displayName ?? "unknown",
+              id: s.id,
+            ),
+          )
           .toList(),
     );
 

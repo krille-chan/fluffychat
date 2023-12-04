@@ -53,7 +53,9 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   bool isSelected(String chatOrStudentId) => chatOrStudentId == selected?.id;
 
   ChartAnalyticsModel? chartData(
-      BuildContext context, AnalyticsSelected? selectedParam,) {
+    BuildContext context,
+    AnalyticsSelected? selectedParam,
+  ) {
     final AnalyticsSelected analyticsSelected =
         selectedParam ?? widget.defaultAnalyticsSelected;
 
@@ -161,9 +163,10 @@ class BaseAnalyticsView extends StatelessWidget {
         title: Text(
           controller.widget.pageTitle,
           style: TextStyle(
-              color: Theme.of(context).textTheme.bodyLarge!.color,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,),
+            color: Theme.of(context).textTheme.bodyLarge!.color,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
           overflow: TextOverflow.clip,
           textAlign: TextAlign.center,
         ),
@@ -230,39 +233,35 @@ class BaseAnalyticsView extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: SizedBox(
                           height: max(
-                                  controller.widget.tabData1.items.length + 1,
-                                  controller.widget.tabData2.items.length,) *
+                                controller.widget.tabData1.items.length + 1,
+                                controller.widget.tabData2.items.length,
+                              ) *
                               72,
                           child: TabBarView(
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  ...controller.widget.tabData1.items
-                                      .map(
-                                        (item) => AnalyticsListTile(
-                                          avatar: item.avatar,
-                                          model: controller.chartData(
-                                            context,
-                                            AnalyticsSelected(
-                                              item.id,
-                                              controller.widget.tabData1.type,
-                                              "",
-                                            ),
-                                          ),
-                                          displayName: item.displayName,
-                                          id: item.id,
-                                          type: controller.widget.tabData1.type,
-                                          selected:
-                                              controller.isSelected(item.id),
-                                          onTap: controller.toggleSelection,
-                                          allowNavigateOnSelect: controller
-                                              .widget
-                                              .tabData1
-                                              .allowNavigateOnSelect,
+                                  ...controller.widget.tabData1.items.map(
+                                    (item) => AnalyticsListTile(
+                                      avatar: item.avatar,
+                                      model: controller.chartData(
+                                        context,
+                                        AnalyticsSelected(
+                                          item.id,
+                                          controller.widget.tabData1.type,
+                                          "",
                                         ),
-                                      )
-                                      ,
+                                      ),
+                                      displayName: item.displayName,
+                                      id: item.id,
+                                      type: controller.widget.tabData1.type,
+                                      selected: controller.isSelected(item.id),
+                                      onTap: controller.toggleSelection,
+                                      allowNavigateOnSelect: controller.widget
+                                          .tabData1.allowNavigateOnSelect,
+                                    ),
+                                  ),
                                   if (controller.widget.defaultAnalyticsSelected
                                           .type ==
                                       AnalyticsEntryType.space)
@@ -282,8 +281,10 @@ class BaseAnalyticsView extends StatelessWidget {
                                       id: controller
                                           .widget.defaultAnalyticsSelected.id,
                                       type: AnalyticsEntryType.privateChats,
-                                      selected: controller.isSelected(controller
-                                          .widget.defaultAnalyticsSelected.id,),
+                                      selected: controller.isSelected(
+                                        controller
+                                            .widget.defaultAnalyticsSelected.id,
+                                      ),
                                       onTap: controller.toggleSelection,
                                       allowNavigateOnSelect: false,
                                     ),
@@ -337,11 +338,12 @@ class TabData {
   List<TabItem> items;
   bool allowNavigateOnSelect;
 
-  TabData(
-      {required this.type,
-      required this.items,
-      required this.icon,
-      this.allowNavigateOnSelect = true,});
+  TabData({
+    required this.type,
+    required this.items,
+    required this.icon,
+    this.allowNavigateOnSelect = true,
+  });
 }
 
 class TabItem {

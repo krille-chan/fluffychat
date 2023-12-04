@@ -77,7 +77,8 @@ class AlternativeTranslations extends StatelessWidget {
       // choices: controller.choreographer.altTranslator.translations,
       onPressed: (int index) {
         controller.choreographer.onSelectAlternativeTranslation(
-            controller.choreographer.altTranslator.translations[index],);
+          controller.choreographer.altTranslator.translations[index],
+        );
       },
       uniqueKeyForLayerLink: (int index) => "altTranslation$index",
       selectedChoiceIndex: null,

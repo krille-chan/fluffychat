@@ -17,27 +17,35 @@ extension PangeaClient on Client {
   List<Room> get classes => rooms.where((e) => e.isPangeaClass).toList();
 
   List<Room> get classesImTeaching => rooms
-      .where((e) =>
-          e.isPangeaClass &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,)
+      .where(
+        (e) =>
+            e.isPangeaClass &&
+            e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImTeaching => rooms
-      .where((e) =>
-          (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,)
+      .where(
+        (e) =>
+            (e.isPangeaClass || e.isExchange) &&
+            e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesImIn => rooms
-      .where((e) =>
-          e.isPangeaClass &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,)
+      .where(
+        (e) =>
+            e.isPangeaClass &&
+            e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImStudyingIn => rooms
-      .where((e) =>
-          (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,)
+      .where(
+        (e) =>
+            (e.isPangeaClass || e.isExchange) &&
+            e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImIn =>
@@ -100,8 +108,10 @@ extension PangeaClient on Client {
       debugger(when: kDebugMode);
       analyticsRoom
           .join()
-          .onError((error, stackTrace) =>
-              ErrorHandler.logError(e: error, s: stackTrace),)
+          .onError(
+            (error, stackTrace) =>
+                ErrorHandler.logError(e: error, s: stackTrace),
+          )
           .then((value) => analyticsRoom.postLoad());
       return analyticsRoom;
     }
