@@ -134,18 +134,40 @@ Future<bool> connectToInstagram(
                         }
                       } else if (result == "errorUsername") {
                         // Display a showDialog with an error message related to the identifier
-                        showErrorUsernameDialog(context);
+                        showCatchErrorDialog(
+                          context,
+                          L10n.of(context)!.usernameNotFound,
+                        );
                       } else if (result == "errorPassword") {
                         // Display a showDialog with an error message related to the password
-                        showErrorPasswordDialog(context);
+                        showCatchErrorDialog(
+                          context,
+                          L10n.of(context)!.passwordIncorrect,
+                        );
+                      } else if (result == "errorNameOrPassword") {
+                        // Display a showDialog with an error message related to the User/password error
+                        showCatchErrorDialog(
+                          context,
+                          L10n.of(context)!.err_usernameOrPassword,
+                        );
                       } else if (result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
-                        showRateLimitDialog(context);
+                        showCatchErrorDialog(
+                          context,
+                          L10n.of(context)!.rateLimit,
+                        );
                       } else if (result == "error") {
                         // Display a showDialog with an unknown error message
                         showCatchErrorDialog(
                           context,
                           L10n.of(context)!.err_tryAgain,
+                        );
+                      } else if (result == "alreadyConnected") {
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.err_alreadyConnected);
+                        Navigator.of(context).pop();
+                        completer.complete(
+                          true,
                         );
                       }
                     } catch (e) {
@@ -289,10 +311,12 @@ Future<bool> connectToWhatsApp(
                         //showQRCodeConnectPage(context, result!.qrCode!, result!.code!, botConnection,);
                       } else if (result?.result == "loginTimedOut") {
                         // Display a showDialog with an error message related to the password
-                        showErrorPasswordDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.passwordIncorrect);
                       } else if (result?.result == "rateLimitError") {
                         // Display a showDialog with an error message related to the rate limit
-                        showRateLimitDialog(context);
+                        showCatchErrorDialog(
+                            context, L10n.of(context)!.rateLimit);
                       }
                     } catch (e) {
                       Navigator.of(context).pop();
