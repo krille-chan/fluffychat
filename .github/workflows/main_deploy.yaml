@@ -27,8 +27,8 @@ jobs:
       - name: Build Website
         run: |
           mkdir public
-          mv .env public/.env
           mv build/ public
+          mv .env public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
