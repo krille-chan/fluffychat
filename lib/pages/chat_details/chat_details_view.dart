@@ -1,12 +1,4 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 // Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
@@ -29,6 +21,12 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -553,13 +551,18 @@ class ChatDetailsView extends StatelessWidget {
                                 Icons.lock_outlined,
                               ),
                             ),
-                            value: room.locked,
+                            value: room.locked ?? false,
                             onChanged: (value) => showFutureLoadingDialog(
                               context: context,
-                              future: () => toggleLockRoom(
-                                room,
-                                Matrix.of(context).client,
-                              ),
+                              future: () => value
+                                  ? lockRoom(
+                                      room,
+                                      Matrix.of(context).client,
+                                    )
+                                  : unlockRoom(
+                                      room,
+                                      Matrix.of(context).client,
+                                    ),
                             ),
                           ),
                         const Divider(height: 1),

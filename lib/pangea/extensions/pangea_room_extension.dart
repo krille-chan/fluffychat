@@ -2,15 +2,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/space_child.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 // Project imports:
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -19,6 +10,14 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+// Package imports:
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/space_child.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../constants/pangea_event_types.dart';
 import '../enum/construct_type_enum.dart';
@@ -756,8 +755,7 @@ extension PangeaRoom on Room {
       }
       final toAdd = [
         ...getParticipants([Membership.invite, Membership.join])
-            .map((e) => e.id)
-            .toList(),
+            .map((e) => e.id),
         BotName.byEnvironment,
       ];
       for (final teacher in await client.myTeachers) {
@@ -920,29 +918,20 @@ extension PangeaRoom on Room {
     );
   }
 
-  bool get locked {
-    final Event? powerLevels = getState(EventTypes.RoomPowerLevels);
-    if (powerLevels == null) {
-      return false;
-    }
-    final Map<String, dynamic> powerLevelsContent = Map<String, dynamic>.from(
-      powerLevels.content,
-    );
+  int? get eventsDefaultPowerLevel => getState(EventTypes.RoomPowerLevels)
+      ?.content
+      .tryGet<int>('events_default');
 
+  bool? get locked {
+    if (isDirectChat) return false;
     if (!isSpace) {
-      return powerLevelsContent['events_default'] != null &&
-          powerLevelsContent['events_default'] >= 100;
+      if (eventsDefaultPowerLevel == null) return null;
+      return eventsDefaultPowerLevel! >= ClassDefaultValues.powerLevelOfAdmin;
     }
-
-    final List<Room?> children = spaceChildren
-        .map(
-          (child) =>
-              child.roomId != null ? client.getRoomById(child.roomId!) : null,
-        )
-        .toList();
-
-    for (final Room? child in children) {
-      if (child != null && !child.locked) {
+    for (final child in spaceChildren) {
+      if (child.roomId == null) continue;
+      final Room? room = client.getRoomById(child.roomId!);
+      if (room?.locked == false && (room?.canChangePowerLevel ?? false)) {
         return false;
       }
     }
