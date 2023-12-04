@@ -86,20 +86,6 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           "${L10n.of(context)!.err_toConnect} ${L10n.of(context)!.instagram}",
         );
       }
-    } on TimeoutException {
-      // To indicate that the time-out error has occurred
-      if (mounted) {
-        timeoutErrorOccurred = true;
-      }
-    } catch (error) {
-      print("Error pinging Instagram: $error");
-      await Future.delayed(
-        const Duration(seconds: 1),
-      ); // Precaution to let the page load
-      if (mounted && !timeoutErrorOccurred) {
-        showCatchErrorDialog(
-            context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
-      }
     });
   }
 
