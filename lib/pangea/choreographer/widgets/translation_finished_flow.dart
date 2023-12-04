@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import '../../utils/bot_style.dart';
 import '../../utils/error_handler.dart';
 import '../controllers/it_controller.dart';

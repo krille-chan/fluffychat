@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../enum/use_type.dart';
 

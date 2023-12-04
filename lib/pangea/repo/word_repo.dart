@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import '../constants/model_keys.dart';
 import '../models/word_data_model.dart';

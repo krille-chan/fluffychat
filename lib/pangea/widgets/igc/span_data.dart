@@ -4,10 +4,8 @@
 // SpanChoice of text in message from options
 // Call to server for additional/followup info
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../../enum/span_choice_type.dart';
 import '../../enum/span_data_type.dart';
 

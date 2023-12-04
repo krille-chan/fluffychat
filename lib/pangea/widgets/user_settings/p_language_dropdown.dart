@@ -1,8 +1,8 @@
 // Flutter imports:
-// Project imports:
-import 'package:fluffychat/pangea/models/language_model.dart';
+
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/models/language_model.dart';
 import '../../widgets/flag.dart';
 
 class PLanguageDropdown extends StatefulWidget {

@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';

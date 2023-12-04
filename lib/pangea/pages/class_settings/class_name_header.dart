@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/visibility.dart' as visible;
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 

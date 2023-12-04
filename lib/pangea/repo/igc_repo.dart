@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';

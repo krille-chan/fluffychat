@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import '../../controllers/pangea_controller.dart';
 import '../controllers/error_service.dart';
 

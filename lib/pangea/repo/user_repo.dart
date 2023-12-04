@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../../widgets/matrix.dart';
 import '../models/user_model.dart';

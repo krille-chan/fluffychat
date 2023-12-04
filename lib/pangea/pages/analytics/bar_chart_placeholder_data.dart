@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:fl_chart/fl_chart.dart';
 
-// Project imports:
 import '../../enum/use_type.dart';
 
 class BarChartPlaceHolderData {

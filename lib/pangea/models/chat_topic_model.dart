@@ -1,4 +1,3 @@
-// Project imports:
 import 'lemma.dart';
 
 class ChatTopic {

@@ -1,7 +1,5 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyShared {

@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/word_cloud/word_cloud_data.dart';
 import 'package:fluffychat/pangea/word_cloud/word_cloud_setting.dart';
 import 'package:fluffychat/pangea/word_cloud/word_cloud_shape.dart';

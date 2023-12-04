@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';

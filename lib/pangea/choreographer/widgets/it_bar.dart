@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';

@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 enum BotExpression { surprised, right, addled, left, down, shocked }

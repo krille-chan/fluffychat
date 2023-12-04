@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import '../../../widgets/layouts/max_width_body.dart';

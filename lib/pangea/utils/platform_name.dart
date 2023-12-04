@@ -1,7 +1,5 @@
-// Dart imports:
 import 'dart:io' show Platform;
 
-// Flutter imports:
 import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
 
 class MyPlatformName {

@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';

@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/pages/class_settings/class_settings_page.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/space/class_settings.dart';

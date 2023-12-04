@@ -1,4 +1,3 @@
-// Project imports:
 import '../constants/model_keys.dart';
 
 class SystemChoiceRequestModel {

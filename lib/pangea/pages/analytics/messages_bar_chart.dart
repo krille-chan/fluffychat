@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/pages/analytics/bar_chart_placeholder_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../../enum/time_span.dart';

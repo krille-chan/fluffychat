@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Project imports:
 import '../../utils/platform_infos.dart';
 
 class Environment {

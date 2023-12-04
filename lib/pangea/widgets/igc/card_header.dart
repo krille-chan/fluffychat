@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import '../../../widgets/matrix.dart';
 import '../../utils/bot_style.dart';

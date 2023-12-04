@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:developer';
 import 'dart:ui';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';

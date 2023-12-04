@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 
 class CustomInputRequestModel {

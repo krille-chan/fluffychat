@@ -1,12 +1,9 @@
 //Question for Jordan - is this for an individual token or could it be a span?
 
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import '../config/environment.dart';
 import '../constants/model_keys.dart';
 import '../network/requests.dart';

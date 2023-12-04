@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import '../constants/model_keys.dart';
 import '../utils/error_handler.dart';
 import 'lemma.dart';

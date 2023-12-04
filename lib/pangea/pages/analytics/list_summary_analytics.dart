@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import '../../enum/use_type.dart';
 

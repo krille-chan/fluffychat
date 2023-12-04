@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:video_player/video_player.dart';
 
-// Project imports:
 import 'add_story.dart';
 
 class AddStoryView extends StatelessWidget {

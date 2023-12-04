@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:get_storage/get_storage.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 
 class PLocalStore {

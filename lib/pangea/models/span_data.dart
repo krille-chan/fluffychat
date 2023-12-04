@@ -4,13 +4,10 @@
 // SpanChoice of text in message from options
 // Call to server for additional/followup info
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../enum/span_choice_type.dart';
 import '../enum/span_data_type.dart';
 

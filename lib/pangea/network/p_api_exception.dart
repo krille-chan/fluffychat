@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Project imports:
 import '../utils/p_toast.dart';
 
 class ApiException {

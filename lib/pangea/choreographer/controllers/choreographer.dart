@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';

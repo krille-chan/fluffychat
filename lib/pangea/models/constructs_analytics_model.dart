@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../enum/construct_type_enum.dart';
 

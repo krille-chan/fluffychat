@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/pages/analytics/class_list/class_list_view.dart';
 import '../../../../widgets/matrix.dart';

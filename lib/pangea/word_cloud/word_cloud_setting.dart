@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/word_cloud/word_cloud_shape.dart';
 
 class WordCloudSetting {

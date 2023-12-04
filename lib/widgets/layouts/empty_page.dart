@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 
 class EmptyPage extends StatelessWidget {

@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:intl/intl.dart';
 
 class ClassAnalyticsModel {

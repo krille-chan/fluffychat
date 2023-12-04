@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_svg/flutter_svg.dart';
 
-// Project imports:
 import '../../../config/app_config.dart';
 import '../common/pangea_logo_svg.dart';
 

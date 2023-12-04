@@ -1,12 +1,9 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import '../enum/vocab_proficiency_enum.dart';
 

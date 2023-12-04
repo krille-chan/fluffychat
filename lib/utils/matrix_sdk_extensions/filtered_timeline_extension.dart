@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import '../../config/app_config.dart';
 
 extension IsStateExtension on Event {

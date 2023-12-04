@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/widgets/avatar.dart';
 import '../models/language_model.dart';
 

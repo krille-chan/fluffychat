@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import '../../../utils/url_launcher.dart';
 import '../../../widgets/avatar.dart';
 

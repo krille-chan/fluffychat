@@ -1,6 +1,5 @@
 //TODO move baseAPI addition to request function
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 
 /// autodocs
