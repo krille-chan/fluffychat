@@ -1,0 +1,101 @@
+name: Release Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - pangea-merge
+
+concurrency:
+  group: release_workflow
+  cancel-in-progress: true
+
+jobs:
+  build_staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v2
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - run: echo "$WEB_APP_ENV" > .env
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Prepare web
+        run: ./scripts/prepare-web.sh
+
+      - name: Build web
+        run: ./scripts/build-web.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: web-artifact
+          path: ./build/web
+ 
+  deploy_staging:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    needs: build_staging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ AWS_DEFAULT_REGION }}
+
+  build_staging:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - run: echo "$WEB_APP_ENV" > .env
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Prepare web
+        run: ./scripts/prepare-web.sh
+
+      - name: Build web
+        run: ./scripts/build-web.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: web-artifact
+          path: ./build/web
+
+  artifacts:
+    paths:
+      - ./build/web
+
+  deploy_staging:
+    environment: production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    needs: build_staging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ AWS_DEFAULT_REGION }}
