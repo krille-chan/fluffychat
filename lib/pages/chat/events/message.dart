@@ -66,7 +66,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.onInverseSurface;
+    var color = Theme.of(context).colorScheme.surfaceVariant;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -294,9 +294,7 @@ class Message extends StatelessWidget {
           if (displayTime || selected)
             Padding(
               padding: displayTime
-                  ? const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                    )
+                  ? const EdgeInsets.symmetric(vertical: 8.0)
                   : EdgeInsets.zero,
               child: Center(
                 child: Material(
@@ -368,30 +366,32 @@ class Message extends StatelessWidget {
       container = Opacity(opacity: 0.4, child: container);
     }
 
-    return Swipeable(
-      key: ValueKey(event.eventId),
-      background: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.0),
-        child: Center(
-          child: Icon(Icons.check_outlined),
+    return Center(
+      child: Swipeable(
+        key: ValueKey(event.eventId),
+        background: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          child: Center(
+            child: Icon(Icons.check_outlined),
+          ),
         ),
-      ),
-      direction: SwipeDirection.endToStart,
-      onSwipe: (_) => onSwipe(),
-      child: InkWell(
-        onTap: () => onSelect(event),
-        child: Container(
-          color: selected
-              ? Theme.of(context).primaryColor.withAlpha(100)
-              : Theme.of(context).primaryColor.withAlpha(0),
-          constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.columnWidth * 2.5,
+        direction: SwipeDirection.endToStart,
+        onSwipe: (_) => onSwipe(),
+        child: InkWell(
+          onTap: () => onSelect(event),
+          child: Container(
+            color: selected
+                ? Theme.of(context).primaryColor.withAlpha(100)
+                : Theme.of(context).primaryColor.withAlpha(0),
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.columnWidth * 2.5,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0,
+            ),
+            child: container,
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 4.0,
-          ),
-          child: container,
         ),
       ),
     );

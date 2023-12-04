@@ -93,6 +93,7 @@ class UserBottomSheetView extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: IconButton(
                   icon: const Icon(Icons.block_outlined),
+                  tooltip: L10n.of(context)!.block,
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.ignore),
                 ),

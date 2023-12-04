@@ -237,7 +237,10 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         widget.outerContext.go('/rooms/$roomId');
         break;
       case UserBottomSheetAction.ignore:
-        context.go('/rooms/settings/security/ignorelist');
+        Navigator.of(context).pop();
+        final userId = user?.id ?? widget.profile?.userId;
+        widget.outerContext
+            .go('/rooms/settings/security/ignorelist', extra: userId);
     }
   }
 

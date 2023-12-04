@@ -2676,5 +2676,11 @@
   "groupName": "أسم المجموعة",
   "@groupName": {},
   "searchChatsRooms": "ابحث عن #الدردشات، @المستخدمين...",
-  "@searchChatsRooms": {}
+  "@searchChatsRooms": {},
+  "startConversation": "بدء محادثة",
+  "@startConversation": {},
+  "commandHint_sendraw": "إرسال جيسون الخام",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "عذرًا... لا يبدو أن هذا هو مفتاح الاسترداد الصحيح.",
+  "@wrongRecoveryKey": {}
 }

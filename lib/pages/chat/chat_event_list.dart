@@ -24,11 +24,15 @@ class ChatEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
+    final events = controller.timeline!.events
+        .where((event) => event.isVisibleInGui)
+        .toList();
+
     // create a map of eventId --> index to greatly improve performance of
     // ListView's findChildIndexCallback
     final thisEventsKeyMap = <String, int>{};
-    for (var i = 0; i < controller.timeline!.events.length; i++) {
-      thisEventsKeyMap[controller.timeline!.events[i].eventId] = i;
+    for (var i = 0; i < events.length; i++) {
+      thisEventsKeyMap[events[i].eventId] = i;
     }
 
     return SelectionArea(
@@ -71,7 +75,7 @@ class ChatEventList extends StatelessWidget {
             }
 
             // Request history button or progress indicator:
-            if (i == controller.timeline!.events.length + 1) {
+            if (i == events.length + 1) {
               if (controller.timeline!.isRequestingHistory) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
@@ -87,46 +91,43 @@ class ChatEventList extends StatelessWidget {
               }
               return const SizedBox.shrink();
             }
+            i--;
 
             // The message at this index:
-            final event = controller.timeline!.events[i - 1];
+            final event = events[i];
 
             return AutoScrollTag(
               key: ValueKey(event.eventId),
-              index: i - 1,
+              index: i,
               controller: controller.scrollController,
-              child: event.isVisibleInGui
-                  ? Message(
-                      event,
-                      onSwipe: () => controller.replyAction(replyTo: event),
-                      onInfoTab: controller.showEventInfo,
-                      onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                        context: context,
-                        builder: (c) => UserBottomSheet(
-                          user: event.senderFromMemoryOrFallback,
-                          outerContext: context,
-                          onMention: () => controller.sendController.text +=
-                              '${event.senderFromMemoryOrFallback.mention} ',
-                        ),
-                      ),
-                      onSelect: controller.onSelectMessage,
-                      scrollToEventId: (String eventId) =>
-                          controller.scrollToEventId(eventId),
-                      longPressSelect: controller.selectedEvents.isNotEmpty,
-                      selected: controller.selectedEvents
-                          .any((e) => e.eventId == event.eventId),
-                      timeline: controller.timeline!,
-                      displayReadMarker:
-                          controller.readMarkerEventId == event.eventId &&
-                              controller.timeline?.allowNewEvent == false,
-                      nextEvent: i < controller.timeline!.events.length
-                          ? controller.timeline!.events[i]
-                          : null,
-                    )
-                  : const SizedBox.shrink(),
+              child: Message(
+                event,
+                onSwipe: () => controller.replyAction(replyTo: event),
+                onInfoTab: controller.showEventInfo,
+                onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                  context: context,
+                  builder: (c) => UserBottomSheet(
+                    user: event.senderFromMemoryOrFallback,
+                    outerContext: context,
+                    onMention: () => controller.sendController.text +=
+                        '${event.senderFromMemoryOrFallback.mention} ',
+                  ),
+                ),
+                onSelect: controller.onSelectMessage,
+                scrollToEventId: (String eventId) =>
+                    controller.scrollToEventId(eventId),
+                longPressSelect: controller.selectedEvents.isNotEmpty,
+                selected: controller.selectedEvents
+                    .any((e) => e.eventId == event.eventId),
+                timeline: controller.timeline!,
+                displayReadMarker:
+                    controller.readMarkerEventId == event.eventId &&
+                        controller.timeline?.allowNewEvent == false,
+                nextEvent: i + 1 < events.length ? events[i + 1] : null,
+              ),
             );
           },
-          childCount: controller.timeline!.events.length + 2,
+          childCount: events.length + 2,
           findChildIndexCallback: (key) =>
               controller.findChildIndexCallback(key, thisEventsKeyMap),
         ),

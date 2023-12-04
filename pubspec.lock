@@ -644,10 +644,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_openssl_crypto
-      sha256: f2b0612c7a7f55d2000b5a5c5a6fbd57217ceb1bf6016f819c5908637a494a0f
+      sha256: "6dcecf6f7c1804ae6f5d73ee05df8af72ea8133bf2447d25979d739503186c96"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1161,10 +1161,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "4c94857b53674067b7aeb39723220ee7834128ffde3d54f8185c73a6784bc919"
+      sha256: "155673171920dceb224bd209f51a3e41fc5c015f55ec780c9d95e54eb84ba582"
       url: "https://pub.dev"
     source: hosted
-    version: "0.23.0"
+    version: "0.24.0"
   matrix_api_lite:
     dependency: transitive
     description:
