@@ -9,7 +9,7 @@ import '../extensions/pangea_room_extension.dart';
 
 class ClassChatPowerLevels {
   static Future<Map<String, dynamic>> powerLevelOverrideForClassChat(
-      BuildContext context, List<Room> spaceParents) async {
+      BuildContext context, List<Room> spaceParents,) async {
     final Client client = Matrix.of(context).client;
     final Map<String, dynamic> powerLevelOverride = {};
     powerLevelOverride['events'] = {

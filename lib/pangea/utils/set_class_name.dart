@@ -13,7 +13,7 @@ void setClassDisplayname(BuildContext context, String? roomId) async {
     MatrixLocals(
       L10n.of(context)!,
     ),
-  ));
+  ),);
 
   showDialog(
     context: context,
@@ -44,7 +44,7 @@ void setClassDisplayname(BuildContext context, String? roomId) async {
             );
             if (success.error == null) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(L10n.of(context)!.displaynameHasBeenChanged)));
+                  content: Text(L10n.of(context)!.displaynameHasBeenChanged),),);
               Navigator.of(context).pop();
             }
           },

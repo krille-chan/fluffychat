@@ -19,10 +19,10 @@ class PangeaSsoButton extends StatelessWidget {
   final IdentityProvider identityProvider;
   final void Function()? onPressed;
   const PangeaSsoButton({
-    Key? key,
+    super.key,
     required this.identityProvider,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   ButtonInfo getButtonInfo(BuildContext context) {
     switch (identityProvider.id) {

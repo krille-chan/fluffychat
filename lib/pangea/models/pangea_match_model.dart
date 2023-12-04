@@ -70,7 +70,7 @@ class PangeaMatch {
   bool get needsTranslation => match.rule?.id != null
       ? [
           MatchRuleIds.tokenNeedsTranslation,
-          MatchRuleIds.tokenSpanNeedsTranslation
+          MatchRuleIds.tokenSpanNeedsTranslation,
         ].contains(match.rule!.id)
       : false;
 
@@ -81,7 +81,7 @@ class PangeaMatch {
   Map<String, dynamic> toJson() => {
         _matchKey: match.toJson(),
         // _detectionsKey: detections.map((e) => e.toJson()).toList(),
-        _statusKey: _statusEnumToString(status)
+        _statusKey: _statusEnumToString(status),
       };
 
   String get matchContent {
@@ -99,7 +99,7 @@ class PangeaMatch {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
           m: "match.offset + match.length > match.fullText.length",
-          data: match.toJson());
+          data: match.toJson(),);
     } else {
       end = match.offset + match.length;
     }

@@ -12,7 +12,7 @@ import '../network/urls.dart';
 
 class SpanDataRepo {
   static Future<SpanDetailsRepoReqAndRes> getSpanDetails(String? accessToken,
-      {required SpanDetailsRepoReqAndRes request}) async {
+      {required SpanDetailsRepoReqAndRes request,}) async {
     final Requests req = Requests(
       accessToken: accessToken,
       choreoApiKey: Environment.choreoApiKey,

@@ -6,7 +6,6 @@
 
 import 'package:collection/collection.dart';
 
-import '../../enum/span_choice_type.dart';
 import '../../enum/span_data_type.dart';
 
 class SpanData {
@@ -40,11 +39,11 @@ class SpanData {
       shortMessage: json['shortMessage'],
       choices: json['choices'] != null
           ? List<SpanChoice>.from(
-              json['choices'].map((x) => SpanChoice.fromJson(x)))
+              json['choices'].map((x) => SpanChoice.fromJson(x)),)
           : null,
       replacements: json['replacements'] != null
           ? List<Replacement>.from(
-              json['replacements'].map((x) => Replacement.fromJson(x)))
+              json['replacements'].map((x) => Replacement.fromJson(x)),)
           : null,
       offset: json['offset'],
       length: json['length'],
@@ -52,7 +51,7 @@ class SpanData {
       context:
           json['context'] != null ? Context.fromJson(json['context']) : null,
       type: SpanDataTypeEnum.values.firstWhereOrNull(
-              (e) => e.toString() == 'SpanDataTypeEnum.${json['type']}') ??
+              (e) => e.toString() == 'SpanDataTypeEnum.${json['type']}',) ??
           SpanDataTypeEnum.correction,
       rule: json['rule'] != null ? Rule.fromJson(json['rule']) : null,
     );

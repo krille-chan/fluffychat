@@ -4,11 +4,11 @@ enum BotExpression { surprised, right, addled, left, down, shocked }
 
 class BotFace extends StatelessWidget {
   const BotFace({
-    Key? key,
+    super.key,
     required this.width,
     required this.expression,
     this.forceColor,
-  }) : super(key: key);
+  });
 
   final double width;
   final Color? forceColor;

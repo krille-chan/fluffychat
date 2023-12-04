@@ -7,9 +7,9 @@ import '../../../pages/chat/chat.dart';
 
 class LanguageDisplayToggle extends StatelessWidget {
   const LanguageDisplayToggle({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ChatController controller;
 

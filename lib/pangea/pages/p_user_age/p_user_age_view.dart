@@ -8,7 +8,7 @@ import '../../../widgets/layouts/login_scaffold.dart';
 
 class PUserAgeView extends StatelessWidget {
   final PUserAgeController controller;
-  const PUserAgeView(this.controller, {Key? key}) : super(key: key);
+  const PUserAgeView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

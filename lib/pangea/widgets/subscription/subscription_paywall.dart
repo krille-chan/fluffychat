@@ -8,9 +8,9 @@ import 'package:fluffychat/pangea/widgets/subscription/subscription_options.dart
 class SubscriptionPaywall extends StatelessWidget {
   final PangeaController pangeaController;
   const SubscriptionPaywall({
-    Key? key,
+    super.key,
     required this.pangeaController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

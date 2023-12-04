@@ -23,7 +23,7 @@ import '../models/choreo_record.dart';
 enum DownloadType { txt, csv, xlsx }
 
 Future<void> downloadChat(Room room, ClassSettingsModel classSettings,
-    DownloadType type, Client client, BuildContext context) async {
+    DownloadType type, Client client, BuildContext context,) async {
   List<PangeaMessageEvent> allPangeaMessages;
 
   try {
@@ -43,7 +43,7 @@ Future<void> downloadChat(Room room, ClassSettingsModel classSettings,
   } catch (err) {
     ErrorHandler.logError(
       e: Exception(
-          "Failed to fetch messages for chat ${room.id} in while downloading chat"),
+          "Failed to fetch messages for chat ${room.id} in while downloading chat",),
       s: StackTrace.current,
     );
     ScaffoldMessenger.of(context).showSnackBar(
@@ -114,7 +114,7 @@ Future<List<Event>> getAllEvents(Room room, Client client) async {
 }
 
 List<PangeaMessageEvent> getPangeaMessageEvents(
-    List<Event> events, Timeline timeline, Room room, String? targetLang) {
+    List<Event> events, Timeline timeline, Room room, String? targetLang,) {
   final List<PangeaMessageEvent> allPangeaMessages = events
       .where(
         (Event event) =>
@@ -186,7 +186,7 @@ String mimetype(DownloadType fileType) {
 }
 
 Future<void> downloadFile(
-    contents, String filename, DownloadType fileType) async {
+    contents, String filename, DownloadType fileType,) async {
   if (kIsWeb) {
     final blob = webFile.Blob([contents], mimetype(fileType), 'native');
     webFile.AnchorElement(
@@ -228,7 +228,7 @@ Future<void> downloadFile(
 }
 
 String getTxtContent(List<PangeaMessageEvent> messages, BuildContext context,
-    String filename, Room room) {
+    String filename, Room room,) {
   String formattedInfo = "";
   for (final PangeaMessageEvent message in messages) {
     final String timestamp =
@@ -265,7 +265,7 @@ String getTxtContent(List<PangeaMessageEvent> messages, BuildContext context,
 }
 
 String getCSVContent(
-    List<PangeaMessageEvent> messages, BuildContext context, String fileName) {
+    List<PangeaMessageEvent> messages, BuildContext context, String fileName,) {
   final List<List<String>> csvData = [
     [
       L10n.of(context)!.sender,
@@ -291,7 +291,7 @@ String getCSVContent(
         originalMsg,
         sentMsg,
         L10n.of(context)!.notAvailable,
-        L10n.of(context)!.notAvailable
+        L10n.of(context)!.notAvailable,
       ]);
       continue;
     }
@@ -305,7 +305,7 @@ String getCSVContent(
       originalMsg,
       sentMsg,
       includedIT.toString(),
-      includedIGC.toString()
+      includedIGC.toString(),
     ]);
   }
   final String fileString = const ListToCsvConverter().convert(csvData);
@@ -313,7 +313,7 @@ String getCSVContent(
 }
 
 List<int> getExcelContent(
-    List<PangeaMessageEvent> messages, BuildContext context, String filename) {
+    List<PangeaMessageEvent> messages, BuildContext context, String filename,) {
   final Workbook workbook = Workbook();
   final Worksheet sheet = workbook.worksheets[0];
 

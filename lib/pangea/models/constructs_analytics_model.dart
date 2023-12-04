@@ -29,12 +29,12 @@ class ConstructUses {
     // try {
     debugger(
         when: kDebugMode &&
-            (json['uses'] == null || json[ModelKey.lemma] == null));
+            (json['uses'] == null || json[ModelKey.lemma] == null),);
     return ConstructUses(
       lemma: json[ModelKey.lemma],
       uses: (json['uses'] as Iterable)
           .map<OneConstructUse?>(
-              (use) => use != null ? OneConstructUse.fromJson(use) : null)
+              (use) => use != null ? OneConstructUse.fromJson(use) : null,)
           .where((element) => element != null)
           .cast<OneConstructUse>()
           .toList(),

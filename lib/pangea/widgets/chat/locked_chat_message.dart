@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/config/app_config.dart';
 
 class LockedChatMessage extends StatelessWidget {
-  const LockedChatMessage({Key? key}) : super(key: key);
+  const LockedChatMessage({super.key});
 
   @override
   Widget build(BuildContext context) {

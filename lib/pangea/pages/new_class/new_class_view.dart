@@ -15,7 +15,7 @@ class NewSpaceView extends StatelessWidget {
   final NewClassController controller;
   // Pangea#
 
-  const NewSpaceView(this.controller, {Key? key}) : super(key: key);
+  const NewSpaceView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

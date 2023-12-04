@@ -5,7 +5,7 @@ class ChoreoResponseModel {
   String? feedbackMessage;
   int? payloadId;
   ChoreoResponseModel(
-      {this.grammarData, this.detectedLang, this.route, this.feedbackMessage});
+      {this.grammarData, this.detectedLang, this.route, this.feedbackMessage,});
 
   ChoreoResponseModel.fromJson(Map<String, dynamic> json) {
     grammarData = json['grammar_data'] != null

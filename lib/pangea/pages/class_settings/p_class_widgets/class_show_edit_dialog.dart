@@ -18,7 +18,7 @@ void showEditFieldDialog(BuildContext context, String title) async {
         //  initialText: room.topic,
         minLines: 1,
         maxLines: 4,
-      )
+      ),
     ],
   );
   if (input == null) return;
@@ -29,6 +29,6 @@ void showEditFieldDialog(BuildContext context, String title) async {
   );
   if (success.error == null) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged)));
+        content: Text(L10n.of(context)!.groupDescriptionHasBeenChanged),),);
   }
 }

@@ -753,7 +753,7 @@ extension PangeaRoom on Room {
       final toAdd = [
         ...getParticipants([Membership.invite, Membership.join])
             .map((e) => e.id)
-            .toList(),
+            ,
         BotName.byEnvironment,
       ];
       for (final teacher in await client.myTeachers) {

@@ -43,10 +43,10 @@ class SubscriptionCard extends StatelessWidget {
   final PangeaController pangeaController;
 
   const SubscriptionCard({
-    Key? key,
+    super.key,
     required this.subscription,
     required this.pangeaController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class SubscriptionCard extends StatelessWidget {
                       .submitSubscriptionChange(subscription, context);
                 },
                 child: Text(L10n.of(context)!.subscribe),
-              )
+              ),
             ],
           ),
         ),

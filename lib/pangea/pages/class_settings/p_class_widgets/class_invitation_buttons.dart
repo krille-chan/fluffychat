@@ -16,8 +16,7 @@ import '../../../../widgets/avatar.dart';
 
 class ClassInvitationButtons extends StatelessWidget {
   final String roomId;
-  const ClassInvitationButtons({Key? key, required this.roomId})
-      : super(key: key);
+  const ClassInvitationButtons({super.key, required this.roomId});
 
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@ import 'class_list.dart';
 
 class AnalyticsClassListView extends StatelessWidget {
   final AnalyticsClassListController controller;
-  const AnalyticsClassListView(this.controller, {Key? key}) : super(key: key);
+  const AnalyticsClassListView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

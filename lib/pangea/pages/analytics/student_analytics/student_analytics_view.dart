@@ -9,7 +9,7 @@ import 'student_analytics.dart';
 
 class StudentAnalyticsView extends StatelessWidget {
   final StudentAnalyticsController controller;
-  const StudentAnalyticsView(this.controller, {Key? key}) : super(key: key);
+  const StudentAnalyticsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class StudentAnalyticsView extends StatelessWidget {
                 displayName:
                     c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
                 id: c.id,
-              ))
+              ),)
           .toList(),
       allowNavigateOnSelect: false,
     );
@@ -39,9 +39,9 @@ class StudentAnalyticsView extends StatelessWidget {
                   displayName: c
                       .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
                   id: c.id,
-                ))
+                ),)
             .toList(),
-        allowNavigateOnSelect: false);
+        allowNavigateOnSelect: false,);
 
     return controller.userId != null
         ? BaseAnalyticsPage(
@@ -51,12 +51,12 @@ class StudentAnalyticsView extends StatelessWidget {
             defaultAnalyticsSelected: AnalyticsSelected(
                 controller.userId!,
                 AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses),
+                L10n.of(context)!.allChatsAndClasses,),
             refreshData: controller.getClassAndChatAnalytics,
             alwaysSelected: AnalyticsSelected(
                 controller.userId!,
                 AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses),
+                L10n.of(context)!.allChatsAndClasses,),
           )
         : const SizedBox();
   }

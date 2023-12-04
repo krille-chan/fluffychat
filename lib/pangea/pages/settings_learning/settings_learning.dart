@@ -7,7 +7,7 @@ import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SettingsLearning extends StatefulWidget {
-  const SettingsLearning({Key? key}) : super(key: key);
+  const SettingsLearning({super.key});
 
   @override
   SettingsLearningController createState() => SettingsLearningController();

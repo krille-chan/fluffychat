@@ -8,8 +8,7 @@ class ChartViewPickerButton extends StatelessWidget {
   final BarChartViewSelection selected;
   final void Function(BarChartViewSelection) onChange;
   const ChartViewPickerButton(
-      {Key? key, required this.selected, required this.onChange})
-      : super(key: key);
+      {super.key, required this.selected, required this.onChange,});
 
   @override
   Widget build(BuildContext context) {

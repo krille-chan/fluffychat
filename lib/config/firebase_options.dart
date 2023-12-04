@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
       databaseURL: 'https://pangea-chat-936ee-default-rtdb.firebaseio.com',
       storageBucket: 'pangea-chat-936ee.appspot.com',
       androidClientId:
-          '545984292675-2amsnoan1mt6lec1fld1a7eagu6gej7o.apps.googleusercontent.com');
+          '545984292675-2amsnoan1mt6lec1fld1a7eagu6gej7o.apps.googleusercontent.com',);
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCl8QZd9_PnaqJY2zLHCwlsmSWdq7hnH-U',

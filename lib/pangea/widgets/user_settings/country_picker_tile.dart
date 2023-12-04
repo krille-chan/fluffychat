@@ -14,7 +14,7 @@ import '../../models/user_model.dart';
 class CountryPickerTile extends StatelessWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  CountryPickerTile({Key? key}) : super(key: key);
+  CountryPickerTile({super.key});
 
   @override
   Widget build(BuildContext context) {

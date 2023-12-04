@@ -36,7 +36,7 @@ class PangeaLanguage {
       }
       _langList.removeWhere((element) =>
           LanguageModel.codeFromNameOrCode(element.langCode) ==
-          LanguageKeys.unknownLanguage);
+          LanguageKeys.unknownLanguage,);
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
       _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
@@ -64,7 +64,7 @@ class PangeaLanguage {
 
   static Future<void> _saveFlags(List<LanguageModel> langFlags) async {
     final Map flagMap = {
-      PrefKey.flags: langFlags.map((e) => e.toJson()).toList()
+      PrefKey.flags: langFlags.map((e) => e.toJson()).toList(),
     };
     await MyShared.saveJson(PrefKey.flags, flagMap);
   }

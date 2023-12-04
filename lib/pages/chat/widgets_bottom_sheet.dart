@@ -9,7 +9,7 @@ import 'edit_widgets_dialog.dart';
 class WidgetsBottomSheet extends StatelessWidget {
   final Room room;
 
-  const WidgetsBottomSheet({Key? key, required this.room}) : super(key: key);
+  const WidgetsBottomSheet({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {

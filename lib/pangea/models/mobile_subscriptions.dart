@@ -161,13 +161,13 @@ class MobileSubscriptionInfo extends SubscriptionInfo {
         .entitlements.all.entries
         .where((MapEntry<String, EntitlementInfo> entry) =>
             entry.value.expirationDate == null ||
-            DateTime.parse(entry.value.expirationDate!).isAfter(DateTime.now()))
+            DateTime.parse(entry.value.expirationDate!).isAfter(DateTime.now()),)
         .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
         .toList();
 
     allEntitlements = info.entitlements.all.entries
         .map((MapEntry<String, EntitlementInfo> entry) =>
-            entry.value.productIdentifier)
+            entry.value.productIdentifier,)
         .cast<String>()
         .toList();
 

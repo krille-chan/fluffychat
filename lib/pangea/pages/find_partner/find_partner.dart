@@ -11,7 +11,7 @@ import '../../repo/user_repo.dart';
 import 'find_partner_view.dart';
 
 class FindPartner extends StatefulWidget {
-  const FindPartner({Key? key}) : super(key: key);
+  const FindPartner({super.key});
 
   @override
   State<FindPartner> createState() => FindPartnerController();

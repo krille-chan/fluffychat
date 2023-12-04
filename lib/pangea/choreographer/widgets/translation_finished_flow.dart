@@ -7,8 +7,7 @@ import 'choice_array.dart';
 
 class TranslationFeedback extends StatelessWidget {
   final ITController controller;
-  const TranslationFeedback({Key? key, required this.controller})
-      : super(key: key);
+  const TranslationFeedback({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +58,9 @@ class TranslationFeedback extends StatelessWidget {
 
 class AlternativeTranslations extends StatelessWidget {
   const AlternativeTranslations({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ITController controller;
 
@@ -73,12 +72,12 @@ class AlternativeTranslations extends StatelessWidget {
           controller.choreographer.altTranslator.loadingAlternativeTranslations,
       // choices: controller.choreographer.altTranslator.similarityResponse.scores
       choices: [
-        Choice(text: controller.choreographer.altTranslator.translations.first)
+        Choice(text: controller.choreographer.altTranslator.translations.first),
       ],
       // choices: controller.choreographer.altTranslator.translations,
       onPressed: (int index) {
         controller.choreographer.onSelectAlternativeTranslation(
-            controller.choreographer.altTranslator.translations[index]);
+            controller.choreographer.altTranslator.translations[index],);
       },
       uniqueKeyForLayerLink: (int index) => "altTranslation$index",
       selectedChoiceIndex: null,

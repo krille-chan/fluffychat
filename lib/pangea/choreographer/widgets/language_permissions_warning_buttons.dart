@@ -26,10 +26,10 @@ class LanguagePermissionsButtons extends StatelessWidget {
   final Choreographer choreographer;
 
   const LanguagePermissionsButtons({
-    Key? key,
+    super.key,
     required this.roomID,
     required this.choreographer,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

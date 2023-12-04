@@ -11,8 +11,7 @@ import '../../../widgets/layouts/max_width_body.dart';
 
 class ClassSettingsPageView extends StatelessWidget {
   final ClassSettingsController controller;
-  const ClassSettingsPageView({Key? key, required this.controller})
-      : super(key: key);
+  const ClassSettingsPageView({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

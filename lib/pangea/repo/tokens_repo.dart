@@ -56,7 +56,7 @@ class TokensRequestModel {
   Map<String, dynamic> toJson() => {
         ModelKey.fullText: fullText,
         ModelKey.userL1: userL1,
-        ModelKey.userL2: userL2
+        ModelKey.userL2: userL2,
       };
 }
 
@@ -76,5 +76,5 @@ class TokensResponseModel {
               )
               .toList()
               .cast<PangeaToken>(),
-          lang: json[ModelKey.lang]);
+          lang: json[ModelKey.lang],);
 }

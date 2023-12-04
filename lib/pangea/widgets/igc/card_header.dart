@@ -7,11 +7,11 @@ import '../common/bot_face_svg.dart';
 
 class CardHeader extends StatelessWidget {
   const CardHeader({
-    Key? key,
+    super.key,
     required this.text,
     required this.botExpression,
     this.onClose,
-  }) : super(key: key);
+  });
 
   final BotExpression botExpression;
   final String text;

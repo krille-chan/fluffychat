@@ -16,7 +16,7 @@ import '../base_analytics_page.dart';
 import 'student_analytics_view.dart';
 
 class StudentAnalyticsPage extends StatefulWidget {
-  const StudentAnalyticsPage({Key? key}) : super(key: key);
+  const StudentAnalyticsPage({super.key});
 
   @override
   State<StudentAnalyticsPage> createState() => StudentAnalyticsController();
@@ -31,7 +31,7 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   void initState() {
     _pangeaController.matrixState.client
         .updateMyLearningAnalyticsForAllClassesImIn(
-            _pangeaController.pStoreService);
+            _pangeaController.pStoreService,);
     super.initState();
   }
 

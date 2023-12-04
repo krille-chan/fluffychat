@@ -25,7 +25,7 @@ class TimeSeriesTotals {
         UseType.ta.string: ta,
         UseType.ga.string: ga,
         UseType.wa.string: wa,
-        UseType.un.string: un
+        UseType.un.string: un,
       };
 
   factory TimeSeriesTotals.fromJson(json) => TimeSeriesTotals(
@@ -77,7 +77,7 @@ class TimeSeriesInterval {
   Map<String, dynamic> toJson() => {
         "strt": start.toIso8601String(),
         "end": end.toIso8601String(),
-        "totals": totals.toJson()
+        "totals": totals.toJson(),
       };
 
   factory TimeSeriesInterval.fromJson(json) => TimeSeriesInterval(

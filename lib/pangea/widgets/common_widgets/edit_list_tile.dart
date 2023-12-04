@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/url_launcher.dart';
 import '../../../widgets/avatar.dart';
 
 class EditClassListTile extends StatefulWidget {
@@ -8,11 +7,10 @@ class EditClassListTile extends StatefulWidget {
   Function() onTap;
   String subtitle = "";
   EditClassListTile(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.onTap,
-      required this.subtitle})
-      : super(key: key);
+      required this.subtitle,});
 
   @override
   State<EditClassListTile> createState() => _EditClassListTileState();
@@ -32,7 +30,7 @@ class _EditClassListTileState extends State<EditClassListTile> {
       title: Text('${widget.title}:',
           style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
-              fontWeight: FontWeight.bold)),
+              fontWeight: FontWeight.bold,),),
       subtitle: Text(
         widget.subtitle,
         style: TextStyle(

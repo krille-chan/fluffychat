@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
@@ -20,7 +19,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Unauthorized access", success: false);
+            msg: "Exception: Unauthorized access", success: false,);
 
         return;
       case 403:
@@ -29,7 +28,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Don't have permissions!", success: false);
+            msg: "Exception: Don't have permissions!", success: false,);
         return;
       case 500:
         if (kDebugMode) {
@@ -37,7 +36,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Internal Server Error", success: false);
+            msg: "Exception: Internal Server Error", success: false,);
         return;
       case 502:
         if (kDebugMode) {
@@ -45,7 +44,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Bad Gateway", success: false);
+            msg: "Exception: Bad Gateway", success: false,);
 
         return;
       case 503:
@@ -54,7 +53,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Service Unavailable", success: false);
+            msg: "Exception: Service Unavailable", success: false,);
 
         return;
       case 504:
@@ -63,7 +62,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Exception: Gateway timeout error!", success: false);
+            msg: "Exception: Gateway timeout error!", success: false,);
 
         return;
       default:
@@ -72,7 +71,7 @@ class ApiException {
           debugPrint(statusCode.toString());
         }
         PToastController.toastMsg(
-            msg: "Unknown exception accrued!", success: false);
+            msg: "Unknown exception accrued!", success: false,);
         return;
     }
   }

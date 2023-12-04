@@ -15,7 +15,7 @@ class SubscriptionRepo {
   static final Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': 'Bearer ${Environment.rcKey}'
+    'Authorization': 'Bearer ${Environment.rcKey}',
   };
 
   static Future<SubscriptionAppIds?> getAppIds() async {
@@ -61,7 +61,7 @@ class SubscriptionRepo {
     final Map<String, String> stripeHeaders = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${Environment.rcStripeKey}'
+      'Authorization': 'Bearer ${Environment.rcStripeKey}',
     };
     final String url = "${PApiUrls.rcSubscribers}/$userId";
     final http.Response res = await http.get(
@@ -122,7 +122,7 @@ class RCProductsResponseModel {
               duration: metadata['$packageId.duration'],
               id: productDetails['product']['store_identifier'],
               appId: productDetails['product']['app_id'],
-            ))
+            ),)
         .toList()
         .cast<SubscriptionDetails>();
   }

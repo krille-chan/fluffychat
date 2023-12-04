@@ -10,10 +10,10 @@ class ClassNameHeader extends StatelessWidget {
   final Room room;
   final ChatDetailsController controller;
   const ClassNameHeader({
-    Key? key,
+    super.key,
     required this.room,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ClassNameHeader extends StatelessWidget {
       icon: room.nameAndRoomTypeIcon(TextStyle(
         fontSize: 20,
         color: Theme.of(context).textTheme.bodyLarge!.color,
-      )),
+      ),),
       // icon: Text(
       //   room.getLocalizedDisplayname(
       //     MatrixLocals(L10n.of(context)!),

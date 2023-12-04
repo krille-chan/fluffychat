@@ -10,7 +10,7 @@ import '../../enum/use_type.dart';
 class ListSummaryAnalytics extends StatelessWidget {
   final ChartAnalyticsModel? chartAnalytics;
 
-  const ListSummaryAnalytics({Key? key, this.chartAnalytics}) : super(key: key);
+  const ListSummaryAnalytics({super.key, this.chartAnalytics});
 
   TimeSeriesTotals? get totals => chartAnalytics?.totals;
 
@@ -63,7 +63,7 @@ class ListSummaryAnalytics extends StatelessWidget {
               Icons.chat_bubble,
               totals!.all,
               Theme.of(context).textTheme.bodyLarge!.color,
-              false),
+              false,),
           if (totals!.all != 0) ...[
             spacerIconText(
               l10n != null ? l10n.taTooltip : "With translation assistance",
@@ -93,7 +93,7 @@ class ListSummaryAnalytics extends StatelessWidget {
               totals!.unPercent,
               UseType.un.color(context),
             ),
-          ]
+          ],
         ],
       ),
     );

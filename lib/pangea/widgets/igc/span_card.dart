@@ -35,10 +35,10 @@ class SpanCard extends StatefulWidget {
   final String? roomId;
 
   SpanCard({
-    Key? key,
+    super.key,
     required this.scm,
     this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   State<SpanCard> createState() => SpanCardState();
@@ -95,8 +95,8 @@ class WordMatchContent extends StatelessWidget {
 
   WordMatchContent({
     required this.controller,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   Future<void> onChoiceSelect(int index) async {
     controller.selectedChoiceIndex = index;
@@ -187,7 +187,7 @@ class WordMatchContent extends StatelessWidget {
                                 ?.map((e) => Choice(
                                       text: e.value,
                                       color: e.selected ? e.type.color : null,
-                                    ))
+                                    ),)
                                 .toList(),
                         onPressed: onChoiceSelect,
                         uniqueKeyForLayerLink: (int index) => "wordMatch$index",
@@ -210,12 +210,12 @@ class WordMatchContent extends StatelessWidget {
                   child: TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          AppConfig.primaryColor.withOpacity(0.1)),
+                          AppConfig.primaryColor.withOpacity(0.1),),
                     ),
                     onPressed: () {
                       MatrixState.pAnyState.closeOverlay();
                       Future.delayed(Duration.zero,
-                          () => controller.widget.scm.onIgnore());
+                          () => controller.widget.scm.onIgnore(),);
                     },
                     child: Center(
                       child: Text(L10n.of(context)!.ignoreInThisText),
@@ -237,7 +237,7 @@ class WordMatchContent extends StatelessWidget {
                             (controller.selectedChoice != null
                                     ? controller.selectedChoice!.color
                                     : AppConfig.primaryColor)
-                                .withOpacity(0.2)),
+                                .withOpacity(0.2),),
                       ),
                       child: Text(L10n.of(context)!.replace),
                     ),
@@ -250,11 +250,11 @@ class WordMatchContent extends StatelessWidget {
                     onPressed: () {
                       MatrixState.pAnyState.closeOverlay();
                       Future.delayed(Duration.zero,
-                          () => controller.widget.scm.onITStart());
+                          () => controller.widget.scm.onITStart(),);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          (AppConfig.primaryColor).withOpacity(0.1)),
+                          (AppConfig.primaryColor).withOpacity(0.1),),
                     ),
                     child: Text(L10n.of(context)!.helpMeTranslate),
                   ),
@@ -313,7 +313,7 @@ class PromptAndFeedback extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      AppConfig.primaryColor.withOpacity(0.1)),
+                      AppConfig.primaryColor.withOpacity(0.1),),
                 ),
                 child: SizedBox(
                   width: 150, // set the width of the button contents here
@@ -335,7 +335,7 @@ class PromptAndFeedback extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
           ],
           if (!controller.fetchingData &&
               controller.selectedChoiceIndex == null)
@@ -352,8 +352,8 @@ class PromptAndFeedback extends StatelessWidget {
 
 class LoadingText extends StatefulWidget {
   const LoadingText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _LoadingTextState createState() => _LoadingTextState();
@@ -397,9 +397,9 @@ class _LoadingTextState extends State<LoadingText>
 
 class StartITButton extends StatelessWidget {
   const StartITButton({
-    Key? key,
+    super.key,
     required this.onITStart,
-  }) : super(key: key);
+  });
 
   final void Function() onITStart;
 

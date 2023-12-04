@@ -14,7 +14,7 @@ import 'list_summary_analytics.dart';
 
 class AnalyticsListTile extends StatelessWidget {
   const AnalyticsListTile({
-    Key? key,
+    super.key,
     required this.model,
     required this.displayName,
     required this.avatar,
@@ -23,7 +23,7 @@ class AnalyticsListTile extends StatelessWidget {
     required this.selected,
     required this.onTap,
     required this.allowNavigateOnSelect,
-  }) : super(key: key);
+  });
 
   final Uri? avatar;
   final String displayName;

@@ -13,7 +13,7 @@ class PQuestionContainer extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle().copyWith(
-            color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 14),
+            color: Theme.of(context).textTheme.bodyLarge!.color, fontSize: 14,),
         overflow: TextOverflow.clip,
         textAlign: TextAlign.left,
       ),

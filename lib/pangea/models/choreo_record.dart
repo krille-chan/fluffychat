@@ -68,7 +68,7 @@ class ChoreoRecord {
       throw Exception("match and step should not both be defined");
     }
     choreoSteps.add(ChoreoRecordStep(
-        text: text, acceptedOrIgnoredMatch: match, itStep: step));
+        text: text, acceptedOrIgnoredMatch: match, itStep: step,),);
   }
 
   bool get hasAcceptedMatches => choreoSteps.any(
@@ -118,11 +118,11 @@ class ChoreoRecord {
   ///     for each continuance
   ///       if not within the final message, save ignIT/incIT
   List<OneConstructUse> toVocabUse(
-      List<PangeaToken> tokens, String chatId, String msgId) {
+      List<PangeaToken> tokens, String chatId, String msgId,) {
     final List<OneConstructUse> uses = [];
     final DateTime now = DateTime.now();
     List<OneConstructUse> lemmasToVocabUses(
-        List<Lemma> lemmas, ConstructUseType type) {
+        List<Lemma> lemmas, ConstructUseType type,) {
       final List<OneConstructUse> uses = [];
       for (final lemma in lemmas) {
         if (lemma.saveVocab) {
@@ -134,7 +134,7 @@ class ChoreoRecord {
             form: lemma.form,
             msgId: msgId,
             constructType: ConstructType.vocab,
-          ));
+          ),);
         }
       }
       return uses;
@@ -147,7 +147,7 @@ class ChoreoRecord {
         if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted &&
             (step.acceptedOrIgnoredMatch!.match.choices?.any((r) =>
                     r.value.contains(token.text.content) &&
-                    step.text.contains(r.value)) ??
+                    step.text.contains(r.value),) ??
                 false)) {
           return lemmasToVocabUses(token.lemmas, ConstructUseType.ga);
         }
@@ -212,7 +212,7 @@ class ChoreoRecord {
           form: name,
           msgId: msgId,
           constructType: ConstructType.grammar,
-        ));
+        ),);
       }
     }
     return uses;
@@ -253,10 +253,10 @@ class ChoreoRecordStep {
   ITStep? itStep;
 
   ChoreoRecordStep(
-      {required this.text, this.acceptedOrIgnoredMatch, this.itStep}) {
+      {required this.text, this.acceptedOrIgnoredMatch, this.itStep,}) {
     if (itStep != null && acceptedOrIgnoredMatch != null) {
       throw Exception(
-          "itStep and acceptedOrIgnoredMatch should not both be defined");
+          "itStep and acceptedOrIgnoredMatch should not both be defined",);
     }
   }
 

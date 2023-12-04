@@ -11,10 +11,10 @@ import '../network/urls.dart';
 
 class ITRepo {
   static Future<ITResponseModel> customInputTranslate(
-      CustomInputRequestModel initalText) async {
+      CustomInputRequestModel initalText,) async {
     final Requests req = Requests(
         baseUrl: PApiUrls.choreoBaseApi,
-        choreoApiKey: Environment.choreoApiKey);
+        choreoApiKey: Environment.choreoApiKey,);
     final Response res =
         await req.post(url: PApiUrls.firstStep, body: initalText.toJson());
 
@@ -24,10 +24,10 @@ class ITRepo {
   }
 
   static Future<ITResponseModel> systemChoiceTranslate(
-      SystemChoiceRequestModel subseqText) async {
+      SystemChoiceRequestModel subseqText,) async {
     final Requests req = Requests(
         baseUrl: PApiUrls.choreoBaseApi,
-        choreoApiKey: Environment.choreoApiKey);
+        choreoApiKey: Environment.choreoApiKey,);
 
     final Response res =
         await req.post(url: PApiUrls.subseqStep, body: subseqText.toJson());

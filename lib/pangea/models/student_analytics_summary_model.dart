@@ -85,7 +85,7 @@ class StudentAnalyticsSummary {
 
   Map<String, dynamic> toJson() => {
         _messagesKey: jsonEncode(_messages.map((e) => e.toJson()).toList()),
-        _lastUpdatedKey: lastUpdated.toIso8601String()
+        _lastUpdatedKey: lastUpdated.toIso8601String(),
       };
 
   factory StudentAnalyticsSummary.fromJson(json) {

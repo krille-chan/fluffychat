@@ -44,9 +44,9 @@ class ClassSettingsModel {
       city: json['city'],
       country: json['country'],
       dominantLanguage: LanguageModel.codeFromNameOrCode(
-          json['dominant_language'] ?? LanguageKeys.unknownLanguage),
+          json['dominant_language'] ?? LanguageKeys.unknownLanguage,),
       targetLanguage: LanguageModel.codeFromNameOrCode(
-          json['target_language'] ?? LanguageKeys.unknownLanguage),
+          json['target_language'] ?? LanguageKeys.unknownLanguage,),
       languageLevel: json['language_level'],
       schoolName: json['school_name'],
     );

@@ -14,7 +14,7 @@ class ErrorHandler {
 
   static Future<void> initialize() async {
     FutureOr<void> Function(Scope)? withScope(
-        Scope scope, FlutterErrorDetails details) {
+        Scope scope, FlutterErrorDetails details,) {
       // if (details.exception is http.Response) {
       //   final res = details.exception as http.Response;
       //   scope.addBreadcrumb(
@@ -61,7 +61,7 @@ class ErrorHandler {
   }
 
   static logError(
-      {Object? e, StackTrace? s, String? m, Map<String, dynamic>? data}) async {
+      {Object? e, StackTrace? s, String? m, Map<String, dynamic>? data,}) async {
     if ((e ?? m) != null) debugPrint("error: ${e?.toString() ?? m}");
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
@@ -77,7 +77,7 @@ class ErrorHandler {
             e.contains("microtask") ||
             e.contains("async_patch")),
       ),
-    ));
+    ),);
   }
 }
 

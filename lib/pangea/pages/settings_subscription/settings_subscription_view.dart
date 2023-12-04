@@ -13,7 +13,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 class SettingsSubscriptionView extends StatelessWidget {
   final SubscriptionManagementController controller;
   final PangeaController pangeaController = MatrixState.pangeaController;
-  SettingsSubscriptionView(this.controller, {Key? key}) : super(key: key);
+  SettingsSubscriptionView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class SettingsSubscriptionView extends StatelessWidget {
                         controller: controller,
                         subscriptionController:
                             pangeaController.subscriptionController,
-                      )
+                      ),
                   ],
                 ),
         ),
@@ -100,8 +100,8 @@ class ManagementNotAvailableWarning extends StatelessWidget {
   const ManagementNotAvailableWarning({
     required this.controller,
     required this.subscriptionController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

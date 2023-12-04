@@ -4,8 +4,8 @@ import 'package:fluffychat/pangea/enum/use_type.dart';
 
 class VocabLegendsListWidget extends StatelessWidget {
   const VocabLegendsListWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class VocabLegendsListWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                e.iconView(context, e.color(context), 20)
+                e.iconView(context, e.color(context), 20),
               ],
             ),
           )

@@ -6,7 +6,7 @@ import '../../enum/use_type.dart';
 
 class BarChartPlaceHolderData {
   static BarChartRodData randomBarChartRodData(
-      BuildContext context, int index) {
+      BuildContext context, int index,) {
     // final total = Random().nextInt(100);
     // final it = total != 0 ? Random().nextInt(max(total - index, 1)) : 0;
     // final igc = total != 0 ? Random().nextInt(max(total - it - index, 1)) : 0;
@@ -54,7 +54,7 @@ class BarChartPlaceHolderData {
       14,
       15,
       16,
-      17
+      17,
     ];
 
     final List<BarChartGroupData> barChartGroupData = [];
@@ -75,7 +75,7 @@ class BarChartPlaceHolderData {
   }
 
   static List<BarChartGroupData> getData(
-      Color dark, Color normal, Color light) {
+      Color dark, Color normal, Color light,) {
     const double barSpace = 16;
 
     return [

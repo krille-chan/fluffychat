@@ -4,12 +4,12 @@ import 'package:fl_chart/fl_chart.dart';
 
 class BarChartCard extends StatelessWidget {
   const BarChartCard({
-    Key? key,
+    super.key,
     required this.barChartTitle,
     required this.barChart,
     required this.legend,
     required this.loadingData,
-  }) : super(key: key);
+  });
 
   final String barChartTitle;
   final BarChart? barChart;

@@ -27,7 +27,7 @@ class WordController extends BaseController {
             f: fullText,
             l1: userL1,
             l2: userL2,
-          ));
+          ),);
 
   Future<WordData> getWordDataGlobal({
     required String word,

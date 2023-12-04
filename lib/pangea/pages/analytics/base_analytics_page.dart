@@ -27,14 +27,14 @@ class BaseAnalyticsPage extends StatefulWidget {
   final AnalyticsSelected? alwaysSelected;
 
   const BaseAnalyticsPage({
-    Key? key,
+    super.key,
     required this.pageTitle,
     required this.tabData1,
     required this.tabData2,
     required this.defaultAnalyticsSelected,
     required this.refreshData,
     required this.alwaysSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<BaseAnalyticsPage> createState() => BaseAnalyticsController();
@@ -53,7 +53,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   bool isSelected(String chatOrStudentId) => chatOrStudentId == selected?.id;
 
   ChartAnalyticsModel? chartData(
-      BuildContext context, AnalyticsSelected? selectedParam) {
+      BuildContext context, AnalyticsSelected? selectedParam,) {
     final AnalyticsSelected analyticsSelected =
         selectedParam ?? widget.defaultAnalyticsSelected;
 
@@ -124,9 +124,9 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
 
 class BaseAnalyticsView extends StatelessWidget {
   const BaseAnalyticsView({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final BaseAnalyticsController controller;
 
@@ -163,7 +163,7 @@ class BaseAnalyticsView extends StatelessWidget {
           style: TextStyle(
               color: Theme.of(context).textTheme.bodyLarge!.color,
               fontSize: 18,
-              fontWeight: FontWeight.w700),
+              fontWeight: FontWeight.w700,),
           overflow: TextOverflow.clip,
           textAlign: TextAlign.center,
         ),
@@ -231,7 +231,7 @@ class BaseAnalyticsView extends StatelessWidget {
                         child: SizedBox(
                           height: max(
                                   controller.widget.tabData1.items.length + 1,
-                                  controller.widget.tabData2.items.length) *
+                                  controller.widget.tabData2.items.length,) *
                               72,
                           child: TabBarView(
                             children: [
@@ -262,7 +262,7 @@ class BaseAnalyticsView extends StatelessWidget {
                                               .allowNavigateOnSelect,
                                         ),
                                       )
-                                      .toList(),
+                                      ,
                                   if (controller.widget.defaultAnalyticsSelected
                                           .type ==
                                       AnalyticsEntryType.space)
@@ -283,7 +283,7 @@ class BaseAnalyticsView extends StatelessWidget {
                                           .widget.defaultAnalyticsSelected.id,
                                       type: AnalyticsEntryType.privateChats,
                                       selected: controller.isSelected(controller
-                                          .widget.defaultAnalyticsSelected.id),
+                                          .widget.defaultAnalyticsSelected.id,),
                                       onTap: controller.toggleSelection,
                                       allowNavigateOnSelect: false,
                                     ),
@@ -314,7 +314,7 @@ class BaseAnalyticsView extends StatelessWidget {
                                       ),
                                     )
                                     .toList(),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -323,7 +323,7 @@ class BaseAnalyticsView extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -341,7 +341,7 @@ class TabData {
       {required this.type,
       required this.items,
       required this.icon,
-      this.allowNavigateOnSelect = true});
+      this.allowNavigateOnSelect = true,});
 }
 
 class TabItem {

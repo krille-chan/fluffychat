@@ -19,25 +19,25 @@ extension PangeaClient on Client {
   List<Room> get classesImTeaching => rooms
       .where((e) =>
           e.isPangeaClass &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin)
+          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,)
       .toList();
 
   List<Room> get classesAndExchangesImTeaching => rooms
       .where((e) =>
           (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin)
+          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,)
       .toList();
 
   List<Room> get classesImIn => rooms
       .where((e) =>
           e.isPangeaClass &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin)
+          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,)
       .toList();
 
   List<Room> get classesAndExchangesImStudyingIn => rooms
       .where((e) =>
           (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin)
+          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,)
       .toList();
 
   List<Room> get classesAndExchangesImIn =>
@@ -101,7 +101,7 @@ extension PangeaClient on Client {
       analyticsRoom
           .join()
           .onError((error, stackTrace) =>
-              ErrorHandler.logError(e: error, s: stackTrace))
+              ErrorHandler.logError(e: error, s: stackTrace),)
           .then((value) => analyticsRoom.postLoad());
       return analyticsRoom;
     }
@@ -112,14 +112,14 @@ extension PangeaClient on Client {
     final String roomID = await createRoom(
       creationContent: {
         'type': PangeaRoomTypes.analytics,
-        ModelKey.langCode: langCode
+        ModelKey.langCode: langCode,
       },
       name: "$userID $langCode Analytics",
       topic: "This room stores learning analytics for $userID.",
       invite: [
-        ...(await myTeachers).map((e) => e.id).toList(),
+        ...(await myTeachers).map((e) => e.id),
         // BotName.localBot,
-        BotName.byEnvironment
+        BotName.byEnvironment,
       ],
       visibility: Visibility.private,
       roomAliasName: "${userID!.localpart}_${langCode}_analytics",

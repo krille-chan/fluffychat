@@ -15,8 +15,8 @@ class ProfileBottomSheet extends StatelessWidget {
   const ProfileBottomSheet({
     required this.userId,
     required this.outerContext,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   void _startDirectChat(BuildContext context) async {
     final client = Matrix.of(context).client;

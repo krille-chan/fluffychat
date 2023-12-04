@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class PInputTextField extends StatelessWidget {
   TextEditingController controller;
@@ -8,12 +7,11 @@ class PInputTextField extends StatelessWidget {
   String labelText;
   String hintText;
   PInputTextField(
-      {Key? key,
+      {super.key,
       required this.controller,
       required this.onSubmit,
       required this.labelText,
-      required this.hintText})
-      : super(key: key);
+      required this.hintText,});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,7 @@ class PInputTextField extends StatelessWidget {
         decoration: InputDecoration(
             labelText: labelText,
             prefixIcon: const Icon(Icons.people_outlined),
-            hintText: hintText),
+            hintText: hintText,),
       ),
     );
   }

@@ -213,7 +213,7 @@ class IGCTextData {
           Breadcrumb.fromJson(
             {
               "fullText": originalInput,
-              "tokens": tokens.map((e) => e.toJson()).toString()
+              "tokens": tokens.map((e) => e.toJson()).toString(),
             },
           ),
         );
@@ -306,7 +306,7 @@ class IGCTextData {
                       transformTargetId: transformTargetId,
                     ))
               : null,
-        ));
+        ),);
 
         final int charBetween = getAfterTokenSpacingByIndex(
           index,

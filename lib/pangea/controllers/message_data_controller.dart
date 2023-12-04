@@ -31,7 +31,7 @@ class MessageDataController extends BaseController {
 
   CacheItem? getItem(String parentId, String type, String langCode) =>
       _cache.firstWhereOrNull((e) =>
-          e.parentId == parentId && e.type == type && e.langCode == langCode);
+          e.parentId == parentId && e.type == type && e.langCode == langCode,);
 
   Future<PangeaMessageTokens?> _getTokens(
     TokensRequestModel req,
@@ -66,7 +66,7 @@ class MessageDataController extends BaseController {
     } catch (err, stack) {
       Sentry.addBreadcrumb(
         Breadcrumb(
-            message: "err in _getTokenEvent with repEventId $repEventId"),
+            message: "err in _getTokenEvent with repEventId $repEventId",),
       );
       Sentry.addBreadcrumb(
         Breadcrumb.fromJson({"req": req.toJson()}),
@@ -99,7 +99,7 @@ class MessageDataController extends BaseController {
         req: req,
         room: room,
       ),
-    ));
+    ),);
 
     return _cache.last.data;
   }
@@ -201,7 +201,7 @@ class MessageDataQueueItem {
   UseType useType;
 
   MessageDataQueueItem(
-      this.transactionId, this.repTokensAndRecords, this.useType
+      this.transactionId, this.repTokensAndRecords, this.useType,
       // required this.recentMessageRecord,
       );
 }

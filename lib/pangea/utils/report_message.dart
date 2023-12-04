@@ -84,7 +84,7 @@ Future<List<SpaceTeacher>> getReportTeachers(
   final List<Room> reportRoomParentSpaces = room.spaceParents
       .where((parentSpace) => parentSpace.roomId != null)
       .map((parentSpace) =>
-          Matrix.of(context).client.getRoomById(parentSpace.roomId!))
+          Matrix.of(context).client.getRoomById(parentSpace.roomId!),)
       .where((parentSpace) => parentSpace != null)
       .cast<Room>()
       .toList();
@@ -119,8 +119,7 @@ Future<List<SpaceTeacher>> getReportTeachers(
 
 class TeacherSelectDialog extends StatefulWidget {
   final List<SpaceTeacher> teachers;
-  const TeacherSelectDialog({Key? key, required this.teachers})
-      : super(key: key);
+  const TeacherSelectDialog({super.key, required this.teachers});
 
   @override
   State<StatefulWidget> createState() => _TeacherSelectDialogState();

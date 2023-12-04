@@ -96,7 +96,7 @@ class ContextTranslationResponseModel {
       Sentry.addBreadcrumb(
         Breadcrumb(
             message: "ContextTranslationResponseModel with empty translations",
-            data: {"response": json}),
+            data: {"response": json},),
       );
     }
 

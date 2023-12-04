@@ -111,7 +111,7 @@ class SpanChoice {
       value: json['value'] as String,
       type: json['type'] != null
           ? SpanChoiceType.values.firstWhereOrNull(
-                  (element) => element.name == json['type']) ??
+                  (element) => element.name == json['type'],) ??
               SpanChoiceType.bestCorrection
           : SpanChoiceType.bestCorrection,
       feedback: json['feedback'],

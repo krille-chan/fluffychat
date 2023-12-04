@@ -124,7 +124,7 @@ class AnalyticsController extends BaseController {
       } else {
         if (studentId != null) {
           studentAnalyticsSummaryEvents = [
-            await classRoom.getStudentAnalytics(studentId)
+            await classRoom.getStudentAnalytics(studentId),
           ];
         } else {
           studentAnalyticsSummaryEvents = await classRoom.getClassAnalytics();
@@ -159,7 +159,7 @@ class AnalyticsController extends BaseController {
         studentId: studentId,
         chatId: chatId,
         chartAnalyticsModel: newModel,
-      ));
+      ),);
 
       return newModel;
     } catch (err, s) {
@@ -171,7 +171,7 @@ class AnalyticsController extends BaseController {
 
   Future<VocabHeadwords> vocabHeadwordsWithTotals(
       String langCode, List<ConstructEvent> vocab,
-      [String? chatId]) async {
+      [String? chatId,]) async {
     final VocabHeadwords vocabHeadwords =
         await VocabHeadwords.getHeadwords(langCode);
     for (final vocabList in vocabHeadwords.lists) {
@@ -214,7 +214,7 @@ class AnalyticsController extends BaseController {
       for (final event in studentAnalyticsSummaryEvents) {
         if (event != null) {
           msgs.addAll(event.content.messages
-              .where((m) => directChatIds.contains(m.chatId)));
+              .where((m) => directChatIds.contains(m.chatId)),);
         } else {
           debugPrint("studentAnalyticsSummaryEvent is null");
         }
@@ -231,7 +231,7 @@ class AnalyticsController extends BaseController {
         studentId: null,
         chatId: AnalyticsEntryType.privateChats.toString(),
         chartAnalyticsModel: newModel,
-      ));
+      ),);
 
       return newModel;
     } catch (err, s) {
@@ -251,7 +251,7 @@ class AnalyticsController extends BaseController {
   }
 
   Future<List<ConstructEvent>> studentConstructs(
-      String studentId, String langCode) {
+      String studentId, String langCode,) {
     final Room? analyticsRoom = _pangeaController.matrixState.client
         .analyticsRoomLocal(langCode, studentId);
     return analyticsRoom!.allConstructEvents;
@@ -385,14 +385,14 @@ class AnalyticsController extends BaseController {
       chatIdsToFilterBy.addAll(_pangeaController.matrixState.client
               .getRoomById(defaultSelected.id)
               ?.childrenAndGrandChildrenDirectChatIds ??
-          []);
+          [],);
     } else if (defaultSelected.type == AnalyticsEntryType.space) {
       chatIdsToFilterBy.addAll(_pangeaController.matrixState.client
               .getRoomById(defaultSelected.id)
               ?.childrenAndGrandChildren
               .where((e) => e.roomId != null)
               .map((e) => e.roomId!) ??
-          []);
+          [],);
     }
     if (chatIdsToFilterBy.isNotEmpty) {
       for (final event in events) {

@@ -13,7 +13,7 @@ class PCircular extends StatelessWidget {
         SizedBox(
             height: size ?? 25,
             width: size ?? 25,
-            child: const CircularProgressIndicator()),
+            child: const CircularProgressIndicator(),),
       ],
     );
   }

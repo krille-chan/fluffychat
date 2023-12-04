@@ -9,8 +9,7 @@ import 'edit_widgets_dialog.dart';
 class CupertinoWidgetsBottomSheet extends StatelessWidget {
   final Room room;
 
-  const CupertinoWidgetsBottomSheet({Key? key, required this.room})
-      : super(key: key);
+  const CupertinoWidgetsBottomSheet({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {

@@ -14,11 +14,11 @@ class ClassAnalyticsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['class_id'] = classId;
-    _data['user_ids'] = userIds;
-    _data['analytics'] = analytics.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['class_id'] = classId;
+    data['user_ids'] = userIds;
+    data['analytics'] = analytics.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -37,10 +37,10 @@ class Analytics {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['title'] = title;
-    _data['section'] = section.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['title'] = title;
+    data['section'] = section.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -61,11 +61,11 @@ class Section {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['title'] = title;
-    _data['class_total'] = classTotal;
-    _data['data'] = data.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['title'] = title;
+    data['class_total'] = classTotal;
+    data['data'] = data.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -73,9 +73,6 @@ class Data {
   Data();
   set value(String val) => _value = val;
   String get value {
-    if (_value == null) {
-      return _value.toString();
-    }
     if (value_type == 'date') {
       return DateFormat('yyyy/M/dd hh:mm a')
           .format(DateTime.parse(_value).toLocal())
@@ -94,10 +91,10 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['user_id'] = userId;
-    _data['value'] = _value;
-    _data['value_type'] = value_type;
-    return _data;
+    final data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['value'] = _value;
+    data['value_type'] = value_type;
+    return data;
   }
 }

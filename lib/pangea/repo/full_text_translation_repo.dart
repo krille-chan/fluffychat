@@ -55,7 +55,7 @@ class FullTextTranslationRequestModel {
         ModelKey.tgtLang: tgtLang,
         ModelKey.userL2: userL2,
         ModelKey.userL1: userL1,
-        ModelKey.deepL: deepL
+        ModelKey.deepL: deepL,
       };
 }
 

@@ -34,6 +34,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./public/web
           publish_branch: gh-pages
           # cname: app.staging.pangea.chat.im

@@ -13,7 +13,7 @@ import 'p_language_dialog.dart';
 class LanguageTile extends StatelessWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  LanguageTile({Key? key}) : super(key: key);
+  LanguageTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class LanguageTile extends StatelessWidget {
               width: 10,
             ),
             Text(sourceLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.sourceLanguage),
+                L10n.of(context)!.sourceLanguage,),
             const SizedBox(
               width: 10,
             ),
@@ -73,8 +73,8 @@ class LanguageTile extends StatelessWidget {
               width: 10,
             ),
             Text(targetLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.targetLanguage),
-          ]),
+                L10n.of(context)!.targetLanguage,),
+          ],),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () => pLanguageDialog(context, () {}),
     );

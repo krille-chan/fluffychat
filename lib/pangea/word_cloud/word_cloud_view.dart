@@ -62,7 +62,7 @@ class _WordCloudViewState extends State<WordCloudView> {
 
     wordcloudsetting.setMapSize(widget.mapwidth, widget.mapheight);
     wordcloudsetting.setFont(
-        widget.fontFamily, widget.fontStyle, widget.fontWeight);
+        widget.fontFamily, widget.fontStyle, widget.fontWeight,);
     wordcloudsetting.setColorList(widget.colorlist);
     wordcloudsetting.setInitial();
 
@@ -96,7 +96,7 @@ class WCpaint extends CustomPainter {
         wordcloudpaint.getTextPainter()[i].paint(
             canvas,
             Offset(wordcloudpaint.getWordPoint()[i][0],
-                wordcloudpaint.getWordPoint()[i][1]));
+                wordcloudpaint.getWordPoint()[i][1],),);
       }
     }
   }

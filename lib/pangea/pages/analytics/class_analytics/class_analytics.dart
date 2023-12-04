@@ -22,7 +22,7 @@ enum AnalyticsPageType { classList, student, classDetails }
 
 class ClassAnalyticsPage extends StatefulWidget {
   // final AnalyticsPageType type;
-  const ClassAnalyticsPage({Key? key}) : super(key: key);
+  const ClassAnalyticsPage({super.key});
 
   @override
   State<ClassAnalyticsPage> createState() => ClassAnalyticsV2Controller();

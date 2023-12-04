@@ -12,7 +12,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ClassInvitationSelection extends StatefulWidget {
-  const ClassInvitationSelection({Key? key}) : super(key: key);
+  const ClassInvitationSelection({super.key});
 
   @override
   ClassInvitationSelectionController createState() =>

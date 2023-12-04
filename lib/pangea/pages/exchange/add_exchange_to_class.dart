@@ -8,7 +8,7 @@ import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class AddExchangeToClass extends StatefulWidget {
-  const AddExchangeToClass({Key? key}) : super(key: key);
+  const AddExchangeToClass({super.key});
 
   @override
   AddExchangeToClassState createState() => AddExchangeToClassState();

@@ -7,10 +7,10 @@ class LanguageFlag extends StatelessWidget {
   final LanguageModel? language;
   final double size;
   const LanguageFlag({
-    Key? key,
+    super.key,
     required this.language,
     this.size = 30,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

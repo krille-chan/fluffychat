@@ -12,10 +12,10 @@ class ConstructCloud extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
 
   const ConstructCloud({
-    Key? key,
+    super.key,
     required this.selected,
     required this.defaultSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => ConstructCloudState();
@@ -28,7 +28,7 @@ class ConstructCloudState extends State<ConstructCloud> {
     {"word": "loading", 'value': 1},
     {"word": "loading", 'value': 1},
     {"word": "loading", 'value': 1},
-    {"word": "loading", 'value': 1}
+    {"word": "loading", 'value': 1},
   ];
 
   @override
@@ -77,7 +77,7 @@ class ConstructCloudState extends State<ConstructCloud> {
                   colorlist: const [
                     Colors.black,
                     Colors.redAccent,
-                    Colors.indigoAccent
+                    Colors.indigoAccent,
                   ],
                 ),
                 const SizedBox(
@@ -93,7 +93,7 @@ class ConstructCloudState extends State<ConstructCloud> {
                   colorlist: const [
                     Colors.black,
                     Colors.redAccent,
-                    Colors.indigoAccent
+                    Colors.indigoAccent,
                   ],
                 ),
               ],

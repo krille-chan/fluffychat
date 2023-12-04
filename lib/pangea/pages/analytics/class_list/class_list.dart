@@ -14,7 +14,7 @@ import '../../../utils/sync_status_util_v2.dart';
 import '../../../widgets/common/list_placeholder.dart';
 
 class AnalyticsClassList extends StatefulWidget {
-  const AnalyticsClassList({Key? key}) : super(key: key);
+  const AnalyticsClassList({super.key});
 
   @override
   State<AnalyticsClassList> createState() => AnalyticsClassListController();
@@ -32,7 +32,7 @@ class AnalyticsClassListController extends State<AnalyticsClassList> {
     Future.delayed(Duration.zero, () async {
       stateSub = pangeaController.matrixState.client.onRoomState.stream
           .where(
-              (event) => event.type == PangeaEventTypes.studentAnalyticsSummary)
+              (event) => event.type == PangeaEventTypes.studentAnalyticsSummary,)
           .listen(onStateUpdate);
     });
   }

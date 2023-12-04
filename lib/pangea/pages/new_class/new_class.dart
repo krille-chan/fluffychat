@@ -18,7 +18,7 @@ import '../../widgets/space/class_settings.dart';
 import '../class_settings/p_class_widgets/room_rules_editor.dart';
 
 class NewClass extends StatefulWidget {
-  const NewClass({Key? key}) : super(key: key);
+  const NewClass({super.key});
 
   @override
   NewClassController createState() => NewClassController();

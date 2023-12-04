@@ -31,7 +31,7 @@ class PangeaRichText extends StatefulWidget {
   final Choreographer? choreographer;
 
   const PangeaRichText({
-    Key? key,
+    super.key,
     required this.pangeaMessageEvent,
     required this.selected,
     required this.selectedDisplayLang,
@@ -39,7 +39,7 @@ class PangeaRichText extends StatefulWidget {
     required this.definitions,
     this.choreographer,
     this.existingStyle,
-  }) : super(key: key);
+  });
 
   @override
   PangeaRichTextState createState() => PangeaRichTextState();
@@ -150,7 +150,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     if (repEvent.event?.eventId.contains("web") ?? false) {
       Sentry.addBreadcrumb(
-          Breadcrumb.fromJson({"repEvent.event": repEvent.event?.toJson()}));
+          Breadcrumb.fromJson({"repEvent.event": repEvent.event?.toJson()}),);
       Sentry.addBreadcrumb(
         Breadcrumb(
           message:
@@ -202,16 +202,16 @@ class PangeaRichTextState extends State<PangeaRichText> {
         TextSpan(
           text: text,
           style: widget.existingStyle,
-        )
+        ),
       ];
 
   List<TextSpan> textWithBotStyle(
-          RepresentationEvent repEvent, BuildContext context) =>
+          RepresentationEvent repEvent, BuildContext context,) =>
       [
         TextSpan(
           text: repEvent.text,
           style: textStyle(repEvent, context),
-        )
+        ),
       ];
 
   TextStyle? textStyle(RepresentationEvent repEvent, BuildContext context) =>
@@ -219,7 +219,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
       true
           ? widget.existingStyle
           : BotStyle.text(context,
-              existingStyle: widget.existingStyle, setColor: false);
+              existingStyle: widget.existingStyle, setColor: false,);
 
   bool get areLanguagesSet =>
       userL2LangCode != null && userL2LangCode != LanguageKeys.unknownLanguage;
@@ -243,7 +243,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   }
 
   Future<void> onReplacementSelect(
-      PangeaMatch pangeaMatch, String replacement) async {
+      PangeaMatch pangeaMatch, String replacement,) async {
     debugPrint("PTODO implement onReplacementSelect");
   }
 

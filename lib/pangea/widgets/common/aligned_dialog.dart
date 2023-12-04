@@ -53,7 +53,7 @@ Future<T?> showAlignedDialog<T>({
     duration: duration,
     avoidOverflow: avoidOverflow,
     offset: offset,
-  ));
+  ),);
 }
 
 class AlignedDialogRoute<T> extends RawDialogRoute<T> {
@@ -66,18 +66,18 @@ class AlignedDialogRoute<T> extends RawDialogRoute<T> {
     required Alignment followerAlignment,
     required Offset position,
     CapturedThemes? themes,
-    Color? barrierColor = Colors.transparent,
-    bool barrierDismissible = true,
+    super.barrierColor = Colors.transparent,
+    super.barrierDismissible,
     String? barrierLabel,
     bool useSafeArea = false,
-    RouteSettings? settings,
+    super.settings,
     RouteTransitionsBuilder? transitionsBuilder,
     Duration? duration,
     bool avoidOverflow = false,
     Offset offset = Offset.zero,
   }) : super(
           pageBuilder: (BuildContext buildContext, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
+              Animation<double> secondaryAnimation,) {
             final Widget pageChild = Builder(builder: builder);
             Widget dialog = Builder(
               builder: (BuildContext context) {
@@ -102,14 +102,11 @@ class AlignedDialogRoute<T> extends RawDialogRoute<T> {
             }
             return dialog;
           },
-          barrierDismissible: barrierDismissible,
-          barrierColor: barrierColor,
           barrierLabel: barrierLabel ??
               MaterialLocalizations.of(context).modalBarrierDismissLabel,
           transitionDuration: duration ?? const Duration(milliseconds: 200),
           transitionBuilder:
               transitionsBuilder ?? _buildMaterialDialogTransitions,
-          settings: settings,
         );
 }
 
@@ -180,7 +177,7 @@ Widget _buildMaterialDialogTransitions(
     BuildContext context,
     Animation<double> animation,
     Animation<double> secondaryAnimation,
-    Widget child) {
+    Widget child,) {
   return FadeTransition(
     opacity: CurvedAnimation(
       parent: animation,
@@ -191,9 +188,9 @@ Widget _buildMaterialDialogTransitions(
 }
 
 Offset _buildOffSet(BuildContext context,
-    {required Size refChildSize, required Offset offset}) {
+    {required Size refChildSize, required Offset offset,}) {
   final Size screenSize = MediaQuery.of(context).size;
   final Size maxAvilableArea = Size(screenSize.width - refChildSize.width,
-      screenSize.height - refChildSize.height);
+      screenSize.height - refChildSize.height,);
   return const Offset(0, 0);
 }

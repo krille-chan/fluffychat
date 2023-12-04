@@ -17,13 +17,13 @@ class WordRepo {
     required String userL2,
   }) async {
     final Requests req = Requests(
-        choreoApiKey: Environment.choreoApiKey, accessToken: accessToken);
+        choreoApiKey: Environment.choreoApiKey, accessToken: accessToken,);
     final Response res = await req.post(url: PApiUrls.wordNet, body: {
       ModelKey.word: word,
       ModelKey.fullText: fullText,
       ModelKey.userL1: userL1,
       ModelKey.userL2: userL2,
-    });
+    },);
 
     final json = jsonDecode(utf8.decode(res.bodyBytes));
 

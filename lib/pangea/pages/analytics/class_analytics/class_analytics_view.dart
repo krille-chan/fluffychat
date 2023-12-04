@@ -8,7 +8,7 @@ import 'class_analytics.dart';
 
 class ClassAnalyticsView extends StatelessWidget {
   final ClassAnalyticsV2Controller controller;
-  const ClassAnalyticsView(this.controller, {Key? key}) : super(key: key);
+  const ClassAnalyticsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class ClassAnalyticsView extends StatelessWidget {
                 avatar: s.avatarUrl,
                 displayName: s.displayName ?? "unknown",
                 id: s.id,
-              ))
+              ),)
           .toList(),
     );
 

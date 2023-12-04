@@ -64,12 +64,12 @@ class GoogleAnalytics {
 
   static createClass(String className, String classCode) {
     logEvent('create_class',
-        parameters: {'name': className, 'group_id': classCode});
+        parameters: {'name': className, 'group_id': classCode},);
   }
 
   static createExchange(String exchangeName, String classCode) {
     logEvent('create_exchange',
-        parameters: {'name': exchangeName, 'group_id': classCode});
+        parameters: {'name': exchangeName, 'group_id': classCode},);
   }
 
   static createChat(String newChatRoomId) {
@@ -78,27 +78,27 @@ class GoogleAnalytics {
 
   static addParent(String chatRoomId, String classCode) {
     logEvent('add_room_to_class',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+        parameters: {"chat_id": chatRoomId, 'group_id': classCode},);
   }
 
   static removeChatFromClass(String chatRoomId, String classCode) {
     logEvent('remove_room_from_class',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+        parameters: {"chat_id": chatRoomId, 'group_id': classCode},);
   }
 
   static addChatToExchange(String chatRoomId, String classCode) {
     logEvent('add_chat_to_exchange',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+        parameters: {"chat_id": chatRoomId, 'group_id': classCode},);
   }
 
   static inviteClassToExchange(String classId, String exchangeId) {
     logEvent('invite_class_to_exchange',
-        parameters: {'group_id': classId, 'exchange_id': exchangeId});
+        parameters: {'group_id': classId, 'exchange_id': exchangeId},);
   }
 
   static kickClassFromExchange(String classId, String exchangeId) {
     logEvent('kick_class_from_exchange',
-        parameters: {'group_id': classId, 'exchange_id': exchangeId});
+        parameters: {'group_id': classId, 'exchange_id': exchangeId},);
   }
 
   static joinClass(String classCode) {
@@ -109,8 +109,8 @@ class GoogleAnalytics {
     logEvent('sent_message', parameters: {
       "chat_id": chatRoomId,
       'group_id': classCode,
-      "message_type": useType.toString()
-    });
+      "message_type": useType.toString(),
+    },);
   }
 
   static contextualRequest() {
@@ -122,7 +122,7 @@ class GoogleAnalytics {
   }
 
   static beginPurchaseSubscription(
-      SubscriptionDetails details, BuildContext context) {
+      SubscriptionDetails details, BuildContext context,) {
     logEvent('begin_checkout', parameters: {
       "currency": "USD",
       'value': details.price,
@@ -133,10 +133,10 @@ class GoogleAnalytics {
           'item_name': details.displayName(context),
           'price': details.price,
           'item_category': "subscription",
-          'quantity': 1
+          'quantity': 1,
         }
-      ]
-    });
+      ],
+    },);
   }
 
   static FirebaseAnalyticsObserver getAnalyticsObserver() =>
@@ -155,5 +155,5 @@ class GoogleAnalytics {
             final String? name = route.settings.name;
             debugPrint("navigating to route: $name");
             return true;
-          });
+          },);
 }

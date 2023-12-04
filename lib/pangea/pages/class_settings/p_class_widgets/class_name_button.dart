@@ -10,10 +10,10 @@ class ClassNameButton extends StatelessWidget {
   final Room room;
   final ChatDetailsController controller;
   const ClassNameButton({
-    Key? key,
+    super.key,
     required this.room,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

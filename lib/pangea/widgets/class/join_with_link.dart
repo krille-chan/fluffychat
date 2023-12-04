@@ -14,7 +14,7 @@ import '../../utils/error_handler.dart';
 //if on home with classcode in url and not logged in, then save it soemhow and after llogin, join class automatically
 //if on home with classcode in url and logged in, then join class automatically
 class JoinClassWithLink extends StatefulWidget {
-  const JoinClassWithLink({Key? key}) : super(key: key);
+  const JoinClassWithLink({super.key});
 
   @override
   State<JoinClassWithLink> createState() => _JoinClassWithLinkState();

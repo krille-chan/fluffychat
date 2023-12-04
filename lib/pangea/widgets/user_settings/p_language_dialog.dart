@@ -40,7 +40,7 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PQuestionContainer(
-                        title: L10n.of(parentContext)!.whatIsYourBaseLanguage),
+                        title: L10n.of(parentContext)!.whatIsYourBaseLanguage,),
                     PLanguageDropdown(
                       onChange: (p0) =>
                           setState(() => selectedSourceLanguage = p0),
@@ -49,7 +49,7 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                     ),
                     PQuestionContainer(
                         title:
-                            L10n.of(parentContext)!.whatLanguageYouWantToLearn),
+                            L10n.of(parentContext)!.whatLanguageYouWantToLearn,),
                     PLanguageDropdown(
                       onChange: (p0) =>
                           setState(() => selectedTargetLanguage = p0),
@@ -95,7 +95,7 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                         : ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                  L10n.of(parentContext)!.noIdenticalLanguages),
+                                  L10n.of(parentContext)!.noIdenticalLanguages,),
                               backgroundColor:
                                   Theme.of(context).colorScheme.primary,
                             ),

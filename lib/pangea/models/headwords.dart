@@ -22,7 +22,7 @@ class VocabHeadwords {
       lists.add(VocabList(
         name: entry.key,
         lemmas: (entry.value as Iterable).cast<String>().toList(),
-      ));
+      ),);
     }
     return VocabHeadwords(lists: lists);
   }

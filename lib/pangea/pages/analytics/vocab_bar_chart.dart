@@ -14,10 +14,10 @@ class VocabBarChart extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
 
   const VocabBarChart({
-    Key? key,
+    super.key,
     required this.selected,
     required this.defaultSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => VocabBarChartState();
@@ -145,7 +145,7 @@ class VocabBarChartState extends State<VocabBarChart> {
         barsSpace: barSpace,
         // barRods: intervalGroup.map(constructBarChartRodData).toList(),
         barRods: constructBarChartRodData(intervalGroup),
-      ));
+      ),);
     });
     return chartData;
   }
@@ -166,7 +166,7 @@ class VocabBarChartState extends State<VocabBarChart> {
           BarChartRodStackItem(y2.toDouble(), y3.toDouble(), Colors.green),
         ],
         borderRadius: BorderRadius.zero,
-      )
+      ),
     ];
   }
 }

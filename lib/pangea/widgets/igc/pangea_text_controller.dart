@@ -69,7 +69,7 @@ class PangeaTextController extends TextEditingController {
                 debugPrint("onSentenceRewrite $tokenIndex $sentenceRewrite");
               }),
               onIgnore: () => choreographer.onIgnoreMatch(
-                  cursorOffset: selection.baseOffset),
+                  cursorOffset: selection.baseOffset,),
               onITStart: () {
                 choreographer.onITStart(
                   choreographer.igc.igcTextData!.matches[matchIndex],
@@ -144,7 +144,7 @@ class PangeaTextController extends TextEditingController {
             transformTargetId: choreographer.inputTransformTargetKey,
             room: choreographer.chatController.room,
           ),
-          TextSpan(text: parts[1], style: style)
+          TextSpan(text: parts[1], style: style),
         ],
       );
     }

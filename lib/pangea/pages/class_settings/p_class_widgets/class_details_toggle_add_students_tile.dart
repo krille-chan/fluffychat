@@ -6,9 +6,9 @@ import '../../../../pages/chat_details/chat_details.dart';
 
 class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
   const SpaceDetailsToggleAddStudentsTile({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ChatDetailsController controller;
 
@@ -31,7 +31,7 @@ class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
       ),
       trailing: Icon(controller.displayAddStudentOptions
           ? Icons.keyboard_arrow_down_outlined
-          : Icons.keyboard_arrow_right_outlined),
+          : Icons.keyboard_arrow_right_outlined,),
       onTap: controller.toggleAddStudentOptions,
     );
   }

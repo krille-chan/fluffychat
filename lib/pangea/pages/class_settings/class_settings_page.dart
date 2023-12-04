@@ -18,7 +18,7 @@ import 'class_settings_view.dart';
 import 'p_class_widgets/room_rules_editor.dart';
 
 class ClassSettingsPage extends StatefulWidget {
-  const ClassSettingsPage({Key? key}) : super(key: key);
+  const ClassSettingsPage({super.key});
 
   @override
   State<ClassSettingsPage> createState() => ClassSettingsController();

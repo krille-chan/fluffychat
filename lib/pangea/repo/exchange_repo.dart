@@ -8,7 +8,7 @@ class PExchangeRepo {
       String requestToClass,
       String requestTeacher,
       String requestToClassAuthor,
-      String exchangePangeaId) async {}
+      String exchangePangeaId,) async {}
 
   static exchangeRejectRequest(String roomId, String teacherName) async {}
 
@@ -26,5 +26,5 @@ class PExchangeRepo {
   }) async {}
 
   static isExchange(
-      BuildContext context, String accessToken, String exchangeId) async {}
+      BuildContext context, String accessToken, String exchangeId,) async {}
 }

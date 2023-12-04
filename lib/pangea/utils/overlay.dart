@@ -47,7 +47,7 @@ class OverlayUtil {
                   color: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: OverlayContainer(
-                      cardToShow: cardToShow, borderColor: borderColor),
+                      cardToShow: cardToShow, borderColor: borderColor,),
                 ),
               ),
             ),
@@ -134,8 +134,8 @@ class OverlayUtil {
 
 class TransparentBackdrop extends StatelessWidget {
   const TransparentBackdrop({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +192,7 @@ class ChatViewConstraints implements OverlayConstraints {
         max(mediaQueryData.viewPadding.right, mediaQueryData.viewInsets.right);
     y1 = mediaQueryData.size.height -
         max(mediaQueryData.viewPadding.bottom,
-            mediaQueryData.viewInsets.bottom);
+            mediaQueryData.viewInsets.bottom,);
 
     // https://medium.com/flutter-community/a-flutter-guide-to-visual-overlap-padding-viewpadding-and-viewinsets-a63e214be6e8
     //   debugPrint(

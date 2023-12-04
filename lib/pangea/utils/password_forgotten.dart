@@ -29,7 +29,7 @@ extension PangeaPasswordForgotten on LoginController {
                 decoration: InputDecoration(
                   hintText: L10n.of(context)!.enterAnEmailAddress,
                 ),
-              )
+              ),
             ],
           ),
           actions: [

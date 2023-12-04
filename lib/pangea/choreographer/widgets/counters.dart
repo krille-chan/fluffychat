@@ -10,11 +10,11 @@ class Counter extends StatelessWidget {
   final String label;
   final Color color;
   const Counter({
-    Key? key,
+    super.key,
     required this.count,
     required this.label,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +49,12 @@ class CounterDisplay extends StatelessWidget {
   final int yellow;
   final int custom;
   const CounterDisplay({
-    Key? key,
+    super.key,
     required this.correct,
     required this.incorrect,
     required this.yellow,
     required this.custom,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

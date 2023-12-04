@@ -36,6 +36,6 @@ class CustomInputRequestModel {
         ModelKey.tgtLang: targetLangCode,
         'user_id': userId,
         'room_id': roomId,
-        'class_id': classId
+        'class_id': classId,
       };
 }

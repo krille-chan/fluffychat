@@ -16,7 +16,7 @@ import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
 
 class PUserAge extends StatefulWidget {
-  const PUserAge({Key? key}) : super(key: key);
+  const PUserAge({super.key});
 
   @override
   PUserAgeController createState() => PUserAgeController();

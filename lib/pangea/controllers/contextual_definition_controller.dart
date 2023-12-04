@@ -22,12 +22,12 @@ class ContextualDefinitionController {
   }
 
   _ContextualDefinitionCacheItem? _getLocal(
-          ContextualDefinitionRequestModel req) =>
+          ContextualDefinitionRequestModel req,) =>
       _definitions.firstWhereOrNull(
-          (e) => e.word == req.word && e.fullText == req.fullText);
+          (e) => e.word == req.word && e.fullText == req.fullText,);
 
   Future<ContextualDefinitionResponseModel?> get(
-      ContextualDefinitionRequestModel req) {
+      ContextualDefinitionRequestModel req,) {
     final _ContextualDefinitionCacheItem? localItem = _getLocal(req);
 
     if (localItem != null) return localItem.data;
@@ -55,7 +55,7 @@ class ContextualDefinitionController {
       return res;
     } catch (err, stack) {
       debugPrint(
-          "error getting contextual definition for ${request.word} in '${request.fullText}'");
+          "error getting contextual definition for ${request.word} in '${request.fullText}'",);
       ErrorHandler.logError(e: err, s: stack, data: request.toJson());
       return null;
     }
@@ -120,14 +120,14 @@ class ContextualDefinitionRequestModel {
       required this.word,
       required this.feedbackLang,
       required this.fullTextLang,
-      required this.wordLang});
+      required this.wordLang,});
 
   Map<String, dynamic> toJson() => {
         ModelKey.fullText: fullText,
         ModelKey.word: word,
         ModelKey.lang: feedbackLang,
         ModelKey.fullTextLang: fullTextLang,
-        ModelKey.wordLang: wordLang
+        ModelKey.wordLang: wordLang,
       };
 }
 

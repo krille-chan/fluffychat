@@ -14,8 +14,7 @@ class PLoadingStatus extends StatefulWidget {
   final Widget child;
   final Widget? shimmerChild;
   const PLoadingStatus(
-      {Key? key, required this.child, this.onFinish, this.shimmerChild})
-      : super(key: key);
+      {super.key, required this.child, this.onFinish, this.shimmerChild,});
 
   @override
   PLoadingStatusState createState() => PLoadingStatusState();
@@ -65,10 +64,10 @@ class PLoadingStatusState extends State<PLoadingStatus> {
 
 class PangeaDefaultShimmer extends StatelessWidget {
   const PangeaDefaultShimmer({
-    Key? key,
+    super.key,
     required this.hide,
     required this.status,
-  }) : super(key: key);
+  });
 
   final bool hide;
   final SyncStatusUpdate status;

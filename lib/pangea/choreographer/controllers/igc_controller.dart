@@ -202,7 +202,7 @@ class IgcController {
 
     if (igcTextData!.originalInput != choreographer.currentText) {
       debugPrint(
-          "returning isIGCTextDataRelevant false because text has changed");
+          "returning isIGCTextDataRelevant false because text has changed",);
       return false;
     }
     return true;

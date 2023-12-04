@@ -17,7 +17,7 @@ class ChoicesArray extends StatelessWidget {
   final String originalSpan;
   final String Function(int) uniqueKeyForLayerLink;
   const ChoicesArray({
-    Key? key,
+    super.key,
     required this.isLoading,
     required this.choices,
     required this.onPressed,
@@ -25,7 +25,7 @@ class ChoicesArray extends StatelessWidget {
     required this.uniqueKeyForLayerLink,
     required this.selectedChoiceIndex,
     this.onLongPress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +64,12 @@ class Choice {
 
 class ChoiceItem extends StatelessWidget {
   const ChoiceItem(
-      {Key? key,
+      {super.key,
       required this.theme,
       required this.onLongPress,
       required this.onPressed,
       required this.entry,
-      required this.isSelected})
-      : super(key: key);
+      required this.isSelected,});
 
   final MapEntry<int, Choice> entry;
   final ThemeData theme;
@@ -102,7 +101,7 @@ class ChoiceItem extends StatelessWidget {
           child: TextButton(
             style: ButtonStyle(
               padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 7)),
+                  const EdgeInsets.symmetric(horizontal: 7),),
               //if index is selected, then give the background a slight primary color
               backgroundColor: MaterialStateProperty.all<Color>(
                 entry.value.color != null

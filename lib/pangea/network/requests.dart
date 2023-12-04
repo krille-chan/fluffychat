@@ -15,10 +15,10 @@ class Requests {
       {this.accessToken,
       this.baseUrl = '',
       this.matrixAccessToken,
-      this.choreoApiKey});
+      this.choreoApiKey,});
 
   Future<http.Response> post(
-      {required String url, required Map<dynamic, dynamic> body}) async {
+      {required String url, required Map<dynamic, dynamic> body,}) async {
     dynamic encoded;
     encoded = jsonEncode(body);
 
@@ -35,7 +35,7 @@ class Requests {
   }
 
   Future<http.Response> put(
-      {required String url, required Map<dynamic, dynamic> body}) async {
+      {required String url, required Map<dynamic, dynamic> body,}) async {
     dynamic encoded;
     encoded = jsonEncode(body);
 
@@ -85,7 +85,7 @@ class Requests {
   }
 
   void handleError(http.Response response,
-      {Map<dynamic, dynamic>? body, String? objectId}) {
+      {Map<dynamic, dynamic>? body, String? objectId,}) {
     //PTODO - handle 401 error - unauthorized call
     //kick them back to login?
 

@@ -76,8 +76,8 @@ class ITController {
       Sentry.addBreadcrumb(
         Breadcrumb(message: "choreo context", data: {
           "igcTextData": choreographer.igc.igcTextData?.toJson(),
-          "currentText": choreographer.currentText
-        }),
+          "currentText": choreographer.currentText,
+        },),
       );
       throw Exception("null _itStartData or empty text in _setSourceText");
     }
@@ -125,7 +125,7 @@ class ITController {
         completedITSteps.add(ITStep(
           currentITStep!.continuances,
           customInput: currentText,
-        ));
+        ),);
       }
 
       currentITStep = null;
@@ -419,7 +419,7 @@ class CurrentITStep {
             }
             return e;
           }),
-          goldCont
+          goldCont,
         ];
         continuances.shuffle();
       } else {
