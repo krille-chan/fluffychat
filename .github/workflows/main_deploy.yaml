@@ -26,7 +26,8 @@ jobs:
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Build Website
         run: |
-          mv build/web/ public/web
+          mkdir public
+          mv build/web/ public
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
