@@ -26,9 +26,6 @@ jobs:
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Build Website
         run: |
-          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
-          mv docs public
-          mv repo public || true
           mv build/web/ public/web
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
