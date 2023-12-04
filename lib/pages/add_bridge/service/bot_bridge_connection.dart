@@ -233,10 +233,6 @@ class BotBridgeConnection {
 
     String result = ""; // Variable to track the result of the connection
 
-    // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login $username $password");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
     // variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;

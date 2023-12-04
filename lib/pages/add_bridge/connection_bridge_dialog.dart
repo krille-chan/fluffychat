@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'error_message_dialog.dart';
+import 'login_form.dart';
 import 'model/social_network.dart';
 
 // Creation of a FormKey for entering identifiers for Connection ShowDialog
@@ -24,9 +25,6 @@ Future<bool> connectToInstagram(
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  String? username;
-  String? password;
 
   //Login function for social networks requiring only 2 fields
   Future<void> twoFieldsLoginFunction({
@@ -135,49 +133,11 @@ Future<bool> connectToInstagram(
                 // color: Color(0xFFFAAB22),
               ),
             ),
-            content: Form(
-              key: formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(L10n.of(context)!.enterYourDetails),
-                  const SizedBox(height: 5),
-                  TextFormField(
-                    controller: usernameController,
-                    decoration:
-                        InputDecoration(labelText: L10n.of(context)!.username),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return L10n.of(context)!.pleaseEnterYourUsername;
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      username =
-                          value; // Saves the value in the username variable
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    controller: passwordController,
-                    decoration:
-                        InputDecoration(labelText: L10n.of(context)!.password),
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return L10n.of(context)!.pleaseEnterPassword;
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      password =
-                          value; // Saves the value in the password variable
-                    },
-                  ),
-                ],
-              ),
+            content: LoginForm(
+              formKey: formKey,
+              usernameController: usernameController,
+              passwordController: passwordController,
+              completerCallback: completer.complete,
             ),
             actions: <Widget>[
               TextButton(
@@ -189,11 +149,12 @@ Future<bool> connectToInstagram(
               ),
               TextButton(
                 onPressed: () async {
+                  // Calling up the login function
                   await twoFieldsLoginFunction(
                     context: context,
                     formKey: formKey,
-                    username: username,
-                    password: password,
+                    username: usernameController.text,
+                    password: passwordController.text,
                     network: network,
                     botConnection: botConnection,
                   );
@@ -216,7 +177,7 @@ Future<bool> connectToInstagram(
   return completer.future;
 }
 
-// ShowDialog for Instagram connection
+// ShowDialog for WhatsApp connection
 Future<bool> connectToWhatsApp(
   BuildContext context,
   SocialNetwork network,
@@ -228,8 +189,6 @@ Future<bool> connectToWhatsApp(
 
   // Retrieve the language used in the application
   String initialLanguage = Localizations.localeOf(context).languageCode;
-
-  String? phoneNumber;
 
   // login functions for whatsApp
   Future<void> whatsAppLoginFunction({
@@ -310,35 +269,10 @@ Future<bool> connectToWhatsApp(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            content: Form(
-              key: formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(L10n.of(context)!.enterYourDetails),
-                  const SizedBox(height: 5),
-                  IntlPhoneField(
-                    initialCountryCode: initialLanguage.toUpperCase(),
-                    onChanged: (PhoneNumber phoneNumberField) {
-                      phoneNumber = phoneNumberField.completeNumber;
-                    },
-                    // Initial country code via language used in Locale currentLocale
-                    languageCode: initialLanguage,
-                    onCountryChanged: (country) {
-                      initialLanguage = country.code;
-                    },
-                    controller: controller,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    L10n.of(context)!.phoneField_explain,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    L10n.of(context)!.phoneField_initialZero,
-                  ),
-                ],
-              ),
+            content: WhatsAppLoginForm(
+              formKey: formKey,
+              controller: controller,
+              completerCallback: completer.complete,
             ),
             actions: <Widget>[
               TextButton(
@@ -353,7 +287,7 @@ Future<bool> connectToWhatsApp(
                   await whatsAppLoginFunction(
                     context: context,
                     formKey: formKey,
-                    phoneNumber: phoneNumber,
+                    phoneNumber: controller.text,
                     botConnection: botConnection,
                   );
                 },
