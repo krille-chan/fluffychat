@@ -2673,5 +2673,13 @@
   "groupName": "Taldearen izena",
   "@groupName": {},
   "searchChatsRooms": "Bilatu #txatak, @erabiltzaileak…",
-  "@searchChatsRooms": {}
+  "@searchChatsRooms": {},
+  "blockListDescription": "Gogaitzen zaituzten erabiltzaileak blokeatu ditzakezu. Ez duzu blokeatutakoen zerrendan dituzun erabiltzaileen mezurik edo gelara batzeko gonbidapenik jasoko.",
+  "@blockListDescription": {},
+  "blockedUsers": "Blokeatutako erabiltzaileak",
+  "@blockedUsers": {},
+  "block": "blokeatu",
+  "@block": {},
+  "blockUsername": "Ezikusi erabiltzaile-izena",
+  "@blockUsername": {}
 }
