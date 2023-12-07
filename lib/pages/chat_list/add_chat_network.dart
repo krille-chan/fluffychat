@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import '../../utils/platform_size.dart';
-import '../../widgets/matrix.dart';
-import '../add_bridge/add_bridge_body.dart';
 
 // Shows a button redirecting to the bridge bots social network chat connection page
 class AddChatNetwork extends StatelessWidget {
