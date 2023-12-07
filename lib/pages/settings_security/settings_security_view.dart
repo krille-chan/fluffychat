@@ -31,7 +31,7 @@ class SettingsSecurityView extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.block_outlined),
                 trailing: const Icon(Icons.chevron_right_outlined),
-                title: Text(L10n.of(context)!.ignoredUsers),
+                title: Text(L10n.of(context)!.blockedUsers),
                 onTap: () => context.go('/rooms/settings/security/ignorelist'),
               ),
               ListTile(

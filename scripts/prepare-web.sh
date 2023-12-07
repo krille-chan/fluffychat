@@ -2,7 +2,6 @@
 rm -r assets/js/package
 
 
-
 OLM_VERSION=$(cat pubspec.yaml | yq .dependencies.flutter_olm)
 DOWNLOAD_PATH="https://github.com/famedly/olm/releases/download/v$OLM_VERSION/olm.zip"
 

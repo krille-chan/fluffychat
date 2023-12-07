@@ -294,10 +294,14 @@ abstract class AppRoutes {
                         ),
                         GoRoute(
                           path: 'ignorelist',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const SettingsIgnoreList(),
-                          ),
+                          pageBuilder: (context, state) {
+                            return defaultPageBuilder(
+                              context,
+                              SettingsIgnoreList(
+                                initialUserId: state.extra?.toString(),
+                              ),
+                            );
+                          },
                           redirect: loggedOutRedirect,
                         ),
                         GoRoute(
