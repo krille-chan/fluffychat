@@ -548,7 +548,6 @@ class BotBridgeConnection {
     bool passwordSent = false;
 
     while (currentIteration < maxIterations) {
-
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
