@@ -1,8 +1,8 @@
 // Flutter imports:
 
+import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/models/language_model.dart';
 import '../../widgets/flag.dart';
 
 class PLanguageDropdown extends StatefulWidget {
@@ -27,17 +27,26 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
   @override
   Widget build(BuildContext context) {
     final List<LanguageModel> sortedLanguages = widget.languages;
+    final String systemLang = Localizations.localeOf(context).languageCode;
 
     int sortLanguages(LanguageModel a, LanguageModel b) {
-      if (a.langCode == 'en') {
-        return -1; // "English" comes first
-      } else if (b.langCode == 'en') {
-        return 1;
-      } else if (a.langCode == 'es') {
-        return -1; // "Spanish" comes second
-      } else if (b.langCode == 'es') {
-        return 1;
+      final String aLang = a.langCode;
+      final String bLang = b.langCode;
+      if (aLang == bLang) return 0;
+
+      final List<String> languagePriority = [systemLang, 'en', 'es'];
+      final bool aIsPriority = languagePriority.contains(a.langCode);
+      final bool bIsPriority = languagePriority.contains(b.langCode);
+
+      if (aIsPriority && bIsPriority) {
+        final int aPriority = languagePriority.indexOf(a.langCode);
+        final int bPriority = languagePriority.indexOf(b.langCode);
+        return aPriority - bPriority;
       }
+
+      if (aIsPriority) return -1;
+      if (bIsPriority) return 1;
+
       return a.getDisplayName(context)!.compareTo(b.getDisplayName(context)!);
     }
 

@@ -1,14 +1,15 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+
 import '../../../config/themes.dart';
 import '../../../widgets/matrix.dart';
 import 'p_language_dropdown.dart';
@@ -17,12 +18,24 @@ import 'p_question_container.dart';
 pLanguageDialog(BuildContext parentContext, Function callback) {
   final PangeaController pangeaController = MatrixState.pangeaController;
   //PTODO: if source language not set by user, default to languge from device settings
-  LanguageModel selectedSourceLanguage =
-      pangeaController.languageController.userL1 ??
-          pangeaController.pLanguageStore.targetOptions[0];
-  LanguageModel selectedTargetLanguage =
-      pangeaController.languageController.userL2 ??
-          pangeaController.pLanguageStore.targetOptions[1];
+  final LanguageModel? userL1 = pangeaController.languageController.userL1;
+  final LanguageModel? userL2 = pangeaController.languageController.userL2;
+  final String systemLang = Localizations.localeOf(parentContext).languageCode;
+  final LanguageModel systemLanguage = PangeaLanguage.byLangCode(systemLang);
+
+  LanguageModel selectedSourceLanguage = systemLanguage;
+  if (userL1 != null && userL1.langCode != LanguageKeys.unknownLanguage) {
+    selectedSourceLanguage = userL1;
+  }
+
+  LanguageModel selectedTargetLanguage;
+  if (userL2 != null && userL2.langCode != LanguageKeys.unknownLanguage) {
+    selectedTargetLanguage = userL2;
+  } else {
+    selectedTargetLanguage = selectedSourceLanguage.langCode != 'en'
+        ? PangeaLanguage.byLangCode('en')
+        : PangeaLanguage.byLangCode('es');
+  }
 
   return showDialog(
     useRootNavigator: false,
