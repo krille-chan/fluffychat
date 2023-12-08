@@ -64,7 +64,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
 
     final db = FlutterHiveCollectionsDatabase(
       'hive_collections_${client.clientName.replaceAll(' ', '_').toLowerCase()}',
-      await _findDatabasePath(client),
+      await findDatabasePath(client),
       key: hiverCipher,
     );
     try {
@@ -80,7 +80,7 @@ class FlutterHiveCollectionsDatabase extends HiveCollectionsDatabase {
     return db;
   }
 
-  static Future<String> _findDatabasePath(Client client) async {
+  static Future<String> findDatabasePath(Client client) async {
     String path = client.clientName;
     if (!kIsWeb) {
       Directory directory;
