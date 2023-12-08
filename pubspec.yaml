@@ -47,7 +47,7 @@ dependencies:
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
   flutter_typeahead: ^4.8.0
-  flutter_web_auth_2: ^3.0.3
+  flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
