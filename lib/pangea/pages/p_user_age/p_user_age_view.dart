@@ -1,9 +1,9 @@
+import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import '../../../widgets/layouts/login_scaffold.dart';
 
 class PUserAgeView extends StatelessWidget {
@@ -45,21 +45,52 @@ class PUserAgeView extends StatelessWidget {
                     controller.loading ? null : [AutofillHints.birthday],
                 validator: controller.dobFieldValidator,
                 onTap: () async {
-                  final DateTime? pickedDate = await showDatePicker(
-                    initialDatePickerMode: DatePickerMode.year,
+                  showDialog(
                     context: context,
-                    initialDate: controller.initialDate,
-                    firstDate: DateTime(1940),
-                    lastDate: DateTime.now(),
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Theme.of(context).colorScheme.background,
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          // height: 350,
+                          width: 500,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Card(
+                                child: SfDateRangePicker(
+                                  view: DateRangePickerView.month,
+                                  showNavigationArrow: true,
+                                  showActionButtons: true,
+                                  selectionMode:
+                                      DateRangePickerSelectionMode.single,
+                                  initialDisplayDate: controller.initialDate,
+                                  initialSelectedDate: controller.initialDate,
+                                  onSubmit: (val) {
+                                    final DateTime? pickedDate =
+                                        val as DateTime?;
+                                    if (pickedDate != null) {
+                                      controller.dobController.text =
+                                          DateFormat.yMd().format(pickedDate);
+                                      controller.error = null;
+                                    } else {
+                                      controller.error =
+                                          L10n.of(context)!.invalidDob;
+                                    }
+                                    Navigator.pop(context);
+                                  },
+                                  onCancel: () => Navigator.pop(context),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
-
-                  if (pickedDate != null) {
-                    controller.dobController.text =
-                        DateFormat.yMd().format(pickedDate);
-                    controller.error = null;
-                  } else {
-                    controller.error = L10n.of(context)!.invalidDob;
-                  }
                 },
                 // onChanged: (String newValue) {
                 //   try {
