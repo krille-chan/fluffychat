@@ -6,11 +6,11 @@ on:
       - main
       - pangea-merge
       
-environment: staging
   
 jobs:
   deploy_web:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
