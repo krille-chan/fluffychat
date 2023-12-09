@@ -5,7 +5,9 @@ on:
     branches:
       - main
       - pangea-merge
-
+      
+environment: staging
+  
 jobs:
   deploy_web:
     runs-on: ubuntu-latest
