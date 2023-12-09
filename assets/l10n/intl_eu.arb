@@ -2681,5 +2681,9 @@
   "block": "blokeatu",
   "@block": {},
   "blockUsername": "Ezikusi erabiltzaile-izena",
-  "@blockUsername": {}
+  "@blockUsername": {},
+  "databaseMigrationTitle": "Datu-basea optimizatu da",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Itxaron, litekeena da tarte bat behar izatea.",
+  "@databaseMigrationBody": {}
 }
