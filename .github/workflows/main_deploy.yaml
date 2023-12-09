@@ -13,6 +13,10 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - run: echo "$WEB_APP_ENV"
       - run: echo "$WEB_APP_ENV" > .env
