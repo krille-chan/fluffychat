@@ -5,7 +5,10 @@ on:
     branches:
       - main
       - pangea-merge
-      
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.WEB_APP_ENV }}
   
 jobs:
   deploy_web:
@@ -17,8 +20,14 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo $WEB_APP_ENV >> .env
-          cat .env
+          echo $ENV >> .env
+          cat .env |
+          echo "$ENV : $ENV"
+          echo "env_var : $env_var"
+          echo "STAGE  : $STAGE"
+        env:
+          ENV: ${{ vars.WEB_APP_ENV }}
+          STAGE: ${{ vars.ENVIRONMENT_STAGE }}
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
