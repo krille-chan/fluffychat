@@ -8,7 +8,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.WEB_APP_ENV }}
+  WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
   
 jobs:
   deploy_web:
@@ -20,14 +20,8 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo $ENV >> .env
-          cat .env |
-          echo "$ENV : $ENV"
-          echo "env_var : $env_var"
-          echo "STAGE  : $STAGE"
-        env:
-          ENV: ${{ vars.WEB_APP_ENV }}
-          STAGE: ${{ vars.ENVIRONMENT_STAGE }}
+          echo $WEB_APP_ENV >> .env
+          cat .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -43,7 +37,6 @@ jobs:
         run: |
           mv build/web public
           mv .env public/.env
-          cp public/.env public/.env-staging
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
