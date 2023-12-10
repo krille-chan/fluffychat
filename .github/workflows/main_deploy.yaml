@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix-main-deploy
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -16,6 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo "$WEB_APP_ENV" >> .env
+          cat .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -27,11 +33,10 @@ jobs:
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
         run: ./scripts/build-web.sh
-      - name: Build Website
+      - name: Move Website
         run: |
           mv build/web public
-          touch public/.env
-          echo "$WEB_APP_ENV" >> public/.env
+          mv .env public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -42,6 +47,8 @@ jobs:
 
   update_sentry:
     runs-on: ubuntu-latest
+    environment: staging
+    needs: deploy_web
     steps:
       - uses: actions/checkout@v3
         with:
@@ -54,5 +61,3 @@ jobs:
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           # SENTRY_URL: https://sentry.io/
-        with:
-          environment: staging
