@@ -1,11 +1,5 @@
 name: Old Release Workflow
 
-on:
-  push:
-    branches:
-      - main
-      - pangea-merge
-
 concurrency:
   group: release_workflow
   cancel-in-progress: true

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - pangea-merge
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -17,11 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo "$WEB_APP_ENV" >> .env
-          cat .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -36,14 +30,15 @@ jobs:
       - name: Build Website
         run: |
           mv build/web public
-          mv .env public/.env
+          touch public/.env
+          echo "$WEB_APP_ENV" >> public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          # cname: app.staging.pangea.chat.im
+          # cname: app.staging.pangea.chat
 
   update_sentry:
     runs-on: ubuntu-latest

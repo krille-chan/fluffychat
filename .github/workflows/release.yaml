@@ -27,20 +27,20 @@ jobs:
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
       - name: Create archive
-        run: tar -czf fluffychat-web.tar.gz build/web/
+        run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
         uses: actions/upload-artifact@v2
         with:
           name: Web Build
-          path: fluffychat-web.tar.gz
+          path: pangeachat-web.tar.gz
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-web.tar.gz
-          asset_name: fluffychat-web.tar.gz
+          asset_path: pangeachat-web.tar.gz
+          asset_name: pangeachat-web.tar.gz
           asset_content_type: application/gzip
 
   build_apk:
