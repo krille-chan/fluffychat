@@ -30,7 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: actions/setup-java@v1
         with:
           java-version: ${{ env.JAVA_VERSION }}
@@ -46,7 +45,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -61,7 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -76,7 +73,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
