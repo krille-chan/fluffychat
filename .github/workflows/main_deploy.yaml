@@ -13,13 +13,12 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV"
-      - run: echo "$WEB_APP_ENV" > .env
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo ${{ variables.WEB_APP_ENV }} >> .env
+          cat .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -35,6 +34,10 @@ jobs:
         run: |
           mv build/web public
           mv .env public/.env
+      - name: Build Website
+        run: |
+          mv build/web public
+          cp public/.env public/.env-staging
       - run: cat public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
