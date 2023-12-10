@@ -1,5 +1,8 @@
 name: Old Release Workflow
 
+on:
+  push:
+
 concurrency:
   group: release_workflow
   cancel-in-progress: true
