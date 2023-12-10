@@ -31,8 +31,8 @@ class UserDeviceListItem extends StatelessWidget {
     required this.verify,
     required this.block,
     required this.unblock,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

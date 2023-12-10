@@ -8,7 +8,7 @@ import 'add_widget_tile.dart';
 class EditWidgetsDialog extends StatelessWidget {
   final Room room;
 
-  const EditWidgetsDialog({Key? key, required this.room}) : super(key: key);
+  const EditWidgetsDialog({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {

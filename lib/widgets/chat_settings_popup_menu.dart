@@ -10,14 +10,17 @@ import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
   final bool displayChatDetails;
 
-  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {Key? key})
-      : super(key: key);
+  const ChatSettingsPopupMenu(this.room, this.displayChatDetails, {super.key});
 
   @override
   ChatSettingsPopupMenuState createState() => ChatSettingsPopupMenuState();
@@ -34,6 +37,13 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
+    // #Pangea
+    final PangeaController pangeaController = MatrixState.pangeaController;
+    final ClassSettingsModel? classSettings = pangeaController
+        .matrixState.client
+        .getRoomById(widget.room.id)
+        ?.firstLanguageSettings;
+    // Pangea#
     notificationChangeSub ??= Matrix.of(context)
         .client
         .onAccountData
@@ -43,6 +53,28 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           (u) => setState(() {}),
         );
     final items = <PopupMenuEntry<String>>[
+      // #Pangea
+      // PopupMenuItem<String>(
+      //   value: 'widgets',
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.widgets_outlined),
+      //       const SizedBox(width: 12),
+      //       Text(L10n.of(context)!.matrixWidgets),
+      //     ],
+      //   ),
+      // ),
+      PopupMenuItem<String>(
+        value: 'learning_settings',
+        child: Row(
+          children: [
+            const Icon(Icons.settings),
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.learningSettings),
+          ],
+        ),
+      ),
+      // Pangea#
       widget.room.pushRuleState == PushRuleState.notify
           ? PopupMenuItem<String>(
               value: 'mute',
@@ -64,16 +96,76 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
+      // #Pangea
+      // PopupMenuItem<String>(
+      //   value: 'todos',
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.task_alt_outlined),
+      //       const SizedBox(width: 12),
+      //       Text(L10n.of(context)!.todoLists),
+      //     ],
+      //   ),
+      // ),
+      // PopupMenuItem<String>(
+      //   value: 'todos',
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.task_alt_outlined),
+      //       const SizedBox(width: 12),
+      //       Text(L10n.of(context)!.todoLists),
+      //     ],
+      //   ),
+      // ),
+      // Pangea#
       PopupMenuItem<String>(
         value: 'leave',
         child: Row(
           children: [
-            const Icon(Icons.delete_outlined),
+            // #Pangea
+            // const Icon(Icons.delete_outlined),
+            const Icon(Icons.arrow_forward),
+            // Pangea#
             const SizedBox(width: 12),
             Text(L10n.of(context)!.leave),
           ],
         ),
       ),
+      // #Pangea
+      if (classSettings != null)
+        PopupMenuItem<String>(
+          value: 'download txt',
+          child: Row(
+            children: [
+              const Icon(Icons.download_outlined),
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.downloadTxtFile),
+            ],
+          ),
+        ),
+      if (classSettings != null)
+        PopupMenuItem<String>(
+          value: 'download csv',
+          child: Row(
+            children: [
+              const Icon(Icons.download_outlined),
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.downloadCSVFile),
+            ],
+          ),
+        ),
+      if (classSettings != null)
+        PopupMenuItem<String>(
+          value: 'download xlsx',
+          child: Row(
+            children: [
+              const Icon(Icons.download_outlined),
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.downloadXLSXFile),
+            ],
+          ),
+        ),
+      // Pangea#
     ];
     if (widget.displayChatDetails) {
       items.insert(
@@ -112,6 +204,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   title: L10n.of(context)!.areYouSure,
                   okLabel: L10n.of(context)!.ok,
                   cancelLabel: L10n.of(context)!.cancel,
+                  message: L10n.of(context)!.archiveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
@@ -137,9 +230,55 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                       widget.room.setPushRuleState(PushRuleState.notify),
                 );
                 break;
+              // #Pangea
+              // case 'todos':
+              //   context.go('/rooms/${widget.room.id}/tasks');
+              //   break;
+              // Pangea#
               case 'details':
                 _showChatDetails();
                 break;
+              // #Pangea
+              case 'download txt':
+                showFutureLoadingDialog(
+                  context: context,
+                  future: () => downloadChat(
+                    widget.room,
+                    classSettings!,
+                    DownloadType.txt,
+                    Matrix.of(context).client,
+                    context,
+                  ),
+                );
+                break;
+              case 'download csv':
+                showFutureLoadingDialog(
+                  context: context,
+                  future: () => downloadChat(
+                    widget.room,
+                    classSettings!,
+                    DownloadType.csv,
+                    Matrix.of(context).client,
+                    context,
+                  ),
+                );
+                break;
+              case 'download xlsx':
+                showFutureLoadingDialog(
+                  context: context,
+                  future: () => downloadChat(
+                    widget.room,
+                    classSettings!,
+                    DownloadType.xlsx,
+                    Matrix.of(context).client,
+                    context,
+                  ),
+                );
+                break;
+              case 'learning_settings':
+                context.go('/rooms/settings/learning');
+                break;
+              // #Pangea
             }
           },
           itemBuilder: (BuildContext context) => items,

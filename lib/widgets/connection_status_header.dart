@@ -10,7 +10,7 @@ import '../utils/localized_exception_extension.dart';
 import 'matrix.dart';
 
 class ConnectionStatusHeader extends StatefulWidget {
-  const ConnectionStatusHeader({Key? key}) : super(key: key);
+  const ConnectionStatusHeader({super.key});
 
   @override
   ConnectionStatusHeaderState createState() => ConnectionStatusHeaderState();

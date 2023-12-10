@@ -46,6 +46,9 @@ abstract class PlatformInfos {
     final version = await PlatformInfos.getVersion();
     showAboutDialog(
       context: context,
+      // #Pangea
+      useRootNavigator: false,
+      // Pangea#
       children: [
         Text('Version: $version'),
         TextButton.icon(

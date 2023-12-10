@@ -34,7 +34,7 @@ class LoadProfileBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ProfileInformation>(
-      future: Matrix.of(context)
+      future: Matrix.of(outerContext)
           .client
           .getUserProfile(userId)
           .timeout(const Duration(seconds: 3)),
@@ -74,14 +74,13 @@ class UserBottomSheet extends StatefulWidget {
   final Object? profileSearchError;
 
   const UserBottomSheet({
-    Key? key,
+    super.key,
     this.user,
     this.profile,
     required this.outerContext,
     this.onMention,
     this.profileSearchError,
-  })  : assert(user != null || profile != null),
-        super(key: key);
+  }) : assert(user != null || profile != null);
 
   @override
   UserBottomSheetController createState() => UserBottomSheetController();
@@ -92,15 +91,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     final user = widget.user;
     final userId = user?.id ?? widget.profile?.userId;
     if (userId == null) throw ('user or profile must not be null!');
-    // ignore: prefer_function_declarations_over_variables
-    final Function askConfirmation = () async => (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.no,
-        ) ==
-        OkCancelResult.ok);
+
     switch (action) {
       case UserBottomSheetAction.report:
         if (user == null) throw ('User must not be null for this action!');
@@ -138,7 +129,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (reason == null || reason.single.isEmpty) return;
         final result = await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(context).client.reportContent(
+          future: () => Matrix.of(widget.outerContext).client.reportContent(
                 user.roomId!,
                 user.eventId,
                 reason: reason.single,
@@ -157,7 +148,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.ban:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.banUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.ban(),
@@ -167,7 +166,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.unban:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.unbanUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.unban(),
@@ -177,7 +184,15 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         break;
       case UserBottomSheetAction.kick:
         if (user == null) throw ('User must not be null for this action!');
-        if (await askConfirmation()) {
+        if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
+              context: context,
+              title: L10n.of(context)!.areYouSure,
+              okLabel: L10n.of(context)!.yes,
+              cancelLabel: L10n.of(context)!.no,
+              message: L10n.of(context)!.kickUserDescription,
+            ) ==
+            OkCancelResult.ok) {
           await showFutureLoadingDialog(
             context: context,
             future: () => user.kick(),
@@ -192,7 +207,16 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           currentLevel: user.powerLevel,
         );
         if (newPermission != null) {
-          if (newPermission == 100 && await askConfirmation() == false) break;
+          if (newPermission == 100 &&
+              await showOkCancelAlertDialog(
+                    useRootNavigator: false,
+                    context: context,
+                    title: L10n.of(context)!.areYouSure,
+                    okLabel: L10n.of(context)!.yes,
+                    cancelLabel: L10n.of(context)!.no,
+                    message: L10n.of(context)!.makeAdminDescription,
+                  ) ==
+                  OkCancelResult.ok) break;
           await showFutureLoadingDialog(
             context: context,
             future: () => user.setPower(newPermission),
@@ -203,23 +227,19 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.message:
         final roomIdResult = await showFutureLoadingDialog(
           context: context,
-          future: () => Matrix.of(context)
+          future: () => Matrix.of(widget.outerContext)
               .client
               .startDirectChat(user?.id ?? widget.profile!.userId),
         );
         if (roomIdResult.error != null) return;
         widget.outerContext.go('/rooms/${roomIdResult.result!}');
-        Navigator.of(context, rootNavigator: false).pop();
+        Navigator.of(context, rootNavigator: false)
+          ..pop()
+          ..pop();
+        widget.outerContext.go('/rooms/${roomIdResult.result!}');
         break;
       case UserBottomSheetAction.ignore:
-        if (await askConfirmation()) {
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => Matrix.of(context)
-                .client
-                .ignoreUser(user?.id ?? widget.profile!.userId),
-          );
-        }
+        context.go('/rooms/settings/security/ignorelist');
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -140,6 +141,11 @@ abstract class FluffyThemes {
           ),
         ),
       ),
+      // #Pangea
+      cupertinoOverrideTheme: const CupertinoThemeData(
+        textTheme: CupertinoTextThemeData(),
+      ),
+      // Pangea#
     );
   }
 }

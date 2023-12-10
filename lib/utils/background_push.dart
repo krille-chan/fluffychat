@@ -24,6 +24,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -31,13 +34,14 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
-import 'famedlysdk_store.dart';
 import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
@@ -55,8 +59,7 @@ class BackgroundPush {
   String? _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
-  Store? _store;
-  Store get store => _store ??= Store();
+
   Future<void> loadLocale() async {
     final context = matrix?.context;
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
@@ -66,13 +69,21 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  final dynamic firebase = null; //FcmSharedIsolate();
+  // final dynamic firebase = null; //FcmSharedIsolate();
+  // #Pangea
+  // uncommented to enable notifications on IOS
+  final FcmSharedIsolate? firebase = FcmSharedIsolate();
+  // Pangea#
 
   DateTime? lastReceivedPush;
 
   bool upAction = false;
 
   BackgroundPush._(this.client) {
+    // #Pangea
+    onLogin ??=
+        client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
+    // Pangea#
     onRoomSync ??= client.onSync.stream
         .where((s) => s.hasRoomUpdate)
         .listen((s) => _onClearingPush(getFromServer: false));
@@ -86,6 +97,9 @@ class BackgroundPush {
         activeRoomId: matrix?.activeRoomId,
         onSelectNotification: goToRoom,
       ),
+      // #Pangea
+      onNewToken: _newFcmToken,
+      // Pangea#
     );
     if (Platform.isAndroid) {
       UnifiedPush.initialize(
@@ -110,8 +124,26 @@ class BackgroundPush {
     instance.matrix = matrix;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
+    // #Pangea
+    instance.fullInit();
+    // Pangea#
     return instance;
   }
+
+  // #Pangea
+  Future<void> fullInit() => setupPush();
+
+  void handleLoginStateChanged(_) => setupPush();
+
+  StreamSubscription<LoginState>? onLogin;
+  StreamSubscription<SyncUpdate>? onRoomSync;
+
+  void _newFcmToken(String token) {
+    _fcmToken = token;
+    debugPrint('Fcm foken $_fcmToken');
+    setupPush();
+  }
+  // Pangea#
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
@@ -131,8 +163,6 @@ class BackgroundPush {
       return;
     }
   }
-
-  StreamSubscription<SyncUpdate>? onRoomSync;
 
   Future<void> setupPusher({
     String? gatewayUrl,
@@ -171,6 +201,9 @@ class BackgroundPush {
           currentPushers.first.appDisplayName == clientName &&
           currentPushers.first.deviceDisplayName == client.deviceName &&
           currentPushers.first.lang == 'en' &&
+          // #Pangea
+          currentPushers.first.lang == LanguageKeys.defaultLanguage &&
+          // Pangea#
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
               AppConfig.pushNotificationsPusherFormat &&
@@ -210,7 +243,10 @@ class BackgroundPush {
             appId: thisAppId,
             appDisplayName: clientName,
             deviceDisplayName: client.deviceName!,
-            lang: 'en',
+            //#Pangea
+            // lang: 'en',
+            lang: LanguageKeys.defaultLanguage,
+            // Pangea#
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
               format: AppConfig.pushNotificationsPusherFormat,
@@ -222,6 +258,9 @@ class BackgroundPush {
         );
       } catch (e, s) {
         Logs().e('[Push] Unable to set pushers', e, s);
+        // #Pangea
+        ErrorHandler.logError(e: e, s: s);
+        // Pangea#
       }
     }
   }
@@ -271,7 +310,7 @@ class BackgroundPush {
     if (matrix == null) {
       return;
     }
-    if (await store.getItemBool(SettingKeys.showNoGoogle, true) == true) {
+    if ((matrix?.store.getBool(SettingKeys.showNoGoogle) ?? false) == true) {
       return;
     }
     await loadLocale();
@@ -293,7 +332,10 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        _fcmToken = await firebase?.getToken();
+        // #Pangea
+        // _fcmToken = await firebase?.getToken();
+        _fcmToken = await _getToken();
+        // Pangea#
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -326,6 +368,9 @@ class BackgroundPush {
           .go('/${isStory ? 'rooms/stories' : 'rooms'}/$roomId');
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
+      // #Pangea
+      ErrorHandler.logError(e: e, s: s);
+      // Pangea#
     }
   }
 
@@ -365,7 +410,10 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
-      final fcmToken = await firebase?.getToken();
+      // #Pangea
+      // final fcmToken = await firebase?.getToken();
+      final fcmToken = await _getToken();
+      // Pangea#
       oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(
@@ -374,16 +422,17 @@ class BackgroundPush {
       oldTokens: oldTokens,
       useDeviceSpecificAppId: true,
     );
-    await store.setItem(SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await store.setItemBool(SettingKeys.unifiedPushRegistered, true);
+    await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
+    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
   }
 
   Future<void> _upUnregistered(String i) async {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
-    final oldEndpoint = await store.getItem(SettingKeys.unifiedPushEndpoint);
-    await store.setItemBool(SettingKeys.unifiedPushRegistered, false);
-    await store.deleteItem(SettingKeys.unifiedPushEndpoint);
+    final oldEndpoint =
+        matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
+    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
+    await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
     if (oldEndpoint?.isNotEmpty ?? false) {
       // remove the old pusher
       await setupPusher(
@@ -409,12 +458,12 @@ class BackgroundPush {
 
   /// Workaround for the problem that local notification IDs must be int but we
   /// sort by [roomId] which is a String. To make sure that we don't have duplicated
-  /// IDs we map the [roomId] to a number and store this number.
+  /// IDs we map the [roomId] to a number and matrix?.store this number.
   late Map<String, int> idMap;
   Future<void> _loadIdMap() async {
     idMap = Map<String, int>.from(
       json.decode(
-        (await store.getItem(SettingKeys.notificationCurrentIds)) ?? '{}',
+        (matrix?.store.getString(SettingKeys.notificationCurrentIds)) ?? '{}',
       ),
     );
   }
@@ -488,7 +537,7 @@ class BackgroundPush {
         }
       }
       if (changed) {
-        await store.setItem(
+        await matrix?.store.setString(
           SettingKeys.notificationCurrentIds,
           json.encode(idMap),
         );
@@ -497,4 +546,16 @@ class BackgroundPush {
       _clearingPushLock = false;
     }
   }
+
+  // #Pangea
+  Future<String?> _getToken() async {
+    if (Platform.isAndroid) {
+      await Firebase.initializeApp(
+          // options: DefaultFirebaseOptions.currentPlatform,
+          );
+      return (await FirebaseMessaging.instance.getToken());
+    }
+    return await firebase?.getToken();
+  }
+  // Pangea#
 }

@@ -1,31 +1,50 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../config/themes.dart';
-import 'chat_list.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
   final ActiveFilter activeFilter;
   final ValueNotifier<bool> scrolledToTop;
   final bool roomsIsEmpty;
+  // #Pangea
+  final ChatListController controller;
+  // Pangea#
 
   const StartChatFloatingActionButton({
-    Key? key,
+    super.key,
     required this.activeFilter,
     required this.scrolledToTop,
     required this.roomsIsEmpty,
-  }) : super(key: key);
+    // #Pangea
+    required this.controller,
+    // Pangea#
+  });
 
   void _onPressed(BuildContext context) {
+    //#Pangea
+    if (controller.activeSpaceId != null) {
+      context.go('/rooms/newgroup/${controller.activeSpaceId}');
+      return;
+    }
+    //Pangea#
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        context.go('/rooms/newprivatechat');
-        break;
+      // #Pangea
+      // context.go('/rooms/newprivatechat');
+      // break;
+      // Pangea#
       case ActiveFilter.groups:
-        context.go('/rooms/newgroup');
+        // #Pangea
+        // context.go('/rooms/newgroup');
+        context.go('/rooms/newgroup/${controller.activeSpaceId}');
+        // Pangea#
         break;
       case ActiveFilter.spaces:
         context.go('/rooms/newspace');
@@ -34,10 +53,17 @@ class StartChatFloatingActionButton extends StatelessWidget {
   }
 
   IconData get icon {
+    // #Pangea
+    if (controller.activeSpaceId != null) {
+      return Icons.group_add_outlined;
+    }
+    // Pangea#
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return Icons.add_outlined;
+      // #Pangea
+      // return Icons.add_outlined;
+      // Pangea#
       case ActiveFilter.groups:
         return Icons.group_add_outlined;
       case ActiveFilter.spaces:
@@ -46,6 +72,11 @@ class StartChatFloatingActionButton extends StatelessWidget {
   }
 
   String getLabel(BuildContext context) {
+    // #Pangea
+    if (controller.activeSpaceId != null) {
+      return L10n.of(context)!.newGroup;
+    }
+    // Pangea#
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:

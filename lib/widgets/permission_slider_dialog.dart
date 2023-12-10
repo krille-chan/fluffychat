@@ -61,6 +61,16 @@ Future<int?> showPermissionChooser(
             initialText: currentLevel.toString(),
             keyboardType: TextInputType.number,
             autocorrect: false,
+            validator: (text) {
+              if (text == null) {
+                return L10n.of(context)!.pleaseEnterANumber;
+              }
+              final level = int.tryParse(text);
+              if (level == null || level < 0) {
+                return L10n.of(context)!.pleaseEnterANumber;
+              }
+              return null;
+            },
           ),
         ],
       );

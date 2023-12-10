@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'settings_multiple_emotes_view.dart';
 
 class MultipleEmotesSettings extends StatefulWidget {
-  const MultipleEmotesSettings({Key? key}) : super(key: key);
+  const MultipleEmotesSettings({super.key});
 
   @override
   MultipleEmotesSettingsController createState() =>

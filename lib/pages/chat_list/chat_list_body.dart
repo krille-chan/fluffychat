@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
@@ -9,10 +8,9 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pages/chat_list/stories_header.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:fluffychat/pangea/widgets/chat_list/chat_list_body_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -25,7 +23,7 @@ import 'chat_list_header.dart';
 class ChatListViewBody extends StatelessWidget {
   final ChatListController controller;
 
-  const ChatListViewBody(this.controller, {Key? key}) : super(key: key);
+  const ChatListViewBody(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +69,13 @@ class ChatListViewBody extends StatelessWidget {
             );
           }
           final rooms = controller.filteredRooms;
-          final displayStoriesHeader = {
-                ActiveFilter.allChats,
-                ActiveFilter.messages,
-              }.contains(controller.activeFilter) &&
-              client.storiesRooms.isNotEmpty;
+          // Pangea#
+          // final displayStoriesHeader = {
+          //       ActiveFilter.allChats,
+          //       ActiveFilter.messages,
+          //     }.contains(controller.activeFilter) &&
+          //     client.storiesRooms.isNotEmpty;
+          // Pangea#
           return SafeArea(
             child: CustomScrollView(
               controller: controller.scrollController,
@@ -163,11 +163,13 @@ class ChatListViewBody extends StatelessWidget {
                           icon: const Icon(Icons.camera_alt_outlined),
                         ),
                       ],
-                      if (displayStoriesHeader)
-                        StoriesHeader(
-                          key: const Key('stories_header'),
-                          filter: controller.searchController.text,
-                        ),
+                      // #Pangea
+                      // if (displayStoriesHeader)
+                      //   StoriesHeader(
+                      //     key: const Key('stories_header'),
+                      //     filter: controller.searchController.text,
+                      //   ),
+                      // Pangea#
                       const ConnectionStatusHeader(),
                       AnimatedContainer(
                         height: controller.isTorBrowser ? 64 : 0,
@@ -196,13 +198,31 @@ class ChatListViewBody extends StatelessWidget {
                           !controller.isSearchMode) ...[
                         Padding(
                           padding: const EdgeInsets.all(32.0),
-                          child: Icon(
-                            CupertinoIcons.chat_bubble_2,
-                            size: 128,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
+                          // #Pangea
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'private_chat_wallpaper.png',
+                                height: 256,
+                              ),
+                            ],
+                          ),
+                          // child: Icon(
+                          //   CupertinoIcons.chat_bubble_2,
+                          //   size: 128,
+                          //   color:
+                          //       Theme.of(context).colorScheme.onInverseSurface,
+                          // ),
+                          // Pangea#
+                        ),
+                        // #Pangea
+                        Center(
+                          child: ChatListBodyStartText(
+                            controller: controller,
                           ),
                         ),
+                        // Pangea#
                       ],
                     ],
                   ),
@@ -313,8 +333,7 @@ class _SearchItem extends StatelessWidget {
     required this.title,
     this.avatar,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => InkWell(

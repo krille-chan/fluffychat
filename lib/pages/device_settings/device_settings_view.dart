@@ -9,7 +9,7 @@ import 'user_device_list_item.dart';
 class DevicesSettingsView extends StatelessWidget {
   final DevicesSettingsController controller;
 
-  const DevicesSettingsView(this.controller, {Key? key}) : super(key: key);
+  const DevicesSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

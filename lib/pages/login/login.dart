@@ -7,13 +7,15 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   LoginController createState() => LoginController();
@@ -26,6 +28,27 @@ class LoginController extends State<Login> {
   String? passwordError;
   bool loading = false;
   bool showPassword = false;
+
+  // #Pangea
+  final PangeaController pangeaController = MatrixState.pangeaController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loading = true;
+    pangeaController.checkHomeServerAction().then((value) {
+      setState(() {
+        loading = false;
+      });
+    }).catchError((e) {
+      final String err = e as String;
+      setState(() {
+        loading = false;
+        passwordError = err.toLocalizedString(context);
+      });
+    });
+  }
+  // Pangea#
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
@@ -67,7 +90,10 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
-      await matrix.getLoginClient().login(
+      // #Pangea
+      // await matrix.getLoginClient().login(
+      final loginRes = await matrix.getLoginClient().login(
+            // Pangea#
             LoginType.mLoginPassword,
             identifier: identifier,
             // To stay compatible with older server versions
@@ -78,6 +104,9 @@ class LoginController extends State<Login> {
             password: passwordController.text,
             initialDeviceDisplayName: PlatformInfos.clientName,
           );
+      // #Pangea
+      GoogleAnalytics.login("pangea", loginRes.userId);
+      // Pangea#
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);

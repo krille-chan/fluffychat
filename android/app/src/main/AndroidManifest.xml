@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-    package="chat.fluffy.fluffychat" android:installLocation="auto">
+    package="com.talktolearn.chat" android:installLocation="auto">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -27,11 +27,15 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- #Pangea -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Pangea# -->
 
     <uses-sdk
             tools:overrideLibrary="io.wazo.callkeep, net.touchcapture.qr.flutterqr, com.cloudwebrtc.webrtc, org.webrtc, com.it_nomads.fluttersecurestorage, com.pichillilorenzo.flutter_inappwebview, com.example.video_compress, com.otaliastudios.transcoder, com.otaliastudios.opengl, com.kineapps.flutter_file_dialog, com.llfbandit.record, com.pravera.flutter_foreground_task"/>
     <application
-        android:label="FluffyChat"
+        android:label="Pangea Chat"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
         android:allowBackup="false"
@@ -73,7 +77,7 @@
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />
                <category android:name="android.intent.category.BROWSABLE" />
-               <data android:scheme="im.fluffychat" android:host="chat" />
+               <data android:scheme="com.talktolearn.chat" android:host="chat" />
             </intent-filter>
             <intent-filter>
                <action android:name="android.intent.action.SEND" />
@@ -95,6 +99,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="video/*" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="audio/*" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -104,16 +113,18 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="im.fluffychat" android:host="login"/>
+                <data android:scheme="matrix.pangea.chat" android:host="login"/>
             </intent-filter>
         </activity>
 
-        <service android:name=".FcmPushService"
+        <!-- #Pangea This prevents Android notifications from coming through -->
+        <!-- <service android:name=".FcmPushService"
           android:exported="false">
           <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT"/>
           </intent-filter>
-        </service>
+        </service> -->
+        <!-- Pangea# -->
 
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
              android:foregroundServiceType="camera|microphone|mediaProjection">

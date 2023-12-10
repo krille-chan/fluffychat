@@ -11,7 +11,7 @@ import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {
   final SettingsSecurityController controller;
-  const SettingsSecurityView(this.controller, {Key? key}) : super(key: key);
+  const SettingsSecurityView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,14 @@ class SettingsSecurityView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              ListTile(
-                leading: const Icon(Icons.camera_outlined),
-                trailing: const Icon(Icons.chevron_right_outlined),
-                title: Text(L10n.of(context)!.whoCanSeeMyStories),
-                onTap: () => context.go('/rooms/settings/security/stories'),
-              ),
+              // #Pangea
+              // ListTile(
+              //   leading: const Icon(Icons.camera_outlined),
+              //   trailing: const Icon(Icons.chevron_right_outlined),
+              //   title: Text(L10n.of(context)!.whoCanSeeMyStories),
+              //   onTap: () => context.go('/rooms/settings/security/stories'),
+              // ),
+              // Pangea#
               ListTile(
                 leading: const Icon(Icons.block_outlined),
                 trailing: const Icon(Icons.chevron_right_outlined),

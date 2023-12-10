@@ -15,7 +15,7 @@ enum PopupMenuEmojiActions { import, export }
 class EmotesSettingsView extends StatelessWidget {
   final EmotesSettingsController controller;
 
-  const EmotesSettingsView(this.controller, {Key? key}) : super(key: key);
+  const EmotesSettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

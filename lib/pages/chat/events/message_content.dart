@@ -5,15 +5,16 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
+import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
-import '../../bootstrap/bootstrap_dialog.dart';
 import 'audio_player.dart';
 import 'cute_events.dart';
 import 'html_message.dart';
@@ -26,13 +27,32 @@ class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
   final void Function(Event)? onInfoTab;
+  final BorderRadius borderRadius;
+  // #Pangea
+  final bool selected;
+  final PangeaMessageEvent pangeaMessageEvent;
+  //question: are there any performance benefits to using booleans
+  //here rather than passing the choreographer? pangea rich text, a widget
+  //further down in the chain is also using pangeaController so its not constant
+  final LanguageModel? selectedDisplayLang;
+  final bool immersionMode;
+  final bool definitions;
+  // Pangea#
 
   const MessageContent(
     this.event, {
     this.onInfoTab,
-    Key? key,
+    super.key,
     required this.textColor,
-  }) : super(key: key);
+    // #Pangea
+    required this.selected,
+    required this.pangeaMessageEvent,
+    required this.selectedDisplayLang,
+    required this.immersionMode,
+    required this.definitions,
+    // Pangea#
+    required this.borderRadius,
+  });
 
   void _verifyOrRequestKey(BuildContext context) async {
     final l10n = L10n.of(context)!;
@@ -50,13 +70,15 @@ class MessageContent extends StatelessWidget {
       );
       return;
     }
-    final client = Matrix.of(context).client;
-    if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
-      final success = await BootstrapDialog(
-        client: Matrix.of(context).client,
-      ).show(context);
-      if (success != true) return;
-    }
+    // #Pangea
+    // final client = Matrix.of(context).client;
+    // if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
+    //   final success = await BootstrapDialog(
+    //     client: Matrix.of(context).client,
+    //   ).show(context);
+    //   if (success != true) return;
+    // }
+    // Pangea#
     event.requestKey();
     final sender = event.senderFromMemoryOrFallback;
     await showAdaptiveBottomSheet(
@@ -78,6 +100,7 @@ class MessageContent extends StatelessWidget {
                 leading: Avatar(
                   mxContent: sender.avatarUrl,
                   name: sender.calcDisplayname(),
+                  presenceUserId: sender.stateKey,
                 ),
                 title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),
@@ -111,6 +134,7 @@ class MessageContent extends StatelessWidget {
               width: 400,
               height: 300,
               fit: BoxFit.cover,
+              borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
@@ -231,12 +255,41 @@ class MessageContent extends StatelessWidget {
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
+            // #Pangea
+            final messageTextStyle = TextStyle(
+              color: textColor,
+              fontSize: bigEmotes ? fontSize * 3 : fontSize,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+              height: 1.3,
+            );
+            if (pangeaMessageEvent.showRichText) {
+              return PangeaRichText(
+                existingStyle: messageTextStyle,
+                selected: selected,
+                pangeaMessageEvent: pangeaMessageEvent,
+                immersionMode: immersionMode,
+                definitions: definitions,
+                selectedDisplayLang: selectedDisplayLang,
+              );
+            }
+            //Pangea#
             return FutureBuilder<String>(
               future: event.calcLocalizedBody(
                 MatrixLocals(L10n.of(context)!),
                 hideReply: true,
               ),
               builder: (context, snapshot) {
+                // #Pangea
+                if (!snapshot.hasData) {
+                  return Text(
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                      hideReply: true,
+                    ),
+                    style: messageTextStyle,
+                  );
+                }
+                // Pangea#
                 return Linkify(
                   text: snapshot.data ??
                       event.calcLocalizedBodyFallback(
@@ -311,8 +364,7 @@ class _ButtonContent extends StatelessWidget {
     required this.textColor,
     required this.onPressed,
     required this.fontSize,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

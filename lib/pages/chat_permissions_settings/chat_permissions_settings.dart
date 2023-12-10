@@ -13,7 +13,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 
 class ChatPermissionsSettings extends StatefulWidget {
-  const ChatPermissionsSettings({Key? key}) : super(key: key);
+  const ChatPermissionsSettings({super.key});
 
   @override
   ChatPermissionsSettingsController createState() =>
@@ -99,6 +99,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
               okLabel: L10n.of(context)!.yes,
               cancelLabel: L10n.of(context)!.cancel,
               title: L10n.of(context)!.areYouSure,
+              message: L10n.of(context)!.roomUpgradeDescription,
             )) {
       return;
     }

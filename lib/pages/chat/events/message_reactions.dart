@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
@@ -6,7 +5,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -15,8 +13,7 @@ class MessageReactions extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const MessageReactions(this.event, this.timeline, {Key? key})
-      : super(key: key);
+  const MessageReactions(this.event, this.timeline, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,36 +47,34 @@ class MessageReactions extends StatelessWidget {
       spacing: 4.0,
       runSpacing: 4.0,
       children: [
-        ...reactionList
-            .map(
-              (r) => _Reaction(
-                reactionKey: r.key,
-                count: r.count,
-                reacted: r.reacted,
-                onTap: () {
-                  if (r.reacted) {
-                    final evt = allReactionEvents.firstWhereOrNull(
-                      (e) =>
-                          e.senderId == e.room.client.userID &&
-                          e.content.tryGetMap('m.relates_to')?['key'] == r.key,
-                    );
-                    if (evt != null) {
-                      showFutureLoadingDialog(
-                        context: context,
-                        future: () => evt.redactEvent(),
-                      );
-                    }
-                  } else {
-                    event.room.sendReaction(event.eventId, r.key!);
-                  }
-                },
-                onLongPress: () async => await _AdaptableReactorsDialog(
-                  client: client,
-                  reactionEntry: r,
-                ).show(context),
-              ),
-            )
-            .toList(),
+        ...reactionList.map(
+          (r) => _Reaction(
+            reactionKey: r.key,
+            count: r.count,
+            reacted: r.reacted,
+            onTap: () {
+              if (r.reacted) {
+                final evt = allReactionEvents.firstWhereOrNull(
+                  (e) =>
+                      e.senderId == e.room.client.userID &&
+                      e.content.tryGetMap('m.relates_to')?['key'] == r.key,
+                );
+                if (evt != null) {
+                  showFutureLoadingDialog(
+                    context: context,
+                    future: () => evt.redactEvent(),
+                  );
+                }
+              } else {
+                event.room.sendReaction(event.eventId, r.key!);
+              }
+            },
+            onLongPress: () async => await _AdaptableReactorsDialog(
+              client: client,
+              reactionEntry: r,
+            ).show(context),
+          ),
+        ),
         if (allReactionEvents.any((e) => e.status.isSending))
           const SizedBox(
             width: 28,
@@ -190,24 +185,16 @@ class _AdaptableReactorsDialog extends StatelessWidget {
   final _ReactionEntry? reactionEntry;
 
   const _AdaptableReactorsDialog({
-    Key? key,
     this.client,
     this.reactionEntry,
-  }) : super(key: key);
+  });
 
-  Future<bool?> show(BuildContext context) => PlatformInfos.isCupertinoStyle
-      ? showCupertinoDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        )
-      : showDialog(
-          context: context,
-          builder: (context) => this,
-          barrierDismissible: true,
-          useRootNavigator: false,
-        );
+  Future<bool?> show(BuildContext context) => showAdaptiveDialog(
+        context: context,
+        builder: (context) => this,
+        barrierDismissible: true,
+        useRootNavigator: false,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +210,7 @@ class _AdaptableReactorsDialog extends StatelessWidget {
                 mxContent: reactor.avatarUrl,
                 name: reactor.displayName,
                 client: client,
+                presenceUserId: reactor.stateKey,
               ),
               label: Text(reactor.displayName!),
             ),
@@ -232,14 +220,9 @@ class _AdaptableReactorsDialog extends StatelessWidget {
 
     final title = Center(child: Text(reactionEntry!.key!));
 
-    return PlatformInfos.isCupertinoStyle
-        ? CupertinoAlertDialog(
-            title: title,
-            content: body,
-          )
-        : AlertDialog(
-            title: title,
-            content: body,
-          );
+    return AlertDialog.adaptive(
+      title: title,
+      content: body,
+    );
   }
 }

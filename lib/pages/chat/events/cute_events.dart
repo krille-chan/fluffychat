@@ -10,7 +10,7 @@ import 'package:fluffychat/config/app_config.dart';
 class CuteContent extends StatefulWidget {
   final Event event;
 
-  const CuteContent(this.event, {Key? key}) : super(key: key);
+  const CuteContent(this.event, {super.key});
 
   @override
   State<CuteContent> createState() => _CuteContentState();
@@ -98,10 +98,10 @@ class CuteEventOverlay extends StatefulWidget {
   final VoidCallback onAnimationEnd;
 
   const CuteEventOverlay({
-    Key? key,
+    super.key,
     required this.emoji,
     required this.onAnimationEnd,
-  }) : super(key: key);
+  });
 
   @override
   State<CuteEventOverlay> createState() => _CuteEventOverlayState();
@@ -179,7 +179,7 @@ class _CuteOverlayContent extends StatelessWidget {
   static const double size = 64.0;
   final String emoji;
 
-  const _CuteOverlayContent({Key? key, required this.emoji}) : super(key: key);
+  const _CuteOverlayContent({required this.emoji});
 
   @override
   Widget build(BuildContext context) {

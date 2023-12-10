@@ -10,14 +10,14 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import '../../widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_view.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   SettingsController createState() => SettingsController();
@@ -61,23 +61,26 @@ class SettingsController extends State<Settings> {
 
   void logoutAction() async {
     final noBackup = showChatBackupBanner == true;
-    if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSureYouWantToLogout,
-          message: L10n.of(context)!.noBackupWarning,
-          isDestructiveAction: noBackup,
-          okLabel: L10n.of(context)!.logout,
-          cancelLabel: L10n.of(context)!.cancel,
-        ) ==
-        OkCancelResult.cancel) {
-      return;
-    }
-    final matrix = Matrix.of(context);
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => matrix.client.logout(),
-    );
+    // #Pangea
+    pLogoutAction(context, isDestructiveAction: noBackup);
+    // if (await showOkCancelAlertDialog(
+    //       useRootNavigator: false,
+    //       context: context,
+    //       title: L10n.of(context)!.areYouSureYouWantToLogout,
+    //       message: L10n.of(context)!.noBackupWarning,
+    //       isDestructiveAction: noBackup,
+    //       okLabel: L10n.of(context)!.logout,
+    //       cancelLabel: L10n.of(context)!.cancel,
+    //     ) ==
+    //     OkCancelResult.cancel) {
+    //   return;
+    // }
+    // final matrix = Matrix.of(context);
+    // await showFutureLoadingDialog(
+    //   context: context,
+    //   future: () => matrix.client.logout(),
+    // );
+    // Pangea#
   }
 
   void setAvatarAction() async {
@@ -160,7 +163,9 @@ class SettingsController extends State<Settings> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
+    // #Pangea
+    // WidgetsBinding.instance.addPostFrameCallback((_) => checkBootstrap());
+    // Pangea#
 
     super.initState();
   }
@@ -189,19 +194,21 @@ class SettingsController extends State<Settings> {
   bool? showChatBackupBanner;
 
   void firstRunBootstrapAction([_]) async {
-    if (showChatBackupBanner != true) {
-      showOkAlertDialog(
-        context: context,
-        title: L10n.of(context)!.chatBackup,
-        message: L10n.of(context)!.onlineKeyBackupEnabled,
-        okLabel: L10n.of(context)!.close,
-      );
-      return;
-    }
-    await BootstrapDialog(
-      client: Matrix.of(context).client,
-    ).show(context);
-    checkBootstrap();
+    // #Pangea
+    // if (showChatBackupBanner != true) {
+    //   showOkAlertDialog(
+    //     context: context,
+    //     title: L10n.of(context)!.chatBackup,
+    //     message: L10n.of(context)!.onlineKeyBackupEnabled,
+    //     okLabel: L10n.of(context)!.close,
+    //   );
+    //   return;
+    // }
+    // await BootstrapDialog(
+    //   client: Matrix.of(context).client,
+    // ).show(context);
+    // checkBootstrap();
+    // Pangea#
   }
 
   @override

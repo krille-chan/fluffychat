@@ -16,6 +16,8 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,7 +27,7 @@ import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 class HomeserverPicker extends StatefulWidget {
-  const HomeserverPicker({Key? key}) : super(key: key);
+  const HomeserverPicker({super.key});
 
   @override
   HomeserverPickerController createState() => HomeserverPickerController();
@@ -33,6 +35,8 @@ class HomeserverPicker extends StatefulWidget {
 
 class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
+  bool isLoggingIn = false;
+
   final TextEditingController homeserverController = TextEditingController(
     text: AppConfig.defaultHomeserver,
   );
@@ -113,25 +117,36 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   Map<String, dynamic>? _rawLoginTypes;
 
-  void ssoLoginAction(String id) async {
+  // #Pangea
+  // void ssoLoginAction(String id) async {
+  void ssoLoginAction(IdentityProvider provider) async {
+    final id = provider.id!;
+    //Pangea#
     final redirectUrl = kIsWeb
-        ? '${html.window.origin!}/web/auth.html'
-        : isDefaultPlatform
-            ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
-            : 'http://localhost:3001//login';
+        // #Pangea
+        // ? '${html.window.origin!}/web/auth.html'
+        // : isDefaultPlatform
+        //     ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
+        //     : 'http://localhost:3001//login';
+        ? '${html.window.origin!}/auth.html'
+        : '${AppConfig.appOpenUrlScheme.toLowerCase()}://login';
+    //Pangea#
     final url =
         '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
     final result = await FlutterWebAuth2.authenticate(
-      url: url,
+      url: url.toString(),
       callbackUrlScheme: urlScheme,
     );
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
 
-    await showFutureLoadingDialog(
+    // #Pangea
+    final loginRes = await showFutureLoadingDialog(
+      // await showFutureLoadingDialog(
+      // Pangea#
       context: context,
       future: () => Matrix.of(context).getLoginClient().login(
             LoginType.mLoginToken,
@@ -139,14 +154,22 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             initialDeviceDisplayName: PlatformInfos.clientName,
           ),
     );
+    //Pangea#
+    if (loginRes.result != null) {
+      GoogleAnalytics.login(provider.name!, loginRes.result!.userId);
+    }
+    //Pangea#
   }
 
   List<IdentityProvider>? get identityProviders {
     final loginTypes = _rawLoginTypes;
     if (loginTypes == null) return null;
-    final rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
-          (flow) => flow['type'] == AuthenticationTypes.sso,
-        )['identity_providers'];
+    final List? rawProviders = loginTypes.tryGetList('flows')!.singleWhere(
+              (flow) => flow['type'] == AuthenticationTypes.sso,
+            )['identity_providers'] ??
+        [
+          {'id': null},
+        ];
     final list = (rawProviders as List)
         .map((json) => IdentityProvider.fromJson(json))
         .toList();
@@ -183,6 +206,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           Matrix.of(context).initMatrix();
         } catch (e, s) {
           Logs().e('Future error:', e, s);
+          // #Pangea
+          ErrorHandler.logError(e: e, s: s);
+          // Pangea#
         }
       },
     );

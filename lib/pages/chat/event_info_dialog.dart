@@ -24,8 +24,8 @@ class EventInfoDialog extends StatelessWidget {
   const EventInfoDialog({
     required this.event,
     required this.l10n,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   String get prettyJson {
     const JsonDecoder decoder = JsonDecoder();
@@ -51,6 +51,8 @@ class EventInfoDialog extends StatelessWidget {
             leading: Avatar(
               mxContent: event.senderFromMemoryOrFallback.avatarUrl,
               name: event.senderFromMemoryOrFallback.calcDisplayname(),
+              client: event.room.client,
+              presenceUserId: event.senderId,
             ),
             title: Text(L10n.of(context)!.sender),
             subtitle: Text(

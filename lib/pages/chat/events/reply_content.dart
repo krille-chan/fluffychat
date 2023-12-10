@@ -14,9 +14,9 @@ class ReplyContent extends StatelessWidget {
   const ReplyContent(
     this.replyEvent, {
     this.ownMessage = false,
-    Key? key,
+    super.key,
     this.timeline,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ReplyContent extends StatelessWidget {
       maxLines: 1,
       style: TextStyle(
         color: ownMessage
-            ? Theme.of(context).colorScheme.onPrimary
+            ? Theme.of(context).colorScheme.onPrimaryContainer
             : Theme.of(context).colorScheme.onBackground,
         fontSize: fontSize,
       ),
@@ -49,7 +49,7 @@ class ReplyContent extends StatelessWidget {
           width: 3,
           height: fontSize * 2 + 6,
           color: ownMessage
-              ? Theme.of(context).colorScheme.onPrimary
+              ? Theme.of(context).colorScheme.onPrimaryContainer
               : Theme.of(context).colorScheme.onBackground,
         ),
         const SizedBox(width: 6),
@@ -68,7 +68,7 @@ class ReplyContent extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: ownMessage
-                          ? Theme.of(context).colorScheme.onPrimary
+                          ? Theme.of(context).colorScheme.onPrimaryContainer
                           : Theme.of(context).colorScheme.onBackground,
                       fontSize: fontSize,
                     ),

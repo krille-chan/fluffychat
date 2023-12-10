@@ -317,4 +317,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get unknownUser => l10n.user;
+
+  @override
+  String hasKnocked(String targetName) => l10n.hasKnocked(targetName);
 }

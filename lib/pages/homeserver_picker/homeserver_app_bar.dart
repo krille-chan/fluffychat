@@ -11,8 +11,7 @@ import 'homeserver_picker.dart';
 class HomeserverAppBar extends StatelessWidget {
   final HomeserverPickerController controller;
 
-  const HomeserverAppBar({Key? key, required this.controller})
-      : super(key: key);
+  const HomeserverAppBar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +50,7 @@ class HomeserverAppBar extends StatelessWidget {
         controller.checkHomeserverAction();
       },
       textFieldConfiguration: TextFieldConfiguration(
+        enabled: !controller.isLoggingIn,
         controller: controller.homeserverController,
         decoration: InputDecoration(
           prefixIcon: Navigator.of(context).canPop()

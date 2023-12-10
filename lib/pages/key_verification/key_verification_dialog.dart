@@ -10,22 +10,21 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
-  Future<void> show(BuildContext context) => showAdaptiveBottomSheet(
+  Future<void> show(BuildContext context) => showAdaptiveDialog(
         context: context,
         builder: (context) => this,
-        isDismissible: false,
+        barrierDismissible: false,
       );
 
   final KeyVerification request;
 
   const KeyVerificationDialog({
-    Key? key,
+    super.key,
     required this.request,
-  }) : super(key: key);
+  });
 
   @override
   KeyVerificationPageState createState() => KeyVerificationPageState();
@@ -342,24 +341,17 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
     }
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Center(child: CloseButton()),
-        title: title,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(12.0),
-        children: [body],
-      ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: buttons,
-          ),
+
+    return AlertDialog.adaptive(
+      title: title,
+      content: SizedBox(
+        height: 256,
+        width: 256,
+        child: ListView(
+          children: [body],
         ),
       ),
+      actions: buttons,
     );
   }
 }

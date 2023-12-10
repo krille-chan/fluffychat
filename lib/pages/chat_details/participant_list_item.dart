@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import '../../widgets/avatar.dart';
 import '../user_bottom_sheet/user_bottom_sheet.dart';
@@ -10,7 +11,7 @@ import '../user_bottom_sheet/user_bottom_sheet.dart';
 class ParticipantListItem extends StatelessWidget {
   final User user;
 
-  const ParticipantListItem(this.user, {Key? key}) : super(key: key);
+  const ParticipantListItem(this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +27,33 @@ class ParticipantListItem extends StatelessWidget {
             ? L10n.of(context)!.moderator
             : '';
 
+    // #Pangea
+    if (user.id == BotName.byEnvironment) {
+      return const SizedBox();
+    }
+    // Pangea#
+
     return Opacity(
-      opacity: user.membership == Membership.join ? 1 : 0.5,
+      //#Pangea
+      // opacity: user.membership == Membership.join? 1 : 0.5,
+      opacity:
+          user.membership == Membership.join && user.id != BotName.byEnvironment
+              ? 1
+              : 0.5,
+      //Pangea#
       child: ListTile(
-        onTap: () => showAdaptiveBottomSheet(
-          context: context,
-          builder: (c) => UserBottomSheet(
-            user: user,
-            outerContext: context,
-          ),
-        ),
+        //#Pangea
+        // onTap: () => showAdaptiveBottomSheet(
+        onTap: user.id == BotName.byEnvironment
+            ? null
+            : () => showAdaptiveBottomSheet(
+                  //Pangea#
+                  context: context,
+                  builder: (c) => UserBottomSheet(
+                    user: user,
+                    outerContext: context,
+                  ),
+                ),
         title: Row(
           children: <Widget>[
             Expanded(
@@ -52,18 +70,23 @@ class ParticipantListItem extends StatelessWidget {
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
+                  // #Pangea
+                  // color: Theme.of(context).colorScheme.primaryContainer,
+                  color: Theme.of(context).secondaryHeaderColor,
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+                  // border: Border.all(
+                  //   color: Theme.of(context).colorScheme.primary,
+                  // ),
+                  // Pangea#
                 ),
                 child: Text(
                   permissionBatch,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+                  // #Pangea
+                  // style: TextStyle(
+                  //   fontSize: 14,
+                  //   color: Theme.of(context).colorScheme.primary,
+                  // ),
+                  // Pangea#
                 ),
               ),
             membershipBatch[user.membership]!.isEmpty
@@ -81,8 +104,11 @@ class ParticipantListItem extends StatelessWidget {
           ],
         ),
         subtitle: Text(user.id),
-        leading:
-            Avatar(mxContent: user.avatarUrl, name: user.calcDisplayname()),
+        leading: Avatar(
+          mxContent: user.avatarUrl,
+          name: user.calcDisplayname(),
+          presenceUserId: user.stateKey,
+        ),
       ),
     );
   }

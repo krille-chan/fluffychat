@@ -22,7 +22,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/client_stories_extension.dart';
 
 class AddStoryPage extends StatefulWidget {
-  const AddStoryPage({Key? key}) : super(key: key);
+  const AddStoryPage({super.key});
 
   @override
   AddStoryController createState() => AddStoryController();

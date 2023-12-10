@@ -6,8 +6,8 @@ import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'settings.dart';
@@ -15,11 +15,13 @@ import 'settings.dart';
 class SettingsView extends StatelessWidget {
   final SettingsController controller;
 
-  const SettingsView(this.controller, {Key? key}) : super(key: key);
+  const SettingsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final showChatBackupBanner = controller.showChatBackupBanner;
+    // #Pangea
+    // final showChatBackupBanner = controller.showChatBackupBanner;
+    // Pangea#
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -137,21 +139,23 @@ class SettingsView extends StatelessWidget {
               },
             ),
             const Divider(thickness: 1),
-            if (showChatBackupBanner == null)
-              ListTile(
-                leading: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
-                trailing: const CircularProgressIndicator.adaptive(),
-              )
-            else
-              SwitchListTile.adaptive(
-                controlAffinity: ListTileControlAffinity.trailing,
-                value: controller.showChatBackupBanner == false,
-                secondary: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
-                onChanged: controller.firstRunBootstrapAction,
-              ),
-            const Divider(thickness: 1),
+            // #Pangea
+            // if (showChatBackupBanner == null)
+            //   ListTile(
+            //     leading: const Icon(Icons.backup_outlined),
+            //     title: Text(L10n.of(context)!.chatBackup),
+            //     trailing: const CircularProgressIndicator.adaptive(),
+            //   )
+            // else
+            //   SwitchListTile.adaptive(
+            //     controlAffinity: ListTileControlAffinity.trailing,
+            //     value: controller.showChatBackupBanner == false,
+            //     secondary: const Icon(Icons.backup_outlined),
+            //     title: Text(L10n.of(context)!.chatBackup),
+            //     onChanged: controller.firstRunBootstrapAction,
+            //   ),
+            // const Divider(thickness: 1),
+            // Pangea#
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),
@@ -176,6 +180,24 @@ class SettingsView extends StatelessWidget {
               onTap: () => context.go('/rooms/settings/chat'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
+            // #Pangea
+            ListTile(
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(L10n.of(context)!.learningSettings),
+              onTap: () => context.go('/rooms/settings/learning'),
+              trailing: const Icon(
+                Icons.chevron_right_outlined,
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(L10n.of(context)!.subscriptionManagement),
+              onTap: () => context.go('/rooms/settings/subscription'),
+              trailing: const Icon(
+                Icons.chevron_right_outlined,
+              ),
+            ),
+            // Pangea#
             ListTile(
               leading: const Icon(Icons.shield_outlined),
               title: Text(L10n.of(context)!.security),
@@ -195,12 +217,25 @@ class SettingsView extends StatelessWidget {
               onTap: () => launchUrlString(AppConfig.privacyUrl),
               trailing: const Icon(Icons.open_in_new_outlined),
             ),
+            // #Pangea
+            // ListTile(
+            //   leading: const Icon(Icons.info_outline_rounded),
+            //   title: Text(L10n.of(context)!.about),
+            //   onTap: () => PlatformInfos.showDialog(context),
+            //   trailing: const Icon(Icons.chevron_right_outlined),
+            // ),
             ListTile(
-              leading: const Icon(Icons.info_outline_rounded),
-              title: Text(L10n.of(context)!.about),
-              onTap: () => PlatformInfos.showDialog(context),
-              trailing: const Icon(Icons.chevron_right_outlined),
+              leading: const Icon(Icons.shield_outlined),
+              title: Text(L10n.of(context)!.termsAndConditions),
+              onTap: () => launchUrlString(AppConfig.termsOfServiceUrl),
+              trailing: const Icon(Icons.open_in_new_outlined),
             ),
+            if (Environment.isStaging)
+              ListTile(
+                leading: const Icon(Icons.bug_report_outlined),
+                title: Text(L10n.of(context)!.connectedToStaging),
+              ),
+            // Pangea#
           ],
         ),
       ),

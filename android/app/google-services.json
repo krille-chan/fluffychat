@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "865731724731",
-    "project_id": "fluffychat-ef3e8",
-    "storage_bucket": "fluffychat-ef3e8.appspot.com"
+    "project_number": "545984292675",
+    "project_id": "pangea-chat-936ee",
+    "storage_bucket": "pangea-chat-936ee.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:865731724731:android:ec427b3b1dcd4a1e64309e",
+        "mobilesdk_app_id": "1:545984292675:android:d808acce7a80c20bb931f6",
         "android_client_info": {
-          "package_name": "chat.fluffy.fluffychat"
+          "package_name": "com.talktolearn.chat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "865731724731-od6969v178ul9970elgacpt936v5t7qg.apps.googleusercontent.com",
+          "client_id": "545984292675-2amsnoan1mt6lec1fld1a7eagu6gej7o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBLdZpGSPjcinikB4lAU6awW_h88NG17Sg"
+          "current_key": "AIzaSyAyWBbl83WXzbVr6txyCmlUsZhpWomQfdg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "865731724731-od6969v178ul9970elgacpt936v5t7qg.apps.googleusercontent.com",
+              "client_id": "545984292675-2amsnoan1mt6lec1fld1a7eagu6gej7o.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "865731724731-ofdr7e6m04murgb1bvchlj9oaos0q5i3.apps.googleusercontent.com",
+              "client_id": "545984292675-f5p76l3h9sibsonrct7a8l9ca3c69at0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "im.fluffychat.app"
+                "bundle_id": "com.talktolearn.chat"
               }
             }
           ]

@@ -5,13 +5,14 @@ on:
     branches:
       - main
 
-concurrency:
-  group: main_deploy
-  cancel-in-progress: true
-
+env:
+  # Setting an environment variable with the value of a configuration variable
+  WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
+  
 jobs:
   deploy_web:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -25,56 +26,33 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
-        run: flutter build web --release --verbose --source-maps --base-href "/web/"
+        run: ./scripts/build-web.sh
       - name: Build Website
         run: |
-          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
-          mv docs public
-          mv repo public || true
-          mv build/web/ public/web
-          echo "fluffychat.im" > ./public/CNAME
+          mv build/web public
+          touch public/.env
+          echo "$WEB_APP_ENV" >> public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
+          # cname: app.staging.pangea.chat
 
-  deploy_playstore_internal:
+  update_sentry:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Install Fastlane
-        run: gem install fastlane -NV
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
-      - run: flutter pub get
-      - name: Prepare Android Release Build
+          fetch-depth: 0
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
         env:
-          FDROID_KEY: ${{ secrets.FDROID_KEY }}
-          FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
-          PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
-        run: ./scripts/prepare-android-release.sh
-      - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-      - name: Deploy Android Release
-        run: |
-          mkdir -p build/android
-          cp build/app/outputs/bundle/release/app-release.aab build/android/
-          cd android
-          bundle install
-          bundle update fastlane
-          bundle exec fastlane deploy_internal_test
-          cd ..
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          # SENTRY_URL: https://sentry.io/
+        with:
+          environment: staging

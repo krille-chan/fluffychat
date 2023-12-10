@@ -11,7 +11,7 @@ import 'settings_style.dart';
 class SettingsStyleView extends StatelessWidget {
   final SettingsStyleController controller;
 
-  const SettingsStyleView(this.controller, {Key? key}) : super(key: key);
+  const SettingsStyleView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

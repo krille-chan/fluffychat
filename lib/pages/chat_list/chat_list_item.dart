@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/get_chat_list_item_subtitle.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import '../../config/themes.dart';
@@ -23,6 +25,7 @@ class ChatListItem extends StatelessWidget {
   final bool selected;
   final void Function()? onTap;
   final void Function()? onLongPress;
+  final void Function()? onForget;
 
   const ChatListItem(
     this.room, {
@@ -30,8 +33,9 @@ class ChatListItem extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.onLongPress,
-    Key? key,
-  }) : super(key: key);
+    this.onForget,
+    super.key,
+  });
 
   void clickAction(BuildContext context) async {
     if (onTap != null) return onTap!();
@@ -132,6 +136,7 @@ class ChatListItem extends StatelessWidget {
         title: L10n.of(context)!.areYouSure,
         okLabel: L10n.of(context)!.yes,
         cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
@@ -155,6 +160,11 @@ class ChatListItem extends StatelessWidget {
             : 14.0
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
+    final backgroundColor = selected
+        ? Theme.of(context).colorScheme.primaryContainer
+        : activeChat
+            ? Theme.of(context).colorScheme.secondaryContainer
+            : null;
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
@@ -166,11 +176,7 @@ class ChatListItem extends StatelessWidget {
       child: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
-        color: selected
-            ? Theme.of(context).colorScheme.primaryContainer
-            : activeChat
-                ? Theme.of(context).colorScheme.secondaryContainer
-                : Colors.transparent,
+        color: backgroundColor,
         child: ListTile(
           visualDensity: const VisualDensity(vertical: -0.5),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -189,6 +195,11 @@ class ChatListItem extends StatelessWidget {
                   mxContent: room.avatar,
                   name: displayname,
                   onTap: onLongPress,
+                  //#Pangea
+                  littleIcon: room.roomTypeIcon,
+                  // Pangea#
+                  presenceUserId: room.directChatMatrixID,
+                  presenceBackgroundColor: backgroundColor,
                 ),
           title: Row(
             children: <Widget>[
@@ -274,17 +285,26 @@ class ChatListItem extends StatelessWidget {
                         softWrap: false,
                       )
                     : FutureBuilder<String>(
-                        future: room.lastEvent?.calcLocalizedBody(
-                              MatrixLocals(L10n.of(context)!),
-                              hideReply: true,
-                              hideEdit: true,
-                              plaintextBody: true,
-                              removeMarkdown: true,
-                              withSenderNamePrefix: !room.isDirectChat ||
-                                  room.directChatMatrixID !=
-                                      room.lastEvent?.senderId,
-                            ) ??
-                            Future.value(L10n.of(context)!.emptyChat),
+                        // #Pangea
+                        // future: room.lastEvent?.calcLocalizedBody(
+                        //       MatrixLocals(L10n.of(context)!),
+                        //       hideReply: true,
+                        //       hideEdit: true,
+                        //       plaintextBody: true,
+                        //       removeMarkdown: true,
+                        //       withSenderNamePrefix: !room.isDirectChat ||
+                        //           room.directChatMatrixID !=
+                        //               room.lastEvent?.senderId,
+                        //     ) ??
+                        //     Future.value(L10n.of(context)!.emptyChat),
+                        future: room.lastEvent != null
+                            ? GetChatListItemSubtitle().getSubtitle(
+                                context,
+                                room.lastEvent,
+                                MatrixState.pangeaController,
+                              )
+                            : Future.value(L10n.of(context)!.emptyChat),
+                        // Pangea#
                         builder: (context, snapshot) {
                           return Text(
                             room.membership == Membership.invite
@@ -361,6 +381,12 @@ class ChatListItem extends StatelessWidget {
             ],
           ),
           onTap: () => clickAction(context),
+          trailing: onForget == null
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.delete_outlined),
+                  onPressed: onForget,
+                ),
         ),
       ),
     );

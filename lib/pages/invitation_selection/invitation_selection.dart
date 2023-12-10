@@ -8,16 +8,24 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
+import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
+//#Pangea
+enum InvitationSelectionMode { admin, member }
+//Pangea#
+
 class InvitationSelection extends StatefulWidget {
   final String roomId;
   const InvitationSelection({
-    Key? key,
+    super.key,
     required this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   InvitationSelectionController createState() =>
@@ -49,8 +57,73 @@ class InvitationSelectionController extends State<InvitationSelection> {
             b.calcDisplayname().toLowerCase(),
           ),
     );
-    return contacts;
+    //#Pangea
+    // return contacts;
+    return contacts.where((u) => u.id != BotName.byEnvironment).toList();
+    //Pangea#
   }
+
+  //#Pangea
+  // add all students (already local) from spaceParents who aren't already in room to eligibleStudents
+  // use room.members to get all users in room
+  bool _initialized = false;
+  Future<List<User>> eligibleStudents(
+    BuildContext context,
+    String text,
+  ) async {
+    if (!_initialized) {
+      _initialized = true;
+      await requestParentSpaceParticipants();
+    }
+
+    final eligibleStudents = <User>[];
+    final spaceParents = room.pangeaSpaceParents;
+    final userId = Matrix.of(context).client.userID;
+    for (final Room space in spaceParents) {
+      eligibleStudents.addAll(
+        space.getParticipants().where(
+              (spaceUser) =>
+                  spaceUser.id != BotName.byEnvironment &&
+                  spaceUser.id != "@support:staging.pangea.chat" &&
+                  spaceUser.id != userId &&
+                  (text.isEmpty ||
+                      (spaceUser.displayName
+                              ?.toLowerCase()
+                              .contains(text.toLowerCase()) ??
+                          false) ||
+                      spaceUser.id.toLowerCase().contains(text.toLowerCase())),
+            ),
+      );
+    }
+    return eligibleStudents;
+  }
+
+  Future<SearchUserDirectoryResponse>
+      eligibleStudentsAsSearchUserDirectoryResponse(
+    BuildContext context,
+    String text,
+  ) async {
+    return SearchUserDirectoryResponse(
+      results: (await eligibleStudents(context, text))
+          .map(
+            (e) => Profile(
+              userId: e.id,
+              avatarUrl: e.avatarUrl,
+              displayName: e.displayName,
+            ),
+          )
+          .toList(),
+      limited: false,
+    );
+  }
+
+  List<User> studentsInRoom(BuildContext context) => room
+      .getParticipants()
+      .where(
+        (u) => [Membership.join, Membership.invite].contains(u.membership),
+      )
+      .toList();
+  //Pangea#
 
   void inviteAction(BuildContext context, String id, String displayname) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
@@ -71,7 +144,29 @@ class InvitationSelectionController extends State<InvitationSelection> {
     }
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => room.invite(id),
+      //#Pangea
+      // future: () => room.invite(id),
+      future: () => Future.wait([
+        room.invite(id),
+        room.setPower(id, ClassDefaultValues.powerLevelOfAdmin),
+        if (room.isSpace)
+          ...room.spaceChildren
+              .map(
+                (e) => roomId != null
+                    ? Matrix.of(context).client.getRoomById(e.roomId!)
+                    : null,
+              )
+              .where((element) => element != null)
+              .cast<Room>()
+              .map(
+                (e) => Future.wait([
+                  e.invite(id),
+                  e.setPower(id, ClassDefaultValues.powerLevelOfAdmin),
+                ]),
+              ),
+      ]),
+      onError: (e) => ErrorHandler.logError(e: e, s: StackTrace.current),
+      // Pangea#
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -102,7 +197,15 @@ class InvitationSelectionController extends State<InvitationSelection> {
     final matrix = Matrix.of(context);
     SearchUserDirectoryResponse response;
     try {
-      response = await matrix.client.searchUserDirectory(text, limit: 10);
+      //#Pangea
+      // response = await matrix.client.searchUserDirectory(text, limit: 10);
+      response = await (mode == InvitationSelectionMode.admin
+          ? matrix.client.searchUserDirectory(text, limit: 10)
+          : eligibleStudentsAsSearchUserDirectoryResponse(
+              context,
+              text,
+            ));
+      //Pangea#
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text((e).toLocalizedString(context))),
@@ -121,8 +224,81 @@ class InvitationSelectionController extends State<InvitationSelection> {
           ],
         );
       }
+      //#Pangea
+      final participants = Matrix.of(context)
+          .client
+          .getRoomById(roomId!)!
+          .getParticipants()
+          .where(
+            (user) =>
+                [Membership.join, Membership.invite].contains(user.membership),
+          )
+          .toList();
+      foundProfiles.removeWhere(
+        (profile) =>
+            participants.indexWhere((u) => u.id == profile.userId) != -1 &&
+            BotName.byEnvironment != profile.userId,
+      );
+      //Pangea#
     });
   }
+
+  //#Pangea
+  Room? _room;
+  Room get room => _room ??= Matrix.of(context).client.getRoomById(roomId!)!;
+
+  // request participants for all parent spaces
+  Future<void> requestParentSpaceParticipants() async {
+    final spaceParents = room.pangeaSpaceParents;
+    await Future.wait([
+      ...spaceParents.map((r) async {
+        await r.requestParticipants();
+      }),
+      room.requestParticipants(),
+    ]);
+  }
+
+  InvitationSelectionMode mode = InvitationSelectionMode.member;
+
+  StreamSubscription<SyncUpdate>? _spaceSubscription;
+  @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () => setState(
+        () => mode = room.isSpace
+            ? InvitationSelectionMode.admin
+            : InvitationSelectionMode.member,
+      ),
+    );
+    _spaceSubscription = Matrix.of(context)
+        .client
+        .onSync
+        .stream
+        .where(
+          (event) =>
+              event.rooms?.join?.keys.any(
+                (ithRoomId) => room.pangeaSpaceParents
+                    .map((e) => e.id)
+                    .contains(ithRoomId),
+              ) ??
+              false,
+        )
+        .listen(
+      (SyncUpdate syncUpdate) async {
+        await requestParentSpaceParticipants();
+        setState(() {});
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _spaceSubscription?.cancel();
+    super.dispose();
+  }
+  //Pangea#
 
   @override
   Widget build(BuildContext context) => InvitationSelectionView(this);

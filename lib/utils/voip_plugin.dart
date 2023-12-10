@@ -11,7 +11,6 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import '../../utils/famedlysdk_store.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
@@ -133,7 +132,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       } else {
         try {
           final wasForeground = await FlutterForegroundTask.isAppOnForeground;
-          await Store().setItem(
+
+          await matrix.store.setString(
             'wasForeground',
             wasForeground == true ? 'true' : 'false',
           );
@@ -172,7 +172,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       if (PlatformInfos.isAndroid) {
         FlutterForegroundTask.setOnLockScreenVisibility(false);
         FlutterForegroundTask.stopService();
-        final wasForeground = await Store().getItem('wasForeground');
+        final wasForeground = matrix.store.getString('wasForeground');
         wasForeground == 'false' ? FlutterForegroundTask.minimizeApp() : null;
       }
     }

@@ -9,7 +9,7 @@ import 'image_viewer.dart';
 class ImageViewerView extends StatelessWidget {
   final ImageViewerController controller;
 
-  const ImageViewerView(this.controller, {Key? key}) : super(key: key);
+  const ImageViewerView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
   final ChatController controller;
-  const ChatEmojiPicker(this.controller, {Key? key}) : super(key: key);
+  const ChatEmojiPicker(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,7 @@ class ChatEmojiPicker extends StatelessWidget {
                 iconColor: theme.colorScheme.primary.withOpacity(0.5),
                 iconColorSelected: theme.colorScheme.primary,
                 indicatorColor: theme.colorScheme.primary,
-                noRecents: Text(
-                  L10n.of(context)!.emoteKeyboardNoRecents,
-                  style: theme.textTheme.bodyLarge,
-                ),
+                noRecents: const NoRecent(),
                 skinToneDialogBgColor: Color.lerp(
                   theme.colorScheme.background,
                   theme.colorScheme.primaryContainer,
@@ -46,6 +43,18 @@ class ChatEmojiPicker extends StatelessWidget {
               ),
             )
           : null,
+    );
+  }
+}
+
+class NoRecent extends StatelessWidget {
+  const NoRecent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      L10n.of(context)!.emoteKeyboardNoRecents,
+      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }

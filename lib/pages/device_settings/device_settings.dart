@@ -13,7 +13,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
-  const DevicesSettings({Key? key}) : super(key: key);
+  const DevicesSettings({super.key});
 
   @override
   DevicesSettingsController createState() => DevicesSettingsController();
@@ -34,10 +34,14 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
   void removeDevicesAction(List<Device> devices) async {
     if (await showOkCancelAlertDialog(
+          // #Pangea
+          useRootNavigator: false,
+          // Pangea#
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.removeDevicesDescription,
         ) ==
         OkCancelResult.cancel) return;
     final matrix = Matrix.of(context);
@@ -68,6 +72,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
 
   void renameDeviceAction(Device device) async {
     final displayName = await showTextInputDialog(
+      // #Pangea
+      useRootNavigator: false,
+      // Pangea#
       context: context,
       title: L10n.of(context)!.changeDeviceName,
       okLabel: L10n.of(context)!.ok,

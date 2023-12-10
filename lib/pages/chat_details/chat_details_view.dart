@@ -1,25 +1,34 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/pages/class_settings/class_name_header.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_details_toggle_add_students_tile.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
+import 'package:fluffychat/pangea/utils/archive_space.dart';
+import 'package:fluffychat/pangea/utils/lock_room.dart';
+import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
+import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
+import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
 
-  const ChatDetailsView(this.controller, {Key? key}) : super(key: key);
+  const ChatDetailsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +66,27 @@ class ChatDetailsView extends StatelessWidget {
                   leading: const Center(child: BackButton()),
                   elevation: Theme.of(context).appBarTheme.elevation,
                   actions: <Widget>[
-                    if (room.canonicalAlias.isNotEmpty)
-                      IconButton(
-                        tooltip: L10n.of(context)!.share,
-                        icon: Icon(Icons.adaptive.share_outlined),
-                        onPressed: () => FluffyShare.share(
-                          AppConfig.inviteLinkPrefix + room.canonicalAlias,
-                          context,
-                        ),
-                      ),
-                    ChatSettingsPopupMenu(room, false),
+                    // #Pangea
+                    // if (room.canonicalAlias.isNotEmpty)
+                    //   IconButton(
+                    //     tooltip: L10n.of(context)!.share,
+                    //     icon: Icon(Icons.adaptive.share_outlined),
+                    //     onPressed: () => FluffyShare.share(
+                    //       AppConfig.inviteLinkPrefix + room.canonicalAlias,
+                    //       context,
+                    //     ),
+                    //   ),
+                    if (!room.isSpace)
+                      // Pangea#
+                      ChatSettingsPopupMenu(room, false),
                   ],
-                  title: Text(L10n.of(context)!.chatDetails),
+                  // #Pangea
+                  title: ClassNameHeader(
+                    controller: controller,
+                    room: room,
+                  ),
+                  // title: Text(L10n.of(context)!.chatDetails),
+                  // Pangea#
                   backgroundColor:
                       Theme.of(context).appBarTheme.backgroundColor,
                 ),
@@ -207,162 +225,216 @@ class ChatDetailsView extends StatelessWidget {
                           height: 1,
                           color: Theme.of(context).dividerColor,
                         ),
-                        if (!room.canChangeStateEvent(EventTypes.RoomTopic))
+                        // #Pangea
+                        if (room.canSendEvent('m.room.name'))
+                          ClassNameButton(
+                            room: room,
+                            controller: controller,
+                          ),
+                        if (room.canSendEvent('m.room.topic'))
+                          ClassDescriptionButton(
+                            room: room,
+                            controller: controller,
+                          ),
+                        if ((room.isPangeaClass || room.isExchange) &&
+                            room.isRoomAdmin)
                           ListTile(
                             title: Text(
-                              L10n.of(context)!.chatDescription,
+                              L10n.of(context)!.classAnalytics,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          )
-                        else
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: OutlinedButton.icon(
-                              onPressed: controller.setTopicAction,
-                              label: Text(L10n.of(context)!.setChatDescription),
-                              icon: const Icon(Icons.edit_outlined),
-                            ),
-                          ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0,
-                          ),
-                          child: SelectableLinkify(
-                            text: room.topic.isEmpty
-                                ? L10n.of(context)!.noChatDescriptionYet
-                                : room.topic,
-                            options: const LinkifyOptions(humanize: false),
-                            linkStyle:
-                                const TextStyle(color: Colors.blueAccent),
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontStyle: room.topic.isEmpty
-                                  ? FontStyle.italic
-                                  : FontStyle.normal,
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
-                              decorationColor:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
-                            ),
-                            onOpen: (url) =>
-                                UrlLauncher(context, url.url).launchUrl(),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Divider(
-                          height: 1,
-                          color: Theme.of(context).dividerColor,
-                        ),
-                        if (room.joinRules == JoinRules.public)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(Icons.link_outlined),
-                            ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: controller.editAliases,
-                            title: Text(L10n.of(context)!.editRoomAliases),
-                            subtitle: Text(
-                              (room.canonicalAlias.isNotEmpty)
-                                  ? room.canonicalAlias
-                                  : L10n.of(context)!.none,
-                            ),
-                          ),
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(
-                              Icons.insert_emoticon_outlined,
-                            ),
-                          ),
-                          title: Text(L10n.of(context)!.emoteSettings),
-                          subtitle: Text(L10n.of(context)!.setCustomEmotes),
-                          onTap: controller.goToEmoteSettings,
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                        ),
-                        if (!room.isDirectChat)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(Icons.shield_outlined),
-                            ),
-                            title: Text(
-                              L10n.of(context)!.whoIsAllowedToJoinThisGroup,
-                            ),
-                            trailing: room.canChangeJoinRules
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            subtitle: Text(
-                              room.joinRules?.getLocalizedString(
-                                    MatrixLocals(L10n.of(context)!),
-                                  ) ??
-                                  L10n.of(context)!.none,
-                            ),
-                            onTap: room.canChangeJoinRules
-                                ? controller.setJoinRules
-                                : null,
-                          ),
-                        if (!room.isDirectChat)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(Icons.visibility_outlined),
-                            ),
-                            trailing: room.canChangeHistoryVisibility
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            title: Text(
-                              L10n.of(context)!.visibilityOfTheChatHistory,
-                            ),
-                            subtitle: Text(
-                              room.historyVisibility?.getLocalizedString(
-                                    MatrixLocals(L10n.of(context)!),
-                                  ) ??
-                                  L10n.of(context)!.none,
-                            ),
-                            onTap: room.canChangeHistoryVisibility
-                                ? controller.setHistoryVisibility
-                                : null,
-                          ),
-                        if (room.joinRules == JoinRules.public)
-                          ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
                                   Theme.of(context).scaffoldBackgroundColor,
                               foregroundColor: iconColor,
                               child: const Icon(
-                                Icons.person_add_alt_1_outlined,
+                                Icons.analytics_outlined,
                               ),
                             ),
-                            trailing: room.canChangeGuestAccess
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            title: Text(
-                              L10n.of(context)!.areGuestsAllowedToJoin,
+                            onTap: () => context.go(
+                              '/rooms/analytics/${room.id}',
                             ),
-                            subtitle: Text(
-                              room.guestAccess.getLocalizedString(
-                                MatrixLocals(L10n.of(context)!),
-                              ),
-                            ),
-                            onTap: room.canChangeGuestAccess
-                                ? controller.setGuestAccess
-                                : null,
                           ),
-                        if (!room.isDirectChat)
+                        if (room.classSettings != null && room.isRoomAdmin)
+                          ClassSettings(
+                            roomId: controller.roomId,
+                            startOpen: false,
+                          ),
+                        if (room.pangeaRoomRules != null && room.isRoomAdmin)
+                          RoomRulesEditor(
+                            roomId: controller.roomId,
+                            startOpen: false,
+                          ),
+                        // if (!room.canChangeStateEvent(EventTypes.RoomTopic))
+                        //   ListTile(
+                        //     title: Text(
+                        //       L10n.of(context)!.chatDescription,
+                        //       style: TextStyle(
+                        //         color: Theme.of(context).colorScheme.secondary,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   )
+                        // else
+                        //   Padding(
+                        //     padding: const EdgeInsets.all(16.0),
+                        //     child: OutlinedButton.icon(
+                        //       onPressed: controller.setTopicAction,
+                        //       label: Text(L10n.of(context)!.setChatDescription),
+                        //       icon: const Icon(Icons.edit_outlined),
+                        //     ),
+                        //   ),
+                        // Padding(
+                        //   padding: const EdgeInsets.symmetric(
+                        //     horizontal: 16.0,
+                        //   ),
+                        //   child: SelectableLinkify(
+                        //     text: room.topic.isEmpty
+                        //         ? L10n.of(context)!.noChatDescriptionYet
+                        //         : room.topic,
+                        //     options: const LinkifyOptions(humanize: false),
+                        //     linkStyle:
+                        //         const TextStyle(color: Colors.blueAccent),
+                        //     style: TextStyle(
+                        //       fontSize: 14,
+                        //       fontStyle: room.topic.isEmpty
+                        //           ? FontStyle.italic
+                        //           : FontStyle.normal,
+                        //       color:
+                        //           Theme.of(context).textTheme.bodyMedium!.color,
+                        //       decorationColor:
+                        //           Theme.of(context).textTheme.bodyMedium!.color,
+                        //     ),
+                        //     onOpen: (url) =>
+                        //         UrlLauncher(context, url.url).launchUrl(),
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 16),
+                        // Divider(
+                        //   height: 1,
+                        //   color: Theme.of(context).dividerColor,
+                        // ),
+                        // if (room.joinRules == JoinRules.public)
+                        //   ListTile(
+                        //     leading: CircleAvatar(
+                        //       backgroundColor:
+                        //           Theme.of(context).scaffoldBackgroundColor,
+                        //       foregroundColor: iconColor,
+                        //       child: const Icon(Icons.link_outlined),
+                        //     ),
+                        //     trailing: const Icon(Icons.chevron_right_outlined),
+                        //     onTap: controller.editAliases,
+                        //     title: Text(L10n.of(context)!.editRoomAliases),
+                        //     subtitle: Text(
+                        //       (room.canonicalAlias.isNotEmpty)
+                        //           ? room.canonicalAlias
+                        //           : L10n.of(context)!.none,
+                        //     ),
+                        //   ),
+                        // ListTile(
+                        //   leading: CircleAvatar(
+                        //     backgroundColor:
+                        //         Theme.of(context).scaffoldBackgroundColor,
+                        //     foregroundColor: iconColor,
+                        //     child: const Icon(
+                        //       Icons.insert_emoticon_outlined,
+                        //     ),
+                        //   ),
+                        //   title: Text(L10n.of(context)!.emoteSettings),
+                        //   subtitle: Text(L10n.of(context)!.setCustomEmotes),
+                        //   onTap: controller.goToEmoteSettings,
+                        //   trailing: const Icon(Icons.chevron_right_outlined),
+                        // ),
+                        // if (!room.isDirectChat)
+                        //   ListTile(
+                        //     leading: CircleAvatar(
+                        //       backgroundColor:
+                        //           Theme.of(context).scaffoldBackgroundColor,
+                        //       foregroundColor: iconColor,
+                        //       child: const Icon(Icons.shield_outlined),
+                        //     ),
+                        //     title: Text(
+                        //       L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+                        //     ),
+                        //     trailing: room.canChangeJoinRules
+                        //         ? const Icon(Icons.chevron_right_outlined)
+                        //         : null,
+                        //     subtitle: Text(
+                        //       room.joinRules?.getLocalizedString(
+                        //             MatrixLocals(L10n.of(context)!),
+                        //           ) ??
+                        //           L10n.of(context)!.none,
+                        //     ),
+                        //     onTap: room.canChangeJoinRules
+                        //         ? controller.setJoinRules
+                        //         : null,
+                        //   ),
+                        // if (!room.isDirectChat)
+                        //   ListTile(
+                        //     leading: CircleAvatar(
+                        //       backgroundColor:
+                        //           Theme.of(context).scaffoldBackgroundColor,
+                        //       foregroundColor: iconColor,
+                        //       child: const Icon(Icons.visibility_outlined),
+                        //     ),
+                        //     trailing: room.canChangeHistoryVisibility
+                        //         ? const Icon(Icons.chevron_right_outlined)
+                        //         : null,
+                        //     title: Text(
+                        //       L10n.of(context)!.visibilityOfTheChatHistory,
+                        //     ),
+                        //     subtitle: Text(
+                        //       room.historyVisibility?.getLocalizedString(
+                        //             MatrixLocals(L10n.of(context)!),
+                        //           ) ??
+                        //           L10n.of(context)!.none,
+                        //     ),
+                        //     onTap: room.canChangeHistoryVisibility
+                        //         ? controller.setHistoryVisibility
+                        //         : null,
+                        //   ),
+                        // if (room.joinRules == JoinRules.public)
+                        //   ListTile(
+                        //     leading: CircleAvatar(
+                        //       backgroundColor:
+                        //           Theme.of(context).scaffoldBackgroundColor,
+                        //       foregroundColor: iconColor,
+                        //       child: const Icon(
+                        //         Icons.person_add_alt_1_outlined,
+                        //       ),
+                        //     ),
+                        //     trailing: room.canChangeGuestAccess
+                        //         ? const Icon(Icons.chevron_right_outlined)
+                        //         : null,
+                        //     title: Text(
+                        //       L10n.of(context)!.areGuestsAllowedToJoin,
+                        //     ),
+                        //     subtitle: Text(
+                        //       room.guestAccess.getLocalizedString(
+                        //         MatrixLocals(L10n.of(context)!),
+                        //       ),
+                        //     ),
+                        //     onTap: room.canChangeGuestAccess
+                        //         ? controller.setGuestAccess
+                        //         : null,
+                        //   ),
+                        // if (!room.isDirectChat)
+                        if (!room.isDirectChat && !room.isSpace)
+                          // Pangea#
                           ListTile(
-                            title: Text(L10n.of(context)!.chatPermissions),
+                            // #Pangea
+                            // title: Text(L10n.of(context)!.chatPermissions),
+                            title: Text(
+                              L10n.of(context)!.editChatPermissions,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            // Pangea#
                             subtitle: Text(
                               L10n.of(context)!.whoCanPerformWhichAction,
                             ),
@@ -374,7 +446,9 @@ class ChatDetailsView extends StatelessWidget {
                                 Icons.edit_attributes_outlined,
                               ),
                             ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
+                            // #Pangea
+                            // trailing: const Icon(Icons.chevron_right_outlined),
+                            // Pangea#
                             onTap: () => context
                                 .push('/rooms/${room.id}/details/permissions'),
                           ),
@@ -382,6 +456,111 @@ class ChatDetailsView extends StatelessWidget {
                           height: 1,
                           color: Theme.of(context).dividerColor,
                         ),
+                        // #Pangea
+                        if (room.canInvite)
+                          ListTile(
+                            title: Text(
+                              room.isSpace
+                                  ? L10n.of(context)!.inviteUsersFromPangea
+                                  : L10n.of(context)!.inviteStudentByUserName,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor:
+                                  Theme.of(context).textTheme.bodyLarge!.color,
+                              child: const Icon(
+                                Icons.add,
+                              ),
+                            ),
+                            onTap: () => context.go('/rooms/${room.id}/invite'),
+                          ),
+                        if (room.showClassEditOptions && room.isSpace)
+                          SpaceDetailsToggleAddStudentsTile(
+                            controller: controller,
+                          ),
+                        if (controller.displayAddStudentOptions &&
+                            room.showClassEditOptions)
+                          ClassInvitationButtons(roomId: controller.roomId!),
+                        if (!room.isPangeaClass)
+                          AddToSpaceToggles(
+                            roomId: room.id,
+                            key: controller.addToSpaceKey,
+                            startOpen: false,
+                            mode: room.isExchange
+                                ? AddToClassMode.exchange
+                                : AddToClassMode.chat,
+                          ),
+                        const Divider(height: 1),
+                        if (!room.isSpace || (room.isSpace && room.isRoomAdmin))
+                          ListTile(
+                            title: Text(
+                              room.isSpace
+                                  ? L10n.of(context)!.archiveSpace
+                                  : L10n.of(context)!.archive,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.archive_outlined,
+                              ),
+                            ),
+                            onTap: () => showFutureLoadingDialog(
+                              context: context,
+                              future: () async {
+                                room.isSpace
+                                    ? await archiveSpace(
+                                        room,
+                                        Matrix.of(context).client,
+                                      )
+                                    : await room.leave();
+                                context.go('/rooms');
+                              },
+                            ),
+                          ),
+                        if (room.isRoomAdmin)
+                          SwitchListTile.adaptive(
+                            activeColor: AppConfig.activeToggleColor,
+                            title: Text(
+                              room.isSpace
+                                  ? L10n.of(context)!.lockSpace
+                                  : L10n.of(context)!.lockChat,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            secondary: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: Icon(
+                                room.locked
+                                    ? Icons.lock_outlined
+                                    : Icons.no_encryption_outlined,
+                              ),
+                            ),
+                            value: room.locked,
+                            onChanged: (value) => showFutureLoadingDialog(
+                              context: context,
+                              future: () => toggleLockRoom(
+                                room,
+                                Matrix.of(context).client,
+                              ),
+                            ),
+                          ),
+                        const Divider(height: 1),
+                        // Pangea#
                         ListTile(
                           title: Text(
                             L10n.of(context)!.countParticipants(
@@ -393,18 +572,20 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (!room.isDirectChat && room.canInvite)
-                          ListTile(
-                            title: Text(L10n.of(context)!.inviteContact),
-                            leading: CircleAvatar(
-                              backgroundColor: Theme.of(context).primaryColor,
-                              foregroundColor: Colors.white,
-                              radius: Avatar.defaultSize / 2,
-                              child: const Icon(Icons.add_outlined),
-                            ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: () => context.go('/rooms/${room.id}/invite'),
-                          ),
+                        // #Pangea
+                        // if (!room.isDirectChat && room.canInvite)
+                        //   ListTile(
+                        //     title: Text(L10n.of(context)!.inviteContact),
+                        //     leading: CircleAvatar(
+                        //       backgroundColor: Theme.of(context).primaryColor,
+                        //       foregroundColor: Colors.white,
+                        //       radius: Avatar.defaultSize / 2,
+                        //       child: const Icon(Icons.add_outlined),
+                        //     ),
+                        //     trailing: const Icon(Icons.chevron_right_outlined),
+                        //     onTap: () => context.go('/rooms/${room.id}/invite'),
+                        //   ),
+                        // Pangea#
                       ],
                     )
                   : i < members.length + 1

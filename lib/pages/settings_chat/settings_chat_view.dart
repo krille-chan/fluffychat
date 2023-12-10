@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
   final SettingsChatController controller;
-  const SettingsChatView(this.controller, {Key? key}) : super(key: key);
+  const SettingsChatView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +23,21 @@ class SettingsChatView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              ListTile(
-                title: Text(L10n.of(context)!.emoteSettings),
-                onTap: () => context.go('/rooms/settings/chat/emotes'),
-                trailing: const Icon(Icons.chevron_right_outlined),
-                leading: const Icon(Icons.emoji_emotions_outlined),
-              ),
-              const Divider(),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.renderRichContent,
-                onChanged: (b) => AppConfig.renderHtml = b,
-                storeKey: SettingKeys.renderHtml,
-                defaultValue: AppConfig.renderHtml,
-              ),
+              // #Pangea
+              // ListTile(
+              //   title: Text(L10n.of(context)!.emoteSettings),
+              //   onTap: () => context.go('/rooms/settings/chat/emotes'),
+              //   trailing: const Icon(Icons.chevron_right_outlined),
+              //   leading: const Icon(Icons.emoji_emotions_outlined),
+              // ),
+              // const Divider(),
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.renderRichContent,
+              //   onChanged: (b) => AppConfig.renderHtml = b,
+              //   storeKey: SettingKeys.renderHtml,
+              //   defaultValue: AppConfig.renderHtml,
+              // ),
+              // Pangea#
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.hideRedactedEvents,
                 onChanged: (b) => AppConfig.hideRedactedEvents = b,
@@ -50,12 +50,14 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
               ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideUnimportantStateEvents,
-                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
-                storeKey: SettingKeys.hideUnimportantStateEvents,
-                defaultValue: AppConfig.hideUnimportantStateEvents,
-              ),
+              // #Pangea
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.hideUnimportantStateEvents,
+              //   onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
+              //   storeKey: SettingKeys.hideUnimportantStateEvents,
+              //   defaultValue: AppConfig.hideUnimportantStateEvents,
+              // ),
+              // Pangea#
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
                   title: L10n.of(context)!.autoplayImages,
@@ -64,28 +66,30 @@ class SettingsChatView extends StatelessWidget {
                   defaultValue: AppConfig.autoplayImages,
                 ),
               const Divider(),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.sendTypingNotifications,
-                onChanged: (b) => AppConfig.sendTypingNotifications = b,
-                storeKey: SettingKeys.sendTypingNotifications,
-                defaultValue: AppConfig.sendTypingNotifications,
-              ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.sendOnEnter,
-                onChanged: (b) => AppConfig.sendOnEnter = b,
-                storeKey: SettingKeys.sendOnEnter,
-                defaultValue: AppConfig.sendOnEnter,
-              ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.experimentalVideoCalls,
-                onChanged: (b) {
-                  AppConfig.experimentalVoip = b;
-                  Matrix.of(context).createVoipPlugin();
-                  return;
-                },
-                storeKey: SettingKeys.experimentalVoip,
-                defaultValue: AppConfig.experimentalVoip,
-              ),
+              // #Pangea
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.sendTypingNotifications,
+              //   onChanged: (b) => AppConfig.sendTypingNotifications = b,
+              //   storeKey: SettingKeys.sendTypingNotifications,
+              //   defaultValue: AppConfig.sendTypingNotifications,
+              // ),
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.sendOnEnter,
+              //   onChanged: (b) => AppConfig.sendOnEnter = b,
+              //   storeKey: SettingKeys.sendOnEnter,
+              //   defaultValue: AppConfig.sendOnEnter,
+              // ),
+              // SettingsSwitchListTile.adaptive(
+              //   title: L10n.of(context)!.experimentalVideoCalls,
+              //   onChanged: (b) {
+              //     AppConfig.experimentalVoip = b;
+              //     Matrix.of(context).createVoipPlugin();
+              //     return;
+              //   },
+              //   storeKey: SettingKeys.experimentalVoip,
+              //   defaultValue: AppConfig.experimentalVoip,
+              // ),
+              // Pangea#
               if (PlatformInfos.isMobile)
                 ListTile(
                   title: Text(L10n.of(context)!.callingPermissions),
@@ -96,6 +100,7 @@ class SettingsChatView extends StatelessWidget {
                     child: Icon(Icons.call),
                   ),
                 ),
+              const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,

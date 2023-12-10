@@ -10,11 +10,10 @@ import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 class ArchiveView extends StatelessWidget {
   final ArchiveController controller;
 
-  const ArchiveView(this.controller, {Key? key}) : super(key: key);
+  const ArchiveView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    var archive = controller.archive;
     return FutureBuilder<List<Room>>(
       future: controller.getArchive(context),
       builder: (BuildContext context, snapshot) => Scaffold(
@@ -50,16 +49,16 @@ class ArchiveView extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
               } else {
-                archive = snapshot.data;
-                if (archive == null || archive!.isEmpty) {
+                if (controller.archive.isEmpty) {
                   return const Center(
                     child: Icon(Icons.archive_outlined, size: 80),
                   );
                 }
                 return ListView.builder(
-                  itemCount: archive!.length,
+                  itemCount: controller.archive.length,
                   itemBuilder: (BuildContext context, int i) => ChatListItem(
-                    archive![i],
+                    controller.archive[i],
+                    onForget: () => controller.forgetRoomAction(i),
                   ),
                 );
               }

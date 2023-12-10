@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
+
 class EmptyPage extends StatelessWidget {
   final bool loading;
   static const double _width = 300;
-  const EmptyPage({this.loading = false, Key? key}) : super(key: key);
+  const EmptyPage({this.loading = false, super.key});
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
@@ -23,12 +25,15 @@ class EmptyPage extends StatelessWidget {
           Center(
             child: Hero(
               tag: 'info-logo',
-              child: Image.asset(
-                'assets/favicon.png',
-                width: width,
-                height: width,
-                filterQuality: FilterQuality.medium,
-              ),
+              // #Pangea
+              // child: Image.asset(
+              //   'assets/favicon.png',
+              //   width: width,
+              //   height: width,
+              //   filterQuality: FilterQuality.medium,
+              // ),
+              child: PangeaLogoSvg(width: width),
+              // Pangea#
             ),
           ),
           if (loading)

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,12 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
-import 'package:fluffychat/utils/famedlysdk_store.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/utils/add_to_space.dart';
+import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -28,7 +34,6 @@ import '../../utils/url_launcher.dart';
 import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -61,10 +66,10 @@ class ChatList extends StatefulWidget {
   final String? activeChat;
 
   const ChatList({
-    Key? key,
+    super.key,
     this.displayNavigationRail = false,
     required this.activeChat,
-  }) : super(key: key);
+  });
 
   @override
   ChatListController createState() => ChatListController();
@@ -87,6 +92,9 @@ class ChatListController extends State<ChatList>
   void resetActiveSpaceId() {
     setState(() {
       activeSpaceId = null;
+      //#Pangea
+      context.go("/rooms");
+      //Pangea#
     });
   }
 
@@ -109,6 +117,15 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  // #Pangea
+  bool isSelected(int i) {
+    if (activeFilter == ActiveFilter.spaces && activeSpaceId != null) {
+      return false;
+    }
+    return i == selectedIndex;
+  }
+  // Pangea#
+
   ActiveFilter getActiveFilterByDestination(int? i) {
     switch (i) {
       case 1:
@@ -129,8 +146,18 @@ class ChatListController extends State<ChatList>
 
   void onDestinationSelected(int? i) {
     setState(() {
+      // #Pangea
+      debugPrint('onDestinationSelected $i');
+      // Pangea#
       activeFilter = getActiveFilterByDestination(i);
     });
+    // #Pangea
+    final bool clickedAllSpaces = (!AppConfig.separateChatTypes && i == 1) ||
+        (AppConfig.separateChatTypes && i == 2);
+    if (clickedAllSpaces) {
+      setActiveSpace(null);
+    }
+    // Pangea#
   }
 
   ActiveFilter activeFilter = AppConfig.separateChatTypes
@@ -140,23 +167,63 @@ class ChatListController extends State<ChatList>
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return (room) => !room.isSpace && !room.isStoryRoom;
+        return (room) =>
+            !room.isSpace &&
+            !room.isStoryRoom
+            // #Pangea
+            &&
+            !room.isAnalyticsRoom;
+      // Pangea#
       case ActiveFilter.groups:
         return (room) =>
-            !room.isSpace && !room.isDirectChat && !room.isStoryRoom;
+            !room.isSpace &&
+            !room.isDirectChat &&
+            !room.isStoryRoom
+            // #Pangea
+            &&
+            !room.isAnalyticsRoom;
+      // Pangea#
       case ActiveFilter.messages:
         return (room) =>
-            !room.isSpace && room.isDirectChat && !room.isStoryRoom;
+            !room.isSpace &&
+            room.isDirectChat &&
+            !room.isStoryRoom
+            // #Pangea
+            &&
+            !room.isAnalyticsRoom;
+      // Pangea#
       case ActiveFilter.spaces:
         return (r) => r.isSpace;
     }
   }
 
   List<Room> get filteredRooms => Matrix.of(context)
-      .client
-      .rooms
-      .where(getRoomFilterByActiveFilter(activeFilter))
-      .toList();
+          .client
+          .rooms
+          .where(
+            getRoomFilterByActiveFilter(activeFilter),
+          )
+          // #Pangea
+          .sorted((roomA, roomB) {
+        // put rooms with unread messages at the top of the list
+        if (roomA.membership == Membership.invite &&
+            roomB.membership != Membership.invite) {
+          return -1;
+        }
+        if (roomA.membership != Membership.invite &&
+            roomB.membership == Membership.invite) {
+          return 1;
+        }
+
+        final bool aUnread = roomA.notificationCount > 0 || roomA.markedUnread;
+        final bool bUnread = roomB.notificationCount > 0 || roomB.markedUnread;
+        if (aUnread && !bUnread) return -1;
+        if (!aUnread && bUnread) return 1;
+
+        return 0;
+      })
+          // Pangea#
+          .toList();
 
   bool isSearchMode = false;
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
@@ -167,6 +234,9 @@ class ChatListController extends State<ChatList>
 
   bool isSearching = false;
   static const String _serverStoreNamespace = 'im.fluffychat.search.server';
+  //#Pangea
+  final PangeaController pangeaController = MatrixState.pangeaController;
+  //Pangea#
 
   void setServer() async {
     final newServer = await showTextInputDialog(
@@ -189,7 +259,7 @@ class ChatListController extends State<ChatList>
       ],
     );
     if (newServer == null) return;
-    Store().setItem(_serverStoreNamespace, newServer.single);
+    Matrix.of(context).store.setString(_serverStoreNamespace, newServer.single);
     setState(() {
       searchServer = newServer.single;
     });
@@ -372,6 +442,11 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  //#Pangea
+  StreamSubscription? classStream;
+  StreamSubscription? _invitedSpaceSubscription;
+  //Pangea#
+
   @override
   void initState() {
     _initReceiveSharingIntent();
@@ -382,7 +457,8 @@ class ChatListController extends State<ChatList>
     CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
-        searchServer = await Store().getItem(_serverStoreNamespace);
+        searchServer =
+            Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
 
@@ -394,6 +470,40 @@ class ChatListController extends State<ChatList>
 
     _checkTorBrowser();
 
+    //#Pangea
+    classStream = pangeaController.classController.stateStream.listen((event) {
+      if (event["activeSpaceId"] != null && mounted) {
+        setActiveSpace(event["activeSpaceId"]);
+      }
+    });
+
+    _invitedSpaceSubscription = pangeaController
+        .matrixState.client.onSync.stream
+        .where((event) => event.rooms?.invite != null)
+        .listen((event) {
+      for (final inviteEntry in event.rooms!.invite!.entries) {
+        if (inviteEntry.value.inviteState == null) continue;
+        final bool isSpace = inviteEntry.value.inviteState!.any(
+          (event) =>
+              event.type == EventTypes.RoomCreate &&
+              event.content['type'] == 'm.space',
+        );
+        if (!isSpace) continue;
+        final String spaceId = inviteEntry.key;
+        final Room? space = pangeaController.matrixState.client.getRoomById(
+          spaceId,
+        );
+        if (space != null) {
+          chatListHandleSpaceTap(
+            context,
+            this,
+            space,
+          );
+        }
+      }
+    });
+    //Pangea#
+
     super.initState();
   }
 
@@ -402,6 +512,10 @@ class ChatListController extends State<ChatList>
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
+    //#Pangea
+    classStream?.cancel();
+    _invitedSpaceSubscription?.cancel();
+    //Pangea#
     scrollController.removeListener(_onScroll);
     super.dispose();
   }
@@ -471,14 +585,24 @@ class ChatListController extends State<ChatList>
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.archiveRoomDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
+    // #Pangea
+    final bool archivedActiveRoom =
+        selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+    // Pangea#
     await showFutureLoadingDialog(
       context: context,
       future: () => _archiveSelectedRooms(),
     );
     setState(() {});
+    // #Pangea
+    if (archivedActiveRoom) {
+      context.go('/rooms');
+    }
+    // Pangea#
   }
 
   void setStatus() async {
@@ -526,7 +650,17 @@ class ChatListController extends State<ChatList>
       actions: Matrix.of(context)
           .client
           .rooms
-          .where((r) => r.isSpace)
+          .where(
+            (r) =>
+                r.isSpace
+                // #Pangea
+                &&
+                selectedRoomIds
+                    .map((id) => Matrix.of(context).client.getRoomById(id))
+                    .where((e) => !(e?.isPangeaClass ?? true))
+                    .every((e) => r.canIAddSpaceChild(e)),
+            //Pangea#
+          )
           .map(
             (space) => AlertDialogAction(
               key: space.id,
@@ -541,11 +675,19 @@ class ChatListController extends State<ChatList>
       context: context,
       future: () async {
         final space = Matrix.of(context).client.getRoomById(selectedSpace)!;
-        if (space.canSendDefaultStates) {
-          for (final roomId in selectedRoomIds) {
-            await space.setSpaceChild(roomId);
-          }
-        }
+        // #Pangea
+        await pangeaAddToSpace(
+          space,
+          selectedRoomIds.toList(),
+          context,
+          pangeaController,
+        );
+        // if (space.canSendDefaultStates) {
+        //   for (final roomId in selectedRoomIds) {
+        //     await space.setSpaceChild(roomId);
+        //   }
+        // }
+        // Pangea#
       },
     );
     if (result.error == null) {
@@ -583,16 +725,35 @@ class ChatListController extends State<ChatList>
     await client.accountDataLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
+      // #Pangea
+      pangeaController.startChatWithBotIfNotPresent();
+      //Pangea#
 
       // Display first login bootstrap if enabled
-      if (client.encryption?.keyManager.enabled == true) {
-        if (await client.encryption?.keyManager.isCached() == false ||
-            await client.encryption?.crossSigning.isCached() == false ||
-            client.isUnknownSession && !mounted) {
-          await BootstrapDialog(client: client).show(context);
-        }
-      }
+      // #Pangea
+      // if (client.encryption?.keyManager.enabled == true) {
+      //   if (await client.encryption?.keyManager.isCached() == false ||
+      //       await client.encryption?.crossSigning.isCached() == false ||
+      //       client.isUnknownSession && !mounted) {
+      //     await BootstrapDialog(client: client).show(context);
+      //   }
+      // }
+      // Pangea#
     }
+
+    // #Pangea
+    if (mounted) {
+      GoogleAnalytics.analyticsUserUpdate(client.userID);
+      await pangeaController.subscriptionController.initialize();
+      pangeaController.afterSyncAndFirstLoginInitialization(context);
+      await pangeaController.inviteBotToExistingSpaces();
+    } else {
+      ErrorHandler.logError(
+        m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
+      );
+      // debugger(when: kDebugMode);
+    }
+    // Pangea#
     if (!mounted) return;
     setState(() {
       waitForFirstSync = true;

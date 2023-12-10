@@ -1,6 +1,7 @@
-body, html {
-  margin:0;
-  height:100%;
+body,
+html {
+  margin: 0;
+  height: 100%;
   background: #ffffff;
   background-image: url("img/light-background.png");
   background-size: 100% 100%;
@@ -16,22 +17,26 @@ body, html {
 }
 
 .contain {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .stretch {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .cover {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+/* #Pangea
 @media (prefers-color-scheme: dark) {
   body {
     margin:0;
@@ -41,3 +46,45 @@ body, html {
     background-size: 100% 100%;
   }
 }
+*/
+
+@media (prefers-color-scheme: dark) {
+  body {
+    margin: 0;
+    height: 100%;
+    background: #000000;
+    background-size: 100% 100%;
+  }
+}
+
+.image {
+  width: 100%;
+}
+
+.custom-loader {
+  --d: 88px;
+  width: 3px;
+  height: 3px;
+  position: absolute;
+  top: 85px;
+  left: 85px;
+  border-radius: 100%;
+  color: #8C5EE8;
+  box-shadow:
+    calc(1*var(--d)) calc(0*var(--d)) 0 0,
+    calc(0.707*var(--d)) calc(0.707*var(--d)) 0 2px,
+    calc(0*var(--d)) calc(1*var(--d)) 0 4px,
+    calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 6px,
+    calc(-1*var(--d)) calc(0*var(--d)) 0 8px,
+    calc(-0.707*var(--d)) calc(-0.707*var(--d))0 10px,
+    calc(0*var(--d)) calc(-1*var(--d)) 0 12px;
+  animation: s7 1s infinite steps(8);
+}
+
+@keyframes s7 {
+  100% {
+    transform: rotate(1turn)
+  }
+}
+
+/* Pangea# */

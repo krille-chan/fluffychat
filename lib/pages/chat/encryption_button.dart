@@ -8,7 +8,7 @@ import '../../widgets/matrix.dart';
 
 class EncryptionButton extends StatelessWidget {
   final Room room;
-  const EncryptionButton(this.room, {Key? key}) : super(key: key);
+  const EncryptionButton(this.room, {super.key});
 
   @override
   Widget build(BuildContext context) {

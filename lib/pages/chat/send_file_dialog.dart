@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
@@ -15,8 +17,8 @@ class SendFileDialog extends StatefulWidget {
   const SendFileDialog({
     required this.room,
     required this.files,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   SendFileDialogState createState() => SendFileDialogState();
@@ -84,20 +86,41 @@ class SendFileDialogState extends State<SendFileDialog> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Flexible(
-            child: Image.memory(
-              widget.files.first.bytes,
-              fit: BoxFit.contain,
+            child: Material(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              elevation:
+                  Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
+              shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              clipBehavior: Clip.hardEdge,
+              child: Image.memory(
+                widget.files.first.bytes,
+                fit: BoxFit.contain,
+                height: 256,
+              ),
             ),
           ),
+          const SizedBox(height: 16),
+          // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
           Row(
-            children: <Widget>[
-              Checkbox(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CupertinoSwitch(
                 value: origImage,
-                onChanged: (v) => setState(() => origImage = v ?? false),
+                onChanged: (v) => setState(() => origImage = v),
               ),
-              InkWell(
-                onTap: () => setState(() => origImage = !origImage),
-                child: Text('${L10n.of(context)!.sendOriginal} ($sizeString)'),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      L10n.of(context)!.sendOriginal,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(sizeString),
+                  ],
+                ),
               ),
             ],
           ),
@@ -106,7 +129,7 @@ class SendFileDialogState extends State<SendFileDialog> {
     } else {
       contentWidget = Text('$fileName ($sizeString)');
     }
-    return AlertDialog(
+    return AlertDialog.adaptive(
       title: Text(sendStr),
       content: contentWidget,
       actions: <Widget>[
