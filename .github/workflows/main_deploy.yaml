@@ -34,11 +34,7 @@ jobs:
         run: |
           mv build/web public
           mv .env public/.env
-      - name: Build Website
-        run: |
-          mv build/web public
           cp public/.env public/.env-staging
-      - run: cat public/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
