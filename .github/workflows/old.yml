@@ -2,6 +2,8 @@ name: Old Release Workflow
 
 on:
   push:
+    branches:
+      - master-unused
 
 concurrency:
   group: release_workflow
