@@ -17,7 +17,7 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo ${{ variables.WEB_APP_ENV }} >> .env
+          echo $WEB_APP_ENV >> .env
           cat .env
       - uses: subosito/flutter-action@v2
         with:
