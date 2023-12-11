@@ -75,6 +75,16 @@ class SubscriptionController extends BaseController {
             }
           },
         );
+      } else {
+        final bool? beganWebPayment = _pangeaController.pStoreService.read(
+          PLocalKey.beganWebPayment,
+        );
+        if (beganWebPayment ?? false) {
+          _pangeaController.pStoreService.delete(PLocalKey.beganWebPayment);
+          if (_pangeaController.subscriptionController.isSubscribed) {
+            subscriptionStream.add(true);
+          }
+        }
       }
       setState();
     } catch (e, s) {

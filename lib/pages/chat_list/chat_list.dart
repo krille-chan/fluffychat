@@ -8,7 +8,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
-import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/add_to_space.dart';
@@ -758,15 +757,6 @@ class ChatListController extends State<ChatList>
       await pangeaController.subscriptionController.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
-      final bool? beganWebPayment = pangeaController.pStoreService.read(
-        PLocalKey.beganWebPayment,
-      );
-      if (beganWebPayment ?? false) {
-        pangeaController.pStoreService.delete(PLocalKey.beganWebPayment);
-        if (pangeaController.subscriptionController.isSubscribed) {
-          showSubscribedSnackbar(context);
-        }
-      }
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",
