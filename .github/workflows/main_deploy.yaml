@@ -18,7 +18,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
