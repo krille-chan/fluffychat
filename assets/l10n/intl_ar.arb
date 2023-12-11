@@ -2690,5 +2690,9 @@
   "block": "حظر",
   "@block": {},
   "blockUsername": "تجاهل اسم المستخدم",
-  "@blockUsername": {}
+  "@blockUsername": {},
+  "databaseMigrationTitle": "تم تحسين قاعدة البيانات",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "انتظر من فضلك. قد يستغرق ذلك بعض الوقت.",
+  "@databaseMigrationBody": {}
 }
