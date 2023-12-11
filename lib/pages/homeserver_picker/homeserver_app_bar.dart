@@ -23,8 +23,7 @@ class HomeserverAppBar extends StatelessWidget {
       children: [
         // DropdownButton instead of TypeAheadField
         Expanded(
-          child:
-          DropdownButton<String>(
+          child: DropdownButton<String>(
             isExpanded: true,
             value: controller.selectedServer,
             icon: const Icon(Icons.arrow_drop_down),

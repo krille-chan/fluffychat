@@ -24,7 +24,8 @@ class HomeserverPickerView extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 12,
         automaticallyImplyLeading: false,
-        title: HomeserverAppBar(controller: controller),// DropdownButton servers
+        title:
+            HomeserverAppBar(controller: controller), // DropdownButton servers
       ),
       body: SafeArea(
         child: Column(

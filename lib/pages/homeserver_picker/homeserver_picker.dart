@@ -38,7 +38,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     text: AppConfig.defaultHomeserver,
   );
 
-  String selectedServer = AppConfig.defaultHomeserver; // Initialized with default server
+  String selectedServer =
+      AppConfig.defaultHomeserver; // Initialized with default server
 
   String? error;
 
@@ -48,7 +49,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     if (newValue != null) {
       setState(() {
         selectedServer = newValue;
-        homeserverController.text = newValue; // Update homeserverController.text
+        homeserverController.text =
+            newValue; // Update homeserverController.text
       });
     }
   }
