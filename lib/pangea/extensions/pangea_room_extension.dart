@@ -916,29 +916,20 @@ extension PangeaRoom on Room {
     );
   }
 
-  bool get locked {
-    final Event? powerLevels = getState(EventTypes.RoomPowerLevels);
-    if (powerLevels == null) {
-      return false;
-    }
-    final Map<String, dynamic> powerLevelsContent = Map<String, dynamic>.from(
-      powerLevels.content,
-    );
+  int? get eventsDefaultPowerLevel => getState(EventTypes.RoomPowerLevels)
+      ?.content
+      .tryGet<int>('events_default');
 
+  bool? get locked {
+    if (isDirectChat) return false;
     if (!isSpace) {
-      return powerLevelsContent['events_default'] != null &&
-          powerLevelsContent['events_default'] >= 100;
+      if (eventsDefaultPowerLevel == null) return null;
+      return eventsDefaultPowerLevel! >= ClassDefaultValues.powerLevelOfAdmin;
     }
-
-    final List<Room?> children = spaceChildren
-        .map(
-          (child) =>
-              child.roomId != null ? client.getRoomById(child.roomId!) : null,
-        )
-        .toList();
-
-    for (final Room? child in children) {
-      if (child != null && !child.locked) {
+    for (final child in spaceChildren) {
+      if (child.roomId == null) continue;
+      final Room? room = client.getRoomById(child.roomId!);
+      if (room?.locked == false && (room?.canChangePowerLevel ?? false)) {
         return false;
       }
     }
