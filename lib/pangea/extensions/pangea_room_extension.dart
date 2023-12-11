@@ -1,13 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/space_child.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -15,6 +8,12 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/space_child.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../constants/pangea_event_types.dart';
 import '../enum/construct_type_enum.dart';
@@ -77,6 +76,8 @@ extension PangeaRoom on Room {
   }
 
   String? get creatorId => getState(EventTypes.RoomCreate)?.senderId;
+
+  DateTime? get creationTime => getState(EventTypes.RoomCreate)?.originServerTs;
 
   ClassSettingsModel? get firstLanguageSettings =>
       classSettings ??
@@ -980,5 +981,15 @@ extension PangeaRoom on Room {
       }
     }
     return children;
+  }
+
+  DateTime? get classSettingsUpdatedAt {
+    if (!isSpace) return null;
+    return languageSettingsStateEvent?.originServerTs ?? creationTime;
+  }
+
+  DateTime? get rulesUpdatedAt {
+    if (!isSpace) return null;
+    return pangeaRoomRulesStateEvent?.originServerTs ?? creationTime;
   }
 }

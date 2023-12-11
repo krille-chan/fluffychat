@@ -1,10 +1,12 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -80,6 +82,8 @@ class NewSpaceView extends StatelessWidget {
                 key: controller.classSettingsKey,
                 roomId: null,
                 startOpen: true,
+                initialSettings:
+                    Matrix.of(context).client.lastUpdatedClassSettings,
               ),
             if (!controller.newClassMode)
               AddToSpaceToggles(
@@ -93,6 +97,7 @@ class NewSpaceView extends StatelessWidget {
               key: controller.rulesEditorKey,
               roomId: null,
               startOpen: false,
+              initialRules: Matrix.of(context).client.lastUpdatedRoomRules,
             ),
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),

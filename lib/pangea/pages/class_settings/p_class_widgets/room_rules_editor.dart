@@ -1,10 +1,9 @@
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/models/class_model.dart';
 import '../../../../config/app_config.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../constants/pangea_event_types.dart';
@@ -14,12 +13,14 @@ class RoomRulesEditor extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
   final bool showAdd;
+  final PangeaRoomRules? initialRules;
 
   const RoomRulesEditor({
     super.key,
     this.roomId,
     this.startOpen = true,
     this.showAdd = false,
+    this.initialRules,
   });
 
   @override
@@ -43,7 +44,7 @@ class RoomRulesState extends State<RoomRulesEditor> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
 
-    rules = room?.pangeaRoomRules ?? PangeaRoomRules();
+    rules = room?.pangeaRoomRules ?? widget.initialRules ?? PangeaRoomRules();
 
     super.initState();
   }
