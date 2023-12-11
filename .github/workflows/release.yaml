@@ -49,13 +49,13 @@ jobs:
           mv repo public || true
           mv build/web/ public/web
           cp public/web -r public/nightly
-          echo "fluffychat.im" > ./public/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
+          cname: fluffychat.im
 
   build_apk:
     runs-on: ubuntu-latest

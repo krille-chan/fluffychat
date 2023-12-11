@@ -24,11 +24,12 @@ jobs:
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
+      - run: mv build/web/ public
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./public
           publish_branch: gh-pages
           destination_dir: nightly
 
