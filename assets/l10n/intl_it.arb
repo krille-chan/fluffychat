@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} ha accettato l'invito",
+  "acceptedTheInvitation": "👍 {username} ha accettato l'invito",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -22,7 +22,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} ha abilitato la crittografia end to end",
+  "activatedEndToEndEncryption": "🔐 {username} ha abilitato la crittografia end to end",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -192,7 +192,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username} ha cambiato nome in: {displayname}",
+  "changedTheDisplaynameTo": "{username} ha cambiato nome in: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -306,7 +306,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "Il backup della discussione è protetto da una chiave di sicurezza. Assicurati di non perderla.",
+  "chatBackupDescription": "I tuoi vecchi messaggi sono protetti da una chiave di sicurezza. Assicurati di non perderla.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1972,7 +1972,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hugContent": "",
+  "hugContent": "{senderName} ti abbraccia",
   "@hugContent": {
     "type": "text",
     "placeholders": {
@@ -1993,7 +1993,7 @@
   },
   "whoCanSeeMyStories": "",
   "@whoCanSeeMyStories": {},
-  "commandHint_cuddle": "",
+  "commandHint_cuddle": "Invia una coccola",
   "@commandHint_cuddle": {},
   "widgetVideo": "",
   "@widgetVideo": {},
@@ -2001,7 +2001,7 @@
   "@dismiss": {},
   "reportErrorDescription": "",
   "@reportErrorDescription": {},
-  "chatHasBeenAddedToThisSpace": "",
+  "chatHasBeenAddedToThisSpace": "La chat è stata aggiunta a questo spazio",
   "@chatHasBeenAddedToThisSpace": {},
   "unsupportedAndroidVersion": "",
   "@unsupportedAndroidVersion": {},
@@ -2025,14 +2025,14 @@
   "@setColorTheme": {},
   "nextAccount": "",
   "@nextAccount": {},
-  "commandHint_create": "",
+  "commandHint_create": "Crea una chat di gruppo vuota\nUtilizza --no-encryption per disattivare la criptazione",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
   },
   "allSpaces": "",
   "@allSpaces": {},
-  "supposedMxid": "",
+  "supposedMxid": "Dovrebbe essere {mxid}",
   "@supposedMxid": {
     "type": "text",
     "placeholders": {
@@ -2091,7 +2091,7 @@
   "@unbanUserDescription": {},
   "todoLists": "",
   "@todoLists": {},
-  "sendOnEnter": "",
+  "sendOnEnter": "Invia quando premi Invio",
   "@sendOnEnter": {},
   "youRejectedTheInvitation": "",
   "@youRejectedTheInvitation": {},
@@ -2138,7 +2138,7 @@
   },
   "noKeyForThisMessage": "",
   "@noKeyForThisMessage": {},
-  "commandHint_markasgroup": "",
+  "commandHint_markasgroup": "Segna come gruppo",
   "@commandHint_markasgroup": {},
   "editTodo": "",
   "@editTodo": {},
@@ -2169,7 +2169,7 @@
   "@signInWithPassword": {},
   "pleaseAddATitle": "",
   "@pleaseAddATitle": {},
-  "updateNow": "",
+  "updateNow": "Avvia aggiornamento in background",
   "@updateNow": {},
   "makeAdminDescription": "",
   "@makeAdminDescription": {},
@@ -2178,7 +2178,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_clearcache": "",
+  "commandHint_clearcache": "Pulisci cache",
   "@commandHint_clearcache": {
     "type": "text",
     "description": "Usage hint for the command /clearcache"
@@ -2196,7 +2196,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "importFromZipFile": "",
+  "importFromZipFile": "Importa da file .zip",
   "@importFromZipFile": {},
   "dehydrateWarning": "",
   "@dehydrateWarning": {},
@@ -2224,7 +2224,7 @@
       "provider": {}
     }
   },
-  "updateAvailable": "",
+  "updateAvailable": "Aggiornamento FluffyChat disponibile",
   "@updateAvailable": {},
   "fileIsTooBigForServer": "",
   "@fileIsTooBigForServer": {},
@@ -2238,7 +2238,7 @@
   "@readUpToHere": {},
   "start": "",
   "@start": {},
-  "bubbleSize": "",
+  "bubbleSize": "Grandezza bolla",
   "@bubbleSize": {
     "type": "text",
     "placeholders": {}
@@ -2265,7 +2265,7 @@
   },
   "archiveRoomDescription": "",
   "@archiveRoomDescription": {},
-  "exportEmotePack": "",
+  "exportEmotePack": "Esporta pack di Emote come .zip",
   "@exportEmotePack": {},
   "switchToAccount": "",
   "@switchToAccount": {
@@ -2278,7 +2278,7 @@
   "@letsStart": {},
   "experimentalVideoCalls": "",
   "@experimentalVideoCalls": {},
-  "savedEmotePack": "",
+  "savedEmotePack": "Pack di Emote salvato in {path}!",
   "@savedEmotePack": {
     "type": "text",
     "placeholders": {
@@ -2324,7 +2324,7 @@
       "path": {}
     }
   },
-  "importZipFile": "",
+  "importZipFile": "Importa file .zip",
   "@importZipFile": {},
   "anyoneCanKnock": "",
   "@anyoneCanKnock": {},
@@ -2340,7 +2340,7 @@
   "@redactMessageDescription": {},
   "recoveryKey": "",
   "@recoveryKey": {},
-  "commandHint_discardsession": "",
+  "commandHint_discardsession": "Scarta sessione",
   "@commandHint_discardsession": {
     "type": "text",
     "description": "Usage hint for the command /discardsession"
@@ -2351,7 +2351,7 @@
   "@todosUnencrypted": {},
   "dehydrateTorLong": "",
   "@dehydrateTorLong": {},
-  "commandHint_myroomnick": "",
+  "commandHint_myroomnick": "Imposta il nome visualizzato per questa stanza",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
@@ -2372,7 +2372,7 @@
   "@widgetCustom": {},
   "addToSpaceDescription": "",
   "@addToSpaceDescription": {},
-  "googlyEyesContent": "",
+  "googlyEyesContent": "{senderName} ti ha inviato degli occhi finti",
   "@googlyEyesContent": {
     "type": "text",
     "placeholders": {
@@ -2391,9 +2391,9 @@
   "@unsubscribeStories": {},
   "loginWithOneClick": "",
   "@loginWithOneClick": {},
-  "addChatDescription": "",
+  "addChatDescription": "Aggiungi una descrizione chat...",
   "@addChatDescription": {},
-  "commandHint_myroomavatar": "",
+  "commandHint_myroomavatar": "Importa la foto profilo per questa stanza ( mxc-uri)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -2413,7 +2413,7 @@
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHint_me": "",
+  "commandHint_me": "Descriviti",
   "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
@@ -2433,7 +2433,7 @@
       "seconds": {}
     }
   },
-  "sendTypingNotifications": "",
+  "sendTypingNotifications": "Invia notifiche di scrittura",
   "@sendTypingNotifications": {},
   "inviteGroupChat": "",
   "@inviteGroupChat": {},
@@ -2445,7 +2445,7 @@
   "@foregroundServiceRunning": {},
   "voiceCall": "",
   "@voiceCall": {},
-  "commandHint_kick": "",
+  "commandHint_kick": "Rimuovi l'utente fornito da questa stanza",
   "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
@@ -2460,7 +2460,7 @@
     "type": "text",
     "description": "Usage hint for the command /unban"
   },
-  "importEmojis": "",
+  "importEmojis": "Importa Emoji",
   "@importEmojis": {},
   "wasDirectChatDisplayName": "",
   "@wasDirectChatDisplayName": {
@@ -2475,11 +2475,11 @@
   "@newTodo": {},
   "removeFromBundle": "",
   "@removeFromBundle": {},
-  "confirmMatrixId": "",
+  "confirmMatrixId": "Conferma il tuo ID Matrix per cancellare il tuo account.",
   "@confirmMatrixId": {},
   "learnMore": "",
   "@learnMore": {},
-  "notAnImage": "",
+  "notAnImage": "Non è un file immagine.",
   "@notAnImage": {},
   "users": "",
   "@users": {},
@@ -2504,14 +2504,14 @@
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHint_join": "",
+  "commandHint_join": "Unisciti alla stanza fornita",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
   },
   "roomUpgradeDescription": "",
   "@roomUpgradeDescription": {},
-  "commandHint_invite": "",
+  "commandHint_invite": "Invia l utente fornito in questa stanza",
   "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
@@ -2555,11 +2555,11 @@
   },
   "shareInviteLink": "",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "",
+  "commandHint_markasdm": "Segna come stanza messaggi diretti per questo ID Matrix",
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "",
   "@recoveryKeyLost": {},
-  "cuddleContent": "",
+  "cuddleContent": "{senderName} ti coccola",
   "@cuddleContent": {
     "type": "text",
     "placeholders": {
@@ -2592,14 +2592,14 @@
   "@widgetName": {},
   "errorAddingWidget": "",
   "@errorAddingWidget": {},
-  "commandHint_dm": "",
+  "commandHint_dm": "Avvia una chat diretta\nUtilizza --no-encryption per disattivare la criptazione",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
   },
-  "commandHint_hug": "",
+  "commandHint_hug": "Invia un abbraccio",
   "@commandHint_hug": {},
-  "replace": "",
+  "replace": "Sostituisci",
   "@replace": {},
   "youUnbannedUser": "",
   "@youUnbannedUser": {
@@ -2611,7 +2611,7 @@
   "@newSpace": {},
   "emojis": "",
   "@emojis": {},
-  "commandHint_googly": "",
+  "commandHint_googly": "Invia degli occhi finti",
   "@commandHint_googly": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
@@ -2633,7 +2633,7 @@
   "@openChat": {},
   "kickUserDescription": "",
   "@kickUserDescription": {},
-  "importNow": "",
+  "importNow": "Importa ora",
   "@importNow": {},
   "pinMessage": "",
   "@pinMessage": {},
