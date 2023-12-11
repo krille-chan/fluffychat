@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../config/app_config.dart';

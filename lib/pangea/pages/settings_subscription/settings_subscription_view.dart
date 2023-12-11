@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/change_subscription.dart';
@@ -16,7 +13,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 class SettingsSubscriptionView extends StatelessWidget {
   final SubscriptionManagementController controller;
   final PangeaController pangeaController = MatrixState.pangeaController;
-  SettingsSubscriptionView(this.controller, {Key? key}) : super(key: key);
+  SettingsSubscriptionView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +84,7 @@ class SettingsSubscriptionView extends StatelessWidget {
                         controller: controller,
                         subscriptionController:
                             pangeaController.subscriptionController,
-                      )
+                      ),
                   ],
                 ),
         ),
@@ -103,8 +100,8 @@ class ManagementNotAvailableWarning extends StatelessWidget {
   const ManagementNotAvailableWarning({
     required this.controller,
     required this.subscriptionController,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -13,11 +11,11 @@ class CardErrorWidget extends StatelessWidget {
   final Choreographer? choreographer;
   final int? offset;
   const CardErrorWidget({
-    Key? key,
+    super.key,
     this.error,
     this.choreographer,
     this.offset,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

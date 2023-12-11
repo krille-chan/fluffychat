@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 

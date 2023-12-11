@@ -1,12 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
 class ClassAnalyticsButton extends StatelessWidget {
-  const ClassAnalyticsButton({Key? key}) : super(key: key);
+  const ClassAnalyticsButton({super.key});
 
   @override
   Widget build(BuildContext context) {

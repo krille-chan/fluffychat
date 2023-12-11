@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -19,7 +15,7 @@ class SubscriptionRepo {
   static final Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': 'Bearer ${Environment.rcKey}'
+    'Authorization': 'Bearer ${Environment.rcKey}',
   };
 
   static Future<SubscriptionAppIds?> getAppIds() async {
@@ -65,7 +61,7 @@ class SubscriptionRepo {
     final Map<String, String> stripeHeaders = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${Environment.rcStripeKey}'
+      'Authorization': 'Bearer ${Environment.rcStripeKey}',
     };
     final String url = "${PApiUrls.rcSubscribers}/$userId";
     final http.Response res = await http.get(
@@ -121,12 +117,14 @@ class RCProductsResponseModel {
     Map<String, dynamic> metadata,
   ) {
     return packageDetails['products']['items']
-        .map((productDetails) => SubscriptionDetails(
-              price: double.parse(metadata['$packageId.price']),
-              duration: metadata['$packageId.duration'],
-              id: productDetails['product']['store_identifier'],
-              appId: productDetails['product']['app_id'],
-            ))
+        .map(
+          (productDetails) => SubscriptionDetails(
+            price: double.parse(metadata['$packageId.price']),
+            duration: metadata['$packageId.duration'],
+            id: productDetails['product']['store_identifier'],
+            appId: productDetails['product']['app_id'],
+          ),
+        )
         .toList()
         .cast<SubscriptionDetails>();
   }

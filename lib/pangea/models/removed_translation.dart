@@ -1,4 +1,3 @@
-// Project imports:
 import 'it_response_model.dart';
 
 class RemovedTranslation {

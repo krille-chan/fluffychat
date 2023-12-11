@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import '../../../../utils/date_time_extension.dart';
 import '../../../widgets/avatar.dart';
@@ -17,7 +14,7 @@ import 'list_summary_analytics.dart';
 
 class AnalyticsListTile extends StatelessWidget {
   const AnalyticsListTile({
-    Key? key,
+    super.key,
     required this.model,
     required this.displayName,
     required this.avatar,
@@ -26,7 +23,7 @@ class AnalyticsListTile extends StatelessWidget {
     required this.selected,
     required this.onTap,
     required this.allowNavigateOnSelect,
-  }) : super(key: key);
+  });
 
   final Uri? avatar;
   final String displayName;

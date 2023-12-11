@@ -1,11 +1,11 @@
 // Flutter imports:
-// Project imports:
-import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
-import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+
 import 'package:flutter/material.dart';
-// Package imports:
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/widgets/signup/tos_checkbox.dart';
+import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {

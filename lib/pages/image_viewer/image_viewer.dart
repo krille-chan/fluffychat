@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/image_viewer/image_viewer_view.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';

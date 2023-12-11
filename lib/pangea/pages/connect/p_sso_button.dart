@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -22,10 +19,10 @@ class PangeaSsoButton extends StatelessWidget {
   final IdentityProvider identityProvider;
   final void Function()? onPressed;
   const PangeaSsoButton({
-    Key? key,
+    super.key,
     required this.identityProvider,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   ButtonInfo getButtonInfo(BuildContext context) {
     switch (identityProvider.id) {

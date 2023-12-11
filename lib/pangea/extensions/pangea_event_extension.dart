@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';

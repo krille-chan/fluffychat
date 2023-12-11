@@ -1,5 +1,3 @@
-// Flutter imports:
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
@@ -9,7 +7,6 @@ import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'new_space.dart';

@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import '../extensions/pangea_room_extension.dart';
 import '../models/class_model.dart';

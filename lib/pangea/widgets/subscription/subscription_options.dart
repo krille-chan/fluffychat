@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
@@ -46,10 +43,10 @@ class SubscriptionCard extends StatelessWidget {
   final PangeaController pangeaController;
 
   const SubscriptionCard({
-    Key? key,
+    super.key,
     required this.subscription,
     required this.pangeaController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +83,7 @@ class SubscriptionCard extends StatelessWidget {
                       .submitSubscriptionChange(subscription, context);
                 },
                 child: Text(L10n.of(context)!.subscribe),
-              )
+              ),
             ],
           ),
         ),

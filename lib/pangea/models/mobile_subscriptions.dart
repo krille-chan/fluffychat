@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
@@ -161,17 +157,22 @@ class MobileSubscriptionInfo extends SubscriptionInfo {
       );
     }
 
-    final List<EntitlementInfo> activeEntitlements = info
-        .entitlements.all.entries
-        .where((MapEntry<String, EntitlementInfo> entry) =>
-            entry.value.expirationDate == null ||
-            DateTime.parse(entry.value.expirationDate!).isAfter(DateTime.now()))
-        .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
-        .toList();
+    final List<EntitlementInfo> activeEntitlements =
+        info.entitlements.all.entries
+            .where(
+              (MapEntry<String, EntitlementInfo> entry) =>
+                  entry.value.expirationDate == null ||
+                  DateTime.parse(entry.value.expirationDate!)
+                      .isAfter(DateTime.now()),
+            )
+            .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
+            .toList();
 
     allEntitlements = info.entitlements.all.entries
-        .map((MapEntry<String, EntitlementInfo> entry) =>
-            entry.value.productIdentifier)
+        .map(
+          (MapEntry<String, EntitlementInfo> entry) =>
+              entry.value.productIdentifier,
+        )
         .cast<String>()
         .toList();
 

@@ -1,9 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
-// Package imports:
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import '../controllers/pangea_controller.dart';

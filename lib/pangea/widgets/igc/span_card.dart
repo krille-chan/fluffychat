@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
@@ -39,10 +35,10 @@ class SpanCard extends StatefulWidget {
   final String? roomId;
 
   SpanCard({
-    Key? key,
+    super.key,
     required this.scm,
     this.roomId,
-  }) : super(key: key);
+  });
 
   @override
   State<SpanCard> createState() => SpanCardState();
@@ -99,8 +95,8 @@ class WordMatchContent extends StatelessWidget {
 
   WordMatchContent({
     required this.controller,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   Future<void> onChoiceSelect(int index) async {
     controller.selectedChoiceIndex = index;
@@ -188,10 +184,12 @@ class WordMatchContent extends StatelessWidget {
                         isLoading: controller.fetchingData,
                         choices:
                             controller.widget.scm.pangeaMatch!.match.choices
-                                ?.map((e) => Choice(
-                                      text: e.value,
-                                      color: e.selected ? e.type.color : null,
-                                    ))
+                                ?.map(
+                                  (e) => Choice(
+                                    text: e.value,
+                                    color: e.selected ? e.type.color : null,
+                                  ),
+                                )
                                 .toList(),
                         onPressed: onChoiceSelect,
                         uniqueKeyForLayerLink: (int index) => "wordMatch$index",
@@ -214,12 +212,15 @@ class WordMatchContent extends StatelessWidget {
                   child: TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          AppConfig.primaryColor.withOpacity(0.1)),
+                        AppConfig.primaryColor.withOpacity(0.1),
+                      ),
                     ),
                     onPressed: () {
                       MatrixState.pAnyState.closeOverlay();
-                      Future.delayed(Duration.zero,
-                          () => controller.widget.scm.onIgnore());
+                      Future.delayed(
+                        Duration.zero,
+                        () => controller.widget.scm.onIgnore(),
+                      );
                     },
                     child: Center(
                       child: Text(L10n.of(context)!.ignoreInThisText),
@@ -238,10 +239,11 @@ class WordMatchContent extends StatelessWidget {
                           : null,
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            (controller.selectedChoice != null
-                                    ? controller.selectedChoice!.color
-                                    : AppConfig.primaryColor)
-                                .withOpacity(0.2)),
+                          (controller.selectedChoice != null
+                                  ? controller.selectedChoice!.color
+                                  : AppConfig.primaryColor)
+                              .withOpacity(0.2),
+                        ),
                       ),
                       child: Text(L10n.of(context)!.replace),
                     ),
@@ -253,12 +255,15 @@ class WordMatchContent extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       MatrixState.pAnyState.closeOverlay();
-                      Future.delayed(Duration.zero,
-                          () => controller.widget.scm.onITStart());
+                      Future.delayed(
+                        Duration.zero,
+                        () => controller.widget.scm.onITStart(),
+                      );
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          (AppConfig.primaryColor).withOpacity(0.1)),
+                        (AppConfig.primaryColor).withOpacity(0.1),
+                      ),
                     ),
                     child: Text(L10n.of(context)!.helpMeTranslate),
                   ),
@@ -317,7 +322,8 @@ class PromptAndFeedback extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      AppConfig.primaryColor.withOpacity(0.1)),
+                    AppConfig.primaryColor.withOpacity(0.1),
+                  ),
                 ),
                 child: SizedBox(
                   width: 150, // set the width of the button contents here
@@ -339,7 +345,7 @@ class PromptAndFeedback extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
           ],
           if (!controller.fetchingData &&
               controller.selectedChoiceIndex == null)
@@ -356,8 +362,8 @@ class PromptAndFeedback extends StatelessWidget {
 
 class LoadingText extends StatefulWidget {
   const LoadingText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _LoadingTextState createState() => _LoadingTextState();
@@ -401,9 +407,9 @@ class _LoadingTextState extends State<LoadingText>
 
 class StartITButton extends StatelessWidget {
   const StartITButton({
-    Key? key,
+    super.key,
     required this.onITStart,
-  }) : super(key: key);
+  });
 
   final void Function() onITStart;
 

@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 Future<T?> showAlignedDialog<T>({
@@ -38,23 +37,24 @@ Future<T?> showAlignedDialog<T>({
     position = overlay.localToGlobal(followerAnchor.alongSize(overlay.size));
   }
 
-  return Navigator.of(context, rootNavigator: useRootNavigator)
-      .push<T>(AlignedDialogRoute<T>(
-    followerAlignment: followerAnchor,
-    position: position,
-    context: context,
-    builder: builder,
-    barrierColor: barrierColor,
-    barrierDismissible: barrierDismissible,
-    barrierLabel: barrierLabel,
-    useSafeArea: isGlobal == true,
-    settings: routeSettings,
-    themes: themes,
-    transitionsBuilder: transitionsBuilder,
-    duration: duration,
-    avoidOverflow: avoidOverflow,
-    offset: offset,
-  ));
+  return Navigator.of(context, rootNavigator: useRootNavigator).push<T>(
+    AlignedDialogRoute<T>(
+      followerAlignment: followerAnchor,
+      position: position,
+      context: context,
+      builder: builder,
+      barrierColor: barrierColor,
+      barrierDismissible: barrierDismissible,
+      barrierLabel: barrierLabel,
+      useSafeArea: isGlobal == true,
+      settings: routeSettings,
+      themes: themes,
+      transitionsBuilder: transitionsBuilder,
+      duration: duration,
+      avoidOverflow: avoidOverflow,
+      offset: offset,
+    ),
+  );
 }
 
 class AlignedDialogRoute<T> extends RawDialogRoute<T> {
@@ -67,18 +67,21 @@ class AlignedDialogRoute<T> extends RawDialogRoute<T> {
     required Alignment followerAlignment,
     required Offset position,
     CapturedThemes? themes,
-    Color? barrierColor = Colors.transparent,
-    bool barrierDismissible = true,
+    super.barrierColor = Colors.transparent,
+    super.barrierDismissible,
     String? barrierLabel,
     bool useSafeArea = false,
-    RouteSettings? settings,
+    super.settings,
     RouteTransitionsBuilder? transitionsBuilder,
     Duration? duration,
     bool avoidOverflow = false,
     Offset offset = Offset.zero,
   }) : super(
-          pageBuilder: (BuildContext buildContext, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
+          pageBuilder: (
+            BuildContext buildContext,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) {
             final Widget pageChild = Builder(builder: builder);
             Widget dialog = Builder(
               builder: (BuildContext context) {
@@ -103,14 +106,11 @@ class AlignedDialogRoute<T> extends RawDialogRoute<T> {
             }
             return dialog;
           },
-          barrierDismissible: barrierDismissible,
-          barrierColor: barrierColor,
           barrierLabel: barrierLabel ??
               MaterialLocalizations.of(context).modalBarrierDismissLabel,
           transitionDuration: duration ?? const Duration(milliseconds: 200),
           transitionBuilder:
               transitionsBuilder ?? _buildMaterialDialogTransitions,
-          settings: settings,
         );
 }
 
@@ -178,10 +178,11 @@ class _FollowerDialogRouteLayout extends SingleChildLayoutDelegate {
 }
 
 Widget _buildMaterialDialogTransitions(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child) {
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
   return FadeTransition(
     opacity: CurvedAnimation(
       parent: animation,
@@ -191,10 +192,15 @@ Widget _buildMaterialDialogTransitions(
   );
 }
 
-Offset _buildOffSet(BuildContext context,
-    {required Size refChildSize, required Offset offset}) {
+Offset _buildOffSet(
+  BuildContext context, {
+  required Size refChildSize,
+  required Offset offset,
+}) {
   final Size screenSize = MediaQuery.of(context).size;
-  final Size maxAvilableArea = Size(screenSize.width - refChildSize.width,
-      screenSize.height - refChildSize.height);
+  final Size maxAvilableArea = Size(
+    screenSize.width - refChildSize.width,
+    screenSize.height - refChildSize.height,
+  );
   return const Offset(0, 0);
 }

@@ -1,17 +1,16 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 class ListPlaceholder extends StatelessWidget {
   static const dummyChatCount = 5;
 
-  const ListPlaceholder({Key? key}) : super(key: key);
+  const ListPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {
     final titleColor =
-        Theme.of(context).textTheme.bodyText1!.color!.withAlpha(100);
+        Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
     final subtitleColor =
-        Theme.of(context).textTheme.bodyText1!.color!.withAlpha(50);
+        Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(50);
 
     return ListView.builder(
       itemCount: dummyChatCount,
@@ -23,7 +22,7 @@ class ListPlaceholder extends StatelessWidget {
               backgroundColor: titleColor,
               child: CircularProgressIndicator(
                 strokeWidth: 1,
-                color: Theme.of(context).textTheme.bodyText1!.color,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
               ),
             ),
             title: Row(

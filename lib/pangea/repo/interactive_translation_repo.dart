@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import '../models/custom_input_translation_model.dart';
 import '../models/it_response_model.dart';
@@ -14,10 +11,12 @@ import '../network/urls.dart';
 
 class ITRepo {
   static Future<ITResponseModel> customInputTranslate(
-      CustomInputRequestModel initalText) async {
+    CustomInputRequestModel initalText,
+  ) async {
     final Requests req = Requests(
-        baseUrl: PApiUrls.choreoBaseApi,
-        choreoApiKey: Environment.choreoApiKey);
+      baseUrl: PApiUrls.choreoBaseApi,
+      choreoApiKey: Environment.choreoApiKey,
+    );
     final Response res =
         await req.post(url: PApiUrls.firstStep, body: initalText.toJson());
 
@@ -27,10 +26,12 @@ class ITRepo {
   }
 
   static Future<ITResponseModel> systemChoiceTranslate(
-      SystemChoiceRequestModel subseqText) async {
+    SystemChoiceRequestModel subseqText,
+  ) async {
     final Requests req = Requests(
-        baseUrl: PApiUrls.choreoBaseApi,
-        choreoApiKey: Environment.choreoApiKey);
+      baseUrl: PApiUrls.choreoBaseApi,
+      choreoApiKey: Environment.choreoApiKey,
+    );
 
     final Response res =
         await req.post(url: PApiUrls.subseqStep, body: subseqText.toJson());

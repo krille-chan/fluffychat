@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 
-// Project imports:
 import 'package:fluffychat/widgets/matrix.dart';
 import '../controllers/pangea_controller.dart';
 

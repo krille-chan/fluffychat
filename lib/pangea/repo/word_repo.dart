@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import '../constants/model_keys.dart';
 import '../models/word_data_model.dart';
@@ -20,13 +17,18 @@ class WordRepo {
     required String userL2,
   }) async {
     final Requests req = Requests(
-        choreoApiKey: Environment.choreoApiKey, accessToken: accessToken);
-    final Response res = await req.post(url: PApiUrls.wordNet, body: {
-      ModelKey.word: word,
-      ModelKey.fullText: fullText,
-      ModelKey.userL1: userL1,
-      ModelKey.userL2: userL2,
-    });
+      choreoApiKey: Environment.choreoApiKey,
+      accessToken: accessToken,
+    );
+    final Response res = await req.post(
+      url: PApiUrls.wordNet,
+      body: {
+        ModelKey.word: word,
+        ModelKey.fullText: fullText,
+        ModelKey.userL1: userL1,
+        ModelKey.userL2: userL2,
+      },
+    );
 
     final json = jsonDecode(utf8.decode(res.bodyBytes));
 

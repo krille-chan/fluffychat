@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import '../../models/chat_topic_model.dart';
 
 /// the widget loads the list of ChatTopic from assets/chat_data.json

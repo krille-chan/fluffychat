@@ -1,14 +1,11 @@
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';

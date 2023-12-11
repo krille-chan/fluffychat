@@ -1,23 +1,20 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import '../config/environment.dart';
 import '../models/chat_topic_model.dart';
-import '../models/lemma.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 
 /// accepts ChatTopic and calls an API for a list of Lemma
 class TopicDataRepo {
-  static Future<ChatTopic> generate(String? accessToken,
-      {required TopicDataRequest request}) async {
+  static Future<ChatTopic> generate(
+    String? accessToken, {
+    required TopicDataRequest request,
+  }) async {
     final Requests req = Requests(
       accessToken: accessToken,
       choreoApiKey: Environment.choreoApiKey,

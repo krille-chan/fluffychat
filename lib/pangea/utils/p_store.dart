@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:get_storage/get_storage.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 
 class PLocalStore {
@@ -11,8 +9,11 @@ class PLocalStore {
   PLocalStore({required this.pangeaController});
 
   /// save data in local
-  Future<void> save(String key, dynamic data,
-      {bool addClientIdToKey = true}) async {
+  Future<void> save(
+    String key,
+    dynamic data, {
+    bool addClientIdToKey = true,
+  }) async {
     await _box.write(_key(key, addClientIdToKey: addClientIdToKey), data);
   }
 

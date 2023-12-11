@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 class PCircular extends StatelessWidget {
@@ -12,9 +11,10 @@ class PCircular extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-            height: size ?? 25,
-            width: size ?? 25,
-            child: const CircularProgressIndicator()),
+          height: size ?? 25,
+          width: size ?? 25,
+          child: const CircularProgressIndicator(),
+        ),
       ],
     );
   }

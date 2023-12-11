@@ -1,13 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
-// Project imports:
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
@@ -20,7 +17,7 @@ import 'find_partner.dart';
 
 class FindPartnerView extends StatelessWidget {
   final FindPartnerController controller;
-  const FindPartnerView(this.controller, {Key? key}) : super(key: key);
+  const FindPartnerView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +124,9 @@ class FindPartnerView extends StatelessWidget {
 
 class ExpandedContainer extends StatelessWidget {
   const ExpandedContainer({
-    Key? key,
+    super.key,
     required this.body,
-  }) : super(key: key);
+  });
 
   final Widget body;
 
@@ -146,9 +143,9 @@ class ExpandedContainer extends StatelessWidget {
 
 class ProfileSearchTextField extends StatelessWidget {
   const ProfileSearchTextField({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final FindPartnerController controller;
 
@@ -175,8 +172,8 @@ class ProfileSearchTextField extends StatelessWidget {
 
 class PageTitleText extends StatelessWidget {
   const PageTitleText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -197,10 +194,10 @@ class PageTitleText extends StatelessWidget {
 
 class LanguageSelectionRow extends StatelessWidget {
   const LanguageSelectionRow({
-    Key? key,
+    super.key,
     required this.controller,
     required this.isSource,
-  }) : super(key: key);
+  });
 
   final FindPartnerController controller;
   final bool isSource;
@@ -248,10 +245,10 @@ class UserProfileEntry extends StatelessWidget {
   final FindPartnerController controller;
 
   const UserProfileEntry({
-    Key? key,
+    super.key,
     required this.pangeaProfile,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

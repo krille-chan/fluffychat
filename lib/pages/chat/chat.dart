@@ -1,15 +1,12 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -24,7 +21,6 @@ import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';

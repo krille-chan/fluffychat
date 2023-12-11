@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -44,7 +40,8 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PQuestionContainer(
-                        title: L10n.of(parentContext)!.whatIsYourBaseLanguage),
+                      title: L10n.of(parentContext)!.whatIsYourBaseLanguage,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) =>
                           setState(() => selectedSourceLanguage = p0),
@@ -52,8 +49,8 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                       languages: pangeaController.pLanguageStore.baseOptions,
                     ),
                     PQuestionContainer(
-                        title:
-                            L10n.of(parentContext)!.whatLanguageYouWantToLearn),
+                      title: L10n.of(parentContext)!.whatLanguageYouWantToLearn,
+                    ),
                     PLanguageDropdown(
                       onChange: (p0) =>
                           setState(() => selectedTargetLanguage = p0),
@@ -99,7 +96,8 @@ pLanguageDialog(BuildContext parentContext, Function callback) {
                         : ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                  L10n.of(parentContext)!.noIdenticalLanguages),
+                                L10n.of(parentContext)!.noIdenticalLanguages,
+                              ),
                               backgroundColor:
                                   Theme.of(context).colorScheme.primary,
                             ),

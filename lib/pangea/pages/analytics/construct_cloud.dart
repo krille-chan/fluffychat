@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
 import '../../word_cloud/word_cloud_data.dart';
 import '../../word_cloud/word_cloud_shape.dart';
@@ -14,10 +12,10 @@ class ConstructCloud extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
 
   const ConstructCloud({
-    Key? key,
+    super.key,
     required this.selected,
     required this.defaultSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => ConstructCloudState();
@@ -30,7 +28,7 @@ class ConstructCloudState extends State<ConstructCloud> {
     {"word": "loading", 'value': 1},
     {"word": "loading", 'value': 1},
     {"word": "loading", 'value': 1},
-    {"word": "loading", 'value': 1}
+    {"word": "loading", 'value': 1},
   ];
 
   @override
@@ -79,7 +77,7 @@ class ConstructCloudState extends State<ConstructCloud> {
                   colorlist: const [
                     Colors.black,
                     Colors.redAccent,
-                    Colors.indigoAccent
+                    Colors.indigoAccent,
                   ],
                 ),
                 const SizedBox(
@@ -95,7 +93,7 @@ class ConstructCloudState extends State<ConstructCloud> {
                   colorlist: const [
                     Colors.black,
                     Colors.redAccent,
-                    Colors.indigoAccent
+                    Colors.indigoAccent,
                   ],
                 ),
               ],

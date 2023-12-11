@@ -1,18 +1,14 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/pages/new_class/new_class_view.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -22,7 +18,7 @@ import '../../widgets/space/class_settings.dart';
 import '../class_settings/p_class_widgets/room_rules_editor.dart';
 
 class NewClass extends StatefulWidget {
-  const NewClass({Key? key}) : super(key: key);
+  const NewClass({super.key});
 
   @override
   NewClassController createState() => NewClassController();

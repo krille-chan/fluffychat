@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 
@@ -13,10 +10,10 @@ class ClassNameButton extends StatelessWidget {
   final Room room;
   final ChatDetailsController controller;
   const ClassNameButton({
-    Key? key,
+    super.key,
     required this.room,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

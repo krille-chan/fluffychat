@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PresenceBuilder extends StatelessWidget {

@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
-
-// Project imports:
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/pages/analytics/bar_chart_placeholder_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../../enum/time_span.dart';
 import '../../enum/use_type.dart';
 import '../../models/chart_analytics_model.dart';
@@ -22,9 +18,11 @@ class MessagesBarChart extends StatefulWidget {
   final ChartAnalyticsModel? chartAnalytics;
   final String barChartTitle;
 
-  const MessagesBarChart(
-      {Key? key, required this.chartAnalytics, required this.barChartTitle})
-      : super(key: key);
+  const MessagesBarChart({
+    super.key,
+    required this.chartAnalytics,
+    required this.barChartTitle,
+  });
 
   @override
   State<StatefulWidget> createState() => MessagesBarChartState();
@@ -104,39 +102,73 @@ class MessagesBarChartState extends State<MessagesBarChart> {
     );
   }
 
+  bool showLabelBasedOnTimeSpan(
+    TimeSpan timeSpan,
+    TimeSeriesInterval current,
+    TimeSeriesInterval? last,
+    int labelIndex,
+  ) {
+    switch (timeSpan) {
+      case TimeSpan.day:
+        return current.end.hour % 3 == 0;
+      case TimeSpan.month:
+        if (current.end.month != last?.end.month) {
+          return true;
+        }
+        double width = MediaQuery.of(context).size.width;
+        if (FluffyThemes.isColumnMode(context)) {
+          width = width - FluffyThemes.navRailWidth - FluffyThemes.columnWidth;
+        }
+        const int numDays = 28;
+        const int minSpacePerDay = 20;
+        final int availableSpaces = width ~/ minSpacePerDay;
+        final int showAtInterval = (numDays / availableSpaces).floor() + 1;
+
+        final int lastDayOfCurrentMonth =
+            DateTime(current.end.year, current.end.month + 1, 0).day;
+        final bool isNextToMonth = labelIndex == 1 ||
+            current.end.day == 2 ||
+            current.end.day == lastDayOfCurrentMonth;
+        final bool shouldShowNextToMonth = showAtInterval <= 1;
+        return (current.end.day % showAtInterval == 0) &&
+            (!isNextToMonth || shouldShowNextToMonth);
+      case TimeSpan.week:
+      case TimeSpan.sixmonths:
+      case TimeSpan.year:
+      default:
+        return true;
+    }
+  }
+
   String getLabelBasedOnTimeSpan(
     TimeSpan timeSpan,
     TimeSeriesInterval current,
     TimeSeriesInterval? last,
     int labelIndex,
   ) {
-    if (widget.chartAnalytics == null) {
+    final bool showLabel = showLabelBasedOnTimeSpan(
+      timeSpan,
+      current,
+      last,
+      labelIndex,
+    );
+
+    if (widget.chartAnalytics == null || !showLabel) {
       return "";
     }
     if (isInSameGroup(last, current, timeSpan)) {
       return "-";
     }
+
     switch (widget.chartAnalytics?.timeSpan ?? TimeSpan.month) {
       case TimeSpan.day:
-        return current.end.hour % 3 == 0
-            ? DateFormat(DateFormat.HOUR).format(current.end)
-            : "";
-      // return current.end.hour.toString();
+        return DateFormat(DateFormat.HOUR).format(current.end);
       case TimeSpan.week:
         return DateFormat(DateFormat.ABBR_WEEKDAY).format(current.end);
       case TimeSpan.month:
-        // return current.end.month != last?.end.month
-        //     ? DateFormat(DateFormat.ABBR_MONTH_DAY).format(current.end)
-        //     : current.end.day % 5 == 0 &&
-        //             labelIndex != 1 &&
-        //             current.end.day != 30
-        //         ? DateFormat(DateFormat.DAY).format(current.end)
-        //         : "'";
         return current.end.month != last?.end.month
             ? DateFormat(DateFormat.ABBR_MONTH).format(current.end)
             : DateFormat(DateFormat.DAY).format(current.end);
-      // return current.end.day.toString();
-      // text = DateFormat('DAY').format(timeSeriesIntervalStart);
       case TimeSpan.sixmonths:
       case TimeSpan.year:
         return DateFormat(DateFormat.ABBR_STANDALONE_MONTH).format(current.end);
@@ -186,7 +218,10 @@ class MessagesBarChartState extends State<MessagesBarChart> {
   }
 
   bool isInSameGroup(
-      TimeSeriesInterval? t1, TimeSeriesInterval t2, TimeSpan timeSpan) {
+    TimeSeriesInterval? t1,
+    TimeSeriesInterval t2,
+    TimeSpan timeSpan,
+  ) {
     final DateTime? date1 = t1?.end;
     final DateTime date2 = t2.end;
     if (timeSpan == TimeSpan.sixmonths || timeSpan == TimeSpan.year) {
@@ -235,12 +270,14 @@ class MessagesBarChartState extends State<MessagesBarChart> {
     final List<BarChartGroupData> chartData = [];
 
     intervalGroupings.asMap().forEach((index, intervalGroup) {
-      chartData.add(BarChartGroupData(
-        x: index,
-        barsSpace: barSpace,
-        // barRods: intervalGroup.map(constructBarChartRodData).toList(),
-        barRods: constructBarChartRodData(intervalGroup),
-      ));
+      chartData.add(
+        BarChartGroupData(
+          x: index,
+          barsSpace: barSpace,
+          // barRods: intervalGroup.map(constructBarChartRodData).toList(),
+          barRods: constructBarChartRodData(intervalGroup),
+        ),
+      );
     });
     return chartData;
   }
@@ -263,7 +300,8 @@ class MessagesBarChartState extends State<MessagesBarChart> {
   // }
 
   List<BarChartRodData> constructBarChartRodData(
-      List<TimeSeriesInterval> timeSeriesIntervalGroup) {
+    List<TimeSeriesInterval> timeSeriesIntervalGroup,
+  ) {
     int y1 = 0;
     int y2 = 0;
     int y3 = 0;
@@ -281,14 +319,23 @@ class MessagesBarChartState extends State<MessagesBarChart> {
         rodStackItems: [
           BarChartRodStackItem(0, y1.toDouble(), UseType.ta.color(context)),
           BarChartRodStackItem(
-              y1.toDouble(), y2.toDouble(), UseType.ga.color(context)),
+            y1.toDouble(),
+            y2.toDouble(),
+            UseType.ga.color(context),
+          ),
           BarChartRodStackItem(
-              y2.toDouble(), y3.toDouble(), UseType.wa.color(context)),
+            y2.toDouble(),
+            y3.toDouble(),
+            UseType.wa.color(context),
+          ),
           BarChartRodStackItem(
-              y3.toDouble(), y4.toDouble(), UseType.un.color(context)),
+            y3.toDouble(),
+            y4.toDouble(),
+            UseType.un.color(context),
+          ),
         ],
         borderRadius: BorderRadius.zero,
-      )
+      ),
     ];
   }
 

@@ -1,19 +1,15 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -91,8 +87,10 @@ class SubscriptionController extends BaseController {
     setState();
   }
 
-  Future<void> showPaywall(BuildContext context,
-      [bool forceShow = false]) async {
+  Future<void> showPaywall(
+    BuildContext context, [
+    bool forceShow = false,
+  ]) async {
     try {
       if (!initialized) {
         await initialize();
@@ -160,8 +158,10 @@ class SubscriptionController extends BaseController {
   }
 
   void submitSubscriptionChange(
-      SubscriptionDetails? selectedSubscription, BuildContext context,
-      {bool isPromo = false}) async {
+    SubscriptionDetails? selectedSubscription,
+    BuildContext context, {
+    bool isPromo = false,
+  }) async {
     if (selectedSubscription != null) {
       if (kIsWeb) {
         if (selectedSubscription.duration == null) {
@@ -191,7 +191,9 @@ class SubscriptionController extends BaseController {
       }
       try {
         GoogleAnalytics.beginPurchaseSubscription(
-            selectedSubscription, context);
+          selectedSubscription,
+          context,
+        );
         await Purchases.purchasePackage(selectedSubscription.package!);
         GoogleAnalytics.updateUserSubscriptionStatus(true);
       } catch (err) {

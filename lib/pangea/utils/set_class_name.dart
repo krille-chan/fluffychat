@@ -1,22 +1,20 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-// Project imports:
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 void setClassDisplayname(BuildContext context, String? roomId) async {
   final room = Matrix.of(context).client.getRoomById(roomId!)!;
   final TextEditingController textFieldController = TextEditingController(
-      text: room.getLocalizedDisplayname(
-    MatrixLocals(
-      L10n.of(context)!,
+    text: room.getLocalizedDisplayname(
+      MatrixLocals(
+        L10n.of(context)!,
+      ),
     ),
-  ));
+  );
 
   showDialog(
     context: context,
@@ -46,8 +44,11 @@ void setClassDisplayname(BuildContext context, String? roomId) async {
               future: () => room.setName(textFieldController.text),
             );
             if (success.error == null) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(L10n.of(context)!.displaynameHasBeenChanged)));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(L10n.of(context)!.displaynameHasBeenChanged),
+                ),
+              );
               Navigator.of(context).pop();
             }
           },

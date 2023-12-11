@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import '../enum/use_type.dart';
@@ -28,7 +25,7 @@ class TimeSeriesTotals {
         UseType.ta.string: ta,
         UseType.ga.string: ga,
         UseType.wa.string: wa,
-        UseType.un.string: un
+        UseType.un.string: un,
       };
 
   factory TimeSeriesTotals.fromJson(json) => TimeSeriesTotals(
@@ -80,7 +77,7 @@ class TimeSeriesInterval {
   Map<String, dynamic> toJson() => {
         "strt": start.toIso8601String(),
         "end": end.toIso8601String(),
-        "totals": totals.toJson()
+        "totals": totals.toJson(),
       };
 
   factory TimeSeriesInterval.fromJson(json) => TimeSeriesInterval(

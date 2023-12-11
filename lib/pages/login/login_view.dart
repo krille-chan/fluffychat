@@ -1,9 +1,8 @@
 // Flutter imports:
-// Project imports:
+
 import 'package:fluffychat/pangea/utils/password_forgotten.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:flutter/material.dart';
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'login.dart';
@@ -20,7 +19,30 @@ class LoginView extends StatelessWidget {
       // enforceMobileMode: Matrix.of(context).client.isLogged(),
       // Pangea#
       appBar: AppBar(
-        leading: controller.loading ? null : const BackButton(),
+        // #Pangea
+        // leading: controller.loading ? null : const BackButton(),
+        leading: controller.loading
+            ? null
+            : Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.75),
+                    ),
+                    shape: MaterialStateProperty.all<OutlinedBorder>(
+                      const CircleBorder(),
+                    ),
+                  ),
+                  child: const Icon(Icons.arrow_back),
+                ),
+              ),
+        // Pangea#
         automaticallyImplyLeading: !controller.loading,
         centerTitle: true,
         // #Pangea

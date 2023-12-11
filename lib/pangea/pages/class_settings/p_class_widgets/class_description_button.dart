@@ -1,21 +1,18 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 
 class ClassDescriptionButton extends StatelessWidget {
   final Room room;
   final ChatDetailsController controller;
   const ClassDescriptionButton({
-    Key? key,
+    super.key,
     required this.room,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

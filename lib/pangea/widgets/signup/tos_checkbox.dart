@@ -1,11 +1,12 @@
 // Flutter imports:
-// Project imports:
+
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:flutter/material.dart';
-// Package imports:
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class TosCheckbox extends StatelessWidget {
   final SignupPageController controller;

@@ -1,7 +1,5 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 /// this is a workaround to allow navigation of spaces out from any widget.

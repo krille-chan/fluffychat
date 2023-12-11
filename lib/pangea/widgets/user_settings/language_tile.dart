@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -16,7 +13,7 @@ import 'p_language_dialog.dart';
 class LanguageTile extends StatelessWidget {
   final PangeaController pangeaController = MatrixState.pangeaController;
 
-  LanguageTile({Key? key}) : super(key: key);
+  LanguageTile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,34 +47,39 @@ class LanguageTile extends StatelessWidget {
       //     ]),
       title: Text(L10n.of(context)!.myLanguages),
       subtitle: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            LanguageFlag(
-              language: sourceLanguage,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(sourceLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.sourceLanguage),
-            const SizedBox(
-              width: 10,
-            ),
-            const Icon(Icons.arrow_right_alt_outlined, size: 20),
-            const SizedBox(
-              width: 10,
-            ),
-            LanguageFlag(
-              language: targetLanguage,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(targetLanguage?.getDisplayName(context) ??
-                L10n.of(context)!.targetLanguage),
-          ]),
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          LanguageFlag(
+            language: sourceLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            sourceLanguage?.getDisplayName(context) ??
+                L10n.of(context)!.sourceLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          const Icon(Icons.arrow_right_alt_outlined, size: 20),
+          const SizedBox(
+            width: 10,
+          ),
+          LanguageFlag(
+            language: targetLanguage,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            targetLanguage?.getDisplayName(context) ??
+                L10n.of(context)!.targetLanguage,
+          ),
+        ],
+      ),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () => pLanguageDialog(context, () {}),
     );

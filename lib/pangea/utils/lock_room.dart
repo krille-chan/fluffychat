@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/join_all_space_chats.dart';
 

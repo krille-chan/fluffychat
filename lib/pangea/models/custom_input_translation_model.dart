@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 
 class CustomInputRequestModel {
@@ -37,6 +36,6 @@ class CustomInputRequestModel {
         ModelKey.tgtLang: targetLangCode,
         'user_id': userId,
         'room_id': roomId,
-        'class_id': classId
+        'class_id': classId,
       };
 }

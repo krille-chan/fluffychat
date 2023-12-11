@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/pages/new_class/new_class.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -18,7 +15,7 @@ class NewSpaceView extends StatelessWidget {
   final NewClassController controller;
   // Pangea#
 
-  const NewSpaceView(this.controller, {Key? key}) : super(key: key);
+  const NewSpaceView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

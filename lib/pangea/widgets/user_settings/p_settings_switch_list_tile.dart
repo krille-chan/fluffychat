@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -13,12 +11,12 @@ class PSettingsSwitchListTile extends StatefulWidget {
   final String? subtitle;
 
   const PSettingsSwitchListTile.adaptive({
-    Key? key,
+    super.key,
     this.defaultValue = false,
     required this.pStoreKey,
     required this.title,
     this.subtitle,
-  }) : super(key: key);
+  });
 
   @override
   PSettingsSwitchListTileState createState() => PSettingsSwitchListTileState();

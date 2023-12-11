@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 class OverlayContainer extends StatelessWidget {
@@ -7,11 +6,11 @@ class OverlayContainer extends StatelessWidget {
   final Color? borderColor;
 
   const OverlayContainer({
-    Key? key,
+    super.key,
     required this.cardToShow,
     this.cardSize = const Size(300.0, 300.0),
     this.borderColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
@@ -14,8 +11,10 @@ import '../network/requests.dart';
 import '../network/urls.dart';
 
 class SpanDataRepo {
-  static Future<SpanDetailsRepoReqAndRes> getSpanDetails(String? accessToken,
-      {required SpanDetailsRepoReqAndRes request}) async {
+  static Future<SpanDetailsRepoReqAndRes> getSpanDetails(
+    String? accessToken, {
+    required SpanDetailsRepoReqAndRes request,
+  }) async {
     final Requests req = Requests(
       accessToken: accessToken,
       choreoApiKey: Environment.choreoApiKey,

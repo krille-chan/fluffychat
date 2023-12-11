@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/tasks/tasks.dart';
 import 'uia_request_manager.dart';
 

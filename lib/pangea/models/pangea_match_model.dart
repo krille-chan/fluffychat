@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/match_rule_ids.dart';
@@ -73,7 +70,7 @@ class PangeaMatch {
   bool get needsTranslation => match.rule?.id != null
       ? [
           MatchRuleIds.tokenNeedsTranslation,
-          MatchRuleIds.tokenSpanNeedsTranslation
+          MatchRuleIds.tokenSpanNeedsTranslation,
         ].contains(match.rule!.id)
       : false;
 
@@ -84,7 +81,7 @@ class PangeaMatch {
   Map<String, dynamic> toJson() => {
         _matchKey: match.toJson(),
         // _detectionsKey: detections.map((e) => e.toJson()).toList(),
-        _statusKey: _statusEnumToString(status)
+        _statusKey: _statusEnumToString(status),
       };
 
   String get matchContent {
@@ -101,8 +98,9 @@ class PangeaMatch {
       end = match.fullText.length;
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-          m: "match.offset + match.length > match.fullText.length",
-          data: match.toJson());
+        m: "match.offset + match.length > match.fullText.length",
+        data: match.toJson(),
+      );
     } else {
       end = match.offset + match.length;
     }

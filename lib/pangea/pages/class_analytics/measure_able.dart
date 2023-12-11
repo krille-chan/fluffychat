@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -8,8 +7,7 @@ class MeasurableWidget extends StatefulWidget {
   Function? triggerMeasure;
   final Function(Size? size, Offset? position) onChange;
 
-  MeasurableWidget({Key? key, required this.onChange, required this.child})
-      : super(key: key);
+  MeasurableWidget({super.key, required this.onChange, required this.child});
 
   @override
   _WidgetSizeState createState() => _WidgetSizeState();

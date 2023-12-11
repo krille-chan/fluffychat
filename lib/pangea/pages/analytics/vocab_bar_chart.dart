@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:fl_chart/fl_chart.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/headwords.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
@@ -17,10 +14,10 @@ class VocabBarChart extends StatefulWidget {
   final AnalyticsSelected defaultSelected;
 
   const VocabBarChart({
-    Key? key,
+    super.key,
     required this.selected,
     required this.defaultSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => VocabBarChartState();
@@ -143,12 +140,14 @@ class VocabBarChartState extends State<VocabBarChart> {
     final List<BarChartGroupData> chartData = [];
 
     vocabHeadwords.lists.asMap().forEach((index, intervalGroup) {
-      chartData.add(BarChartGroupData(
-        x: index,
-        barsSpace: barSpace,
-        // barRods: intervalGroup.map(constructBarChartRodData).toList(),
-        barRods: constructBarChartRodData(intervalGroup),
-      ));
+      chartData.add(
+        BarChartGroupData(
+          x: index,
+          barsSpace: barSpace,
+          // barRods: intervalGroup.map(constructBarChartRodData).toList(),
+          barRods: constructBarChartRodData(intervalGroup),
+        ),
+      );
     });
     return chartData;
   }
@@ -169,7 +168,7 @@ class VocabBarChartState extends State<VocabBarChart> {
           BarChartRodStackItem(y2.toDouble(), y3.toDouble(), Colors.green),
         ],
         borderRadius: BorderRadius.zero,
-      )
+      ),
     ];
   }
 }

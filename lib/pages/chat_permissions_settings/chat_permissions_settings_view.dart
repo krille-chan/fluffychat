@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/permission_list_tile.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';

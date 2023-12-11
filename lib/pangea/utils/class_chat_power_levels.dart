@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import '../../widgets/matrix.dart';
 import '../constants/class_default_values.dart';
@@ -12,7 +9,9 @@ import '../extensions/pangea_room_extension.dart';
 
 class ClassChatPowerLevels {
   static Future<Map<String, dynamic>> powerLevelOverrideForClassChat(
-      BuildContext context, List<Room> spaceParents) async {
+    BuildContext context,
+    List<Room> spaceParents,
+  ) async {
     final Client client = Matrix.of(context).client;
     final Map<String, dynamic> powerLevelOverride = {};
     powerLevelOverride['events'] = {

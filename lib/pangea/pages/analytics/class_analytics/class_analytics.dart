@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
@@ -26,7 +22,7 @@ enum AnalyticsPageType { classList, student, classDetails }
 
 class ClassAnalyticsPage extends StatefulWidget {
   // final AnalyticsPageType type;
-  const ClassAnalyticsPage({Key? key}) : super(key: key);
+  const ClassAnalyticsPage({super.key});
 
   @override
   State<ClassAnalyticsPage> createState() => ClassAnalyticsV2Controller();

@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';

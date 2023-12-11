@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
@@ -20,7 +17,7 @@ import 'choice_array.dart';
 
 class ITBar extends StatelessWidget {
   final Choreographer choreographer;
-  const ITBar({Key? key, required this.choreographer}) : super(key: key);
+  const ITBar({super.key, required this.choreographer});
 
   ITController get controller => choreographer.itController;
 
@@ -33,13 +30,14 @@ class ITBar extends StatelessWidget {
       child: Container(
         key: choreographer.itBarLinkAndKey.key,
         decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.light
-                ? Colors.white
-                : Colors.black,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppConfig.borderRadius),
-              topRight: Radius.circular(AppConfig.borderRadius),
-            )),
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.white
+              : Colors.black,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(AppConfig.borderRadius),
+            topRight: Radius.circular(AppConfig.borderRadius),
+          ),
+        ),
         width: double.infinity,
         padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
         child: Stack(
@@ -92,7 +90,8 @@ class ITBar extends StatelessWidget {
                                 ? ChoiceFeedbackText(controller: controller)
                                 : controller.isTranslationDone
                                     ? TranslationFeedback(
-                                        controller: controller)
+                                        controller: controller,
+                                      )
                                     : ITChoices(controller: controller),
                       ),
                     ),
@@ -114,9 +113,9 @@ class ITBar extends StatelessWidget {
 
 class ChoiceFeedbackText extends StatelessWidget {
   const ChoiceFeedbackText({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ITController controller;
 
@@ -143,9 +142,9 @@ class ChoiceFeedbackText extends StatelessWidget {
 
 class OriginalText extends StatelessWidget {
   const OriginalText({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ITController controller;
 
@@ -155,10 +154,11 @@ class OriginalText extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 50),
       padding: const EdgeInsets.only(left: 60.0, right: 40.0),
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(AppConfig.borderRadius),
-        topRight: Radius.circular(AppConfig.borderRadius),
-      )),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppConfig.borderRadius),
+          topRight: Radius.circular(AppConfig.borderRadius),
+        ),
+      ),
       child: Row(
         //PTODO - does this already update after reset or we need to setState?
         mainAxisAlignment: MainAxisAlignment.center,
@@ -195,9 +195,9 @@ class OriginalText extends StatelessWidget {
 
 class ITChoices extends StatelessWidget {
   const ITChoices({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   // final choices = [
   //   "we need a really long translation to see what's going to happen with that. it should probably have multiple sentences so that we can see what happens there.we need a really long translation to see what's going to happen with that. it should probably have multiple sentences so that we can see what happens there.",
@@ -217,20 +217,25 @@ class ITChoices extends StatelessWidget {
     return controller.sourceText;
   }
 
-  void showCard(BuildContext context, int index,
-          [Color? borderColor, String? choiceFeedback]) =>
+  void showCard(
+    BuildContext context,
+    int index, [
+    Color? borderColor,
+    String? choiceFeedback,
+  ]) =>
       OverlayUtil.showPositionedCard(
         context: context,
         cardToShow: WordDataCard(
-            word: controller.currentITStep!.continuances[index].text,
-            wordLang: controller.targetLangCode,
-            fullText: sourceText ?? controller.choreographer.currentText,
-            fullTextLang: sourceText != null
-                ? controller.sourceLangCode
-                : controller.targetLangCode,
-            hasInfo: controller.currentITStep!.continuances[index].hasInfo,
-            choiceFeedback: choiceFeedback,
-            room: controller.choreographer.chatController.room),
+          word: controller.currentITStep!.continuances[index].text,
+          wordLang: controller.targetLangCode,
+          fullText: sourceText ?? controller.choreographer.currentText,
+          fullTextLang: sourceText != null
+              ? controller.sourceLangCode
+              : controller.targetLangCode,
+          hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+          choiceFeedback: choiceFeedback,
+          room: controller.choreographer.chatController.room,
+        ),
         cardSize: const Size(300, 300),
         borderColor: borderColor,
         transformTargetId: controller.choreographer.itBarTransformTargetKey,
@@ -262,8 +267,10 @@ class ITChoices extends StatelessWidget {
               controller.currentITStep!.continuances[index];
           debugPrint("is gold? ${continuance.gold}");
           if (continuance.level == 1 || continuance.wasClicked) {
-            Future.delayed(const Duration(milliseconds: 500),
-                () => controller.selectTranslation(index));
+            Future.delayed(
+              const Duration(milliseconds: 500),
+              () => controller.selectTranslation(index),
+            );
           } else {
             showCard(
               context,
@@ -293,8 +300,7 @@ class ITChoices extends StatelessWidget {
 class ITError extends StatelessWidget {
   final ITController controller;
   final Object error;
-  const ITError({Key? key, required this.error, required this.controller})
-      : super(key: key);
+  const ITError({super.key, required this.error, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -311,8 +317,9 @@ class ITError extends StatelessWidget {
               "${errorCopy.title}\n${errorCopy.body}",
               // Haga clic en su mensaje para ver los significados de las palabras.
               style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.error),
+                fontStyle: FontStyle.italic,
+                color: Theme.of(context).colorScheme.error,
+              ),
             ),
           ),
           ITRestartButton(controller: controller),

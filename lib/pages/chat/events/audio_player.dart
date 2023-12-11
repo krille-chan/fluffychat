@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-// Project imports:
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
