@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
@@ -82,14 +83,13 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  final String activatedTrialKey = 'activatedTrial';
-
   bool get activatedNewUserTrial =>
       _pangeaController.userController.inTrialWindow &&
-      (_pangeaController.pStoreService.read(activatedTrialKey) ?? false);
+      (_pangeaController.pStoreService.read(PLocalKey.activatedTrialKey) ??
+          false);
 
   void activateNewUserTrial() {
-    _pangeaController.pStoreService.save(activatedTrialKey, true);
+    _pangeaController.pStoreService.save(PLocalKey.activatedTrialKey, true);
     setNewUserTrial();
   }
 
@@ -203,6 +203,10 @@ class SubscriptionController extends BaseController {
         final String paymentLink = await getPaymentLink(
           selectedSubscription.duration!,
           isPromo: isPromo,
+        );
+        _pangeaController.pStoreService.save(
+          PLocalKey.beganWebPayment,
+          true,
         );
         setState();
         launchUrlString(
