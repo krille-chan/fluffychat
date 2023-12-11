@@ -1,17 +1,16 @@
 // Flutter imports:
+
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/sign_up/signup.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 
 class TosCheckbox extends StatelessWidget {
   final SignupPageController controller;
-  const TosCheckbox(this.controller, {Key? key}) : super(key: key);
+  const TosCheckbox(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,10 @@ class TosCheckbox extends StatelessWidget {
             margin: const EdgeInsets.only(top: 5),
             child: Text(
               controller.signupError ?? '',
-              style: const TextStyle(color: Colors.orange, fontSize: 12),
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium?.color,
+                fontSize: 14,
+              ),
             ),
           ),
         ),

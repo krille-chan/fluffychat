@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/class_default_values.dart';
@@ -48,9 +44,11 @@ class ClassSettingsModel {
       city: json['city'],
       country: json['country'],
       dominantLanguage: LanguageModel.codeFromNameOrCode(
-          json['dominant_language'] ?? LanguageKeys.unknownLanguage),
+        json['dominant_language'] ?? LanguageKeys.unknownLanguage,
+      ),
       targetLanguage: LanguageModel.codeFromNameOrCode(
-          json['target_language'] ?? LanguageKeys.unknownLanguage),
+        json['target_language'] ?? LanguageKeys.unknownLanguage,
+      ),
       languageLevel: json['language_level'],
       schoolName: json['school_name'],
     );

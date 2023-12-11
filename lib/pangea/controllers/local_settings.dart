@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 

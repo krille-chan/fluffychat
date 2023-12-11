@@ -1,27 +1,10 @@
-// Flutter imports:
-import 'package:flutter/foundation.dart';
-
-// Package imports:
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
-// Project imports:
-import '../../utils/platform_infos.dart';
 
 class Environment {
   static bool get itIsTime =>
       DateTime.utc(2023, 1, 25).isBefore(DateTime.now());
 
   static String get fileName {
-    // return '.env.prod';
-    if (kIsWeb) {
-      return '.env';
-    }
-    if (PlatformInfos.isMobile) {
-      if (kDebugMode) {
-        return '.env';
-      }
-      return '.env.prod';
-    }
     return ".env";
   }
 

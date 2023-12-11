@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import '../../../widgets/matrix.dart';
@@ -27,12 +23,12 @@ class AddToClassAndInviteToggles extends StatefulWidget {
   final AddToClassMode mode;
 
   const AddToClassAndInviteToggles({
-    Key? key,
+    super.key,
     this.roomId,
     this.startOpen = false,
     this.setParentState,
     required this.mode,
-  }) : super(key: key);
+  });
 
   @override
   AddToClassAndInviteState createState() => AddToClassAndInviteState();

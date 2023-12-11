@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -28,13 +24,17 @@ class MyAnalyticsController {
 
   //PTODO - locally cache and update periodically
   Future<void> handleMessage(
-      Room room, RecentMessageRecord messageRecord) async {
+    Room room,
+    RecentMessageRecord messageRecord,
+  ) async {
     try {
       debugPrint("in handle message with type ${messageRecord.useType}");
       if (_userId == null) {
         debugger(when: kDebugMode);
         ErrorHandler.logError(
-            m: "null userId in updateAnalytics", s: StackTrace.current);
+          m: "null userId in updateAnalytics",
+          s: StackTrace.current,
+        );
         return;
       }
 
@@ -59,7 +59,8 @@ class MyAnalyticsController {
   }
 
   Future<List<StudentAnalyticsEvent?>> analyticsEvents(
-      List<Room> spaces) async {
+    List<Room> spaces,
+  ) async {
     final List<Future<StudentAnalyticsEvent?>> events = [];
     for (final space in spaces) {
       events.add(space.getStudentAnalytics(_userId!));
@@ -73,7 +74,9 @@ class MyAnalyticsController {
       );
 
   Future<void> saveConstructsMixed(
-      List<OneConstructUse> allUses, String langCode) async {
+    List<OneConstructUse> allUses,
+    String langCode,
+  ) async {
     try {
       final Map<String, List<OneConstructUse>> aggregatedVocabUse = {};
       for (final use in allUses) {
@@ -88,7 +91,10 @@ class MyAnalyticsController {
         debugPrint("saving of type ${uses.value.first.constructType}");
         saveFutures.add(
           analyticsRoom.saveConstructUsesSameLemma(
-              uses.key, uses.value.first.constructType!, uses.value),
+            uses.key,
+            uses.value.first.constructType!,
+            uses.value,
+          ),
         );
       }
 

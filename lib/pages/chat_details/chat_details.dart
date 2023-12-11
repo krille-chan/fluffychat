@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
@@ -13,7 +11,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';

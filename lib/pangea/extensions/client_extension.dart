@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -21,27 +17,35 @@ extension PangeaClient on Client {
   List<Room> get classes => rooms.where((e) => e.isPangeaClass).toList();
 
   List<Room> get classesImTeaching => rooms
-      .where((e) =>
-          e.isPangeaClass &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin)
+      .where(
+        (e) =>
+            e.isPangeaClass &&
+            e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImTeaching => rooms
-      .where((e) =>
-          (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin)
+      .where(
+        (e) =>
+            (e.isPangeaClass || e.isExchange) &&
+            e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesImIn => rooms
-      .where((e) =>
-          e.isPangeaClass &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin)
+      .where(
+        (e) =>
+            e.isPangeaClass &&
+            e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImStudyingIn => rooms
-      .where((e) =>
-          (e.isPangeaClass || e.isExchange) &&
-          e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin)
+      .where(
+        (e) =>
+            (e.isPangeaClass || e.isExchange) &&
+            e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
+      )
       .toList();
 
   List<Room> get classesAndExchangesImIn =>
@@ -104,8 +108,10 @@ extension PangeaClient on Client {
       debugger(when: kDebugMode);
       analyticsRoom
           .join()
-          .onError((error, stackTrace) =>
-              ErrorHandler.logError(e: error, s: stackTrace))
+          .onError(
+            (error, stackTrace) =>
+                ErrorHandler.logError(e: error, s: stackTrace),
+          )
           .then((value) => analyticsRoom.postLoad());
       return analyticsRoom;
     }
@@ -116,14 +122,14 @@ extension PangeaClient on Client {
     final String roomID = await createRoom(
       creationContent: {
         'type': PangeaRoomTypes.analytics,
-        ModelKey.langCode: langCode
+        ModelKey.langCode: langCode,
       },
       name: "$userID $langCode Analytics",
       topic: "This room stores learning analytics for $userID.",
       invite: [
-        ...(await myTeachers).map((e) => e.id).toList(),
+        ...(await myTeachers).map((e) => e.id),
         // BotName.localBot,
-        BotName.byEnvironment
+        BotName.byEnvironment,
       ],
       visibility: Visibility.private,
       roomAliasName: "${userID!.localpart}_${langCode}_analytics",

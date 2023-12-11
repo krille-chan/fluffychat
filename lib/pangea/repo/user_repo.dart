@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../../widgets/matrix.dart';
 import '../models/user_model.dart';
@@ -28,7 +25,7 @@ class PUserRepo {
     final Map<String, dynamic> body = {
       ModelKey.userFullName: fullName,
       ModelKey.userPangeaUserId: userID,
-      ModelKey.userDateOfBirth: dateOfBirth
+      ModelKey.userDateOfBirth: dateOfBirth,
     };
     final Response res = await req.post(
       url: PApiUrls.createUser,

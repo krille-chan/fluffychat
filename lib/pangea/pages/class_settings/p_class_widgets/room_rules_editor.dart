@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/class_model.dart';
 import '../../../../config/app_config.dart';
 import '../../../../widgets/matrix.dart';
@@ -18,9 +15,12 @@ class RoomRulesEditor extends StatefulWidget {
   final bool startOpen;
   final bool showAdd;
 
-  const RoomRulesEditor(
-      {Key? key, this.roomId, this.startOpen = true, this.showAdd = false})
-      : super(key: key);
+  const RoomRulesEditor({
+    super.key,
+    this.roomId,
+    this.startOpen = true,
+    this.showAdd = false,
+  });
 
   @override
   RoomRulesState createState() => RoomRulesState();
@@ -161,14 +161,18 @@ class RoomRulesState extends State<RoomRulesEditor> {
                             onChanged: (value) {
                               updatePermission(() {
                                 rules.setLanguageToolSetting(
-                                    setting, value.toInt());
+                                  setting,
+                                  value.toInt(),
+                                );
                               });
                             },
                             divisions: 2,
                             max: 2,
                             min: 0,
                             label: rules.languageToolPermissionsText(
-                                context, setting),
+                              context,
+                              setting,
+                            ),
                           ),
                         ),
                       ],

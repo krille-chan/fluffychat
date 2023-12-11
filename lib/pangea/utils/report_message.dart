@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -86,8 +83,10 @@ Future<List<SpaceTeacher>> getReportTeachers(
 
   final List<Room> reportRoomParentSpaces = room.spaceParents
       .where((parentSpace) => parentSpace.roomId != null)
-      .map((parentSpace) =>
-          Matrix.of(context).client.getRoomById(parentSpace.roomId!))
+      .map(
+        (parentSpace) =>
+            Matrix.of(context).client.getRoomById(parentSpace.roomId!),
+      )
       .where((parentSpace) => parentSpace != null)
       .cast<Room>()
       .toList();
@@ -122,8 +121,7 @@ Future<List<SpaceTeacher>> getReportTeachers(
 
 class TeacherSelectDialog extends StatefulWidget {
   final List<SpaceTeacher> teachers;
-  const TeacherSelectDialog({Key? key, required this.teachers})
-      : super(key: key);
+  const TeacherSelectDialog({super.key, required this.teachers});
 
   @override
   State<StatefulWidget> createState() => _TeacherSelectDialogState();

@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import '../../../widgets/matrix.dart';
@@ -14,7 +11,7 @@ import '../../repo/user_repo.dart';
 import 'find_partner_view.dart';
 
 class FindPartner extends StatefulWidget {
-  const FindPartner({Key? key}) : super(key: key);
+  const FindPartner({super.key});
 
   @override
   State<FindPartner> createState() => FindPartnerController();

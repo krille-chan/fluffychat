@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../models/chat_topic_model.dart';
@@ -30,10 +27,10 @@ import '../common/bot_face_svg.dart';
 
 class ChatVocabularyList extends StatelessWidget {
   const ChatVocabularyList({
-    Key? key,
+    super.key,
     required this.topic,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final ChatTopic topic;
   final ValueChanged<List<Lemma>> onChanged;
@@ -171,10 +168,10 @@ class VocabWord {
 
 class WordAddTextField extends StatefulWidget {
   const WordAddTextField({
-    Key? key,
+    super.key,
     required this.onSubmitted,
     required this.words,
-  }) : super(key: key);
+  });
 
   final ValueChanged<String> onSubmitted;
   final List<Lemma> words;
@@ -247,11 +244,11 @@ class WordAddTextFieldState extends State<WordAddTextField> {
 /// uses app theme colors, text styles, and icons
 class GenerateVocabButton extends StatefulWidget {
   const GenerateVocabButton({
-    Key? key,
+    super.key,
     required this.onWordsGenerated,
     required this.onPressed,
     required this.topic,
-  }) : super(key: key);
+  });
 
   final ChatTopic topic;
   final ValueChanged<List<Lemma>> onWordsGenerated;
@@ -334,11 +331,11 @@ class GenerateVocabButtonState extends State<GenerateVocabButton> {
 /// 3) onChanged callback function to pass the updated ChatTopic back to the parent widget
 class DescriptionField extends StatelessWidget {
   const DescriptionField({
-    Key? key,
+    super.key,
     required this.topic,
     required this.initialValue,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final ChatTopic topic;
   final String initialValue;
@@ -368,10 +365,10 @@ class DescriptionField extends StatelessWidget {
 /// 3) onChanged callback function to pass the updated ChatTopic back to the parent widget
 class NameField extends StatelessWidget {
   const NameField({
-    Key? key,
+    super.key,
     required this.topic,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final ChatTopic topic;
   final ValueChanged<String> onChanged;
@@ -398,10 +395,10 @@ class NameField extends StatelessWidget {
 /// 2) callback function to pass the updated ChatTopic back to the parent widget
 class PromptsField extends StatefulWidget {
   const PromptsField({
-    Key? key,
+    super.key,
     required this.topic,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final ChatTopic topic;
   final ValueChanged<ChatTopic> onChanged;

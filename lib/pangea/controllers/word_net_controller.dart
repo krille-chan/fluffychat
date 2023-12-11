@@ -1,8 +1,6 @@
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/repo/word_repo.dart';
 import '../models/word_data_model.dart';
@@ -24,12 +22,14 @@ class WordController extends BaseController {
     required String? userL1,
     required String? userL2,
   }) =>
-      _wordData.firstWhereOrNull((e) => e.isMatch(
-            w: word,
-            f: fullText,
-            l1: userL1,
-            l2: userL2,
-          ));
+      _wordData.firstWhereOrNull(
+        (e) => e.isMatch(
+          w: word,
+          f: fullText,
+          l1: userL1,
+          l2: userL2,
+        ),
+      );
 
   Future<WordData> getWordDataGlobal({
     required String word,

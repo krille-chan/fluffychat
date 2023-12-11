@@ -1,14 +1,13 @@
 // Flutter imports:
+
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -90,17 +89,19 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
-              PopupMenuItem(
-                value: _EventContextAction.info,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.info_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context)!.messageInfo),
-                  ],
-                ),
-              ),
+              // #Pangea
+              // PopupMenuItem(
+              //   value: _EventContextAction.info,
+              //   child: Row(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       const Icon(Icons.info_outlined),
+              //       const SizedBox(width: 12),
+              //       Text(L10n.of(context)!.messageInfo),
+              //     ],
+              //   ),
+              // ),
+              // Pangea#
               if (controller.selectedEvents.single.status.isSent)
                 PopupMenuItem(
                   value: _EventContextAction.report,

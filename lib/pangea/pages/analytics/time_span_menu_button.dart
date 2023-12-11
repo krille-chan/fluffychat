@@ -1,18 +1,17 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import '../../enum/time_span.dart';
 
 class TimeSpanMenuButton extends StatelessWidget {
   final TimeSpan value;
   final void Function(TimeSpan) onChange;
-  const TimeSpanMenuButton(
-      {Key? key, required this.value, required this.onChange})
-      : super(key: key);
+  const TimeSpanMenuButton({
+    super.key,
+    required this.value,
+    required this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {

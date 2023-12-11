@@ -1,12 +1,9 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import '../enum/vocab_proficiency_enum.dart';
 
@@ -22,10 +19,12 @@ class VocabHeadwords {
   factory VocabHeadwords.fromJson(Map<String, dynamic> json) {
     final List<VocabList> lists = [];
     for (final entry in json.entries) {
-      lists.add(VocabList(
-        name: entry.key,
-        lemmas: (entry.value as Iterable).cast<String>().toList(),
-      ));
+      lists.add(
+        VocabList(
+          name: entry.key,
+          lemmas: (entry.value as Iterable).cast<String>().toList(),
+        ),
+      );
     }
     return VocabHeadwords(lists: lists);
   }

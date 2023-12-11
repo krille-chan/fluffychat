@@ -1,15 +1,11 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age_view.dart';
@@ -20,7 +16,7 @@ import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
 
 class PUserAge extends StatefulWidget {
-  const PUserAge({Key? key}) : super(key: key);
+  const PUserAge({super.key});
 
   @override
   PUserAgeController createState() => PUserAgeController();

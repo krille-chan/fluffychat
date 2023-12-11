@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import '../../../widgets/matrix.dart';
 import '../../utils/bot_style.dart';
@@ -9,11 +7,11 @@ import '../common/bot_face_svg.dart';
 
 class CardHeader extends StatelessWidget {
   const CardHeader({
-    Key? key,
+    super.key,
     required this.text,
     required this.botExpression,
     this.onClose,
-  }) : super(key: key);
+  });
 
   final BotExpression botExpression;
   final String text;

@@ -1,18 +1,15 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import '../../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../base_analytics_page.dart';
 import 'student_analytics.dart';
 
 class StudentAnalyticsView extends StatelessWidget {
   final StudentAnalyticsController controller;
-  const StudentAnalyticsView(this.controller, {Key? key}) : super(key: key);
+  const StudentAnalyticsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +21,32 @@ class StudentAnalyticsView extends StatelessWidget {
       type: AnalyticsEntryType.room,
       icon: Icons.chat_bubble_outline,
       items: chats
-          .map((c) => TabItem(
-                avatar: c.avatar,
-                displayName:
-                    c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-                id: c.id,
-              ))
+          .map(
+            (c) => TabItem(
+              avatar: c.avatar,
+              displayName:
+                  c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              id: c.id,
+            ),
+          )
           .toList(),
       allowNavigateOnSelect: false,
     );
     final TabData classTabData = TabData(
-        type: AnalyticsEntryType.space,
-        icon: Icons.workspaces,
-        items: spaces
-            .map((c) => TabItem(
-                  avatar: c.avatar,
-                  displayName: c
-                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-                  id: c.id,
-                ))
-            .toList(),
-        allowNavigateOnSelect: false);
+      type: AnalyticsEntryType.space,
+      icon: Icons.workspaces,
+      items: spaces
+          .map(
+            (c) => TabItem(
+              avatar: c.avatar,
+              displayName:
+                  c.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              id: c.id,
+            ),
+          )
+          .toList(),
+      allowNavigateOnSelect: false,
+    );
 
     return controller.userId != null
         ? BaseAnalyticsPage(
@@ -52,14 +54,16 @@ class StudentAnalyticsView extends StatelessWidget {
             tabData1: chatTabData,
             tabData2: classTabData,
             defaultAnalyticsSelected: AnalyticsSelected(
-                controller.userId!,
-                AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses),
+              controller.userId!,
+              AnalyticsEntryType.student,
+              L10n.of(context)!.allChatsAndClasses,
+            ),
             refreshData: controller.getClassAndChatAnalytics,
             alwaysSelected: AnalyticsSelected(
-                controller.userId!,
-                AnalyticsEntryType.student,
-                L10n.of(context)!.allChatsAndClasses),
+              controller.userId!,
+              AnalyticsEntryType.student,
+              L10n.of(context)!.allChatsAndClasses,
+            ),
           )
         : const SizedBox();
   }

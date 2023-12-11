@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/model_keys.dart';
@@ -26,12 +22,15 @@ class ContextualDefinitionController {
   }
 
   _ContextualDefinitionCacheItem? _getLocal(
-          ContextualDefinitionRequestModel req) =>
+    ContextualDefinitionRequestModel req,
+  ) =>
       _definitions.firstWhereOrNull(
-          (e) => e.word == req.word && e.fullText == req.fullText);
+        (e) => e.word == req.word && e.fullText == req.fullText,
+      );
 
   Future<ContextualDefinitionResponseModel?> get(
-      ContextualDefinitionRequestModel req) {
+    ContextualDefinitionRequestModel req,
+  ) {
     final _ContextualDefinitionCacheItem? localItem = _getLocal(req);
 
     if (localItem != null) return localItem.data;
@@ -59,7 +58,8 @@ class ContextualDefinitionController {
       return res;
     } catch (err, stack) {
       debugPrint(
-          "error getting contextual definition for ${request.word} in '${request.fullText}'");
+        "error getting contextual definition for ${request.word} in '${request.fullText}'",
+      );
       ErrorHandler.logError(e: err, s: stack, data: request.toJson());
       return null;
     }
@@ -119,19 +119,20 @@ class ContextualDefinitionRequestModel {
   final String fullTextLang;
   final String wordLang;
 
-  ContextualDefinitionRequestModel(
-      {required this.fullText,
-      required this.word,
-      required this.feedbackLang,
-      required this.fullTextLang,
-      required this.wordLang});
+  ContextualDefinitionRequestModel({
+    required this.fullText,
+    required this.word,
+    required this.feedbackLang,
+    required this.fullTextLang,
+    required this.wordLang,
+  });
 
   Map<String, dynamic> toJson() => {
         ModelKey.fullText: fullText,
         ModelKey.word: word,
         ModelKey.lang: feedbackLang,
         ModelKey.fullTextLang: fullTextLang,
-        ModelKey.wordLang: wordLang
+        ModelKey.wordLang: wordLang,
       };
 }
 

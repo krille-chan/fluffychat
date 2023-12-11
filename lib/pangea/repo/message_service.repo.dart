@@ -1,14 +1,16 @@
-// Project imports:
 import '../config/environment.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 
 class MessageServiceRepo {
   static Future<void> sendPayloads(
-      MessageServiceModel serviceModel, String messageId) async {
+    MessageServiceModel serviceModel,
+    String messageId,
+  ) async {
     final Requests req = Requests(
-        baseUrl: PApiUrls.choreoBaseApi,
-        choreoApiKey: Environment.choreoApiKey);
+      baseUrl: PApiUrls.choreoBaseApi,
+      choreoApiKey: Environment.choreoApiKey,
+    );
 
     final json = serviceModel.toJson();
     json["msg_id"] = messageId;

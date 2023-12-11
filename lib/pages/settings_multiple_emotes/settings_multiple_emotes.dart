@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 
-// Project imports:
 import 'settings_multiple_emotes_view.dart';
 
 class MultipleEmotesSettings extends StatefulWidget {

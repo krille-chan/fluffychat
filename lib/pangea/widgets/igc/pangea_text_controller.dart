@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import '../../choreographer/controllers/choreographer.dart';
@@ -72,7 +69,8 @@ class PangeaTextController extends TextEditingController {
                 debugPrint("onSentenceRewrite $tokenIndex $sentenceRewrite");
               }),
               onIgnore: () => choreographer.onIgnoreMatch(
-                  cursorOffset: selection.baseOffset),
+                cursorOffset: selection.baseOffset,
+              ),
               onITStart: () {
                 choreographer.onITStart(
                   choreographer.igc.igcTextData!.matches[matchIndex],
@@ -147,7 +145,7 @@ class PangeaTextController extends TextEditingController {
             transformTargetId: choreographer.inputTransformTargetKey,
             room: choreographer.chatController.room,
           ),
-          TextSpan(text: parts[1], style: style)
+          TextSpan(text: parts[1], style: style),
         ],
       );
     }

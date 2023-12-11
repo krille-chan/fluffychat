@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import '../../config/app_config.dart';
 import '../../widgets/matrix.dart';
 import '../controllers/pangea_controller.dart';
@@ -32,9 +29,12 @@ class InstructionsController {
   void updateEnableInstructions(InstructionsEnum key, bool value) =>
       _pangeaController.pStoreService.save(key.toString(), value);
 
-  void show(
-      BuildContext context, InstructionsEnum key, String transformTargetKey,
-      [bool showToggle = true]) {
+  Future<void> show(
+    BuildContext context,
+    InstructionsEnum key,
+    String transformTargetKey, [
+    bool showToggle = true,
+  ]) async {
     if (wereInstructionsTurnedOff(key)) {
       return;
     }
@@ -48,6 +48,13 @@ class InstructionsController {
     if (_instructionsShown[key] ?? false) {
       return;
     }
+
+    final bool userLangsSet =
+        await _pangeaController.userController.areUserLanguagesSet;
+    if (!userLangsSet && key == InstructionsEnum.blurMeansTranslate) {
+      return;
+    }
+
     _instructionsShown[key] = true;
 
     final botStyle = BotStyle.text(context);
@@ -76,7 +83,7 @@ class InstructionsController {
                 ),
               ),
             ),
-            if (showToggle) InstructionsToggle(instructionsKey: key)
+            if (showToggle) InstructionsToggle(instructionsKey: key),
           ],
         ),
         cardSize: const Size(300.0, 300.0),
@@ -123,9 +130,9 @@ extension Copy on InstructionsEnum {
 
 class InstructionsToggle extends StatefulWidget {
   const InstructionsToggle({
-    Key? key,
+    super.key,
     required this.instructionsKey,
-  }) : super(key: key);
+  });
 
   final InstructionsEnum instructionsKey;
 
@@ -144,14 +151,15 @@ class InstructionsToggleState extends State<InstructionsToggle> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
-        activeColor: AppConfig.activeToggleColor,
-        title: Text(L10n.of(context)!.doNotShowAgain),
-        value: pangeaController.instructions
-            .wereInstructionsTurnedOff(widget.instructionsKey),
-        onChanged: ((value) {
-          pangeaController.instructions
-              .updateEnableInstructions(widget.instructionsKey, value);
-          setState(() {});
-        }));
+      activeColor: AppConfig.activeToggleColor,
+      title: Text(L10n.of(context)!.doNotShowAgain),
+      value: pangeaController.instructions
+          .wereInstructionsTurnedOff(widget.instructionsKey),
+      onChanged: ((value) {
+        pangeaController.instructions
+            .updateEnableInstructions(widget.instructionsKey, value);
+        setState(() {});
+      }),
+    );
   }
 }

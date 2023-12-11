@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
@@ -217,7 +213,7 @@ class IGCTextData {
           Breadcrumb.fromJson(
             {
               "fullText": originalInput,
-              "tokens": tokens.map((e) => e.toJson()).toString()
+              "tokens": tokens.map((e) => e.toJson()).toString(),
             },
           ),
         );
@@ -296,21 +292,23 @@ class IGCTextData {
             ? topTokenMatch.textStyle(defaultStyle)
             : hasDefinitionStyle(defaultStyle);
 
-        items.add(TextSpan(
-          text: token.text.content,
-          style: tokenStyle,
-          recognizer: handleClick
-              ? (TapGestureRecognizer()
-                ..onTapDown = (details) => OverlayUtil.showPositionedCard(
-                      context: context,
-                      cardToShow: cardToShow,
-                      cardSize: topTokenMatch?.isITStart ?? false
-                          ? const Size(350, 220)
-                          : const Size(350, 400),
-                      transformTargetId: transformTargetId,
-                    ))
-              : null,
-        ));
+        items.add(
+          TextSpan(
+            text: token.text.content,
+            style: tokenStyle,
+            recognizer: handleClick
+                ? (TapGestureRecognizer()
+                  ..onTapDown = (details) => OverlayUtil.showPositionedCard(
+                        context: context,
+                        cardToShow: cardToShow,
+                        cardSize: topTokenMatch?.isITStart ?? false
+                            ? const Size(350, 220)
+                            : const Size(350, 400),
+                        transformTargetId: transformTargetId,
+                      ))
+                : null,
+          ),
+        );
 
         final int charBetween = getAfterTokenSpacingByIndex(
           index,

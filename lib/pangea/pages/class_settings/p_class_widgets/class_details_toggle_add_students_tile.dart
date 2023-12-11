@@ -1,17 +1,14 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import '../../../../pages/chat_details/chat_details.dart';
 
 class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
   const SpaceDetailsToggleAddStudentsTile({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ChatDetailsController controller;
 
@@ -32,9 +29,11 @@ class SpaceDetailsToggleAddStudentsTile extends StatelessWidget {
           Icons.add,
         ),
       ),
-      trailing: Icon(controller.displayAddStudentOptions
-          ? Icons.keyboard_arrow_down_outlined
-          : Icons.keyboard_arrow_right_outlined),
+      trailing: Icon(
+        controller.displayAddStudentOptions
+            ? Icons.keyboard_arrow_down_outlined
+            : Icons.keyboard_arrow_right_outlined,
+      ),
       onTap: controller.toggleAddStudentOptions,
     );
   }

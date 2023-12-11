@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:convert';
 import 'dart:io';
 
-// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
-// Project imports:
 import 'utils/test_client.dart';
 
 void main() async {

@@ -1,17 +1,14 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import '../../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../base_analytics_page.dart';
 import 'class_analytics.dart';
 
 class ClassAnalyticsView extends StatelessWidget {
   final ClassAnalyticsV2Controller controller;
-  const ClassAnalyticsView(this.controller, {Key? key}) : super(key: key);
+  const ClassAnalyticsView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +33,13 @@ class ClassAnalyticsView extends StatelessWidget {
       type: AnalyticsEntryType.student,
       icon: Icons.people_outline,
       items: controller.students
-          .map((s) => TabItem(
-                avatar: s.avatarUrl,
-                displayName: s.displayName ?? "unknown",
-                id: s.id,
-              ))
+          .map(
+            (s) => TabItem(
+              avatar: s.avatarUrl,
+              displayName: s.displayName ?? "unknown",
+              id: s.id,
+            ),
+          )
           .toList(),
     );
 

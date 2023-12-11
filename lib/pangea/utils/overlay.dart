@@ -1,12 +1,9 @@
-// Dart imports:
 import 'dart:developer';
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
@@ -50,7 +47,9 @@ class OverlayUtil {
                   color: Colors.transparent,
                   clipBehavior: Clip.antiAlias,
                   child: OverlayContainer(
-                      cardToShow: cardToShow, borderColor: borderColor),
+                    cardToShow: cardToShow,
+                    borderColor: borderColor,
+                  ),
                 ),
               ),
             ),
@@ -137,8 +136,8 @@ class OverlayUtil {
 
 class TransparentBackdrop extends StatelessWidget {
   const TransparentBackdrop({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -194,8 +193,10 @@ class ChatViewConstraints implements OverlayConstraints {
     x1 = mediaQueryData.size.width -
         max(mediaQueryData.viewPadding.right, mediaQueryData.viewInsets.right);
     y1 = mediaQueryData.size.height -
-        max(mediaQueryData.viewPadding.bottom,
-            mediaQueryData.viewInsets.bottom);
+        max(
+          mediaQueryData.viewPadding.bottom,
+          mediaQueryData.viewInsets.bottom,
+        );
 
     // https://medium.com/flutter-community/a-flutter-guide-to-visual-overlap-padding-viewpadding-and-viewinsets-a63e214be6e8
     //   debugPrint(

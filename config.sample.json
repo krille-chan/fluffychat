@@ -1,9 +1,9 @@
 {
-  "application_name": "FluffyChat",
+  "application_name": "PangeaChat",
   "application_welcome_message": null,
-  "default_homeserver": "matrix.org",
-  "web_base_url": "https://fluffychat.im/web",
-  "privacy_url": "https://fluffychat.im/en/privacy.html",
+  "default_homeserver": "matrix.pangea.chat",
+  "web_base_url": "https://web.pangea.chat",
+  "privacy_url": "https://pangea.chat/privacy",
   "render_html": false,
   "hide_redacted_events": false,
   "hide_unknown_events": false

@@ -4,13 +4,10 @@
 // SpanChoice of text in message from options
 // Call to server for additional/followup info
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 
-// Project imports:
 import '../enum/span_choice_type.dart';
 import '../enum/span_data_type.dart';
 
@@ -114,7 +111,8 @@ class SpanChoice {
       value: json['value'] as String,
       type: json['type'] != null
           ? SpanChoiceType.values.firstWhereOrNull(
-                  (element) => element.name == json['type']) ??
+                (element) => element.name == json['type'],
+              ) ??
               SpanChoiceType.bestCorrection
           : SpanChoiceType.bestCorrection,
       feedback: json['feedback'],

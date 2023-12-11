@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/widgets.dart';
 
-// Package imports:
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import '../../config/firebase_options.dart';
 import '../enum/use_type.dart';
@@ -66,13 +63,17 @@ class GoogleAnalytics {
   }
 
   static createClass(String className, String classCode) {
-    logEvent('create_class',
-        parameters: {'name': className, 'group_id': classCode});
+    logEvent(
+      'create_class',
+      parameters: {'name': className, 'group_id': classCode},
+    );
   }
 
   static createExchange(String exchangeName, String classCode) {
-    logEvent('create_exchange',
-        parameters: {'name': exchangeName, 'group_id': classCode});
+    logEvent(
+      'create_exchange',
+      parameters: {'name': exchangeName, 'group_id': classCode},
+    );
   }
 
   static createChat(String newChatRoomId) {
@@ -80,28 +81,38 @@ class GoogleAnalytics {
   }
 
   static addParent(String chatRoomId, String classCode) {
-    logEvent('add_room_to_class',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+    logEvent(
+      'add_room_to_class',
+      parameters: {"chat_id": chatRoomId, 'group_id': classCode},
+    );
   }
 
   static removeChatFromClass(String chatRoomId, String classCode) {
-    logEvent('remove_room_from_class',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+    logEvent(
+      'remove_room_from_class',
+      parameters: {"chat_id": chatRoomId, 'group_id': classCode},
+    );
   }
 
   static addChatToExchange(String chatRoomId, String classCode) {
-    logEvent('add_chat_to_exchange',
-        parameters: {"chat_id": chatRoomId, 'group_id': classCode});
+    logEvent(
+      'add_chat_to_exchange',
+      parameters: {"chat_id": chatRoomId, 'group_id': classCode},
+    );
   }
 
   static inviteClassToExchange(String classId, String exchangeId) {
-    logEvent('invite_class_to_exchange',
-        parameters: {'group_id': classId, 'exchange_id': exchangeId});
+    logEvent(
+      'invite_class_to_exchange',
+      parameters: {'group_id': classId, 'exchange_id': exchangeId},
+    );
   }
 
   static kickClassFromExchange(String classId, String exchangeId) {
-    logEvent('kick_class_from_exchange',
-        parameters: {'group_id': classId, 'exchange_id': exchangeId});
+    logEvent(
+      'kick_class_from_exchange',
+      parameters: {'group_id': classId, 'exchange_id': exchangeId},
+    );
   }
 
   static joinClass(String classCode) {
@@ -109,11 +120,14 @@ class GoogleAnalytics {
   }
 
   static sendMessage(String chatRoomId, String classCode, UseType useType) {
-    logEvent('sent_message', parameters: {
-      "chat_id": chatRoomId,
-      'group_id': classCode,
-      "message_type": useType.toString()
-    });
+    logEvent(
+      'sent_message',
+      parameters: {
+        "chat_id": chatRoomId,
+        'group_id': classCode,
+        "message_type": useType.toString(),
+      },
+    );
   }
 
   static contextualRequest() {
@@ -125,38 +139,44 @@ class GoogleAnalytics {
   }
 
   static beginPurchaseSubscription(
-      SubscriptionDetails details, BuildContext context) {
-    logEvent('begin_checkout', parameters: {
-      "currency": "USD",
-      'value': details.price,
-      'transaction_id': details.id,
-      'items': [
-        {
-          'item_id': details.package!.identifier,
-          'item_name': details.displayName(context),
-          'price': details.price,
-          'item_category': "subscription",
-          'quantity': 1
-        }
-      ]
-    });
+    SubscriptionDetails details,
+    BuildContext context,
+  ) {
+    logEvent(
+      'begin_checkout',
+      parameters: {
+        "currency": "USD",
+        'value': details.price,
+        'transaction_id': details.id,
+        'items': [
+          {
+            'item_id': details.package!.identifier,
+            'item_name': details.displayName(context),
+            'price': details.price,
+            'item_category': "subscription",
+            'quantity': 1,
+          }
+        ],
+      },
+    );
   }
 
   static FirebaseAnalyticsObserver getAnalyticsObserver() =>
       FirebaseAnalyticsObserver(
-          analytics: analytics!,
-          routeFilter: (route) {
-            // By default firebase only tracks page routes
-            if (route is! PageRoute ||
-                // No user logged in, so we dont track
-                route.settings.name == "login" ||
-                route.settings.name == "/home" ||
-                route.settings.name == "connect" ||
-                route.settings.name == "signup") {
-              return false;
-            }
-            final String? name = route.settings.name;
-            debugPrint("navigating to route: $name");
-            return true;
-          });
+        analytics: analytics!,
+        routeFilter: (route) {
+          // By default firebase only tracks page routes
+          if (route is! PageRoute ||
+              // No user logged in, so we dont track
+              route.settings.name == "login" ||
+              route.settings.name == "/home" ||
+              route.settings.name == "connect" ||
+              route.settings.name == "signup") {
+            return false;
+          }
+          final String? name = route.settings.name;
+          debugPrint("navigating to route: $name");
+          return true;
+        },
+      );
 }

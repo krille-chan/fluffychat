@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -34,8 +30,10 @@ class MessageDataController extends BaseController {
   }
 
   CacheItem? getItem(String parentId, String type, String langCode) =>
-      _cache.firstWhereOrNull((e) =>
-          e.parentId == parentId && e.type == type && e.langCode == langCode);
+      _cache.firstWhereOrNull(
+        (e) =>
+            e.parentId == parentId && e.type == type && e.langCode == langCode,
+      );
 
   Future<PangeaMessageTokens?> _getTokens(
     TokensRequestModel req,
@@ -70,7 +68,8 @@ class MessageDataController extends BaseController {
     } catch (err, stack) {
       Sentry.addBreadcrumb(
         Breadcrumb(
-            message: "err in _getTokenEvent with repEventId $repEventId"),
+          message: "err in _getTokenEvent with repEventId $repEventId",
+        ),
       );
       Sentry.addBreadcrumb(
         Breadcrumb.fromJson({"req": req.toJson()}),
@@ -93,17 +92,19 @@ class MessageDataController extends BaseController {
         getItem(repEventId, PangeaEventTypes.tokens, req.userL2);
     if (item != null) return item.data;
 
-    _cache.add(CacheItem(
-      repEventId,
-      PangeaEventTypes.tokens,
-      req.userL2,
-      _getTokenEvent(
-        context: context,
-        repEventId: repEventId,
-        req: req,
-        room: room,
+    _cache.add(
+      CacheItem(
+        repEventId,
+        PangeaEventTypes.tokens,
+        req.userL2,
+        _getTokenEvent(
+          context: context,
+          repEventId: repEventId,
+          req: req,
+          room: room,
+        ),
       ),
-    ));
+    );
 
     return _cache.last.data;
   }
@@ -205,9 +206,11 @@ class MessageDataQueueItem {
   UseType useType;
 
   MessageDataQueueItem(
-      this.transactionId, this.repTokensAndRecords, this.useType
-      // required this.recentMessageRecord,
-      );
+    this.transactionId,
+    this.repTokensAndRecords,
+    this.useType,
+    // required this.recentMessageRecord,
+  );
 }
 
 class RepTokensAndRecord {

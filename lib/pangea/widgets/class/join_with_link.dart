@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/url_query_parameter_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
@@ -17,7 +14,7 @@ import '../../utils/error_handler.dart';
 //if on home with classcode in url and not logged in, then save it soemhow and after llogin, join class automatically
 //if on home with classcode in url and logged in, then join class automatically
 class JoinClassWithLink extends StatefulWidget {
-  const JoinClassWithLink({Key? key}) : super(key: key);
+  const JoinClassWithLink({super.key});
 
   @override
   State<JoinClassWithLink> createState() => _JoinClassWithLinkState();

@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -17,7 +14,7 @@ import '../../../config/app_config.dart';
 
 class SettingsLearningView extends StatelessWidget {
   final SettingsLearningController controller;
-  const SettingsLearningView(this.controller, {Key? key}) : super(key: key);
+  const SettingsLearningView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

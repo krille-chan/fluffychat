@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import '../utils/error_handler.dart';
 
@@ -78,12 +74,13 @@ class LanguageModel {
 
   //PTODO - add flag for unknown
   static LanguageModel get unknown => LanguageModel(
-      langCode: LanguageKeys.unknownLanguage,
-      languageType: 1,
-      languageFlag: "",
-      displayName: "Unknown",
-      l2: false,
-      l1: false);
+        langCode: LanguageKeys.unknownLanguage,
+        languageType: 1,
+        languageFlag: "",
+        displayName: "Unknown",
+        l2: false,
+        l1: false,
+      );
 
   static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
         displayName: context != null
@@ -526,7 +523,7 @@ class _LanguageLocal {
     "ce": {"name": "Chechen", "nativeName": "нохчийн мотт"},
     "ny": {
       "name": "Chichewa, Chewa, Nyanja",
-      "nativeName": "chiCheŵa, chinyanja"
+      "nativeName": "chiCheŵa, chinyanja",
     },
     "zh": {"name": "Chinese", "nativeName": "中文 (Zhōngwén), 汉语, 漢語"},
     "cv": {"name": "Chuvash", "nativeName": "чӑваш чӗлхи"},
@@ -548,7 +545,7 @@ class _LanguageLocal {
     "fr": {"name": "French", "nativeName": "français, langue française"},
     "ff": {
       "name": "Fula; Fulah; Pulaar; Pular",
-      "nativeName": "Fulfulde, Pulaar, Pular"
+      "nativeName": "Fulfulde, Pulaar, Pular",
     },
     "gl": {"name": "Galician", "nativeName": "Galego"},
     "ka": {"name": "Georgian", "nativeName": "ქართული"},
@@ -567,7 +564,7 @@ class _LanguageLocal {
     "id": {"name": "Indonesian", "nativeName": "Bahasa Indonesia"},
     "ie": {
       "name": "Interlingue",
-      "nativeName": "Originally called Occidental; then Interlingue after WWII"
+      "nativeName": "Originally called Occidental; then Interlingue after WWII",
     },
     "ga": {"name": "Irish", "nativeName": "Gaeilge"},
     "ig": {"name": "Igbo", "nativeName": "Asụsụ Igbo"},
@@ -580,7 +577,7 @@ class _LanguageLocal {
     "jv": {"name": "Javanese", "nativeName": "basa Jawa"},
     "kl": {
       "name": "Kalaallisut, Greenlandic",
-      "nativeName": "kalaallisut, kalaallit oqaasii"
+      "nativeName": "kalaallisut, kalaallit oqaasii",
     },
     "kn": {"name": "Kannada", "nativeName": "ಕನ್ನಡ"},
     "kr": {"name": "Kanuri", "nativeName": "Kanuri"},
@@ -598,12 +595,12 @@ class _LanguageLocal {
     "la": {"name": "Latin", "nativeName": "latine, lingua latina"},
     "lb": {
       "name": "Luxembourgish, Letzeburgesch",
-      "nativeName": "Lëtzebuergesch"
+      "nativeName": "Lëtzebuergesch",
     },
     "lg": {"name": "Luganda", "nativeName": "Luganda"},
     "li": {
       "name": "Limburgish, Limburgan, Limburger",
-      "nativeName": "Limburgs"
+      "nativeName": "Limburgs",
     },
     "ln": {"name": "Lingala", "nativeName": "Lingála"},
     "lo": {"name": "Lao", "nativeName": "ພາສາລາວ"},
@@ -635,7 +632,7 @@ class _LanguageLocal {
     "cu": {
       "name":
           "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
-      "nativeName": "ѩзыкъ словѣньскъ"
+      "nativeName": "ѩзыкъ словѣньскъ",
     },
     "om": {"name": "Oromo", "nativeName": "Afaan Oromoo"},
     "or": {"name": "Oriya", "nativeName": "ଓଡ଼ିଆ"},
@@ -677,7 +674,7 @@ class _LanguageLocal {
     "ti": {"name": "Tigrinya", "nativeName": "ትግርኛ"},
     "bo": {
       "name": "Tibetan Standard, Tibetan, Central",
-      "nativeName": "བོད་ཡིག"
+      "nativeName": "བོད་ཡིག",
     },
     "tk": {"name": "Turkmen", "nativeName": "Türkmen, Түркмен"},
     "tl": {"name": "Tagalog", "nativeName": "Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔"},

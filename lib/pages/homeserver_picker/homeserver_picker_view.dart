@@ -1,10 +1,9 @@
 // Flutter imports:
+
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/pages/connect/p_sso_button.dart';
 import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';

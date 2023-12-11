@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 class WidgetMeasurements {
@@ -7,7 +6,10 @@ class WidgetMeasurements {
   static WidgetMeasurements defaultFromKey(String key) {
     if (_fromKey[key] == null) {
       _fromKey[key] = WidgetMeasurements(
-          position: const Offset(0, 0), size: const Size(0, 0), uid: key);
+        position: const Offset(0, 0),
+        size: const Size(0, 0),
+        uid: key,
+      );
     }
 
     final WidgetMeasurements? weg = _fromKey[key];
@@ -17,8 +19,11 @@ class WidgetMeasurements {
   Offset? position;
   Size? size;
   String? uid;
-  WidgetMeasurements(
-      {required this.position, required this.size, required this.uid});
+  WidgetMeasurements({
+    required this.position,
+    required this.size,
+    required this.uid,
+  });
 
   toJson() => {'position': position, 'size': size, 'uid': uid};
 }

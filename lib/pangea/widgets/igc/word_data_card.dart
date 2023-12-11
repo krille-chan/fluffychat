@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -36,7 +32,7 @@ class WordDataCard extends StatefulWidget {
   final Room room;
 
   const WordDataCard({
-    Key? key,
+    super.key,
     required this.word,
     required this.wordLang,
     required this.hasInfo,
@@ -44,7 +40,7 @@ class WordDataCard extends StatefulWidget {
     required this.fullTextLang,
     required this.room,
     this.choiceFeedback,
-  }) : super(key: key);
+  });
 
   @override
   State<WordDataCard> createState() => WordDataCardController();
@@ -142,9 +138,9 @@ class WordDataCardController extends State<WordDataCard> {
 
 class WordDataCardView extends StatelessWidget {
   const WordDataCardView({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final WordDataCardController controller;
 
@@ -170,8 +166,9 @@ class WordDataCardView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CardHeader(
-                text: controller.widget.word,
-                botExpression: BotExpression.down),
+              text: controller.widget.word,
+              botExpression: BotExpression.down,
+            ),
             if (controller.widget.choiceFeedback != null)
               Text(
                 controller.widget.choiceFeedback!,
@@ -222,11 +219,11 @@ class WordNetInfo extends StatelessWidget {
   final LanguageModel activeL2;
 
   const WordNetInfo({
-    Key? key,
+    super.key,
     required this.wordData,
     required this.activeL1,
     required this.activeL2,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -254,11 +251,11 @@ enum LanguageType {
 
 class SensesForLanguage extends StatelessWidget {
   const SensesForLanguage({
-    Key? key,
+    super.key,
     required this.wordData,
     required this.languageType,
     required this.language,
-  }) : super(key: key);
+  });
 
   final LanguageModel language;
   final LanguageType languageType;
@@ -282,7 +279,7 @@ class SensesForLanguage extends StatelessWidget {
               wordData: wordData,
               languageType: languageType,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -294,10 +291,10 @@ class PartOfSpeechBlock extends StatelessWidget {
   final LanguageType languageType;
 
   const PartOfSpeechBlock({
-    Key? key,
+    super.key,
     required this.wordData,
     required this.languageType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/repo/language_repo.dart';
@@ -37,9 +34,11 @@ class PangeaLanguage {
         await _saveFlags(_langList);
         await saveLastFetchDate();
       }
-      _langList.removeWhere((element) =>
-          LanguageModel.codeFromNameOrCode(element.langCode) ==
-          LanguageKeys.unknownLanguage);
+      _langList.removeWhere(
+        (element) =>
+            LanguageModel.codeFromNameOrCode(element.langCode) ==
+            LanguageKeys.unknownLanguage,
+      );
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
       _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
@@ -67,7 +66,7 @@ class PangeaLanguage {
 
   static Future<void> _saveFlags(List<LanguageModel> langFlags) async {
     final Map flagMap = {
-      PrefKey.flags: langFlags.map((e) => e.toJson()).toList()
+      PrefKey.flags: langFlags.map((e) => e.toJson()).toList(),
     };
     await MyShared.saveJson(PrefKey.flags, flagMap);
   }

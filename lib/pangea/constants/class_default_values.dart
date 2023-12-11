@@ -1,4 +1,3 @@
-// Project imports:
 import '../enum/time_span.dart';
 
 class ClassDefaultValues {

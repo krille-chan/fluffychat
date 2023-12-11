@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -11,9 +9,9 @@ import '../controllers/it_controller.dart';
 
 class ITCloseButton extends StatelessWidget {
   const ITCloseButton({
-    Key? key,
+    super.key,
     required this.choreographer,
-  }) : super(key: key);
+  });
 
   final Choreographer choreographer;
 
@@ -33,7 +31,7 @@ class ITCloseButton extends StatelessWidget {
 }
 
 class ITBotButton extends StatelessWidget {
-  const ITBotButton({Key? key, required this.choreographer}) : super(key: key);
+  const ITBotButton({super.key, required this.choreographer});
 
   final Choreographer choreographer;
 
@@ -60,9 +58,9 @@ class ITBotButton extends StatelessWidget {
 
 class ITRestartButton extends StatelessWidget {
   ITRestartButton({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final ITController controller;
   final PangeaController pangeaController = MatrixState.pangeaController;

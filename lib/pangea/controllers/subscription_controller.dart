@@ -1,10 +1,8 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:convert';
 
 // Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -17,6 +15,7 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+// Project imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

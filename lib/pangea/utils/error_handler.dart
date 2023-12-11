@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/config/environment.dart';
 
 class ErrorHandler {
@@ -18,7 +14,9 @@ class ErrorHandler {
 
   static Future<void> initialize() async {
     FutureOr<void> Function(Scope)? withScope(
-        Scope scope, FlutterErrorDetails details) {
+      Scope scope,
+      FlutterErrorDetails details,
+    ) {
       // if (details.exception is http.Response) {
       //   final res = details.exception as http.Response;
       //   scope.addBreadcrumb(
@@ -64,24 +62,30 @@ class ErrorHandler {
     };
   }
 
-  static logError(
-      {Object? e, StackTrace? s, String? m, Map<String, dynamic>? data}) async {
+  static logError({
+    Object? e,
+    StackTrace? s,
+    String? m,
+    Map<String, dynamic>? data,
+  }) async {
     if ((e ?? m) != null) debugPrint("error: ${e?.toString() ?? m}");
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
     }
-    FlutterError.reportError(FlutterErrorDetails(
-      exception: e ?? Exception(m ?? "no message supplied"),
-      stack: s,
-      library: 'Pangea',
-      context: ErrorSummary(e?.toString() ?? "error not defined"),
-      stackFilter: (input) => input.where(
-        (e) => !(e.contains("org-dartlang-sdk") ||
-            e.contains("future_impl") ||
-            e.contains("microtask") ||
-            e.contains("async_patch")),
+    FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: e ?? Exception(m ?? "no message supplied"),
+        stack: s,
+        library: 'Pangea',
+        context: ErrorSummary(e?.toString() ?? "error not defined"),
+        stackFilter: (input) => input.where(
+          (e) => !(e.contains("org-dartlang-sdk") ||
+              e.contains("future_impl") ||
+              e.contains("microtask") ||
+              e.contains("async_patch")),
+        ),
       ),
-    ));
+    );
   }
 }
 

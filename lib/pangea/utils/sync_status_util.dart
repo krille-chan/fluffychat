@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
 
@@ -17,9 +13,12 @@ class PLoadingStatus extends StatefulWidget {
 
   final Widget child;
   final Widget? shimmerChild;
-  const PLoadingStatus(
-      {Key? key, required this.child, this.onFinish, this.shimmerChild})
-      : super(key: key);
+  const PLoadingStatus({
+    super.key,
+    required this.child,
+    this.onFinish,
+    this.shimmerChild,
+  });
 
   @override
   PLoadingStatusState createState() => PLoadingStatusState();
@@ -69,10 +68,10 @@ class PLoadingStatusState extends State<PLoadingStatus> {
 
 class PangeaDefaultShimmer extends StatelessWidget {
   const PangeaDefaultShimmer({
-    Key? key,
+    super.key,
     required this.hide,
     required this.status,
-  }) : super(key: key);
+  });
 
   final bool hide;
   final SyncStatusUpdate status;

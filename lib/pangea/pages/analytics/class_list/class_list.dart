@@ -1,13 +1,9 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/pages/analytics/class_list/class_list_view.dart';
 import '../../../../widgets/matrix.dart';
@@ -18,7 +14,7 @@ import '../../../utils/sync_status_util_v2.dart';
 import '../../../widgets/common/list_placeholder.dart';
 
 class AnalyticsClassList extends StatefulWidget {
-  const AnalyticsClassList({Key? key}) : super(key: key);
+  const AnalyticsClassList({super.key});
 
   @override
   State<AnalyticsClassList> createState() => AnalyticsClassListController();
@@ -36,7 +32,8 @@ class AnalyticsClassListController extends State<AnalyticsClassList> {
     Future.delayed(Duration.zero, () async {
       stateSub = pangeaController.matrixState.client.onRoomState.stream
           .where(
-              (event) => event.type == PangeaEventTypes.studentAnalyticsSummary)
+            (event) => event.type == PangeaEventTypes.studentAnalyticsSummary,
+          )
           .listen(onStateUpdate);
     });
   }

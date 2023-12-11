@@ -1,17 +1,14 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import '../../../widgets/layouts/login_scaffold.dart';
 
 class PUserAgeView extends StatelessWidget {
   final PUserAgeController controller;
-  const PUserAgeView(this.controller, {Key? key}) : super(key: key);
+  const PUserAgeView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {

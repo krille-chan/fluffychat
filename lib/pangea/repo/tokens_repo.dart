@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:convert';
 
-// Package imports:
 import 'package:http/http.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../config/environment.dart';
@@ -59,7 +56,7 @@ class TokensRequestModel {
   Map<String, dynamic> toJson() => {
         ModelKey.fullText: fullText,
         ModelKey.userL1: userL1,
-        ModelKey.userL2: userL2
+        ModelKey.userL2: userL2,
       };
 }
 
@@ -73,11 +70,12 @@ class TokensResponseModel {
     Map<String, dynamic> json,
   ) =>
       TokensResponseModel(
-          tokens: (json[ModelKey.tokens] as Iterable)
-              .map<PangeaToken>(
-                (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
-              )
-              .toList()
-              .cast<PangeaToken>(),
-          lang: json[ModelKey.lang]);
+        tokens: (json[ModelKey.tokens] as Iterable)
+            .map<PangeaToken>(
+              (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
+            )
+            .toList()
+            .cast<PangeaToken>(),
+        lang: json[ModelKey.lang],
+      );
 }

@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_svg/svg.dart';
 
 class PangeaLogoSvg extends StatelessWidget {
-  const PangeaLogoSvg({Key? key, required this.width, this.forceColor})
-      : super(key: key);
+  const PangeaLogoSvg({super.key, required this.width, this.forceColor});
 
   final double width;
   final Color? forceColor;

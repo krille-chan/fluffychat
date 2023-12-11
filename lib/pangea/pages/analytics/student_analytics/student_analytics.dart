@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
@@ -20,7 +16,7 @@ import '../base_analytics_page.dart';
 import 'student_analytics_view.dart';
 
 class StudentAnalyticsPage extends StatefulWidget {
-  const StudentAnalyticsPage({Key? key}) : super(key: key);
+  const StudentAnalyticsPage({super.key});
 
   @override
   State<StudentAnalyticsPage> createState() => StudentAnalyticsController();
@@ -35,7 +31,8 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   void initState() {
     _pangeaController.matrixState.client
         .updateMyLearningAnalyticsForAllClassesImIn(
-            _pangeaController.pStoreService);
+      _pangeaController.pStoreService,
+    );
     super.initState();
   }
 

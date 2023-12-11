@@ -1,16 +1,12 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
@@ -78,10 +74,13 @@ class ITController {
     // try {
     if (_itStartData == null || _itStartData!.text.isEmpty) {
       Sentry.addBreadcrumb(
-        Breadcrumb(message: "choreo context", data: {
-          "igcTextData": choreographer.igc.igcTextData?.toJson(),
-          "currentText": choreographer.currentText
-        }),
+        Breadcrumb(
+          message: "choreo context",
+          data: {
+            "igcTextData": choreographer.igc.igcTextData?.toJson(),
+            "currentText": choreographer.currentText,
+          },
+        ),
       );
       throw Exception("null _itStartData or empty text in _setSourceText");
     }
@@ -126,10 +125,12 @@ class ITController {
       if (sourceText == null) await _setSourceText();
 
       if (useCustomInput && currentITStep != null) {
-        completedITSteps.add(ITStep(
-          currentITStep!.continuances,
-          customInput: currentText,
-        ));
+        completedITSteps.add(
+          ITStep(
+            currentITStep!.continuances,
+            customInput: currentText,
+          ),
+        );
       }
 
       currentITStep = null;
@@ -423,7 +424,7 @@ class CurrentITStep {
             }
             return e;
           }),
-          goldCont
+          goldCont,
         ];
         continuances.shuffle();
       } else {

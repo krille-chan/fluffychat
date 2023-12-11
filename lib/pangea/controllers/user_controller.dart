@@ -1,14 +1,13 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Package imports:
 import 'package:collection/collection.dart';
-// Project imports:
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+// Project imports:
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
@@ -119,6 +118,25 @@ class UserController extends BaseController {
     return DateTime.parse(createdAt).isAfter(
       DateTime.now().subtract(const Duration(days: 7)),
     );
+  }
+
+  Future<bool> get areUserLanguagesSet async {
+    try {
+      final PUserModel? toCheck = userModel ?? (await fetchUserModel());
+      if (toCheck?.profile == null) {
+        return false;
+      }
+      final String? srcLang = toCheck!.profile!.sourceLanguage;
+      final String? tgtLang = toCheck.profile!.targetLanguage;
+      return srcLang != null &&
+          tgtLang != null &&
+          srcLang.isNotEmpty &&
+          tgtLang.isNotEmpty &&
+          srcLang != LanguageKeys.unknownLanguage &&
+          tgtLang != LanguageKeys.unknownLanguage;
+    } catch (err) {
+      return false;
+    }
   }
 
   redirectToUserInfo() {

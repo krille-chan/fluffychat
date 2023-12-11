@@ -1,20 +1,16 @@
-// Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import '../../enum/use_type.dart';
 
 class ListSummaryAnalytics extends StatelessWidget {
   final ChartAnalyticsModel? chartAnalytics;
 
-  const ListSummaryAnalytics({Key? key, this.chartAnalytics}) : super(key: key);
+  const ListSummaryAnalytics({super.key, this.chartAnalytics});
 
   TimeSeriesTotals? get totals => chartAnalytics?.totals;
 
@@ -60,14 +56,15 @@ class ListSummaryAnalytics extends StatelessWidget {
       text: TextSpan(
         children: [
           spacerIconText(
-              L10n.of(context) != null
-                  ? L10n.of(context)!.totalMessages
-                  : "Total messages sent",
-              "",
-              Icons.chat_bubble,
-              totals!.all,
-              Theme.of(context).textTheme.bodyLarge!.color,
-              false),
+            L10n.of(context) != null
+                ? L10n.of(context)!.totalMessages
+                : "Total messages sent",
+            "",
+            Icons.chat_bubble,
+            totals!.all,
+            Theme.of(context).textTheme.bodyLarge!.color,
+            false,
+          ),
           if (totals!.all != 0) ...[
             spacerIconText(
               l10n != null ? l10n.taTooltip : "With translation assistance",
@@ -97,7 +94,7 @@ class ListSummaryAnalytics extends StatelessWidget {
               totals!.unPercent,
               UseType.un.color(context),
             ),
-          ]
+          ],
         ],
       ),
     );

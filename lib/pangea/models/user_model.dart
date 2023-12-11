@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../constants/language_keys.dart';
 import 'language_model.dart';
@@ -70,9 +66,11 @@ class Profile {
 
   factory Profile.fromJson(Map<String, dynamic> json) {
     final l2 = LanguageModel.codeFromNameOrCode(
-        json[ModelKey.l2LanguageKey] ?? LanguageKeys.unknownLanguage);
+      json[ModelKey.l2LanguageKey] ?? LanguageKeys.unknownLanguage,
+    );
     final l1 = LanguageModel.codeFromNameOrCode(
-        json[ModelKey.l1LanguageKey] ?? LanguageKeys.unknownLanguage);
+      json[ModelKey.l1LanguageKey] ?? LanguageKeys.unknownLanguage,
+    );
 
     return Profile(
       // fullName: json[ModelKey.userFullName],

@@ -1,14 +1,10 @@
-// Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/match_rule_ids.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
@@ -24,12 +20,12 @@ class ConstructList extends StatefulWidget {
   final String title;
 
   const ConstructList({
-    Key? key,
+    super.key,
     required this.selected,
     required this.defaultSelected,
     required this.constructType,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => ConstructListState();
@@ -151,10 +147,10 @@ class ConstructListView extends StatelessWidget {
   final bool init;
 
   const ConstructListView({
-    Key? key,
+    super.key,
     required this.constructs,
     required this.init,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

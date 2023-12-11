@@ -758,7 +758,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "bn": [
@@ -1525,7 +1526,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "bo": [
@@ -2292,7 +2294,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ca": [
@@ -3054,7 +3057,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "cs": [
@@ -3816,7 +3820,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "de": [
@@ -4578,7 +4583,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "el": [
@@ -5345,7 +5351,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "eo": [
@@ -6107,7 +6114,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "es": [
@@ -6133,7 +6141,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "et": [
@@ -6895,7 +6904,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "eu": [
@@ -7657,7 +7667,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "fa": [
@@ -8419,7 +8430,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "fi": [
@@ -9181,7 +9193,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "fr": [
@@ -9943,7 +9956,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ga": [
@@ -10705,7 +10719,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "gl": [
@@ -11467,7 +11482,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "he": [
@@ -12229,7 +12245,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "hi": [
@@ -12996,7 +13013,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "hr": [
@@ -13758,7 +13776,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "hu": [
@@ -14520,7 +14539,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "id": [
@@ -15282,7 +15302,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ie": [
@@ -16046,7 +16067,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "it": [
@@ -16808,7 +16830,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ja": [
@@ -17570,7 +17593,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ko": [
@@ -18332,7 +18356,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "lt": [
@@ -19094,7 +19119,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "lv": [
@@ -19861,7 +19887,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "nb": [
@@ -20623,7 +20650,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "nl": [
@@ -21385,7 +21413,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "pl": [
@@ -22147,7 +22176,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "pt": [
@@ -22914,7 +22944,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "pt_BR": [
@@ -23676,7 +23707,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "pt_PT": [
@@ -24438,7 +24470,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ro": [
@@ -25200,7 +25233,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ru": [
@@ -25962,7 +25996,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "sk": [
@@ -26725,7 +26760,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "sl": [
@@ -27490,7 +27526,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "sr": [
@@ -28252,7 +28289,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "sv": [
@@ -29014,7 +29052,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "ta": [
@@ -29781,7 +29820,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "th": [
@@ -30548,7 +30588,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "tr": [
@@ -31310,7 +31351,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "uk": [
@@ -32072,7 +32114,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "vi": [
@@ -32837,7 +32880,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "zh": [
@@ -33599,7 +33643,8 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ],
 
   "zh_Hant": [
@@ -34361,6 +34406,7 @@
     "groupCanBeFoundViaSearch",
     "trialExpiration",
     "freeTrialDesc",
-    "activateTrial"
+    "activateTrial",
+    "inNoSpaces"
   ]
 }

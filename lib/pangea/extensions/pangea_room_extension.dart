@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/space_child.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -756,8 +752,7 @@ extension PangeaRoom on Room {
       }
       final toAdd = [
         ...getParticipants([Membership.invite, Membership.join])
-            .map((e) => e.id)
-            .toList(),
+            .map((e) => e.id),
         BotName.byEnvironment,
       ];
       for (final teacher in await client.myTeachers) {

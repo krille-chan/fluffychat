@@ -1,17 +1,13 @@
-// Dart imports:
 import 'dart:async';
 import 'dart:developer';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import '../../../widgets/matrix.dart';
@@ -22,7 +18,7 @@ import 'class_settings_view.dart';
 import 'p_class_widgets/room_rules_editor.dart';
 
 class ClassSettingsPage extends StatefulWidget {
-  const ClassSettingsPage({Key? key}) : super(key: key);
+  const ClassSettingsPage({super.key});
 
   @override
   State<ClassSettingsPage> createState() => ClassSettingsController();
