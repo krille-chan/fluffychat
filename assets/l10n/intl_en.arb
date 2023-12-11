@@ -3951,5 +3951,7 @@
     },
     "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
     "activateTrial": "Activate Trial",
-  "inNoSpaces": "You are not a member of any classes or exchanges"
+  "inNoSpaces": "You are not a member of any classes or exchanges",
+  "successfullySubscribed": "You have successfully subscribed!",
+  "clickToManageSubscription": "Click here to manage your subscription."
 }

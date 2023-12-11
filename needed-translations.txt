@@ -759,7 +759,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bn": [
@@ -1527,7 +1529,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bo": [
@@ -2295,7 +2299,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ca": [
@@ -3058,7 +3064,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "cs": [
@@ -3821,7 +3829,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "de": [
@@ -4584,7 +4594,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "el": [
@@ -5352,7 +5364,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eo": [
@@ -6115,7 +6129,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "es": [
@@ -6142,7 +6158,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "et": [
@@ -6905,7 +6923,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eu": [
@@ -7668,7 +7688,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fa": [
@@ -8431,7 +8453,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fi": [
@@ -9194,7 +9218,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fr": [
@@ -9957,7 +9983,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ga": [
@@ -10720,7 +10748,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "gl": [
@@ -11483,7 +11513,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "he": [
@@ -12246,7 +12278,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hi": [
@@ -13014,7 +13048,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hr": [
@@ -13777,7 +13813,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hu": [
@@ -14540,7 +14578,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "id": [
@@ -15303,7 +15343,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ie": [
@@ -16068,7 +16110,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "it": [
@@ -16831,7 +16875,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ja": [
@@ -17594,7 +17640,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ko": [
@@ -18357,7 +18405,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lt": [
@@ -19120,7 +19170,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lv": [
@@ -19888,7 +19940,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nb": [
@@ -20651,7 +20705,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nl": [
@@ -21414,7 +21470,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pl": [
@@ -22177,7 +22235,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt": [
@@ -22945,7 +23005,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_BR": [
@@ -23708,7 +23770,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_PT": [
@@ -24471,7 +24535,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ro": [
@@ -25234,7 +25300,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ru": [
@@ -25997,7 +26065,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sk": [
@@ -26761,7 +26831,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sl": [
@@ -27527,7 +27599,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sr": [
@@ -28290,7 +28364,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sv": [
@@ -29053,7 +29129,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ta": [
@@ -29821,7 +29899,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "th": [
@@ -30589,7 +30669,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "tr": [
@@ -31352,7 +31434,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "uk": [
@@ -32115,7 +32199,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "vi": [
@@ -32881,7 +32967,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh": [
@@ -33644,7 +33732,9 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh_Hant": [
@@ -34407,6 +34497,8 @@
     "trialExpiration",
     "freeTrialDesc",
     "activateTrial",
-    "inNoSpaces"
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ]
 }

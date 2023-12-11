@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-// Package imports:
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
@@ -15,7 +14,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-// Project imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -29,6 +27,7 @@ class SubscriptionController extends BaseController {
 
   //convert this logic to use completer
   bool initialized = false;
+  final StreamController subscriptionStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -67,7 +66,13 @@ class SubscriptionController extends BaseController {
 
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
-          (CustomerInfo info) => updateCustomerInfo(),
+          (CustomerInfo info) async {
+            final bool wasSubscribed = isSubscribed;
+            await updateCustomerInfo();
+            if (!wasSubscribed && isSubscribed) {
+              subscriptionStream.add(true);
+            }
+          },
         );
       }
       setState();
