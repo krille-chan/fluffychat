@@ -32,6 +32,7 @@ jobs:
           mv build/web public
           touch public/.env
           echo "$WEB_APP_ENV" >> public/.env
+          cp public/.env public/assets/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
