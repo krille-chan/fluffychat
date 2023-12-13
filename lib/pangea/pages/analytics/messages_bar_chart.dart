@@ -1,13 +1,13 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
-
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/pages/analytics/bar_chart_placeholder_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../../enum/time_span.dart';
 import '../../enum/use_type.dart';
 import '../../models/chart_analytics_model.dart';
@@ -102,39 +102,73 @@ class MessagesBarChartState extends State<MessagesBarChart> {
     );
   }
 
+  bool showLabelBasedOnTimeSpan(
+    TimeSpan timeSpan,
+    TimeSeriesInterval current,
+    TimeSeriesInterval? last,
+    int labelIndex,
+  ) {
+    switch (timeSpan) {
+      case TimeSpan.day:
+        return current.end.hour % 3 == 0;
+      case TimeSpan.month:
+        if (current.end.month != last?.end.month) {
+          return true;
+        }
+        double width = MediaQuery.of(context).size.width;
+        if (FluffyThemes.isColumnMode(context)) {
+          width = width - FluffyThemes.navRailWidth - FluffyThemes.columnWidth;
+        }
+        const int numDays = 28;
+        const int minSpacePerDay = 20;
+        final int availableSpaces = width ~/ minSpacePerDay;
+        final int showAtInterval = (numDays / availableSpaces).floor() + 1;
+
+        final int lastDayOfCurrentMonth =
+            DateTime(current.end.year, current.end.month + 1, 0).day;
+        final bool isNextToMonth = labelIndex == 1 ||
+            current.end.day == 2 ||
+            current.end.day == lastDayOfCurrentMonth;
+        final bool shouldShowNextToMonth = showAtInterval <= 1;
+        return (current.end.day % showAtInterval == 0) &&
+            (!isNextToMonth || shouldShowNextToMonth);
+      case TimeSpan.week:
+      case TimeSpan.sixmonths:
+      case TimeSpan.year:
+      default:
+        return true;
+    }
+  }
+
   String getLabelBasedOnTimeSpan(
     TimeSpan timeSpan,
     TimeSeriesInterval current,
     TimeSeriesInterval? last,
     int labelIndex,
   ) {
-    if (widget.chartAnalytics == null) {
+    final bool showLabel = showLabelBasedOnTimeSpan(
+      timeSpan,
+      current,
+      last,
+      labelIndex,
+    );
+
+    if (widget.chartAnalytics == null || !showLabel) {
       return "";
     }
     if (isInSameGroup(last, current, timeSpan)) {
       return "-";
     }
+
     switch (widget.chartAnalytics?.timeSpan ?? TimeSpan.month) {
       case TimeSpan.day:
-        return current.end.hour % 3 == 0
-            ? DateFormat(DateFormat.HOUR).format(current.end)
-            : "";
-      // return current.end.hour.toString();
+        return DateFormat(DateFormat.HOUR).format(current.end);
       case TimeSpan.week:
         return DateFormat(DateFormat.ABBR_WEEKDAY).format(current.end);
       case TimeSpan.month:
-        // return current.end.month != last?.end.month
-        //     ? DateFormat(DateFormat.ABBR_MONTH_DAY).format(current.end)
-        //     : current.end.day % 5 == 0 &&
-        //             labelIndex != 1 &&
-        //             current.end.day != 30
-        //         ? DateFormat(DateFormat.DAY).format(current.end)
-        //         : "'";
         return current.end.month != last?.end.month
             ? DateFormat(DateFormat.ABBR_MONTH).format(current.end)
             : DateFormat(DateFormat.DAY).format(current.end);
-      // return current.end.day.toString();
-      // text = DateFormat('DAY').format(timeSeriesIntervalStart);
       case TimeSpan.sixmonths:
       case TimeSpan.year:
         return DateFormat(DateFormat.ABBR_STANDALONE_MONTH).format(current.end);

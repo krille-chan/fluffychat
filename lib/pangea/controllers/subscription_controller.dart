@@ -1,16 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
@@ -22,6 +15,12 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
@@ -29,6 +28,7 @@ class SubscriptionController extends BaseController {
 
   //convert this logic to use completer
   bool initialized = false;
+  final StreamController subscriptionStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -59,19 +59,58 @@ class SubscriptionController extends BaseController {
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
       await subscription!.configure();
+      if (activatedNewUserTrial) {
+        setNewUserTrial();
+      }
 
       initialized = true;
 
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
-          (CustomerInfo info) => updateCustomerInfo(),
+          (CustomerInfo info) async {
+            final bool wasSubscribed = isSubscribed;
+            await updateCustomerInfo();
+            if (!wasSubscribed && isSubscribed) {
+              subscriptionStream.add(true);
+            }
+          },
         );
+      } else {
+        final bool? beganWebPayment = _pangeaController.pStoreService.read(
+          PLocalKey.beganWebPayment,
+        );
+        if (beganWebPayment ?? false) {
+          _pangeaController.pStoreService.delete(PLocalKey.beganWebPayment);
+          if (_pangeaController.subscriptionController.isSubscribed) {
+            subscriptionStream.add(true);
+          }
+        }
       }
       setState();
     } catch (e, s) {
       debugPrint("Failed to initialize subscription controller");
       ErrorHandler.logError(e: e, s: s);
     }
+  }
+
+  bool get activatedNewUserTrial =>
+      _pangeaController.userController.inTrialWindow &&
+      (_pangeaController.pStoreService.read(PLocalKey.activatedTrialKey) ??
+          false);
+
+  void activateNewUserTrial() {
+    _pangeaController.pStoreService.save(PLocalKey.activatedTrialKey, true);
+    setNewUserTrial();
+  }
+
+  void setNewUserTrial() {
+    final String profileCreatedAt =
+        _pangeaController.userController.userModel!.profile!.createdAt;
+    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
+    final DateTime expirationDate = creationTimestamp.add(
+      const Duration(days: 7),
+    );
+    subscription?.setTrial(expirationDate);
   }
 
   Future<void> updateCustomerInfo() async {
@@ -174,6 +213,10 @@ class SubscriptionController extends BaseController {
         final String paymentLink = await getPaymentLink(
           selectedSubscription.duration!,
           isPromo: isPromo,
+        );
+        _pangeaController.pStoreService.save(
+          PLocalKey.beganWebPayment,
+          true,
         );
         setState();
         launchUrlString(
