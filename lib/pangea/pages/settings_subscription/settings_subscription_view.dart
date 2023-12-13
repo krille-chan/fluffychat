@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl/intl.dart';
-
+// Flutter imports:
+// Project imports:
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/change_subscription.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl/intl.dart';
 
 class SettingsSubscriptionView extends StatelessWidget {
   final SubscriptionManagementController controller;
@@ -105,45 +105,44 @@ class ManagementNotAvailableWarning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool currentSubscriptionAvailable =
-        controller.currentSubscriptionAvailable;
-    final bool currentSubscriptionIsPromotional =
-        controller.currentSubscriptionIsPromotional;
-    final String? purchasePlatformDisplayName =
-        controller.purchasePlatformDisplayName;
-    final bool isLifetimeSubscription =
-        subscriptionController.subscription?.isLifetimeSubscription ?? false;
-    final DateTime? expirationDate =
-        subscriptionController.subscription?.expirationDate;
-
-    String warningText = L10n.of(context)!.subscriptionManagementUnavailable;
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
-
-    if (currentSubscriptionAvailable) {
-      warningText = L10n.of(context)!.subsciptionPlatformTooltip;
-    } else if (currentSubscriptionIsPromotional) {
-      if (isLifetimeSubscription) {
-        warningText = L10n.of(context)!.promotionalSubscriptionDesc;
-      } else {
-        warningText = L10n.of(context)!.promoSubscriptionExpirationDesc(
-          formatter.format(expirationDate!),
+    String getWarningText() {
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+      if (controller.isNewUserTrial) {
+        return L10n.of(context)!.trialExpiration(
+          formatter.format(
+            subscriptionController.subscription!.expirationDate!,
+          ),
         );
       }
+      if (controller.currentSubscriptionAvailable) {
+        String warningText = L10n.of(context)!.subsciptionPlatformTooltip;
+        if (controller.purchasePlatformDisplayName != null) {
+          warningText +=
+              "\n${L10n.of(context)!.originalSubscriptionPlatform(controller.purchasePlatformDisplayName!)}";
+        }
+        return warningText;
+      }
+      if (controller.currentSubscriptionIsPromotional) {
+        if (subscriptionController.subscription?.isLifetimeSubscription ??
+            false) {
+          return L10n.of(context)!.promotionalSubscriptionDesc;
+        }
+        return L10n.of(context)!.promoSubscriptionExpirationDesc(
+          formatter.format(
+            subscriptionController.subscription!.expirationDate!,
+          ),
+        );
+      }
+      return L10n.of(context)!.subscriptionManagementUnavailable;
     }
 
     return Center(
-      child: Column(
-        children: [
-          Text(
-            warningText,
-            textAlign: TextAlign.center,
-          ),
-          if (purchasePlatformDisplayName != null)
-            Text(
-              "${L10n.of(context)!.originalSubscriptionPlatform} $purchasePlatformDisplayName",
-              textAlign: TextAlign.center,
-            ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text(
+          getWarningText(),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
