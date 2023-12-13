@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/config/environment.dart';
+// Project imports:
+import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   // #Pangea
@@ -121,6 +121,7 @@ abstract class AppConfig {
       "https://buy.stripe.com/test_bIY6ssd8z5Uz8ec8ww";
   static String iosPromoCode =
       "https://apps.apple.com/redeem?ctx=offercodes&id=1445118630&code=";
+  static String trialSubscriptionId = "pangea_new_user_trial";
   // Pangea#
 
   static void loadFromJson(Map<String, dynamic> json) {

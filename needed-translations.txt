@@ -759,7 +759,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bn": [
@@ -1527,7 +1532,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bo": [
@@ -2295,7 +2305,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ca": [
@@ -3058,7 +3073,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "cs": [
@@ -3821,7 +3841,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "de": [
@@ -4584,7 +4609,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "el": [
@@ -5352,7 +5382,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eo": [
@@ -6115,7 +6150,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "es": [
@@ -6142,7 +6182,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "et": [
@@ -6905,7 +6950,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eu": [
@@ -7668,7 +7718,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fa": [
@@ -8431,7 +8486,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fi": [
@@ -9194,7 +9254,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fr": [
@@ -9957,7 +10022,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ga": [
@@ -10720,7 +10790,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "gl": [
@@ -11483,7 +11558,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "he": [
@@ -12246,7 +12326,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hi": [
@@ -13014,7 +13099,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hr": [
@@ -13777,7 +13867,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hu": [
@@ -14540,7 +14635,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "id": [
@@ -15303,7 +15403,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ie": [
@@ -16068,7 +16173,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "it": [
@@ -16831,7 +16941,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ja": [
@@ -17594,7 +17709,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ko": [
@@ -18357,7 +18477,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lt": [
@@ -19120,7 +19245,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lv": [
@@ -19888,7 +20018,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nb": [
@@ -20651,7 +20786,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nl": [
@@ -21414,7 +21554,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pl": [
@@ -22177,7 +22322,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt": [
@@ -22945,7 +23095,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_BR": [
@@ -23708,7 +23863,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_PT": [
@@ -24471,7 +24631,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ro": [
@@ -25234,7 +25399,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ru": [
@@ -25997,7 +26167,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sk": [
@@ -26761,7 +26936,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sl": [
@@ -27527,7 +27707,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sr": [
@@ -28290,7 +28475,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sv": [
@@ -29053,7 +29243,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ta": [
@@ -29821,7 +30016,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "th": [
@@ -30589,7 +30789,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "tr": [
@@ -31352,7 +31557,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "uk": [
@@ -32115,7 +32325,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "vi": [
@@ -32881,7 +33096,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh": [
@@ -33644,7 +33864,12 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh_Hant": [
@@ -34407,6 +34632,11 @@
     "inNoSpaces",
     "createClass",
     "createExchange",
-    "viewArchive"
+    "viewArchive",
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ]
 }
