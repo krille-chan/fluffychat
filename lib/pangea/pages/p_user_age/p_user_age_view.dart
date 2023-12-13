@@ -12,7 +12,6 @@ class PUserAgeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.dobController.text = "";
     return LoginScaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.loading,
