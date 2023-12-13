@@ -28,15 +28,18 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
   Widget build(BuildContext context) {
     final List<LanguageModel> sortedLanguages = widget.languages;
     final String systemLang = Localizations.localeOf(context).languageCode;
+    final List<String> languagePriority = [systemLang, 'en', 'es'];
 
     int sortLanguages(LanguageModel a, LanguageModel b) {
       final String aLang = a.langCode;
       final String bLang = b.langCode;
       if (aLang == bLang) return 0;
 
-      final List<String> languagePriority = [systemLang, 'en', 'es'];
       final bool aIsPriority = languagePriority.contains(a.langCode);
       final bool bIsPriority = languagePriority.contains(b.langCode);
+      if (!aIsPriority && !bIsPriority) {
+        return a.getDisplayName(context)!.compareTo(b.getDisplayName(context)!);
+      }
 
       if (aIsPriority && bIsPriority) {
         final int aPriority = languagePriority.indexOf(a.langCode);
@@ -44,10 +47,7 @@ class _PLanguageDropdownState extends State<PLanguageDropdown> {
         return aPriority - bPriority;
       }
 
-      if (aIsPriority) return -1;
-      if (bIsPriority) return 1;
-
-      return a.getDisplayName(context)!.compareTo(b.getDisplayName(context)!);
+      return aIsPriority ? -1 : 1;
     }
 
     sortedLanguages.sort((a, b) => sortLanguages(a, b));
