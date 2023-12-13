@@ -445,6 +445,7 @@ class BotBridgeConnection {
   Future<String> fetchDataWhatsApp() async {
     print("Starting fetchDataWhatsApp");
 
+    print("ContinuProgress is:$continueProcess");
     const String botUserId = '@whatsappbot:loveto.party';
 
     // Success phrases to spot
@@ -458,10 +459,11 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    String result; // Variable to track the result of the connection
+    String result =
+        "Not logged"; // Variable to track the result of the connection
 
-    // Get the latest messages from the room (limited to the specified number)
-    while (true) {
+    // Get the latest messages from the room (limited to the specified message or stopProgress)
+    while (continueProcess && true) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -486,11 +488,16 @@ class BotBridgeConnection {
           result = "loginTimedOut";
 
           break;
+        } else if (!successMatch.hasMatch(latestMessage) &&
+            !timeOutMatch.hasMatch(latestMessage)) {
+          print("waiting");
+          await Future.delayed(const Duration(seconds: 2)); // Wait 5 sec
         }
-      } else if (!successMatch.hasMatch(latestMessage) &&
-          !timeOutMatch.hasMatch(latestMessage)) {
-        print("waiting");
-        await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      }
+
+      if (continueProcess == false) {
+        print("Stop listening");
+        result = "Stop Listening";
       }
     }
     return result;

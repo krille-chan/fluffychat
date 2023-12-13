@@ -28,7 +28,18 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
   void initState() {
     super.initState();
 
+    // To make sure the continueProcess variable is true
+    // (in case you've already left the page before coming back)
+    widget.botConnection.continueProcess = true;
+
     responseFuture = widget.botConnection.fetchDataWhatsApp();
+  }
+
+  @override
+  void dispose() {
+    // To stop listening to received messages if the page is exited
+    widget.botConnection.stopProcess();
+    super.dispose();
   }
 
   @override
@@ -80,15 +91,9 @@ class WhatsAppQRExplanation extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(fontSize: 16, color: Colors.black),
-            children: [
-              TextSpan(
-                text: L10n.of(context)!.whatsApp_qrExplainTree,
-              ),
-            ],
-          ),
+        Text(
+          L10n.of(context)!.whatsApp_qrExplainTree,
+          style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
         Text(
@@ -127,27 +132,23 @@ class WhatsAppQRExplanation extends StatelessWidget {
           color: Colors.grey,
           height: 20,
         ),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(
-                fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
-            text: L10n.of(context)!.whatsApp_qrExplainSix,
-          ),
+        Text(
+          L10n.of(context)!.whatsApp_qrExplainSix,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(fontSize: 16, color: Colors.black),
-            children: [
-              TextSpan(
-                text: L10n.of(context)!.whatsApp_qrExplainSeven,
-              ),
-              TextSpan(
-                text: L10n.of(context)!.whatsApp_qrExplainEight,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(L10n.of(context)!.whatsApp_qrExplainSeven,
+                style: const TextStyle(
+                  fontSize: 16,
+                )),
+            Text(
+              L10n.of(context)!.whatsApp_qrExplainEight,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
         const SizedBox(height: 8),
         Text(
