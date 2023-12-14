@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
+import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -994,6 +996,34 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   late Iterable<Event> _allReactionEvents;
+
+  // Message liking function (double-click)
+  void handleMessageLike(Event event) async {
+    const String emoji = Emojis.thumbsUp;
+    
+
+    final allReactionEvents =
+    event.aggregatedEvents(timeline!, RelationshipTypes.reaction);
+
+    // Search for the specific reaction event of the current user.
+    final evt = allReactionEvents.firstWhereOrNull(
+          (e) =>
+      e.senderId == e.room.client.userID &&
+          e.content.tryGetMap('m.relates_to')?['key'] == emoji,
+    );
+
+    // If the reaction event exists, it will be suppressed, Otherwise it can be added
+    if (evt != null) {
+
+      await evt.redactEvent();
+    }else {
+
+      await room.sendReaction(
+        event.eventId,
+        emoji,
+      );
+    }
+  }
 
   void emojiPickerBackspace() {
     switch (emojiPickerType) {

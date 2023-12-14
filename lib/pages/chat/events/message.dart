@@ -381,10 +381,7 @@ class Message extends StatelessWidget {
         onSwipe: (_) => onSwipe(),
         child: InkWell(
           onTap: () => onSelect(event),
-          onDoubleTap: () {
-            // ici la logique pour "aimer" le message
-            print("Message liked: ${event.content['body']}");
-          },
+          onDoubleTap: () => onDoubleTap(event),
           child: Container(
             color: selected
                 ? Theme.of(context).primaryColor.withAlpha(100)
