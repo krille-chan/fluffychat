@@ -1967,7 +1967,7 @@
   },
   "yourChatBackupHasBeenSetUp": "Il tuo backup delle chat è stato configurato.",
   "@yourChatBackupHasBeenSetUp": {},
-  "discover": "",
+  "discover": "Scopri",
   "@discover": {
     "type": "text",
     "placeholders": {}
@@ -1981,7 +1981,7 @@
   },
   "jumpToLastReadMessage": "",
   "@jumpToLastReadMessage": {},
-  "allRooms": "",
+  "allRooms": "Tutte le chat di gruppo",
   "@allRooms": {
     "type": "text",
     "placeholders": {}
@@ -2005,7 +2005,7 @@
   "@chatHasBeenAddedToThisSpace": {},
   "unsupportedAndroidVersion": "",
   "@unsupportedAndroidVersion": {},
-  "enterASpacepName": "",
+  "enterASpacepName": "Inserisci un nome per lo spazio",
   "@enterASpacepName": {},
   "widgetJitsi": "",
   "@widgetJitsi": {},
@@ -2105,7 +2105,7 @@
   "@emailOrUsername": {},
   "newSpaceDescription": "",
   "@newSpaceDescription": {},
-  "chatDescription": "",
+  "chatDescription": "Descrizione della chat",
   "@chatDescription": {},
   "callingAccountDetails": "",
   "@callingAccountDetails": {},
@@ -2142,7 +2142,7 @@
   "@commandHint_markasgroup": {},
   "editTodo": "",
   "@editTodo": {},
-  "errorObtainingLocation": "",
+  "errorObtainingLocation": "Errore cercando di ottenere la posizione: {error}",
   "@errorObtainingLocation": {
     "type": "text",
     "placeholders": {
@@ -2159,7 +2159,7 @@
   "@hydrate": {},
   "invalidServerName": "",
   "@invalidServerName": {},
-  "chatPermissions": "",
+  "chatPermissions": "Permessi della chat",
   "@chatPermissions": {},
   "sender": "",
   "@sender": {},
@@ -2228,7 +2228,7 @@
   "@updateAvailable": {},
   "fileIsTooBigForServer": "",
   "@fileIsTooBigForServer": {},
-  "homeserver": "",
+  "homeserver": "Homeserver",
   "@homeserver": {},
   "noTodosYet": "",
   "@noTodosYet": {},
@@ -2287,7 +2287,7 @@
   },
   "pleaseEnterRecoveryKeyDescription": "",
   "@pleaseEnterRecoveryKeyDescription": {},
-  "inviteContactToGroupQuestion": "",
+  "inviteContactToGroupQuestion": "Vuoi invitare {contact} nella chat \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
   "redactedByBecause": "",
   "@redactedByBecause": {
@@ -2328,7 +2328,7 @@
   "@importZipFile": {},
   "anyoneCanKnock": "",
   "@anyoneCanKnock": {},
-  "commandMissing": "",
+  "commandMissing": "{command} non è un comando.",
   "@commandMissing": {
     "type": "text",
     "placeholders": {
@@ -2408,7 +2408,7 @@
   "@publish": {},
   "openLinkInBrowser": "",
   "@openLinkInBrowser": {},
-  "commandHint_react": "",
+  "commandHint_react": "Rispondi con una reazione",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
@@ -2450,12 +2450,12 @@
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "createNewSpace": "",
+  "createNewSpace": "Nuovo spazio",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_unban": "",
+  "commandHint_unban": "Sbanna l'utente fornito da questa stanza",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -2485,7 +2485,7 @@
   "@users": {},
   "openGallery": "",
   "@openGallery": {},
-  "chatDescriptionHasBeenChanged": "",
+  "chatDescriptionHasBeenChanged": "Descrizione della chat cambiata",
   "@chatDescriptionHasBeenChanged": {},
   "newGroup": "",
   "@newGroup": {},
@@ -2568,7 +2568,7 @@
   },
   "deviceKeys": "",
   "@deviceKeys": {},
-  "emoteKeyboardNoRecents": "",
+  "emoteKeyboardNoRecents": "Le emoticon recentemente usate appariranno qui...",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
@@ -2615,7 +2615,7 @@
   "@commandHint_googly": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "createGroup": "",
+  "createGroup": "Crea gruppo",
   "@createGroup": {},
   "hydrateTorLong": "",
   "@hydrateTorLong": {},
@@ -2654,5 +2654,11 @@
   "screenSharingDetail": "",
   "@screenSharingDetail": {},
   "placeCall": "",
-  "@placeCall": {}
+  "@placeCall": {},
+  "blockListDescription": "Puoi bloccare gli utenti che ti disturbano. Non sarai più in grado di ricevere messaggi o inviti alle stanze dalle persone che hai bloccato.",
+  "@blockListDescription": {},
+  "blockedUsers": "Utenti bloccati",
+  "@blockedUsers": {},
+  "blockUsername": "Nome utente da ignorare",
+  "@blockUsername": {}
 }
