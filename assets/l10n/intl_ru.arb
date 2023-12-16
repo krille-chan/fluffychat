@@ -2511,15 +2511,15 @@
   "@importNow": {},
   "importEmojis": "Импортировать эмодзи",
   "@importEmojis": {},
-  "importFromZipFile": "Импортировать из ZIP файла",
+  "importFromZipFile": "Импортировать из ZIP-файла",
   "@importFromZipFile": {},
-  "importZipFile": "Импортировать ZIP файл",
+  "importZipFile": "Импортировать ZIP-файл",
   "@importZipFile": {},
   "exportEmotePack": "Экспортировать набор эмодзи как ZIP",
   "@exportEmotePack": {},
   "replace": "Заменить",
   "@replace": {},
-  "savedEmotePack": "Набор эмодзи сохранены в {path}!",
+  "savedEmotePack": "Набор эмодзи сохраненён в {path}!",
   "@savedEmotePack": {
     "type": "text",
     "placeholders": {
@@ -2620,9 +2620,9 @@
   },
   "banUserDescription": "",
   "@banUserDescription": {},
-  "removeDevicesDescription": "",
+  "removeDevicesDescription": "Вы выйдете с этого устройства и больше не будете получать сообщения.",
   "@removeDevicesDescription": {},
-  "unbanUserDescription": "",
+  "unbanUserDescription": "Пользователь сможет при желании зайти в чат снова.",
   "@unbanUserDescription": {},
   "todoLists": "",
   "@todoLists": {},
@@ -2636,11 +2636,11 @@
   "@makeAdminDescription": {},
   "noTodosYet": "",
   "@noTodosYet": {},
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "Чат переместится в архив. Другим пользователям будет видно, что вы вышли из чата.",
   "@archiveRoomDescription": {},
   "todosUnencrypted": "",
   "@todosUnencrypted": {},
-  "hasKnocked": "",
+  "hasKnocked": "{user} постучался",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2654,8 +2654,14 @@
   "@todoListChangedError": {},
   "roomUpgradeDescription": "",
   "@roomUpgradeDescription": {},
-  "pleaseEnterANumber": "",
+  "pleaseEnterANumber": "Пожалуйста введите число больше 0",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "blockListDescription": "Вы можете заглушить тревожащих вас пользователей. Вы не будете получать сообщения или приглашения в комнату от пользователей из вашего личного чёрного списка.",
+  "@blockListDescription": {},
+  "blockedUsers": "Заглушённые пользователи",
+  "@blockedUsers": {},
+  "block": "заглушить",
+  "@block": {}
 }
