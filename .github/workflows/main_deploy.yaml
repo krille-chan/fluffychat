@@ -4,15 +4,18 @@ on:
   push:
     branches:
       - main
-      - pangea-merge
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
+  
 jobs:
   deploy_web:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - run: echo "$WEB_APP_ENV" > .env
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -23,18 +26,20 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
-        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/client/"
+        run: ./scripts/build-web.sh
       - name: Build Website
         run: |
           mv build/web public
-          mv .env public/.env
+          touch public/.env
+          echo "$WEB_APP_ENV" >> public/.env
+          cp public/.env public/assets/.env
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          # cname: app.staging.pangea.chat.im
+          # cname: app.staging.pangea.chat
 
   update_sentry:
     runs-on: ubuntu-latest

@@ -3,8 +3,7 @@ name: Old Release Workflow
 on:
   push:
     branches:
-      - main
-      - pangea-merge
+      - master-unused
 
 concurrency:
   group: release_workflow

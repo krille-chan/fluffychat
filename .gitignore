@@ -12,6 +12,7 @@
 .svn/
 prime
 *.env
+!/public/.env
 
 # libolm package
 /assets/js/package

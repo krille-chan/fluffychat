@@ -1,16 +1,19 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
-import 'package:url_launcher/url_launcher_string.dart';
-
+// Project imports:
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription_view.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
+import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+// Project imports:
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+// Package imports:
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionManagement extends StatefulWidget {
   const SubscriptionManagement({super.key});
@@ -24,6 +27,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   final PangeaController pangeaController = MatrixState.pangeaController;
   SubscriptionDetails? selectedSubscription;
   late StreamSubscription _settingsSubscription;
+  StreamSubscription? _subscriptionStatusStream;
 
   @override
   void initState() {
@@ -40,6 +44,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   void dispose() {
     super.dispose();
     _settingsSubscription.cancel();
+    _subscriptionStatusStream?.cancel();
   }
 
   bool get currentSubscriptionAvailable =>
@@ -51,6 +56,10 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   bool get currentSubscriptionIsPromotional =>
       pangeaController.subscriptionController.subscription
           ?.currentSubscriptionIsPromotional ??
+      false;
+
+  bool get isNewUserTrial =>
+      pangeaController.subscriptionController.subscription?.isNewUserTrial ??
       false;
 
   bool get showManagementOptions {
@@ -116,6 +125,12 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
 
   @override
   Widget build(BuildContext context) {
+    _subscriptionStatusStream ??= pangeaController
+        .subscriptionController.subscriptionStream.stream
+        .listen((_) {
+      showSubscribedSnackbar(context);
+      context.go('/rooms');
+    });
     return SettingsSubscriptionView(this);
   }
 }
