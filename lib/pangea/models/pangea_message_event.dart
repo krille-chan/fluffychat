@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/matrix.dart';
 import '../constants/language_keys.dart';
-import '../constants/model_keys.dart';
 import '../constants/pangea_event_types.dart';
 import '../enum/use_type.dart';
 import '../utils/error_handler.dart';
@@ -85,7 +84,10 @@ class PangeaMessageEvent {
 
     _representations = [];
 
-    if (_latestEdit.content[ModelKey.originalSent] != null) {
+    final bool latestHasTokens =
+        _latestEdit.content[ModelKey.tokensSent] != null;
+
+    if (_latestEdit.content[ModelKey.originalSent] != null && latestHasTokens) {
       try {
         _representations!.add(
           RepresentationEvent(
@@ -93,12 +95,9 @@ class PangeaMessageEvent {
               _latestEdit.content[ModelKey.originalSent]
                   as Map<String, dynamic>,
             ),
-            tokens: _latestEdit.content[ModelKey.tokensSent] != null
-                ? PangeaMessageTokens.fromJson(
-                    _latestEdit.content[ModelKey.tokensSent]
-                        as Map<String, dynamic>,
-                  )
-                : null,
+            tokens: PangeaMessageTokens.fromJson(
+              _latestEdit.content[ModelKey.tokensSent] as Map<String, dynamic>,
+            ),
             choreo: _latestEdit.content[ModelKey.choreoRecord] != null
                 ? ChoreoRecord.fromJson(
                     _latestEdit.content[ModelKey.choreoRecord]
@@ -116,19 +115,17 @@ class PangeaMessageEvent {
       }
     }
 
-    if (_latestEdit.content[ModelKey.originalWritten] != null) {
+    if (_latestEdit.content[ModelKey.originalWritten] != null &&
+        latestHasTokens) {
       _representations!.add(
         RepresentationEvent(
           content: PangeaRepresentation.fromJson(
             _latestEdit.content[ModelKey.originalWritten]
                 as Map<String, dynamic>,
           ),
-          tokens: _latestEdit.content[ModelKey.tokensWritten] != null
-              ? PangeaMessageTokens.fromJson(
-                  _latestEdit.content[ModelKey.tokensWritten]
-                      as Map<String, dynamic>,
-                )
-              : null,
+          tokens: PangeaMessageTokens.fromJson(
+            _latestEdit.content[ModelKey.tokensWritten] as Map<String, dynamic>,
+          ),
           timeline: timeline,
         ),
       );
