@@ -11,7 +11,8 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart' as ffi;
 import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/utils/platform_infos.dart';
+import '../platform_infos.dart';
+
 
 Future<MatrixSdkDatabase> flutterMatrixSdkDatabaseBuilder(Client client) async {
   final database = await _constructDatabase(client);
