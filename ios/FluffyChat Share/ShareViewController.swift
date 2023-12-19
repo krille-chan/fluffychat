@@ -5,7 +5,7 @@ import Photos
 
 class ShareViewController: SLComposeServiceViewController {
     // TODO: IMPORTANT: This should be your host app bundle identifier
-    let hostAppBundleIdentifier = "im.fluffychat.app"
+    let hostAppBundleIdentifier = "im.Tawkie.app"
     let sharedKey = "ShareKey"
     var sharedMedia: [SharedMediaFile] = []
     var sharedText: [String] = []
