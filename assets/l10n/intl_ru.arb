@@ -2663,5 +2663,7 @@
   "blockedUsers": "Заглушённые пользователи",
   "@blockedUsers": {},
   "block": "заглушить",
-  "@block": {}
+  "@block": {},
+  "blockUsername": "Игнорировать имя пользователя",
+  "@blockUsername": {}
 }
