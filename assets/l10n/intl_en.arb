@@ -3339,7 +3339,12 @@
     "downloadTxtFile": "Download Text File",
     "downloadCSVFile": "Download CSV File",
     "promotionalSubscriptionDesc": "You currently have a lifetime promotional subscription. Message support@pangea.chat for help changing your subscription.",
-    "originalSubscriptionPlatform": "Subscription purchased through",
+    "originalSubscriptionPlatform": "Subscription purchased through {purchasePlatform}",
+    "@originalSubscriptionPlatform": {
+        "placeholders": {
+            "purchasePlatform": {}
+        }
+    },
     "oneWeekTrial": "One Week Trial",
     "creatingSpacePleaseWait": "Creating space. Please wait...",
     "downloadXLSXFile": "Download Excel File",
@@ -3938,5 +3943,15 @@
   "groupName": "Group name",
   "createGroupAndInviteUsers": "Create a group and invite users",
   "groupCanBeFoundViaSearch": "Group can be found via search",
-  "inNoSpaces": "You are not a member of any classes or exchanges"
+  "trialExpiration": "Your free trial expires on {expiration}",
+    "@trialExpiration": {
+        "placeholders": {
+            "expiration": {}
+        }
+    },
+    "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
+    "activateTrial": "Activate Trial",
+  "inNoSpaces": "You are not a member of any classes or exchanges",
+  "successfullySubscribed": "You have successfully subscribed!",
+  "clickToManageSubscription": "Click here to manage your subscription."
 }

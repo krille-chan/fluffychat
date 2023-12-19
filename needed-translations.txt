@@ -756,7 +756,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bn": [
@@ -1521,7 +1526,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "bo": [
@@ -2286,7 +2296,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ca": [
@@ -3046,7 +3061,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "cs": [
@@ -3806,7 +3826,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "de": [
@@ -4566,7 +4591,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "el": [
@@ -5331,7 +5361,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eo": [
@@ -6091,7 +6126,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "es": [
@@ -6115,7 +6155,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "et": [
@@ -6875,7 +6920,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "eu": [
@@ -7635,7 +7685,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fa": [
@@ -8395,7 +8450,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fi": [
@@ -9155,7 +9215,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "fr": [
@@ -9915,7 +9980,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ga": [
@@ -10675,7 +10745,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "gl": [
@@ -11435,7 +11510,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "he": [
@@ -12195,7 +12275,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hi": [
@@ -12960,7 +13045,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hr": [
@@ -13720,7 +13810,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "hu": [
@@ -14480,7 +14575,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "id": [
@@ -15240,7 +15340,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ie": [
@@ -16002,7 +16107,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "it": [
@@ -16762,7 +16872,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ja": [
@@ -17522,7 +17637,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ko": [
@@ -18282,7 +18402,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lt": [
@@ -19042,7 +19167,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "lv": [
@@ -19807,7 +19937,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nb": [
@@ -20567,7 +20702,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "nl": [
@@ -21327,7 +21467,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pl": [
@@ -22087,7 +22232,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt": [
@@ -22852,7 +23002,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_BR": [
@@ -23612,7 +23767,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "pt_PT": [
@@ -24372,7 +24532,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ro": [
@@ -25132,7 +25297,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ru": [
@@ -25892,7 +26062,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sk": [
@@ -26653,7 +26828,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sl": [
@@ -27416,7 +27596,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sr": [
@@ -28176,7 +28361,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "sv": [
@@ -28936,7 +29126,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "ta": [
@@ -29701,7 +29896,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "th": [
@@ -30466,7 +30666,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "tr": [
@@ -31226,7 +31431,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "uk": [
@@ -31986,7 +32196,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "vi": [
@@ -32749,7 +32964,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh": [
@@ -33509,7 +33729,12 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ],
 
   "zh_Hant": [
@@ -34269,6 +34494,11 @@
     "groupName",
     "createGroupAndInviteUsers",
     "groupCanBeFoundViaSearch",
-    "inNoSpaces"
+    "trialExpiration",
+    "freeTrialDesc",
+    "activateTrial",
+    "inNoSpaces",
+    "successfullySubscribed",
+    "clickToManageSubscription"
   ]
 }
