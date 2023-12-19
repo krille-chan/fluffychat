@@ -155,7 +155,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final eventWaveForm = widget.event.content
         .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
         ?.tryGetList<int>('waveform');
-    if (eventWaveForm == null) {
+    if (eventWaveForm == null || eventWaveForm.isEmpty) {
       return List<int>.filled(AudioPlayerWidget.wavesCount, 500);
     }
     while (eventWaveForm.length < AudioPlayerWidget.wavesCount) {

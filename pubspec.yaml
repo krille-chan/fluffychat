@@ -2,7 +2,7 @@ name: tawkie
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.15.1+3522
+version: 1.16.0+3523
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -47,7 +47,7 @@ dependencies:
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
   flutter_typeahead: ^4.8.0
-  flutter_web_auth_2: ^3.0.3
+  flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
@@ -61,7 +61,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  matrix: ^0.24.0
+  matrix: ^0.24.3
   matrix_homeserver_recommendations: ^0.3.0
   native_imaging: ^0.1.0
   package_info_plus: ^4.0.0
@@ -78,6 +78,9 @@ dependencies:
   share_plus: ^7.2.1
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
+  sqflite: ^2.3.0
+  sqflite_common_ffi: ^2.3.0+4
+  sqflite_sqlcipher: ^2.2.1
   swipe_to_action: ^0.2.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1

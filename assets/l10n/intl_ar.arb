@@ -2682,5 +2682,13 @@
   "commandHint_sendraw": "إرسال جيسون الخام",
   "@commandHint_sendraw": {},
   "wrongRecoveryKey": "عذرًا... لا يبدو أن هذا هو مفتاح الاسترداد الصحيح.",
-  "@wrongRecoveryKey": {}
+  "@wrongRecoveryKey": {},
+  "blockListDescription": "يمكنك حظر المستخدمين الذين يزعجونك. لن تتمكن من تلقي أي رسائل أو دعوات للغرفة من المستخدمين الموجودين في قائمة الحظر الشخصية الخاصة بك.",
+  "@blockListDescription": {},
+  "blockedUsers": "المستخدمون المحظورون",
+  "@blockedUsers": {},
+  "block": "حظر",
+  "@block": {},
+  "blockUsername": "تجاهل اسم المستخدم",
+  "@blockUsername": {}
 }

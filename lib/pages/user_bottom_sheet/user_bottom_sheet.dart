@@ -6,7 +6,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:tawkie/widgets/permission_slider_dialog.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'user_bottom_sheet_view.dart';
 
@@ -225,19 +226,24 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         }
         break;
       case UserBottomSheetAction.message:
+        Navigator.of(context).pop();
+        // Workaround for https://github.com/flutter/flutter/issues/27495
+        await Future.delayed(FluffyThemes.animationDuration);
+
         final roomIdResult = await showFutureLoadingDialog(
-          context: context,
+          context: widget.outerContext,
           future: () => Matrix.of(widget.outerContext)
               .client
               .startDirectChat(user?.id ?? widget.profile!.userId),
         );
         final roomId = roomIdResult.result;
         if (roomId == null) return;
-        Navigator.of(context).pop();
         widget.outerContext.go('/rooms/$roomId');
         break;
       case UserBottomSheetAction.ignore:
         Navigator.of(context).pop();
+        // Workaround for https://github.com/flutter/flutter/issues/27495
+        await Future.delayed(FluffyThemes.animationDuration);
         final userId = user?.id ?? widget.profile?.userId;
         widget.outerContext
             .go('/rooms/settings/security/ignorelist', extra: userId);
