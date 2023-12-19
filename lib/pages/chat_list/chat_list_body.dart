@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -15,6 +10,10 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 import '../../widgets/connection_status_header.dart';
 import '../../widgets/matrix.dart';
@@ -196,27 +195,16 @@ class ChatListViewBody extends StatelessWidget {
                       if (client.prevBatch != null &&
                           rooms.isEmpty &&
                           !controller.isSearchMode) ...[
-                        Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          // #Pangea
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'private_chat_wallpaper.png',
-                                height: 256,
-                              ),
-                            ],
-                          ),
-                          // child: Icon(
-                          //   CupertinoIcons.chat_bubble_2,
-                          //   size: 128,
-                          //   color:
-                          //       Theme.of(context).colorScheme.onInverseSurface,
-                          // ),
-                          // Pangea#
-                        ),
                         // #Pangea
+                        // Padding(
+                        //   padding: const EdgeInsets.all(32.0),
+                        //   child: Icon(
+                        //     CupertinoIcons.chat_bubble_2,
+                        //     size: 128,
+                        //     color:
+                        //         Theme.of(context).colorScheme.onInverseSurface,
+                        //   ),
+                        // ),
                         Center(
                           child: ChatListBodyStartText(
                             controller: controller,

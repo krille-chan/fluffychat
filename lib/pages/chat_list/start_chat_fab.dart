@@ -1,12 +1,10 @@
 import 'dart:core';
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
   final ActiveFilter activeFilter;
@@ -29,7 +27,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
   void _onPressed(BuildContext context) {
     //#Pangea
     if (controller.activeSpaceId != null) {
-      context.go('/rooms/newgroup/${controller.activeSpaceId}');
+      context.go('/rooms/newgroup/${controller.activeSpaceId ?? ''}');
       return;
     }
     //Pangea#
@@ -43,7 +41,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
       case ActiveFilter.groups:
         // #Pangea
         // context.go('/rooms/newgroup');
-        context.go('/rooms/newgroup/${controller.activeSpaceId}');
+        context.go('/rooms/newgroup/${controller.activeSpaceId ?? ''}');
         // Pangea#
         break;
       case ActiveFilter.spaces:
