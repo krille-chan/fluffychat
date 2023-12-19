@@ -27,21 +27,35 @@ jobs:
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
       - name: Create archive
-        run: tar -czf fluffychat-web.tar.gz build/web/
+        run: tar -czf tawkie-web.tar.gz build/web/
       - name: Upload Web Build
         uses: actions/upload-artifact@v2
         with:
           name: Web Build
-          path: fluffychat-web.tar.gz
+          path: tawkie-web.tar.gz
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-web.tar.gz
-          asset_name: fluffychat-web.tar.gz
+          asset_path: tawkie-web.tar.gz
+          asset_name: tawkie-web.tar.gz
           asset_content_type: application/gzip
+      - name: Build Website
+        run: |
+          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
+          mv docs public
+          mv repo public || true
+          mv build/web/ public/web
+          cp public/web -r public/nightly
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          cname: fluffychat.im
 
   build_apk:
     runs-on: ubuntu-latest
@@ -57,6 +71,10 @@ jobs:
           cache: true
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -72,7 +90,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: build/app/outputs/apk/release/app-release.apk
-          asset_name: fluffychat.apk
+          asset_name: tawkie.apk
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
@@ -89,15 +107,15 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release --target-platform linux-x64
       - name: Create archive
-        run: tar -czf fluffychat-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
+        run: tar -czf tawkie-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-x64.tar.gz
-          asset_name: fluffychat-linux-x64.tar.gz
+          asset_path: tawkie-linux-x64.tar.gz
+          asset_name: tawkie-linux-x64.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:
@@ -120,6 +138,10 @@ jobs:
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -140,9 +162,9 @@ jobs:
           bundle install
           bundle update fastlane
           bundle exec fastlane deploy_internal_test
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              bundle exec fastlane deploy_candidate
-          else
-              bundle exec fastlane deploy_release
-          fi
+          # if [[ $GITHUB_REF_NAME == rc* ]]; then
+          #     bundle exec fastlane deploy_candidate
+          # else
+          #     bundle exec fastlane deploy_release
+          # fi
           cd ..

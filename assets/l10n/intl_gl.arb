@@ -1164,7 +1164,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Semella que non tes Firebase Cloud Messaging dispoñible no teu dispositivo. Para recibir notificacións push recomendamos que instales MicroG ou Unified Push.",
+  "noGoogleServicesWarning": "Semella que non tes Firebase Cloud Messaging dispoñible no teu dispositivo. Para recibir notificacións push recomendamos que instales ntfy. Con ntfy ou outro provedor Unified Push podes recibir notificacións push de xeito seguro. Podes descargar ntfy desde a PlayStore ou F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2584,7 +2584,7 @@
   "@redactMessageDescription": {},
   "invite": "Convidar",
   "@invite": {},
-  "addChatDescription": "Engadir descrición da conversa",
+  "addChatDescription": "Engadir descrición da conversa...",
   "@addChatDescription": {},
   "chatPermissions": "Permisos da conversa",
   "@chatPermissions": {},
@@ -2657,5 +2657,38 @@
   "pleaseEnterANumber": "Escribe un número maior de cero",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "A usuaria foi expulsada pero non vetada. En conversas públicas a usuaria pode volver cando queira.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "todosUnencrypted": "Ten en conta que as tarefas pendentes son visible para toda persoa da conversa e non están cifradas de extremo a extremo.",
+  "@todosUnencrypted": {},
+  "createGroupAndInviteUsers": "Crear un grupo e convidar usuarias",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "O grupo pódese atopar ao buscar",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "Lamentamos non atopar ningunha usuaria con \"{query}\". Comproba se está ben escrito.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "O teu ID-usuaria global é: ",
+  "@yourGlobalUserIdIs": {},
+  "groupName": "Nome do grupo",
+  "@groupName": {},
+  "searchChatsRooms": "Buscar #conversas, @usuarias...",
+  "@searchChatsRooms": {},
+  "startConversation": "Iniciar conversa",
+  "@startConversation": {},
+  "commandHint_sendraw": "Enviar json sen editar",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "Desculpa... non semella ser o xeito correcto de recuperar a chave.",
+  "@wrongRecoveryKey": {},
+  "blockListDescription": "Podes bloquear usuarias que che molesten. Non recibirás mensaxes nin convites para salas procedentes das usuarias da túa lista persoal de bloqueo.",
+  "@blockListDescription": {},
+  "blockedUsers": "Usuarias bloqueadas",
+  "@blockedUsers": {},
+  "block": "bloquear",
+  "@block": {},
+  "blockUsername": "Ignorar identificador",
+  "@blockUsername": {}
 }

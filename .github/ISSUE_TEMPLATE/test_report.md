@@ -2,7 +2,7 @@
 name: 📝 Test
 about: A detailed protocol for testing all features
 title: 'Test Report'
-label: test
+labels: test
 ---
 
 1. App receives push notifications over Firebase Cloud Messaging when it is in background/terminated:

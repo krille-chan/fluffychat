@@ -309,6 +309,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
     await showDialog(
       context: context,
+      // breaks [Matrix.of] calls otherwise
+      useRootNavigator: false,
       builder: (context) => ImportEmoteArchiveDialog(
         controller: this,
         archive: archive,

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-import 'package:desktop_lifecycle/desktop_lifecycle.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +25,8 @@ extension LocalNotificationsExtension on MatrixState {
     final roomId = eventUpdate.roomID;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
-      if (PlatformInfos.isLinux && DesktopLifecycle.instance.isActive.value) {
+      if (PlatformInfos.isDesktop &&
+          WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
         return;
       }
     }

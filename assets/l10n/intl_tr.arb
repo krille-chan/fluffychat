@@ -1168,7 +1168,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Görünüşe göre telefonunuzda Google hizmetleri yok. Bu, gizliliğiniz için iyi bir karar! FluffyChat'te anlık bildirimler almak için https://microg.org/ veya https://unifiedpush.org/ kullanmanızı tavsiye ediyoruz.",
+  "noGoogleServicesWarning": "Görünüşe göre cihazınızda Firebase Cloud Messaging yok. Buna rağmen bildirim almaya devam etmek için ntfy yüklemenizi öneriyoruz. ntfy veya başka bir Unified Push sağlayıcısı ile anlık bildirimlerinizi güvenli bir şekilde alabilirsiniz. ntfy'ı PlayStore veya F-Droid'den indirebilirsiniz.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2567,7 +2567,7 @@
   "@optionalRedactReason": {},
   "invite": "Davet et",
   "@invite": {},
-  "addChatDescription": "Sohbet açıklaması ekle",
+  "addChatDescription": "Sohbet açıklaması ekle...",
   "@addChatDescription": {},
   "chatPermissions": "Sohbet izinleri",
   "@chatPermissions": {},
@@ -2617,5 +2617,62 @@
     "placeholders": {
       "seconds": {}
     }
-  }
+  },
+  "banUserDescription": "Kullanıcı sohbetten yasaklanacak ve yasağı kaldırılana kadar sohbete tekrar giremeyecek.",
+  "@banUserDescription": {},
+  "removeDevicesDescription": "Bu aygıttan çıkış yapacaksınız ve artık mesaj alamayacaksınız.",
+  "@removeDevicesDescription": {},
+  "unbanUserDescription": "Kullanıcı denerse sohbete tekrar girebilecektir.",
+  "@unbanUserDescription": {},
+  "todoLists": "(Beta) Yapılacaklar listesi",
+  "@todoLists": {},
+  "editTodo": "Yapılacağı düzenle",
+  "@editTodo": {},
+  "pushNotificationsNotAvailable": "Anlık bildirimler kullanılamıyor",
+  "@pushNotificationsNotAvailable": {},
+  "pleaseAddATitle": "Lütfen başlık ekleyin",
+  "@pleaseAddATitle": {},
+  "makeAdminDescription": "Bu kullanıcıyı yönetici yaptıktan sonra, sizinle aynı izinlere sahip olacağı için bunu geri alamayabilirsiniz.",
+  "@makeAdminDescription": {},
+  "noTodosYet": "Bu sohbete henüz bir yapılacak eklenmemiş. İlk yapılacağınızı oluşturun ve başkalarıyla ortaklaşmaya başlayın. 📝",
+  "@noTodosYet": {},
+  "archiveRoomDescription": "Sohbet arşive taşınacak. Diğer kullanıcıları sohbeti terk ettiğinizi görebilecek.",
+  "@archiveRoomDescription": {},
+  "todosUnencrypted": "Lütfen yapılackalar listelerinin sohbetteki herkes tarafından görülebildiğini ve uçtan uca şifrelenmediğini unutmayın.",
+  "@todosUnencrypted": {},
+  "hasKnocked": "{user} tıklattı",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newTodo": "Yeni yapılacak",
+  "@newTodo": {},
+  "learnMore": "Daha fazla bilgi",
+  "@learnMore": {},
+  "todoListChangedError": "Oops... Yapılacaklar listesi siz düzenlerken değiştirildi.",
+  "@todoListChangedError": {},
+  "roomUpgradeDescription": "Sohbet daha sonra yeni oda sürümüyle yeniden oluşturulacaktır. Tüm katılımcılara yeni sohbete geçmeleri gerektiği bildirilecektir. Oda sürümleri hakkında daha fazla bilgiyi https://spec.matrix.org/latest/rooms/ adresinde bulabilirsiniz.",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Lütfen 0'dan büyük bir sayı girin",
+  "@pleaseEnterANumber": {},
+  "kickUserDescription": "Kullanıcı sohbetten atılır ancak yasaklanmaz. Herkese açık sohbetlerde kullanıcı istediği zaman yeniden katılabilir.",
+  "@kickUserDescription": {},
+  "createGroupAndInviteUsers": "Bir grup oluşturun ve kullanıcıları davet edin",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "Grup, arama ile bulunabilir",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "Ne yazık ki \"{query}\" ile kullanıcı bulunamadı. Lütfen bir yazım hatası yapıp yapmadığınızı kontrol edin.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "Genel kullanıcı kimliğiniz: ",
+  "@yourGlobalUserIdIs": {},
+  "groupName": "Grup ismi",
+  "@groupName": {},
+  "searchChatsRooms": "#sohbetler, @kullanıcılar... için arama yapın",
+  "@searchChatsRooms": {}
 }

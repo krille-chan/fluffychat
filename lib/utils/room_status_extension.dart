@@ -4,37 +4,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import '../config/app_config.dart';
-import 'date_time_extension.dart';
 
 extension RoomStatusExtension on Room {
-  CachedPresence? get directChatPresence =>
-      client.presences[directChatMatrixID];
-
-  String getLocalizedStatus(BuildContext context) {
-    if (isDirectChat) {
-      final directChatPresence = this.directChatPresence;
-      if (directChatPresence != null &&
-          (directChatPresence.lastActiveTimestamp != null ||
-              directChatPresence.currentlyActive != null)) {
-        if (directChatPresence.statusMsg?.isNotEmpty ?? false) {
-          return directChatPresence.statusMsg!;
-        }
-        if (directChatPresence.currentlyActive == true) {
-          return L10n.of(context)!.currentlyActive;
-        }
-        if (directChatPresence.lastActiveTimestamp == null) {
-          return L10n.of(context)!.lastSeenLongTimeAgo;
-        }
-        final time = directChatPresence.lastActiveTimestamp!;
-        return L10n.of(context)!
-            .lastActiveAgo(time.localizedTimeShort(context));
-      }
-      return L10n.of(context)!.lastSeenLongTimeAgo;
-    }
-    return L10n.of(context)!
-        .countParticipants(summary.mJoinedMemberCount.toString());
-  }
-
   String getLocalizedTypingText(BuildContext context) {
     var typingText = '';
     final typingUsers = this.typingUsers;

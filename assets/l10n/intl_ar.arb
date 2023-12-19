@@ -2584,7 +2584,7 @@
   },
   "invite": "دعوة",
   "@invite": {},
-  "addChatDescription": "أضف وصفًا للدردشة",
+  "addChatDescription": "أضف وصفًا للدردشة...",
   "@addChatDescription": {},
   "chatPermissions": "صلاحيات المحادثة",
   "@chatPermissions": {},
@@ -2659,5 +2659,36 @@
   "roomUpgradeDescription": "سيتم بعد ذلك إعادة إنشاء الدردشة باستخدام إصدار الغرفة الجديد. سيتم إخطار جميع المشاركين بأنهم بحاجة إلى التبديل إلى الدردشة الجديدة. يمكنك معرفة المزيد حول إصدارات الغرف على https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "kickUserDescription": "يتم طرد المستخدم من الدردشة ولكن لا يتم حظره. في الدردشات العامة، يمكن للمستخدم الانضمام مرة أخرى في أي وقت.",
-  "@kickUserDescription": {}
+  "@kickUserDescription": {},
+  "createGroupAndInviteUsers": "إنشاء مجموعة ودعوة المستخدمين",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "يمكن العثور على المجموعة عبر البحث",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "لسوء الحظ، لا يمكن العثور على مستخدم لديه \"{query}\". يرجى التحقق مما إذا كنت قد ارتكبت خطأ كتابي.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "معرف المستخدم العمومي الخاص بك هو: ",
+  "@yourGlobalUserIdIs": {},
+  "groupName": "أسم المجموعة",
+  "@groupName": {},
+  "searchChatsRooms": "ابحث عن #الدردشات، @المستخدمين...",
+  "@searchChatsRooms": {},
+  "startConversation": "بدء محادثة",
+  "@startConversation": {},
+  "commandHint_sendraw": "إرسال جيسون الخام",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "عذرًا... لا يبدو أن هذا هو مفتاح الاسترداد الصحيح.",
+  "@wrongRecoveryKey": {},
+  "blockListDescription": "يمكنك حظر المستخدمين الذين يزعجونك. لن تتمكن من تلقي أي رسائل أو دعوات للغرفة من المستخدمين الموجودين في قائمة الحظر الشخصية الخاصة بك.",
+  "@blockListDescription": {},
+  "blockedUsers": "المستخدمون المحظورون",
+  "@blockedUsers": {},
+  "block": "حظر",
+  "@block": {},
+  "blockUsername": "تجاهل اسم المستخدم",
+  "@blockUsername": {}
 }

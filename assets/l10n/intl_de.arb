@@ -356,7 +356,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "Verbanne den übergebenen Benutzer aus diesen Raum",
+  "commandHint_ban": "Banne ausgewählten Benutzer aus diesen Raum",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -371,7 +371,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Betrete den übergebenen Raum",
+  "commandHint_join": "Betrete den ausgewählten Raum",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -2596,7 +2596,7 @@
   "@invalidServerName": {},
   "directChat": "Privater Chat",
   "@directChat": {},
-  "addChatDescription": "Chatbeschreibung hinzufügen",
+  "addChatDescription": "Chatbeschreibung hinzufügen ...",
   "@addChatDescription": {},
   "setChatDescription": "Chatbeschreibung festlegen",
   "@setChatDescription": {},
@@ -2659,5 +2659,36 @@
   "kickUserDescription": "Der Benutzer wird aus dem Chat geworfen, aber nicht gebannt. In öffentlichen Chats kann der Benutzer jederzeit wieder beitreten.",
   "@kickUserDescription": {},
   "todosUnencrypted": "Bitte beachte, dass Todos für jeden im Chat sichtbar und nicht Ende zu Ende verschlüsselt sind.",
-  "@todosUnencrypted": {}
+  "@todosUnencrypted": {},
+  "blockListDescription": "Du kannst Benutzer blockieren, die dich stören. Von Benutzern auf deiner persönlichen Blocklierliste kannst du keine Nachrichten oder Raumeinladungen mehr erhalten.",
+  "@blockListDescription": {},
+  "createGroupAndInviteUsers": "Gruppe erstellen und Nutzer einladen",
+  "@createGroupAndInviteUsers": {},
+  "startConversation": "Unterhaltung starten",
+  "@startConversation": {},
+  "blockedUsers": "Blockierte Benutzer",
+  "@blockedUsers": {},
+  "groupCanBeFoundViaSearch": "Gruppe kann über die Suche gefunden werden",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "Leider konnte mit \"{query}\" kein Benutzer gefunden werden. Bitte schau nach, ob dir ein Tippfehler unterlaufen ist.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "block": "Blockieren",
+  "@block": {},
+  "yourGlobalUserIdIs": "Deine globale Benutzer-ID ist: ",
+  "@yourGlobalUserIdIs": {},
+  "commandHint_sendraw": "Rohes JSON senden",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "Entschuldigung ... das scheint nicht der richtige Wiederherstellungsschlüssel zu sein.",
+  "@wrongRecoveryKey": {},
+  "blockUsername": "Blockiere Benutzername",
+  "@blockUsername": {},
+  "groupName": "Gruppenname",
+  "@groupName": {},
+  "searchChatsRooms": "Suche nach #Chats, @Nutzer ...",
+  "@searchChatsRooms": {}
 }

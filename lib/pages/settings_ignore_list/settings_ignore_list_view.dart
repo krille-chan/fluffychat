@@ -20,10 +20,12 @@ class SettingsIgnoreListView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.ignoredUsers),
+        title: Text(L10n.of(context)!.blockedUsers),
       ),
       body: MaxWidthBody(
+        withScrolling: false,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -39,9 +41,9 @@ class SettingsIgnoreListView extends StatelessWidget {
                       border: const OutlineInputBorder(),
                       hintText: 'bad_guy:domain.abc',
                       prefixText: '@',
-                      labelText: L10n.of(context)!.ignoreUsername,
+                      labelText: L10n.of(context)!.blockUsername,
                       suffixIcon: IconButton(
-                        tooltip: L10n.of(context)!.ignore,
+                        tooltip: L10n.of(context)!.block,
                         icon: const Icon(Icons.done_outlined),
                         onPressed: () => controller.ignoreUser(context),
                       ),
@@ -49,7 +51,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    L10n.of(context)!.ignoreListDescription,
+                    L10n.of(context)!.blockListDescription,
                     style: const TextStyle(color: Colors.orange),
                   ),
                 ],

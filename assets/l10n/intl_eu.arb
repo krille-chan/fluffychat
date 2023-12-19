@@ -746,7 +746,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Dirudienez Firebase Cloud Messaging ez dago erabilgarri zure mugikorrean. Jakinarazpenak jasotzeko MicroG edo Unified Push instalatzea gomendatzen dugu.",
+  "noGoogleServicesWarning": "Ez dirudi Firebase Cloud Messaging zure mugikorrean erabilgarri dagoenik. Jakinarazpenak jasotzeko ntfy instalatzea gomendatzen dugu. ntfy edo beste Unified Push hornitzaileren batekin, push jakinarazpenak jaso ditzazkezu datuentzako segurua den modu batean. ntfy PlayStore edo F-Droid dendetatik deskarga dezakezu.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2504,7 +2504,7 @@
   "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Saiatu geroago edo aukeratu beste zerbitzari bat.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "Hasi saioa {provider}(e)kin",
+  "signInWith": "Hasi saioa {provider}(r)ekin",
   "@signInWith": {
     "type": "text",
     "placeholders": {
@@ -2573,7 +2573,7 @@
   "@anyoneCanKnock": {},
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
   "@redactMessageDescription": {},
-  "addChatDescription": "Gehitu txat honen deskribapena",
+  "addChatDescription": "Gehitu txat honen deskribapena…",
   "@addChatDescription": {},
   "directChat": "Banakako txata",
   "@directChat": {},
@@ -2650,5 +2650,36 @@
   "kickUserDescription": "Erabiltzailea txatetik kanporatu da baina ez zaio debekua ezarri. Txat publikoen kasuan, edozein momentutan batu daiteke berriro.",
   "@kickUserDescription": {},
   "todosUnencrypted": "Kontuan izan zereginak txateko guztientzat daudela ikusgai, eta ez daudela ertzetik ertzera zifratuta.",
-  "@todosUnencrypted": {}
+  "@todosUnencrypted": {},
+  "createGroupAndInviteUsers": "Sortu talde bat eta gonbidatu partaideak",
+  "@createGroupAndInviteUsers": {},
+  "startConversation": "Hasi elkarrizketa",
+  "@startConversation": {},
+  "groupCanBeFoundViaSearch": "Bilaketa erabiliz aurkitu daiteke taldea",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "Zoritxarrez ez da \"{query}\" duen erabiltzailerik aurkitu. Egiaztatu zuzen idatzi duzula.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "Zure erabiltzaile-ID orokorra: ",
+  "@yourGlobalUserIdIs": {},
+  "commandHint_sendraw": "Bidali json gordina",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "Barka baina ez dirudi berreskuratze-gako zuzena denik.",
+  "@wrongRecoveryKey": {},
+  "groupName": "Taldearen izena",
+  "@groupName": {},
+  "searchChatsRooms": "Bilatu #txatak, @erabiltzaileak…",
+  "@searchChatsRooms": {},
+  "blockListDescription": "Gogaitzen zaituzten erabiltzaileak blokeatu ditzakezu. Ez duzu blokeatutakoen zerrendan dituzun erabiltzaileen mezurik edo gelara batzeko gonbidapenik jasoko.",
+  "@blockListDescription": {},
+  "blockedUsers": "Blokeatutako erabiltzaileak",
+  "@blockedUsers": {},
+  "block": "blokeatu",
+  "@block": {},
+  "blockUsername": "Ezikusi erabiltzaile-izena",
+  "@blockUsername": {}
 }

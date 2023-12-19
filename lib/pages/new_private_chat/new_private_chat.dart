@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,6 +9,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
+import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -23,38 +26,43 @@ class NewPrivateChat extends StatefulWidget {
 class NewPrivateChatController extends State<NewPrivateChat> {
   final TextEditingController controller = TextEditingController();
   final FocusNode textFieldFocus = FocusNode();
-  final formKey = GlobalKey<FormState>();
-  bool loading = false;
 
-  // remove leading matrix.to from text field in order to simplify pasting
-  final List<TextInputFormatter> removeMatrixToFormatters = [
-    FilteringTextInputFormatter.deny(NewPrivateChatController.prefix),
-    FilteringTextInputFormatter.deny(NewPrivateChatController.prefixNoProtocol),
-  ];
+  Future<List<Profile>>? searchResponse;
 
-  static const Set<String> supportedSigils = {'@', '!', '#'};
+  Timer? _searchCoolDown;
 
-  static const String prefix = 'https://matrix.to/#/';
-  static const String prefixNoProtocol = 'matrix.to/#/';
+  static const Duration _coolDown = Duration(milliseconds: 500);
 
-  void submitAction([_]) async {
-    controller.text = controller.text.trim();
-    if (!formKey.currentState!.validate()) return;
-    UrlLauncher(context, '$prefix${controller.text}').openMatrixToUrl();
+  void searchUsers([String? input]) async {
+    final searchTerm = input ?? controller.text;
+    if (searchTerm.isEmpty) {
+      _searchCoolDown?.cancel();
+      setState(() {
+        searchResponse = _searchCoolDown = null;
+      });
+      return;
+    }
+
+    _searchCoolDown?.cancel();
+    _searchCoolDown = Timer(_coolDown, () {
+      setState(() {
+        searchResponse = _searchUser(searchTerm);
+      });
+    });
   }
 
-  String? validateForm(String? value) {
-    if (value!.isEmpty) {
-      return L10n.of(context)!.pleaseEnterAMatrixIdentifier;
+  Future<List<Profile>> _searchUser(String searchTerm) async {
+    final result =
+        await Matrix.of(context).client.searchUserDirectory(searchTerm);
+    final profiles = result.results;
+
+    if (searchTerm.isValidMatrixId &&
+        searchTerm.sigil == '@' &&
+        !profiles.any((profile) => profile.userId == searchTerm)) {
+      profiles.add(Profile(userId: searchTerm));
     }
-    if (!controller.text.isValidMatrixId ||
-        !supportedSigils.contains(controller.text.sigil)) {
-      return L10n.of(context)!.makeSureTheIdentifierIsValid;
-    }
-    if (controller.text == Matrix.of(context).client.userID) {
-      return L10n.of(context)!.youCannotInviteYourself;
-    }
-    return null;
+
+    return profiles;
   }
 
   void inviteAction() => FluffyShare.shareInviteLink(context);
@@ -80,6 +88,23 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       ),
     );
   }
+
+  void copyUserId() async {
+    await Clipboard.setData(
+      ClipboardData(text: Matrix.of(context).client.userID!),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
+    );
+  }
+
+  void openUserModal(Profile profile) => showAdaptiveBottomSheet(
+        context: context,
+        builder: (c) => UserBottomSheet(
+          profile: profile,
+          outerContext: context,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);

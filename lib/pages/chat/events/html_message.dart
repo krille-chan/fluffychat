@@ -141,7 +141,11 @@ class HtmlMessage extends StatelessWidget {
           const ImageExtension(),
           FontColorExtension(),
         ],
-        onLinkTap: (url, _, __) => UrlLauncher(context, url).launchUrl(),
+        onLinkTap: (url, _, element) => UrlLauncher(
+          context,
+          url,
+          element?.text,
+        ).launchUrl(),
         onlyRenderTheseTags: const {
           ...allowedHtmlTags,
           // Needed to make it work properly

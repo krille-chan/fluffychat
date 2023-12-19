@@ -305,11 +305,11 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    String result = ""; // Variable to track the result of the connection
-
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $username $password");
     await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    String result = ""; // Variable to track the result of the connection
 
     // variable for loop limit
     const int maxIterations = 5;
@@ -364,6 +364,71 @@ class BotBridgeConnection {
         }
       }
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      print("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    return result;
+  }
+
+  // To disconnect from Instagram
+  Future<String> disconnectToInstagram() async {
+    final String botUserId = '@instagrambot:$hostname';
+
+    final RegExp successMatch = RegExp(r"Successfully logged out");
+    final RegExp alreadyLogoutMatch =
+        RegExp(r"That command requires you to be logged in.");
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    // Send the "logout" message to the bot
+    await roomBot?.sendTextEvent("logout");
+    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    String result =
+        "Connected"; // Variable to track the result of the connection
+
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
+      // Get the latest messages from the room (limited to the specified number)
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+      if (latestMessages.isNotEmpty) {
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        // to find out if we're connected
+        if (!successMatch.hasMatch(latestMessage) &&
+            !alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're always connected to Instagram");
+          result = 'Connected';
+          break;
+        } else if (successMatch.hasMatch(latestMessage) ||
+            alreadyLogoutMatch.hasMatch(latestMessage)) {
+          print("You're disconnected to Instagram");
+
+          result = 'Not Connected';
+          break; // Exit the loop if bridge is connected
+        }
+      }
       currentIteration++;
     }
 
@@ -456,6 +521,7 @@ class BotBridgeConnection {
   Future<String> fetchDataWhatsApp() async {
     print("Starting fetchDataWhatsApp");
 
+    print("ContinuProgress is:$continueProcess");
     const String botUserId = '@whatsappbot:loveto.party';
 
     // Success phrases to spot
@@ -468,10 +534,11 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    String result; // Variable to track the result of the connection
+    String result =
+        "Not logged"; // Variable to track the result of the connection
 
-    // Get the latest messages from the room (limited to the specified number)
-    while (true) {
+    // Get the latest messages from the room (limited to the specified message or stopProgress)
+    while (continueProcess && true) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -496,11 +563,16 @@ class BotBridgeConnection {
           result = "loginTimedOut";
 
           break;
+        } else if (!successMatch.hasMatch(latestMessage) &&
+            !timeOutMatch.hasMatch(latestMessage)) {
+          print("waiting");
+          await Future.delayed(const Duration(seconds: 2)); // Wait 5 sec
         }
-      } else if (!successMatch.hasMatch(latestMessage) &&
-          !timeOutMatch.hasMatch(latestMessage)) {
-        print("waiting");
-        await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      }
+
+      if (continueProcess == false) {
+        print("Stop listening");
+        result = "Stop Listening";
       }
     }
     return result;

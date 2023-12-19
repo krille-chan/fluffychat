@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -59,6 +61,7 @@ Future<void> pushHelper(
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.max,
+          fullScreenIntent: true, // To show notification popup
         ),
       ),
     );
@@ -79,10 +82,9 @@ Future<void> _tryPushHelper(
     notification.toJson(),
   );
 
-  if (!isBackgroundMessage &&
+  if (notification.roomId != null &&
       activeRoomId == notification.roomId &&
-      activeRoomId != null &&
-      client.syncPresence == null) {
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
@@ -242,6 +244,7 @@ Future<void> _tryPushHelper(
     importance: Importance.max,
     priority: Priority.max,
     groupKey: notificationGroupId,
+    fullScreenIntent: true, // To show notification popup
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(

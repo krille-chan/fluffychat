@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/tasks/tasks.dart';
@@ -19,6 +20,9 @@ extension LocalizedExceptionExtension on Object {
         default:
           return (this as MatrixException).errorMessage;
       }
+    }
+    if (this is InvalidPassphraseException) {
+      return L10n.of(context)!.wrongRecoveryKey;
     }
     if (this is TodoListChangedException) {
       return L10n.of(context)!.todoListChangedError;
