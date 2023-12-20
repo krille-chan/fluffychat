@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - gh-actions-improvements
 
 env:
   # Setting an environment variable with the value of a configuration variable
