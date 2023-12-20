@@ -1,7 +1,7 @@
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/service/hostname.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
-import 'package:fluffychat/pages/add_bridge/show_delete_conversation_dialog.dart';
+import 'package:fluffychat/pages/add_bridge/delete_conversation_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/platform_size.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -180,7 +180,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           });
 
           // Show the dialog for deleting the conversation
-          await showDeleteConversationDialog(context, network, botConnection);
+          await deleteConversationDialog(context, network, botConnection);
         } else {
           // Display error message to warn user
           showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);

@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
 // ShowDialog to offer the user the option of cancelling the conversation with the bot after disconnection
-Future<void> showDeleteConversationDialog(BuildContext context,
+Future<void> deleteConversationDialog(BuildContext context,
     SocialNetwork network, BotBridgeConnection botConnection) async {
   return showDialog(
     context: context,
