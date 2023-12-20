@@ -389,7 +389,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "remove": "",
+  "remove": "निकालना",
   "@remove": {
     "type": "text",
     "placeholders": {}
@@ -476,7 +476,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterValidEmail": "",
+  "pleaseEnterValidEmail": "कृपया एक मान्य ईमेल पता प्रविष्ट करें।",
   "@pleaseEnterValidEmail": {},
   "unbanUserDescription": "",
   "@unbanUserDescription": {},
@@ -569,7 +569,7 @@
       "username": {}
     }
   },
-  "pleaseChooseAtLeastChars": "",
+  "pleaseChooseAtLeastChars": "कृपया कम से कम {min} अक्षर चुनें।",
   "@pleaseChooseAtLeastChars": {
     "type": "text",
     "placeholders": {
@@ -951,7 +951,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "importFromZipFile": "",
+  "importFromZipFile": ".zip फ़ाइल से आयात करें",
   "@importFromZipFile": {},
   "discover": "",
   "@discover": {
@@ -1134,7 +1134,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "repeatPassword": "",
+  "repeatPassword": "पासवर्ड दोहराएं",
   "@repeatPassword": {},
   "setStatus": "",
   "@setStatus": {
@@ -1320,7 +1320,7 @@
   },
   "archiveRoomDescription": "",
   "@archiveRoomDescription": {},
-  "exportEmotePack": "",
+  "exportEmotePack": "इमोट पैक को .zip के रूप में निर्यात करें",
   "@exportEmotePack": {},
   "changedTheChatNameTo": "",
   "@changedTheChatNameTo": {
@@ -1534,7 +1534,7 @@
   },
   "reportUser": "",
   "@reportUser": {},
-  "passwordsDoNotMatch": "",
+  "passwordsDoNotMatch": "सांकेतिक शब्द मेल नहीं खाते!",
   "@passwordsDoNotMatch": {},
   "sharedTheLocation": "",
   "@sharedTheLocation": {
@@ -1609,7 +1609,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "importZipFile": "",
+  "importZipFile": ".zip फ़ाइल आयात करें",
   "@importZipFile": {},
   "anyoneCanKnock": "",
   "@anyoneCanKnock": {},
@@ -1972,7 +1972,7 @@
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
-  "importEmojis": "",
+  "importEmojis": "इमोजी आयात करें",
   "@importEmojis": {},
   "confirm": "",
   "@confirm": {
@@ -2028,7 +2028,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notAnImage": "",
+  "notAnImage": "कोई छवि फ़ाइल नहीं।",
   "@notAnImage": {},
   "users": "",
   "@users": {},
@@ -2556,7 +2556,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "importNow": "",
+  "importNow": "अभी आयात करें",
   "@importNow": {},
   "deleteAccount": "",
   "@deleteAccount": {
