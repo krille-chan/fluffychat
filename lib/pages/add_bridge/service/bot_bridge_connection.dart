@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:matrix/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import '../error_message_dialog.dart';
 import '../model/social_network.dart';
@@ -171,7 +171,7 @@ class BotBridgeConnection {
         if (onlineMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch?.hasMatch(latestMessage) == true ||
             successfullyMatch.hasMatch(latestMessage) == true) {
-          print("You're logged to ${socialNetwork.name}");
+          Logs().v("You're logged to ${socialNetwork.name}");
 
           result = 'Connected';
 
@@ -179,7 +179,7 @@ class BotBridgeConnection {
         } else if (notLoggedMatch.hasMatch(latestMessage) == true ||
             disconnectMatch.hasMatch(latestMessage) == true ||
             connectedButNotLoggedMatch?.hasMatch(latestMessage) == true) {
-          print('Not connected to ${socialNetwork.name}');
+          Logs().v('Not connected to ${socialNetwork.name}');
 
           result = 'Not Connected';
 
@@ -190,12 +190,12 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print(
+      Logs().v(
           "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
 
       result = 'error';
     } else if (!continueProcess) {
-      print(('ping stopping'));
+      Logs().v(('ping stopping'));
       result = 'stop';
     }
 
@@ -259,12 +259,12 @@ class BotBridgeConnection {
         // to find out if we're connected
         if (!successMatch.hasMatch(latestMessage) &&
             !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected to ${network.name}");
+          Logs().v("You're always connected to ${network.name}");
           result = 'Connected';
           break;
         } else if (successMatch.hasMatch(latestMessage) ||
             alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected to ${network.name}");
+          Logs().v("You're disconnected to ${network.name}");
           result = 'Not Connected';
           break; // Exit the loop if bridge is disconnected
         }
@@ -273,7 +273,7 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
+      Logs().v("Maximum iterations reached, setting result to 'error'");
       result = 'error';
     }
 
@@ -330,13 +330,13 @@ class BotBridgeConnection {
       if (latestMessages.isNotEmpty) {
         if (successMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch.hasMatch(latestMessage)) {
-          print("You're logged to Instagram");
+          Logs().v("You're logged to Instagram");
 
           result = "success";
 
           break; // Exit the loop once the "login" message has been sent and is success
         } else if (twoFactorMatch.hasMatch(latestMessage)) {
-          print("Authenticator two factor demand");
+          Logs().v("Authenticator two factor demand");
 
           result = "twoFactorDemand";
 
@@ -344,19 +344,19 @@ class BotBridgeConnection {
         } else if (!successMatch.hasMatch(latestMessage) &&
                 usernameErrorMatch.hasMatch(latestMessage) ||
             nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
-          print("Login cannot be found");
+          Logs().v("Login cannot be found");
 
           result = "errorUsername";
 
           break;
         } else if (passwordErrorMatch.hasMatch(latestMessage)) {
-          print("Password incorrect");
+          Logs().v("Password incorrect");
 
           result = "errorPassword";
 
           break;
         } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
-          print("rate limit error");
+          Logs().v("rate limit error");
 
           result = "rateLimitError";
 
@@ -368,7 +368,7 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
+      Logs().v("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
     }
@@ -418,12 +418,12 @@ class BotBridgeConnection {
         // to find out if we're connected
         if (!successMatch.hasMatch(latestMessage) &&
             !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're always connected to Instagram");
+          Logs().v("You're always connected to Instagram");
           result = 'Connected';
           break;
         } else if (successMatch.hasMatch(latestMessage) ||
             alreadyLogoutMatch.hasMatch(latestMessage)) {
-          print("You're disconnected to Instagram");
+          Logs().v("You're disconnected to Instagram");
 
           result = 'Not Connected';
           break; // Exit the loop if bridge is connected
@@ -433,7 +433,7 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
+      Logs().v("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
     }
@@ -489,14 +489,14 @@ class BotBridgeConnection {
       if (latestMessages.isNotEmpty) {
         if (successMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch.hasMatch(latestMessage)) {
-          print("You're logged to WhatsApp");
+          Logs().v("You're logged to WhatsApp");
 
           result = WhatsAppResult("success", "", "");
 
           break; // Exit the loop once the "login" message has been sent and is success
         } else if (!successMatch.hasMatch(latestMessage) &&
             meansCodeMatch.hasMatch(oldestMessage)) {
-          print("scanTheCode");
+          Logs().v("scanTheCode");
 
           // To note the simple code between the ** of the message
           final RegExp regExp = RegExp(r"\*\*(.*?)\*\*");
@@ -507,7 +507,7 @@ class BotBridgeConnection {
 
           break;
         } else if (timeOutMatch.hasMatch(latestMessage)) {
-          print("Login timed out");
+          Logs().v("Login timed out");
 
           result = WhatsAppResult("loginTimedOut", "", "");
 
@@ -519,9 +519,9 @@ class BotBridgeConnection {
   }
 
   Future<String> fetchDataWhatsApp() async {
-    print("Starting fetchDataWhatsApp");
+    Logs().v("Starting fetchDataWhatsApp");
 
-    print("ContinuProgress is:$continueProcess");
+    Logs().v("ContinuProgress is:$continueProcess");
     const String botUserId = '@whatsappbot:loveto.party';
 
     // Success phrases to spot
@@ -552,26 +552,26 @@ class BotBridgeConnection {
 
       if (latestMessages.isNotEmpty) {
         if (successMatch.hasMatch(latestMessage)) {
-          print("You're logged to WhatsApp");
+          Logs().v("You're logged to WhatsApp");
 
           result = "success";
 
           break; // Exit the loop once the "login" message has been sent and is success
         } else if (timeOutMatch.hasMatch(latestMessage)) {
-          print("Login timed out");
+          Logs().v("Login timed out");
 
           result = "loginTimedOut";
 
           break;
         } else if (!successMatch.hasMatch(latestMessage) &&
             !timeOutMatch.hasMatch(latestMessage)) {
-          print("waiting");
+          Logs().v("waiting");
           await Future.delayed(const Duration(seconds: 2)); // Wait 5 sec
         }
       }
 
       if (continueProcess == false) {
-        print("Stop listening");
+        Logs().v("Stop listening");
         result = "Stop Listening";
       }
     }
@@ -628,7 +628,7 @@ class BotBridgeConnection {
 
       if (latestMessages.isNotEmpty) {
         if (sendPassword.hasMatch(latestMessage) && !passwordSent) {
-          print("Enter Password");
+          Logs().v("Enter Password");
 
           // Send the password message to the bot
           await roomBot?.sendTextEvent(password);
@@ -637,7 +637,7 @@ class BotBridgeConnection {
           // Set the flag to true after sending the password
           passwordSent = true;
         } else if (alreadyConnected.hasMatch(latestMessage)) {
-          print("Already Connected to Facebook");
+          Logs().v("Already Connected to Facebook");
           // Set the result to "twoFactorDemand"
           result = "alreadyConnected";
           break;
@@ -646,7 +646,7 @@ class BotBridgeConnection {
         // Continue handling other cases...
 
         if (twoFactorMatch.hasMatch(latestMessage)) {
-          print("Authenticator two-factor demand");
+          Logs().v("Authenticator two-factor demand");
 
           // Set the result to "twoFactorDemand"
           result = "twoFactorDemand";
@@ -654,7 +654,7 @@ class BotBridgeConnection {
           // Exit the loop
           break;
         } else if (nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
-          print("Incorrect username or password");
+          Logs().v("Incorrect username or password");
 
           // Set the result to "errorNameOrPassword"
           result = "errorNameOrPassword";
@@ -662,7 +662,7 @@ class BotBridgeConnection {
           // Exit the loop
           break;
         } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
-          print("Rate limit error");
+          Logs().v("Rate limit error");
 
           // Set the result to "rateLimitError"
           result = "rateLimitError";
@@ -677,7 +677,7 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
+      Logs().v("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
     }
@@ -693,12 +693,12 @@ class BotBridgeConnection {
       final room = client.getRoomById(roomId!);
       if (room != null) {
         await room.leave(); // To leave and delete the room (DirectChat only)
-        print('Conversation deleted successfully');
+        Logs().v('Conversation deleted successfully');
       } else {
-        print('Room not found');
+        Logs().v('Room not found');
       }
     } catch (e) {
-      print('Error deleting conversation: $e');
+      Logs().v('Error deleting conversation: $e');
     }
   }
 
@@ -711,14 +711,14 @@ class BotBridgeConnection {
       // Future.timeout to define a maximum waiting time
       return await pingFunction.timeout(const Duration(seconds: 15));
     } on TimeoutException {
-      print("Ping timeout");
+      Logs().v("Ping timeout");
 
       // Display error message to warn user
       showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
 
       throw TimeoutException("Ping timeout");
     } catch (error) {
-      print("Error pinging: $error");
+      Logs().v("Error pinging: $error");
       rethrow;
     }
   }

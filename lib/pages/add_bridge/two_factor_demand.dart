@@ -6,6 +6,7 @@ import 'package:fluffychat/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
@@ -105,7 +106,7 @@ Future<bool> twoFactorDemandCode(
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
                             Navigator.of(context).pop();
-                            print('connected to Instagram');
+                            Logs().v('connected to Instagram');
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
@@ -134,7 +135,7 @@ Future<bool> twoFactorDemandCode(
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
                             Navigator.of(context).pop();
-                            print('connected to Facebook Messenger');
+                            Logs().v('connected to Facebook Messenger');
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
