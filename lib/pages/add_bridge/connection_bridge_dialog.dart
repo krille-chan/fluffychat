@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:fluffychat/pages/add_bridge/qr_code_connect.dart';
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
-import 'package:fluffychat/widgets/notifier_state.dart';
 import 'package:fluffychat/pages/add_bridge/two_factor_demand.dart';
+import 'package:fluffychat/widgets/notifier_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/future_loading_dialog_custom.dart';
@@ -204,15 +203,19 @@ Future<bool> connectToWhatsApp(
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save(); // Save form values
 
+      final connectionStateModel =
+          Provider.of<ConnectionStateModel>(context, listen: false);
+
       try {
         WhatsAppResult?
             result; // Variable to store the result of the connection
 
         // To show Loading while executing the function
-        await showFutureLoadingDialog(
+        await showCustomLoadingDialog(
           context: context,
           future: () async {
-            result = await botConnection.createBridgeWhatsApp(phoneNumber!);
+            result = await botConnection.createBridgeWhatsApp(
+                context, phoneNumber!, connectionStateModel);
           },
         );
 

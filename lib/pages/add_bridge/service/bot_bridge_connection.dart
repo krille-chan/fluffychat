@@ -5,9 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../../widgets/notifier_state.dart';
 import '../error_message_dialog.dart';
 import '../model/social_network.dart';
-import '../../../widgets/notifier_state.dart';
 
 // For all bot bridge conversations
 class BotBridgeConnection {
@@ -462,10 +462,14 @@ class BotBridgeConnection {
 
   // WhatsApp
   // Function for create and login bridge with bot ti WhatsApp
-  Future<WhatsAppResult> createBridgeWhatsApp(
-    String phoneNumber,
-  ) async {
+  Future<WhatsAppResult> createBridgeWhatsApp(BuildContext context,
+      String phoneNumber, ConnectionStateModel connectionState) async {
     final String botUserId = '@whatsappbot:$hostname';
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+    });
 
     // Success phrases to spot
     final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
@@ -483,9 +487,15 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_verificationNumber);
+    });
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $phoneNumber");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     WhatsAppResult result; // Variable to track the result of the connection
 

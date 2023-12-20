@@ -2601,5 +2601,6 @@
   "phoneField_initialZero": "Depending on your country, the initial zero of the local number may not be included.",
   "email": "email",
   "loading_demandToConnect": "Connection request in progress...",
-  "loading_verification": "Login verification..."
+  "loading_verification": "Login verification...",
+  "loading_verificationNumber": "Phone number verification..."
 }
