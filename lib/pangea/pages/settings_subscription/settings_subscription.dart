@@ -1,6 +1,10 @@
 import 'dart:async';
 
-// Project imports:
+import 'package:flutter/material.dart';
+
+import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -9,11 +13,6 @@ import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscript
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-// Project imports:
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-// Package imports:
-import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionManagement extends StatefulWidget {
   const SubscriptionManagement({super.key});
