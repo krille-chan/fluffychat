@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import '../error_message_dialog.dart';
 import '../model/social_network.dart';
+import '../../../widgets/notifier_state.dart';
 
 // For all bot bridge conversations
 class BotBridgeConnection {
@@ -43,7 +44,7 @@ class BotBridgeConnection {
   Future<String> sendMessageToBot(String bot, String contentMessage) async {
     final String botUserId = '$bot$hostname';
 
-    // Add a direct chat with the Instagram bot (if you haven't already)
+    // Add a direct chat with the bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
@@ -282,8 +283,14 @@ class BotBridgeConnection {
 
   // Instagram
   // Function for create and login bridge with instagram bot
-  Future<String> createBridgeInstagram(String username, String password) async {
+  Future<String> createBridgeInstagram(BuildContext context, String username,
+      String password, ConnectionStateModel connectionState) async {
     final String botUserId = '@instagrambot:$hostname';
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+    });
 
     // Success phrases to spot
     final RegExp successMatch = LoginRegex.instagramSuccessMatch;
@@ -294,6 +301,8 @@ class BotBridgeConnection {
     final RegExp passwordErrorMatch = LoginRegex.instagramPasswordErrorMatch;
     final RegExp nameOrPasswordErrorMatch =
         LoginRegex.instagramNameOrPasswordErrorMatch;
+    final RegExp accountNotExistMatch =
+        LoginRegex.instagramAccountNotExistErrorMatch;
     final RegExp rateLimitErrorMatch = LoginRegex.instagramRateLimitErrorMatch;
 
     // Code request message for two-factor identification
@@ -307,7 +316,15 @@ class BotBridgeConnection {
 
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $username $password");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_verification);
+    });
+
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
     String result = ""; // Variable to track the result of the connection
 
@@ -327,6 +344,7 @@ class BotBridgeConnection {
       final String latestMessage =
           latestMessages.first.content['body'].toString() ?? '';
 
+      print("le dernier message reçu est $latestMessage");
       if (latestMessages.isNotEmpty) {
         if (successMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch.hasMatch(latestMessage)) {
@@ -343,7 +361,8 @@ class BotBridgeConnection {
           break;
         } else if (!successMatch.hasMatch(latestMessage) &&
                 usernameErrorMatch.hasMatch(latestMessage) ||
-            nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
+            nameOrPasswordErrorMatch.hasMatch(latestMessage) ||
+            accountNotExistMatch.hasMatch(latestMessage)) {
           Logs().v("Login cannot be found");
 
           result = "errorUsername";
@@ -580,8 +599,14 @@ class BotBridgeConnection {
 
   //Facebook Messenger
   // Function to login Facebook
-  Future<String> createBridgeFacebook(String username, String password) async {
+  Future<String> createBridgeFacebook(BuildContext context, String username,
+      String password, ConnectionStateModel connectionState) async {
     final String botUserId = '@facebookbot:$hostname';
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+    });
 
     // Success phrases to spot
     final RegExp sendPassword = LoginRegex.facebookSendPasswordMatch;
@@ -604,9 +629,15 @@ class BotBridgeConnection {
 
     String result = ""; // Variable to track the result of the connection
 
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_verification);
+    });
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $username");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     // Variable for loop limit
     const int maxIterations = 5;

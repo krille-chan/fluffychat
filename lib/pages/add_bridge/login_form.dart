@@ -3,17 +3,21 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
+import 'model/social_network.dart';
+
 //Input Form for two Fields
 class LoginForm extends StatelessWidget {
+  final SocialNetwork socialNetwork;
   final GlobalKey<FormState> formKey;
-  final TextEditingController usernameController;
+  final TextEditingController identifierController;
   final TextEditingController passwordController;
   final Function(bool) completerCallback;
 
   const LoginForm({
     super.key,
+    required this.socialNetwork,
     required this.formKey,
-    required this.usernameController,
+    required this.identifierController,
     required this.passwordController,
     required this.completerCallback,
   });
@@ -28,8 +32,11 @@ class LoginForm extends StatelessWidget {
           Text(L10n.of(context)!.enterYourDetails),
           const SizedBox(height: 5),
           TextFormField(
-            controller: usernameController,
-            decoration: InputDecoration(labelText: L10n.of(context)!.username),
+            controller: identifierController,
+            decoration: InputDecoration(
+                labelText: socialNetwork.name == 'Instagram'
+                    ? L10n.of(context)!.username
+                    : L10n.of(context)!.email),
             validator: (value) {
               if (value!.isEmpty) {
                 return L10n.of(context)!.pleaseEnterYourUsername;
