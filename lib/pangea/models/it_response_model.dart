@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/extensions/my_list_extionsion.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'lemma.dart';
 
 class ITResponseModel {
@@ -114,7 +113,7 @@ class Continuance {
                 .cast<Lemma>()
             : [];
     return Continuance(
-      probability: json['probability'],
+      probability: json['probability'] as double,
       level: json['level'],
       text: json['text'],
       description: json['description'] ?? "",
