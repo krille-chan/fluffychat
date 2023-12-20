@@ -41,8 +41,8 @@ class LoginRegex {
       RegExp(r"Incorrect password");
   static final RegExp instagramNameOrPasswordErrorMatch =
       RegExp(r"Incorrect username or password");
-  static final RegExp instagramAccountNotExistErrorMatch =
-  RegExp(r"The username you entered doesn't appear to belong to an account. Please check your username and try again.");
+  static final RegExp instagramAccountNotExistErrorMatch = RegExp(
+      r"The username you entered doesn't appear to belong to an account. Please check your username and try again.");
   static final RegExp instagramRateLimitErrorMatch =
       RegExp(r"rate_limit_error");
 

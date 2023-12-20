@@ -33,19 +33,20 @@ class _CustomLoadingDialogState<T> extends State<CustomLoadingDialog<T>> {
         Provider.of<ConnectionStateModel>(context, listen: true);
 
     return AlertDialog(
-      content:
-      FutureBuilder<T>(
+      content: FutureBuilder<T>(
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            Logs().v("ChangeNotifier loading: ${notifierMessage.connectionTitle}");
+            Logs().v(
+                "ChangeNotifier loading: ${notifierMessage.connectionTitle}");
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const CircularProgressIndicator.adaptive(),
                 const SizedBox(height: 20),
                 Text(
-                  notifierMessage.connectionTitle ?? L10n.of(context)!.loadingPleaseWait,
+                  notifierMessage.connectionTitle ??
+                      L10n.of(context)!.loadingPleaseWait,
                   textAlign: TextAlign.center,
                 ),
               ],

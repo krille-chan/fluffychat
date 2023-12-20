@@ -41,8 +41,13 @@ class BotBridgeConnection {
   }
 
   // Send Message Function
-  Future<String> sendMessageToBot(String bot, String contentMessage) async {
+  Future<String> sendMessageToBot(BuildContext context, String bot,
+      String contentMessage, ConnectionStateModel connectionState) async {
     final String botUserId = '$bot$hostname';
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loading_sendCode);
+    });
 
     // Add a direct chat with the bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -50,8 +55,15 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
     // Send the "contentMessage" message to the bot
     await roomBot?.sendTextEvent(contentMessage.toString());
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(L10n.of(context)!.loading_sendCode);
+    });
+
     await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     String result = ''; // Variable to track the result of the connection
@@ -645,6 +657,7 @@ class BotBridgeConnection {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loading_verification);
     });
+
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $username");
     await Future.delayed(const Duration(seconds: 5)); // Wait sec

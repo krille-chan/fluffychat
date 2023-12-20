@@ -2602,5 +2602,7 @@
   "email": "email",
   "loading_demandToConnect": "Connection request in progress...",
   "loading_verification": "Login verification...",
-  "loading_verificationNumber": "Phone number verification..."
+  "loading_verificationNumber": "Phone number verification...",
+  "loading_sendCode": "Sending the code...",
+  "loading_verificationCode": "Code verification..."
 }

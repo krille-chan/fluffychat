@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:provider/provider.dart';
 
+import '../../widgets/future_loading_dialog_custom.dart';
+import '../../widgets/notifier_state.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -20,6 +23,9 @@ Future<bool> twoFactorDemandCode(
   BotBridgeConnection botConnection,
 ) async {
   String? code;
+
+  final connectionStateModel =
+      Provider.of<ConnectionStateModel>(context, listen: false);
 
   final Completer<bool> completer = Completer<bool>();
 
@@ -81,14 +87,12 @@ Future<bool> twoFactorDemandCode(
                           ""; // Variable to store the result of the connection
 
                       // To show Loading while executing the function
-                      await showFutureLoadingDialog(
+                      await showCustomLoadingDialog(
                         context: context,
                         future: () async {
                           //Send the code by message to the bots
-                          result = await botConnection.sendMessageToBot(
-                            network.chatBot,
-                            code!,
-                          );
+                          result = await botConnection.sendMessageToBot(context,
+                              network.chatBot, code!, connectionStateModel);
                         },
                       );
 

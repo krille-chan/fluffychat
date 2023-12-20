@@ -43,7 +43,8 @@ class FluffyChatApp extends StatelessWidget {
     PlatformWidth.initialize(
         context); // To initialize size variables according to platform
     return ChangeNotifierProvider(
-      create: (context) => ConnectionStateModel(), // To initialize ChangeNotifier
+      create: (context) =>
+          ConnectionStateModel(), // To initialize ChangeNotifier
       child: ThemeBuilder(
         builder: (context, themeMode, primaryColor) => MaterialApp.router(
           title: AppConfig.applicationName,
