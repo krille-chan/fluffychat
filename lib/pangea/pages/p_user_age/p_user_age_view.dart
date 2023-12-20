@@ -1,9 +1,10 @@
-import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
 import '../../../widgets/layouts/login_scaffold.dart';
 
 class PUserAgeView extends StatelessWidget {

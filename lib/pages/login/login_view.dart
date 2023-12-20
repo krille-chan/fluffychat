@@ -1,10 +1,11 @@
 // Flutter imports:
 
-import 'package:fluffychat/pangea/utils/password_forgotten.dart';
-import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/pangea/utils/password_forgotten.dart';
+import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'login.dart';
 
 class LoginView extends StatelessWidget {

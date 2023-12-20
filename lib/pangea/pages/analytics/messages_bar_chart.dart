@@ -1,13 +1,14 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fl_chart/fl_chart.dart';
+import 'package:intl/intl.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/pages/analytics/bar_chart_placeholder_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import '../../enum/time_span.dart';
 import '../../enum/use_type.dart';
 import '../../models/chart_analytics_model.dart';
