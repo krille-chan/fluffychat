@@ -23,7 +23,7 @@ import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
   static Future<List<Client>> getClients({
-    bool initialize = true,
+    bool isBackgroundClient = false,
     required SharedPreferences store,
   }) async {
     if (PlatformInfos.isLinux) {
@@ -44,23 +44,26 @@ abstract class ClientManager {
       await store.setStringList(clientNamespace, clientNames.toList());
     }
     final clients = clientNames.map(createClient).toList();
-    if (initialize) {
-      await Future.wait(
-        clients.map(
-          (client) => client.initWithRestore(
-            onMigration: () {
-              final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-              sendInitNotification(
-                l10n.databaseMigrationTitle,
-                l10n.databaseMigrationBody,
-              );
-            },
-          ).catchError(
-            (e, s) => Logs().e('Unable to initialize client', e, s),
-          ),
-        ),
-      );
-    }
+
+    await Future.wait(
+      clients.map(
+        (client) => client
+            .initWithRestore(
+              isBackgroundClient: isBackgroundClient,
+              onMigration: () {
+                final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+                sendInitNotification(
+                  l10n.databaseMigrationTitle,
+                  l10n.databaseMigrationBody,
+                );
+              },
+            )
+            .catchError(
+              (e, s) => Logs().e('Unable to initialize client', e, s),
+            ),
+      ),
+    );
+
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
       for (final client in loggedOutClients) {

@@ -25,8 +25,9 @@ dependencies:
   emoji_picker_flutter: ^1.6.3
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.1.0
   file_picker: ^6.1.1
+  #<GOOGLE_SERVICES>firebase_core: ^2.24.2
+  #<GOOGLE_SERVICES>firebase_messaging: ^14.7.9
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
@@ -162,6 +163,10 @@ dependency_overrides:
       ref: null-safety
   # blocked upgrade of package_info_plus for null safety
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203
+  matrix:
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/background-client
   wakelock_windows:
     git:
       url: https://github.com/chandrabezzo/wakelock.git

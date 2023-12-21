@@ -65,12 +65,10 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
         }
         release {
             signingConfig signingConfigs.release
-        }
+       }
     }
     // https://stackoverflow.com/a/77494454/8222484
     packagingOptions {
@@ -87,8 +85,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
     implementation 'androidx.multidex:multidex:2.0.1'
 }
 
-//apply plugin: 'com.google.gms.google-services'
+//<GOOGLE_SERVICES>apply plugin: 'com.google.gms.google-services'
