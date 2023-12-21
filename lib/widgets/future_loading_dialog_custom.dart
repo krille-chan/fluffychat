@@ -68,7 +68,8 @@ class _CustomLoadingDialogState<T> extends State<CustomLoadingDialog<T>> {
             );
           } else {
             Navigator.of(context).pop(snapshot.data);
-            return Container(); // To return any widget here as required
+            return const SizedBox
+                .shrink(); // To return any widget here as required
           }
         },
       ),

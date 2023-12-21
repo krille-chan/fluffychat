@@ -61,7 +61,8 @@ class BotBridgeConnection {
     await roomBot?.sendTextEvent(contentMessage.toString());
 
     Future.microtask(() {
-      connectionState.updateConnectionTitle(L10n.of(context)!.loading_sendCode);
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loading_verificationCode);
     });
 
     await Future.delayed(const Duration(seconds: 5)); // Wait sec
@@ -572,7 +573,8 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    String result = "Not logged"; // Variable to track the result of the connection
+    String result =
+        "Not logged"; // Variable to track the result of the connection
 
     // Get the latest messages from the room (limited to the specified message or stopProgress)
     while (continueProcess && true) {
@@ -586,7 +588,8 @@ class BotBridgeConnection {
 
       // Check the last three messages
       for (int i = latestMessages.length - 1; i >= 0; i--) {
-        final String messageBody = latestMessages[i].content['body'].toString() ?? '';
+        final String messageBody =
+            latestMessages[i].content['body'].toString() ?? '';
 
         if (successMatch.hasMatch(messageBody)) {
           Logs().v("You're logged to WhatsApp");
@@ -596,7 +599,8 @@ class BotBridgeConnection {
           Logs().v("Login timed out");
           result = "loginTimedOut";
           break;
-        } else if (!successMatch.hasMatch(messageBody) && !timeOutMatch.hasMatch(messageBody)) {
+        } else if (!successMatch.hasMatch(messageBody) &&
+            !timeOutMatch.hasMatch(messageBody)) {
           Logs().v("waiting");
           await Future.delayed(const Duration(seconds: 2)); // Wait sec
         }
@@ -682,6 +686,12 @@ class BotBridgeConnection {
 
           // Send the password message to the bot
           await roomBot?.sendTextEvent(password);
+
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle(L10n.of(context)!.loading_verificationCode);
+          });
+
           await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
 
           // Set the flag to true after sending the password
