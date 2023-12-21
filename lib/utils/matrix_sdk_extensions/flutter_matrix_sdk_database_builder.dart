@@ -29,7 +29,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     return MatrixSdkDatabase(
       client.clientName,
       database: await ffi.databaseFactoryFfi.openDatabase(
-        '$path/${client.clientName}',
+        '${path.path}/${client.clientName}',
       ),
       maxFileSize: 1024 * 1024 * 10,
       fileStoragePath: path,
