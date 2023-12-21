@@ -241,53 +241,79 @@ class BotBridgeConnection {
     }
 
     // Add a direct chat with the network bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
+    String? directChat;
+    try {
+      directChat = client.getDirectChatFromUserId(botUserId);
+      directChat ??= await client.startDirectChat(botUserId);
+    } catch (e) {
+      Logs().v('Error getting or starting direct chat: $e');
+      // Handle the error, you can log it or return an error message
+      return 'error';
+    }
 
-    final Room? roomBot = client.getRoomById(directChat);
+    Room? roomBot;
+    try {
+      roomBot = client.getRoomById(directChat);
+    } catch (e) {
+      Logs().v('Error getting room by ID: $e');
+      // Handle the error, you can log it or return an error message
+      return 'error';
+    }
 
     // Send the "logout" message to the bot
-    await roomBot?.sendTextEvent("logout");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+    try {
+      await roomBot?.sendTextEvent('logout');
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+    } catch (e) {
+      Logs().v('Error sending text event: $e');
+      // Handle the error, you can log it or return an error message
+      return 'error';
+    }
 
-    String result =
-        "Connected"; // Variable to track the result of the connection
+    String result = 'Connected'; // Variable to track the result of the connection
 
     // variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
 
     while (currentIteration < maxIterations) {
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
+      try {
+        final GetRoomEventsResponse response = await client.getRoomEvents(
+          directChat,
+          Direction.b, // To get the latest messages
+          limit: 1, // Number of messages to obtain
+        );
 
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+        final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
+        if (latestMessages.isNotEmpty) {
+          final String latestMessage =
+              latestMessages.first.content['body'].toString() ?? '';
 
-        // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage) &&
-            !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          Logs().v("You're always connected to ${network.name}");
-          result = 'Connected';
-          break;
-        } else if (successMatch.hasMatch(latestMessage) ||
-            alreadyLogoutMatch.hasMatch(latestMessage)) {
-          Logs().v("You're disconnected to ${network.name}");
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is disconnected
+          // to find out if we're connected
+          if (!successMatch.hasMatch(latestMessage) &&
+              !alreadyLogoutMatch.hasMatch(latestMessage)) {
+            Logs().v("You're always connected to ${network.name}");
+            result = 'Connected';
+            break;
+          } else if (successMatch.hasMatch(latestMessage) ||
+              alreadyLogoutMatch.hasMatch(latestMessage)) {
+            Logs().v("You're disconnected to ${network.name}");
+            result = 'Not Connected';
+            break; // Exit the loop if bridge is disconnected
+          }
         }
+      } catch (e) {
+        Logs().v('Error in matrix related async function call: $e');
+        // Handle the error, you can log it or return an error message
+        return 'error';
       }
+
       currentIteration++;
     }
 
     if (currentIteration == maxIterations) {
-      Logs().v("Maximum iterations reached, setting result to 'error'");
+      Logs().v('Maximum iterations reached, setting result to \'error\'');
       result = 'error';
     }
 
@@ -396,71 +422,6 @@ class BotBridgeConnection {
         }
       }
       await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-      currentIteration++;
-    }
-
-    if (currentIteration == maxIterations) {
-      Logs().v("Maximum iterations reached, setting result to 'error'");
-
-      result = 'error';
-    }
-
-    return result;
-  }
-
-  // To disconnect from Instagram
-  Future<String> disconnectToInstagram() async {
-    final String botUserId = '@instagrambot:$hostname';
-
-    final RegExp successMatch = RegExp(r"Successfully logged out");
-    final RegExp alreadyLogoutMatch =
-        RegExp(r"That command requires you to be logged in.");
-
-    // Add a direct chat with the Instagram bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
-
-    final Room? roomBot = client.getRoomById(directChat);
-
-    // Send the "logout" message to the bot
-    await roomBot?.sendTextEvent("logout");
-    await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
-    String result =
-        "Connected"; // Variable to track the result of the connection
-
-    // variable for loop limit
-    const int maxIterations = 5;
-    int currentIteration = 0;
-
-    while (currentIteration < maxIterations) {
-      // Get the latest messages from the room (limited to the specified number)
-      final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
-        Direction.b, // To get the latest messages
-        limit: 1, // Number of messages to obtain
-      );
-
-      final List<MatrixEvent> latestMessages = response.chunk ?? [];
-
-      if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
-
-        // to find out if we're connected
-        if (!successMatch.hasMatch(latestMessage) &&
-            !alreadyLogoutMatch.hasMatch(latestMessage)) {
-          Logs().v("You're always connected to Instagram");
-          result = 'Connected';
-          break;
-        } else if (successMatch.hasMatch(latestMessage) ||
-            alreadyLogoutMatch.hasMatch(latestMessage)) {
-          Logs().v("You're disconnected to Instagram");
-
-          result = 'Not Connected';
-          break; // Exit the loop if bridge is connected
-        }
-      }
       currentIteration++;
     }
 
