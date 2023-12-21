@@ -52,7 +52,7 @@ class LoginRegex {
       RegExp(r"Invalid 2-factor authentication code. Please try again");
 
   // WhatsApp
-  static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged");
   static final RegExp whatsAppAlreadySuccessMatch =
       RegExp(r"You're already logged in");
   static final RegExp whatsAppMeansCodeMatch =

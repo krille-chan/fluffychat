@@ -493,7 +493,7 @@ class BotBridgeConnection {
     // Error phrase to spot
     final RegExp timeOutMatch = LoginRegex.whatsAppTimeoutMatch;
 
-    // Add a direct chat with the Instagram bot (if you haven't already)
+    // Add a direct chat with the bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
@@ -560,10 +560,7 @@ class BotBridgeConnection {
   }
 
   Future<String> fetchDataWhatsApp() async {
-    Logs().v("Starting fetchDataWhatsApp");
-
-    Logs().v("ContinuProgress is:$continueProcess");
-    const String botUserId = '@whatsappbot:loveto.party';
+    final String botUserId = '@whatsappbot:$hostname';
 
     // Success phrases to spot
     final RegExp successMatch = LoginRegex.whatsAppSuccessMatch;
@@ -575,39 +572,33 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     directChat ??= await client.startDirectChat(botUserId);
 
-    String result =
-        "Not logged"; // Variable to track the result of the connection
+    String result = "Not logged"; // Variable to track the result of the connection
 
     // Get the latest messages from the room (limited to the specified message or stopProgress)
     while (continueProcess && true) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
-        limit: 2, // Number of messages to obtain
+        limit: 3, // Number of messages to obtain (3 instead of 2)
       );
 
       final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
-      final String latestMessage =
-          latestMessages.first.content['body'].toString() ?? '';
+      // Check the last three messages
+      for (int i = latestMessages.length - 1; i >= 0; i--) {
+        final String messageBody = latestMessages[i].content['body'].toString() ?? '';
 
-      if (latestMessages.isNotEmpty) {
-        if (successMatch.hasMatch(latestMessage)) {
+        if (successMatch.hasMatch(messageBody)) {
           Logs().v("You're logged to WhatsApp");
-
           result = "success";
-
-          break; // Exit the loop once the "login" message has been sent and is success
-        } else if (timeOutMatch.hasMatch(latestMessage)) {
-          Logs().v("Login timed out");
-
-          result = "loginTimedOut";
-
           break;
-        } else if (!successMatch.hasMatch(latestMessage) &&
-            !timeOutMatch.hasMatch(latestMessage)) {
+        } else if (timeOutMatch.hasMatch(messageBody)) {
+          Logs().v("Login timed out");
+          result = "loginTimedOut";
+          break;
+        } else if (!successMatch.hasMatch(messageBody) && !timeOutMatch.hasMatch(messageBody)) {
           Logs().v("waiting");
-          await Future.delayed(const Duration(seconds: 2)); // Wait 5 sec
+          await Future.delayed(const Duration(seconds: 2)); // Wait sec
         }
       }
 
@@ -615,7 +606,12 @@ class BotBridgeConnection {
         Logs().v("Stop listening");
         result = "Stop Listening";
       }
+
+      if (result != "Not logged") {
+        break; // Exit the loop once a result is determined
+      }
     }
+
     return result;
   }
 
