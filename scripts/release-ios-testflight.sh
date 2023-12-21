@@ -1,6 +1,5 @@
 #!/bin/sh -ve
-git apply ./scripts/enable-android-google-services.patch
-yq eval '.dependencies.fcm_shared_isolate = "0.1.0"' -i pubspec.yaml # Workaround: 0.2.0 does not work on iOS
+./scripts/enable-google-services.sh
 flutter clean
 flutter pub get
 cd ios
