@@ -25,8 +25,8 @@ jobs:
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
-      - name: Add Firebase Messaging
-        run: ./scripts/add-firebase-messaging.sh
+      - name: Apply google services patch
+        run: ./scripts/enable-google-services.sh
       - run: flutter analyze
       - run: flutter test
 

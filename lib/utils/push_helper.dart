@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +20,29 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 const notificationAvatarDimension = 128;
 
+@pragma('vm:entry-point')
+Future<void> pushHelperBackground(message) async {
+  await Firebase.initializeApp();
+  return pushHelper(PushNotification.fromJson(message.data));
+}
+
 Future<void> pushHelper(
   PushNotification notification, {
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin,
 }) async {
+  if (flutterLocalNotificationsPlugin == null) {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('notifications_icon'),
+        iOS: DarwinInitializationSettings(),
+      ),
+    );
+  }
+
   try {
     await _tryPushHelper(
       notification,
@@ -43,7 +60,7 @@ Future<void> pushHelper(
       l10n.newMessageInFluffyChat,
       l10n.openAppToReadMessages,
       NotificationDetails(
-        iOS: const DarwinNotificationDetails(),
+        iOS: const DarwinNotificationDetails(sound: 'notification.caf'),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           l10n.incomingMessages,
@@ -278,7 +295,9 @@ Future<void> _tryPushHelper(
     priority: Priority.max,
     groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
   );
-  const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+  const iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    sound: "notification.caf",
+  );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,

@@ -6,11 +6,9 @@ import io.flutter.embedding.engine.FlutterEngine
 import android.content.Context
 
 class MainActivity : FlutterActivity() {
-
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
     }
-
 
     override fun provideFlutterEngine(context: Context): FlutterEngine? {
         return provideEngine(this)

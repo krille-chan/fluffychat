@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
 import 'platform_infos.dart';
 
-//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';
@@ -64,7 +64,7 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  //<GOOGLE_SERVICES>final firebase = FcmSharedIsolate();
+  final firebase = FirebaseMessaging.instance;
 
   DateTime? lastReceivedPush;
 
@@ -80,17 +80,7 @@ class BackgroundPush {
         onDidReceiveNotificationResponse: goToRoom,
       );
       Logs().v('Flutter Local Notifications initialized');
-      //<GOOGLE_SERVICES>firebase.setListeners(
-      //<GOOGLE_SERVICES>  onMessage: (message) => pushHelper(
-      //<GOOGLE_SERVICES>    PushNotification.fromJson(
-      //<GOOGLE_SERVICES>      Map<String, dynamic>.from(message['data'] ?? message),
-      //<GOOGLE_SERVICES>    ),
-      //<GOOGLE_SERVICES>    client: client,
-      //<GOOGLE_SERVICES>    l10n: l10n,
-      //<GOOGLE_SERVICES>    activeRoomId: matrix?.activeRoomId,
-      //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-      //<GOOGLE_SERVICES>  ),
-      //<GOOGLE_SERVICES>);
+      FirebaseMessaging.onMessage.listen(_onFirebaseMessage);
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
@@ -148,7 +138,7 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      //<GOOGLE_SERVICES>await firebase.requestPermission();
+      await firebase.requestPermission();
     }
     if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
@@ -172,7 +162,7 @@ class BackgroundPush {
     if (deviceAppId.length > 64) {
       deviceAppId = deviceAppId.substring(0, 64);
     }
-    if (!useDeviceSpecificAppId && PlatformInfos.isAndroid) {
+    if (!useDeviceSpecificAppId) {
       appId += '.data_message';
     }
     final thisAppId = useDeviceSpecificAppId ? deviceAppId : appId;
@@ -308,7 +298,7 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
+        _fcmToken = await firebase.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -385,8 +375,9 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
-      //<GOOGLE_SERVICES>final fcmToken = await firebase.getToken();
-      //<GOOGLE_SERVICES>oldTokens.add(fcmToken);
+      String? fcmToken;
+      fcmToken = await firebase.getToken();
+      oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(
       gatewayUrl: endpoint,
@@ -413,11 +404,19 @@ class BackgroundPush {
     }
   }
 
-  Future<void> _onUpMessage(PushMessage pushMessage, String i) async {
-    final message = pushMessage.content;
+  // ignore: unused_element
+  Future<void> _onFirebaseMessage(message) => pushHelper(
+        PushNotification.fromJson(message.data),
+        client: client,
+        l10n: l10n,
+        activeRoomId: matrix?.activeRoomId,
+        flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+      );
+
+  Future<void> _onUpMessage(PushMessage message, String i) async {
     upAction = true;
     final data = Map<String, dynamic>.from(
-      json.decode(utf8.decode(message))['notification'],
+      json.decode(utf8.decode(message.content))['notification'],
     );
     // UP may strip the devices list
     data['devices'] ??= [];
