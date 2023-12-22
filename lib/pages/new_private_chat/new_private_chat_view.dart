@@ -50,7 +50,7 @@ class NewPrivateChatView extends StatelessWidget {
                 controller: controller.controller,
                 onChanged: controller.searchUsers,
                 decoration: InputDecoration(
-                  hintText: 'Search for @users...',
+                  hintText: L10n.of(context)!.searchForUsers,
                   prefixIcon: searchResponse == null
                       ? const Icon(Icons.search_outlined)
                       : FutureBuilder(

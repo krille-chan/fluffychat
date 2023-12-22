@@ -2553,5 +2553,6 @@
   "databaseMigrationTitle": "Database is optimized",
   "databaseMigrationBody": "Please wait. This may take a moment.",
   "leaveEmptyToClearStatus": "Leave empty to clear your status.",
-  "select": "Select"
+  "select": "Select",
+  "searchForUsers": "Search for @users..."
 }
