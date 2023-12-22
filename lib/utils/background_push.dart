@@ -31,7 +31,6 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
@@ -314,14 +313,7 @@ class BackgroundPush {
       }
       await client.roomsLoading;
       await client.accountDataLoading;
-      final isStory = client
-              .getRoomById(roomId)
-              ?.getState(EventTypes.RoomCreate)
-              ?.content
-              .tryGet<String>('type') ==
-          ClientStoriesExtension.storiesRoomType;
-      FluffyChatApp.router
-          .go('/${isStory ? 'rooms/stories' : 'rooms'}/$roomId');
+      FluffyChatApp.router.go('/rooms/$roomId');
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }
