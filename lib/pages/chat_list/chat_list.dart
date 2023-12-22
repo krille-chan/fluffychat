@@ -480,6 +480,8 @@ class ChatListController extends State<ChatList>
   }
 
   void setStatus() async {
+    final client = Matrix.of(context).client;
+    final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
@@ -493,17 +495,19 @@ class ChatListController extends State<ChatList>
           maxLines: 6,
           minLines: 1,
           maxLength: 255,
+          initialText: currentPresence.statusMsg,
         ),
       ],
     );
     if (input == null) return;
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.setPresence(
-            Matrix.of(context).client.userID!,
-            PresenceType.online,
-            statusMsg: input.single,
-          ),
+      future: () => client.setPresence(
+        client.userID!,
+        PresenceType.online,
+        statusMsg: input.single,
+      ),
     );
   }
 
