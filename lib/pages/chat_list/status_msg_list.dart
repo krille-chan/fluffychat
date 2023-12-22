@@ -18,7 +18,7 @@ class StatusMessageList extends StatelessWidget {
     super.key,
   });
 
-  static const double height = 108;
+  static const double height = 116;
 
   void _onStatusTab(BuildContext context, Profile profile) {
     final client = Matrix.of(context).client;
@@ -37,6 +37,8 @@ class StatusMessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final interestingPresences = client.interestingPresences;
+
     return StreamBuilder(
       stream: client.onSync.stream.rateLimit(const Duration(seconds: 3)),
       builder: (context, snapshot) {
@@ -44,6 +46,10 @@ class StatusMessageList extends StatelessWidget {
           duration: FluffyThemes.animationDuration,
           curve: Curves.easeInOut,
           child: FutureBuilder(
+            initialData: interestingPresences
+                // ignore: deprecated_member_use
+                .map((userId) => client.presences[userId])
+                .whereType<CachedPresence>(),
             future: Future.wait(
               client.interestingPresences
                   .map((userId) => client.fetchCurrentPresence(userId)),
@@ -69,7 +75,7 @@ class StatusMessageList extends StatelessWidget {
               return SizedBox(
                 height: StatusMessageList.height,
                 child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.all(8),
                   scrollDirection: Axis.horizontal,
                   itemCount: presences.length,
                   itemBuilder: (context, i) => PresenceAvatar(
@@ -101,7 +107,7 @@ class PresenceAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatarSize = height - 16 - 16;
+    final avatarSize = height - 16 - 16 - 8;
     final client = Matrix.of(context).client;
     return FutureBuilder<Profile>(
       future: client.getProfileFromUserId(presence.userid),
@@ -161,6 +167,9 @@ class PresenceAvatar extends StatelessWidget {
                                       onPressed: () => onTap(
                                         profile ??
                                             Profile(userId: presence.userid),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: const Icon(
                                         Icons.add_outlined,

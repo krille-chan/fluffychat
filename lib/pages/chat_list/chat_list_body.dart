@@ -153,9 +153,10 @@ class ChatListViewBody extends StatelessWidget {
                                 ),
                         ),
                       ],
-                      StatusMessageList(
-                        onStatusEdit: controller.setStatus,
-                      ),
+                      if (!controller.isSearchMode)
+                        StatusMessageList(
+                          onStatusEdit: controller.setStatus,
+                        ),
                       const ConnectionStatusHeader(),
                       AnimatedContainer(
                         height: controller.isTorBrowser ? 64 : 0,
