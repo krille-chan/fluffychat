@@ -1,8 +1,4 @@
-import 'dart:io';
-import 'dart:ui';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -134,13 +130,14 @@ abstract class ClientManager {
   static void sendMigrationNotification(
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   ) async {
-    final l10n = lookupL10n(Locale(Platform.localeName));
+    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
 
     if (kIsWeb) {
       html.Notification(
         l10n.databaseMigrationTitle,
         body: l10n.databaseMigrationBody,
       );
+      return;
     }
 
     await flutterLocalNotificationsPlugin.initialize(
@@ -164,7 +161,8 @@ abstract class ClientManager {
           fullScreenIntent: true, // To show notification popup
           showProgress: true,
         ),
-        iOS: DarwinNotificationDetails(),
+        iOS: DarwinNotificationDetails(sound: 'notification.caf'),
+        linux: LinuxNotificationDetails(),
       ),
     );
   }
