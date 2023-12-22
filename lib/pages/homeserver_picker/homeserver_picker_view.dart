@@ -91,8 +91,11 @@ class HomeserverPickerView extends StatelessWidget {
                           const SizedBox(height: 36),
                         ] else
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                              left: 8.0,
+                              bottom: 16.0,
+                            ),
                             child: FluffyThemes.isColumnMode(context)
                                 ? Image.asset(
                                     'assets/info-logo.png',
@@ -181,30 +184,30 @@ class _LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       alignment: Alignment.center,
       child: SizedBox(
-        width: 256,
+        width: double.infinity,
         child: OutlinedButton(
           style: OutlinedButton.styleFrom(
             side: BorderSide(
               width: 1,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.surfaceVariant,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(90),
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             ),
             foregroundColor: Theme.of(context).colorScheme.onBackground,
           ),
           onPressed: onPressed,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               icon,
               const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  label,
-                  overflow: TextOverflow.ellipsis,
-                ),
+              Text(
+                label,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
