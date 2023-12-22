@@ -86,7 +86,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       if (supportsSso) {
         _rawLoginTypes = await client.request(
           RequestType.GET,
-          '/client/r0/login',
+          '/client/v3/login',
         );
       }
     } catch (e) {
@@ -121,7 +121,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             : 'http://localhost:3001//login';
 
     final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-      path: '/_matrix/client/r0/login/sso/redirect${id == null ? '' : '/$id'}',
+      path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
       queryParameters: {'redirectUrl': redirectUrl},
     );
 

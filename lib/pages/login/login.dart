@@ -227,7 +227,7 @@ class LoginController extends State<Login> {
       context: context,
       future: () => Matrix.of(context).getLoginClient().request(
             RequestType.POST,
-            '/client/r0/account/password',
+            '/client/v3/account/password',
             data: data,
           ),
     );
