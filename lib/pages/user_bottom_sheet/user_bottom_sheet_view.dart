@@ -34,6 +34,7 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
+          centerTitle: false,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,7 +52,7 @@ class UserBottomSheetView extends StatelessWidget {
                   final dotColor = presence.presence.isOnline
                       ? Colors.green
                       : presence.presence.isUnavailable
-                          ? Colors.red
+                          ? Colors.orange
                           : Colors.grey;
 
                   final lastActiveTimestamp = presence.lastActiveTimestamp;

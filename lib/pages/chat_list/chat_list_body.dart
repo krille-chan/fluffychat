@@ -153,7 +153,8 @@ class ChatListViewBody extends StatelessWidget {
                                 ),
                         ),
                       ],
-                      if (!controller.isSearchMode)
+                      if (!controller.isSearchMode &&
+                          controller.activeFilter != ActiveFilter.groups)
                         StatusMessageList(
                           onStatusEdit: controller.setStatus,
                         ),
