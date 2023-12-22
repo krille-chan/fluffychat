@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
 import '../../widgets/matrix.dart';
@@ -195,6 +197,25 @@ class UserBottomSheetView extends StatelessWidget {
                   ),
                 ),
               ),
+            PresenceBuilder(
+              userId: userId,
+              client: client,
+              builder: (context, presence) {
+                final status = presence?.statusMsg;
+                if (status == null || status.isEmpty) {
+                  return const SizedBox.shrink();
+                }
+                return ListTile(
+                  title: SelectableLinkify(
+                    text: status,
+                    style: const TextStyle(fontSize: 16),
+                    options: const LinkifyOptions(humanize: false),
+                    linkStyle: const TextStyle(color: Colors.blueAccent),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  ),
+                );
+              },
+            ),
             if (controller.widget.onMention != null)
               ListTile(
                 leading: const Icon(Icons.alternate_email_outlined),

@@ -2551,5 +2551,6 @@
   "startConversation": "Start conversation",
   "commandHint_sendraw": "Send raw json",
   "databaseMigrationTitle": "Database is optimized",
-  "databaseMigrationBody": "Please wait. This may take a moment."
+  "databaseMigrationBody": "Please wait. This may take a moment.",
+  "leaveEmptyToClearStatus": "Leave empty to clear your status."
 }

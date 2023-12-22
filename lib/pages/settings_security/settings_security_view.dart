@@ -23,12 +23,6 @@ class SettingsSecurityView extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: const Icon(Icons.camera_outlined),
-                trailing: const Icon(Icons.chevron_right_outlined),
-                title: Text(L10n.of(context)!.whoCanSeeMyStories),
-                onTap: () => context.go('/rooms/settings/security/stories'),
-              ),
-              ListTile(
                 leading: const Icon(Icons.block_outlined),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 title: Text(L10n.of(context)!.blockedUsers),

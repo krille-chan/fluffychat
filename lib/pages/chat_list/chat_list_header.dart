@@ -18,7 +18,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: Theme.of(context).appBarTheme.toolbarHeight ?? 56,
+      toolbarHeight: (Theme.of(context).appBarTheme.toolbarHeight ?? 56) + 16,
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
@@ -55,19 +55,27 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                       borderRadius: BorderRadius.circular(99),
                     ),
                     hintText: L10n.of(context)!.searchChatsRooms,
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      fontWeight: FontWeight.normal,
+                    ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     prefixIcon: controller.isSearchMode
                         ? IconButton(
                             tooltip: L10n.of(context)!.cancel,
                             icon: const Icon(Icons.close_outlined),
                             onPressed: controller.cancelSearch,
-                            color: Theme.of(context).colorScheme.onBackground,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
                           )
                         : IconButton(
                             onPressed: controller.startSearch,
                             icon: Icon(
                               Icons.search_outlined,
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
                             ),
                           ),
                     suffixIcon: controller.isSearchMode

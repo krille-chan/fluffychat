@@ -18,7 +18,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
@@ -139,13 +138,11 @@ class ChatListController extends State<ChatList>
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return (room) => !room.isSpace && !room.isStoryRoom;
+        return (room) => !room.isSpace;
       case ActiveFilter.groups:
-        return (room) =>
-            !room.isSpace && !room.isDirectChat && !room.isStoryRoom;
+        return (room) => !room.isSpace && !room.isDirectChat;
       case ActiveFilter.messages:
-        return (room) =>
-            !room.isSpace && room.isDirectChat && !room.isStoryRoom;
+        return (room) => !room.isSpace && room.isDirectChat;
       case ActiveFilter.spaces:
         return (r) => r.isSpace;
     }
@@ -487,11 +484,15 @@ class ChatListController extends State<ChatList>
       useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
+      message: L10n.of(context)!.leaveEmptyToClearStatus,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context)!.statusExampleMessage,
+          maxLines: 6,
+          minLines: 1,
+          maxLength: 255,
         ),
       ],
     );
