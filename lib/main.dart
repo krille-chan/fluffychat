@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,15 +21,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Logs().nativeColors = !PlatformInfos.isIOS;
+
+  // Do not send online presences when app is in background fetch mode.
   final store = await SharedPreferences.getInstance();
-  final clients = await ClientManager.getClients(store: store);
+  var isMigratingDatabase = false;
+  final clientsFuture = ClientManager.getClients(
+    store: store,
+    onMigration: () {
+      isMigratingDatabase = true;
+    },
+  );
 
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
   // currently only supported on Android.
   if (PlatformInfos.isAndroid &&
       AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
-    // Do not send online presences when app is in background fetch mode.
+    final clients = await clientsFuture;
     for (final client in clients) {
       client.syncPresence = PresenceType.offline;
     }
@@ -46,15 +53,26 @@ void main() async {
     return;
   }
 
+  if (!isMigratingDatabase) {
+    final clients = await clientsFuture;
+    // Preload first client
+    final firstClient = clients.firstOrNull;
+    await firstClient?.roomsLoading;
+    await firstClient?.accountDataLoading;
+  }
+
   // Started in foreground mode.
   Logs().i(
     '${AppConfig.applicationName} started in foreground mode. Rendering GUI...',
   );
-  await startGui(clients, store);
+  await startGui(clientsFuture, store);
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.
-Future<void> startGui(List<Client> clients, SharedPreferences store) async {
+Future<void> startGui(
+  Future<List<Client>> clientsFuture,
+  SharedPreferences store,
+) async {
   // Fetch the pin for the applock if existing for mobile applications.
   String? pin;
   if (PlatformInfos.isMobile) {
@@ -66,13 +84,14 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
     }
   }
 
-  // Preload first client
-  final firstClient = clients.firstOrNull;
-  await firstClient?.roomsLoading;
-  await firstClient?.accountDataLoading;
-
   ErrorWidget.builder = (details) => FluffyChatErrorWidget(details);
-  runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  runApp(
+    FluffyChatApp(
+      pincode: pin,
+      clientsFuture: clientsFuture,
+      store: store,
+    ),
+  );
 }
 
 /// Watches the lifecycle changes to start the application when it
@@ -96,7 +115,7 @@ class AppStarter with WidgetsBindingObserver {
     for (final client in clients) {
       client.syncPresence = PresenceType.online;
     }
-    startGui(clients, store);
+    startGui(Future.value(clients), store);
     // We must make sure that the GUI is only started once.
     guiStarted = true;
   }

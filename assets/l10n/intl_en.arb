@@ -2550,6 +2550,7 @@
   "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
   "startConversation": "Start conversation",
   "commandHint_sendraw": "Send raw json",
-  "databaseMigrationTitle": "Database is optimized",
-  "databaseMigrationBody": "Please wait. This may take a moment."
+  "databaseMigrationTitle": "Optimizing your chats... This can take a few moments!",
+  "loadingChats": "Loading your chats...",
+  "reportError": "Report error"
 }

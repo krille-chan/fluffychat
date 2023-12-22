@@ -101,7 +101,6 @@ Future<void> _tryPushHelper(
   );
 
   client ??= (await ClientManager.getClients(
-    initialize: false,
     store: await SharedPreferences.getInstance(),
   ))
       .first;

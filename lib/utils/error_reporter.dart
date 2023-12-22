@@ -18,9 +18,13 @@ class ErrorReporter {
 
   const ErrorReporter(this.context, [this.message]);
 
-  void onErrorCallback(Object error, [StackTrace? stackTrace]) async {
+  void onErrorCallback(
+    Object error, [
+    StackTrace? stackTrace,
+    OkCancelResult? consent,
+  ]) async {
     Logs().e(message ?? 'Error caught', error, stackTrace);
-    final consent = await showOkCancelAlertDialog(
+    consent ??= await showOkCancelAlertDialog(
       context: context,
       title: error.toLocalizedString(context),
       message: L10n.of(context)!.reportErrorDescription,
