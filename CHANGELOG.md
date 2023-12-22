@@ -1,3 +1,6 @@
+## v1.16.1
+Test candidate for the new database.
+
 ## v1.16.0
 - build: Set olm to 1.3.2 to fix android build (krille-chan)
 - build: Update dependencies (krille-chan)
