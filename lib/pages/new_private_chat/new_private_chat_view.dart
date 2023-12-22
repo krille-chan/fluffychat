@@ -30,10 +30,10 @@ class NewPrivateChatView extends StatelessWidget {
         title: Text(L10n.of(context)!.newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
-          IconButton(
+          TextButton(
             onPressed:
                 UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
-            icon: const Icon(Icons.info_outlined),
+            child: Text(L10n.of(context)!.help),
           ),
         ],
       ),
@@ -42,7 +42,10 @@ class NewPrivateChatView extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: TextField(
                 controller: controller.controller,
                 onChanged: controller.searchUsers,
@@ -88,8 +91,9 @@ class NewPrivateChatView extends StatelessWidget {
                     : CrossFadeState.showSecond,
                 firstChild: ListView(
                   children: [
-                    ListTile(
-                      title: SelectableText.rich(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: SelectableText.rich(
                         TextSpan(
                           children: [
                             TextSpan(
@@ -104,33 +108,12 @@ class NewPrivateChatView extends StatelessWidget {
                           ],
                         ),
                         style: TextStyle(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 13,
                         ),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.copy_outlined,
-                          size: 16,
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                        ),
-                        onPressed: controller.copyUserId,
                       ),
                     ),
-                    if (PlatformInfos.isMobile)
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          child: const Icon(Icons.qr_code_scanner_outlined),
-                        ),
-                        title: Text(L10n.of(context)!.scanQrCode),
-                        onTap: controller.openScannerAction,
-                      ),
+                    const SizedBox(height: 8),
                     ListTile(
                       leading: CircleAvatar(
                         backgroundColor:
@@ -153,6 +136,18 @@ class NewPrivateChatView extends StatelessWidget {
                       title: Text(L10n.of(context)!.createGroup),
                       onTap: () => context.go('/rooms/newgroup'),
                     ),
+                    if (PlatformInfos.isMobile)
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          child: const Icon(Icons.qr_code_scanner_outlined),
+                        ),
+                        title: Text(L10n.of(context)!.scanQrCode),
+                        onTap: controller.openScannerAction,
+                      ),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.all(64.0),
