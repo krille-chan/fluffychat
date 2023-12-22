@@ -201,20 +201,10 @@ class ChatController extends State<ChatPageWithRoom> {
         'Try to recreate a room with is not a DM room. This should not be possible from the UI!',
       );
     }
-    final success = await showFutureLoadingDialog(
+    await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        final client = room.client;
-        final waitForSync = client.onSync.stream
-            .firstWhere((s) => s.rooms?.leave?.containsKey(room.id) ?? false);
-        await room.leave();
-        await waitForSync;
-        return await client.startDirectChat(userId);
-      },
+      future: () => room.invite(userId),
     );
-    final roomId = success.result;
-    if (roomId == null) return;
-    context.go('/rooms/$roomId');
   }
 
   void leaveChat() async {
