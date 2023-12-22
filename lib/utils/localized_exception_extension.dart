@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/tasks/tasks.dart';
 import 'uia_request_manager.dart';
 
 extension LocalizedExceptionExtension on Object {
@@ -23,9 +22,6 @@ extension LocalizedExceptionExtension on Object {
     }
     if (this is InvalidPassphraseException) {
       return L10n.of(context)!.wrongRecoveryKey;
-    }
-    if (this is TodoListChangedException) {
-      return L10n.of(context)!.todoListChangedError;
     }
     if (this is FileTooBigMatrixException) {
       return L10n.of(context)!.fileIsTooBigForServer;

@@ -28,7 +28,6 @@ import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emot
 import 'package:fluffychat/pages/settings_notifications/settings_notifications.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
-import 'package:fluffychat/pages/tasks/tasks.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
@@ -358,17 +357,6 @@ abstract class AppRoutes {
                     ),
                   ],
                   redirect: loggedOutRedirect,
-                ),
-                GoRoute(
-                  path: 'tasks',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    TasksPage(
-                      room: Matrix.of(context)
-                          .client
-                          .getRoomById(state.pathParameters['roomid']!)!,
-                    ),
-                  ),
                 ),
               ],
             ),
