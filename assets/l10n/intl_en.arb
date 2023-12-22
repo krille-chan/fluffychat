@@ -2552,5 +2552,6 @@
   "commandHint_sendraw": "Send raw json",
   "databaseMigrationTitle": "Database is optimized",
   "databaseMigrationBody": "Please wait. This may take a moment.",
-  "leaveEmptyToClearStatus": "Leave empty to clear your status."
+  "leaveEmptyToClearStatus": "Leave empty to clear your status.",
+  "select": "Select"
 }

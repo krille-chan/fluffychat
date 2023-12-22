@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -8,6 +10,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import 'message_content.dart';
@@ -366,6 +369,8 @@ class Message extends StatelessWidget {
       container = Opacity(opacity: 0.4, child: container);
     }
 
+    TapDownDetails? lastTapDownDetails;
+
     return Center(
       child: Swipeable(
         key: ValueKey(event.eventId),
@@ -377,20 +382,78 @@ class Message extends StatelessWidget {
         ),
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
-        child: InkWell(
-          onTap: () => onSelect(event),
-          child: Container(
-            color: selected
-                ? Theme.of(context).primaryColor.withAlpha(100)
-                : Theme.of(context).primaryColor.withAlpha(0),
-            constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth * 2.5,
+        child: HoverBuilder(
+          builder: (context, hovered) => GestureDetector(
+            onTapDown: (details) {
+              lastTapDownDetails = details;
+            },
+            onTap: () {
+              if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) return;
+              onSelect(event);
+            },
+            child: Stack(
+              children: [
+                Container(
+                  color: selected
+                      ? Theme.of(context).primaryColor.withAlpha(100)
+                      : Theme.of(context).primaryColor.withAlpha(0),
+                  constraints: const BoxConstraints(
+                    maxWidth: FluffyThemes.columnWidth * 2.5,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  child: container,
+                ),
+                if (hovered || selected)
+                  Positioned(
+                    left: ownMessage ? 4 : null,
+                    right: ownMessage ? null : 4,
+                    bottom: 4,
+                    child: Material(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.9),
+                      elevation: Theme.of(context)
+                              .appBarTheme
+                              .scrolledUnderElevation ??
+                          4,
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
+                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (hovered) ...[
+                            IconButton(
+                              icon: const Icon(
+                                Icons.reply_outlined,
+                                size: 16,
+                              ),
+                              tooltip: L10n.of(context)!.reply,
+                              onPressed: () => onSwipe(),
+                            ),
+                          ],
+                          IconButton(
+                            icon: Icon(
+                              selected
+                                  ? Icons.check_circle
+                                  : longPressSelect
+                                      ? Icons.check_circle_outlined
+                                      : Icons.menu,
+                              size: 16,
+                            ),
+                            tooltip: L10n.of(context)!.select,
+                            onPressed: () => onSelect(event),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
-            ),
-            child: container,
           ),
         ),
       ),
