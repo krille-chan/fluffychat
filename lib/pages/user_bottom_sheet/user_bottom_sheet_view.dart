@@ -211,7 +211,10 @@ class UserBottomSheetView extends StatelessWidget {
                     text: status,
                     style: const TextStyle(fontSize: 16),
                     options: const LinkifyOptions(humanize: false),
-                    linkStyle: const TextStyle(color: Colors.blueAccent),
+                    linkStyle: const TextStyle(
+                      color: Colors.blueAccent,
+                      decorationColor: Colors.blueAccent,
+                    ),
                     onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
                   ),
                 );

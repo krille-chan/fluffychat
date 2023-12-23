@@ -235,8 +235,10 @@ class ChatDetailsView extends StatelessWidget {
                                 ? L10n.of(context)!.noChatDescriptionYet
                                 : room.topic,
                             options: const LinkifyOptions(humanize: false),
-                            linkStyle:
-                                const TextStyle(color: Colors.blueAccent),
+                            linkStyle: const TextStyle(
+                              color: Colors.blueAccent,
+                              decorationColor: Colors.blueAccent,
+                            ),
                             style: TextStyle(
                               fontSize: 14,
                               fontStyle: room.topic.isEmpty
