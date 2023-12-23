@@ -225,18 +225,14 @@ class Message extends StatelessWidget {
                                       originServerTs: DateTime.now(),
                                     );
                               return InkWell(
+                                borderRadius: ReplyContent.borderRadius,
                                 onTap: () =>
                                     scrollToEventId(replyEvent.eventId),
                                 child: AbsorbPointer(
-                                  child: Container(
-                                    margin: const EdgeInsets.symmetric(
-                                      vertical: 4.0,
-                                    ),
-                                    child: ReplyContent(
-                                      replyEvent,
-                                      ownMessage: ownMessage,
-                                      timeline: timeline,
-                                    ),
+                                  child: ReplyContent(
+                                    replyEvent,
+                                    ownMessage: ownMessage,
+                                    timeline: timeline,
                                   ),
                                 ),
                               );
