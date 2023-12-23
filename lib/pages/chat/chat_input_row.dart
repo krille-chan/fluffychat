@@ -251,7 +251,9 @@ class ChatInputRow extends StatelessWidget {
                     autofocus: !PlatformInfos.isMobile,
                     keyboardType: TextInputType.multiline,
                     textInputAction:
-                        AppConfig.sendOnEnter ? TextInputAction.send : null,
+                        AppConfig.sendOnEnter ?? !PlatformInfos.isMobile
+                            ? TextInputAction.send
+                            : null,
                     onSubmitted: controller.onInputBarSubmitted,
                     onSubmitImage: controller.sendImageFromClipBoard,
                     focusNode: controller.inputFocus,
