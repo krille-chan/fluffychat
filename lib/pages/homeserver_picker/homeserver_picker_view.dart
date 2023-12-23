@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
@@ -19,6 +21,12 @@ class HomeserverPickerView extends StatelessWidget {
   Widget build(BuildContext context) {
     final identityProviders = controller.identityProviders;
     final errorText = controller.error;
+    final publicHomeserver = controller.cachedHomeservers?.singleWhereOrNull(
+      (homeserver) =>
+          homeserver.name ==
+          controller.homeserverController.text.trim().toLowerCase(),
+    );
+    final regLink = publicHomeserver?.regLink;
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
@@ -132,6 +140,12 @@ class HomeserverPickerView extends StatelessWidget {
                             ),
                           ),
                         ],
+                        if (regLink != null)
+                          _LoginButton(
+                            onPressed: () => launchUrlString(regLink),
+                            icon: const Icon(Icons.open_in_new),
+                            label: L10n.of(context)!.register,
+                          ),
                         if (controller.supportsPasswordLogin)
                           _LoginButton(
                             onPressed: controller.login,
