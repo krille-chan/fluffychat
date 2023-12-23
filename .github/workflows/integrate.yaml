@@ -24,6 +24,8 @@ jobs:
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter analyze
       - run: flutter test
+      - name: Check for unused localization strings
+        run: flutter pub run translations_cleaner list-unused-terms -a
 
   build_debug_apk:
     runs-on: ubuntu-latest

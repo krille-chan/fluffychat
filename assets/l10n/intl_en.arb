@@ -1,43 +1,20 @@
 {
     "@@locale": "en",
     "@@last_modified": "2021-08-14 12:38:37.885451",
-    "passwordsDoNotMatch": "Passwords do not match!",
-    "@passwordsDoNotMatch": {},
-    "pleaseEnterValidEmail": "Please enter a valid email address.",
-    "@pleaseEnterValidEmail": {},
     "repeatPassword": "Repeat password",
     "@repeatPassword": {},
-    "pleaseChooseAtLeastChars": "Please choose at least {min} characters.",
-    "@pleaseChooseAtLeastChars": {
-        "type": "text",
-        "placeholders": {
-            "min": {}
-        }
-    },
     "notAnImage": "Not an image file.",
-    "remove": "Replace",
+    "remove": "Remove",
     "importNow": "Import now",
     "importEmojis": "Import Emojis",
     "importFromZipFile": "Import from .zip file",
-    "importZipFile": "Import .zip file",
     "exportEmotePack": "Export Emote pack as .zip",
     "replace": "Replace",
-    "savedEmotePack": "Saved emote pack to {path}!",
-    "@savedEmotePack": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
     "about": "About",
     "@about": {
         "type": "text",
         "placeholders": {}
     },
-    "updateAvailable": "FluffyChat update available",
-    "@updateAvailable": {},
-    "updateNow": "Start update in background",
-    "@updateNow": {},
     "accept": "Accept",
     "@accept": {
         "type": "text",
@@ -230,11 +207,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "bubbleSize": "Bubble size",
-    "@bubbleSize": {
-        "type": "text",
-        "placeholders": {}
-    },
     "cancel": "Cancel",
     "@cancel": {
         "type": "text",
@@ -422,11 +394,6 @@
     },
     "chooseAStrongPassword": "Choose a strong password",
     "@chooseAStrongPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chooseAUsername": "Choose a username",
-    "@chooseAUsername": {
         "type": "text",
         "placeholders": {}
     },
@@ -695,11 +662,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "deny": "Deny",
-    "@deny": {
-        "type": "text",
-        "placeholders": {}
-    },
     "device": "Device",
     "@device": {
         "type": "text",
@@ -720,13 +682,8 @@
         "type": "text",
         "placeholders": {}
     },
-"allRooms": "All Group Chats",
+    "allRooms": "All Group Chats",
     "@allRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "discover": "Discover",
-    "@discover": {
         "type": "text",
         "placeholders": {}
     },
@@ -842,11 +799,6 @@
         "placeholders": {
             "senderName": {}
         }
-    },
-    "enterAGroupName": "Enter a group name",
-    "@enterAGroupName": {
-        "type": "text",
-        "placeholders": {}
     },
     "enterAnEmailAddress": "Enter an email address",
     "@enterAnEmailAddress": {
@@ -1014,20 +966,11 @@
     "@inviteContactToGroup": {
         "type": "text",
         "placeholders": {
-            "contact": {},
             "groupName": {}
         }
     },
     "inviteContactToGroup": "Invite contact to {groupName}",
-    "@inviteContactToGroup": {
-        "type": "text",
-        "placeholders": {
-            "groupName": {}
-        }
-    },
     "noChatDescriptionYet": "No chat description created yet.",
-    "anyoneCanKnock": "Anyone can knock",
-    "noOneCanJoin": "No one can join",
     "tryAgain": "Try again",
     "invalidServerName": "Invalid server name",
     "invited": "Invited",
@@ -1108,11 +1051,6 @@
             "localizedTimeShort": {}
         }
     },
-    "lastSeenLongTimeAgo": "Seen a long time ago",
-    "@lastSeenLongTimeAgo": {
-        "type": "text",
-        "placeholders": {}
-    },
     "leave": "Leave",
     "@leave": {
         "type": "text",
@@ -1186,15 +1124,8 @@
             "homeserver": {}
         }
     },
-    "loginWithOneClick": "Sign in with one click",
-    "@loginWithOneClick": {},
     "logout": "Logout",
     "@logout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "makeSureTheIdentifierIsValid": "Make sure the identifier is valid",
-    "@makeSureTheIdentifierIsValid": {
         "type": "text",
         "placeholders": {}
     },
@@ -1211,11 +1142,6 @@
     "messages": "Messages",
     "messagesStyle": "Messages:",
     "@messages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "messageWillBeRemovedWarning": "Message will be removed for all participants",
-    "@messageWillBeRemovedWarning": {
         "type": "text",
         "placeholders": {}
     },
@@ -1405,11 +1331,6 @@
     "@link": {},
     "serverRequiresEmail": "This server needs to validate your email address for registration.",
     "@serverRequiresEmail": {},
-    "optionalGroupName": "(Optional) Group name",
-    "@optionalGroupName": {
-        "type": "text",
-        "placeholders": {}
-    },
     "or": "Or",
     "@or": {
         "type": "text",
@@ -1477,11 +1398,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "pleaseChooseAUsername": "Please choose a username",
-    "@pleaseChooseAUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
     "pleaseClickOnLink": "Please click on the link in the email and then proceed.",
     "@pleaseClickOnLink": {
         "type": "text",
@@ -1489,11 +1405,6 @@
     },
     "pleaseEnter4Digits": "Please enter 4 digits or leave empty to disable app lock.",
     "@pleaseEnter4Digits": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterAMatrixIdentifier": "Please enter a Matrix ID.",
-    "@pleaseEnterAMatrixIdentifier": {
         "type": "text",
         "placeholders": {}
     },
@@ -1594,7 +1505,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "remove": "Remove",
     "@remove": {
         "type": "text",
         "placeholders": {}
@@ -1685,22 +1595,6 @@
         "type": "text",
         "placeholders": {
             "username": {}
-        }
-    },
-    "seenByUserAndCountOthers": "{count, plural, other{Seen by {username} and {count} others}}",
-    "@seenByUserAndCountOthers": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "count": {}
-        }
-    },
-    "seenByUserAndUser": "Seen by {username} and {username2}",
-    "@seenByUserAndUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "username2": {}
         }
     },
     "send": "Send",
@@ -1847,18 +1741,8 @@
         "type": "text",
         "placeholders": {}
     },
-    "showDirectChatsInSpaces": "Show related Direct Chats in Spaces",
-    "@showDirectChatsInSpaces": {
-        "type": "text",
-        "placeholders": {}
-    },
     "showPassword": "Show password",
     "@showPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "signUp": "Sign up",
-    "@signUp": {
         "type": "text",
         "placeholders": {}
     },
@@ -2183,18 +2067,8 @@
         "type": "text",
         "placeholders": {}
     },
-    "youAreInvitedToThisChat": "You are invited to this chat",
-    "@youAreInvitedToThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
     "youAreNoLongerParticipatingInThisChat": "You are no longer participating in this chat",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youCannotInviteYourself": "You cannot invite yourself",
-    "@youCannotInviteYourself": {
         "type": "text",
         "placeholders": {}
     },
@@ -2226,20 +2100,8 @@
     "@start": {},
     "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
     "@pleaseEnterRecoveryKeyDescription": {},
-    "addToStory": "Add to story",
-    "@addToStory": {},
     "publish": "Publish",
     "@publish": {},
-    "whoCanSeeMyStories": "Who can see my stories?",
-    "@whoCanSeeMyStories": {},
-    "unsubscribeStories": "Unsubscribe stories",
-    "@unsubscribeStories": {},
-    "thisUserHasNotPostedAnythingYet": "This user has not posted anything in their story yet",
-    "@thisUserHasNotPostedAnythingYet": {},
-    "yourStory": "Your story",
-    "@yourStory": {},
-    "replyHasBeenSent": "Reply has been sent",
-    "@replyHasBeenSent": {},
     "videoWithSize": "Video ({size})",
     "@videoWithSize": {
         "type": "text",
@@ -2247,24 +2109,6 @@
             "size": {}
         }
     },
-    "storyFrom": "Story from {date}: \n{body}",
-    "@storyFrom": {
-        "type": "text",
-        "placeholders": {
-            "date": {},
-            "body": {}
-        }
-    },
-    "whoCanSeeMyStoriesDesc": "Please note that people can see and contact each other in your story.",
-    "@whoCanSeeMyStoriesDesc": {},
-    "whatIsGoingOn": "What is going on?",
-    "@whatIsGoingOn": {},
-    "addDescription": "Add description",
-    "@addDescription": {},
-    "storyPrivacyWarning": "Please note that people can see and contact each other in your story. Your stories will be visible for 24 hours but there is no guarantee that they will be deleted from all devices and servers.",
-    "@storyPrivacyWarning": {},
-    "iUnderstand": "I understand",
-    "@iUnderstand": {},
     "openChat": "Open Chat",
     "@openChat": {},
     "markAsRead": "Mark as read",
@@ -2273,8 +2117,6 @@
     "@reportUser": {},
     "dismiss": "Dismiss",
     "@dismiss": {},
-    "matrixWidgets": "Matrix Widgets",
-    "@matrixWidgets": {},
     "reactedWith": "{sender} reacted with {reaction}",
     "@reactedWith": {
         "type": "text",
@@ -2318,8 +2160,6 @@
     "@nextAccount": {},
     "previousAccount": "Previous account",
     "@previousAccount": {},
-    "editWidgets": "Edit widgets",
-    "@editWidgets": {},
     "addWidget": "Add widget",
     "@addWidget": {},
     "widgetVideo": "Video",
@@ -2392,10 +2232,6 @@
             "user": {}
         }
     },
-    "noEmailWarning": "Please enter a valid email address. Otherwise you won't be able to reset your password. If you don't want to, tap again on the button to continue.",
-    "@noEmailWarning": {},
-    "stories": "Stories",
-    "@stories": {},
     "users": "Users",
     "@users": {},
     "unlockOldMessages": "Unlock old messages",
@@ -2470,12 +2306,9 @@
     },
     "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
     "encryptThisChat": "Encrypt this chat",
-    "endToEndEncryption": "End to end encryption",
     "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
     "sorryThatsNotPossible": "Sorry... that is not possible",
     "deviceKeys": "Device keys:",
-    "letsStart": "Let's start",
-    "enterInviteLinkOrMatrixId": "Enter invite link or Matrix ID...",
     "reopenChat": "Reopen chat",
     "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
     "noOtherDevicesFound": "No other devices found",
@@ -2494,7 +2327,6 @@
     "reportErrorDescription": "Oh no. Something went wrong. Please try again later. If you want, you can report the bug to the developers.",
     "report": "report",
     "signInWithPassword": "Sign in with password",
-    "continueWith": "Continue with:",
     "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
     "signInWith": "Sign in with {provider}",
     "@signInWith": {
@@ -2503,57 +2335,50 @@
             "provider": {}
         }
     },
-  "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
-  "setTheme": "Set theme:",
-  "setColorTheme": "Set color theme:",
-  "invite": "Invite",
-  "requests": "Requests",
-  "inviteGroupChat": "📨 Invite group chat",
-  "invitePrivateChat": "📨 Invite private chat",
-  "invalidInput": "Invalid input!",
-  "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
-  "@wrongPinEntered": {
-    "type": "text",
-    "placeholders": {
-        "seconds": {}
-    }
-  },
-  "pleaseEnterANumber": "Please enter a number greater than 0",
-  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
-  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
-  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
-  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
-  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
-  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
-  "pushNotificationsNotAvailable": "Push notifications not available",
-  "learnMore": "Learn more",
-  "todoLists": "(Beta) Todolists",
-  "newTodo": "New todo",
-  "noTodosYet": "No todos have been added to this chat yet. Create your first todo and start cooperating with others. 📝",
-  "editTodo": "Edit todo",
-  "pleaseAddATitle": "Please add a title",
-  "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
-  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
-  "yourGlobalUserIdIs": "Your global user-ID is: ",
-  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
-  "@noUsersFoundWithQuery": {
-    "type": "text",
-    "placeholders": {
-        "query": {}
-    }
-  },
-  "searchChatsRooms": "Search for #chats, @users...",
-  "nothingFound": "Nothing found...",
-  "groupName": "Group name",
-  "createGroupAndInviteUsers": "Create a group and invite users",
-  "groupCanBeFoundViaSearch": "Group can be found via search",
-  "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
-  "startConversation": "Start conversation",
-  "commandHint_sendraw": "Send raw json",
-  "databaseMigrationTitle": "Database is optimized",
-  "databaseMigrationBody": "Please wait. This may take a moment.",
-  "leaveEmptyToClearStatus": "Leave empty to clear your status.",
-  "select": "Select",
-  "searchForUsers": "Search for @users..."
+    "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
+    "setTheme": "Set theme:",
+    "setColorTheme": "Set color theme:",
+    "invite": "Invite",
+    "requests": "Requests",
+    "inviteGroupChat": "📨 Invite group chat",
+    "invitePrivateChat": "📨 Invite private chat",
+    "invalidInput": "Invalid input!",
+    "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
+    "@wrongPinEntered": {
+        "type": "text",
+        "placeholders": {
+            "seconds": {}
+        }
+    },
+    "pleaseEnterANumber": "Please enter a number greater than 0",
+    "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+    "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
+    "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
+    "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
+    "unbanUserDescription": "The user will be able to enter the chat again if they try.",
+    "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
+    "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
+    "pushNotificationsNotAvailable": "Push notifications not available",
+    "learnMore": "Learn more",
+    "yourGlobalUserIdIs": "Your global user-ID is: ",
+    "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+    "@noUsersFoundWithQuery": {
+        "type": "text",
+        "placeholders": {
+            "query": {}
+        }
+    },
+    "searchChatsRooms": "Search for #chats, @users...",
+    "nothingFound": "Nothing found...",
+    "groupName": "Group name",
+    "createGroupAndInviteUsers": "Create a group and invite users",
+    "groupCanBeFoundViaSearch": "Group can be found via search",
+    "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
+    "startConversation": "Start conversation",
+    "commandHint_sendraw": "Send raw json",
+    "databaseMigrationTitle": "Database is optimized",
+    "databaseMigrationBody": "Please wait. This may take a moment.",
+    "leaveEmptyToClearStatus": "Leave empty to clear your status.",
+    "select": "Select",
+    "searchForUsers": "Search for @users..."
 }
