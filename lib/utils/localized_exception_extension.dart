@@ -9,10 +9,16 @@ import 'package:matrix/matrix.dart';
 import 'uia_request_manager.dart';
 
 extension LocalizedExceptionExtension on Object {
-  String toLocalizedString(BuildContext context) {
+  String toLocalizedString(
+    BuildContext context, [
+    ExceptionContext? exceptionContext,
+  ]) {
     if (this is MatrixException) {
       switch ((this as MatrixException).error) {
         case MatrixError.M_FORBIDDEN:
+          if (exceptionContext == ExceptionContext.changePassword) {
+            return L10n.of(context)!.passwordIsWrong;
+          }
           return L10n.of(context)!.noPermission;
         case MatrixError.M_LIMIT_EXCEEDED:
           return L10n.of(context)!.tooManyRequestsWarning;
@@ -69,4 +75,8 @@ extension LocalizedExceptionExtension on Object {
     Logs().w('Something went wrong: ', this);
     return L10n.of(context)!.oopsSomethingWentWrong;
   }
+}
+
+enum ExceptionContext {
+  changePassword,
 }
