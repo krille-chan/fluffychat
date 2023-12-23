@@ -28,9 +28,8 @@ class PublicRoomBottomSheet extends StatelessWidget {
   }
 
   void _joinRoom(BuildContext context) async {
-    final client = Matrix.of(context).client;
+    final client = Matrix.of(outerContext).client;
     final chunk = this.chunk;
-    final navigator = Navigator.of(context);
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
@@ -50,10 +49,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
       },
     );
     if (result.error == null) {
-      navigator.pop();
+      Navigator.of(context).pop();
       // don't open the room if the joined room is a space
       if (!client.getRoomById(result.result!)!.isSpace) {
-        context.go('/rooms/${result.result!}');
+        outerContext.go('/rooms/${result.result!}');
       }
       return;
     }
