@@ -187,8 +187,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
   final int _loadHistoryCount = 100;
 
-  String inputText = '';
-
   String pendingText = '';
 
   bool showEmojiPicker = false;
@@ -260,7 +258,6 @@ class ChatController extends State<ChatPageWithRoom> {
     if (!mounted) {
       return;
     }
-    setReadMarker();
     if (!scrollController.hasClients) return;
     if (timeline?.allowNewEvent == false ||
         scrollController.position.pixels > 0 && _scrolledUp == false) {
@@ -285,7 +282,6 @@ class ChatController extends State<ChatPageWithRoom> {
     final draft = prefs.getString('draft_$roomId');
     if (draft != null && draft.isNotEmpty) {
       sendController.text = draft;
-      setState(() => inputText = draft);
     }
   }
 
@@ -472,7 +468,7 @@ class ChatController extends State<ChatPageWithRoom> {
     );
 
     setState(() {
-      inputText = pendingText;
+      sendController.text = pendingText;
       replyEvent = null;
       editEvent = null;
       pendingText = '';
@@ -938,7 +934,7 @@ class ChatController extends State<ChatPageWithRoom> {
         );
       });
       await loadTimelineFuture;
-      setReadMarker(eventId: timeline!.events.first.eventId);
+      setReadMarker();
     }
     scrollController.jumpTo(0);
   }
@@ -1040,7 +1036,7 @@ class ChatController extends State<ChatPageWithRoom> {
     setState(() {
       pendingText = sendController.text;
       editEvent = selectedEvents.first;
-      inputText = sendController.text =
+      sendController.text =
           editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 withSenderNamePrefix: false,
@@ -1187,7 +1183,6 @@ class ChatController extends State<ChatPageWithRoom> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('draft_$roomId', text);
     });
-    setReadMarker();
     if (text.endsWith(' ') && Matrix.of(context).hasComplexBundles) {
       final clients = currentRoomBundle;
       for (final client in clients) {
@@ -1196,7 +1191,6 @@ class ChatController extends State<ChatPageWithRoom> {
             text.toLowerCase() == '${prefix.toLowerCase()} ') {
           setSendingClient(client);
           setState(() {
-            inputText = '';
             sendController.text = '';
           });
           return;
@@ -1222,8 +1216,14 @@ class ChatController extends State<ChatPageWithRoom> {
         );
       }
     }
-    setState(() => inputText = text);
+    if (_inputTextIsEmpty != text.isEmpty) {
+      setState(() {
+        _inputTextIsEmpty = text.isEmpty;
+      });
+    }
   }
+
+  bool _inputTextIsEmpty = true;
 
   bool get isArchived =>
       {Membership.leave, Membership.ban}.contains(room.membership);
@@ -1291,7 +1291,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {
-          inputText = sendController.text = pendingText;
+          sendController.text = pendingText;
           pendingText = '';
         }
         replyEvent = null;
