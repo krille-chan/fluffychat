@@ -1389,8 +1389,6 @@
             "error": {}
         }
     },
-    "enterASpacepName": "Cuir isteach ainm spáis",
-    "@enterASpacepName": {},
     "enterAnEmailAddress": "Cuir isteach seoladh ríomhphoist",
     "@enterAnEmailAddress": {
         "type": "text",
@@ -2018,8 +2016,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

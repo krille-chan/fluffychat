@@ -264,7 +264,7 @@ class ClientChooserButton extends StatelessWidget {
           context.go('/rooms/newgroup');
           break;
         case SettingsAction.newSpace:
-          context.go('/rooms/newspace');
+          controller.createNewSpace();
           break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);

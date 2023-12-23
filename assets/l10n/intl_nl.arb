@@ -719,8 +719,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Vul een spacenaam in",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Vul je homeserver in",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2381,8 +2379,6 @@
     "@setColorTheme": {},
     "invite": "Uitnodigen",
     "@invite": {},
-    "requests": "Verzoeken",
-    "@requests": {},
     "inviteGroupChat": "📨 Groeps-chat uitnodiging",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Privé-chat uitnodiging",

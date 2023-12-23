@@ -1454,8 +1454,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Add meg a tér nevét",
-    "@enterASpacepName": {},
     "extremeOffensive": "Extrém sértő",
     "@extremeOffensive": {
         "type": "text",
@@ -1949,8 +1947,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

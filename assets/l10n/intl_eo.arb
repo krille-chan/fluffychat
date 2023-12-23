@@ -705,8 +705,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Enigi nomon de aro",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Enigu vian hejmservilon",
     "@enterYourHomeserver": {
         "type": "text",
@@ -1978,8 +1976,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

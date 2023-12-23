@@ -545,8 +545,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "הזן שם חלל",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "הזן את שרת הבית שלך",
     "@enterYourHomeserver": {
         "type": "text",
@@ -1486,8 +1484,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "waitingPartnerAcceptRequest": "",

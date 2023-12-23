@@ -1614,8 +1614,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Podaj nazwę przestrzeni",
-    "@enterASpacepName": {},
     "homeserver": "Adres serwera",
     "@homeserver": {},
     "locationDisabledNotice": "Usługi lokalizacji są wyłączone. Proszę włącz je aby móc udostępnić swoją lokalizację.",
@@ -2304,8 +2302,6 @@
     "@reportErrorDescription": {},
     "setColorTheme": "Ustal styl kolorów:",
     "@setColorTheme": {},
-    "requests": "Żądania",
-    "@requests": {},
     "tryAgain": "Spróbuj ponownie",
     "@tryAgain": {},
     "messagesStyle": "Wiadomości:",

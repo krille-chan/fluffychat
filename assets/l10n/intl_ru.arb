@@ -716,8 +716,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Введите название пространства",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Введите адрес вашего сервера Matrix",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2382,8 +2380,6 @@
     "@setColorTheme": {},
     "invite": "Пригласить",
     "@invite": {},
-    "requests": "Запросы",
-    "@requests": {},
     "invitePrivateChat": "📨 Пригласить в приватный чат",
     "@invitePrivateChat": {},
     "inviteGroupChat": "📨 Пригласить в групповой чат",

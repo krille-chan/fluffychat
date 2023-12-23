@@ -1615,8 +1615,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Ingrese nombre de espacio",
-    "@enterASpacepName": {},
     "ignore": "Ignorar",
     "@ignore": {
         "type": "text",
@@ -2124,8 +2122,6 @@
     "@user": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "separateChatTypes": "Separar chats directos de grupos",

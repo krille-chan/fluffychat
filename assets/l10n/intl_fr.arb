@@ -720,8 +720,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Entrer un nom d'espace",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Renseignez votre serveur d'accueil",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2318,8 +2316,6 @@
     "@setColorTheme": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "tryAgain": "",

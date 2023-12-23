@@ -711,8 +711,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Namen für den Space eingeben",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Gib Deinen Homeserver ein",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2382,8 +2380,6 @@
     "@addChatDescription": {},
     "setChatDescription": "Chatbeschreibung festlegen",
     "@setChatDescription": {},
-    "requests": "Anfragen",
-    "@requests": {},
     "inviteGroupChat": "📨 Einladungen zum Gruppenchat",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Einladungen zum privaten Chat",

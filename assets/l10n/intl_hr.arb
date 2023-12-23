@@ -706,8 +706,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Upiši ime prostora",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Upiši svoj domaći poslužitelj",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2331,8 +2329,6 @@
     "@sendTypingNotifications": {},
     "setColorTheme": "Postavi boju teme:",
     "@setColorTheme": {},
-    "requests": "Zahtjevi",
-    "@requests": {},
     "tryAgain": "Pokušaj ponovo",
     "@tryAgain": {},
     "messagesStyle": "Poruke:",

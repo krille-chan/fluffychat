@@ -805,8 +805,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Enter a space name",
-    "@enterASpacepName": {},
     "homeserver": "Homeserver",
     "@homeserver": {},
     "enterYourHomeserver": "Enter your homeserver",
@@ -2339,7 +2337,6 @@
     "setTheme": "Set theme:",
     "setColorTheme": "Set color theme:",
     "invite": "Invite",
-    "requests": "Requests",
     "inviteGroupChat": "📨 Invite group chat",
     "invitePrivateChat": "📨 Invite private chat",
     "invalidInput": "Invalid input!",
@@ -2388,5 +2385,7 @@
     "passwordIsWrong": "Your entered password is wrong",
     "publicLink": "Public link",
     "joinSpace": "Join space",
-    "publicSpaces": "Public spaces"
+    "publicSpaces": "Public spaces",
+    "addChatOrSubSpace": "Add chat or sub space",
+    "subspace": "Subspace"
 }

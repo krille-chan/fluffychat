@@ -95,6 +95,13 @@ class ChatListController extends State<ChatList>
     });
   }
 
+  void createNewSpace() async {
+    final spaceId = await context.push<String?>('/rooms/newspace');
+    if (spaceId != null) {
+      setActiveSpace(spaceId);
+    }
+  }
+
   int get selectedIndex {
     switch (activeFilter) {
       case ActiveFilter.allChats:

@@ -1884,8 +1884,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Introduceți nume pentru spațiu",
-    "@enterASpacepName": {},
     "homeserver": "Homeserver",
     "@homeserver": {},
     "errorObtainingLocation": "Obținerea locației a eșuat: {error}",
@@ -2311,8 +2309,6 @@
     "@setColorTheme": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "tryAgain": "",

@@ -1633,8 +1633,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Introduïu un nom d’espai",
-    "@enterASpacepName": {},
     "addAccount": "Afegeix un compte",
     "@addAccount": {},
     "noEncryptionForPublicRooms": "Només podreu activar el xifratge quan la sala ja no sigui accessible públicament.",
@@ -1948,8 +1946,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

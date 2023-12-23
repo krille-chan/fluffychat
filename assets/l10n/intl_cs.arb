@@ -716,8 +716,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Zadejte název prostoru",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Zadejte svůj domovský server",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2356,8 +2354,6 @@
             "count": {}
         }
     },
-    "requests": "Žádosti",
-    "@requests": {},
     "reportErrorDescription": "",
     "@reportErrorDescription": {},
     "banUserDescription": "",
