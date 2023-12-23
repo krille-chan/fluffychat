@@ -47,7 +47,7 @@ abstract class AppConfig {
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
-  static bool sendOnEnter = false;
+  static bool? sendOnEnter;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;

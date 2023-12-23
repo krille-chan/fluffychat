@@ -74,7 +74,7 @@ class SettingsChatView extends StatelessWidget {
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
                 storeKey: SettingKeys.sendOnEnter,
-                defaultValue: AppConfig.sendOnEnter,
+                defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.experimentalVideoCalls,
