@@ -2544,6 +2544,7 @@
     }
   },
   "searchChatsRooms": "Search for #chats, @users...",
+  "nothingFound": "Nothing found...",
   "groupName": "Group name",
   "createGroupAndInviteUsers": "Create a group and invite users",
   "groupCanBeFoundViaSearch": "Group can be found via search",

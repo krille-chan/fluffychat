@@ -1165,14 +1165,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.7.2"
-  matrix_homeserver_recommendations:
-    dependency: "direct main"
-    description:
-      name: matrix_homeserver_recommendations
-      sha256: d372a7357676106897134dac67beb3ac2bb8753922fd0d808f18cf7e0574001a
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   meta:
     dependency: transitive
     description:

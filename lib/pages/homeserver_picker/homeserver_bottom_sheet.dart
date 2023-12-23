@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
+
 class HomeserverBottomSheet extends StatelessWidget {
-  final HomeserverBenchmarkResult homeserver;
+  final PublicHomeserver homeserver;
   const HomeserverBottomSheet({required this.homeserver, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final responseTime = homeserver.responseTime;
-    final description = homeserver.homeserver.description;
-    final rules = homeserver.homeserver.rules;
-    final privacy = homeserver.homeserver.privacyPolicy;
-    final registration = homeserver.homeserver.registration;
-    final jurisdiction = homeserver.homeserver.jurisdiction;
-    final homeserverSoftware = homeserver.homeserver.homeserverSoftware;
+    final description = homeserver.description;
+    final registration = homeserver.regLink;
+    final jurisdiction = homeserver.staffJur;
+    final homeserverSoftware = homeserver.software;
     return Scaffold(
       appBar: AppBar(
-        title: Text(homeserver.homeserver.baseUrl.host),
+        title: Text(homeserver.name),
       ),
       body: ListView(
         children: [
@@ -38,33 +36,15 @@ class HomeserverBottomSheet extends StatelessWidget {
               title: Text(homeserverSoftware),
             ),
           ListTile(
-            onTap: () =>
-                launchUrlString(homeserver.homeserver.baseUrl.toString()),
+            onTap: () => launchUrlString(homeserver.name),
             leading: const Icon(Icons.link_outlined),
-            title: Text(homeserver.homeserver.baseUrl.toString()),
+            title: Text(homeserver.name),
           ),
           if (registration != null)
             ListTile(
-              onTap: () => launchUrlString(registration.toString()),
+              onTap: () => launchUrlString(registration),
               leading: const Icon(Icons.person_add_outlined),
-              title: Text(registration.toString()),
-            ),
-          if (rules != null)
-            ListTile(
-              onTap: () => launchUrlString(rules.toString()),
-              leading: const Icon(Icons.visibility_outlined),
-              title: Text(rules.toString()),
-            ),
-          if (privacy != null)
-            ListTile(
-              onTap: () => launchUrlString(privacy.toString()),
-              leading: const Icon(Icons.shield_outlined),
-              title: Text(privacy.toString()),
-            ),
-          if (responseTime != null)
-            ListTile(
-              leading: const Icon(Icons.timer_outlined),
-              title: Text('${responseTime.inMilliseconds}ms'),
+              title: Text(registration),
             ),
         ],
       ),

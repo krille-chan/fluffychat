@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -174,6 +176,20 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       list.sort((a, b) => a.brand == 'apple' ? -1 : 1);
     }
     return list;
+  }
+
+  List<PublicHomeserver>? cachedHomeservers;
+
+  Future<List<PublicHomeserver>> loadHomeserverList() async {
+    if (cachedHomeservers != null) return cachedHomeservers!;
+    final result = await Matrix.of(context)
+        .getLoginClient()
+        .httpClient
+        .get(AppConfig.homeserverList);
+    final resultJson = jsonDecode(result.body)['public_servers'] as List;
+    final homeserverList =
+        resultJson.map((json) => PublicHomeserver.fromJson(json)).toList();
+    return cachedHomeservers = homeserverList;
   }
 
   void login() => context.go('${GoRouterState.of(context).fullPath}/login');
