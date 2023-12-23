@@ -720,8 +720,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Bir alan adı girin",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Ana sunucunuzu girin",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2382,8 +2380,6 @@
     "@chatDescriptionHasBeenChanged": {},
     "directChat": "Doğrudan sohbet",
     "@directChat": {},
-    "requests": "İstek",
-    "@requests": {},
     "inviteGroupChat": "📨 Grup sohbetine davet et",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Gizli sohbete davet et",

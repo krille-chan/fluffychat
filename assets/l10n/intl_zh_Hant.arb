@@ -1825,8 +1825,6 @@
     },
     "unsupportedAndroidVersion": "",
     "@unsupportedAndroidVersion": {},
-    "enterASpacepName": "",
-    "@enterASpacepName": {},
     "commandHint_html": "",
     "@commandHint_html": {
         "type": "text",
@@ -1882,8 +1880,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

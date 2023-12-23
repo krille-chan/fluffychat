@@ -1281,8 +1281,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Sartu gunerako izena",
-    "@enterASpacepName": {},
     "homeserver": "Zerbitzaria",
     "@homeserver": {},
     "errorObtainingLocation": "Errorea kokapena lortzerakoan: {error}",
@@ -2331,8 +2329,6 @@
     "@sendTypingNotifications": {},
     "setColorTheme": "Ezarri kolore-gaia:",
     "@setColorTheme": {},
-    "requests": "Eskaerak",
-    "@requests": {},
     "tryAgain": "Saiatu berriro",
     "@tryAgain": {},
     "messagesStyle": "Mezuak:",

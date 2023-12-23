@@ -716,8 +716,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Sisesta kogukonna nimi",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Sisesta oma koduserveri aadress",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2382,8 +2380,6 @@
             "reason": {}
         }
     },
-    "requests": "Päringud",
-    "@requests": {},
     "inviteGroupChat": "📨 Kutsu vestlusrühma",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Kutsu omavahelisele vestlusele",

@@ -66,8 +66,7 @@ class ChatListViewBody extends StatelessWidget {
             .where((s) => s.hasRoomUpdate)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, _) {
-          if (controller.activeFilter == ActiveFilter.spaces &&
-              !controller.isSearchMode) {
+          if (controller.activeFilter == ActiveFilter.spaces) {
             return SpaceView(
               controller,
               scrollController: controller.scrollController,

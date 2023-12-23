@@ -1317,8 +1317,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Введіть назву простору",
-    "@enterASpacepName": {},
     "joinRoom": "Приєднатися до кімнати",
     "@joinRoom": {
         "type": "text",
@@ -2382,8 +2380,6 @@
     "@redactMessageDescription": {},
     "setChatDescription": "Налаштувати опис бесіди",
     "@setChatDescription": {},
-    "requests": "Запити",
-    "@requests": {},
     "inviteGroupChat": "📨 Запросити до групової бесіди",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Запросити до приватної бесіди",

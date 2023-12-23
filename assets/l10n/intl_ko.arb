@@ -166,8 +166,6 @@
     },
     "homeserver": "홈서버",
     "@homeserver": {},
-    "enterASpacepName": "스페이스 이름 입력",
-    "@enterASpacepName": {},
     "enterAnEmailAddress": "이메일 주소 입력",
     "@enterAnEmailAddress": {
         "type": "text",
@@ -2107,8 +2105,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "removeDevicesDescription": "",

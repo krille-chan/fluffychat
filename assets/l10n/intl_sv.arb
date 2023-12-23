@@ -1730,8 +1730,6 @@
             "error": {}
         }
     },
-    "enterASpacepName": "Ange utrymmets namn",
-    "@enterASpacepName": {},
     "editRoomAliases": "Redigera rum alias",
     "@editRoomAliases": {
         "type": "text",
@@ -2301,8 +2299,6 @@
     "@setColorTheme": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "tryAgain": "",

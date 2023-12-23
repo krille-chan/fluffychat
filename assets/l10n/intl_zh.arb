@@ -1881,8 +1881,6 @@
             "error": {}
         }
     },
-    "enterASpacepName": "输入空间名称",
-    "@enterASpacepName": {},
     "createNewSpace": "创建新空间",
     "@createNewSpace": {
         "type": "text",
@@ -2382,8 +2380,6 @@
             "reason": {}
         }
     },
-    "requests": "请求",
-    "@requests": {},
     "inviteGroupChat": "📨 邀请至群聊",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 邀请至私聊",

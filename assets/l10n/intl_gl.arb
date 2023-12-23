@@ -716,8 +716,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Escribe o nome para o espazo",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Escribe o teu servidor de inicio",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2382,8 +2380,6 @@
     "@directChat": {},
     "setChatDescription": "Escribir descrición da conversa",
     "@setChatDescription": {},
-    "requests": "Solicitudes",
-    "@requests": {},
     "inviteGroupChat": "📨 Convidar a conversa en grupo",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Convidar a conversa privada",

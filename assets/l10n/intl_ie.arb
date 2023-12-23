@@ -1192,8 +1192,6 @@
     },
     "unsupportedAndroidVersion": "",
     "@unsupportedAndroidVersion": {},
-    "enterASpacepName": "",
-    "@enterASpacepName": {},
     "youAreNoLongerParticipatingInThisChat": "",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "text",
@@ -1316,8 +1314,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "askSSSSSign": "",
     "@askSSSSSign": {
         "type": "text",

@@ -237,8 +237,6 @@
     },
     "unsupportedAndroidVersion": "",
     "@unsupportedAndroidVersion": {},
-    "enterASpacepName": "",
-    "@enterASpacepName": {},
     "device": "",
     "@device": {
         "type": "text",
@@ -451,8 +449,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "requests": "",
-    "@requests": {},
     "askSSSSSign": "",
     "@askSSSSSign": {
         "type": "text",

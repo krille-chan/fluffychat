@@ -1691,8 +1691,6 @@
     },
     "homeserver": "Homeserver",
     "@homeserver": {},
-    "enterASpacepName": "Masukkan nama space",
-    "@enterASpacepName": {},
     "enableEncryption": "Aktifkan enkripsi",
     "@enableEncryption": {
         "type": "text",
@@ -2381,8 +2379,6 @@
     "@setColorTheme": {},
     "invite": "Undang",
     "@invite": {},
-    "requests": "Permintaan",
-    "@requests": {},
     "inviteGroupChat": "📨 Undang percakapan grup",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Undang percakapan privat",

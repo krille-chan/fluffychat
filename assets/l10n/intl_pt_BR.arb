@@ -715,8 +715,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Insira um nome pro espaço",
-    "@enterASpacepName": {},
     "enterYourHomeserver": "Insira um servidor matriz",
     "@enterYourHomeserver": {
         "type": "text",
@@ -2281,8 +2279,6 @@
     "@setColorTheme": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "tryAgain": "",

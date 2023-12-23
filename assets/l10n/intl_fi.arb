@@ -1083,8 +1083,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Nimeä tila",
-    "@enterASpacepName": {},
     "inoffensive": "Loukkaamatonta",
     "@inoffensive": {
         "type": "text",
@@ -2308,8 +2306,6 @@
     "@pleaseTryAgainLaterOrChooseDifferentServer": {},
     "setColorTheme": "Aseta väriteema:",
     "@setColorTheme": {},
-    "requests": "Pyynnöt",
-    "@requests": {},
     "tryAgain": "Yritä uudelleen",
     "@tryAgain": {},
     "messagesStyle": "Viestit:",

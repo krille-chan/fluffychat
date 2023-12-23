@@ -674,8 +674,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "Insere o nome do espaço",
-    "@enterASpacepName": {},
     "homeserver": "Servidor",
     "@homeserver": {},
     "enterYourHomeserver": "Insere o teu servidor",
@@ -1703,8 +1701,6 @@
     },
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "widgetEtherpad": "",
     "@widgetEtherpad": {},
     "waitingPartnerAcceptRequest": "",

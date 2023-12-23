@@ -985,8 +985,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "enterASpacepName": "یک نام برای فضا وارد کنید",
-    "@enterASpacepName": {},
     "errorObtainingLocation": "خطا هنگام بدست آوردن مکان: {error}",
     "@errorObtainingLocation": {
         "type": "text",
@@ -2311,8 +2309,6 @@
     "@setColorTheme": {},
     "banUserDescription": "",
     "@banUserDescription": {},
-    "requests": "",
-    "@requests": {},
     "removeDevicesDescription": "",
     "@removeDevicesDescription": {},
     "tryAgain": "",
