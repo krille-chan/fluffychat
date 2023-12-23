@@ -264,6 +264,11 @@ class _SpaceViewState extends State<SpaceView> {
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
     final activeSpaceId = widget.controller.activeSpaceId;
+    final activeSpace = activeSpaceId == null
+        ? null
+        : client.getRoomById(
+            activeSpaceId,
+          );
     final allSpaces = client.rooms.where((room) => room.isSpace);
     if (activeSpaceId == null) {
       final rootSpaces = allSpaces
@@ -446,17 +451,22 @@ class _SpaceViewState extends State<SpaceView> {
                             ),
                             onTap: () => _onJoinSpaceChild(spaceChild),
                           ),
-                          Material(
-                            child: ListTile(
-                              leading: const CircleAvatar(
-                                child: Icon(Icons.group_add_outlined),
+                          if (activeSpace?.canChangeStateEvent(
+                                EventTypes.spaceChild,
+                              ) ==
+                              true)
+                            Material(
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  child: Icon(Icons.group_add_outlined),
+                                ),
+                                title:
+                                    Text(L10n.of(context)!.addChatOrSubSpace),
+                                trailing:
+                                    const Icon(Icons.chevron_right_outlined),
+                                onTap: _addChatOrSubSpace,
                               ),
-                              title: Text(L10n.of(context)!.addChatOrSubSpace),
-                              trailing:
-                                  const Icon(Icons.chevron_right_outlined),
-                              onTap: _addChatOrSubSpace,
                             ),
-                          ),
                         ],
                       );
                     }
