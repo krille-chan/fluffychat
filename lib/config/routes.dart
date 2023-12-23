@@ -26,6 +26,7 @@ import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
 import 'package:fluffychat/pages/settings_ignore_list/settings_ignore_list.dart';
 import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:fluffychat/pages/settings_notifications/settings_notifications.dart';
+import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
@@ -241,6 +242,16 @@ abstract class AppRoutes {
                         const SettingsSecurity(),
                       ),
                       routes: [
+                        GoRoute(
+                          path: 'password',
+                          pageBuilder: (context, state) {
+                            return defaultPageBuilder(
+                              context,
+                              const SettingsPassword(),
+                            );
+                          },
+                          redirect: loggedOutRedirect,
+                        ),
                         GoRoute(
                           path: 'ignorelist',
                           pageBuilder: (context, state) {

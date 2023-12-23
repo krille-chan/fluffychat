@@ -2380,5 +2380,10 @@
     "databaseMigrationBody": "Please wait. This may take a moment.",
     "leaveEmptyToClearStatus": "Leave empty to clear your status.",
     "select": "Select",
-    "searchForUsers": "Search for @users..."
+    "searchForUsers": "Search for @users...",
+    "pleaseEnterYourCurrentPassword": "Please enter your current password",
+    "newPassword": "New password",
+    "pleaseChooseAStrongPassword": "Please choose a strong password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "passwordIsWrong": "Your entered password is wrong"
 }
