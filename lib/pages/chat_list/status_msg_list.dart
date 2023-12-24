@@ -51,8 +51,12 @@ class StatusMessageList extends StatelessWidget {
                 .map((userId) => client.presences[userId])
                 .whereType<CachedPresence>(),
             future: Future.wait(
-              client.interestingPresences
-                  .map((userId) => client.fetchCurrentPresence(userId)),
+              client.interestingPresences.map(
+                (userId) => client.fetchCurrentPresence(
+                  userId,
+                  fetchFromServer: false,
+                ),
+              ),
             ),
             builder: (context, snapshot) {
               final presences =
