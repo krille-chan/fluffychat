@@ -168,3 +168,24 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
+
+  promote_snapcraft:
+    runs-on: ubuntu-latest
+    env:
+      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v2
+      - run: snapcraft
+      - name: Promote Snap
+        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
+          SNAPCRAFT_HAS_TTY: "true"
+        run: |
+          RELEASE_TYPE=$(echo "${{ github.ref }}" | awk -F"/" '{print $3}')
+          if [ "$RELEASE_TYPE" = "rc" ]; then
+              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
+          else
+              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
+          fi
