@@ -178,7 +178,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v2
-      - run: snapcraft
       - name: Promote Snap
         env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
           SNAPCRAFT_HAS_TTY: "true"
