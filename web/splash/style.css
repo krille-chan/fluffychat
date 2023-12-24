@@ -1,8 +1,8 @@
-body, html {
-  margin:0;
-  height:100%;
+body,
+html {
+  margin: 0;
+  height: 100%;
   background: #ffffff;
-  background-image: url("img/light-background.png");
   background-size: 100% 100%;
 }
 
@@ -16,26 +16,29 @@ body, html {
 }
 
 .contain {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
 .stretch {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .cover {
-  display:block;
-  width:100%; height:100%;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    margin:0;
-    height:100%;
+    margin: 0;
+    height: 100%;
     background: #000000;
     background-image: url("img/dark-background.png");
     background-size: 100% 100%;
