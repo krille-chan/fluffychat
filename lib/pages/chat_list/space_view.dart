@@ -285,44 +285,48 @@ class _SpaceViewState extends State<SpaceView> {
           )
           .toList();
 
-      return CustomScrollView(
-        controller: widget.scrollController,
-        slivers: [
-          ChatListHeader(controller: widget.controller),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, i) {
-                final rootSpace = rootSpaces[i];
-                final displayname = rootSpace.getLocalizedDisplayname(
-                  MatrixLocals(L10n.of(context)!),
-                );
-                return Material(
-                  color: Theme.of(context).colorScheme.background,
-                  child: ListTile(
-                    leading: Avatar(
-                      mxContent: rootSpace.avatar,
-                      name: displayname,
+      return SafeArea(
+        child: CustomScrollView(
+          controller: widget.scrollController,
+          slivers: [
+            ChatListHeader(controller: widget.controller),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, i) {
+                  final rootSpace = rootSpaces[i];
+                  final displayname = rootSpace.getLocalizedDisplayname(
+                    MatrixLocals(L10n.of(context)!),
+                  );
+                  return Material(
+                    color: Theme.of(context).colorScheme.background,
+                    child: ListTile(
+                      leading: Avatar(
+                        mxContent: rootSpace.avatar,
+                        name: displayname,
+                      ),
+                      title: Text(
+                        displayname,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        L10n.of(context)!.numChats(
+                          rootSpace.spaceChildren.length.toString(),
+                        ),
+                      ),
+                      onTap: () =>
+                          widget.controller.setActiveSpace(rootSpace.id),
+                      onLongPress: () =>
+                          _onSpaceChildContextMenu(null, rootSpace),
+                      trailing: const Icon(Icons.chevron_right_outlined),
                     ),
-                    title: Text(
-                      displayname,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    subtitle: Text(
-                      L10n.of(context)!
-                          .numChats(rootSpace.spaceChildren.length.toString()),
-                    ),
-                    onTap: () => widget.controller.setActiveSpace(rootSpace.id),
-                    onLongPress: () =>
-                        _onSpaceChildContextMenu(null, rootSpace),
-                    trailing: const Icon(Icons.chevron_right_outlined),
-                  ),
-                );
-              },
-              childCount: rootSpaces.length,
+                  );
+                },
+                childCount: rootSpaces.length,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
@@ -338,211 +342,214 @@ class _SpaceViewState extends State<SpaceView> {
           widget.controller.setActiveSpace(parentSpace.id);
         }
       },
-      child: CustomScrollView(
-        controller: widget.scrollController,
-        slivers: [
-          ChatListHeader(controller: widget.controller),
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            primary: false,
-            titleSpacing: 0,
-            title: ListTile(
-              leading: BackButton(
-                onPressed: () =>
-                    widget.controller.setActiveSpace(parentSpace?.id),
-              ),
-              title: Text(
-                parentSpace == null
-                    ? L10n.of(context)!.allSpaces
-                    : parentSpace.getLocalizedDisplayname(
-                        MatrixLocals(L10n.of(context)!),
-                      ),
-              ),
-              trailing: IconButton(
-                icon: loading
-                    ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
-                    : const Icon(Icons.refresh_outlined),
-                onPressed: loading ? null : _refresh,
+      child: SafeArea(
+        child: CustomScrollView(
+          controller: widget.scrollController,
+          slivers: [
+            ChatListHeader(controller: widget.controller),
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              primary: false,
+              titleSpacing: 0,
+              title: ListTile(
+                leading: BackButton(
+                  onPressed: () =>
+                      widget.controller.setActiveSpace(parentSpace?.id),
+                ),
+                title: Text(
+                  parentSpace == null
+                      ? L10n.of(context)!.allSpaces
+                      : parentSpace.getLocalizedDisplayname(
+                          MatrixLocals(L10n.of(context)!),
+                        ),
+                ),
+                trailing: IconButton(
+                  icon: loading
+                      ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
+                      : const Icon(Icons.refresh_outlined),
+                  onPressed: loading ? null : _refresh,
+                ),
               ),
             ),
-          ),
-          Builder(
-            builder: (context) {
-              final response = _lastResponse[activeSpaceId];
-              final error = this.error;
-              if (error != null) {
-                return SliverFillRemaining(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(error.toLocalizedString(context)),
-                      ),
-                      IconButton(
-                        onPressed: _refresh,
-                        icon: const Icon(Icons.refresh_outlined),
-                      ),
-                    ],
-                  ),
-                );
-              }
-              if (response == null) {
-                return SliverFillRemaining(
-                  child: Center(
-                    child: Text(L10n.of(context)!.loadingPleaseWait),
-                  ),
-                );
-              }
-              final spaceChildren = response.rooms;
-              final canLoadMore = response.nextBatch != null;
-              return SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, i) {
-                    if (canLoadMore && i == spaceChildren.length) {
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: OutlinedButton.icon(
-                          label: loading
-                              ? const LinearProgressIndicator()
-                              : Text(L10n.of(context)!.loadMore),
-                          icon: const Icon(Icons.chevron_right_outlined),
-                          onPressed: loading
-                              ? null
-                              : () {
-                                  loadHierarchy(response.nextBatch);
-                                },
+            Builder(
+              builder: (context) {
+                final response = _lastResponse[activeSpaceId];
+                final error = this.error;
+                if (error != null) {
+                  return SliverFillRemaining(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(error.toLocalizedString(context)),
                         ),
-                      );
-                    }
-                    final spaceChild = spaceChildren[i];
-                    final room = client.getRoomById(spaceChild.roomId);
-                    if (room != null && !room.isSpace) {
-                      return ChatListItem(
-                        room,
-                        onLongPress: () =>
-                            _onSpaceChildContextMenu(spaceChild, room),
-                        activeChat: widget.controller.activeChat == room.id,
-                      );
-                    }
-                    final isSpace = spaceChild.roomType == 'm.space';
-                    final topic = spaceChild.topic?.isEmpty ?? true
-                        ? null
-                        : spaceChild.topic;
-                    if (spaceChild.roomId == activeSpaceId) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SearchTitle(
-                            title: spaceChild.name ??
-                                spaceChild.canonicalAlias ??
-                                'Space',
-                            icon: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Avatar(
-                                size: 24,
-                                mxContent: spaceChild.avatarUrl,
-                                name: spaceChild.name,
-                                fontSize: 9,
-                              ),
-                            ),
-                            color: Theme.of(context)
-                                .colorScheme
-                                .secondaryContainer
-                                .withAlpha(128),
-                            trailing: const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Icon(Icons.edit_outlined),
-                            ),
-                            onTap: () => _onJoinSpaceChild(spaceChild),
+                        IconButton(
+                          onPressed: _refresh,
+                          icon: const Icon(Icons.refresh_outlined),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                if (response == null) {
+                  return SliverFillRemaining(
+                    child: Center(
+                      child: Text(L10n.of(context)!.loadingPleaseWait),
+                    ),
+                  );
+                }
+                final spaceChildren = response.rooms;
+                final canLoadMore = response.nextBatch != null;
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, i) {
+                      if (canLoadMore && i == spaceChildren.length) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: OutlinedButton.icon(
+                            label: loading
+                                ? const LinearProgressIndicator()
+                                : Text(L10n.of(context)!.loadMore),
+                            icon: const Icon(Icons.chevron_right_outlined),
+                            onPressed: loading
+                                ? null
+                                : () {
+                                    loadHierarchy(response.nextBatch);
+                                  },
                           ),
-                          if (activeSpace?.canChangeStateEvent(
-                                EventTypes.spaceChild,
-                              ) ==
-                              true)
-                            Material(
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  child: Icon(Icons.group_add_outlined),
-                                ),
-                                title:
-                                    Text(L10n.of(context)!.addChatOrSubSpace),
-                                trailing:
-                                    const Icon(Icons.chevron_right_outlined),
-                                onTap: _addChatOrSubSpace,
-                              ),
-                            ),
-                        ],
-                      );
-                    }
-                    final name = spaceChild.name ??
-                        spaceChild.canonicalAlias ??
-                        L10n.of(context)!.chat;
-                    if (widget.controller.isSearchMode &&
-                        !name.toLowerCase().contains(
-                              widget.controller.searchController.text,
-                            )) {
-                      return const SizedBox.shrink();
-                    }
-                    return Material(
-                      child: ListTile(
-                        leading: Avatar(
-                          mxContent: spaceChild.avatarUrl,
-                          name: spaceChild.name,
-                        ),
-                        title: Row(
+                        );
+                      }
+                      final spaceChild = spaceChildren[i];
+                      final room = client.getRoomById(spaceChild.roomId);
+                      if (room != null && !room.isSpace) {
+                        return ChatListItem(
+                          room,
+                          onLongPress: () =>
+                              _onSpaceChildContextMenu(spaceChild, room),
+                          activeChat: widget.controller.activeChat == room.id,
+                        );
+                      }
+                      final isSpace = spaceChild.roomType == 'm.space';
+                      final topic = spaceChild.topic?.isEmpty ?? true
+                          ? null
+                          : spaceChild.topic;
+                      if (spaceChild.roomId == activeSpaceId) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Expanded(
-                              child: Text(
-                                name,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                            SearchTitle(
+                              title: spaceChild.name ??
+                                  spaceChild.canonicalAlias ??
+                                  'Space',
+                              icon: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0,
+                                ),
+                                child: Avatar(
+                                  size: 24,
+                                  mxContent: spaceChild.avatarUrl,
+                                  name: spaceChild.name,
+                                  fontSize: 9,
                                 ),
                               ),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer
+                                  .withAlpha(128),
+                              trailing: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                child: Icon(Icons.edit_outlined),
+                              ),
+                              onTap: () => _onJoinSpaceChild(spaceChild),
                             ),
-                            if (!isSpace) ...[
-                              const Icon(
-                                Icons.people_outline,
-                                size: 16,
+                            if (activeSpace?.canChangeStateEvent(
+                                  EventTypes.spaceChild,
+                                ) ==
+                                true)
+                              Material(
+                                child: ListTile(
+                                  leading: const CircleAvatar(
+                                    child: Icon(Icons.group_add_outlined),
+                                  ),
+                                  title:
+                                      Text(L10n.of(context)!.addChatOrSubSpace),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_outlined),
+                                  onTap: _addChatOrSubSpace,
+                                ),
                               ),
-                              const SizedBox(width: 4),
-                              Text(
-                                spaceChild.numJoinedMembers.toString(),
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ],
                           ],
-                        ),
-                        onTap: () => room?.isSpace == true
-                            ? widget.controller.setActiveSpace(room!.id)
-                            : _onSpaceChildContextMenu(spaceChild, room),
-                        onLongPress: () =>
-                            _onSpaceChildContextMenu(spaceChild, room),
-                        subtitle: Text(
-                          topic ??
-                              (isSpace
-                                  ? L10n.of(context)!.enterSpace
-                                  : L10n.of(context)!.enterRoom),
-                          maxLines: 1,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onBackground,
+                        );
+                      }
+                      final name = spaceChild.name ??
+                          spaceChild.canonicalAlias ??
+                          L10n.of(context)!.chat;
+                      if (widget.controller.isSearchMode &&
+                          !name.toLowerCase().contains(
+                                widget.controller.searchController.text,
+                              )) {
+                        return const SizedBox.shrink();
+                      }
+                      return Material(
+                        child: ListTile(
+                          leading: Avatar(
+                            mxContent: spaceChild.avatarUrl,
+                            name: spaceChild.name,
                           ),
+                          title: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  name,
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              if (!isSpace) ...[
+                                const Icon(
+                                  Icons.people_outline,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  spaceChild.numJoinedMembers.toString(),
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ],
+                          ),
+                          onTap: () => room?.isSpace == true
+                              ? widget.controller.setActiveSpace(room!.id)
+                              : _onSpaceChildContextMenu(spaceChild, room),
+                          onLongPress: () =>
+                              _onSpaceChildContextMenu(spaceChild, room),
+                          subtitle: Text(
+                            topic ??
+                                (isSpace
+                                    ? L10n.of(context)!.enterSpace
+                                    : L10n.of(context)!.enterRoom),
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                          ),
+                          trailing: isSpace
+                              ? const Icon(Icons.chevron_right_outlined)
+                              : null,
                         ),
-                        trailing: isSpace
-                            ? const Icon(Icons.chevron_right_outlined)
-                            : null,
-                      ),
-                    );
-                  },
-                  childCount: spaceChildren.length + (canLoadMore ? 1 : 0),
-                ),
-              );
-            },
-          ),
-        ],
+                      );
+                    },
+                    childCount: spaceChildren.length + (canLoadMore ? 1 : 0),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
