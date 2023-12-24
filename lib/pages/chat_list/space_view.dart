@@ -50,6 +50,10 @@ class _SpaceViewState extends State<SpaceView> {
 
   Future<GetSpaceHierarchyResponse> loadHierarchy([String? prevBatch]) async {
     final activeSpaceId = widget.controller.activeSpaceId!;
+    final client = Matrix.of(context).client;
+
+    final activeSpace = client.getRoomById(activeSpaceId);
+    await activeSpace?.postLoad();
 
     setState(() {
       error = null;
@@ -57,11 +61,11 @@ class _SpaceViewState extends State<SpaceView> {
     });
 
     try {
-      final response = await Matrix.of(context).client.getSpaceHierarchy(
-            activeSpaceId,
-            maxDepth: 1,
-            from: prevBatch,
-          );
+      final response = await client.getSpaceHierarchy(
+        activeSpaceId,
+        maxDepth: 1,
+        from: prevBatch,
+      );
 
       if (prevBatch != null) {
         response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
@@ -139,7 +143,8 @@ class _SpaceViewState extends State<SpaceView> {
             label: L10n.of(context)!.joinRoom,
             icon: Icons.send_outlined,
           ),
-        if (spaceChild != null && (activeSpace?.canSendDefaultStates ?? false))
+        if (spaceChild != null &&
+            (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
             label: L10n.of(context)!.removeFromSpace,
@@ -338,6 +343,8 @@ class _SpaceViewState extends State<SpaceView> {
         slivers: [
           ChatListHeader(controller: widget.controller),
           SliverAppBar(
+            automaticallyImplyLeading: false,
+            primary: false,
             titleSpacing: 0,
             title: ListTile(
               leading: BackButton(
