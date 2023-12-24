@@ -1178,6 +1178,12 @@ class ChatController extends State<ChatPageWithRoom> {
   static const Duration _storeInputTimeout = Duration(milliseconds: 500);
 
   void onInputBarChanged(String text) {
+    if (_inputTextIsEmpty != text.isEmpty) {
+      setState(() {
+        _inputTextIsEmpty = text.isEmpty;
+      });
+    }
+
     _storeInputTimeoutTimer?.cancel();
     _storeInputTimeoutTimer = Timer(_storeInputTimeout, () async {
       final prefs = await SharedPreferences.getInstance();
@@ -1215,11 +1221,6 @@ class ChatController extends State<ChatPageWithRoom> {
           timeout: const Duration(seconds: 30).inMilliseconds,
         );
       }
-    }
-    if (_inputTextIsEmpty != text.isEmpty) {
-      setState(() {
-        _inputTextIsEmpty = text.isEmpty;
-      });
     }
   }
 
