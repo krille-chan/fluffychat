@@ -469,6 +469,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
     setState(() {
       sendController.text = pendingText;
+      _inputTextIsEmpty = pendingText.isEmpty;
       replyEvent = null;
       editEvent = null;
       pendingText = '';
@@ -1197,7 +1198,7 @@ class ChatController extends State<ChatPageWithRoom> {
             text.toLowerCase() == '${prefix.toLowerCase()} ') {
           setSendingClient(client);
           setState(() {
-            sendController.text = '';
+            sendController.clear();
           });
           return;
         }
