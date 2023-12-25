@@ -192,7 +192,9 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return cachedHomeservers = homeserverList;
   }
 
-  void login() => context.go('/home/login');
+  void login() => context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+      );
 
   @override
   void initState() {
