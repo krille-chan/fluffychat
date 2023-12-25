@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -40,7 +42,7 @@ class LoginScaffold extends StatelessWidget {
       body: body,
       backgroundColor: isMobileMode
           ? null
-          : Theme.of(context).colorScheme.background.withOpacity(0.9),
+          : Theme.of(context).colorScheme.background.withOpacity(0.8),
       bottomNavigationBar: isMobileMode
           ? Material(
               elevation: 4,
@@ -77,7 +79,13 @@ class LoginScaffold extends StatelessWidget {
                     constraints: isMobileMode
                         ? const BoxConstraints()
                         : const BoxConstraints(maxWidth: 480, maxHeight: 720),
-                    child: scaffold,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 10.0,
+                        sigmaY: 10.0,
+                      ),
+                      child: scaffold,
+                    ),
                   ),
                 ),
               ),

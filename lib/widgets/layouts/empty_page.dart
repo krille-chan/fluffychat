@@ -2,10 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
-
 class EmptyPage extends StatelessWidget {
-  static const double _width = 128;
+  static const double _width = 400;
   const EmptyPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -19,12 +17,9 @@ class EmptyPage extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: Container(
-        decoration: BoxDecoration(
-          gradient: FluffyThemes.backgroundGradient(context, 128),
-        ),
         alignment: Alignment.center,
         child: Image.asset(
-          'assets/favicon.png',
+          'assets/info-logo.png',
           width: width,
           height: width,
           filterQuality: FilterQuality.medium,
