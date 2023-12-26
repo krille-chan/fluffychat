@@ -59,7 +59,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                       title: Text(
                         L10n.of(context)!.notifications,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -89,7 +89,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                       title: Text(
                         L10n.of(context)!.configureChat,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -186,7 +186,7 @@ class ChatListItem extends StatelessWidget {
                     width: Avatar.defaultSize,
                     height: Avatar.defaultSize,
                     child: Material(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(Avatar.defaultSize),
                       child: const Icon(Icons.check, color: Colors.white),
                     ),

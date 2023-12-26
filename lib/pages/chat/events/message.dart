@@ -391,8 +391,8 @@ class Message extends StatelessWidget {
               children: [
                 Container(
                   color: selected
-                      ? Theme.of(context).primaryColor.withAlpha(100)
-                      : Theme.of(context).primaryColor.withAlpha(0),
+                      ? Theme.of(context).colorScheme.primary.withAlpha(100)
+                      : Colors.transparent,
                   constraints: const BoxConstraints(
                     maxWidth: FluffyThemes.columnWidth * 2.5,
                   ),
@@ -410,7 +410,7 @@ class Message extends StatelessWidget {
                     child: Material(
                       color: Theme.of(context)
                           .colorScheme
-                          .background
+                          .surfaceVariant
                           .withOpacity(0.9),
                       elevation: Theme.of(context)
                               .appBarTheme
