@@ -82,11 +82,17 @@ class ChatEventList extends StatelessWidget {
                 );
               }
               if (controller.timeline!.canRequestHistory) {
-                return Center(
-                  child: IconButton(
-                    onPressed: controller.requestHistory,
-                    icon: const Icon(Icons.refresh_outlined),
-                  ),
+                return Builder(
+                  builder: (context) {
+                    WidgetsBinding.instance
+                        .addPostFrameCallback(controller.requestHistory);
+                    return Center(
+                      child: IconButton(
+                        onPressed: controller.requestHistory,
+                        icon: const Icon(Icons.refresh_outlined),
+                      ),
+                    );
+                  },
                 );
               }
               return const SizedBox.shrink();

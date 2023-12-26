@@ -2383,5 +2383,6 @@
     "publicSpaces": "Public spaces",
     "addChatOrSubSpace": "Add chat or sub space",
     "subspace": "Subspace",
-    "decline": "Decline"
+    "decline": "Decline",
+    "thisDevice": "This device:"
 }
