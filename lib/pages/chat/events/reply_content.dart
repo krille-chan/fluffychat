@@ -38,7 +38,7 @@ class ReplyContent extends StatelessWidget {
         children: <Widget>[
           Container(
             width: 3,
-            height: fontSize * 2 + 12,
+            height: fontSize * 2 + 16,
             color: Theme.of(context).colorScheme.primary,
           ),
           const SizedBox(width: 6),
