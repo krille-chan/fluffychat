@@ -293,11 +293,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Ŝanĝi fonbildon",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Ŝanĝi vian profilbildon",
     "@changeYourAvatar": {
         "type": "text",

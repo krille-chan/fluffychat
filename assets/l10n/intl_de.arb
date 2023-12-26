@@ -294,11 +294,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Hintergrund ändern",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Deinen Avatar ändern",
     "@changeYourAvatar": {
         "type": "text",

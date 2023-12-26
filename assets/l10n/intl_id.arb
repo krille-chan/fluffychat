@@ -470,11 +470,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Ubah wallpaper",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeTheNameOfTheGroup": "Ubah nama grup",
     "@changeTheNameOfTheGroup": {
         "type": "text",

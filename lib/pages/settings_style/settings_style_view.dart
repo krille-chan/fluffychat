@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../config/app_config.dart';
-import '../../widgets/matrix.dart';
 import 'settings_style.dart';
 
 class SettingsStyleView extends StatelessWidget {
@@ -16,7 +15,6 @@ class SettingsStyleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const colorPickerSize = 32.0;
-    final wallpaper = Matrix.of(context).wallpaper;
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
@@ -157,41 +155,6 @@ class SettingsStyleView extends StatelessWidget {
               value: ThemeMode.dark,
               title: Text(L10n.of(context)!.darkTheme),
               onChanged: controller.switchTheme,
-            ),
-            const Divider(height: 1),
-            ListTile(
-              title: Text(
-                L10n.of(context)!.wallpaper,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            if (wallpaper != null)
-              ListTile(
-                title: Image.file(
-                  wallpaper,
-                  height: 38,
-                  fit: BoxFit.cover,
-                ),
-                trailing: const Icon(
-                  Icons.delete_outlined,
-                  color: Colors.red,
-                ),
-                onTap: controller.deleteWallpaperAction,
-              ),
-            Builder(
-              builder: (context) {
-                return ListTile(
-                  title: Text(L10n.of(context)!.changeWallpaper),
-                  trailing: Icon(
-                    Icons.photo_outlined,
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                  ),
-                  onTap: controller.setWallpaperAction,
-                );
-              },
             ),
             const Divider(height: 1),
             ListTile(

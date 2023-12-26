@@ -236,11 +236,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Háttér módosítása",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "A titkosítás megsérült",
     "@channelCorruptedDecryptError": {
         "type": "text",

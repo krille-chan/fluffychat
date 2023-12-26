@@ -299,11 +299,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Muuda taustapilti",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Muuda oma tunnuspilti",
     "@changeYourAvatar": {
         "type": "text",

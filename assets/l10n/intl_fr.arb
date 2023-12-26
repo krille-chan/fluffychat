@@ -301,11 +301,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Changer l'image de fond",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Changer votre avatar",
     "@changeYourAvatar": {
         "type": "text",

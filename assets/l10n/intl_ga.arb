@@ -420,11 +420,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Athraigh cúlbhrat",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changedTheChatAvatar": "D'athraigh {username} abhatár an chomhrá",
     "@changedTheChatAvatar": {
         "type": "text",

@@ -935,11 +935,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Vaihda taustakuva",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Vaihda profiilikuvasi",
     "@changeYourAvatar": {
         "type": "text",

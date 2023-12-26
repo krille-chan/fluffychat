@@ -219,11 +219,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Zmeniť pozadie",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Šifrovanie bolo poškodené",
     "@channelCorruptedDecryptError": {
         "type": "text",

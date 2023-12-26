@@ -282,11 +282,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "更改壁纸",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "更改你的头像",
     "@changeYourAvatar": {
         "type": "text",
