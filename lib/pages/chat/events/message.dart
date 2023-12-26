@@ -32,6 +32,8 @@ class Message extends StatelessWidget {
   final bool selected;
   final Timeline timeline;
   final bool highlightMarker;
+  final bool animateIn;
+  final void Function()? resetAnimateIn;
 
   const Message(
     this.event, {
@@ -46,6 +48,8 @@ class Message extends StatelessWidget {
     this.selected = false,
     required this.timeline,
     this.highlightMarker = false,
+    this.animateIn = false,
+    this.resetAnimateIn,
     super.key,
   });
 
@@ -382,90 +386,110 @@ class Message extends StatelessWidget {
     }
 
     TapDownDetails? lastTapDownDetails;
+    final resetAnimateIn = this.resetAnimateIn;
+    var animateIn = this.animateIn;
 
-    return Center(
-      child: Swipeable(
-        key: ValueKey(event.eventId),
-        background: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
+    return StatefulBuilder(
+      builder: (context, setState) {
+        if (animateIn && resetAnimateIn != null) {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            animateIn = false;
+            setState(resetAnimateIn);
+          });
+        }
+        return AnimatedSlide(
+          offset: Offset(0, animateIn ? 1 : 0),
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
           child: Center(
-            child: Icon(Icons.check_outlined),
-          ),
-        ),
-        direction: SwipeDirection.endToStart,
-        onSwipe: (_) => onSwipe(),
-        child: HoverBuilder(
-          builder: (context, hovered) => GestureDetector(
-            onTapDown: (details) {
-              lastTapDownDetails = details;
-            },
-            onTap: () {
-              if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) return;
-              onSelect(event);
-            },
-            child: Stack(
-              children: [
-                Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: FluffyThemes.columnWidth * 2.5,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 4.0,
-                  ),
-                  child: container,
+            child: Swipeable(
+              key: ValueKey(event.eventId),
+              background: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: Center(
+                  child: Icon(Icons.check_outlined),
                 ),
-                if (hovered || selected)
-                  Positioned(
-                    left: ownMessage ? 4 : null,
-                    right: ownMessage ? null : 4,
-                    bottom: 4,
-                    child: Material(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .surfaceVariant
-                          .withOpacity(0.9),
-                      elevation: Theme.of(context)
-                              .appBarTheme
-                              .scrolledUnderElevation ??
-                          4,
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (hovered) ...[
-                            IconButton(
-                              icon: const Icon(
-                                Icons.reply_outlined,
-                                size: 16,
-                              ),
-                              tooltip: L10n.of(context)!.reply,
-                              onPressed: () => onSwipe(),
-                            ),
-                          ],
-                          IconButton(
-                            icon: Icon(
-                              selected
-                                  ? Icons.check_circle
-                                  : longPressSelect
-                                      ? Icons.check_circle_outlined
-                                      : Icons.menu,
-                              size: 16,
-                            ),
-                            tooltip: L10n.of(context)!.select,
-                            onPressed: () => onSelect(event),
-                          ),
-                        ],
+              ),
+              direction: SwipeDirection.endToStart,
+              onSwipe: (_) => onSwipe(),
+              child: HoverBuilder(
+                builder: (context, hovered) => GestureDetector(
+                  onTapDown: (details) {
+                    lastTapDownDetails = details;
+                  },
+                  onTap: () {
+                    if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
+                      return;
+                    }
+                    onSelect(event);
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        constraints: const BoxConstraints(
+                          maxWidth: FluffyThemes.columnWidth * 2.5,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4.0,
+                        ),
+                        child: container,
                       ),
-                    ),
+                      if (hovered || selected)
+                        Positioned(
+                          left: ownMessage ? 4 : null,
+                          right: ownMessage ? null : 4,
+                          bottom: 4,
+                          child: Material(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceVariant
+                                .withOpacity(0.9),
+                            elevation: Theme.of(context)
+                                    .appBarTheme
+                                    .scrolledUnderElevation ??
+                                4,
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            shadowColor:
+                                Theme.of(context).appBarTheme.shadowColor,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (hovered) ...[
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.reply_outlined,
+                                      size: 16,
+                                    ),
+                                    tooltip: L10n.of(context)!.reply,
+                                    onPressed: () => onSwipe(),
+                                  ),
+                                ],
+                                IconButton(
+                                  icon: Icon(
+                                    selected
+                                        ? Icons.check_circle
+                                        : longPressSelect
+                                            ? Icons.check_circle_outlined
+                                            : Icons.menu,
+                                    size: 16,
+                                  ),
+                                  tooltip: L10n.of(context)!.select,
+                                  onPressed: () => onSelect(event),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
-              ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -27,6 +27,7 @@ class ChatEventList extends StatelessWidget {
     final events = controller.timeline!.events
         .where((event) => event.isVisibleInGui)
         .toList();
+    final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
     // ListView's findChildIndexCallback
@@ -101,6 +102,8 @@ class ChatEventList extends StatelessWidget {
 
             // The message at this index:
             final event = events[i];
+            final animateIn = animateInEventIndex != null &&
+                event == controller.timeline!.events[animateInEventIndex];
 
             return AutoScrollTag(
               key: ValueKey(event.eventId),
@@ -108,6 +111,10 @@ class ChatEventList extends StatelessWidget {
               controller: controller.scrollController,
               child: Message(
                 event,
+                animateIn: animateIn,
+                resetAnimateIn: () {
+                  controller.animateInEventIndex = null;
+                },
                 onSwipe: () => controller.replyAction(replyTo: event),
                 onInfoTab: controller.showEventInfo,
                 onAvatarTab: (Event event) => showAdaptiveBottomSheet(

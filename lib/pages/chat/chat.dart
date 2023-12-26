@@ -304,6 +304,13 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Future<void>? loadTimelineFuture;
 
+  int? animateInEventIndex;
+
+  void onInsert(int i) {
+    // setState will be called by updateView() anyway
+    animateInEventIndex = i;
+  }
+
   Future<void> _getTimeline({
     String? eventContextId,
   }) async {
@@ -317,11 +324,15 @@ class ChatController extends State<ChatPageWithRoom> {
       timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
+        onInsert: onInsert,
       );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
-      timeline = await room.getTimeline(onUpdate: updateView);
+      timeline = await room.getTimeline(
+        onUpdate: updateView,
+        onInsert: onInsert,
+      );
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
         _showScrollUpMaterialBanner(eventContextId!);
