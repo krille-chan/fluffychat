@@ -282,11 +282,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "壁紙を変更する",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "暗号が破損しています",
     "@channelCorruptedDecryptError": {
         "type": "text",

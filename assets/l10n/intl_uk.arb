@@ -226,11 +226,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Змінити тло",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Шифрування було пошкоджено",
     "@channelCorruptedDecryptError": {
         "type": "text",

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -186,8 +185,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
-
-  File? wallpaper;
 
   void _initWithStore() async {
     try {
@@ -429,9 +426,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initSettings() {
-    final path = store.getString(SettingKeys.wallpaper);
-    if (path != null) wallpaper = File(path);
-
     AppConfig.fontSizeFactor =
         double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
             AppConfig.fontSizeFactor;

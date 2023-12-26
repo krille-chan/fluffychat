@@ -198,14 +198,6 @@ class ChatView extends StatelessWidget {
                     onDragExited: controller.onDragExited,
                     child: Stack(
                       children: <Widget>[
-                        if (Matrix.of(context).wallpaper != null)
-                          Image.file(
-                            Matrix.of(context).wallpaper!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                            filterQuality: FilterQuality.medium,
-                          ),
                         SafeArea(
                           child: Column(
                             children: <Widget>[

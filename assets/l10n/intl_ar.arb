@@ -226,11 +226,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "غيِّر الخلفية",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "فسُد التشفير",
     "@channelCorruptedDecryptError": {
         "type": "text",

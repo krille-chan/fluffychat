@@ -1185,11 +1185,6 @@
             "username": {}
         }
     },
-    "changeWallpaper": "",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "moderator": "",
     "@moderator": {
         "type": "text",

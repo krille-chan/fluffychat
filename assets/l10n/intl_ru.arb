@@ -299,11 +299,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Изменить фон чатов",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Изменить свой аватар",
     "@changeYourAvatar": {
         "type": "text",

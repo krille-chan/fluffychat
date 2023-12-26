@@ -263,11 +263,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Ändra bakgrund",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Krypteringen har blivit korrupt",
     "@channelCorruptedDecryptError": {
         "type": "text",

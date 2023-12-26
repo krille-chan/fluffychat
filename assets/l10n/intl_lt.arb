@@ -490,11 +490,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Keisti ekrano užsklandą",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Keisti savo avatarą",
     "@changeYourAvatar": {
         "type": "text",

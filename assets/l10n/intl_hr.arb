@@ -289,11 +289,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Promijeni sliku pozadine",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Promijeni svoj avatar",
     "@changeYourAvatar": {
         "type": "text",

@@ -267,11 +267,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Cambiar el fondo de pantalla",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "El cifrado se ha corrompido",
     "@channelCorruptedDecryptError": {
         "type": "text",

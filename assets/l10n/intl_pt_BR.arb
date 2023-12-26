@@ -298,11 +298,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Alterar o pano de fundo",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Alterar seu avatar",
     "@changeYourAvatar": {
         "type": "text",

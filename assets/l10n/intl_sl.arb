@@ -434,11 +434,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Spremeni ozadje",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changedTheHistoryVisibility": "{username} je spremenila vidnost zgodovine",
     "@changedTheHistoryVisibility": {
         "type": "text",

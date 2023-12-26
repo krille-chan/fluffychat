@@ -253,11 +253,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Alterar o fundo",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Alterar o teu avatar",
     "@changeYourAvatar": {
         "type": "text",

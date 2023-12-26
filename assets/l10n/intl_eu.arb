@@ -226,11 +226,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Aldatu horma-irudia",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
   "channelCorruptedDecryptError": "Zifraketa hondatu egin da",
   "@channelCorruptedDecryptError": {
     "type": "text",

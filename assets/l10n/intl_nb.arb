@@ -255,11 +255,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Endre bakgrunnsbilde",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Krypteringen er skadet",
     "@channelCorruptedDecryptError": {
         "type": "text",

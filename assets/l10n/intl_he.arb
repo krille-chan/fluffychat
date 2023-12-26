@@ -138,11 +138,6 @@
             "username": {}
         }
     },
-    "changeWallpaper": "שנה טפט",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changedTheChatNameTo": "{username} שינה את שם הצ'אט ל: '{chatname}'",
     "@changedTheChatNameTo": {
         "type": "text",

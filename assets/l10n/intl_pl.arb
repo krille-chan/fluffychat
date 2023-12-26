@@ -272,11 +272,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Zmień tapetę",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Szyfrowanie zostało uszkodzone",
     "@channelCorruptedDecryptError": {
         "type": "text",

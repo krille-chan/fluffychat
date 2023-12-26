@@ -299,11 +299,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Změnit pozadí",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Změňte svůj avatar",
     "@changeYourAvatar": {
         "type": "text",

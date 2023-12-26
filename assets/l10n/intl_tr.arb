@@ -301,11 +301,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Duvar kağıdını değiştir",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Avatarınızı değiştirin",
     "@changeYourAvatar": {
         "type": "text",

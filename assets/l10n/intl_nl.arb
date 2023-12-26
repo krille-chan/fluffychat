@@ -300,11 +300,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Achtergrond wijzigen",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Jouw avatar veranderen",
     "@changeYourAvatar": {
         "type": "text",

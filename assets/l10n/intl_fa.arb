@@ -338,11 +338,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "کاغذدیواری را تغییر دهید",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "عکس پروفایل خود را تغییر دهید",
     "@changeYourAvatar": {
         "type": "text",

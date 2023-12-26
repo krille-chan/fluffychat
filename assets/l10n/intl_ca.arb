@@ -249,11 +249,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Canvia el fons",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "El xifratge s’ha corromput",
     "@channelCorruptedDecryptError": {
         "type": "text",

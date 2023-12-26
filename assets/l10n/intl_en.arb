@@ -348,11 +348,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "Change wallpaper",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeYourAvatar": "Change your avatar",
     "@changeYourAvatar": {
         "type": "text",

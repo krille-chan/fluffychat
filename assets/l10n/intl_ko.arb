@@ -495,11 +495,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "changeWallpaper": "배경 바꾸기",
-    "@changeWallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
     "changeTheNameOfTheGroup": "그룹의 이름 바꾸기",
     "@changeTheNameOfTheGroup": {
         "type": "text",
