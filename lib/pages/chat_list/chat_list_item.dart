@@ -41,25 +41,40 @@ class ChatListItem extends StatelessWidget {
     if (room.membership == Membership.invite) {
       final inviterId =
           room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
-      final profile = inviterId == null
-          ? null
-          : await showFutureLoadingDialog(
-              context: context,
-              future: () => room.client.getProfileFromUserId(inviterId),
-            );
-      final consent = await showOkCancelAlertDialog(
+      final inviteAction = await showModalActionSheet<InviteActions>(
         context: context,
-        title: L10n.of(context)!.inviteForMe,
-        message: L10n.of(context)!.youInvitedBy(
-          profile?.result?.displayName ??
-              profile?.result?.userId.localpart ??
-              L10n.of(context)!.user,
-        ),
-        okLabel: L10n.of(context)!.joinRoom,
-        cancelLabel: L10n.of(context)!.delete,
-        barrierDismissible: false,
+        message: room.isDirectChat
+            ? L10n.of(context)!.invitePrivateChat
+            : L10n.of(context)!.inviteGroupChat,
+        title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+        style: AdaptiveStyle.material,
+        actions: [
+          SheetAction(
+            key: InviteActions.accept,
+            label: L10n.of(context)!.accept,
+            icon: Icons.check_outlined,
+            isDefaultAction: true,
+          ),
+          SheetAction(
+            key: InviteActions.decline,
+            label: L10n.of(context)!.decline,
+            icon: Icons.close_outlined,
+            isDestructiveAction: true,
+          ),
+          SheetAction(
+            key: InviteActions.block,
+            label: L10n.of(context)!.block,
+            icon: Icons.block_outlined,
+            isDestructiveAction: true,
+          ),
+        ],
       );
-      if (consent == OkCancelResult.cancel) {
+      if (inviteAction == null) return;
+      if (inviteAction == InviteActions.block) {
+        context.go('/rooms/settings/security/ignorelist', extra: inviterId);
+        return;
+      }
+      if (inviteAction == InviteActions.decline) {
         await showFutureLoadingDialog(
           context: context,
           future: room.leave,
@@ -380,4 +395,10 @@ class ChatListItem extends StatelessWidget {
       ),
     );
   }
+}
+
+enum InviteActions {
+  accept,
+  decline,
+  block,
 }

@@ -2387,5 +2387,6 @@
     "joinSpace": "Join space",
     "publicSpaces": "Public spaces",
     "addChatOrSubSpace": "Add chat or sub space",
-    "subspace": "Subspace"
+    "subspace": "Subspace",
+    "decline": "Decline"
 }
