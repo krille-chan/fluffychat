@@ -424,6 +424,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (PlatformInfos.isMobile) {
       client.backgroundSync = foreground;
       client.requestHistoryOnLimitedTimeline = !foreground;
+      Logs().v('Set background sync to', foreground);
     }
   }
 
