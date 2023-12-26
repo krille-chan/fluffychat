@@ -9,7 +9,6 @@ import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 class ErrorReporter {
@@ -22,8 +21,8 @@ class ErrorReporter {
     Logs().e(message ?? 'Error caught', error, stackTrace);
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: error.toLocalizedString(context),
-      message: L10n.of(context)!.reportErrorDescription,
+      title: L10n.of(context)!.reportErrorDescription,
+      message: '$error\n${stackTrace ?? ''}',
       okLabel: L10n.of(context)!.report,
       cancelLabel: L10n.of(context)!.close,
     );

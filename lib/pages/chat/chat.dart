@@ -219,18 +219,7 @@ class ChatController extends State<ChatPageWithRoom> {
   void requestHistory([_]) async {
     if (!timeline!.canRequestHistory) return;
     Logs().v('Requesting history...');
-    try {
-      await timeline!.requestHistory(historyCount: _loadHistoryCount);
-    } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            (err).toLocalizedString(context),
-          ),
-        ),
-      );
-      rethrow;
-    }
+    await timeline!.requestHistory(historyCount: _loadHistoryCount);
   }
 
   void requestFuture() async {
@@ -238,20 +227,9 @@ class ChatController extends State<ChatPageWithRoom> {
     if (timeline == null) return;
     if (!timeline.canRequestFuture) return;
     Logs().v('Requesting future...');
-    try {
-      final mostRecentEventId = timeline.events.first.eventId;
-      await timeline.requestFuture(historyCount: _loadHistoryCount);
-      setReadMarker(eventId: mostRecentEventId);
-    } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            (err).toLocalizedString(context),
-          ),
-        ),
-      );
-      rethrow;
-    }
+    final mostRecentEventId = timeline.events.first.eventId;
+    await timeline.requestFuture(historyCount: _loadHistoryCount);
+    setReadMarker(eventId: mostRecentEventId);
   }
 
   void _updateScrollController() {
