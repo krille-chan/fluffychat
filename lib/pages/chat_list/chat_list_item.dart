@@ -47,7 +47,6 @@ class ChatListItem extends StatelessWidget {
             ? L10n.of(context)!.invitePrivateChat
             : L10n.of(context)!.inviteGroupChat,
         title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-        style: AdaptiveStyle.material,
         actions: [
           SheetAction(
             key: InviteActions.accept,
