@@ -29,6 +29,7 @@ Future<void> deleteConversationDialog(BuildContext context,
               // Action to delete the conversation
               await showFutureLoadingDialog(
                 context: context,
+                title: L10n.of(context)!.loading_deleteRoom,
                 future: () async {
                   await botConnection.deleteConversation(network.chatBot);
                 },

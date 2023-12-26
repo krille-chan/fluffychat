@@ -2604,5 +2604,7 @@
   "loading_verification": "Login verification...",
   "loading_verificationNumber": "Phone number verification...",
   "loading_sendCode": "Sending the code...",
-  "loading_verificationCode": "Code verification..."
+  "loading_verificationCode": "Code verification...",
+  "loading_disconnectionDemand": "Logout request...",
+  "loading_deleteRoom": "Delete the conversation..."
 }
