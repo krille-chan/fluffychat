@@ -31,6 +31,7 @@ class Message extends StatelessWidget {
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
+  final bool highlightMarker;
 
   const Message(
     this.event, {
@@ -44,6 +45,7 @@ class Message extends StatelessWidget {
     required this.onSwipe,
     this.selected = false,
     required this.timeline,
+    this.highlightMarker = false,
     super.key,
   });
 
@@ -186,8 +188,19 @@ class Message extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8),
                 child: Material(
                   color: noBubble ? Colors.transparent : color,
-                  borderRadius: borderRadius,
                   clipBehavior: Clip.antiAlias,
+                  elevation: highlightMarker || selected ? 10 : 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: borderRadius,
+                    side: BorderSide(
+                      width: highlightMarker || selected ? 1 : 0,
+                      color: selected
+                          ? Theme.of(context).colorScheme.onBackground
+                          : highlightMarker
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.transparent,
+                    ),
+                  ),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius:
@@ -393,9 +406,6 @@ class Message extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  color: selected
-                      ? Theme.of(context).colorScheme.primary.withAlpha(100)
-                      : Colors.transparent,
                   constraints: const BoxConstraints(
                     maxWidth: FluffyThemes.columnWidth * 2.5,
                   ),

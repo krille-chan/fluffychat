@@ -367,6 +367,8 @@ class ChatController extends State<ChatPageWithRoom> {
     return;
   }
 
+  String? scrollToEventIdMarker;
+
   Future<void>? _setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
@@ -912,6 +914,9 @@ class ChatController extends State<ChatPageWithRoom> {
       });
       return;
     }
+    setState(() {
+      scrollToEventIdMarker = eventId;
+    });
     await scrollController.scrollToIndex(
       eventIndex,
       preferPosition: AutoScrollPosition.middle,
