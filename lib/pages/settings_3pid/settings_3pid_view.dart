@@ -28,6 +28,7 @@ class Settings3PidView extends StatelessWidget {
         ],
       ),
       body: MaxWidthBody(
+        withScrolling: false,
         child: FutureBuilder<List<ThirdPartyIdentifier>?>(
           future: controller.request,
           builder: (

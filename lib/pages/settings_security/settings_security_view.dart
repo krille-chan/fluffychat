@@ -53,7 +53,7 @@ class SettingsSecurityView extends StatelessWidget {
                   if (capabilities?.mChangePassword?.enabled == true ||
                       error != null) ...[
                     ListTile(
-                      leading: const Icon(Icons.password_outlined),
+                      leading: const Icon(Icons.key_outlined),
                       trailing: error != null
                           ? null
                           : const Icon(Icons.chevron_right_outlined),
@@ -85,7 +85,6 @@ class SettingsSecurityView extends StatelessWidget {
                           ? null
                           : () => context.go('/rooms/settings/security/3pid'),
                     ),
-                    const Divider(),
                   ],
                   ListTile(
                     leading: const Icon(Icons.block_outlined),
@@ -95,7 +94,6 @@ class SettingsSecurityView extends StatelessWidget {
                         context.go('/rooms/settings/security/ignorelist'),
                   ),
                   if (Matrix.of(context).client.encryption != null) ...{
-                    const Divider(thickness: 1),
                     if (PlatformInfos.isMobile)
                       ListTile(
                         leading: const Icon(Icons.lock_outlined),
@@ -103,14 +101,6 @@ class SettingsSecurityView extends StatelessWidget {
                         title: Text(L10n.of(context)!.appLock),
                         onTap: controller.setAppLockAction,
                       ),
-                    ListTile(
-                      title: Text(L10n.of(context)!.yourPublicKey),
-                      subtitle: Text(
-                        Matrix.of(context).client.fingerprintKey.beautified,
-                        style: const TextStyle(fontFamily: 'monospace'),
-                      ),
-                      leading: const Icon(Icons.vpn_key_outlined),
-                    ),
                   },
                   const Divider(height: 1),
                   ListTile(
@@ -130,6 +120,14 @@ class SettingsSecurityView extends StatelessWidget {
                       style: const TextStyle(color: Colors.red),
                     ),
                     onTap: controller.deleteAccountAction,
+                  ),
+                  ListTile(
+                    title: Text(L10n.of(context)!.yourPublicKey),
+                    subtitle: SelectableText(
+                      Matrix.of(context).client.fingerprintKey.beautified,
+                      style: const TextStyle(fontFamily: 'monospace'),
+                    ),
+                    leading: const Icon(Icons.vpn_key_outlined),
                   ),
                 ],
               );

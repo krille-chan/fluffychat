@@ -20,6 +20,14 @@ class SettingsPasswordView extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
+                Center(
+                  child: Icon(
+                    Icons.key_outlined,
+                    color: Theme.of(context).dividerColor,
+                    size: 80,
+                  ),
+                ),
+                const SizedBox(height: 16),
                 TextField(
                   controller: controller.oldPasswordController,
                   obscureText: true,
