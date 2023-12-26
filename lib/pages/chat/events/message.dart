@@ -122,183 +122,215 @@ class Message extends StatelessWidget {
           : Theme.of(context).colorScheme.primaryContainer;
     }
 
-    final row = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: rowMainAxisAlignment,
-      children: [
-        if (sameSender || ownMessage)
-          SizedBox(
-            width: Avatar.defaultSize,
-            child: Center(
-              child: SizedBox(
-                width: 16,
-                height: 16,
-                child: event.status == EventStatus.sending
-                    ? const CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      )
-                    : event.status == EventStatus.error
-                        ? const Icon(Icons.error, color: Colors.red)
-                        : null,
-              ),
-            ),
-          )
-        else
-          FutureBuilder<User?>(
-            future: event.fetchSenderUser(),
-            builder: (context, snapshot) {
-              final user = snapshot.data ?? event.senderFromMemoryOrFallback;
-              return Avatar(
-                mxContent: user.avatarUrl,
-                name: user.calcDisplayname(),
-                presenceUserId: user.stateKey,
-                onTap: () => onAvatarTab(event),
-              );
-            },
-          ),
-        Expanded(
-          child: Column(
+    final resetAnimateIn = this.resetAnimateIn;
+    var animateIn = this.animateIn;
+
+    final row = StatefulBuilder(
+      builder: (context, setState) {
+        if (animateIn && resetAnimateIn != null) {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            animateIn = false;
+            setState(resetAnimateIn);
+          });
+        }
+        return AnimatedSlide(
+          offset: Offset(0, animateIn ? 1 : 0),
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: rowMainAxisAlignment,
             children: [
-              if (!sameSender)
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                  child: ownMessage || event.room.isDirectChat
-                      ? const SizedBox(height: 12)
-                      : FutureBuilder<User?>(
-                          future: event.fetchSenderUser(),
-                          builder: (context, snapshot) {
-                            final displayname =
-                                snapshot.data?.calcDisplayname() ??
-                                    event.senderFromMemoryOrFallback
-                                        .calcDisplayname();
-                            return Text(
-                              displayname,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: (Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? displayname.color
-                                    : displayname.lightColorText),
-                              ),
-                            );
-                          },
-                        ),
-                ),
-              Container(
-                alignment: alignment,
-                padding: const EdgeInsets.only(left: 8),
-                child: Material(
-                  color: noBubble ? Colors.transparent : color,
-                  clipBehavior: Clip.antiAlias,
-                  elevation: highlightMarker || selected ? 10 : 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: borderRadius,
-                    side: BorderSide(
-                      width: highlightMarker || selected ? 1 : 0,
-                      color: selected
-                          ? Theme.of(context).colorScheme.onBackground
-                          : highlightMarker
-                              ? Theme.of(context).colorScheme.primary
-                              : Colors.transparent,
+              if (sameSender || ownMessage)
+                SizedBox(
+                  width: Avatar.defaultSize,
+                  child: Center(
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: event.status == EventStatus.error
+                          ? const Icon(Icons.error, color: Colors.red)
+                          : null,
                     ),
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                    ),
-                    padding: noBubble || noPadding
-                        ? EdgeInsets.zero
-                        : const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
+                )
+              else
+                FutureBuilder<User?>(
+                  future: event.fetchSenderUser(),
+                  builder: (context, snapshot) {
+                    final user =
+                        snapshot.data ?? event.senderFromMemoryOrFallback;
+                    return Avatar(
+                      mxContent: user.avatarUrl,
+                      name: user.calcDisplayname(),
+                      presenceUserId: user.stateKey,
+                      onTap: () => onAvatarTab(event),
+                    );
+                  },
+                ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!sameSender)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, bottom: 4),
+                        child: ownMessage || event.room.isDirectChat
+                            ? const SizedBox(height: 12)
+                            : FutureBuilder<User?>(
+                                future: event.fetchSenderUser(),
+                                builder: (context, snapshot) {
+                                  final displayname =
+                                      snapshot.data?.calcDisplayname() ??
+                                          event.senderFromMemoryOrFallback
+                                              .calcDisplayname();
+                                  return Text(
+                                    displayname,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? displayname.color
+                                          : displayname.lightColorText),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                    Container(
+                      alignment: alignment,
+                      padding: const EdgeInsets.only(left: 8),
+                      child: AnimatedOpacity(
+                        opacity: animateIn
+                            ? 0
+                            : event.redacted ||
+                                    event.messageType ==
+                                        MessageTypes.BadEncrypted ||
+                                    event.status.isSending
+                                ? 0.5
+                                : 1,
+                        duration: FluffyThemes.animationDuration,
+                        curve: FluffyThemes.animationCurve,
+                        child: Material(
+                          color: noBubble ? Colors.transparent : color,
+                          clipBehavior: Clip.antiAlias,
+                          elevation: highlightMarker || selected ? 10 : 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: borderRadius,
+                            side: BorderSide(
+                              width: highlightMarker || selected ? 1 : 0,
+                              color: selected
+                                  ? Theme.of(context).colorScheme.onBackground
+                                  : highlightMarker
+                                      ? Theme.of(context).colorScheme.primary
+                                      : Colors.transparent,
+                            ),
                           ),
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth * 1.5,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (event.relationshipType == RelationshipTypes.reply)
-                          FutureBuilder<Event?>(
-                            future: event.getReplyEvent(timeline),
-                            builder: (BuildContext context, snapshot) {
-                              final replyEvent = snapshot.hasData
-                                  ? snapshot.data!
-                                  : Event(
-                                      eventId: event.relationshipEventId!,
-                                      content: {
-                                        'msgtype': 'm.text',
-                                        'body': '...',
-                                      },
-                                      senderId: event.senderId,
-                                      type: 'm.room.message',
-                                      room: event.room,
-                                      status: EventStatus.sent,
-                                      originServerTs: DateTime.now(),
-                                    );
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 4.0),
-                                child: InkWell(
-                                  borderRadius: ReplyContent.borderRadius,
-                                  onTap: () =>
-                                      scrollToEventId(replyEvent.eventId),
-                                  child: AbsorbPointer(
-                                    child: ReplyContent(
-                                      replyEvent,
-                                      ownMessage: ownMessage,
-                                      timeline: timeline,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                            ),
+                            padding: noBubble || noPadding
+                                ? EdgeInsets.zero
+                                : const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 8,
+                                  ),
+                            constraints: const BoxConstraints(
+                              maxWidth: FluffyThemes.columnWidth * 1.5,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                if (event.relationshipType ==
+                                    RelationshipTypes.reply)
+                                  FutureBuilder<Event?>(
+                                    future: event.getReplyEvent(timeline),
+                                    builder: (BuildContext context, snapshot) {
+                                      final replyEvent = snapshot.hasData
+                                          ? snapshot.data!
+                                          : Event(
+                                              eventId:
+                                                  event.relationshipEventId!,
+                                              content: {
+                                                'msgtype': 'm.text',
+                                                'body': '...',
+                                              },
+                                              senderId: event.senderId,
+                                              type: 'm.room.message',
+                                              room: event.room,
+                                              status: EventStatus.sent,
+                                              originServerTs: DateTime.now(),
+                                            );
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 4.0),
+                                        child: InkWell(
+                                          borderRadius:
+                                              ReplyContent.borderRadius,
+                                          onTap: () => scrollToEventId(
+                                            replyEvent.eventId,
+                                          ),
+                                          child: AbsorbPointer(
+                                            child: ReplyContent(
+                                              replyEvent,
+                                              ownMessage: ownMessage,
+                                              timeline: timeline,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                MessageContent(
+                                  displayEvent,
+                                  textColor: textColor,
+                                  onInfoTab: onInfoTab,
+                                  borderRadius: borderRadius,
+                                ),
+                                if (event.hasAggregatedEvents(
+                                  timeline,
+                                  RelationshipTypes.edit,
+                                ))
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 4.0,
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.edit_outlined,
+                                          color: textColor.withAlpha(164),
+                                          size: 14,
+                                        ),
+                                        Text(
+                                          ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                          style: TextStyle(
+                                            color: textColor.withAlpha(164),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        MessageContent(
-                          displayEvent,
-                          textColor: textColor,
-                          onInfoTab: onInfoTab,
-                          borderRadius: borderRadius,
-                        ),
-                        if (event.hasAggregatedEvents(
-                          timeline,
-                          RelationshipTypes.edit,
-                        ))
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 4.0,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.edit_outlined,
-                                  color: textColor.withAlpha(164),
-                                  size: 14,
-                                ),
-                                Text(
-                                  ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                  style: TextStyle(
-                                    color: textColor.withAlpha(164),
-                                    fontSize: 12,
-                                  ),
-                                ),
                               ],
                             ),
                           ),
-                      ],
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
           ),
-        ),
-      ],
+        );
+      },
     );
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
@@ -381,115 +413,93 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    if (event.messageType == MessageTypes.BadEncrypted) {
-      container = Opacity(opacity: 0.4, child: container);
-    }
-
     TapDownDetails? lastTapDownDetails;
-    final resetAnimateIn = this.resetAnimateIn;
-    var animateIn = this.animateIn;
 
-    return StatefulBuilder(
-      builder: (context, setState) {
-        if (animateIn && resetAnimateIn != null) {
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            animateIn = false;
-            setState(resetAnimateIn);
-          });
-        }
-        return AnimatedSlide(
-          offset: Offset(0, animateIn ? 1 : 0),
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
+    return Center(
+      child: Swipeable(
+        key: ValueKey(event.eventId),
+        background: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.0),
           child: Center(
-            child: Swipeable(
-              key: ValueKey(event.eventId),
-              background: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Center(
-                  child: Icon(Icons.check_outlined),
-                ),
-              ),
-              direction: SwipeDirection.endToStart,
-              onSwipe: (_) => onSwipe(),
-              child: HoverBuilder(
-                builder: (context, hovered) => GestureDetector(
-                  onTapDown: (details) {
-                    lastTapDownDetails = details;
-                  },
-                  onTap: () {
-                    if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
-                      return;
-                    }
-                    onSelect(event);
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(
-                          maxWidth: FluffyThemes.columnWidth * 2.5,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
-                        ),
-                        child: container,
-                      ),
-                      if (hovered || selected)
-                        Positioned(
-                          left: ownMessage ? 4 : null,
-                          right: ownMessage ? null : 4,
-                          bottom: 4,
-                          child: Material(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .surfaceVariant
-                                .withOpacity(0.9),
-                            elevation: Theme.of(context)
-                                    .appBarTheme
-                                    .scrolledUnderElevation ??
-                                4,
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            shadowColor:
-                                Theme.of(context).appBarTheme.shadowColor,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                if (hovered) ...[
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.reply_outlined,
-                                      size: 16,
-                                    ),
-                                    tooltip: L10n.of(context)!.reply,
-                                    onPressed: () => onSwipe(),
-                                  ),
-                                ],
-                                IconButton(
-                                  icon: Icon(
-                                    selected
-                                        ? Icons.check_circle
-                                        : longPressSelect
-                                            ? Icons.check_circle_outlined
-                                            : Icons.menu,
-                                    size: 16,
-                                  ),
-                                  tooltip: L10n.of(context)!.select,
-                                  onPressed: () => onSelect(event),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                    ],
+            child: Icon(Icons.check_outlined),
+          ),
+        ),
+        direction: SwipeDirection.endToStart,
+        onSwipe: (_) => onSwipe(),
+        child: HoverBuilder(
+          builder: (context, hovered) => GestureDetector(
+            onTapDown: (details) {
+              lastTapDownDetails = details;
+            },
+            onTap: () {
+              if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
+                return;
+              }
+              onSelect(event);
+            },
+            child: Stack(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: FluffyThemes.columnWidth * 2.5,
                   ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  child: container,
                 ),
-              ),
+                if (hovered || selected)
+                  Positioned(
+                    left: ownMessage ? 4 : null,
+                    right: ownMessage ? null : 4,
+                    bottom: 4,
+                    child: Material(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceVariant
+                          .withOpacity(0.9),
+                      elevation: Theme.of(context)
+                              .appBarTheme
+                              .scrolledUnderElevation ??
+                          4,
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
+                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (hovered) ...[
+                            IconButton(
+                              icon: const Icon(
+                                Icons.reply_outlined,
+                                size: 16,
+                              ),
+                              tooltip: L10n.of(context)!.reply,
+                              onPressed: () => onSwipe(),
+                            ),
+                          ],
+                          IconButton(
+                            icon: Icon(
+                              selected
+                                  ? Icons.check_circle
+                                  : longPressSelect
+                                      ? Icons.check_circle_outlined
+                                      : Icons.menu,
+                              size: 16,
+                            ),
+                            tooltip: L10n.of(context)!.select,
+                            onPressed: () => onSelect(event),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
