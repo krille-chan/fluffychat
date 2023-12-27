@@ -71,7 +71,7 @@ Future<bool> connectWithTwoFields(
           bool success = false;
           // Display a showDialog to request a two-factor identification code
           success = await twoFactorDemandCode(context, network, botConnection);
-          if (success) {
+          if (success == true) {
             Navigator.of(context).pop();
             completer.complete(
               true,

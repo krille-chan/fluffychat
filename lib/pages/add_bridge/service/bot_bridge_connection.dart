@@ -65,7 +65,7 @@ class BotBridgeConnection {
           .updateConnectionTitle(L10n.of(context)!.loading_verificationCode);
     });
 
-    await Future.delayed(const Duration(seconds: 5)); // Wait sec
+    await Future.delayed(const Duration(seconds: 3)); // Wait sec
 
     String result = ''; // Variable to track the result of the connection
 
@@ -89,7 +89,7 @@ class BotBridgeConnection {
 
         result = latestMessage;
       }
-      await Future.delayed(const Duration(seconds: 5)); // Wait sec
+      await Future.delayed(const Duration(seconds: 2)); // Wait sec
 
       if (result != '' && result != contentMessage) {
         break;
@@ -106,6 +106,10 @@ class BotBridgeConnection {
       print(('ping stoping'));
       result = 'stop';
     }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
 
     return result;
   }
@@ -263,14 +267,16 @@ class BotBridgeConnection {
     // Send the "logout" message to the bot
     try {
       await roomBot?.sendTextEvent('logout');
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
     } catch (e) {
       Logs().v('Error sending text event: $e');
       // Handle the error, you can log it or return an error message
       return 'error';
     }
 
-    String result = 'Connected'; // Variable to track the result of the connection
+    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+
+    String result =
+        'Connected'; // Variable to track the result of the connection
 
     // variable for loop limit
     const int maxIterations = 5;
@@ -300,6 +306,7 @@ class BotBridgeConnection {
               alreadyLogoutMatch.hasMatch(latestMessage)) {
             Logs().v("You're disconnected to ${network.name}");
             result = 'Not Connected';
+
             break; // Exit the loop if bridge is disconnected
           }
         }
@@ -356,7 +363,7 @@ class BotBridgeConnection {
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $username $password");
 
-    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
     Future.microtask(() {
       connectionState
@@ -383,13 +390,22 @@ class BotBridgeConnection {
       final String latestMessage =
           latestMessages.first.content['body'].toString() ?? '';
 
-      print("le dernier message reçu est $latestMessage");
       if (latestMessages.isNotEmpty) {
         if (successMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Instagram");
 
           result = "success";
+
+          Future.microtask(() {
+            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          });
+
+          Future.microtask(() {
+            connectionState.updateLoading(false);
+          });
+
+          await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
           break; // Exit the loop once the "login" message has been sent and is success
         } else if (twoFactorMatch.hasMatch(latestMessage)) {
@@ -430,6 +446,10 @@ class BotBridgeConnection {
 
       result = 'error';
     }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
 
     return result;
   }
@@ -649,8 +669,8 @@ class BotBridgeConnection {
           await roomBot?.sendTextEvent(password);
 
           Future.microtask(() {
-            connectionState
-                .updateConnectionTitle(L10n.of(context)!.loading_verificationCode);
+            connectionState.updateConnectionTitle(
+                L10n.of(context)!.loading_verificationCode);
           });
 
           await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec

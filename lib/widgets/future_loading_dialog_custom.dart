@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'notifier_state.dart';
 
@@ -42,7 +42,13 @@ class _CustomLoadingDialogState<T> extends State<CustomLoadingDialog<T>> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const CircularProgressIndicator.adaptive(),
+                notifierMessage.loading
+                    ? const CircularProgressIndicator.adaptive()
+                    : const Icon(
+                        Icons.check,
+                        color: Colors.green,
+                        size: 40,
+                      ),
                 const SizedBox(height: 20),
                 Text(
                   notifierMessage.connectionTitle ??

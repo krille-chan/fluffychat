@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
-import 'package:fluffychat/widgets/future_loading_dialog_custom.dart';
-import 'package:fluffychat/widgets/notifier_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:provider/provider.dart';
-
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -18,9 +15,6 @@ Future<bool> showBottomSheetBridge(
   BotBridgeConnection botConnection,
 ) async {
   final Completer<bool> completer = Completer<bool>();
-
-  final connectionStateModel =
-      Provider.of<ConnectionStateModel>(context, listen: false);
 
   showModalBottomSheet(
     context: context,
@@ -43,11 +37,11 @@ Future<bool> showBottomSheetBridge(
                     ""; // Variable to store the result of the connection
 
                 // To show Loading while executing the function
-                await showCustomLoadingDialog(
+                await showFutureLoadingDialog(
+                  title: L10n.of(context)!.loading_demandToConnect,
                   context: context,
                   future: () async {
-                    result = await botConnection.disconnectFromNetwork(
-                        context, network, connectionStateModel);
+                    result = await botConnection.disconnectFromNetwork(network);
                   },
                 );
 

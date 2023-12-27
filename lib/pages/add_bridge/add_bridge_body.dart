@@ -2,11 +2,14 @@ import 'package:fluffychat/pages/add_bridge/delete_conversation_dialog.dart';
 import 'package:fluffychat/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:fluffychat/pages/add_bridge/service/hostname.dart';
 import 'package:fluffychat/pages/add_bridge/show_bottom_sheet.dart';
+import 'package:fluffychat/pages/add_bridge/success_message.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/platform_size.dart';
+import 'package:fluffychat/widgets/notifier_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
@@ -133,7 +136,9 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   }
 
   // Different ways of connecting and disconnecting depending on the social network, for now only Instagram
-  void handleSocialNetworkAction(SocialNetwork network) async {
+  void handleSocialNetworkAction(
+    SocialNetwork network,
+  ) async {
     if (network.loading == false) {
       if (network.connected != true && network.error == false) {
         bool success = false;
@@ -165,14 +170,13 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           setState(() {
             network.connected = true;
           });
+          showCatchSuccessDialog(context,
+              "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
         }
       } else if (network.connected == true && network.error == false) {
         // Disconnect button, for the moment only this choice
-        final bool success = await showBottomSheetBridge(
-          context,
-          network,
-          botConnection,
-        );
+        final bool success =
+            await showBottomSheetBridge(context, network, botConnection);
 
         if (success) {
           setState(() {
