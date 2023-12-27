@@ -426,18 +426,18 @@ class Message extends StatelessWidget {
         ),
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
-        child: HoverBuilder(
-          builder: (context, hovered) => GestureDetector(
-            onTapDown: (details) {
-              lastTapDownDetails = details;
-            },
-            onTap: () {
-              if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
-                return;
-              }
-              onSelect(event);
-            },
-            child: Stack(
+        child: GestureDetector(
+          onTapDown: (details) {
+            lastTapDownDetails = details;
+          },
+          onTap: () {
+            if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
+              return;
+            }
+            onSelect(event);
+          },
+          child: HoverBuilder(
+            builder: (context, hovered) => Stack(
               children: [
                 Container(
                   constraints: const BoxConstraints(
