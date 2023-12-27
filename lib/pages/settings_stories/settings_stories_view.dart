@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pages/settings_stories/settings_stories.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:tawkie/pages/settings_stories/settings_stories.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/widgets/avatar.dart';
 
 class SettingsStoriesView extends StatelessWidget {
   final SettingsStoriesController controller;

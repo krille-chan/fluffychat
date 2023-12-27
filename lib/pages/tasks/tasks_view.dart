@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/tasks/tasks.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/tasks/tasks.dart';
 
 class TasksView extends StatelessWidget {
   final TasksController controller;

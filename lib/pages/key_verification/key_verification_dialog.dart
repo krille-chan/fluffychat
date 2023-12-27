@@ -10,7 +10,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:tawkie/widgets/avatar.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => showAdaptiveDialog(

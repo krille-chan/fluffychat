@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/settings_stories/settings_stories_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/settings_stories/settings_stories_view.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/client_stories_extension.dart';
 
 class SettingsStories extends StatefulWidget {

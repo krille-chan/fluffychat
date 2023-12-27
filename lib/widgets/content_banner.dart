@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 
 class ContentBanner extends StatelessWidget {
   final Uri? mxContent;

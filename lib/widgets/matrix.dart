@@ -19,12 +19,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:fluffychat/utils/voip_plugin.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:tawkie/utils/client_manager.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/utils/uia_request_manager.dart';
+import 'package:tawkie/utils/voip_plugin.dart';
+import 'package:tawkie/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';

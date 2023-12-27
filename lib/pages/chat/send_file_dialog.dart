@@ -5,9 +5,9 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/size_string.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/size_string.dart';
 import '../../utils/resize_image.dart';
 
 class SendFileDialog extends StatefulWidget {

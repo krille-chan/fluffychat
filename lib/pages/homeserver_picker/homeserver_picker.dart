@@ -13,14 +13,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import '../../utils/localized_exception_extension.dart';
 
-import 'package:fluffychat/utils/tor_stub.dart'
+import 'package:tawkie/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 class HomeserverPicker extends StatefulWidget {

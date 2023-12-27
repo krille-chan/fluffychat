@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'homeserver_bottom_sheet.dart';
 import 'homeserver_picker.dart';
 

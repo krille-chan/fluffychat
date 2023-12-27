@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fluffychat/pages/chat_list/add_chat_network.dart';
+import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/platform_infos.dart';
@@ -43,7 +43,11 @@ class EmptyPage extends StatelessWidget {
             ),
 
           // Button for add bridge when no conversation
-          if (PlatformInfos.isWeb) const AddChatNetwork(),
+          if (PlatformInfos.isWeb ||
+              PlatformInfos.isDesktop ||
+              PlatformInfos.isLinux ||
+              PlatformInfos.isMacOS)
+            const AddChatNetwork(),
         ],
       ),
     );
