@@ -451,13 +451,12 @@ class Message extends StatelessWidget {
                 ),
                 if (hovered || selected)
                   Positioned(
-                    left: ownMessage ? 4 : null,
-                    right: ownMessage ? null : 4,
+                    left: 4,
                     bottom: 4,
                     child: Material(
                       color: Theme.of(context)
                           .colorScheme
-                          .surfaceVariant
+                          .background
                           .withOpacity(0.9),
                       elevation: Theme.of(context)
                               .appBarTheme
@@ -469,28 +468,29 @@ class Message extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (hovered) ...[
-                            IconButton(
-                              icon: const Icon(
-                                Icons.reply_outlined,
-                                size: 16,
-                              ),
-                              tooltip: L10n.of(context)!.reply,
-                              onPressed: () => onSwipe(),
-                            ),
-                          ],
                           IconButton(
                             icon: Icon(
                               selected
                                   ? Icons.check_circle
                                   : longPressSelect
                                       ? Icons.check_circle_outlined
-                                      : Icons.menu,
+                                      : Icons.check_circle_outlined,
                               size: 16,
                             ),
                             tooltip: L10n.of(context)!.select,
                             onPressed: () => onSelect(event),
                           ),
+                          if (hovered) ...[
+                            if (event.room.canSendDefaultMessages)
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.reply_outlined,
+                                  size: 16,
+                                ),
+                                tooltip: L10n.of(context)!.reply,
+                                onPressed: () => onSwipe(),
+                              ),
+                          ],
                         ],
                       ),
                     ),
