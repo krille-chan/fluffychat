@@ -99,11 +99,11 @@ class BotBridgeConnection {
     }
 
     if (currentIteration == maxIterations) {
-      print("Maximum iterations reached, setting result to 'error'");
+      Logs().v("Maximum iterations reached, setting result to 'error'");
 
       result = 'error';
     } else if (!continueProcess) {
-      print(('ping stoping'));
+      Logs().v('ping stopping');
       result = 'stop';
     }
 
@@ -221,8 +221,15 @@ class BotBridgeConnection {
   }
 
   // Function to logout
-  Future<String> disconnectFromNetwork(SocialNetwork network) async {
+  Future<String> disconnectFromNetwork(BuildContext context,
+      SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
+
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(
+        L10n.of(context)!.loading_disconnectionDemand,
+      );
+    });
 
     RegExp successMatch;
     RegExp alreadyLogoutMatch;
@@ -307,6 +314,15 @@ class BotBridgeConnection {
             Logs().v("You're disconnected to ${network.name}");
             result = 'Not Connected';
 
+            Future.microtask(() {
+              connectionState.updateConnectionTitle(
+                L10n.of(context)!.loading_disconnectionSuccess,
+              );
+              connectionState.updateLoading(false);
+            });
+
+            await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
             break; // Exit the loop if bridge is disconnected
           }
         }
@@ -323,6 +339,10 @@ class BotBridgeConnection {
       Logs().v('Maximum iterations reached, setting result to \'error\'');
       result = 'error';
     }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
 
     return result;
   }
@@ -727,20 +747,39 @@ class BotBridgeConnection {
   }
 
   // Function to delete a conversation with a bot
-  Future<void> deleteConversation(String chatBot) async {
+  Future<void> deleteConversation(BuildContext context, String chatBot,
+      ConnectionStateModel connectionState) async {
     final String botUserId = "$chatBot$hostname";
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(
+        L10n.of(context)!.loading_deleteRoom,
+      );
+    });
     try {
       final roomId = client.getDirectChatFromUserId(botUserId);
       final room = client.getRoomById(roomId!);
       if (room != null) {
         await room.leave(); // To leave and delete the room (DirectChat only)
         Logs().v('Conversation deleted successfully');
+
+        Future.microtask(() {
+          connectionState.updateConnectionTitle(
+            L10n.of(context)!.loading_deleteRoomSuccess,
+          );
+          connectionState.updateLoading(false);
+        });
+
+        await Future.delayed(const Duration(seconds: 1)); // Wait sec
       } else {
         Logs().v('Room not found');
       }
     } catch (e) {
       Logs().v('Error deleting conversation: $e');
     }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
   }
 
   // Function to manage missed deadlines

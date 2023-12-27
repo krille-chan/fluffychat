@@ -2607,5 +2607,7 @@
   "loading_sendCode": "Sending the code...",
   "loading_verificationCode": "Code verification...",
   "loading_disconnectionDemand": "Logout request...",
-  "loading_deleteRoom": "Delete the conversation..."
+  "loading_disconnectionSuccess": "Successful logout",
+  "loading_deleteRoom": "Delete the conversation...",
+  "loading_deleteRoomSuccess": "Conversation deleted"
 }
