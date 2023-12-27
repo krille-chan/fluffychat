@@ -54,7 +54,7 @@ class StatusMessageList extends StatelessWidget {
               client.interestingPresences.map(
                 (userId) => client.fetchCurrentPresence(
                   userId,
-                  fetchFromServer: false,
+                  fetchOnlyFromCached: true,
                 ),
               ),
             ),
