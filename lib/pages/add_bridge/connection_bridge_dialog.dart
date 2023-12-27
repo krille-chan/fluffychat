@@ -6,6 +6,7 @@ import 'package:tawkie/pages/add_bridge/two_factor_demand.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:provider/provider.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
 
 import '../../widgets/future_loading_dialog_custom.dart';
 import 'error_message_dialog.dart';

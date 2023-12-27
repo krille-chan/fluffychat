@@ -1,14 +1,13 @@
+import 'package:tawkie/pages/add_bridge/delete_conversation_dialog.dart';
 import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
-import 'package:tawkie/pages/add_bridge/show_delete_conversation_dialog.dart';
+import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:provider/provider.dart';
 
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';

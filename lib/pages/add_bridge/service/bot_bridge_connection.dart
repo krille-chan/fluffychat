@@ -273,7 +273,7 @@ class BotBridgeConnection {
       return 'error';
     }
 
-    await Future.delayed(const Duration(seconds: 2)); // Wait sec
+    await Future.delayed(const Duration(seconds: 3)); // Wait sec
 
     String result =
         'Connected'; // Variable to track the result of the connection
