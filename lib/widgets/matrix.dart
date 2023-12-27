@@ -414,8 +414,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     Logs().v('AppLifecycleState = $state');
-    final foreground =
-        state != AppLifecycleState.resumed && state != AppLifecycleState.paused;
+    final foreground = state != AppLifecycleState.inactive &&
+        state != AppLifecycleState.paused;
     client.syncPresence =
         state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
     if (PlatformInfos.isMobile) {
