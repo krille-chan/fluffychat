@@ -486,17 +486,17 @@ class Message extends StatelessWidget {
                           tooltip: L10n.of(context)!.select,
                           onPressed: () => onSelect(event),
                         ),
-                        if (hovered) ...[
-                          if (event.room.canSendDefaultMessages)
-                            IconButton(
-                              icon: const Icon(
-                                Icons.reply_outlined,
-                                size: 16,
-                              ),
-                              tooltip: L10n.of(context)!.reply,
-                              onPressed: () => onSwipe(),
+                        if (hovered &&
+                            event.room.canSendDefaultMessages &&
+                            event.status.isSent)
+                          IconButton(
+                            icon: const Icon(
+                              Icons.reply_outlined,
+                              size: 16,
                             ),
-                        ],
+                            tooltip: L10n.of(context)!.reply,
+                            onPressed: () => onSwipe(),
+                          ),
                       ],
                     ),
                   ),
