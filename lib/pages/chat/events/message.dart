@@ -125,6 +125,8 @@ class Message extends StatelessWidget {
     final resetAnimateIn = this.resetAnimateIn;
     var animateIn = this.animateIn;
 
+    TapDownDetails? lastTapDownDetails;
+
     final row = StatefulBuilder(
       builder: (context, setState) {
         if (animateIn && resetAnimateIn != null) {
@@ -202,123 +204,141 @@ class Message extends StatelessWidget {
                     Container(
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
-                      child: AnimatedOpacity(
-                        opacity: animateIn
-                            ? 0
-                            : event.redacted ||
-                                    event.messageType ==
-                                        MessageTypes.BadEncrypted ||
-                                    event.status.isSending
-                                ? 0.5
-                                : 1,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                        child: Material(
-                          color: noBubble ? Colors.transparent : color,
-                          clipBehavior: Clip.antiAlias,
-                          elevation: highlightMarker || selected ? 10 : 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: borderRadius,
-                            side: BorderSide(
-                              width: highlightMarker || selected ? 1 : 0,
-                              color: selected
-                                  ? Theme.of(context).colorScheme.onBackground
-                                  : highlightMarker
-                                      ? Theme.of(context).colorScheme.primary
-                                      : Colors.transparent,
+                      child: GestureDetector(
+                        onTapDown: (details) {
+                          lastTapDownDetails = details;
+                        },
+                        onTap: () {
+                          if (lastTapDownDetails?.kind ==
+                              PointerDeviceKind.mouse) {
+                            return;
+                          }
+                          onSelect(event);
+                        },
+                        onLongPress: event.messageType == MessageTypes.Text
+                            ? null
+                            : () => onSelect(event),
+                        child: AnimatedOpacity(
+                          opacity: animateIn
+                              ? 0
+                              : event.redacted ||
+                                      event.messageType ==
+                                          MessageTypes.BadEncrypted ||
+                                      event.status.isSending
+                                  ? 0.5
+                                  : 1,
+                          duration: FluffyThemes.animationDuration,
+                          curve: FluffyThemes.animationCurve,
+                          child: Material(
+                            color: noBubble ? Colors.transparent : color,
+                            clipBehavior: Clip.antiAlias,
+                            elevation: highlightMarker || selected ? 10 : 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: borderRadius,
+                              side: BorderSide(
+                                width: highlightMarker || selected ? 1 : 0,
+                                color: selected
+                                    ? Theme.of(context).colorScheme.onBackground
+                                    : highlightMarker
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Colors.transparent,
+                              ),
                             ),
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                            ),
-                            padding: noBubble || noPadding
-                                ? EdgeInsets.zero
-                                : const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                            constraints: const BoxConstraints(
-                              maxWidth: FluffyThemes.columnWidth * 1.5,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                if (event.relationshipType ==
-                                    RelationshipTypes.reply)
-                                  FutureBuilder<Event?>(
-                                    future: event.getReplyEvent(timeline),
-                                    builder: (BuildContext context, snapshot) {
-                                      final replyEvent = snapshot.hasData
-                                          ? snapshot.data!
-                                          : Event(
-                                              eventId:
-                                                  event.relationshipEventId!,
-                                              content: {
-                                                'msgtype': 'm.text',
-                                                'body': '...',
-                                              },
-                                              senderId: event.senderId,
-                                              type: 'm.room.message',
-                                              room: event.room,
-                                              status: EventStatus.sent,
-                                              originServerTs: DateTime.now(),
-                                            );
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 4.0),
-                                        child: InkWell(
-                                          borderRadius:
-                                              ReplyContent.borderRadius,
-                                          onTap: () => scrollToEventId(
-                                            replyEvent.eventId,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius,
+                                ),
+                              ),
+                              padding: noBubble || noPadding
+                                  ? EdgeInsets.zero
+                                  : const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                              constraints: const BoxConstraints(
+                                maxWidth: FluffyThemes.columnWidth * 1.5,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  if (event.relationshipType ==
+                                      RelationshipTypes.reply)
+                                    FutureBuilder<Event?>(
+                                      future: event.getReplyEvent(timeline),
+                                      builder:
+                                          (BuildContext context, snapshot) {
+                                        final replyEvent = snapshot.hasData
+                                            ? snapshot.data!
+                                            : Event(
+                                                eventId:
+                                                    event.relationshipEventId!,
+                                                content: {
+                                                  'msgtype': 'm.text',
+                                                  'body': '...',
+                                                },
+                                                senderId: event.senderId,
+                                                type: 'm.room.message',
+                                                room: event.room,
+                                                status: EventStatus.sent,
+                                                originServerTs: DateTime.now(),
+                                              );
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 4.0,
                                           ),
-                                          child: AbsorbPointer(
-                                            child: ReplyContent(
-                                              replyEvent,
-                                              ownMessage: ownMessage,
-                                              timeline: timeline,
+                                          child: InkWell(
+                                            borderRadius:
+                                                ReplyContent.borderRadius,
+                                            onTap: () => scrollToEventId(
+                                              replyEvent.eventId,
+                                            ),
+                                            child: AbsorbPointer(
+                                              child: ReplyContent(
+                                                replyEvent,
+                                                ownMessage: ownMessage,
+                                                timeline: timeline,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                MessageContent(
-                                  displayEvent,
-                                  textColor: textColor,
-                                  onInfoTab: onInfoTab,
-                                  borderRadius: borderRadius,
-                                ),
-                                if (event.hasAggregatedEvents(
-                                  timeline,
-                                  RelationshipTypes.edit,
-                                ))
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 4.0,
+                                        );
+                                      },
                                     ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          Icons.edit_outlined,
-                                          color: textColor.withAlpha(164),
-                                          size: 14,
-                                        ),
-                                        Text(
-                                          ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                          style: TextStyle(
+                                  MessageContent(
+                                    displayEvent,
+                                    textColor: textColor,
+                                    onInfoTab: onInfoTab,
+                                    borderRadius: borderRadius,
+                                  ),
+                                  if (event.hasAggregatedEvents(
+                                    timeline,
+                                    RelationshipTypes.edit,
+                                  ))
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 4.0,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.edit_outlined,
                                             color: textColor.withAlpha(164),
-                                            fontSize: 12,
+                                            size: 14,
                                           ),
-                                        ),
-                                      ],
+                                          Text(
+                                            ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                            style: TextStyle(
+                                              color: textColor.withAlpha(164),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -413,8 +433,6 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    TapDownDetails? lastTapDownDetails;
-
     return Center(
       child: Swipeable(
         key: ValueKey(event.eventId),
@@ -426,77 +444,64 @@ class Message extends StatelessWidget {
         ),
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
-        child: GestureDetector(
-          onTapDown: (details) {
-            lastTapDownDetails = details;
-          },
-          onTap: () {
-            if (lastTapDownDetails?.kind == PointerDeviceKind.mouse) {
-              return;
-            }
-            onSelect(event);
-          },
-          child: HoverBuilder(
-            builder: (context, hovered) => Stack(
-              children: [
-                Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: FluffyThemes.columnWidth * 2.5,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 4.0,
-                  ),
-                  child: container,
+        child: HoverBuilder(
+          builder: (context, hovered) => Stack(
+            children: [
+              Container(
+                constraints: const BoxConstraints(
+                  maxWidth: FluffyThemes.columnWidth * 2.5,
                 ),
-                if (hovered || selected)
-                  Positioned(
-                    left: 4,
-                    bottom: 4,
-                    child: Material(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.9),
-                      elevation: Theme.of(context)
-                              .appBarTheme
-                              .scrolledUnderElevation ??
-                          4,
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                      shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              selected
-                                  ? Icons.check_circle
-                                  : longPressSelect
-                                      ? Icons.check_circle_outlined
-                                      : Icons.check_circle_outlined,
-                              size: 16,
-                            ),
-                            tooltip: L10n.of(context)!.select,
-                            onPressed: () => onSelect(event),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 4.0,
+                ),
+                child: container,
+              ),
+              if (hovered || selected)
+                Positioned(
+                  left: 4,
+                  bottom: 4,
+                  child: Material(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .background
+                        .withOpacity(0.9),
+                    elevation:
+                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
+                            4,
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            selected
+                                ? Icons.check_circle
+                                : longPressSelect
+                                    ? Icons.check_circle_outlined
+                                    : Icons.check_circle_outlined,
+                            size: 16,
                           ),
-                          if (hovered) ...[
-                            if (event.room.canSendDefaultMessages)
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.reply_outlined,
-                                  size: 16,
-                                ),
-                                tooltip: L10n.of(context)!.reply,
-                                onPressed: () => onSwipe(),
+                          tooltip: L10n.of(context)!.select,
+                          onPressed: () => onSelect(event),
+                        ),
+                        if (hovered) ...[
+                          if (event.room.canSendDefaultMessages)
+                            IconButton(
+                              icon: const Icon(
+                                Icons.reply_outlined,
+                                size: 16,
                               ),
-                          ],
+                              tooltip: L10n.of(context)!.reply,
+                              onPressed: () => onSwipe(),
+                            ),
                         ],
-                      ),
+                      ],
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),
