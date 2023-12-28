@@ -6,6 +6,8 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'homeserver_bottom_sheet.dart';
 import 'homeserver_picker.dart';
 
@@ -31,6 +33,19 @@ class HomeserverAppBar extends StatelessWidget {
         leading: const CircularProgressIndicator.adaptive(strokeWidth: 2),
         title: Text(L10n.of(context)!.loadingPleaseWait),
       ),
+      errorBuilder: (context, error) {
+        ErrorReporter(context, 'Unable to load homeservers').onErrorCallback(
+          error ?? Object(),
+          StackTrace.current,
+        );
+        return ListTile(
+          leading: const Icon(Icons.error_outlined),
+          title: Text(
+            error?.toLocalizedString(context) ??
+                L10n.of(context)!.oopsSomethingWentWrong,
+          ),
+        );
+      },
       itemBuilder: (context, homeserver) => ListTile(
         title: Text(homeserver.name),
         subtitle: homeserver.description == null
