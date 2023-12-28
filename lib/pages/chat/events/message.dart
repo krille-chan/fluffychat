@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -7,6 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/events/message_popup_menu_button.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -125,8 +124,6 @@ class Message extends StatelessWidget {
     final resetAnimateIn = this.resetAnimateIn;
     var animateIn = this.animateIn;
 
-    TapDownDetails? lastTapDownDetails;
-
     final row = StatefulBuilder(
       builder: (context, setState) {
         if (animateIn && resetAnimateIn != null) {
@@ -143,6 +140,16 @@ class Message extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: rowMainAxisAlignment,
             children: [
+              AnimatedSize(
+                duration: FluffyThemes.animationDuration,
+                curve: FluffyThemes.animationCurve,
+                child: longPressSelect
+                    ? Checkbox.adaptive(
+                        value: selected,
+                        onChanged: (_) => onSelect(event),
+                      )
+                    : const SizedBox.shrink(),
+              ),
               if (sameSender || ownMessage)
                 SizedBox(
                   width: Avatar.defaultSize,
@@ -205,19 +212,9 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
-                        onTapDown: (details) {
-                          lastTapDownDetails = details;
-                        },
-                        onTap: () {
-                          if (lastTapDownDetails?.kind ==
-                              PointerDeviceKind.mouse) {
-                            return;
-                          }
-                          onSelect(event);
-                        },
-                        onLongPress: event.messageType == MessageTypes.Text
-                            ? null
-                            : () => onSelect(event),
+                        onTap: !longPressSelect ? () {} : () => onSelect(event),
+                        onLongPress:
+                            longPressSelect ? () {} : () => onSelect(event),
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0
@@ -232,17 +229,8 @@ class Message extends StatelessWidget {
                           child: Material(
                             color: noBubble ? Colors.transparent : color,
                             clipBehavior: Clip.antiAlias,
-                            elevation: highlightMarker || selected ? 10 : 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: borderRadius,
-                              side: BorderSide(
-                                width: highlightMarker || selected ? 1 : 0,
-                                color: selected
-                                    ? Theme.of(context).colorScheme.onBackground
-                                    : highlightMarker
-                                        ? Theme.of(context).colorScheme.primary
-                                        : Colors.transparent,
-                              ),
                             ),
                             child: Container(
                               decoration: BoxDecoration(
@@ -433,7 +421,13 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    return Center(
+    return Container(
+      alignment: Alignment.center,
+      color: selected
+          ? Theme.of(context).colorScheme.secondaryContainer.withAlpha(100)
+          : highlightMarker
+              ? Theme.of(context).colorScheme.tertiaryContainer.withAlpha(100)
+              : Colors.transparent,
       child: Swipeable(
         key: ValueKey(event.eventId),
         background: const Padding(
@@ -457,50 +451,36 @@ class Message extends StatelessWidget {
                 ),
                 child: container,
               ),
-              if (hovered || selected)
-                Positioned(
-                  left: 4,
-                  bottom: 4,
+              Positioned(
+                left: 4,
+                bottom: 4,
+                child: AnimatedScale(
+                  duration: Duration(
+                    milliseconds:
+                        (FluffyThemes.animationDuration.inMilliseconds / 2)
+                            .floor(),
+                  ),
+                  curve: FluffyThemes.animationCurve,
+                  scale: !longPressSelect && hovered ? 1 : 0,
+                  alignment: Alignment.center,
                   child: Material(
                     color: Theme.of(context)
                         .colorScheme
-                        .background
+                        .surfaceVariant
                         .withOpacity(0.9),
                     elevation:
                         Theme.of(context).appBarTheme.scrolledUnderElevation ??
                             4,
                     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            selected
-                                ? Icons.check_circle
-                                : longPressSelect
-                                    ? Icons.check_circle_outlined
-                                    : Icons.check_circle_outlined,
-                            size: 16,
-                          ),
-                          tooltip: L10n.of(context)!.select,
-                          onPressed: () => onSelect(event),
-                        ),
-                        if (hovered &&
-                            event.room.canSendDefaultMessages &&
-                            event.status.isSent)
-                          IconButton(
-                            icon: const Icon(
-                              Icons.reply_outlined,
-                              size: 16,
-                            ),
-                            tooltip: L10n.of(context)!.reply,
-                            onPressed: () => onSwipe(),
-                          ),
-                      ],
+                    child: MessagePopupMenuButton(
+                      event: event,
+                      onReply: onSwipe,
+                      onSelect: () => onSelect(event),
                     ),
                   ),
                 ),
+              ),
             ],
           ),
         ),
