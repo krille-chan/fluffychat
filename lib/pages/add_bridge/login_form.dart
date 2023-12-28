@@ -6,7 +6,7 @@ import 'package:intl_phone_field/phone_number.dart';
 import 'model/social_network.dart';
 
 //Input Form for two Fields
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   final SocialNetwork socialNetwork;
   final GlobalKey<FormState> formKey;
   final TextEditingController identifierController;
@@ -23,18 +23,27 @@ class LoginForm extends StatelessWidget {
   });
 
   @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  bool _obscureText = true;
+
+  void toggleShowPassword() => setState(() => _obscureText = !_obscureText);
+
+  @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(L10n.of(context)!.enterYourDetails),
           const SizedBox(height: 5),
           TextFormField(
-            controller: identifierController,
+            controller: widget.identifierController,
             decoration: InputDecoration(
-                labelText: socialNetwork.name == 'Instagram'
+                labelText: widget.socialNetwork.name == 'Instagram'
                     ? L10n.of(context)!.username
                     : L10n.of(context)!.email),
             validator: (value) {
@@ -46,11 +55,22 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           TextFormField(
-            controller: passwordController,
-            decoration: InputDecoration(labelText: L10n.of(context)!.password),
-            obscureText: true,
+            controller: widget.passwordController,
+            obscureText: _obscureText,
             enableSuggestions: false,
             autocorrect: false,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: toggleShowPassword,
+                icon: Icon(
+                  _obscureText
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
+                  color: Colors.black,
+                ),
+              ),
+              hintText: L10n.of(context)!.password,
+            ),
             validator: (value) {
               if (value!.isEmpty) {
                 return L10n.of(context)!.pleaseEnterPassword;

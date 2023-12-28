@@ -5,7 +5,6 @@ import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
@@ -109,8 +108,8 @@ Future<bool> twoFactorDemandCode(
                           if (successfullyMatch.hasMatch(result) ||
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
-                            Navigator.of(context).pop();
                             Logs().v('connected to Instagram');
+                            Navigator.of(context).pop();
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
@@ -138,8 +137,8 @@ Future<bool> twoFactorDemandCode(
                           if (successfullyMatch.hasMatch(result) ||
                               alreadySuccessMatch.hasMatch(result) &&
                                   !invalidMatch.hasMatch(result)) {
-                            Navigator.of(context).pop();
                             Logs().v('connected to Facebook Messenger');
+                            Navigator.of(context).pop();
                             completer.complete(
                               true,
                             ); // returns True if the connection is successful
