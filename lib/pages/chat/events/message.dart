@@ -144,9 +144,12 @@ class Message extends StatelessWidget {
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
                 child: longPressSelect
-                    ? Checkbox.adaptive(
-                        value: selected,
-                        onChanged: (_) => onSelect(event),
+                    ? SizedBox(
+                        height: 32,
+                        child: Checkbox.adaptive(
+                          value: selected,
+                          onChanged: (_) => onSelect(event),
+                        ),
                       )
                     : const SizedBox.shrink(),
               ),
@@ -212,9 +215,8 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
-                        onTap: !longPressSelect ? () {} : () => onSelect(event),
                         onLongPress:
-                            longPressSelect ? () {} : () => onSelect(event),
+                            longPressSelect ? null : () => onSelect(event),
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0
