@@ -30,7 +30,7 @@ class MessagePopupMenuButton extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.check_box_outlined),
+                const Icon(Icons.check_circle_outlined),
                 const SizedBox(width: 16),
                 Text(L10n.of(context)!.select),
               ],
