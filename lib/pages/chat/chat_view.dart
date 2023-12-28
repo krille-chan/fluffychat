@@ -24,6 +24,8 @@ import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 
+enum _EventContextAction { info, report }
+
 class ChatView extends StatelessWidget {
   final ChatController controller;
 
@@ -58,30 +60,54 @@ class ChatView extends StatelessWidget {
             onPressed: controller.pinEvent,
             tooltip: L10n.of(context)!.pinMessage,
           ),
-        if (controller.selectedEvents.length == 1) ...[
+        if (controller.canRedactSelectedEvents)
           IconButton(
-            icon: const Icon(Icons.info_outlined),
-            tooltip: L10n.of(context)!.messageInfo,
-            onPressed: controller.showEventInfo,
+            icon: const Icon(Icons.delete_outlined),
+            tooltip: L10n.of(context)!.redactMessage,
+            onPressed: controller.redactEventsAction,
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.shield_outlined,
-              color: Colors.orange,
-            ),
-            tooltip: L10n.of(context)!.reportMessage,
-            onPressed: controller.reportEventAction,
-          ),
-          if (controller.canRedactSelectedEvents)
-            IconButton(
-              icon: Icon(
-                Icons.delete_outlined,
-                color: Theme.of(context).colorScheme.error,
+        if (controller.selectedEvents.length == 1)
+          PopupMenuButton<_EventContextAction>(
+            onSelected: (action) {
+              switch (action) {
+                case _EventContextAction.info:
+                  controller.showEventInfo();
+                  controller.clearSelectedEvents();
+                  break;
+                case _EventContextAction.report:
+                  controller.reportEventAction();
+                  break;
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: _EventContextAction.info,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.info_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.messageInfo),
+                  ],
+                ),
               ),
-              tooltip: L10n.of(context)!.redactMessage,
-              onPressed: controller.redactEventsAction,
-            ),
-        ],
+              if (controller.selectedEvents.single.status.isSent)
+                PopupMenuItem(
+                  value: _EventContextAction.report,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.shield_outlined,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context)!.reportMessage),
+                    ],
+                  ),
+                ),
+            ],
+          ),
       ];
     } else if (!controller.room.isArchived) {
       return [
@@ -152,14 +178,7 @@ class ChatView extends StatelessWidget {
                           ),
                     titleSpacing: 0,
                     title: ChatAppBarTitle(controller),
-                    actions: _appBarActions(context)
-                        .map(
-                          (icon) => Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: icon,
-                          ),
-                        )
-                        .toList(),
+                    actions: _appBarActions(context),
                   ),
                   floatingActionButton: controller.showScrollDownButton &&
                           controller.selectedEvents.isEmpty
