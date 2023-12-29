@@ -2450,7 +2450,7 @@
   "@groupName": {},
   "searchChatsRooms": "Suche nach #Chats, @Nutzer ...",
   "@searchChatsRooms": {},
-  "databaseMigrationTitle": "Datenbank ist optimiert",
+  "databaseMigrationTitle": "Datenbank wird optimiert",
   "@databaseMigrationTitle": {},
   "databaseMigrationBody": "Bitte warten. Dies kann einen Moment dauern.",
   "@databaseMigrationBody": {},
