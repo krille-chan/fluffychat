@@ -6,11 +6,10 @@ on:
       - main
 
 env:
-  # Setting an environment variable with the value of a configuration variable
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
   
 jobs:
-  deploy_web:
+  build_web:
     runs-on: ubuntu-latest
     environment: staging
     steps:
@@ -27,7 +26,23 @@ jobs:
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
         run: ./scripts/build-web.sh
-      - name: Build Website
+      - name: Upload files
+        uses: actions/upload-artifact@v3
+        with:
+          name: web
+          path: build/web
+
+  deploy_web:
+    runs-on: ubuntu-latest
+    needs: build_web
+    environment: staging
+    steps:
+      - name: Download web
+        uses: actions/download-artifact@v3
+        with:
+          name: web
+          path: build/web
+      - name: Update Website files
         run: |
           mv build/web public
           touch public/.env
@@ -39,21 +54,27 @@ jobs:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          # cname: app.staging.pangea.chat
+          cname: app.staging.pangea.chat
 
   update_sentry:
     runs-on: ubuntu-latest
+    needs: build_web
+    environment: staging
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_BASE_TOKEN: ${{ secrets.SENTRY_BASE_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      CI_COMMIT_SHA: ${{ github.sha }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - name: Download web
+        uses: actions/download-artifact@v3
         with:
-          fetch-depth: 0
-
-      - name: Create Sentry release
-        uses: getsentry/action-release@v1
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-          # SENTRY_URL: https://sentry.io/
-        with:
-          environment: staging
+          name: web
+          path: build/web
+      - name: Install sentry CLI
+        run: |
+          curl -sL https://sentry.io/get-cli/ | bash
+      - name: Update sentry
+        run: ./scripts/upload-sentry.sh

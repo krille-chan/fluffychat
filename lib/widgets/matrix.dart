@@ -353,7 +353,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           routeDestination = await pangeaController
                   .userController.isUserDataAvailableAndDateOfBirthSet
               ? '/rooms'
-              : "/rooms/user_age";
+              : "/user_age";
         } else {
           routeDestination = '/home';
         }

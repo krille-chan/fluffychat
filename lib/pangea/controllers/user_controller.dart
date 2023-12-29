@@ -2,15 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:matrix/matrix.dart' as matrix;
+
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
-// Project imports:
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:matrix/matrix.dart' as matrix;
-
 import '../constants/local.key.dart';
 import '../models/user_model.dart';
 import '../repo/user_repo.dart';

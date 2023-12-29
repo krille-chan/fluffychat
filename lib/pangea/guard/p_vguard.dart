@@ -19,7 +19,7 @@ class PAuthGaurd {
       final bool setDob = await pController!
           .userController.isUserDataAvailableAndDateOfBirthSet;
       if (Matrix.of(context).client.isLogged()) {
-        return !setDob ? '/rooms/user_age' : '/rooms';
+        return !setDob ? '/user_age' : '/rooms';
       }
       return null;
     } else {
@@ -39,7 +39,7 @@ class PAuthGaurd {
       return !Matrix.of(context).client.isLogged()
           ? '/home'
           : !setDob
-              ? '/rooms/user_age'
+              ? '/user_age'
               : null;
     } else {
       debugPrint("controller is null in pguard check");

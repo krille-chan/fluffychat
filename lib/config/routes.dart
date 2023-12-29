@@ -108,6 +108,16 @@ abstract class AppRoutes {
         const LogViewer(),
       ),
     ),
+    // #Pangea
+    GoRoute(
+      path: '/user_age',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const PUserAge(),
+      ),
+      redirect: loggedOutRedirect,
+    ),
+    // Pangea#
     ShellRoute(
       pageBuilder: (context, state, child) => defaultPageBuilder(
         context,
@@ -159,14 +169,6 @@ abstract class AppRoutes {
           ),
           routes: [
             // #Pangea
-            GoRoute(
-              path: 'user_age',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const PUserAge(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
             GoRoute(
               path: 'mylearning',
               pageBuilder: (context, state) => defaultPageBuilder(
