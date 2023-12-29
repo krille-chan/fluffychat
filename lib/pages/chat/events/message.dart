@@ -140,20 +140,15 @@ class Message extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: rowMainAxisAlignment,
             children: [
-              AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-                child: longPressSelect
-                    ? SizedBox(
-                        height: 32,
-                        child: Checkbox.adaptive(
-                          value: selected,
-                          onChanged: (_) => onSelect(event),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-              if (sameSender || ownMessage)
+              if (longPressSelect)
+                SizedBox(
+                  height: 32,
+                  child: Checkbox.adaptive(
+                    value: selected,
+                    onChanged: (_) => onSelect(event),
+                  ),
+                )
+              else if (sameSender || ownMessage)
                 SizedBox(
                   width: Avatar.defaultSize,
                   child: Center(
