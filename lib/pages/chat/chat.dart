@@ -103,7 +103,8 @@ class ChatPageWithRoom extends StatefulWidget {
   ChatController createState() => ChatController();
 }
 
-class ChatController extends State<ChatPageWithRoom> {
+class ChatController extends State<ChatPageWithRoom>
+    with WidgetsBindingObserver {
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
@@ -357,6 +358,13 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   String? scrollToEventIdMarker;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    if (!_scrolledUp) return;
+    setReadMarker();
+  }
 
   Future<void>? _setReadMarkerFuture;
 
@@ -1169,6 +1177,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void onInputBarChanged(String text) {
     if (_inputTextIsEmpty != text.isEmpty) {
+      setReadMarker();
       setState(() {
         _inputTextIsEmpty = text.isEmpty;
       });
