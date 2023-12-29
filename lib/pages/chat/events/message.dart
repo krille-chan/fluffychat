@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/events/message_popup_menu_button.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -463,17 +462,25 @@ class Message extends StatelessWidget {
                   child: Material(
                     color: Theme.of(context)
                         .colorScheme
-                        .surfaceVariant
+                        .tertiaryContainer
                         .withOpacity(0.9),
                     elevation:
                         Theme.of(context).appBarTheme.scrolledUnderElevation ??
                             4,
                     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: MessagePopupMenuButton(
-                      event: event,
-                      onReply: onSwipe,
-                      onSelect: () => onSelect(event),
+                    child: SizedBox(
+                      width: 32,
+                      height: 32,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.adaptive.more_outlined,
+                          size: 16,
+                          color:
+                              Theme.of(context).colorScheme.onTertiaryContainer,
+                        ),
+                        onPressed: () => onSelect(event),
+                      ),
                     ),
                   ),
                 ),
