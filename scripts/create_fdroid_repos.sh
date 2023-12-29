@@ -24,7 +24,7 @@ do
   JOB="$(curl https://gitlab.com/api/v4/projects/${GITLAB_PROJECT_ID}/pipelines/$PIPELINE/jobs | jq -r '.[] | select(.name == "build_android_apk").id')"
   if [ -n $JOB ]; then
     URI="https://gitlab.com/api/v4/projects/${GITLAB_PROJECT_ID}/jobs/$JOB/artifacts/build/android/app-release.apk"
-    FILENAME="fluffychat-$PIPELINE.apk"
+    FILENAME="tawkie-$PIPELINE.apk"
     echo "Downloading $FILENAME from $URI ..."
     wget --output-document="$FILENAME" "$URI"
     mv "$FILENAME" repo
