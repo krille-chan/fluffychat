@@ -56,9 +56,7 @@ class ReplyContent extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: ownMessage
-                            ? Theme.of(context).colorScheme.onPrimaryContainer
-                            : Theme.of(context).colorScheme.onBackground,
+                        color: Theme.of(context).colorScheme.primary,
                         fontSize: fontSize,
                       ),
                     );

@@ -369,10 +369,10 @@ class Message extends StatelessWidget {
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
                   child: Padding(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text(
                       event.originServerTs.localizedTime(context),
-                      style: TextStyle(fontSize: 14 * AppConfig.fontSizeFactor),
+                      style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
                     ),
                   ),
                 ),
