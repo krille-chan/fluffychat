@@ -343,10 +343,9 @@ class Message extends StatelessWidget {
       },
     );
     Widget container;
-    if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
-        displayTime ||
-        selected ||
-        displayReadMarker) {
+    final showReceiptsRow =
+        event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
+    if (showReceiptsRow || displayTime || selected || displayReadMarker) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
@@ -379,7 +378,7 @@ class Message extends StatelessWidget {
               ),
             ),
           row,
-          if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
+          if (showReceiptsRow)
             Padding(
               padding: EdgeInsets.only(
                 top: 4.0,
@@ -454,8 +453,9 @@ class Message extends StatelessWidget {
                 child: container,
               ),
               Positioned(
-                left: 4,
-                bottom: 4,
+                left: ownMessage ? null : 48,
+                right: ownMessage ? 4 : null,
+                bottom: showReceiptsRow ? 28 : 0,
                 child: AnimatedScale(
                   duration: Duration(
                     milliseconds:

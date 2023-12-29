@@ -13,7 +13,7 @@ class MessagePopupMenuButton extends StatelessWidget {
     required this.event,
     required this.onReply,
     required this.onSelect,
-    this.height = 38,
+    this.height = 32,
     super.key,
   });
 
@@ -24,6 +24,7 @@ class MessagePopupMenuButton extends StatelessWidget {
       height: height,
       child: PopupMenuButton(
         iconSize: height / 2,
+        icon: const Icon(Icons.expand_more_outlined),
         itemBuilder: (context) => [
           PopupMenuItem(
             onTap: onSelect,
