@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -137,6 +140,17 @@ abstract class ClientManager {
       );
       return;
     }
+    if (Platform.isLinux) {
+      await NotificationsClient().notify(
+        l10n.databaseMigrationTitle,
+        body: l10n.databaseMigrationBody,
+        appName: AppConfig.applicationName,
+        hints: [
+          NotificationHint.soundName('message-new-instant'),
+        ],
+      );
+      return;
+    }
 
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
@@ -160,7 +174,6 @@ abstract class ClientManager {
           showProgress: true,
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
-        linux: LinuxNotificationDetails(),
       ),
     );
   }
