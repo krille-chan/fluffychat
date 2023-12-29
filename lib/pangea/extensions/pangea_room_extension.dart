@@ -511,13 +511,6 @@ extension PangeaRoom on Room {
           .where((element) => !element.isSpace)
           .toList();
 
-      if (spaceChildren.length != spaceChats.length) {
-        // debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          m: "spaceChildren.length > chats.length in updateMyLearningAnalyticsForClass",
-        );
-      }
-
       final List<Future<List<RecentMessageRecord>>> msgListFutures = [];
       for (final chat in spaceChats) {
         msgListFutures.add(chat._messageListForChat);
