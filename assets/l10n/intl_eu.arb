@@ -2481,5 +2481,9 @@
   "joinSpace": "Batu gunera",
   "@joinSpace": {},
   "searchForUsers": "Bilatu @erabiltzaileak…",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "thisDevice": "Gailu hau:",
+  "@thisDevice": {},
+  "decline": "Baztertu",
+  "@decline": {}
 }
