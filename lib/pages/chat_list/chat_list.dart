@@ -84,12 +84,14 @@ class ChatListController extends State<ChatList>
 
   void resetActiveSpaceId() {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = null;
     });
   }
 
   void setActiveSpace(String? spaceId) {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = spaceId;
       activeFilter = ActiveFilter.spaces;
     });
@@ -134,6 +136,7 @@ class ChatListController extends State<ChatList>
 
   void onDestinationSelected(int? i) {
     setState(() {
+      selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
     });
   }
