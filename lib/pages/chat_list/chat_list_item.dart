@@ -379,23 +379,19 @@ class ChatListItem extends StatelessWidget {
               ),
               onTap: () => clickAction(context),
               trailing: onForget == null
-                  ? AnimatedSize(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      child: hovered || selected
-                          ? IconButton(
-                              color: selected
-                                  ? Theme.of(context).colorScheme.primary
-                                  : null,
-                              icon: Icon(
-                                selected
-                                    ? Icons.check_circle
-                                    : Icons.check_circle_outlined,
-                              ),
-                              onPressed: onLongPress,
-                            )
-                          : const SizedBox.shrink(),
-                    )
+                  ? hovered || selected
+                      ? IconButton(
+                          color: selected
+                              ? Theme.of(context).colorScheme.primary
+                              : null,
+                          icon: Icon(
+                            selected
+                                ? Icons.check_circle
+                                : Icons.check_circle_outlined,
+                          ),
+                          onPressed: onLongPress,
+                        )
+                      : null
                   : IconButton(
                       icon: const Icon(Icons.delete_outlined),
                       onPressed: onForget,
