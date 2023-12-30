@@ -141,7 +141,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                 ),
                 const SizedBox(height: 16),
                 if (_supportsSecureStorage)
-                  CheckboxListTile(
+                  CheckboxListTile.adaptive(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
                     value: _storeInSecureStorage,
                     activeColor: Theme.of(context).colorScheme.primary,
@@ -155,7 +155,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         Text(L10n.of(context)!.storeInSecureStorageDescription),
                   ),
                 const SizedBox(height: 16),
-                CheckboxListTile(
+                CheckboxListTile.adaptive(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
                   value: _recoveryKeyCopied,
                   activeColor: Theme.of(context).colorScheme.primary,
@@ -433,8 +433,17 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           body = Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('assets/backup.png', fit: BoxFit.contain),
-              Text(L10n.of(context)!.yourChatBackupHasBeenSetUp),
+              const Icon(
+                Icons.check_circle_rounded,
+                size: 120,
+                color: Colors.green,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                L10n.of(context)!.yourChatBackupHasBeenSetUp,
+                style: const TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 16),
             ],
           );
           buttons.add(

@@ -143,8 +143,10 @@ class Message extends StatelessWidget {
               if (longPressSelect)
                 SizedBox(
                   height: 32,
+                  width: Avatar.defaultSize,
                   child: Checkbox.adaptive(
                     value: selected,
+                    shape: const CircleBorder(),
                     onChanged: (_) => onSelect(event),
                   ),
                 )
