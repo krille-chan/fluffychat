@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';

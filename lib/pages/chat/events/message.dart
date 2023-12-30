@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
+import 'package:vibration/vibration.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -209,8 +210,16 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
-                        onLongPress:
-                            longPressSelect ? null : () => onSelect(event),
+                        onLongPress: longPressSelect
+                            ? null
+                            : () {
+                                onSelect(event);
+                                Vibration.hasVibrator().then((has) {
+                                  if (has == true) {
+                                    Vibration.vibrate(duration: 50);
+                                  }
+                                });
+                              },
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0
