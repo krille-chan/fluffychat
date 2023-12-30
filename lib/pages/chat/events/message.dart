@@ -159,7 +159,11 @@ class Message extends StatelessWidget {
                       height: 16,
                       child: event.status == EventStatus.error
                           ? const Icon(Icons.error, color: Colors.red)
-                          : null,
+                          : event.status == EventStatus.sending
+                              ? const CircularProgressIndicator.adaptive(
+                                  strokeWidth: 1,
+                                )
+                              : null,
                     ),
                   ),
                 )
