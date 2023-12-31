@@ -44,7 +44,6 @@ abstract class ClientManager {
     }
     final clients = clientNames.map(createClient).toList();
     if (initialize) {
-      FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
       await Future.wait(
         clients.map(
           (client) => client
@@ -52,9 +51,10 @@ abstract class ClientManager {
                 waitForFirstSync: false,
                 waitUntilLoadCompletedLoaded: false,
                 onMigration: () {
-                  sendMigrationNotification(
-                    flutterLocalNotificationsPlugin ??=
-                        FlutterLocalNotificationsPlugin(),
+                  final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+                  sendInitNotification(
+                    l10n.databaseMigrationTitle,
+                    l10n.databaseMigrationBody,
                   );
                 },
               )
@@ -63,7 +63,6 @@ abstract class ClientManager {
               ),
         ),
       );
-      flutterLocalNotificationsPlugin?.cancel(0);
     }
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
@@ -128,22 +127,18 @@ abstract class ClientManager {
     );
   }
 
-  static void sendMigrationNotification(
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  ) async {
-    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-
+  static void sendInitNotification(String title, String body) async {
     if (kIsWeb) {
       html.Notification(
-        l10n.databaseMigrationTitle,
-        body: l10n.databaseMigrationBody,
+        title,
+        body: body,
       );
       return;
     }
     if (Platform.isLinux) {
       await NotificationsClient().notify(
-        l10n.databaseMigrationTitle,
-        body: l10n.databaseMigrationBody,
+        title,
+        body: body,
         appName: AppConfig.applicationName,
         hints: [
           NotificationHint.soundName('message-new-instant'),
@@ -151,6 +146,8 @@ abstract class ClientManager {
       );
       return;
     }
+
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
@@ -161,8 +158,8 @@ abstract class ClientManager {
 
     flutterLocalNotificationsPlugin.show(
       0,
-      l10n.databaseMigrationTitle,
-      l10n.databaseMigrationBody,
+      title,
+      body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
@@ -171,7 +168,6 @@ abstract class ClientManager {
           importance: Importance.max,
           priority: Priority.max,
           fullScreenIntent: true, // To show notification popup
-          showProgress: true,
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
       ),

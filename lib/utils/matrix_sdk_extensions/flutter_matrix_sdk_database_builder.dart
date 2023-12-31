@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,12 +12,24 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart' as ffi;
 import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:universal_html/html.dart' as html;
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
-Future<MatrixSdkDatabase> flutterMatrixSdkDatabaseBuilder(Client client) async {
-  final database = await _constructDatabase(client);
-  await database.open();
-  return database;
+Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
+  try {
+    final database = await _constructDatabase(client);
+    await database.open();
+    return database;
+  } catch (e) {
+    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+    ClientManager.sendInitNotification(
+      l10n.initAppError,
+      l10n.databaseBuildErrorBody(AppConfig.newIssueUrl.toString()),
+    );
+    return FlutterHiveCollectionsDatabase.databaseBuilder(client);
+  }
 }
 
 Future<MatrixSdkDatabase> _constructDatabase(Client client) async {

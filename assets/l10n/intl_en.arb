@@ -2384,5 +2384,13 @@
     "addChatOrSubSpace": "Add chat or sub space",
     "subspace": "Subspace",
     "decline": "Decline",
-    "thisDevice": "This device:"
+    "thisDevice": "This device:",
+    "initAppError": "An error occured while init the app",
+    "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}",
+    "@databaseBuildErrorBody": {
+        "type": "text",
+        "placeholders": {
+            "url": {}
+        }
+    }
 }
