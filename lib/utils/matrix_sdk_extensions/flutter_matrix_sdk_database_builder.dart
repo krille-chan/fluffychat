@@ -37,7 +37,10 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     final l10n = lookupL10n(PlatformDispatcher.instance.locale);
     ClientManager.sendInitNotification(
       l10n.initAppError,
-      l10n.databaseBuildErrorBody(AppConfig.newIssueUrl.toString()),
+      l10n.databaseBuildErrorBody(
+        AppConfig.newIssueUrl.toString(),
+        e.toString(),
+      ),
     );
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);

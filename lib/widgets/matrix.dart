@@ -19,6 +19,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
@@ -314,6 +315,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
+      if (state == LoginState.loggedOut) {
+        InitWithRestoreExtension.deleteSessionBackup(name);
+      }
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);

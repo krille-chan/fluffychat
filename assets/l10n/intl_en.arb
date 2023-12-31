@@ -2386,11 +2386,28 @@
     "decline": "Decline",
     "thisDevice": "This device:",
     "initAppError": "An error occured while init the app",
-    "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}",
+    "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
     "@databaseBuildErrorBody": {
         "type": "text",
         "placeholders": {
-            "url": {}
+            "url": {},
+            "error": {}
+        }
+    },
+    "sessionLostBody": "Your session is lost. Please report this error to the developers at {url}. The error message is: {error}",
+    "@sessionLostBody": {
+        "type": "text",
+        "placeholders": {
+            "url": {},
+            "error": {}
+        }
+    },
+    "restoreSessionBody": "The app now tries to restore your session from the backup. Please report this error to the developers at {url}. The error message is: {error}",
+    "@restoreSessionBody": {
+        "type": "text",
+        "placeholders": {
+            "url": {},
+            "error": {}
         }
     }
 }
