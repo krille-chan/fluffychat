@@ -18,16 +18,28 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_
 import 'package:fluffychat/utils/platform_infos.dart';
 
 Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
+  MatrixSdkDatabase? database;
   try {
-    final database = await _constructDatabase(client);
+    database = await _constructDatabase(client);
     await database.open();
     return database;
   } catch (e) {
+    // Try to delete database so that it can created again on next init:
+    database?.delete().catchError(
+          (e, s) => Logs().w(
+            'Unable to delete database, after failed construction',
+            e,
+            s,
+          ),
+        );
+
+    // Send error notification:
     final l10n = lookupL10n(PlatformDispatcher.instance.locale);
     ClientManager.sendInitNotification(
       l10n.initAppError,
       l10n.databaseBuildErrorBody(AppConfig.newIssueUrl.toString()),
     );
+
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }
 }
