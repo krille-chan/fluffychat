@@ -2477,5 +2477,9 @@
   "joinSpace": "Присоединиться к пространству",
   "@joinSpace": {},
   "searchForUsers": "Поиск @пользователей...",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "thisDevice": "Данное устройство:",
+  "@thisDevice": {},
+  "decline": "Отклонить",
+  "@decline": {}
 }
