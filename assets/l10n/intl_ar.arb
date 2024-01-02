@@ -2485,5 +2485,31 @@
   "joinSpace": "انضم إلى المساحة",
   "@joinSpace": {},
   "searchForUsers": "ابحث عن @users...",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "databaseBuildErrorBody": "غير قادر على بناء قاعدة بيانات SQlite. يحاول التطبيق استخدام قاعدة بيانات قديمة في الوقت الحالي. الرجاء الإبلاغ عن هذا الخطأ للمطورين على {url}. رسالة الخطأ هي: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "حدث خطأ بداخل التطبيق",
+  "@initAppError": {},
+  "sessionLostBody": "جلستك مفقودة يرجى إبلاغ المطورين بهذا الخطأ في {url}. رسالة الخطأ هي: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "يحاول التطبيق الآن استعادة جلستك من النسخة الاحتياطية. الرجاء الإبلاغ عن هذا الخطأ للمطورين على {url}. رسالة الخطأ هي:{error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  }
 }
