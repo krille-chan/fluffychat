@@ -1,13 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/space_child.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -15,6 +8,12 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/space_child.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../constants/pangea_event_types.dart';
 import '../enum/construct_type_enum.dart';
@@ -150,20 +149,19 @@ extension PangeaRoom on Room {
   bool isChild(String roomId) =>
       isSpace && spaceChildren.any((room) => room.roomId == roomId);
 
-  bool isFirstOrSecondChild(String roomId) =>
-      isSpace && spaceChildren.any((room) => room.roomId == roomId) ||
-      spaceChildren
-          .where(
-            (sc) => sc.roomId != null,
-          )
-          .map(
-            (sc) => client.getRoomById(sc.roomId!),
-          )
-          .any(
-            (room) =>
-                room != null &&
-                room.spaceChildren.any((room) => room.roomId == roomId),
-          );
+  bool isFirstOrSecondChild(String roomId) {
+    return isSpace &&
+        (spaceChildren.any((room) => room.roomId == roomId) ||
+            spaceChildren
+                .where((sc) => sc.roomId != null)
+                .map((sc) => client.getRoomById(sc.roomId!))
+                .any(
+                  (room) =>
+                      room != null &&
+                      room.isSpace &&
+                      room.spaceChildren.any((room) => room.roomId == roomId),
+                ));
+  }
 
   //note this only will return rooms that the user has joined or been invited to
   List<SpaceChild> get childrenAndGrandChildren {
@@ -512,13 +510,6 @@ extension PangeaRoom on Room {
           .cast<Room>()
           .where((element) => !element.isSpace)
           .toList();
-
-      if (spaceChildren.length != spaceChats.length) {
-        // debugger(when: kDebugMode);
-        ErrorHandler.logError(
-          m: "spaceChildren.length > chats.length in updateMyLearningAnalyticsForClass",
-        );
-      }
 
       final List<Future<List<RecentMessageRecord>>> msgListFutures = [];
       for (final chat in spaceChats) {

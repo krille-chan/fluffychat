@@ -1,15 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
@@ -23,6 +15,13 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
@@ -242,8 +241,15 @@ class SubscriptionController extends BaseController {
         await Purchases.purchasePackage(selectedSubscription.package!);
         GoogleAnalytics.updateUserSubscriptionStatus(true);
       } catch (err) {
+        final errCode = PurchasesErrorHelper.getErrorCode(
+          err as PlatformException,
+        );
+        if (errCode == PurchasesErrorCode.purchaseCancelledError) {
+          debugPrint("User cancelled purchase");
+          return;
+        }
         ErrorHandler.logError(
-          m: "Failed to purchase revenuecat package for user ${_pangeaController.matrixState.client.userID}",
+          m: "Failed to purchase revenuecat package for user ${_pangeaController.matrixState.client.userID} with error code $errCode",
           s: StackTrace.current,
         );
         return;
