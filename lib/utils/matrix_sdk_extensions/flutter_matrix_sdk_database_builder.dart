@@ -13,7 +13,6 @@ import 'package:universal_html/html.dart' as html;
 
 import '../platform_infos.dart';
 
-
 Future<MatrixSdkDatabase> flutterMatrixSdkDatabaseBuilder(Client client) async {
   final database = await _constructDatabase(client);
   await database.open();

@@ -20,6 +20,7 @@ class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final bool displayReadMarker;
+  final void Function(Event) onTab;
   final void Function(Event) onSelect;
   final void Function(Event) onAvatarTab;
   final void Function(Event) onInfoTab;
@@ -34,6 +35,7 @@ class Message extends StatelessWidget {
     this.nextEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
+    required this.onTab,
     required this.onSelect,
     required this.onInfoTab,
     required this.onAvatarTab,
@@ -378,7 +380,7 @@ class Message extends StatelessWidget {
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
         child: InkWell(
-          onTap: () => onSelect(event),
+          onLongPress: () => onSelect(event),
           child: Container(
             color: selected
                 ? Theme.of(context).primaryColor.withAlpha(100)

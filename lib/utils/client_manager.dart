@@ -21,7 +21,6 @@ import 'package:tawkie/utils/platform_infos.dart';
 import '../config/app_config.dart';
 import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
 
-
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
   static Future<List<Client>> getClients({

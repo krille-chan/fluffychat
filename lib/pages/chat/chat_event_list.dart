@@ -113,6 +113,7 @@ class ChatEventList extends StatelessWidget {
                         '${event.senderFromMemoryOrFallback.mention} ',
                   ),
                 ),
+                onTab: controller.onSelectMessage,
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
