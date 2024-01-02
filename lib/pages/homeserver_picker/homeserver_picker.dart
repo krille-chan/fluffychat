@@ -38,9 +38,22 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     text: AppConfig.defaultHomeserver,
   );
 
+  String selectedServer =
+      AppConfig.defaultHomeserver; // Initialized with default server
+
   String? error;
 
   bool isTorBrowser = false;
+
+  void setSelectedServer(String? newValue) {
+    if (newValue != null) {
+      setState(() {
+        selectedServer = newValue;
+        homeserverController.text =
+            newValue; // Update homeserverController.text
+      });
+    }
+  }
 
   Future<void> _checkTorBrowser() async {
     if (!kIsWeb) return;
@@ -67,19 +80,18 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
-    homeserverController.text =
-        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
-    if (homeserverController.text == _lastCheckedUrl) return;
-    _lastCheckedUrl = homeserverController.text;
+    selectedServer = selectedServer.trim().toLowerCase().replaceAll(' ', '-');
+    if (selectedServer == _lastCheckedUrl) return;
+    _lastCheckedUrl = selectedServer;
     setState(() {
       error = _rawLoginTypes = loginHomeserverSummary = null;
       isLoading = true;
     });
 
     try {
-      var homeserver = Uri.parse(homeserverController.text);
+      var homeserver = Uri.parse(selectedServer);
       if (homeserver.scheme.isEmpty) {
-        homeserver = Uri.https(homeserverController.text, '');
+        homeserver = Uri.https(selectedServer, '');
       }
       final client = Matrix.of(context).getLoginClient();
       loginHomeserverSummary = await client.checkHomeserver(homeserver);
@@ -182,6 +194,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void initState() {
     _checkTorBrowser();
     super.initState();
+
+    //  Listener to trigger checkHomeserverAction when selectedServer changes
+    homeserverController.addListener(() {
+      checkHomeserverAction();
+    });
+
     WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 
