@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=FluffyChat
+Name=Tawkie
 GenericName=Matrix Client
 Comment=Chat with your friends
-Exec=fluffychat
-Icon=${SNAP}/meta/gui/fluffychat.png
+Exec=tawkie
+Icon=${SNAP}/meta/gui/tawkie.png
 Terminal=false
 Type=Application
 Categories=Network;Chat;InstantMessaging;

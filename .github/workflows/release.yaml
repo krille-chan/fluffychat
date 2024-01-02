@@ -42,6 +42,20 @@ jobs:
           asset_path: tawkie-web.tar.gz
           asset_name: tawkie-web.tar.gz
           asset_content_type: application/gzip
+      - name: Build Website
+        run: |
+          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
+          mv docs public
+          mv repo public || true
+          mv build/web/ public/web
+          cp public/web -r public/nightly
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          cname: fluffychat.im
 
   build_apk:
     runs-on: ubuntu-latest
