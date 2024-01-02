@@ -78,9 +78,8 @@ dependencies:
   share_plus: ^7.2.1
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
-  sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.0+4
-  sqflite_sqlcipher: ^2.2.1
+  sqlcipher_flutter_libs: ^0.6.0
   swipe_to_action: ^0.2.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
@@ -160,6 +159,10 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  matrix:
+    git:
+      url: https://github.com/TheOneWithTheBraid/matrix-dart-sdk.git
+      ref: braid/sqflite-encryption-helper
   # blocked upgrade of package_info_plus for null safety
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203
   wakelock_windows:
