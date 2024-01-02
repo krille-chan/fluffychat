@@ -1,19 +1,19 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+// Project imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 
@@ -159,7 +159,7 @@ class ClientChooserButton extends StatelessWidget {
             const SizedBox(width: 18),
             // #Pangea
             // Text(L10n.of(context)!.archive),
-            Expanded(child: Text(L10n.of(context)!.archive)),
+            Expanded(child: Text(L10n.of(context)!.viewArchive)),
             // Pangea#
           ],
         ),

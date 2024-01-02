@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/get_chat_list_item_subtitle.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
@@ -341,6 +340,16 @@ class ChatListItem extends StatelessWidget {
                       ),
               ),
               const SizedBox(width: 8),
+              // #Pangea
+              if (room.locked ?? false)
+                const Padding(
+                  padding: EdgeInsets.only(right: 4.0),
+                  child: Icon(
+                    Icons.lock_outlined,
+                    size: 16,
+                  ),
+                ),
+              // Pangea#
               AnimatedContainer(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,

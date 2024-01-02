@@ -1,15 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'new_space.dart';
 
 class NewSpaceView extends StatelessWidget {
@@ -81,6 +82,8 @@ class NewSpaceView extends StatelessWidget {
                 key: controller.classSettingsKey,
                 roomId: null,
                 startOpen: true,
+                initialSettings:
+                    Matrix.of(context).client.lastUpdatedClassSettings,
               ),
             if (!controller.newClassMode)
               AddToSpaceToggles(
@@ -94,8 +97,8 @@ class NewSpaceView extends StatelessWidget {
               key: controller.rulesEditorKey,
               roomId: null,
               startOpen: false,
+              initialRules: Matrix.of(context).client.lastUpdatedRoomRules,
             ),
-            const SizedBox(height: 45),
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),
             //   value: controller.publicGroup,
@@ -108,14 +111,41 @@ class NewSpaceView extends StatelessWidget {
             //   ),
             //   subtitle: Text(L10n.of(context)!.newSpaceDescription),
             // ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  onPressed: controller.submitAction,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          controller.newClassMode
+                              ? L10n.of(context)!.createClass
+                              : L10n.of(context)!.createExchange,
+                        ),
+                      ),
+                      Icon(Icons.adaptive.arrow_forward_outlined),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             // Pangea#
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: controller.submitAction,
-        child: const Icon(Icons.arrow_forward_outlined),
-      ),
+      // #Pangea
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: controller.submitAction,
+      //   child: const Icon(Icons.arrow_forward_outlined),
+      // ),
+      // Pangea#
     );
   }
 }

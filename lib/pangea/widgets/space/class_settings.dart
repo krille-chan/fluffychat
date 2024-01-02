@@ -1,13 +1,12 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/models/class_model.dart';
 import '../../../widgets/matrix.dart';
 import '../../constants/language_keys.dart';
 import '../../constants/language_level_type.dart';
@@ -24,8 +23,14 @@ import '../user_settings/p_question_container.dart';
 class ClassSettings extends StatefulWidget {
   final String? roomId;
   final bool startOpen;
+  final ClassSettingsModel? initialSettings;
 
-  const ClassSettings({super.key, this.roomId, this.startOpen = false});
+  const ClassSettings({
+    super.key,
+    this.roomId,
+    this.startOpen = false,
+    this.initialSettings,
+  });
 
   @override
   ClassSettingsState createState() => ClassSettingsState();
@@ -49,7 +54,8 @@ class ClassSettingsState extends State<ClassSettings> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
 
-    classSettings = room?.classSettings ?? ClassSettingsModel();
+    classSettings =
+        room?.classSettings ?? widget.initialSettings ?? ClassSettingsModel();
 
     isOpen = widget.startOpen;
 
