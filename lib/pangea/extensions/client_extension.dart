@@ -1,16 +1,16 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../utils/p_store.dart';
 
 extension PangeaClient on Client {
@@ -152,4 +152,21 @@ extension PangeaClient on Client {
     );
     return getRoomById(roomId)!;
   }
+
+  PangeaRoomRules? get lastUpdatedRoomRules => classesAndExchangesImTeaching
+      .where((space) => space.rulesUpdatedAt != null)
+      .sorted(
+        (a, b) => b.rulesUpdatedAt!.compareTo(a.rulesUpdatedAt!),
+      )
+      .firstOrNull
+      ?.pangeaRoomRules;
+
+  ClassSettingsModel? get lastUpdatedClassSettings => classesImTeaching
+      .where((space) => space.classSettingsUpdatedAt != null)
+      .sorted(
+        (a, b) =>
+            b.classSettingsUpdatedAt!.compareTo(a.classSettingsUpdatedAt!),
+      )
+      .firstOrNull
+      ?.classSettings;
 }

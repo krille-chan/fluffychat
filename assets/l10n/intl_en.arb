@@ -3943,6 +3943,10 @@
   "groupName": "Group name",
   "createGroupAndInviteUsers": "Create a group and invite users",
   "groupCanBeFoundViaSearch": "Group can be found via search",
+  "inNoSpaces": "You are not a member of any classes or exchanges",
+  "createClass": "Create class",
+  "createExchange": "Create exchange",
+  "viewArchive": "View Archive",
   "trialExpiration": "Your free trial expires on {expiration}",
     "@trialExpiration": {
         "placeholders": {
