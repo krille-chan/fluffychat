@@ -7,13 +7,13 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat/send_file_dialog.dart';
+import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/room_status_extension.dart';
-import '../../config/themes.dart';
-import '../../utils/date_time_extension.dart';
-import '../../widgets/avatar.dart';
-import '../../widgets/matrix.dart';
-import '../chat/send_file_dialog.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 

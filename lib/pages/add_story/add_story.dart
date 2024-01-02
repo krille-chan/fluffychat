@@ -9,6 +9,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:tawkie/pages/add_story/add_story_view.dart';
@@ -19,7 +20,6 @@ import 'package:tawkie/utils/story_theme_data.dart';
 import 'package:tawkie/utils/string_color.dart';
 import 'package:tawkie/widgets/app_lock.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/matrix_sdk_extensions/client_stories_extension.dart';
 
 class AddStoryPage extends StatefulWidget {
   const AddStoryPage({super.key});

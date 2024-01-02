@@ -6,8 +6,8 @@ import 'package:matrix/matrix.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/fluffy_share.dart';
 import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/presence_builder.dart';
-import '../../widgets/matrix.dart';
 import 'user_bottom_sheet.dart';
 
 class UserBottomSheetView extends StatelessWidget {

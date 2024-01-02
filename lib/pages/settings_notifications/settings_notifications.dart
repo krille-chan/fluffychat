@@ -5,8 +5,8 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
-import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 
 class NotificationSettingsItem {

@@ -1,6 +1,5 @@
 import 'package:matrix/matrix.dart';
-
-import '../../config/app_config.dart';
+import 'package:tawkie/config/app_config.dart';
 
 extension IsStateExtension on Event {
   bool get isVisibleInGui =>

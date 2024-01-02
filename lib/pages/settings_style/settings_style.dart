@@ -6,8 +6,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/theme_builder.dart';
-import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
 
 class SettingsStyle extends StatefulWidget {

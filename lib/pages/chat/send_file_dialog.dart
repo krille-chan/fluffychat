@@ -7,8 +7,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/resize_image.dart';
 import 'package:tawkie/utils/size_string.dart';
-import '../../utils/resize_image.dart';
 
 class SendFileDialog extends StatefulWidget {
   final Room room;

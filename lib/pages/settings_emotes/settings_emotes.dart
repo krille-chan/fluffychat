@@ -15,7 +15,7 @@ import 'package:matrix/matrix.dart';
 import 'package:tawkie/utils/client_manager.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:tawkie/widgets/app_lock.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'import_archive_dialog.dart';
 import 'settings_emotes_view.dart';
 

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_story/add_story.dart';
 import 'package:tawkie/pages/archive/archive.dart';
 import 'package:tawkie/pages/chat/chat.dart';
@@ -36,8 +37,6 @@ import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
 import 'package:tawkie/widgets/log_view.dart';
 import 'package:tawkie/widgets/matrix.dart';
-
-import '../pages/add_bridge/add_bridge_body.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(

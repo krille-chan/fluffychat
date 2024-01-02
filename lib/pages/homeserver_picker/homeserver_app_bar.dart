@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-
-import 'homeserver_bottom_sheet.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverAppBar extends StatelessWidget {

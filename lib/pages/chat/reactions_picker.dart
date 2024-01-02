@@ -5,8 +5,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/app_emojis.dart';
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/chat.dart';
-import '../../config/themes.dart';
 
 class ReactionsPicker extends StatelessWidget {
   final ChatController controller;

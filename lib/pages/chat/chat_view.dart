@@ -16,11 +16,11 @@ import 'package:tawkie/pages/chat/pinned_events.dart';
 import 'package:tawkie/pages/chat/reactions_picker.dart';
 import 'package:tawkie/pages/chat/reply_display.dart';
 import 'package:tawkie/pages/chat/tombstone_display.dart';
+import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/chat_settings_popup_menu.dart';
 import 'package:tawkie/widgets/connection_status_header.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/unread_rooms_badge.dart';
-import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 

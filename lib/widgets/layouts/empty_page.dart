@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/platform_infos.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class EmptyPage extends StatelessWidget {
   final bool loading;

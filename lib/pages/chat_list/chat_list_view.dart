@@ -12,8 +12,8 @@ import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_list/navi_rail_item.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/unread_rooms_badge.dart';
-import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'start_chat_fab.dart';
 
