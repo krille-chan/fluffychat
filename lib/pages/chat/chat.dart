@@ -172,6 +172,8 @@ class ChatController extends State<ChatPageWithRoom> {
 
   List<Event> selectedEvents = [];
 
+  Event? tabInfoEvent;
+
   final Set<String> unfolded = {};
 
   Event? replyEvent;
@@ -1107,6 +1109,21 @@ class ChatController extends State<ChatPageWithRoom> {
       selectedEvents.sort(
         (a, b) => a.originServerTs.compareTo(b.originServerTs),
       );
+    }
+  }
+
+  // Function for displaying message details
+  void onTabInfoCallback(Event event) {
+    if (!event.redacted) {
+      if (tabInfoEvent != event) {
+        setState(
+          () => tabInfoEvent = event,
+        );
+      } else {
+        setState(
+          () => tabInfoEvent = null,
+        );
+      }
     }
   }
 

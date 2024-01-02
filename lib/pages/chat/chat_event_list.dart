@@ -113,13 +113,15 @@ class ChatEventList extends StatelessWidget {
                         '${event.senderFromMemoryOrFallback.mention} ',
                   ),
                 ),
-                onTab: controller.onSelectMessage,
+                onTab: controller
+                    .onTabInfoCallback, // To launch the details function
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),
+                onTabInfo: controller.tabInfoEvent == event ? true : false,
                 timeline: controller.timeline!,
                 displayReadMarker:
                     controller.readMarkerEventId == event.eventId &&
