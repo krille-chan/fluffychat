@@ -130,8 +130,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         ? '${html.window.origin!}/auth.html'
         : '${AppConfig.appOpenUrlScheme.toLowerCase()}://login';
     //Pangea#
-    final url =
-        '${Matrix.of(context).getLoginClient().homeserver?.toString()}/_matrix/client/r0/login/sso/redirect/${Uri.encodeComponent(id)}?redirectUrl=${Uri.encodeQueryComponent(redirectUrl)}';
+    final url = Matrix.of(context).getLoginClient().homeserver!.replace(
+      path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
+      queryParameters: {'redirectUrl': redirectUrl},
+    );
+
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
@@ -161,22 +164,33 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
 
-    // #Pangea
-    final loginRes = await showFutureLoadingDialog(
-      // await showFutureLoadingDialog(
-      // Pangea#
-      context: context,
-      future: () => Matrix.of(context).getLoginClient().login(
+    setState(() {
+      error = null;
+      isLoading = isLoggingIn = true;
+    });
+    try {
+      // #Pangea
+      final loginRes = await Matrix.of(context).getLoginClient().login(
+            // await Matrix.of(context).getLoginClient().login(
+            // Pangea#
             LoginType.mLoginToken,
             token: token,
             initialDeviceDisplayName: PlatformInfos.clientName,
-          ),
-    );
-    //Pangea#
-    if (loginRes.result != null) {
-      GoogleAnalytics.login(provider.name!, loginRes.result!.userId);
+          );
+      // #Pangea
+      GoogleAnalytics.login(provider.name!, loginRes.userId);
+      // Pangea#
+    } catch (e) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = isLoggingIn = false;
+        });
+      }
     }
-    //Pangea#
   }
 
   List<IdentityProvider>? get identityProviders {

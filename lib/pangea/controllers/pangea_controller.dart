@@ -1,12 +1,6 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
@@ -24,6 +18,11 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../config/app_config.dart';
 import '../utils/firebase_analytics.dart';
 import '../utils/p_store.dart';
@@ -160,6 +159,8 @@ class PangeaController {
 
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {
+      // check if user is logged in
+      if (!matrixState.client.isLogged()) return;
       try {
         await matrixState.client.startDirectChat(
           BotName.byEnvironment,
