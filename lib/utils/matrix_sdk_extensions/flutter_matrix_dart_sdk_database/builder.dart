@@ -75,6 +75,10 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     final path = await getApplicationSupportDirectory();
     final sqlFilePath = '$path/${client.clientName}.sqlite';
 
+    // migrating from petty unreliable `getDatabasePath`
+    // See : https://pub.dev/packages/sqflite_common_ffi#limitations
+    await _migrateLegacyLocation(sqlFilePath, client.clientName);
+
     fileStoragePath = await getTemporaryDirectory();
     database = await openDatabase(
       sqlFilePath,
@@ -89,6 +93,21 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     fileStoragePath: fileStoragePath,
     deleteFilesAfterDuration: const Duration(days: 30),
   );
+}
+
+Future<void> _migrateLegacyLocation(
+  String sqlFilePath,
+  String clientName,
+) async {
+  final oldPath = await getDatabasesPath();
+  final oldFilePath = '$oldPath/$clientName.sqlite';
+  if (oldFilePath == sqlFilePath) return;
+
+  final maybeOldFile = File(oldFilePath);
+  if (await maybeOldFile.exists()) {
+    await maybeOldFile.copy(sqlFilePath);
+    await maybeOldFile.delete();
+  }
 }
 
 Future<void> _applySQLCipher(Database db, String cipher) =>
