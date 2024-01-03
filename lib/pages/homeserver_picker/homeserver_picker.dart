@@ -135,6 +135,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     final urlScheme = isDefaultPlatform
         ? Uri.parse(redirectUrl).scheme
         : "http://localhost:3001";
+    // #Pangea
+    // final result = await FlutterWebAuth2.authenticate(
+    //   url: url.toString(),
+    //   callbackUrlScheme: urlScheme,
+    // );
     String result;
     try {
       result = await FlutterWebAuth2.authenticate(
@@ -152,6 +157,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       );
       return;
     }
+    // Pangea#
     final token = Uri.parse(result).queryParameters['loginToken'];
     if (token?.isEmpty ?? false) return;
 
