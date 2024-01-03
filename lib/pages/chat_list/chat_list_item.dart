@@ -124,10 +124,15 @@ class ChatListItem extends StatelessWidget {
               room: room,
             ),
           );
+          Matrix.of(context).shareContent = null;
         } else {
-          room.sendEvent(shareContent);
+          final text = shareContent.tryGet<String>('body');
+          Matrix.of(context).shareContent = null;
+          context.go(
+            '/rooms/${room.id}?body=$text',
+          );
+          return;
         }
-        Matrix.of(context).shareContent = null;
       }
 
       context.go('/rooms/${room.id}');

@@ -41,10 +41,12 @@ import 'sticker_picker_dialog.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
+  final String? shareText;
 
   const ChatPage({
     super.key,
     required this.roomId,
+    this.shareText,
   });
 
   @override
@@ -69,6 +71,7 @@ class ChatPage extends StatelessWidget {
           child: ChatPageWithRoom(
             key: Key('chat_page_$roomId'),
             room: room,
+            shareText: shareText,
           ),
         ),
         if (FluffyThemes.isThreeColumnMode(context) &&
@@ -93,10 +96,12 @@ class ChatPage extends StatelessWidget {
 
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
+  final String? shareText;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
+    this.shareText,
   });
 
   @override
@@ -253,7 +258,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void _loadDraft() async {
     final prefs = await SharedPreferences.getInstance();
-    final draft = prefs.getString('draft_$roomId');
+    final draft = widget.shareText ?? prefs.getString('draft_$roomId');
     if (draft != null && draft.isNotEmpty) {
       sendController.text = draft;
     }

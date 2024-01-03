@@ -283,7 +283,10 @@ abstract class AppRoutes {
               path: ':roomid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                ChatPage(roomId: state.pathParameters['roomid']!),
+                ChatPage(
+                  roomId: state.pathParameters['roomid']!,
+                  shareText: state.uri.queryParameters['body'],
+                ),
               ),
               redirect: loggedOutRedirect,
               routes: [
