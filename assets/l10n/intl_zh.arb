@@ -2485,5 +2485,31 @@
   "joinSpace": "加入空间",
   "@joinSpace": {},
   "searchForUsers": "搜索 @用户…",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "databaseBuildErrorBody": "无法构建 SQLite 数据库。目前应用尝试使用旧数据库。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "在初始化应用时发生错误",
+  "@initAppError": {},
+  "sessionLostBody": "你的会话已丢失。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "应用现在尝试从备份中恢复你的会话。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  }
 }
