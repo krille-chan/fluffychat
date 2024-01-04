@@ -10,6 +10,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 import 'new_space.dart';
 
@@ -40,14 +41,14 @@ class NewSpaceView extends StatelessWidget {
             selectedIcon: const Icon(Icons.class_),
             color: controller.newClassMode ? activeColor : null,
             isSelected: controller.newClassMode,
-            onPressed: () => controller.toggleClassMode(true),
+            onPressed: () => context.go('/rooms/newspace'),
           ),
           IconButton(
             icon: const Icon(Icons.connecting_airports),
             selectedIcon: const Icon(Icons.connecting_airports),
             color: !controller.newClassMode ? activeColor : null,
             isSelected: !controller.newClassMode,
-            onPressed: () => controller.toggleClassMode(false),
+            onPressed: () => context.go('/rooms/newspace/exchange'),
           ),
         ],
         // title: Text(L10n.of(context)!.createNewSpace),
