@@ -103,6 +103,7 @@ class ChatEventList extends StatelessWidget {
             // The message at this index:
             final event = events[i];
             final animateIn = animateInEventIndex != null &&
+                controller.timeline!.events.length > animateInEventIndex &&
                 event == controller.timeline!.events[animateInEventIndex];
 
             return AutoScrollTag(
