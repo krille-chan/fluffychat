@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
 import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -82,6 +83,24 @@ class _SpaceViewState extends State<SpaceView> {
       if (result.error != null) return;
       _refresh();
     }
+    // #Pangea
+    else {
+      final room = client.getRoomById(spaceChild.roomId)!;
+      if (room.membership != Membership.leave) return;
+      final joinResult = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          final waitForRoom = room.client.waitForRoomInSync(
+            room.id,
+            join: true,
+          );
+          await room.join();
+          await waitForRoom;
+        },
+      );
+      if (joinResult.error != null) return;
+    }
+    // Pangea#
     if (spaceChild.roomType == 'm.space') {
       if (spaceChild.roomId == widget.controller.activeSpaceId) {
         // #Pangea
@@ -310,23 +329,18 @@ class _SpaceViewState extends State<SpaceView> {
     }
 
     // #Pangea
-    _roomSubscription = client.onSync.stream
-        .where((event) => event.rooms?.join?.isNotEmpty ?? false)
-        .listen((event) {
-      if (mounted) {
-        final List<String> joinedRoomIds = event.rooms!.join!.keys.toList();
-        final joinedRoomFutures = joinedRoomIds.map(
-          (joinedRoomId) => client.waitForRoomInSync(
-            joinedRoomId,
-            join: true,
-          ),
-        );
-        Future.wait(joinedRoomFutures).then((_) {
-          _refresh();
-        });
+    void refreshOnUpdate(SyncUpdate event) {
+      if (event.isMembershipUpdate(Matrix.of(context).client.userID!) ||
+          event.isSpaceChildUpdate(activeSpaceId)) {
+        _refresh();
       }
-    });
+    }
+
+    _roomSubscription ??= client.onSync.stream
+        .where((event) => event.hasRoomUpdate)
+        .listen(refreshOnUpdate);
     // Pangea#
+
     return FutureBuilder<GetSpaceHierarchyResponse>(
       future: getFuture(activeSpaceId),
       builder: (context, snapshot) {
@@ -459,7 +473,13 @@ class _SpaceViewState extends State<SpaceView> {
                     }
                     final spaceChild = spaceChildren[i];
                     final room = client.getRoomById(spaceChild.roomId);
-                    if (room != null && !room.isSpace) {
+                    if (room != null &&
+                            !room.isSpace
+                            // #Pangea
+                            &&
+                            room.membership != Membership.leave
+                        // Pangea#
+                        ) {
                       return ChatListItem(
                         room,
                         onLongPress: () =>
