@@ -234,6 +234,7 @@ class _SpaceViewState extends State<SpaceView> {
     _refresh();
   }
 
+  // @override
   @override
   void dispose() {
     super.dispose();
@@ -330,7 +331,17 @@ class _SpaceViewState extends State<SpaceView> {
 
     // #Pangea
     void refreshOnUpdate(SyncUpdate event) {
-      if (event.isMembershipUpdate(Matrix.of(context).client.userID!) ||
+      /* refresh on leave, invite, and space child update
+      not join events, because there's already a listener on 
+      onTapSpaceChild, and they interfere with each other */
+      if (event.isMembershipUpdateByType(
+            Membership.leave,
+            Matrix.of(context).client.userID!,
+          ) ||
+          event.isMembershipUpdateByType(
+            Membership.invite,
+            Matrix.of(context).client.userID!,
+          ) ||
           event.isSpaceChildUpdate(activeSpaceId)) {
         _refresh();
       }
