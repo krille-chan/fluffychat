@@ -2485,5 +2485,31 @@
   "joinSpace": "Liitu kogukonnaga",
   "@joinSpace": {},
   "searchForUsers": "Otsi kasutajat @kasutajanimi ...",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "databaseBuildErrorBody": "SQlite andmebaasi loomine ei õnnestu. Seetõttu üritab rakendus kasutada senist andmehoidlat. Palun teata sellest veast arendajatele siin: {url} märkides veateate: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Rakenduse käivitamisel tekkis viga",
+  "@initAppError": {},
+  "sessionLostBody": "Sinu sessioon on kadunud. Palun teata sellest veast arendajatele siin: {url} märkides veateate: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Nüüd üritab rakendus taastada sinu sessiooni varukoopiast. Palun teata sellest veast arendajatele siin: {url} märkides veateate: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  }
 }
