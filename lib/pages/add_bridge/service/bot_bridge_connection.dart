@@ -150,6 +150,7 @@ class BotBridgeConnection {
         alreadySuccessMatch = PingPatterns.instagramAlreadySuccessMatch;
         notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
         disconnectMatch = PingPatterns.instagramDisconnectMatch;
+        connectedButNotLoggedMatch = PingPatterns.instagramMQTTNotMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");

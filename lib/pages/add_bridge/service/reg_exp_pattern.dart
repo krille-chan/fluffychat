@@ -2,6 +2,7 @@
 class PingPatterns {
   // Instagram
   static RegExp instagramOnlineMatch = RegExp(r"MQTT connection is active");
+  static RegExp instagramMQTTNotMatch = RegExp(r"MQTT not connected");
   static RegExp instagramSuccessfullyMatch = RegExp(r"Successfully logged in");
   static RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
