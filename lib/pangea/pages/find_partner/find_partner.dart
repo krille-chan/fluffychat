@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
+import 'package:country_picker/country_picker.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
+import 'package:flutter/material.dart';
+
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../models/user_profile_search_model.dart';
@@ -20,6 +21,7 @@ class FindPartner extends StatefulWidget {
 class FindPartnerController extends State<FindPartner> {
   PangeaController pangeaController = MatrixState.pangeaController;
 
+  bool initialLoad = true;
   bool loading = false;
   String currentSearchTerm = "";
   late LanguageModel targetLanguageSearch;
@@ -28,11 +30,14 @@ class FindPartnerController extends State<FindPartner> {
   String? flagEmoji;
 
   //PTODO - implement pagination
-  String? previousPage;
+  String? nextUrl = "";
+  int nextPage = 1;
 
   Timer? coolDown;
 
   final List<Profile> _userProfilesCache = [];
+
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -41,30 +46,28 @@ class FindPartnerController extends State<FindPartner> {
     sourceLanguageSearch = pangeaController.languageController.userL2 ??
         pangeaController.pLanguageStore.targetOptions[0];
 
-    searchUserProfiles();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        searchUserProfiles();
+      }
+    });
+
+    searchUserProfiles().then((_) => setState(() => initialLoad = false));
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return FindPartnerView(this);
   }
-
-  // List<Profile> get userProfiles => currentSearchTerm.isNotEmpty
-  //     ? _userProfilesCache
-  //         .where((p) =>
-  //             (p.fullName != null && p.fullName!.contains(currentSearchTerm)) ||
-  //             (p.pangeaUserId != null &&
-  //                 p.pangeaUserId!.contains(currentSearchTerm)) ||
-  //             (p.sourceLanguage != null &&
-  //                 p.sourceLanguage!.contains(currentSearchTerm)) ||
-  //             // (p.speaks != null &&
-  //             //     p.speaks!.any((e) => e.contains(currentSearchTerm))) ||
-  //             (p.country != null && p.country!.contains(currentSearchTerm)) ||
-  //             // (p.interests != null &&
-  //             //     p.interests!.any((e) => e.contains(currentSearchTerm))))
-  //         .toList()
-  //     : _userProfilesCache;
 
   List<Profile> get userProfiles => _userProfilesCache.where((p) {
         return (p.targetLanguage != null &&
@@ -83,9 +86,9 @@ class FindPartnerController extends State<FindPartner> {
     );
   }
 
-  void searchUserProfiles() async {
+  Future<void> searchUserProfiles() async {
     coolDown?.cancel();
-    if (loading) return;
+    if (loading || nextUrl == null) return;
     setState(() => loading = true);
 
     final UserProfileSearchResponse response =
@@ -94,15 +97,51 @@ class FindPartnerController extends State<FindPartner> {
       targetLanguage: targetLanguageSearch.langCode,
       sourceLanguage: sourceLanguageSearch.langCode,
       country: countrySearch,
-      limit: 30,
+      limit: 15,
+      pageNumber: nextPage.toString(),
     );
-    for (final p in response.results) {
-      if (!_userProfilesCache
-          .any((element) => p.pangeaUserId == element.pangeaUserId)) {
-        _userProfilesCache.add(p);
-      }
-    }
+
+    nextUrl = response.next;
+    nextPage++;
+
+    final String? currentUserId =
+        pangeaController.userController.userModel?.profile?.pangeaUserId;
+    _userProfilesCache.addAll(
+      response.results.where(
+        (p) =>
+            !_userProfilesCache.any(
+              (element) => p.pangeaUserId == element.pangeaUserId,
+            ) &&
+            p.pangeaUserId != currentUserId,
+      ),
+    );
 
     setState(() => loading = false);
+  }
+
+  Future<void> filterUserProfiles({
+    LanguageModel? targetLanguage,
+    LanguageModel? sourceLanguage,
+    Country? country,
+  }) async {
+    if (country != null) {
+      if (country.name != "World Wide") {
+        countrySearch = country.displayNameNoCountryCode;
+        flagEmoji = country.flagEmoji;
+      } else {
+        countrySearch = null;
+        flagEmoji = null;
+      }
+    }
+    if (targetLanguage != null) {
+      targetLanguageSearch = targetLanguage;
+    }
+    if (sourceLanguage != null) {
+      sourceLanguageSearch = sourceLanguage;
+    }
+    nextPage = 1;
+    nextUrl = "";
+    await searchUserProfiles();
+    setState(() {});
   }
 }

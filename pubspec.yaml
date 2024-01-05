@@ -17,7 +17,7 @@ dependencies:
   chewie: ^1.7.1
   collection: ^1.17.2
   connectivity_plus: ^3.0.2
-  country_picker: ^2.0.20
+  country_picker: ^2.0.23
   csv: ^5.0.2
   cupertino_icons: any
   desktop_drop: ^0.4.4

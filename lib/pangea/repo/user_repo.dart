@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:http/http.dart';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../../widgets/matrix.dart';
 import '../models/user_model.dart';
 import '../models/user_profile_search_model.dart';
@@ -106,14 +106,12 @@ class PUserRepo {
       body[ModelKey.userSourceLanguage] = sourceLanguage;
     }
     if (country != null) body[ModelKey.userCountry] = country;
-    // if (speaks != null) body[ModelKey.userSpeaks] = speaks;
-    if (pageNumber != null) {
-      body["page_number"] = pageNumber;
-    }
-    body["limit"] = limit;
+
+    final String searchUrl =
+        "${PApiUrls.searchUserProfiles}?limit=$limit${pageNumber != null ? '&page=$pageNumber' : ''}";
 
     final Response res = await req.post(
-      url: PApiUrls.searchUserProfiles,
+      url: searchUrl,
       body: body,
     );
 
