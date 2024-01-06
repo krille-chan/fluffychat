@@ -2485,5 +2485,31 @@
   "joinSpace": "Приєднатися до простору",
   "@joinSpace": {},
   "searchForUsers": "Пошук @користувачів...",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "sessionLostBody": "Ваш сеанс втрачено. Будь ласка, повідомте про цю помилку розробникам за адресою {url}. Текст помилки: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "databaseBuildErrorBody": "Не вдалося створити базу даних SQlite. Застосунок намагається використовувати стару базу даних. Будь ласка, повідомте про цю помилку розробникам за адресою {url}. Текст помилки: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Виникла помилка під час запуску застосунку",
+  "@initAppError": {},
+  "restoreSessionBody": "Наразі застосунок намагається відновити ваш сеанс з резервної копії. Будь ласка, повідомте про цю помилку розробникам за адресою {url}. Текст помилки: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  }
 }
