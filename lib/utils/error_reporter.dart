@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
@@ -20,6 +21,7 @@ class ErrorReporter {
 
   void onErrorCallback(Object error, [StackTrace? stackTrace]) async {
     Logs().e(message ?? 'Error caught', error, stackTrace);
+    final text = '$error\n${stackTrace ?? ''}';
     final consent = await showAdaptiveDialog<bool>(
       context: context,
       builder: (context) => AlertDialog.adaptive(
@@ -29,7 +31,7 @@ class ErrorReporter {
           width: 256,
           child: SingleChildScrollView(
             child: HighlightView(
-              '$error\n${stackTrace ?? ''}',
+              text,
               language: 'sh',
               theme: shadesOfPurpleTheme,
             ),
@@ -39,6 +41,12 @@ class ErrorReporter {
           TextButton(
             onPressed: () => Navigator.of(context).pop<bool>(false),
             child: Text(L10n.of(context)!.close),
+          ),
+          TextButton(
+            onPressed: () => Clipboard.setData(
+              ClipboardData(text: text),
+            ),
+            child: Text(L10n.of(context)!.copy),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop<bool>(true),
@@ -58,7 +66,7 @@ class ErrorReporter {
 $error
 
 ### StackTrace
-$stackTrace
+${stackTrace?.toString().split('\n').take(10).join('\n')}
 ''';
     launchUrl(
       AppConfig.newIssueUrl.resolveUri(
