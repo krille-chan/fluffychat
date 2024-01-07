@@ -36,6 +36,7 @@ class InvitationSelectionView extends StatelessWidget {
         title: Text(L10n.of(context)!.inviteContact),
       ),
       body: MaxWidthBody(
+        innerPadding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             Padding(

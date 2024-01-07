@@ -39,6 +39,7 @@ class NewPrivateChatView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         withScrolling: false,
+        innerPadding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             Padding(
@@ -151,18 +152,21 @@ class NewPrivateChatView extends StatelessWidget {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.all(64.0),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(12),
-                          elevation: 10,
-                          color: Colors.white,
-                          shadowColor:
-                              Theme.of(context).appBarTheme.shadowColor,
-                          clipBehavior: Clip.hardEdge,
-                          child: QrImageView(
-                            data:
-                                'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                            version: QrVersions.auto,
-                            // size: qrCodeSize,
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxHeight: 256),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(12),
+                            elevation: 10,
+                            color: Colors.white,
+                            shadowColor:
+                                Theme.of(context).appBarTheme.shadowColor,
+                            clipBehavior: Clip.hardEdge,
+                            child: QrImageView(
+                              data:
+                                  'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                              version: QrVersions.auto,
+                              // size: qrCodeSize,
+                            ),
                           ),
                         ),
                       ),
