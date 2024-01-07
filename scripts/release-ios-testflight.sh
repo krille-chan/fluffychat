@@ -1,5 +1,5 @@
 #!/bin/sh -ve
-git apply ./scripts/enable-android-google-services.patch
+./scripts/enable-google-services.sh
 rm -rf fonts/NotoEmoji
 yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
 flutter clean

@@ -61,7 +61,10 @@ extension InitWithRestoreExtension on Client {
     );
   }
 
-  Future<void> initWithRestore({void Function()? onMigration}) async {
+  Future<void> initWithRestore({
+    bool isBackgroundClient = false,
+    void Function()? onMigration,
+  }) async {
     final storageKey =
         '${AppConfig.applicationName}_session_backup_$clientName';
     final storage = PlatformInfos.isMobile || PlatformInfos.isLinux
@@ -73,6 +76,7 @@ extension InitWithRestoreExtension on Client {
         onMigration: onMigration,
         waitForFirstSync: false,
         waitUntilLoadCompletedLoaded: false,
+        isBackgroundClient: isBackgroundClient,
       );
       if (isLogged()) {
         final accessToken = this.accessToken;

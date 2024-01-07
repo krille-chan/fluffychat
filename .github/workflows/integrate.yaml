@@ -21,7 +21,7 @@ jobs:
         run: dart run import_sorter:main --no-comments --exit-if-changed
       - run: flutter analyze
       - name: Apply google services patch
-        run: git apply ./scripts/enable-android-google-services.patch
+        run: ./scripts/enable-google-services.sh
       - run: flutter analyze
       - run: flutter test
       - name: Check for unused localization strings
