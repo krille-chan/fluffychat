@@ -639,7 +639,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteInvalid": "Недопустимый краткий код эмодзи!",
+  "emoteInvalid": "Недопустимый код эмодзи!",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -654,7 +654,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "Краткий код для эмодзи",
+  "emoteShortcode": "Код эмодзи",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
@@ -2260,7 +2260,7 @@
   "@disableEncryptionWarning": {},
   "deviceKeys": "Ключи устройств:",
   "@deviceKeys": {},
-  "noBackupWarning": "Внимание! Без резервных копий, Вы потеряете доступ к своим зашифрованным сообщениям. Крайне рекомендуется включить резервные копии перед выходом.",
+  "noBackupWarning": "Внимание! Без резервного копиирования, Вы потеряете доступ к своим зашифрованным сообщениям. Крайне рекомендуется включить резервное копирование перед выходом.",
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Другие устройства не найдены",
   "@noOtherDevicesFound": {},
@@ -2477,5 +2477,39 @@
   "joinSpace": "Присоединиться к пространству",
   "@joinSpace": {},
   "searchForUsers": "Поиск @пользователей...",
-  "@searchForUsers": {}
+  "@searchForUsers": {},
+  "thisDevice": "Данное устройство:",
+  "@thisDevice": {},
+  "decline": "Отклонить",
+  "@decline": {},
+  "databaseBuildErrorBody": "Невозможно собрать базу данных SQlite. Приложение пытается использовать старую базу данных. Пожалуйста, сообщите об этой ошибке разработчикам по адресу {url}. Сообщение об ошибке: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Произошла ошибка при запуске приложения",
+  "@initAppError": {},
+  "sessionLostBody": "Ваш сеанс утерян. Пожалуйста, сообщите об этой ошибке разработчикам по адресу {url}. Сообщение об ошибке: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Приложение пытается восстановить сеанс из резервной копии. Пожалуйста, сообщите об этой ошибке разработчикам по адресу {url}. Сообщение об ошибке: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "subspace": "Субпространство",
+  "@subspace": {},
+  "addChatOrSubSpace": "Добавить чат или субпространство",
+  "@addChatOrSubSpace": {}
 }
