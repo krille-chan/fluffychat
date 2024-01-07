@@ -9,3 +9,12 @@ updates:
     commit-message:
       prefix: "build: "
       include: "scope"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "*"
+    commit-message:
+      prefix: "build: "
+      include: "scope"
