@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Element;
 
 import 'package:collection/collection.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
@@ -19,12 +19,14 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
+  final bool isEmojiOnly;
 
   const HtmlMessage({
     super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
+    this.isEmojiOnly = false,
   });
 
   dom.Node _linkifyHtml(dom.Node element) {
@@ -74,7 +76,9 @@ class HtmlMessage extends StatelessWidget {
       '',
     );
 
-    final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+    double fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
+
+    if (isEmojiOnly) fontSize *= 3;
 
     final linkColor = textColor.withAlpha(150);
 
@@ -91,83 +95,86 @@ class HtmlMessage extends StatelessWidget {
     final element = _linkifyHtml(HtmlParser.parseHTML(renderHtml));
 
     // there is no need to pre-validate the html, as we validate it while rendering
-    return Html.fromElement(
-      documentElement: element as dom.Element,
-      style: {
-        '*': Style(
-          color: textColor,
-          margin: Margins.all(0),
-          fontSize: FontSize(fontSize),
-        ),
-        'a': Style(color: linkColor, textDecorationColor: linkColor),
-        'h1': Style(
-          fontSize: FontSize(fontSize * 2),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w600,
-        ),
-        'h2': Style(
-          fontSize: FontSize(fontSize * 1.75),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w500,
-        ),
-        'h3': Style(
-          fontSize: FontSize(fontSize * 1.5),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h4': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h5': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h6': Style(
-          fontSize: FontSize(fontSize),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'blockquote': blockquoteStyle,
-        'tg-forward': blockquoteStyle,
-        'hr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'table': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'tr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'td': Style(
-          border: Border.all(color: textColor, width: 0.5),
-          padding: HtmlPaddings.all(2),
-        ),
-        'th': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-      },
-      extensions: [
-        RoomPillExtension(context, room),
-        CodeExtension(fontSize: fontSize),
-        MatrixMathExtension(
-          style: TextStyle(fontSize: fontSize, color: textColor),
-        ),
-        const TableHtmlExtension(),
-        SpoilerExtension(textColor: textColor),
-        const ImageExtension(),
-        FontColorExtension(),
-      ],
-      onLinkTap: (url, _, element) => UrlLauncher(
-        context,
-        url,
-        element?.text,
-      ).launchUrl(),
-      onlyRenderTheseTags: const {
-        ...allowedHtmlTags,
-        // Needed to make it work properly
-        'body',
-        'html',
-      },
-      shrinkWrap: true,
+    return MouseRegion(
+      cursor: SystemMouseCursors.text,
+      child: Html.fromElement(
+        documentElement: element as dom.Element,
+        style: {
+          '*': Style(
+            color: textColor,
+            margin: Margins.all(0),
+            fontSize: FontSize(fontSize),
+          ),
+          'a': Style(color: linkColor, textDecorationColor: linkColor),
+          'h1': Style(
+            fontSize: FontSize(fontSize * 2),
+            lineHeight: LineHeight.number(1.5),
+            fontWeight: FontWeight.w600,
+          ),
+          'h2': Style(
+            fontSize: FontSize(fontSize * 1.75),
+            lineHeight: LineHeight.number(1.5),
+            fontWeight: FontWeight.w500,
+          ),
+          'h3': Style(
+            fontSize: FontSize(fontSize * 1.5),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h4': Style(
+            fontSize: FontSize(fontSize * 1.25),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h5': Style(
+            fontSize: FontSize(fontSize * 1.25),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'h6': Style(
+            fontSize: FontSize(fontSize),
+            lineHeight: LineHeight.number(1.5),
+          ),
+          'blockquote': blockquoteStyle,
+          'tg-forward': blockquoteStyle,
+          'hr': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'table': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'tr': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+          'td': Style(
+            border: Border.all(color: textColor, width: 0.5),
+            padding: HtmlPaddings.all(2),
+          ),
+          'th': Style(
+            border: Border.all(color: textColor, width: 0.5),
+          ),
+        },
+        extensions: [
+          RoomPillExtension(context, room),
+          CodeExtension(fontSize: fontSize),
+          MatrixMathExtension(
+            style: TextStyle(fontSize: fontSize, color: textColor),
+          ),
+          const TableHtmlExtension(),
+          SpoilerExtension(textColor: textColor),
+          const ImageExtension(),
+          FontColorExtension(),
+        ],
+        onLinkTap: (url, _, element) => UrlLauncher(
+          context,
+          url,
+          element?.text,
+        ).launchUrl(),
+        onlyRenderTheseTags: const {
+          ...allowedHtmlTags,
+          // Needed to make it work properly
+          'body',
+          'html',
+        },
+        shrinkWrap: true,
+      ),
     );
   }
 
@@ -268,8 +275,12 @@ class FontColorExtension extends HtmlExtension {
 
 class ImageExtension extends HtmlExtension {
   final double defaultDimension;
+  final bool isEmojiOnly;
 
-  const ImageExtension({this.defaultDimension = 64});
+  const ImageExtension({
+    this.defaultDimension = 64,
+    this.isEmojiOnly = false,
+  });
 
   @override
   Set<String> get supportedTags => {'img'};
@@ -281,9 +292,23 @@ class ImageExtension extends HtmlExtension {
       return TextSpan(text: context.attributes['alt']);
     }
 
-    final width = double.tryParse(context.attributes['width'] ?? '');
-    final height = double.tryParse(context.attributes['height'] ?? '');
+    double? width, height;
 
+    // in case it's an emoji only message or a custom emoji image,
+    // force the default font size
+    if (isEmojiOnly) {
+      width = height =
+          AppConfig.messageFontSize * AppConfig.fontSizeFactor * 3 * 1.2;
+    } else if (context.attributes.containsKey('data-mx-emoticon') ||
+        context.attributes.containsKey('data-mx-emoji')) {
+      // in case the image is a custom emote, get the surrounding font size
+      width = height = (tryGetParentFontSize(context) ??
+              FontSize(AppConfig.messageFontSize * AppConfig.fontSizeFactor))
+          .emValue;
+    } else {
+      width = double.tryParse(context.attributes['width'] ?? '');
+      height = double.tryParse(context.attributes['height'] ?? '');
+    }
     return WidgetSpan(
       child: SizedBox(
         width: width ?? height ?? defaultDimension,
@@ -344,6 +369,7 @@ class MatrixMathExtension extends HtmlExtension {
   final TextStyle? style;
 
   MatrixMathExtension({this.style});
+
   @override
   Set<String> get supportedTags => {'div'};
 
@@ -377,6 +403,7 @@ class CodeExtension extends HtmlExtension {
   final double fontSize;
 
   CodeExtension({required this.fontSize});
+
   @override
   Set<String> get supportedTags => {'code'};
 
@@ -414,6 +441,7 @@ class RoomPillExtension extends HtmlExtension {
   final BuildContext context;
 
   RoomPillExtension(this.context, this.room);
+
   @override
   Set<String> get supportedTags => {'a'};
 
@@ -524,4 +552,16 @@ class MatrixPill extends StatelessWidget {
       ),
     );
   }
+}
+
+FontSize? tryGetParentFontSize(ExtensionContext context) {
+  var currentElement = context.element;
+  while (currentElement?.parent != null) {
+    currentElement = currentElement?.parent;
+    final size = context.parser.style[(currentElement!.localName!)]?.fontSize;
+    if (size != null) {
+      return size;
+    }
+  }
+  return null;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
@@ -104,6 +105,13 @@ class MessageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
+
+    final bigEmotes = (event.onlyEmotes ||
+            emojiRegex.allMatches(event.text).map((e) => e[0]).join() ==
+                event.text) &&
+        event.numberEmotes > 0 &&
+        event.numberEmotes <= 10;
+
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
@@ -158,6 +166,7 @@ class MessageContent extends StatelessWidget {
                 html: html,
                 textColor: textColor,
                 room: event.room,
+                isEmojiOnly: bigEmotes,
               );
             }
             // else we fall through to the normal message rendering
@@ -233,9 +242,6 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
-            final bigEmotes = event.onlyEmotes &&
-                event.numberEmotes > 0 &&
-                event.numberEmotes <= 10;
             return FutureBuilder<String>(
               future: event.calcLocalizedBody(
                 MatrixLocals(L10n.of(context)!),
