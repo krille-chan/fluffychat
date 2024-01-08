@@ -54,7 +54,7 @@ Please visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for buil
 
 # Special thanks
 
-* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer from Brasil and has made the fluffychat logo and the banner. Big thanks for her great designs.
+* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer from Brazil and has made the fluffychat logo and the banner. Big thanks for her great designs.
 
 * <a href="https://github.com/advocatux">Advocatux</a> has made the Spanish translation with great love and care. He always stands by my side and supports my work with great commitment.
 
