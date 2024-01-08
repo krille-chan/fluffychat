@@ -70,7 +70,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     if (widget.activeSpaceId != null) {
       final activeSpace =
           Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
-      if (activeSpace != null) {
+      if (activeSpace != null && activeSpace.canIAddSpaceChild(null)) {
         parents.add(SuggestionStatus(false, activeSpace));
       } else {
         ErrorHandler.logError(

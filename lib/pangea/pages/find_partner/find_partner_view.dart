@@ -104,7 +104,10 @@ class FindPartnerView extends StatelessWidget {
                                     controller: controller,
                                   )
                                 : controller.loading
-                                    ? const CircularProgressIndicator.adaptive()
+                                    ? const Center(
+                                        child: CircularProgressIndicator
+                                            .adaptive(),
+                                      )
                                     : const SizedBox.shrink(),
                           ),
                         )
