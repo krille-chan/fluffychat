@@ -113,7 +113,7 @@ class Continuance {
                 .cast<Lemma>()
             : [];
     return Continuance(
-      probability: json['probability'] as double,
+      probability: json['probability'].toDouble(),
       level: json['level'],
       text: json['text'],
       description: json['description'] ?? "",
