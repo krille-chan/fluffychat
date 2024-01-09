@@ -7,6 +7,7 @@ import 'package:vibration/vibration.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
@@ -220,11 +221,14 @@ class Message extends StatelessWidget {
                             ? null
                             : () {
                                 onSelect(event);
-                                Vibration.hasVibrator().then((has) {
-                                  if (has == true) {
-                                    Vibration.vibrate(duration: 50);
-                                  }
-                                });
+                                // Android usually has a vibration effect on long press:
+                                if (PlatformInfos.isAndroid) {
+                                  Vibration.hasVibrator().then((has) {
+                                    if (has == true) {
+                                      Vibration.vibrate(duration: 50);
+                                    }
+                                  });
+                                }
                               },
                         child: AnimatedOpacity(
                           opacity: animateIn
