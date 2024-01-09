@@ -67,6 +67,11 @@ abstract class FluffyThemes {
       brightness: brightness,
       seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
     );
+    // Sets status and navigation bar style whenever buildTheme called
+    SystemChrome.setSystemUIOverlayStyle(
+      getOverlayStyle(brightness, colorScheme),
+    );
+
     return ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
@@ -99,13 +104,7 @@ abstract class FluffyThemes {
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
         shadowColor: Colors.grey.withAlpha(64),
         surfaceTintColor: colorScheme.background,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: brightness.reversed,
-          statusBarBrightness: brightness,
-          systemNavigationBarIconBrightness: brightness.reversed,
-          systemNavigationBarColor: colorScheme.background,
-        ),
+        systemOverlayStyle: getOverlayStyle(brightness, colorScheme),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -140,6 +139,16 @@ abstract class FluffyThemes {
           ),
         ),
       ),
+    );
+  }
+
+  static getOverlayStyle(Brightness brightness, ColorScheme colorScheme) {
+    return SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: brightness.reversed,
+      statusBarBrightness: brightness,
+      systemNavigationBarIconBrightness: brightness.reversed,
+      systemNavigationBarColor: colorScheme.background,
     );
   }
 }

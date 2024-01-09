@@ -392,11 +392,6 @@ class ChatListController extends State<ChatList>
             Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
       }
-
-      // Workaround for system UI overlay style not applied on app start
-      SystemChrome.setSystemUIOverlayStyle(
-        Theme.of(context).appBarTheme.systemOverlayStyle!,
-      );
     });
 
     _checkTorBrowser();
