@@ -27,8 +27,8 @@ class Environment {
   }
 
   static String get choreoApi {
-    return "http://localhost:8000/choreo";
-    // return dotenv.env['CHOREO_API'] ?? 'Not found';
+    // return "http://localhost:8000/choreo";
+    return dotenv.env['CHOREO_API'] ?? 'Not found';
   }
 
   static String get choreoApiKey {
