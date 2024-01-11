@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/models/it_response_model.dart';
 
 class CustomInputRequestModel {
   String text;
@@ -9,6 +10,9 @@ class CustomInputRequestModel {
   String roomId;
   String? classId;
 
+  String? goldTranslation;
+  List<Continuance>? goldContinuances;
+
   CustomInputRequestModel({
     required this.text,
     required this.customInput,
@@ -17,6 +21,8 @@ class CustomInputRequestModel {
     required this.userId,
     required this.roomId,
     required this.classId,
+    required this.goldTranslation,
+    required this.goldContinuances,
   });
 
   factory CustomInputRequestModel.fromJson(json) => CustomInputRequestModel(
@@ -27,6 +33,12 @@ class CustomInputRequestModel {
         userId: json['user_id'],
         roomId: json['room_id'],
         classId: json['class_id'],
+        goldTranslation: json['gold_translation'],
+        goldContinuances: json['gold_continuances'] != null
+            ? List.from(json['gold_continuances'])
+                .map((e) => Continuance.fromJson(e))
+                .toList()
+            : null,
       );
 
   toJson() => {
@@ -37,5 +49,9 @@ class CustomInputRequestModel {
         'user_id': userId,
         'room_id': roomId,
         'class_id': classId,
+        'gold_translation': goldTranslation,
+        'gold_continuances': goldContinuances != null
+            ? List.from(goldContinuances!.map((e) => e.toJson()))
+            : null,
       };
 }
