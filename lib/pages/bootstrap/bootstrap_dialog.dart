@@ -353,9 +353,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           : () async {
                               final req = await showFutureLoadingDialog(
                                 context: context,
-                                future: () => widget.client
-                                    .userDeviceKeys[widget.client.userID!]!
-                                    .startVerification(),
+                                future: () async {
+                                  await widget.client.updateUserDeviceKeys();
+                                  return widget.client
+                                      .userDeviceKeys[widget.client.userID!]!
+                                      .startVerification();
+                                },
                               );
                               if (req.error != null) return;
                               await KeyVerificationDialog(request: req.result!)
