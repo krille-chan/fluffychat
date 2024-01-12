@@ -1,16 +1,15 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../models/custom_input_translation_model.dart';
 import '../../models/it_response_model.dart';
 import '../../models/it_step.dart';
@@ -135,13 +134,14 @@ class ITController {
 
       currentITStep = null;
 
-      final ITResponseModel res = await (useCustomInput ||
-              currentText.isEmpty ||
-              translationId == null ||
-              completedITSteps.last.chosenContinuance?.indexSavedByServer ==
-                  null
-          ? _customInputTranslation(currentText)
-          : _systemChoiceTranslation(translationId));
+      final ITResponseModel res = await _customInputTranslation(currentText);
+      // final ITResponseModel res = await (useCustomInput ||
+      //         currentText.isEmpty ||
+      //         translationId == null ||
+      //         completedITSteps.last.chosenContinuance?.indexSavedByServer ==
+      //             null
+      //     ? _customInputTranslation(currentText)
+      //     : _systemChoiceTranslation(translationId));
 
       if (res.goldContinuances != null && res.goldContinuances!.isNotEmpty) {
         goldRouteTracker = GoldRouteTracker(
@@ -227,6 +227,8 @@ class ITController {
         userId: choreographer.userId!,
         roomId: choreographer.roomId!,
         classId: choreographer.classId,
+        goldTranslation: goldRouteTracker.fullTranslation,
+        goldContinuances: goldRouteTracker.continuances,
       ),
     );
   }

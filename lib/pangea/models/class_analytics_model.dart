@@ -64,7 +64,7 @@ class Section {
     final data = <String, dynamic>{};
     data['title'] = title;
     data['class_total'] = classTotal;
-    data['data'] = data.map((e) => e.toJson()).toList();
+    (data['data'] as List).map((item) => Data.fromJson(item)).toList();
     return data;
   }
 }
