@@ -1,13 +1,13 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'error_handler.dart';
 
 // ignore: curly_braces_in_flow_control_structures
@@ -43,74 +43,47 @@ void chatListHandleSpaceTap(
   //if accepted, setActiveSpaceAndCloseChat()
   //if rejected, leave space
   // use standard alert diolog, not cupertino
-  void showAlertDialog(BuildContext context) {
-    // set up the AlertDialog
-    final AlertDialog alert = AlertDialog(
-      title: Text(L10n.of(context)!.youreInvited),
-      content: Text(
-        space.isSpace
-            ? L10n.of(context)!
-                .invitedToClassOrExchange(space.name, space.creatorId ?? "???")
-            : L10n.of(context)!
-                .invitedToChat(space.name, space.creatorId ?? "???"),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              await space.leave();
-              //show snackbar message that you've left
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(L10n.of(context)!.declinedInvitation),
-                  duration: const Duration(seconds: 3),
-                ),
-              );
-              Navigator.of(context).pop();
-            },
-            onError: (exception) {
-              ErrorHandler.logError(e: exception);
-              Navigator.of(context).pop();
-              return exception.toString();
-            },
-          ),
-          child: Text(L10n.of(context)!.decline),
-        ),
-        TextButton(
-          onPressed: () => showFutureLoadingDialog(
-            context: context,
-            future: () async {
-              await space.join();
-              setActiveSpaceAndCloseChat();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(L10n.of(context)!.acceptedInvitation),
-                  duration: const Duration(seconds: 3),
-                ),
-              );
-              context.go(
-                '/rooms/join_exchange/${controller.activeSpaceId}',
-              );
-            },
-            onError: (exception) {
-              ErrorHandler.logError(e: exception);
-              Navigator.of(context).pop();
-              return exception.toString();
-            },
-          ),
-          child: Text(L10n.of(context)!.accept),
-        ),
-      ],
+  Future<void> showAlertDialog(BuildContext context) async {
+    final acceptInvite = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.youreInvited,
+      message: space.isSpace
+          ? L10n.of(context)!
+              .invitedToClassOrExchange(space.name, space.creatorId ?? "???")
+          : L10n.of(context)!
+              .invitedToChat(space.name, space.creatorId ?? "???"),
+      okLabel: L10n.of(context)!.accept,
+      cancelLabel: L10n.of(context)!.decline,
     );
 
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+    if (acceptInvite == OkCancelResult.ok) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          await space.join();
+          setActiveSpaceAndCloseChat();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context)!.acceptedInvitation),
+              duration: const Duration(seconds: 3),
+            ),
+          );
+          if (space.isExchange) {
+            context.go(
+              '/rooms/join_exchange/${controller.activeSpaceId}',
+            );
+          }
+        },
+      );
+    } else {
+      await space.leave();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context)!.declinedInvitation),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   switch (space.membership) {

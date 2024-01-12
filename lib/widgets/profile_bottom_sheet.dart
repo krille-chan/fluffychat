@@ -1,12 +1,10 @@
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class ProfileBottomSheet extends StatelessWidget {
   final String userId;
@@ -46,17 +44,32 @@ class ProfileBottomSheet extends StatelessWidget {
               leading: CloseButton(
                 onPressed: Navigator.of(context, rootNavigator: false).pop,
               ),
-              title: ListTile(
-                contentPadding: const EdgeInsets.only(right: 16.0),
-                title: Text(
-                  profile?.displayName ?? userId.localpart ?? userId,
-                  style: const TextStyle(fontSize: 18),
-                ),
-                subtitle: Text(
-                  userId,
-                  style: const TextStyle(fontSize: 12),
-                ),
+              // #Pangea
+              // title: ListTile(
+              //   contentPadding: const EdgeInsets.only(right: 16.0),
+              //   title: Text(
+              //     profile?.displayName ?? userId.localpart ?? userId,
+              //     style: const TextStyle(fontSize: 18),
+              //   ),
+              //   subtitle: Text(
+              //     userId,
+              //     style: const TextStyle(fontSize: 12),
+              //   ),
+              // ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    profile?.displayName ?? userId.localpart ?? userId,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    userId,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ],
               ),
+              // Pangea#
               actions: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),

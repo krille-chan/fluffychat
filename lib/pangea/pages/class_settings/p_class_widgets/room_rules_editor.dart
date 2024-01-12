@@ -154,26 +154,22 @@ class RoomRulesState extends State<RoomRulesEditor> {
                           ),
                           subtitle: Text(setting.toolDescription(context)),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 120.0),
-                          child: Slider(
-                            value: rules.getToolSettings(setting).toDouble(),
-                            onChanged: (value) {
-                              updatePermission(() {
-                                rules.setLanguageToolSetting(
-                                  setting,
-                                  value.toInt(),
-                                );
-                              });
-                            },
-                            divisions: 2,
-                            max: 2,
-                            min: 0,
-                            label: rules.languageToolPermissionsText(
-                              context,
-                              setting,
-                            ),
+                        Slider(
+                          value: rules.getToolSettings(setting).toDouble(),
+                          onChanged: (value) {
+                            updatePermission(() {
+                              rules.setLanguageToolSetting(
+                                setting,
+                                value.toInt(),
+                              );
+                            });
+                          },
+                          divisions: 2,
+                          max: 2,
+                          min: 0,
+                          label: rules.languageToolPermissionsText(
+                            context,
+                            setting,
                           ),
                         ),
                       ],

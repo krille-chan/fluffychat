@@ -3957,5 +3957,6 @@
     "activateTrial": "Activate Trial",
   "inNoSpaces": "You are not a member of any classes or exchanges",
   "successfullySubscribed": "You have successfully subscribed!",
-  "clickToManageSubscription": "Click here to manage your subscription."
+  "clickToManageSubscription": "Click here to manage your subscription.",
+  "emptyInviteWarning": "Add this chat to a class or exchange to invite other users."
 }

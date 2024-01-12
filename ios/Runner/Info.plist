@@ -45,6 +45,10 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<!-- #Pangea -->
+	<key>FLTEnableImpeller</key>
+	<false/>
+	<!-- Pangea# -->
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Play audio and voice messages in the app.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>

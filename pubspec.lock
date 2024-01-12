@@ -245,10 +245,10 @@ packages:
     dependency: "direct main"
     description:
       name: country_picker
-      sha256: "931454ceb75c7e1230ac5620bfe601a5a293b4436d8de8bf7fea776a05a9568c"
+      sha256: c578292d7d3ec3132c6634f9c7aab96528f74d61fd363073d5f5a8562bede732
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.22"
+    version: "2.0.23"
   cross_file:
     dependency: transitive
     description:

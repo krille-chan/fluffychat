@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart' as matrix;
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
@@ -12,6 +6,11 @@ import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dropdown.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as matrix;
+
 import '../../../widgets/profile_bottom_sheet.dart';
 import 'find_partner.dart';
 
@@ -80,15 +79,9 @@ class FindPartnerView extends StatelessWidget {
                             context: context,
                             showPhoneCode: false,
                             onSelect: (Country country) {
-                              if (country.name != "World Wide") {
-                                controller.countrySearch =
-                                    country.displayNameNoCountryCode;
-                                controller.flagEmoji = country.flagEmoji;
-                              } else {
-                                controller.countrySearch = null;
-                                controller.flagEmoji = null;
-                              }
-                              controller.searchUserProfiles();
+                              controller.filterUserProfiles(
+                                country: country,
+                              );
                             },
                           ),
                         ),
@@ -97,16 +90,25 @@ class FindPartnerView extends StatelessWidget {
                   ],
                 ),
               ),
-              controller.loading
+              controller.initialLoad
                   ? const ExpandedContainer(body: ListPlaceholder())
                   : controller.userProfiles.isNotEmpty
                       ? ExpandedContainer(
                           body: ListView.builder(
-                            itemCount: controller.userProfiles.length,
-                            itemBuilder: (context, i) => UserProfileEntry(
-                              pangeaProfile: controller.userProfiles[i],
-                              controller: controller,
-                            ),
+                            controller: controller.scrollController,
+                            itemCount: controller.userProfiles.length + 1,
+                            itemBuilder: (context, i) => i !=
+                                    controller.userProfiles.length
+                                ? UserProfileEntry(
+                                    pangeaProfile: controller.userProfiles[i],
+                                    controller: controller,
+                                  )
+                                : controller.loading
+                                    ? const Center(
+                                        child: CircularProgressIndicator
+                                            .adaptive(),
+                                      )
+                                    : const SizedBox.shrink(),
                           ),
                         )
                       : ExpandedContainer(
@@ -160,7 +162,7 @@ class ProfileSearchTextField extends StatelessWidget {
           maxHeight: 48,
           minWidth: 48,
         ),
-        suffixIcon: controller.loading
+        suffixIcon: controller.initialLoad
             ? const CircularProgressIndicator.adaptive()
             : const Icon(Icons.search_outlined),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -225,10 +227,10 @@ class LanguageSelectionRow extends StatelessWidget {
                 ? controller.pangeaController.pLanguageStore.baseOptions
                 : controller.pangeaController.pLanguageStore.targetOptions,
             onChange: (language) {
-              isSource
-                  ? controller.sourceLanguageSearch = language
-                  : controller.targetLanguageSearch = language;
-              controller.searchUserProfiles();
+              controller.filterUserProfiles(
+                sourceLanguage: isSource ? language : null,
+                targetLanguage: isSource ? null : language,
+              );
             },
             initialLanguage: isSource
                 ? controller.sourceLanguageSearch
