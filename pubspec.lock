@@ -600,12 +600,11 @@ packages:
   flutter_blurhash:
     dependency: "direct main"
     description:
-      path: "."
-      ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
-      resolved-ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
-      url: "https://github.com/Craftplacer/flutter_blurhash.git"
-    source: git
-    version: "0.7.0"
+      name: flutter_blurhash
+      sha256: "5e67678e479ac639069d7af1e133f4a4702311491188ff3e0227486430db0c06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.2"
   flutter_cache_manager:
     dependency: "direct main"
     description:
@@ -771,12 +770,11 @@ packages:
   flutter_math_fork:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "3442b36a436880ce1c023e25c868d6f4004c4c24"
-      resolved-ref: "3442b36a436880ce1c023e25c868d6f4004c4c24"
-      url: "https://github.com/The-Redhat/flutter_math_fork.git"
-    source: git
-    version: "0.7.1"
+      name: flutter_math_fork
+      sha256: "94bee4642892a94939af0748c6a7de0ff8318feee588379dcdfea7dc5cba06c8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.2"
   flutter_native_splash:
     dependency: "direct dev"
     description:

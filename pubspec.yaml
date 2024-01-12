@@ -1,5 +1,8 @@
 name: fluffychat
+# #Pangea
+# description: Chat with your friends.
 description: Learn a language while texting your friends.
+# Pangea#
 publish_to: none
 version: 1.11.2+3453
 
@@ -16,12 +19,8 @@ dependencies:
   callkeep: ^0.3.2
   chewie: ^1.7.1
   collection: ^1.17.2
-  connectivity_plus: ^3.0.2
-  country_picker: ^2.0.23
-  csv: ^5.0.2
   cupertino_icons: any
   desktop_drop: ^0.4.4
-  desktop_lifecycle: ^0.1.0
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8
@@ -30,19 +29,11 @@ dependencies:
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
   file_picker: ^6.1.1
-  fl_chart: ^0.61.0
-  firebase_analytics: ^10.2.1
-  firebase_core: ^2.10.0
-  firebase_messaging: ^14.4.1
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
-  flutter_app_lock: ^3.0.0
-  flutter_blurhash: ^0.7.0
+  flutter_blurhash: ^0.8.2
   flutter_cache_manager: ^3.3.0
-  flutter_dotenv: ^5.0.2
-  fcm_shared_isolate:
-    path: pangea_packages/fcm_shared_isolate
   flutter_foreground_task: ^6.0.0+1
   flutter_highlighter: ^0.1.1
   flutter_html: ^3.0.0-beta.2
@@ -52,55 +43,43 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^4.0.0
-  flutter_math_fork: ^0.7.1
+  flutter_math_fork: ^0.7.2
   flutter_olm: 1.3.2 # Keep in sync with scripts/prepare-web.sh ! 1.4.0 does currently not build on Android
   flutter_openssl_crypto: ^0.1.0
   flutter_ringtone_player: ^3.1.1
   flutter_secure_storage: ^9.0.0
-  flutter_svg: ^2.0.0+1
   flutter_typeahead: ^4.8.0
   flutter_web_auth_2: ^3.1.1
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
-  get_storage: ^2.1.1
   go_router: ^12.1.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   http: ^0.13.4
   image_picker: ^1.0.0
-  in_app_purchase: ^3.1.5
   intl: any
   just_audio: ^0.9.30
-  jwt_decode: ^0.3.1
   keyboard_shortcuts: ^0.1.4
-  language_tool: ^2.1.1
   latlong2: ^0.8.1
   linkify: ^5.0.0
   matrix: ^0.25.3
-  matrix_homeserver_recommendations: ^0.3.0
   native_imaging: ^0.1.0
-  new_version_plus: ^0.0.10
-  open_file: ^3.3.2
   package_info_plus: ^4.0.0
   pasteboard: ^0.2.0
   path_provider: ^2.0.9
   permission_handler: ^11.0.1
   provider: ^6.0.2
   punycode: ^1.0.0
-  purchases_flutter: ^5.6.0
   qr_code_scanner: ^1.0.0
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
   scroll_to_index: ^3.0.1
-  sentry_flutter: ^7.4.0
   share_plus: ^7.2.1
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   swipe_to_action: ^0.2.0
-  syncfusion_flutter_datepicker: ^23.2.7
-  syncfusion_flutter_xlsio: ^23.2.7
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
   unifiedpush: ^5.0.1
@@ -111,6 +90,32 @@ dependencies:
   video_player: ^2.8.1
   wakelock_plus: ^1.1.3
   webrtc_interface: ^1.0.13
+  # #Pangea
+  connectivity_plus: ^3.0.2
+  country_picker: ^2.0.20
+  csv: ^5.0.2
+  desktop_lifecycle: ^0.1.0
+  fl_chart: ^0.61.0
+  firebase_analytics: ^10.2.1
+  firebase_core: ^2.10.0
+  firebase_messaging: ^14.4.1
+  flutter_app_lock: ^3.0.0
+  flutter_dotenv: ^5.0.2
+  fcm_shared_isolate:
+    path: pangea_packages/fcm_shared_isolate
+  flutter_svg: ^2.0.0+1
+  get_storage: ^2.1.1
+  in_app_purchase: ^3.1.5
+  jwt_decode: ^0.3.1
+  language_tool: ^2.1.1
+  matrix_homeserver_recommendations: ^0.3.0
+  new_version_plus: ^0.0.10
+  open_file: ^3.3.2
+  purchases_flutter: ^5.6.0
+  sentry_flutter: ^7.4.0
+  syncfusion_flutter_datepicker: ^23.2.7
+  syncfusion_flutter_xlsio: ^23.2.7
+  # Pangea#
 
 dev_dependencies:
   dart_code_metrics: ^5.7.5
@@ -134,8 +139,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    # #Pangea
     - assets/pangea/
     - assets/pangea/bot_faces/
+    # Pangea#
     - assets/sounds/
     - assets/js/
     - assets/js/package/
@@ -154,7 +161,7 @@ flutter:
     - family: NotoEmoji
       fonts:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
-    # Pangea
+    # #Pangea
     - family: Inconsolata
       fonts:
         - asset: fonts/Inconsolata/Inconsolata-Regular.ttf
@@ -162,13 +169,16 @@ flutter:
           style: italic
         - asset: fonts/Inconsolata/Inconsolata-Bold.ttf
           weight: 700
-    # Pangea
+    # Pangea#
 
 msix_config:
   display_name: FluffyChat
   publisher_display_name: FluffyChat
   publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
+  # #Pangea
+  # identity_name: chat.fluffy.fluffychat
   identity_name: com.talktolearn.chat
+  # Pangea#
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https
@@ -178,16 +188,6 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
-  # https://github.com/fluttercommunity/flutter_blurhash/pull/58
-  flutter_blurhash:
-    git:
-      url: https://github.com/Craftplacer/flutter_blurhash.git
-      ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
-  # https://github.com/simpleclub-extended/flutter_math_fork/pull/87
-  flutter_math_fork:
-    git:
-      url: https://github.com/The-Redhat/flutter_math_fork.git
-      ref: 3442b36a436880ce1c023e25c868d6f4004c4c24
   # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
   flutter_secure_storage_linux: 1.1.3
   geolocator_android:
