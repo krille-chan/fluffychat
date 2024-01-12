@@ -84,5 +84,6 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
           xcode-version: latest
+      - run: brew install sqlcipher
       - run: flutter pub get
       - run: flutter build ios --no-codesign
