@@ -51,7 +51,7 @@ class HtmlMessage extends StatelessWidget {
           )
           .join(' ');
 
-      node.replaceWith(dom.Element.html(newHtml));
+      node.replaceWith(dom.Element.html('<p>$newHtml</p>'));
     }
     return element;
   }
