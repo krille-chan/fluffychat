@@ -764,7 +764,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "bn": [
@@ -1537,7 +1538,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "bo": [
@@ -2310,7 +2312,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ca": [
@@ -3078,7 +3081,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "cs": [
@@ -3846,7 +3850,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "de": [
@@ -4614,7 +4619,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "el": [
@@ -5387,7 +5393,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "eo": [
@@ -6155,39 +6162,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
-  ],
-
-  "es": [
-    "notAnImage",
-    "importNow",
-    "importEmojis",
-    "importFromZipFile",
-    "importZipFile",
-    "exportEmotePack",
-    "savedEmotePack",
-    "sendTypingNotifications",
-    "reportToTeacher",
-    "reportMessageTitle",
-    "reportMessageBody",
-    "noTeachersFound",
-    "noAddToSpacePermissions",
-    "alreadyInSpace",
-    "yourGlobalUserIdIs",
-    "noUsersFoundWithQuery",
-    "searchChatsRooms",
-    "groupName",
-    "createGroupAndInviteUsers",
-    "groupCanBeFoundViaSearch",
-    "inNoSpaces",
-    "createClass",
-    "createExchange",
-    "viewArchive",
-    "trialExpiration",
-    "freeTrialDesc",
-    "activateTrial",
-    "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "et": [
@@ -6955,7 +6931,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "eu": [
@@ -7723,7 +7700,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "fa": [
@@ -8491,7 +8469,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "fi": [
@@ -9259,7 +9238,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "fr": [
@@ -10027,7 +10007,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ga": [
@@ -10795,7 +10776,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "gl": [
@@ -11563,7 +11545,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "he": [
@@ -12331,7 +12314,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "hi": [
@@ -13104,7 +13088,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "hr": [
@@ -13872,7 +13857,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "hu": [
@@ -14640,7 +14626,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "id": [
@@ -15408,7 +15395,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ie": [
@@ -16178,7 +16166,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "it": [
@@ -16946,7 +16935,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ja": [
@@ -17714,7 +17704,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ko": [
@@ -18482,7 +18473,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "lt": [
@@ -19250,7 +19242,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "lv": [
@@ -20023,7 +20016,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "nb": [
@@ -20791,7 +20785,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "nl": [
@@ -21559,7 +21554,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "pl": [
@@ -22327,7 +22323,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "pt": [
@@ -23100,7 +23097,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "pt_BR": [
@@ -23868,7 +23866,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "pt_PT": [
@@ -24636,7 +24635,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ro": [
@@ -25404,7 +25404,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ru": [
@@ -26172,7 +26173,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "sk": [
@@ -26941,7 +26943,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "sl": [
@@ -27712,7 +27715,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "sr": [
@@ -28480,7 +28484,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "sv": [
@@ -29248,7 +29253,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "ta": [
@@ -30021,7 +30027,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "th": [
@@ -30794,7 +30801,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "tr": [
@@ -31562,7 +31570,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "uk": [
@@ -32330,7 +32339,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "vi": [
@@ -33101,7 +33111,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "zh": [
@@ -33869,7 +33880,8 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ],
 
   "zh_Hant": [
@@ -34637,6 +34649,7 @@
     "freeTrialDesc",
     "activateTrial",
     "successfullySubscribed",
-    "clickToManageSubscription"
+    "clickToManageSubscription",
+    "emptyInviteWarning"
   ]
 }

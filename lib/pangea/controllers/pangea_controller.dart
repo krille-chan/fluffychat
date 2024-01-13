@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
@@ -26,6 +27,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import '../../config/app_config.dart';
 import '../utils/firebase_analytics.dart';
 import '../utils/p_store.dart';
+import 'it_feedback_controller.dart';
 import 'message_analytics_controller.dart';
 
 class PangeaController {
@@ -40,6 +42,7 @@ class PangeaController {
   late LocalSettings localSettings;
   late MessageDataController messageData;
   late ContextualDefinitionController definitions;
+  late ITFeedbackController itFeedback;
   late InstructionsController instructions;
   late SubscriptionController subscriptionController;
 
@@ -86,6 +89,7 @@ class PangeaController {
     definitions = ContextualDefinitionController(this);
     instructions = InstructionsController(this);
     subscriptionController = SubscriptionController(this);
+    itFeedback = ITFeedbackController(this);
     PAuthGaurd.pController = this;
   }
 

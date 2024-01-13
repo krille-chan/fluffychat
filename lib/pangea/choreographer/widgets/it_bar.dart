@@ -1,18 +1,20 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/translation_finished_flow.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import '../../../config/app_config.dart';
+import '../../controllers/it_feedback_controller.dart';
 import '../../models/it_response_model.dart';
 import '../../utils/overlay.dart';
+import '../../widgets/igc/word_data_card.dart';
 import 'choice_array.dart';
 
 class ITBar extends StatelessWidget {
@@ -225,17 +227,31 @@ class ITChoices extends StatelessWidget {
   ]) =>
       OverlayUtil.showPositionedCard(
         context: context,
-        cardToShow: WordDataCard(
-          word: controller.currentITStep!.continuances[index].text,
-          wordLang: controller.targetLangCode,
-          fullText: sourceText ?? controller.choreographer.currentText,
-          fullTextLang: sourceText != null
-              ? controller.sourceLangCode
-              : controller.targetLangCode,
-          hasInfo: controller.currentITStep!.continuances[index].hasInfo,
-          choiceFeedback: choiceFeedback,
-          room: controller.choreographer.chatController.room,
-        ),
+        cardToShow: choiceFeedback == null
+            ? WordDataCard(
+                word: controller.currentITStep!.continuances[index].text,
+                wordLang: controller.targetLangCode,
+                fullText: sourceText ?? controller.choreographer.currentText,
+                fullTextLang: sourceText != null
+                    ? controller.sourceLangCode
+                    : controller.targetLangCode,
+                hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+                choiceFeedback: choiceFeedback,
+                room: controller.choreographer.chatController.room,
+              )
+            : ITFeedbackCard(
+                req: ITFeedbackRequestModel(
+                  sourceText: sourceText!,
+                  currentText: controller.choreographer.currentText,
+                  chosenContinuance:
+                      controller.currentITStep!.continuances[index].text,
+                  bestContinuance: controller.currentITStep!.best.text,
+                  feedbackLang: controller.targetLangCode,
+                  sourceTextLang: controller.sourceLangCode,
+                  targetLang: controller.targetLangCode,
+                ),
+                choiceFeedback: choiceFeedback,
+              ),
         cardSize: const Size(300, 300),
         borderColor: borderColor,
         transformTargetId: controller.choreographer.itBarTransformTargetKey,

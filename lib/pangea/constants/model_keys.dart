@@ -76,4 +76,15 @@ class ModelKey {
   static const String targetWord = "target_word";
   static const String baseExampleSentence = "base_example_sentence";
   static const String targetExampleSentence = "target_example_sentence";
+
+  //add goldTranslation, goldContinuance, chosenContinuance
+  static const String goldTranslation = "gold_translation";
+  static const String goldContinuance = "gold_continuance";
+  static const String chosenContinuance = "chosen_continuance";
+
+  // sourceText, currentText, bestContinuance, feedback_lang
+  static const String sourceText = "src";
+  static const String currentText = "current";
+  static const String bestContinuance = "best_continuance";
+  static const String feedbackLang = "feedback_lang";
 }
