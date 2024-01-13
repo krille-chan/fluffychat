@@ -1,3 +1,16 @@
+## v1.17.1
+Minor bugfix release.
+
+- build: Update matrix sdk 0.25.5 (Krille)
+- build: Update to flutter 3.16.7 (Krille)
+- chore: Remove vibration on iOS for long press (Krille)
+- design: Better paddings in tablet mode (krille-chan)
+- docs: Fix typo in readme (Krille)
+- Fix dependency. missing yq when invoking setup-web. also ensure updated config.json copied in (Isaac Johnson)
+- fix: text nodes with multiple links crash the timeline (Krille)
+- fix: URL too long when reporting bug (Krille)
+- fix: Wait for user device keys before start verification (Krille)
+
 ## v1.17.0
 FluffyChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of bugs. It also replaces the stories feature with matrix presences, introduces a new kind of database to store the messages locally and improves the performance and app stability.
 
