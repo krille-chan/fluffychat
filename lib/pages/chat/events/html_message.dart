@@ -88,7 +88,13 @@ class HtmlMessage extends StatelessWidget {
       padding: HtmlPaddings.only(left: 6, bottom: 0),
     );
 
-    final element = _linkifyHtml(HtmlParser.parseHTML(renderHtml));
+    // I encountered messages containing only a String with several HTML elements - without a common parent containing
+    // them - in this case, we'd end up with *several* top level elements - and the HTML parser fails
+    //
+    // We hence add an inline-block `<div>` around the entire message in order to ensure we're dealing with a single
+    // top-level element.
+    final paddedHtml = '<div style="display: inline-block;">$renderHtml</div>';
+    final element = _linkifyHtml(HtmlParser.parseHTML(paddedHtml));
 
     // there is no need to pre-validate the html, as we validate it while rendering
     return Html.fromElement(
