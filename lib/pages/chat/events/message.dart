@@ -21,6 +21,7 @@ class Message extends StatelessWidget {
   final Event? nextEvent;
   final bool displayReadMarker;
   final void Function(Event) onSelect;
+  final void Function(Event) onDoubleTap; // Double tap to like
   final void Function(Event) onAvatarTab;
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
@@ -35,6 +36,7 @@ class Message extends StatelessWidget {
     this.displayReadMarker = false,
     this.longPressSelect = false,
     required this.onSelect,
+        required this.onDoubleTap,
     required this.onInfoTab,
     required this.onAvatarTab,
     required this.scrollToEventId,
@@ -379,6 +381,7 @@ class Message extends StatelessWidget {
         onSwipe: (_) => onSwipe(),
         child: InkWell(
           onTap: () => onSelect(event),
+          onDoubleTap: () => onDoubleTap(event),
           child: Container(
             color: selected
                 ? Theme.of(context).primaryColor.withAlpha(100)

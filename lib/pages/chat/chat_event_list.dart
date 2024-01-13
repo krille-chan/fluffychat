@@ -113,6 +113,9 @@ class ChatEventList extends StatelessWidget {
                         '${event.senderFromMemoryOrFallback.mention} ',
                   ),
                 ),
+                onDoubleTap:
+                  // here is the logic for "liking" the message
+                  controller.handleMessageLike,
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
