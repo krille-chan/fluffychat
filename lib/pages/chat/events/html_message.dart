@@ -28,30 +28,36 @@ class HtmlMessage extends StatelessWidget {
   });
 
   dom.Node _linkifyHtml(dom.Node element) {
-    for (final node in element.nodes) {
-      if (node is! dom.Text) {
-        node.replaceWith(_linkifyHtml(node));
-        continue;
+    final nodes = element.nodes;
+    if (!element.hasChildNodes()) {
+      return element;
+    }
+    for (final dom.Node node in nodes) {
+      if (node is Element) {
+        final newNode = _linkifyHtml(node);
+        node.replaceWith(newNode);
+      } else if (node is dom.Text) {
+        final linkified = linkify(
+          node.text,
+          options: const LinkifyOptions(
+            humanize: false,
+            looseUrl: true,
+            defaultToHttps: true,
+          ),
+        );
+        final newNode = dom.Element.tag('span');
+        for (final element in linkified) {
+          if (element is TextElement) {
+            newNode.nodes.add(dom.Text(element.text));
+          } else if (element is LinkableElement) {
+            final anchor = dom.Element.tag('a');
+            anchor.attributes['href'] = element.url;
+            anchor.nodes.add(dom.Text(element.originText));
+            newNode.nodes.add(anchor);
+          }
+        }
+        node.replaceWith(newNode);
       }
-
-      final parts = linkify(
-        node.text,
-        options: const LinkifyOptions(humanize: false),
-      );
-
-      if (!parts.any((part) => part is UrlElement)) {
-        continue;
-      }
-
-      final newHtml = parts
-          .map(
-            (linkifyElement) => linkifyElement is! UrlElement
-                ? linkifyElement.text
-                : '<a href="${linkifyElement.text}">${linkifyElement.text}</a>',
-          )
-          .join(' ');
-
-      node.replaceWith(dom.Element.html('<p>$newHtml</p>'));
     }
     return element;
   }
@@ -350,6 +356,7 @@ class MatrixMathExtension extends HtmlExtension {
   final TextStyle? style;
 
   MatrixMathExtension({this.style});
+
   @override
   Set<String> get supportedTags => {'div'};
 
@@ -383,6 +390,7 @@ class CodeExtension extends HtmlExtension {
   final double fontSize;
 
   CodeExtension({required this.fontSize});
+
   @override
   Set<String> get supportedTags => {'code'};
 
@@ -420,6 +428,7 @@ class RoomPillExtension extends HtmlExtension {
   final BuildContext context;
 
   RoomPillExtension(this.context, this.room);
+
   @override
   Set<String> get supportedTags => {'a'};
 
