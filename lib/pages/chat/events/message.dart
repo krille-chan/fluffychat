@@ -20,6 +20,7 @@ class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final bool displayReadMarker;
+  final void Function(Event) onTab;
   final void Function(Event) onSelect;
   final void Function(Event) onDoubleTap; // Double tap to like
   final void Function(Event) onAvatarTab;
@@ -28,6 +29,7 @@ class Message extends StatelessWidget {
   final void Function() onSwipe;
   final bool longPressSelect;
   final bool selected;
+  final bool onTabInfo;
   final Timeline timeline;
 
   const Message(
@@ -35,6 +37,7 @@ class Message extends StatelessWidget {
     this.nextEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
+    required this.onTab,
     required this.onSelect,
         required this.onDoubleTap,
     required this.onInfoTab,
@@ -42,6 +45,7 @@ class Message extends StatelessWidget {
     required this.scrollToEventId,
     required this.onSwipe,
     this.selected = false,
+    this.onTabInfo = false,
     required this.timeline,
     super.key,
   });
@@ -287,13 +291,14 @@ class Message extends StatelessWidget {
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
         displayTime ||
         selected ||
-        displayReadMarker) {
+        displayReadMarker ||
+        onTabInfo) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          if (displayTime || selected)
+          if (displayTime || selected || onTabInfo)
             Padding(
               padding: displayTime
                   ? const EdgeInsets.symmetric(vertical: 8.0)
@@ -380,8 +385,9 @@ class Message extends StatelessWidget {
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
         child: InkWell(
-          onTap: () => onSelect(event),
           onDoubleTap: () => onDoubleTap(event),
+          onLongPress: () => onSelect(event),
+          onTap: () => onTab(event),
           child: Container(
             color: selected
                 ? Theme.of(context).primaryColor.withAlpha(100)
