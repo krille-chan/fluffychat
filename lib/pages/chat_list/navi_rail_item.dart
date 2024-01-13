@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tawkie/config/app_config.dart';
-import '../../config/themes.dart';
+import 'package:tawkie/config/themes.dart';
 
 class NaviRailItem extends StatefulWidget {
   final String toolTip;

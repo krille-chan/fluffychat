@@ -6,10 +6,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/fluffy_share.dart';
 
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {

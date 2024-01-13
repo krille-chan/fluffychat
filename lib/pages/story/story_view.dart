@@ -5,6 +5,7 @@ import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/themes.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:tawkie/config/app_config.dart';
@@ -15,7 +16,6 @@ import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/string_color.dart';
 import 'package:tawkie/utils/url_launcher.dart';
 import 'package:tawkie/widgets/avatar.dart';
-import '../../config/themes.dart';
 
 class StoryView extends StatelessWidget {
   final StoryPageController controller;

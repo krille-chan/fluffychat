@@ -9,10 +9,9 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' as ffi;
 import 'package:sqflite_sqlcipher/sqflite.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:universal_html/html.dart' as html;
-
 import '../platform_infos.dart';
-
 Future<MatrixSdkDatabase> flutterMatrixSdkDatabaseBuilder(Client client) async {
   final database = await _constructDatabase(client);
   await database.open();

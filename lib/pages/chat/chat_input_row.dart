@@ -7,10 +7,10 @@ import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
 

@@ -8,11 +8,11 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../config/themes.dart';
 
 enum ContextualRoomAction {
   mute,

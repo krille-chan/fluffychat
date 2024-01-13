@@ -11,6 +11,13 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/url_launcher.dart';
+import 'package:tawkie/utils/voip/callkeep_manager.dart';
+import 'package:tawkie/widgets/fluffy_chat_app.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'package:tawkie/config/app_config.dart';
@@ -21,13 +28,6 @@ import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
-import '../../../utils/account_bundles.dart';
-import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import '../../utils/url_launcher.dart';
-import '../../utils/voip/callkeep_manager.dart';
-import '../../widgets/fluffy_chat_app.dart';
-import '../../widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
 
 import 'package:tawkie/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';

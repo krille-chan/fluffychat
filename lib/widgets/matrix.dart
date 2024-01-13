@@ -16,6 +16,11 @@ import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/background_push.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -25,11 +30,6 @@ import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/uia_request_manager.dart';
 import 'package:tawkie/utils/voip_plugin.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
-import '../pages/key_verification/key_verification_dialog.dart';
-import '../utils/account_bundles.dart';
-import '../utils/background_push.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';

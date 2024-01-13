@@ -2,7 +2,7 @@ import 'package:tawkie/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import '../../utils/platform_size.dart';
+import 'package:tawkie/utils/platform_size.dart';
 
 // Shows a button redirecting to the bridge bots social network chat connection page
 class AddChatNetwork extends StatelessWidget {

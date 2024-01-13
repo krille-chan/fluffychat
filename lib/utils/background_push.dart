@@ -29,14 +29,14 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 
 import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/push_helper.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
-import '../widgets/matrix.dart';
 import 'platform_infos.dart';
 
 //import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';

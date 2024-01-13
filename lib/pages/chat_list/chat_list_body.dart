@@ -1,3 +1,4 @@
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -16,13 +17,12 @@ import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/connection_status_header.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/public_room_bottom_sheet.dart';
-import '../../config/themes.dart';
-import '../../utils/platform_infos.dart';
-import '../../widgets/connection_status_header.dart';
-import '../../widgets/matrix.dart';
 import 'chat_list_header.dart';
 
 class ChatListViewBody extends StatelessWidget {

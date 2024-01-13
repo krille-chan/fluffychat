@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
-
-import '../../utils/date_time_extension.dart';
-import '../../utils/matrix_sdk_extensions/device_extension.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/utils/date_time_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/device_extension.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 enum UserDeviceListItemAction {
   rename,

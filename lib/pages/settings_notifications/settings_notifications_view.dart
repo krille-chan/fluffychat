@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
 
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'settings_notifications.dart';
 
 class SettingsNotificationsView extends StatelessWidget {

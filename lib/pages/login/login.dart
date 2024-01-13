@@ -8,8 +8,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
 class Login extends StatefulWidget {
