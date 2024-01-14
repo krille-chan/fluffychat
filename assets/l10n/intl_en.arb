@@ -2409,5 +2409,12 @@
             "url": {},
             "error": {}
         }
+    },
+    "forwardMessageTo": "Forward message to {roomName}?",
+    "@forwardMessageTo": {
+        "type": "text",
+        "placeholders": {
+            "roomName": {}
+        }
     }
 }

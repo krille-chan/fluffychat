@@ -126,12 +126,23 @@ class ChatListItem extends StatelessWidget {
           );
           Matrix.of(context).shareContent = null;
         } else {
-          final text = shareContent.tryGet<String>('body');
-          Matrix.of(context).shareContent = null;
-          context.go(
-            '/rooms/${room.id}?body=$text',
+          final consent = await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context)!.forward,
+            message: L10n.of(context)!.forwardMessageTo(
+              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+            ),
+            okLabel: L10n.of(context)!.forward,
+            cancelLabel: L10n.of(context)!.cancel,
           );
-          return;
+          if (consent == OkCancelResult.cancel) {
+            Matrix.of(context).shareContent = null;
+            return;
+          }
+          if (consent == OkCancelResult.ok) {
+            room.sendEvent(shareContent);
+            Matrix.of(context).shareContent = null;
+          }
         }
       }
 
