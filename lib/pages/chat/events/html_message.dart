@@ -46,7 +46,7 @@ class HtmlMessage extends StatelessWidget {
       final newHtml = parts
           .map(
             (linkifyElement) => linkifyElement is! UrlElement
-                ? linkifyElement.text
+                ? Uri.encodeComponent(linkifyElement.text)
                 : '<a href="${linkifyElement.text}">${linkifyElement.text}</a>',
           )
           .join(' ');
