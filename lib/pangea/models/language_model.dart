@@ -1,16 +1,14 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
 import '../utils/error_handler.dart';
 
 class LanguageModel {
   final String langCode;
-  final int languageType;
   final String languageFlag;
   final String displayName;
   final bool l2;
@@ -18,7 +16,6 @@ class LanguageModel {
 
   LanguageModel({
     required this.langCode,
-    required this.languageType,
     required this.languageFlag,
     required this.displayName,
     required this.l2,
@@ -34,10 +31,6 @@ class LanguageModel {
 
     return LanguageModel(
       langCode: code,
-      languageType: json['language_type'] is String &&
-              (json['language_type'] as String).isNotEmpty
-          ? int.parse(json['language_type'])
-          : json['language_type'],
       languageFlag: json['language_flag'] ?? "",
       displayName: _LanguageLocal.getDisplayName(
         code != LanguageKeys.unknownLanguage ? code : json['language_name'],
@@ -50,7 +43,6 @@ class LanguageModel {
   toJson() => {
         'language_code': langCode,
         'language_name': displayName,
-        'language_type': languageType,
         'language_flag': languageFlag,
         'l2': l2,
         'l1': l1,
@@ -75,7 +67,6 @@ class LanguageModel {
   //PTODO - add flag for unknown
   static LanguageModel get unknown => LanguageModel(
         langCode: LanguageKeys.unknownLanguage,
-        languageType: 1,
         languageFlag: "",
         displayName: "Unknown",
         l2: false,
@@ -90,11 +81,10 @@ class LanguageModel {
         l1: false,
         langCode: LanguageKeys.multiLanguage,
         languageFlag: 'assets/colors.png',
-        languageType: 3,
       );
 
   // Discuss with Jordan
-  bool get hasContextualDefinitionSupport => languageType == 2;
+  bool get hasContextualDefinitionSupport => l2;
 
   String? getDisplayName(BuildContext context) {
     switch (langCode) {
