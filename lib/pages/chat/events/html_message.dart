@@ -29,7 +29,8 @@ class HtmlMessage extends StatelessWidget {
 
   dom.Node _linkifyHtml(dom.Node element) {
     for (final node in element.nodes) {
-      if (node is! dom.Text) {
+      if (node is! dom.Text ||
+          (element is dom.Element && element.localName == 'code')) {
         node.replaceWith(_linkifyHtml(node));
         continue;
       }
