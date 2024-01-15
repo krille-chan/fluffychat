@@ -13,7 +13,7 @@ class PApiUrls {
   static String choreoBaseApi = Environment.choreoApi;
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "/language/list";
+  static String getLanguages = "/languages";
 
   ///   ---------------------- Users --------------------------------------
   static String createUser = "/account/create";
@@ -24,20 +24,6 @@ class PApiUrls {
 
   ///   ---------------------- Conversation Partner -------------------------
   static String searchUserProfiles = "/account/search";
-
-  ///   ---------------------- Deprecated Class API -------------------------
-  static String classListBySpaceIds = "/class/listbyspaceids";
-  static String getClassByClassCode = "/class/class_by_code?class_code=";
-
-  ///   ---------------------- Exchange -----------------------------------
-  static String exchangeClassValidate = "/class/validate_exchange";
-  static String exchangeClass = "/class/class_exchange";
-  static String isExchange = "/class/get_exchange?exchange_pangea_id=";
-  static String exchangeParticipantsStore = "/class/exchange/participant";
-  static String exchangeInfoStore = "/class/exchange/create";
-  static String fetchExchangeInfo = "/class/exchange/data?exchange_pangea_id=";
-  static String exchangeAcceptRequest = "/class/exchange/accept";
-  static String makeAdminInExchange = "/class/exchange/admin/create";
 
   ///-------------------------------- Deprecated analytics --------------------
   static String classAnalytics = "${Environment.choreoApi}/class_analytics";
