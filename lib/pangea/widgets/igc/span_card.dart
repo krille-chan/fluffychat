@@ -1,10 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
@@ -12,6 +7,10 @@ import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/match_copy.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import '../../../widgets/matrix.dart';
 import '../../choreographer/widgets/choice_array.dart';
 import '../../controllers/pangea_controller.dart';
@@ -19,6 +18,7 @@ import '../../enum/span_choice_type.dart';
 import '../../models/span_card_model.dart';
 import '../common/bot_face_svg.dart';
 import 'card_header.dart';
+import 'why_button.dart';
 
 const wordMatchResultsCount = 5;
 
@@ -314,37 +314,13 @@ class PromptAndFeedback extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             if (controller.selectedChoice?.feedback == null)
-              TextButton(
-                onPressed: () {
+              WhyButton(
+                onPress: () {
                   if (!controller.fetchingData) {
                     controller.getSpanDetails();
                   }
                 },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    AppConfig.primaryColor.withOpacity(0.1),
-                  ),
-                ),
-                child: SizedBox(
-                  width: 150, // set the width of the button contents here
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (!controller.fetchingData)
-                        const Icon(Icons.lightbulb_outline),
-                      if (controller.fetchingData)
-                        const Center(
-                          child: SizedBox(
-                            width: 24.0,
-                            height: 24.0,
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                      const SizedBox(width: 8),
-                      Text(L10n.of(context)!.why),
-                    ],
-                  ),
-                ),
+                loading: controller.fetchingData,
               ),
           ],
           if (!controller.fetchingData &&

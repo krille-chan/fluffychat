@@ -60,6 +60,8 @@ class PApiUrls {
   static String similarity = "${Environment.choreoApi}/similarity";
   static String topicInfo = "${Environment.choreoApi}/vocab_list";
 
+  static String itFeedback = "${Environment.choreoApi}/translation/feedback";
+
   static String firstStep = "/it_initialstep";
   static String subseqStep = "/it_step";
 
