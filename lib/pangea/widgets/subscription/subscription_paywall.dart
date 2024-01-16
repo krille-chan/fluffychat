@@ -2,6 +2,7 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/widgets/subscription/subscription_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -48,10 +49,9 @@ class SubscriptionPaywall extends StatelessWidget {
                 ? FreeTrialCard(
                     pangeaController: pangeaController,
                   )
-                : const SizedBox.shrink(),
-            //         : SubscriptionOptions(
-            //             pangeaController: pangeaController,
-            //           ),
+                : SubscriptionOptions(
+                    pangeaController: pangeaController,
+                  ),
           ],
         ),
       ),
