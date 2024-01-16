@@ -44,7 +44,7 @@ class ClassController extends BaseController {
     }
   }
 
-  void checkForClassCodeAndSubscription(BuildContext context) {
+  Future<void> checkForClassCodeAndSubscription(BuildContext context) async {
     final String? classCode = _pangeaController.pStoreService.read(
       PLocalKey.cachedClassCodeToJoin,
       addClientIdToKey: false,
@@ -55,7 +55,7 @@ class ClassController extends BaseController {
         PLocalKey.cachedClassCodeToJoin,
         addClientIdToKey: false,
       );
-      joinClasswithCode(
+      await joinClasswithCode(
         context,
         classCode,
       ).onError(
@@ -67,7 +67,7 @@ class ClassController extends BaseController {
         //question for gabby: why do we need this in two places?
         if (!_pangeaController.subscriptionController.isSubscribed) {
           print("Unsubscribed user in class_controller. Showing paywall.");
-          _pangeaController.subscriptionController.showPaywall(context);
+          await _pangeaController.subscriptionController.showPaywall(context);
         }
       } catch (err) {
         debugger(when: kDebugMode);

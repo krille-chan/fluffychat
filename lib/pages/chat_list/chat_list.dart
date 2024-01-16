@@ -754,7 +754,7 @@ class ChatListController extends State<ChatList>
     if (mounted) {
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
-      pangeaController.afterSyncAndFirstLoginInitialization(context);
+      await pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
     } else {
       ErrorHandler.logError(
