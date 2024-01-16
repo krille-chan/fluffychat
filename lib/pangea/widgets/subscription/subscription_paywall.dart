@@ -26,33 +26,34 @@ class SubscriptionPaywall extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(20),
-        // child: ListView(
-        //   children: [
-        //     if (pangeaController.matrixState.client.rooms.length > 1) ...[
-        //       Text(
-        //         L10n.of(context)!.welcomeBack,
-        //         textAlign: TextAlign.center,
-        //         style: const TextStyle(fontSize: 16),
-        //       ),
-        //       const SizedBox(height: 20),
-        //     ],
-        //     Text(
-        //       L10n.of(context)!.subscriptionDesc,
-        //       textAlign: TextAlign.center,
-        //       style: const TextStyle(fontSize: 16),
-        //     ),
-        //     const SizedBox(height: 20),
-        //     pangeaController.userController.inTrialWindow
-        //         ? FreeTrialCard(
-        //             pangeaController: pangeaController,
-        //           )
-        //         : SubscriptionOptions(
-        //             pangeaController: pangeaController,
-        //           ),
-        //   ],
-        // ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            //     if (pangeaController.matrixState.client.rooms.length > 1) ...[
+            //       Text(
+            //         L10n.of(context)!.welcomeBack,
+            //         textAlign: TextAlign.center,
+            //         style: const TextStyle(fontSize: 16),
+            //       ),
+            //       const SizedBox(height: 20),
+            //     ],
+            Text(
+              L10n.of(context)!.subscriptionDesc,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            pangeaController.userController.inTrialWindow
+                ? FreeTrialCard(
+                    pangeaController: pangeaController,
+                  )
+                : const SizedBox.shrink(),
+            //         : SubscriptionOptions(
+            //             pangeaController: pangeaController,
+            //           ),
+          ],
+        ),
       ),
     );
   }
