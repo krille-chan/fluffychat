@@ -1,12 +1,9 @@
 // Flutter imports:
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/widgets/subscription/subscription_options.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SubscriptionPaywall extends StatelessWidget {
   final PangeaController pangeaController;
@@ -17,45 +14,45 @@ class SubscriptionPaywall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: CloseButton(onPressed: Navigator.of(context).pop),
-        title: Text(
-          L10n.of(context)!.getAccess,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
+    return const Scaffold(
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   leading: CloseButton(onPressed: Navigator.of(context).pop),
+      //   title: Text(
+      //     L10n.of(context)!.getAccess,
+      //     style: const TextStyle(
+      //       fontSize: 20,
+      //     ),
+      //     textAlign: TextAlign.center,
+      //   ),
+      // ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            if (pangeaController.matrixState.client.rooms.length > 1) ...[
-              Text(
-                L10n.of(context)!.welcomeBack,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 20),
-            ],
-            Text(
-              L10n.of(context)!.subscriptionDesc,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 20),
-            pangeaController.userController.inTrialWindow
-                ? FreeTrialCard(
-                    pangeaController: pangeaController,
-                  )
-                : SubscriptionOptions(
-                    pangeaController: pangeaController,
-                  ),
-          ],
-        ),
+        padding: EdgeInsets.all(20),
+        // child: ListView(
+        //   children: [
+        //     if (pangeaController.matrixState.client.rooms.length > 1) ...[
+        //       Text(
+        //         L10n.of(context)!.welcomeBack,
+        //         textAlign: TextAlign.center,
+        //         style: const TextStyle(fontSize: 16),
+        //       ),
+        //       const SizedBox(height: 20),
+        //     ],
+        //     Text(
+        //       L10n.of(context)!.subscriptionDesc,
+        //       textAlign: TextAlign.center,
+        //       style: const TextStyle(fontSize: 16),
+        //     ),
+        //     const SizedBox(height: 20),
+        //     pangeaController.userController.inTrialWindow
+        //         ? FreeTrialCard(
+        //             pangeaController: pangeaController,
+        //           )
+        //         : SubscriptionOptions(
+        //             pangeaController: pangeaController,
+        //           ),
+        //   ],
+        // ),
       ),
     );
   }

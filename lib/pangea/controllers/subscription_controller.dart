@@ -156,16 +156,10 @@ class SubscriptionController extends BaseController {
           maxHeight: 600,
         ),
         builder: (_) {
-          // try {
           return SubscriptionPaywall(
             pangeaController: _pangeaController,
           );
-          // } catch (err) {
-          //   print("error build modal bottom sheet: $err");
-          //   return const SizedBox.shrink();
-          // }
         },
-        // builder: (_) => const SizedBox.shrink(),
       );
     } catch (e, s) {
       ErrorHandler.logError(e: e, s: s);
