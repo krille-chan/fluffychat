@@ -58,6 +58,12 @@ class PangeaLanguage {
       return true;
     }
     // return true;
+    final DateTime lastFetchedDate = DateTime.parse(dateString);
+    final DateTime targetDate = DateTime(2024, 1, 15);
+    if (lastFetchedDate.isBefore(targetDate)) {
+      return true;
+    }
+
     final int lastFetched = DateTime.parse(dateString).millisecondsSinceEpoch;
     final int now = DateTime.now().millisecondsSinceEpoch;
     const int fetchIntervalInMilliseconds = 86534601;
