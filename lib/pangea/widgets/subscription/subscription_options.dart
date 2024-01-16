@@ -1,12 +1,10 @@
 // Flutter imports:
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SubscriptionOptions extends StatelessWidget {
   final PangeaController pangeaController;
@@ -17,19 +15,20 @@ class SubscriptionOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: Wrap(
         alignment: WrapAlignment.center,
         direction: Axis.horizontal,
-        children: pangeaController
-            .subscriptionController.subscription!.availableSubscriptions
-            .map(
-              (subscription) => SubscriptionCard(
-                subscription: subscription,
-                pangeaController: pangeaController,
-              ),
-            )
-            .toList(),
+        children: [],
+        // pangeaController
+        //     .subscriptionController.subscription!.availableSubscriptions
+        //     .map(
+        //       (subscription) => SubscriptionCard(
+        //         subscription: subscription,
+        //         pangeaController: pangeaController,
+        //       ),
+        //     )
+        //     .toList(),
       ),
     );
   }

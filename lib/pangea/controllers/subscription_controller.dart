@@ -13,6 +13,8 @@ import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/widgets/subscription/subscription_paywall.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -145,18 +147,18 @@ class SubscriptionController extends BaseController {
         return;
       }
       if (!forceShow && isSubscribed) return;
-      // await showModalBottomSheet(
-      //   isScrollControlled: true,
-      //   useRootNavigator: !PlatformInfos.isMobile,
-      //   clipBehavior: Clip.hardEdge,
-      //   context: context,
-      //   constraints: BoxConstraints(
-      //     maxHeight: PlatformInfos.isMobile ? 600 : 480,
-      //   ),
-      //   builder: (_) => SubscriptionPaywall(
-      //     pangeaController: _pangeaController,
-      //   ),
-      // );
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        useRootNavigator: !PlatformInfos.isMobile,
+        clipBehavior: Clip.hardEdge,
+        context: context,
+        constraints: BoxConstraints(
+          maxHeight: PlatformInfos.isMobile ? 600 : 480,
+        ),
+        builder: (_) => SubscriptionPaywall(
+          pangeaController: _pangeaController,
+        ),
+      );
     } catch (e, s) {
       ErrorHandler.logError(e: e, s: s);
     }
