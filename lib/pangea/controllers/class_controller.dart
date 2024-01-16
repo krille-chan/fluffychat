@@ -66,7 +66,6 @@ class ClassController extends BaseController {
       try {
         //question for gabby: why do we need this in two places?
         if (!_pangeaController.subscriptionController.isSubscribed) {
-          print("Unsubscribed user in class_controller. Showing paywall.");
           await _pangeaController.subscriptionController.showPaywall(context);
         }
       } catch (err) {
