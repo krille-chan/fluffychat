@@ -14,19 +14,19 @@ class SubscriptionPaywall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   leading: CloseButton(onPressed: Navigator.of(context).pop),
-      //   title: Text(
-      //     L10n.of(context)!.getAccess,
-      //     style: const TextStyle(
-      //       fontSize: 20,
-      //     ),
-      //     textAlign: TextAlign.center,
-      //   ),
-      // ),
-      body: Padding(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: CloseButton(onPressed: Navigator.of(context).pop),
+        title: Text(
+          L10n.of(context)!.getAccess,
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      body: const Padding(
         padding: EdgeInsets.all(20),
         // child: ListView(
         //   children: [
