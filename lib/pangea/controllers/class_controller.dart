@@ -1,20 +1,19 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/matrix.dart';
 import '../utils/bot_name.dart';
 import '../utils/firebase_analytics.dart';
@@ -67,6 +66,7 @@ class ClassController extends BaseController {
       try {
         //question for gabby: why do we need this in two places?
         if (!_pangeaController.subscriptionController.isSubscribed) {
+          debugPrint("Unsubscribed user in class_controller. Showing paywall.");
           _pangeaController.subscriptionController.showPaywall(context);
         }
       } catch (err) {
