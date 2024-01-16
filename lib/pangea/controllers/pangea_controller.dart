@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
@@ -66,12 +65,12 @@ class PangeaController {
     _addRefInObjects();
   }
 
-  void afterSyncAndFirstLoginInitialization(BuildContext context) {
-    classController.checkForClassCodeAndSubscription(context);
-
+  Future<void> afterSyncAndFirstLoginInitialization(
+    BuildContext context,
+  ) async {
+    await classController.checkForClassCodeAndSubscription(context);
     // startChatWithBotIfNotPresent();
-
-    classController.fixClassPowerLevels();
+    await classController.fixClassPowerLevels();
   }
 
   /// Initialize controllers
