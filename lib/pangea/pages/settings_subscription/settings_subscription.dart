@@ -1,10 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -13,6 +8,9 @@ import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscript
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SubscriptionManagement extends StatefulWidget {
   const SubscriptionManagement({super.key});
@@ -35,6 +33,14 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
       debugPrint("stateStream event in subscription settings");
       setState(() {});
     });
+
+    _subscriptionStatusStream ??= pangeaController
+        .subscriptionController.subscriptionStream.stream
+        .listen((_) {
+      showSubscribedSnackbar(context);
+      context.go('/rooms');
+    });
+
     pangeaController.subscriptionController.updateCustomerInfo();
     super.initState();
   }
@@ -123,15 +129,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    _subscriptionStatusStream ??= pangeaController
-        .subscriptionController.subscriptionStream.stream
-        .listen((_) {
-      showSubscribedSnackbar(context);
-      context.go('/rooms');
-    });
-    return SettingsSubscriptionView(this);
-  }
+  Widget build(BuildContext context) => SettingsSubscriptionView(this);
 }
 
 enum ManagementOption {

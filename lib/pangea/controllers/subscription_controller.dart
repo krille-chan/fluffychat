@@ -47,6 +47,7 @@ class SubscriptionController extends BaseController {
       subscription?.currentSubscription?.isTrial ?? false;
 
   Future<void> initialize() async {
+    debugPrint("Initializing subscription controller");
     try {
       if (_pangeaController.matrixState.client.userID == null) {
         debugPrint(
@@ -59,11 +60,15 @@ class SubscriptionController extends BaseController {
           ? WebSubscriptionInfo(pangeaController: _pangeaController)
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
+      debugPrint("Configuring subscription controller");
       await subscription!.configure();
+      debugPrint("Configured subscription controller");
+
       if (activatedNewUserTrial) {
         setNewUserTrial();
       }
 
+      debugPrint("Setting initalized true");
       initialized = true;
 
       if (!kIsWeb) {
@@ -131,6 +136,9 @@ class SubscriptionController extends BaseController {
     BuildContext context, [
     bool forceShow = false,
   ]) async {
+    debugPrint(
+      "User is not subscribed. Showing paywall. Initialized: $initialized",
+    );
     try {
       if (!initialized) {
         await initialize();
