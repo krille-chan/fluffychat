@@ -15,20 +15,19 @@ class SubscriptionOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return Expanded(
       child: Wrap(
         alignment: WrapAlignment.center,
         direction: Axis.horizontal,
-        children: [],
-        // pangeaController
-        //     .subscriptionController.subscription!.availableSubscriptions
-        //     .map(
-        //       (subscription) => SubscriptionCard(
-        //         subscription: subscription,
-        //         pangeaController: pangeaController,
-        //       ),
-        //     )
-        //     .toList(),
+        children: pangeaController
+            .subscriptionController.subscription!.availableSubscriptions
+            .map(
+              (subscription) => SubscriptionCard(
+                subscription: subscription,
+                pangeaController: pangeaController,
+              ),
+            )
+            .toList(),
       ),
     );
   }
