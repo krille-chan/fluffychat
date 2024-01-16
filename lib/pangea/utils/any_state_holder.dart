@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../models/widget_measurement.dart';
@@ -36,6 +35,12 @@ class PangeaAnyState {
 
   void disposeByWidgetKey(String transformTargetId) {
     _layerLinkAndKeys.remove(transformTargetId);
+  }
+
+  void openOverlay(OverlayEntry entry, BuildContext context) {
+    closeOverlay();
+    overlay = entry;
+    Overlay.of(context).insert(overlay!);
   }
 
   void closeOverlay() {

@@ -1,17 +1,65 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/widgets/common_widgets/overlay_container.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'error_handler.dart';
 
 class OverlayUtil {
+  static showOverlay({
+    required BuildContext context,
+    required Widget child,
+    required Size size,
+    required String transformTargetId,
+    Offset? offset,
+    backDropToDismiss = true,
+    Color? borderColor,
+  }) {
+    try {
+      MatrixState.pAnyState.closeOverlay();
+      final LayerLinkAndKey layerLinkAndKey =
+          MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
+
+      final OverlayEntry entry = OverlayEntry(
+        builder: (context) => Stack(
+          children: [
+            // GestureDetector to detect when dismissed by clicking outside
+            Positioned.fill(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  MatrixState.pAnyState.closeOverlay();
+                },
+              ),
+            ),
+            if (backDropToDismiss) const TransparentBackdrop(),
+            Positioned(
+              width: size.width,
+              height: size.height,
+              child: CompositedTransformFollower(
+                link: layerLinkAndKey.link,
+                showWhenUnlinked: false,
+                offset: offset ?? Offset.zero,
+                child: child,
+              ),
+            ),
+          ],
+        ),
+      );
+
+      MatrixState.pAnyState.openOverlay(entry, context);
+    } catch (err, stack) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: stack);
+    }
+  }
+
   static showPositionedCard({
     required BuildContext context,
     required Widget cardToShow,
@@ -21,8 +69,6 @@ class OverlayUtil {
     Color? borderColor,
   }) {
     try {
-      MatrixState.pAnyState.closeOverlay();
-
       final LayerLinkAndKey layerLinkAndKey =
           MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
 
@@ -31,34 +77,25 @@ class OverlayUtil {
         transformTargetKey: layerLinkAndKey.key,
       );
 
-      MatrixState.pAnyState.overlay = OverlayEntry(
-        builder: (context) => Stack(
-          children: [
-            if (backDropToDismiss) const TransparentBackdrop(),
-            Positioned(
-              width: cardSize.width,
-              height: cardSize.height,
-              child: CompositedTransformFollower(
-                link: layerLinkAndKey.link,
-                showWhenUnlinked: false,
-                offset: cardOffset,
-                child: Material(
-                  borderOnForeground: false,
-                  color: Colors.transparent,
-                  clipBehavior: Clip.antiAlias,
-                  child: OverlayContainer(
-                    cardToShow: cardToShow,
-                    borderColor: borderColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
+      final Widget child = Material(
+        borderOnForeground: false,
+        color: Colors.transparent,
+        clipBehavior: Clip.antiAlias,
+        child: OverlayContainer(
+          cardToShow: cardToShow,
+          borderColor: borderColor,
         ),
       );
 
-      Overlay.of(layerLinkAndKey.key.currentContext!)
-          .insert(MatrixState.pAnyState.overlay!);
+      showOverlay(
+        context: context,
+        child: child,
+        size: cardSize,
+        transformTargetId: transformTargetId,
+        offset: cardOffset,
+        backDropToDismiss: backDropToDismiss,
+        borderColor: borderColor,
+      );
     } catch (err, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: stack);
@@ -132,6 +169,8 @@ class OverlayUtil {
 
     return Offset(dx, dy);
   }
+
+  static bool get isOverlayOpen => MatrixState.pAnyState.overlay != null;
 }
 
 class TransparentBackdrop extends StatelessWidget {
