@@ -149,10 +149,10 @@ class SubscriptionController extends BaseController {
       await showModalBottomSheet(
         // isScrollControlled: true,
         // useRootNavigator: !PlatformInfos.isMobile,
-        // clipBehavior: Clip.hardEdge,
+        clipBehavior: Clip.hardEdge,
         context: context,
-        // constraints: BoxConstraints(
-        //   maxHeight: PlatformInfos.isMobile ? 600 : 480,
+        // constraints: const BoxConstraints(
+        //   maxHeight: 600,
         // ),
         builder: (_) {
           try {
