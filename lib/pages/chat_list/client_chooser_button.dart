@@ -29,16 +29,6 @@ class ClientChooserButton extends StatelessWidget {
       );
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
-        value: SettingsAction.newStory,
-        child: Row(
-          children: [
-            const Icon(Icons.camera_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context)!.yourStory),
-          ],
-        ),
-      ),
-      PopupMenuItem(
         value: SettingsAction.newGroup,
         child: Row(
           children: [
@@ -55,6 +45,16 @@ class ClientChooserButton extends StatelessWidget {
             const Icon(Icons.workspaces_outlined),
             const SizedBox(width: 18),
             Text(L10n.of(context)!.createNewSpace),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.setStatus,
+        child: Row(
+          children: [
+            const Icon(Icons.edit_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.setStatus),
           ],
         ),
       ),
@@ -88,10 +88,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      const PopupMenuItem(
-        value: null,
-        child: Divider(height: 1),
-      ),
+      const PopupMenuDivider(),
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
             matrix.accountBundles[bundle]!.single!.userID != bundle)
@@ -272,14 +269,11 @@ class ClientChooserButton extends StatelessWidget {
           if (consent != OkCancelResult.ok) return;
           context.go('/rooms/settings/addaccount');
           break;
-        case SettingsAction.newStory:
-          context.go('/rooms/stories/create');
-          break;
         case SettingsAction.newGroup:
           context.go('/rooms/newgroup');
           break;
         case SettingsAction.newSpace:
-          context.go('/rooms/newspace');
+          controller.createNewSpace();
           break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
@@ -371,9 +365,9 @@ class ClientChooserButton extends StatelessWidget {
 enum SettingsAction {
   addBridgeBot,
   addAccount,
-  newStory,
   newGroup,
   newSpace,
+  setStatus,
   invite,
   settings,
   archive,

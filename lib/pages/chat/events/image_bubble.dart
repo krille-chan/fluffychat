@@ -89,7 +89,11 @@ class ImageBubble extends StatelessWidget {
     return Material(
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
-        side: BorderSide(color: Theme.of(context).dividerColor),
+        side: BorderSide(
+          color: event.messageType == MessageTypes.Sticker
+              ? Colors.transparent
+              : Theme.of(context).dividerColor,
+        ),
       ),
       child: InkWell(
         onTap: () => _onTap(context),

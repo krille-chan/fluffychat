@@ -1,9 +1,8 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
+import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -46,26 +45,21 @@ abstract class ClientManager {
     }
     final clients = clientNames.map(createClient).toList();
     if (initialize) {
-      FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
       await Future.wait(
         clients.map(
-          (client) => client
-              .init(
-                waitForFirstSync: false,
-                waitUntilLoadCompletedLoaded: false,
-                onMigration: () {
-                  sendMigrationNotification(
-                    flutterLocalNotificationsPlugin ??=
-                        FlutterLocalNotificationsPlugin(),
-                  );
-                },
-              )
-              .catchError(
-                (e, s) => Logs().e('Unable to initialize client', e, s),
-              ),
+          (client) => client.initWithRestore(
+            onMigration: () {
+              final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+              sendInitNotification(
+                l10n.databaseMigrationTitle,
+                l10n.databaseMigrationBody,
+              );
+            },
+          ).catchError(
+            (e, s) => Logs().e('Unable to initialize client', e, s),
+          ),
         ),
       );
-      flutterLocalNotificationsPlugin?.cancel(0);
     }
     if (clients.length > 1 && clients.any((c) => !c.isLogged())) {
       final loggedOutClients = clients.where((c) => !c.isLogged()).toList();
@@ -116,8 +110,6 @@ abstract class ClientManager {
       importantStateEvents: <String>{
         // To make room emotes work
         'im.ponies.room_emotes',
-        // To check which story room we can post in
-        EventTypes.RoomPowerLevels,
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
@@ -132,17 +124,27 @@ abstract class ClientManager {
     );
   }
 
-  static void sendMigrationNotification(
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  ) async {
-    final l10n = lookupL10n(Locale(Platform.localeName));
-
+  static void sendInitNotification(String title, String body) async {
     if (kIsWeb) {
       html.Notification(
-        l10n.databaseMigrationTitle,
-        body: l10n.databaseMigrationBody,
+        title,
+        body: body,
       );
+      return;
     }
+    if (Platform.isLinux) {
+      await NotificationsClient().notify(
+        title,
+        body: body,
+        appName: AppConfig.applicationName,
+        hints: [
+          NotificationHint.soundName('message-new-instant'),
+        ],
+      );
+      return;
+    }
+
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
@@ -153,8 +155,8 @@ abstract class ClientManager {
 
     flutterLocalNotificationsPlugin.show(
       0,
-      l10n.databaseMigrationTitle,
-      l10n.databaseMigrationBody,
+      title,
+      body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
@@ -163,9 +165,8 @@ abstract class ClientManager {
           importance: Importance.max,
           priority: Priority.max,
           fullScreenIntent: true, // To show notification popup
-          showProgress: true,
         ),
-        iOS: DarwinNotificationDetails(),
+        iOS: DarwinNotificationDetails(sound: 'notification.caf'),
       ),
     );
   }

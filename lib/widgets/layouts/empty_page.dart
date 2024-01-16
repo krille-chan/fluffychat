@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
 class EmptyPage extends StatelessWidget {
-  final bool loading;
-  static const double _width = 300;
-  const EmptyPage({this.loading = false, super.key});
+  static const double _width = 400;
+  const EmptyPage({super.key});
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
@@ -16,7 +15,7 @@ class EmptyPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
       body: Column(

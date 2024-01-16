@@ -235,8 +235,10 @@ class ChatDetailsView extends StatelessWidget {
                                 ? L10n.of(context)!.noChatDescriptionYet
                                 : room.topic,
                             options: const LinkifyOptions(humanize: false),
-                            linkStyle:
-                                const TextStyle(color: Colors.blueAccent),
+                            linkStyle: const TextStyle(
+                              color: Colors.blueAccent,
+                              decorationColor: Colors.blueAccent,
+                            ),
                             style: TextStyle(
                               fontSize: 14,
                               fontStyle: room.topic.isEmpty
@@ -397,7 +399,8 @@ class ChatDetailsView extends StatelessWidget {
                           ListTile(
                             title: Text(L10n.of(context)!.inviteContact),
                             leading: CircleAvatar(
-                              backgroundColor: Theme.of(context).primaryColor,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               foregroundColor: Colors.white,
                               radius: Avatar.defaultSize / 2,
                               child: const Icon(Icons.add_outlined),

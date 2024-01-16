@@ -11,7 +11,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "👍 {username} принял(а) приглашение войти в чат",
+  "acceptedTheInvitation": "👍 {username} принял(а) приглашение",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -32,11 +32,6 @@
   },
   "addEmail": "Добавить электронную почту",
   "@addEmail": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "addGroupDescription": "Добавить описание группы",
-  "@addGroupDescription": {
     "type": "text",
     "placeholders": {}
   },
@@ -304,11 +299,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Изменить фон чатов",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
   "changeYourAvatar": "Изменить свой аватар",
   "@changeYourAvatar": {
     "type": "text",
@@ -346,11 +336,6 @@
   },
   "chooseAStrongPassword": "Выберите надёжный пароль",
   "@chooseAStrongPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAUsername": "Выберите имя пользователя",
-  "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -529,11 +514,6 @@
       "username": {}
     }
   },
-  "createNewGroup": "Новая группа",
-  "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
   "createNewSpace": "Новое пространство",
   "@createNewSpace": {
     "type": "text",
@@ -599,11 +579,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "deny": "Запретить",
-  "@deny": {
-    "type": "text",
-    "placeholders": {}
-  },
   "device": "Устройство",
   "@device": {
     "type": "text",
@@ -641,11 +616,6 @@
   },
   "editBlockedServers": "Редактировать заблокированные серверы",
   "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editChatPermissions": "Изменить разрешения чата",
-  "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
   },
@@ -736,18 +706,11 @@
       "senderName": {}
     }
   },
-  "enterAGroupName": "Введите название группы",
-  "@enterAGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
   "enterAnEmailAddress": "Введите адрес электронной почты",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Введите название пространства",
-  "@enterASpacepName": {},
   "enterYourHomeserver": "Введите адрес вашего сервера Matrix",
   "@enterYourHomeserver": {
     "type": "text",
@@ -807,16 +770,6 @@
   },
   "group": "Группа",
   "@group": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescription": "Описание группы",
-  "@groupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescriptionHasBeenChanged": "Описание группы изменено",
-  "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
@@ -895,16 +848,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "ignoreListDescription": "Вы можете игнорировать пользователей, которые вам мешают. Вы не сможете получать сообщения или приглашения в комнату от пользователей из вашего личного списка игнорирования.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Игнорировать имя пользователя",
-  "@ignoreUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
   "iHaveClickedOnLink": "Я перешёл по ссылке",
   "@iHaveClickedOnLink": {
     "type": "text",
@@ -980,7 +923,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "kicked": "👞 {username} исключил(а) {targetName}",
+  "kicked": "👞 {username} выгнал(а) {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -988,7 +931,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "🙅 {username} заблокировал(а) {targetName}",
+  "kickedAndBanned": "🙅 {username} выгнал(а) и заблокировал(а) {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -996,7 +939,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "Исключить из чата",
+  "kickFromChat": "Выгнать из чата",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1007,11 +950,6 @@
     "placeholders": {
       "localizedTimeShort": {}
     }
-  },
-  "lastSeenLongTimeAgo": "был(а) в сети давно",
-  "@lastSeenLongTimeAgo": {
-    "type": "text",
-    "placeholders": {}
   },
   "leave": "Покинуть",
   "@leave": {
@@ -1072,20 +1010,8 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Войти через {brand}",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
   "logout": "Выйти",
   "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeSureTheIdentifierIsValid": "Убедитесь, что идентификатор действителен",
-  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
@@ -1101,11 +1027,6 @@
   },
   "messages": "Сообщения",
   "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageWillBeRemovedWarning": "Сообщение будет удалено для всех участников",
-  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -1164,7 +1085,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать https://microg.org/ или https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Похоже, у вас нет служб Google на вашем телефоне. Это хорошее решение для вашей конфиденциальности! Для получения push-уведомлений во FluffyChat мы рекомендуем использовать ntfy. С ntfy или другим провайдером единых уведомлений вы можете получать push-уведомления безопасным способом передачи данных. Скачать ntfy можно из F-Droid или из Play Маркета.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1249,7 +1170,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Упс, что-то пошло не так…",
+  "oopsSomethingWentWrong": "Ой, что-то пошло не так…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -1266,11 +1187,6 @@
   },
   "openInMaps": "Открыть на картах",
   "@openInMaps": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "optionalGroupName": "(необязательно) Название группы",
-  "@optionalGroupName": {
     "type": "text",
     "placeholders": {}
   },
@@ -1341,11 +1257,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAUsername": "Пожалуйста, выберите имя пользователя",
-  "@pleaseChooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
   "pleaseClickOnLink": "Пожалуйста, нажмите на ссылку в электронной почте, для того чтобы продолжить.",
   "@pleaseClickOnLink": {
     "type": "text",
@@ -1353,11 +1264,6 @@
   },
   "pleaseEnter4Digits": "Введите 4 цифры или оставьте поле пустым, чтобы отключить блокировку приложения.",
   "@pleaseEnter4Digits": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterAMatrixIdentifier": "Пожалуйста, введите Matrix ID.",
-  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
@@ -1529,22 +1435,6 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{count, plural, other{Просмотрено пользователями {username} и {count} другими}}",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
-  "seenByUserAndUser": "Просмотрено пользователями {username} и {username2}",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "send": "Прислать",
   "@send": {
     "type": "text",
@@ -1646,11 +1536,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Задать описание группы",
-  "@setGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
   "setInvitationLink": "Установить ссылку для приглашения",
   "@setInvitationLink": {
     "type": "text",
@@ -1690,11 +1575,6 @@
   },
   "showPassword": "Показать пароль",
   "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "signUp": "Зарегистрироваться",
-  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
@@ -2016,18 +1896,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Вы приглашены в этот чат",
-  "@youAreInvitedToThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
   "youAreNoLongerParticipatingInThisChat": "Вы больше не участвуете в этом чате",
   "@youAreNoLongerParticipatingInThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youCannotInviteYourself": "Вы не можете пригласить себя",
-  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
@@ -2047,8 +1917,6 @@
   "@addToSpace": {},
   "scanQrCode": "Сканировать QR-код",
   "@scanQrCode": {},
-  "shareYourInviteLink": "Поделиться ссылкой приглашения",
-  "@shareYourInviteLink": {},
   "sendOnEnter": "Отправлять по Enter",
   "@sendOnEnter": {},
   "homeserver": "Сервер Matrix",
@@ -2075,8 +1943,6 @@
   "@yourChatBackupHasBeenSetUp": {},
   "unverified": "Не проверено",
   "@unverified": {},
-  "passwordsDoNotMatch": "Пароли не совпадают!",
-  "@passwordsDoNotMatch": {},
   "commandHint_clearcache": "Очистить кэш",
   "@commandHint_clearcache": {
     "type": "text",
@@ -2098,17 +1964,6 @@
   "@openGallery": {},
   "removeFromSpace": "Удалить из пространства",
   "@removeFromSpace": {},
-  "loginWithOneClick": "Вход одним нажатием",
-  "@loginWithOneClick": {},
-  "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты.",
-  "@pleaseEnterValidEmail": {},
-  "pleaseChooseAtLeastChars": "Пожалуйста, выберите не менее {min} символов.",
-  "@pleaseChooseAtLeastChars": {
-    "type": "text",
-    "placeholders": {
-      "min": {}
-    }
-  },
   "commandHint_create": "Создайте пустой групповой чат\nИспользуйте --no-encryption, чтобы отключить шифрование",
   "@commandHint_create": {
     "type": "text",
@@ -2131,10 +1986,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourStory": "Ваша история",
-  "@yourStory": {},
-  "replyHasBeenSent": "Ответ отправлен",
-  "@replyHasBeenSent": {},
   "videoWithSize": "Видео ({size})",
   "@videoWithSize": {
     "type": "text",
@@ -2142,39 +1993,8 @@
       "size": {}
     }
   },
-  "storyFrom": "История за {date}:\n{body}",
-  "@storyFrom": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "body": {}
-    }
-  },
-  "addToStory": "Добавить в историю",
-  "@addToStory": {},
   "publish": "Опубликовать",
   "@publish": {},
-  "whoCanSeeMyStories": "Кто может видеть мои истории?",
-  "@whoCanSeeMyStories": {},
-  "unsubscribeStories": "Отписаться от историй",
-  "@unsubscribeStories": {},
-  "thisUserHasNotPostedAnythingYet": "Этот пользователь еще ничего не опубликовал в своей истории",
-  "@thisUserHasNotPostedAnythingYet": {},
-  "bubbleSize": "Размер пузыря",
-  "@bubbleSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whoCanSeeMyStoriesDesc": "Обратите внимание, что люди могут видеть и связываться друг с другом в вашей истории.",
-  "@whoCanSeeMyStoriesDesc": {},
-  "whatIsGoingOn": "Что происходит?",
-  "@whatIsGoingOn": {},
-  "addDescription": "Добавить описание",
-  "@addDescription": {},
-  "storyPrivacyWarning": "Обратите внимание, что люди могут видеть и связываться друг с другом в вашей истории. Ваши истории будут видны в течение 24 часов, но нет гарантии, что они будут удалены со всех устройств и серверов.",
-  "@storyPrivacyWarning": {},
-  "iUnderstand": "Я понимаю",
-  "@iUnderstand": {},
   "dismiss": "Отклонить",
   "@dismiss": {},
   "markAsRead": "Отметить как прочитанное",
@@ -2183,8 +2003,6 @@
   "@reportUser": {},
   "openChat": "Открыть чат",
   "@openChat": {},
-  "matrixWidgets": "Виджеты Matrix",
-  "@matrixWidgets": {},
   "reactedWith": "{sender} реагирует с {reaction}",
   "@reactedWith": {
     "type": "text",
@@ -2224,8 +2042,6 @@
   "@nextAccount": {},
   "previousAccount": "Предыдущая учётная запись",
   "@previousAccount": {},
-  "editWidgets": "Редактировать виджеты",
-  "@editWidgets": {},
   "addWidget": "Добавить виджет",
   "@addWidget": {},
   "widgetVideo": "Видео",
@@ -2244,11 +2060,6 @@
   "@widgetNameError": {},
   "errorAddingWidget": "Ошибка при добавлении виджета.",
   "@errorAddingWidget": {},
-  "showDirectChatsInSpaces": "Показывать связанные Личные чаты в Пространствах",
-  "@showDirectChatsInSpaces": {
-    "type": "text",
-    "placeholders": {}
-  },
   "separateChatTypes": "Разделять личные чаты и группы",
   "@separateChatTypes": {
     "type": "text",
@@ -2266,7 +2077,7 @@
   },
   "youJoinedTheChat": "Вы присоединились к чату",
   "@youJoinedTheChat": {},
-  "youKickedAndBanned": "🙅 Вы заблокировали {user}",
+  "youKickedAndBanned": "🙅 Вы выгнали и заблокировали {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2302,12 +2113,8 @@
       "user": {}
     }
   },
-  "noEmailWarning": "Пожалуйста, введите действительный адрес электронной почты. В противном случае вы не сможете сбросить пароль. Если вы не хотите этого делать, нажмите еще раз на кнопку, чтобы продолжить.",
-  "@noEmailWarning": {},
   "recoveryKeyLost": "Ключ восстановления утерян?",
   "@recoveryKeyLost": {},
-  "stories": "Истории",
-  "@stories": {},
   "users": "Пользователи",
   "@users": {},
   "unlockOldMessages": "Разблокировать старые сообщения",
@@ -2351,10 +2158,6 @@
   "@indexedDbErrorLong": {},
   "custom": "Пользовательское",
   "@custom": {},
-  "updateAvailable": "Доступно обновление для FluffyChat",
-  "@updateAvailable": {},
-  "updateNow": "Обновить в фоновом режиме",
-  "@updateNow": {},
   "hydrate": "Восстановить из файла резервной копии",
   "@hydrate": {},
   "hydrateTor": "Пользователи TOR: Импорт экспорта сессии",
@@ -2412,17 +2215,10 @@
       "number": {}
     }
   },
-  "discover": "Обзор",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
   "fileIsTooBigForServer": "Файл слишком большой.",
   "@fileIsTooBigForServer": {},
   "hideUnimportantStateEvents": "Скрыть необязательные события статуса",
   "@hideUnimportantStateEvents": {},
-  "endToEndEncryption": "Сквозное шифрование",
-  "@endToEndEncryption": {},
   "sorryThatsNotPossible": "Извините... это невозможно",
   "@sorryThatsNotPossible": {},
   "openLinkInBrowser": "Открыть ссылку в браузере",
@@ -2434,20 +2230,20 @@
       "path": {}
     }
   },
-  "commandHint_cuddle": "Отправить объятия",
+  "commandHint_cuddle": "Отправить улыбку",
   "@commandHint_cuddle": {},
   "readUpToHere": "Дочитать до сюда",
   "@readUpToHere": {},
   "commandHint_hug": "Отправить обнимашки",
   "@commandHint_hug": {},
-  "cuddleContent": "{senderName} обнял Вас",
+  "cuddleContent": "{senderName} улыбнулся(-ась) Вам",
   "@cuddleContent": {
     "type": "text",
     "placeholders": {
       "senderName": {}
     }
   },
-  "hugContent": "{senderName} обнял Вас",
+  "hugContent": "{senderName} обнял(а) Вас",
   "@hugContent": {
     "type": "text",
     "placeholders": {
@@ -2464,15 +2260,11 @@
   "@disableEncryptionWarning": {},
   "deviceKeys": "Ключи устройств:",
   "@deviceKeys": {},
-  "letsStart": "Давайте начнём",
-  "@letsStart": {},
-  "enterInviteLinkOrMatrixId": "Введите ссылку приглашения или Matrix ID...",
-  "@enterInviteLinkOrMatrixId": {},
   "noBackupWarning": "Внимание! Без резервных копий, Вы потеряете доступ к своим зашифрованным сообщениям. Крайне рекомендуется включить резервные копии перед выходом.",
   "@noBackupWarning": {},
   "noOtherDevicesFound": "Другие устройства не найдены",
   "@noOtherDevicesFound": {},
-  "reportErrorDescription": "О, нет. Что-то пошло не так. Пожалуйста, повторите попытку позже. При желании вы можете сообщить об ошибке разработчикам.",
+  "reportErrorDescription": "😭 О, нет. Что-то пошло не так. При желании вы можете сообщить об этой ошибке разработчикам.",
   "@reportErrorDescription": {},
   "report": "пожаловаться",
   "@report": {},
@@ -2511,21 +2303,12 @@
   "@importNow": {},
   "importEmojis": "Импортировать эмодзи",
   "@importEmojis": {},
-  "importFromZipFile": "Импортировать из ZIP файла",
+  "importFromZipFile": "Импортировать из ZIP-файла",
   "@importFromZipFile": {},
-  "importZipFile": "Импортировать ZIP файл",
-  "@importZipFile": {},
   "exportEmotePack": "Экспортировать набор эмодзи как ZIP",
   "@exportEmotePack": {},
   "replace": "Заменить",
   "@replace": {},
-  "savedEmotePack": "Набор эмодзи сохранены в {path}!",
-  "@savedEmotePack": {
-    "type": "text",
-    "placeholders": {
-      "path": {}
-    }
-  },
   "googlyEyesContent": "{senderName} выпучил глаза",
   "@googlyEyesContent": {
     "type": "text",
@@ -2535,8 +2318,6 @@
   },
   "signInWithPassword": "Войти с помощью пароля",
   "@signInWithPassword": {},
-  "continueWith": "Продолжить с:",
-  "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Повторите попытку позже или выберите другой сервер.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "sendTypingNotifications": "Отправлять уведомления о наборе текста",
@@ -2545,13 +2326,9 @@
   "@createGroup": {},
   "inviteContactToGroupQuestion": "Вы хотите пригласить {contact} в чат \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
-  "anyoneCanKnock": "Вход по разрешению",
-  "@anyoneCanKnock": {},
-  "noOneCanJoin": "Вход воспрещён",
-  "@noOneCanJoin": {},
   "tryAgain": "Повторите попытку",
   "@tryAgain": {},
-  "addChatDescription": "Добавить описание чата",
+  "addChatDescription": "Добавить описание чата...",
   "@addChatDescription": {},
   "chatPermissions": "Права в чате",
   "@chatPermissions": {},
@@ -2598,8 +2375,6 @@
   "@setColorTheme": {},
   "invite": "Пригласить",
   "@invite": {},
-  "requests": "Запросы",
-  "@requests": {},
   "invitePrivateChat": "📨 Пригласить в приватный чат",
   "@invitePrivateChat": {},
   "inviteGroupChat": "📨 Пригласить в групповой чат",
@@ -2618,44 +2393,89 @@
     "type": "text",
     "placeholders": {}
   },
-  "banUserDescription": "",
+  "banUserDescription": "Заблокированные в чате пользователи не смогут перезайти в чат, пока они не будут разблокированны.",
   "@banUserDescription": {},
-  "removeDevicesDescription": "",
+  "removeDevicesDescription": "Вы выйдете с этого устройства и больше не будете получать сообщения.",
   "@removeDevicesDescription": {},
-  "unbanUserDescription": "",
+  "unbanUserDescription": "Пользователь сможет при желании зайти в чат снова.",
   "@unbanUserDescription": {},
-  "todoLists": "",
-  "@todoLists": {},
-  "editTodo": "",
-  "@editTodo": {},
-  "pushNotificationsNotAvailable": "",
+  "pushNotificationsNotAvailable": "Push-уведомления недоступны",
   "@pushNotificationsNotAvailable": {},
-  "pleaseAddATitle": "",
-  "@pleaseAddATitle": {},
-  "makeAdminDescription": "",
+  "makeAdminDescription": "Как только вы назначите этого пользователя администратором, вы не сможете этого отменить, так как их права доступа и ваши будут одинаковы.",
   "@makeAdminDescription": {},
-  "noTodosYet": "",
-  "@noTodosYet": {},
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "Чат переместится в архив. Другим пользователям будет видно, что вы вышли из чата.",
   "@archiveRoomDescription": {},
-  "todosUnencrypted": "",
-  "@todosUnencrypted": {},
-  "hasKnocked": "",
+  "hasKnocked": "{user} постучался",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
-  "newTodo": "",
-  "@newTodo": {},
-  "learnMore": "",
+  "learnMore": "Узнать больше",
   "@learnMore": {},
-  "todoListChangedError": "",
-  "@todoListChangedError": {},
-  "roomUpgradeDescription": "",
+  "roomUpgradeDescription": "Затем чат будет воссоздан с новой версией комнаты. Все участники будут уведомлены о необходимости перейти в новый чат. Вы можете узнать больше о версиях комнат на https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
-  "pleaseEnterANumber": "",
+  "pleaseEnterANumber": "Пожалуйста введите число больше 0",
   "@pleaseEnterANumber": {},
-  "kickUserDescription": "",
-  "@kickUserDescription": {}
+  "kickUserDescription": "Пользователь будет изгнан из чата, но не будет заблокирован. В публичных чатах пользователь может перезайти когда угодно.",
+  "@kickUserDescription": {},
+  "blockListDescription": "Вы можете заглушить тревожащих вас пользователей. Вы не будете получать сообщения или приглашения в комнату от пользователей из вашего личного чёрного списка.",
+  "@blockListDescription": {},
+  "blockedUsers": "Заглушённые пользователи",
+  "@blockedUsers": {},
+  "block": "заглушить",
+  "@block": {},
+  "blockUsername": "Игнорировать имя пользователя",
+  "@blockUsername": {},
+  "createGroupAndInviteUsers": "Создать и начать приглашать",
+  "@createGroupAndInviteUsers": {},
+  "startConversation": "Начать общение",
+  "@startConversation": {},
+  "groupCanBeFoundViaSearch": "Группа может быть найдена поиском",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "К сожалению пользователей с именем \"{query}\" не найдено. Убедитесь, что вы не совершили опечатку.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "Ваш глобальный идентификатор - ",
+  "@yourGlobalUserIdIs": {},
+  "commandHint_sendraw": "Отправить сырой json",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "Простите... судя по всему это неверный ключ восстановления.",
+  "@wrongRecoveryKey": {},
+  "groupName": "Название группы",
+  "@groupName": {},
+  "databaseMigrationTitle": "База данных оптимизированна",
+  "@databaseMigrationTitle": {},
+  "searchChatsRooms": "Поиск #чатов, @людей...",
+  "@searchChatsRooms": {},
+  "databaseMigrationBody": "Пожалуйста, подождите. Это может занять некоторое время.",
+  "@databaseMigrationBody": {},
+  "publicSpaces": "Публичные пространства",
+  "@publicSpaces": {},
+  "passwordIsWrong": "Вы ввели неверный пароль",
+  "@passwordIsWrong": {},
+  "pleaseEnterYourCurrentPassword": "Пожалуйста, введите свой текущий пароль",
+  "@pleaseEnterYourCurrentPassword": {},
+  "publicLink": "Публичная ссылка",
+  "@publicLink": {},
+  "nothingFound": "Ничего не найдено...",
+  "@nothingFound": {},
+  "newPassword": "Новый пароль",
+  "@newPassword": {},
+  "passwordsDoNotMatch": "Пароли не совпадают",
+  "@passwordsDoNotMatch": {},
+  "select": "Выбрать",
+  "@select": {},
+  "pleaseChooseAStrongPassword": "Пожалуйста, подберите сильный пароль",
+  "@pleaseChooseAStrongPassword": {},
+  "leaveEmptyToClearStatus": "Чтобы очистить статус, оставьте поле пустым.",
+  "@leaveEmptyToClearStatus": {},
+  "joinSpace": "Присоединиться к пространству",
+  "@joinSpace": {},
+  "searchForUsers": "Поиск @пользователей...",
+  "@searchForUsers": {}
 }

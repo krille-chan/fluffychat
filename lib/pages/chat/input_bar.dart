@@ -394,9 +394,7 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useShortCuts = (PlatformInfos.isWeb ||
-        PlatformInfos.isDesktop ||
-        AppConfig.sendOnEnter);
+    final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}

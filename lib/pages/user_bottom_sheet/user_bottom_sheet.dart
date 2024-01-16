@@ -216,7 +216,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
                     okLabel: L10n.of(context)!.yes,
                     cancelLabel: L10n.of(context)!.no,
                     message: L10n.of(context)!.makeAdminDescription,
-                  ) ==
+                  ) !=
                   OkCancelResult.ok) break;
           await showFutureLoadingDialog(
             context: context,

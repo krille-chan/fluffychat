@@ -77,6 +77,8 @@ parts:
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
+      - libsqlite3-0
+      - libsqlite3-dev
 
 slots:
   dbus-svc:

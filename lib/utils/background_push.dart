@@ -314,14 +314,11 @@ class BackgroundPush {
       }
       await client.roomsLoading;
       await client.accountDataLoading;
-      final isStory = client
-              .getRoomById(roomId)
-              ?.getState(EventTypes.RoomCreate)
-              ?.content
-              .tryGet<String>('type') ==
-          ClientStoriesExtension.storiesRoomType;
-      FluffyChatApp.router
-          .go('/${isStory ? 'rooms/stories' : 'rooms'}/$roomId');
+      FluffyChatApp.router.go(
+        client.getRoomById(roomId)?.membership == Membership.invite
+            ? '/rooms'
+            : '/rooms/$roomId',
+      );
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
     }

@@ -10,10 +10,16 @@ import 'package:tawkie/pages/tasks/tasks.dart';
 import 'uia_request_manager.dart';
 
 extension LocalizedExceptionExtension on Object {
-  String toLocalizedString(BuildContext context) {
+  String toLocalizedString(
+    BuildContext context, [
+    ExceptionContext? exceptionContext,
+  ]) {
     if (this is MatrixException) {
       switch ((this as MatrixException).error) {
         case MatrixError.M_FORBIDDEN:
+          if (exceptionContext == ExceptionContext.changePassword) {
+            return L10n.of(context)!.passwordIsWrong;
+          }
           return L10n.of(context)!.noPermission;
         case MatrixError.M_LIMIT_EXCEEDED:
           return L10n.of(context)!.tooManyRequestsWarning;
@@ -23,9 +29,6 @@ extension LocalizedExceptionExtension on Object {
     }
     if (this is InvalidPassphraseException) {
       return L10n.of(context)!.wrongRecoveryKey;
-    }
-    if (this is TodoListChangedException) {
-      return L10n.of(context)!.todoListChangedError;
     }
     if (this is FileTooBigMatrixException) {
       return L10n.of(context)!.fileIsTooBigForServer;
@@ -65,7 +68,9 @@ extension LocalizedExceptionExtension on Object {
         supportedVersions,
       );
     }
-    if (this is MatrixConnectionException || this is SocketException) {
+    if (this is MatrixConnectionException ||
+        this is SocketException ||
+        this is SyncConnectionException) {
       return L10n.of(context)!.noConnectionToTheServer;
     }
     if (this is String) return toString();
@@ -73,4 +78,8 @@ extension LocalizedExceptionExtension on Object {
     Logs().w('Something went wrong: ', this);
     return L10n.of(context)!.oopsSomethingWentWrong;
   }
+}
+
+enum ExceptionContext {
+  changePassword,
 }

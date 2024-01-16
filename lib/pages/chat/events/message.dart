@@ -31,6 +31,9 @@ class Message extends StatelessWidget {
   final bool selected;
   final bool onTabInfo;
   final Timeline timeline;
+  final bool highlightMarker;
+  final bool animateIn;
+  final void Function()? resetAnimateIn;
 
   const Message(
     this.event, {
@@ -47,6 +50,9 @@ class Message extends StatelessWidget {
     this.selected = false,
     this.onTabInfo = false,
     required this.timeline,
+    this.highlightMarker = false,
+    this.animateIn = false,
+    this.resetAnimateIn,
     super.key,
   });
 
@@ -119,173 +125,238 @@ class Message extends StatelessWidget {
           : Theme.of(context).colorScheme.primaryContainer;
     }
 
-    final row = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: rowMainAxisAlignment,
-      children: [
-        if (sameSender || ownMessage)
-          SizedBox(
-            width: Avatar.defaultSize,
-            child: Center(
-              child: SizedBox(
-                width: 16,
-                height: 16,
-                child: event.status == EventStatus.sending
-                    ? const CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      )
-                    : event.status == EventStatus.error
-                        ? const Icon(Icons.error, color: Colors.red)
-                        : null,
-              ),
-            ),
-          )
-        else
-          FutureBuilder<User?>(
-            future: event.fetchSenderUser(),
-            builder: (context, snapshot) {
-              final user = snapshot.data ?? event.senderFromMemoryOrFallback;
-              return Avatar(
-                mxContent: user.avatarUrl,
-                name: user.calcDisplayname(),
-                presenceUserId: user.stateKey,
-                onTap: () => onAvatarTab(event),
-              );
-            },
-          ),
-        Expanded(
-          child: Column(
+    final resetAnimateIn = this.resetAnimateIn;
+    var animateIn = this.animateIn;
+
+    final row = StatefulBuilder(
+      builder: (context, setState) {
+        if (animateIn && resetAnimateIn != null) {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            animateIn = false;
+            setState(resetAnimateIn);
+          });
+        }
+        return AnimatedSlide(
+          offset: Offset(0, animateIn ? 1 : 0),
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: rowMainAxisAlignment,
             children: [
-              if (!sameSender)
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                  child: ownMessage || event.room.isDirectChat
-                      ? const SizedBox(height: 12)
-                      : FutureBuilder<User?>(
-                          future: event.fetchSenderUser(),
-                          builder: (context, snapshot) {
-                            final displayname =
-                                snapshot.data?.calcDisplayname() ??
-                                    event.senderFromMemoryOrFallback
-                                        .calcDisplayname();
-                            return Text(
-                              displayname,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: (Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? displayname.color
-                                    : displayname.lightColorText),
-                              ),
-                            );
-                          },
-                        ),
-                ),
-              Container(
-                alignment: alignment,
-                padding: const EdgeInsets.only(left: 8),
-                child: Material(
-                  color: noBubble ? Colors.transparent : color,
-                  borderRadius: borderRadius,
-                  clipBehavior: Clip.antiAlias,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                    ),
-                    padding: noBubble || noPadding
-                        ? EdgeInsets.zero
-                        : const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth * 1.5,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (event.relationshipType == RelationshipTypes.reply)
-                          FutureBuilder<Event?>(
-                            future: event.getReplyEvent(timeline),
-                            builder: (BuildContext context, snapshot) {
-                              final replyEvent = snapshot.hasData
-                                  ? snapshot.data!
-                                  : Event(
-                                      eventId: event.relationshipEventId!,
-                                      content: {
-                                        'msgtype': 'm.text',
-                                        'body': '...',
-                                      },
-                                      senderId: event.senderId,
-                                      type: 'm.room.message',
-                                      room: event.room,
-                                      status: EventStatus.sent,
-                                      originServerTs: DateTime.now(),
-                                    );
-                              return InkWell(
-                                onTap: () =>
-                                    scrollToEventId(replyEvent.eventId),
-                                child: AbsorbPointer(
-                                  child: Container(
-                                    margin: const EdgeInsets.symmetric(
-                                      vertical: 4.0,
-                                    ),
-                                    child: ReplyContent(
-                                      replyEvent,
-                                      ownMessage: ownMessage,
-                                      timeline: timeline,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        MessageContent(
-                          displayEvent,
-                          textColor: textColor,
-                          onInfoTab: onInfoTab,
-                          borderRadius: borderRadius,
-                        ),
-                        if (event.hasAggregatedEvents(
-                          timeline,
-                          RelationshipTypes.edit,
-                        ))
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 4.0,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.edit_outlined,
-                                  color: textColor.withAlpha(164),
-                                  size: 14,
-                                ),
-                                Text(
-                                  ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                  style: TextStyle(
-                                    color: textColor.withAlpha(164),
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                      ],
+              if (longPressSelect)
+                SizedBox(
+                  height: 32,
+                  width: Avatar.defaultSize,
+                  child: Checkbox.adaptive(
+                    value: selected,
+                    shape: const CircleBorder(),
+                    onChanged: (_) => onSelect(event),
+                  ),
+                )
+              else if (sameSender || ownMessage)
+                SizedBox(
+                  width: Avatar.defaultSize,
+                  child: Center(
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: event.status == EventStatus.error
+                          ? const Icon(Icons.error, color: Colors.red)
+                          : event.fileSendingStatus != null
+                              ? const CircularProgressIndicator.adaptive(
+                                  strokeWidth: 1,
+                                )
+                              : null,
                     ),
                   ),
+                )
+              else
+                FutureBuilder<User?>(
+                  future: event.fetchSenderUser(),
+                  builder: (context, snapshot) {
+                    final user =
+                        snapshot.data ?? event.senderFromMemoryOrFallback;
+                    return Avatar(
+                      mxContent: user.avatarUrl,
+                      name: user.calcDisplayname(),
+                      presenceUserId: user.stateKey,
+                      onTap: () => onAvatarTab(event),
+                    );
+                  },
+                ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!sameSender)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, bottom: 4),
+                        child: ownMessage || event.room.isDirectChat
+                            ? const SizedBox(height: 12)
+                            : FutureBuilder<User?>(
+                                future: event.fetchSenderUser(),
+                                builder: (context, snapshot) {
+                                  final displayname =
+                                      snapshot.data?.calcDisplayname() ??
+                                          event.senderFromMemoryOrFallback
+                                              .calcDisplayname();
+                                  return Text(
+                                    displayname,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? displayname.color
+                                          : displayname.lightColorText),
+                                    ),
+                                  );
+                                },
+                              ),
+                      ),
+                    Container(
+                      alignment: alignment,
+                      padding: const EdgeInsets.only(left: 8),
+                      child: GestureDetector(
+                        onLongPress: longPressSelect
+                            ? null
+                            : () {
+                                onSelect(event);
+                                // Android usually has a vibration effect on long press:
+                                if (PlatformInfos.isAndroid) {
+                                  Vibration.hasVibrator().then((has) {
+                                    if (has == true) {
+                                      Vibration.vibrate(duration: 50);
+                                    }
+                                  });
+                                }
+                              },
+                        child: AnimatedOpacity(
+                          opacity: animateIn
+                              ? 0
+                              : event.redacted ||
+                                      event.messageType ==
+                                          MessageTypes.BadEncrypted ||
+                                      event.status.isSending
+                                  ? 0.5
+                                  : 1,
+                          duration: FluffyThemes.animationDuration,
+                          curve: FluffyThemes.animationCurve,
+                          child: Material(
+                            color: noBubble ? Colors.transparent : color,
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: borderRadius,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius,
+                                ),
+                              ),
+                              padding: noBubble || noPadding
+                                  ? EdgeInsets.zero
+                                  : const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                              constraints: const BoxConstraints(
+                                maxWidth: FluffyThemes.columnWidth * 1.5,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  if (event.relationshipType ==
+                                      RelationshipTypes.reply)
+                                    FutureBuilder<Event?>(
+                                      future: event.getReplyEvent(timeline),
+                                      builder:
+                                          (BuildContext context, snapshot) {
+                                        final replyEvent = snapshot.hasData
+                                            ? snapshot.data!
+                                            : Event(
+                                                eventId:
+                                                    event.relationshipEventId!,
+                                                content: {
+                                                  'msgtype': 'm.text',
+                                                  'body': '...',
+                                                },
+                                                senderId: event.senderId,
+                                                type: 'm.room.message',
+                                                room: event.room,
+                                                status: EventStatus.sent,
+                                                originServerTs: DateTime.now(),
+                                              );
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 4.0,
+                                          ),
+                                          child: InkWell(
+                                            borderRadius:
+                                                ReplyContent.borderRadius,
+                                            onTap: () => scrollToEventId(
+                                              replyEvent.eventId,
+                                            ),
+                                            child: AbsorbPointer(
+                                              child: ReplyContent(
+                                                replyEvent,
+                                                ownMessage: ownMessage,
+                                                timeline: timeline,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  MessageContent(
+                                    displayEvent,
+                                    textColor: textColor,
+                                    onInfoTab: onInfoTab,
+                                    borderRadius: borderRadius,
+                                  ),
+                                  if (event.hasAggregatedEvents(
+                                    timeline,
+                                    RelationshipTypes.edit,
+                                  ))
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 4.0,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.edit_outlined,
+                                            color: textColor.withAlpha(164),
+                                            size: 14,
+                                          ),
+                                          Text(
+                                            ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                            style: TextStyle(
+                                              color: textColor.withAlpha(164),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        ),
-      ],
+        );
+      },
     );
     Widget container;
     if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
@@ -315,17 +386,17 @@ class Message extends StatelessWidget {
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
                   child: Padding(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text(
                       event.originServerTs.localizedTime(context),
-                      style: TextStyle(fontSize: 14 * AppConfig.fontSizeFactor),
+                      style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
                     ),
                   ),
                 ),
               ),
             ),
           row,
-          if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
+          if (showReceiptsRow)
             Padding(
               padding: EdgeInsets.only(
                 top: 4.0,
@@ -369,11 +440,13 @@ class Message extends StatelessWidget {
       container = row;
     }
 
-    if (event.messageType == MessageTypes.BadEncrypted) {
-      container = Opacity(opacity: 0.4, child: container);
-    }
-
-    return Center(
+    return Container(
+      alignment: Alignment.center,
+      color: selected
+          ? Theme.of(context).colorScheme.secondaryContainer.withAlpha(100)
+          : highlightMarker
+              ? Theme.of(context).colorScheme.tertiaryContainer.withAlpha(100)
+              : Colors.transparent,
       child: Swipeable(
         key: ValueKey(event.eventId),
         background: const Padding(

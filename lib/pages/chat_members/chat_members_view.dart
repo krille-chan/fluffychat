@@ -53,6 +53,7 @@ class ChatMembersView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         withScrolling: false,
+        innerPadding: const EdgeInsets.symmetric(vertical: 8),
         child: error != null
             ? Center(
                 child: Padding(

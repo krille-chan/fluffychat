@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       if (supportsSso) {
         _rawLoginTypes = await client.request(
           RequestType.GET,
-          '/client/r0/login',
+          '/client/v3/login',
         );
       }
     } catch (e) {
@@ -133,7 +134,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             : 'http://localhost:3001//login';
 
     final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-      path: '/_matrix/client/r0/login/sso/redirect${id == null ? '' : '/$id'}',
+      path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
       queryParameters: {'redirectUrl': redirectUrl},
     );
 
@@ -188,7 +189,23 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
 
-  void login() => context.go('${GoRouterState.of(context).fullPath}/login');
+  List<PublicHomeserver>? cachedHomeservers;
+
+  Future<List<PublicHomeserver>> loadHomeserverList() async {
+    if (cachedHomeservers != null) return cachedHomeservers!;
+    final result = await Matrix.of(context)
+        .getLoginClient()
+        .httpClient
+        .get(AppConfig.homeserverList);
+    final resultJson = jsonDecode(result.body)['public_servers'] as List;
+    final homeserverList =
+        resultJson.map((json) => PublicHomeserver.fromJson(json)).toList();
+    return cachedHomeservers = homeserverList;
+  }
+
+  void login() => context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+      );
 
   @override
   void initState() {

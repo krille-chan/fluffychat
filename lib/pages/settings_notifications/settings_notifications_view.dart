@@ -45,26 +45,20 @@ class SettingsNotificationsView extends StatelessWidget {
                         ),
                   ),
                 ),
-                if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
-                  const Divider(thickness: 1),
-                  ListTile(
-                    title: Text(
-                      L10n.of(context)!.pushRules,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                for (final item in NotificationSettingsItem.items)
+                  SwitchListTile.adaptive(
+                    value: Matrix.of(context).client.allPushNotificationsMuted
+                        ? false
+                        : controller.getNotificationSetting(item) ?? true,
+                    title: Text(item.title(context)),
+                    onChanged: Matrix.of(context)
+                            .client
+                            .allPushNotificationsMuted
+                        ? null
+                        : (bool enabled) =>
+                            controller.setNotificationSetting(item, enabled),
                   ),
-                  for (final item in NotificationSettingsItem.items)
-                    SwitchListTile.adaptive(
-                      value: controller.getNotificationSetting(item) ?? true,
-                      title: Text(item.title(context)),
-                      onChanged: (bool enabled) =>
-                          controller.setNotificationSetting(item, enabled),
-                    ),
-                },
-                const Divider(thickness: 1),
+                const Divider(),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.devices,

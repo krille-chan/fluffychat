@@ -213,6 +213,7 @@ class ChatListView extends StatelessWidget {
                               activeFilter: controller.activeFilter,
                               roomsIsEmpty: false,
                               scrolledToTop: controller.scrolledToTop,
+                              createNewSpace: controller.createNewSpace,
                             )
                           : const SizedBox.shrink(),
                     ),

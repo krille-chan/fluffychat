@@ -18,28 +18,6 @@ class SettingsStyle extends StatefulWidget {
 }
 
 class SettingsStyleController extends State<SettingsStyle> {
-  void setWallpaperAction() async {
-    final picked = await AppLock.of(context).pauseWhile(
-      FilePicker.platform.pickFiles(
-        type: FileType.image,
-        withData: false,
-      ),
-    );
-    final pickedFile = picked?.files.firstOrNull;
-
-    if (pickedFile == null) return;
-    await Matrix.of(context)
-        .store
-        .setString(SettingKeys.wallpaper, pickedFile.path!);
-    setState(() {});
-  }
-
-  void deleteWallpaperAction() async {
-    Matrix.of(context).wallpaper = null;
-    await Matrix.of(context).store.remove(SettingKeys.wallpaper);
-    setState(() {});
-  }
-
   void setChatColor(Color? color) async {
     AppConfig.colorSchemeSeed = color;
     ThemeController.of(context).setPrimaryColor(color);

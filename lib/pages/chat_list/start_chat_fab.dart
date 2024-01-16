@@ -10,15 +10,17 @@ class StartChatFloatingActionButton extends StatelessWidget {
   final ActiveFilter activeFilter;
   final ValueNotifier<bool> scrolledToTop;
   final bool roomsIsEmpty;
+  final void Function() createNewSpace;
 
   const StartChatFloatingActionButton({
     super.key,
     required this.activeFilter,
     required this.scrolledToTop,
     required this.roomsIsEmpty,
+    required this.createNewSpace,
   });
 
-  void _onPressed(BuildContext context) {
+  void _onPressed(BuildContext context) async {
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
@@ -28,7 +30,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
         context.go('/rooms/newgroup');
         break;
       case ActiveFilter.spaces:
-        context.go('/rooms/newspace');
+        createNewSpace();
         break;
     }
   }
