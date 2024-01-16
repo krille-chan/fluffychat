@@ -152,8 +152,8 @@ class SubscriptionController extends BaseController {
         useRootNavigator: !PlatformInfos.isMobile,
         clipBehavior: Clip.hardEdge,
         context: context,
-        constraints: const BoxConstraints(
-          maxHeight: 600,
+        constraints: BoxConstraints(
+          maxHeight: PlatformInfos.isMobile ? 600 : 450,
         ),
         builder: (_) {
           return SubscriptionPaywall(

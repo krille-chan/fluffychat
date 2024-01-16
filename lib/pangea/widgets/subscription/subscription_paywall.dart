@@ -31,14 +31,14 @@ class SubscriptionPaywall extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
-            //     if (pangeaController.matrixState.client.rooms.length > 1) ...[
-            //       Text(
-            //         L10n.of(context)!.welcomeBack,
-            //         textAlign: TextAlign.center,
-            //         style: const TextStyle(fontSize: 16),
-            //       ),
-            //       const SizedBox(height: 20),
-            //     ],
+            if (pangeaController.matrixState.client.rooms.length > 1) ...[
+              Text(
+                L10n.of(context)!.welcomeBack,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 20),
+            ],
             Text(
               L10n.of(context)!.subscriptionDesc,
               textAlign: TextAlign.center,
