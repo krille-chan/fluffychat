@@ -47,10 +47,9 @@ class SubscriptionController extends BaseController {
       subscription?.currentSubscription?.isTrial ?? false;
 
   Future<void> initialize() async {
-    print("Initializing subscription controller");
     try {
       if (_pangeaController.matrixState.client.userID == null) {
-        print(
+        debugPrint(
           "Attempted to initalize subscription information with null userId",
         );
         return;
@@ -60,15 +59,11 @@ class SubscriptionController extends BaseController {
           ? WebSubscriptionInfo(pangeaController: _pangeaController)
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
-      print("Configuring subscription controller");
       await subscription!.configure();
-      print("Configured subscription controller");
-
       if (activatedNewUserTrial) {
         setNewUserTrial();
       }
 
-      print("Setting initalized true");
       initialized = true;
 
       if (!kIsWeb) {
@@ -94,7 +89,7 @@ class SubscriptionController extends BaseController {
       }
       setState();
     } catch (e, s) {
-      print("Failed to initialize subscription controller");
+      debugPrint("Failed to initialize subscription controller");
       ErrorHandler.logError(e: e, s: s);
     }
   }
@@ -136,9 +131,6 @@ class SubscriptionController extends BaseController {
     BuildContext context, [
     bool forceShow = false,
   ]) async {
-    print(
-      "User is not subscribed. Showing paywall. Initialized: $initialized",
-    );
     try {
       if (!initialized) {
         await initialize();
