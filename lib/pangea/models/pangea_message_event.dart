@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
@@ -6,6 +8,7 @@ import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -84,10 +87,7 @@ class PangeaMessageEvent {
 
     _representations = [];
 
-    final bool latestHasTokens =
-        _latestEdit.content[ModelKey.tokensSent] != null;
-
-    if (_latestEdit.content[ModelKey.originalSent] != null && latestHasTokens) {
+    if (_latestEdit.content[ModelKey.originalSent] != null) {
       try {
         _representations!.add(
           RepresentationEvent(
@@ -95,9 +95,12 @@ class PangeaMessageEvent {
               _latestEdit.content[ModelKey.originalSent]
                   as Map<String, dynamic>,
             ),
-            tokens: PangeaMessageTokens.fromJson(
-              _latestEdit.content[ModelKey.tokensSent] as Map<String, dynamic>,
-            ),
+            tokens: _latestEdit.content[ModelKey.tokensSent] != null
+                ? PangeaMessageTokens.fromJson(
+                    _latestEdit.content[ModelKey.tokensSent]
+                        as Map<String, dynamic>,
+                  )
+                : null,
             choreo: _latestEdit.content[ModelKey.choreoRecord] != null
                 ? ChoreoRecord.fromJson(
                     _latestEdit.content[ModelKey.choreoRecord]
@@ -109,26 +112,37 @@ class PangeaMessageEvent {
         );
       } catch (err, s) {
         ErrorHandler.logError(
+          m: "error parsing originalSent",
           e: err,
           s: s,
         );
       }
     }
 
-    if (_latestEdit.content[ModelKey.originalWritten] != null &&
-        latestHasTokens) {
-      _representations!.add(
-        RepresentationEvent(
-          content: PangeaRepresentation.fromJson(
-            _latestEdit.content[ModelKey.originalWritten]
-                as Map<String, dynamic>,
+    if (_latestEdit.content[ModelKey.originalWritten] != null) {
+      try {
+        _representations!.add(
+          RepresentationEvent(
+            content: PangeaRepresentation.fromJson(
+              _latestEdit.content[ModelKey.originalWritten]
+                  as Map<String, dynamic>,
+            ),
+            tokens: _latestEdit.content[ModelKey.tokensWritten] != null
+                ? PangeaMessageTokens.fromJson(
+                    _latestEdit.content[ModelKey.tokensWritten]
+                        as Map<String, dynamic>,
+                  )
+                : null,
+            timeline: timeline,
           ),
-          tokens: PangeaMessageTokens.fromJson(
-            _latestEdit.content[ModelKey.tokensWritten] as Map<String, dynamic>,
-          ),
-          timeline: timeline,
-        ),
-      );
+        );
+      } catch (err, s) {
+        ErrorHandler.logError(
+          m: "error parsing originalWritten",
+          e: err,
+          s: s,
+        );
+      }
     }
 
     _representations!.addAll(
@@ -173,6 +187,11 @@ class PangeaMessageEvent {
     int tries = 0;
 
     RepresentationEvent? rep = representationByLanguage(langCode);
+
+    //if event is less than 1 minute old, then print new event
+    if (isNew) {
+      debugger(when: kDebugMode);
+    }
 
     while ((isNew || eventId.contains("web")) && tries < 20) {
       if (rep != null) return rep;
