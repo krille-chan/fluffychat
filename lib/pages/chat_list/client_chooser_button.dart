@@ -288,6 +288,8 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.addBridgeBot:
           context.go('/rooms/settings/addbridgebot');
           break;
+        case SettingsAction.setStatus:
+        // TODO: Handle this case.
       }
     }
   }

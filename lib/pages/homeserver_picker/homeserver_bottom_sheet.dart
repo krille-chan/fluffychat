@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
+import 'package:tawkie/pages/homeserver_picker/public_homeserver.dart';
 
 class HomeserverBottomSheet extends StatelessWidget {
   final PublicHomeserver homeserver;

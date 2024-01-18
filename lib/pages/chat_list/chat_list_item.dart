@@ -13,6 +13,7 @@ import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/room_status_extension.dart';
 import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/hover_builder.dart';
 import 'package:tawkie/widgets/matrix.dart';
 
 enum ArchivedRoomAction { delete, rejoin }

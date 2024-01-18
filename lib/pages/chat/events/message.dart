@@ -6,12 +6,14 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:tawkie/config/app_config.dart';
 
 import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat/events/message_reactions.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/string_color.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
+import 'package:vibration/vibration.dart';
 import 'message_content.dart';
-import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
 import 'verification_request_content.dart';
@@ -42,7 +44,7 @@ class Message extends StatelessWidget {
     this.longPressSelect = false,
     required this.onTab,
     required this.onSelect,
-        required this.onDoubleTap,
+    required this.onDoubleTap,
     required this.onInfoTab,
     required this.onAvatarTab,
     required this.scrollToEventId,
@@ -396,7 +398,7 @@ class Message extends StatelessWidget {
               ),
             ),
           row,
-          if (showReceiptsRow)
+          if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
             Padding(
               padding: EdgeInsets.only(
                 top: 4.0,

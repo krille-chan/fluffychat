@@ -128,8 +128,8 @@ class ChatEventList extends StatelessWidget {
                   ),
                 ),
                 onDoubleTap:
-                  // here is the logic for "liking" the message
-                  controller.handleMessageLike,
+                    // here is the logic for "liking" the message
+                    controller.handleMessageLike,
                 onTab: controller
                     .onTabInfoCallback, // To launch the details function
                 onSelect: controller.onSelectMessage,

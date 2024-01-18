@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/init_with_restore.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:tawkie/utils/custom_http_client.dart';

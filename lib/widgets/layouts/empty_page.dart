@@ -32,13 +32,13 @@ class EmptyPage extends StatelessWidget {
               ),
             ),
           ),
-          if (loading)
-            Center(
-              child: SizedBox(
-                width: width,
-                child: const LinearProgressIndicator(),
-              ),
-            ),
+          // if (loading)
+          //   Center(
+          //     child: SizedBox(
+          //       width: width,
+          //       child: const LinearProgressIndicator(),
+          //     ),
+          //   ),
 
           // Button for add bridge when no conversation
           if (PlatformInfos.isWeb ||

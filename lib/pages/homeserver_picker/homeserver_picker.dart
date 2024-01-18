@@ -12,6 +12,7 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/homeserver_picker/public_homeserver.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:universal_html/html.dart' as html;
 

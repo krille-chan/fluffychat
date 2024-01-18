@@ -20,6 +20,7 @@ import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/background_push.dart';
+import 'package:tawkie/utils/init_with_restore.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 

@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/fluffy_share.dart';
+import 'package:tawkie/utils/url_launcher.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/presence_builder.dart';
