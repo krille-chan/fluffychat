@@ -40,6 +40,15 @@ class BotBridgeConnection {
     }
   }
 
+  Future<void> checkOnlySocialNetworksConnections(
+    SocialNetwork socialNetwork,
+  ) async {
+    pingSocialNetwork(socialNetwork).then((result) {
+      _pingResultsController
+          .add({'name': socialNetwork.name, 'result': result});
+    });
+  }
+
   // Send Message Function
   Future<String> sendMessageToBot(BuildContext context, String bot,
       String contentMessage, ConnectionStateModel connectionState) async {

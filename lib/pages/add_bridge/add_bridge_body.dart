@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/pages/add_bridge/delete_conversation_dialog.dart';
 import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
@@ -5,9 +8,6 @@ import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
@@ -53,6 +53,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
     // Reset loading values to their original state by exiting the page
     for (final element in socialNetwork) {
       element.loading = true;
+      element.error = false;
     }
 
     super.dispose();
@@ -61,7 +62,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
   // Method for managing the ping results stream
   void setupPingResultsListener() {
     botConnection.pingResults.listen((result) {
-      String name = result['name'];
+      final String name = result['name'];
       String pingResult = result['result'];
 
       SocialNetwork network =
@@ -71,10 +72,12 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
       if (pingResult == 'Connected') {
         setState(() {
           network.updateConnectionResult(true);
+          network.setError(false);
         });
       } else if (pingResult == 'Not Connected') {
         setState(() {
           network.updateConnectionResult(false);
+          network.setError(false);
         });
       } else if (pingResult == 'error') {
         // Error management
@@ -84,6 +87,31 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         showCatchErrorDialog(
             context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
       }
+    });
+  }
+
+  Future<void> handleRefresh() async {
+    // Simulate a delay for demonstration purposes
+    await Future.delayed(const Duration(seconds: 1));
+
+    setState(() {
+      // Reset loading values to their original state by exiting the page
+      for (final element in socialNetwork) {
+        element.loading = true;
+      }
+
+      // Calling the ping method
+      botConnection.checkAllSocialNetworksConnections(socialNetwork);
+    });
+  }
+
+  Future<void> onlyNetworkRefresh(SocialNetwork network) async {
+    setState(() {
+      // Reset loading values to their original state by exiting the page
+      network.loading = true;
+
+      // Calling the ping method
+      botConnection.checkOnlySocialNetworksConnections(network);
     });
   }
 
@@ -100,31 +128,34 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             Center(
               child: SizedBox(
                 width: PlatformInfos.isWeb ? PlatformWidth.webWidth : null,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: socialNetwork.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      leading: socialNetwork[index].logo,
-                      title: Text(
-                        socialNetwork[index].name,
-                      ),
-                      // Different build of subtle depending on the social network, for now only Instagram
-                      subtitle: buildSubtitle(socialNetwork[index]),
-                      trailing: socialNetwork[index].error == false
-                          ? const Icon(
-                              CupertinoIcons.right_chevron,
-                            )
-                          : const Icon(
-                              CupertinoIcons.refresh_bold,
-                            ),
-                      // Different ways of connecting and disconnecting depending on the social network
-                      onTap: () =>
-                          handleSocialNetworkAction(socialNetwork[index]),
-                    );
-                  },
-                ),
+                child: RefreshIndicator(
+                    onRefresh: handleRefresh,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: socialNetwork.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          leading: socialNetwork[index].logo,
+                          title: Text(
+                            socialNetwork[index].name,
+                          ),
+                          // Different build of subtle depending on the social network, for now only Instagram
+                          subtitle: buildSubtitle(socialNetwork[index]),
+                          trailing: socialNetwork[index].error == false
+                              ? const Icon(
+                                  CupertinoIcons.right_chevron,
+                                )
+                              : const Icon(
+                                  CupertinoIcons.refresh_bold,
+                                ),
+                          // Different ways of connecting and disconnecting depending on the social network
+                          onTap: () => socialNetwork[index].error != false
+                              ? onlyNetworkRefresh(socialNetwork[index])
+                              : handleSocialNetworkAction(socialNetwork[index]),
+                        );
+                      },
+                    )),
               ),
             ),
           ],
