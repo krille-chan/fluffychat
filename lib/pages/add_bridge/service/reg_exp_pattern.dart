@@ -6,6 +6,7 @@ class PingPatterns {
   static RegExp instagramSuccessfullyMatch = RegExp(r"Successfully logged in");
   static RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
+  static RegExp instagramSyncComplete = RegExp(r"Synchronization complete");
   static RegExp instagramNotLoggedMatch =
       RegExp(r"You're not logged into Instagram");
   static RegExp instagramDisconnectMatch = RegExp(r"Successfully logged out");
@@ -20,10 +21,14 @@ class PingPatterns {
   static RegExp whatsAppDisconnectMatch = RegExp(r"Logged out successfully");
   static RegExp whatsAppConnectedButNotLoggedMatch =
       RegExp(r"Connected to WhatsApp, but not logged in");
+  static RegExp whatsAppLoggedButNotConnectedMatch =
+      RegExp(r"but you don't have a WhatsApp connection.");
 
   // Facebook Messenger
   static RegExp facebookOnlineMatch =
       RegExp(r"The Messenger MQTT listener is connected.");
+  static RegExp facebookMQTTNotMatch =
+      RegExp(r"You don't have a Messenger MQTT connection.");
   static RegExp facebookSuccessfullyMatch = RegExp(r"You're logged in as");
   static RegExp facebookNotLoggedMatch =
       RegExp(r"That command requires you to be logged in.");
