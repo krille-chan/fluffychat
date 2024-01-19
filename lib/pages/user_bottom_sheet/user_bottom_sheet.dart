@@ -5,10 +5,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 import 'package:tawkie/widgets/permission_slider_dialog.dart';
-import '../../config/themes.dart';
-import '../../widgets/matrix.dart';
 import 'user_bottom_sheet_view.dart';
 
 enum UserBottomSheetAction {
@@ -216,7 +216,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
                     okLabel: L10n.of(context)!.yes,
                     cancelLabel: L10n.of(context)!.no,
                     message: L10n.of(context)!.makeAdminDescription,
-                  ) ==
+                  ) !=
                   OkCancelResult.ok) break;
           await showFutureLoadingDialog(
             context: context,

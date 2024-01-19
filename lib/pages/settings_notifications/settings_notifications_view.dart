@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
 
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'settings_notifications.dart';
 
 class SettingsNotificationsView extends StatelessWidget {
@@ -45,26 +45,20 @@ class SettingsNotificationsView extends StatelessWidget {
                         ),
                   ),
                 ),
-                if (!Matrix.of(context).client.allPushNotificationsMuted) ...{
-                  const Divider(thickness: 1),
-                  ListTile(
-                    title: Text(
-                      L10n.of(context)!.pushRules,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                for (final item in NotificationSettingsItem.items)
+                  SwitchListTile.adaptive(
+                    value: Matrix.of(context).client.allPushNotificationsMuted
+                        ? false
+                        : controller.getNotificationSetting(item) ?? true,
+                    title: Text(item.title(context)),
+                    onChanged: Matrix.of(context)
+                            .client
+                            .allPushNotificationsMuted
+                        ? null
+                        : (bool enabled) =>
+                            controller.setNotificationSetting(item, enabled),
                   ),
-                  for (final item in NotificationSettingsItem.items)
-                    SwitchListTile.adaptive(
-                      value: controller.getNotificationSetting(item) ?? true,
-                      title: Text(item.title(context)),
-                      onChanged: (bool enabled) =>
-                          controller.setNotificationSetting(item, enabled),
-                    ),
-                },
-                const Divider(thickness: 1),
+                const Divider(),
                 ListTile(
                   title: Text(
                     L10n.of(context)!.devices,

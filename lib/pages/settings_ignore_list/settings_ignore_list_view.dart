@@ -6,7 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'settings_ignore_list.dart';
 
 class SettingsIgnoreListView extends StatelessWidget {

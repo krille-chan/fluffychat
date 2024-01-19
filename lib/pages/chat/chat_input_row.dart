@@ -7,10 +7,10 @@ import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
 
@@ -105,7 +105,7 @@ class ChatInputRow extends StatelessWidget {
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
                   height: 56,
-                  width: controller.inputText.isEmpty ? 56 : 0,
+                  width: controller.sendController.text.isEmpty ? 56 : 0,
                   alignment: Alignment.center,
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(),
@@ -251,7 +251,9 @@ class ChatInputRow extends StatelessWidget {
                     autofocus: !PlatformInfos.isMobile,
                     keyboardType: TextInputType.multiline,
                     textInputAction:
-                        AppConfig.sendOnEnter ? TextInputAction.send : null,
+                        AppConfig.sendOnEnter == true && PlatformInfos.isMobile
+                            ? TextInputAction.send
+                            : null,
                     onSubmitted: controller.onInputBarSubmitted,
                     onSubmitImage: controller.sendImageFromClipBoard,
                     focusNode: controller.inputFocus,
@@ -268,7 +270,7 @@ class ChatInputRow extends StatelessWidget {
                 ),
               ),
               if (PlatformInfos.platformCanRecord &&
-                  controller.inputText.isEmpty)
+                  controller.sendController.text.isEmpty)
                 Container(
                   height: 56,
                   alignment: Alignment.center,
@@ -278,7 +280,8 @@ class ChatInputRow extends StatelessWidget {
                     onPressed: controller.voiceMessageAction,
                   ),
                 ),
-              if (!PlatformInfos.isMobile || controller.inputText.isNotEmpty)
+              if (!PlatformInfos.isMobile ||
+                  controller.sendController.text.isNotEmpty)
                 Container(
                   height: 56,
                   alignment: Alignment.center,

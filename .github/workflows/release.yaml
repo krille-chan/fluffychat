@@ -13,7 +13,7 @@ jobs:
   build_web:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -25,11 +25,11 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
-        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
         run: tar -czf tawkie-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Web Build
           path: tawkie-web.tar.gz
@@ -50,6 +50,7 @@ jobs:
           mv build/web/ public/web
           cp public/web -r public/nightly
       - name: Deploy to GitHub Pages
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
@@ -60,7 +61,7 @@ jobs:
   build_apk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
@@ -96,7 +97,7 @@ jobs:
   build_linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -121,7 +122,7 @@ jobs:
   deploy_playstore:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
@@ -168,3 +169,25 @@ jobs:
           #     bundle exec fastlane deploy_release
           # fi
           cd ..
+
+  promote_snapcraft:
+    runs-on: ubuntu-latest
+    env:
+      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v2
+      - name: Get Tag Name
+        id: tag_name
+        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
+      - name: Promote Snap
+        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
+          SNAPCRAFT_HAS_TTY: "true"
+        run: |
+          if [[ $GITHUB_REF_NAME == rc* ]]; then
+              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
+          else
+              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
+          fi

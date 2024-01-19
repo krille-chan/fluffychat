@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/homeserver_picker/public_homeserver.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:tawkie/config/app_config.dart';
@@ -18,7 +21,6 @@ import 'package:tawkie/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/app_lock.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/localized_exception_extension.dart';
 
 import 'package:tawkie/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -38,9 +40,22 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     text: AppConfig.defaultHomeserver,
   );
 
+  String selectedServer =
+      AppConfig.defaultHomeserver; // Initialized with default server
+
   String? error;
 
   bool isTorBrowser = false;
+
+  void setSelectedServer(String? newValue) {
+    if (newValue != null) {
+      setState(() {
+        selectedServer = newValue;
+        homeserverController.text =
+            newValue; // Update homeserverController.text
+      });
+    }
+  }
 
   Future<void> _checkTorBrowser() async {
     if (!kIsWeb) return;
@@ -67,26 +82,25 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
-    homeserverController.text =
-        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
-    if (homeserverController.text == _lastCheckedUrl) return;
-    _lastCheckedUrl = homeserverController.text;
+    selectedServer = selectedServer.trim().toLowerCase().replaceAll(' ', '-');
+    if (selectedServer == _lastCheckedUrl) return;
+    _lastCheckedUrl = selectedServer;
     setState(() {
       error = _rawLoginTypes = loginHomeserverSummary = null;
       isLoading = true;
     });
 
     try {
-      var homeserver = Uri.parse(homeserverController.text);
+      var homeserver = Uri.parse(selectedServer);
       if (homeserver.scheme.isEmpty) {
-        homeserver = Uri.https(homeserverController.text, '');
+        homeserver = Uri.https(selectedServer, '');
       }
       final client = Matrix.of(context).getLoginClient();
       loginHomeserverSummary = await client.checkHomeserver(homeserver);
       if (supportsSso) {
         _rawLoginTypes = await client.request(
           RequestType.GET,
-          '/client/r0/login',
+          '/client/v3/login',
         );
       }
     } catch (e) {
@@ -121,7 +135,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
             : 'http://localhost:3001//login';
 
     final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-      path: '/_matrix/client/r0/login/sso/redirect${id == null ? '' : '/$id'}',
+      path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
       queryParameters: {'redirectUrl': redirectUrl},
     );
 
@@ -176,12 +190,34 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
 
-  void login() => context.go('${GoRouterState.of(context).fullPath}/login');
+  List<PublicHomeserver>? cachedHomeservers;
+
+  Future<List<PublicHomeserver>> loadHomeserverList() async {
+    if (cachedHomeservers != null) return cachedHomeservers!;
+    final result = await Matrix.of(context)
+        .getLoginClient()
+        .httpClient
+        .get(AppConfig.homeserverList);
+    final resultJson = jsonDecode(result.body)['public_servers'] as List;
+    final homeserverList =
+        resultJson.map((json) => PublicHomeserver.fromJson(json)).toList();
+    return cachedHomeservers = homeserverList;
+  }
+
+  void login() => context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+      );
 
   @override
   void initState() {
     _checkTorBrowser();
     super.initState();
+
+    //  Listener to trigger checkHomeserverAction when selectedServer changes
+    homeserverController.addListener(() {
+      checkHomeserverAction();
+    });
+
     WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 

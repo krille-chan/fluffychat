@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:emojis/emojis.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -18,33 +19,37 @@ import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/chat_view.dart';
 import 'package:tawkie/pages/chat/event_info_dialog.dart';
 import 'package:tawkie/pages/chat/recording_dialog.dart';
 import 'package:tawkie/pages/chat_details/chat_details.dart';
+import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
 import 'package:tawkie/utils/error_reporter.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/app_lock.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/account_bundles.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
+  final String? shareText;
 
   const ChatPage({
     super.key,
     required this.roomId,
+    this.shareText,
   });
 
   @override
@@ -69,6 +74,7 @@ class ChatPage extends StatelessWidget {
           child: ChatPageWithRoom(
             key: Key('chat_page_$roomId'),
             room: room,
+            shareText: shareText,
           ),
         ),
         if (FluffyThemes.isThreeColumnMode(context) &&
@@ -93,17 +99,20 @@ class ChatPage extends StatelessWidget {
 
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
+  final String? shareText;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
+    this.shareText,
   });
 
   @override
   ChatController createState() => ChatController();
 }
 
-class ChatController extends State<ChatPageWithRoom> {
+class ChatController extends State<ChatPageWithRoom>
+    with WidgetsBindingObserver {
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
@@ -172,6 +181,8 @@ class ChatController extends State<ChatPageWithRoom> {
 
   List<Event> selectedEvents = [];
 
+  Event? tabInfoEvent;
+
   final Set<String> unfolded = {};
 
   Event? replyEvent;
@@ -187,8 +198,6 @@ class ChatController extends State<ChatPageWithRoom> {
 
   final int _loadHistoryCount = 100;
 
-  String inputText = '';
-
   String pendingText = '';
 
   bool showEmojiPicker = false;
@@ -201,20 +210,10 @@ class ChatController extends State<ChatPageWithRoom> {
         'Try to recreate a room with is not a DM room. This should not be possible from the UI!',
       );
     }
-    final success = await showFutureLoadingDialog(
+    await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        final client = room.client;
-        final waitForSync = client.onSync.stream
-            .firstWhere((s) => s.rooms?.leave?.containsKey(room.id) ?? false);
-        await room.leave();
-        await waitForSync;
-        return await client.startDirectChat(userId);
-      },
+      future: () => room.invite(userId),
     );
-    final roomId = success.result;
-    if (roomId == null) return;
-    context.go('/rooms/$roomId');
   }
 
   void leaveChat() async {
@@ -228,21 +227,10 @@ class ChatController extends State<ChatPageWithRoom> {
 
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
-  void requestHistory() async {
+  void requestHistory([_]) async {
     if (!timeline!.canRequestHistory) return;
     Logs().v('Requesting history...');
-    try {
-      await timeline!.requestHistory(historyCount: _loadHistoryCount);
-    } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            (err).toLocalizedString(context),
-          ),
-        ),
-      );
-      rethrow;
-    }
+    await timeline!.requestHistory(historyCount: _loadHistoryCount);
   }
 
   void requestFuture() async {
@@ -250,27 +238,15 @@ class ChatController extends State<ChatPageWithRoom> {
     if (timeline == null) return;
     if (!timeline.canRequestFuture) return;
     Logs().v('Requesting future...');
-    try {
-      final mostRecentEventId = timeline.events.first.eventId;
-      await timeline.requestFuture(historyCount: _loadHistoryCount);
-      setReadMarker(eventId: mostRecentEventId);
-    } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            (err).toLocalizedString(context),
-          ),
-        ),
-      );
-      rethrow;
-    }
+    final mostRecentEventId = timeline.events.first.eventId;
+    await timeline.requestFuture(historyCount: _loadHistoryCount);
+    setReadMarker(eventId: mostRecentEventId);
   }
 
   void _updateScrollController() {
     if (!mounted) {
       return;
     }
-    setReadMarker();
     if (!scrollController.hasClients) return;
     if (timeline?.allowNewEvent == false ||
         scrollController.position.pixels > 0 && _scrolledUp == false) {
@@ -282,20 +258,14 @@ class ChatController extends State<ChatPageWithRoom> {
     if (scrollController.position.pixels == 0 ||
         scrollController.position.pixels == 64) {
       requestFuture();
-    } else if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent ||
-        scrollController.position.pixels + 64 ==
-            scrollController.position.maxScrollExtent) {
-      requestHistory();
     }
   }
 
   void _loadDraft() async {
     final prefs = await SharedPreferences.getInstance();
-    final draft = prefs.getString('draft_$roomId');
+    final draft = widget.shareText ?? prefs.getString('draft_$roomId');
     if (draft != null && draft.isNotEmpty) {
       sendController.text = draft;
-      setState(() => inputText = draft);
     }
   }
 
@@ -345,6 +315,13 @@ class ChatController extends State<ChatPageWithRoom> {
 
   Future<void>? loadTimelineFuture;
 
+  int? animateInEventIndex;
+
+  void onInsert(int i) {
+    // setState will be called by updateView() anyway
+    animateInEventIndex = i;
+  }
+
   Future<void> _getTimeline({
     String? eventContextId,
   }) async {
@@ -358,11 +335,15 @@ class ChatController extends State<ChatPageWithRoom> {
       timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
+        onInsert: onInsert,
       );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
-      timeline = await room.getTimeline(onUpdate: updateView);
+      timeline = await room.getTimeline(
+        onUpdate: updateView,
+        onInsert: onInsert,
+      );
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
         _showScrollUpMaterialBanner(eventContextId!);
@@ -384,6 +365,15 @@ class ChatController extends State<ChatPageWithRoom> {
     });
 
     return;
+  }
+
+  String? scrollToEventIdMarker;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    if (!_scrolledUp) return;
+    setReadMarker();
   }
 
   Future<void>? _setReadMarkerFuture;
@@ -482,7 +472,8 @@ class ChatController extends State<ChatPageWithRoom> {
     );
 
     setState(() {
-      inputText = pendingText;
+      sendController.text = pendingText;
+      _inputTextIsEmpty = pendingText.isEmpty;
       replyEvent = null;
       editEvent = null;
       pendingText = '';
@@ -930,6 +921,9 @@ class ChatController extends State<ChatPageWithRoom> {
       });
       return;
     }
+    setState(() {
+      scrollToEventIdMarker = eventId;
+    });
     await scrollController.scrollToIndex(
       eventIndex,
       preferPosition: AutoScrollPosition.middle,
@@ -948,7 +942,7 @@ class ChatController extends State<ChatPageWithRoom> {
         );
       });
       await loadTimelineFuture;
-      setReadMarker(eventId: timeline!.events.first.eventId);
+      setReadMarker();
     }
     scrollController.jumpTo(0);
   }
@@ -994,6 +988,31 @@ class ChatController extends State<ChatPageWithRoom> {
   }
 
   late Iterable<Event> _allReactionEvents;
+
+  // Message liking function (double-click)
+  void handleMessageLike(Event event) async {
+    const String emoji = Emojis.thumbsUp;
+
+    final allReactionEvents =
+        event.aggregatedEvents(timeline!, RelationshipTypes.reaction);
+
+    // Search for the specific reaction event of the current user.
+    final evt = allReactionEvents.firstWhereOrNull(
+      (e) =>
+          e.senderId == e.room.client.userID &&
+          e.content.tryGetMap('m.relates_to')?['key'] == emoji,
+    );
+
+    // If the reaction event exists, it will be suppressed, Otherwise it can be added
+    if (evt != null) {
+      await evt.redactEvent();
+    } else {
+      await room.sendReaction(
+        event.eventId,
+        emoji,
+      );
+    }
+  }
 
   void emojiPickerBackspace() {
     switch (emojiPickerType) {
@@ -1050,7 +1069,7 @@ class ChatController extends State<ChatPageWithRoom> {
     setState(() {
       pendingText = sendController.text;
       editEvent = selectedEvents.first;
-      inputText = sendController.text =
+      sendController.text =
           editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 withSenderNamePrefix: false,
@@ -1107,6 +1126,21 @@ class ChatController extends State<ChatPageWithRoom> {
       selectedEvents.sort(
         (a, b) => a.originServerTs.compareTo(b.originServerTs),
       );
+    }
+  }
+
+  // Function for displaying message details
+  void onTabInfoCallback(Event event) {
+    if (!event.redacted) {
+      if (tabInfoEvent != event) {
+        setState(
+          () => tabInfoEvent = event,
+        );
+      } else {
+        setState(
+          () => tabInfoEvent = null,
+        );
+      }
     }
   }
 
@@ -1192,12 +1226,18 @@ class ChatController extends State<ChatPageWithRoom> {
   static const Duration _storeInputTimeout = Duration(milliseconds: 500);
 
   void onInputBarChanged(String text) {
+    if (_inputTextIsEmpty != text.isEmpty) {
+      setReadMarker();
+      setState(() {
+        _inputTextIsEmpty = text.isEmpty;
+      });
+    }
+
     _storeInputTimeoutTimer?.cancel();
     _storeInputTimeoutTimer = Timer(_storeInputTimeout, () async {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('draft_$roomId', text);
     });
-    setReadMarker();
     if (text.endsWith(' ') && Matrix.of(context).hasComplexBundles) {
       final clients = currentRoomBundle;
       for (final client in clients) {
@@ -1206,8 +1246,7 @@ class ChatController extends State<ChatPageWithRoom> {
             text.toLowerCase() == '${prefix.toLowerCase()} ') {
           setSendingClient(client);
           setState(() {
-            inputText = '';
-            sendController.text = '';
+            sendController.clear();
           });
           return;
         }
@@ -1232,8 +1271,9 @@ class ChatController extends State<ChatPageWithRoom> {
         );
       }
     }
-    setState(() => inputText = text);
   }
+
+  bool _inputTextIsEmpty = true;
 
   bool get isArchived =>
       {Membership.leave, Membership.ban}.contains(room.membership);
@@ -1301,7 +1341,7 @@ class ChatController extends State<ChatPageWithRoom> {
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {
-          inputText = sendController.text = pendingText;
+          sendController.text = pendingText;
           pendingText = '';
         }
         replyEvent = null;

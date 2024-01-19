@@ -1,3 +1,4 @@
+import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -11,18 +12,16 @@ import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_list/chat_list_item.dart';
 import 'package:tawkie/pages/chat_list/search_title.dart';
 import 'package:tawkie/pages/chat_list/space_view.dart';
-import 'package:tawkie/pages/chat_list/stories_header.dart';
+import 'package:tawkie/pages/chat_list/status_msg_list.dart';
 import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
-import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/connection_status_header.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/public_room_bottom_sheet.dart';
-import '../../config/themes.dart';
-import '../../utils/platform_infos.dart';
-import '../../widgets/connection_status_header.dart';
-import '../../widgets/matrix.dart';
 import 'chat_list_header.dart';
 
 class ChatListViewBody extends StatelessWidget {
@@ -32,7 +31,12 @@ class ChatListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final roomSearchResult = controller.roomSearchResult;
+    final publicRooms = controller.roomSearchResult?.chunk
+        .where((room) => room.roomType != 'm.space')
+        .toList();
+    final publicSpaces = controller.roomSearchResult?.chunk
+        .where((room) => room.roomType == 'm.space')
+        .toList();
     final userSearchResult = controller.userSearchResult;
     final client = Matrix.of(context).client;
     const dummyChatCount = 4;
@@ -65,8 +69,7 @@ class ChatListViewBody extends StatelessWidget {
             .where((s) => s.hasRoomUpdate)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, _) {
-          if (controller.activeFilter == ActiveFilter.spaces &&
-              !controller.isSearchMode) {
+          if (controller.activeFilter == ActiveFilter.spaces) {
             return SpaceView(
               controller,
               scrollController: controller.scrollController,
@@ -74,11 +77,6 @@ class ChatListViewBody extends StatelessWidget {
             );
           }
           final rooms = controller.filteredRooms;
-          final displayStoriesHeader = {
-                ActiveFilter.allChats,
-                ActiveFilter.messages,
-              }.contains(controller.activeFilter) &&
-              client.storiesRooms.isNotEmpty;
           return SafeArea(
             child: CustomScrollView(
               controller: controller.scrollController,
@@ -92,39 +90,12 @@ class ChatListViewBody extends StatelessWidget {
                           title: L10n.of(context)!.publicRooms,
                           icon: const Icon(Icons.explore_outlined),
                         ),
-                        AnimatedContainer(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(),
-                          height: roomSearchResult == null ||
-                                  roomSearchResult.chunk.isEmpty
-                              ? 0
-                              : 106,
-                          duration: FluffyThemes.animationDuration,
-                          curve: FluffyThemes.animationCurve,
-                          child: roomSearchResult == null
-                              ? null
-                              : ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: roomSearchResult.chunk.length,
-                                  itemBuilder: (context, i) => _SearchItem(
-                                    title: roomSearchResult.chunk[i].name ??
-                                        roomSearchResult.chunk[i].canonicalAlias
-                                            ?.localpart ??
-                                        L10n.of(context)!.group,
-                                    avatar: roomSearchResult.chunk[i].avatarUrl,
-                                    onPressed: () => showAdaptiveBottomSheet(
-                                      context: context,
-                                      builder: (c) => PublicRoomBottomSheet(
-                                        roomAlias: roomSearchResult
-                                                .chunk[i].canonicalAlias ??
-                                            roomSearchResult.chunk[i].roomId,
-                                        outerContext: context,
-                                        chunk: roomSearchResult.chunk[i],
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                        PublicRoomsHorizontalList(publicRooms: publicRooms),
+                        SearchTitle(
+                          title: L10n.of(context)!.publicSpaces,
+                          icon: const Icon(Icons.workspaces_outlined),
                         ),
+                        PublicRoomsHorizontalList(publicRooms: publicSpaces),
                         SearchTitle(
                           title: L10n.of(context)!.users,
                           icon: const Icon(Icons.group_outlined),
@@ -161,15 +132,11 @@ class ChatListViewBody extends StatelessWidget {
                                   ),
                                 ),
                         ),
-                        SearchTitle(
-                          title: L10n.of(context)!.stories,
-                          icon: const Icon(Icons.camera_alt_outlined),
-                        ),
                       ],
-                      if (displayStoriesHeader)
-                        StoriesHeader(
-                          key: const Key('stories_header'),
-                          filter: controller.searchController.text,
+                      if (!controller.isSearchMode &&
+                          controller.activeFilter != ActiveFilter.groups)
+                        StatusMessageList(
+                          onStatusEdit: controller.setStatus,
                         ),
                       const ConnectionStatusHeader(),
                       AnimatedContainer(
@@ -310,6 +277,48 @@ class ChatListViewBody extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class PublicRoomsHorizontalList extends StatelessWidget {
+  const PublicRoomsHorizontalList({
+    super.key,
+    required this.publicRooms,
+  });
+
+  final List<PublicRoomsChunk>? publicRooms;
+
+  @override
+  Widget build(BuildContext context) {
+    final publicRooms = this.publicRooms;
+    return AnimatedContainer(
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(),
+      height: publicRooms == null || publicRooms.isEmpty ? 0 : 106,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+      child: publicRooms == null
+          ? null
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: publicRooms.length,
+              itemBuilder: (context, i) => _SearchItem(
+                title: publicRooms[i].name ??
+                    publicRooms[i].canonicalAlias?.localpart ??
+                    L10n.of(context)!.group,
+                avatar: publicRooms[i].avatarUrl,
+                onPressed: () => showAdaptiveBottomSheet(
+                  context: context,
+                  builder: (c) => PublicRoomBottomSheet(
+                    roomAlias:
+                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
+                    outerContext: context,
+                    chunk: publicRooms[i],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }

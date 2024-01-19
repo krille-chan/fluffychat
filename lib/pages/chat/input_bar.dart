@@ -10,9 +10,9 @@ import 'package:slugify/slugify.dart';
 
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/mxc_image.dart';
-import '../../widgets/avatar.dart';
-import '../../widgets/matrix.dart';
 import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {
@@ -394,9 +394,7 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useShortCuts = (PlatformInfos.isWeb ||
-        PlatformInfos.isDesktop ||
-        AppConfig.sendOnEnter);
+    final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
     return Shortcuts(
       shortcuts: !useShortCuts
           ? {}

@@ -11,6 +11,13 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/url_launcher.dart';
+import 'package:tawkie/utils/voip/callkeep_manager.dart';
+import 'package:tawkie/widgets/fluffy_chat_app.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'package:tawkie/config/app_config.dart';
@@ -21,13 +28,6 @@ import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
-import '../../../utils/account_bundles.dart';
-import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import '../../utils/url_launcher.dart';
-import '../../utils/voip/callkeep_manager.dart';
-import '../../widgets/fluffy_chat_app.dart';
-import '../../widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
 
 import 'package:tawkie/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
@@ -85,15 +85,24 @@ class ChatListController extends State<ChatList>
 
   void resetActiveSpaceId() {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = null;
     });
   }
 
   void setActiveSpace(String? spaceId) {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = spaceId;
       activeFilter = ActiveFilter.spaces;
     });
+  }
+
+  void createNewSpace() async {
+    final spaceId = await context.push<String?>('/rooms/newspace');
+    if (spaceId != null) {
+      setActiveSpace(spaceId);
+    }
   }
 
   int get selectedIndex {
@@ -128,6 +137,7 @@ class ChatListController extends State<ChatList>
 
   void onDestinationSelected(int? i) {
     setState(() {
+      selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
     });
   }
@@ -139,13 +149,11 @@ class ChatListController extends State<ChatList>
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {
       case ActiveFilter.allChats:
-        return (room) => !room.isSpace && !room.isStoryRoom;
+        return (room) => !room.isSpace;
       case ActiveFilter.groups:
-        return (room) =>
-            !room.isSpace && !room.isDirectChat && !room.isStoryRoom;
+        return (room) => !room.isSpace && !room.isDirectChat;
       case ActiveFilter.messages:
-        return (room) =>
-            !room.isSpace && room.isDirectChat && !room.isStoryRoom;
+        return (room) => !room.isSpace && room.isDirectChat;
       case ActiveFilter.spaces:
         return (r) => r.isSpace;
     }
@@ -483,26 +491,34 @@ class ChatListController extends State<ChatList>
   }
 
   void setStatus() async {
+    final client = Matrix.of(context).client;
+    final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
+      message: L10n.of(context)!.leaveEmptyToClearStatus,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context)!.statusExampleMessage,
+          maxLines: 6,
+          minLines: 1,
+          maxLength: 255,
+          initialText: currentPresence.statusMsg,
         ),
       ],
     );
     if (input == null) return;
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.setPresence(
-            Matrix.of(context).client.userID!,
-            PresenceType.online,
-            statusMsg: input.single,
-          ),
+      future: () => client.setPresence(
+        client.userID!,
+        PresenceType.online,
+        statusMsg: input.single,
+      ),
     );
   }
 

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:tawkie/config/themes.dart';
-import 'package:tawkie/pages/add_story/add_story.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/archive/archive.dart';
 import 'package:tawkie/pages/chat/chat.dart';
 import 'package:tawkie/pages/chat_details/chat_details.dart';
@@ -27,17 +27,13 @@ import 'package:tawkie/pages/settings_emotes/settings_emotes.dart';
 import 'package:tawkie/pages/settings_ignore_list/settings_ignore_list.dart';
 import 'package:tawkie/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
 import 'package:tawkie/pages/settings_notifications/settings_notifications.dart';
+import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/pages/settings_security/settings_security.dart';
-import 'package:tawkie/pages/settings_stories/settings_stories.dart';
 import 'package:tawkie/pages/settings_style/settings_style.dart';
-import 'package:tawkie/pages/story/story_page.dart';
-import 'package:tawkie/pages/tasks/tasks.dart';
 import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
 import 'package:tawkie/widgets/log_view.dart';
 import 'package:tawkie/widgets/matrix.dart';
-
-import '../pages/add_bridge/add_bridge_body.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -115,32 +111,6 @@ abstract class AppRoutes {
                   ),
           ),
           routes: [
-            GoRoute(
-              path: 'stories/create',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const AddStoryPage(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
-              path: 'stories/:roomid',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                const StoryPage(),
-              ),
-              redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: 'share',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    const AddStoryPage(),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-              ],
-            ),
             GoRoute(
               path: 'archive',
               pageBuilder: (context, state) => defaultPageBuilder(
@@ -285,11 +255,13 @@ abstract class AppRoutes {
                       ),
                       routes: [
                         GoRoute(
-                          path: 'stories',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const SettingsStories(),
-                          ),
+                          path: 'password',
+                          pageBuilder: (context, state) {
+                            return defaultPageBuilder(
+                              context,
+                              const SettingsPassword(),
+                            );
+                          },
                           redirect: loggedOutRedirect,
                         ),
                         GoRoute(
@@ -323,7 +295,10 @@ abstract class AppRoutes {
               path: ':roomid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
-                ChatPage(roomId: state.pathParameters['roomid']!),
+                ChatPage(
+                  roomId: state.pathParameters['roomid']!,
+                  shareText: state.uri.queryParameters['body'],
+                ),
               ),
               redirect: loggedOutRedirect,
               routes: [
@@ -408,17 +383,6 @@ abstract class AppRoutes {
                     ),
                   ],
                   redirect: loggedOutRedirect,
-                ),
-                GoRoute(
-                  path: 'tasks',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    TasksPage(
-                      room: Matrix.of(context)
-                          .client
-                          .getRoomById(state.pathParameters['roomid']!)!,
-                    ),
-                  ),
                 ),
               ],
             ),

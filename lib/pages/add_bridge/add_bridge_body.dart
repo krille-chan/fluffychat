@@ -8,8 +8,11 @@ import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
-import '../../widgets/matrix.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
 import 'error_message_dialog.dart';

@@ -6,8 +6,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/mxc_image.dart';
-import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
 enum PopupMenuEmojiActions { import, export }

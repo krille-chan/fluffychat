@@ -16,11 +16,11 @@ import 'package:tawkie/pages/chat/pinned_events.dart';
 import 'package:tawkie/pages/chat/reactions_picker.dart';
 import 'package:tawkie/pages/chat/reply_display.dart';
 import 'package:tawkie/pages/chat/tombstone_display.dart';
+import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/chat_settings_popup_menu.dart';
 import 'package:tawkie/widgets/connection_status_header.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/unread_rooms_badge.dart';
-import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 
@@ -149,222 +149,220 @@ class ChatView extends StatelessWidget {
       child: GestureDetector(
         onTapDown: (_) => controller.setReadMarker(),
         behavior: HitTestBehavior.opaque,
-        child: StreamBuilder(
-          stream: controller.room.onUpdate.stream
-              .rateLimit(const Duration(seconds: 1)),
-          builder: (context, snapshot) => FutureBuilder(
-            future: controller.loadTimelineFuture,
-            builder: (BuildContext context, snapshot) {
-              return Scaffold(
-                appBar: AppBar(
-                  actionsIconTheme: IconThemeData(
-                    color: controller.selectedEvents.isEmpty
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
+        child: MouseRegion(
+          onEnter: (_) => controller.setReadMarker(),
+          child: StreamBuilder(
+            stream: controller.room.onUpdate.stream
+                .rateLimit(const Duration(seconds: 1)),
+            builder: (context, snapshot) => FutureBuilder(
+              future: controller.loadTimelineFuture,
+              builder: (BuildContext context, snapshot) {
+                return Scaffold(
+                  appBar: AppBar(
+                    actionsIconTheme: IconThemeData(
+                      color: controller.selectedEvents.isEmpty
+                          ? null
+                          : Theme.of(context).colorScheme.primary,
+                    ),
+                    leading: controller.selectMode
+                        ? IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: controller.clearSelectedEvents,
+                            tooltip: L10n.of(context)!.close,
+                            color: Theme.of(context).colorScheme.primary,
+                          )
+                        : UnreadRoomsBadge(
+                            filter: (r) => r.id != controller.roomId,
+                            badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                            child: const Center(child: BackButton()),
+                          ),
+                    titleSpacing: 0,
+                    title: ChatAppBarTitle(controller),
+                    actions: _appBarActions(context),
                   ),
-                  leading: controller.selectMode
-                      ? IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: controller.clearSelectedEvents,
-                          tooltip: L10n.of(context)!.close,
-                          color: Theme.of(context).colorScheme.primary,
+                  floatingActionButton: controller.showScrollDownButton &&
+                          controller.selectedEvents.isEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(bottom: 56.0),
+                          child: FloatingActionButton(
+                            onPressed: controller.scrollDown,
+                            heroTag: null,
+                            mini: true,
+                            child: const Icon(Icons.arrow_downward_outlined),
+                          ),
                         )
-                      : UnreadRoomsBadge(
-                          filter: (r) => r.id != controller.roomId,
-                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                          child: const Center(child: BackButton()),
-                        ),
-                  titleSpacing: 0,
-                  title: ChatAppBarTitle(controller),
-                  actions: _appBarActions(context),
-                ),
-                floatingActionButton: controller.showScrollDownButton &&
-                        controller.selectedEvents.isEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: 56.0),
-                        child: FloatingActionButton(
-                          onPressed: controller.scrollDown,
-                          heroTag: null,
-                          mini: true,
-                          child: const Icon(Icons.arrow_downward_outlined),
-                        ),
-                      )
-                    : null,
-                body: DropTarget(
-                  onDragDone: controller.onDragDone,
-                  onDragEntered: controller.onDragEntered,
-                  onDragExited: controller.onDragExited,
-                  child: Stack(
-                    children: <Widget>[
-                      if (Matrix.of(context).wallpaper != null)
-                        Image.file(
-                          Matrix.of(context).wallpaper!,
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.medium,
-                        ),
-                      SafeArea(
-                        child: Column(
-                          children: <Widget>[
-                            TombstoneDisplay(controller),
-                            if (scrollUpBannerEventId != null)
-                              Material(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceVariant,
-                                shape: Border(
-                                  bottom: BorderSide(
-                                    width: 1,
-                                    color: Theme.of(context).dividerColor,
+                      : null,
+                  body: DropTarget(
+                    onDragDone: controller.onDragDone,
+                    onDragEntered: controller.onDragEntered,
+                    onDragExited: controller.onDragExited,
+                    child: Stack(
+                      children: <Widget>[
+                        SafeArea(
+                          child: Column(
+                            children: <Widget>[
+                              TombstoneDisplay(controller),
+                              if (scrollUpBannerEventId != null)
+                                Material(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceVariant,
+                                  shape: Border(
+                                    bottom: BorderSide(
+                                      width: 1,
+                                      color: Theme.of(context).dividerColor,
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                      icon: const Icon(Icons.close),
+                                      tooltip: L10n.of(context)!.close,
+                                      onPressed: () {
+                                        controller
+                                            .discardScrollUpBannerEventId();
+                                        controller.setReadMarker();
+                                      },
+                                    ),
+                                    title: Text(
+                                      L10n.of(context)!.jumpToLastReadMessage,
+                                    ),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 8),
+                                    trailing: TextButton(
+                                      onPressed: () {
+                                        controller.scrollToEventId(
+                                          scrollUpBannerEventId,
+                                        );
+                                        controller
+                                            .discardScrollUpBannerEventId();
+                                      },
+                                      child: Text(L10n.of(context)!.jump),
+                                    ),
                                   ),
                                 ),
-                                child: ListTile(
-                                  leading: IconButton(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                    icon: const Icon(Icons.close),
-                                    tooltip: L10n.of(context)!.close,
-                                    onPressed: () {
-                                      controller.discardScrollUpBannerEventId();
-                                      controller.setReadMarker();
+                              PinnedEvents(controller),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: controller.clearSingleSelectedEvent,
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (controller.timeline == null) {
+                                        return const Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive(
+                                            strokeWidth: 2,
+                                          ),
+                                        );
+                                      }
+                                      return ChatEventList(
+                                        controller: controller,
+                                      );
                                     },
                                   ),
-                                  title: Text(
-                                    L10n.of(context)!.jumpToLastReadMessage,
-                                  ),
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 8),
-                                  trailing: TextButton(
-                                    onPressed: () {
-                                      controller.scrollToEventId(
-                                        scrollUpBannerEventId,
-                                      );
-                                      controller.discardScrollUpBannerEventId();
-                                    },
-                                    child: Text(L10n.of(context)!.jump),
-                                  ),
                                 ),
                               ),
-                            PinnedEvents(controller),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: controller.clearSingleSelectedEvent,
-                                child: Builder(
-                                  builder: (context) {
-                                    if (controller.timeline == null) {
-                                      return const Center(
-                                        child:
-                                            CircularProgressIndicator.adaptive(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-
-                                    return ChatEventList(
-                                      controller: controller,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            if (controller.room.canSendDefaultMessages &&
-                                controller.room.membership == Membership.join)
-                              Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
-                                constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 2.5,
-                                ),
-                                alignment: Alignment.center,
-                                child: Material(
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft:
-                                        Radius.circular(AppConfig.borderRadius),
-                                    bottomRight:
-                                        Radius.circular(AppConfig.borderRadius),
+                              if (controller.room.canSendDefaultMessages &&
+                                  controller.room.membership == Membership.join)
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    bottom: bottomSheetPadding,
+                                    left: bottomSheetPadding,
+                                    right: bottomSheetPadding,
                                   ),
-                                  elevation: 4,
-                                  shadowColor: Colors.black.withAlpha(64),
-                                  clipBehavior: Clip.hardEdge,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.white
-                                      : Colors.black,
-                                  child: controller.room.isAbandonedDMRoom ==
-                                          true
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            TextButton.icon(
-                                              style: TextButton.styleFrom(
-                                                padding:
-                                                    const EdgeInsets.all(16),
-                                                foregroundColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .error,
+                                  constraints: const BoxConstraints(
+                                    maxWidth: FluffyThemes.columnWidth * 2.5,
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Material(
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(
+                                        AppConfig.borderRadius,
+                                      ),
+                                      bottomRight: Radius.circular(
+                                        AppConfig.borderRadius,
+                                      ),
+                                    ),
+                                    elevation: 4,
+                                    shadowColor: Colors.black.withAlpha(64),
+                                    clipBehavior: Clip.hardEdge,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.white
+                                        : Colors.black,
+                                    child: controller.room.isAbandonedDMRoom ==
+                                            true
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              TextButton.icon(
+                                                style: TextButton.styleFrom(
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                  foregroundColor:
+                                                      Theme.of(context)
+                                                          .colorScheme
+                                                          .error,
+                                                ),
+                                                icon: const Icon(
+                                                  Icons.archive_outlined,
+                                                ),
+                                                onPressed: controller.leaveChat,
+                                                label: Text(
+                                                  L10n.of(context)!.leave,
+                                                ),
                                               ),
-                                              icon: const Icon(
-                                                Icons.archive_outlined,
+                                              TextButton.icon(
+                                                style: TextButton.styleFrom(
+                                                  padding:
+                                                      const EdgeInsets.all(16),
+                                                ),
+                                                icon: const Icon(
+                                                  Icons.forum_outlined,
+                                                ),
+                                                onPressed:
+                                                    controller.recreateChat,
+                                                label: Text(
+                                                  L10n.of(context)!.reopenChat,
+                                                ),
                                               ),
-                                              onPressed: controller.leaveChat,
-                                              label: Text(
-                                                L10n.of(context)!.leave,
-                                              ),
-                                            ),
-                                            TextButton.icon(
-                                              style: TextButton.styleFrom(
-                                                padding:
-                                                    const EdgeInsets.all(16),
-                                              ),
-                                              icon: const Icon(
-                                                Icons.forum_outlined,
-                                              ),
-                                              onPressed:
-                                                  controller.recreateChat,
-                                              label: Text(
-                                                L10n.of(context)!.reopenChat,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const ConnectionStatusHeader(),
-                                            ReactionsPicker(controller),
-                                            ReplyDisplay(controller),
-                                            ChatInputRow(controller),
-                                            ChatEmojiPicker(controller),
-                                          ],
-                                        ),
+                                            ],
+                                          )
+                                        : Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const ConnectionStatusHeader(),
+                                              ReactionsPicker(controller),
+                                              ReplyDisplay(controller),
+                                              ChatInputRow(controller),
+                                              ChatEmojiPicker(controller),
+                                            ],
+                                          ),
+                                  ),
                                 ),
-                              ),
-                          ],
-                        ),
-                      ),
-                      if (controller.dragging)
-                        Container(
-                          color: Theme.of(context)
-                              .scaffoldBackgroundColor
-                              .withOpacity(0.9),
-                          alignment: Alignment.center,
-                          child: const Icon(
-                            Icons.upload_outlined,
-                            size: 100,
+                            ],
                           ),
                         ),
-                    ],
+                        if (controller.dragging)
+                          Container(
+                            color: Theme.of(context)
+                                .scaffoldBackgroundColor
+                                .withOpacity(0.9),
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.upload_outlined,
+                              size: 100,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

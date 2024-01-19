@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tawkie/pages/chat_details/participant_list_item.dart';
 
 import 'package:tawkie/utils/localized_exception_extension.dart';
-import '../../widgets/layouts/max_width_body.dart';
-import '../../widgets/matrix.dart';
-import '../chat_details/participant_list_item.dart';
+import 'package:tawkie/widgets/layouts/max_width_body.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'chat_members.dart';
 
 class ChatMembersView extends StatelessWidget {
@@ -53,6 +53,7 @@ class ChatMembersView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         withScrolling: false,
+        innerPadding: const EdgeInsets.symmetric(vertical: 8),
         child: error != null
             ? Center(
                 child: Padding(

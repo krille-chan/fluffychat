@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,12 @@ import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/background_push.dart';
+import 'package:tawkie/utils/init_with_restore.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -25,11 +30,6 @@ import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/uia_request_manager.dart';
 import 'package:tawkie/utils/voip_plugin.dart';
 import 'package:tawkie/widgets/fluffy_chat_app.dart';
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
-import '../pages/key_verification/key_verification_dialog.dart';
-import '../utils/account_bundles.dart';
-import '../utils/background_push.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -187,8 +187,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
 
-  File? wallpaper;
-
   void _initWithStore() async {
     try {
       if (client.isLogged()) {
@@ -317,6 +315,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
+      if (state == LoginState.loggedOut) {
+        InitWithRestoreExtension.deleteSessionBackup(name);
+      }
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
@@ -417,16 +418,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     Logs().v('AppLifecycleState = $state');
-    final foreground = state != AppLifecycleState.detached &&
+    final foreground = state != AppLifecycleState.inactive &&
         state != AppLifecycleState.paused;
-    client.backgroundSync = foreground;
-    client.requestHistoryOnLimitedTimeline = !foreground;
+    client.syncPresence =
+        state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
+    if (PlatformInfos.isMobile) {
+      client.backgroundSync = foreground;
+      client.requestHistoryOnLimitedTimeline = !foreground;
+      Logs().v('Set background sync to', foreground);
+    }
   }
 
   void initSettings() {
-    final path = store.getString(SettingKeys.wallpaper);
-    if (path != null) wallpaper = File(path);
-
     AppConfig.fontSizeFactor =
         double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
             AppConfig.fontSizeFactor;

@@ -1,13 +1,12 @@
 import 'dart:async';
 
+import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
+import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
-
-import '../../../widgets/notifier_state.dart';
-import '../error_message_dialog.dart';
-import '../model/social_network.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
 
 // For all bot bridge conversations
 class BotBridgeConnection {

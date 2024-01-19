@@ -10,7 +10,7 @@ import 'package:matrix/matrix.dart';
 import 'package:tawkie/pages/device_settings/device_settings_view.dart';
 import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
   const DevicesSettings({super.key});

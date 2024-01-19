@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
-import '../../widgets/matrix.dart';
 import 'chat_members_view.dart';
 
 class ChatMembersPage extends StatefulWidget {

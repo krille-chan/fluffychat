@@ -2,13 +2,11 @@ import 'dart:math';
 
 import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/platform_infos.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class EmptyPage extends StatelessWidget {
-  final bool loading;
-  static const double _width = 300;
-  const EmptyPage({this.loading = false, super.key});
+  static const double _width = 400;
+  const EmptyPage({super.key});
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
@@ -17,7 +15,7 @@ class EmptyPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
       body: Column(
@@ -34,13 +32,13 @@ class EmptyPage extends StatelessWidget {
               ),
             ),
           ),
-          if (loading)
-            Center(
-              child: SizedBox(
-                width: width,
-                child: const LinearProgressIndicator(),
-              ),
-            ),
+          // if (loading)
+          //   Center(
+          //     child: SizedBox(
+          //       width: width,
+          //       child: const LinearProgressIndicator(),
+          //     ),
+          //   ),
 
           // Button for add bridge when no conversation
           if (PlatformInfos.isWeb ||

@@ -8,8 +8,8 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import '../../utils/platform_infos.dart';
 import 'login_view.dart';
 
 class Login extends StatefulWidget {
@@ -227,7 +227,7 @@ class LoginController extends State<Login> {
       context: context,
       future: () => Matrix.of(context).getLoginClient().request(
             RequestType.POST,
-            '/client/r0/account/password',
+            '/client/v3/account/password',
             data: data,
           ),
     );

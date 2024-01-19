@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as webrtc_impl;
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/voip/callkeep_manager.dart';
+import 'package:tawkie/utils/voip/user_media_manager.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
 import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/dialer/dialer.dart';
 import 'package:tawkie/utils/platform_infos.dart';
-import '../../utils/voip/callkeep_manager.dart';
-import '../../utils/voip/user_media_manager.dart';
-import '../widgets/matrix.dart';
 
 class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   final MatrixState matrix;
@@ -34,9 +34,9 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState? state) {
-    Logs().v('AppLifecycleState = $state');
     background = (state == AppLifecycleState.detached ||
         state == AppLifecycleState.paused);
+    Logs().w('Set background mode in VOIP plugin', background);
   }
 
   void addCallingOverlay(String callId, CallSession call) {

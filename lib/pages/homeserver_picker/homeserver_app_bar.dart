@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-
-import 'package:tawkie/config/app_config.dart';
-import 'homeserver_bottom_sheet.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverAppBar extends StatelessWidget {
@@ -15,59 +8,33 @@ class HomeserverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TypeAheadField<HomeserverBenchmarkResult>(
-      suggestionsBoxDecoration: SuggestionsBoxDecoration(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        elevation: Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-        shadowColor: Theme.of(context).appBarTheme.shadowColor ?? Colors.black,
-        constraints: const BoxConstraints(maxHeight: 256),
-      ),
-      itemBuilder: (context, homeserver) => ListTile(
-        title: Text(homeserver.homeserver.baseUrl.toString()),
-        subtitle: Text(homeserver.homeserver.description ?? ''),
-        trailing: IconButton(
-          icon: const Icon(Icons.info_outlined),
-          onPressed: () => showModalBottomSheet(
-            context: context,
-            builder: (_) => HomeserverBottomSheet(
-              homeserver: homeserver,
-            ),
+    // List of Tawkie servers (development mode)
+    final List<String> serversTawkie = [
+      'alpha.tawkie.fr',
+      'loveto.party',
+    ];
+
+    return Row(
+      children: [
+        // DropdownButton instead of TypeAheadField
+        Expanded(
+          child: DropdownButton<String>(
+            isExpanded: true,
+            value: controller.selectedServer,
+            icon: const Icon(Icons.arrow_drop_down),
+            onChanged: (String? newValue) {
+              controller.setSelectedServer(newValue);
+            },
+            items: serversTawkie.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                alignment: Alignment.center,
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
           ),
         ),
-      ),
-      suggestionsCallback: (pattern) async {
-        final homeserverList =
-            await const JoinmatrixOrgParser().fetchHomeservers();
-        final benchmark = await HomeserverListProvider.benchmarkHomeserver(
-          homeserverList,
-          timeout: const Duration(seconds: 3),
-        );
-        return benchmark;
-      },
-      onSuggestionSelected: (suggestion) {
-        controller.homeserverController.text =
-            suggestion.homeserver.baseUrl.host;
-        controller.checkHomeserverAction();
-      },
-      textFieldConfiguration: TextFieldConfiguration(
-        enabled: !controller.isLoggingIn,
-        controller: controller.homeserverController,
-        decoration: InputDecoration(
-          prefixIcon: Navigator.of(context).canPop()
-              ? IconButton(
-                  onPressed: Navigator.of(context).pop,
-                  icon: const Icon(Icons.arrow_back),
-                )
-              : null,
-          fillColor: Theme.of(context).colorScheme.onInverseSurface,
-          prefixText: '${L10n.of(context)!.homeserver}: ',
-          hintText: L10n.of(context)!.enterYourHomeserver,
-          suffixIcon: const Icon(Icons.search),
-        ),
-        textInputAction: TextInputAction.search,
-        onSubmitted: controller.checkHomeserverAction,
-        autocorrect: false,
-      ),
+      ],
     );
   }
 }
