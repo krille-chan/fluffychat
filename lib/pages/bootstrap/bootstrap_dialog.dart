@@ -351,6 +351,16 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                       onPressed: _recoveryKeyInputLoading
                           ? null
                           : () async {
+                              final consent = await showOkCancelAlertDialog(
+                                context: context,
+                                title: L10n.of(context)!.verifyOtherDevice,
+                                message: L10n.of(context)!
+                                    .verifyOtherDeviceDescription,
+                                okLabel: L10n.of(context)!.ok,
+                                cancelLabel: L10n.of(context)!.cancel,
+                                fullyCapitalizedForMaterial: false,
+                              );
+                              if (consent != OkCancelResult.ok) return;
                               final req = await showFutureLoadingDialog(
                                 context: context,
                                 future: () async {

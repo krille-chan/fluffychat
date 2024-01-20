@@ -2416,6 +2416,9 @@
     "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
     "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
     "formattedMessages": "Formatted messages",
-    "formattedMessagesDescription": "Display rich message content like bold text using markdown."
-
+    "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
+    "verifyOtherUser": "🔐 Verify other user",
+    "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
+    "verifyOtherDevice": "🔐 Verify other device",
+    "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳"
 }
