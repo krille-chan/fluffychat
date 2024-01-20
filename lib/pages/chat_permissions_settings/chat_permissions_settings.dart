@@ -94,7 +94,6 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     if (newVersion == null ||
         OkCancelResult.cancel ==
             await showOkCancelAlertDialog(
-              useRootNavigator: false,
               context: context,
               okLabel: L10n.of(context)!.yes,
               cancelLabel: L10n.of(context)!.cancel,

@@ -85,7 +85,6 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
     );
     if (valid.error != null) {
       await showOkAlertDialog(
-        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.incorrectPassphraseOrKey,
       );

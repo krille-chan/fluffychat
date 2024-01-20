@@ -71,6 +71,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   BackgroundPush? backgroundPush;
 
+  late BuildContext navigatorContext;
+
   Client get client {
     if (widget.clients.isEmpty) {
       widget.clients.add(getLoginClient());
@@ -311,7 +313,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       };
       request.onUpdate = null;
       hidPopup = true;
-      await KeyVerificationDialog(request: request).show(context);
+
+      await KeyVerificationDialog(request: request).show(navigatorContext);
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
@@ -322,7 +325,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(navigatorContext).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context)!.oneClientLoggedOut),
           ),
@@ -382,7 +385,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
-            context: context,
+            context: navigatorContext,
             title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
