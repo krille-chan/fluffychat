@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/send_file_dialog.dart';
@@ -197,6 +195,18 @@ class ChatListItem extends StatelessWidget {
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
+
+    final displayNameBrut = room.getLocalizedDisplayname();
+
+    // Condition for checking displayName for the presence of social networks
+    IconData? networkIcon;
+    if (displayname.contains('(FB)')) {
+      networkIcon = Icons.facebook;
+    } else if (displayname.contains('(Instagram)')) {
+      networkIcon = Icons.camera;
+    }
+
+    print(displayNameBrut);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -221,6 +231,14 @@ class ChatListItem extends StatelessWidget {
               ),
               title: Row(
                 children: <Widget>[
+                  networkIcon != null
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 5),
+                          child: Icon(
+                            networkIcon,
+                          ),
+                        )
+                      : Container(),
                   Expanded(
                     child: Text(
                       displayname,
