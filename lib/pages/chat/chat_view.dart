@@ -29,7 +29,10 @@ import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 
-enum _EventContextAction { info, report }
+//#Pangea
+// enum _EventContextAction { info, report }
+enum _EventContextAction { info, forward, report }
+//Pangea#
 
 class ChatView extends StatelessWidget {
   final ChatController controller;
@@ -85,18 +88,34 @@ class ChatView extends StatelessWidget {
                 case _EventContextAction.report:
                   controller.reportEventAction();
                   break;
+                // #Pangea
+                case _EventContextAction.forward:
+                  controller.forwardEventsAction();
+                  break;
+                // Pangea#
               }
             },
             itemBuilder: (context) => [
               // #Pangea
+              // PopupMenuItem(
+              //   value: _EventContextAction.info,
+              //   child: Row(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       const Icon(Icons.info_outlined),
+              //       const SizedBox(width: 12),
+              //       Text(L10n.of(context)!.messageInfo),
+              //     ],
+              //   ),
+              // ),
               PopupMenuItem(
-                value: _EventContextAction.info,
+                value: _EventContextAction.forward,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.info_outlined),
+                    const Icon(Icons.forward),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context)!.messageInfo),
+                    Text(L10n.of(context)!.forward),
                   ],
                 ),
               ),

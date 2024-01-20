@@ -765,7 +765,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "bn": [
@@ -1539,7 +1540,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "bo": [
@@ -2313,7 +2315,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ca": [
@@ -3082,7 +3085,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "cs": [
@@ -3851,7 +3855,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "de": [
@@ -4620,7 +4625,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "el": [
@@ -5394,7 +5400,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "eo": [
@@ -6163,7 +6170,12 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
+  ],
+
+  "es": [
+    "errorGettingAudio"
   ],
 
   "et": [
@@ -6932,7 +6944,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "eu": [
@@ -7701,7 +7714,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "fa": [
@@ -8470,7 +8484,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "fi": [
@@ -9239,7 +9254,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "fr": [
@@ -10008,7 +10024,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ga": [
@@ -10777,7 +10794,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "gl": [
@@ -11546,7 +11564,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "he": [
@@ -12315,7 +12334,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "hi": [
@@ -13089,7 +13109,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "hr": [
@@ -13858,7 +13879,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "hu": [
@@ -14627,7 +14649,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "id": [
@@ -15396,7 +15419,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ie": [
@@ -16167,7 +16191,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "it": [
@@ -16936,7 +16961,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ja": [
@@ -17705,7 +17731,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ko": [
@@ -18474,7 +18501,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "lt": [
@@ -19243,7 +19271,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "lv": [
@@ -20017,7 +20046,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "nb": [
@@ -20786,7 +20816,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "nl": [
@@ -21555,7 +21586,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "pl": [
@@ -22324,7 +22356,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "pt": [
@@ -23098,7 +23131,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "pt_BR": [
@@ -23867,7 +23901,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "pt_PT": [
@@ -24636,7 +24671,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ro": [
@@ -25405,7 +25441,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ru": [
@@ -26174,7 +26211,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "sk": [
@@ -26944,7 +26982,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "sl": [
@@ -27716,7 +27755,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "sr": [
@@ -28485,7 +28525,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "sv": [
@@ -29254,7 +29295,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "ta": [
@@ -30028,7 +30070,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "th": [
@@ -30802,7 +30845,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "tr": [
@@ -31571,7 +31615,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "uk": [
@@ -32340,7 +32385,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "vi": [
@@ -33112,7 +33158,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "zh": [
@@ -33881,7 +33928,8 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ],
 
   "zh_Hant": [
@@ -34650,6 +34698,7 @@
     "activateTrial",
     "successfullySubscribed",
     "clickToManageSubscription",
-    "emptyInviteWarning"
+    "emptyInviteWarning",
+    "errorGettingAudio"
   ]
 }

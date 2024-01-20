@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
+import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
@@ -80,6 +82,116 @@ class PangeaMessageEvent {
 
     return true;
   }
+
+  //get audio for text and language
+  //if no audio exists, create it
+  //if audio exists, return it
+  Future<String?> getAudioGlobal(String langCode) async {
+    // try {
+    final String text = representationByLanguage(langCode)?.text ?? body;
+
+    final local = getAudioLocal(langCode, text);
+
+    if (local != null) return Future.value(local.eventId);
+
+    final TextToSpeechRequest params = TextToSpeechRequest(
+      text: text,
+      langCode: langCode,
+    );
+
+    final TextToSpeechResponse response =
+        await MatrixState.pangeaController.textToSpeech.get(
+      params,
+    );
+
+    if (response.mediaType != 'audio/ogg') {
+      throw Exception('Unexpected media type: ${response.mediaType}');
+    }
+
+    final audioBytes = base64.decode(response.audioContent);
+
+    // from text, trim whitespace, remove special characters, and limit to 20 characters
+    // final fileName =
+    //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
+    final fileName = "audio_for_${eventId}_$langCode";
+
+    final file = MatrixAudioFile(
+      bytes: audioBytes,
+      name: fileName,
+    );
+
+    return room.sendFileEvent(
+      file,
+      inReplyTo: _event,
+      extraContent: {
+        'info': {
+          ...file.info,
+          'duration': response.durationMillis,
+        },
+        'org.matrix.msc3245.voice': {},
+        'org.matrix.msc1767.audio': {
+          'duration': response.durationMillis,
+          'waveform': null,
+          // 'waveform': response.waveform,
+        },
+        'transcription': {
+          ModelKey.text: text,
+          ModelKey.langCode: langCode,
+        },
+      },
+    ).timeout(
+      Durations.long4,
+      onTimeout: () {
+        debugPrint("timeout in getAudioGlobal");
+        return null;
+      },
+    ).then((eventId) {
+      debugPrint("eventId in getAudioGlobal $eventId");
+      return eventId;
+    }).catchError((err, s) {
+      debugPrint("error in getAudioGlobal");
+      debugPrint(err);
+      debugPrint(s);
+      debugger(when: kDebugMode);
+      return null;
+    });
+
+    // } catch (err, s) {
+    //   debugger(when: kDebugMode);
+    //   ErrorHandler.logError(
+    //     e: err,
+    //     s: s,
+    //   );
+    //   return Future.value(null);
+    // }
+  }
+
+  Event? getAudioLocal(String langCode, String text) {
+    return allAudio.firstWhereOrNull(
+      (element) {
+        // Safely access the transcription map
+        final transcription =
+            element.content.tryGet<Map<String, String>>(ModelKey.transcription);
+        if (transcription == null) {
+          // If transcription is null, this element does not match.
+          return false;
+        }
+
+        // Safely get language code and text from the transcription
+        final elementLangCode = transcription.tryGet(ModelKey.langCode);
+        final elementText = transcription.tryGet(ModelKey.text);
+
+        // Check if both language code and text match
+        return elementLangCode == langCode && elementText == text;
+      },
+    );
+  }
+
+  // get audio events that are related to this event
+  Set<Event> get allAudio => _latestEdit.aggregatedEvents(
+        timeline,
+        EventTypes.Message,
+      );
 
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {
@@ -187,11 +299,6 @@ class PangeaMessageEvent {
     int tries = 0;
 
     RepresentationEvent? rep = representationByLanguage(langCode);
-
-    //if event is less than 1 minute old, then print new event
-    if (isNew) {
-      debugger(when: kDebugMode);
-    }
 
     while ((isNew || eventId.contains("web")) && tries < 20) {
       if (rep != null) return rep;

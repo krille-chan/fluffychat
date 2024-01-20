@@ -1,17 +1,17 @@
+import 'package:animations/animations.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_actions.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
@@ -58,18 +58,21 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     )
                   else
-                    SizedBox(
-                      height: 56,
-                      child: TextButton(
-                        onPressed: controller.forwardEventsAction,
-                        child: Row(
-                          children: <Widget>[
-                            const Icon(Icons.keyboard_arrow_left_outlined),
-                            Text(L10n.of(context)!.forward),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // #Pangea
+                    PangeaMessageActions(chatController: controller),
+                  // SizedBox(
+                  //   height: 56,
+                  //   child: TextButton(
+                  //     onPressed: controller.forwardEventsAction,
+                  //     child: Row(
+                  //       children: <Widget>[
+                  //         const Icon(Icons.keyboard_arrow_left_outlined),
+                  //         Text(L10n.of(context)!.forward),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // Pangea#
                   controller.selectedEvents.length == 1
                       ? controller.selectedEvents.first
                               .getDisplayEvent(controller.timeline!)

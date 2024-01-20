@@ -51,6 +51,8 @@ class PApiUrls {
   static String firstStep = "/it_initialstep";
   static String subseqStep = "/it_step";
 
+  static String textToSpeech = "$choreoBaseApi/text_to_speech";
+
   ///-------------------------------- revenue cat --------------------------
   static String rcApiV1 = "https://api.revenuecat.com/v1";
   static String rcApiV2 =

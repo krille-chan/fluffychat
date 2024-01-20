@@ -3956,5 +3956,6 @@
     "inNoSpaces": "You are not a member of any classes or exchanges",
     "successfullySubscribed": "You have successfully subscribed!",
     "clickToManageSubscription": "Click here to manage your subscription.",
-    "emptyInviteWarning": "Add this chat to a class or exchange to invite other users."
+    "emptyInviteWarning": "Add this chat to a class or exchange to invite other users.",
+    "errorGettingAudio": "Error getting audio. Please refresh and try again."
 }
