@@ -2416,5 +2416,6 @@
         "placeholders": {
             "roomName": {}
         }
-    }
+    },
+    "sendReadReceipts": "Send read receipts"
 }

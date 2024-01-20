@@ -24,6 +24,8 @@ abstract class SettingKeys {
   static const String autoplayImages = 'chat.fluffy.autoplay_images';
   static const String sendTypingNotifications =
       'chat.fluffy.send_typing_notifications';
+  static const String sendPublicReadReceipts =
+      'chat.fluffy.send_public_read_receipts';
   static const String sendOnEnter = 'chat.fluffy.send_on_enter';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
 }

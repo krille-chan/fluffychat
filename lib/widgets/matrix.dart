@@ -459,6 +459,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.sendTypingNotifications) ??
             AppConfig.sendTypingNotifications;
 
+    AppConfig.sendPublicReadReceipts =
+        store.getBool(SettingKeys.sendPublicReadReceipts) ??
+            AppConfig.sendPublicReadReceipts;
+
     AppConfig.sendOnEnter =
         store.getBool(SettingKeys.sendOnEnter) ?? AppConfig.sendOnEnter;
 
