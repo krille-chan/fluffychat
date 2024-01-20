@@ -82,7 +82,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            chunk!.name ?? roomAlias ?? chunk!.roomId,
+            chunk?.name ?? roomAlias ?? chunk?.roomId ?? 'Unknown',
             overflow: TextOverflow.fade,
           ),
           leading: IconButton(
