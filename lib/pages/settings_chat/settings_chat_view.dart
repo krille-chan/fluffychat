@@ -71,6 +71,12 @@ class SettingsChatView extends StatelessWidget {
                 defaultValue: AppConfig.sendTypingNotifications,
               ),
               SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.sendReadReceipts,
+                onChanged: (b) => AppConfig.sendPublicReadReceipts = b,
+                storeKey: SettingKeys.sendPublicReadReceipts,
+                defaultValue: AppConfig.sendPublicReadReceipts,
+              ),
+              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
                 storeKey: SettingKeys.sendOnEnter,
