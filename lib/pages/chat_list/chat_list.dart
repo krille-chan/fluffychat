@@ -214,12 +214,34 @@ class ChatListController extends State<ChatList>
     }
     SearchUserDirectoryResponse? userSearchResult;
     QueryPublicRoomsResponse? roomSearchResult;
+    final searchQuery = searchController.text.trim();
     try {
       roomSearchResult = await client.queryPublicRooms(
         server: searchServer,
-        filter: PublicRoomQueryFilter(genericSearchTerm: searchController.text),
+        filter: PublicRoomQueryFilter(genericSearchTerm: searchQuery),
         limit: 20,
       );
+
+      if (searchQuery.isValidMatrixId &&
+          searchQuery.sigil == '#' &&
+          roomSearchResult.chunk
+                  .any((room) => room.canonicalAlias == searchQuery) ==
+              false) {
+        final response = await client.getRoomIdByAlias(searchQuery);
+        final roomId = response.roomId;
+        if (roomId != null) {
+          roomSearchResult.chunk.add(
+            PublicRoomsChunk(
+              name: searchQuery,
+              guestCanJoin: false,
+              numJoinedMembers: 0,
+              roomId: roomId,
+              worldReadable: false,
+              canonicalAlias: searchQuery,
+            ),
+          );
+        }
+      }
       userSearchResult = await client.searchUserDirectory(
         searchController.text,
         limit: 20,
