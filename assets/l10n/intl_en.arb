@@ -1529,11 +1529,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "renderRichContent": "Render rich message content",
-    "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
     "replaceRoomWithNewerVersion": "Replace room with newer version",
     "@replaceRoomWithNewerVersion": {
         "type": "text",
@@ -2417,5 +2412,10 @@
             "roomName": {}
         }
     },
-    "sendReadReceipts": "Send read receipts"
+    "sendReadReceipts": "Send read receipts",
+    "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
+    "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
+    "formattedMessages": "Formatted messages",
+    "formattedMessagesDescription": "Display rich message content like bold text using markdown."
+
 }

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {
@@ -105,7 +108,6 @@ class SettingsSecurityView extends StatelessWidget {
                   const Divider(height: 1),
                   ListTile(
                     leading: const Icon(Icons.tap_and_play),
-                    trailing: const Icon(Icons.chevron_right_outlined),
                     title: Text(
                       L10n.of(context)!.dehydrate,
                       style: const TextStyle(color: Colors.red),
@@ -114,7 +116,6 @@ class SettingsSecurityView extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.delete_outlined),
-                    trailing: const Icon(Icons.chevron_right_outlined),
                     title: Text(
                       L10n.of(context)!.deleteAccount,
                       style: const TextStyle(color: Colors.red),
@@ -128,6 +129,22 @@ class SettingsSecurityView extends StatelessWidget {
                       style: const TextStyle(fontFamily: 'monospace'),
                     ),
                     leading: const Icon(Icons.vpn_key_outlined),
+                  ),
+                  const Divider(height: 1),
+                  SettingsSwitchListTile.adaptive(
+                    title: L10n.of(context)!.sendTypingNotifications,
+                    subtitle:
+                        L10n.of(context)!.sendTypingNotificationsDescription,
+                    onChanged: (b) => AppConfig.sendTypingNotifications = b,
+                    storeKey: SettingKeys.sendTypingNotifications,
+                    defaultValue: AppConfig.sendTypingNotifications,
+                  ),
+                  SettingsSwitchListTile.adaptive(
+                    title: L10n.of(context)!.sendReadReceipts,
+                    subtitle: L10n.of(context)!.sendReadReceiptsDescription,
+                    onChanged: (b) => AppConfig.sendPublicReadReceipts = b,
+                    storeKey: SettingKeys.sendPublicReadReceipts,
+                    defaultValue: AppConfig.sendPublicReadReceipts,
                   ),
                 ],
               );
