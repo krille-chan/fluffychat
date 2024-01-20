@@ -193,7 +193,6 @@ class _AdaptableReactorsDialog extends StatelessWidget {
         context: context,
         builder: (context) => this,
         barrierDismissible: true,
-        useRootNavigator: false,
       );
 
   @override

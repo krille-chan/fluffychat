@@ -378,7 +378,6 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           : () async {
                               if (OkCancelResult.ok ==
                                   await showOkCancelAlertDialog(
-                                    useRootNavigator: false,
                                     context: context,
                                     title: L10n.of(context)!.recoveryKeyLost,
                                     message: L10n.of(context)!.wipeChatBackup,

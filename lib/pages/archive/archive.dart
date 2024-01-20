@@ -40,7 +40,6 @@ class ArchiveController extends State<Archive> {
     final client = Matrix.of(context).client;
     if (archive.isEmpty) return;
     if (await showOkCancelAlertDialog(
-          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
