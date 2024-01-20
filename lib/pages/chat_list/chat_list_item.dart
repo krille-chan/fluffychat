@@ -192,7 +192,7 @@ class ChatListItem extends StatelessWidget {
         : activeChat
             ? Theme.of(context).colorScheme.secondaryContainer
             : null;
-    final displayname = room.getLocalizedDisplayname(
+    var displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
 
@@ -202,8 +202,10 @@ class ChatListItem extends StatelessWidget {
     IconData? networkIcon;
     if (displayname.contains('(FB)')) {
       networkIcon = Icons.facebook;
+      displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
     } else if (displayname.contains('(Instagram)')) {
-      networkIcon = Icons.camera;
+      networkIcon = Icons.camera_alt;
+      displayname = displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
     }
 
     print(displayNameBrut);
