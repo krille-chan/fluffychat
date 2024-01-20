@@ -176,7 +176,12 @@ class BotBridgeConnection {
     final Room? roomBot = client.getRoomById(directChat);
 
     // Send the "ping" message to the bot
-    await roomBot?.sendTextEvent("ping");
+    try{
+      await roomBot?.sendTextEvent("ping");
+    }catch(error){
+      Logs().i('Error: $error');
+    }
+
     await Future.delayed(const Duration(seconds: 2)); // Wait sec
 
     String result = ''; // Variable to track the result of the connection
