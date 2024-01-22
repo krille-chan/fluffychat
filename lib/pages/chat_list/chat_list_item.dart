@@ -199,16 +199,35 @@ class ChatListItem extends StatelessWidget {
     final displayNameBrut = room.getLocalizedDisplayname();
 
     // Condition for checking displayName for the presence of social networks
-    IconData? networkIcon;
-    if (displayname.contains('(FB)')) {
-      networkIcon = Icons.facebook;
+    Image? networkImage;
+    Color? networkColor;
+    if (displayNameBrut.contains('(FB)')) {
+      networkColor = FluffyThemes.facebookColor;
+      networkImage = Image.asset(
+        'assets/facebook-messenger.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
       displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
-    } else if (displayname.contains('(Instagram)')) {
-      networkIcon = Icons.camera_alt;
-      displayname = displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+    } else if (displayNameBrut.contains('(Instagram)')) {
+      networkColor = FluffyThemes.instagramColor;
+      networkImage = Image.asset(
+        'assets/instagram.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname =
+          displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+    } else if (displayNameBrut.contains('(WA)')) {
+      networkColor = FluffyThemes.whatsAppColor;
+      networkImage = Image.asset(
+        'assets/whatsapp.png',
+        color: networkColor,
+        filterQuality: FilterQuality.high,
+      );
+      displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
     }
 
-    print(displayNameBrut);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -233,14 +252,14 @@ class ChatListItem extends StatelessWidget {
               ),
               title: Row(
                 children: <Widget>[
-                  networkIcon != null
-                      ? Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: Icon(
-                            networkIcon,
-                          ),
-                        )
-                      : Container(),
+                  if (networkImage != null)
+                    SizedBox(
+                      height: 24.0, // to adjust height
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: networkImage,
+                      ),
+                    ),
                   Expanded(
                     child: Text(
                       displayname,
@@ -248,8 +267,9 @@ class ChatListItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                       style: unread
-                          ? const TextStyle(fontWeight: FontWeight.bold)
-                          : null,
+                          ? TextStyle(
+                              fontWeight: FontWeight.bold, color: networkColor)
+                          : TextStyle(color: networkColor),
                     ),
                   ),
                   if (isMuted)
