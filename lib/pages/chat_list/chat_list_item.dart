@@ -196,36 +196,40 @@ class ChatListItem extends StatelessWidget {
       MatrixLocals(L10n.of(context)!),
     );
 
-    final displayNameBrut = room.getLocalizedDisplayname();
-
     // Condition for checking displayName for the presence of social networks
-    Image? networkImage;
-    Color? networkColor;
-    if (displayNameBrut.contains('(FB)')) {
-      networkColor = FluffyThemes.facebookColor;
-      networkImage = Image.asset(
-        'assets/facebook-messenger.png',
-        color: networkColor,
-        filterQuality: FilterQuality.high,
-      );
-      displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
-    } else if (displayNameBrut.contains('(Instagram)')) {
-      networkColor = FluffyThemes.instagramColor;
-      networkImage = Image.asset(
-        'assets/instagram.png',
-        color: networkColor,
-        filterQuality: FilterQuality.high,
-      );
-      displayname =
-          displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
-    } else if (displayNameBrut.contains('(WA)')) {
-      networkColor = FluffyThemes.whatsAppColor;
-      networkImage = Image.asset(
-        'assets/whatsapp.png',
-        color: networkColor,
-        filterQuality: FilterQuality.high,
-      );
-      displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+    Future<List<dynamic>> loadRoomInfo() async {
+      final displayNameBrut = room.getLocalizedDisplayname();
+      Color? networkColor;
+      Image? networkImage;
+
+      if (displayNameBrut.contains('(FB)')) {
+        networkColor = FluffyThemes.facebookColor;
+        networkImage = Image.asset(
+          'assets/facebook-messenger.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
+      } else if (displayNameBrut.contains('(Instagram)')) {
+        networkColor = FluffyThemes.instagramColor;
+        networkImage = Image.asset(
+          'assets/instagram.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        displayname =
+            displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+      } else if (displayNameBrut.contains('(WA)')) {
+        networkColor = FluffyThemes.whatsAppColor;
+        networkImage = Image.asset(
+          'assets/whatsapp.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+      }
+
+      return [networkColor, networkImage];
     }
 
     return Padding(
@@ -250,61 +254,86 @@ class ChatListItem extends StatelessWidget {
                 presenceUserId: room.directChatMatrixID,
                 presenceBackgroundColor: backgroundColor,
               ),
-              title: Row(
-                children: <Widget>[
-                  if (networkImage != null)
-                    SizedBox(
-                      height: 24.0, // to adjust height
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: networkImage,
+              title: FutureBuilder<List<dynamic>>(
+                future: loadRoomInfo(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container(
+                      alignment: Alignment.centerLeft,
+                      child: const SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(),
                       ),
-                    ),
-                  Expanded(
-                    child: Text(
-                      displayname,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                      style: unread
-                          ? TextStyle(
-                              fontWeight: FontWeight.bold, color: networkColor)
-                          : TextStyle(color: networkColor),
-                    ),
-                  ),
-                  if (isMuted)
-                    const Padding(
-                      padding: EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.notifications_off_outlined,
-                        size: 16,
-                      ),
-                    ),
-                  if (room.isFavourite || room.membership == Membership.invite)
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: hasNotifications ? 4.0 : 0.0,
-                      ),
-                      child: Icon(
-                        Icons.push_pin,
-                        size: 16,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  if (lastEvent != null && room.membership != Membership.invite)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Text(
-                        lastEvent.originServerTs.localizedTimeShort(context),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: unread
-                              ? Theme.of(context).colorScheme.secondary
-                              : Theme.of(context).textTheme.bodyMedium!.color,
+                    );
+                  } else {
+                    final networkColor = snapshot.data![0];
+                    final networkImage = snapshot.data![1];
+                    return Row(
+                      children: <Widget>[
+                        if (networkImage != null)
+                          SizedBox(
+                            height: 24.0, // to adjust height
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: networkImage,
+                            ),
+                          ),
+                        Expanded(
+                          child: Text(
+                            displayname,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            style: unread
+                                ? TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: networkColor)
+                                : TextStyle(color: networkColor),
+                          ),
                         ),
-                      ),
-                    ),
-                ],
+                        if (isMuted)
+                          const Padding(
+                            padding: EdgeInsets.only(left: 4.0),
+                            child: Icon(
+                              Icons.notifications_off_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        if (room.isFavourite ||
+                            room.membership == Membership.invite)
+                          Padding(
+                            padding: EdgeInsets.only(
+                              right: hasNotifications ? 4.0 : 0.0,
+                            ),
+                            child: Icon(
+                              Icons.push_pin,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        if (lastEvent != null &&
+                            room.membership != Membership.invite)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4.0),
+                            child: Text(
+                              lastEvent.originServerTs
+                                  .localizedTimeShort(context),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: unread
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  }
+                },
               ),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
