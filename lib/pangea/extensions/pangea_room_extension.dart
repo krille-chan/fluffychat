@@ -827,22 +827,23 @@ extension PangeaRoom on Room {
       if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
         return;
       }
-      final currentPower = getState(EventTypes.RoomPowerLevels);
+      final Event? currentPower = getState(EventTypes.RoomPowerLevels);
       final Map<String, dynamic>? currentPowerContent =
-          currentPower!.content["events"] as Map<String, dynamic>?;
+          currentPower?.content["events"] as Map<String, dynamic>?;
       final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
       final studentAnalyticsPower =
           currentPowerContent?[PangeaEventTypes.studentAnalyticsSummary];
 
-      if (spaceChildPower == null || studentAnalyticsPower == null) {
-        currentPowerContent!["events"][EventTypes.spaceChild] = 0;
+      if ((spaceChildPower == null || studentAnalyticsPower == null) &&
+          currentPowerContent != null) {
+        currentPowerContent["events"][EventTypes.spaceChild] = 0;
         currentPowerContent["events"]
             [PangeaEventTypes.studentAnalyticsSummary] = 0;
 
         await client.setRoomStateWithKey(
           id,
           EventTypes.RoomPowerLevels,
-          currentPower.stateKey ?? "",
+          currentPower?.stateKey ?? "",
           currentPowerContent,
         );
       }
