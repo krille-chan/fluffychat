@@ -57,10 +57,8 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      # #Pangea
-      #- name: Apply Google Services Patch
-      #  run: git apply ./scripts/enable-android-google-services.patch
-      # Pangea#
+      - name: Apply Google Services Patch
+        run: git apply ./scripts/enable-android-google-services.patch
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
@@ -128,10 +126,8 @@ jobs:
           ruby-version: 2.7
       - name: Install Fastlane
         run: gem install fastlane -NV
-      # #Pangea
-      #- name: Apply Google Services Patch
-      #  run: git apply ./scripts/enable-android-google-services.patch
-      # Pangea#
+      - name: Apply Google Services Patch
+        run: git apply ./scripts/enable-android-google-services.patch
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
