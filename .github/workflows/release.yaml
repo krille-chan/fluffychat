@@ -12,8 +12,9 @@ concurrency:
 jobs:
   build_web:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -25,11 +26,11 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - name: Build Release Web
-        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
       - name: Create archive
         run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: Web Build
           path: pangeachat-web.tar.gz
@@ -42,26 +43,12 @@ jobs:
           asset_path: pangeachat-web.tar.gz
           asset_name: pangeachat-web.tar.gz
           asset_content_type: application/gzip
-      - name: Build Website
-        run: |
-          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
-          mv docs public
-          mv repo public || true
-          mv build/web/ public/web
-          cp public/web -r public/nightly
-      - name: Deploy to GitHub Pages
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-          publish_dir: ./public
-          publish_branch: gh-pages
-          cname: fluffychat.im
 
   build_apk:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
@@ -96,8 +83,9 @@ jobs:
 
   build_linux:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -121,8 +109,9 @@ jobs:
 
   deploy_playstore:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
@@ -170,24 +159,20 @@ jobs:
           fi
           cd ..
 
-  promote_snapcraft:
+  deploy_web:
     runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+    needs: build_web
+    environment: staging
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v2
-      - name: Get Tag Name
-        id: tag_name
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-      - name: Promote Snap
-        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
-          SNAPCRAFT_HAS_TTY: "true"
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
-          else
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
-          fi
+      - uses: actions/checkout@v2
+      - name: Download web
+        uses: actions/download-artifact@v3
+        with:
+          name: web
+          path: build/web
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
