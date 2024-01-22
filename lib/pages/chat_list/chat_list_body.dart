@@ -26,7 +26,12 @@ class ChatListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final roomSearchResult = controller.roomSearchResult;
+    final publicRooms = controller.roomSearchResult?.chunk
+        .where((room) => room.roomType != 'm.space')
+        .toList();
+    final publicSpaces = controller.roomSearchResult?.chunk
+        .where((room) => room.roomType == 'm.space')
+        .toList();
     final userSearchResult = controller.userSearchResult;
     final client = Matrix.of(context).client;
     const dummyChatCount = 4;
@@ -59,8 +64,7 @@ class ChatListViewBody extends StatelessWidget {
             .where((s) => s.hasRoomUpdate)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, _) {
-          if (controller.activeFilter == ActiveFilter.spaces &&
-              !controller.isSearchMode) {
+          if (controller.activeFilter == ActiveFilter.spaces) {
             return SpaceView(
               controller,
               scrollController: controller.scrollController,
@@ -68,13 +72,6 @@ class ChatListViewBody extends StatelessWidget {
             );
           }
           final rooms = controller.filteredRooms;
-          // Pangea#
-          // final displayStoriesHeader = {
-          //       ActiveFilter.allChats,
-          //       ActiveFilter.messages,
-          //     }.contains(controller.activeFilter) &&
-          //     client.storiesRooms.isNotEmpty;
-          // Pangea#
           return SafeArea(
             child: CustomScrollView(
               controller: controller.scrollController,
@@ -88,39 +85,12 @@ class ChatListViewBody extends StatelessWidget {
                           title: L10n.of(context)!.publicRooms,
                           icon: const Icon(Icons.explore_outlined),
                         ),
-                        AnimatedContainer(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(),
-                          height: roomSearchResult == null ||
-                                  roomSearchResult.chunk.isEmpty
-                              ? 0
-                              : 106,
-                          duration: FluffyThemes.animationDuration,
-                          curve: FluffyThemes.animationCurve,
-                          child: roomSearchResult == null
-                              ? null
-                              : ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: roomSearchResult.chunk.length,
-                                  itemBuilder: (context, i) => _SearchItem(
-                                    title: roomSearchResult.chunk[i].name ??
-                                        roomSearchResult.chunk[i].canonicalAlias
-                                            ?.localpart ??
-                                        L10n.of(context)!.group,
-                                    avatar: roomSearchResult.chunk[i].avatarUrl,
-                                    onPressed: () => showAdaptiveBottomSheet(
-                                      context: context,
-                                      builder: (c) => PublicRoomBottomSheet(
-                                        roomAlias: roomSearchResult
-                                                .chunk[i].canonicalAlias ??
-                                            roomSearchResult.chunk[i].roomId,
-                                        outerContext: context,
-                                        chunk: roomSearchResult.chunk[i],
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                        PublicRoomsHorizontalList(publicRooms: publicRooms),
+                        SearchTitle(
+                          title: L10n.of(context)!.publicSpaces,
+                          icon: const Icon(Icons.workspaces_outlined),
                         ),
+                        PublicRoomsHorizontalList(publicRooms: publicSpaces),
                         SearchTitle(
                           title: L10n.of(context)!.users,
                           icon: const Icon(Icons.group_outlined),
@@ -157,16 +127,12 @@ class ChatListViewBody extends StatelessWidget {
                                   ),
                                 ),
                         ),
-                        SearchTitle(
-                          title: L10n.of(context)!.stories,
-                          icon: const Icon(Icons.camera_alt_outlined),
-                        ),
                       ],
                       // #Pangea
-                      // if (displayStoriesHeader)
-                      //   StoriesHeader(
-                      //     key: const Key('stories_header'),
-                      //     filter: controller.searchController.text,
+                      // if (!controller.isSearchMode &&
+                      //     controller.activeFilter != ActiveFilter.groups)
+                      //   StatusMessageList(
+                      //     onStatusEdit: controller.setStatus,
                       //   ),
                       // Pangea#
                       const ConnectionStatusHeader(),
@@ -308,6 +274,48 @@ class ChatListViewBody extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class PublicRoomsHorizontalList extends StatelessWidget {
+  const PublicRoomsHorizontalList({
+    super.key,
+    required this.publicRooms,
+  });
+
+  final List<PublicRoomsChunk>? publicRooms;
+
+  @override
+  Widget build(BuildContext context) {
+    final publicRooms = this.publicRooms;
+    return AnimatedContainer(
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(),
+      height: publicRooms == null || publicRooms.isEmpty ? 0 : 106,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+      child: publicRooms == null
+          ? null
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: publicRooms.length,
+              itemBuilder: (context, i) => _SearchItem(
+                title: publicRooms[i].name ??
+                    publicRooms[i].canonicalAlias?.localpart ??
+                    L10n.of(context)!.group,
+                avatar: publicRooms[i].avatarUrl,
+                onPressed: () => showAdaptiveBottomSheet(
+                  context: context,
+                  builder: (c) => PublicRoomBottomSheet(
+                    roomAlias:
+                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
+                    outerContext: context,
+                    chunk: publicRooms[i],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }

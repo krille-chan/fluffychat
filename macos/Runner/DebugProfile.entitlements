@@ -20,5 +20,7 @@
 	<true/>
 	<key>com.apple.security.personal-information.location</key>
 	<true/>
+	<key>keychain-access-groups</key>
+	<array/>
 </dict>
 </plist>

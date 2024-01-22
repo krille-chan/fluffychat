@@ -1,19 +1,18 @@
 import 'dart:async';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'matrix.dart';
 
 class ChatSettingsPopupMenu extends StatefulWidget {
@@ -54,16 +53,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         );
     final items = <PopupMenuEntry<String>>[
       // #Pangea
-      // PopupMenuItem<String>(
-      //   value: 'widgets',
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.widgets_outlined),
-      //       const SizedBox(width: 12),
-      //       Text(L10n.of(context)!.matrixWidgets),
-      //     ],
-      //   ),
-      // ),
       PopupMenuItem<String>(
         value: 'learning_settings',
         child: Row(
@@ -96,28 +85,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
-      // #Pangea
-      // PopupMenuItem<String>(
-      //   value: 'todos',
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.task_alt_outlined),
-      //       const SizedBox(width: 12),
-      //       Text(L10n.of(context)!.todoLists),
-      //     ],
-      //   ),
-      // ),
-      // PopupMenuItem<String>(
-      //   value: 'todos',
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.task_alt_outlined),
-      //       const SizedBox(width: 12),
-      //       Text(L10n.of(context)!.todoLists),
-      //     ],
-      //   ),
-      // ),
-      // Pangea#
       PopupMenuItem<String>(
         value: 'leave',
         child: Row(
@@ -230,11 +197,9 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                       widget.room.setPushRuleState(PushRuleState.notify),
                 );
                 break;
-              // #Pangea
-              // case 'todos':
-              //   context.go('/rooms/${widget.room.id}/tasks');
-              //   break;
-              // Pangea#
+              case 'todos':
+                context.go('/rooms/${widget.room.id}/tasks');
+                break;
               case 'details':
                 _showChatDetails();
                 break;
@@ -278,7 +243,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               case 'learning_settings':
                 context.go('/rooms/settings/learning');
                 break;
-              // #Pangea
+              // Pangea#
             }
           },
           itemBuilder: (BuildContext context) => items,

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
@@ -13,14 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install nodejs -y
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh

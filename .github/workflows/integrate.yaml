@@ -8,7 +8,7 @@ jobs:
   code_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -24,11 +24,13 @@ jobs:
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter analyze
       - run: flutter test
+      - name: Check for unused localization strings
+        run: flutter pub run translations_cleaner list-unused-terms -a
 
   build_debug_apk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v1
         with:
@@ -43,7 +45,7 @@ jobs:
   build_debug_web:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -57,7 +59,7 @@ jobs:
   build_debug_linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -71,7 +73,7 @@ jobs:
   build_debug_ios:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:

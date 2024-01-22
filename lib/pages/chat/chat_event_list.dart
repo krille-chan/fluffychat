@@ -1,10 +1,3 @@
-// Flutter imports:
-
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
@@ -16,6 +9,9 @@ import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
@@ -28,11 +24,16 @@ class ChatEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
+    final events = controller.timeline!.events
+        .where((event) => event.isVisibleInGui)
+        .toList();
+    final animateInEventIndex = controller.animateInEventIndex;
+
     // create a map of eventId --> index to greatly improve performance of
     // ListView's findChildIndexCallback
     final thisEventsKeyMap = <String, int>{};
-    for (var i = 0; i < controller.timeline!.events.length; i++) {
-      thisEventsKeyMap[controller.timeline!.events[i].eventId] = i;
+    for (var i = 0; i < events.length; i++) {
+      thisEventsKeyMap[events[i].eventId] = i;
     }
 
     return SelectionArea(
@@ -84,73 +85,86 @@ class ChatEventList extends StatelessWidget {
             // Pangea#
 
             // Request history button or progress indicator:
-            if (i == controller.timeline!.events.length + 1) {
+            if (i == events.length + 1) {
               if (controller.timeline!.isRequestingHistory) {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
               }
               if (controller.timeline!.canRequestHistory) {
-                return Center(
-                  child: IconButton(
-                    onPressed: controller.requestHistory,
-                    icon: const Icon(Icons.refresh_outlined),
-                  ),
+                return Builder(
+                  builder: (context) {
+                    WidgetsBinding.instance
+                        .addPostFrameCallback((_) => controller.requestHistory);
+                    return Center(
+                      child: IconButton(
+                        onPressed: controller.requestHistory,
+                        icon: const Icon(Icons.refresh_outlined),
+                      ),
+                    );
+                  },
                 );
               }
               return const SizedBox.shrink();
             }
+            i--;
+
             // The message at this index:
             // #Pangea
-            // final event = controller.timeline!.events[i - 1];
-            final event = controller.timeline!.events[i - 2];
+            // final event = events[i];
+            final event = events[i - 1];
             // Pangea#
+            final animateIn = animateInEventIndex != null &&
+                controller.timeline!.events.length > animateInEventIndex &&
+                event == controller.timeline!.events[animateInEventIndex];
 
             return AutoScrollTag(
               key: ValueKey(event.eventId),
-              index: i - 1,
+              index: i,
               controller: controller.scrollController,
-              child: event.isVisibleInGui
-                  ? Message(
-                      event,
-                      onSwipe: () => controller.replyAction(replyTo: event),
-                      // #Pangea
-                      onInfoTab: (_) => {},
-                      // onInfoTab: controller.showEventInfo,
-                      // Pangea#
-                      onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                        context: context,
-                        builder: (c) => UserBottomSheet(
-                          user: event.senderFromMemoryOrFallback,
-                          outerContext: context,
-                          onMention: () => controller.sendController.text +=
-                              '${event.senderFromMemoryOrFallback.mention} ',
-                        ),
-                      ),
-                      onSelect: controller.onSelectMessage,
-                      scrollToEventId: (String eventId) =>
-                          controller.scrollToEventId(eventId),
-                      // #Pangea
-                      // longPressSelect: controller.selectedEvents.isEmpty,
-                      selectedDisplayLang: controller
-                          .choreographer.messageOptions.selectedDisplayLang,
-                      immersionMode: controller.choreographer.immersionMode,
-                      definitions: controller.choreographer.definitionsEnabled,
-                      // Pangea#
-                      selected: controller.selectedEvents
-                          .any((e) => e.eventId == event.eventId),
-                      timeline: controller.timeline!,
-                      displayReadMarker:
-                          controller.readMarkerEventId == event.eventId &&
-                              controller.timeline?.allowNewEvent == false,
-                      nextEvent: i < controller.timeline!.events.length
-                          ? controller.timeline!.events[i]
-                          : null,
-                    )
-                  : const SizedBox.shrink(),
+              child: Message(
+                event,
+                animateIn: animateIn,
+                resetAnimateIn: () {
+                  controller.animateInEventIndex = null;
+                },
+                onSwipe: () => controller.replyAction(replyTo: event),
+                // #Pangea
+                onInfoTab: (_) => {},
+                // onInfoTab: controller.showEventInfo,
+                // Pangea#
+                onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                  context: context,
+                  builder: (c) => UserBottomSheet(
+                    user: event.senderFromMemoryOrFallback,
+                    outerContext: context,
+                    onMention: () => controller.sendController.text +=
+                        '${event.senderFromMemoryOrFallback.mention} ',
+                  ),
+                ),
+                highlightMarker:
+                    controller.scrollToEventIdMarker == event.eventId,
+                onSelect: controller.onSelectMessage,
+                scrollToEventId: (String eventId) =>
+                    controller.scrollToEventId(eventId),
+                // #Pangea
+                // longPressSelect: controller.selectedEvents.isEmpty,
+                selectedDisplayLang:
+                    controller.choreographer.messageOptions.selectedDisplayLang,
+                immersionMode: controller.choreographer.immersionMode,
+                definitions: controller.choreographer.definitionsEnabled,
+                // Pangea#
+                selected: controller.selectedEvents
+                    .any((e) => e.eventId == event.eventId),
+                timeline: controller.timeline!,
+                displayReadMarker:
+                    controller.readMarkerEventId == event.eventId &&
+                        controller.timeline?.allowNewEvent == false,
+                nextEvent: i + 1 < events.length ? events[i + 1] : null,
+              ),
             );
           },
-          childCount: controller.timeline!.events.length + 2,
+          childCount: events.length + 2,
           findChildIndexCallback: (key) =>
               controller.findChildIndexCallback(key, thisEventsKeyMap),
         ),

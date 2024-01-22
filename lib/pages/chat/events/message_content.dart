@@ -101,6 +101,7 @@ class MessageContent extends StatelessWidget {
                   mxContent: sender.avatarUrl,
                   name: sender.calcDisplayname(),
                   presenceUserId: sender.stateKey,
+                  client: event.room.client,
                 ),
                 title: Text(sender.calcDisplayname()),
                 subtitle: Text(event.originServerTs.localizedTime(context)),

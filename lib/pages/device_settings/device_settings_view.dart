@@ -47,7 +47,22 @@ class DevicesSettingsView extends StatelessWidget {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (controller.thisDevice != null)
+                      if (controller.thisDevice != null) ...[
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            L10n.of(context)!.thisDevice,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
                         UserDeviceListItem(
                           controller.thisDevice!,
                           rename: controller.renameDeviceAction,
@@ -56,24 +71,44 @@ class DevicesSettingsView extends StatelessWidget {
                           block: controller.blockDeviceAction,
                           unblock: controller.unblockDeviceAction,
                         ),
-                      const Divider(height: 1),
+                        const Divider(
+                          height: 16.0,
+                          indent: 16,
+                          endIndent: 16,
+                        ),
+                      ],
                       if (controller.notThisDevice.isNotEmpty)
-                        ListTile(
-                          title: Text(
-                            controller.errorDeletingDevices ??
-                                L10n.of(context)!.removeAllOtherDevices,
-                            style: const TextStyle(color: Colors.red),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
                           ),
-                          trailing: controller.loadingDeletingDevices
-                              ? const CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2,
-                                )
-                              : const Icon(Icons.delete_outline),
-                          onTap: controller.loadingDeletingDevices
-                              ? null
-                              : () => controller.removeDevicesAction(
-                                    controller.notThisDevice,
-                                  ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton.icon(
+                              label: Text(
+                                controller.errorDeletingDevices ??
+                                    L10n.of(context)!.removeAllOtherDevices,
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor:
+                                    Theme.of(context).colorScheme.error,
+                                side: BorderSide(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                              ),
+                              icon: controller.loadingDeletingDevices
+                                  ? const CircularProgressIndicator.adaptive(
+                                      strokeWidth: 2,
+                                    )
+                                  : const Icon(Icons.delete_outline),
+                              onPressed: controller.loadingDeletingDevices
+                                  ? null
+                                  : () => controller.removeDevicesAction(
+                                        controller.notThisDevice,
+                                      ),
+                            ),
+                          ),
                         )
                       else
                         Center(
@@ -82,7 +117,6 @@ class DevicesSettingsView extends StatelessWidget {
                             child: Text(L10n.of(context)!.noOtherDevicesFound),
                           ),
                         ),
-                      const Divider(height: 1),
                     ],
                   );
                 }

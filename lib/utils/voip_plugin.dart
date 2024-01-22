@@ -34,9 +34,9 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState? state) {
-    Logs().v('AppLifecycleState = $state');
     background = (state == AppLifecycleState.detached ||
         state == AppLifecycleState.paused);
+    Logs().w('Set background mode in VOIP plugin', background);
   }
 
   void addCallingOverlay(String callId, CallSession call) {

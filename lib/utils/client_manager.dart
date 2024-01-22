@@ -1,16 +1,23 @@
-import 'package:flutter/foundation.dart';
+import 'dart:io';
 
+import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/utils/custom_http_client.dart';
+import 'package:fluffychat/utils/custom_image_resizer.dart';
+import 'package:fluffychat/utils/init_with_restore.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/utils/custom_http_client.dart';
-import 'package:fluffychat/utils/custom_image_resizer.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -39,14 +46,19 @@ abstract class ClientManager {
     if (initialize) {
       await Future.wait(
         clients.map(
-          (client) => client
-              .init(
-                waitForFirstSync: false,
-                waitUntilLoadCompletedLoaded: false,
-              )
-              .catchError(
-                (e, s) => Logs().e('Unable to initialize client', e, s),
-              ),
+          (client) => client.initWithRestore(
+            onMigration: () {
+              // #Pangea
+              // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+              // sendInitNotification(
+              //   l10n.databaseMigrationTitle,
+              //   l10n.databaseMigrationBody,
+              // );
+              // Pangea#
+            },
+          ).catchError(
+            (e, s) => Logs().e('Unable to initialize client', e, s),
+          ),
         ),
       );
     }
@@ -99,8 +111,6 @@ abstract class ClientManager {
       importantStateEvents: <String>{
         // To make room emotes work
         'im.ponies.room_emotes',
-        // To check which story room we can post in
-        EventTypes.RoomPowerLevels,
         // #Pangea
         PangeaEventTypes.classSettings,
         PangeaEventTypes.rules,
@@ -110,13 +120,62 @@ abstract class ClientManager {
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      databaseBuilder: flutterMatrixSdkDatabaseBuilder,
+      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
       },
       nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
+      enableDehydratedDevices: true,
+    );
+  }
+
+  static void sendInitNotification(String title, String body) async {
+    if (kIsWeb) {
+      html.Notification(
+        title,
+        body: body,
+      );
+      return;
+    }
+    if (Platform.isLinux) {
+      await NotificationsClient().notify(
+        title,
+        body: body,
+        appName: AppConfig.applicationName,
+        hints: [
+          NotificationHint.soundName('message-new-instant'),
+        ],
+      );
+      return;
+    }
+
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    await flutterLocalNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('notifications_icon'),
+        iOS: DarwinInitializationSettings(),
+      ),
+    );
+
+    flutterLocalNotificationsPlugin.show(
+      0,
+      title,
+      body,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          AppConfig.pushNotificationsChannelId,
+          AppConfig.pushNotificationsChannelName,
+          channelDescription: AppConfig.pushNotificationsChannelDescription,
+          importance: Importance.max,
+          priority: Priority.max,
+          fullScreenIntent: true, // To show notification popup
+        ),
+        iOS: DarwinNotificationDetails(sound: 'notification.caf'),
+      ),
     );
   }
 }
