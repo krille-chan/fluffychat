@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
@@ -192,8 +191,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
 
-  File? wallpaper;
-
   void _initWithStore() async {
     try {
       if (client.isLogged()) {
@@ -328,7 +325,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         c.onLoginStateChanged.stream.listen((state) async {
       final loggedInWithMultipleClients = widget.clients.length > 1;
       // #Pangea
-      // PAuthGaurd.isLogged = state == LoginState.loggedIn;
+      // if (state == LoginState.loggedOut) {
+      //   InitWithRestoreExtension.deleteSessionBackup(name);
+      // }
       // Pangea#
       if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
@@ -448,16 +447,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     Logs().v('AppLifecycleState = $state');
-    final foreground = state != AppLifecycleState.detached &&
+    final foreground = state != AppLifecycleState.inactive &&
         state != AppLifecycleState.paused;
-    client.backgroundSync = foreground;
-    client.requestHistoryOnLimitedTimeline = !foreground;
+    client.syncPresence =
+        state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
+    if (PlatformInfos.isMobile) {
+      client.backgroundSync = foreground;
+      client.requestHistoryOnLimitedTimeline = !foreground;
+      Logs().v('Set background sync to', foreground);
+    }
   }
 
   void initSettings() {
-    final path = store.getString(SettingKeys.wallpaper);
-    if (path != null) wallpaper = File(path);
-
     AppConfig.fontSizeFactor =
         double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
             AppConfig.fontSizeFactor;

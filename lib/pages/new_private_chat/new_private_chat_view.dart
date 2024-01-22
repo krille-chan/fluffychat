@@ -1,11 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
@@ -15,6 +7,11 @@ import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
@@ -24,8 +21,6 @@ class NewPrivateChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchResponse = controller.searchResponse;
-    final qrCodeSize =
-        min(MediaQuery.of(context).size.width - 16, 256).toDouble();
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -33,24 +28,28 @@ class NewPrivateChatView extends StatelessWidget {
         title: Text(L10n.of(context)!.newChat),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
-          IconButton(
+          TextButton(
             onPressed:
                 UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
-            icon: const Icon(Icons.info_outlined),
+            child: Text(L10n.of(context)!.help),
           ),
         ],
       ),
       body: MaxWidthBody(
         withScrolling: false,
+        innerPadding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: TextField(
                 controller: controller.controller,
                 onChanged: controller.searchUsers,
                 decoration: InputDecoration(
-                  hintText: 'Search for @users...',
+                  hintText: L10n.of(context)!.searchForUsers,
                   prefixIcon: searchResponse == null
                       ? const Icon(Icons.search_outlined)
                       : FutureBuilder(
@@ -91,8 +90,9 @@ class NewPrivateChatView extends StatelessWidget {
                     : CrossFadeState.showSecond,
                 firstChild: ListView(
                   children: [
-                    ListTile(
-                      title: SelectableText.rich(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: SelectableText.rich(
                         TextSpan(
                           children: [
                             TextSpan(
@@ -107,33 +107,12 @@ class NewPrivateChatView extends StatelessWidget {
                           ],
                         ),
                         style: TextStyle(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          fontSize: 14,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 13,
                         ),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.copy_outlined,
-                          size: 16,
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                        ),
-                        onPressed: controller.copyUserId,
                       ),
                     ),
-                    if (PlatformInfos.isMobile)
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          child: const Icon(Icons.qr_code_scanner_outlined),
-                        ),
-                        title: Text(L10n.of(context)!.scanQrCode),
-                        onTap: controller.openScannerAction,
-                      ),
+                    const SizedBox(height: 8),
                     ListTile(
                       leading: CircleAvatar(
                         backgroundColor:
@@ -156,22 +135,38 @@ class NewPrivateChatView extends StatelessWidget {
                       title: Text(L10n.of(context)!.createGroup),
                       onTap: () => context.go('/rooms/newgroup'),
                     ),
-                    const SizedBox(height: 24),
+                    if (PlatformInfos.isMobile)
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          child: const Icon(Icons.qr_code_scanner_outlined),
+                        ),
+                        title: Text(L10n.of(context)!.scanQrCode),
+                        onTap: controller.openScannerAction,
+                      ),
                     Center(
-                      child: Material(
-                        borderRadius: BorderRadius.circular(12),
-                        elevation: 10,
-                        color: Colors.white,
-                        shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                        clipBehavior: Clip.hardEdge,
-                        // #Pangea - commenting this out because it's not super important and is throwing an error
-                        // child: QrImageView(
-                        //   data:
-                        //       'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                        //   version: QrVersions.auto,
-                        //   size: qrCodeSize,
-                        // ),
-                        // Pangea#
+                      child: Padding(
+                        padding: const EdgeInsets.all(64.0),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxHeight: 256),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(12),
+                            elevation: 10,
+                            color: Colors.white,
+                            shadowColor:
+                                Theme.of(context).appBarTheme.shadowColor,
+                            clipBehavior: Clip.hardEdge,
+                            child: QrImageView(
+                              data:
+                                  'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                              version: QrVersions.auto,
+                              // size: qrCodeSize,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],

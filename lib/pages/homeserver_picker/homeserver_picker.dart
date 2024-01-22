@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -17,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
@@ -53,7 +54,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
           context: context,
           title: L10n.of(context)!.indexedDbErrorTitle,
           message: L10n.of(context)!.indexedDbErrorLong,
-          onWillPop: () async => false,
         );
         _checkTorBrowser();
       },
@@ -89,7 +89,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       if (supportsSso) {
         _rawLoginTypes = await client.request(
           RequestType.GET,
-          '/client/r0/login',
+          '/client/v3/login',
         );
       }
     } catch (e) {
@@ -211,7 +211,23 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     return list;
   }
 
-  void login() => context.go('${GoRouterState.of(context).fullPath}/login');
+  List<PublicHomeserver>? cachedHomeservers;
+
+  Future<List<PublicHomeserver>> loadHomeserverList() async {
+    if (cachedHomeservers != null) return cachedHomeservers!;
+    final result = await Matrix.of(context)
+        .getLoginClient()
+        .httpClient
+        .get(AppConfig.homeserverList);
+    final resultJson = jsonDecode(result.body)['public_servers'] as List;
+    final homeserverList =
+        resultJson.map((json) => PublicHomeserver.fromJson(json)).toList();
+    return cachedHomeservers = homeserverList;
+  }
+
+  void login() => context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+      );
 
   @override
   void initState() {
@@ -229,21 +245,28 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     );
     final file = picked?.files.firstOrNull;
     if (file == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        try {
-          final client = Matrix.of(context).getLoginClient();
-          await client.importDump(String.fromCharCodes(file.bytes!));
-          Matrix.of(context).initMatrix();
-        } catch (e, s) {
-          Logs().e('Future error:', e, s);
-          // #Pangea
-          ErrorHandler.logError(e: e, s: s);
-          // Pangea#
-        }
-      },
-    );
+    setState(() {
+      error = null;
+      isLoading = isLoggingIn = true;
+    });
+    try {
+      final client = Matrix.of(context).getLoginClient();
+      await client.importDump(String.fromCharCodes(file.bytes!));
+      Matrix.of(context).initMatrix();
+    } catch (e, s) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+      // #Pangea
+      ErrorHandler.logError(e: e, s: s);
+      // Pangea#
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = isLoggingIn = false;
+        });
+      }
+    }
   }
 }
 

@@ -154,7 +154,7 @@ class _Reaction extends StatelessWidget {
           border: reacted!
               ? Border.all(
                   width: 1,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                 )
               : null,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),

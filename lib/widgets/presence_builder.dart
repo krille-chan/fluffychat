@@ -22,12 +22,15 @@ class PresenceBuilder extends StatelessWidget {
     if (userId == null) return builder(context, null);
 
     final client = this.client ?? Matrix.of(context).client;
-    return StreamBuilder(
-      stream: client.onPresenceChanged.stream
-          .where((cachedPresence) => cachedPresence.userid == userId),
-      builder: (context, snapshot) => builder(
-        context,
-        snapshot.data ?? client.presences[userId],
+    return FutureBuilder<CachedPresence>(
+      future: client.fetchCurrentPresence(userId),
+      builder: (context, cachedPresenceSnapshot) => StreamBuilder(
+        stream: client.onPresenceChanged.stream
+            .where((cachedPresence) => cachedPresence.userid == userId),
+        builder: (context, snapshot) => builder(
+          context,
+          snapshot.data ?? cachedPresenceSnapshot.data,
+        ),
       ),
     );
   }

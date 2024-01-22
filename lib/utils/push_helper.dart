@@ -65,6 +65,7 @@ Future<void> pushHelper(
           ticker: l10n?.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.max,
+          fullScreenIntent: true, // To show notification popup
         ),
       ),
     );
@@ -85,10 +86,9 @@ Future<void> _tryPushHelper(
     notification.toJson(),
   );
 
-  if (!isBackgroundMessage &&
+  if (notification.roomId != null &&
       activeRoomId == notification.roomId &&
-      activeRoomId != null &&
-      client.syncPresence == null) {
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
@@ -251,6 +251,7 @@ Future<void> _tryPushHelper(
     importance: Importance.max,
     priority: Priority.max,
     groupKey: notificationGroupId,
+    fullScreenIntent: true, // To show notification popup
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(

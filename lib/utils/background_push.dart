@@ -21,12 +21,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -34,11 +37,6 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 
-import 'package:fluffychat/pangea/constants/language_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
-import 'package:fluffychat/utils/push_helper.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
@@ -358,14 +356,11 @@ class BackgroundPush {
       }
       await client.roomsLoading;
       await client.accountDataLoading;
-      final isStory = client
-              .getRoomById(roomId)
-              ?.getState(EventTypes.RoomCreate)
-              ?.content
-              .tryGet<String>('type') ==
-          ClientStoriesExtension.storiesRoomType;
-      FluffyChatApp.router
-          .go('/${isStory ? 'rooms/stories' : 'rooms'}/$roomId');
+      FluffyChatApp.router.go(
+        client.getRoomById(roomId)?.membership == Membership.invite
+            ? '/rooms'
+            : '/rooms/$roomId',
+      );
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
       // #Pangea

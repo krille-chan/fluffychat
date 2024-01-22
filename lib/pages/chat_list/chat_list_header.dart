@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
@@ -17,7 +15,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: Theme.of(context).appBarTheme.toolbarHeight ?? 56,
+      toolbarHeight: 72,
       pinned:
           FluffyThemes.isColumnMode(context) || selectMode != SelectMode.normal,
       scrolledUnderElevation: selectMode == SelectMode.normal ? 0 : null,
@@ -56,19 +54,27 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       //         borderRadius: BorderRadius.circular(99),
       //       ),
       //       hintText: L10n.of(context)!.searchChatsRooms,
+      //       hintStyle: TextStyle(
+      //         color: Theme.of(context).colorScheme.onPrimaryContainer,
+      //         fontWeight: FontWeight.normal,
+      //       ),
       //       floatingLabelBehavior: FloatingLabelBehavior.never,
       //       prefixIcon: controller.isSearchMode
       //           ? IconButton(
       //               tooltip: L10n.of(context)!.cancel,
       //               icon: const Icon(Icons.close_outlined),
       //               onPressed: controller.cancelSearch,
-      //               color: Theme.of(context).colorScheme.onBackground,
+      //               color: Theme.of(context)
+      //                   .colorScheme
+      //                   .onPrimaryContainer,
       //             )
       //           : IconButton(
       //               onPressed: controller.startSearch,
       //               icon: Icon(
       //                 Icons.search_outlined,
-      //                 color: Theme.of(context).colorScheme.onBackground,
+      //                 color: Theme.of(context)
+      //                     .colorScheme
+      //                     .onPrimaryContainer,
       //               ),
       //             ),
       //       suffixIcon: controller.isSearchMode

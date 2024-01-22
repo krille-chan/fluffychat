@@ -15,7 +15,6 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
@@ -90,6 +89,7 @@ class ChatListController extends State<ChatList>
 
   void resetActiveSpaceId() {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = null;
       //#Pangea
       context.go("/rooms");
@@ -99,9 +99,17 @@ class ChatListController extends State<ChatList>
 
   void setActiveSpace(String? spaceId) {
     setState(() {
+      selectedRoomIds.clear();
       activeSpaceId = spaceId;
       activeFilter = ActiveFilter.spaces;
     });
+  }
+
+  void createNewSpace() async {
+    final spaceId = await context.push<String?>('/rooms/newspace');
+    if (spaceId != null) {
+      setActiveSpace(spaceId);
+    }
   }
 
   int get selectedIndex {
@@ -148,6 +156,7 @@ class ChatListController extends State<ChatList>
       // #Pangea
       debugPrint('onDestinationSelected $i');
       // Pangea#
+      selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
     });
     // #Pangea
@@ -167,30 +176,24 @@ class ChatListController extends State<ChatList>
     switch (activeFilter) {
       case ActiveFilter.allChats:
         return (room) =>
-            !room.isSpace &&
-            !room.isStoryRoom
-            // #Pangea
+            !room.isSpace // #Pangea
             &&
             !room.isAnalyticsRoom;
-      // Pangea#
+      // Pangea#;
       case ActiveFilter.groups:
         return (room) =>
             !room.isSpace &&
-            !room.isDirectChat &&
-            !room.isStoryRoom
-            // #Pangea
+            !room.isDirectChat // #Pangea
             &&
             !room.isAnalyticsRoom;
-      // Pangea#
+      // Pangea#;
       case ActiveFilter.messages:
         return (room) =>
             !room.isSpace &&
-            room.isDirectChat &&
-            !room.isStoryRoom
-            // #Pangea
+            room.isDirectChat // #Pangea
             &&
             !room.isAnalyticsRoom;
-      // Pangea#
+      // Pangea#;
       case ActiveFilter.spaces:
         return (r) => r.isSpace;
     }
@@ -615,26 +618,34 @@ class ChatListController extends State<ChatList>
   }
 
   void setStatus() async {
+    final client = Matrix.of(context).client;
+    final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
+      message: L10n.of(context)!.leaveEmptyToClearStatus,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
           hintText: L10n.of(context)!.statusExampleMessage,
+          maxLines: 6,
+          minLines: 1,
+          maxLength: 255,
+          initialText: currentPresence.statusMsg,
         ),
       ],
     );
     if (input == null) return;
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.setPresence(
-            Matrix.of(context).client.userID!,
-            PresenceType.online,
-            statusMsg: input.single,
-          ),
+      future: () => client.setPresence(
+        client.userID!,
+        PresenceType.online,
+        statusMsg: input.single,
+      ),
     );
   }
 
@@ -754,7 +765,7 @@ class ChatListController extends State<ChatList>
     if (mounted) {
       GoogleAnalytics.analyticsUserUpdate(client.userID);
       await pangeaController.subscriptionController.initialize();
-      await pangeaController.afterSyncAndFirstLoginInitialization(context);
+      pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
     } else {
       ErrorHandler.logError(

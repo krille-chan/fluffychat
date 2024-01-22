@@ -1,13 +1,11 @@
 import 'dart:math';
 
+import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/widgets/common/pangea_logo_svg.dart';
-
 class EmptyPage extends StatelessWidget {
-  final bool loading;
-  static const double _width = 300;
-  const EmptyPage({this.loading = false, super.key});
+  static const double _width = 400;
+  const EmptyPage({super.key});
   @override
   Widget build(BuildContext context) {
     final width = min(MediaQuery.of(context).size.width, EmptyPage._width) / 2;
@@ -16,34 +14,20 @@ class EmptyPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Hero(
-              tag: 'info-logo',
-              // #Pangea
-              // child: Image.asset(
-              //   'assets/favicon.png',
-              //   width: width,
-              //   height: width,
-              //   filterQuality: FilterQuality.medium,
-              // ),
-              child: PangeaLogoSvg(width: width),
-              // Pangea#
-            ),
-          ),
-          if (loading)
-            Center(
-              child: SizedBox(
-                width: width,
-                child: const LinearProgressIndicator(),
-              ),
-            ),
-        ],
+      body: Container(
+        alignment: Alignment.center,
+        // #Pangea
+        child: PangeaLogoSvg(width: width),
+        // child: Image.asset(
+        //   'assets/info-logo.png',
+        //   width: width,
+        //   height: width,
+        //   filterQuality: FilterQuality.medium,
+        // ),
+        // Pangea#
       ),
     );
   }

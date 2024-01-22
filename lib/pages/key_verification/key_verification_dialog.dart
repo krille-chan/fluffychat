@@ -139,8 +139,10 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: L10n.of(context)!.passphraseOrKey,
-                  prefixStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  suffixStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  prefixStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                  suffixStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
                   border: const OutlineInputBorder(),
                 ),
               ),
@@ -224,6 +226,13 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 textAlign: TextAlign.center,
               ),
             ],
+          ),
+        );
+        buttons.add(
+          TextButton.icon(
+            icon: const Icon(Icons.close),
+            label: Text(L10n.of(context)!.cancel),
+            onPressed: () => widget.request.cancel(),
           ),
         );
 
@@ -320,11 +329,13 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
       case KeyVerificationState.error:
+        title = const Text('');
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Icon(Icons.cancel, color: Colors.red, size: 128.0),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
+            // TODO: Add better error UI to user
             Text(
               'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}',
               textAlign: TextAlign.center,
