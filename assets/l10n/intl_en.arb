@@ -2420,5 +2420,47 @@
     "verifyOtherUser": "🔐 Verify other user",
     "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
     "verifyOtherDevice": "🔐 Verify other device",
-    "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳"
+    "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
+    "acceptedKeyVerification": "{sender} accepted key verification",
+    "@acceptedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "canceledKeyVerification": "{sender} canceled key verification",
+    "@canceledKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "completedKeyVerification": "{sender} completed key verification",
+    "@completedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "isReadyForKeyVerification": "{sender} is ready for key verification",
+    "@isReadyForKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "requestedKeyVerification": "{sender} requested key verification",
+    "@requestedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "startedKeyVerification": "{sender} started key verification",
+    "@startedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    }
 }
