@@ -34,6 +34,11 @@ jobs:
         with:
           name: Web Build
           path: pangeachat-web.tar.gz
+      - name: Upload files for deploy stage
+        uses: actions/upload-artifact@v3
+        with:
+          name: web
+          path: build/web
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
