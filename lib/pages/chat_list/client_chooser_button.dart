@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-// Project imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,16 +36,6 @@ class ClientChooserButton extends StatelessWidget {
     // Pangea#
     return <PopupMenuEntry<Object>>[
       // #Pangea
-      // PopupMenuItem(
-      //   value: SettingsAction.newStory,
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.camera_outlined),
-      //       const SizedBox(width: 18),
-      //       Text(L10n.of(context)!.yourStory),
-      //     ],
-      //   ),
-      // ),
       // PopupMenuItem(
       //   value: SettingsAction.newGroup,
       //   child: Row(
@@ -141,6 +131,16 @@ class ClientChooserButton extends StatelessWidget {
           ),
         ),
       // PopupMenuItem(
+      //   value: SettingsAction.setStatus,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.edit_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context)!.setStatus),
+      //     ],
+      //   ),
+      // ),
+      // PopupMenuItem(
       //   value: SettingsAction.invite,
       //   child: Row(
       //     children: [
@@ -178,10 +178,7 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       // #Pangea
-      // const PopupMenuItem(
-      //   value: null,
-      //   child: Divider(height: 1),
-      // ),
+      // const PopupMenuDivider(),
       // for (final bundle in bundles) ...[
       //   if (matrix.accountBundles[bundle]!.length != 1 ||
       //       matrix.accountBundles[bundle]!.single!.userID != bundle)
@@ -365,28 +362,23 @@ class ClientChooserButton extends StatelessWidget {
       controller.setActiveBundle(object);
     } else if (object is SettingsAction) {
       switch (object) {
-        // #Pangea
-        // case SettingsAction.addAccount:
-        //   final consent = await showOkCancelAlertDialog(
-        //     context: context,
-        //     title: L10n.of(context)!.addAccount,
-        //     message: L10n.of(context)!.enableMultiAccounts,
-        //     okLabel: L10n.of(context)!.next,
-        //     cancelLabel: L10n.of(context)!.cancel,
-        //   );
-        //   if (consent != OkCancelResult.ok) return;
-        //   context.go('/rooms/settings/addaccount');
-        //   break;
-        // case SettingsAction.newStory:
-        //   context.go('/rooms/stories/create');
-        //   break;
-        // case SettingsAction.newGroup:
-        //   context.go('/rooms/newgroup');
-        //   break;
-        // case SettingsAction.newSpace:
-        //   context.go('/rooms/newspace');
-        //   break;
-        // Pangea#
+        case SettingsAction.addAccount:
+          final consent = await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context)!.addAccount,
+            message: L10n.of(context)!.enableMultiAccounts,
+            okLabel: L10n.of(context)!.next,
+            cancelLabel: L10n.of(context)!.cancel,
+          );
+          if (consent != OkCancelResult.ok) return;
+          context.go('/rooms/settings/addaccount');
+          break;
+        case SettingsAction.newGroup:
+          context.go('/rooms/newgroup');
+          break;
+        case SettingsAction.newSpace:
+          controller.createNewSpace();
+          break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
@@ -396,6 +388,8 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.archive:
           context.go('/rooms/archive');
           break;
+        case SettingsAction.setStatus:
+          controller.setStatus();
         // #Pangea
         case SettingsAction.newClass:
           context.go('/rooms/newspace');
@@ -504,12 +498,10 @@ class ClientChooserButton extends StatelessWidget {
 }
 
 enum SettingsAction {
-  // #Pangea
-  // addAccount,
-  // newStory,
-  // newGroup,
-  // newSpace,
-  // Pangea#
+  addAccount,
+  newGroup,
+  newSpace,
+  setStatus,
   invite,
   settings,
   archive,

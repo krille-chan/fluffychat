@@ -1,5 +1,3 @@
-// Flutter imports:
-
 import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -18,7 +16,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -42,7 +39,7 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
-        // #Pangea
+// #Pangea
         LanguageDisplayToggle(controller: controller),
         // Pangea#
         if (controller.canEditSelectedEvents)
@@ -185,269 +182,268 @@ class ChatView extends StatelessWidget {
       child: GestureDetector(
         onTapDown: (_) => controller.setReadMarker(),
         behavior: HitTestBehavior.opaque,
-        child: StreamBuilder(
-          stream: controller.room.onUpdate.stream
-              .rateLimit(const Duration(seconds: 1)),
-          builder: (context, snapshot) => FutureBuilder(
-            future: controller.loadTimelineFuture,
-            builder: (BuildContext context, snapshot) {
-              return Scaffold(
-                appBar: AppBar(
-                  actionsIconTheme: IconThemeData(
-                    color: controller.selectedEvents.isEmpty
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
-                  ),
-                  leading: controller.selectMode
-                      ? IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: controller.clearSelectedEvents,
-                          tooltip: L10n.of(context)!.close,
-                          color: Theme.of(context).colorScheme.primary,
-                        )
-                      : UnreadRoomsBadge(
-                          filter: (r) =>
-                              r.id != controller.roomId
-                              // #Pangea
-                              &&
-                              !r.isAnalyticsRoom,
-                          // Pangea#
-                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                          child: const Center(child: BackButton()),
-                        ),
-                  titleSpacing: 0,
-                  title: ChatAppBarTitle(controller),
-                  actions: _appBarActions(context),
-                ),
-                // #Pangea
-                // floatingActionButton: controller.showScrollDownButton &&
-                //         controller.selectedEvents.isEmpty
-                floatingActionButton: controller.selectedEvents.isEmpty
-                    ? (controller.showScrollDownButton
-                        // Pangea#
-                        ? Padding(
-                            padding: const EdgeInsets.only(bottom: 56.0),
-                            child: FloatingActionButton(
-                              onPressed: controller.scrollDown,
-                              heroTag: null,
-                              mini: true,
-                              child: const Icon(Icons.arrow_downward_outlined),
-                            ),
+        child: MouseRegion(
+          onEnter: (_) => controller.setReadMarker(),
+          child: StreamBuilder(
+            stream: controller.room.onUpdate.stream
+                .rateLimit(const Duration(seconds: 1)),
+            builder: (context, snapshot) => FutureBuilder(
+              future: controller.loadTimelineFuture,
+              builder: (BuildContext context, snapshot) {
+                return Scaffold(
+                  appBar: AppBar(
+                    actionsIconTheme: IconThemeData(
+                      color: controller.selectedEvents.isEmpty
+                          ? null
+                          : Theme.of(context).colorScheme.primary,
+                    ),
+                    leading: controller.selectMode
+                        ? IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: controller.clearSelectedEvents,
+                            tooltip: L10n.of(context)!.close,
+                            color: Theme.of(context).colorScheme.primary,
                           )
-                        // #Pangea
-                        : controller.choreographer.errorService.error != null
-                            ? ChoreographerHasErrorButton(
-                                controller.pangeaController,
-                                controller.choreographer.errorService.error!,
-                              )
-                            : controller.showPermissionsError
-                                ? LanguagePermissionsButtons(
-                                    choreographer: controller.choreographer,
-                                    roomID: controller.roomId,
-                                  )
-                                : null)
-                    // #Pangea
-                    : null,
-                body: DropTarget(
-                  onDragDone: controller.onDragDone,
-                  onDragEntered: controller.onDragEntered,
-                  onDragExited: controller.onDragExited,
-                  child: Stack(
-                    children: <Widget>[
-                      if (Matrix.of(context).wallpaper != null)
-                        Image.file(
-                          Matrix.of(context).wallpaper!,
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.medium,
-                        ),
-                      SafeArea(
-                        child: Column(
-                          children: <Widget>[
-                            TombstoneDisplay(controller),
-                            if (scrollUpBannerEventId != null)
-                              Material(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceVariant,
-                                shape: Border(
-                                  bottom: BorderSide(
-                                    width: 1,
-                                    color: Theme.of(context).dividerColor,
+                        : UnreadRoomsBadge(
+                            filter: (r) =>
+                                r.id != controller.roomId
+                                // #Pangea
+                                &&
+                                !r.isAnalyticsRoom,
+                            // Pangea#
+                            badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                            child: const Center(child: BackButton()),
+                          ),
+                    titleSpacing: 0,
+                    title: ChatAppBarTitle(controller),
+                    actions: _appBarActions(context),
+                  ),
+                  // #Pangea
+                  // floatingActionButton: controller.showScrollDownButton &&
+                  //         controller.selectedEvents.isEmpty
+                  floatingActionButton: controller.selectedEvents.isEmpty
+                      ? (controller.showScrollDownButton
+                          // Pangea#
+                          ? Padding(
+                              padding: const EdgeInsets.only(bottom: 56.0),
+                              child: FloatingActionButton(
+                                onPressed: controller.scrollDown,
+                                heroTag: null,
+                                mini: true,
+                                child:
+                                    const Icon(Icons.arrow_downward_outlined),
+                              ),
+                            )
+                          // #Pangea
+                          : controller.choreographer.errorService.error != null
+                              ? ChoreographerHasErrorButton(
+                                  controller.pangeaController,
+                                  controller.choreographer.errorService.error!,
+                                )
+                              : controller.showPermissionsError
+                                  ? LanguagePermissionsButtons(
+                                      choreographer: controller.choreographer,
+                                      roomID: controller.roomId,
+                                    )
+                                  : null)
+                      // #Pangea
+                      : null,
+                  body: DropTarget(
+                    onDragDone: controller.onDragDone,
+                    onDragEntered: controller.onDragEntered,
+                    onDragExited: controller.onDragExited,
+                    child: Stack(
+                      children: <Widget>[
+                        SafeArea(
+                          child: Column(
+                            children: <Widget>[
+                              TombstoneDisplay(controller),
+                              if (scrollUpBannerEventId != null)
+                                Material(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceVariant,
+                                  shape: Border(
+                                    bottom: BorderSide(
+                                      width: 1,
+                                      color: Theme.of(context).dividerColor,
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                      icon: const Icon(Icons.close),
+                                      tooltip: L10n.of(context)!.close,
+                                      onPressed: () {
+                                        controller
+                                            .discardScrollUpBannerEventId();
+                                        controller.setReadMarker();
+                                      },
+                                    ),
+                                    title: Text(
+                                      L10n.of(context)!.jumpToLastReadMessage,
+                                    ),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 8),
+                                    trailing: TextButton(
+                                      onPressed: () {
+                                        controller.scrollToEventId(
+                                          scrollUpBannerEventId,
+                                        );
+                                        controller
+                                            .discardScrollUpBannerEventId();
+                                      },
+                                      child: Text(L10n.of(context)!.jump),
+                                    ),
                                   ),
                                 ),
-                                child: ListTile(
-                                  leading: IconButton(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSurfaceVariant,
-                                    icon: const Icon(Icons.close),
-                                    tooltip: L10n.of(context)!.close,
-                                    onPressed: () {
-                                      controller.discardScrollUpBannerEventId();
-                                      controller.setReadMarker();
-                                    },
-                                  ),
-                                  title: Text(
-                                    L10n.of(context)!.jumpToLastReadMessage,
-                                  ),
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 8),
-                                  trailing: TextButton(
-                                    onPressed: () {
-                                      controller.scrollToEventId(
-                                        scrollUpBannerEventId,
+                              PinnedEvents(controller),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: controller.clearSingleSelectedEvent,
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (controller.timeline == null) {
+                                        return const Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive(
+                                            strokeWidth: 2,
+                                          ),
+                                        );
+                                      }
+                                      return ChatEventList(
+                                        controller: controller,
                                       );
-                                      controller.discardScrollUpBannerEventId();
                                     },
-                                    child: Text(L10n.of(context)!.jump),
                                   ),
                                 ),
                               ),
-                            PinnedEvents(controller),
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: controller.clearSingleSelectedEvent,
-                                child: Builder(
-                                  builder: (context) {
-                                    if (controller.timeline == null) {
-                                      return const Center(
-                                        child:
-                                            CircularProgressIndicator.adaptive(
-                                          strokeWidth: 2,
-                                        ),
-                                      );
-                                    }
-
-                                    return ChatEventList(
-                                      controller: controller,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            if (controller.room.canSendDefaultMessages &&
-                                controller.room.membership == Membership.join)
-                              // #Pangea
-                              // Container(
-                              ConditionalFlexible(
-                                isScroll: controller.isRowScrollable,
-                                child: ConditionalScroll(
+                              if (controller.room.canSendDefaultMessages &&
+                                  controller.room.membership == Membership.join)
+                                // #Pangea
+                                // Container(
+                                ConditionalFlexible(
                                   isScroll: controller.isRowScrollable,
-                                  child: MeasurableWidget(
-                                    onChange: (size, position) {
-                                      controller.inputRowSize = size!.height;
-                                    },
-                                    child: Container(
-                                      // Pangea#
-                                      margin: EdgeInsets.only(
-                                        bottom: bottomSheetPadding,
-                                        left: bottomSheetPadding,
-                                        right: bottomSheetPadding,
-                                      ),
-                                      constraints: const BoxConstraints(
-                                        maxWidth:
-                                            FluffyThemes.columnWidth * 2.5,
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Material(
-                                        borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(
-                                            AppConfig.borderRadius,
-                                          ),
-                                          bottomRight: Radius.circular(
-                                            AppConfig.borderRadius,
-                                          ),
+                                  child: ConditionalScroll(
+                                    isScroll: controller.isRowScrollable,
+                                    child: MeasurableWidget(
+                                      onChange: (size, position) {
+                                        controller.inputRowSize = size!.height;
+                                      },
+                                      child: Container(
+                                        // Pangea#
+                                        margin: EdgeInsets.only(
+                                          bottom: bottomSheetPadding,
+                                          left: bottomSheetPadding,
+                                          right: bottomSheetPadding,
                                         ),
-                                        elevation: 4,
-                                        shadowColor: Colors.black.withAlpha(64),
-                                        clipBehavior: Clip.hardEdge,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
-                                        child: controller
-                                                    .room.isAbandonedDMRoom ==
-                                                true
-                                            ? Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  TextButton.icon(
-                                                    style: TextButton.styleFrom(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                        16,
+                                        constraints: const BoxConstraints(
+                                          maxWidth:
+                                              FluffyThemes.columnWidth * 2.5,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Material(
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                            bottomRight: Radius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                          ),
+                                          elevation: 4,
+                                          shadowColor:
+                                              Colors.black.withAlpha(64),
+                                          clipBehavior: Clip.hardEdge,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.white
+                                              : Colors.black,
+                                          child: controller
+                                                      .room.isAbandonedDMRoom ==
+                                                  true
+                                              ? Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    TextButton.icon(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(16),
+                                                        foregroundColor:
+                                                            Theme.of(context)
+                                                                .colorScheme
+                                                                .error,
                                                       ),
-                                                      foregroundColor:
-                                                          Theme.of(context)
-                                                              .colorScheme
-                                                              .error,
-                                                    ),
-                                                    icon: const Icon(
-                                                      Icons.archive_outlined,
-                                                    ),
-                                                    onPressed:
-                                                        controller.leaveChat,
-                                                    label: Text(
-                                                      L10n.of(context)!.leave,
-                                                    ),
-                                                  ),
-                                                  TextButton.icon(
-                                                    style: TextButton.styleFrom(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                        16,
+                                                      icon: const Icon(
+                                                        Icons.archive_outlined,
+                                                      ),
+                                                      onPressed:
+                                                          controller.leaveChat,
+                                                      label: Text(
+                                                        L10n.of(context)!.leave,
                                                       ),
                                                     ),
-                                                    icon: const Icon(
-                                                      Icons.forum_outlined,
+                                                    TextButton.icon(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(16),
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.forum_outlined,
+                                                      ),
+                                                      onPressed: controller
+                                                          .recreateChat,
+                                                      label: Text(
+                                                        L10n.of(context)!
+                                                            .reopenChat,
+                                                      ),
                                                     ),
-                                                    onPressed:
-                                                        controller.recreateChat,
-                                                    label: Text(
-                                                      L10n.of(context)!
-                                                          .reopenChat,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            : Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  const ConnectionStatusHeader(),
-                                                  ReactionsPicker(controller),
-                                                  ReplyDisplay(controller),
-                                                  ChatInputRow(controller),
-                                                  ChatEmojiPicker(controller),
-                                                ],
-                                              ),
+                                                  ],
+                                                )
+                                              : Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    const ConnectionStatusHeader(),
+                                                    ReactionsPicker(controller),
+                                                    ReplyDisplay(controller),
+                                                    ChatInputRow(controller),
+                                                    ChatEmojiPicker(controller),
+                                                  ],
+                                                ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            if (controller.dragging)
-                              Container(
-                                color: Theme.of(context)
-                                    .scaffoldBackgroundColor
-                                    .withOpacity(0.9),
-                                alignment: Alignment.center,
-                                child: const Icon(
-                                  Icons.upload_outlined,
-                                  size: 100,
+                              if (controller.dragging)
+                                Container(
+                                  color: Theme.of(context)
+                                      .scaffoldBackgroundColor
+                                      .withOpacity(0.9),
+                                  alignment: Alignment.center,
+                                  child: const Icon(
+                                    Icons.upload_outlined,
+                                    size: 100,
+                                  ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

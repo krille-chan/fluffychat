@@ -50,6 +50,8 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_hug;
     case 'cuddle':
       return l10n.commandHint_cuddle;
+    case 'sendraw':
+      return l10n.commandHint_sendraw;
     default:
       return "";
   }

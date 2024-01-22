@@ -35,11 +35,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "addGroupDescription": "Engade a descrición do grupo",
-  "@addGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
   "admin": "Admin",
   "@admin": {
     "type": "text",
@@ -304,11 +299,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeWallpaper": "Cambiar imaxe de fondo",
-  "@changeWallpaper": {
-    "type": "text",
-    "placeholders": {}
-  },
   "changeYourAvatar": "Cambia o avatar",
   "@changeYourAvatar": {
     "type": "text",
@@ -346,11 +336,6 @@
   },
   "chooseAStrongPassword": "Escolle un contrasinal forte",
   "@chooseAStrongPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "chooseAUsername": "Elixe un identificador",
-  "@chooseAUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -529,11 +514,6 @@
       "username": {}
     }
   },
-  "createNewGroup": "Crear novo grupo",
-  "@createNewGroup": {
-    "type": "text",
-    "placeholders": {}
-  },
   "createNewSpace": "Novo espazo",
   "@createNewSpace": {
     "type": "text",
@@ -599,11 +579,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "deny": "Denegar",
-  "@deny": {
-    "type": "text",
-    "placeholders": {}
-  },
   "device": "Dispositivo",
   "@device": {
     "type": "text",
@@ -641,11 +616,6 @@
   },
   "editBlockedServers": "Editar servidores bloqueados",
   "@editBlockedServers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "editChatPermissions": "Editar permisos da conversa",
-  "@editChatPermissions": {
     "type": "text",
     "placeholders": {}
   },
@@ -736,18 +706,11 @@
       "senderName": {}
     }
   },
-  "enterAGroupName": "Escribe un nome para o grupo",
-  "@enterAGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
   "enterAnEmailAddress": "Escribe un enderezo de email",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
-  "enterASpacepName": "Escribe o nome para o espazo",
-  "@enterASpacepName": {},
   "enterYourHomeserver": "Escribe o teu servidor de inicio",
   "@enterYourHomeserver": {
     "type": "text",
@@ -807,16 +770,6 @@
   },
   "group": "Grupo",
   "@group": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescription": "Descrición do grupo",
-  "@groupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "groupDescriptionHasBeenChanged": "Cambiouse a descrición do grupo",
-  "@groupDescriptionHasBeenChanged": {
     "type": "text",
     "placeholders": {}
   },
@@ -892,16 +845,6 @@
   },
   "ignoredUsers": "Usuarias ignoradas",
   "@ignoredUsers": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreListDescription": "Podes ignorar usuarias molestas. Non recibirás ningunha mensaxe nin convites a salas da túa lista personal de usuarias ignoradas.",
-  "@ignoreListDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "ignoreUsername": "Ignorar nome de usuaria",
-  "@ignoreUsername": {
     "type": "text",
     "placeholders": {}
   },
@@ -1008,11 +951,6 @@
       "localizedTimeShort": {}
     }
   },
-  "lastSeenLongTimeAgo": "Hai moito que non aparece",
-  "@lastSeenLongTimeAgo": {
-    "type": "text",
-    "placeholders": {}
-  },
   "leave": "Saír",
   "@leave": {
     "type": "text",
@@ -1072,20 +1010,8 @@
       "homeserver": {}
     }
   },
-  "loginWith": "Conecta con {brand}",
-  "@loginWith": {
-    "type": "text",
-    "placeholders": {
-      "brand": {}
-    }
-  },
   "logout": "Pechar sesión",
   "@logout": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "makeSureTheIdentifierIsValid": "Asegúrate de que o identificador é válido",
-  "@makeSureTheIdentifierIsValid": {
     "type": "text",
     "placeholders": {}
   },
@@ -1101,11 +1027,6 @@
   },
   "messages": "Mensaxes",
   "@messages": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "messageWillBeRemovedWarning": "Vai ser eliminada a mensaxe para todas as participantes",
-  "@messageWillBeRemovedWarning": {
     "type": "text",
     "placeholders": {}
   },
@@ -1164,7 +1085,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Semella que non tes Firebase Cloud Messaging dispoñible no teu dispositivo. Para recibir notificacións push recomendamos que instales MicroG ou Unified Push.",
+  "noGoogleServicesWarning": "Semella que non tes Firebase Cloud Messaging dispoñible no teu dispositivo. Para recibir notificacións push recomendamos que instales ntfy. Con ntfy ou outro provedor Unified Push podes recibir notificacións push de xeito seguro. Podes descargar ntfy desde a PlayStore ou F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1269,11 +1190,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalGroupName": "(Optativo) Nome do grupo",
-  "@optionalGroupName": {
-    "type": "text",
-    "placeholders": {}
-  },
   "or": "Ou",
   "@or": {
     "type": "text",
@@ -1341,11 +1257,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAUsername": "Elixe un identificador",
-  "@pleaseChooseAUsername": {
-    "type": "text",
-    "placeholders": {}
-  },
   "pleaseClickOnLink": "Preme na ligazón do email e segue as instrucións.",
   "@pleaseClickOnLink": {
     "type": "text",
@@ -1353,11 +1264,6 @@
   },
   "pleaseEnter4Digits": "Escribe 4 díxitos ou deíxao baleiro para non activar o bloqueo.",
   "@pleaseEnter4Digits": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "pleaseEnterAMatrixIdentifier": "Escribe un ID Matrix.",
-  "@pleaseEnterAMatrixIdentifier": {
     "type": "text",
     "placeholders": {}
   },
@@ -1529,22 +1435,6 @@
       "username": {}
     }
   },
-  "seenByUserAndCountOthers": "{count, plural, other{Visto por {username} e {count} outras}}",
-  "@seenByUserAndCountOthers": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "count": {}
-    }
-  },
-  "seenByUserAndUser": "Visto por {username} e {username2}",
-  "@seenByUserAndUser": {
-    "type": "text",
-    "placeholders": {
-      "username": {},
-      "username2": {}
-    }
-  },
   "send": "Enviar",
   "@send": {
     "type": "text",
@@ -1646,11 +1536,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "setGroupDescription": "Establecer descrición do grupo",
-  "@setGroupDescription": {
-    "type": "text",
-    "placeholders": {}
-  },
   "setInvitationLink": "Establecer ligazón do convite",
   "@setInvitationLink": {
     "type": "text",
@@ -1690,11 +1575,6 @@
   },
   "showPassword": "Amosar contrasinal",
   "@showPassword": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "signUp": "Rexistro",
-  "@signUp": {
     "type": "text",
     "placeholders": {}
   },
@@ -2016,18 +1896,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "youAreInvitedToThisChat": "Convidáronte a esta conversa",
-  "@youAreInvitedToThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
   "youAreNoLongerParticipatingInThisChat": "Xa non participas desta conversa",
   "@youAreNoLongerParticipatingInThisChat": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "youCannotInviteYourself": "Non podes autoconvidarte",
-  "@youCannotInviteYourself": {
     "type": "text",
     "placeholders": {}
   },
@@ -2047,8 +1917,6 @@
   "@addToSpace": {},
   "scanQrCode": "Escanear código QR",
   "@scanQrCode": {},
-  "shareYourInviteLink": "Comparte a túa ligazón de convite",
-  "@shareYourInviteLink": {},
   "sendOnEnter": "Enter para enviar",
   "@sendOnEnter": {},
   "homeserver": "Servidor de inicio",
@@ -2067,19 +1935,8 @@
   "@yourChatBackupHasBeenSetUp": {},
   "unverified": "Sen verificar",
   "@unverified": {},
-  "pleaseEnterValidEmail": "Escribe un enderezo de email válido.",
-  "@pleaseEnterValidEmail": {},
-  "passwordsDoNotMatch": "Os contrasinais non concordan!",
-  "@passwordsDoNotMatch": {},
   "repeatPassword": "Repite o contrasinal",
   "@repeatPassword": {},
-  "pleaseChooseAtLeastChars": "Escribe polo menos {min} caracteres.",
-  "@pleaseChooseAtLeastChars": {
-    "type": "text",
-    "placeholders": {
-      "min": {}
-    }
-  },
   "messageInfo": "Info da mensaxe",
   "@messageInfo": {},
   "time": "Hora",
@@ -2090,8 +1947,6 @@
   "@openGallery": {},
   "addToSpaceDescription": "Elixe un espazo ao que engadir esta conversa.",
   "@addToSpaceDescription": {},
-  "loginWithOneClick": "Conéctate cun click",
-  "@loginWithOneClick": {},
   "messageType": "Tipo de mensaxe",
   "@messageType": {},
   "removeFromSpace": "Retirar do espazo",
@@ -2123,10 +1978,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourStory": "A túa Historia",
-  "@yourStory": {},
-  "replyHasBeenSent": "Enviouse a resposta",
-  "@replyHasBeenSent": {},
   "videoWithSize": "Vídeo ({size})",
   "@videoWithSize": {
     "type": "text",
@@ -2134,39 +1985,8 @@
       "size": {}
     }
   },
-  "storyFrom": "Historia do {date}:\n{body}",
-  "@storyFrom": {
-    "type": "text",
-    "placeholders": {
-      "date": {},
-      "body": {}
-    }
-  },
-  "whoCanSeeMyStoriesDesc": "Ten en conta que as usuarias poden verse e contactar unhas coas outras na túa historia.",
-  "@whoCanSeeMyStoriesDesc": {},
-  "addToStory": "Engadir a historia",
-  "@addToStory": {},
   "publish": "Publicar",
   "@publish": {},
-  "whoCanSeeMyStories": "Quen pode ver as miñas historias?",
-  "@whoCanSeeMyStories": {},
-  "unsubscribeStories": "Retirar subscrición das historias",
-  "@unsubscribeStories": {},
-  "thisUserHasNotPostedAnythingYet": "A usuaria non publicou aínda ningunha historia",
-  "@thisUserHasNotPostedAnythingYet": {},
-  "bubbleSize": "Tamaño da burbulla",
-  "@bubbleSize": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "whatIsGoingOn": "Que acontece?",
-  "@whatIsGoingOn": {},
-  "addDescription": "Engadir descrición",
-  "@addDescription": {},
-  "storyPrivacyWarning": "Ten en conta que outras persoas poden verse en contactar entre elas na túa historia. As historias son visibles durante 24 horas pero non hai garantía de que sexan eliminadas en tódolos dispositivos e servidores.",
-  "@storyPrivacyWarning": {},
-  "iUnderstand": "Comprendo",
-  "@iUnderstand": {},
   "dismiss": "Desbotar",
   "@dismiss": {},
   "markAsRead": "Marcar como lido",
@@ -2187,8 +2007,6 @@
   "@videoCallsBetaWarning": {},
   "unsupportedAndroidVersion": "Version de Android non soportada",
   "@unsupportedAndroidVersion": {},
-  "matrixWidgets": "Widgets de Matrix",
-  "@matrixWidgets": {},
   "reactedWith": "{sender} reaccionou con {reaction}",
   "@reactedWith": {
     "type": "text",
@@ -2236,8 +2054,6 @@
   "@widgetEtherpad": {},
   "errorAddingWidget": "Erro ao engadir o widget.",
   "@errorAddingWidget": {},
-  "editWidgets": "Editar widgets",
-  "@editWidgets": {},
   "editBundlesForAccount": "Editar os feixes desta conta",
   "@editBundlesForAccount": {},
   "addToBundle": "Engadir ao feixe",
@@ -2246,11 +2062,6 @@
   "@removeFromBundle": {},
   "separateChatTypes": "Separar Conversas directas e Grupos",
   "@separateChatTypes": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "showDirectChatsInSpaces": "Mostrar Conversas Directas relacionadas nos Espazos",
-  "@showDirectChatsInSpaces": {
     "type": "text",
     "placeholders": {}
   },
@@ -2302,10 +2113,6 @@
       "user": {}
     }
   },
-  "noEmailWarning": "Escribe un enderezo de email válido. Doutro xeito non poderás restablecer o contrasinal. Se non queres, toca outra vez no botón para continuar.",
-  "@noEmailWarning": {},
-  "stories": "Historias",
-  "@stories": {},
   "saveKeyManuallyDescription": "Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis.",
   "@saveKeyManuallyDescription": {},
   "storeInAndroidKeystore": "Gardar en Android KeyStore",
@@ -2356,10 +2163,6 @@
   "@user": {},
   "custom": "Personal",
   "@custom": {},
-  "updateAvailable": "Actualización dispoñible para FluffyChat",
-  "@updateAvailable": {},
-  "updateNow": "Iniciar actualización en segundo plano",
-  "@updateNow": {},
   "confirmMatrixId": "Confirma o teu ID Matrix para poder eliminar a conta.",
   "@confirmMatrixId": {},
   "supposedMxid": "Debería ser {mxid}",
@@ -2443,12 +2246,8 @@
       "senderName": {}
     }
   },
-  "enterInviteLinkOrMatrixId": "Escribe a ligazón de convite ou ID Matrix...",
-  "@enterInviteLinkOrMatrixId": {},
   "encryptThisChat": "Cifrar esta conversa",
   "@encryptThisChat": {},
-  "endToEndEncryption": "Cifraxe de extremo a extremo",
-  "@endToEndEncryption": {},
   "disableEncryptionWarning": "Por razóns de seguridade non podes desactivar a cifraxe dunha conversa onde foi activada previamente.",
   "@disableEncryptionWarning": {},
   "sorryThatsNotPossible": "Lamentámolo... iso non é posible",
@@ -2457,8 +2256,6 @@
   "@deviceKeys": {},
   "newSpaceDescription": "Os Espazos permítenche consolidar as túas conversas e construir comunidades públicas ou privadas.",
   "@newSpaceDescription": {},
-  "letsStart": "Imos alá",
-  "@letsStart": {},
   "startFirstChat": "Abre a túa primeira conversa",
   "@startFirstChat": {},
   "wasDirectChatDisplayName": "Conversa baleira (era {oldDisplayName})",
@@ -2498,17 +2295,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "reportErrorDescription": "Vaia! Algo fallou. Inténtao máis tarde. Se queres, podes informar do problema aos desenvolvedores.",
+  "reportErrorDescription": "😭 Vaia! Algo fallou. Se queres, podes informar do problema ás persoas desenvolvedoras.",
   "@reportErrorDescription": {},
-  "discover": "Descubrir",
-  "@discover": {
-    "type": "text",
-    "placeholders": {}
-  },
   "signInWithPassword": "Accede con contrasinal",
   "@signInWithPassword": {},
-  "continueWith": "Continuar con:",
-  "@continueWith": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Inténtao máis tarde ou elixe un servidor diferente.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "signInWith": "Accede con {provider}",
@@ -2526,19 +2316,10 @@
   "@importEmojis": {},
   "importFromZipFile": "Importar desde ficheiro .zip",
   "@importFromZipFile": {},
-  "importZipFile": "Importar ficheiro .zip",
-  "@importZipFile": {},
   "exportEmotePack": "Exportar paquete Emote como .zip",
   "@exportEmotePack": {},
   "replace": "Substituír",
   "@replace": {},
-  "savedEmotePack": "Paquete emote gardado en {path}!",
-  "@savedEmotePack": {
-    "type": "text",
-    "placeholders": {
-      "path": {}
-    }
-  },
   "sendTypingNotifications": "Enviar notificación de escritura",
   "@sendTypingNotifications": {},
   "createGroup": "Crear grupo",
@@ -2555,12 +2336,6 @@
   "@setTheme": {},
   "inviteContactToGroupQuestion": "Queres convidar a {contact} para que se una á conversa \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
-  "noGroupDescriptionYet": "Aínda non hai unha descrición do grupo.",
-  "@noGroupDescriptionYet": {},
-  "anyoneCanKnock": "Calquera pode chamar",
-  "@anyoneCanKnock": {},
-  "noOneCanJoin": "Ninguén pode unirse",
-  "@noOneCanJoin": {},
   "tryAgain": "Intentar outra vez",
   "@tryAgain": {},
   "optionalRedactReason": "(Optativo) Razón para editar a mensaxe...",
@@ -2584,7 +2359,7 @@
   "@redactMessageDescription": {},
   "invite": "Convidar",
   "@invite": {},
-  "addChatDescription": "Engadir descrición da conversa",
+  "addChatDescription": "Engadir descrición da conversa...",
   "@addChatDescription": {},
   "chatPermissions": "Permisos da conversa",
   "@chatPermissions": {},
@@ -2600,8 +2375,6 @@
   "@directChat": {},
   "setChatDescription": "Escribir descrición da conversa",
   "@setChatDescription": {},
-  "requests": "Solicitudes",
-  "@requests": {},
   "inviteGroupChat": "📨 Convidar a conversa en grupo",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Convidar a conversa privada",
@@ -2617,18 +2390,10 @@
   "@removeDevicesDescription": {},
   "unbanUserDescription": "A usuaria vai poder entrar outra vez na conversa se quere.",
   "@unbanUserDescription": {},
-  "todoLists": "(Beta) Lista de tarefas",
-  "@todoLists": {},
-  "editTodo": "Editar tarefa",
-  "@editTodo": {},
   "pushNotificationsNotAvailable": "Non están dispoñibles as notificacións push",
   "@pushNotificationsNotAvailable": {},
-  "pleaseAddATitle": "Engade un título",
-  "@pleaseAddATitle": {},
   "makeAdminDescription": "Cando convirtas a esta usuaria en admin non poderás desfacer a acción xa que terá os mesmos permisos ca ti.",
   "@makeAdminDescription": {},
-  "noTodosYet": "Non se engadiron tarefas aínda a este chat. Crea primeiro a túa lista de tarefas e comeza a colaborar con outras. 📝",
-  "@noTodosYet": {},
   "archiveRoomDescription": "Vaise mover o chat ao arquivo. Outras usuarias poderán ver que saíches da conversa.",
   "@archiveRoomDescription": {},
   "invalidInput": "Contido non válido!",
@@ -2646,18 +2411,79 @@
       "seconds": {}
     }
   },
-  "newTodo": "Nova tarefa",
-  "@newTodo": {},
   "learnMore": "Saber máis",
   "@learnMore": {},
-  "todoListChangedError": "Ooi... A lista cambiou mentras ti a editabas.",
-  "@todoListChangedError": {},
   "roomUpgradeDescription": "Vaise recrear o chat coa nova versión da sala. Todas as participantes recibirán unha notificación para que cambien ao novo chat. Podes ler máis información acerca das versións das salas en https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "pleaseEnterANumber": "Escribe un número maior de cero",
   "@pleaseEnterANumber": {},
   "kickUserDescription": "A usuaria foi expulsada pero non vetada. En conversas públicas a usuaria pode volver cando queira.",
   "@kickUserDescription": {},
-  "todosUnencrypted": "",
-  "@todosUnencrypted": {}
+  "createGroupAndInviteUsers": "Crear un grupo e convidar usuarias",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "O grupo pódese atopar ao buscar",
+  "@groupCanBeFoundViaSearch": {},
+  "noUsersFoundWithQuery": "Lamentamos non atopar ningunha usuaria con \"{query}\". Comproba se está ben escrito.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "yourGlobalUserIdIs": "O teu ID-usuaria global é: ",
+  "@yourGlobalUserIdIs": {},
+  "groupName": "Nome do grupo",
+  "@groupName": {},
+  "searchChatsRooms": "Buscar #conversas, @usuarias...",
+  "@searchChatsRooms": {},
+  "startConversation": "Iniciar conversa",
+  "@startConversation": {},
+  "commandHint_sendraw": "Enviar json sen editar",
+  "@commandHint_sendraw": {},
+  "wrongRecoveryKey": "Desculpa... non semella ser o xeito correcto de recuperar a chave.",
+  "@wrongRecoveryKey": {},
+  "blockListDescription": "Podes bloquear usuarias que che molesten. Non recibirás mensaxes nin convites para salas procedentes das usuarias da túa lista persoal de bloqueo.",
+  "@blockListDescription": {},
+  "blockedUsers": "Usuarias bloqueadas",
+  "@blockedUsers": {},
+  "block": "bloquear",
+  "@block": {},
+  "blockUsername": "Ignorar identificador",
+  "@blockUsername": {},
+  "thisDevice": "Este dispositivo:",
+  "@thisDevice": {},
+  "publicSpaces": "Espazos públicos",
+  "@publicSpaces": {},
+  "passwordIsWrong": "O contrasinal escrito non é correcto",
+  "@passwordIsWrong": {},
+  "pleaseEnterYourCurrentPassword": "Escribe o contrasinal actual",
+  "@pleaseEnterYourCurrentPassword": {},
+  "publicLink": "Ligazón pública",
+  "@publicLink": {},
+  "nothingFound": "Non atopamos nada...",
+  "@nothingFound": {},
+  "decline": "Desbotar",
+  "@decline": {},
+  "newPassword": "Novo contrasinal",
+  "@newPassword": {},
+  "passwordsDoNotMatch": "Os contrasinais non concordan",
+  "@passwordsDoNotMatch": {},
+  "subspace": "Subespazo",
+  "@subspace": {},
+  "select": "Escolle",
+  "@select": {},
+  "pleaseChooseAStrongPassword": "Elixe un contrasinal forte",
+  "@pleaseChooseAStrongPassword": {},
+  "addChatOrSubSpace": "Engadir chat ou sub espazo",
+  "@addChatOrSubSpace": {},
+  "leaveEmptyToClearStatus": "Deixa baleiro para limpar o teu estado.",
+  "@leaveEmptyToClearStatus": {},
+  "joinSpace": "Únete ao espazo",
+  "@joinSpace": {},
+  "searchForUsers": "Buscar @persoas...",
+  "@searchForUsers": {},
+  "databaseMigrationTitle": "Base de datos optimizada",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Agarda, podería levarnos un pouco.",
+  "@databaseMigrationBody": {}
 }

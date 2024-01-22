@@ -119,8 +119,8 @@ class ChatInputRow extends StatelessWidget {
                       curve: FluffyThemes.animationCurve,
                       height: 56,
                       //#Pangea
-                      // width: controller.inputText.isEmpty ? 56 : 0,
-                      width: controller.inputText.isEmpty &&
+                      // width: controller.sendController.text.isEmpty ? 56 : 0,
+                      width: controller.sendController.text.isEmpty &&
                               controller.pangeaController.permissionsController
                                   .showChatInputAddButton(controller.roomId)
                           ? 56
@@ -166,7 +166,7 @@ class ChatInputRow extends StatelessWidget {
                                 contentPadding: const EdgeInsets.all(0),
                               ),
                             ),
-                          //#Pangea
+//#Pangea
                           // if (PlatformInfos.isMobile)
                           if (PlatformInfos.isMobile &&
                               controller.pangeaController.permissionsController
@@ -298,8 +298,10 @@ class ChatInputRow extends StatelessWidget {
                         autofocus: false,
                         // Pangea#
                         keyboardType: TextInputType.multiline,
-                        textInputAction:
-                            AppConfig.sendOnEnter ? TextInputAction.send : null,
+                        textInputAction: AppConfig.sendOnEnter == true &&
+                                PlatformInfos.isMobile
+                            ? TextInputAction.send
+                            : null,
                         // #Pangea
                         // onSubmitted: controller.onInputBarSubmitted,
                         onSubmitted: (String value) =>
@@ -320,7 +322,7 @@ class ChatInputRow extends StatelessWidget {
                     ),
                   ),
                   if (PlatformInfos.platformCanRecord &&
-                      controller.inputText.isEmpty)
+                      controller.sendController.text.isEmpty)
                     Container(
                       height: 56,
                       alignment: Alignment.center,
@@ -331,7 +333,7 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     ),
                   if (!PlatformInfos.isMobile ||
-                      controller.inputText.isNotEmpty)
+                      controller.sendController.text.isNotEmpty)
                     // #Pangea
                     ChoreographerSendButton(controller: controller),
                   // Container(

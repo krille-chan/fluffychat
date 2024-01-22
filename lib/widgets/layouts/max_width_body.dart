@@ -9,12 +9,14 @@ class MaxWidthBody extends StatelessWidget {
   final double maxWidth;
   final bool withFrame;
   final bool withScrolling;
+  final EdgeInsets? innerPadding;
 
   const MaxWidthBody({
     this.child,
     this.maxWidth = 600,
     this.withFrame = true,
     this.withScrolling = true,
+    this.innerPadding,
     super.key,
   });
   @override
@@ -36,16 +38,20 @@ class MaxWidthBody extends StatelessWidget {
                         Theme.of(context).appBarTheme.scrolledUnderElevation ??
                             4,
                     clipBehavior: Clip.hardEdge,
-                    borderRadius: BorderRadius.circular(
-                      AppConfig.borderRadius,
-                    ),
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     shadowColor: Theme.of(context).appBarTheme.shadowColor,
                     child: child,
                   )
                 : child,
           );
-          if (!withScrolling) return childWithPadding;
+          if (!withScrolling) {
+            return Padding(
+              padding: innerPadding ?? EdgeInsets.zero,
+              child: childWithPadding,
+            );
+          }
           return SingleChildScrollView(
+            padding: innerPadding,
             physics: const ScrollPhysics(),
             child: childWithPadding,
           );

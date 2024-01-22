@@ -66,7 +66,7 @@ class ChatDetailsView extends StatelessWidget {
                   leading: const Center(child: BackButton()),
                   elevation: Theme.of(context).appBarTheme.elevation,
                   actions: <Widget>[
-                    // #Pangea
+                    // #Pangeas
                     // if (room.canonicalAlias.isNotEmpty)
                     //   IconButton(
                     //     tooltip: L10n.of(context)!.share,
@@ -296,8 +296,10 @@ class ChatDetailsView extends StatelessWidget {
                         //         ? L10n.of(context)!.noChatDescriptionYet
                         //         : room.topic,
                         //     options: const LinkifyOptions(humanize: false),
-                        //     linkStyle:
-                        //         const TextStyle(color: Colors.blueAccent),
+                        //     linkStyle: const TextStyle(
+                        //       color: Colors.blueAccent,
+                        //       decorationColor: Colors.blueAccent,
+                        //     ),
                         //     style: TextStyle(
                         //       fontSize: 14,
                         //       fontStyle: room.topic.isEmpty
@@ -349,29 +351,29 @@ class ChatDetailsView extends StatelessWidget {
                         //   trailing: const Icon(Icons.chevron_right_outlined),
                         // ),
                         // if (!room.isDirectChat)
-                        //   ListTile(
-                        //     leading: CircleAvatar(
-                        //       backgroundColor:
-                        //           Theme.of(context).scaffoldBackgroundColor,
-                        //       foregroundColor: iconColor,
-                        //       child: const Icon(Icons.shield_outlined),
-                        //     ),
-                        //     title: Text(
-                        //       L10n.of(context)!.whoIsAllowedToJoinThisGroup,
-                        //     ),
-                        //     trailing: room.canChangeJoinRules
-                        //         ? const Icon(Icons.chevron_right_outlined)
-                        //         : null,
-                        //     subtitle: Text(
-                        //       room.joinRules?.getLocalizedString(
-                        //             MatrixLocals(L10n.of(context)!),
-                        //           ) ??
-                        //           L10n.of(context)!.none,
-                        //     ),
-                        //     onTap: room.canChangeJoinRules
-                        //         ? controller.setJoinRules
-                        //         : null,
+                        // ListTile(
+                        //   leading: CircleAvatar(
+                        //     backgroundColor:
+                        //         Theme.of(context).scaffoldBackgroundColor,
+                        //     foregroundColor: iconColor,
+                        //     child: const Icon(Icons.shield_outlined),
                         //   ),
+                        //   title: Text(
+                        //     L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+                        //   ),
+                        //   trailing: room.canChangeJoinRules
+                        //       ? const Icon(Icons.chevron_right_outlined)
+                        //       : null,
+                        //   subtitle: Text(
+                        //     room.joinRules?.getLocalizedString(
+                        //           MatrixLocals(L10n.of(context)!),
+                        //         ) ??
+                        //         L10n.of(context)!.none,
+                        //   ),
+                        //   onTap: room.canChangeJoinRules
+                        //       ? controller.setJoinRules
+                        //       : null,
+                        // ),
                         // if (!room.isDirectChat)
                         //   ListTile(
                         //     leading: CircleAvatar(
@@ -396,7 +398,7 @@ class ChatDetailsView extends StatelessWidget {
                         //         ? controller.setHistoryVisibility
                         //         : null,
                         //   ),
-                        // if (room.joinRules == JoinRules.public)
+                        // if (room.jsoinRules == JoinRules.public)
                         //   ListTile(
                         //     leading: CircleAvatar(
                         //       backgroundColor:
@@ -583,7 +585,8 @@ class ChatDetailsView extends StatelessWidget {
                         //   ListTile(
                         //     title: Text(L10n.of(context)!.inviteContact),
                         //     leading: CircleAvatar(
-                        //       backgroundColor: Theme.of(context).primaryColor,
+                        //       backgroundColor:
+                        //           Theme.of(context).colorScheme.primary,
                         //       foregroundColor: Colors.white,
                         //       radius: Avatar.defaultSize / 2,
                         //       child: const Icon(Icons.add_outlined),

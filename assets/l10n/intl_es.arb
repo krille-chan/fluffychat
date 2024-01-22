@@ -4428,28 +4428,28 @@
   "exportEmotePack": "Exportar Emote pack como .zip",
   "savedEmotePack": "¡Paquete de emoticonos guardado en {path}!",
   "@savedEmotePack": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
   "sendTypingNotifications": "Enviar notificaciones de mecanografía",
   "reportToTeacher": "¿A quién desea informar de este mensaje?",
   "reportMessageTitle": "{reportingUserId} ha informado de un mensaje de {reportedUserId} en el chat {roomName}.",
   "@reportMessageTitle": {
-        "placeholders": {
-            "reportingUserId": {},
-            "reportedUserId": {},
-            "roomName": {}
-        }
-    },
+    "placeholders": {
+      "reportingUserId": {},
+      "reportedUserId": {},
+      "roomName": {}
+    }
+  },
   "reportMessageBody": "Mensaje: {reportedMessage}\nMotivo: {reason}",
   "@reportMessageBody": {
-        "placeholders": {
-            "reportedMessage": {},
-            "reason": {}
-        }
-    },
+    "placeholders": {
+      "reportedMessage": {},
+      "reason": {}
+    }
+  },
   "noTeachersFound": "No se han encontrado profesores a los que informar",
   "noAddToSpacePermissions": "No puedes añadir un chat a este espacio",
   "alreadyInSpace": "El chat ya está en este espacio",
@@ -4458,7 +4458,7 @@
   "@noUsersFoundWithQuery": {
     "type": "text",
     "placeholders": {
-        "query": {}
+      "query": {}
     }
   },
   "searchChatsRooms": "Busca #chats, @users...",
@@ -4471,13 +4471,68 @@
   "viewArchive": "Ver archivo",
   "trialExpiration": "Su prueba gratuita caduca el {expiration}.",
   "@trialExpiration": {
-        "placeholders": {
-            "expiration": {}
-        }
-    },
+    "placeholders": {
+      "expiration": {}
+    }
+  },
   "freeTrialDesc": "Los nuevos usuarios reciben una semana de prueba gratuita de Pangea Chat",
   "activateTrial": "Activar prueba",
   "successfullySubscribed": "Se ha suscrito correctamente.",
   "clickToManageSubscription": "Haga clic aquí para gestionar su suscripción.",
-  "emptyInviteWarning": "Añade este chat a una clase o intercambio para invitar a otros usuarios."
+  "emptyInviteWarning": "Añade este chat a una clase o intercambio para invitar a otros usuarios.",
+  "block": "bloque",
+  "blockedUsers": "Usuarios bloqueados",
+  "blockListDescription": "Puedes bloquear a los usuarios que te molesten. No podrás recibir mensajes ni invitaciones a salas de los usuarios de tu lista personal de bloqueados.",
+  "blockUsername": "Ignorar nombre de usuario",
+  "nothingFound": "No se ha encontrado nada...",
+  "wrongRecoveryKey": "Lo siento... esta no parece ser la clave de recuperación correcta.",
+  "startConversation": "Iniciar conversación",
+  "commandHint_sendraw": "Enviar json sin procesar",
+  "databaseMigrationTitle": "La base de datos está optimizada",
+  "databaseMigrationBody": "Por favor, espere. Esto puede tardar un momento.",
+  "leaveEmptyToClearStatus": "Déjelo vacío para borrar su estado.",
+  "select": "Seleccione",
+  "searchForUsers": "Buscar @usuarios...",
+  "pleaseEnterYourCurrentPassword": "Introduzca su contraseña actual",
+  "newPassword": "Nueva contraseña",
+  "pleaseChooseAStrongPassword": "Elija una contraseña segura",
+  "passwordIsWrong": "La contraseña introducida es incorrecta",
+  "publicLink": "Enlace público",
+  "joinSpace": "Unirse al espacio",
+  "publicSpaces": "Espacios públicos",
+  "addChatOrSubSpace": "Añadir chat o subespacio",
+  "subspace": "Subespacio",
+  "thisDevice": "Este aparato:",
+  "initAppError": "Se ha producido un error al iniciar la aplicación",
+  "databaseBuildErrorBody": "No se puede construir la base de datos SQlite. La aplicación intenta utilizar la base de datos heredada por ahora. Por favor, informe de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sessionLostBody": "Su sesión se ha perdido. Por favor, informe de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "La aplicación intenta ahora restaurar tu sesión desde la copia de seguridad. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "forwardMessageTo": "¿Reenviar mensaje a {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  }
 }
