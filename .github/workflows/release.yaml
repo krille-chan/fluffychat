@@ -57,8 +57,10 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      # #Pangea
+      #- name: Apply Google Services Patch
+      #  run: git apply ./scripts/enable-android-google-services.patch
+      # Pangea#
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
@@ -126,8 +128,10 @@ jobs:
           ruby-version: 2.7
       - name: Install Fastlane
         run: gem install fastlane -NV
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      # #Pangea
+      #- name: Apply Google Services Patch
+      #  run: git apply ./scripts/enable-android-google-services.patch
+      # Pangea#
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
@@ -162,7 +166,7 @@ jobs:
   deploy_web:
     runs-on: ubuntu-latest
     needs: build_web
-    environment: staging
+    environment: production
     steps:
       - uses: actions/checkout@v2
       - name: Download web
@@ -176,3 +180,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync ./build/web s3://$WEBAPP_S3_BUCKET
+      - name: AWS CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
