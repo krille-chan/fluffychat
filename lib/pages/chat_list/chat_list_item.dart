@@ -196,37 +196,45 @@ class ChatListItem extends StatelessWidget {
       MatrixLocals(L10n.of(context)!),
     );
 
-    // Condition for checking displayName for the presence of social networks
+    // Condition for verifying the presence of social networks in participants ID
     Future<List<dynamic>> loadRoomInfo() async {
-      final displayNameBrut = room.getLocalizedDisplayname();
+      // getParticipants method to retrieve the list of participants
+      List<User> participants = room.getParticipants();
       Color? networkColor;
       Image? networkImage;
 
-      if (displayNameBrut.contains('(FB)')) {
+      final participantsIds = participants.map((member) => member.id).toList();
+
+      if (participantsIds.any((id) => id.contains('@facebook'))) {
         networkColor = FluffyThemes.facebookColor;
         networkImage = Image.asset(
           'assets/facebook-messenger.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
-      } else if (displayNameBrut.contains('(Instagram)')) {
+        if(displayname.contains('(FB)')){
+          displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
+        }
+      } else if (participantsIds.any((id) => id.contains('@instagram_'))) {
         networkColor = FluffyThemes.instagramColor;
         networkImage = Image.asset(
           'assets/instagram.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        displayname =
-            displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
-      } else if (displayNameBrut.contains('(WA)')) {
+        if (displayname.contains('(Instagram)')){
+          displayname = displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+        }
+      } else if (participantsIds.any((id) => id.contains('@whatsapp'))) {
         networkColor = FluffyThemes.whatsAppColor;
         networkImage = Image.asset(
           'assets/whatsapp.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+        if (displayname.contains('WA')){
+          displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+        }
       }
 
       return [networkColor, networkImage];
