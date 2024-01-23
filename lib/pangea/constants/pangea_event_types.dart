@@ -13,4 +13,5 @@ class PangeaEventTypes {
 
   static const vocab = "p.vocab";
   static const roomInfo = "pangea.roomtopic";
+  static const botOptions = "pangea.bot_options";
 }

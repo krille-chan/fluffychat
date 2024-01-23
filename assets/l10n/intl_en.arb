@@ -3872,5 +3872,14 @@
     "@chooseAUsername": {
         "type": "text",
         "placeholders": {}
-    }
+    },
+    "addConversationBot": "Add Conversation Bot",
+    "addConversationBotDesc": "Add a conversation bot to send automatic messages to this chat",
+    "convoBotSettingsTitle": "Conversation Bot Settings",
+    "convoBotSettingsDescription": "Edit conversation topic and difficulty",
+    "enterAConversationTopic": "Enter a conversation topic",
+    "conversationTopic": "Conversation topic",
+    "enableModeration": "Enable moderation",
+    "enableModerationDesc": "Enable automatic moderation to review messages before they are sent",
+    "conversationLanguageLevel": "What is the language level of this conversation?"
 }

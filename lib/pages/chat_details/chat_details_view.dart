@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/widgets/space/class_settings.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -489,6 +490,13 @@ class ChatDetailsView extends StatelessWidget {
                         if (controller.displayAddStudentOptions &&
                             room.showClassEditOptions)
                           ClassInvitationButtons(roomId: controller.roomId!),
+                        const Divider(height: 1),
+                        if (!room.isSpace)
+                          ConversationBotSettings(
+                            key: controller.addConversationBotKey,
+                            room: room,
+                          ),
+                        const Divider(height: 1),
                         if (!room.isPangeaClass)
                           AddToSpaceToggles(
                             roomId: room.id,

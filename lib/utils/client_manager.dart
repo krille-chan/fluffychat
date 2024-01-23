@@ -115,6 +115,7 @@ abstract class ClientManager {
         PangeaEventTypes.classSettings,
         PangeaEventTypes.rules,
         PangeaEventTypes.vocab,
+        PangeaEventTypes.botOptions,
         EventTypes.RoomTopic,
         EventTypes.RoomAvatar,
         // Pangea#

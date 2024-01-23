@@ -87,4 +87,10 @@ class ModelKey {
   static const String currentText = "current";
   static const String bestContinuance = "best_continuance";
   static const String feedbackLang = "feedback_lang";
+
+  // bot options
+  static const String languageLevel = "langauge_level";
+  static const String conversationTopic = "conversation_topic";
+  static const String keywords = "keywords";
+  static const String safetyModeration = "safety_moderation";
 }
