@@ -11,13 +11,15 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 class ShowDefintionUtil {
-  final String messageText;
+  String messageText;
   final String langCode;
   final String targetId;
   final FocusNode focusNode = FocusNode();
   final Room room;
   TextSelection? textSelection;
   bool inCooldown = false;
+  double? dx;
+  double? dy;
 
   ShowDefintionUtil({
     required this.targetId,
@@ -93,17 +95,18 @@ class ShowDefintionUtil {
   Future<dynamic> showToolbar(BuildContext context) async {
     final LayerLinkAndKey layerLinkAndKey =
         MatrixState.pAnyState.layerLinkAndKey(targetId);
-    final RenderBox? targetRenderBox =
-        (layerLinkAndKey.key.currentContext!.findRenderObject() as RenderBox?);
-    final Size? transformTargetSize = targetRenderBox?.size;
 
-    Offset? transformTargetOffset;
-    if (transformTargetSize != null) {
-      transformTargetOffset = Offset(
-        (transformTargetSize.width / 2) - 65,
-        transformTargetSize.height * -1,
-      );
+    final RenderObject? targetRenderBox =
+        layerLinkAndKey.key.currentContext!.findRenderObject();
+    final Offset transformTargetOffset =
+        (targetRenderBox as RenderBox).localToGlobal(Offset.zero);
+
+    if (dx != null && dx! > MediaQuery.of(context).size.width - 130) {
+      dx = MediaQuery.of(context).size.width - 130;
     }
+    final double xOffset = dx != null ? dx! - transformTargetOffset.dx : 0;
+    final double yOffset =
+        dy != null ? dy! - transformTargetOffset.dy + 10 : 10;
 
     OverlayUtil.showOverlay(
       context: context,
@@ -124,7 +127,28 @@ class ShowDefintionUtil {
       ),
       size: const Size(130, 45),
       transformTargetId: targetId,
-      offset: transformTargetOffset,
+      offset: Offset(xOffset, yOffset),
+    );
+  }
+
+  void onMouseRegionUpdate(PointerEvent event) {
+    dx = event.position.dx;
+    dy = event.position.dy;
+  }
+
+  Widget contextMenuOverride(BuildContext context, EditableTextState selection) {
+    return AdaptiveTextSelectionToolbar.buttonItems(
+      anchors: selection.contextMenuAnchors,
+      buttonItems: [
+        ...selection.contextMenuButtonItems,
+        ContextMenuButtonItem(
+          label: L10n.of(context)!.showDefinition,
+          onPressed: () {
+            showDefinition(context);
+            focusNode.unfocus();
+          },
+        ),
+      ],
     );
   }
 }

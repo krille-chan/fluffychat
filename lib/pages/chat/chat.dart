@@ -23,7 +23,6 @@ import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -1282,11 +1281,6 @@ class ChatController extends State<ChatPageWithRoom>
     if (choreographer.itController.isOpen) {
       return;
     }
-    pangeaController.instructions.show(
-      context,
-      InstructionsEnum.understandingMessages,
-      event.eventId,
-    );
     // Pangea#
     if (!event.redacted) {
       if (selectedEvents.contains(event)) {
