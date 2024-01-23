@@ -170,7 +170,7 @@ jobs:
     environment: production
     env:
       WEBAPP_S3_BUCKET: ${{ vars.WEBAPP_S3_BUCKET }}
-      CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+      CF_DISTRIBUTION_ID: ${{ vars.CF_DISTRIBUTION_ID }}
     steps:
       - uses: actions/checkout@v2
       - name: Download web
