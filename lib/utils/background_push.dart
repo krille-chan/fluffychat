@@ -325,7 +325,7 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    await UnifiedPush.registerAppWithDialog(matrix!.context);
+    await UnifiedPush.registerAppWithDialog(matrix!.navigatorContext);
   }
 
   Future<void> _newUpEndpoint(String newEndpoint, String i) async {

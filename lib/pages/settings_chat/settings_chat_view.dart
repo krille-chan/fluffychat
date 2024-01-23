@@ -33,7 +33,8 @@ class SettingsChatView extends StatelessWidget {
               ),
               const Divider(),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.renderRichContent,
+                title: L10n.of(context)!.formattedMessages,
+                subtitle: L10n.of(context)!.formattedMessagesDescription,
                 onChanged: (b) => AppConfig.renderHtml = b,
                 storeKey: SettingKeys.renderHtml,
                 defaultValue: AppConfig.renderHtml,
@@ -64,12 +65,6 @@ class SettingsChatView extends StatelessWidget {
                   defaultValue: AppConfig.autoplayImages,
                 ),
               const Divider(),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.sendTypingNotifications,
-                onChanged: (b) => AppConfig.sendTypingNotifications = b,
-                storeKey: SettingKeys.sendTypingNotifications,
-                defaultValue: AppConfig.sendTypingNotifications,
-              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,

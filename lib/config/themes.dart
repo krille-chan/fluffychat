@@ -72,7 +72,7 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: PlatformInfos.isDesktop || PlatformInfos.isWeb
+      textTheme: PlatformInfos.isDesktop
           ? brightness == Brightness.light
               ? Typography.material2018().black.merge(fallbackTextTheme)
               : Typography.material2018().white.merge(fallbackTextTheme)

@@ -2485,5 +2485,31 @@
   "thisDevice": "Gailu hau:",
   "@thisDevice": {},
   "decline": "Baztertu",
-  "@decline": {}
+  "@decline": {},
+  "databaseBuildErrorBody": "Ezin izan da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Errorea aplikazioa abiaraztean",
+  "@initAppError": {},
+  "sessionLostBody": "Zure saioa galdu da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Aplikazioa babeskopia erabiliz saioa leheneratzen saiatuko da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  }
 }

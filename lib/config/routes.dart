@@ -395,14 +395,16 @@ abstract class AppRoutes {
   static Page defaultPageBuilder(BuildContext context, Widget child) =>
       CustomTransitionPage(
         child: child,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FluffyThemes.isColumnMode(context)
-                ? FadeTransition(opacity: animation, child: child)
-                : CupertinoPageTransition(
-                    primaryRouteAnimation: animation,
-                    secondaryRouteAnimation: secondaryAnimation,
-                    linearTransition: false,
-                    child: child,
-                  ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          Matrix.of(context).navigatorContext = context;
+          return FluffyThemes.isColumnMode(context)
+              ? FadeTransition(opacity: animation, child: child)
+              : CupertinoPageTransition(
+                  primaryRouteAnimation: animation,
+                  secondaryRouteAnimation: secondaryAnimation,
+                  linearTransition: false,
+                  child: child,
+                );
+        },
       );
 }

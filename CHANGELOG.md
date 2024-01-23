@@ -1,3 +1,32 @@
+## v1.17.2
+Another minor bugfix release which also implements private read receipts.
+
+- feat: Implement private read receipts (krille-chan)
+- feat: Join room by alias by tpying alias in searchbar (krille-chan)
+- fix: Add cancel button to key request dialog (Krille)
+- fix: Encode component for links correctly (Krille)
+- fix: Forward arbitrary message content (krille-chan)
+- fix: Open publicroombottomsheet by alias (krille-chan)
+- docs: Add noto animated emojis link (krille-chan)
+- docs: New website (krille-chan)
+- build: Do not load emojis at initial start on web (krille-chan)
+- build: Update flutter to 3.16.8 (krille-chan)
+- build: Update sdk to 0.25.6 (Krille)
+- chore: Add more explaining text for key verification (krille-chan)
+- chore: Resort settings and add more description text (krille-chan)
+- refactor: Dialog BuildContext (krille-chan)
+- refactor: Use popupmenudivider instead of workaround (krille-chan)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified)) (Poesty Li)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (nautilusx)
+- Translated using Weblate (Russian) (v1s7)
+- Translated using Weblate (Swedish) (Flat)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- Translated using Weblate (Ukrainian) (Сергій)
+
 ## v1.17.1
 Minor bugfix release.
 

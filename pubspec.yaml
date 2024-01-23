@@ -2,7 +2,7 @@ name: tawkie
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.17.1+3525
+version: 1.17.2+3526
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -62,7 +62,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  matrix: ^0.25.5
+  matrix: ^0.25.6
   native_imaging: ^0.1.0
   package_info_plus: ^4.0.0
   pasteboard: ^0.2.0

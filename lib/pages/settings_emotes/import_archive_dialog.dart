@@ -119,7 +119,6 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
         final completer = Completer<OkCancelResult>();
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
           final result = await showOkCancelAlertDialog(
-            useRootNavigator: false,
             context: context,
             title: L10n.of(context)!.emoteExists,
             message: imageCode,
