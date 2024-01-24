@@ -3,7 +3,6 @@ html {
   margin: 0;
   height: 100%;
   background: #ffffff;
-  background-image: url("img/light-background.png");
   background-size: 100% 100%;
 }
 
@@ -39,8 +38,8 @@ html {
 /* #Pangea
 @media (prefers-color-scheme: dark) {
   body {
-    margin:0;
-    height:100%;
+    margin: 0;
+    height: 100%;
     background: #000000;
     background-image: url("img/dark-background.png");
     background-size: 100% 100%;

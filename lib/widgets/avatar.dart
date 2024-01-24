@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class Avatar extends StatelessWidget {
   final Uri? mxContent;
@@ -119,7 +117,7 @@ class Avatar extends StatelessWidget {
         //     final dotColor = presence.presence.isOnline
         //         ? Colors.green
         //         : presence.presence.isUnavailable
-        //             ? Colors.red
+        //             ? Colors.orange
         //             : Colors.grey;
         //     return Positioned(
         //       bottom: -4,

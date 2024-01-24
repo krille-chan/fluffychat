@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
 import '../../widgets/matrix.dart';
@@ -32,6 +34,7 @@ class UserBottomSheetView extends StatelessWidget {
           leading: CloseButton(
             onPressed: Navigator.of(context, rootNavigator: false).pop,
           ),
+          centerTitle: false,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,7 +52,7 @@ class UserBottomSheetView extends StatelessWidget {
                   final dotColor = presence.presence.isOnline
                       ? Colors.green
                       : presence.presence.isUnavailable
-                          ? Colors.red
+                          ? Colors.orange
                           : Colors.grey;
 
                   final lastActiveTimestamp = presence.lastActiveTimestamp;
@@ -90,18 +93,10 @@ class UserBottomSheetView extends StatelessWidget {
             if (userId != client.userID &&
                 !client.ignoredUsers.contains(userId))
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton.icon(
-                  label: Text(
-                    L10n.of(context)!.ignore,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-                  icon: Icon(
-                    Icons.shield_outlined,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
+                  icon: const Icon(Icons.block_outlined),
+                  tooltip: L10n.of(context)!.block,
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.ignore),
                 ),
@@ -196,9 +191,35 @@ class UserBottomSheetView extends StatelessWidget {
                   onPressed: () => controller
                       .participantAction(UserBottomSheetAction.message),
                   icon: const Icon(Icons.forum_outlined),
-                  label: Text(L10n.of(context)!.sendAMessage),
+                  label: Text(
+                    controller.widget.user == null
+                        ? L10n.of(context)!.startConversation
+                        : L10n.of(context)!.sendAMessage,
+                  ),
                 ),
               ),
+            PresenceBuilder(
+              userId: userId,
+              client: client,
+              builder: (context, presence) {
+                final status = presence?.statusMsg;
+                if (status == null || status.isEmpty) {
+                  return const SizedBox.shrink();
+                }
+                return ListTile(
+                  title: SelectableLinkify(
+                    text: status,
+                    style: const TextStyle(fontSize: 16),
+                    options: const LinkifyOptions(humanize: false),
+                    linkStyle: const TextStyle(
+                      color: Colors.blueAccent,
+                      decorationColor: Colors.blueAccent,
+                    ),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  ),
+                );
+              },
+            ),
             if (controller.widget.onMention != null)
               ListTile(
                 leading: const Icon(Icons.alternate_email_outlined),

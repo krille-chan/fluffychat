@@ -1,8 +1,7 @@
 import 'dart:ui';
 
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   // #Pangea
@@ -107,6 +106,11 @@ abstract class AppConfig {
       'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 16.0;
   static const double columnWidth = 360.0;
+  static final Uri homeserverList = Uri(
+    scheme: 'https',
+    host: 'servers.joinmatrix.org',
+    path: 'servers.json',
+  );
 
   // #Pangea
   static String googlePlayMangementUrl =

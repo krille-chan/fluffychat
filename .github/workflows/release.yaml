@@ -12,6 +12,7 @@ concurrency:
 jobs:
   build_web:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -33,6 +34,11 @@ jobs:
         with:
           name: Web Build
           path: pangeachat-web.tar.gz
+      - name: Upload files for deploy stage
+        uses: actions/upload-artifact@v3
+        with:
+          name: web
+          path: build/web
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
@@ -45,6 +51,7 @@ jobs:
 
   build_apk:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -81,6 +88,7 @@ jobs:
 
   build_linux:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -106,6 +114,7 @@ jobs:
 
   deploy_playstore:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v2
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -154,3 +163,30 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
+
+  deploy_web:
+    runs-on: ubuntu-latest
+    needs: build_web
+    environment: production
+    env:
+      WEBAPP_S3_BUCKET: ${{ vars.WEBAPP_S3_BUCKET }}
+      CF_DISTRIBUTION_ID: ${{ vars.CF_DISTRIBUTION_ID }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download web
+        uses: actions/download-artifact@v3
+        with:
+          name: web
+          path: build/web
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync ./build/web s3://$WEBAPP_S3_BUCKET
+      - name: AWS CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"

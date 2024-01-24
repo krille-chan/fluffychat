@@ -1,10 +1,11 @@
 import 'dart:core';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../config/themes.dart';
+import 'chat_list.dart';
 
 class StartChatFloatingActionButton extends StatelessWidget {
   final ActiveFilter activeFilter;
@@ -13,18 +14,20 @@ class StartChatFloatingActionButton extends StatelessWidget {
   // #Pangea
   final ChatListController controller;
   // Pangea#
+  final void Function() createNewSpace;
 
   const StartChatFloatingActionButton({
     super.key,
     required this.activeFilter,
     required this.scrolledToTop,
     required this.roomsIsEmpty,
+    required this.createNewSpace,
     // #Pangea
     required this.controller,
     // Pangea#
   });
 
-  void _onPressed(BuildContext context) {
+  void _onPressed(BuildContext context) async {
     //#Pangea
     if (controller.activeSpaceId != null) {
       context.go('/rooms/newgroup/${controller.activeSpaceId ?? ''}');
@@ -45,7 +48,10 @@ class StartChatFloatingActionButton extends StatelessWidget {
         // Pangea#
         break;
       case ActiveFilter.spaces:
+        // #Pangea
+        // createNewSpace();
         context.go('/rooms/newspace');
+        // Pangea#
         break;
     }
   }

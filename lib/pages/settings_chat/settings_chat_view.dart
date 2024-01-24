@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
@@ -77,7 +76,7 @@ class SettingsChatView extends StatelessWidget {
               //   title: L10n.of(context)!.sendOnEnter,
               //   onChanged: (b) => AppConfig.sendOnEnter = b,
               //   storeKey: SettingKeys.sendOnEnter,
-              //   defaultValue: AppConfig.sendOnEnter,
+              //   defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               // ),
               // SettingsSwitchListTile.adaptive(
               //   title: L10n.of(context)!.experimentalVideoCalls,
@@ -100,7 +99,6 @@ class SettingsChatView extends StatelessWidget {
                     child: Icon(Icons.call),
                   ),
                 ),
-              const Divider(height: 1),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,

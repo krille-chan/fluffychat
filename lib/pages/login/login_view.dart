@@ -1,11 +1,7 @@
-// Flutter imports:
-
+import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/utils/password_forgotten.dart';
-import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -15,6 +11,20 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // #Pangea
+    // final homeserver = Matrix.of(context)
+    //     .getLoginClient()
+    //     .homeserver
+    //     .toString()
+    //     .replaceFirst('https://', '');
+    // final title = L10n.of(context)!.logInTo(homeserver);
+    // final titleParts = title.split(homeserver);
+
+    // final textFieldFillColor = FluffyThemes.isColumnMode(context)
+    //     ? Theme.of(context).colorScheme.background
+    //     : Theme.of(context).colorScheme.surfaceVariant;
+    // Pangea#
+
     return LoginScaffold(
       // #Pangea
       // enforceMobileMode: Matrix.of(context).client.isLogged(),
@@ -45,16 +55,20 @@ class LoginView extends StatelessWidget {
               ),
         // Pangea#
         automaticallyImplyLeading: !controller.loading,
-        centerTitle: true,
+        titleSpacing: !controller.loading ? 0 : null,
         // #Pangea
-        // title: Text(
-        //   L10n.of(context)!.logInTo(
-        //     Matrix.of(context)
-        //         .getLoginClient()
-        //         .homeserver
-        //         .toString()
-        //         .replaceFirst('https://', ''),
+        // title: Text.rich(
+        //   TextSpan(
+        //     children: [
+        //       TextSpan(text: titleParts.first),
+        //       TextSpan(
+        //         text: homeserver,
+        //         style: const TextStyle(fontWeight: FontWeight.bold),
+        //       ),
+        //       TextSpan(text: titleParts.last),
+        //     ],
         //   ),
+        //   style: const TextStyle(fontSize: 18),
         // ),
         // Pangea#
       ),
@@ -62,9 +76,15 @@ class LoginView extends StatelessWidget {
         builder: (context) {
           return AutofillGroup(
             child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
+                // #Pangea
+                const SizedBox(height: 80),
+                // Image.asset('assets/banner_transparent.png'),
+                // const SizedBox(height: 16),
+                // Pangea#
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
                     readOnly: controller.loading,
                     autocorrect: false,
@@ -87,6 +107,7 @@ class LoginView extends StatelessWidget {
                       // Pangea#
                       hintText: L10n.of(context)!.emailOrUsername,
                       // #Pangea
+                      // fillColor: textFieldFillColor,
                       fillColor: Theme.of(context)
                           .colorScheme
                           .background
@@ -95,8 +116,9 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
                     readOnly: controller.loading,
                     autocorrect: false,
@@ -115,6 +137,7 @@ class LoginView extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyMedium?.color,
                         fontSize: 14,
                       ),
+                      // fillColor: textFieldFillColor,
                       // prevent enter key from clicking show password button
                       suffixIcon: MouseRegion(
                         cursor: SystemMouseCursors.click,
@@ -149,33 +172,31 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Hero(
-                  tag: 'signinButton',
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    // #Pangea
-                    child: ElevatedButton(
-                      onPressed:
-                          controller.loading ? null : () => controller.login(),
-                      child: controller.loading
-                          ? const LinearProgressIndicator()
-                          : Text(L10n.of(context)!.login),
-                    ),
-                    // child: ElevatedButton.icon(
-                    //   style: ElevatedButton.styleFrom(
-                    //     backgroundColor: Theme.of(context).colorScheme.primary,
-                    //     foregroundColor:
-                    //         Theme.of(context).colorScheme.onPrimary,
-                    //   ),
-                    //   onPressed: controller.loading ? null : controller.login,
-                    //   icon: const Icon(Icons.login_outlined),
-                    //   label: controller.loading
-                    //       ? const LinearProgressIndicator()
-                    //       : Text(L10n.of(context)!.login),
-                    // ),
-                    // Pangea$
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  // #Pangea
+                  child: ElevatedButton(
+                    onPressed:
+                        controller.loading ? null : () => controller.login(),
+                    child: controller.loading
+                        ? const LinearProgressIndicator()
+                        : Text(L10n.of(context)!.login),
                   ),
+                  // child: ElevatedButton.icon(
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Theme.of(context).colorScheme.primary,
+                  //     foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  //   ),
+                  //   onPressed: controller.loading ? null : controller.login,
+                  //   icon: const Icon(Icons.login_outlined),
+                  //   label: controller.loading
+                  //       ? const LinearProgressIndicator()
+                  //       : Text(L10n.of(context)!.login),
+                  // ),
+                  // Pangea#
                 ),
+                // #Pangea
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -183,10 +204,7 @@ class LoginView extends StatelessWidget {
                       const Expanded(
                         child: Divider(
                           thickness: 1,
-                          // #Pangea
                           color: Colors.white,
-                          // color: Theme.of(context).dividerColor,
-                          // Pangea#
                         ),
                       ),
                       Padding(
@@ -199,39 +217,38 @@ class LoginView extends StatelessWidget {
                       const Expanded(
                         child: Divider(
                           thickness: 1,
-                          // #Pangea
                           color: Colors.white,
-                          // color: Theme.of(context).dividerColor,
-                          // Pangea#
                         ),
                       ),
                     ],
                   ),
                 ),
+                // Pangea#
+                const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   // #Pangea
                   child: ElevatedButton(
                     onPressed: controller.loading
                         ? () {}
-                        : controller.pangeaPasswordForgotten,
+                        : controller.passwordForgotten,
                     style:
                         ElevatedButton.styleFrom(foregroundColor: Colors.red),
                     child: Text(L10n.of(context)!.passwordForgotten),
                   ),
-                  // child: ElevatedButton.icon(
+                  // child: TextButton.icon(
                   //   onPressed: controller.loading
                   //       ? () {}
                   //       : controller.passwordForgotten,
-                  //   style: ElevatedButton.styleFrom(
+                  //   style: TextButton.styleFrom(
                   //     foregroundColor: Theme.of(context).colorScheme.error,
-                  //     backgroundColor: Theme.of(context).colorScheme.onError,
                   //   ),
                   //   icon: const Icon(Icons.safety_check_outlined),
                   //   label: Text(L10n.of(context)!.passwordForgotten),
                   // ),
                   // Pangea#
                 ),
+                const SizedBox(height: 16),
               ],
             ),
           );

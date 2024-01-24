@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -13,6 +8,10 @@ import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/matrix.dart';
 import 'chat_list_body.dart';
 import 'start_chat_fab.dart';
@@ -247,6 +246,7 @@ class ChatListView extends StatelessWidget {
                     //           activeFilter: controller.activeFilter,
                     //           roomsIsEmpty: false,
                     //           scrolledToTop: controller.scrolledToTop,
+                    //           createNewSpace: controller.createNewSpace,
                     //         )
                     //       : const SizedBox.shrink(),
                     // ),
@@ -256,6 +256,7 @@ class ChatListView extends StatelessWidget {
                             roomsIsEmpty: false,
                             scrolledToTop: controller.scrolledToTop,
                             controller: controller,
+                            createNewSpace: () {},
                           )
                         : null,
                     // Pangea#

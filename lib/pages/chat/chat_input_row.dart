@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
@@ -116,8 +115,8 @@ class ChatInputRow extends StatelessWidget {
                       curve: FluffyThemes.animationCurve,
                       height: 56,
                       //#Pangea
-                      // width: controller.inputText.isEmpty ? 56 : 0,
-                      width: controller.inputText.isEmpty &&
+                      // width: controller.sendController.text.isEmpty ? 56 : 0,
+                      width: controller.sendController.text.isEmpty &&
                               controller.pangeaController.permissionsController
                                   .showChatInputAddButton(controller.roomId)
                           ? 56
@@ -163,7 +162,7 @@ class ChatInputRow extends StatelessWidget {
                                 contentPadding: const EdgeInsets.all(0),
                               ),
                             ),
-                          //#Pangea
+//#Pangea
                           // if (PlatformInfos.isMobile)
                           if (PlatformInfos.isMobile &&
                               controller.pangeaController.permissionsController
@@ -295,8 +294,10 @@ class ChatInputRow extends StatelessWidget {
                         autofocus: false,
                         // Pangea#
                         keyboardType: TextInputType.multiline,
-                        textInputAction:
-                            AppConfig.sendOnEnter ? TextInputAction.send : null,
+                        textInputAction: AppConfig.sendOnEnter == true &&
+                                PlatformInfos.isMobile
+                            ? TextInputAction.send
+                            : null,
                         // #Pangea
                         // onSubmitted: controller.onInputBarSubmitted,
                         onSubmitted: (String value) =>
@@ -317,7 +318,7 @@ class ChatInputRow extends StatelessWidget {
                     ),
                   ),
                   if (PlatformInfos.platformCanRecord &&
-                      controller.inputText.isEmpty)
+                      controller.sendController.text.isEmpty)
                     Container(
                       height: 56,
                       alignment: Alignment.center,
@@ -328,7 +329,7 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     ),
                   if (!PlatformInfos.isMobile ||
-                      controller.inputText.isNotEmpty)
+                      controller.sendController.text.isNotEmpty)
                     // #Pangea
                     ChoreographerSendButton(controller: controller),
                   // Container(
