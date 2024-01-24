@@ -103,11 +103,6 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) => Provider<AppLock>(
         create: (_) => this,
-        child: Stack(
-          children: [
-            widget.child,
-            if (isLocked) const LockScreen(),
-          ],
-        ),
+        child: isLocked ? const LockScreen() : widget.child,
       );
 }
