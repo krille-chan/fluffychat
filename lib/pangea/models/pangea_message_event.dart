@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -256,6 +257,10 @@ class PangeaMessageEvent {
   //each match is turned into an activity that other students can access
   //they're not told the answer but have to find it themselves
   //the message has a blank piece which they fill in themselves
+
+  // replication of logic from message_content.dart
+  bool get isHtml =>
+      AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
 }
 
 class URLFinder {

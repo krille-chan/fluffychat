@@ -1,3 +1,4 @@
+import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
@@ -18,7 +19,6 @@ import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import 'audio_player.dart';
 import 'cute_events.dart';
-import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
@@ -182,16 +182,25 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Notice:
           case MessageTypes.Emote:
             if (AppConfig.renderHtml &&
-                !event.redacted &&
-                event.isRichMessage) {
+                    !event.redacted &&
+                    event.isRichMessage
+                    // #Pangea
+                    &&
+                    !pangeaMessageEvent.showRichText
+                // Pangea#
+                ) {
               var html = event.formattedText;
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
               }
+              // #Pangea
+              messageToolbar?.messageText = html;
+              // Pangea#
               return HtmlMessage(
                 html: html,
                 textColor: textColor,
                 room: event.room,
+                messageToolbar: messageToolbar,
               );
             }
             // else we fall through to the normal message rendering
@@ -281,7 +290,7 @@ class MessageContent extends StatelessWidget {
               return MouseRegion(
                 onHover: messageToolbar?.onMouseRegionUpdate,
                 child: PangeaRichText(
-                  existingStyle: messageTextStyle,
+                  style: messageTextStyle,
                   selected: selected,
                   pangeaMessageEvent: pangeaMessageEvent,
                   immersionMode: immersionMode,
@@ -321,7 +330,12 @@ class MessageContent extends StatelessWidget {
                     // Pangea#
                     text: messageText,
                     focusNode: messageToolbar?.focusNode,
-                    contextMenuBuilder: messageToolbar?.contextMenuOverride,
+                    contextMenuBuilder: (context, state) =>
+                        messageToolbar?.contextMenuOverride(
+                          context: context,
+                          textSelection: state,
+                        ) ??
+                        const SizedBox(),
                     // text: snapshot.data ??
                     //     event.calcLocalizedBodyFallback(
                     //       MatrixLocals(L10n.of(context)!),
@@ -341,8 +355,12 @@ class MessageContent extends StatelessWidget {
                       decorationColor: textColor.withAlpha(150),
                     ),
                     onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                    onSelectionChanged: (selection, cause) => messageToolbar
-                        ?.onTextSelection(selection, cause, context),
+                    onSelectionChanged: (selection, cause) =>
+                        messageToolbar?.onTextSelection(
+                      selectedText: selection,
+                      cause: cause,
+                      context: context,
+                    ),
                   );
                 },
               ),

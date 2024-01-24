@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -16,7 +17,7 @@ class ShowDefintionUtil {
   final String targetId;
   final FocusNode focusNode = FocusNode();
   final Room room;
-  TextSelection? textSelection;
+  String? textSelection;
   bool inCooldown = false;
   double? dx;
   double? dy;
@@ -28,26 +29,21 @@ class ShowDefintionUtil {
     required this.messageText,
   });
 
-  void onTextSelection(
-    TextSelection selection,
+  void onTextSelection({
+    required BuildContext context,
+    TextSelection? selectedText,
+    SelectedContent? selectedContent,
     SelectionChangedCause? cause,
-    BuildContext context,
-  ) {
-    selection.isCollapsed
-        ? clearTextSelection()
-        : setTextSelection(
-            selection,
-            cause,
-            context,
-          );
-  }
+  }) {
+    if ((selectedText == null && selectedContent == null) ||
+        selectedText?.isCollapsed == true) {
+      clearTextSelection();
+      return;
+    }
+    textSelection = selectedText != null
+        ? selectedText.textInside(messageText)
+        : selectedContent!.plainText;
 
-  void setTextSelection(
-    TextSelection selection,
-    SelectionChangedCause? cause,
-    BuildContext context,
-  ) {
-    textSelection = selection;
     if (BrowserContextMenu.enabled && kIsWeb) {
       BrowserContextMenu.disableContextMenu();
     }
@@ -73,12 +69,11 @@ class ShowDefintionUtil {
   }
 
   void showDefinition(BuildContext context) {
-    final String? fullText = textSelection?.textInside(messageText);
-    if (fullText == null) return;
+    if (textSelection == null) return;
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: WordDataCard(
-        word: fullText,
+        word: textSelection!,
         wordLang: langCode,
         fullText: messageText,
         fullTextLang: langCode,
@@ -136,11 +131,21 @@ class ShowDefintionUtil {
     dy = event.position.dy;
   }
 
-  Widget contextMenuOverride(BuildContext context, EditableTextState selection) {
+  Widget contextMenuOverride({
+    required BuildContext context,
+    EditableTextState? textSelection,
+    SelectableRegionState? contentSelection,
+  }) {
+    if (textSelection == null && contentSelection == null) {
+      return const SizedBox();
+    }
     return AdaptiveTextSelectionToolbar.buttonItems(
-      anchors: selection.contextMenuAnchors,
+      anchors: textSelection?.contextMenuAnchors ??
+          contentSelection!.contextMenuAnchors,
       buttonItems: [
-        ...selection.contextMenuButtonItems,
+        if (textSelection != null) ...textSelection.contextMenuButtonItems,
+        if (contentSelection != null)
+          ...contentSelection.contextMenuButtonItems,
         ContextMenuButtonItem(
           label: L10n.of(context)!.showDefinition,
           onPressed: () {

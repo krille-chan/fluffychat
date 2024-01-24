@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -14,16 +15,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../../models/igc_text_data_model.dart';
-import '../../models/language_detection_model.dart';
 import '../../models/pangea_match_model.dart';
 import '../../models/pangea_representation_event.dart';
-import '../../utils/bot_style.dart';
 import '../../utils/instructions.dart';
 
 class PangeaRichText extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
-  final TextStyle? existingStyle;
+  final TextStyle? style;
   final bool selected;
   final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
@@ -39,7 +37,7 @@ class PangeaRichText extends StatefulWidget {
     required this.immersionMode,
     required this.definitions,
     this.choreographer,
-    this.existingStyle,
+    this.style,
     this.messageToolbar,
   });
 
@@ -50,9 +48,8 @@ class PangeaRichText extends StatefulWidget {
 class PangeaRichTextState extends State<PangeaRichText> {
   final PangeaController pangeaController = MatrixState.pangeaController;
   bool _fetchingRepresentation = false;
-  bool _fetchingTokens = false;
   double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
-  List<TextSpan> textSpan = [];
+  String textSpan = "";
 
   @override
   void initState() {
@@ -69,7 +66,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   void updateTextSpan() {
     setState(() {
       textSpan = getTextSpan(context);
-      widget.messageToolbar?.messageText = textSpan.map((e) => e.text).join();
+      widget.messageToolbar?.messageText = textSpan;
     });
   }
 
@@ -94,32 +91,48 @@ class PangeaRichTextState extends State<PangeaRichText> {
       );
     }
 
-    final Widget richText = SelectableText.rich(
-      onSelectionChanged: (selection, cause) =>
-          widget.messageToolbar?.onTextSelection(selection, cause, context),
-      focusNode: widget.messageToolbar?.focusNode,
-      contextMenuBuilder: widget.messageToolbar?.contextMenuOverride,
-      TextSpan(
-        children: [
-          ...textSpan,
-          if (widget.selected && (_fetchingRepresentation || _fetchingTokens))
-            // if (widget.selected)
-            const WidgetSpan(
-              child: Padding(
-                padding: EdgeInsets.only(left: 5.0),
-                child: SizedBox(
-                  height: 14,
-                  width: 14,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2.0,
-                    color: AppConfig.secondaryColor,
-                  ),
-                ),
-              ),
+    final Widget richText = widget.pangeaMessageEvent.isHtml
+        ? HtmlMessage(
+            html: textSpan,
+            room: widget.pangeaMessageEvent.room,
+            textColor: widget.style?.color ?? Colors.black,
+            messageToolbar: widget.messageToolbar,
+          )
+        : SelectableText.rich(
+            onSelectionChanged: (selection, cause) =>
+                widget.messageToolbar?.onTextSelection(
+              selectedText: selection,
+              cause: cause,
+              context: context,
             ),
-        ],
-      ),
-    );
+            focusNode: widget.messageToolbar?.focusNode,
+            contextMenuBuilder: (context, state) =>
+                widget.messageToolbar?.contextMenuOverride(
+                  context: context,
+                  textSelection: state,
+                ) ??
+                const SizedBox(),
+            TextSpan(
+              text: textSpan,
+              style: widget.style,
+              children: [
+                if (widget.selected && (_fetchingRepresentation))
+                  const WidgetSpan(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 5.0),
+                      child: SizedBox(
+                        height: 14,
+                        width: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.0,
+                          color: AppConfig.secondaryColor,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          );
 
     return blur > 0
         ? ImageFiltered(
@@ -129,17 +142,17 @@ class PangeaRichTextState extends State<PangeaRichText> {
         : richText;
   }
 
-  List<TextSpan> getTextSpan(BuildContext context) {
+  String getTextSpan(BuildContext context) {
     final String? displayLangCode =
         widget.selected ? widget.selectedDisplayLang?.langCode : userL2LangCode;
 
     if (displayLangCode == null || !widget.immersionMode) {
-      return simpleText(widget.pangeaMessageEvent.body);
+      return widget.pangeaMessageEvent.body;
     }
 
     if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
       debugger(when: kDebugMode);
-      return simpleText(widget.pangeaMessageEvent.body);
+      return widget.pangeaMessageEvent.body;
     }
 
     final RepresentationEvent? repEvent =
@@ -158,7 +171,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
           )
           .onError((error, stackTrace) => ErrorHandler.logError())
           .whenComplete(() => setState(() => _fetchingRepresentation = false));
-      return simpleText(widget.pangeaMessageEvent.body);
+      return widget.pangeaMessageEvent.body;
     }
 
     if (repEvent.event?.eventId.contains("web") ?? false) {
@@ -171,73 +184,12 @@ class PangeaRichTextState extends State<PangeaRichText> {
               "representationByLanguageGlobal returned RepEvent with event ID containing 'web' - ${repEvent.event?.eventId}",
         ),
       );
-      // debugger(when: kDebugMode);
-      return textWithBotStyle(repEvent, context);
     }
 
-    if (!widget.selected ||
-        displayLangCode != userL2LangCode ||
-        !widget.definitions) {
-      return textWithBotStyle(repEvent, context);
-    }
-
-    if (repEvent.tokens == null) {
-      setState(() => _fetchingTokens = true);
-      repEvent
-          .tokensGlobal(context)
-          .onError((error, stackTrace) => ErrorHandler.logError())
-          .whenComplete(() => setState(() => _fetchingTokens = false));
-
-      return textWithBotStyle(repEvent, context);
-    }
-
-    return IGCTextData(
-      originalInput: repEvent.text,
-      fullTextCorrection: repEvent.text,
-      matches: [],
-      detections: [LanguageDetection(langCode: displayLangCode)],
-      tokens: repEvent.tokens!,
-      enableIT: true,
-      enableIGC: true,
-      userL2: userL2LangCode ?? LanguageKeys.unknownLanguage,
-      userL1: userL1LangCode ?? LanguageKeys.unknownLanguage,
-    ).constructTokenSpan(
-      context: context,
-      defaultStyle: textStyle(repEvent, context),
-      handleClick: false,
-      spanCardModel: null,
-      transformTargetId: widget.pangeaMessageEvent.eventId,
-      room: widget.pangeaMessageEvent.room,
-    );
+    return widget.pangeaMessageEvent.isHtml
+        ? repEvent.formatBody() ?? repEvent.text
+        : repEvent.text;
   }
-
-  List<TextSpan> simpleText(String text) => [
-        TextSpan(
-          text: text,
-          style: widget.existingStyle,
-        ),
-      ];
-
-  List<TextSpan> textWithBotStyle(
-    RepresentationEvent repEvent,
-    BuildContext context,
-  ) =>
-      [
-        TextSpan(
-          text: repEvent.text,
-          style: textStyle(repEvent, context),
-        ),
-      ];
-
-  TextStyle? textStyle(RepresentationEvent repEvent, BuildContext context) =>
-      // !repEvent.botAuthored
-      true
-          ? widget.existingStyle
-          : BotStyle.text(
-              context,
-              existingStyle: widget.existingStyle,
-              setColor: false,
-            );
 
   bool get areLanguagesSet =>
       userL2LangCode != null && userL2LangCode != LanguageKeys.unknownLanguage;

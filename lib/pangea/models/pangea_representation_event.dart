@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/models/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/repo/tokens_repo.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/markdown.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../widgets/matrix.dart';
 import '../constants/language_keys.dart';
 import '../constants/pangea_event_types.dart';
@@ -157,5 +157,9 @@ class RepresentationEvent {
     _choreo = ChoreoEvent(event: choreoMatrixEvents.first).content;
 
     return _choreo;
+  }
+
+  String? formatBody() {
+    return markdown(content.text);
   }
 }
