@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
@@ -8,7 +6,6 @@ import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -189,9 +186,9 @@ class PangeaMessageEvent {
     RepresentationEvent? rep = representationByLanguage(langCode);
 
     //if event is less than 1 minute old, then print new event
-    if (isNew) {
-      debugger(when: kDebugMode);
-    }
+    // if (isNew) {
+    //   debugger(when: kDebugMode);
+    // }
 
     while ((isNew || eventId.contains("web")) && tries < 20) {
       if (rep != null) return rep;

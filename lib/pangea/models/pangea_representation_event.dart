@@ -61,11 +61,11 @@ class RepresentationEvent {
     if (_tokens != null) return _tokens!.tokens;
 
     if (_event == null) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: '_event and _tokens both null',
-        s: StackTrace.current,
-      );
+      // debugger(when: kDebugMode);
+      // ErrorHandler.logError(
+      //   m: '_event and _tokens both null',
+      //   s: StackTrace.current,
+      // );
       return null;
     }
 
@@ -101,11 +101,11 @@ class RepresentationEvent {
     if (tokens != null) return tokens!;
 
     if (_event == null) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: '_event and _tokens both null',
-        s: StackTrace.current,
-      );
+      // debugger(when: kDebugMode);
+      // ErrorHandler.logError(
+      //   m: '_event and _tokens both null',
+      //   s: StackTrace.current,
+      // );
       return null;
     }
 
