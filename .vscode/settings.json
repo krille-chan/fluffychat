@@ -1,9 +1,9 @@
 {
     "dart.previewLsp": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.organizeImports": true,
-        "source.sortMembers": false
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit",
+        "source.sortMembers": "never"
     },
     "editor.formatOnSave": true
 }
