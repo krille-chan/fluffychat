@@ -10,18 +10,21 @@ class PangeaMessageActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        LanguageToggleSwitch(controller: chatController),
-        TextToSpeechButton(
-          controller: chatController,
-        ),
-        // IconButton(
-        //   icon: Icon(Icons.mic),
-        //   onPressed: chatController.onMicTap,
-        // ),
-        // Add more IconButton widgets here
-      ],
-    );
+    return chatController.selectedEvents.length == 1
+        ? Row(
+            children: <Widget>[
+              LanguageToggleSwitch(controller: chatController),
+              TextToSpeechButton(
+                controller: chatController,
+                selectedEvent: chatController.selectedEvents.first,
+              ),
+              // IconButton(
+              //   icon: Icon(Icons.mic),
+              //   onPressed: chatController.onMicTap,
+              // ),
+              // Add more IconButton widgets here
+            ],
+          )
+        : const SizedBox();
   }
 }

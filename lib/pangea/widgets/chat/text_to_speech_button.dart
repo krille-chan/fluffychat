@@ -1,7 +1,8 @@
 import 'dart:developer';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -13,10 +14,12 @@ import 'package:matrix/matrix.dart';
 
 class TextToSpeechButton extends StatefulWidget {
   final ChatController controller;
+  final Event selectedEvent;
 
   const TextToSpeechButton({
     super.key,
     required this.controller,
+    required this.selectedEvent,
   });
 
   @override
@@ -25,6 +28,8 @@ class TextToSpeechButton extends StatefulWidget {
 
 class _TextToSpeechButtonState extends State<TextToSpeechButton> {
   final AudioPlayer _audioPlayer = AudioPlayer();
+  late PangeaMessageEvent _pangeaMessageEvent;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -32,97 +37,103 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
     super.dispose();
   }
 
-  void _playSpeech() {
+  @override
+  void initState() {
+    super.initState();
+    _pangeaMessageEvent = PangeaMessageEvent(
+      event: widget.selectedEvent,
+      timeline: widget.controller.timeline!,
+      ownMessage:
+          widget.selectedEvent.senderId == Matrix.of(context).client.userID,
+      selected: true,
+    );
+  }
+
+  Event? get localAudioEvent =>
+      langCode != null && text != null && text!.isNotEmpty
+          ? _pangeaMessageEvent.getAudioLocal(langCode!, text!)
+          : null;
+
+  String? get langCode =>
+      widget.controller.choreographer.messageOptions.selectedDisplayLang
+          ?.langCode ??
+      widget.controller.choreographer.l2LangCode;
+
+  String? get text => langCode != null
+      ? _pangeaMessageEvent.representationByLanguage(langCode!)?.text
+      : null;
+
+  Future<void> _getAudio() async {
     try {
-      final String langCode = widget.controller.choreographer.messageOptions
-              .selectedDisplayLang?.langCode ??
-          widget.controller.choreographer.l2LangCode ??
-          'en';
-      final Event event = widget.controller.selectedEvents.first;
+      if (!mounted) return;
+      if (text == null || text!.isEmpty) return;
+      if (langCode == null || langCode!.isEmpty) return;
 
-      PangeaMessageEvent(
-        event: event,
-        timeline: widget.controller.timeline!,
-        ownMessage: event.senderId == Matrix.of(context).client.userID,
-        selected: true,
-      ).getAudioGlobal(langCode);
-
-      // final String? text = PangeaMessageEvent(
-      //   event: event,
-      //   timeline: widget.controller.timeline!,
-      //   ownMessage: event.senderId == Matrix.of(context).client.userID,
-      //   selected: true,
-      // ).representationByLanguage(langCode)?.text;
-
-      // if (text == null || text.isEmpty) {
-      //   throw Exception("text is null or empty in text_to_speech_button.dart");
-      // }
-
-      // final TextToSpeechRequest params = TextToSpeechRequest(
-      //   text: text,
-      //   langCode: widget.controller.choreographer.messageOptions
-      //           .selectedDisplayLang?.langCode ??
-      //       widget.controller.choreographer.l2LangCode ??
-      //       LanguageKeys.unknownLanguage,
-      // );
-
-      // final TextToSpeechResponse response = await TextToSpeechService.get(
-      //   accessToken:
-      //       await MatrixState.pangeaController.userController.accessToken,
-      //   params: params,
-      // );
-
-      // if (response.mediaType != 'audio/ogg') {
-      //   throw Exception('Unexpected media type: ${response.mediaType}');
-      // }
-
-      // // Decode the base64 audio content to bytes
-      // final audioBytes = base64.decode(response.audioContent);
-
-      // final encoding = Uri.dataFromBytes(audioBytes);
-      // final uri = AudioSource.uri(encoding);
-      // // gets here without problems
-
-      // await _audioPlayer.setAudioSource(uri);
-      // await _audioPlayer.play();
-
-      // final audioBytes = base64.decode(response.audioContent);
-      // final tempDir = await getTemporaryDirectory();
-      // final file = File('${tempDir.path}/speech.ogg');
-      // await file.writeAsBytes(audioBytes);
-
-      // await _audioPlayer.setFilePath(file.path);
-
-      // await _audioPlayer.play();
+      setState(() => _isLoading = true);
+      await _pangeaMessageEvent.getAudioGlobal(langCode!);
+      setState(() => _isLoading = false);
     } catch (e) {
+      setState(() => _isLoading = false);
       debugger(when: kDebugMode);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            L10n.of(context)!.errorGettingAudio,
-          ),
+          content: Text(L10n.of(context)!.errorGettingAudio),
         ),
       );
       ErrorHandler.logError(
         e: Exception(),
         s: StackTrace.current,
         m: 'text is null or empty in text_to_speech_button.dart',
-        data: {
-          'event': widget.controller.selectedEvents.first,
-          'langCode': widget.controller.choreographer.messageOptions
-                  .selectedDisplayLang?.langCode ??
-              widget.controller.choreographer.l2LangCode ??
-              LanguageKeys.unknownLanguage,
-        },
+        data: {'selectedEvent': widget.selectedEvent, 'langCode': langCode},
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: _playSpeech,
-      child: const Text('Convert to Speech'),
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    final playButton = InkWell(
+      borderRadius: BorderRadius.circular(64),
+      onTap: text == null || text!.isEmpty ? null : _getAudio,
+      child: Material(
+        color: AppConfig.primaryColor.withAlpha(64),
+        borderRadius: BorderRadius.circular(64),
+        child: const Icon(
+          // Change the icon based on some condition. If you have an audio player state, use it here.
+          Icons.play_arrow_outlined,
+          color: AppConfig.primaryColor,
+        ),
+      ),
     );
+
+    return localAudioEvent == null
+        ? Opacity(
+            opacity: text == null || text!.isEmpty ? 0.5 : 1,
+            child: SizedBox(
+              width: 44, // Match the size of the button in AudioPlayerState
+              height: 36,
+              child: Padding(
+                //only left side of the button is padded to match the padding of the AudioPlayerState
+                padding: const EdgeInsets.only(left: 8),
+                child: playButton,
+              ),
+            ),
+          )
+        : Container(
+            constraints: const BoxConstraints(
+              maxWidth: 250,
+            ),
+            child: Column(
+              children: [
+                AudioPlayerWidget(
+                  localAudioEvent!,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+              ],
+            ),
+          );
   }
 }

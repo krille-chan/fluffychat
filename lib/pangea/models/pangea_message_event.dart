@@ -110,6 +110,12 @@ class PangeaMessageEvent {
 
     final audioBytes = base64.decode(response.audioContent);
 
+    if (!TextToSpeechController.isOggFile(audioBytes)) {
+      throw Exception("File is not a valid OGG format");
+    } else {
+      debugPrint("File is a valid OGG format");
+    }
+
     // from text, trim whitespace, remove special characters, and limit to 20 characters
     // final fileName =
     //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
@@ -118,7 +124,12 @@ class PangeaMessageEvent {
     final file = MatrixAudioFile(
       bytes: audioBytes,
       name: fileName,
+      mimeType: response.mediaType,
     );
+
+    if (file.mimeType != "audio/ogg") {
+      throw Exception("Unexpected mime type: ${file.mimeType}");
+    }
 
     return room.sendFileEvent(
       file,
@@ -131,10 +142,9 @@ class PangeaMessageEvent {
         'org.matrix.msc3245.voice': {},
         'org.matrix.msc1767.audio': {
           'duration': response.durationMillis,
-          'waveform': null,
-          // 'waveform': response.waveform,
+          'waveform': response.waveform,
         },
-        'transcription': {
+        ModelKey.transcription: {
           ModelKey.text: text,
           ModelKey.langCode: langCode,
         },
@@ -170,28 +180,36 @@ class PangeaMessageEvent {
     return allAudio.firstWhereOrNull(
       (element) {
         // Safely access the transcription map
-        final transcription =
-            element.content.tryGet<Map<String, String>>(ModelKey.transcription);
-        if (transcription == null) {
-          // If transcription is null, this element does not match.
-          return false;
-        }
+        final transcription = element.content.tryGet(ModelKey.transcription);
 
-        // Safely get language code and text from the transcription
-        final elementLangCode = transcription.tryGet(ModelKey.langCode);
-        final elementText = transcription.tryGet(ModelKey.text);
+        return transcription != null;
+        // if (transcription == null) {
+        //   // If transcription is null, this element does not match.
+        //   return false;
+        // }
 
-        // Check if both language code and text match
-        return elementLangCode == langCode && elementText == text;
+        // // Safely get language code and text from the transcription
+        // final elementLangCode = transcription.tryGet(ModelKey.langCode);
+        // final elementText = transcription.tryGet(ModelKey.text);
+
+        // // Check if both language code and text match
+        // return elementLangCode == langCode && elementText == text;
       },
     );
   }
 
   // get audio events that are related to this event
-  Set<Event> get allAudio => _latestEdit.aggregatedEvents(
+  Set<Event> get allAudio => _latestEdit
+          .aggregatedEvents(
         timeline,
-        EventTypes.Message,
-      );
+        RelationshipTypes.reply,
+      )
+          .where((element) {
+        return element.content.tryGet<Map<String, dynamic>>(
+              ModelKey.transcription,
+            ) !=
+            null;
+      }).toSet();
 
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -121,5 +122,37 @@ class TextToSpeechController {
     final Map<String, dynamic> json = jsonDecode(res.body);
 
     return TextToSpeechResponse.fromJson(json);
+  }
+  //   if (json["wave_form"] == null) {
+  //     json["wave_form"] = getWaveForm();
+  //   }
+
+  //   return TextToSpeechResponse(
+  //       audioContent: String.fromCharCodes(base64Decode(json["audio_content"])),
+  //       mediaType: json["media_type"],
+  //       durationMillis: durationMillis(json["duration_millis"]),
+  //       waveform: getWaveForm(json["audio_content"]),
+  //       );
+  // }
+
+  // static List<int> getWaveForm(audioContent) {
+  //   return [];
+  // }
+
+  // static int durationMillis(audioContent) {
+  //   return 0;
+  // }
+
+  static bool isOggFile(Uint8List bytes) {
+    // Check if the file has enough bytes for the header
+    if (bytes.length < 4) {
+      return false;
+    }
+
+    // Check the magic number for OGG file
+    return bytes[0] == 0x4F &&
+        bytes[1] == 0x67 &&
+        bytes[2] == 0x67 &&
+        bytes[3] == 0x53;
   }
 }

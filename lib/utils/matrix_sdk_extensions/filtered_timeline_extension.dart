@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
@@ -18,6 +19,9 @@ extension IsStateExtension on Event {
       (!AppConfig.hideUnknownEvents || isEventTypeKnown) &&
       // remove state events that we don't want to render
       (isState || !AppConfig.hideAllStateEvents) &&
+      // #Pangea
+      content.tryGet(ModelKey.transcription) == null &&
+      // Pangea#
       // hide unimportant state events
       (!AppConfig.hideUnimportantStateEvents ||
           !isState ||

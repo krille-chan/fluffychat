@@ -824,28 +824,28 @@ extension PangeaRoom on Room {
 
   Future<void> setClassPowerlLevels() async {
     try {
-      if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
-        return;
-      }
-      final currentPower = getState(EventTypes.RoomPowerLevels);
-      final Map<String, dynamic>? currentPowerContent =
-          currentPower!.content["events"] as Map<String, dynamic>?;
-      final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
-      final studentAnalyticsPower =
-          currentPowerContent?[PangeaEventTypes.studentAnalyticsSummary];
+      // if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
+      //   return;
+      // }
+      // final currentPower = getState(EventTypes.RoomPowerLevels);
+      // final Map<String, dynamic>? currentPowerContent =
+      //     currentPower!.content["events"] as Map<String, dynamic>?;
+      // final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
+      // final studentAnalyticsPower =
+      //     currentPowerContent?[PangeaEventTypes.studentAnalyticsSummary];
 
-      if (spaceChildPower == null || studentAnalyticsPower == null) {
-        currentPowerContent!["events"][EventTypes.spaceChild] = 0;
-        currentPowerContent["events"]
-            [PangeaEventTypes.studentAnalyticsSummary] = 0;
+      // if (spaceChildPower == null || studentAnalyticsPower == null) {
+      //   currentPowerContent!["events"][EventTypes.spaceChild] = 0;
+      //   currentPowerContent["events"]
+      //       [PangeaEventTypes.studentAnalyticsSummary] = 0;
 
-        await client.setRoomStateWithKey(
-          id,
-          EventTypes.RoomPowerLevels,
-          currentPower.stateKey ?? "",
-          currentPowerContent,
-        );
-      }
+      //   await client.setRoomStateWithKey(
+      //     id,
+      //     EventTypes.RoomPowerLevels,
+      //     currentPower.stateKey ?? "",
+      //     currentPowerContent,
+      //   );
+      // }
     } catch (err, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: s, data: toJson());
