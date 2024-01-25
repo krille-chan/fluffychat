@@ -2462,5 +2462,6 @@
         "placeholders": {
             "sender": {}
         }
-    }
+    },
+    "transparent": "Transparent"
 }
