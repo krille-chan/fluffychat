@@ -62,16 +62,19 @@ class RepresentationEvent {
     if (_tokens != null) return _tokens!.tokens;
 
     if (_event == null) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: '_event and _tokens both null',
-        s: StackTrace.current,
-      );
+      // debugger(when: kDebugMode);
+      // ErrorHandler.logError(
+      //   m: '_event and _tokens both null',
+      //   s: StackTrace.current,
+      // );
       return null;
     }
 
-    final Set<Event> tokenEvents =
-        _event!.aggregatedEvents(timeline, PangeaEventTypes.tokens);
+    final Set<Event> tokenEvents = _event?.aggregatedEvents(
+          timeline,
+          PangeaEventTypes.tokens,
+        ) ??
+        {};
 
     if (tokenEvents.isEmpty) return null;
 
@@ -79,13 +82,13 @@ class RepresentationEvent {
       debugger(when: kDebugMode);
       Sentry.addBreadcrumb(
         Breadcrumb(
-          message: "Token events for representation ${_event!.eventId}: "
+          message: "Token events for representation ${_event?.eventId}: "
               "Content: ${tokenEvents.map((e) => e.content).toString()}"
               "Type: ${tokenEvents.map((e) => e.type).toString()}",
         ),
       );
       ErrorHandler.logError(
-        m: 'should not have more than one tokenEvent per representation ${_event!.eventId}',
+        m: 'should not have more than one tokenEvent per representation ${_event?.eventId}',
         s: StackTrace.current,
       );
     }
@@ -97,12 +100,13 @@ class RepresentationEvent {
 
   Future<List<PangeaToken>?> tokensGlobal(BuildContext context) async {
     if (tokens != null) return tokens!;
+
     if (_event == null) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: '_event and _tokens both null',
-        s: StackTrace.current,
-      );
+      // debugger(when: kDebugMode);
+      // ErrorHandler.logError(
+      //   m: '_event and _tokens both null',
+      //   s: StackTrace.current,
+      // );
       return null;
     }
 
@@ -141,16 +145,16 @@ class RepresentationEvent {
     }
 
     final Set<Event> choreoMatrixEvents =
-        _event!.aggregatedEvents(timeline, PangeaEventTypes.choreoRecord);
+        _event?.aggregatedEvents(timeline, PangeaEventTypes.choreoRecord) ?? {};
 
     if (choreoMatrixEvents.isEmpty) return null;
 
     if (choreoMatrixEvents.length > 1) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
-        m: 'should not have more than one choreoEvent per representation ${_event!.eventId}',
+        m: 'should not have more than one choreoEvent per representation ${_event?.eventId}',
         s: StackTrace.current,
-        data: _event!.toJson(),
+        data: _event?.toJson(),
       );
     }
 

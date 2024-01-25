@@ -1,13 +1,11 @@
 import 'dart:async';
 
+import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
-
-import 'package:fluffychat/pangea/config/environment.dart';
 
 class ErrorHandler {
   ErrorHandler();
@@ -68,7 +66,8 @@ class ErrorHandler {
     String? m,
     Map<String, dynamic>? data,
   }) async {
-    if ((e ?? m) != null) debugPrint("error: ${e?.toString() ?? m}");
+    if (m != null) debugPrint("error message: $m");
+    if ((e ?? m) != null) debugPrint("error to string: ${e?.toString() ?? m}");
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
     }
