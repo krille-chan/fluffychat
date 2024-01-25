@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/model_keys.dart';
@@ -65,6 +64,8 @@ class PangeaToken {
         _hasInfoKey: hasInfo,
         _lemmaKey: lemmas.map((e) => e.toJson()).toList(),
       };
+
+  int get end => text.offset + text.length;
 }
 
 class PangeaTokenText {
