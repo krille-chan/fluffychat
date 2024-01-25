@@ -4,6 +4,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -114,97 +115,108 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Divider(height: 1),
-                  SwitchListTile.adaptive(
-                    title: Text(
-                      L10n.of(context)!.addConversationBot,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(L10n.of(context)!.addConversationBotDesc),
-                    secondary: CircleAvatar(
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
-                      foregroundColor:
-                          Theme.of(context).textTheme.bodyLarge!.color,
-                      child: const Icon(Icons.sms_outlined),
-                    ),
-                    activeColor: AppConfig.activeToggleColor,
-                    value: addBot,
-                    onChanged: (bool add) {
-                      setState(() => addBot = add);
-                      add
-                          ? widget.room?.invite(BotName.byEnvironment)
-                          : widget.room?.kick(BotName.byEnvironment);
-                    },
-                  ),
-                  if (addBot) ...[
-                    ListTile(
-                      onTap: () async {
-                        final topic = await showTextInputDialog(
-                          context: context,
-                          textFields: [
-                            DialogTextField(
-                              initialText: botOptions.topic.isEmpty
-                                  ? ""
-                                  : botOptions.topic,
-                              hintText:
-                                  L10n.of(context)!.enterAConversationTopic,
-                            ),
-                          ],
-                          title: L10n.of(context)!.conversationTopic,
-                        );
-                        if (topic == null) return;
-                        updateBotOption(() {
-                          botOptions.topic = topic.single;
-                        });
-                      },
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                        foregroundColor:
-                            Theme.of(context).textTheme.bodyLarge!.color,
-                        child: const Icon(Icons.topic_outlined),
-                      ),
-                      subtitle: Text(
-                        botOptions.topic.isEmpty
-                            ? L10n.of(context)!.enterAConversationTopic
-                            : botOptions.topic,
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: SwitchListTile.adaptive(
                       title: Text(
-                        L10n.of(context)!.conversationTopic,
+                        L10n.of(context)!.addConversationBot,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    SwitchListTile.adaptive(
-                      title: Text(
-                        L10n.of(context)!.enableModeration,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      subtitle: Text(L10n.of(context)!.enableModerationDesc),
+                      subtitle: Text(L10n.of(context)!.addConversationBotDesc),
                       secondary: CircleAvatar(
                         backgroundColor:
                             Theme.of(context).scaffoldBackgroundColor,
                         foregroundColor:
                             Theme.of(context).textTheme.bodyLarge!.color,
-                        child: const Icon(Icons.shield_outlined),
+                        child: const BotFace(
+                          width: 30.0,
+                          expression: BotExpression.right,
+                        ),
                       ),
                       activeColor: AppConfig.activeToggleColor,
-                      value: botOptions.safetyModeration,
-                      onChanged: (bool newValue) => updateBotOption(() {
-                        botOptions.safetyModeration = newValue;
-                      }),
+                      value: addBot,
+                      onChanged: (bool add) {
+                        setState(() => addBot = add);
+                        add
+                            ? widget.room?.invite(BotName.byEnvironment)
+                            : widget.room?.kick(BotName.byEnvironment);
+                      },
+                    ),
+                  ),
+                  if (addBot) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: ListTile(
+                        onTap: () async {
+                          final topic = await showTextInputDialog(
+                            context: context,
+                            textFields: [
+                              DialogTextField(
+                                initialText: botOptions.topic.isEmpty
+                                    ? ""
+                                    : botOptions.topic,
+                                hintText:
+                                    L10n.of(context)!.enterAConversationTopic,
+                              ),
+                            ],
+                            title: L10n.of(context)!.conversationTopic,
+                          );
+                          if (topic == null) return;
+                          updateBotOption(() {
+                            botOptions.topic = topic.single;
+                          });
+                        },
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          foregroundColor:
+                              Theme.of(context).textTheme.bodyLarge!.color,
+                          child: const Icon(Icons.topic_outlined),
+                        ),
+                        subtitle: Text(
+                          botOptions.topic.isEmpty
+                              ? L10n.of(context)!.enterAConversationTopic
+                              : botOptions.topic,
+                        ),
+                        title: Text(
+                          L10n.of(context)!.conversationTopic,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
+                      padding: const EdgeInsets.only(left: 16),
+                      child: SwitchListTile.adaptive(
+                        title: Text(
+                          L10n.of(context)!.enableModeration,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(L10n.of(context)!.enableModerationDesc),
+                        secondary: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
+                          foregroundColor:
+                              Theme.of(context).textTheme.bodyLarge!.color,
+                          child: const Icon(Icons.shield_outlined),
+                        ),
+                        activeColor: AppConfig.activeToggleColor,
+                        value: botOptions.safetyModeration,
+                        onChanged: (bool newValue) => updateBotOption(() {
+                          botOptions.safetyModeration = newValue;
+                        }),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
                       child: Text(
                         L10n.of(context)!.conversationLanguageLevel,
                         style: TextStyle(
@@ -214,12 +226,16 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         ),
                       ),
                     ),
-                    LanguageLevelDropdown(
-                      initialLevel: botOptions.languageLevel,
-                      onChanged: (int? newValue) => updateBotOption(() {
-                        botOptions.languageLevel = newValue!;
-                      }),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: LanguageLevelDropdown(
+                        initialLevel: botOptions.languageLevel,
+                        onChanged: (int? newValue) => updateBotOption(() {
+                          botOptions.languageLevel = newValue!;
+                        }),
+                      ),
                     ),
+                    const SizedBox(height: 16),
                   ],
                 ],
               ),

@@ -3873,8 +3873,8 @@
         "type": "text",
         "placeholders": {}
     },
-    "addConversationBot": "Add Conversation Bot",
-    "addConversationBotDesc": "Add a conversation bot to send automatic messages to this chat",
+    "addConversationBot": "Enable Conversation Bot",
+    "addConversationBotDesc": "Add a bot to this group chat that will ask questions on a specific topic",
     "convoBotSettingsTitle": "Conversation Bot Settings",
     "convoBotSettingsDescription": "Edit conversation topic and difficulty",
     "enterAConversationTopic": "Enter a conversation topic",

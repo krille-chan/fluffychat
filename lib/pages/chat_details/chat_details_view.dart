@@ -491,7 +491,7 @@ class ChatDetailsView extends StatelessWidget {
                             room.showClassEditOptions)
                           ClassInvitationButtons(roomId: controller.roomId!),
                         const Divider(height: 1),
-                        if (!room.isSpace)
+                        if (!room.isSpace && room.canInvite)
                           ConversationBotSettings(
                             key: controller.addConversationBotKey,
                             room: room,
