@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/show_defintion_util.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -10,21 +14,24 @@ import 'package:html/dom.dart' as dom;
 import 'package:linkify/linkify.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
+  // #Pangea
+  final ShowDefintionUtil? messageToolbar;
+  // Pangea#
 
   const HtmlMessage({
     super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
+    // #Pangea
+    this.messageToolbar,
+    // Pangea#
   });
 
   dom.Node _linkifyHtml(dom.Node element) {
@@ -92,84 +99,108 @@ class HtmlMessage extends StatelessWidget {
     final element = _linkifyHtml(HtmlParser.parseHTML(renderHtml));
 
     // there is no need to pre-validate the html, as we validate it while rendering
-    return Html.fromElement(
-      documentElement: element as dom.Element,
-      style: {
-        '*': Style(
-          color: textColor,
-          margin: Margins.all(0),
-          fontSize: FontSize(fontSize),
+    // #Pangea
+    return MouseRegion(
+      onHover: messageToolbar?.onMouseRegionUpdate,
+      child: SelectionArea(
+        onSelectionChanged: (SelectedContent? selection) =>
+            messageToolbar?.onTextSelection(
+          selectedContent: selection,
+          context: context,
         ),
-        'a': Style(color: linkColor, textDecorationColor: linkColor),
-        'h1': Style(
-          fontSize: FontSize(fontSize * 2),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w600,
+        focusNode: messageToolbar?.focusNode,
+        contextMenuBuilder: (context, state) =>
+            messageToolbar?.contextMenuOverride(
+              context: context,
+              contentSelection: state,
+            ) ??
+            const SizedBox(),
+        // Pangea#
+        child: Html.fromElement(
+          documentElement: element as dom.Element,
+          style: {
+            '*': Style(
+              color: textColor,
+              margin: Margins.all(0),
+              fontSize: FontSize(fontSize),
+            ),
+            'a': Style(color: linkColor, textDecorationColor: linkColor),
+            'h1': Style(
+              fontSize: FontSize(fontSize * 2),
+              lineHeight: LineHeight.number(1.5),
+              fontWeight: FontWeight.w600,
+            ),
+            'h2': Style(
+              fontSize: FontSize(fontSize * 1.75),
+              lineHeight: LineHeight.number(1.5),
+              fontWeight: FontWeight.w500,
+            ),
+            'h3': Style(
+              fontSize: FontSize(fontSize * 1.5),
+              lineHeight: LineHeight.number(1.5),
+            ),
+            'h4': Style(
+              fontSize: FontSize(fontSize * 1.25),
+              lineHeight: LineHeight.number(1.5),
+            ),
+            'h5': Style(
+              fontSize: FontSize(fontSize * 1.25),
+              lineHeight: LineHeight.number(1.5),
+            ),
+            'h6': Style(
+              fontSize: FontSize(fontSize),
+              lineHeight: LineHeight.number(1.5),
+            ),
+            'blockquote': blockquoteStyle,
+            'tg-forward': blockquoteStyle,
+            'hr': Style(
+              border: Border.all(color: textColor, width: 0.5),
+            ),
+            'table': Style(
+              border: Border.all(color: textColor, width: 0.5),
+            ),
+            'tr': Style(
+              border: Border.all(color: textColor, width: 0.5),
+            ),
+            'td': Style(
+              border: Border.all(color: textColor, width: 0.5),
+              padding: HtmlPaddings.all(2),
+            ),
+            'th': Style(
+              border: Border.all(color: textColor, width: 0.5),
+            ),
+          },
+          extensions: [
+            RoomPillExtension(context, room),
+            CodeExtension(fontSize: fontSize),
+            MatrixMathExtension(
+              style: TextStyle(fontSize: fontSize, color: textColor),
+            ),
+            const TableHtmlExtension(),
+            SpoilerExtension(textColor: textColor),
+            const ImageExtension(),
+            FontColorExtension(),
+          ],
+          onLinkTap: (url, _, element) => UrlLauncher(
+            context,
+            url,
+            element?.text,
+          ).launchUrl(),
+          onlyRenderTheseTags: const {
+            ...allowedHtmlTags,
+            // Needed to make it work properly
+            'body',
+            'html',
+          },
+          shrinkWrap: true,
         ),
-        'h2': Style(
-          fontSize: FontSize(fontSize * 1.75),
-          lineHeight: LineHeight.number(1.5),
-          fontWeight: FontWeight.w500,
-        ),
-        'h3': Style(
-          fontSize: FontSize(fontSize * 1.5),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h4': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h5': Style(
-          fontSize: FontSize(fontSize * 1.25),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'h6': Style(
-          fontSize: FontSize(fontSize),
-          lineHeight: LineHeight.number(1.5),
-        ),
-        'blockquote': blockquoteStyle,
-        'tg-forward': blockquoteStyle,
-        'hr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'table': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'tr': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-        'td': Style(
-          border: Border.all(color: textColor, width: 0.5),
-          padding: HtmlPaddings.all(2),
-        ),
-        'th': Style(
-          border: Border.all(color: textColor, width: 0.5),
-        ),
-      },
-      extensions: [
-        RoomPillExtension(context, room),
-        CodeExtension(fontSize: fontSize),
-        MatrixMathExtension(
-          style: TextStyle(fontSize: fontSize, color: textColor),
-        ),
-        const TableHtmlExtension(),
-        SpoilerExtension(textColor: textColor),
-        const ImageExtension(),
-        FontColorExtension(),
-      ],
-      onLinkTap: (url, _, element) => UrlLauncher(
-        context,
-        url,
-        element?.text,
-      ).launchUrl(),
-      onlyRenderTheseTags: const {
-        ...allowedHtmlTags,
-        // Needed to make it work properly
-        'body',
-        'html',
-      },
-      shrinkWrap: true,
+      ),
     );
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 
   /// Keep in sync with: https://spec.matrix.org/v1.6/client-server-api/#mroommessage-msgtypes

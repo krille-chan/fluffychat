@@ -797,7 +797,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "bn": [
@@ -1613,7 +1614,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "bo": [
@@ -2429,7 +2431,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ca": [
@@ -3245,7 +3248,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "cs": [
@@ -4061,7 +4065,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "de": [
@@ -4846,7 +4851,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "el": [
@@ -5662,7 +5668,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "eo": [
@@ -6478,11 +6485,13 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "es": [
-    "errorGettingAudio"
+    "errorGettingAudio",
+    "showDefinition"
   ],
 
   "et": [
@@ -7283,7 +7292,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "eu": [
@@ -8068,7 +8078,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "fa": [
@@ -8884,7 +8895,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "fi": [
@@ -9700,7 +9712,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "fr": [
@@ -10516,7 +10529,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ga": [
@@ -11332,7 +11346,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "gl": [
@@ -12117,7 +12132,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "he": [
@@ -12933,7 +12949,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "hi": [
@@ -13749,7 +13766,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "hr": [
@@ -14552,7 +14570,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "hu": [
@@ -15368,7 +15387,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "id": [
@@ -16184,7 +16204,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ie": [
@@ -17000,7 +17021,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "it": [
@@ -17801,7 +17823,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ja": [
@@ -18617,7 +18640,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ko": [
@@ -19433,7 +19457,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "lt": [
@@ -20249,7 +20274,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "lv": [
@@ -21065,7 +21091,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "nb": [
@@ -21881,7 +21908,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "nl": [
@@ -22697,7 +22725,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "pl": [
@@ -23513,7 +23542,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "pt": [
@@ -24329,7 +24359,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "pt_BR": [
@@ -25114,7 +25145,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "pt_PT": [
@@ -25930,7 +25962,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ro": [
@@ -26746,7 +26779,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ru": [
@@ -27535,7 +27569,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "sk": [
@@ -28351,7 +28386,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "sl": [
@@ -29167,7 +29203,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "sr": [
@@ -29983,7 +30020,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "sv": [
@@ -30799,7 +30837,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "ta": [
@@ -31615,7 +31654,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "th": [
@@ -32431,7 +32471,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "tr": [
@@ -33232,7 +33273,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "uk": [
@@ -34033,7 +34075,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "vi": [
@@ -34849,7 +34892,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "zh": [
@@ -35650,7 +35694,8 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ],
 
   "zh_Hant": [
@@ -36466,6 +36511,7 @@
     "noAddToSpacePermissions",
     "alreadyInSpace",
     "pleaseChooseAUsername",
-    "chooseAUsername"
+    "chooseAUsername",
+    "showDefinition"
   ]
 }

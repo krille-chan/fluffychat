@@ -10,7 +10,10 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// import markdown.dart
+import 'package:html_unescape/html_unescape.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/markdown.dart';
 import 'package:matrix/src/utils/space_child.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -824,28 +827,29 @@ extension PangeaRoom on Room {
 
   Future<void> setClassPowerlLevels() async {
     try {
-      // if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
-      //   return;
-      // }
-      // final currentPower = getState(EventTypes.RoomPowerLevels);
-      // final Map<String, dynamic>? currentPowerContent =
-      //     currentPower!.content["events"] as Map<String, dynamic>?;
-      // final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
-      // final studentAnalyticsPower =
-      //     currentPowerContent?[PangeaEventTypes.studentAnalyticsSummary];
+      if (ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin) {
+        return;
+      }
+      final Event? currentPower = getState(EventTypes.RoomPowerLevels);
+      final Map<String, dynamic>? currentPowerContent =
+          currentPower?.content["events"] as Map<String, dynamic>?;
+      final spaceChildPower = currentPowerContent?[EventTypes.spaceChild];
+      final studentAnalyticsPower =
+          currentPowerContent?[PangeaEventTypes.studentAnalyticsSummary];
 
-      // if (spaceChildPower == null || studentAnalyticsPower == null) {
-      //   currentPowerContent!["events"][EventTypes.spaceChild] = 0;
-      //   currentPowerContent["events"]
-      //       [PangeaEventTypes.studentAnalyticsSummary] = 0;
+      if ((spaceChildPower == null || studentAnalyticsPower == null) &&
+          currentPowerContent != null) {
+        currentPowerContent["events"][EventTypes.spaceChild] = 0;
+        currentPowerContent["events"]
+            [PangeaEventTypes.studentAnalyticsSummary] = 0;
 
-      //   await client.setRoomStateWithKey(
-      //     id,
-      //     EventTypes.RoomPowerLevels,
-      //     currentPower.stateKey ?? "",
-      //     currentPowerContent,
-      //   );
-      // }
+        await client.setRoomStateWithKey(
+          id,
+          EventTypes.RoomPowerLevels,
+          currentPower?.stateKey ?? "",
+          currentPowerContent,
+        );
+      }
     } catch (err, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: s, data: toJson());
@@ -857,7 +861,7 @@ extension PangeaRoom on Room {
     String? txid,
     Event? inReplyTo,
     String? editEventId,
-    bool parseMarkdown = false,
+    bool parseMarkdown = true,
     bool parseCommands = false,
     String msgtype = MessageTypes.Text,
     String? threadRootEventId,
@@ -887,17 +891,19 @@ extension PangeaRoom on Room {
       ModelKey.tokensWritten: tokensWritten?.toJson(),
       ModelKey.useType: useType?.string,
     };
-    // if (parseMarkdown) {
-    //   final html = markdown(event['body'],
-    //       getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
-    //       getMention: getMention);
-    //   // if the decoded html is the same as the body, there is no need in sending a formatted message
-    //   if (HtmlUnescape().convert(html.replaceAll(RegExp(r'<br />\n?'), '\n')) !=
-    //       event['body']) {
-    //     event['format'] = 'org.matrix.custom.html';
-    //     event['formatted_body'] = html;
-    //   }
-    // }
+    if (parseMarkdown) {
+      final html = markdown(
+        event['body'],
+        getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
+        getMention: getMention,
+      );
+      // if the decoded html is the same as the body, there is no need in sending a formatted message
+      if (HtmlUnescape().convert(html.replaceAll(RegExp(r'<br />\n?'), '\n')) !=
+          event['body']) {
+        event['format'] = 'org.matrix.custom.html';
+        event['formatted_body'] = html;
+      }
+    }
     return sendEvent(
       event,
       txid: txid,

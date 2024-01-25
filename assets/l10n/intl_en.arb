@@ -3873,5 +3873,6 @@
     "@chooseAUsername": {
         "type": "text",
         "placeholders": {}
-    }
+    },
+    "showDefinition": "Show Definition"
 }

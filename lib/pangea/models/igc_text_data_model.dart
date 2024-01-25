@@ -1,20 +1,18 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../constants/model_keys.dart';
-import '../utils/overlay.dart';
 import '../widgets/igc/span_card.dart';
-import '../widgets/igc/word_data_card.dart';
 import 'language_detection_model.dart';
 
 // import 'package:language_tool/language_tool.dart';
@@ -150,35 +148,30 @@ class IGCTextData {
     }
   }
 
-  int tokenIndexByOffset(
-    cursorOffset,
-  ) =>
-      tokens.indexWhere(
+  int tokenIndexByOffset(cursorOffset) => tokens.indexWhere(
         (token) =>
-            token.text.offset <= cursorOffset &&
-            cursorOffset <= token.text.offset + token.text.length,
+            token.text.offset <= cursorOffset && cursorOffset <= token.end,
       );
 
-  List<int> getMatchIndicesForToken(PangeaToken token) =>
-      matchIndicesByOffset(token.text.offset);
+  List<int> matchIndicesByOffset(int offset) {
+    final List<int> matchesForOffset = [];
+    for (final (index, match) in matches.indexed) {
+      if (match.isOffsetInMatchSpan(offset)) {
+        matchesForOffset.add(index);
+      }
+    }
+    return matchesForOffset;
+  }
 
   int getTopMatchIndexForOffset(int offset) {
     final List<int> matchesForToken = matchIndicesByOffset(offset);
-    if (matchesForToken.isEmpty) return -1;
-    for (final matchIndex in matchesForToken) {
+    final int matchIndex = matchesForToken.indexWhere((matchIndex) {
       final match = matches[matchIndex];
-      if (enableIT) {
-        if (match.isITStart || match.isl1SpanMatch) {
-          return matchIndex;
-        }
-      }
-      if (enableIGC) {
-        if (match.isGrammarMatch) {
-          return matchIndex;
-        }
-      }
-    }
-    return -1;
+      return (enableIT && (match.isITStart || match.isl1SpanMatch)) ||
+          (enableIGC && match.isGrammarMatch);
+    });
+    if (matchIndex == -1) return -1;
+    return matchesForToken[matchIndex];
   }
 
   PangeaMatch? getTopMatchForToken(PangeaToken token) {
@@ -187,23 +180,8 @@ class IGCTextData {
     return matches[topMatchIndex];
   }
 
-  List<int> matchIndicesByOffset(int offset) {
-    final List<int> matchesForOffset = [];
-
-    for (final (index, match) in matches.indexed) {
-      if (match.isOffsetInMatchSpan(offset)) {
-        matchesForOffset.add(index);
-      }
-    }
-
-    return matchesForOffset;
-  }
-
-  int getAfterTokenSpacingByIndex(
-    int tokenIndex,
-  ) {
-    final int endOfToken =
-        tokens[tokenIndex].text.offset + tokens[tokenIndex].text.length;
+  int getAfterTokenSpacingByIndex(int tokenIndex) {
+    final int endOfToken = tokens[tokenIndex].end;
 
     if (tokenIndex + 1 < tokens.length) {
       final spaceBetween = tokens[tokenIndex + 1].text.offset - endOfToken;
@@ -218,7 +196,7 @@ class IGCTextData {
           ),
         );
         ErrorHandler.logError(
-          m: "wierd token lengths for ${tokens[tokenIndex].text.content} and ${tokens[tokenIndex + 1].text.content}",
+          m: "weird token lengths for ${tokens[tokenIndex].text.content} and ${tokens[tokenIndex + 1].text.content}",
         );
         return 0;
       }
@@ -234,20 +212,42 @@ class IGCTextData {
         decorationThickness: 5,
       );
 
-  static const _hasDefinitionStyle = TextStyle(
-    decoration: TextDecoration.underline,
-    decorationColor: Color.fromARGB(148, 83, 97, 255),
-    decorationThickness: 4,
-  );
-  static TextStyle hasDefinitionStyle(TextStyle? existingStyle) =>
-      existingStyle?.merge(_hasDefinitionStyle) ?? _hasDefinitionStyle;
+  List<MatchToken> getMatchTokens() {
+    final List<MatchToken> matchTokens = [];
+    int? endTokenIndex;
+    PangeaMatch? topMatch;
+    for (final (i, token) in tokens.indexed) {
+      if (endTokenIndex != null) {
+        if (i <= endTokenIndex) {
+          matchTokens.add(
+            MatchToken(
+              token: token,
+              match: topMatch,
+            ),
+          );
+          continue;
+        }
+        endTokenIndex = null;
+      }
+      topMatch = getTopMatchForToken(token);
+      if (topMatch != null) {
+        endTokenIndex = tokens.indexWhere((e) => e.end >= topMatch!.end, i);
+      }
+      matchTokens.add(
+        MatchToken(
+          token: token,
+          match: topMatch,
+        ),
+      );
+    }
+    return matchTokens;
+  }
 
   //PTODO - handle multitoken spans
   List<TextSpan> constructTokenSpan({
     required BuildContext context,
     TextStyle? defaultStyle,
     required SpanCardModel? spanCardModel,
-    required bool showTokens,
     required bool handleClick,
     required String transformTargetId,
     required Room room,
@@ -263,73 +263,77 @@ class IGCTextData {
       ];
     }
 
-    // or could make big strings for non-match text and therefore make less textspans.
-    // would that be more performant?
-    tokens.asMap().forEach(
-      (index, token) {
-        final PangeaMatch? topTokenMatch = getTopMatchForToken(
-          tokens[index],
-        );
-        // if (index == 3) {
-        //   debugPrint(
-        //       "constructing span with topTokenMatch: ${topTokenMatch?.match.rule.id}");
-        // }
+    final List<MatchToken> matchTokens = getMatchTokens();
 
-        final Widget cardToShow = spanCardModel != null && topTokenMatch != null
-            ? SpanCard(
-                scm: spanCardModel,
-              )
-            : WordDataCard(
-                fullText: originalInput,
-                fullTextLang: detections.first.langCode,
-                word: token.text.content,
-                wordLang: detections.first.langCode,
-                hasInfo: token.hasInfo,
-                room: room,
-              );
+    for (int tokenIndex = 0; tokenIndex < matchTokens.length; tokenIndex++) {
+      final MatchToken matchToken = matchTokens[tokenIndex];
+      final Widget? cardToShow =
+          matchToken.match != null && spanCardModel != null
+              ? SpanCard(scm: spanCardModel)
+              : null;
 
-        final TextStyle tokenStyle = topTokenMatch != null
-            ? topTokenMatch.textStyle(defaultStyle)
-            : hasDefinitionStyle(defaultStyle);
+      int nextTokenIndex = matchTokens.indexWhere(
+        (e) => matchToken.match != null
+            ? e.match != matchToken.match
+            : e.match != null,
+        tokenIndex,
+      );
 
+      if (nextTokenIndex < 0) {
+        nextTokenIndex = matchTokens.length;
+      }
+
+      final String matchText = originalInput.substring(
+        matchTokens[tokenIndex].token.text.offset,
+        matchTokens[nextTokenIndex - 1].token.end,
+      );
+
+      items.add(
+        TextSpan(
+          text: matchText,
+          style: matchTokens[tokenIndex].match?.textStyle(defaultStyle) ??
+              defaultStyle,
+          recognizer: handleClick && cardToShow != null
+              ? (TapGestureRecognizer()
+                ..onTapDown = (details) => OverlayUtil.showPositionedCard(
+                      context: context,
+                      cardToShow: cardToShow,
+                      cardSize:
+                          matchTokens[tokenIndex].match?.isITStart ?? false
+                              ? const Size(350, 220)
+                              : const Size(350, 400),
+                      transformTargetId: transformTargetId,
+                    ))
+              : null,
+        ),
+      );
+
+      final String beforeNextToken = originalInput.substring(
+        matchTokens[nextTokenIndex - 1].token.end,
+        nextTokenIndex < matchTokens.length
+            ? matchTokens[nextTokenIndex].token.text.offset
+            : originalInput.length,
+      );
+
+      if (beforeNextToken.isNotEmpty) {
         items.add(
           TextSpan(
-            text: token.text.content,
-            style: tokenStyle,
-            recognizer: handleClick
-                ? (TapGestureRecognizer()
-                  ..onTapDown = (details) => OverlayUtil.showPositionedCard(
-                        context: context,
-                        cardToShow: cardToShow,
-                        cardSize: topTokenMatch?.isITStart ?? false
-                            ? const Size(350, 220)
-                            : const Size(350, 400),
-                        transformTargetId: transformTargetId,
-                      ))
-                : null,
+            text: beforeNextToken,
+            style: defaultStyle,
           ),
         );
+      }
 
-        final int charBetween = getAfterTokenSpacingByIndex(
-          index,
-        );
-
-        if (charBetween > 0) {
-          items.add(
-            TextSpan(
-              text: " " * charBetween,
-              style: topTokenMatch != null &&
-                      token.text.offset + token.text.length + charBetween <=
-                          topTokenMatch.match.offset +
-                              topTokenMatch.match.length
-                  ? tokenStyle
-                  : defaultStyle,
-            ),
-          );
-        }
-      },
-    );
+      tokenIndex = nextTokenIndex - 1;
+    }
 
     return items;
   }
+}
+
+class MatchToken {
+  final PangeaToken token;
+  final PangeaMatch? match;
+
+  MatchToken({required this.token, this.match});
 }
