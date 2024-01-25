@@ -118,6 +118,7 @@ class ChatListItem extends StatelessWidget {
             shareFile != null) {
           await showDialog(
             context: context,
+            useRootNavigator: false,
             builder: (c) => SendFileDialog(
               files: [shareFile],
               room: room,
@@ -159,12 +160,12 @@ class ChatListItem extends StatelessWidget {
         return;
       }
       final confirmed = await showOkCancelAlertDialog(
+        useRootNavigator: false,
         context: context,
         title: L10n.of(context)!.areYouSure,
         okLabel: L10n.of(context)!.yes,
         cancelLabel: L10n.of(context)!.no,
         message: L10n.of(context)!.archiveRoomDescription,
-        isDestructiveAction: true,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(

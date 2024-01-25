@@ -52,10 +52,16 @@ class FluffyChatApp extends StatelessWidget {
         builder: (context, child) => AppLockWidget(
           pincode: pincode,
           clients: clients,
-          child: Matrix(
-            clients: clients,
-            store: store,
-            child: testWidget ?? child,
+          // Need a navigator above the Matrix widget for
+          // displaying dialogs
+          child: Navigator(
+            onGenerateRoute: (_) => MaterialPageRoute(
+              builder: (_) => Matrix(
+                clients: clients,
+                store: store,
+                child: testWidget ?? child,
+              ),
+            ),
           ),
         ),
       ),

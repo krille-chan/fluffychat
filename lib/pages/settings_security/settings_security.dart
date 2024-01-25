@@ -28,6 +28,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.pleaseChooseAPasscode,
       message: L10n.of(context)!.pleaseEnter4Digits,
@@ -56,6 +57,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
 
   void deleteAccountAction() async {
     if (await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.warning,
           message: L10n.of(context)!.deactivateAccountWarning,
@@ -67,6 +69,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     }
     final supposedMxid = Matrix.of(context).client.userID!;
     final mxids = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.confirmMatrixId,
       textFields: [
@@ -83,6 +86,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       return;
     }
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.pleaseEnterYourPassword,
       okLabel: L10n.of(context)!.ok,

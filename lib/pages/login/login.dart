@@ -127,6 +127,7 @@ class LoginController extends State<Login> {
           );
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
+            useRootNavigator: false,
             message:
                 L10n.of(context)!.noMatrixServer(newDomain, oldHomeserver!),
             okLabel: L10n.of(context)!.ok,
@@ -156,6 +157,7 @@ class LoginController extends State<Login> {
 
   void passwordForgotten() async {
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.passwordForgotten,
       message: L10n.of(context)!.enterAnEmailAddress,
@@ -184,6 +186,7 @@ class LoginController extends State<Login> {
     );
     if (response.error != null) return;
     final password = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.passwordForgotten,
       message: L10n.of(context)!.chooseAStrongPassword,
@@ -201,6 +204,7 @@ class LoginController extends State<Login> {
     );
     if (password == null) return;
     final ok = await showOkAlertDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.weSentYouAnEmail,
       message: L10n.of(context)!.pleaseClickOnLink,

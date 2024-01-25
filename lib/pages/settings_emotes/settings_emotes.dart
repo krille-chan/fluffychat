@@ -138,6 +138,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (pack!.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
       controller.text = oldImageCode;
       showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.emoteExists,
         okLabel: L10n.of(context)!.ok,
@@ -147,6 +148,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (!RegExp(r'^[-\w]+$').hasMatch(imageCode)) {
       controller.text = oldImageCode;
       showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.emoteInvalid,
         okLabel: L10n.of(context)!.ok,
@@ -182,6 +184,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     if (newImageCodeController.text.isEmpty ||
         newImageController.value == null) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.emoteWarnNeedToPick,
         okLabel: L10n.of(context)!.ok,
@@ -191,6 +194,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final imageCode = newImageCodeController.text;
     if (pack!.images.containsKey(imageCode)) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.emoteExists,
         okLabel: L10n.of(context)!.ok,
@@ -199,6 +203,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     }
     if (!RegExp(r'^[-\w]+$').hasMatch(imageCode)) {
       await showOkAlertDialog(
+        useRootNavigator: false,
         context: context,
         message: L10n.of(context)!.emoteInvalid,
         okLabel: L10n.of(context)!.ok,
@@ -305,7 +310,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     await showDialog(
       context: context,
       // breaks [Matrix.of] calls otherwise
-
+      useRootNavigator: false,
       builder: (context) => ImportEmoteArchiveDialog(
         controller: this,
         archive: archive,

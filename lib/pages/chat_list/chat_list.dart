@@ -176,6 +176,7 @@ class ChatListController extends State<ChatList>
 
   void setServer() async {
     final newServer = await showTextInputDialog(
+      useRootNavigator: false,
       title: L10n.of(context)!.changeTheHomeserver,
       context: context,
       okLabel: L10n.of(context)!.ok,
@@ -494,12 +495,12 @@ class ChatListController extends State<ChatList>
 
   Future<void> archiveAction() async {
     final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
           message: L10n.of(context)!.archiveRoomDescription,
-          isDestructiveAction: true,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -514,6 +515,7 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
       message: L10n.of(context)!.leaveEmptyToClearStatus,

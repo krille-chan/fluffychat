@@ -59,6 +59,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         );
       } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
         _chewieManager ??= ChewieController(
+          useRootNavigator: false,
           videoPlayerController: VideoPlayerController.file(tmpFile),
           autoPlay: true,
           autoInitialize: true,
