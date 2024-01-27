@@ -361,6 +361,7 @@ class MessageContent extends StatelessWidget {
                       cause: cause,
                       context: context,
                     ),
+                    onTap: () => messageToolbar?.onTextTap(context),
                   );
                 },
               ),

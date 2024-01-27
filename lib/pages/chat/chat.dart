@@ -1277,10 +1277,11 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void onSelectMessage(Event event) {
-// #Pangea
+    // #Pangea
     if (choreographer.itController.isOpen) {
       return;
     }
+
     // Pangea#
     if (!event.redacted) {
       if (selectedEvents.contains(event)) {

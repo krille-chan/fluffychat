@@ -241,8 +241,14 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
+                        onTap: () => print("got message tap"),
+                        onDoubleTap: () => print("got message double tap"),
+                        onDoubleTapDown: (details) =>
+                            print("got message double tap down"),
                         onLongPress: longPressSelect
-                            ? null
+                            ? selected
+                                ? null
+                                : () => print('long press')
                             : () {
                                 onSelect(event);
                                 // Android usually has a vibration effect on long press:

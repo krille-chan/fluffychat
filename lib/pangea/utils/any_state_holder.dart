@@ -1,13 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../models/widget_measurement.dart';
-
 class PangeaAnyState {
-  final Map<String, StreamController<WidgetMeasurements>?> _streams = {};
-  final Map<String, List<WidgetMeasurements>> _pastValues = {};
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
   OverlayEntry? overlay;
 

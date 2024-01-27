@@ -591,51 +591,51 @@ extension PangeaRoom on Room {
     required String parentEventId,
     required String type,
   }) async {
-    try {
-      debugPrint("creating $type child for $parentEventId");
-      Sentry.addBreadcrumb(Breadcrumb.fromJson(content));
-      if (parentEventId.contains("web")) {
-        debugger(when: kDebugMode);
-        Sentry.addBreadcrumb(
-          Breadcrumb(
-            message:
-                "sendPangeaEvent with likely invalid parentEventId $parentEventId",
-          ),
-        );
-      }
-      final Map<String, dynamic> repContent = {
-        // what is the functionality of m.reference?
-        "m.relates_to": {"rel_type": type, "event_id": parentEventId},
-        type: content,
-      };
-
-      final String? newEventId = await sendEvent(repContent, type: type);
-
-      if (newEventId == null) {
-        debugger(when: kDebugMode);
-      }
-
-      //PTODO - handle the frequent case of a null newEventId
-      final Event? newEvent = await getEventById(newEventId!);
-
-      if (newEvent == null) {
-        debugger(when: kDebugMode);
-      }
-
-      return newEvent;
-    } catch (err, stack) {
+    // try {
+    debugPrint("creating $type child for $parentEventId");
+    Sentry.addBreadcrumb(Breadcrumb.fromJson(content));
+    if (parentEventId.contains("web")) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: err,
-        s: stack,
-        data: {
-          "type": type,
-          "parentEventId": parentEventId,
-          "content": content,
-        },
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message:
+              "sendPangeaEvent with likely invalid parentEventId $parentEventId",
+        ),
       );
-      return null;
     }
+    final Map<String, dynamic> repContent = {
+      // what is the functionality of m.reference?
+      "m.relates_to": {"rel_type": type, "event_id": parentEventId},
+      type: content,
+    };
+
+    final String? newEventId = await sendEvent(repContent, type: type);
+
+    if (newEventId == null) {
+      debugger(when: kDebugMode);
+    }
+
+    //PTODO - handle the frequent case of a null newEventId
+    final Event? newEvent = await getEventById(newEventId!);
+
+    if (newEvent == null) {
+      debugger(when: kDebugMode);
+    }
+
+    return newEvent;
+    // } catch (err, stack) {
+    //   debugger(when: kDebugMode);
+    //   ErrorHandler.logError(
+    //     e: err,
+    //     s: stack,
+    //     data: {
+    //       "type": type,
+    //       "parentEventId": parentEventId,
+    //       "content": content,
+    //     },
+    //   );
+    //   return null;
+    // }
   }
 
   ConstructEvent? _vocabEventLocal(String lemma) {

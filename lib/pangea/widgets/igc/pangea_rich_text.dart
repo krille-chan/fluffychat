@@ -105,6 +105,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
               cause: cause,
               context: context,
             ),
+            onTap: () => messageToolbar?.onTextTap(context),
             focusNode: widget.messageToolbar?.focusNode,
             contextMenuBuilder: (context, state) =>
                 widget.messageToolbar?.contextMenuOverride(
