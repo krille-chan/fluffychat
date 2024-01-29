@@ -3873,5 +3873,14 @@
         "type": "text",
         "placeholders": {}
     },
+    "addConversationBot": "Enable Conversation Bot",
+    "addConversationBotDesc": "Add a bot to this group chat that will ask questions on a specific topic",
+    "convoBotSettingsTitle": "Conversation Bot Settings",
+    "convoBotSettingsDescription": "Edit conversation topic and difficulty",
+    "enterAConversationTopic": "Enter a conversation topic",
+    "conversationTopic": "Conversation topic",
+    "enableModeration": "Enable moderation",
+    "enableModerationDesc": "Enable automatic moderation to review messages before they are sent",
+    "conversationLanguageLevel": "What is the language level of this conversation?",
     "showDefinition": "Show Definition"
 }

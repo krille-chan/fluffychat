@@ -1,20 +1,20 @@
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
-
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart' as sdk;
-
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/chat_topic_model.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';
+import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/class_chat_power_levels.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as sdk;
 
 class NewGroup extends StatefulWidget {
   const NewGroup({super.key});
@@ -42,6 +42,8 @@ class NewGroupController extends State<NewGroup> {
   // #Pangea
   PangeaController pangeaController = MatrixState.pangeaController;
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
+  final GlobalKey<ConversationBotSettingsState> addConversationBotKey =
+      GlobalKey<ConversationBotSettingsState>();
 
   ChatTopic chatTopic = ChatTopic.empty;
 
@@ -121,6 +123,10 @@ class NewGroupController extends State<NewGroup> {
               .map((suggestionStatus) => suggestionStatus.room)
               .toList(),
         ),
+        invite: [
+          if (addConversationBotKey.currentState?.addBot ?? false)
+            BotName.byEnvironment,
+        ],
         // Pangea#
       );
       if (!mounted) return;

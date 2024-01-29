@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -9,14 +10,12 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../constants/language_keys.dart';
-import '../../constants/language_level_type.dart';
 import '../../constants/pangea_event_types.dart';
 import '../../controllers/language_list_controller.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../extensions/pangea_room_extension.dart';
 import '../../models/language_model.dart';
 import '../../utils/error_handler.dart';
-import '../../utils/language_level_copy.dart';
 import '../user_settings/p_language_dropdown.dart';
 import '../user_settings/p_question_container.dart';
 
@@ -169,72 +168,11 @@ class ClassSettingsState extends State<ClassSettings> {
                     PQuestionContainer(
                       title: L10n.of(context)!.whatIsYourClassLanguageLevel,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.secondary,
-                            width: 0.5,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: DropdownButton(
-                          // Initial Value
-                          hint: Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text(
-                              classSettings.languageLevel == null
-                                  ? L10n.of(context)!.selectLanguageLevel
-                                  : LanguageLevelTextPicker.languageLevelText(
-                                      context,
-                                      classSettings.languageLevel!,
-                                    ),
-                              style: const TextStyle().copyWith(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .color,
-                                fontSize: 14,
-                              ),
-                              overflow: TextOverflow.clip,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          isExpanded: true,
-                          underline: Container(),
-                          // Down Arrow Icon
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          // Array list of items
-                          items:
-                              LanguageLevelType.allInts.map((int levelOption) {
-                            return DropdownMenuItem(
-                              value: levelOption,
-                              child: Text(
-                                LanguageLevelTextPicker.languageLevelText(
-                                  context,
-                                  levelOption,
-                                ),
-                                style: const TextStyle().copyWith(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .color,
-                                  fontSize: 14,
-                                ),
-                                overflow: TextOverflow.clip,
-                                textAlign: TextAlign.center,
-                              ),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (int? newValue) => updatePermission(() {
-                            classSettings.languageLevel = newValue!;
-                          }),
-                        ),
-                      ),
+                    LanguageLevelDropdown(
+                      initialLevel: classSettings.languageLevel,
+                      onChanged: (int? newValue) => updatePermission(() {
+                        classSettings.languageLevel = newValue!;
+                      }),
                     ),
                   ],
                 ),
