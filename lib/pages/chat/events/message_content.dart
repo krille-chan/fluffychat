@@ -1,23 +1,24 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:matrix/matrix.dart';
-
+import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/utils/show_defintion_util.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import 'audio_player.dart';
 import 'cute_events.dart';
-import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
@@ -37,9 +38,10 @@ class MessageContent extends StatelessWidget {
   final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
   final bool definitions;
+  ShowDefintionUtil? messageToolbar;
   // Pangea#
 
-  const MessageContent(
+  MessageContent(
     this.event, {
     this.onInfoTab,
     super.key,
@@ -122,6 +124,18 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // #Pangea
+    messageToolbar = ShowDefintionUtil(
+      targetId: pangeaMessageEvent.eventId,
+      room: pangeaMessageEvent.room,
+      langCode: selectedDisplayLang?.langCode ??
+          MatrixState.pangeaController.languageController.activeL2Code(
+            roomID: pangeaMessageEvent.room.id,
+          ) ??
+          LanguageModel.unknown.langCode,
+      messageText: "",
+    );
+    // Pangea#
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
@@ -168,16 +182,25 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Notice:
           case MessageTypes.Emote:
             if (AppConfig.renderHtml &&
-                !event.redacted &&
-                event.isRichMessage) {
+                    !event.redacted &&
+                    event.isRichMessage
+                    // #Pangea
+                    &&
+                    !pangeaMessageEvent.showRichText
+                // Pangea#
+                ) {
               var html = event.formattedText;
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
               }
+              // #Pangea
+              messageToolbar?.messageText = html;
+              // Pangea#
               return HtmlMessage(
                 html: html,
                 textColor: textColor,
                 room: event.room,
+                messageToolbar: messageToolbar,
               );
             }
             // else we fall through to the normal message rendering
@@ -264,55 +287,83 @@ class MessageContent extends StatelessWidget {
               height: 1.3,
             );
             if (pangeaMessageEvent.showRichText) {
-              return PangeaRichText(
-                existingStyle: messageTextStyle,
-                selected: selected,
-                pangeaMessageEvent: pangeaMessageEvent,
-                immersionMode: immersionMode,
-                definitions: definitions,
-                selectedDisplayLang: selectedDisplayLang,
+              return MouseRegion(
+                onHover: messageToolbar?.onMouseRegionUpdate,
+                child: PangeaRichText(
+                  style: messageTextStyle,
+                  selected: selected,
+                  pangeaMessageEvent: pangeaMessageEvent,
+                  immersionMode: immersionMode,
+                  definitions: definitions,
+                  selectedDisplayLang: selectedDisplayLang,
+                  messageToolbar: messageToolbar,
+                ),
               );
             }
-            //Pangea#
-            return FutureBuilder<String>(
-              future: event.calcLocalizedBody(
-                MatrixLocals(L10n.of(context)!),
-                hideReply: true,
-              ),
-              builder: (context, snapshot) {
-                // #Pangea
-                if (!snapshot.hasData) {
-                  return Text(
-                    event.calcLocalizedBodyFallback(
-                      MatrixLocals(L10n.of(context)!),
-                      hideReply: true,
-                    ),
-                    style: messageTextStyle,
-                  );
-                }
+            return MouseRegion(
+              onHover: messageToolbar?.onMouseRegionUpdate,
+              child: FutureBuilder<String>(
                 // Pangea#
-                return Linkify(
-                  text: snapshot.data ??
+                future: event.calcLocalizedBody(
+                  MatrixLocals(L10n.of(context)!),
+                  hideReply: true,
+                ),
+                builder: (context, snapshot) {
+                  // #Pangea
+                  if (!snapshot.hasData) {
+                    return Text(
                       event.calcLocalizedBodyFallback(
                         MatrixLocals(L10n.of(context)!),
                         hideReply: true,
                       ),
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: textColor.withAlpha(150),
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: textColor.withAlpha(150),
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                );
-              },
+                      style: messageTextStyle,
+                    );
+                  }
+                  // return Linkify(
+                  final String messageText = snapshot.data ??
+                      event.calcLocalizedBodyFallback(
+                        MatrixLocals(L10n.of(context)!),
+                        hideReply: true,
+                      );
+                  messageToolbar?.messageText = messageText;
+                  return SelectableLinkify(
+                    // Pangea#
+                    text: messageText,
+                    focusNode: messageToolbar?.focusNode,
+                    contextMenuBuilder: (context, state) =>
+                        messageToolbar?.contextMenuOverride(
+                          context: context,
+                          textSelection: state,
+                        ) ??
+                        const SizedBox(),
+                    // text: snapshot.data ??
+                    //     event.calcLocalizedBodyFallback(
+                    //       MatrixLocals(L10n.of(context)!),
+                    //       hideReply: true,
+                    //     ),
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                      decoration:
+                          event.redacted ? TextDecoration.lineThrough : null,
+                    ),
+                    options: const LinkifyOptions(humanize: false),
+                    linkStyle: TextStyle(
+                      color: textColor.withAlpha(150),
+                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                      decoration: TextDecoration.underline,
+                      decorationColor: textColor.withAlpha(150),
+                    ),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                    onSelectionChanged: (selection, cause) =>
+                        messageToolbar?.onTextSelection(
+                      selectedText: selection,
+                      cause: cause,
+                      context: context,
+                    ),
+                  );
+                },
+              ),
             );
         }
       case EventTypes.CallInvite:

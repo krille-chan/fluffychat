@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../../config/app_config.dart';
@@ -96,7 +95,6 @@ class InstructionsController {
 enum InstructionsEnum {
   itInstructions,
   clickMessage,
-  understandingMessages,
   blurMeansTranslate,
 }
 
@@ -107,8 +105,6 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.itInstructionsTitle;
       case InstructionsEnum.clickMessage:
         return L10n.of(context)!.clickMessageTitle;
-      case InstructionsEnum.understandingMessages:
-        return L10n.of(context)!.understandingMessagesTitle;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateTitle;
     }
@@ -120,8 +116,6 @@ extension Copy on InstructionsEnum {
         return L10n.of(context)!.itInstructionsBody;
       case InstructionsEnum.clickMessage:
         return L10n.of(context)!.clickMessageBody;
-      case InstructionsEnum.understandingMessages:
-        return L10n.of(context)!.understandingMessagesBody;
       case InstructionsEnum.blurMeansTranslate:
         return L10n.of(context)!.blurMeansTranslateBody;
     }
