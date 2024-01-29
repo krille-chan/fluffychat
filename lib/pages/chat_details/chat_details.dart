@@ -425,5 +425,11 @@ class ChatDetailsController extends State<ChatDetails> {
   bool showEditNameIcon = false;
   void hoverEditNameIcon(bool hovering) =>
       setState(() => showEditNameIcon = !showEditNameIcon);
+
+  @override
+  void initState() {
+    super.initState();
+    MatrixState.pangeaController.classController.addMissingRoomRules(roomId);
+  }
   // Pangea#
 }
