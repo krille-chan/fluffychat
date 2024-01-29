@@ -212,7 +212,7 @@ class ChatListItem extends StatelessWidget {
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if(displayname.contains('(FB)')){
+        if (displayname.contains('(FB)')) {
           displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
         }
       } else if (participantsIds.any((id) => id.contains('@instagram_'))) {
@@ -222,8 +222,9 @@ class ChatListItem extends StatelessWidget {
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if (displayname.contains('(Instagram)')){
-          displayname = displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+        if (displayname.contains('(Instagram)')) {
+          displayname =
+              displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
         }
       } else if (participantsIds.any((id) => id.contains('@whatsapp'))) {
         networkColor = FluffyThemes.whatsAppColor;
@@ -232,7 +233,7 @@ class ChatListItem extends StatelessWidget {
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if (displayname.contains('WA')){
+        if (displayname.contains('WA')) {
           displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
         }
       }
@@ -296,8 +297,17 @@ class ChatListItem extends StatelessWidget {
                             style: unread
                                 ? TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: networkColor)
-                                : TextStyle(color: networkColor),
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? null
+                                        : networkColor, // Color for the dark theme
+                                  )
+                                : TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? null
+                                        : networkColor, // Color for the dark theme
+                                  ),
                           ),
                         ),
                         if (isMuted)
