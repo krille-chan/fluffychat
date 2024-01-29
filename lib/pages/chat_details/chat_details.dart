@@ -3,9 +3,6 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
 import 'package:fluffychat/pangea/utils/set_class_topic.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
@@ -432,18 +429,7 @@ class ChatDetailsController extends State<ChatDetails> {
   @override
   void initState() {
     super.initState();
-    if (roomId == null) return;
-    final Room? room = Matrix.of(context).client.getRoomById(roomId!);
-    if (room == null) return;
-
-    if (room.classSettings != null && room.pangeaRoomRules == null) {
-      Matrix.of(context).client.setRoomStateWithKey(
-            widget.roomId,
-            PangeaEventTypes.rules,
-            '',
-            PangeaRoomRules().toJson(),
-          );
-    }
+    MatrixState.pangeaController.classController.addMissingRoomRules(roomId);
   }
   // Pangea#
 }

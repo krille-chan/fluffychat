@@ -3,9 +3,11 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -155,5 +157,25 @@ class ClassController extends BaseController {
     // is application service needed?
     // BE - check class code and if class code is correct, invite student to room
     // FE - look for invite from room and automatically accept
+  }
+
+  Future<void> addMissingRoomRules(String? roomId) async {
+    if (roomId == null) return;
+    final Room? room = _pangeaController.matrixState.client.getRoomById(roomId);
+    if (room == null) return;
+
+    if (room.classSettings != null && room.pangeaRoomRules == null) {
+      try {
+        await _pangeaController.matrixState.client.setRoomStateWithKey(
+          roomId,
+          PangeaEventTypes.rules,
+          '',
+          PangeaRoomRules().toJson(),
+        );
+      } catch (err, stack) {
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(e: err, s: stack);
+      }
+    }
   }
 }
