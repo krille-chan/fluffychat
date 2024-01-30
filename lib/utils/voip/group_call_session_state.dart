@@ -86,10 +86,13 @@ class GroupCallSessionState implements CallStateProxy {
   bool get answering => _groupCall.state == GroupCallState.Entering;
 
   @override
-  GroupCallSession? get groupCall => _groupCall;
+  GroupCallSession get groupCall => _groupCall;
 
   @override
-  String? get displayName => _groupCall.room.getLocalizedDisplayname();
+  CallSession? get call => null;
+
+  @override
+  String get displayName => _groupCall.room.getLocalizedDisplayname();
 
   @override
   bool get ended =>

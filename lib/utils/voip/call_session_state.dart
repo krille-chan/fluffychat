@@ -13,15 +13,15 @@ import 'call_state_proxy.dart';
 // maybe make it a singleton?
 
 class CallSessionState implements CallStateProxy {
-  final CallSession call;
+  final CallSession _call;
   Function()? callback;
   final VoipPlugin voipPlugin;
   AudioPlayer? _outgoingCallAudioPlayer;
-  CallSessionState(this.call, this.voipPlugin) {
+  CallSessionState(this._call, this.voipPlugin) {
     StreamSubscription? proximitySubscription;
     int onHold = 0;
     int onUnhold = 0;
-    call.onCallEventChanged.stream.listen((CallEvent event) async {
+    _call.onCallEventChanged.stream.listen((CallEvent event) async {
       Logs().d('[CallSessionState] onCallEventChanged ${event.toString()}');
       // if (event == CallEvent.kError) {
       //   await ErrorReporter(
@@ -36,7 +36,7 @@ class CallSessionState implements CallStateProxy {
           event == CallEvent.kLocalHoldUnhold ||
           event == CallEvent.kRemoteHoldUnhold) {
         if (event == CallEvent.kFeedsChanged) {
-          await call.tryRemoveStopedStreams();
+          await _call.tryRemoveStopedStreams();
         } else if ({CallEvent.kLocalHoldUnhold, CallEvent.kRemoteHoldUnhold}
             .contains(event)) {
           if (callOnHold) {
@@ -51,10 +51,10 @@ class CallSessionState implements CallStateProxy {
       }
     });
 
-    call.onCallStateChanged.stream.listen((state) async {
+    _call.onCallStateChanged.stream.listen((state) async {
       Logs().d('[CallSessionState] onCallStateChanged ${state.toString()}');
 
-      if (call.isOutgoing) {
+      if (_call.isOutgoing) {
         if (state == CallState.kInviteSent) {
           final player = _outgoingCallAudioPlayer = AudioPlayer();
           await player.setLoopMode(LoopMode.all);
@@ -103,6 +103,12 @@ class CallSessionState implements CallStateProxy {
     });
   }
 
+  @override
+  GroupCallSession? get groupCall => null;
+
+  @override
+  CallSession get call => _call;
+
   Future<void> vibrate() async {
     try {
       await Vibration.vibrate(duration: 100);
@@ -112,35 +118,35 @@ class CallSessionState implements CallStateProxy {
   }
 
   @override
-  Stream get callEventStream => call.onCallEventChanged.stream;
+  Stream get callEventStream => _call.onCallEventChanged.stream;
   @override
-  Stream get callStateStream => call.onCallStateChanged.stream;
+  Stream get callStateStream => _call.onCallStateChanged.stream;
   @override
   bool get voiceonly =>
       userMediaStreams.every((stream) => stream.videoMuted) &&
       screenSharingStreams.isEmpty;
 
   @override
-  bool get connecting => call.state == CallState.kConnecting;
+  bool get connecting => _call.state == CallState.kConnecting;
 
   @override
-  bool get answering => call.state == CallState.kCreateAnswer;
+  bool get answering => _call.state == CallState.kCreateAnswer;
 
   @override
-  bool get connected => call.state == CallState.kConnected;
+  bool get connected => _call.state == CallState.kConnected;
 
   @override
-  bool get ended => call.state == CallState.kEnded;
+  bool get ended => _call.state == CallState.kEnded;
 
   @override
-  bool get isOutgoing => call.isOutgoing;
+  bool get isOutgoing => _call.isOutgoing;
 
   @override
-  bool get ringingPlay => call.state == CallState.kInviteSent;
+  bool get ringingPlay => _call.state == CallState.kInviteSent;
 
   @override
   Future<void> answer() async {
-    await call.answer();
+    await _call.answer();
     callback?.call();
   }
 
@@ -151,60 +157,60 @@ class CallSessionState implements CallStateProxy {
 
   @override
   Future<void> hangup() async {
-    if ({CallState.kRinging, CallState.kFledgling}.contains(call.state)) {
-      await call.reject();
+    if ({CallState.kRinging, CallState.kFledgling}.contains(_call.state)) {
+      await _call.reject();
     } else {
-      await call.hangup();
+      await _call.hangup();
     }
     callback?.call();
   }
 
   @override
-  bool get isLocalVideoMuted => call.isLocalVideoMuted;
+  bool get isLocalVideoMuted => _call.isLocalVideoMuted;
 
   @override
-  bool get isMicrophoneMuted => call.isMicrophoneMuted;
+  bool get isMicrophoneMuted => _call.isMicrophoneMuted;
 
   @override
-  bool get localHold => call.localHold;
+  bool get localHold => _call.localHold;
 
   @override
-  bool get remoteOnHold => call.remoteOnHold;
+  bool get remoteOnHold => _call.remoteOnHold;
 
   @override
-  bool get isScreensharingEnabled => call.screensharingEnabled;
+  bool get isScreensharingEnabled => _call.screensharingEnabled;
 
   @override
-  bool get callOnHold => call.localHold || call.remoteOnHold;
+  bool get callOnHold => _call.localHold || _call.remoteOnHold;
 
   @override
   Future<void> setLocalVideoMuted(bool muted) async {
-    await call.setLocalVideoMuted(muted);
+    await _call.setLocalVideoMuted(muted);
     callback?.call();
   }
 
   @override
   Future<void> setMicrophoneMuted(bool muted) async {
-    await call.setMicrophoneMuted(muted);
+    await _call.setMicrophoneMuted(muted);
     // TODO(Nico): Refactor this to be more granular
     callback?.call();
   }
 
   @override
   Future<void> setRemoteOnHold(bool onHold) async {
-    await call.setRemoteOnHold(onHold);
+    await _call.setRemoteOnHold(onHold);
     callback?.call();
   }
 
   @override
   Future<void> setScreensharingEnabled(bool enabled) async {
-    await call.setScreensharingEnabled(enabled);
+    await _call.setScreensharingEnabled(enabled);
     callback?.call();
   }
 
   @override
   String get callState {
-    switch (call.state) {
+    switch (_call.state) {
       case CallState.kCreateAnswer:
       case CallState.kFledgling:
       case CallState.kWaitLocalMedia:
@@ -231,20 +237,20 @@ class CallSessionState implements CallStateProxy {
 
   String state = 'New Call';
   @override
-  WrappedMediaStream? get localUserMediaStream => call.localUserMediaStream;
+  WrappedMediaStream? get localUserMediaStream => _call.localUserMediaStream;
   @override
   WrappedMediaStream? get localScreenSharingStream =>
-      call.localScreenSharingStream;
+      _call.localScreenSharingStream;
 
   @override
   List<WrappedMediaStream> get screenSharingStreams {
     final streams = <WrappedMediaStream>[];
     if (connected) {
-      if (call.remoteScreenSharingStream != null) {
-        streams.add(call.remoteScreenSharingStream!);
+      if (_call.remoteScreenSharingStream != null) {
+        streams.add(_call.remoteScreenSharingStream!);
       }
-      if (call.localScreenSharingStream != null) {
-        streams.add(call.localScreenSharingStream!);
+      if (_call.localScreenSharingStream != null) {
+        streams.add(_call.localScreenSharingStream!);
       }
     }
     return streams;
@@ -254,11 +260,11 @@ class CallSessionState implements CallStateProxy {
   List<WrappedMediaStream> get userMediaStreams {
     final streams = <WrappedMediaStream>[];
     if (connected) {
-      if (call.remoteUserMediaStream != null) {
-        streams.add(call.remoteUserMediaStream!);
+      if (_call.remoteUserMediaStream != null) {
+        streams.add(_call.remoteUserMediaStream!);
       }
-      if (call.localUserMediaStream != null) {
-        streams.add(call.localUserMediaStream!);
+      if (_call.localUserMediaStream != null) {
+        streams.add(_call.localUserMediaStream!);
       }
     }
     return streams;
@@ -275,19 +281,16 @@ class CallSessionState implements CallStateProxy {
     }
 
     if (!connected) {
-      return call.type == CallType.kVoice && !call.isOutgoing
-          ? call.remoteUserMediaStream // show remote avatar on incoming call
-          : call.localUserMediaStream;
+      return _call.type == CallType.kVoice && !_call.isOutgoing
+          ? _call.remoteUserMediaStream // show remote avatar on incoming call
+          : _call.localUserMediaStream;
     }
 
-    return call.localScreenSharingStream ?? call.localUserMediaStream;
+    return _call.localScreenSharingStream ?? _call.localUserMediaStream;
   }
 
   @override
-  GroupCallSession? get groupCall => null;
-
-  @override
-  String? get displayName => call.room.getLocalizedDisplayname();
+  String? get displayName => _call.room.getLocalizedDisplayname();
 
   @override
   void onUpdateViewCallback(Function() handler) {
@@ -295,12 +298,12 @@ class CallSessionState implements CallStateProxy {
   }
 
   @override
-  Room get room => call.room;
+  Room get room => _call.room;
 
   @override
-  Client get client => call.client;
+  Client get client => _call.client;
 
   @override
   VoipType get type =>
-      call.type == CallType.kVideo ? VoipType.kVideo : VoipType.kVoice;
+      _call.type == CallType.kVideo ? VoipType.kVideo : VoipType.kVoice;
 }

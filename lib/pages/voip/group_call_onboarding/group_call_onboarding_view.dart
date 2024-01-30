@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -311,17 +312,14 @@ class _GroupCallOnboardingViewState extends State<GroupCallOnboardingView> {
                                 groupCallSession!,
                                 voipPlugin,
                               );
-                        voipPlugin.currentGroupCallProxy = groupCallProxy;
+                        VoipPlugin.currentCallProxy = groupCallProxy;
 
                         voipPlugin.connectedTsSinceEpoch = 0;
                         voipPlugin.onHoldMs = 0;
 
                         await groupCallProxy.enter(_localStream!);
 
-                        voipPlugin.setupCallAndOpenCallPage(
-                          groupCallProxy,
-                          null,
-                        );
+                        voipPlugin.setupCallAndOpenCallPage(groupCallProxy);
 
                         if (mounted) {
                           setState(() {

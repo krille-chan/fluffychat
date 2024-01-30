@@ -92,24 +92,16 @@ class IncomingCallManager {
   Future<void> answerCall(String callUUID) async {
     final keeper = calls[callUUID]!;
 
-    // never null because incoming call thingy is always triggered after handleNewCall
-    final callProxy = voipPlugin.currentCallProxy;
-
     final provider = Provider.of<AppState>(
       FluffyChatApp.appGlobalKey.currentContext!,
       listen: false,
     );
 
-    final remoteUser =
-        await keeper.call.room.requestUser(keeper.call.inviteeUserId!);
-    provider.proxy = callProxy;
-
-    provider.remoteUserInCall = remoteUser;
-
     provider.setGlobalBanner(
-      CallBanner(proxy: callProxy!),
+      CallBanner(proxy: VoipPlugin.currentCallProxy!),
     );
-    FluffyChatApp.router.go('/rooms/${callProxy.room.id}/call');
+    FluffyChatApp.router
+        .go('/rooms/${VoipPlugin.currentCallProxy!.room.id}/call');
     if (!keeper.connected) {
       Logs().d('[VOIP] answering call');
       // Answer Call, don't await because call page is not up yet no loading

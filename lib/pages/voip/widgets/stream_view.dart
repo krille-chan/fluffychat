@@ -94,15 +94,10 @@ class _StreamViewState extends State<StreamView> {
             ),
           if (!widget.wrappedStream.videoMuted)
             isLivekit && videoTrack != null
-                ? VideoTrackRenderer(
-                    videoTrack!,
-                    fit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
-                  )
+                ? VideoTrackRenderer(videoTrack!)
                 : RTCVideoView(
                     widget.wrappedStream.renderer as RTCVideoRenderer,
                     mirror: mirrored,
-                    objectFit:
-                        RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
                   ),
           if (widget.wrappedStream.videoMuted)
             Builder(

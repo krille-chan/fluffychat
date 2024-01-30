@@ -43,9 +43,6 @@ class _CallOverlayState extends State<CallOverlay> {
         !widget.callStateProxy.ended &&
         !isGroupCall;
 
-    remoteUser =
-        Provider.of<AppState>(globalContext, listen: false).remoteUserInCall;
-
     userMediaStreams = List.from(widget.callStateProxy.userMediaStreams);
 
     screenSharingStreams =

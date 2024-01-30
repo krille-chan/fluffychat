@@ -16,12 +16,10 @@ import '../widgets/stream_view.dart';
 class P2PCallView extends StatefulWidget {
   final CallSessionState call;
   final VoipPlugin voipPlugin;
-  final User? remoteUserInCall;
   const P2PCallView({
     super.key,
     required this.call,
     required this.voipPlugin,
-    required this.remoteUserInCall,
   });
 
   @override
@@ -116,7 +114,8 @@ class _P2PCallViewState extends State<P2PCallView> {
     // use global context so no other widget in the tree can affect getting this
     final mediaQuery =
         MediaQuery.of(FluffyChatApp.appGlobalKey.currentContext!);
-
+    final remoteUser = call.call.room
+        .unsafeGetUserFromMemoryOrFallback(call.call.inviteeUserId!);
     final availableHeight = mediaQuery.size.height -
         (70 +
             mediaQuery.padding.top +
@@ -172,11 +171,11 @@ class _P2PCallViewState extends State<P2PCallView> {
                   proxy: call,
                 ),
               SizedBox(height: !expandedMainView ? 32 : 0),
-              if (widget.remoteUserInCall != null && !call.connected)
+              if (!call.connected)
                 // outgoing calls initial page
                 Avatar(
-                  mxContent: widget.remoteUserInCall!.avatarUrl,
-                  name: widget.remoteUserInCall!.displayName.toString(),
+                  mxContent: remoteUser.avatarUrl,
+                  name: remoteUser.displayName.toString(),
                   size: min(MediaQuery.of(context).size.height * 0.2, 160),
                   fontSize: 64,
                   client: call.room.client,
@@ -220,7 +219,7 @@ class _P2PCallViewState extends State<P2PCallView> {
                 // show name and org only if voice only and no screen sharing
                 Text(
                   !call.connected
-                      ? widget.remoteUserInCall!.displayName.toString()
+                      ? remoteUser.displayName.toString()
                       : primaryStream!.displayName.toString(),
                   style: Theme.of(context)
                       .textTheme
@@ -230,7 +229,7 @@ class _P2PCallViewState extends State<P2PCallView> {
                 const SizedBox(height: 6),
                 Text(
                   !call.connected
-                      ? widget.remoteUserInCall!.id.domain.toString()
+                      ? remoteUser.id.domain.toString()
                       : primaryStream!.participant.userId.domain.toString(),
                   style: Theme.of(context)
                       .textTheme

@@ -94,10 +94,13 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
   bool get answering => _groupCall.state == GroupCallState.Entering;
 
   @override
-  GroupCallSession? get groupCall => _groupCall;
+  GroupCallSession get groupCall => _groupCall;
 
   @override
-  String? get displayName => _groupCall.room.getLocalizedDisplayname();
+  CallSession? get call => null;
+
+  @override
+  String get displayName => _groupCall.room.getLocalizedDisplayname();
 
   @override
   bool get ended =>
@@ -237,7 +240,7 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
   }
 
   @override
-  VoipType get type => VoipType.kLivekit;
+  VoipType get type => VoipType.kGroup;
 
   @override
   bool get voiceonly => false;
@@ -264,9 +267,6 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
       microphone: livekit.TrackOption(enabled: !stream.audioMuted),
       camera: livekit.TrackOption(enabled: !stream.videoMuted),
     );
-    // we don't need the preview stream anymore? I think
-    await stream.disposeRenderer();
-    await stopMediaStream(stream.stream!);
 
     // create new room
     lkRoom = livekit.Room(
@@ -302,6 +302,10 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
     Logs().i(
       'Connected to room ${lkRoom?.name}, local participant => ${lkRoom?.localParticipant!.identity}',
     );
+
+    // we don't need the preview stream anymore? I think
+    await stream.disposeRenderer();
+    await stopMediaStream(stream.stream!);
   }
 
   Future<void> _sortParticipants(GroupCallSession groupCall) async {

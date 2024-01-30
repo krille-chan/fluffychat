@@ -52,12 +52,12 @@ class Calling extends StatefulWidget {
 
   /// when a call is not connected we don't have the remote user, so pass this
   /// to show the remote user
-  final User? remoteUserInCall;
+  // final User? remoteUserInCall;
   const Calling({
     super.key,
     required this.voipPlugin,
     required this.proxy,
-    this.remoteUserInCall,
+    // this.remoteUserInCall,
   });
 
   @override
@@ -535,7 +535,7 @@ class MyCallingPage extends State<Calling> {
                 child: Center(
                   child: P2PCallView(
                     call: proxy as CallSessionState,
-                    remoteUserInCall: widget.remoteUserInCall,
+                   
                     voipPlugin: voipPlugin,
                   ),
                 ),

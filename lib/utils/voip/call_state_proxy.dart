@@ -24,7 +24,8 @@ abstract class CallStateProxy {
   Client get client;
   VoipType get type;
   GroupCallSession? get groupCall;
-
+  CallSession? get call;
+  
   Future<void> answer();
 
   Future<void> hangup();

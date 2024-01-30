@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 
+import 'package:fluffychat/utils/voip/livekit_group_call_session_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ import '../../utils/voip/call_state_proxy.dart';
 import '../../utils/voip/famedly_key_provider_impl.dart';
 import '../../utils/voip/incoming_call.dart';
 
-enum VoipType { kVoice, kVideo, kGroup, kLivekit }
+enum VoipType { kVoice, kVideo, kGroup }
 
 class MediaDevicesWrapper extends MediaDevices {
   MediaDevicesWrapper() {
@@ -107,6 +108,7 @@ class MediaDevicesWrapper extends MediaDevices {
 
 class VoipPlugin implements WebRTCDelegate {
   static VoipPlugin? _instance;
+  static CallStateProxy? currentCallProxy;
 
   final Client client;
 
@@ -139,25 +141,19 @@ class VoipPlugin implements WebRTCDelegate {
 
   late FamedlyAppEncryptionKeyProviderImpl encryptionKeyProvider;
 
-  /// These are used to handle the calls all over the app with `voipPlugin.currentCallProxy`
-  /// or `voipPlugin.currentGroupCallProxy`
-  CallSessionState? currentCallProxy;
-  CallStateProxy? currentGroupCallProxy;
-
   late VoIP voip;
   ConnectivityResult? _currentConnectivity;
 
   /// the only time this is null is when `FamedlyApp` is not in the tree (eg: call when the app is not open)
   BuildContext get globalContext => FluffyChatApp.appGlobalKey.currentContext!;
 
-  void setupCallAndOpenCallPage(CallStateProxy proxy, User? user) {
+  void setupCallAndOpenCallPage(CallStateProxy proxy) {
     final provider = Provider.of<AppState>(globalContext, listen: false);
-    provider.proxy = proxy;
-    provider.remoteUserInCall = user;
 
     if (!FluffyThemes.isColumnMode(globalContext)) {
       provider.setGlobalBanner(CallBanner(proxy: proxy, voipPlugin: this));
     }
+
     if (FluffyThemes.isColumnMode(globalContext) &&
         currentCall != null &&
         currentGroupCall == null &&
@@ -228,13 +224,7 @@ class VoipPlugin implements WebRTCDelegate {
     if (!call.isOutgoing && !kIsWeb && Platform.isAndroid) {
       await IncomingCallManager(this).showIncomingCall(call);
     } else {
-      final user = call.room.unsafeGetUserFromMemoryOrFallback(
-        call.inviteeUserId!,
-      );
-      setupCallAndOpenCallPage(
-        callProxy,
-        user,
-      );
+      setupCallAndOpenCallPage(callProxy);
     }
     client.backgroundSync = true;
   }
@@ -243,8 +233,9 @@ class VoipPlugin implements WebRTCDelegate {
   Future<void> handleCallEnded(CallSession call) async {
     try {
       Logs().d('[VoipPlugin] handleCallEnded');
-      if (currentGroupCall == null &&
-          currentCallProxy?.call.callId == call.callId) {
+      if (currentCallProxy != null &&
+          currentCallProxy is CallSessionState &&
+          currentCallProxy!.call?.callId == call.callId) {
         if (!kIsWeb && Platform.isAndroid) {
           await IncomingCallManager(this).endIncomingCall(call.callId);
           await FlutterForegroundTask.stopService();
@@ -256,10 +247,8 @@ class VoipPlugin implements WebRTCDelegate {
         final provider = Provider.of<AppState>(globalContext, listen: false);
         provider.removeGlobalBanner();
         removeCallPopupOverlay();
-        provider.remoteUserInCall = null;
-        provider.proxy = null;
-
         currentCallProxy = null;
+
         final path = '/rooms/${call.room.id}';
 
         if (FluffyChatApp.router.routerDelegate.currentConfiguration.uri
@@ -281,16 +270,17 @@ class VoipPlugin implements WebRTCDelegate {
   @override
   Future<void> handleGroupCallEnded(GroupCallSession groupCall) async {
     try {
-      if (currentGroupCallProxy?.groupCall?.groupCallId ==
-          groupCall.groupCallId) {
+      if ((currentCallProxy is GroupCallSession ||
+              currentCallProxy is LiveKitGroupCallSessionState) &&
+          currentCallProxy != null &&
+          currentCallProxy?.groupCall?.groupCallId == groupCall.groupCallId) {
         if (!kIsWeb && Platform.isAndroid) {
           await FlutterForegroundTask.stopService();
         }
         final provider = Provider.of<AppState>(globalContext, listen: false);
         provider.removeGlobalBanner();
         removeCallPopupOverlay();
-        provider.proxy = null;
-        currentGroupCallProxy = null;
+        currentCallProxy = null;
 
         final roomPath = '/rooms/${groupCall.room.id}';
         if (FluffyChatApp.router.routerDelegate.currentConfiguration.uri
@@ -396,12 +386,10 @@ class VoipPlugin implements WebRTCDelegate {
     FocusManager.instance.primaryFocus?.unfocus();
 
     final voipPlugin = Matrix.of(context).voipPlugin;
-    if ({VoipType.kVideo, VoipType.kVoice}.contains(callType)) {
+    if ({VoipType.kVideo, VoipType.kVoice}.contains(callType) &&
+        room.isDirectChat) {
       if (currentCallProxy != null) {
-        setupCallAndOpenCallPage(
-          currentCallProxy!,
-          room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!),
-        );
+        setupCallAndOpenCallPage(currentCallProxy!);
         return;
       }
 
@@ -413,19 +401,17 @@ class VoipPlugin implements WebRTCDelegate {
         );
 
         // force null check here because handleNewCall is triggered in the above line anyway
-        setupCallAndOpenCallPage(
-          currentCallProxy!,
-          room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!),
-        );
+        setupCallAndOpenCallPage(currentCallProxy!);
       } catch (e, s) {
         Logs().e('startCall', e, s);
       }
-      return;
-    } else {
+    } else if (callType == VoipType.kGroup) {
       if (voipPlugin.currentGroupCall != null &&
-          currentGroupCallProxy != null) {
-        setupCallAndOpenCallPage(currentGroupCallProxy!, null);
-      } else if (currentGroupCallProxy == null) {
+          (currentCallProxy is GroupCallSession ||
+              currentCallProxy is LiveKitGroupCallSessionState) &&
+          currentCallProxy != null) {
+        setupCallAndOpenCallPage(currentCallProxy!);
+      } else if (currentCallProxy == null) {
         FluffyChatApp.router.go('/rooms/${room.id}/group_call_onboarding');
       }
     }
