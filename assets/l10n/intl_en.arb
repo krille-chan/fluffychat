@@ -1960,11 +1960,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "videoCall": "Video call",
-    "@videoCall": {
-        "type": "text",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibility of the chat history",
     "@visibilityOfTheChatHistory": {
         "type": "text",
@@ -2462,5 +2457,44 @@
         "placeholders": {
             "sender": {}
         }
-    }
+    },
+    "videoCall": "Video call",
+    "audioCall": "Audio call",
+    "groupCall": "Group call",
+    "heldTheCall": "held the call",
+    "startScreenShare": "Start screen sharing",
+    "stopScreenShare": "Stop screen sharing",
+    "holdCall": "Hold call",
+    "unholdCall": "Unhold call",
+    "flipCamera": "Flip camera",
+    "audioOutput": "Audio output",
+    "audioInput": "Audio input",
+    "hangup": "Hangup",
+    "joinGroupCall": "Join group call",
+    "cameraTurnedOff": "Camera turned off",
+    "youHeldTheCall": "You held the call",
+    "userHeldTheCall": "{user} held the call",
+    "@userHeldTheCall": {
+        "placeholders": {
+            "user": {}
+        }
+    },
+    "unknownUser": "Unknown user",
+    "connecting": "Connecting...",
+    "youAreCalling": "You are calling...",
+    "ringing": "Ringing...",
+    "incomingCall": "Incoming call...",
+    "answering": "Answering...",
+    "ended": "Ended",
+    "calling": "Calling",
+    "startGroupCall": "Start group call",
+    "startVideoCall": "Start video call",
+    "startVoiceCall": "Start voice call",
+    "showInformation": "Show information",
+    "showMember": "Show member",
+    "showImages": "Show images",
+    "activeCall": "Active call",
+    "call": "Call",
+    "missedCall": "Missed call",
+    "callBack": "Call back"
 }

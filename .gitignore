@@ -60,3 +60,5 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+
+web/*.dart.js*

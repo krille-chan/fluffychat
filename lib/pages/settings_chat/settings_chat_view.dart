@@ -6,9 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'settings_chat.dart';
 
@@ -75,22 +73,12 @@ class SettingsChatView extends StatelessWidget {
                 title: L10n.of(context)!.experimentalVideoCalls,
                 onChanged: (b) {
                   AppConfig.experimentalVoip = b;
-                  Matrix.of(context).createVoipPlugin();
+                  // Matrix.of(context).createVoipPlugin();
                   return;
                 },
                 storeKey: SettingKeys.experimentalVoip,
                 defaultValue: AppConfig.experimentalVoip,
               ),
-              if (PlatformInfos.isMobile)
-                ListTile(
-                  title: Text(L10n.of(context)!.callingPermissions),
-                  onTap: () =>
-                      CallKeepManager().checkoutPhoneAccountSetting(context),
-                  trailing: const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Icon(Icons.call),
-                  ),
-                ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
                 onChanged: (b) => AppConfig.separateChatTypes = b,
