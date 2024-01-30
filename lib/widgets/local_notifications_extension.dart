@@ -111,7 +111,11 @@ extension LocalNotificationsExtension on MatrixState {
             .singleWhere((a) => a.name == actionStr);
         switch (action) {
           case DesktopNotificationActions.seen:
-            room.setReadMarker(event.eventId, mRead: event.eventId);
+            room.setReadMarker(
+              event.eventId,
+              mRead: event.eventId,
+              public: AppConfig.sendPublicReadReceipts,
+            );
             break;
           case DesktopNotificationActions.openChat:
             context.go('/rooms/${room.id}');

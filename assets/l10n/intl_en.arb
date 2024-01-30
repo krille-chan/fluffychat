@@ -1529,11 +1529,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "renderRichContent": "Render rich message content",
-  "@renderRichContent": {
-    "type": "text",
-    "placeholders": {}
-  },
   "replaceRoomWithNewerVersion": "Replace room with newer version",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
@@ -2342,7 +2337,34 @@
       "seconds": {}
     }
   },
+  "pleaseEnterANumber": "Please enter a number greater than 0",
+  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
+  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
+  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
+  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
+  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
+  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
+  "pushNotificationsNotAvailable": "Push notifications not available",
+  "learnMore": "Learn more",
+  "yourGlobalUserIdIs": "Your global user-ID is: ",
+  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchChatsRooms": "Search for #chats, @users...",
   "nothingFound": "Nothing found...",
+  "groupName": "Group name",
+  "createGroupAndInviteUsers": "Create a group and invite users",
+  "groupCanBeFoundViaSearch": "Group can be found via search",
+  "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
+  "startConversation": "Start conversation",
+  "commandHint_sendraw": "Send raw json",
+  "databaseMigrationTitle": "Database is optimized",
+  "databaseMigrationBody": "Please wait. This may take a moment.",
   "leaveEmptyToClearStatus": "Leave empty to clear your status.",
   "select": "Select",
   "searchForUsers": "Search for @users...",
@@ -2390,16 +2412,57 @@
       "roomName": {}
     }
   },
-  "pleaseEnterANumber": "Please enter a number greater than 0",
-  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
-  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
-  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
-  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
-  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
-  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
-  "pushNotificationsNotAvailable": "Push notifications not available",
-  "learnMore": "Learn more",
+  "sendReadReceipts": "Send read receipts",
+  "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
+  "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
+  "formattedMessages": "Formatted messages",
+  "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
+  "verifyOtherUser": "🔐 Verify other user",
+  "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
+  "verifyOtherDevice": "🔐 Verify other device",
+  "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
+  "acceptedKeyVerification": "{sender} accepted key verification",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "{sender} canceled key verification",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} completed key verification",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} is ready for key verification",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} requested key verification",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} started key verification",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
   "todoLists": "(Beta) Todolists",
   "newTodo": "New todo",
   "noTodosYet": "No todos have been added to this chat yet. Create your first todo and start cooperating with others. 📝",
@@ -2407,23 +2470,6 @@
   "pleaseAddATitle": "Please add a title",
   "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
   "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
-  "yourGlobalUserIdIs": "Your global user-ID is: ",
-  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
-  "@noUsersFoundWithQuery": {
-    "type": "text",
-    "placeholders": {
-      "query": {}
-    }
-  },
-  "searchChatsRooms": "Search for #chats, @users...",
-  "groupName": "Group name",
-  "createGroupAndInviteUsers": "Create a group and invite users",
-  "groupCanBeFoundViaSearch": "Group can be found via search",
-  "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
-  "startConversation": "Start conversation",
-  "databaseMigrationTitle": "Database is optimized",
-  "databaseMigrationBody": "Please wait. This may take a moment.",
-  "commandHint_sendraw": "Send raw json",
   "youDonTHaveConversation": "You don't have any conversation yet.",
   "connectChatNetworks": "Connect your chat networks",
   "addSocialMessagingAccounts": "Add your social messaging accounts",

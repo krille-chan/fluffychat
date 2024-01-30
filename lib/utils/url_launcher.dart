@@ -189,7 +189,6 @@ class UrlLauncher {
       }
       if (roomIdOrAlias.sigil == '!') {
         if (await showOkCancelAlertDialog(
-              useRootNavigator: false,
               context: context,
               title: 'Join room $roomIdOrAlias',
             ) ==

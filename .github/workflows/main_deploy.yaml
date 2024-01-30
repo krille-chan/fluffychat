@@ -19,6 +19,10 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -38,9 +42,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}

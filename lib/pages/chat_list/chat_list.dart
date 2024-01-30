@@ -177,7 +177,6 @@ class ChatListController extends State<ChatList>
 
   void setServer() async {
     final newServer = await showTextInputDialog(
-      useRootNavigator: false,
       title: L10n.of(context)!.changeTheHomeserver,
       context: context,
       okLabel: L10n.of(context)!.ok,
@@ -216,12 +215,34 @@ class ChatListController extends State<ChatList>
     }
     SearchUserDirectoryResponse? userSearchResult;
     QueryPublicRoomsResponse? roomSearchResult;
+    final searchQuery = searchController.text.trim();
     try {
       roomSearchResult = await client.queryPublicRooms(
         server: searchServer,
-        filter: PublicRoomQueryFilter(genericSearchTerm: searchController.text),
+        filter: PublicRoomQueryFilter(genericSearchTerm: searchQuery),
         limit: 20,
       );
+
+      if (searchQuery.isValidMatrixId &&
+          searchQuery.sigil == '#' &&
+          roomSearchResult.chunk
+                  .any((room) => room.canonicalAlias == searchQuery) ==
+              false) {
+        final response = await client.getRoomIdByAlias(searchQuery);
+        final roomId = response.roomId;
+        if (roomId != null) {
+          roomSearchResult.chunk.add(
+            PublicRoomsChunk(
+              name: searchQuery,
+              guestCanJoin: false,
+              numJoinedMembers: 0,
+              roomId: roomId,
+              worldReadable: false,
+              canonicalAlias: searchQuery,
+            ),
+          );
+        }
+      }
       userSearchResult = await client.searchUserDirectory(
         searchController.text,
         limit: 20,
@@ -474,12 +495,12 @@ class ChatListController extends State<ChatList>
 
   Future<void> archiveAction() async {
     final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
           message: L10n.of(context)!.archiveRoomDescription,
+          isDestructiveAction: true,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -494,7 +515,6 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
-      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
       message: L10n.of(context)!.leaveEmptyToClearStatus,
