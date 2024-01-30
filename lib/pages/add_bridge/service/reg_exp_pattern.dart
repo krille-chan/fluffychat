@@ -2,9 +2,11 @@
 class PingPatterns {
   // Instagram
   static RegExp instagramOnlineMatch = RegExp(r"MQTT connection is active");
+  static RegExp instagramMQTTNotMatch = RegExp(r"MQTT not connected");
   static RegExp instagramSuccessfullyMatch = RegExp(r"Successfully logged in");
   static RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
+  static RegExp instagramSyncComplete = RegExp(r"Synchronization complete");
   static RegExp instagramNotLoggedMatch =
       RegExp(r"You're not logged into Instagram");
   static RegExp instagramDisconnectMatch = RegExp(r"Successfully logged out");
@@ -19,10 +21,14 @@ class PingPatterns {
   static RegExp whatsAppDisconnectMatch = RegExp(r"Logged out successfully");
   static RegExp whatsAppConnectedButNotLoggedMatch =
       RegExp(r"Connected to WhatsApp, but not logged in");
+  static RegExp whatsAppLoggedButNotConnectedMatch =
+      RegExp(r"but you don't have a WhatsApp connection.");
 
   // Facebook Messenger
   static RegExp facebookOnlineMatch =
       RegExp(r"The Messenger MQTT listener is connected.");
+  static RegExp facebookMQTTNotMatch =
+      RegExp(r"You don't have a Messenger MQTT connection.");
   static RegExp facebookSuccessfullyMatch = RegExp(r"You're logged in as");
   static RegExp facebookNotLoggedMatch =
       RegExp(r"That command requires you to be logged in.");
@@ -41,6 +47,8 @@ class LoginRegex {
       RegExp(r"Incorrect password");
   static final RegExp instagramNameOrPasswordErrorMatch =
       RegExp(r"Incorrect username or password");
+  static final RegExp instagramAccountNotExistErrorMatch = RegExp(
+      r"The username you entered doesn't appear to belong to an account. Please check your username and try again.");
   static final RegExp instagramRateLimitErrorMatch =
       RegExp(r"rate_limit_error");
 
@@ -50,7 +58,7 @@ class LoginRegex {
       RegExp(r"Invalid 2-factor authentication code. Please try again");
 
   // WhatsApp
-  static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged");
   static final RegExp whatsAppAlreadySuccessMatch =
       RegExp(r"You're already logged in");
   static final RegExp whatsAppMeansCodeMatch =

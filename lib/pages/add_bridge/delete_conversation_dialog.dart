@@ -1,12 +1,17 @@
+import 'package:provider/provider.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
 
 // ShowDialog to offer the user the option of cancelling the conversation with the bot after disconnection
-Future<void> showDeleteConversationDialog(BuildContext context,
+Future<void> deleteConversationDialog(BuildContext context,
     SocialNetwork network, BotBridgeConnection botConnection) async {
+  final connectionStateModel =
+      Provider.of<ConnectionStateModel>(context, listen: false);
+
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -27,10 +32,11 @@ Future<void> showDeleteConversationDialog(BuildContext context,
           TextButton(
             onPressed: () async {
               // Action to delete the conversation
-              await showFutureLoadingDialog(
+              await showCustomLoadingDialog(
                 context: context,
                 future: () async {
-                  await botConnection.deleteConversation(network.chatBot);
+                  await botConnection.deleteConversation(
+                      context, network.chatBot, connectionStateModel);
                 },
               );
               Navigator.of(context).pop(); // Close the dialog

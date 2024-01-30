@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:provider/provider.dart';
 import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
+import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -14,6 +17,9 @@ Future<bool> showBottomSheetBridge(
   BotBridgeConnection botConnection,
 ) async {
   final Completer<bool> completer = Completer<bool>();
+
+  final connectionStateModel =
+      Provider.of<ConnectionStateModel>(context, listen: false);
 
   showModalBottomSheet(
     context: context,
@@ -30,21 +36,24 @@ Future<bool> showBottomSheetBridge(
             ),
             onTap: () async {
               try {
-                Navigator.of(context).pop();
-
                 String result =
                     ""; // Variable to store the result of the connection
 
                 // To show Loading while executing the function
-                await showFutureLoadingDialog(
+                await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    result = await botConnection.disconnectFromNetwork(network);
+                    result = await botConnection.disconnectFromNetwork(
+                        context, network, connectionStateModel);
                   },
                 );
 
-                // returns true if is not connected
-                completer.complete(result == "Not Connected");
+                if (result == 'Not Connected') {
+                  Navigator.of(context).pop();
+
+                  // returns true if is not connected
+                  completer.complete(result == "Not Connected");
+                }
 
                 if (result == "error" || result == 'Connected') {
                   // Display a showDialog with an unknown error message
@@ -55,7 +64,7 @@ Future<bool> showBottomSheetBridge(
                 }
               } catch (e) {
                 Navigator.of(context).pop();
-                print(('Error: $e'));
+                Logs().v('Error: $e');
 
                 //To view other catch-related errors
                 showCatchErrorDialog(context, e);

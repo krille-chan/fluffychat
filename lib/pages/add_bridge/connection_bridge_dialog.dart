@@ -4,10 +4,11 @@ import 'package:tawkie/pages/add_bridge/qr_code_connect.dart';
 import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:tawkie/pages/add_bridge/two_factor_demand.dart';
 import 'package:flutter/material.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
+import 'package:provider/provider.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
+
+import '../../widgets/future_loading_dialog_custom.dart';
 import 'error_message_dialog.dart';
 import 'login_form.dart';
 import 'model/social_network.dart';
@@ -22,6 +23,9 @@ Future<bool> connectWithTwoFields(
   BotBridgeConnection botConnection,
 ) async {
   final Completer<bool> completer = Completer<bool>();
+
+  final connectionStateModel =
+      Provider.of<ConnectionStateModel>(context, listen: false);
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -42,15 +46,16 @@ Future<bool> connectWithTwoFields(
         String result = ""; // Variable to store the result of the connection
 
         // To show Loading while executing the function
-        await showFutureLoadingDialog(
+        await showCustomLoadingDialog(
           context: context,
           future: () async {
             switch (network.name) {
               case "Instagram":
                 result = await botConnection.createBridgeInstagram(
-                  username!,
-                  password!,
-                );
+                    context, username!, password!, connectionStateModel);
+              case "Facebook Messenger":
+                result = await botConnection.createBridgeFacebook(
+                    context, username!, password!, connectionStateModel);
                 break;
               // Other network
             }
@@ -66,7 +71,8 @@ Future<bool> connectWithTwoFields(
           bool success = false;
           // Display a showDialog to request a two-factor identification code
           success = await twoFactorDemandCode(context, network, botConnection);
-          if (success) {
+
+          if (success == true) {
             Navigator.of(context).pop();
             completer.complete(
               true,
@@ -135,7 +141,8 @@ Future<bool> connectWithTwoFields(
             ),
             content: LoginForm(
               formKey: formKey,
-              usernameController: usernameController,
+              socialNetwork: network,
+              identifierController: usernameController,
               passwordController: passwordController,
               completerCallback: completer.complete,
             ),
@@ -187,9 +194,6 @@ Future<bool> connectToWhatsApp(
 
   final TextEditingController controller = TextEditingController();
 
-  // Retrieve the language used in the application
-  String initialLanguage = Localizations.localeOf(context).languageCode;
-
   // login functions for whatsApp
   Future<void> whatsAppLoginFunction({
     required BuildContext context,
@@ -200,15 +204,19 @@ Future<bool> connectToWhatsApp(
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save(); // Save form values
 
+      final connectionStateModel =
+          Provider.of<ConnectionStateModel>(context, listen: false);
+
       try {
         WhatsAppResult?
             result; // Variable to store the result of the connection
 
         // To show Loading while executing the function
-        await showFutureLoadingDialog(
+        await showCustomLoadingDialog(
           context: context,
           future: () async {
-            result = await botConnection.createBridgeWhatsApp(phoneNumber!);
+            result = await botConnection.createBridgeWhatsApp(
+                context, phoneNumber!, connectionStateModel);
           },
         );
 

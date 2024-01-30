@@ -2514,7 +2514,19 @@
   "whatsApp_qrExplainTen": "And scan this QR Code",
   "whatsApp_connectedText": "Successfully connected to WhatsApp!",
   "wellDone": "Well done",
+  "youAreConnectedTo": "You are connected to",
   "codeCopy": "code copied to clipboard",
   "phoneField_explain": "Your numbers must be entered in international format!",
-  "phoneField_initialZero": "Depending on your country, the initial zero of the local number may not be included."
+  "phoneField_initialZero": "Depending on your country, the initial zero of the local number may not be included.",
+  "email": "email",
+  "loading_demandToConnect": "Connection request in progress...",
+  "loading_verification": "Login verification...",
+  "loading_verificationNumber": "Phone number verification...",
+  "loading_sendCode": "Sending the code...",
+  "loading_verificationCode": "Code verification...",
+  "loading_disconnectionDemand": "Logout request...",
+  "loading_disconnectionSuccess": "Successful logout",
+  "loading_deleteRoom": "Delete the conversation...",
+  "loading_deleteRoomSuccess": "Conversation deleted",
+  "refreshList": "Refresh list"
 }
