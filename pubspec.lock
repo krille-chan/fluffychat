@@ -1218,8 +1218,8 @@ packages:
     description:
       path: "."
       ref: "td/fosdemDemoFork"
-      resolved-ref: "7f76ad2f2b6d4bf23a8aaaf42c429791bf9a904b"
-      url: "git@github.com:famedly/matrix-dart-sdk.git"
+      resolved-ref: ab629bb44715ed3a476b0a2409f43731741712ce
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.25.6"
   matrix_api_lite:

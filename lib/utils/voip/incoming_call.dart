@@ -130,7 +130,7 @@ class IncomingCallManager {
     final callKeeper = CallKeeper(this, call);
     final l10n = await WidgetsBinding.instance.platformDispatcher.loadL10n();
     addCall(call.callUUID, callKeeper);
-    final remoteUser = await call.room.requestUser(call.inviteeUserId!);
+    final remoteUser = await call.room.requestUser(call.remoteUserId!);
     final avatarMxc = await call.client.getAvatarUrl(remoteUser?.id ?? '');
     final avatarUrl = avatarMxc?.getThumbnail(
       call.client,
@@ -161,7 +161,7 @@ class IncomingCallManager {
 
   Future showMissedCallNotification(CallSession call) async {
     final l10n = await WidgetsBinding.instance.platformDispatcher.loadL10n();
-    final remoteUser = await call.room.requestUser(call.inviteeUserId!);
+    final remoteUser = await call.room.requestUser(call.remoteUserId!);
     final avatarMxc = await call.client.getAvatarUrl(remoteUser?.id ?? '');
     final avatarUrl = avatarMxc?.getThumbnail(
       call.client,

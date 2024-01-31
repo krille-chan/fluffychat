@@ -114,8 +114,6 @@ class _P2PCallViewState extends State<P2PCallView> {
     // use global context so no other widget in the tree can affect getting this
     final mediaQuery =
         MediaQuery.of(FluffyChatApp.appGlobalKey.currentContext!);
-    final remoteUser = call.call.room
-        .unsafeGetUserFromMemoryOrFallback(call.call.inviteeUserId!);
     final availableHeight = mediaQuery.size.height -
         (70 +
             mediaQuery.padding.top +
@@ -174,8 +172,8 @@ class _P2PCallViewState extends State<P2PCallView> {
               if (!call.connected)
                 // outgoing calls initial page
                 Avatar(
-                  mxContent: remoteUser.avatarUrl,
-                  name: remoteUser.displayName.toString(),
+                  mxContent: call.call.remoteUser!.avatarUrl,
+                  name: call.call.remoteUser!.displayName.toString(),
                   size: min(MediaQuery.of(context).size.height * 0.2, 160),
                   fontSize: 64,
                   client: call.room.client,
@@ -219,7 +217,7 @@ class _P2PCallViewState extends State<P2PCallView> {
                 // show name and org only if voice only and no screen sharing
                 Text(
                   !call.connected
-                      ? remoteUser.displayName.toString()
+                      ? call.call.remoteUser!.displayName.toString()
                       : primaryStream!.displayName.toString(),
                   style: Theme.of(context)
                       .textTheme
@@ -229,7 +227,7 @@ class _P2PCallViewState extends State<P2PCallView> {
                 const SizedBox(height: 6),
                 Text(
                   !call.connected
-                      ? remoteUser.id.domain.toString()
+                      ? call.call.remoteUser!.id.domain.toString()
                       : primaryStream!.participant.userId.domain.toString(),
                   style: Theme.of(context)
                       .textTheme

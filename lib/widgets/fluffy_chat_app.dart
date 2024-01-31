@@ -43,6 +43,8 @@ class FluffyChatApp extends StatelessWidget {
 
   static final appGlobalKey = GlobalKey();
 
+  static final appState = AppState();
+
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
@@ -56,27 +58,29 @@ class FluffyChatApp extends StatelessWidget {
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
-        builder: (context, child) => ChangeNotifierProvider<AppState>.value(
-          key: ValueKey(themeMode),
-          value: AppState(),
-          child: AppLockWidget(
-            pincode: pincode,
-            clients: clients,
-            // Need a navigator above the Matrix widget for
-            // displaying dialogs
-            child: Navigator(
-              onGenerateRoute: (_) => MaterialPageRoute(
-                builder: (_) => Matrix(
-                  key: appGlobalKey,
-                  clients: clients,
-                  voipPlugins: voipPlugins,
-                  store: store,
-                  child: testWidget ?? child,
+        builder: (context, child) {
+          return ChangeNotifierProvider<AppState>.value(
+            key: ValueKey(themeMode),
+            value: appState,
+            child: AppLockWidget(
+              pincode: pincode,
+              clients: clients,
+              // Need a navigator above the Matrix widget for
+              // displaying dialogs
+              child: Navigator(
+                onGenerateRoute: (_) => MaterialPageRoute(
+                  builder: (_) => Matrix(
+                    key: appGlobalKey,
+                    clients: clients,
+                    voipPlugins: voipPlugins,
+                    store: store,
+                    child: testWidget ?? child,
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

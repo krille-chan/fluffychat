@@ -53,9 +53,8 @@ class _CallOverlayState extends State<CallOverlay> {
     });
   }
 
-  late bool p2pCallConnecting;
+  bool? p2pCallConnecting;
   bool hovering = false;
-  late User? remoteUser;
 
   void toCallAndRemovePopup() {
     Provider.of<AppState>(globalContext, listen: false).bannerClickedOnPath =
@@ -91,7 +90,7 @@ class _CallOverlayState extends State<CallOverlay> {
     setupCall();
 
     return SafeArea(
-      child: p2pCallConnecting
+      child: p2pCallConnecting ?? true
           ? Align(
               heightFactor: 1.0,
               alignment: Alignment.center,
@@ -107,7 +106,7 @@ class _CallOverlayState extends State<CallOverlay> {
                       border: Border.all(),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                     ),
-                    child: remoteUser == null
+                    child: widget.callStateProxy.call!.remoteUser == null
                         ? const Center(child: CircularProgressIndicator())
                         : Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -165,8 +164,11 @@ class _CallOverlayState extends State<CallOverlay> {
                                 height: 32.0,
                               ),
                               Avatar(
-                                mxContent: remoteUser!.avatarUrl,
-                                name: remoteUser!.displayName.toString(),
+                                mxContent: widget
+                                    .callStateProxy.call!.remoteUser!.avatarUrl,
+                                name: widget.callStateProxy.call!.remoteUser!
+                                    .displayName
+                                    .toString(),
                                 size: 96,
                                 fontSize: 16,
                                 client: widget.callStateProxy.client,
@@ -175,7 +177,9 @@ class _CallOverlayState extends State<CallOverlay> {
                                 height: 24.0,
                               ),
                               Text(
-                                remoteUser!.displayName.toString(),
+                                widget.callStateProxy.call!.remoteUser!
+                                    .displayName
+                                    .toString(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -187,7 +191,9 @@ class _CallOverlayState extends State<CallOverlay> {
                                 height: 4.0,
                               ),
                               Text(
-                                remoteUser!.id.domain.toString(),
+                                widget
+                                    .callStateProxy.call!.remoteUser!.id.domain
+                                    .toString(),
                               ),
                               const SizedBox(
                                 height: 24.0,

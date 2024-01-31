@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fluffychat/pages/global_banner_scaffold.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -478,7 +479,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Provider(
       create: (_) => this,
-      child: widget.child,
+      child: GlobalBannerScaffold(child: widget.child ?? Container()),
     );
   }
 }

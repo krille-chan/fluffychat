@@ -168,7 +168,7 @@ dependency_overrides:
   matrix:
     # path: ../matrix-dart-sdk
     git:
-      url: git@github.com:famedly/matrix-dart-sdk.git
+      url: https://github.com/famedly/matrix-dart-sdk.git
       ref: td/fosdemDemoFork
   uuid: ^4.3.3
   # blocked upgrade of package_info_plus for null safety
