@@ -29,8 +29,6 @@ rmdir js
 rm native_imaging.zip
 
 
-# e2ee worker for livekit.
-cd web
 git clone https://github.com/flutter-webrtc/dart-webrtc.git -b e2ee/improvements
 cd dart-webrtc
 dart pub get
