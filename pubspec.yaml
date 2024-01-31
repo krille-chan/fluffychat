@@ -166,10 +166,10 @@ dependency_overrides:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
   matrix:
-    path: ../matrix-dart-sdk
-    # git:
-    #   url: git@github.com:famedly/matrix-dart-sdk.git
-    #   ref: td/fosdemDemoFork
+    # path: ../matrix-dart-sdk
+    git:
+      url: git@github.com:famedly/matrix-dart-sdk.git
+      ref: td/fosdemDemoFork
   uuid: ^4.3.3
   # blocked upgrade of package_info_plus for null safety
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203

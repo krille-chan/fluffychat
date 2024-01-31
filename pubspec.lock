@@ -1216,9 +1216,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "../matrix-dart-sdk"
-      relative: true
-    source: path
+      path: "."
+      ref: "td/fosdemDemoFork"
+      resolved-ref: "7f76ad2f2b6d4bf23a8aaaf42c429791bf9a904b"
+      url: "git@github.com:famedly/matrix-dart-sdk.git"
+    source: git
     version: "0.25.6"
   matrix_api_lite:
     dependency: transitive
