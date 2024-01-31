@@ -210,7 +210,7 @@ class ChatView extends StatelessWidget {
                               fit: BoxFit.cover,
                               isThumbnail: true,
                               width: FluffyThemes.columnWidth * 2,
-                              height: MediaQuery.of(context).size.height,
+                              height: FluffyThemes.columnWidth * 4,
                               placeholder: (_) => Container(),
                             ),
                           ),
