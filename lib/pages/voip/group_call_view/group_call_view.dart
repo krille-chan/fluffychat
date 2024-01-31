@@ -158,10 +158,10 @@ class GroupCallViewState extends State<GroupCallView> {
   Widget build(BuildContext context) {
     Logs().d('[GroupCallView] rebuilding callgrid children');
 
-    groupCall.encryptionKeysMap.forEach((key, value) {
-      Logs().e(key.userId.toString());
-      Logs().e(value.values.map((e) => base64Encode(e).toString()).toString());
-    });
+    // groupCall.encryptionKeysMap.forEach((key, value) {
+    //   Logs().i(key.userId.toString());
+    //   Logs().i(value.values.map((e) => base64Encode(e).toString()).toString());
+    // });
 
     userMediaStreams = List.from(widget.call.userMediaStreams);
     screenSharingStreams = List.from(widget.call.screenSharingStreams);
