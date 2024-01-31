@@ -23,7 +23,7 @@ jobs:
       - run: flutter analyze
       - name: Apply google services patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - run: flutter analyze
+      # - run: flutter analyze
       - run: flutter test
 
   build_debug_apk:
