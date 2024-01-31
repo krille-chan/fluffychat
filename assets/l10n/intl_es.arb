@@ -2872,8 +2872,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "langaugeLevel": "Nivel de lengua",
-  "@langaugeLevel": {
+  "languageLevel": "Nivel de lengua",
+  "@languageLevel": {
     "type": "text",
     "placeholders": {}
   },
