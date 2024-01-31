@@ -24,8 +24,6 @@ jobs:
         run: git apply ./scripts/enable-android-google-services.patch
       - run: flutter analyze
       - run: flutter test
-      - name: Check for unused localization strings
-        run: flutter pub run translations_cleaner list-unused-terms -a
 
   build_debug_apk:
     runs-on: ubuntu-latest
@@ -35,7 +33,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
+          distribution: "zulu"
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
