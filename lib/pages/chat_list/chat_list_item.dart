@@ -196,46 +196,68 @@ class ChatListItem extends StatelessWidget {
       MatrixLocals(L10n.of(context)!),
     );
 
+    bool containsFacebook(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@facebook'));
+    }
+
+    bool containsInstagram(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@instagram_'));
+    }
+
+    bool containsWhatsApp(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@whatsapp'));
+    }
+
+    void removeFacebookTag() {
+      if (displayname.contains('(FB)')) {
+        displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
+      }
+    }
+
+    void removeInstagramTag() {
+      if (displayname.contains('(Instagram)')) {
+        displayname =
+            displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+      }
+    }
+
+    void removeWhatsAppTag() {
+      if (displayname.contains('(WA)')) {
+        displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+      }
+    }
+
     // Condition for verifying the presence of social networks in participants ID
     Future<List<dynamic>> loadRoomInfo() async {
-      // getParticipants method to retrieve the list of participants
       List<User> participants = room.getParticipants();
       Color? networkColor;
       Image? networkImage;
-
       final participantsIds = participants.map((member) => member.id).toList();
 
-      if (participantsIds.any((id) => id.contains('@facebook'))) {
+      if (containsFacebook(participantsIds)) {
         networkColor = FluffyThemes.facebookColor;
         networkImage = Image.asset(
           'assets/facebook-messenger.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if (displayname.contains('(FB)')) {
-          displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
-        }
-      } else if (participantsIds.any((id) => id.contains('@instagram_'))) {
+        removeFacebookTag();
+      } else if (containsInstagram(participantsIds)) {
         networkColor = FluffyThemes.instagramColor;
         networkImage = Image.asset(
           'assets/instagram.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if (displayname.contains('(Instagram)')) {
-          displayname =
-              displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
-        }
-      } else if (participantsIds.any((id) => id.contains('@whatsapp'))) {
+        removeInstagramTag();
+      } else if (containsWhatsApp(participantsIds)) {
         networkColor = FluffyThemes.whatsAppColor;
         networkImage = Image.asset(
           'assets/whatsapp.png',
           color: networkColor,
           filterQuality: FilterQuality.high,
         );
-        if (displayname.contains('WA')) {
-          displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
-        }
+        removeWhatsAppTag();
       }
 
       return [networkColor, networkImage];
