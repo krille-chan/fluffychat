@@ -33,6 +33,7 @@ class Message extends StatelessWidget {
   final bool highlightMarker;
   final bool animateIn;
   final void Function()? resetAnimateIn;
+  final Color? avatarPresenceBackgroundColor;
 
   const Message(
     this.event, {
@@ -49,6 +50,7 @@ class Message extends StatelessWidget {
     this.highlightMarker = false,
     this.animateIn = false,
     this.resetAnimateIn,
+    this.avatarPresenceBackgroundColor,
     super.key,
   });
 
@@ -177,6 +179,7 @@ class Message extends StatelessWidget {
                       mxContent: user.avatarUrl,
                       name: user.calcDisplayname(),
                       presenceUserId: user.stateKey,
+                      presenceBackgroundColor: avatarPresenceBackgroundColor,
                       onTap: () => onAvatarTab(event),
                     );
                   },
