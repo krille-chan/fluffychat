@@ -156,6 +156,7 @@ class HtmlMessage extends StatelessWidget {
         SpoilerExtension(textColor: textColor),
         const ImageExtension(),
         FontColorExtension(),
+        FallbackTextExtension(fontSize: fontSize),
       ],
       onLinkTap: (url, _, element) => UrlLauncher(
         context,
@@ -171,6 +172,8 @@ class HtmlMessage extends StatelessWidget {
       shrinkWrap: true,
     );
   }
+
+  static const Set<String> fallbackTextTags = {'tg-forward'};
 
   /// Keep in sync with: https://spec.matrix.org/v1.6/client-server-api/#mroommessage-msgtypes
   static const Set<String> allowedHtmlTags = {
@@ -217,7 +220,7 @@ class HtmlMessage extends StatelessWidget {
     'rp',
     'rt',
     // Workaround for https://github.com/krille-chan/fluffychat/issues/507
-    'tg-forward',
+    ...fallbackTextTags,
   };
 }
 
@@ -406,6 +409,22 @@ class CodeExtension extends HtmlExtension {
               textStyle: TextStyle(fontSize: fontSize),
             ),
           ),
+        ),
+      );
+}
+
+class FallbackTextExtension extends HtmlExtension {
+  final double fontSize;
+
+  FallbackTextExtension({required this.fontSize});
+  @override
+  Set<String> get supportedTags => HtmlMessage.fallbackTextTags;
+
+  @override
+  InlineSpan build(ExtensionContext context) => TextSpan(
+        text: context.element?.text ?? '',
+        style: TextStyle(
+          fontSize: fontSize,
         ),
       );
 }
