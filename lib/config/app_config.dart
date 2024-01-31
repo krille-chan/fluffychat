@@ -53,7 +53,7 @@ abstract class AppConfig {
   static bool livekitEnabledCalls = true;
   // static const livekitServiceUrl = 'https://famedly-livekit-server.teedee.dev';
   static const livekitServiceUrl = 'https://livekit-jwt.call.element.dev';
-
+  static const enableLivekitE2EE = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;
   static const String inviteLinkPrefix = 'https://matrix.to/#/';

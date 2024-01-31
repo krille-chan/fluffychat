@@ -301,6 +301,7 @@ class _GroupCallOnboardingViewState extends State<GroupCallOnboardingView> {
                               ],
                               'm.call',
                               'm.room',
+                              e2ee: AppConfig.enableLivekitE2EE,
                             );
                         final voipPlugin = Matrix.of(context).voipPlugin;
                         final groupCallProxy = groupCallSession!.isLivekitCall

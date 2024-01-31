@@ -124,7 +124,7 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
         }
         await join(
           groupCall: _groupCall,
-          enableE2EE: false,
+          enableE2EE: AppConfig.enableLivekitE2EE,
           sfuConfig: sfuConfig,
           stream: stream,
         );
