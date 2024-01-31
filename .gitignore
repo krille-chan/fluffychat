@@ -62,3 +62,8 @@ ios/Runner.ipa
 olm
 
 web/*.dart.js*
+web/Imaging.js
+web/Imaging.wasm
+web/olm.js
+web/olm.wasm
+web/olm_legacy.js
