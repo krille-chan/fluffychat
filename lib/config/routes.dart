@@ -84,6 +84,29 @@ abstract class AppRoutes {
         const LogViewer(),
       ),
     ),
+    GoRoute(
+      path: '/rooms/:roomid/call',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        VoipPlugin.currentCallProxy == null
+            ? const Center(child: CircularProgressIndicator())
+            : Calling(
+                voipPlugin: Matrix.of(context).voipPlugin,
+                proxy: VoipPlugin.currentCallProxy!,
+                // remoteUserInCall:
+                //     Provider.of<AppState>(context).remoteUserInCall,
+              ),
+      ),
+    ),
+    GoRoute(
+      path: '/rooms/:roomid/group_call_onboarding',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        GroupCallOnboardingView(
+          roomId: state.pathParameters['roomid']!,
+        ),
+      ),
+    ),
     ShellRoute(
       pageBuilder: (context, state, child) => defaultPageBuilder(
         context,
@@ -102,29 +125,6 @@ abstract class AppRoutes {
             : child,
       ),
       routes: [
-        GoRoute(
-          path: '/rooms/:roomid/call',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            VoipPlugin.currentCallProxy == null
-                ? const Center(child: CircularProgressIndicator())
-                : Calling(
-                    voipPlugin: Matrix.of(context).voipPlugin,
-                    proxy: VoipPlugin.currentCallProxy!,
-                    // remoteUserInCall:
-                    //     Provider.of<AppState>(context).remoteUserInCall,
-                  ),
-          ),
-        ),
-        GoRoute(
-          path: '/rooms/:roomid/group_call_onboarding',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            GroupCallOnboardingView(
-              roomId: state.pathParameters['roomid']!,
-            ),
-          ),
-        ),
         GoRoute(
           path: '/rooms',
           redirect: loggedOutRedirect,
