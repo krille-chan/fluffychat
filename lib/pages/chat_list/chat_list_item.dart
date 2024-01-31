@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/send_file_dialog.dart';
@@ -193,9 +191,77 @@ class ChatListItem extends StatelessWidget {
         : activeChat
             ? Theme.of(context).colorScheme.secondaryContainer
             : null;
-    final displayname = room.getLocalizedDisplayname(
+    var displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
+
+    bool containsFacebook(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@facebook'));
+    }
+
+    bool containsInstagram(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@instagram_'));
+    }
+
+    bool containsWhatsApp(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@whatsapp'));
+    }
+
+    void removeFacebookTag() {
+      if (displayname.contains('(FB)')) {
+        displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
+      }
+    }
+
+    void removeInstagramTag() {
+      if (displayname.contains('(Instagram)')) {
+        displayname =
+            displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+      }
+    }
+
+    void removeWhatsAppTag() {
+      if (displayname.contains('(WA)')) {
+        displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+      }
+    }
+
+    // Condition for verifying the presence of social networks in participants ID
+    Future<List<dynamic>> loadRoomInfo() async {
+      List<User> participants = room.getParticipants();
+      Color? networkColor;
+      Image? networkImage;
+      final participantsIds = participants.map((member) => member.id).toList();
+
+      if (containsFacebook(participantsIds)) {
+        networkColor = FluffyThemes.facebookColor;
+        networkImage = Image.asset(
+          'assets/facebook-messenger.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeFacebookTag();
+      } else if (containsInstagram(participantsIds)) {
+        networkColor = FluffyThemes.instagramColor;
+        networkImage = Image.asset(
+          'assets/instagram.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeInstagramTag();
+      } else if (containsWhatsApp(participantsIds)) {
+        networkColor = FluffyThemes.whatsAppColor;
+        networkImage = Image.asset(
+          'assets/whatsapp.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeWhatsAppTag();
+      }
+
+      return [networkColor, networkImage];
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -218,52 +284,95 @@ class ChatListItem extends StatelessWidget {
                 presenceUserId: room.directChatMatrixID,
                 presenceBackgroundColor: backgroundColor,
               ),
-              title: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      displayname,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                      style: unread
-                          ? const TextStyle(fontWeight: FontWeight.bold)
-                          : null,
-                    ),
-                  ),
-                  if (isMuted)
-                    const Padding(
-                      padding: EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.notifications_off_outlined,
-                        size: 16,
+              title: FutureBuilder<List<dynamic>>(
+                future: loadRoomInfo(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container(
+                      alignment: Alignment.centerLeft,
+                      child: const SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(),
                       ),
-                    ),
-                  if (room.isFavourite || room.membership == Membership.invite)
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: hasNotifications ? 4.0 : 0.0,
-                      ),
-                      child: Icon(
-                        Icons.push_pin,
-                        size: 16,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  if (lastEvent != null && room.membership != Membership.invite)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Text(
-                        lastEvent.originServerTs.localizedTimeShort(context),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: unread
-                              ? Theme.of(context).colorScheme.secondary
-                              : Theme.of(context).textTheme.bodyMedium!.color,
+                    );
+                  } else {
+                    final networkColor = snapshot.data![0];
+                    final networkImage = snapshot.data![1];
+                    return Row(
+                      children: <Widget>[
+                        if (networkImage != null)
+                          SizedBox(
+                            height: 16.0, // to adjust height
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 5),
+                              child: networkImage,
+                            ),
+                          ),
+                        Expanded(
+                          child: Text(
+                            displayname,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            style: unread
+                                ? TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? null
+                                        : networkColor, // Color for the dark theme
+                                  )
+                                : TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? null
+                                        : networkColor, // Color for the dark theme
+                                  ),
+                          ),
                         ),
-                      ),
-                    ),
-                ],
+                        if (isMuted)
+                          const Padding(
+                            padding: EdgeInsets.only(left: 4.0),
+                            child: Icon(
+                              Icons.notifications_off_outlined,
+                              size: 16,
+                            ),
+                          ),
+                        if (room.isFavourite ||
+                            room.membership == Membership.invite)
+                          Padding(
+                            padding: EdgeInsets.only(
+                              right: hasNotifications ? 4.0 : 0.0,
+                            ),
+                            child: Icon(
+                              Icons.push_pin,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                        if (lastEvent != null &&
+                            room.membership != Membership.invite)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 4.0),
+                            child: Text(
+                              lastEvent.originServerTs
+                                  .localizedTimeShort(context),
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: unread
+                                    ? Theme.of(context).colorScheme.secondary
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  }
+                },
               ),
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

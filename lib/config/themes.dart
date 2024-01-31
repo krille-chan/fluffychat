@@ -23,6 +23,10 @@ abstract class FluffyThemes {
     fontFamilyFallback: ['NotoEmoji'],
   );
 
+  static const Color facebookColor = Color(0xFF00B2FF);
+  static const Color instagramColor = Color(0xFFE1306C);
+  static const Color whatsAppColor = Color(0xFF25D366);
+
   static var fallbackTextTheme = const TextTheme(
     bodyLarge: fallbackTextStyle,
     bodyMedium: fallbackTextStyle,
