@@ -14,6 +14,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - run: ./scripts/prepare-web.sh
       - run: flutter pub get
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
