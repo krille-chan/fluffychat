@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
 import 'package:fluffychat/pages/global_banner_scaffold.dart';
 import 'package:fluffychat/utils/app_state.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;

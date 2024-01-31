@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -85,6 +86,17 @@ abstract class AppRoutes {
       ),
     ),
     GoRoute(
+      redirect: (context, state) {
+        if (VoipPlugin.currentCallProxy == null) {
+          final parts = state.uri.path.split('/');
+          final redirectPath = '/${parts[1]}/${parts[2]}';
+          Logs().w(
+            '[GoRouter] voip currentCallProxy was null, redirecting to  $redirectPath',
+          );
+          return redirectPath;
+        }
+        return null;
+      },
       path: '/rooms/:roomid/call',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
@@ -93,8 +105,6 @@ abstract class AppRoutes {
             : Calling(
                 voipPlugin: Matrix.of(context).voipPlugin,
                 proxy: VoipPlugin.currentCallProxy!,
-                // remoteUserInCall:
-                //     Provider.of<AppState>(context).remoteUserInCall,
               ),
       ),
     ),
