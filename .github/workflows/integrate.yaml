@@ -42,7 +42,7 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk --debug
 
-  build_debug_web:
+  build_web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,10 +51,49 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install nodejs -y
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
-      - run: flutter build web
+      - name: Build Release Web
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/"
+      # - name: Create archive
+      #   run: tar -czf fluffychat-web.tar.gz build/web/
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web/
+
+          
+  deploy_github_pages:
+    needs: build_web
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web
+          path: .
+      - run: ls -la
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
 
   build_debug_linux:
     runs-on: ubuntu-latest
