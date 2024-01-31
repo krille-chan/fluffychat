@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +32,7 @@ import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pages/voip/calling_page.dart';
 import 'package:fluffychat/pages/voip/group_call_onboarding/group_call_onboarding_view.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';

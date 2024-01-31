@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:io';
 
-import 'package:fluffychat/utils/voip/livekit_group_call_session_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +18,7 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/app_state.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/livekit_group_call_session_state.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../pages/voip/widgets/call_banner.dart';

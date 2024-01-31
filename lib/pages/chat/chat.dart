@@ -136,25 +136,31 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onDragDone(DropDoneDetails details) async {
     setState(() => dragging = false);
-    final bytesList = await showFutureLoadingDialog(
+    if (details.files.isEmpty) return;
+    final result = await showFutureLoadingDialog(
       context: context,
-      future: () => Future.wait(
-        details.files.map(
-          (xfile) => xfile.readAsBytes(),
-        ),
-      ),
+      future: () async {
+        final clientConfig = await room.client.getConfig();
+        final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1024 * 1024;
+        final matrixFiles = await Future.wait(
+          details.files.map(
+            (xfile) async {
+              final length = await xfile.length();
+              if (length > maxUploadSize) {
+                throw FileTooBigMatrixException(length, maxUploadSize);
+              }
+              return MatrixFile(
+                bytes: await xfile.readAsBytes(),
+                name: xfile.name,
+              );
+            },
+          ),
+        );
+        return matrixFiles;
+      },
     );
-    if (bytesList.error != null) return;
-
-    final matrixFiles = <MatrixFile>[];
-    for (var i = 0; i < bytesList.result!.length; i++) {
-      matrixFiles.add(
-        MatrixFile(
-          bytes: bytesList.result![i],
-          name: details.files[i].name,
-        ).detectFileType,
-      );
-    }
+    final matrixFiles = result.result;
+    if (matrixFiles == null || matrixFiles.isEmpty) return;
 
     await showAdaptiveDialog(
       context: context,

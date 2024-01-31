@@ -23,8 +23,8 @@ class StickerState extends State<Sticker> {
   Widget build(BuildContext context) {
     return ImageBubble(
       widget.event,
-      width: 400,
-      height: 400,
+      width: 256,
+      height: 256,
       fit: BoxFit.contain,
       onTap: () {
         setState(() => animated = true);

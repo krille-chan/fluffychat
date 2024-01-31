@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../utils/voip/group_call_session_state.dart';
 import '../../../utils/voip/livekit_group_call_session_state.dart';

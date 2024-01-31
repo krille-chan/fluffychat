@@ -2496,5 +2496,6 @@
     "activeCall": "Active call",
     "call": "Call",
     "missedCall": "Missed call",
-    "callBack": "Call back"
+    "callBack": "Call back",
+    "transparent": "Transparent"
 }

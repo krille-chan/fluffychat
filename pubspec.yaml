@@ -66,7 +66,7 @@ dependencies:
   latlong2: ^0.8.1
   linkify: ^5.0.0
   livekit_client: ^1.5.6
-  matrix: ^0.25.6
+  matrix: ^0.25.8
   native_imaging: ^0.1.0
   package_info_plus: ^4.0.0
   pasteboard: ^0.2.0

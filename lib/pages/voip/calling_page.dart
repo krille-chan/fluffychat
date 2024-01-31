@@ -535,7 +535,6 @@ class MyCallingPage extends State<Calling> {
                 child: Center(
                   child: P2PCallView(
                     call: proxy as CallSessionState,
-                   
                     voipPlugin: voipPlugin,
                   ),
                 ),
