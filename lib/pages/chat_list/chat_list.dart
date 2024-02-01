@@ -619,6 +619,7 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
+    await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
 
