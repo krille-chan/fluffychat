@@ -212,6 +212,7 @@ class PresenceAvatar extends StatelessWidget {
                                   left: 8,
                                   top: 32,
                                   child: Material(
+                                    color: statusMsgBubbleColor,
                                     elevation: statusMsgBubbleElevation,
                                     shadowColor: statusMsgBubbleShadowColor,
                                     borderRadius: BorderRadius.circular(
@@ -227,6 +228,7 @@ class PresenceAvatar extends StatelessWidget {
                                   left: 14,
                                   top: 40,
                                   child: Material(
+                                    color: statusMsgBubbleColor,
                                     elevation: statusMsgBubbleElevation,
                                     shadowColor: statusMsgBubbleShadowColor,
                                     borderRadius: BorderRadius.circular(
