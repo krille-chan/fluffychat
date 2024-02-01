@@ -209,7 +209,7 @@ class ChatView extends StatelessWidget {
                               uri: accountConfig.wallpaperUrl,
                               fit: BoxFit.cover,
                               isThumbnail: true,
-                              width: FluffyThemes.columnWidth * 2,
+                              width: FluffyThemes.columnWidth * 4,
                               height: FluffyThemes.columnWidth * 4,
                               placeholder: (_) => Container(),
                             ),
