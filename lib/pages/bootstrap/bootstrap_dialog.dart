@@ -266,6 +266,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         ),
                         hintText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
+                        errorMaxLines: 2,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -290,6 +291,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 final key = _recoveryKeyTextEditingController
                                     .text
                                     .trim();
+                                if (key.isEmpty) return;
                                 await bootstrap.newSsssKey!.unlock(
                                   keyOrPassphrase: key,
                                 );
@@ -316,6 +318,11 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 setState(
                                   () => _recoveryKeyInputError =
                                       e.toLocalizedString(context),
+                                );
+                              } on FormatException catch (_) {
+                                setState(
+                                  () => _recoveryKeyInputError =
+                                      L10n.of(context)!.wrongRecoveryKey,
                                 );
                               } catch (e, s) {
                                 ErrorReporter(
