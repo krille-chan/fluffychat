@@ -22,7 +22,7 @@ dependencies:
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8
-  emoji_picker_flutter: ^1.6.3
+  emoji_picker_flutter: ^2.0.0
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
@@ -37,7 +37,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   flutter_html_table: ^3.0.0-beta.2
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^16.1.0
+  flutter_local_notifications: ^16.3.2
   flutter_localizations:
     sdk: flutter
   flutter_map: ^4.0.0
@@ -46,12 +46,12 @@ dependencies:
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
-  flutter_typeahead: ^4.8.0
+  flutter_typeahead: ^5.1.0
   flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
-  go_router: ^12.1.1
+  go_router: ^13.1.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   html: ^0.15.4
@@ -64,7 +64,7 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^0.25.7
   native_imaging: ^0.1.0
-  package_info_plus: ^4.0.0
+  package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
   path_provider: ^2.0.9
   permission_handler: ^11.0.1

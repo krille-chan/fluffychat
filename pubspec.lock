@@ -341,10 +341,10 @@ packages:
     dependency: "direct main"
     description:
       name: emoji_picker_flutter
-      sha256: "009c51efc763d5a6ba05a5628b8b2184c327cd117d66ea9c3e7edf2ff269c423"
+      sha256: "5e9ba37aa2763bb627e8452986bea2e88704f54b90a2fe5aa2b2b20d3102ecdd"
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.3"
+    version: "2.0.0"
   emoji_proposal:
     dependency: "direct main"
     description:
@@ -511,10 +511,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_keyboard_visibility
-      sha256: "4983655c26ab5b959252ee204c2fffa4afeb4413cd030455194ec0caa3b8e7cb"
+      sha256: "98664be7be0e3ffca00de50f7f6a287ab62c763fc8c762e0a21584584a3ff4f8"
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.1"
+    version: "6.0.0"
   flutter_keyboard_visibility_linux:
     dependency: transitive
     description:
@@ -583,10 +583,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: bb5cd63ff7c91d6efe452e41d0d0ae6348925c82eafd10ce170ef585ea04776e
+      sha256: c18f1de98fe0bb9dd5ba91e1330d4febc8b6a7de6aae3ffe475ef423723e72f3
       url: "https://pub.dev"
     source: hosted
-    version: "16.2.0"
+    version: "16.3.2"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -729,10 +729,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_typeahead
-      sha256: b9942bd5b7611a6ec3f0730c477146cffa4cd4b051077983ba67ddfc9e7ee818
+      sha256: e2070dea278f09ae30885872138ccae75292b33b7af2c241fec5ceafd980c374
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.0"
+    version: "5.1.0"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
@@ -835,10 +835,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: c247a4f76071c3b97bb5ae8912968870d5565644801c5e09f3bc961b4d874895
+      sha256: "07ee2436909f749d606f53521dc1725dd738dc5196e5ff815bc254253c594075"
       url: "https://pub.dev"
     source: hosted
-    version: "12.1.1"
+    version: "13.1.0"
   gradient_borders:
     dependency: transitive
     description:
@@ -1233,10 +1233,10 @@ packages:
     dependency: "direct main"
     description:
       name: package_info_plus
-      sha256: "7e76fad405b3e4016cd39d08f455a4eb5199723cf594cd1b8916d47140d93017"
+      sha256: "88bc797f44a94814f2213db1c9bd5badebafdfb8290ca9f78d4b9ee2a3db4d79"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.0"
+    version: "5.0.1"
   package_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -1401,10 +1401,34 @@ packages:
     dependency: transitive
     description:
       name: pointer_interceptor
-      sha256: adf7a637f97c077041d36801b43be08559fd4322d2127b3f20bb7be1b9eebc22
+      sha256: bd18321519718678d5fa98ad3a3359cbc7a31f018554eab80b73d08a7f0c165a
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3+7"
+    version: "0.10.1"
+  pointer_interceptor_ios:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_ios
+      sha256: "2e73c39452830adc4695757130676a39412a3b7f3c34e3f752791b5384770877"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+2"
+  pointer_interceptor_platform_interface:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_platform_interface
+      sha256: "0597b0560e14354baeb23f8375cd612e8bd4841bf8306ecb71fcd0bb78552506"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+1"
+  pointer_interceptor_web:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_web
+      sha256: "9386e064097fd16419e935c23f08f35b58e6aaec155dd39bd6a003b88f9c14b4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1+2"
   pointycastle:
     dependency: transitive
     description:
@@ -2126,10 +2150,10 @@ packages:
     dependency: "direct main"
     description:
       name: wakelock_plus
-      sha256: f45a6c03aa3f8322e0a9d7f4a0482721c8789cb41d555407367650b8f9c26018
+      sha256: f268ca2116db22e57577fb99d52515a24bdc1d570f12ac18bb762361d43b043d
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.3"
+    version: "1.1.4"
   wakelock_plus_platform_interface:
     dependency: transitive
     description:
