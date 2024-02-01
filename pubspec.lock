@@ -1193,10 +1193,10 @@ packages:
     dependency: transitive
     description:
       name: markdown
-      sha256: acf35edccc0463a9d7384e437c015a3535772e09714cf60e07eeef3a15870dcd
+      sha256: "1b134d9f8ff2da15cb298efe6cd8b7d2a78958c1b00384ebcbdf13fe340a6c90"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.1"
+    version: "7.2.1"
   matcher:
     dependency: transitive
     description:
@@ -1218,7 +1218,7 @@ packages:
     description:
       path: "."
       ref: "td/fosdemDemoFork"
-      resolved-ref: "807bae2a9bda1ae74cf5b62397aa67975acd932f"
+      resolved-ref: a1d50a5
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.25.6"
@@ -1226,10 +1226,10 @@ packages:
     dependency: transitive
     description:
       name: matrix_api_lite
-      sha256: "62bdd1dffb956e956863ba21e52109157502342b749e4728f4105f0c6d73a254"
+      sha256: "0e92d3402b4cbb8ab9283fd2fbe44147facf6f73de88f5adf0b3123bc5114bc1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.2"
+    version: "1.7.3"
   meta:
     dependency: transitive
     description:
