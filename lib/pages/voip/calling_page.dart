@@ -740,6 +740,7 @@ class CallerId extends StatelessWidget {
                 .textTheme
                 .titleMedium!
                 .copyWith(color: Colors.white),
+            maxLines: 1,
           ),
           CallTimer(
             voipPlugin: voipPlugin,

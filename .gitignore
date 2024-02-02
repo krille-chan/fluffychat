@@ -67,3 +67,4 @@ web/Imaging.wasm
 web/olm.js
 web/olm.wasm
 web/olm_legacy.js
+libolm.3.dylib
