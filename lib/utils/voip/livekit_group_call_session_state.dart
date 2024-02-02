@@ -129,7 +129,7 @@ class LiveKitGroupCallSessionState implements CallStateProxy {
           stream: stream,
         );
       } catch (e) {
-        Logs().e('Failed to get SFU config for group call', e);
+        Logs().e('Failed to join SFU for group call', e);
         return;
       }
     }
