@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:uuid/uuid.dart';
 import '../../../utils/voip/call_state_proxy.dart';
 import '../widgets/stream_view.dart';
 import 'widgets/grid_definitions.dart';
@@ -89,8 +90,9 @@ class GroupCallViewState extends State<GroupCallView> {
       final List<Widget> ptiles = [];
       for (final stream in getStreamOfTileType(tileType)
           .where((element) => element.participant == p)) {
+        final streamUuid = const Uuid().v4().toString();
         final tile = InkWell(
-          key: ValueKey(stream.id),
+          key: ValueKey(stream.id + streamUuid),
           onTap: () => togglePinned(stream),
           child: IgnorePointer(
             child: SizedBox(
@@ -154,6 +156,7 @@ class GroupCallViewState extends State<GroupCallView> {
 
   @override
   Widget build(BuildContext context) {
+    final focusedStreamUuid = const Uuid().v4().toString();
     Logs().d('[GroupCallView] rebuilding callgrid children');
 
     // groupCall.encryptionKeysMap.forEach((key, value) {
@@ -298,13 +301,14 @@ class GroupCallViewState extends State<GroupCallView> {
         ),
       ]
           .where(
-            (element) => element.key != ValueKey(focusedStream.id),
+            (element) =>
+                element.key != ValueKey(focusedStream.id + focusedStreamUuid),
           )
           .toList();
 
       final List<Widget> tilesWhileScreenSharing = [
         InkWell(
-          key: ValueKey(focusedStream.id),
+          key: ValueKey(focusedStream.id + focusedStreamUuid),
           onTap: () => togglePinned(focusedStream),
           child: IgnorePointer(
             child: SizedBox(
