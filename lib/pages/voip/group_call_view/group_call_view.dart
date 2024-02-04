@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:matrix/matrix.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
-import 'package:uuid/uuid.dart';
 import '../../../utils/voip/call_state_proxy.dart';
 import '../widgets/stream_view.dart';
 import 'widgets/grid_definitions.dart';
