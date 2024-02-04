@@ -2511,5 +2511,80 @@
       "url": {},
       "error": {}
     }
+  },
+  "completedKeyVerification": "أكمل {sender} عملية التحقق من المفتاح",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "طلب {sender} التحقق من المفتاح",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "شفّاف",
+  "@transparent": {},
+  "youInvitedToBy": "📩 تمت دعوتك عبر الرابط إلى:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "formattedMessagesDescription": "عرض محتوى الرسالة الغنية مثل النص الغامق باستخدام الماركداون.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUserDescription": "إذا قمت بالتحقق من مستخدم آخر، فيمكنك التأكد من أنك تعرف من تكتب إليه حقًا. 💪\n\nعند بدء عملية التحقق، سترى أنت والمستخدم الآخر نافذة منبثقة في التطبيق. هناك سترى بعد ذلك سلسلة من الرموز التعبيرية أو الأرقام التي يتعين عليك مقارنتها مع بعضها البعض.\n\nأفضل طريقة للقيام بذلك هي الالتقاء أو بدء مكالمة فيديو. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "عند التحقق من جهاز آخر، يمكن لهذه الأجهزة تبادل المفاتيح، مما يزيد من أمانك بشكل عام. 💪 عند بدء عملية التحقق، ستظهر نافذة منبثقة في التطبيق على كلا الجهازين. هناك سترى بعد ذلك سلسلة من الرموز التعبيرية أو الأرقام التي يتعين عليك مقارنتها مع بعضها البعض. من الأفضل أن يكون كلا الجهازين في متناول يديك قبل بدء عملية التحقق. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "formattedMessages": "رسائل منسقة",
+  "@formattedMessages": {},
+  "sendReadReceipts": "إرسال بالقراءة",
+  "@sendReadReceipts": {},
+  "verifyOtherDevice": "🔐 التحقق من الجهاز الآخر",
+  "@verifyOtherDevice": {},
+  "forwardMessageTo": "هل تريد إعادة توجيه الرسالة إلى {roomName}؟",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "يستطيع المشاركون الآخرون في الدردشة رؤيتك عند كتابة رسالة جديدة.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "يمكن للمشاركين الآخرين في الدردشة معرفة متى قرأت رسالة.",
+  "@sendReadReceiptsDescription": {},
+  "verifyOtherUser": "🔐 التحقق من المستخدم الآخر",
+  "@verifyOtherUser": {},
+  "acceptedKeyVerification": "وافق {sender} على التحقق من المفتاح",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "قام {sender} بإلغاء التحقق من المفتاح",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} جاهز للتحقق من المفتاح",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "بدأ {sender} عملية التحقق من المفتاح",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
   }
 }
