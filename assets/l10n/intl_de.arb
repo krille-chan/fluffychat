@@ -2536,5 +2536,53 @@
   "verifyOtherUser": "🔐 Anderen Benutzer verifizieren",
   "@verifyOtherUser": {},
   "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
-  "@sendReadReceiptsDescription": {}
+  "@sendReadReceiptsDescription": {},
+  "transparent": "Transparent",
+  "@transparent": {},
+  "verifyOtherDevice": "🔐 Anderes Gerät verifizieren",
+  "@verifyOtherDevice": {},
+  "verifyOtherUserDescription": "Wenn du einen anderen Benutzer verifizierst, kannst du sicher sein, dass du weißt, an wen du wirklich schreibst. 💪\n\nWenn du eine Verifizierung startest, wird dir und dem anderen Nutzer ein Popup in der App angezeigt. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die ihr miteinander vergleichen müsst.\n\nDas geht am besten, wenn man sich trifft oder einen Videoanruf startet. 👭",
+  "@verifyOtherUserDescription": {},
+  "acceptedKeyVerification": "{sender} hat die Schlüsselverifikation akzeptiert",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "{sender} hat die Schlüsselverifikation abgebrochen",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} hat die Schlüsselverifikation abgeschlossen",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} ist bereit für die Schlüsselverifikation",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} hat eine Schlüsselverifikation angefragt",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} hat die Schlüsselverifikation gestartet",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  }
 }
