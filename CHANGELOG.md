@@ -1,3 +1,19 @@
+## v1.17.3
+- feat: New account data based wallpaper feature (Krille)
+- build: Update dependencies (Krille)
+- build: Update flutter to 3.16.9 (Krille)
+- build: Update matrix dart sdk to 0.25.7 (Krille)
+- build: Update minor versions (Krille)
+- chore: Adjust status msg design (krille-chan)
+- chore: Improved error handling for recovery key (Krille)
+- chore: Make stickers smaller (Krille)
+- chore: Wait for device keys before ask bootstrap (Krille)
+- fix: Missing null check in public room bottom sheet (Krille)
+- fix: onDragDone crashes when no files found (Krille)
+- fix: Render tg-forward html tags (Krille)
+- fix: Use HapticFeedback.selectionClick() for long press on message (Krille)
+- fix: whitespaces sometimes encoded in html message (Krille)
+
 ## v1.17.2
 Another minor bugfix release which also implements private read receipts.
 
