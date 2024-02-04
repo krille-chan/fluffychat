@@ -2420,7 +2420,7 @@
     },
     "sendReadReceipts": "Send read receipts",
     "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
-    "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
+    "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
     "formattedMessages": "Formatted messages",
     "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
     "verifyOtherUser": "🔐 Verify other user",
