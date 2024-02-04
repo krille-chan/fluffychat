@@ -33,4 +33,5 @@ git clone https://github.com/flutter-webrtc/dart-webrtc.git -b e2ee/improvements
 cd dart-webrtc
 dart pub get
 dart compile js lib/src/e2ee.worker/e2ee.worker.dart -o ../e2ee.worker.dart.js -m
-cd .. && rm -rf dart-webrtc
+cd .. && rm -rf dart-webrtc && cd ..
+flutter pub get
