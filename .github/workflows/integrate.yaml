@@ -50,7 +50,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
+          cache: false
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
       - name: Remove Emoji Font
