@@ -61,6 +61,7 @@ Future<void> pushHelper(
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
           importance: Importance.max,
           priority: Priority.max,
+          shortcutId: notification.roomId,
           fullScreenIntent: true, // To show notification popup
         ),
       ),
@@ -233,6 +234,7 @@ Future<void> _tryPushHelper(
     channelDescription: groupName,
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
+    shortcutId: event.room.id,
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
           person,

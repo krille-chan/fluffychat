@@ -139,6 +139,11 @@ class BackgroundPush {
   }) async {
     if (PlatformInfos.isIOS) {
       await firebase?.requestPermission();
+    } else if (PlatformInfos.isAndroid) {
+      _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestNotificationsPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
