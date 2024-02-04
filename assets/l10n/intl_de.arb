@@ -2511,5 +2511,30 @@
       "url": {},
       "error": {}
     }
-  }
+  },
+  "youInvitedToBy": "📩 Du wurdest per Link eingeladen zu:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "sendReadReceipts": "Lesebestätigungen senden",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Formatierte Nachrichten",
+  "@formattedMessages": {},
+  "forwardMessageTo": "Nachricht weiterleiten an {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "Andere Teilnehmer in einem Chat können sehen, wenn du eine neue Nachricht tippst.",
+  "@sendTypingNotificationsDescription": {},
+  "formattedMessagesDescription": "Formatierte Nachrichteninhalte wie fettgedruckten Text mit Markdown anzeigen.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Anderen Benutzer verifizieren",
+  "@verifyOtherUser": {},
+  "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
+  "@sendReadReceiptsDescription": {}
 }
