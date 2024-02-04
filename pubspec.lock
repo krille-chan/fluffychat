@@ -1218,7 +1218,7 @@ packages:
     description:
       path: "."
       ref: "td/fosdemDemoFork"
-      resolved-ref: "9469bb8898125fbed42163d64d276064d07f5db6"
+      resolved-ref: bee59c1508caac8189fa47f38fd15991e286010b
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.25.6"
