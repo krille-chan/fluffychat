@@ -62,7 +62,9 @@ class ChatDetailsView extends StatelessWidget {
                         tooltip: L10n.of(context)!.share,
                         icon: Icon(Icons.adaptive.share_outlined),
                         onPressed: () => FluffyShare.share(
-                          AppConfig.inviteLinkPrefix + room.canonicalAlias,
+                          L10n.of(context)!.youInvitedToBy(
+                            AppConfig.inviteLinkPrefix + room.canonicalAlias,
+                          ),
                           context,
                         ),
                       ),

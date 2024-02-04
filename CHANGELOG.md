@@ -13,6 +13,7 @@
 - fix: Render tg-forward html tags (Krille)
 - fix: Use HapticFeedback.selectionClick() for long press on message (Krille)
 - fix: whitespaces sometimes encoded in html message (Krille)
+- fix: Share invite links of public rooms (Krille)
 
 ## v1.17.2
 Another minor bugfix release which also implements private read receipts.

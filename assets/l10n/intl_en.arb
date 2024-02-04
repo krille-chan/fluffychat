@@ -2184,6 +2184,12 @@
             "user": {}
         }
     },
+    "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
+    "@youInvitedToBy": {
+        "placeholders": {
+            "alias": {}
+        }
+    },
     "youInvitedBy": "📩 You have been invited by {user}",
     "@youInvitedBy": {
         "placeholders": {
