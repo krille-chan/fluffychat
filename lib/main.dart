@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/error_widget.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
@@ -24,6 +25,7 @@ void main() async {
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
   final clients = await ClientManager.getClients(store: store);
+  final voipPlugins = clients.map((e) => VoipPlugin.clientOnly(e)).toList();
 
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
@@ -34,12 +36,12 @@ void main() async {
     for (final client in clients) {
       client.syncPresence = PresenceType.offline;
     }
-
     // In the background fetch mode we do not want to waste ressources with
     // starting the Flutter engine but process incoming push notifications.
     BackgroundPush.clientOnly(clients.first);
     // To start the flutter engine afterwards we add an custom observer.
-    WidgetsBinding.instance.addObserver(AppStarter(clients, store));
+    WidgetsBinding.instance
+        .addObserver(AppStarter(clients, voipPlugins, store));
     Logs().i(
       '${AppConfig.applicationName} started in background-fetch mode. No GUI will be created unless the app is no longer detached.',
     );
@@ -50,11 +52,15 @@ void main() async {
   Logs().i(
     '${AppConfig.applicationName} started in foreground mode. Rendering GUI...',
   );
-  await startGui(clients, store);
+  await startGui(clients, voipPlugins, store);
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.
-Future<void> startGui(List<Client> clients, SharedPreferences store) async {
+Future<void> startGui(
+  List<Client> clients,
+  List<VoipPlugin> voipPlugins,
+  SharedPreferences store,
+) async {
   // Fetch the pin for the applock if existing for mobile applications.
   String? pin;
   if (PlatformInfos.isMobile) {
@@ -72,17 +78,25 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.accountDataLoading;
 
   ErrorWidget.builder = (details) => FluffyChatErrorWidget(details);
-  runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  runApp(
+    FluffyChatApp(
+      clients: clients,
+      voipPlugins: voipPlugins,
+      pincode: pin,
+      store: store,
+    ),
+  );
 }
 
 /// Watches the lifecycle changes to start the application when it
 /// is no longer detached.
 class AppStarter with WidgetsBindingObserver {
   final List<Client> clients;
+  List<VoipPlugin> voipPlugins;
   final SharedPreferences store;
   bool guiStarted = false;
 
-  AppStarter(this.clients, this.store);
+  AppStarter(this.clients, this.voipPlugins, this.store);
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -96,7 +110,7 @@ class AppStarter with WidgetsBindingObserver {
     for (final client in clients) {
       client.syncPresence = PresenceType.online;
     }
-    startGui(clients, store);
+    startGui(clients, voipPlugins, store);
     // We must make sure that the GUI is only started once.
     guiStarted = true;
   }

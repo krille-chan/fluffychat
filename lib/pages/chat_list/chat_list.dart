@@ -23,7 +23,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
-import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
@@ -406,8 +405,6 @@ class ChatListController extends State<ChatList>
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
-    _hackyWebRTCFixForWeb();
-    CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =
@@ -740,10 +737,6 @@ class ChatListController extends State<ChatList>
 
   @override
   Widget build(BuildContext context) => ChatListView(this);
-
-  void _hackyWebRTCFixForWeb() {
-    ChatList.contextForVoip = context;
-  }
 
   Future<void> _checkTorBrowser() async {
     if (!kIsWeb) return;

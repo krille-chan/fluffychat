@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -29,6 +31,9 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
+import 'package:fluffychat/pages/voip/calling_page.dart';
+import 'package:fluffychat/pages/voip/group_call_onboarding/group_call_onboarding_view.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
@@ -78,6 +83,38 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         const LogViewer(),
+      ),
+    ),
+    GoRoute(
+      redirect: (context, state) {
+        if (VoipPlugin.currentCallProxy == null) {
+          final parts = state.uri.path.split('/');
+          final redirectPath = '/${parts[1]}/${parts[2]}';
+          Logs().w(
+            '[GoRouter] voip currentCallProxy was null, redirecting to  $redirectPath',
+          );
+          return redirectPath;
+        }
+        return null;
+      },
+      path: '/rooms/:roomid/call',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        VoipPlugin.currentCallProxy == null
+            ? const Center(child: CircularProgressIndicator())
+            : Calling(
+                voipPlugin: Matrix.of(context).voipPlugin,
+                proxy: VoipPlugin.currentCallProxy!,
+              ),
+      ),
+    ),
+    GoRoute(
+      path: '/rooms/:roomid/group_call_onboarding',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        GroupCallOnboardingView(
+          roomId: state.pathParameters['roomid']!,
+        ),
       ),
     ),
     ShellRoute(

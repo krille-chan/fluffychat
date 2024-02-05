@@ -18,12 +18,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/pages/global_banner_scaffold.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
@@ -32,12 +33,11 @@ import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import 'local_notifications_extension.dart';
 
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 class Matrix extends StatefulWidget {
   final Widget? child;
 
   final List<Client> clients;
+  final List<VoipPlugin> voipPlugins;
 
   final Map<String, String>? queryParameters;
 
@@ -46,6 +46,7 @@ class Matrix extends StatefulWidget {
   const Matrix({
     this.child,
     required this.clients,
+    required this.voipPlugins,
     required this.store,
     this.queryParameters,
     super.key,
@@ -71,6 +72,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   BackgroundPush? backgroundPush;
 
+  VoipPlugin get voipPlugin => widget.voipPlugins
+      .singleWhere((element) => element.client.userID == client.userID);
+
   Client get client {
     if (widget.clients.isEmpty) {
       widget.clients.add(getLoginClient());
@@ -80,8 +84,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
     return widget.clients[_activeClient];
   }
-
-  VoipPlugin? voipPlugin;
 
   bool get isMultiAccount => widget.clients.length > 1;
 
@@ -95,8 +97,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final i = widget.clients.indexWhere((c) => c == cl);
     if (i != -1) {
       _activeClient = i;
-      // TODO: Multi-client VoiP support
-      createVoipPlugin();
     } else {
       Logs().w('Tried to set an unknown client ${cl!.userID} as active');
     }
@@ -381,16 +381,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         },
       );
     }
-
-    createVoipPlugin();
-  }
-
-  void createVoipPlugin() async {
-    if (store.getBool(SettingKeys.experimentalVoip) == false) {
-      voipPlugin = null;
-      return;
-    }
-    voipPlugin = VoipPlugin(this);
   }
 
   @override
@@ -467,7 +457,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Provider(
       create: (_) => this,
-      child: widget.child,
+      child: GlobalBannerScaffold(child: widget.child ?? Container()),
     );
   }
 }

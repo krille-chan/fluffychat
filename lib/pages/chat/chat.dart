@@ -30,6 +30,7 @@ import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/voip_plugin.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/account_bundles.dart';
@@ -1251,7 +1252,7 @@ class ChatController extends State<ChatPageWithRoom>
     // VoIP required Android SDK 21
     if (PlatformInfos.isAndroid) {
       DeviceInfoPlugin().androidInfo.then((value) {
-        if (value.version.sdkInt < 21) {
+        if (value.version.sdkInt < 23) {
           Navigator.pop(context);
           showOkAlertDialog(
             context: context,
@@ -1262,45 +1263,41 @@ class ChatController extends State<ChatPageWithRoom>
         }
       });
     }
-    final callType = await showModalActionSheet<CallType>(
+    final callType = await showModalActionSheet<VoipType>(
       context: context,
       title: L10n.of(context)!.warning,
       message: L10n.of(context)!.videoCallsBetaWarning,
       cancelLabel: L10n.of(context)!.cancel,
       actions: [
-        SheetAction(
-          label: L10n.of(context)!.voiceCall,
-          icon: Icons.phone_outlined,
-          key: CallType.kVoice,
-        ),
-        SheetAction(
-          label: L10n.of(context)!.videoCall,
-          icon: Icons.video_call_outlined,
-          key: CallType.kVideo,
-        ),
+        if (room.isDirectChat)
+          SheetAction(
+            label: L10n.of(context)!.voiceCall,
+            icon: Icons.phone_outlined,
+            key: VoipType.kVoice,
+          ),
+        if (room.isDirectChat)
+          SheetAction(
+            label: L10n.of(context)!.videoCall,
+            icon: Icons.video_call_outlined,
+            key: VoipType.kVideo,
+          ),
+        if (!room.isDirectChat)
+          SheetAction(
+            label: L10n.of(context)!.groupCall,
+            icon: Icons.people,
+            key: VoipType.kGroup,
+          ),
       ],
     );
     if (callType == null) return;
 
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials(),
-    );
-    if (success.result != null) {
-      final voipPlugin = Matrix.of(context).voipPlugin;
-      try {
-        await voipPlugin!.voip.inviteToCall(room.id, callType);
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedString(context))),
-        );
-      }
-    } else {
-      await showOkAlertDialog(
-        context: context,
-        title: L10n.of(context)!.unavailable,
-        okLabel: L10n.of(context)!.next,
+    final voipPlugin = Matrix.of(context).voipPlugin;
+    try {
+      voipPlugin.onPhoneButtonTap(context, room, callType);
+    } catch (e, s) {
+      Logs().e('[VOIP] onPhoneButtonTap fialed', e, s);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
       );
     }
   }

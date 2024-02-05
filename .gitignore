@@ -60,3 +60,12 @@ ios/Runner.ipa
 /macos/out
 .vs
 olm
+
+web/*.dart.js*
+web/Imaging.js
+web/Imaging.wasm
+web/olm.js
+web/olm.wasm
+web/olm_legacy.js
+libolm.3.dylib
+libcrypto.1.1.dylib

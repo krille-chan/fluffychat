@@ -9,29 +9,31 @@ environment:
 
 dependencies:
   adaptive_dialog: ^2.0.0
+  all_sensors: ^0.4.2
   animations: ^2.0.8
   archive: ^3.4.9
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
-  callkeep: ^0.3.2
   chewie: ^1.7.1
   collection: ^1.17.2
+  connectivity_plus: ^5.0.2
   cupertino_icons: any
   desktop_drop: ^0.4.4
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
+  duration: ^3.0.13
   dynamic_color: ^1.6.8
   emoji_picker_flutter: ^1.6.4
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.1.0
   file_picker: ^6.1.1
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
   flutter_blurhash: ^0.8.2
   flutter_cache_manager: ^3.3.0
+  flutter_callkit_incoming: ^2.0.1+2
   flutter_foreground_task: ^6.0.0+1
   flutter_highlighter: ^0.1.1
   flutter_html: ^3.0.0-beta.2
@@ -42,10 +44,11 @@ dependencies:
     sdk: flutter
   flutter_map: ^4.0.0
   flutter_math_fork: ^0.7.2
-  flutter_olm: 1.3.2 # Keep in sync with scripts/prepare-web.sh ! 1.4.0 does currently not build on Android
+  flutter_olm: 1.3.2
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
+  flutter_staggered_grid_view: ^0.7.0
   flutter_typeahead: ^4.8.0
   flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
@@ -62,7 +65,8 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  matrix: ^0.25.7
+  livekit_client: ^1.5.6
+  matrix: ^0.25.8
   native_imaging: ^0.1.0
   package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
@@ -73,10 +77,10 @@ dependencies:
   qr_code_scanner: ^1.0.0
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
-  record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
+  record: 4.4.4
   scroll_to_index: ^3.0.1
   share_plus: ^7.2.1
-  shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
+  shared_preferences: ^2.2.0
   slugify: ^2.0.0
   sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.0+4
@@ -87,11 +91,12 @@ dependencies:
   unifiedpush: ^5.0.1
   universal_html: ^2.2.4
   url_launcher: ^6.2.1
+  uuid: ^4.3.3
   vibration: ^1.8.3
   video_compress: ^3.1.1
   video_player: ^2.8.1
   wakelock_plus: ^1.1.3
-  webrtc_interface: ^1.0.13
+  webrtc_interface: ^1.1.2
 
 dev_dependencies:
   dart_code_metrics: ^5.7.5
@@ -116,8 +121,6 @@ flutter:
   assets:
     - assets/
     - assets/sounds/
-    - assets/js/
-    - assets/js/package/
 
   fonts:
     - family: Roboto
@@ -160,6 +163,12 @@ dependency_overrides:
     git:
       url: https://github.com/TheOneWithTheBraid/keyboard_shortcuts.git
       ref: null-safety
+  matrix:
+    # path: ../matrix-dart-sdk
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: td/fosdemDemoFork
+  uuid: ^4.3.3
   # blocked upgrade of package_info_plus for null safety
   # https://github.com/creativecreatorormaybenot/wakelock/pull/203
   wakelock_windows:
