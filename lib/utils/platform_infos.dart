@@ -57,23 +57,23 @@ abstract class PlatformInfos {
           icon: const Icon(Icons.group),
           label: Text(L10n.of(context)!.about),
         ),
-        TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
-          icon: const Icon(Icons.emoji_emotions_outlined),
-          label: const Text(AppConfig.emojiFontName),
-        ),
-        Builder(
-          builder: (innerContext) {
-            return TextButton.icon(
-              onPressed: () {
-                context.go('/logs');
-                Navigator.of(innerContext).pop();
-              },
-              icon: const Icon(Icons.list_outlined),
-              label: const Text('Logs'),
-            );
-          },
-        ),
+        // TextButton.icon(
+        //   onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
+        //   icon: const Icon(Icons.emoji_emotions_outlined),
+        //   label: const Text(AppConfig.emojiFontName),
+        // ),
+        // Builder(
+        //   builder: (innerContext) {
+        //     return TextButton.icon(
+        //       onPressed: () {
+        //         context.go('/logs');
+        //         Navigator.of(innerContext).pop();
+        //       },
+        //       icon: const Icon(Icons.list_outlined),
+        //       label: const Text('Logs'),
+        //     );
+        //   },
+        // ),
       ],
       applicationIcon: Image.asset(
         'assets/logo.png',
