@@ -30,8 +30,7 @@ abstract class AppConfig {
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+  static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static final Uri newIssueUrl = Uri(
