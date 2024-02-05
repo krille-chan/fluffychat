@@ -187,26 +187,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
 
-  void _initWithStore() async {
-    try {
-      if (client.isLogged()) {
-        // TODO: Figure out how this works in multi account
-        final statusMsg = store.getString(SettingKeys.ownStatusMessage);
-        if (statusMsg?.isNotEmpty ?? false) {
-          Logs().v('Send cached status message: "$statusMsg"');
-          await client.setPresence(
-            client.userID!,
-            PresenceType.online,
-            statusMsg: statusMsg,
-          );
-        }
-      }
-    } catch (e, s) {
-      client.onLoginStateChanged.addError(e, s);
-      rethrow;
-    }
-  }
-
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
@@ -365,8 +345,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initMatrix() {
-    _initWithStore();
-
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
     }
