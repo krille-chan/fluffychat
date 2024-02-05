@@ -106,48 +106,46 @@ class ChatListItem extends StatelessWidget {
 
     if (room.membership == Membership.leave) {
       context.go('/rooms/archive/${room.id}');
+      return;
     }
 
-    if (room.membership == Membership.join) {
-      // Share content into this room
-      final shareContent = Matrix.of(context).shareContent;
-      if (shareContent != null) {
-        final shareFile = shareContent.tryGet<MatrixFile>('file');
-        if (shareContent.tryGet<String>('msgtype') ==
-                'chat.fluffy.shared_file' &&
-            shareFile != null) {
-          await showDialog(
-            context: context,
-            useRootNavigator: false,
-            builder: (c) => SendFileDialog(
-              files: [shareFile],
-              room: room,
-            ),
-          );
+    // Share content into this room
+    final shareContent = Matrix.of(context).shareContent;
+    if (shareContent != null) {
+      final shareFile = shareContent.tryGet<MatrixFile>('file');
+      if (shareContent.tryGet<String>('msgtype') == 'chat.fluffy.shared_file' &&
+          shareFile != null) {
+        await showDialog(
+          context: context,
+          useRootNavigator: false,
+          builder: (c) => SendFileDialog(
+            files: [shareFile],
+            room: room,
+          ),
+        );
+        Matrix.of(context).shareContent = null;
+      } else {
+        final consent = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context)!.forward,
+          message: L10n.of(context)!.forwardMessageTo(
+            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+          ),
+          okLabel: L10n.of(context)!.forward,
+          cancelLabel: L10n.of(context)!.cancel,
+        );
+        if (consent == OkCancelResult.cancel) {
           Matrix.of(context).shareContent = null;
-        } else {
-          final consent = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context)!.forward,
-            message: L10n.of(context)!.forwardMessageTo(
-              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-            ),
-            okLabel: L10n.of(context)!.forward,
-            cancelLabel: L10n.of(context)!.cancel,
-          );
-          if (consent == OkCancelResult.cancel) {
-            Matrix.of(context).shareContent = null;
-            return;
-          }
-          if (consent == OkCancelResult.ok) {
-            room.sendEvent(shareContent);
-            Matrix.of(context).shareContent = null;
-          }
+          return;
+        }
+        if (consent == OkCancelResult.ok) {
+          room.sendEvent(shareContent);
+          Matrix.of(context).shareContent = null;
         }
       }
-
-      context.go('/rooms/${room.id}');
     }
+
+    context.go('/rooms/${room.id}');
   }
 
   Future<void> archiveAction(BuildContext context) async {
