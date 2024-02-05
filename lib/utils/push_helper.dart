@@ -190,6 +190,9 @@ Future<void> _tryPushHelper(
     name: event.senderFromMemoryOrFallback.calcDisplayname(),
     icon:
         avatarFile == null ? null : BitmapFilePathAndroidIcon(avatarFile.path),
+    key: event.senderId,
+    uri: 'matrix:${event.senderId.replaceFirst('@', '')}',
+    important: event.room.isFavourite,
   );
   final newMessage = Message(
     body,
