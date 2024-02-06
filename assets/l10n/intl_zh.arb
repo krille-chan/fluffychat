@@ -2578,5 +2578,13 @@
     "placeholders": {
       "sender": {}
     }
+  },
+  "transparent": "透明",
+  "@transparent": {},
+  "youInvitedToBy": "📩 你已通过链接被邀请到：\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
   }
 }
