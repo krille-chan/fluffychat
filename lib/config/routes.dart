@@ -59,11 +59,10 @@ abstract class AppRoutes {
     ),
     GoRoute(
       path: '/welcome',
-      pageBuilder: (context, state) =>
-          defaultPageBuilder(
-            context,
-            const WelcomeSlidePage(), // Welcome slide show widget
-          ),
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        const WelcomeSlidePage(), // Welcome slide show widget
+      ),
     ),
     GoRoute(
       path: '/home',
