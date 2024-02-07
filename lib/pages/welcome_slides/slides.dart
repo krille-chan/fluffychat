@@ -68,6 +68,19 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
                 },
               ),
             ),
+          Positioned(
+            right: 50,
+            top: 50,
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  GoRouter.of(context).go('/home');
+                },
+                child: Text(
+                    currentIndex == slidesData.length - 1 ? 'Next' : "Skip"),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -80,7 +93,8 @@ class SlideItem extends StatelessWidget {
   final bool isLastSlide;
   final VoidCallback onNext;
 
-  SlideItem({
+  const SlideItem({
+    super.key,
     required this.gifAsset,
     required this.text,
     required this.isLastSlide,
@@ -92,26 +106,22 @@ class SlideItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image(
+        Flexible(
+            child: Image(
           image: AssetImage(gifAsset),
-          fit: BoxFit.fill,
-        ),
+          fit: BoxFit.contain,
+        )),
         const SizedBox(
           height: 20.0,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Text(
             text,
             style: const TextStyle(fontSize: 20),
             textAlign: TextAlign.center,
           ),
         ),
-        if (isLastSlide)
-          ElevatedButton(
-            onPressed: onNext,
-            child: Text('Next'),
-          ),
       ],
     );
   }
