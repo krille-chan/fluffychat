@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import '../network/requests.dart';

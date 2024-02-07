@@ -8,7 +8,7 @@ class MessageServiceRepo {
     String messageId,
   ) async {
     final Requests req = Requests(
-      baseUrl: PApiUrls.choreoBaseApi,
+      baseUrl: Environment.choreoApi,
       choreoApiKey: Environment.choreoApiKey,
     );
 

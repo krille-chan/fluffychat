@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -25,14 +26,13 @@ class PangeaMessageEvent {
   late Event _event;
   final Timeline timeline;
   final bool ownMessage;
-  final bool selected;
   bool _isValidPangeaMessageEvent = true;
+  RepresentationEvent? _displayRepresentation;
 
   PangeaMessageEvent({
     required Event event,
     required this.timeline,
     required this.ownMessage,
-    required this.selected,
   }) {
     if (event.type != EventTypes.Message) {
       _isValidPangeaMessageEvent = false;
@@ -46,6 +46,8 @@ class PangeaMessageEvent {
   //the timeline filters the edits and uses the original events
   //so this event will always be the original and the sdk getter body
   //handles getting the latest text from the aggregated events
+  Event get event => _event;
+
   String get body => _event.body;
 
   String get senderId => _event.senderId;
@@ -79,7 +81,7 @@ class PangeaMessageEvent {
     if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
       return false;
     }
-    if (ownMessage && !selected) return false;
+    // if (ownMessage && !selected) return false;
 
     return true;
   }
@@ -87,13 +89,13 @@ class PangeaMessageEvent {
   //get audio for text and language
   //if no audio exists, create it
   //if audio exists, return it
-  Future<String?> getAudioGlobal(String langCode) async {
+  Future<Event?> getAudioGlobal(String langCode) async {
     // try {
     final String text = representationByLanguage(langCode)?.text ?? body;
 
     final local = getAudioLocal(langCode, text);
 
-    if (local != null) return Future.value(local.eventId);
+    if (local != null) return Future.value(local);
 
     final TextToSpeechRequest params = TextToSpeechRequest(
       text: text,
@@ -132,69 +134,61 @@ class PangeaMessageEvent {
       throw Exception("Unexpected mime type: ${file.mimeType}");
     }
 
-    return room.sendFileEvent(
-      file,
-      inReplyTo: _event,
-      extraContent: {
-        'info': {
-          ...file.info,
-          'duration': response.durationMillis,
+    try {
+      final String? eventId = await room.sendFileEvent(
+        file,
+        inReplyTo: _event,
+        extraContent: {
+          'info': {
+            ...file.info,
+            'duration': response.durationMillis,
+          },
+          'org.matrix.msc3245.voice': {},
+          'org.matrix.msc1767.audio': {
+            'duration': response.durationMillis,
+            'waveform': response.waveform,
+          },
+          ModelKey.transcription: {
+            ModelKey.text: text,
+            ModelKey.langCode: langCode,
+          },
         },
-        'org.matrix.msc3245.voice': {},
-        'org.matrix.msc1767.audio': {
-          'duration': response.durationMillis,
-          'waveform': response.waveform,
-        },
-        ModelKey.transcription: {
-          ModelKey.text: text,
-          ModelKey.langCode: langCode,
-        },
-      },
-    ).timeout(
-      Durations.long4,
-      onTimeout: () {
-        debugPrint("timeout in getAudioGlobal");
-        return null;
-      },
-    ).then((eventId) {
+      );
+      // .timeout(
+      //   Durations.long4,
+      //   onTimeout: () {
+      //     debugPrint("timeout in getAudioGlobal");
+      //     return null;
+      //   },
+      // );
+
       debugPrint("eventId in getAudioGlobal $eventId");
-      return eventId;
-    }).catchError((err, s) {
+      return eventId != null ? room.getEventById(eventId) : null;
+    } catch (err) {
       debugPrint("error in getAudioGlobal");
-      debugPrint(err);
-      debugPrint(s);
       debugger(when: kDebugMode);
       return null;
-    });
-
-    // } catch (err, s) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //     e: err,
-    //     s: s,
-    //   );
-    //   return Future.value(null);
-    // }
+    }
   }
 
   Event? getAudioLocal(String langCode, String text) {
     return allAudio.firstWhereOrNull(
       (element) {
         // Safely access the transcription map
-        final transcription = element.content.tryGet(ModelKey.transcription);
+        final transcription = element.content.tryGetMap(ModelKey.transcription);
 
-        return transcription != null;
-        // if (transcription == null) {
-        //   // If transcription is null, this element does not match.
-        //   return false;
-        // }
+        // return transcription != null;
+        if (transcription == null) {
+          // If transcription is null, this element does not match.
+          return false;
+        }
 
-        // // Safely get language code and text from the transcription
-        // final elementLangCode = transcription.tryGet(ModelKey.langCode);
-        // final elementText = transcription.tryGet(ModelKey.text);
+        // Safely get language code and text from the transcription
+        final elementLangCode = transcription[ModelKey.langCode];
+        final elementText = transcription[ModelKey.text];
 
-        // // Check if both language code and text match
-        // return elementLangCode == langCode && elementText == text;
+        // Check if both language code and text match
+        return elementLangCode == langCode && elementText == text;
       },
     );
   }
@@ -397,14 +391,53 @@ class PangeaMessageEvent {
       !room.isUserSpaceAdmin(_event.senderId) &&
       _event.messageType != PangeaMessageTypes.report;
 
+  String get messageDisplayLangCode {
+    final bool immersionMode = MatrixState
+        .pangeaController.permissionsController
+        .isToolEnabled(ToolSetting.immersionMode, room);
+    final String? l2Code = MatrixState.pangeaController.languageController
+        .activeL2Code(roomID: room.id);
+
+    final String? langCode = immersionMode ? l2Code : originalWritten?.langCode;
+    return langCode ?? LanguageKeys.unknownLanguage;
+  }
+
+  Future<RepresentationEvent?> getDisplayRepresentation(
+    BuildContext context,
+  ) async {
+    if (messageDisplayLangCode == LanguageKeys.unknownLanguage) return null;
+    if (_displayRepresentation != null) return _displayRepresentation;
+    _displayRepresentation = representationByLanguage(messageDisplayLangCode);
+    if (_displayRepresentation != null) {
+      return _displayRepresentation;
+    }
+
+    try {
+      _displayRepresentation = await representationByLanguageGlobal(
+        context: context,
+        langCode: messageDisplayLangCode,
+      );
+      return _displayRepresentation;
+    } catch (err, s) {
+      ErrorHandler.logError(
+        m: "error in getDisplayRepresentation",
+        e: err,
+        s: s,
+      );
+      return null;
+    }
+  }
+
+  String get displayMessageText => _displayRepresentation?.text ?? body;
+
   // List<SpanData> get activities =>
   //each match is turned into an activity that other students can access
   //they're not told the answer but have to find it themselves
   //the message has a blank piece which they fill in themselves
 
   // replication of logic from message_content.dart
-  bool get isHtml =>
-      AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
+  // bool get isHtml =>
+  //     AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
 }
 
 class URLFinder {

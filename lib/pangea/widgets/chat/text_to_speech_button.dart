@@ -45,7 +45,6 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
       timeline: widget.controller.timeline!,
       ownMessage:
           widget.selectedEvent.senderId == Matrix.of(context).client.userID,
-      selected: true,
     );
   }
 

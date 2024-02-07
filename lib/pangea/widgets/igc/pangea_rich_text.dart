@@ -1,44 +1,29 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/events/html_message.dart';
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/pangea/utils/show_defintion_util.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../models/pangea_match_model.dart';
-import '../../models/pangea_representation_event.dart';
-import '../../utils/instructions.dart';
 
 class PangeaRichText extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
-  final TextStyle? style;
-  final bool selected;
-  final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
-  final bool definitions;
-  final Choreographer? choreographer;
-  final ShowDefintionUtil? messageToolbar;
+  final ToolbarDisplayController toolbarController;
+  final TextStyle? style;
 
   const PangeaRichText({
     super.key,
     required this.pangeaMessageEvent,
-    required this.selected,
-    required this.selectedDisplayLang,
     required this.immersionMode,
-    required this.definitions,
-    this.choreographer,
+    required this.toolbarController,
     this.style,
-    this.messageToolbar,
   });
 
   @override
@@ -47,93 +32,73 @@ class PangeaRichText extends StatefulWidget {
 
 class PangeaRichTextState extends State<PangeaRichText> {
   final PangeaController pangeaController = MatrixState.pangeaController;
+  RepresentationEvent? repEvent;
   bool _fetchingRepresentation = false;
   double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
-  String textSpan = "";
 
   @override
   void initState() {
     super.initState();
-    updateTextSpan();
+    setTextSpan();
   }
 
-  @override
-  void didUpdateWidget(PangeaRichText oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    updateTextSpan();
-  }
+  Future<void> setTextSpan() async {
+    setState(() => _fetchingRepresentation = true);
+    try {
+      await widget.pangeaMessageEvent.getDisplayRepresentation(context);
+    } catch (err) {
+      ErrorHandler.logError(e: err);
+    }
+    setState(() => _fetchingRepresentation = false);
 
-  void updateTextSpan() {
-    setState(() {
-      textSpan = getTextSpan(context);
-      widget.messageToolbar?.messageText = textSpan;
-    });
+    widget.toolbarController.toolbar?.textSelection.setMessageText(
+      widget.pangeaMessageEvent.displayMessageText,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     //TODO - take out of build function of every message
-    // if (areLanguagesSet) {
-
-    if (!widget.selected &&
-        widget.selectedDisplayLang != null &&
-        widget.selectedDisplayLang!.langCode != LanguageKeys.unknownLanguage) {
-      pangeaController.instructions.show(
-        context,
-        InstructionsEnum.clickMessage,
-        widget.pangeaMessageEvent.eventId,
-      );
-    } else if (blur > 0) {
-      pangeaController.instructions.show(
-        context,
-        InstructionsEnum.blurMeansTranslate,
-        widget.pangeaMessageEvent.eventId,
-      );
-    }
-
-    final Widget richText = widget.pangeaMessageEvent.isHtml
-        ? HtmlMessage(
-            html: textSpan,
-            room: widget.pangeaMessageEvent.room,
-            textColor: widget.style?.color ?? Colors.black,
-            messageToolbar: widget.messageToolbar,
-          )
-        : SelectableText.rich(
-            onSelectionChanged: (selection, cause) =>
-                widget.messageToolbar?.onTextSelection(
-              selectedText: selection,
-              cause: cause,
-              context: context,
-            ),
-            onTap: () => messageToolbar?.onTextTap(context),
-            focusNode: widget.messageToolbar?.focusNode,
-            contextMenuBuilder: (context, state) =>
-                widget.messageToolbar?.contextMenuOverride(
-                  context: context,
-                  textSelection: state,
-                ) ??
-                const SizedBox(),
-            TextSpan(
-              text: textSpan,
-              style: widget.style,
-              children: [
-                if (widget.selected && (_fetchingRepresentation))
-                  const WidgetSpan(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 5.0),
-                      child: SizedBox(
-                        height: 14,
-                        width: 14,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          color: AppConfig.secondaryColor,
-                        ),
-                      ),
-                    ),
+    final Widget richText = SelectableText.rich(
+      onSelectionChanged: (selection, cause) => widget
+          .toolbarController.toolbar?.textSelection
+          .onTextSelection(selection),
+      onTap: () => widget.toolbarController.showToolbar(context),
+      focusNode: widget.toolbarController.focusNode,
+      contextMenuBuilder: (context, state) =>
+          MessageContextMenu.contextMenuOverride(
+        context: context,
+        textSelection: state,
+        onDefine: () => widget.toolbarController.showToolbar(
+          context,
+          mode: MessageMode.definition,
+        ),
+        onListen: () => widget.toolbarController.showToolbar(
+          context,
+          mode: MessageMode.play,
+        ),
+      ),
+      TextSpan(
+        text: widget.pangeaMessageEvent.displayMessageText,
+        style: widget.style,
+        children: [
+          if (_fetchingRepresentation)
+            const WidgetSpan(
+              child: Padding(
+                padding: EdgeInsets.only(left: 5.0),
+                child: SizedBox(
+                  height: 14,
+                  width: 14,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.0,
+                    color: AppConfig.secondaryColor,
                   ),
-              ],
+                ),
+              ),
             ),
-          );
+        ],
+      ),
+    );
 
     return blur > 0
         ? ImageFiltered(
@@ -141,55 +106,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
             child: richText,
           )
         : richText;
-  }
-
-  String getTextSpan(BuildContext context) {
-    final String? displayLangCode =
-        widget.selected ? widget.selectedDisplayLang?.langCode : userL2LangCode;
-
-    if (displayLangCode == null || !widget.immersionMode) {
-      return widget.pangeaMessageEvent.body;
-    }
-
-    if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
-      debugger(when: kDebugMode);
-      return widget.pangeaMessageEvent.body;
-    }
-
-    final RepresentationEvent? repEvent =
-        widget.pangeaMessageEvent.representationByLanguage(
-      displayLangCode,
-    );
-
-    if (repEvent == null) {
-      _fetchingRepresentation = true;
-
-      setState(() => {});
-      widget.pangeaMessageEvent
-          .representationByLanguageGlobal(
-            context: context,
-            langCode: displayLangCode,
-          )
-          .onError((error, stackTrace) => ErrorHandler.logError())
-          .whenComplete(() => setState(() => _fetchingRepresentation = false));
-      return widget.pangeaMessageEvent.body;
-    }
-
-    if (repEvent.event?.eventId.contains("web") ?? false) {
-      Sentry.addBreadcrumb(
-        Breadcrumb.fromJson({"repEvent.event": repEvent.event?.toJson()}),
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message:
-              "representationByLanguageGlobal returned RepEvent with event ID containing 'web' - ${repEvent.event?.eventId}",
-        ),
-      );
-    }
-
-    return widget.pangeaMessageEvent.isHtml
-        ? repEvent.formatBody() ?? repEvent.text
-        : repEvent.text;
   }
 
   bool get areLanguagesSet =>

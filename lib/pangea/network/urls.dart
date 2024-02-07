@@ -10,7 +10,6 @@ import 'package:fluffychat/pangea/config/environment.dart';
 /// https://api.staging.pangea.chat/api/v1/
 class PApiUrls {
   static String baseAPI = Environment.baseAPI;
-  static String choreoBaseApi = Environment.choreoApi;
 
   ///   ---------------------- Languages --------------------------------------
   static String getLanguages = "/languages";
@@ -51,7 +50,7 @@ class PApiUrls {
   static String firstStep = "/it_initialstep";
   static String subseqStep = "/it_step";
 
-  static String textToSpeech = "$choreoBaseApi/text_to_speech";
+  static String textToSpeech = "${Environment.choreoApi}/text_to_speech";
 
   ///-------------------------------- revenue cat --------------------------
   static String rcApiV1 = "https://api.revenuecat.com/v1";

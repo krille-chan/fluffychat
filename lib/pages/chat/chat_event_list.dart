@@ -24,9 +24,12 @@ class ChatEventList extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
-    final events = controller.timeline!.events
-        .where((event) => event.isVisibleInGui)
-        .toList();
+    // #Pangea
+    // final events = controller.timeline!.events
+    //     .where((event) => event.isVisibleInGui)
+    //     .toList();
+    final events = controller.events;
+    // Pangea#
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
@@ -153,6 +156,7 @@ class ChatEventList extends StatelessWidget {
                     controller.choreographer.messageOptions.selectedDisplayLang,
                 immersionMode: controller.choreographer.immersionMode,
                 definitions: controller.choreographer.definitionsEnabled,
+                controller: controller,
                 // Pangea#
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),

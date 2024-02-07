@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:desktop_drop/desktop_drop.dart';
+import 'package:collection/collection.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker/file_picker.dart';
@@ -20,14 +20,17 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
+import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
@@ -144,45 +147,45 @@ class ChatController extends State<ChatPageWithRoom>
   Timer? typingCoolDown;
   Timer? typingTimeout;
   bool currentlyTyping = false;
-  bool dragging = false;
+  // #Pangea
+  // bool dragging = false;
 
-  void onDragEntered(_) => setState(() => dragging = true);
+  // void onDragEntered(_) => setState(() => dragging = true);
 
-  void onDragExited(_) => setState(() => dragging = false);
+  // void onDragExited(_) => setState(() => dragging = false);
 
-  void onDragDone(DropDoneDetails details) async {
-    setState(() => dragging = false);
-    final bytesList = await showFutureLoadingDialog(
-      context: context,
-      future: () => Future.wait(
-        details.files.map(
-          (xfile) => xfile.readAsBytes(),
-        ),
-      ),
-    );
-    if (bytesList.error != null) return;
+  // void onDragDone(DropDoneDetails details) async {
+  //   setState(() => dragging = false);
+  //   final bytesList = await showFutureLoadingDialog(
+  //     context: context,
+  //     future: () => Future.wait(
+  //       details.files.map(
+  //         (xfile) => xfile.readAsBytes(),
+  //       ),
+  //     ),
+  //   );
+  //   if (bytesList.error != null) return;
 
-    final matrixFiles = <MatrixFile>[];
-    for (var i = 0; i < bytesList.result!.length; i++) {
-      matrixFiles.add(
-        MatrixFile(
-          bytes: bytesList.result![i],
-          name: details.files[i].name,
-        ).detectFileType,
-      );
-    }
-    // #Pangea
-    if (matrixFiles.isEmpty) return;
-    // Pangea#
+  //   final matrixFiles = <MatrixFile>[];
+  //   for (var i = 0; i < bytesList.result!.length; i++) {
+  //     matrixFiles.add(
+  //       MatrixFile(
+  //         bytes: bytesList.result![i],
+  //         name: details.files[i].name,
+  //       ).detectFileType,
+  //     );
+  //   }
+  //   if (matrixFiles.isEmpty) return;
 
-    await showAdaptiveDialog(
-      context: context,
-      builder: (c) => SendFileDialog(
-        files: matrixFiles,
-        room: room,
-      ),
-    );
-  }
+  //   await showAdaptiveDialog(
+  //     context: context,
+  //     builder: (c) => SendFileDialog(
+  //       files: matrixFiles,
+  //       room: room,
+  //     ),
+  //   );
+  // }
+  // Pangea#
 
   bool get canSaveSelectedEvent =>
       selectedEvents.length == 1 &&
@@ -1542,7 +1545,51 @@ class ChatController extends State<ChatPageWithRoom>
     lastState = currentState;
     return currentState;
   }
-  // #Pangea
+
+  List<Event> get events =>
+      timeline!.events.where((event) => event.isVisibleInGui).toList();
+
+  final Map<String, ToolbarDisplayController> _messageToolbarControllers = {};
+  final Map<String, PangeaMessageEvent> _pangeaMessageEvents = {};
+
+  PangeaMessageEvent? pangeaMessageEvent(String eventId) {
+    final Event? event =
+        events.firstWhereOrNull((event) => event.eventId == eventId);
+    if (timeline == null || event == null || event.type != EventTypes.Message) {
+      return null;
+    }
+    if (!_pangeaMessageEvents.containsKey(eventId)) {
+      _pangeaMessageEvents[eventId] = PangeaMessageEvent(
+        event: event,
+        timeline: timeline!,
+        ownMessage: event.senderId == Matrix.of(context).client.userID,
+      );
+    }
+    return _pangeaMessageEvents[eventId];
+  }
+
+  ToolbarDisplayController? messageToolbarController(String eventId) {
+    final Event? event =
+        events.firstWhereOrNull((event) => event.eventId == eventId);
+    if (timeline == null || event == null || event.type != EventTypes.Message) {
+      return null;
+    }
+
+    final PangeaMessageEvent? messageEvent = pangeaMessageEvent(eventId);
+    if (messageEvent == null) return null;
+
+    if (!_messageToolbarControllers.containsKey(event.eventId)) {
+      _messageToolbarControllers[event.eventId] = ToolbarDisplayController(
+        targetId: event.eventId,
+        pangeaMessageEvent: messageEvent,
+        immersionMode: choreographer.immersionMode,
+        controller: this,
+      );
+      _messageToolbarControllers[event.eventId]!.setToolbar();
+    }
+    return _messageToolbarControllers[eventId];
+  }
+  // Pangea#
 
   @override
   Widget build(BuildContext context) => ChatView(this);

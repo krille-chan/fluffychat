@@ -1,7 +1,9 @@
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -9,6 +11,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
@@ -40,6 +43,7 @@ class Message extends StatelessWidget {
   final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
   final bool definitions;
+  final ChatController controller;
   // Pangea#
 
   const Message(
@@ -61,6 +65,7 @@ class Message extends StatelessWidget {
     required this.selectedDisplayLang,
     required this.immersionMode,
     required this.definitions,
+    required this.controller,
     // Pangea#
     super.key,
   });
@@ -138,12 +143,10 @@ class Message extends StatelessWidget {
     }
 
     // #Pangea
-    final pangeaMessageEvent = PangeaMessageEvent(
-      event: event,
-      timeline: timeline,
-      ownMessage: ownMessage,
-      selected: selected,
-    );
+    final PangeaMessageEvent? pangeaMessageEvent =
+        controller.pangeaMessageEvent(event.eventId);
+    final ToolbarDisplayController? toolbarController =
+        controller.messageToolbarController(event.eventId);
     // Pangea#
 
     final resetAnimateIn = this.resetAnimateIn;
@@ -241,25 +244,13 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
-                        onTap: () => print("got message tap"),
-                        onDoubleTap: () => print("got message double tap"),
-                        onDoubleTapDown: (details) =>
-                            print("got message double tap down"),
-                        onLongPress: longPressSelect
-                            ? selected
-                                ? null
-                                : () => print('long press')
-                            : () {
-                                onSelect(event);
-                                // Android usually has a vibration effect on long press:
-                                if (PlatformInfos.isAndroid) {
-                                  Vibration.hasVibrator().then((has) {
-                                    if (has == true) {
-                                      Vibration.vibrate(duration: 50);
-                                    }
-                                  });
-                                }
-                              },
+                        onTap: () => toolbarController?.showToolbar(context),
+                        onDoubleTap: () =>
+                            toolbarController?.showToolbar(context),
+                        onLongPress: () {
+                          onSelect(event);
+                          HapticFeedback.selectionClick();
+                        },
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0
@@ -356,9 +347,8 @@ class Message extends StatelessWidget {
                                       // #Pangea
                                       selected: selected,
                                       pangeaMessageEvent: pangeaMessageEvent,
-                                      selectedDisplayLang: selectedDisplayLang,
                                       immersionMode: immersionMode,
-                                      definitions: definitions,
+                                      toolbarController: toolbarController,
                                       // Pangea#
                                     ),
                                     if (event.hasAggregatedEvents(
@@ -366,7 +356,8 @@ class Message extends StatelessWidget {
                                               RelationshipTypes.edit,
                                             ) // #Pangea
                                             ||
-                                            (pangeaMessageEvent.showUseType)
+                                            (pangeaMessageEvent?.showUseType ??
+                                                false)
                                         // Pangea#
                                         )
                                       Padding(
@@ -378,8 +369,9 @@ class Message extends StatelessWidget {
                                           children: [
                                             // #Pangea
                                             if (pangeaMessageEvent
-                                                .showUseType) ...[
-                                              pangeaMessageEvent.useType
+                                                    ?.showUseType ??
+                                                false) ...[
+                                              pangeaMessageEvent!.useType
                                                   .iconView(
                                                 context,
                                                 textColor.withAlpha(164),

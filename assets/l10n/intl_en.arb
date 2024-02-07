@@ -3874,5 +3874,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "showDefinition": "Show Definition"
+    "define": "Define",
+    "listen": "Listen"
 }

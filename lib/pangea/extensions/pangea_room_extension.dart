@@ -562,7 +562,6 @@ extension PangeaRoom on Room {
               event: event,
               timeline: timeline,
               ownMessage: true,
-              selected: false,
             );
             msgs.add(
               RecentMessageRecord(

@@ -283,10 +283,20 @@ class IGCTextData {
         nextTokenIndex = matchTokens.length;
       }
 
-      final String matchText = originalInput.substring(
-        matchTokens[tokenIndex].token.text.offset,
-        matchTokens[nextTokenIndex - 1].token.end,
-      );
+      String matchText;
+      try {
+        matchText = originalInput.substring(
+          matchTokens[tokenIndex].token.text.offset,
+          matchTokens[nextTokenIndex - 1].token.end,
+        );
+      } catch (err) {
+        return [
+          TextSpan(
+            text: originalInput,
+            style: defaultStyle,
+          ),
+        ];
+      }
 
       items.add(
         TextSpan(

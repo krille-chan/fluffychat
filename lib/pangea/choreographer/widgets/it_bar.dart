@@ -224,39 +224,40 @@ class ITChoices extends StatelessWidget {
     int index, [
     Color? borderColor,
     String? choiceFeedback,
-  ]) =>
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardToShow: choiceFeedback == null
-            ? WordDataCard(
-                word: controller.currentITStep!.continuances[index].text,
-                wordLang: controller.targetLangCode,
-                fullText: sourceText ?? controller.choreographer.currentText,
-                fullTextLang: sourceText != null
-                    ? controller.sourceLangCode
-                    : controller.targetLangCode,
-                hasInfo: controller.currentITStep!.continuances[index].hasInfo,
-                choiceFeedback: choiceFeedback,
-                room: controller.choreographer.chatController.room,
-              )
-            : ITFeedbackCard(
-                req: ITFeedbackRequestModel(
-                  sourceText: sourceText!,
-                  currentText: controller.choreographer.currentText,
-                  chosenContinuance:
-                      controller.currentITStep!.continuances[index].text,
-                  bestContinuance: controller.currentITStep!.best.text,
-                  feedbackLang: controller.targetLangCode,
-                  sourceTextLang: controller.sourceLangCode,
-                  targetLang: controller.targetLangCode,
-                ),
-                choiceFeedback: choiceFeedback,
+  ]) {
+    OverlayUtil.showPositionedCard(
+      context: context,
+      cardToShow: choiceFeedback == null
+          ? WordDataCard(
+              word: controller.currentITStep!.continuances[index].text,
+              wordLang: controller.targetLangCode,
+              fullText: sourceText ?? controller.choreographer.currentText,
+              fullTextLang: sourceText != null
+                  ? controller.sourceLangCode
+                  : controller.targetLangCode,
+              hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+              choiceFeedback: choiceFeedback,
+              room: controller.choreographer.chatController.room,
+            )
+          : ITFeedbackCard(
+              req: ITFeedbackRequestModel(
+                sourceText: sourceText!,
+                currentText: controller.choreographer.currentText,
+                chosenContinuance:
+                    controller.currentITStep!.continuances[index].text,
+                bestContinuance: controller.currentITStep!.best.text,
+                feedbackLang: controller.targetLangCode,
+                sourceTextLang: controller.sourceLangCode,
+                targetLang: controller.targetLangCode,
               ),
-        cardSize: const Size(300, 300),
-        borderColor: borderColor,
-        transformTargetId: controller.choreographer.itBarTransformTargetKey,
-        backDropToDismiss: false,
-      );
+              choiceFeedback: choiceFeedback,
+            ),
+      cardSize: const Size(300, 300),
+      borderColor: borderColor,
+      transformTargetId: controller.choreographer.itBarTransformTargetKey,
+      backDropToDismiss: false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

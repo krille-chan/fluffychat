@@ -17,9 +17,11 @@ class GetChatListItemSubtitle {
   ) async {
     if (event == null) return L10n.of(context)!.emptyChat;
     // try {
-    if (event.type != EventTypes.Message ||
-        !pangeaController.permissionsController
-            .isToolEnabled(ToolSetting.immersionMode, event.room)) {
+    if (event.type != EventTypes.Message)
+    //  ||
+    //     !pangeaController.permissionsController
+    //         .isToolEnabled(ToolSetting.immersionMode, event.room))
+    {
       return event.calcLocalizedBody(
         MatrixLocals(L10n.of(context)!),
         hideReply: true,
@@ -31,13 +33,17 @@ class GetChatListItemSubtitle {
       );
     }
 
+    String? eventContextId = event.eventId;
+    if (!event.eventId.isValidMatrixId || event.eventId.sigil != '\$') {
+      eventContextId = null;
+    }
     final Timeline timeline =
-        await event.room.getTimeline(eventContextId: event.eventId);
+        await event.room.getTimeline(eventContextId: eventContextId);
+
     final PangeaMessageEvent pangeaMessageEvent = PangeaMessageEvent(
       event: event,
       timeline: timeline,
       ownMessage: false,
-      selected: false,
     );
     final l2Code =
         pangeaController.languageController.activeL2Code(roomID: event.roomId);

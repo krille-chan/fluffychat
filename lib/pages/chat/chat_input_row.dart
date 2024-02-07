@@ -58,21 +58,18 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     )
                   else
-                    // #Pangea
-                    PangeaMessageActions(chatController: controller),
-                  // SizedBox(
-                  //   height: 56,
-                  //   child: TextButton(
-                  //     onPressed: controller.forwardEventsAction,
-                  //     child: Row(
-                  //       children: <Widget>[
-                  //         const Icon(Icons.keyboard_arrow_left_outlined),
-                  //         Text(L10n.of(context)!.forward),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // Pangea#
+                    SizedBox(
+                      height: 56,
+                      child: TextButton(
+                        onPressed: controller.forwardEventsAction,
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(Icons.keyboard_arrow_left_outlined),
+                            Text(L10n.of(context)!.forward),
+                          ],
+                        ),
+                      ),
+                    ),
                   controller.selectedEvents.length == 1
                       ? controller.selectedEvents.first
                               .getDisplayEvent(controller.timeline!)

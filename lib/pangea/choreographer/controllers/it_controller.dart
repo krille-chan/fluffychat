@@ -269,6 +269,7 @@ class ITController {
     completedITSteps.add(itStep);
 
     showChoiceFeedback = true;
+
     Future.delayed(
       const Duration(
         milliseconds: ChoreoConstants.millisecondsToDisplayFeedback,
