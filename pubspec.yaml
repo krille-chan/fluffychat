@@ -142,7 +142,6 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - .env
     - assets/
     # #Pangea
     - assets/pangea/

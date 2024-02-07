@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
@@ -161,8 +162,8 @@ class MessageToolbarState extends State<MessageToolbar> {
       case MessageMode.play:
         return true;
       case MessageMode.definition:
-        debugPrint("checking");
-        return widget.textSelection.selectedText != null;
+        // return widget.textSelection.selectedText != null;
+        return true;
       default:
         return false;
     }

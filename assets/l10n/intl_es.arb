@@ -2872,8 +2872,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "langaugeLevel": "Nivel de lengua",
-  "@langaugeLevel": {
+  "languageLevel": "Nivel de lengua",
+  "@languageLevel": {
     "type": "text",
     "placeholders": {}
   },
@@ -4534,5 +4534,14 @@
     "placeholders": {
       "roomName": {}
     }
-  }
+  },
+  "addConversationBot": "Añadir bot de conversación",
+  "addConversationBotDesc": "Añadir un bot de conversación para enviar mensajes automáticos a este chat",
+  "convoBotSettingsTitle": "Configuración del bot de conversación",
+  "convoBotSettingsDescription": "Editar tema de conversación y dificultad",
+  "enterAConversationTopic": "Introducir un tema de conversación",
+  "conversationTopic": "Tema de conversación",
+  "enableModeration": "Activar la moderación",
+  "enableModerationDesc": "Activar la moderación automática para revisar los mensajes antes de enviarlos",
+  "conversationLanguageLevel": "¿Cuál es el nivel lingüístico de esta conversación?"
 }

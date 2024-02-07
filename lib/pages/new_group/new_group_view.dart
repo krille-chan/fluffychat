@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class NewGroupView extends StatelessWidget {
   final NewGroupController controller;
@@ -85,6 +84,10 @@ class NewGroupView extends StatelessWidget {
             //     ),
             //   ),
             // ),
+            ConversationBotSettings(
+              key: controller.addConversationBotKey,
+            ),
+            const Divider(height: 1),
             AddToSpaceToggles(
               key: controller.addToSpaceKey,
               startOpen: false,

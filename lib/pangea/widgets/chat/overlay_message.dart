@@ -1,8 +1,9 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -102,16 +103,64 @@ class OverlayMessage extends StatelessWidget {
         constraints: BoxConstraints(
           maxWidth: width ?? FluffyThemes.columnWidth * 1.25,
         ),
-        child: MessageContent(
-          event,
-          textColor: textColor,
-          borderRadius: borderRadius,
-          selected: selected,
-          pangeaMessageEvent: pangeaMessageEvent,
-          // selectedDisplayLang: selectedDisplayLang,
-          immersionMode: immersionMode,
-          // definitions: definitions,
-          toolbarController: toolbarController,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MessageContent(
+              event,
+              textColor: textColor,
+              borderRadius: borderRadius,
+              selected: selected,
+              pangeaMessageEvent: pangeaMessageEvent,
+              immersionMode: immersionMode,
+              toolbarController: toolbarController,
+            ),
+            if (event.hasAggregatedEvents(
+                      timeline,
+                      RelationshipTypes.edit,
+                    ) // #Pangea
+                    ||
+                    (pangeaMessageEvent.showUseType)
+                // Pangea#
+                )
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 4.0,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // #Pangea
+                    if (pangeaMessageEvent.showUseType) ...[
+                      pangeaMessageEvent.useType.iconView(
+                        context,
+                        textColor.withAlpha(164),
+                      ),
+                      const SizedBox(width: 4),
+                    ],
+                    if (event.hasAggregatedEvents(
+                      timeline,
+                      RelationshipTypes.edit,
+                    )) ...[
+                      // Pangea#
+                      Icon(
+                        Icons.edit_outlined,
+                        color: textColor.withAlpha(164),
+                        size: 14,
+                      ),
+                      Text(
+                        ' - ${event.originServerTs.localizedTimeShort(context)}',
+                        style: TextStyle(
+                          color: textColor.withAlpha(164),
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+          ],
         ),
       ),
     );

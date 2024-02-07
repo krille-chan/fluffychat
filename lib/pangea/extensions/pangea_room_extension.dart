@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -979,5 +980,19 @@ extension PangeaRoom on Room {
   DateTime? get rulesUpdatedAt {
     if (!isSpace) return null;
     return pangeaRoomRulesStateEvent?.originServerTs ?? creationTime;
+  }
+
+  Future<bool> get isBotRoom async {
+    final List<User> participants = await requestParticipants();
+    return participants.any(
+      (User user) => user.id == BotName.byEnvironment,
+    );
+  }
+
+  BotOptionsModel? get botOptions {
+    if (isSpace) return null;
+    return BotOptionsModel.fromJson(
+      getState(PangeaEventTypes.botOptions)?.content ?? {},
+    );
   }
 }
