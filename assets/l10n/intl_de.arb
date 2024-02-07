@@ -2584,5 +2584,7 @@
     "placeholders": {
       "sender": {}
     }
-  }
+  },
+  "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
+  "@verifyOtherDeviceDescription": {}
 }
