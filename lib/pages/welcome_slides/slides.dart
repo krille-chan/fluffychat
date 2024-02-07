@@ -15,25 +15,60 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-        itemCount: slidesData.length,
-        itemBuilder: (context, index) {
-          final slide = slidesData[index];
-          return SlideItem(
-            gifAsset: slide.gifAsset,
-            text: slide.text,
-            isLastSlide: index == slidesData.length - 1,
-            onNext: () {
-              if (index == slidesData.length - 1) {
-                GoRouter.of(context).go('/home');
-              } else {
-                setState(() {
-                  currentIndex = index + 1;
-                });
-              }
+      body: Stack(
+        children: [
+          PageView.builder(
+            itemCount: slidesData.length,
+            itemBuilder: (context, index) {
+              final slide = slidesData[index];
+              return SlideItem(
+                gifAsset: slide.gifAsset,
+                text: slide.text,
+                isLastSlide: index == slidesData.length - 1,
+                onNext: () {
+                  if (index == slidesData.length - 1) {
+                    GoRouter.of(context).go('/home');
+                  } else {
+                    setState(() {
+                      currentIndex = index + 1;
+                    });
+                  }
+                },
+              );
             },
-          );
-        },
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+          ),
+          if (currentIndex > 0)
+            Positioned(
+              left: 20,
+              top: MediaQuery.of(context).size.height / 2,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  setState(() {
+                    currentIndex--;
+                  });
+                },
+              ),
+            ),
+          if (currentIndex < slidesData.length - 1)
+            Positioned(
+              right: 20,
+              top: MediaQuery.of(context).size.height / 2,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                onPressed: () {
+                  setState(() {
+                    currentIndex++;
+                  });
+                },
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -61,11 +96,16 @@ class SlideItem extends StatelessWidget {
           image: AssetImage(gifAsset),
           fit: BoxFit.fill,
         ),
-        const SizedBox(height: 20),
-        Text(
-          text,
-          style: const TextStyle(fontSize: 20),
-          textAlign: TextAlign.center,
+        const SizedBox(
+          height: 20.0,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
         ),
         if (isLastSlide)
           ElevatedButton(
