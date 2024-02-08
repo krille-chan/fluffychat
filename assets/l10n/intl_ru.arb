@@ -2558,5 +2558,33 @@
   "sendTypingNotificationsDescription": "Другие участники чата могут видеть, когда вы набираете новое сообщение.",
   "@sendTypingNotificationsDescription": {},
   "formattedMessages": "Форматированные сообщения",
-  "@formattedMessages": {}
+  "@formattedMessages": {},
+  "startedKeyVerification": "{sender} начал(а) подтверждение ключей",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} готов(а) к подтверждению ключей",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} запросил(а) подтверждение ключей",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} завершил(а) подтверждение ключей",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  }
 }
