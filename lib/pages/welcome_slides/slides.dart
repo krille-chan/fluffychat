@@ -10,7 +10,14 @@ class WelcomeSlidePage extends StatefulWidget {
 }
 
 class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
+  late final PageController _pageController;
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +26,21 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
         children: [
           PageView.builder(
             itemCount: slidesData.length,
+            controller: _pageController,
             itemBuilder: (context, index) {
               final slide = slidesData[index];
               return SlideItem(
                 gifAsset: slide.gifAsset,
-                text: slide.text,
+                textKey: slide.textKey,
                 isLastSlide: index == slidesData.length - 1,
                 onNext: () {
                   if (index == slidesData.length - 1) {
                     GoRouter.of(context).go('/home');
                   } else {
-                    setState(() {
-                      currentIndex = index + 1;
-                    });
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.ease,
+                    );
                   }
                 },
               );
@@ -49,9 +58,10 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  setState(() {
-                    currentIndex--;
-                  });
+                  _pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease,
+                  );
                 },
               ),
             ),
@@ -62,9 +72,10 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
               child: IconButton(
                 icon: const Icon(Icons.arrow_forward),
                 onPressed: () {
-                  setState(() {
-                    currentIndex++;
-                  });
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease,
+                  );
                 },
               ),
             ),
@@ -85,18 +96,24 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 }
 
 class SlideItem extends StatelessWidget {
   final String gifAsset;
-  final String text;
+  final String Function(BuildContext) textKey;
   final bool isLastSlide;
   final VoidCallback onNext;
 
   const SlideItem({
     super.key,
     required this.gifAsset,
-    required this.text,
+    required this.textKey,
     required this.isLastSlide,
     required this.onNext,
   });
@@ -107,17 +124,18 @@ class SlideItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(
-            child: Image(
-          image: AssetImage(gifAsset),
-          fit: BoxFit.contain,
-        )),
+          child: Image(
+            image: AssetImage(gifAsset),
+            fit: BoxFit.fitWidth,
+          ),
+        ),
         const SizedBox(
           height: 20.0,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            text,
+            textKey(context), // Call function to obtain resolved localization key (for translations)
             style: const TextStyle(fontSize: 20),
             textAlign: TextAlign.center,
           ),

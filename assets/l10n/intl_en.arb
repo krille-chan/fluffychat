@@ -2528,5 +2528,9 @@
   "loading_disconnectionSuccess": "Successful logout",
   "loading_deleteRoom": "Delete the conversation...",
   "loading_deleteRoomSuccess": "Conversation deleted",
-  "refreshList": "Refresh list"
+  "refreshList": "Refresh list",
+  "slide_one": "Welcome to Tawkie your all-in-one messaging aplication.",
+  "slide_two": "We are a little start-up but with strong values.",
+  "slide_three": "Thank you to be one of the first to use Tawkie. Your feed bach with be gold for us.",
+  "slide_four": "Enjoy your all-in-one messaging journey."
 }

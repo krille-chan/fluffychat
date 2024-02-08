@@ -1,22 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 class WelcomeSlide {
   final String gifAsset;
-  final String text;
+  final String Function(BuildContext) textKey;
 
-  WelcomeSlide({required this.gifAsset, required this.text});
+  WelcomeSlide({
+    required this.gifAsset,
+    required this.textKey,
+  });
 }
 
 final List<WelcomeSlide> slidesData = [
   WelcomeSlide(
-      gifAsset: "assets/welcome_slide_1.gif",
-      text: "Welcome to Tawkie your all-in-one messaging aplication."),
+    gifAsset: "assets/welcome_slide_1.gif",
+    textKey: (context) => L10n.of(context)!.slide_one,
+  ),
   WelcomeSlide(
-      gifAsset: "assets/welcome_slide_2.gif",
-      text: "We are a little start-up but with strong values."),
+    gifAsset: "assets/welcome_slide_2.gif",
+    textKey: (context) => L10n.of(context)!.slide_two,
+  ),
   WelcomeSlide(
-      gifAsset: "assets/welcome_slide_3.gif",
-      text:
-          "Thank you to be one of the first to use Tawkie. Your feed bach with be gold for us."),
+    gifAsset: "assets/welcome_slide_3.gif",
+    textKey: (context) => L10n.of(context)!.slide_three,
+  ),
   WelcomeSlide(
-      gifAsset: "assets/welcome_slide_1.gif",
-      text: "Enjoy your all-in-one messaging journey."),
+    gifAsset: "assets/welcome_slide_4.gif",
+    textKey: (context) => L10n.of(context)!.slide_four,
+  ),
 ];
