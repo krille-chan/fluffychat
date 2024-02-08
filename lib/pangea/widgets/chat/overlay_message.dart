@@ -27,9 +27,7 @@ class OverlayMessage extends StatelessWidget {
     this.selected = false,
     required this.timeline,
     // #Pangea
-    // required this.selectedDisplayLang,
     required this.immersionMode,
-    // required this.definitions,
     required this.ownMessage,
     required this.toolbarController,
     this.width,

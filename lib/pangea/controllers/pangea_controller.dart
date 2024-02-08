@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
@@ -224,19 +225,19 @@ class PangeaController {
         continue;
       }
       final List<String> userIds = participants.map((user) => user.id).toList();
-      // if (space.canInvite && !userIds.contains(BotName.byEnvironment)) {
-      //   try {
-      //     await space.invite(BotName.byEnvironment);
-      //     await space.setPower(
-      //       BotName.byEnvironment,
-      //       ClassDefaultValues.powerLevelOfAdmin,
-      //     );
-      //   } catch (err) {
-      //     ErrorHandler.logError(
-      //       e: "Failed to invite pangea bot to space ${space.id}",
-      //     );
-      //   }
-      // }
+      if (space.canInvite && !userIds.contains(BotName.byEnvironment)) {
+        try {
+          await space.invite(BotName.byEnvironment);
+          await space.setPower(
+            BotName.byEnvironment,
+            ClassDefaultValues.powerLevelOfAdmin,
+          );
+        } catch (err) {
+          ErrorHandler.logError(
+            e: "Failed to invite pangea bot to space ${space.id}",
+          );
+        }
+      }
     }
   }
 }

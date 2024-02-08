@@ -18,38 +18,8 @@ class MessageAudioCard extends StatefulWidget {
 }
 
 class MessageAudioCardState extends State<MessageAudioCard> {
-  // RepresentationEvent? repEvent;
   bool _isLoading = false;
   Event? localAudioEvent;
-  // String langCode = "en";
-
-  // void setLangCode() {
-  //   final String? l2Code =
-  //       MatrixState.pangeaController.languageController.activeL2Code(
-  //     roomID: widget.messageEvent.room.id,
-  //   );
-  //   setState(() => langCode = l2Code ?? "en");
-  // }
-
-  // void fetchRepresentation(BuildContext context) {
-  //   repEvent = widget.messageEvent.representationByLanguage(
-  //     langCode,
-  //   );
-
-  //   if (repEvent == null) {
-  //     setState(() => _isLoading = true);
-  //     widget.messageEvent
-  //         .representationByLanguageGlobal(
-  //           context: context,
-  //           langCode: langCode,
-  //         )
-  //         .onError((error, stackTrace) => ErrorHandler.logError())
-  //         .then(((RepresentationEvent? event) => repEvent = event))
-  //         .whenComplete(
-  //           () => setState(() => _isLoading = false),
-  //         );
-  //   }
-  // }
 
   void fetchAudio() {
     if (!mounted) return;
@@ -124,21 +94,10 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                     ],
                   ),
                 )
-              :
-              // Opacity(
-              //     opacity: widget.messageEvent.getDisplayRepresentation().then((event) => event == null ? ) == null
-              //         ? 0.5
-              //         : 1,
-              //     // child: SizedBox(
-              //     //   width: 44,
-              //     //   height: 36,
-              //     child:
-              Padding(
+              : Padding(
                   padding: const EdgeInsets.only(left: 8),
                   child: playButton,
                 ),
-      // ),
-      // ),
     );
   }
 }

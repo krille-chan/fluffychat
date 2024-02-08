@@ -177,14 +177,10 @@ class MessageContent extends StatelessWidget {
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
               }
-              // #Pangea
-              // messageToolbar?.messageText = html;
-              // Pangea#
               return HtmlMessage(
                 html: html,
                 textColor: textColor,
                 room: event.room,
-                // messageToolbar: messageToolbar,
               );
             }
             // else we fall through to the normal message rendering
@@ -276,12 +272,10 @@ class MessageContent extends StatelessWidget {
                 pangeaMessageEvent: pangeaMessageEvent!,
                 immersionMode: immersionMode,
                 toolbarController: toolbarController!,
-                // selectedDisplayLang: selectedDisplayLang,
-                // highlighted: toolbarController!.highlighted,
               );
             }
+            // Pangea#
             return FutureBuilder<String>(
-              // Pangea#
               future: event.calcLocalizedBody(
                 MatrixLocals(L10n.of(context)!),
                 hideReply: true,
@@ -290,10 +284,12 @@ class MessageContent extends StatelessWidget {
                 // #Pangea
                 if (!snapshot.hasData) {
                   return Text(
+                    // Pangea#
                     event.calcLocalizedBodyFallback(
                       MatrixLocals(L10n.of(context)!),
                       hideReply: true,
                     ),
+                    // #Pangea
                     style: messageTextStyle,
                   );
                 }
@@ -311,7 +307,6 @@ class MessageContent extends StatelessWidget {
                       ?.toolbar?.textSelection
                       .onTextSelection(selection),
                   onTap: () => toolbarController?.showToolbar(context),
-                  // Pangea#
                   text: toolbarController?.toolbar?.textSelection.messageText ??
                       messageText,
                   focusNode: toolbarController?.focusNode,
@@ -333,6 +328,7 @@ class MessageContent extends StatelessWidget {
                   //       MatrixLocals(L10n.of(context)!),
                   //       hideReply: true,
                   //     ),
+                  // Pangea#
                   style: TextStyle(
                     color: textColor,
                     fontSize: bigEmotes ? fontSize * 3 : fontSize,
@@ -347,7 +343,6 @@ class MessageContent extends StatelessWidget {
                     decorationColor: textColor.withAlpha(150),
                   ),
                   onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                  // onTap: () => messageToolbar?.onTextTap(context),
                 );
               },
             );

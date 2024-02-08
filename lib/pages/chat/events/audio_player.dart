@@ -81,7 +81,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       });
       _playAction();
     } catch (e, s) {
+      // #Pangea
       debugger();
+      // Pangea#
       Logs().v('Could not download audio file', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -134,6 +136,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (audioFile != null) {
       audioPlayer.setFilePath(audioFile.path);
     } else {
+      // #Pangea
       final data = matrixFile!.bytes;
       final mimeType = matrixFile!.mimeType;
       //shouldn't have to be settting this here
@@ -150,10 +153,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         debugPrint("still an ogg file!");
       }
       try {
+        // Pangea#
         await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
+        // #Pangea
       } catch (e, s) {
         debugger(when: kDebugMode);
       }
+      // Pangea#
     }
     audioPlayer.play().onError(
           ErrorReporter(context, 'Unable to play audio message')

@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class GetChatListItemSubtitle {
@@ -17,11 +16,9 @@ class GetChatListItemSubtitle {
   ) async {
     if (event == null) return L10n.of(context)!.emptyChat;
     // try {
-    if (event.type != EventTypes.Message)
-    //  ||
-    //     !pangeaController.permissionsController
-    //         .isToolEnabled(ToolSetting.immersionMode, event.room))
-    {
+    if (event.type != EventTypes.Message ||
+        !pangeaController.permissionsController
+            .isToolEnabled(ToolSetting.immersionMode, event.room)) {
       return event.calcLocalizedBody(
         MatrixLocals(L10n.of(context)!),
         hideReply: true,

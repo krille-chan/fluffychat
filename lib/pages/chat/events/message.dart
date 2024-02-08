@@ -242,6 +242,7 @@ class Message extends StatelessWidget {
                       alignment: alignment,
                       padding: const EdgeInsets.only(left: 8),
                       child: GestureDetector(
+                        // #Pangea
                         onTap: () => toolbarController?.showToolbar(context),
                         onDoubleTap: () =>
                             toolbarController?.showToolbar(context),
@@ -249,6 +250,13 @@ class Message extends StatelessWidget {
                           onSelect(event);
                           HapticFeedback.selectionClick();
                         },
+                        // onLongPress: longPressSelect
+                        //     ? null
+                        //     : () {
+                        //         onSelect(event);
+                        //         HapticFeedback.selectionClick();
+                        //       },
+                        // Pangea#
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0

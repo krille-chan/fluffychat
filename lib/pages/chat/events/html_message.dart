@@ -18,18 +18,12 @@ class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
   final Color textColor;
-  // #Pangea
-  // final ShowDefintionUtil? messageToolbar;
-  // Pangea#
 
   const HtmlMessage({
     super.key,
     required this.html,
     required this.room,
     this.textColor = Colors.black,
-    // #Pangea
-    // this.messageToolbar,
-    // Pangea#
   });
 
   dom.Node _linkifyHtml(dom.Node element) {

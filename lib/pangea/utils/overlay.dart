@@ -60,9 +60,7 @@ class OverlayUtil {
 
       MatrixState.pAnyState.openOverlay(entry, context);
     } catch (err, stack) {
-      debugPrint("ERROR: $err");
-      debugPrint("STACK: $stack");
-      // debugger(when: kDebugMode);
+      debugger(when: kDebugMode);
       ErrorHandler.logError(e: err, s: stack);
     }
   }

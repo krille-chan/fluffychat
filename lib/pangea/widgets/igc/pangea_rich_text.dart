@@ -80,7 +80,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
         widget.toolbarController.toolbar?.textSelection.setMessageText(
           repEvent?.text ?? widget.pangeaMessageEvent.body,
         );
-      }).whenComplete(() => setState(() => _fetchingRepresentation = false));
+      }).whenComplete(() {
+        if (mounted) {
+          setState(() => _fetchingRepresentation = false);
+        }
+      });
       return widget.pangeaMessageEvent.body;
     }
 
