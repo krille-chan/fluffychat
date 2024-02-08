@@ -63,10 +63,12 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
           )
           .then((RepresentationEvent? event) => repEvent = event)
           .whenComplete(
-            () => setState(() => _fetchingRepresentation = false),
-          );
+        () {
+          setState(() => _fetchingRepresentation = false);
+        },
+      );
     } else {
-      setState(() {});
+      if (mounted) setState(() {});
     }
   }
 
@@ -74,6 +76,12 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   void initState() {
     super.initState();
     fetchRepresentation(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    setState(() => _fetchingRepresentation = false);
   }
 
   @override

@@ -1,10 +1,6 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -57,10 +53,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   void fetchAudio() {
     if (!mounted) return;
-    // final String? text = widget.messageEvent.displayMessageText;
-    // if (text == null || text.isEmpty) return;
     setState(() => _isLoading = true);
-
     widget.messageEvent
         .getAudioGlobal(widget.messageEvent.messageDisplayLangCode)
         .then((Event? event) {
@@ -81,18 +74,20 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   @override
   void initState() {
     super.initState();
-    widget.messageEvent
-        .getDisplayRepresentation(context)
-        .then((_) => fetchAudio());
+    fetchAudio();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    setState(() => _isLoading = false);
   }
 
   @override
   Widget build(BuildContext context) {
     final playButton = InkWell(
       borderRadius: BorderRadius.circular(64),
-      onTap: () => widget.messageEvent
-          .getDisplayRepresentation(context)
-          .then((event) => event == null ? null : fetchAudio),
+      onTap: fetchAudio,
       child: Material(
         color: AppConfig.primaryColor.withAlpha(64),
         borderRadius: BorderRadius.circular(64),

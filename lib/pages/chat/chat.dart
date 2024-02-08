@@ -30,7 +30,6 @@ import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
@@ -1546,48 +1545,52 @@ class ChatController extends State<ChatPageWithRoom>
     return currentState;
   }
 
-  List<Event> get events =>
-      timeline!.events.where((event) => event.isVisibleInGui).toList();
-
-  final Map<String, ToolbarDisplayController> _messageToolbarControllers = {};
   final Map<String, PangeaMessageEvent> _pangeaMessageEvents = {};
+  final Map<String, ToolbarDisplayController> _toolbarDisplayControllers = {};
 
-  PangeaMessageEvent? pangeaMessageEvent(String eventId) {
-    final Event? event =
-        events.firstWhereOrNull((event) => event.eventId == eventId);
-    if (timeline == null || event == null || event.type != EventTypes.Message) {
-      return null;
+  void setPangeaMessageEvent(String eventId) {
+    final Event? event = timeline!.events.firstWhereOrNull(
+      (e) => e.eventId == eventId,
+    );
+    if (event == null || timeline == null) return;
+    _pangeaMessageEvents[eventId] = PangeaMessageEvent(
+      event: event,
+      timeline: timeline!,
+      ownMessage: event.senderId == room.client.userID,
+    );
+    _pangeaMessageEvents[eventId]!.setDisplayRepresentation(context);
+  }
+
+  void setToolbarDisplayController(String eventId) {
+    final Event? event = timeline!.events.firstWhereOrNull(
+      (e) => e.eventId == eventId,
+    );
+    if (event == null || timeline == null) return;
+    if (_pangeaMessageEvents[eventId] == null) {
+      setPangeaMessageEvent(eventId);
+      if (_pangeaMessageEvents[eventId] == null) return;
     }
-    if (!_pangeaMessageEvents.containsKey(eventId)) {
-      _pangeaMessageEvents[eventId] = PangeaMessageEvent(
-        event: event,
-        timeline: timeline!,
-        ownMessage: event.senderId == Matrix.of(context).client.userID,
-      );
+    _toolbarDisplayControllers[eventId] = ToolbarDisplayController(
+      targetId: event.eventId,
+      pangeaMessageEvent: _pangeaMessageEvents[eventId]!,
+      immersionMode: choreographer.immersionMode,
+      controller: this,
+    );
+    _toolbarDisplayControllers[eventId]!.setToolbar();
+  }
+
+  PangeaMessageEvent? getPangeaMessageEvent(String eventId) {
+    if (_pangeaMessageEvents[eventId] == null) {
+      setPangeaMessageEvent(eventId);
     }
     return _pangeaMessageEvents[eventId];
   }
 
-  ToolbarDisplayController? messageToolbarController(String eventId) {
-    final Event? event =
-        events.firstWhereOrNull((event) => event.eventId == eventId);
-    if (timeline == null || event == null || event.type != EventTypes.Message) {
-      return null;
+  ToolbarDisplayController? getToolbarDisplayController(String eventId) {
+    if (_toolbarDisplayControllers[eventId] == null) {
+      setToolbarDisplayController(eventId);
     }
-
-    final PangeaMessageEvent? messageEvent = pangeaMessageEvent(eventId);
-    if (messageEvent == null) return null;
-
-    if (!_messageToolbarControllers.containsKey(event.eventId)) {
-      _messageToolbarControllers[event.eventId] = ToolbarDisplayController(
-        targetId: event.eventId,
-        pangeaMessageEvent: messageEvent,
-        immersionMode: choreographer.immersionMode,
-        controller: this,
-      );
-      _messageToolbarControllers[event.eventId]!.setToolbar();
-    }
-    return _messageToolbarControllers[eventId];
+    return _toolbarDisplayControllers[eventId];
   }
   // Pangea#
 

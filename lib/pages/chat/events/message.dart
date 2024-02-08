@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
@@ -15,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
-import 'package:vibration/vibration.dart';
 
 import '../../../config/app_config.dart';
 import 'message_content.dart';
@@ -144,9 +142,9 @@ class Message extends StatelessWidget {
 
     // #Pangea
     final PangeaMessageEvent? pangeaMessageEvent =
-        controller.pangeaMessageEvent(event.eventId);
+        controller.getPangeaMessageEvent(event.eventId);
     final ToolbarDisplayController? toolbarController =
-        controller.messageToolbarController(event.eventId);
+        controller.getToolbarDisplayController(event.eventId);
     // Pangea#
 
     final resetAnimateIn = this.resetAnimateIn;

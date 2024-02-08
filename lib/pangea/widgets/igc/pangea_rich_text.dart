@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -9,7 +10,9 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import '../../models/pangea_match_model.dart';
 
 class PangeaRichText extends StatefulWidget {
@@ -32,28 +35,56 @@ class PangeaRichText extends StatefulWidget {
 
 class PangeaRichTextState extends State<PangeaRichText> {
   final PangeaController pangeaController = MatrixState.pangeaController;
-  RepresentationEvent? repEvent;
   bool _fetchingRepresentation = false;
   double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
+  String textSpan = "";
 
   @override
   void initState() {
     super.initState();
-    setTextSpan();
+    updateTextSpan();
   }
 
-  Future<void> setTextSpan() async {
-    setState(() => _fetchingRepresentation = true);
-    try {
-      await widget.pangeaMessageEvent.getDisplayRepresentation(context);
-    } catch (err) {
-      ErrorHandler.logError(e: err);
-    }
-    setState(() => _fetchingRepresentation = false);
+  void updateTextSpan() {
+    setState(() {
+      textSpan = getTextSpan();
+    });
+  }
 
-    widget.toolbarController.toolbar?.textSelection.setMessageText(
-      widget.pangeaMessageEvent.displayMessageText,
+  @override
+  void didUpdateWidget(PangeaRichText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    updateTextSpan();
+  }
+
+  String getTextSpan() {
+    if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
+      debugger(when: kDebugMode);
+    }
+
+    final RepresentationEvent? repEvent =
+        widget.pangeaMessageEvent.representationByLanguage(
+      widget.pangeaMessageEvent.messageDisplayLangCode,
     );
+
+    if (repEvent == null) {
+      setState(() => _fetchingRepresentation = true);
+
+      widget.pangeaMessageEvent
+          .representationByLanguageGlobal(
+            context: context,
+            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
+          )
+          .onError((error, stackTrace) => ErrorHandler.logError())
+          .then((_) {
+        widget.toolbarController.toolbar?.textSelection.setMessageText(
+          repEvent?.text ?? widget.pangeaMessageEvent.body,
+        );
+      }).whenComplete(() => setState(() => _fetchingRepresentation = false));
+      return widget.pangeaMessageEvent.body;
+    }
+
+    return repEvent.text;
   }
 
   @override
@@ -79,7 +110,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
         ),
       ),
       TextSpan(
-        text: widget.pangeaMessageEvent.displayMessageText,
+        text: textSpan,
         style: widget.style,
         children: [
           if (_fetchingRepresentation)

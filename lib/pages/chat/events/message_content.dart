@@ -1,16 +1,13 @@
 import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -173,7 +170,7 @@ class MessageContent extends StatelessWidget {
                     event.isRichMessage
                     // #Pangea
                     &&
-                    !(pangeaMessageEvent?.showRichText ?? false)
+                    !(pangeaMessageEvent?.showRichText(selected) ?? false)
                 // Pangea#
                 ) {
               var html = event.formattedText;
@@ -273,7 +270,7 @@ class MessageContent extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
-            if (pangeaMessageEvent?.showRichText ?? false) {
+            if (pangeaMessageEvent?.showRichText(selected) ?? false) {
               return PangeaRichText(
                 style: messageTextStyle,
                 pangeaMessageEvent: pangeaMessageEvent!,

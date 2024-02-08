@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
@@ -27,7 +26,6 @@ class PangeaMessageEvent {
   final Timeline timeline;
   final bool ownMessage;
   bool _isValidPangeaMessageEvent = true;
-  RepresentationEvent? _displayRepresentation;
 
   PangeaMessageEvent({
     required Event event,
@@ -71,7 +69,7 @@ class PangeaMessageEvent {
           .firstOrNull ??
       _event;
 
-  bool get showRichText {
+  bool showRichText(bool selected) {
     if (!_isValidPangeaMessageEvent) {
       return false;
     }
@@ -81,7 +79,7 @@ class PangeaMessageEvent {
     if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
       return false;
     }
-    // if (ownMessage && !selected) return false;
+    if (ownMessage && !selected) return false;
 
     return true;
   }
@@ -187,7 +185,7 @@ class PangeaMessageEvent {
         final elementLangCode = transcription[ModelKey.langCode];
         final elementText = transcription[ModelKey.text];
 
-        // Check if both language code and text match
+        // Check if both language code and text matsch
         return elementLangCode == langCode && elementText == text;
       },
     );
@@ -402,33 +400,35 @@ class PangeaMessageEvent {
     return langCode ?? LanguageKeys.unknownLanguage;
   }
 
-  Future<RepresentationEvent?> getDisplayRepresentation(
+  RepresentationEvent? _displayRepresentation;
+
+  RepresentationEvent? displayRepresentation(String langCode) =>
+      _displayRepresentation;
+
+  Future<void> setDisplayRepresentation(
     BuildContext context,
   ) async {
-    if (messageDisplayLangCode == LanguageKeys.unknownLanguage) return null;
-    if (_displayRepresentation != null) return _displayRepresentation;
-    _displayRepresentation = representationByLanguage(messageDisplayLangCode);
-    if (_displayRepresentation != null) {
-      return _displayRepresentation;
+    if (messageDisplayLangCode == LanguageKeys.unknownLanguage ||
+        _displayRepresentation != null) {
+      return;
     }
+    _displayRepresentation = representationByLanguage(messageDisplayLangCode);
+    if (_displayRepresentation != null) return;
 
     try {
       _displayRepresentation = await representationByLanguageGlobal(
         context: context,
         langCode: messageDisplayLangCode,
       );
-      return _displayRepresentation;
+      return;
     } catch (err, s) {
       ErrorHandler.logError(
         m: "error in getDisplayRepresentation",
         e: err,
         s: s,
       );
-      return null;
     }
   }
-
-  String get displayMessageText => _displayRepresentation?.text ?? body;
 
   // List<SpanData> get activities =>
   //each match is turned into an activity that other students can access
