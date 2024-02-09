@@ -18,8 +18,7 @@ abstract class AppConfig {
   static const Color primaryColor = Color(0xFF3614A6);
   static const Color primaryColorLight = Color(0xFFFEEA77);
   static const Color secondaryColor = Color(0xFFFAAB22);
-  static String _privacyUrl =
-      'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
+  static String _privacyUrl = 'https://tawkie.fr/legal/';
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
       'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
@@ -31,8 +30,7 @@ abstract class AppConfig {
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+  static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static final Uri newIssueUrl = Uri(
@@ -66,6 +64,7 @@ abstract class AppConfig {
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
+  static const String aboutUrl = 'https://tawkie.fr/faq/';
   static const double borderRadius = 16.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
