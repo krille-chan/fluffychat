@@ -17,7 +17,7 @@ class AddChatNetwork extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            if (!PlatformInfos.isWeb)
+            if (PlatformInfos.isMobile)
               Text(
                 L10n.of(context)!.youDonTHaveConversation,
               ),
