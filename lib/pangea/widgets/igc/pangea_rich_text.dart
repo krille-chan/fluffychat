@@ -86,6 +86,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
         }
       });
       return widget.pangeaMessageEvent.body;
+    } else {
+      widget.toolbarController.toolbar?.textSelection.setMessageText(
+        repEvent.text,
+      );
     }
 
     return repEvent.text;
