@@ -141,6 +141,7 @@ class MessageToolbar extends StatefulWidget {
 class MessageToolbarState extends State<MessageToolbar> {
   Widget? child;
   MessageMode? _currentMode;
+  bool hasSelectedText = false;
   late StreamSubscription<String?> _selectionStream;
   late StreamSubscription<MessageMode> _toolbarModeStream;
 
@@ -233,8 +234,22 @@ class MessageToolbarState extends State<MessageToolbar> {
   @override
   void initState() {
     super.initState();
+    if (widget.textSelection.selectedText != null) {
+      hasSelectedText = true;
+    }
+
     _toolbarModeStream = widget.toolbarModeStream.stream.listen((mode) {
       updateMode(mode);
+    });
+
+    _selectionStream =
+        widget.textSelection.selectionStream.stream.listen((value) {
+      final bool shouldSetState =
+          value != null && !hasSelectedText || value == null && hasSelectedText;
+      hasSelectedText = value != null;
+      if (shouldSetState) {
+        setState(() {});
+      }
     });
   }
 
