@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -22,7 +21,13 @@ void main() async {
   Logs().i('Welcome to ${AppConfig.applicationName} <3');
 
   // #Pangea
-  await dotenv.load(fileName: Environment.fileName);
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    Logs().e('Failed to load .env file', e);
+  }
+  // await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: Environment.fileName);
 
   await Future.wait([
     ErrorHandler.initialize(),

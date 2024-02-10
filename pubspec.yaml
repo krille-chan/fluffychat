@@ -146,6 +146,8 @@ flutter:
   assets:
     - assets/
     # #Pangea
+    - .env
+    - assets/.env
     - assets/pangea/
     - assets/pangea/bot_faces/
     # Pangea#

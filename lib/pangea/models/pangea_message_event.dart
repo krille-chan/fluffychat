@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -11,7 +10,6 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -88,51 +86,53 @@ class PangeaMessageEvent {
   //if no audio exists, create it
   //if audio exists, return it
   Future<Event?> getAudioGlobal(String langCode) async {
-    // try {
-    final String text = representationByLanguage(langCode)?.text ?? body;
-
-    final local = getAudioLocal(langCode, text);
-
-    if (local != null) return Future.value(local);
-
-    final TextToSpeechRequest params = TextToSpeechRequest(
-      text: text,
-      langCode: langCode,
-    );
-
-    final TextToSpeechResponse response =
-        await MatrixState.pangeaController.textToSpeech.get(
-      params,
-    );
-
-    if (response.mediaType != 'audio/ogg') {
-      throw Exception('Unexpected media type: ${response.mediaType}');
-    }
-
-    final audioBytes = base64.decode(response.audioContent);
-
-    if (!TextToSpeechController.isOggFile(audioBytes)) {
-      throw Exception("File is not a valid OGG format");
-    } else {
-      debugPrint("File is a valid OGG format");
-    }
-
-    // from text, trim whitespace, remove special characters, and limit to 20 characters
-    // final fileName =
-    //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
-    final fileName = "audio_for_${eventId}_$langCode";
-
-    final file = MatrixAudioFile(
-      bytes: audioBytes,
-      name: fileName,
-      mimeType: response.mediaType,
-    );
-
-    if (file.mimeType != "audio/ogg") {
-      throw Exception("Unexpected mime type: ${file.mimeType}");
-    }
-
     try {
+      final String text = representationByLanguage(langCode)?.text ?? body;
+
+      final local = getAudioLocal(langCode, text);
+
+      if (local != null) return Future.value(local);
+
+      final TextToSpeechRequest params = TextToSpeechRequest(
+        text: text,
+        langCode: langCode,
+      );
+
+      final TextToSpeechResponse response =
+          await MatrixState.pangeaController.textToSpeech.get(
+        params,
+      );
+
+      if (response.mediaType != 'audio/ogg') {
+        throw Exception('Unexpected media type: ${response.mediaType}');
+      }
+
+      final audioBytes = base64.decode(response.audioContent);
+
+      // if (!TextToSpeechController.isOggFile(audioBytes)) {
+      //   throw Exception("File is not a valid OGG format");
+      // } else {
+      //   debugPrint("File is a valid OGG format");
+      // }
+
+      // from text, trim whitespace, remove special characters, and limit to 20 characters
+      // final fileName =
+      //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
+      final eventIdParam = _event.eventId;
+      final fileName = "audio_for_${eventIdParam}_$langCode";
+
+      final file = MatrixAudioFile(
+        bytes: audioBytes,
+        name: fileName,
+        mimeType: response.mediaType,
+      );
+
+      if (file.mimeType != "audio/ogg") {
+        debugPrint("Unexpected mime type for audio: ${file.mimeType}");
+        // throw Exception("Unexpected mime type: ${file.mimeType}");
+      }
+
+      // try {
       final String? eventId = await room.sendFileEvent(
         file,
         inReplyTo: _event,
@@ -164,7 +164,6 @@ class PangeaMessageEvent {
       return eventId != null ? room.getEventById(eventId) : null;
     } catch (err) {
       debugPrint("error in getAudioGlobal");
-      debugger(when: kDebugMode);
       return null;
     }
   }
