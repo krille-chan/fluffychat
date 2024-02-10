@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/foundation.dart';
@@ -147,11 +146,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         mimeType: "audio/ogg",
       );
       debugPrint("audioType is $mimeType");
-      if (!TextToSpeechController.isOggFile(matrixFile!.bytes)) {
-        debugger(when: kDebugMode);
-      } else {
-        debugPrint("still an ogg file!");
-      }
+      // TODO - figure out why it's a wav at this point
+      // if (!TextToSpeechController.isOggFile(matrixFile!.bytes)) {
+      //   debugger(when: kDebugMode);
+      // } else {
+      //   debugPrint("still an ogg file!");
+      // }
       try {
         // Pangea#
         await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));

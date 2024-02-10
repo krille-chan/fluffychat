@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/repo/tokens_repo.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -137,7 +134,7 @@ class MessageDataController extends BaseController {
         type: PangeaEventTypes.representation,
       );
 
-      debugger(when: kDebugMode && repEvent == null);
+      // debugger(when: kDebugMode && repEvent == null);
 
       return repEvent;
     } catch (err, stack) {

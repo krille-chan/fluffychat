@@ -70,6 +70,7 @@ class ErrorHandler {
     if ((e ?? m) != null) debugPrint("error to string: ${e?.toString() ?? m}");
     if (data != null) {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
+      debugPrint(data.toString());
     }
     FlutterError.reportError(
       FlutterErrorDetails(
