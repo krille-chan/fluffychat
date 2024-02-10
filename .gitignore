@@ -40,7 +40,7 @@ prime
 
 # Gitlab runner locally
 /builds/
-
+.fvm/
 # Web related
 docs/tailwind.css
 
