@@ -307,7 +307,8 @@ class MessageContent extends StatelessWidget {
                     if (cause == SelectionChangedCause.longPress &&
                         toolbarController != null &&
                         pangeaMessageEvent != null &&
-                        !(toolbarController!.highlighted)) {
+                        !(toolbarController!.highlighted) &&
+                        !selected) {
                       toolbarController!.controller.onSelectMessage(
                         pangeaMessageEvent!.event,
                       );
@@ -319,20 +320,21 @@ class MessageContent extends StatelessWidget {
                   onTap: () => toolbarController?.showToolbar(context),
                   text: toolbarController?.toolbar?.textSelection.messageText ??
                       messageText,
-                  focusNode: toolbarController?.focusNode,
                   contextMenuBuilder: (context, state) =>
-                      MessageContextMenu.contextMenuOverride(
-                    context: context,
-                    textSelection: state,
-                    onDefine: () => toolbarController?.showToolbar(
-                      context,
-                      mode: MessageMode.definition,
-                    ),
-                    onListen: () => toolbarController?.showToolbar(
-                      context,
-                      mode: MessageMode.play,
-                    ),
-                  ),
+                      (toolbarController?.highlighted ?? false)
+                          ? const SizedBox.shrink()
+                          : MessageContextMenu.contextMenuOverride(
+                              context: context,
+                              textSelection: state,
+                              onDefine: () => toolbarController?.showToolbar(
+                                context,
+                                mode: MessageMode.definition,
+                              ),
+                              onListen: () => toolbarController?.showToolbar(
+                                context,
+                                mode: MessageMode.play,
+                              ),
+                            ),
                   // text: snapshot.data ??
                   //     event.calcLocalizedBodyFallback(
                   //       MatrixLocals(L10n.of(context)!),
