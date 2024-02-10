@@ -246,17 +246,13 @@ class Message extends StatelessWidget {
                         onTap: () => toolbarController?.showToolbar(context),
                         onDoubleTap: () =>
                             toolbarController?.showToolbar(context),
-                        onLongPress: () {
-                          onSelect(event);
-                          HapticFeedback.selectionClick();
-                        },
-                        // onLongPress: longPressSelect
-                        //     ? null
-                        //     : () {
-                        //         onSelect(event);
-                        //         HapticFeedback.selectionClick();
-                        //       },
                         // Pangea#
+                        onLongPress: longPressSelect
+                            ? null
+                            : () {
+                                onSelect(event);
+                                HapticFeedback.selectionClick();
+                              },
                         child: AnimatedOpacity(
                           opacity: animateIn
                               ? 0

@@ -95,9 +95,17 @@ class PangeaRichTextState extends State<PangeaRichText> {
   Widget build(BuildContext context) {
     //TODO - take out of build function of every message
     final Widget richText = SelectableText.rich(
-      onSelectionChanged: (selection, cause) => widget
-          .toolbarController.toolbar?.textSelection
-          .onTextSelection(selection),
+      onSelectionChanged: (selection, cause) {
+        if (cause == SelectionChangedCause.longPress &&
+            !widget.toolbarController.highlighted) {
+          widget.toolbarController.controller.onSelectMessage(
+            widget.pangeaMessageEvent.event,
+          );
+          return;
+        }
+        widget.toolbarController.toolbar?.textSelection
+            .onTextSelection(selection);
+      },
       onTap: () => widget.toolbarController.showToolbar(context),
       focusNode: widget.toolbarController.focusNode,
       contextMenuBuilder: (context, state) =>

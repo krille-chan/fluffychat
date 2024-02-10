@@ -303,9 +303,19 @@ class MessageContent extends StatelessWidget {
                   messageText,
                 );
                 return SelectableLinkify(
-                  onSelectionChanged: (selection, cause) => toolbarController
-                      ?.toolbar?.textSelection
-                      .onTextSelection(selection),
+                  onSelectionChanged: (selection, cause) {
+                    if (cause == SelectionChangedCause.longPress &&
+                        toolbarController != null &&
+                        pangeaMessageEvent != null &&
+                        !(toolbarController!.highlighted)) {
+                      toolbarController!.controller.onSelectMessage(
+                        pangeaMessageEvent!.event,
+                      );
+                      return;
+                    }
+                    toolbarController?.toolbar?.textSelection
+                        .onTextSelection(selection);
+                  },
                   onTap: () => toolbarController?.showToolbar(context),
                   text: toolbarController?.toolbar?.textSelection.messageText ??
                       messageText,
