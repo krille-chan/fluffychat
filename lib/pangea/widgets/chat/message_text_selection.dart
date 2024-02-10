@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MessageTextSelection {
   String? selectedText;
   String messageText = "";
+  final StreamController<String?> selectionStream =
+      StreamController<String?>.broadcast();
 
   void setMessageText(String text) {
     messageText = text;
@@ -21,7 +22,7 @@ class MessageTextSelection {
     if (BrowserContextMenu.enabled && kIsWeb) {
       BrowserContextMenu.disableContextMenu();
     }
-    // selectionStream.add(selectedText);
+    selectionStream.add(selectedText);
   }
 
   void clearTextSelection() {
@@ -29,6 +30,6 @@ class MessageTextSelection {
     if (kIsWeb && !BrowserContextMenu.enabled) {
       BrowserContextMenu.enableContextMenu();
     }
-    // selectionStream.add(selectedText);
+    selectionStream.add(selectedText);
   }
 }
