@@ -146,6 +146,9 @@ flutter:
   assets:
     - assets/
     # #Pangea
+    # uncomment this to enable mobile builds
+    # causes error with github actions
+    # - .env
     - assets/pangea/
     - assets/pangea/bot_faces/
     # Pangea#
