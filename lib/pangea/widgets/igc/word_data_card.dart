@@ -79,6 +79,18 @@ class WordDataCardController extends State<WordDataCard> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant WordDataCard oldWidget) {
+    if (oldWidget.word != widget.word) {
+      if (!widget.hasInfo) {
+        getContextualDefinition();
+      } else {
+        getWordNet();
+      }
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   Future<void> getContextualDefinition() async {
     ContextualDefinitionRequestModel? req;
     try {
@@ -89,7 +101,14 @@ class WordDataCardController extends State<WordDataCard> {
         fullTextLang: widget.fullTextLang,
         wordLang: widget.wordLang,
       );
-      if (mounted) setState(() => isLoadingContextualDefinition = true);
+      if (!mounted) return;
+
+      setState(() {
+        contextualDefinitionRes = null;
+        definitionError = null;
+        isLoadingContextualDefinition = true;
+      });
+
       contextualDefinitionRes = await controller.definitions.get(req);
       if (contextualDefinitionRes == null) {
         definitionError = Exception("Error getting definition");
@@ -159,54 +178,57 @@ class WordDataCardView extends StatelessWidget {
     return Scrollbar(
       thumbVisibility: true,
       controller: scrollController,
-      child: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CardHeader(
-              text: controller.widget.word,
-              botExpression: BotExpression.down,
-            ),
-            if (controller.widget.choiceFeedback != null)
-              Text(
-                controller.widget.choiceFeedback!,
-                style: BotStyle.text(context),
+      child: Expanded(
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CardHeader(
+                text: controller.widget.word,
+                botExpression: BotExpression.down,
               ),
-            const SizedBox(height: 5.0),
-            if (controller.wordData != null && controller.wordNetError == null)
-              WordNetInfo(
-                wordData: controller.wordData!,
-                activeL1: controller.activeL1!,
-                activeL2: controller.activeL2!,
-              ),
-            if (controller.isLoadingWordNet) const PCircular(),
-            const SizedBox(height: 5.0),
-            // if (controller.widget.hasInfo &&
-            //     !controller.isLoadingContextualDefinition &&
-            //     controller.contextualDefinitionRes == null)
-            //   Material(
-            //     type: MaterialType.transparency,
-            //     child: ListTile(
-            //       leading: const BotFace(
-            //           width: 40, expression: BotExpression.surprised),
-            //       title: Text(L10n.of(context)!.askPangeaBot),
-            //       onTap: controller.handleGetDefinitionButtonPress,
-            //     ),
-            //   ),
-            if (controller.isLoadingContextualDefinition) const PCircular(),
-            if (controller.contextualDefinitionRes != null)
-              Text(
-                controller.contextualDefinitionRes!.text,
-                style: BotStyle.text(context),
-              ),
-            if (controller.definitionError != null)
-              Text(
-                L10n.of(context)!.sorryNoResults,
-                style: BotStyle.text(context),
-              ),
-          ],
+              if (controller.widget.choiceFeedback != null)
+                Text(
+                  controller.widget.choiceFeedback!,
+                  style: BotStyle.text(context),
+                ),
+              const SizedBox(height: 5.0),
+              if (controller.wordData != null &&
+                  controller.wordNetError == null)
+                WordNetInfo(
+                  wordData: controller.wordData!,
+                  activeL1: controller.activeL1!,
+                  activeL2: controller.activeL2!,
+                ),
+              if (controller.isLoadingWordNet) const PCircular(),
+              const SizedBox(height: 5.0),
+              // if (controller.widget.hasInfo &&
+              //     !controller.isLoadingContextualDefinition &&
+              //     controller.contextualDefinitionRes == null)
+              //   Material(
+              //     type: MaterialType.transparency,
+              //     child: ListTile(
+              //       leading: const BotFace(
+              //           width: 40, expression: BotExpression.surprised),
+              //       title: Text(L10n.of(context)!.askPangeaBot),
+              //       onTap: controller.handleGetDefinitionButtonPress,
+              //     ),
+              //   ),
+              if (controller.isLoadingContextualDefinition) const PCircular(),
+              if (controller.contextualDefinitionRes != null)
+                Text(
+                  controller.contextualDefinitionRes!.text,
+                  style: BotStyle.text(context),
+                ),
+              if (controller.definitionError != null)
+                Text(
+                  L10n.of(context)!.sorryNoResults,
+                  style: BotStyle.text(context),
+                ),
+            ],
+          ),
         ),
       ),
     );

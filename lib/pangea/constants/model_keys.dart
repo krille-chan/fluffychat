@@ -51,7 +51,7 @@ class ModelKey {
   static const String word = "word";
   static const String lang = "lang";
   static const String deepL = "deepl";
-  static const String langCode = 'langCode';
+  static const String langCode = 'lang_code';
   static const String wordLang = "word_lang";
   static const String lemma = "lemma";
   static const String saveVocab = "save_vocab";
@@ -87,6 +87,8 @@ class ModelKey {
   static const String currentText = "current";
   static const String bestContinuance = "best_continuance";
   static const String feedbackLang = "feedback_lang";
+
+  static const String transcription = "transcription";
 
   // bot options
   static const String languageLevel = "difficulty";

@@ -8,7 +8,6 @@ import Foundation
 import appkit_ui_element_colors
 import audio_session
 import connectivity_plus
-import desktop_drop
 import desktop_lifecycle
 import device_info_plus
 import dynamic_color
@@ -47,7 +46,6 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AppkitUiElementColorsPlugin.register(with: registry.registrar(forPlugin: "AppkitUiElementColorsPlugin"))
   AudioSessionPlugin.register(with: registry.registrar(forPlugin: "AudioSessionPlugin"))
   ConnectivityPlugin.register(with: registry.registrar(forPlugin: "ConnectivityPlugin"))
-  DesktopDropPlugin.register(with: registry.registrar(forPlugin: "DesktopDropPlugin"))
   DesktopLifecyclePlugin.register(with: registry.registrar(forPlugin: "DesktopLifecyclePlugin"))
   DeviceInfoPlusMacosPlugin.register(with: registry.registrar(forPlugin: "DeviceInfoPlusMacosPlugin"))
   DynamicColorPlugin.register(with: registry.registrar(forPlugin: "DynamicColorPlugin"))

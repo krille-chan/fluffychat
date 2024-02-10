@@ -1,12 +1,17 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
+import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -20,14 +25,12 @@ class PangeaMessageEvent {
   late Event _event;
   final Timeline timeline;
   final bool ownMessage;
-  final bool selected;
   bool _isValidPangeaMessageEvent = true;
 
   PangeaMessageEvent({
     required Event event,
     required this.timeline,
     required this.ownMessage,
-    required this.selected,
   }) {
     if (event.type != EventTypes.Message) {
       _isValidPangeaMessageEvent = false;
@@ -41,6 +44,8 @@ class PangeaMessageEvent {
   //the timeline filters the edits and uses the original events
   //so this event will always be the original and the sdk getter body
   //handles getting the latest text from the aggregated events
+  Event get event => _event;
+
   String get body => _event.body;
 
   String get senderId => _event.senderId;
@@ -64,7 +69,7 @@ class PangeaMessageEvent {
           .firstOrNull ??
       _event;
 
-  bool get showRichText {
+  bool showRichText(bool selected) {
     if (!_isValidPangeaMessageEvent) {
       return false;
     }
@@ -78,6 +83,126 @@ class PangeaMessageEvent {
 
     return true;
   }
+
+  //get audio for text and language
+  //if no audio exists, create it
+  //if audio exists, return it
+  Future<Event?> getAudioGlobal(String langCode) async {
+    // try {
+    final String text = representationByLanguage(langCode)?.text ?? body;
+
+    final local = getAudioLocal(langCode, text);
+
+    if (local != null) return Future.value(local);
+
+    final TextToSpeechRequest params = TextToSpeechRequest(
+      text: text,
+      langCode: langCode,
+    );
+
+    final TextToSpeechResponse response =
+        await MatrixState.pangeaController.textToSpeech.get(
+      params,
+    );
+
+    if (response.mediaType != 'audio/ogg') {
+      throw Exception('Unexpected media type: ${response.mediaType}');
+    }
+
+    final audioBytes = base64.decode(response.audioContent);
+
+    if (!TextToSpeechController.isOggFile(audioBytes)) {
+      throw Exception("File is not a valid OGG format");
+    } else {
+      debugPrint("File is a valid OGG format");
+    }
+
+    // from text, trim whitespace, remove special characters, and limit to 20 characters
+    // final fileName =
+    //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
+    final fileName = "audio_for_${eventId}_$langCode";
+
+    final file = MatrixAudioFile(
+      bytes: audioBytes,
+      name: fileName,
+      mimeType: response.mediaType,
+    );
+
+    if (file.mimeType != "audio/ogg") {
+      throw Exception("Unexpected mime type: ${file.mimeType}");
+    }
+
+    try {
+      final String? eventId = await room.sendFileEvent(
+        file,
+        inReplyTo: _event,
+        extraContent: {
+          'info': {
+            ...file.info,
+            'duration': response.durationMillis,
+          },
+          'org.matrix.msc3245.voice': {},
+          'org.matrix.msc1767.audio': {
+            'duration': response.durationMillis,
+            'waveform': response.waveform,
+          },
+          ModelKey.transcription: {
+            ModelKey.text: text,
+            ModelKey.langCode: langCode,
+          },
+        },
+      );
+      // .timeout(
+      //   Durations.long4,
+      //   onTimeout: () {
+      //     debugPrint("timeout in getAudioGlobal");
+      //     return null;
+      //   },
+      // );
+
+      debugPrint("eventId in getAudioGlobal $eventId");
+      return eventId != null ? room.getEventById(eventId) : null;
+    } catch (err) {
+      debugPrint("error in getAudioGlobal");
+      debugger(when: kDebugMode);
+      return null;
+    }
+  }
+
+  Event? getAudioLocal(String langCode, String text) {
+    return allAudio.firstWhereOrNull(
+      (element) {
+        // Safely access the transcription map
+        final transcription = element.content.tryGetMap(ModelKey.transcription);
+
+        // return transcription != null;
+        if (transcription == null) {
+          // If transcription is null, this element does not match.
+          return false;
+        }
+
+        // Safely get language code and text from the transcription
+        final elementLangCode = transcription[ModelKey.langCode];
+        final elementText = transcription[ModelKey.text];
+
+        // Check if both language code and text matsch
+        return elementLangCode == langCode && elementText == text;
+      },
+    );
+  }
+
+  // get audio events that are related to this event
+  Set<Event> get allAudio => _latestEdit
+          .aggregatedEvents(
+        timeline,
+        RelationshipTypes.reply,
+      )
+          .where((element) {
+        return element.content.tryGet<Map<String, dynamic>>(
+              ModelKey.transcription,
+            ) !=
+            null;
+      }).toSet();
 
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {
@@ -186,11 +311,6 @@ class PangeaMessageEvent {
 
     RepresentationEvent? rep = representationByLanguage(langCode);
 
-    //if event is less than 1 minute old, then print new event
-    // if (isNew) {
-    //   debugger(when: kDebugMode);
-    // }
-
     while ((isNew || eventId.contains("web")) && tries < 20) {
       if (rep != null) return rep;
       await Future.delayed(const Duration(milliseconds: 500));
@@ -269,14 +389,55 @@ class PangeaMessageEvent {
       !room.isUserSpaceAdmin(_event.senderId) &&
       _event.messageType != PangeaMessageTypes.report;
 
+  String get messageDisplayLangCode {
+    final bool immersionMode = MatrixState
+        .pangeaController.permissionsController
+        .isToolEnabled(ToolSetting.immersionMode, room);
+    final String? l2Code = MatrixState.pangeaController.languageController
+        .activeL2Code(roomID: room.id);
+
+    final String? langCode = immersionMode ? l2Code : originalWritten?.langCode;
+    return langCode ?? LanguageKeys.unknownLanguage;
+  }
+
+  RepresentationEvent? _displayRepresentation;
+
+  RepresentationEvent? displayRepresentation(String langCode) =>
+      _displayRepresentation;
+
+  Future<void> setDisplayRepresentation(
+    BuildContext context,
+  ) async {
+    if (messageDisplayLangCode == LanguageKeys.unknownLanguage ||
+        _displayRepresentation != null) {
+      return;
+    }
+    _displayRepresentation = representationByLanguage(messageDisplayLangCode);
+    if (_displayRepresentation != null) return;
+
+    try {
+      _displayRepresentation = await representationByLanguageGlobal(
+        context: context,
+        langCode: messageDisplayLangCode,
+      );
+      return;
+    } catch (err, s) {
+      ErrorHandler.logError(
+        m: "error in getDisplayRepresentation",
+        e: err,
+        s: s,
+      );
+    }
+  }
+
   // List<SpanData> get activities =>
   //each match is turned into an activity that other students can access
   //they're not told the answer but have to find it themselves
   //the message has a blank piece which they fill in themselves
 
   // replication of logic from message_content.dart
-  bool get isHtml =>
-      AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
+  // bool get isHtml =>
+  //     AppConfig.renderHtml && !_event.redacted && _event.isRichMessage;
 }
 
 class URLFinder {

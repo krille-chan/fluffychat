@@ -15,11 +15,16 @@ class OverlayUtil {
   static showOverlay({
     required BuildContext context,
     required Widget child,
-    required Size size,
     required String transformTargetId,
+    // Size? size,
+    double? width,
+    double? height,
     Offset? offset,
     backDropToDismiss = true,
     Color? borderColor,
+    Color? backgroundColor,
+    Alignment? targetAnchor,
+    Alignment? followerAnchor,
   }) {
     try {
       MatrixState.pAnyState.closeOverlay();
@@ -27,29 +32,29 @@ class OverlayUtil {
           MatrixState.pAnyState.layerLinkAndKey(transformTargetId);
 
       final OverlayEntry entry = OverlayEntry(
-        builder: (context) => Stack(
-          children: [
-            // GestureDetector to detect when dismissed by clicking outside
-            Positioned.fill(
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  MatrixState.pAnyState.closeOverlay();
-                },
+        builder: (context) => AnimatedContainer(
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          child: Stack(
+            children: [
+              if (backDropToDismiss)
+                TransparentBackdrop(
+                  backgroundColor: backgroundColor,
+                ),
+              Positioned(
+                width: width,
+                height: height,
+                child: CompositedTransformFollower(
+                  targetAnchor: targetAnchor ?? Alignment.topLeft,
+                  followerAnchor: followerAnchor ?? Alignment.topLeft,
+                  link: layerLinkAndKey.link,
+                  showWhenUnlinked: false,
+                  offset: offset ?? Offset.zero,
+                  child: child,
+                ),
               ),
-            ),
-            if (backDropToDismiss) const TransparentBackdrop(),
-            Positioned(
-              width: size.width,
-              height: size.height,
-              child: CompositedTransformFollower(
-                link: layerLinkAndKey.link,
-                showWhenUnlinked: false,
-                offset: offset ?? Offset.zero,
-                child: child,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 
@@ -90,7 +95,8 @@ class OverlayUtil {
       showOverlay(
         context: context,
         child: child,
-        size: cardSize,
+        width: cardSize.width,
+        height: cardSize.height,
         transformTargetId: transformTargetId,
         offset: cardOffset,
         backDropToDismiss: backDropToDismiss,
@@ -174,15 +180,17 @@ class OverlayUtil {
 }
 
 class TransparentBackdrop extends StatelessWidget {
+  final Color? backgroundColor;
   const TransparentBackdrop({
     super.key,
+    this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return Material(
       borderOnForeground: false,
-      color: Colors.transparent,
+      color: backgroundColor ?? Colors.transparent,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         hoverColor: Colors.transparent,

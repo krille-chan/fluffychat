@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class GetChatListItemSubtitle {
@@ -31,13 +30,17 @@ class GetChatListItemSubtitle {
       );
     }
 
+    String? eventContextId = event.eventId;
+    if (!event.eventId.isValidMatrixId || event.eventId.sigil != '\$') {
+      eventContextId = null;
+    }
     final Timeline timeline =
-        await event.room.getTimeline(eventContextId: event.eventId);
+        await event.room.getTimeline(eventContextId: eventContextId);
+
     final PangeaMessageEvent pangeaMessageEvent = PangeaMessageEvent(
       event: event,
       timeline: timeline,
       ownMessage: false,
-      selected: false,
     );
     final l2Code =
         pangeaController.languageController.activeL2Code(roomID: event.roomId);

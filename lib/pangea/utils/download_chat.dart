@@ -136,7 +136,6 @@ List<PangeaMessageEvent> getPangeaMessageEvents(
           event: message,
           timeline: timeline,
           ownMessage: false,
-          selected: false,
         ),
       )
       .cast<PangeaMessageEvent>()

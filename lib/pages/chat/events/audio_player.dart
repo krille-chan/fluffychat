@@ -1,15 +1,16 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/utils/error_reporter.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
@@ -80,6 +81,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       });
       _playAction();
     } catch (e, s) {
+      // #Pangea
+      debugger();
+      // Pangea#
       Logs().v('Could not download audio file', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -132,7 +136,30 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (audioFile != null) {
       audioPlayer.setFilePath(audioFile.path);
     } else {
-      await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
+      // #Pangea
+      final data = matrixFile!.bytes;
+      final mimeType = matrixFile!.mimeType;
+      //shouldn't have to be settting this here
+      //TODO: figure out why this is necessary
+      matrixFile = MatrixAudioFile(
+        bytes: matrixFile!.bytes,
+        name: matrixFile!.name,
+        mimeType: "audio/ogg",
+      );
+      debugPrint("audioType is $mimeType");
+      if (!TextToSpeechController.isOggFile(matrixFile!.bytes)) {
+        debugger(when: kDebugMode);
+      } else {
+        debugPrint("still an ogg file!");
+      }
+      try {
+        // Pangea#
+        await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
+        // #Pangea
+      } catch (e, s) {
+        debugger(when: kDebugMode);
+      }
+      // Pangea#
     }
     audioPlayer.play().onError(
           ErrorReporter(context, 'Unable to play audio message')

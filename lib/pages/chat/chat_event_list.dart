@@ -27,6 +27,7 @@ class ChatEventList extends StatelessWidget {
     final events = controller.timeline!.events
         .where((event) => event.isVisibleInGui)
         .toList();
+
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
@@ -148,11 +149,12 @@ class ChatEventList extends StatelessWidget {
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
                 // #Pangea
-                // longPressSelect: controller.selectedEvents.isEmpty,
+                longPressSelect: controller.selectedEvents.isNotEmpty,
                 selectedDisplayLang:
                     controller.choreographer.messageOptions.selectedDisplayLang,
                 immersionMode: controller.choreographer.immersionMode,
                 definitions: controller.choreographer.definitionsEnabled,
+                controller: controller,
                 // Pangea#
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),

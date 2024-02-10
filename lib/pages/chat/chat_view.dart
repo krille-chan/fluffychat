@@ -1,5 +1,4 @@
 import 'package:badges/badges.dart';
-import 'package:desktop_drop/desktop_drop.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -36,9 +35,6 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
-// #Pangea
-        LanguageDisplayToggle(controller: controller),
-        // Pangea#
         if (controller.canEditSelectedEvents)
           IconButton(
             icon: const Icon(Icons.edit_outlined),
@@ -229,199 +225,199 @@ class ChatView extends StatelessWidget {
                                   : null)
                       // #Pangea
                       : null,
-                  body: DropTarget(
-                    onDragDone: controller.onDragDone,
-                    onDragEntered: controller.onDragEntered,
-                    onDragExited: controller.onDragExited,
-                    child: Stack(
-                      children: <Widget>[
-                        SafeArea(
-                          child: Column(
-                            children: <Widget>[
-                              TombstoneDisplay(controller),
-                              if (scrollUpBannerEventId != null)
-                                Material(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceVariant,
-                                  shape: Border(
-                                    bottom: BorderSide(
-                                      width: 1,
-                                      color: Theme.of(context).dividerColor,
-                                    ),
-                                  ),
-                                  child: ListTile(
-                                    leading: IconButton(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                      icon: const Icon(Icons.close),
-                                      tooltip: L10n.of(context)!.close,
-                                      onPressed: () {
-                                        controller
-                                            .discardScrollUpBannerEventId();
-                                        controller.setReadMarker();
-                                      },
-                                    ),
-                                    title: Text(
-                                      L10n.of(context)!.jumpToLastReadMessage,
-                                    ),
-                                    contentPadding:
-                                        const EdgeInsets.only(left: 8),
-                                    trailing: TextButton(
-                                      onPressed: () {
-                                        controller.scrollToEventId(
-                                          scrollUpBannerEventId,
-                                        );
-                                        controller
-                                            .discardScrollUpBannerEventId();
-                                      },
-                                      child: Text(L10n.of(context)!.jump),
-                                    ),
+                  body:
+                      // #Pangea
+                      // DropTarget(
+                      //   onDragDone: controller.onDragDone,
+                      //   onDragEntered: controller.onDragEntered,
+                      //   onDragExited: controller.onDragExited,
+                      //   child:
+                      // Pangea#
+                      Stack(
+                    children: <Widget>[
+                      SafeArea(
+                        child: Column(
+                          children: <Widget>[
+                            TombstoneDisplay(controller),
+                            if (scrollUpBannerEventId != null)
+                              Material(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                                shape: Border(
+                                  bottom: BorderSide(
+                                    width: 1,
+                                    color: Theme.of(context).dividerColor,
                                   ),
                                 ),
-                              PinnedEvents(controller),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: controller.clearSingleSelectedEvent,
-                                  child: Builder(
-                                    builder: (context) {
-                                      if (controller.timeline == null) {
-                                        return const Center(
-                                          child: CircularProgressIndicator
-                                              .adaptive(
-                                            strokeWidth: 2,
-                                          ),
-                                        );
-                                      }
-                                      return ChatEventList(
-                                        controller: controller,
-                                      );
+                                child: ListTile(
+                                  leading: IconButton(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    icon: const Icon(Icons.close),
+                                    tooltip: L10n.of(context)!.close,
+                                    onPressed: () {
+                                      controller.discardScrollUpBannerEventId();
+                                      controller.setReadMarker();
                                     },
+                                  ),
+                                  title: Text(
+                                    L10n.of(context)!.jumpToLastReadMessage,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 8),
+                                  trailing: TextButton(
+                                    onPressed: () {
+                                      controller.scrollToEventId(
+                                        scrollUpBannerEventId,
+                                      );
+                                      controller.discardScrollUpBannerEventId();
+                                    },
+                                    child: Text(L10n.of(context)!.jump),
                                   ),
                                 ),
                               ),
-                              if (controller.room.canSendDefaultMessages &&
-                                  controller.room.membership == Membership.join)
-                                // #Pangea
-                                // Container(
-                                ConditionalFlexible(
+                            PinnedEvents(controller),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: controller.clearSingleSelectedEvent,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (controller.timeline == null) {
+                                      return const Center(
+                                        child:
+                                            CircularProgressIndicator.adaptive(
+                                          strokeWidth: 2,
+                                        ),
+                                      );
+                                    }
+                                    return ChatEventList(
+                                      controller: controller,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            if (controller.room.canSendDefaultMessages &&
+                                controller.room.membership == Membership.join)
+                              // #Pangea
+                              // Container(
+                              ConditionalFlexible(
+                                isScroll: controller.isRowScrollable,
+                                child: ConditionalScroll(
                                   isScroll: controller.isRowScrollable,
-                                  child: ConditionalScroll(
-                                    isScroll: controller.isRowScrollable,
-                                    child: MeasurableWidget(
-                                      onChange: (size, position) {
-                                        controller.inputRowSize = size!.height;
-                                      },
-                                      child: Container(
-                                        // Pangea#
-                                        margin: EdgeInsets.only(
-                                          bottom: bottomSheetPadding,
-                                          left: bottomSheetPadding,
-                                          right: bottomSheetPadding,
-                                        ),
-                                        constraints: const BoxConstraints(
-                                          maxWidth:
-                                              FluffyThemes.columnWidth * 2.5,
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Material(
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(
-                                              AppConfig.borderRadius,
-                                            ),
-                                            bottomRight: Radius.circular(
-                                              AppConfig.borderRadius,
-                                            ),
+                                  child: MeasurableWidget(
+                                    onChange: (size, position) {
+                                      controller.inputRowSize = size!.height;
+                                    },
+                                    child: Container(
+                                      // Pangea#
+                                      margin: EdgeInsets.only(
+                                        bottom: bottomSheetPadding,
+                                        left: bottomSheetPadding,
+                                        right: bottomSheetPadding,
+                                      ),
+                                      constraints: const BoxConstraints(
+                                        maxWidth:
+                                            FluffyThemes.columnWidth * 2.5,
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Material(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(
+                                            AppConfig.borderRadius,
                                           ),
-                                          elevation: 4,
-                                          shadowColor:
-                                              Colors.black.withAlpha(64),
-                                          clipBehavior: Clip.hardEdge,
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.light
-                                              ? Colors.white
-                                              : Colors.black,
-                                          child: controller
-                                                      .room.isAbandonedDMRoom ==
-                                                  true
-                                              ? Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    TextButton.icon(
-                                                      style:
-                                                          TextButton.styleFrom(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(16),
-                                                        foregroundColor:
-                                                            Theme.of(context)
-                                                                .colorScheme
-                                                                .error,
-                                                      ),
-                                                      icon: const Icon(
-                                                        Icons.archive_outlined,
-                                                      ),
-                                                      onPressed:
-                                                          controller.leaveChat,
-                                                      label: Text(
-                                                        L10n.of(context)!.leave,
-                                                      ),
-                                                    ),
-                                                    TextButton.icon(
-                                                      style:
-                                                          TextButton.styleFrom(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(16),
-                                                      ),
-                                                      icon: const Icon(
-                                                        Icons.forum_outlined,
-                                                      ),
-                                                      onPressed: controller
-                                                          .recreateChat,
-                                                      label: Text(
-                                                        L10n.of(context)!
-                                                            .reopenChat,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                              : Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    const ConnectionStatusHeader(),
-                                                    ReactionsPicker(controller),
-                                                    ReplyDisplay(controller),
-                                                    ChatInputRow(controller),
-                                                    ChatEmojiPicker(controller),
-                                                  ],
-                                                ),
+                                          bottomRight: Radius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
                                         ),
+                                        elevation: 4,
+                                        shadowColor: Colors.black.withAlpha(64),
+                                        clipBehavior: Clip.hardEdge,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                        child: controller
+                                                    .room.isAbandonedDMRoom ==
+                                                true
+                                            ? Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  TextButton.icon(
+                                                    style: TextButton.styleFrom(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16),
+                                                      foregroundColor:
+                                                          Theme.of(context)
+                                                              .colorScheme
+                                                              .error,
+                                                    ),
+                                                    icon: const Icon(
+                                                      Icons.archive_outlined,
+                                                    ),
+                                                    onPressed:
+                                                        controller.leaveChat,
+                                                    label: Text(
+                                                      L10n.of(context)!.leave,
+                                                    ),
+                                                  ),
+                                                  TextButton.icon(
+                                                    style: TextButton.styleFrom(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16),
+                                                    ),
+                                                    icon: const Icon(
+                                                      Icons.forum_outlined,
+                                                    ),
+                                                    onPressed:
+                                                        controller.recreateChat,
+                                                    label: Text(
+                                                      L10n.of(context)!
+                                                          .reopenChat,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            : Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const ConnectionStatusHeader(),
+                                                  ReactionsPicker(controller),
+                                                  ReplyDisplay(controller),
+                                                  ChatInputRow(controller),
+                                                  ChatEmojiPicker(controller),
+                                                ],
+                                              ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              if (controller.dragging)
-                                Container(
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor
-                                      .withOpacity(0.9),
-                                  alignment: Alignment.center,
-                                  child: const Icon(
-                                    Icons.upload_outlined,
-                                    size: 100,
-                                  ),
-                                ),
-                            ],
-                          ),
+                              ),
+                            // #Pangea
+                            // if (controller.dragging)
+                            //   Container(
+                            //     color: Theme.of(context)
+                            //         .scaffoldBackgroundColor
+                            //         .withOpacity(0.9),
+                            //     alignment: Alignment.center,
+                            //     child: const Icon(
+                            //       Icons.upload_outlined,
+                            //       size: 100,
+                            //     ),
+                            //   ),
+                            // Pangea#
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                  // ),
                 );
               },
             ),

@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/permissions_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
@@ -44,6 +45,7 @@ class PangeaController {
   late ITFeedbackController itFeedback;
   late InstructionsController instructions;
   late SubscriptionController subscriptionController;
+  late TextToSpeechController textToSpeech;
 
   ///store Services
   late PLocalStore pStoreService;
@@ -89,6 +91,7 @@ class PangeaController {
     instructions = InstructionsController(this);
     subscriptionController = SubscriptionController(this);
     itFeedback = ITFeedbackController(this);
+    textToSpeech = TextToSpeechController(this);
     PAuthGaurd.pController = this;
   }
 

@@ -1,14 +1,13 @@
 import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
-import 'package:fluffychat/pangea/utils/show_defintion_util.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -31,27 +30,24 @@ class MessageContent extends StatelessWidget {
   final BorderRadius borderRadius;
   // #Pangea
   final bool selected;
-  final PangeaMessageEvent pangeaMessageEvent;
+  final PangeaMessageEvent? pangeaMessageEvent;
   //question: are there any performance benefits to using booleans
   //here rather than passing the choreographer? pangea rich text, a widget
   //further down in the chain is also using pangeaController so its not constant
-  final LanguageModel? selectedDisplayLang;
   final bool immersionMode;
-  final bool definitions;
-  ShowDefintionUtil? messageToolbar;
+  final ToolbarDisplayController? toolbarController;
   // Pangea#
 
-  MessageContent(
+  const MessageContent(
     this.event, {
     this.onInfoTab,
     super.key,
     required this.textColor,
     // #Pangea
     required this.selected,
-    required this.pangeaMessageEvent,
-    required this.selectedDisplayLang,
+    this.pangeaMessageEvent,
     required this.immersionMode,
-    required this.definitions,
+    required this.toolbarController,
     // Pangea#
     required this.borderRadius,
   });
@@ -124,18 +120,6 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // #Pangea
-    messageToolbar = ShowDefintionUtil(
-      targetId: pangeaMessageEvent.eventId,
-      room: pangeaMessageEvent.room,
-      langCode: selectedDisplayLang?.langCode ??
-          MatrixState.pangeaController.languageController.activeL2Code(
-            roomID: pangeaMessageEvent.room.id,
-          ) ??
-          LanguageModel.unknown.langCode,
-      messageText: "",
-    );
-    // Pangea#
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
@@ -186,21 +170,17 @@ class MessageContent extends StatelessWidget {
                     event.isRichMessage
                     // #Pangea
                     &&
-                    !pangeaMessageEvent.showRichText
+                    !(pangeaMessageEvent?.showRichText(selected) ?? false)
                 // Pangea#
                 ) {
               var html = event.formattedText;
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
               }
-              // #Pangea
-              messageToolbar?.messageText = html;
-              // Pangea#
               return HtmlMessage(
                 html: html,
                 textColor: textColor,
                 room: event.room,
-                messageToolbar: messageToolbar,
               );
             }
             // else we fall through to the normal message rendering
@@ -286,84 +266,95 @@ class MessageContent extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
-            if (pangeaMessageEvent.showRichText) {
-              return MouseRegion(
-                onHover: messageToolbar?.onMouseRegionUpdate,
-                child: PangeaRichText(
-                  style: messageTextStyle,
-                  selected: selected,
-                  pangeaMessageEvent: pangeaMessageEvent,
-                  immersionMode: immersionMode,
-                  definitions: definitions,
-                  selectedDisplayLang: selectedDisplayLang,
-                  messageToolbar: messageToolbar,
-                ),
+            if (pangeaMessageEvent?.showRichText(selected) ?? false) {
+              return PangeaRichText(
+                style: messageTextStyle,
+                pangeaMessageEvent: pangeaMessageEvent!,
+                immersionMode: immersionMode,
+                toolbarController: toolbarController!,
               );
             }
-            return MouseRegion(
-              onHover: messageToolbar?.onMouseRegionUpdate,
-              child: FutureBuilder<String>(
-                // Pangea#
-                future: event.calcLocalizedBody(
-                  MatrixLocals(L10n.of(context)!),
-                  hideReply: true,
-                ),
-                builder: (context, snapshot) {
-                  // #Pangea
-                  if (!snapshot.hasData) {
-                    return Text(
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                        hideReply: true,
-                      ),
-                      style: messageTextStyle,
-                    );
-                  }
-                  // return Linkify(
-                  final String messageText = snapshot.data ??
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                        hideReply: true,
-                      );
-                  messageToolbar?.messageText = messageText;
-                  return SelectableLinkify(
-                    // Pangea#
-                    text: messageText,
-                    focusNode: messageToolbar?.focusNode,
-                    contextMenuBuilder: (context, state) =>
-                        messageToolbar?.contextMenuOverride(
-                          context: context,
-                          textSelection: state,
-                        ) ??
-                        const SizedBox(),
-                    // text: snapshot.data ??
-                    //     event.calcLocalizedBodyFallback(
-                    //       MatrixLocals(L10n.of(context)!),
-                    //       hideReply: true,
-                    //     ),
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                      decoration:
-                          event.redacted ? TextDecoration.lineThrough : null,
-                    ),
-                    options: const LinkifyOptions(humanize: false),
-                    linkStyle: TextStyle(
-                      color: textColor.withAlpha(150),
-                      fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                      decoration: TextDecoration.underline,
-                      decorationColor: textColor.withAlpha(150),
-                    ),
-                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                    onSelectionChanged: (selection, cause) =>
-                        messageToolbar?.onTextSelection(
-                      selectedText: selection,
-                      cause: cause,
-                      context: context,
-                    ),
-                  );
-                },
+            // Pangea#
+            return FutureBuilder<String>(
+              future: event.calcLocalizedBody(
+                MatrixLocals(L10n.of(context)!),
+                hideReply: true,
               ),
+              builder: (context, snapshot) {
+                // #Pangea
+                if (!snapshot.hasData) {
+                  return Text(
+                    // Pangea#
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                      hideReply: true,
+                    ),
+                    // #Pangea
+                    style: messageTextStyle,
+                  );
+                }
+                // return Linkify(
+                final String messageText = snapshot.data ??
+                    event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)!),
+                      hideReply: true,
+                    );
+                toolbarController?.toolbar?.textSelection.setMessageText(
+                  messageText,
+                );
+                return SelectableLinkify(
+                  onSelectionChanged: (selection, cause) {
+                    if (cause == SelectionChangedCause.longPress &&
+                        toolbarController != null &&
+                        pangeaMessageEvent != null &&
+                        !(toolbarController!.highlighted)) {
+                      toolbarController!.controller.onSelectMessage(
+                        pangeaMessageEvent!.event,
+                      );
+                      return;
+                    }
+                    toolbarController?.toolbar?.textSelection
+                        .onTextSelection(selection);
+                  },
+                  onTap: () => toolbarController?.showToolbar(context),
+                  text: toolbarController?.toolbar?.textSelection.messageText ??
+                      messageText,
+                  focusNode: toolbarController?.focusNode,
+                  contextMenuBuilder: (context, state) =>
+                      MessageContextMenu.contextMenuOverride(
+                    context: context,
+                    textSelection: state,
+                    onDefine: () => toolbarController?.showToolbar(
+                      context,
+                      mode: MessageMode.definition,
+                    ),
+                    onListen: () => toolbarController?.showToolbar(
+                      context,
+                      mode: MessageMode.play,
+                    ),
+                  ),
+                  // text: snapshot.data ??
+                  //     event.calcLocalizedBodyFallback(
+                  //       MatrixLocals(L10n.of(context)!),
+                  //       hideReply: true,
+                  //     ),
+                  // Pangea#
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                    decoration:
+                        event.redacted ? TextDecoration.lineThrough : null,
+                  ),
+                  options: const LinkifyOptions(humanize: false),
+                  linkStyle: TextStyle(
+                    color: textColor.withAlpha(150),
+                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                    decoration: TextDecoration.underline,
+                    decorationColor: textColor.withAlpha(150),
+                  ),
+                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                );
+              },
             );
         }
       case EventTypes.CallInvite:

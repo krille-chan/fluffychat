@@ -14,7 +14,7 @@ class ITRepo {
     CustomInputRequestModel initalText,
   ) async {
     final Requests req = Requests(
-      baseUrl: PApiUrls.choreoBaseApi,
+      baseUrl: Environment.choreoApi,
       choreoApiKey: Environment.choreoApiKey,
     );
     final Response res =
@@ -29,7 +29,7 @@ class ITRepo {
     SystemChoiceRequestModel subseqText,
   ) async {
     final Requests req = Requests(
-      baseUrl: PApiUrls.choreoBaseApi,
+      baseUrl: Environment.choreoApi,
       choreoApiKey: Environment.choreoApiKey,
     );
 

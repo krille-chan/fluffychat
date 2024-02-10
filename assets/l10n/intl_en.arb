@@ -3795,6 +3795,7 @@
     "successfullySubscribed": "You have successfully subscribed!",
     "clickToManageSubscription": "Click here to manage your subscription.",
     "emptyInviteWarning": "Add this chat to a class or exchange to invite other users.",
+    "errorGettingAudio": "Error getting audio. Please refresh and try again.",
     "nothingFound": "Nothing found...",
     "groupName": "Group name",
     "createGroupAndInviteUsers": "Create a group and invite users",
@@ -3873,6 +3874,8 @@
         "type": "text",
         "placeholders": {}
     },
+    "define": "Define",
+    "listen": "Listen",
     "addConversationBot": "Enable Conversation Bot",
     "addConversationBotDesc": "Add a bot to this group chat that will ask questions on a specific topic",
     "convoBotSettingsTitle": "Conversation Bot Settings",

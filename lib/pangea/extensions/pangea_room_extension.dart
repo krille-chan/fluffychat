@@ -563,7 +563,6 @@ extension PangeaRoom on Room {
               event: event,
               timeline: timeline,
               ownMessage: true,
-              selected: false,
             );
             msgs.add(
               RecentMessageRecord(
@@ -614,10 +613,11 @@ extension PangeaRoom on Room {
 
       if (newEventId == null) {
         debugger(when: kDebugMode);
+        return null;
       }
 
       //PTODO - handle the frequent case of a null newEventId
-      final Event? newEvent = await getEventById(newEventId!);
+      final Event? newEvent = await getEventById(newEventId);
 
       if (newEvent == null) {
         debugger(when: kDebugMode);
@@ -625,7 +625,7 @@ extension PangeaRoom on Room {
 
       return newEvent;
     } catch (err, stack) {
-      debugger(when: kDebugMode);
+      // debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: err,
         s: stack,
