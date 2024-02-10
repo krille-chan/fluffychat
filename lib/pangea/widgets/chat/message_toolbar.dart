@@ -18,7 +18,6 @@ import 'package:matrix/matrix.dart';
 enum MessageMode { translation, play, definition }
 
 class ToolbarDisplayController {
-  final FocusNode focusNode = FocusNode();
   final PangeaMessageEvent pangeaMessageEvent;
   final String targetId;
   final bool immersionMode;
@@ -46,14 +45,6 @@ class ToolbarDisplayController {
       immersionMode: immersionMode,
       controller: controller,
     );
-
-    final LayerLinkAndKey layerLinkAndKey =
-        MatrixState.pAnyState.layerLinkAndKey(targetId);
-    final targetRenderBox =
-        layerLinkAndKey.key.currentContext?.findRenderObject();
-    if (targetRenderBox == null) return;
-    final Size transformTargetSize = (targetRenderBox as RenderBox).size;
-    messageWidth = transformTargetSize.width;
   }
 
   void showToolbar(BuildContext context, {MessageMode? mode}) {
@@ -61,7 +52,18 @@ class ToolbarDisplayController {
     if (controller.selectMode) {
       controller.clearSelectedEvents();
     }
-    focusNode.unfocus();
+    // focusNode.unfocus();
+    FocusScope.of(context).unfocus();
+
+    final LayerLinkAndKey layerLinkAndKey =
+        MatrixState.pAnyState.layerLinkAndKey(targetId);
+    final targetRenderBox =
+        layerLinkAndKey.key.currentContext?.findRenderObject();
+    if (targetRenderBox != null) {
+      final Size transformTargetSize = (targetRenderBox as RenderBox).size;
+      messageWidth = transformTargetSize.width;
+    }
+
     Widget overlayEntry;
     try {
       overlayEntry = Column(
@@ -162,8 +164,8 @@ class MessageToolbarState extends State<MessageToolbar> {
       case MessageMode.play:
         return true;
       case MessageMode.definition:
-        // return widget.textSelection.selectedText != null;
-        return true;
+        return widget.textSelection.selectedText != null;
+      // return true;
       default:
         return false;
     }

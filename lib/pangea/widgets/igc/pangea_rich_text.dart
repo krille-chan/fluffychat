@@ -97,7 +97,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
     final Widget richText = SelectableText.rich(
       onSelectionChanged: (selection, cause) {
         if (cause == SelectionChangedCause.longPress &&
-            !widget.toolbarController.highlighted) {
+            !widget.toolbarController.highlighted &&
+            !widget.toolbarController.controller.selectedEvents.any(
+              (e) => e.eventId == widget.pangeaMessageEvent.eventId,
+            )) {
           widget.toolbarController.controller.onSelectMessage(
             widget.pangeaMessageEvent.event,
           );
@@ -107,20 +110,21 @@ class PangeaRichTextState extends State<PangeaRichText> {
             .onTextSelection(selection);
       },
       onTap: () => widget.toolbarController.showToolbar(context),
-      focusNode: widget.toolbarController.focusNode,
       contextMenuBuilder: (context, state) =>
-          MessageContextMenu.contextMenuOverride(
-        context: context,
-        textSelection: state,
-        onDefine: () => widget.toolbarController.showToolbar(
-          context,
-          mode: MessageMode.definition,
-        ),
-        onListen: () => widget.toolbarController.showToolbar(
-          context,
-          mode: MessageMode.play,
-        ),
-      ),
+          widget.toolbarController.highlighted
+              ? const SizedBox.shrink()
+              : MessageContextMenu.contextMenuOverride(
+                  context: context,
+                  textSelection: state,
+                  onDefine: () => widget.toolbarController.showToolbar(
+                    context,
+                    mode: MessageMode.definition,
+                  ),
+                  onListen: () => widget.toolbarController.showToolbar(
+                    context,
+                    mode: MessageMode.play,
+                  ),
+                ),
       TextSpan(
         text: textSpan,
         style: widget.style,
