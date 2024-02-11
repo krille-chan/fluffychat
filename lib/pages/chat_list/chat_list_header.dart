@@ -147,8 +147,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     tooltip: L10n.of(context)!.toggleFavorite,
                     icon: Icon(
                       controller.anySelectedRoomNotFavorite
-                          ? Icons.push_pin_outlined
-                          : Icons.push_pin,
+                          ? Icons.push_pin
+                          : Icons.push_pin_outlined,
                     ),
                     onPressed: controller.toggleFavouriteRoom,
                   ),
