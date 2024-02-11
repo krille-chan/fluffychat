@@ -1,12 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -18,6 +11,12 @@ import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../models/word_data_model.dart';
 import '../flag.dart';
 import 'card_error_widget.dart';
@@ -178,57 +177,54 @@ class WordDataCardView extends StatelessWidget {
     return Scrollbar(
       thumbVisibility: true,
       controller: scrollController,
-      child: Expanded(
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CardHeader(
-                text: controller.widget.word,
-                botExpression: BotExpression.down,
+      child: SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CardHeader(
+              text: controller.widget.word,
+              botExpression: BotExpression.down,
+            ),
+            if (controller.widget.choiceFeedback != null)
+              Text(
+                controller.widget.choiceFeedback!,
+                style: BotStyle.text(context),
               ),
-              if (controller.widget.choiceFeedback != null)
-                Text(
-                  controller.widget.choiceFeedback!,
-                  style: BotStyle.text(context),
-                ),
-              const SizedBox(height: 5.0),
-              if (controller.wordData != null &&
-                  controller.wordNetError == null)
-                WordNetInfo(
-                  wordData: controller.wordData!,
-                  activeL1: controller.activeL1!,
-                  activeL2: controller.activeL2!,
-                ),
-              if (controller.isLoadingWordNet) const PCircular(),
-              const SizedBox(height: 5.0),
-              // if (controller.widget.hasInfo &&
-              //     !controller.isLoadingContextualDefinition &&
-              //     controller.contextualDefinitionRes == null)
-              //   Material(
-              //     type: MaterialType.transparency,
-              //     child: ListTile(
-              //       leading: const BotFace(
-              //           width: 40, expression: BotExpression.surprised),
-              //       title: Text(L10n.of(context)!.askPangeaBot),
-              //       onTap: controller.handleGetDefinitionButtonPress,
-              //     ),
-              //   ),
-              if (controller.isLoadingContextualDefinition) const PCircular(),
-              if (controller.contextualDefinitionRes != null)
-                Text(
-                  controller.contextualDefinitionRes!.text,
-                  style: BotStyle.text(context),
-                ),
-              if (controller.definitionError != null)
-                Text(
-                  L10n.of(context)!.sorryNoResults,
-                  style: BotStyle.text(context),
-                ),
-            ],
-          ),
+            const SizedBox(height: 5.0),
+            if (controller.wordData != null && controller.wordNetError == null)
+              WordNetInfo(
+                wordData: controller.wordData!,
+                activeL1: controller.activeL1!,
+                activeL2: controller.activeL2!,
+              ),
+            if (controller.isLoadingWordNet) const PCircular(),
+            const SizedBox(height: 5.0),
+            // if (controller.widget.hasInfo &&
+            //     !controller.isLoadingContextualDefinition &&
+            //     controller.contextualDefinitionRes == null)
+            //   Material(
+            //     type: MaterialType.transparency,
+            //     child: ListTile(
+            //       leading: const BotFace(
+            //           width: 40, expression: BotExpression.surprised),
+            //       title: Text(L10n.of(context)!.askPangeaBot),
+            //       onTap: controller.handleGetDefinitionButtonPress,
+            //     ),
+            //   ),
+            if (controller.isLoadingContextualDefinition) const PCircular(),
+            if (controller.contextualDefinitionRes != null)
+              Text(
+                controller.contextualDefinitionRes!.text,
+                style: BotStyle.text(context),
+              ),
+            if (controller.definitionError != null)
+              Text(
+                L10n.of(context)!.sorryNoResults,
+                style: BotStyle.text(context),
+              ),
+          ],
         ),
       ),
     );
