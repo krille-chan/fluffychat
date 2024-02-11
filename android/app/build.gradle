@@ -79,6 +79,10 @@ android {
         pickFirst 'lib/armeabi-v7a/libc++_shared.so'
         pickFirst 'lib/arm64-v8a/libc++_shared.so'
     }
+    // https://developer.android.com/guide/topics/resources/app-languages
+    androidResources {
+        generateLocaleConfig true
+    }
 }
 
 flutter {
