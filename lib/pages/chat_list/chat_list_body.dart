@@ -134,8 +134,11 @@ class ChatListViewBody extends StatelessWidget {
                       if (!controller.isSearchMode &&
                           controller.activeFilter != ActiveFilter.groups &&
                           AppConfig.showPresences)
-                        StatusMessageList(
-                          onStatusEdit: controller.setStatus,
+                        GestureDetector(
+                          onLongPress: () => controller.dismissStatusList(),
+                          child: StatusMessageList(
+                            onStatusEdit: controller.setStatus,
+                          ),
                         ),
                       const ConnectionStatusHeader(),
                       AnimatedContainer(

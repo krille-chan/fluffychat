@@ -21,6 +21,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
+import '../../config/setting_keys.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
 import '../../utils/voip/callkeep_manager.dart';
@@ -509,6 +510,18 @@ class ChatListController extends State<ChatList>
       future: () => _archiveSelectedRooms(),
     );
     setState(() {});
+  }
+
+  void dismissStatusList() async {
+    final result = await showOkCancelAlertDialog(
+      title: L10n.of(context)!.hidePresences,
+      context: context,
+    );
+    if (result == OkCancelResult.ok) {
+      await Matrix.of(context).store.setBool(SettingKeys.showPresences, false);
+      AppConfig.showPresences = false;
+      setState(() {});
+    }
   }
 
   void setStatus() async {

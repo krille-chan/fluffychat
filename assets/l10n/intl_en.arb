@@ -2300,6 +2300,7 @@
         }
     },
     "hideUnimportantStateEvents": "Hide unimportant state events",
+    "hidePresences": "Hide Status List?",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
     "@wasDirectChatDisplayName": {
