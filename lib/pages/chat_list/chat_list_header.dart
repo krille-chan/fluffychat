@@ -138,8 +138,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     tooltip: L10n.of(context)!.toggleUnread,
                     icon: Icon(
                       controller.anySelectedRoomNotMarkedUnread
-                          ? Icons.mark_chat_read_outlined
-                          : Icons.mark_chat_unread_outlined,
+                          ? Icons.mark_chat_unread_outlined
+                          : Icons.mark_chat_read_outlined,
                     ),
                     onPressed: controller.toggleUnread,
                   ),
