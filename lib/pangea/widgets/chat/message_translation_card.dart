@@ -79,12 +79,6 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    setState(() => _fetchingRepresentation = false);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),

@@ -38,6 +38,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   bool _fetchingRepresentation = false;
   double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
   String textSpan = "";
+  RepresentationEvent? repEvent;
 
   @override
   void initState() {
@@ -62,12 +63,15 @@ class PangeaRichTextState extends State<PangeaRichText> {
       return widget.pangeaMessageEvent.body;
     }
 
+    if (repEvent != null) {
+      return repEvent!.text;
+    }
+
     if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
       debugger(when: kDebugMode);
     }
 
-    final RepresentationEvent? repEvent =
-        widget.pangeaMessageEvent.representationByLanguage(
+    repEvent = widget.pangeaMessageEvent.representationByLanguage(
       widget.pangeaMessageEvent.messageDisplayLangCode,
     );
 
@@ -80,7 +84,8 @@ class PangeaRichTextState extends State<PangeaRichText> {
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           )
           .onError((error, stackTrace) => ErrorHandler.logError())
-          .then((_) {
+          .then((event) {
+        repEvent = event;
         widget.toolbarController.toolbar?.textSelection.setMessageText(
           repEvent?.text ?? widget.pangeaMessageEvent.body,
         );
@@ -92,11 +97,12 @@ class PangeaRichTextState extends State<PangeaRichText> {
       return widget.pangeaMessageEvent.body;
     } else {
       widget.toolbarController.toolbar?.textSelection.setMessageText(
-        repEvent.text,
+        repEvent!.text,
       );
+      setState(() {});
     }
 
-    return repEvent.text;
+    return repEvent!.text;
   }
 
   @override
