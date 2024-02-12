@@ -59,12 +59,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    setState(() => _isLoading = false);
-  }
-
-  @override
   Widget build(BuildContext context) {
     final playButton = InkWell(
       borderRadius: BorderRadius.circular(64),
