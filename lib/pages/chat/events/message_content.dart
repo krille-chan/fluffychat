@@ -170,7 +170,11 @@ class MessageContent extends StatelessWidget {
                     event.isRichMessage
                     // #Pangea
                     &&
-                    !(pangeaMessageEvent?.showRichText(selected) ?? false)
+                    !(pangeaMessageEvent?.showRichText(
+                          selected,
+                          toolbarController?.highlighted ?? false,
+                        ) ??
+                        false)
                 // Pangea#
                 ) {
               var html = event.formattedText;
@@ -266,7 +270,11 @@ class MessageContent extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
-            if (pangeaMessageEvent?.showRichText(selected) ?? false) {
+            if (pangeaMessageEvent?.showRichText(
+                  selected,
+                  toolbarController?.highlighted ?? false,
+                ) ??
+                false) {
               return PangeaRichText(
                 style: messageTextStyle,
                 pangeaMessageEvent: pangeaMessageEvent!,

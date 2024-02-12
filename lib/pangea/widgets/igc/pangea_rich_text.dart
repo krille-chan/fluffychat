@@ -58,6 +58,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
   }
 
   String getTextSpan() {
+    if (_fetchingRepresentation == true) {
+      return widget.pangeaMessageEvent.body;
+    }
+
     if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
       debugger(when: kDebugMode);
     }
