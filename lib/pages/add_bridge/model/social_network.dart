@@ -47,6 +47,11 @@ final List<SocialNetwork> socialNetwork = [
     name: "WhatsApp",
     chatBot: "@whatsappbot:",
   ),
+  SocialNetwork(
+    logo: Logo(Logos.linkedin),
+    name: "Linkedin",
+    chatBot: "@linkedinbot:alpha.tawkie.fr",
+  ),
 ];
 
 // Model for WhatsApp message response

@@ -124,7 +124,15 @@ class BotBridgeConnection {
 
   // Ping function for each bot
   Future<String> pingSocialNetwork(SocialNetwork socialNetwork) async {
-    final String botUserId = '${socialNetwork.chatBot}$hostname';
+    String botUserId;
+
+    switch (socialNetwork.name) {
+      case "Linkedin":
+        botUserId = socialNetwork.chatBot;
+        break;
+      default:
+        botUserId = '${socialNetwork.chatBot}$hostname';
+    }
 
     // Messages to spot when we're online
     RegExp? onlineMatch;
@@ -165,6 +173,11 @@ class BotBridgeConnection {
         disconnectMatch = PingPatterns.instagramDisconnectMatch;
         mQTTNotMatch = PingPatterns.instagramMQTTNotMatch;
         break;
+      case "Linkedin":
+        onlineMatch = PingPatterns.linkedinOnlineMatch;
+        notLoggedMatch = PingPatterns.linkedinNotLoggedMatch;
+        disconnectMatch = PingPatterns.linkedinDisconnectMatch;
+        break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
     }
@@ -177,7 +190,13 @@ class BotBridgeConnection {
 
     // Send the "ping" message to the bot
     try{
-      await roomBot?.sendTextEvent("ping");
+      switch (socialNetwork.name) {
+        case "Linkedin":
+          await roomBot?.sendTextEvent("whoami");
+          break;
+        default:
+          await roomBot?.sendTextEvent("ping");
+      }
     }catch(error){
       Logs().i('Error: $error');
     }
@@ -207,7 +226,7 @@ class BotBridgeConnection {
         // To find out if we're connected
         if (onlineMatch.hasMatch(latestMessage) ||
             alreadySuccessMatch?.hasMatch(latestMessage) == true ||
-            successfullyMatch.hasMatch(latestMessage) == true ||
+            successfullyMatch?.hasMatch(latestMessage) == true ||
             syncCompleteMatch?.hasMatch(latestMessage) == true) {
           Logs().v("You're logged to ${socialNetwork.name}");
 
@@ -222,7 +241,7 @@ class BotBridgeConnection {
           result = 'Not Connected';
 
           break; // Exit the loop if the bridge is disconnected
-        } else if (mQTTNotMatch.hasMatch(latestMessage) == true) {
+        } else if (mQTTNotMatch?.hasMatch(latestMessage) == true) {
           String eventToSend;
 
           switch (socialNetwork.name) {
