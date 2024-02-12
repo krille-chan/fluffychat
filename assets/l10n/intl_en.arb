@@ -3885,5 +3885,47 @@
     "enableModeration": "Enable moderation",
     "enableModerationDesc": "Enable automatic moderation to review messages before they are sent",
     "conversationLanguageLevel": "What is the language level of this conversation?",
-    "showDefinition": "Show Definition"
+    "showDefinition": "Show Definition",
+        "acceptedKeyVerification": "{sender} accepted key verification",
+    "@acceptedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "canceledKeyVerification": "{sender} canceled key verification",
+    "@canceledKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "completedKeyVerification": "{sender} completed key verification",
+    "@completedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "isReadyForKeyVerification": "{sender} is ready for key verification",
+    "@isReadyForKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "requestedKeyVerification": "{sender} requested key verification",
+    "@requestedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    },
+    "startedKeyVerification": "{sender} started key verification",
+    "@startedKeyVerification": {
+        "type": "text",
+        "placeholders": {
+            "sender": {}
+        }
+    }
 }

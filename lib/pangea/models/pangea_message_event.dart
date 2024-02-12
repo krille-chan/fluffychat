@@ -67,7 +67,7 @@ class PangeaMessageEvent {
           .firstOrNull ??
       _event;
 
-  bool showRichText(bool selected) {
+  bool showRichText(bool selected, bool highlighted) {
     if (!_isValidPangeaMessageEvent) {
       return false;
     }
@@ -77,7 +77,7 @@ class PangeaMessageEvent {
     if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
       return false;
     }
-    if (ownMessage && !selected) return false;
+    if (ownMessage && !selected && !highlighted) return false;
 
     return true;
   }
