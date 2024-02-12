@@ -1,24 +1,27 @@
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
-import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/stream_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
-import '../../config/themes.dart';
-import '../../widgets/connection_status_header.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/pages/chat_list/chat_list.dart';
+import 'package:tawkie/pages/chat_list/chat_list_item.dart';
+import 'package:tawkie/pages/chat_list/search_title.dart';
+import 'package:tawkie/pages/chat_list/space_view.dart';
+import 'package:tawkie/pages/chat_list/status_msg_list.dart';
+import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/utils/stream_extension.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/connection_status_header.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/public_room_bottom_sheet.dart';
 import 'chat_list_header.dart';
 
 class ChatListViewBody extends StatelessWidget {
@@ -261,6 +264,13 @@ class ChatListViewBody extends StatelessWidget {
                       },
                       childCount: rooms.length,
                     ),
+                  ),
+                if (client.prevBatch != null &&
+                    !PlatformInfos.isWeb &&
+                    client.rooms
+                        .isEmpty) //Change to client.rooms.isEmpty for final version
+                  const SliverToBoxAdapter(
+                    child: AddChatNetwork(),
                   ),
               ],
             ),

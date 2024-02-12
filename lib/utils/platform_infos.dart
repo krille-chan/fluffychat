@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-import '../config/app_config.dart';
 
 abstract class PlatformInfos {
   static bool get isWeb => kIsWeb;
@@ -54,22 +53,27 @@ abstract class PlatformInfos {
           label: Text(L10n.of(context)!.sourceCode),
         ),
         TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
-          icon: const Icon(Icons.emoji_emotions_outlined),
-          label: const Text(AppConfig.emojiFontName),
+          onPressed: () => launchUrlString(AppConfig.aboutUrl),
+          icon: const Icon(Icons.group),
+          label: Text(L10n.of(context)!.about),
         ),
-        Builder(
-          builder: (innerContext) {
-            return TextButton.icon(
-              onPressed: () {
-                context.go('/logs');
-                Navigator.of(innerContext).pop();
-              },
-              icon: const Icon(Icons.list_outlined),
-              label: const Text('Logs'),
-            );
-          },
-        ),
+        // TextButton.icon(
+        //   onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
+        //   icon: const Icon(Icons.emoji_emotions_outlined),
+        //   label: const Text(AppConfig.emojiFontName),
+        // ),
+        // Builder(
+        //   builder: (innerContext) {
+        //     return TextButton.icon(
+        //       onPressed: () {
+        //         context.go('/logs');
+        //         Navigator.of(innerContext).pop();
+        //       },
+        //       icon: const Icon(Icons.list_outlined),
+        //       label: const Text('Logs'),
+        //     );
+        //   },
+        // ),
       ],
       applicationIcon: Image.asset(
         'assets/logo.png',

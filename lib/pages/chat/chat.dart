@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:emojis/emojis.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -18,23 +19,25 @@ import 'package:matrix/matrix.dart';
 import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/chat_view.dart';
-import 'package:fluffychat/pages/chat/event_info_dialog.dart';
-import 'package:fluffychat/pages/chat/recording_dialog.dart';
-import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/error_reporter.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/account_bundles.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat/chat_view.dart';
+import 'package:tawkie/pages/chat/event_info_dialog.dart';
+import 'package:tawkie/pages/chat/recording_dialog.dart';
+import 'package:tawkie/pages/chat_details/chat_details.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
+import 'package:tawkie/utils/error_reporter.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/utils/account_bundles.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import 'sticker_picker_dialog.dart';
@@ -183,6 +186,8 @@ class ChatController extends State<ChatPageWithRoom>
   void saveSelectedEvent(context) => selectedEvents.single.saveFile(context);
 
   List<Event> selectedEvents = [];
+
+  Event? tabInfoEvent;
 
   final Set<String> unfolded = {};
 
@@ -995,6 +1000,31 @@ class ChatController extends State<ChatPageWithRoom>
 
   late Iterable<Event> _allReactionEvents;
 
+  // Message liking function (double-click)
+  void handleMessageLike(Event event) async {
+    const String emoji = Emojis.thumbsUp;
+
+    final allReactionEvents =
+        event.aggregatedEvents(timeline!, RelationshipTypes.reaction);
+
+    // Search for the specific reaction event of the current user.
+    final evt = allReactionEvents.firstWhereOrNull(
+      (e) =>
+          e.senderId == e.room.client.userID &&
+          e.content.tryGetMap('m.relates_to')?['key'] == emoji,
+    );
+
+    // If the reaction event exists, it will be suppressed, Otherwise it can be added
+    if (evt != null) {
+      await evt.redactEvent();
+    } else {
+      await room.sendReaction(
+        event.eventId,
+        emoji,
+      );
+    }
+  }
+
   void emojiPickerBackspace() {
     switch (emojiPickerType) {
       case EmojiPickerType.reaction:
@@ -1107,6 +1137,21 @@ class ChatController extends State<ChatPageWithRoom>
       selectedEvents.sort(
         (a, b) => a.originServerTs.compareTo(b.originServerTs),
       );
+    }
+  }
+
+  // Function for displaying message details
+  void onTabInfoCallback(Event event) {
+    if (!event.redacted) {
+      if (tabInfoEvent != event) {
+        setState(
+          () => tabInfoEvent = event,
+        );
+      } else {
+        setState(
+          () => tabInfoEvent = null,
+        );
+      }
     }
   }
 

@@ -6,10 +6,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/fluffy_share.dart';
 
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/fluffy_share.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'chat_list.dart';
 
 class ClientChooserButton extends StatelessWidget {
@@ -159,6 +159,18 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+
+      // PopupMenuItem to redirect to the social network connections page via bot bridge
+      PopupMenuItem(
+        value: SettingsAction.addBridgeBot,
+        child: Row(
+          children: [
+            const Icon(Icons.account_tree_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context)!.bridgeBot_menuItemTitle),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -272,9 +284,12 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.archive:
           context.go('/rooms/archive');
           break;
-        case SettingsAction.setStatus:
-          controller.setStatus();
+        // Redirect to bot social network connection page
+        case SettingsAction.addBridgeBot:
+          context.go('/rooms/settings/addbridgebot');
           break;
+        case SettingsAction.setStatus:
+        // TODO: Handle this case.
       }
     }
   }
@@ -350,6 +365,7 @@ class ClientChooserButton extends StatelessWidget {
 }
 
 enum SettingsAction {
+  addBridgeBot,
   addAccount,
   newGroup,
   newSpace,

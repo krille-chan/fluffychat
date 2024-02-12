@@ -4,16 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
+import 'package:tawkie/config/app_config.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/string_color.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/hover_builder.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../../config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat/events/message_reactions.dart';
+import 'package:tawkie/utils/date_time_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/utils/string_color.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:vibration/vibration.dart';
 import 'message_content.dart';
-import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
 import 'verification_request_content.dart';
@@ -22,13 +23,16 @@ class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final bool displayReadMarker;
+  final void Function(Event) onTab;
   final void Function(Event) onSelect;
+  final void Function(Event) onDoubleTap; // Double tap to like
   final void Function(Event) onAvatarTab;
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
   final void Function() onSwipe;
   final bool longPressSelect;
   final bool selected;
+  final bool onTabInfo;
   final Timeline timeline;
   final bool highlightMarker;
   final bool animateIn;
@@ -40,12 +44,15 @@ class Message extends StatelessWidget {
     this.nextEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
+    required this.onTab,
     required this.onSelect,
+    required this.onDoubleTap,
     required this.onInfoTab,
     required this.onAvatarTab,
     required this.scrollToEventId,
     required this.onSwipe,
     this.selected = false,
+    this.onTabInfo = false,
     required this.timeline,
     this.highlightMarker = false,
     this.animateIn = false,
@@ -351,15 +358,17 @@ class Message extends StatelessWidget {
       },
     );
     Widget container;
-    final showReceiptsRow =
-        event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
-    if (showReceiptsRow || displayTime || selected || displayReadMarker) {
+    if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction) ||
+        displayTime ||
+        selected ||
+        displayReadMarker ||
+        onTabInfo) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          if (displayTime || selected)
+          if (displayTime || selected || onTabInfo)
             Padding(
               padding: displayTime
                   ? const EdgeInsets.symmetric(vertical: 8.0)
@@ -386,7 +395,7 @@ class Message extends StatelessWidget {
               ),
             ),
           row,
-          if (showReceiptsRow)
+          if (event.hasAggregatedEvents(timeline, RelationshipTypes.reaction))
             Padding(
               padding: EdgeInsets.only(
                 top: 4.0,
@@ -447,59 +456,22 @@ class Message extends StatelessWidget {
         ),
         direction: SwipeDirection.endToStart,
         onSwipe: (_) => onSwipe(),
-        child: HoverBuilder(
-          builder: (context, hovered) => Stack(
-            children: [
-              Container(
-                constraints: const BoxConstraints(
-                  maxWidth: FluffyThemes.columnWidth * 2.5,
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 4.0,
-                ),
-                child: container,
-              ),
-              Positioned(
-                left: ownMessage ? null : 48,
-                right: ownMessage ? 4 : null,
-                bottom: showReceiptsRow ? 28 : 0,
-                child: AnimatedScale(
-                  duration: Duration(
-                    milliseconds:
-                        (FluffyThemes.animationDuration.inMilliseconds / 2)
-                            .floor(),
-                  ),
-                  curve: FluffyThemes.animationCurve,
-                  scale: !longPressSelect && hovered ? 1 : 0,
-                  alignment: Alignment.center,
-                  child: Material(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .tertiaryContainer
-                        .withOpacity(0.9),
-                    elevation:
-                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
-                            4,
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: SizedBox(
-                      width: 32,
-                      height: 32,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.adaptive.more_outlined,
-                          size: 16,
-                          color:
-                              Theme.of(context).colorScheme.onTertiaryContainer,
-                        ),
-                        onPressed: () => onSelect(event),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+        child: InkWell(
+          onDoubleTap: () => onDoubleTap(event),
+          onLongPress: () => onSelect(event),
+          onTap: () => onTab(event),
+          child: Container(
+            color: selected
+                ? Theme.of(context).primaryColor.withAlpha(100)
+                : Theme.of(context).primaryColor.withAlpha(0),
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.columnWidth * 2.5,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0,
+            ),
+            child: container,
           ),
         ),
       ),

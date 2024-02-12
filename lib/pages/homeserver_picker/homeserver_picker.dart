@@ -12,17 +12,17 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/homeserver_picker/public_homeserver.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
-import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/localized_exception_extension.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/pages/homeserver_picker/homeserver_picker_view.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
-import 'package:fluffychat/utils/tor_stub.dart'
+import 'package:tawkie/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 class HomeserverPicker extends StatefulWidget {
@@ -40,9 +40,22 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     text: AppConfig.defaultHomeserver,
   );
 
+  String selectedServer =
+      AppConfig.defaultHomeserver; // Initialized with default server
+
   String? error;
 
   bool isTorBrowser = false;
+
+  void setSelectedServer(String? newValue) {
+    if (newValue != null) {
+      setState(() {
+        selectedServer = newValue;
+        homeserverController.text =
+            newValue; // Update homeserverController.text
+      });
+    }
+  }
 
   Future<void> _checkTorBrowser() async {
     if (!kIsWeb) return;
@@ -69,19 +82,18 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction([_]) async {
-    homeserverController.text =
-        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
-    if (homeserverController.text == _lastCheckedUrl) return;
-    _lastCheckedUrl = homeserverController.text;
+    selectedServer = selectedServer.trim().toLowerCase().replaceAll(' ', '-');
+    if (selectedServer == _lastCheckedUrl) return;
+    _lastCheckedUrl = selectedServer;
     setState(() {
       error = _rawLoginTypes = loginHomeserverSummary = null;
       isLoading = true;
     });
 
     try {
-      var homeserver = Uri.parse(homeserverController.text);
+      var homeserver = Uri.parse(selectedServer);
       if (homeserver.scheme.isEmpty) {
-        homeserver = Uri.https(homeserverController.text, '');
+        homeserver = Uri.https(selectedServer, '');
       }
       final client = Matrix.of(context).getLoginClient();
       loginHomeserverSummary = await client.checkHomeserver(homeserver);
@@ -201,6 +213,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   void initState() {
     _checkTorBrowser();
     super.initState();
+
+    //  Listener to trigger checkHomeserverAction when selectedServer changes
+    homeserverController.addListener(() {
+      checkHomeserverAction();
+    });
+
     WidgetsBinding.instance.addPostFrameCallback(checkHomeserverAction);
   }
 

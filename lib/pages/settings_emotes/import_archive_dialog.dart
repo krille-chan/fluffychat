@@ -9,9 +9,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/settings_emotes/settings_emotes.dart';
+import 'package:tawkie/utils/client_manager.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 class ImportEmoteArchiveDialog extends StatefulWidget {
   final EmotesSettingsController controller;

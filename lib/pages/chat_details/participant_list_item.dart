@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
 
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import '../../widgets/avatar.dart';
-import '../user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
+import 'package:tawkie/widgets/avatar.dart';
 
 class ParticipantListItem extends StatelessWidget {
   final User user;

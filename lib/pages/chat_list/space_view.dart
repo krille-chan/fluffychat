@@ -8,13 +8,13 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
-import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import '../../utils/localized_exception_extension.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/pages/chat_list/chat_list.dart';
+import 'package:tawkie/pages/chat_list/chat_list_item.dart';
+import 'package:tawkie/pages/chat_list/search_title.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'chat_list_header.dart';
 
 class SpaceView extends StatefulWidget {

@@ -4,11 +4,11 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../config/themes.dart';
-import '../../widgets/mxc_image.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/widgets/layouts/login_scaffold.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 import 'homeserver_app_bar.dart';
 import 'homeserver_picker.dart';
 
@@ -32,8 +32,8 @@ class HomeserverPickerView extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 12,
         automaticallyImplyLeading: false,
-        surfaceTintColor: Theme.of(context).colorScheme.background,
-        title: HomeserverAppBar(controller: controller),
+        title:
+            HomeserverAppBar(controller: controller), // DropdownButton servers
       ),
       body: Column(
         children: [

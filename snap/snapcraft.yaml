@@ -1,5 +1,5 @@
-name: fluffychat
-title: FluffyChat
+name: tawkie
+title: Tawkie
 base: core22
 version: git
 license: AGPL-3.0
@@ -84,7 +84,7 @@ slots:
   dbus-svc:
     interface: dbus
     bus: session
-    name: chat.fluffy.fluffychat
+    name: fr.tawkie.app
 
 apps:
   fluffychat:

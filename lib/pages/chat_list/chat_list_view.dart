@@ -6,14 +6,14 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/unread_rooms_badge.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat_list/chat_list.dart';
+import 'package:tawkie/pages/chat_list/navi_rail_item.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/unread_rooms_badge.dart';
 import 'chat_list_body.dart';
 import 'start_chat_fab.dart';
 
@@ -112,6 +112,7 @@ class ChatListView extends StatelessWidget {
                   .onDestinationSelected(AppConfig.separateChatTypes ? 1 : 0);
               return;
             }
+            return;
           },
           child: Row(
             children: [

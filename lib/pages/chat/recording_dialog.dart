@@ -8,8 +8,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {

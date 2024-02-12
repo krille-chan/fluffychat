@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:tawkie/config/app_config.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
-import '../../config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/utils/account_config.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/layouts/max_width_body.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 import 'settings_style.dart';
 
 class SettingsStyleView extends StatelessWidget {

@@ -4,35 +4,36 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/archive/archive.dart';
-import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pages/chat_members/chat_members.dart';
-import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
-import 'package:fluffychat/pages/device_settings/device_settings.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
-import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
-import 'package:fluffychat/pages/login/login.dart';
-import 'package:fluffychat/pages/new_group/new_group.dart';
-import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
-import 'package:fluffychat/pages/new_space/new_space.dart';
-import 'package:fluffychat/pages/settings/settings.dart';
-import 'package:fluffychat/pages/settings_3pid/settings_3pid.dart';
-import 'package:fluffychat/pages/settings_chat/settings_chat.dart';
-import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
-import 'package:fluffychat/pages/settings_ignore_list/settings_ignore_list.dart';
-import 'package:fluffychat/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
-import 'package:fluffychat/pages/settings_notifications/settings_notifications.dart';
-import 'package:fluffychat/pages/settings_password/settings_password.dart';
-import 'package:fluffychat/pages/settings_security/settings_security.dart';
-import 'package:fluffychat/pages/settings_style/settings_style.dart';
-import 'package:fluffychat/widgets/layouts/empty_page.dart';
-import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
-import 'package:fluffychat/widgets/log_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
+import 'package:tawkie/pages/archive/archive.dart';
+import 'package:tawkie/pages/chat/chat.dart';
+import 'package:tawkie/pages/chat_details/chat_details.dart';
+import 'package:tawkie/pages/chat_encryption_settings/chat_encryption_settings.dart';
+import 'package:tawkie/pages/chat_list/chat_list.dart';
+import 'package:tawkie/pages/chat_members/chat_members.dart';
+import 'package:tawkie/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:tawkie/pages/device_settings/device_settings.dart';
+import 'package:tawkie/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:tawkie/pages/invitation_selection/invitation_selection.dart';
+import 'package:tawkie/pages/login/login.dart';
+import 'package:tawkie/pages/new_group/new_group.dart';
+import 'package:tawkie/pages/new_private_chat/new_private_chat.dart';
+import 'package:tawkie/pages/new_space/new_space.dart';
+import 'package:tawkie/pages/settings/settings.dart';
+import 'package:tawkie/pages/settings_3pid/settings_3pid.dart';
+import 'package:tawkie/pages/settings_chat/settings_chat.dart';
+import 'package:tawkie/pages/settings_emotes/settings_emotes.dart';
+import 'package:tawkie/pages/settings_ignore_list/settings_ignore_list.dart';
+import 'package:tawkie/pages/settings_multiple_emotes/settings_multiple_emotes.dart';
+import 'package:tawkie/pages/settings_notifications/settings_notifications.dart';
+import 'package:tawkie/pages/settings_password/settings_password.dart';
+import 'package:tawkie/pages/settings_security/settings_security.dart';
+import 'package:tawkie/pages/settings_style/settings_style.dart';
+import 'package:tawkie/widgets/layouts/empty_page.dart';
+import 'package:tawkie/widgets/layouts/two_column_layout.dart';
+import 'package:tawkie/widgets/log_view.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -233,6 +234,17 @@ abstract class AppRoutes {
                           redirect: loggedOutRedirect,
                         ),
                       ],
+                    ),
+
+                    // Route to social networking page via chat bot
+                    // The entire path is: /rooms/settings/addbridgebot
+                    GoRoute(
+                      path: 'addbridgeBot',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const AddBridgeBody(),
+                      ),
+                      redirect: loggedOutRedirect,
                     ),
                     GoRoute(
                       path: 'security',
