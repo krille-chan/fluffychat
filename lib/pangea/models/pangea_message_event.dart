@@ -389,8 +389,10 @@ class PangeaMessageEvent {
         .isToolEnabled(ToolSetting.immersionMode, room);
     final String? l2Code = MatrixState.pangeaController.languageController
         .activeL2Code(roomID: room.id);
+    final String? originalLangCode =
+        (originalWritten ?? originalSent)?.langCode;
 
-    final String? langCode = immersionMode ? l2Code : originalWritten?.langCode;
+    final String? langCode = immersionMode ? l2Code : originalLangCode;
     return langCode ?? LanguageKeys.unknownLanguage;
   }
 
