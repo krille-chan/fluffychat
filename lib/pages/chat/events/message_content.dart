@@ -343,6 +343,8 @@ class MessageContent extends StatelessWidget {
                                 mode: MessageMode.play,
                               ),
                             ),
+                  enableInteractiveSelection:
+                      toolbarController?.highlighted ?? false,
                   // text: snapshot.data ??
                   //     event.calcLocalizedBodyFallback(
                   //       MatrixLocals(L10n.of(context)!),
