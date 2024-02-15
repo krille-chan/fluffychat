@@ -300,7 +300,7 @@ class BotBridgeConnection {
     });
 
     RegExp successMatch;
-    RegExp? alreadyLogoutMatch;
+    RegExp alreadyLogoutMatch;
 
     switch (network.name) {
       case 'Instagram':
@@ -317,7 +317,7 @@ class BotBridgeConnection {
         break;
       case 'Linkedin':
         successMatch = LogoutRegex.linkedinSuccessMatch;
-        alreadyLogoutMatch = null;
+        alreadyLogoutMatch = LogoutRegex.linkedinAlreadyLogoutMatch;
         break;
 
       default:
@@ -378,12 +378,12 @@ class BotBridgeConnection {
 
           // to find out if we're connected
           if (!successMatch.hasMatch(latestMessage) &&
-              !alreadyLogoutMatch!.hasMatch(latestMessage)) {
+              !alreadyLogoutMatch.hasMatch(latestMessage)) {
             Logs().v("You're always connected to ${network.name}");
             result = 'Connected';
             break;
           } else if (successMatch.hasMatch(latestMessage) ||
-              alreadyLogoutMatch!.hasMatch(latestMessage)) {
+              alreadyLogoutMatch.hasMatch(latestMessage)) {
             Logs().v("You're disconnected to ${network.name}");
             result = 'Not Connected';
 

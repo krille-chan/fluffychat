@@ -114,4 +114,6 @@ class LogoutRegex {
 
   // Linkedin
   static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged out");
+  static final RegExp linkedinAlreadyLogoutMatch =
+  RegExp(r"You are not logged in.");
 }
