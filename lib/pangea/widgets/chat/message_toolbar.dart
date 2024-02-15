@@ -73,6 +73,7 @@ class ToolbarDisplayController {
             : CrossAxisAlignment.start,
         children: [
           toolbar!,
+          const SizedBox(height: 6),
           OverlayMessage(
             pangeaMessageEvent.event,
             timeline: pangeaMessageEvent.timeline,
@@ -196,6 +197,7 @@ class MessageToolbarState extends State<MessageToolbar> {
     child = MessageTranslationCard(
       messageEvent: widget.pangeaMessageEvent,
       immersionMode: widget.immersionMode,
+      selection: widget.textSelection,
     );
   }
 
@@ -302,6 +304,9 @@ class MessageToolbarState extends State<MessageToolbar> {
               children: MessageMode.values.map((mode) {
                     return IconButton(
                       icon: Icon(_getIconData(mode)),
+                      color: _currentMode == mode
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
                       onPressed:
                           _enabledButton(mode) ? () => updateMode(mode) : null,
                     );
