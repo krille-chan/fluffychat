@@ -111,4 +111,7 @@ class LogoutRegex {
   static final RegExp facebookSuccessMatch = RegExp(r"Successfully logged out");
   static final RegExp facebookAlreadyLogoutMatch =
       RegExp(r"That command requires you to be logged in.");
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged out");
 }

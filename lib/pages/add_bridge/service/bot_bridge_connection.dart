@@ -283,7 +283,15 @@ class BotBridgeConnection {
   // Function to logout
   Future<String> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
-    final String botUserId = '${network.chatBot}$hostname';
+    final String? botUserId;
+
+    switch (network.name) {
+      case "Linkedin":
+        botUserId = network.chatBot;
+        break;
+      default:
+        botUserId = '${network.chatBot}$hostname';
+    }
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(
@@ -292,7 +300,7 @@ class BotBridgeConnection {
     });
 
     RegExp successMatch;
-    RegExp alreadyLogoutMatch;
+    RegExp? alreadyLogoutMatch;
 
     switch (network.name) {
       case 'Instagram':
@@ -307,6 +315,11 @@ class BotBridgeConnection {
         successMatch = LogoutRegex.facebookSuccessMatch;
         alreadyLogoutMatch = LogoutRegex.facebookAlreadyLogoutMatch;
         break;
+      case 'Linkedin':
+        successMatch = LogoutRegex.linkedinSuccessMatch;
+        alreadyLogoutMatch = null;
+        break;
+
       default:
         throw ArgumentError('Unsupported network: ${network.name}');
     }
@@ -365,12 +378,12 @@ class BotBridgeConnection {
 
           // to find out if we're connected
           if (!successMatch.hasMatch(latestMessage) &&
-              !alreadyLogoutMatch.hasMatch(latestMessage)) {
+              !alreadyLogoutMatch!.hasMatch(latestMessage)) {
             Logs().v("You're always connected to ${network.name}");
             result = 'Connected';
             break;
           } else if (successMatch.hasMatch(latestMessage) ||
-              alreadyLogoutMatch.hasMatch(latestMessage)) {
+              alreadyLogoutMatch!.hasMatch(latestMessage)) {
             Logs().v("You're disconnected to ${network.name}");
             result = 'Not Connected';
 
