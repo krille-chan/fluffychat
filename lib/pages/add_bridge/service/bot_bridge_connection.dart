@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' as io;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
 // For all bot bridge conversations
 class BotBridgeConnection {
@@ -876,15 +878,29 @@ class BotBridgeConnection {
     }
   }
 
+  // Function to format list cookies
+  String formatCookies(List<io.Cookie> cookies) {
+    return cookies.map((cookie) {
+      return '${cookie.name}="${cookie.value}"';
+    }).join('; ');
+  }
+
   // Function to create a LinkedIn connection bridge
-  Future<String> createBridgeLinkedin(BuildContext context, String cookies,
-      ConnectionStateModel connectionState, SocialNetwork network) async {
+  Future<String> createBridgeLinkedin(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network) async {
     final String botUserId = network.chatBot;
 
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
     });
+
+    final gotCookies =
+        await cookieManager.getCookies('https://www.linkedin.com/feed/');
+    final formattedCookieString = formatCookies(gotCookies);
 
     // Success phrases to spot
     final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
@@ -897,7 +913,7 @@ class BotBridgeConnection {
     final Room? roomBot = client.getRoomById(directChat);
 
     // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login $cookies");
+    await roomBot?.sendTextEvent("login $formattedCookieString");
 
     await Future.delayed(const Duration(seconds: 3)); // Wait sec
 

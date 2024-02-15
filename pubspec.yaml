@@ -96,8 +96,8 @@ dependencies:
   # Add for Tawkie
   icons_plus: ^4.0.0
   intl_phone_field: ^3.2.0
-  webview_flutter: ^4.7.0
   webview_cookie_manager: ^2.0.6
+  flutter_inappwebview: ^6.0.0
 
 dev_dependencies:
   dart_code_metrics: ^5.7.5

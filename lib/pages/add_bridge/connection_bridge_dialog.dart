@@ -53,6 +53,7 @@ Future<bool> connectWithTwoFields(
               case "Instagram":
                 result = await botConnection.createBridgeInstagram(
                     context, username!, password!, connectionStateModel);
+                break;
               case "Facebook Messenger":
                 result = await botConnection.createBridgeFacebook(
                     context, username!, password!, connectionStateModel);
