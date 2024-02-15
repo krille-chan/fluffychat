@@ -36,8 +36,7 @@ class PingPatterns {
 
   // Linkedin
   static RegExp linkedinOnlineMatch = RegExp(r"You are logged in as");
-  static RegExp linkedinNotLoggedMatch =
-  RegExp(r"You are not logged in.");
+  static RegExp linkedinNotLoggedMatch = RegExp(r"You are not logged in");
   static RegExp linkedinDisconnectMatch = RegExp(r"Successfully logged out");
 }
 
@@ -85,6 +84,13 @@ class LoginRegex {
       RegExp(r"You're already logged in");
   static final RegExp facebookIncorrectTwoFactorMatch =
       RegExp(r"Incorrect two-factor authentication code. Please try again");
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp linkedinAlreadySuccessMatch =
+      RegExp(r"You're already logged in");
+
+  static final RegExp linkedinNotLogged = RegExp(r"You are not logged in");
 }
 
 // For logout response
