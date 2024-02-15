@@ -159,9 +159,8 @@ abstract class ClientManager {
       body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          AppConfig.pushNotificationsChannelName,
-          channelDescription: AppConfig.pushNotificationsChannelDescription,
+          'error_message',
+          'Error Messages',
           importance: Importance.max,
           priority: Priority.max,
           fullScreenIntent: true, // To show notification popup

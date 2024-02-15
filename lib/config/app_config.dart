@@ -56,9 +56,6 @@ abstract class AppConfig {
   static const String deepLinkPrefix = 'im.fluffychat://chat/';
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
-  static const String pushNotificationsChannelName = 'FluffyChat push channel';
-  static const String pushNotificationsChannelDescription =
-      'Push notifications for FluffyChat';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
   static const String pushNotificationsGatewayUrl =
       'https://push.fluffychat.im/_matrix/push/v1/notify';

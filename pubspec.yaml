@@ -46,6 +46,8 @@ dependencies:
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
+  flutter_shortcuts:
+    git: https://github.com/krille-chan/flutter_shortcuts.git
   flutter_typeahead: ^4.8.0
   flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
