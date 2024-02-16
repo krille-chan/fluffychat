@@ -1734,6 +1734,16 @@
         "type": "text",
         "placeholders": {}
     },
+    "presenceStyle": "Presence:",
+    "@presenceStyle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "presencesToggle": "Show status messages from other users",
+    "@presencesToggle": {
+        "type": "text",
+        "placeholders": {}
+    },
     "singlesignon": "Single Sign on",
     "@singlesignon": {
         "type": "text",
@@ -2290,6 +2300,7 @@
         }
     },
     "hideUnimportantStateEvents": "Hide unimportant state events",
+    "hidePresences": "Hide Status List?",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
     "@wasDirectChatDisplayName": {
