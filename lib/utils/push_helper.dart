@@ -285,8 +285,8 @@ Future<void> _tryPushHelper(
 
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
-  if (PlatformInfos.isAndroid) {
-    _setShortcut(event, l10n, title, roomAvatarFile);
+  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
+    await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
   await flutterLocalNotificationsPlugin.show(
@@ -302,7 +302,7 @@ Future<void> _tryPushHelper(
 /// Creates a shortcut for Android platform but does not block displaying the
 /// notification. This is optional but provides a nicer view of the
 /// notification popup.
-void _setShortcut(
+Future<void> _setShortcut(
   Event event,
   L10n l10n,
   String title,
