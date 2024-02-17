@@ -171,8 +171,9 @@ Future<void> _tryPushHelper(
   final avatar = event.room.avatar
       ?.getThumbnail(
         client,
-        width: 128,
-        height: 128,
+        width: 256,
+        height: 256,
+        method: ThumbnailMethod.scale,
       )
       .toString();
   final senderAvatar = event.room.isDirectChat
@@ -180,8 +181,9 @@ Future<void> _tryPushHelper(
       : event.senderFromMemoryOrFallback.avatarUrl
           ?.getThumbnail(
             client,
-            width: 128,
-            height: 128,
+            width: 256,
+            height: 256,
+            method: ThumbnailMethod.scale,
           )
           .toString();
 
