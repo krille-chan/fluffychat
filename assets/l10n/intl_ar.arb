@@ -2586,5 +2586,19 @@
     "placeholders": {
       "sender": {}
     }
+  },
+  "hidePresences": "إخفاء قائمة الحالة؟",
+  "@hidePresences": {},
+  "incomingMessages": "الرسائل الواردة",
+  "@incomingMessages": {},
+  "presenceStyle": "الحضور:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "إظهار رسائل الحالة من المستخدمين الآخرين",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
   }
 }
