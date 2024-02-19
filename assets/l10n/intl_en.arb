@@ -3927,5 +3927,10 @@
         "placeholders": {
             "sender": {}
         }
-    }
+    },
+    "subscriptionPopupTitle": "This sentence could have a grammar mistake...",
+    "subscriptionPopupDesc": "Subscribe today to unlock translation and grammar correction!",
+    "seeOptions": "See options",
+    "continuedWithoutSubscription": "Continue without subscribing",
+    "trialPeriodExpired": "Your trial period has expired"
 }

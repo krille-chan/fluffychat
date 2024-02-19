@@ -119,6 +119,7 @@ dependencies:
   open_file: ^3.3.2
   purchases_flutter: ^5.6.0
   sentry_flutter: ^7.4.0
+  shimmer: ^3.0.0
   syncfusion_flutter_datepicker: ^23.2.7
   syncfusion_flutter_xlsio: ^23.2.7
   # Pangea#

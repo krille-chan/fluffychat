@@ -64,15 +64,6 @@ class ClassController extends BaseController {
         (error, stackTrace) =>
             ClassCodeUtil.messageSnack(context, ErrorCopy(context, error).body),
       );
-    } else {
-      try {
-        //question for gabby: why do we need this in two places?
-        if (!_pangeaController.subscriptionController.isSubscribed) {
-          await _pangeaController.subscriptionController.showPaywall(context);
-        }
-      } catch (err) {
-        debugger(when: kDebugMode);
-      }
     }
   }
 

@@ -23,11 +23,16 @@ import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+enum CanSendStatus {
+  subscribed,
+  dimissedPaywall,
+  showPaywall,
+}
+
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
   SubscriptionInfo? subscription;
 
-  //convert this logic to use completer
   bool initialized = false;
   final StreamController subscriptionStream = StreamController.broadcast();
 
@@ -39,12 +44,6 @@ class SubscriptionController extends BaseController {
       subscription != null &&
       (subscription!.currentSubscriptionId != null ||
           subscription!.currentSubscription != null);
-
-  bool get currentSubscriptionAvailable =>
-      isSubscribed && subscription?.currentSubscription != null;
-
-  bool get currentSubscriptionIsTrial =>
-      subscription?.currentSubscription?.isTrial ?? false;
 
   Future<void> initialize() async {
     try {
@@ -60,7 +59,7 @@ class SubscriptionController extends BaseController {
           : MobileSubscriptionInfo(pangeaController: _pangeaController);
 
       await subscription!.configure();
-      if (activatedNewUserTrial) {
+      if (_activatedNewUserTrial) {
         setNewUserTrial();
       }
 
@@ -94,117 +93,17 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  bool get activatedNewUserTrial =>
-      _pangeaController.userController.inTrialWindow &&
-      (_pangeaController.pStoreService.read(PLocalKey.activatedTrialKey) ??
-          false);
-
-  void activateNewUserTrial() {
-    _pangeaController.pStoreService.save(PLocalKey.activatedTrialKey, true);
-    setNewUserTrial();
-  }
-
-  void setNewUserTrial() {
-    final String profileCreatedAt =
-        _pangeaController.userController.userModel!.profile!.createdAt;
-    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
-    final DateTime expirationDate = creationTimestamp.add(
-      const Duration(days: 7),
-    );
-    subscription?.setTrial(expirationDate);
-  }
-
-  Future<void> updateCustomerInfo() async {
-    if (subscription == null) {
-      ErrorHandler.logError(
-        m: "Null subscription info in subscription settings",
-        s: StackTrace.current,
-      );
-      return;
-    }
-    await subscription!.setCustomerInfo();
-
-    setState();
-  }
-
-  Future<void> showPaywall(
-    BuildContext context, [
-    bool forceShow = false,
-  ]) async {
-    try {
-      if (!initialized) {
-        await initialize();
-      }
-      if (subscription?.availableSubscriptions.isEmpty ?? true) {
-        return;
-      }
-      if (!forceShow && isSubscribed) return;
-      showModalBottomSheet(
-        isScrollControlled: true,
-        useRootNavigator: !PlatformInfos.isMobile,
-        clipBehavior: Clip.hardEdge,
-        context: context,
-        constraints: BoxConstraints(
-          maxHeight: PlatformInfos.isMobile ? 600 : 450,
-        ),
-        builder: (_) {
-          return SubscriptionPaywall(
-            pangeaController: _pangeaController,
-          );
-        },
-      );
-    } catch (e, s) {
-      ErrorHandler.logError(e: e, s: s);
-    }
-  }
-
-  Future<bool> fetchSubscriptionStatus() async {
-    final Requests req = Requests(baseUrl: PApiUrls.baseAPI);
-    final String reqUrl = Uri.encodeFull(
-      "${PApiUrls.subscriptionExpiration}?pangea_user_id=${_pangeaController.matrixState.client.userID}",
-    );
-
-    DateTime? expiration;
-    try {
-      final Response res = await req.get(url: reqUrl);
-      final json = jsonDecode(res.body);
-      if (json["premium_expires_date"] != null) {
-        expiration = DateTime.parse(json["premium_expires_date"]);
-      }
-    } catch (err) {
-      ErrorHandler.logError(
-        e: "Failed to fetch subscripton status for user ${_pangeaController.matrixState.client.userID}",
-        s: StackTrace.current,
-      );
-    }
-    final bool subscribed =
-        expiration == null ? false : DateTime.now().isBefore(expiration);
-    GoogleAnalytics.updateUserSubscriptionStatus(subscribed);
-    return subscribed;
-  }
-
-  Future<String> getPaymentLink(String duration, {bool isPromo = false}) async {
-    final Requests req = Requests(baseUrl: PApiUrls.baseAPI);
-    final String reqUrl = Uri.encodeFull(
-      "${PApiUrls.paymentLink}?pangea_user_id=${_pangeaController.matrixState.client.userID}&duration=$duration&redeem=$isPromo",
-    );
-    final Response res = await req.get(url: reqUrl);
-    final json = jsonDecode(res.body);
-    String paymentLink = json["link"]["url"];
-
-    final String? email = await _pangeaController.userController.userEmail;
-    if (email != null) {
-      paymentLink += "?prefilled_email=${Uri.encodeComponent(email)}";
-    }
-    return paymentLink;
-  }
-
   void submitSubscriptionChange(
     SubscriptionDetails? selectedSubscription,
     BuildContext context, {
     bool isPromo = false,
   }) async {
     if (selectedSubscription != null) {
+      if (selectedSubscription.isTrial) {
+        activateNewUserTrial();
+        return;
+      }
+
       if (kIsWeb) {
         if (selectedSubscription.duration == null) {
           ErrorHandler.logError(
@@ -257,6 +156,156 @@ class SubscriptionController extends BaseController {
         return;
       }
     }
+  }
+
+  bool get _activatedNewUserTrial =>
+      _pangeaController.userController.inTrialWindow &&
+      (_pangeaController.pStoreService.read(PLocalKey.activatedTrialKey) ??
+          false);
+
+  void activateNewUserTrial() {
+    _pangeaController.pStoreService.save(PLocalKey.activatedTrialKey, true);
+    setNewUserTrial();
+  }
+
+  void setNewUserTrial() {
+    final String profileCreatedAt =
+        _pangeaController.userController.userModel!.profile!.createdAt;
+    final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);
+    final DateTime expirationDate = creationTimestamp.add(
+      const Duration(days: 7),
+    );
+    subscription?.setTrial(expirationDate);
+  }
+
+  Future<void> updateCustomerInfo() async {
+    if (subscription == null) {
+      ErrorHandler.logError(
+        m: "Null subscription info in subscription settings",
+        s: StackTrace.current,
+      );
+      return;
+    }
+    await subscription!.setCustomerInfo();
+    setState();
+  }
+
+  CanSendStatus get canSendStatus => isSubscribed
+      ? CanSendStatus.subscribed
+      : _shouldShowPaywall
+          ? CanSendStatus.showPaywall
+          : CanSendStatus.dimissedPaywall;
+
+  DateTime? get _lastDismissedPaywall {
+    final lastDismissed = _pangeaController.pStoreService.read(
+      PLocalKey.dismissedPaywall,
+    );
+    if (lastDismissed == null) return null;
+    return DateTime.tryParse(lastDismissed);
+  }
+
+  int? get _paywallBackoff {
+    final backoff = _pangeaController.pStoreService.read(
+      PLocalKey.paywallBackoff,
+    );
+    if (backoff == null) return null;
+    return backoff;
+  }
+
+  bool get _shouldShowPaywall {
+    return initialized &&
+        !isSubscribed &&
+        (_lastDismissedPaywall == null ||
+            DateTime.now().difference(_lastDismissedPaywall!).inHours >
+                (24 * (_paywallBackoff ?? 1)));
+  }
+
+  void dismissPaywall() {
+    _pangeaController.pStoreService.save(
+      PLocalKey.dismissedPaywall,
+      DateTime.now().toString(),
+    );
+
+    if (_paywallBackoff == null) {
+      _pangeaController.pStoreService.save(PLocalKey.paywallBackoff, 1);
+    } else {
+      _pangeaController.pStoreService.save(
+        PLocalKey.paywallBackoff,
+        _paywallBackoff! + 1,
+      );
+    }
+  }
+
+  Future<void> showPaywall(BuildContext context) async {
+    try {
+      if (!initialized) {
+        await initialize();
+      }
+      if (subscription?.availableSubscriptions.isEmpty ?? true) {
+        return;
+      }
+      if (isSubscribed) return;
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        useRootNavigator: !PlatformInfos.isMobile,
+        clipBehavior: Clip.hardEdge,
+        context: context,
+        constraints: BoxConstraints(
+          maxHeight: PlatformInfos.isMobile
+              ? MediaQuery.of(context).size.height - 50
+              : 600,
+        ),
+        builder: (_) {
+          return SubscriptionPaywall(
+            pangeaController: _pangeaController,
+          );
+        },
+      );
+      dismissPaywall();
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s);
+    }
+  }
+
+  Future<String> getPaymentLink(String duration, {bool isPromo = false}) async {
+    final Requests req = Requests(baseUrl: PApiUrls.baseAPI);
+    final String reqUrl = Uri.encodeFull(
+      "${PApiUrls.paymentLink}?pangea_user_id=${_pangeaController.matrixState.client.userID}&duration=$duration&redeem=$isPromo",
+    );
+    final Response res = await req.get(url: reqUrl);
+    final json = jsonDecode(res.body);
+    String paymentLink = json["link"]["url"];
+
+    final String? email = await _pangeaController.userController.userEmail;
+    if (email != null) {
+      paymentLink += "?prefilled_email=${Uri.encodeComponent(email)}";
+    }
+    return paymentLink;
+  }
+
+  Future<bool> fetchSubscriptionStatus() async {
+    final Requests req = Requests(baseUrl: PApiUrls.baseAPI);
+    final String reqUrl = Uri.encodeFull(
+      "${PApiUrls.subscriptionExpiration}?pangea_user_id=${_pangeaController.matrixState.client.userID}",
+    );
+
+    DateTime? expiration;
+    try {
+      final Response res = await req.get(url: reqUrl);
+      final json = jsonDecode(res.body);
+      if (json["premium_expires_date"] != null) {
+        expiration = DateTime.parse(json["premium_expires_date"]);
+      }
+    } catch (err) {
+      ErrorHandler.logError(
+        e: "Failed to fetch subscripton status for user ${_pangeaController.matrixState.client.userID}",
+        s: StackTrace.current,
+      );
+    }
+    final bool subscribed =
+        expiration == null ? false : DateTime.now().isBefore(expiration);
+    GoogleAnalytics.updateUserSubscriptionStatus(subscribed);
+    return subscribed;
   }
 
   Future<void> redeemPromoCode(BuildContext context) async {

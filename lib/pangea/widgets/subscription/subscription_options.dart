@@ -18,68 +18,121 @@ class SubscriptionOptions extends StatelessWidget {
     return Wrap(
       alignment: WrapAlignment.center,
       direction: Axis.horizontal,
-      children: pangeaController
-          .subscriptionController.subscription!.availableSubscriptions
-          .map(
-            (subscription) => SubscriptionCard(
-              subscription: subscription,
-              pangeaController: pangeaController,
-            ),
-          )
-          .toList(),
+      spacing: 10,
+      children: pangeaController.userController.inTrialWindow
+          ? [
+              SubscriptionCard(
+                onTap: () => pangeaController.subscriptionController
+                    .submitSubscriptionChange(
+                  SubscriptionDetails(
+                    price: 0,
+                    id: "",
+                    periodType: 'trial',
+                  ),
+                  context,
+                ),
+                title: L10n.of(context)!.freeTrial,
+                description: L10n.of(context)!.freeTrialDesc,
+                buttonText: L10n.of(context)!.activateTrial,
+              ),
+            ]
+          : pangeaController
+              .subscriptionController.subscription!.availableSubscriptions
+              .map(
+                (subscription) => SubscriptionCard(
+                  subscription: subscription,
+                  onTap: () {
+                    pangeaController.subscriptionController
+                        .submitSubscriptionChange(
+                      subscription,
+                      context,
+                    );
+                  },
+                  title: subscription.isTrial
+                      ? L10n.of(context)!.oneWeekTrial
+                      : subscription.displayName(context),
+                  enabled: !subscription.isTrial,
+                  description: subscription.isTrial
+                      ? L10n.of(context)!.trialPeriodExpired
+                      : null,
+                ),
+              )
+              .toList(),
     );
   }
 }
 
 class SubscriptionCard extends StatelessWidget {
-  final SubscriptionDetails subscription;
-  final PangeaController pangeaController;
+  final SubscriptionDetails? subscription;
+  final void Function()? onTap;
+  final String? title;
+  final String? description;
+  final String? buttonText;
+  final bool enabled;
 
   const SubscriptionCard({
     super.key,
-    required this.subscription,
-    required this.pangeaController,
+    this.subscription,
+    required this.onTap,
+    this.title,
+    this.description,
+    this.buttonText,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle buttonStyle = OutlinedButton.styleFrom(
+      side: enabled ? null : BorderSide(color: Colors.grey[600]!),
+      foregroundColor: Colors.white,
+      backgroundColor: AppConfig.primaryColor,
+      disabledForegroundColor: const Color.fromARGB(255, 200, 200, 200),
+      disabledBackgroundColor: Colors.grey[600],
+    );
+
     return Card(
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: AppConfig.primaryColorLight.withAlpha(64),
-        ),
-        borderRadius: const BorderRadius.all(Radius.zero),
+      color: enabled ? null : const Color.fromARGB(255, 245, 244, 244),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: SizedBox(
-        height: 250,
-        width: AppConfig.columnWidth * 0.75,
+        width: AppConfig.columnWidth * 0.6,
+        height: 200,
         child: Padding(
           padding: const EdgeInsets.all(25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                subscription.isTrial
-                    ? L10n.of(context)!.oneWeekTrial
-                    : subscription.displayName(context),
+                title ?? subscription?.displayName(context) ?? '',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 24),
+                style: TextStyle(
+                  fontSize: 24,
+                  color:
+                      enabled ? null : const Color.fromARGB(255, 174, 174, 174),
+                ),
               ),
               Text(
-                subscription.displayPrice(context),
+                description ?? subscription?.displayPrice(context) ?? '',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color:
+                      enabled ? null : const Color.fromARGB(255, 174, 174, 174),
+                ),
               ),
               OutlinedButton(
-                onPressed: () {
-                  pangeaController.subscriptionController
-                      .submitSubscriptionChange(
-                    subscription,
-                    context,
-                  );
-                  Navigator.of(context).pop();
-                },
-                child: Text(L10n.of(context)!.subscribe),
+                onPressed: enabled
+                    ? () {
+                        if (onTap != null) onTap!();
+                        Navigator.of(context).pop();
+                      }
+                    : null,
+                style: buttonStyle,
+                child: Text(
+                  buttonText ?? L10n.of(context)!.subscribe,
+                ),
               ),
             ],
           ),

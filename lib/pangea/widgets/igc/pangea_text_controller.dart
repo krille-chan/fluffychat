@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
+import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +43,19 @@ class PangeaTextController extends TextEditingController {
       debugger(when: kDebugMode);
       return;
     }
+    final CanSendStatus canSendStatus =
+        choreographer.pangeaController.subscriptionController.canSendStatus;
+    if (canSendStatus == CanSendStatus.showPaywall &&
+        !choreographer.isFetching &&
+        text.isNotEmpty) {
+      OverlayUtil.showPositionedCard(
+        context: context,
+        cardToShow: const PaywallCard(),
+        cardSize: const Size(325, 375),
+        transformTargetId: choreographer.inputTransformTargetKey,
+      );
+    }
+
     if (choreographer.igc.igcTextData == null) return;
 
     // debugPrint(
@@ -113,7 +129,20 @@ class PangeaTextController extends TextEditingController {
     //   debugPrint("composing after ${value.composing.textAfter(value.text)}");
     // }
 
-    if (choreographer.igc.igcTextData == null || text.isEmpty) {
+    final CanSendStatus canSendStatus =
+        choreographer.pangeaController.subscriptionController.canSendStatus;
+    if (canSendStatus == CanSendStatus.showPaywall &&
+        !choreographer.isFetching &&
+        text.isNotEmpty) {
+      return TextSpan(
+        text: text,
+        style: style?.merge(
+          IGCTextData.underlineStyle(
+            const Color.fromARGB(187, 132, 96, 224),
+          ),
+        ),
+      );
+    } else if (choreographer.igc.igcTextData == null || text.isEmpty) {
       return TextSpan(text: text, style: style);
     } else {
       final parts = text.split(choreographer.igc.igcTextData!.originalInput);

@@ -8,4 +8,6 @@ class PLocalKey {
 
   // making this a random string so that it's harder to guess
   static const String activatedTrialKey = '7C4EuKIsph';
+  static const String dismissedPaywall = 'dismissedPaywall';
+  static const String paywallBackoff = 'paywallBackoff';
 }
