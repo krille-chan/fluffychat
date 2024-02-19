@@ -115,7 +115,7 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       if (widget.selection.selectedText != null) {
         await translateSelection();
       }
-      fetchRepresentation(context);
+      await fetchRepresentation(context);
     });
   }
 
