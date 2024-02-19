@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
 
@@ -20,6 +21,16 @@ class LinkedinConnectionExplain extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Center(
+                child: Lottie.asset(
+                  'assets/js/lottie/system_update.json',
+                  repeat: true,
+                  reverse: false,
+                  animate: true,
+                  width: 250,
+                  height: 250,
+                ),
+              ),
               Text(
                 L10n.of(context)!.linkedinExplain_instruction,
                 style: const TextStyle(

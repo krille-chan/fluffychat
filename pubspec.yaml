@@ -100,6 +100,7 @@ dependencies:
   intl_phone_field: ^3.2.0
   webview_cookie_manager: ^2.0.6
   flutter_inappwebview: ^6.0.0
+  lottie: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -125,6 +126,7 @@ flutter:
     - assets/sounds/
     - assets/js/
     - assets/js/package/
+    - assets/js/lottie/
 
   fonts:
     - family: Roboto
