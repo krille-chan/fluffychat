@@ -1,33 +1,18 @@
 // Flutter imports:
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl/intl.dart';
-
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/change_subscription.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl/intl.dart';
 
 class SettingsSubscriptionView extends StatelessWidget {
   final SubscriptionManagementController controller;
-  final PangeaController pangeaController = MatrixState.pangeaController;
-  SettingsSubscriptionView(this.controller, {super.key});
+  const SettingsSubscriptionView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String currentSubscriptionTitle = pangeaController
-            .subscriptionController.subscription?.currentSubscription
-            ?.displayName(context) ??
-        "";
-    final String currentSubscriptionPrice = pangeaController
-            .subscriptionController.subscription?.currentSubscription
-            ?.displayPrice(context) ??
-        "";
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -38,17 +23,15 @@ class SettingsSubscriptionView extends StatelessWidget {
       body: ListTileTheme(
         iconColor: Theme.of(context).textTheme.bodyLarge!.color,
         child: MaxWidthBody(
-          child: !(pangeaController.subscriptionController.isSubscribed)
+          child: !(controller.subscriptionController.isSubscribed)
               ? ChangeSubscription(controller: controller)
               : Column(
                   children: [
-                    if (pangeaController.subscriptionController.subscription!
-                            .currentSubscription !=
-                        null)
+                    if (controller.currentSubscriptionAvailable)
                       ListTile(
                         title: Text(L10n.of(context)!.currentSubscription),
-                        subtitle: Text(currentSubscriptionTitle),
-                        trailing: Text(currentSubscriptionPrice),
+                        subtitle: Text(controller.currentSubscriptionTitle),
+                        trailing: Text(controller.currentSubscriptionPrice),
                       ),
                     Column(
                       children: [
@@ -84,8 +67,6 @@ class SettingsSubscriptionView extends StatelessWidget {
                     if (!(controller.showManagementOptions))
                       ManagementNotAvailableWarning(
                         controller: controller,
-                        subscriptionController:
-                            pangeaController.subscriptionController,
                       ),
                   ],
                 ),
@@ -97,11 +78,9 @@ class SettingsSubscriptionView extends StatelessWidget {
 
 class ManagementNotAvailableWarning extends StatelessWidget {
   final SubscriptionManagementController controller;
-  final SubscriptionController subscriptionController;
 
   const ManagementNotAvailableWarning({
     required this.controller,
-    required this.subscriptionController,
     super.key,
   });
 
@@ -112,7 +91,7 @@ class ManagementNotAvailableWarning extends StatelessWidget {
       if (controller.isNewUserTrial) {
         return L10n.of(context)!.trialExpiration(
           formatter.format(
-            subscriptionController.subscription!.expirationDate!,
+            controller.subscriptionController.subscription!.expirationDate!,
           ),
         );
       }
@@ -125,13 +104,14 @@ class ManagementNotAvailableWarning extends StatelessWidget {
         return warningText;
       }
       if (controller.currentSubscriptionIsPromotional) {
-        if (subscriptionController.subscription?.isLifetimeSubscription ??
+        if (controller
+                .subscriptionController.subscription?.isLifetimeSubscription ??
             false) {
           return L10n.of(context)!.promotionalSubscriptionDesc;
         }
         return L10n.of(context)!.promoSubscriptionExpirationDesc(
           formatter.format(
-            subscriptionController.subscription!.expirationDate!,
+            controller.subscriptionController.subscription!.expirationDate!,
           ),
         );
       }

@@ -1,13 +1,12 @@
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import '../../utils/error_handler.dart';
 
 enum ChoreoErrorType {
   unknown,
   classDisabled,
   userDisabled,
-  unsubscribed,
 }
 
 class ChoreoError {
@@ -22,8 +21,6 @@ class ChoreoError {
         return "Class Disabled";
       case ChoreoErrorType.userDisabled:
         return "User Disabled";
-      case ChoreoErrorType.unsubscribed:
-        return "Unsubscribed";
       default:
         return ErrorCopy(context, raw).title;
     }
@@ -35,8 +32,6 @@ class ChoreoError {
         return "Class Disabled";
       case ChoreoErrorType.userDisabled:
         return "User Disabled";
-      case ChoreoErrorType.unsubscribed:
-        return "Unsubscribed";
       default:
         return ErrorCopy(context, raw).body;
     }
@@ -48,8 +43,6 @@ class ChoreoError {
         return Icons.history_edu_outlined;
       case ChoreoErrorType.userDisabled:
         return Icons.history_edu_outlined;
-      case ChoreoErrorType.unsubscribed:
-        return Icons.lock_outline;
       default:
         return Icons.error_outline;
     }

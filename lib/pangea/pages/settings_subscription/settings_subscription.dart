@@ -1,14 +1,15 @@
 import 'dart:async';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
-import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_subscription/settings_subscription_view.dart';
 import 'package:fluffychat/pangea/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/widgets/subscription/subscription_snackbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -21,27 +22,30 @@ class SubscriptionManagement extends StatefulWidget {
 }
 
 class SubscriptionManagementController extends State<SubscriptionManagement> {
-  final PangeaController pangeaController = MatrixState.pangeaController;
+  final SubscriptionController subscriptionController =
+      MatrixState.pangeaController.subscriptionController;
   SubscriptionDetails? selectedSubscription;
   late StreamSubscription _settingsSubscription;
   StreamSubscription? _subscriptionStatusStream;
 
   @override
   void initState() {
-    _settingsSubscription =
-        pangeaController.subscriptionController.stateStream.listen((event) {
+    if (!subscriptionController.initialized) {
+      subscriptionController.initialize().then((_) => setState(() {}));
+    }
+
+    _settingsSubscription = subscriptionController.stateStream.listen((event) {
       debugPrint("stateStream event in subscription settings");
       setState(() {});
     });
 
-    _subscriptionStatusStream ??= pangeaController
-        .subscriptionController.subscriptionStream.stream
-        .listen((_) {
+    _subscriptionStatusStream ??=
+        subscriptionController.subscriptionStream.stream.listen((_) {
       showSubscribedSnackbar(context);
       context.go('/rooms');
     });
 
-    pangeaController.subscriptionController.updateCustomerInfo();
+    subscriptionController.updateCustomerInfo();
     super.initState();
   }
 
@@ -52,44 +56,76 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
     _subscriptionStatusStream?.cancel();
   }
 
-  bool get currentSubscriptionAvailable =>
-      pangeaController.subscriptionController.currentSubscriptionAvailable;
+  bool get subscriptionsAvailable =>
+      subscriptionController.subscription?.availableSubscriptions.isNotEmpty ??
+      false;
 
-  String? get purchasePlatformDisplayName => pangeaController
-      .subscriptionController.subscription?.purchasePlatformDisplayName;
+  bool get currentSubscriptionAvailable =>
+      subscriptionController.isSubscribed &&
+      subscriptionController.subscription?.currentSubscription != null;
+
+  String? get purchasePlatformDisplayName =>
+      subscriptionController.subscription?.purchasePlatformDisplayName;
 
   bool get currentSubscriptionIsPromotional =>
-      pangeaController.subscriptionController.subscription
-          ?.currentSubscriptionIsPromotional ??
+      subscriptionController.subscription?.currentSubscriptionIsPromotional ??
       false;
 
   bool get isNewUserTrial =>
-      pangeaController.subscriptionController.subscription?.isNewUserTrial ??
-      false;
+      subscriptionController.subscription?.isNewUserTrial ?? false;
+
+  String get currentSubscriptionTitle =>
+      subscriptionController.subscription?.currentSubscription
+          ?.displayName(context) ??
+      "";
+
+  String get currentSubscriptionPrice =>
+      subscriptionController.subscription?.currentSubscription
+          ?.displayPrice(context) ??
+      "";
 
   bool get showManagementOptions {
     if (!currentSubscriptionAvailable) {
       return false;
     }
-    if (pangeaController.subscriptionController.subscription!.purchasedOnWeb) {
+    if (subscriptionController.subscription!.purchasedOnWeb) {
       return true;
     }
-    return pangeaController.subscriptionController.subscription!
-        .currentPlatformMatchesPurchasePlatform;
+    return subscriptionController
+        .subscription!.currentPlatformMatchesPurchasePlatform;
+  }
+
+  void submitChange({bool isPromo = false}) {
+    try {
+      subscriptionController.submitSubscriptionChange(
+        selectedSubscription,
+        context,
+        isPromo: isPromo,
+      );
+      setState(() {});
+    } catch (err) {
+      showOkAlertDialog(
+        context: context,
+        title: L10n.of(context)!.oopsSomethingWentWrong,
+        message: L10n.of(context)!.errorPleaseRefresh,
+        okLabel: L10n.of(context)!.close,
+      );
+    }
   }
 
   Future<void> launchMangementUrl(ManagementOption option) async {
     String managementUrl = Environment.stripeManagementUrl;
-    final String? email = await pangeaController.userController.userEmail;
+    final String? email =
+        await MatrixState.pangeaController.userController.userEmail;
     if (email != null) {
       managementUrl += "?prefilled_email=${Uri.encodeComponent(email)}";
     }
-    final String? purchaseAppId = pangeaController
-        .subscriptionController.subscription?.currentSubscription?.appId!;
+    final String? purchaseAppId =
+        subscriptionController.subscription?.currentSubscription?.appId!;
     if (purchaseAppId == null) return;
 
     final SubscriptionAppIds? appIds =
-        pangeaController.subscriptionController.subscription!.appIds;
+        subscriptionController.subscription!.appIds;
 
     if (purchaseAppId == appIds?.stripeId) {
       launchUrlString(managementUrl);

@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/alternative_translator.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/igc_controller.dart';
@@ -13,6 +8,7 @@ import 'package:fluffychat/pangea/choreographer/controllers/message_options.dart
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
@@ -21,6 +17,12 @@ import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/widget_measurement.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/overlay.dart';
+import 'package:fluffychat/pangea/widgets/igc/paywall_card.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../../widgets/matrix.dart';
 import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
@@ -51,8 +53,6 @@ class Choreographer {
   ChoreoMode choreoMode = ChoreoMode.igc;
   final StreamController stateListener = StreamController();
 
-  bool toldToPay = false;
-
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
   }
@@ -71,9 +71,14 @@ class Choreographer {
   void send(BuildContext context) {
     if (isFetching) return;
 
-    if (!pangeaController.subscriptionController.isSubscribed && !toldToPay) {
-      toldToPay = true;
-      pangeaController.subscriptionController.showPaywall(context);
+    if (pangeaController.subscriptionController.canSendStatus ==
+        CanSendStatus.showPaywall) {
+      OverlayUtil.showPositionedCard(
+        context: context,
+        cardToShow: const PaywallCard(),
+        cardSize: const Size(325, 375),
+        transformTargetId: inputTransformTargetKey,
+      );
       return;
     }
 
@@ -199,22 +204,20 @@ class Choreographer {
   Future<void> getLanguageHelp([bool tokensOnly = false]) async {
     try {
       if (errorService.isError) return;
-      if (!pangeaController.subscriptionController.isSubscribed &&
-          pangeaController.subscriptionController.initialized) {
-        debugPrint('setting not subscribed error');
-        errorService.setErrorAndLock(
-          ChoreoError(
-            type: ChoreoErrorType.unsubscribed,
-          ),
-        );
+      final CanSendStatus canSendStatus =
+          pangeaController.subscriptionController.canSendStatus;
+
+      if (canSendStatus != CanSendStatus.subscribed) {
         return;
       }
+
       startLoading();
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
           !tokensOnly) {
         debugger(when: kDebugMode);
       }
+
       await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
           ? itController.getTranslationData(_useCustomInput)
           : igc.getIGCTextData(tokensOnly: tokensOnly));

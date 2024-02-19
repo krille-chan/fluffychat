@@ -28,8 +28,6 @@ class ChoreographerHasErrorButton extends StatelessWidget {
                 ),
               ),
             );
-          } else if (error.type == ChoreoErrorType.unsubscribed) {
-            pangeaController.subscriptionController.showPaywall(context);
           }
         },
         mini: true,
