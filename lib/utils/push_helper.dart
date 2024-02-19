@@ -173,7 +173,6 @@ Future<void> _tryPushHelper(
         client,
         width: 256,
         height: 256,
-        method: ThumbnailMethod.scale,
       )
       .toString();
   final senderAvatar = event.room.isDirectChat
@@ -183,7 +182,6 @@ Future<void> _tryPushHelper(
             client,
             width: 256,
             height: 256,
-            method: ThumbnailMethod.scale,
           )
           .toString();
 
