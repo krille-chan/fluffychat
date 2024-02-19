@@ -95,13 +95,9 @@ class _SpaceViewState extends State<SpaceView> {
       );
 
       if (prevBatch != null) {
-        debugPrint(
-          "Adding ${_lastResponse[activeSpaceId]?.rooms} to ${response.rooms}",
-        );
         response.rooms.insertAll(0, _lastResponse[activeSpaceId]?.rooms ?? []);
       }
       setState(() {
-        debugPrint("Setting state response to ${response.rooms}");
         _lastResponse[activeSpaceId] = response;
       });
       return _lastResponse[activeSpaceId]!;
@@ -532,7 +528,6 @@ class _SpaceViewState extends State<SpaceView> {
             Builder(
               builder: (context) {
                 final response = _lastResponse[activeSpaceId];
-                debugPrint('building space view wth response: $response');
                 final error = this.error;
                 if (error != null) {
                   return SliverFillRemaining(
