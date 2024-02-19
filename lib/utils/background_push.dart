@@ -235,7 +235,7 @@ class BackgroundPush {
           ? 'ios'
           : null;
 
-  bool _wentToRoomOnStartup = false;
+  static bool _wentToRoomOnStartup = false;
 
   Future<void> setupPush() async {
     Logs().d("SetupPush");

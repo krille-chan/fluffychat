@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:tawkie/pages/archive/archive.dart';
@@ -59,6 +60,8 @@ class ArchiveView extends StatelessWidget {
                   itemBuilder: (BuildContext context, int i) => ChatListItem(
                     controller.archive[i],
                     onForget: () => controller.forgetRoomAction(i),
+                    onTap: () => context
+                        .go('/rooms/archive/${controller.archive[i].id}'),
                   ),
                 );
               }

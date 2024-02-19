@@ -62,6 +62,7 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
+
   SharedPreferences get store => widget.store;
 
   HomeserverSummary? loginHomeserverSummary;
@@ -423,6 +424,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.hideUnknownEvents) ??
             AppConfig.hideUnknownEvents;
 
+    AppConfig.hideUnimportantStateEvents =
+        store.getBool(SettingKeys.hideUnimportantStateEvents) ??
+            AppConfig.hideUnimportantStateEvents;
+
     AppConfig.separateChatTypes =
         store.getBool(SettingKeys.separateChatTypes) ??
             AppConfig.separateChatTypes;
@@ -443,6 +448,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
         AppConfig.experimentalVoip;
+
+    AppConfig.showPresences =
+        store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
   }
 
   @override
