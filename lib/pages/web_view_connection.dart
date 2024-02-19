@@ -29,9 +29,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
 
   @override
   Widget build(BuildContext context) {
-
     final connectionState =
-    Provider.of<ConnectionStateModel>(context, listen: false);
+        Provider.of<ConnectionStateModel>(context, listen: false);
 
     return Scaffold(
       body: InAppWebView(
@@ -53,8 +52,9 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
-                    result = await widget.botBridgeConnection.createBridgeLinkedin(
-                        context, cookieManager, connectionState, widget.network);
+                    result = await widget.botBridgeConnection
+                        .createBridgeLinkedin(context, cookieManager,
+                            connectionState, widget.network);
                   },
                 );
               }
@@ -71,7 +71,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                 widget.onConnectionResult(true);
               }
               break;
-          // Other network
+            // Other network
           }
         },
       ),

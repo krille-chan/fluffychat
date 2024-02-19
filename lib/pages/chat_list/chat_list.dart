@@ -11,6 +11,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -510,6 +511,18 @@ class ChatListController extends State<ChatList>
       future: () => _archiveSelectedRooms(),
     );
     setState(() {});
+  }
+
+  void dismissStatusList() async {
+    final result = await showOkCancelAlertDialog(
+      title: L10n.of(context)!.hidePresences,
+      context: context,
+    );
+    if (result == OkCancelResult.ok) {
+      await Matrix.of(context).store.setBool(SettingKeys.showPresences, false);
+      AppConfig.showPresences = false;
+      setState(() {});
+    }
   }
 
   void setStatus() async {

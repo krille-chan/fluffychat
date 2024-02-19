@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
 
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/utils/account_config.dart';
@@ -9,6 +10,7 @@ import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/mxc_image.dart';
+import 'package:tawkie/widgets/settings_switch_list_tile.dart';
 import 'settings_style.dart';
 
 class SettingsStyleView extends StatelessWidget {
@@ -160,6 +162,22 @@ class SettingsStyleView extends StatelessWidget {
               value: ThemeMode.dark,
               title: Text(L10n.of(context)!.darkTheme),
               onChanged: controller.switchTheme,
+            ),
+            const Divider(height: 1),
+            ListTile(
+              title: Text(
+                L10n.of(context)!.presenceStyle,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SettingsSwitchListTile.adaptive(
+              title: L10n.of(context)!.presencesToggle,
+              onChanged: (b) => AppConfig.showPresences = b,
+              storeKey: SettingKeys.showPresences,
+              defaultValue: AppConfig.showPresences,
             ),
             const Divider(height: 1),
             ListTile(
