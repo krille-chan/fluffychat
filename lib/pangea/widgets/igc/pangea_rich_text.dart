@@ -124,6 +124,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
             .onTextSelection(selection);
       },
       onTap: () => widget.toolbarController.showToolbar(context),
+      enableInteractiveSelection: widget.toolbarController.highlighted,
       contextMenuBuilder: (context, state) =>
           widget.toolbarController.highlighted
               ? const SizedBox.shrink()
