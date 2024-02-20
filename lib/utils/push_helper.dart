@@ -50,7 +50,7 @@ Future<void> pushHelper(
 
     l10n ??= lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
-      0,
+      notification.roomId?.hashCode ?? 0,
       l10n.newMessageInFluffyChat,
       l10n.openAppToReadMessages,
       NotificationDetails(
@@ -203,7 +203,7 @@ Future<void> _tryPushHelper(
     Logs().e('Unable to get avatar picture', e, s);
   }
 
-  final id = await mapRoomIdToInt(event.room.id);
+  final id = notification.roomId.hashCode;
 
   // Show notification
 
@@ -326,30 +326,4 @@ void _setShortcut(
       isImportant: event.room.isFavourite,
     ),
   );
-}
-
-/// Workaround for the problem that local notification IDs must be int but we
-/// sort by [roomId] which is a String. To make sure that we don't have duplicated
-/// IDs we map the [roomId] to a number and store this number.
-Future<int> mapRoomIdToInt(String roomId) async {
-  final store = await SharedPreferences.getInstance();
-  final idMap = Map<String, int>.from(
-    jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'),
-  );
-  int? currentInt;
-  try {
-    currentInt = idMap[roomId];
-  } catch (_) {
-    currentInt = null;
-  }
-  if (currentInt != null) {
-    return currentInt;
-  }
-  var nCurrentInt = 0;
-  while (idMap.values.contains(nCurrentInt)) {
-    nCurrentInt++;
-  }
-  idMap[roomId] = nCurrentInt;
-  await store.setString(SettingKeys.notificationCurrentIds, json.encode(idMap));
-  return nCurrentInt;
 }

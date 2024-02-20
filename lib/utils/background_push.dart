@@ -112,8 +112,7 @@ class BackgroundPush {
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
-    final id = await mapRoomIdToInt(roomId);
-    await FlutterLocalNotificationsPlugin().cancel(id);
+    await FlutterLocalNotificationsPlugin().cancel(roomId.hashCode);
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
