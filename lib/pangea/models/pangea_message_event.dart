@@ -114,12 +114,13 @@ class PangeaMessageEvent {
     // final fileName =
     //     text.trim().replaceAll(RegExp('[^A-Za-z0-9]'), '').substring(0, 20);
     final eventIdParam = _event.eventId;
-    final fileName = "audio_for_${eventIdParam}_$langCode.mp3";
+    final fileName =
+        "audio_for_${eventIdParam}_$langCode.${response.fileExtension}";
 
     final file = MatrixAudioFile(
       bytes: audioBytes,
       name: fileName,
-      mimeType: "audio/mpeg",
+      mimeType: response.mimeType,
     );
 
     // try {
