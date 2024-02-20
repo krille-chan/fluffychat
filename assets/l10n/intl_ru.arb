@@ -2586,5 +2586,19 @@
     "placeholders": {
       "sender": {}
     }
-  }
+  },
+  "incomingMessages": "Входящие сообщения",
+  "@incomingMessages": {},
+  "presencesToggle": "Показывать сообщения в статусах других пользователей",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "Представление:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "Скрыть список статусов?",
+  "@hidePresences": {}
 }
