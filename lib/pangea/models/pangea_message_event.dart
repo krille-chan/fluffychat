@@ -305,7 +305,7 @@ class PangeaMessageEvent {
     return rep;
   }
 
-  Future<RepresentationEvent?> representationByLanguageGlobal({
+  Future<PangeaRepresentation?> representationByLanguageGlobal({
     required BuildContext context,
     required String langCode,
   }) async {
@@ -315,7 +315,7 @@ class PangeaMessageEvent {
     if (repLocal != null ||
         langCode == LanguageKeys.unknownLanguage ||
         langCode == LanguageKeys.mixedLanguage ||
-        langCode == LanguageKeys.multiLanguage) return repLocal;
+        langCode == LanguageKeys.multiLanguage) return repLocal?.content;
 
     if (eventId.contains("web")) return null;
 
@@ -324,32 +324,36 @@ class PangeaMessageEvent {
     final PangeaRepresentation? basis =
         (originalWritten ?? originalSent)?.content;
 
-    final Event? repEvent = await MatrixState.pangeaController.messageData
-        .getRepresentationMatrixEvent(
-      context: context,
-      messageEventId: _latestEdit.eventId,
+    final PangeaRepresentation? pangeaRep =
+        await MatrixState.pangeaController.messageData.getPangeaRepresentation(
       text: basis?.text ?? _latestEdit.body,
-      target: langCode,
       source: basis?.langCode,
+      target: langCode,
       room: _latestEdit.room,
     );
 
-    // PTODO - if res.source different from langCode, save rep for source
+    if (pangeaRep == null ||
+        await _latestEdit.room.getEventById(_latestEdit.eventId) == null) {
+      return null;
+    }
 
-    return repEvent != null
-        ? RepresentationEvent(
-            event: repEvent,
-            timeline: timeline,
-          )
-        : null;
-    // } catch (err, s) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //     e: err,
-    //     s: s,
-    //   );
-    //   return null;
-    // }
+    MatrixState.pangeaController.messageData
+        .sendRepresentationMatrixEvent(
+          representation: pangeaRep,
+          messageEventId: _latestEdit.eventId,
+          room: _latestEdit.room,
+          target: langCode,
+        )
+        .then(
+          (value) => representations.add(
+            RepresentationEvent(
+              event: value,
+              timeline: timeline,
+            ),
+          ),
+        );
+
+    return pangeaRep;
   }
 
   RepresentationEvent? get originalSent => representations
@@ -385,36 +389,6 @@ class PangeaMessageEvent {
 
     final String? langCode = immersionMode ? l2Code : originalLangCode;
     return langCode ?? LanguageKeys.unknownLanguage;
-  }
-
-  RepresentationEvent? _displayRepresentation;
-
-  RepresentationEvent? displayRepresentation(String langCode) =>
-      _displayRepresentation;
-
-  Future<void> setDisplayRepresentation(
-    BuildContext context,
-  ) async {
-    if (messageDisplayLangCode == LanguageKeys.unknownLanguage ||
-        _displayRepresentation != null) {
-      return;
-    }
-    _displayRepresentation = representationByLanguage(messageDisplayLangCode);
-    if (_displayRepresentation != null) return;
-
-    try {
-      _displayRepresentation = await representationByLanguageGlobal(
-        context: context,
-        langCode: messageDisplayLangCode,
-      );
-      return;
-    } catch (err, s) {
-      ErrorHandler.logError(
-        m: "error in getDisplayRepresentation",
-        e: err,
-        s: s,
-      );
-    }
   }
 
   // List<SpanData> get activities =>

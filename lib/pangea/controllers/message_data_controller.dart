@@ -108,44 +108,30 @@ class MessageDataController extends BaseController {
   /////// translation ////////
 
   /// make representation (originalSent and originalWritten always false)
-  Future<Event?> _getRepresentationMatrixEvent({
-    required BuildContext context,
+  Future<Event?> _sendRepresentationMatrixEvent({
+    required PangeaRepresentation representation,
     required String messageEventId,
-    required FullTextTranslationRequestModel req,
     required Room room,
   }) async {
     try {
-      final FullTextTranslationResponseModel res =
-          await FullTextTranslationRepo.translate(
-        accessToken: await _pangeaController.userController.accessToken,
-        request: req,
-      );
-
-      final PangeaRepresentation representation = PangeaRepresentation(
-        langCode: req.tgtLang,
-        text: res.bestTranslation,
-        originalSent: false,
-        originalWritten: false,
-      );
-
+      final timer = Stopwatch()..start();
       final Event? repEvent = await room.sendPangeaEvent(
         content: representation.toJson(),
         parentEventId: messageEventId,
         type: PangeaEventTypes.representation,
       );
-
-      // debugger(when: kDebugMode && repEvent == null);
+      debugPrint(
+        'sendRepresentationMatrixEvent took: ${timer.elapsedMilliseconds}ms',
+      );
+      timer.reset();
 
       return repEvent;
     } catch (err, stack) {
       Sentry.addBreadcrumb(
         Breadcrumb(
           message:
-              "err in _getRepresentationMatrixEvent with messageEventId $messageEventId",
+              "err in _sendRepresentationMatrixEvent with messageEventId $messageEventId",
         ),
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb.fromJson({"req": req.toJson()}),
       );
       Sentry.addBreadcrumb(
         Breadcrumb.fromJson({"room": room.toJson()}),
@@ -155,15 +141,51 @@ class MessageDataController extends BaseController {
     }
   }
 
-  /// make representation (originalSent and originalWritten always false)
-  Future<Event?> getRepresentationMatrixEvent({
-    required BuildContext context,
-    required String messageEventId,
+  Future<PangeaRepresentation?> getPangeaRepresentation({
     required String text,
     required String? source,
     required String target,
     required Room room,
-  }) {
+  }) async {
+    final req = FullTextTranslationRequestModel(
+      text: text,
+      tgtLang: target,
+      srcLang: source,
+      userL2:
+          _pangeaController.languageController.activeL2Code(roomID: room.id)!,
+      userL1:
+          _pangeaController.languageController.activeL1Code(roomID: room.id)!,
+    );
+
+    try {
+      final timer = Stopwatch()..start();
+      final FullTextTranslationResponseModel res =
+          await FullTextTranslationRepo.translate(
+        accessToken: await _pangeaController.userController.accessToken,
+        request: req,
+      );
+      debugPrint('translation took: ${timer.elapsedMilliseconds}ms');
+      timer.reset();
+
+      return PangeaRepresentation(
+        langCode: req.tgtLang,
+        text: res.bestTranslation,
+        originalSent: false,
+        originalWritten: false,
+      );
+    } catch (err, stack) {
+      ErrorHandler.logError(e: err, s: stack);
+      return null;
+    }
+  }
+
+  /// make representation (originalSent and originalWritten always false)
+  Future<Event?> sendRepresentationMatrixEvent({
+    required PangeaRepresentation representation,
+    required String messageEventId,
+    required Room room,
+    required String target,
+  }) async {
     final CacheItem? item =
         getItem(messageEventId, PangeaEventTypes.representation, target);
     if (item != null) return item.data;
@@ -173,19 +195,10 @@ class MessageDataController extends BaseController {
         messageEventId,
         PangeaEventTypes.representation,
         target,
-        _getRepresentationMatrixEvent(
-          context: context,
+        _sendRepresentationMatrixEvent(
           messageEventId: messageEventId,
-          req: FullTextTranslationRequestModel(
-            text: text,
-            tgtLang: target,
-            srcLang: source,
-            userL2: _pangeaController.languageController
-                .activeL2Code(roomID: room.id)!,
-            userL1: _pangeaController.languageController
-                .activeL1Code(roomID: room.id)!,
-          ),
           room: room,
+          representation: representation,
         ),
       ),
     );
