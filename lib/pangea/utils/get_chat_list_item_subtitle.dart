@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
@@ -18,7 +19,8 @@ class GetChatListItemSubtitle {
     // try {
     if (event.type != EventTypes.Message ||
         !pangeaController.permissionsController
-            .isToolEnabled(ToolSetting.immersionMode, event.room)) {
+            .isToolEnabled(ToolSetting.immersionMode, event.room) ||
+        event.content.tryGet(ModelKey.transcription) != null) {
       return event.calcLocalizedBody(
         MatrixLocals(L10n.of(context)!),
         hideReply: true,

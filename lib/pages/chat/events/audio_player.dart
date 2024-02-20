@@ -143,7 +143,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       matrixFile = MatrixAudioFile(
         bytes: matrixFile!.bytes,
         name: matrixFile!.name,
-        mimeType: "audio/ogg",
+        mimeType: "audio/mp3",
       );
       debugPrint("audioType is $mimeType");
       // TODO - figure out why it's a wav at this point

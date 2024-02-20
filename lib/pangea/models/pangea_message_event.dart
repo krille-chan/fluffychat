@@ -102,10 +102,6 @@ class PangeaMessageEvent {
       params,
     );
 
-    if (response.mediaType != 'audio/ogg') {
-      throw Exception('Unexpected media type: ${response.mediaType}');
-    }
-
     final audioBytes = base64.decode(response.audioContent);
 
     // if (!TextToSpeechController.isOggFile(audioBytes)) {
@@ -125,11 +121,6 @@ class PangeaMessageEvent {
       name: fileName,
       mimeType: response.mediaType,
     );
-
-    if (file.mimeType != "audio/ogg") {
-      debugPrint("Unexpected mime type for audio: ${file.mimeType}");
-      // throw Exception("Unexpected mime type: ${file.mimeType}");
-    }
 
     // try {
     final String? eventId = await room.sendFileEvent(
