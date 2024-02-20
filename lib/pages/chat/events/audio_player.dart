@@ -136,14 +136,14 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       audioPlayer.setFilePath(audioFile.path);
     } else {
       // #Pangea
-      final data = matrixFile!.bytes;
+      // final data = matrixFile!.bytes;
       final mimeType = matrixFile!.mimeType;
       //shouldn't have to be settting this here
       //TODO: figure out why this is necessary
       matrixFile = MatrixAudioFile(
         bytes: matrixFile!.bytes,
         name: matrixFile!.name,
-        mimeType: "audio/mp3",
+        mimeType: mimeType,
       );
       debugPrint("audioType is $mimeType");
       // TODO - figure out why it's a wav at this point
