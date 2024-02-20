@@ -669,7 +669,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "67158a31e066265ad43463befb57c29ec2cbd77a"
+      resolved-ref: "930c51d56c87a7f8cefdf8c1db52c194baddc37d"
       url: "https://github.com/krille-chan/flutter_shortcuts.git"
     source: git
     version: "1.4.0"
