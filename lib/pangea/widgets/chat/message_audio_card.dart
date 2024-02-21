@@ -95,6 +95,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                       AudioPlayerWidget(
                         localAudioEvent!,
                         color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        autoplay: true,
                       ),
                     ],
                   ),
