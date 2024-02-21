@@ -83,8 +83,16 @@ class PangeaMessageEvent {
     return true;
   }
 
-  Future<PangeaAudioFile> getMatrixAudioFile(String langCode) async {
-    final String text = representationByLanguage(langCode)?.text ?? body;
+  Future<PangeaAudioFile> getMatrixAudioFile(
+    String langCode,
+    BuildContext context,
+  ) async {
+    final String text = (await representationByLanguageGlobal(
+          context: context,
+          langCode: langCode,
+        ))
+            ?.text ??
+        body;
     final TextToSpeechRequest params = TextToSpeechRequest(
       text: text,
       langCode: langCode,

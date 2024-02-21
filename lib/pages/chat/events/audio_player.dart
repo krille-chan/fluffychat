@@ -236,30 +236,37 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
+  // #Pangea
+  Future<void> _downloadMatrixFile() async {
+    if (kIsWeb) return;
+    final temp = await getTemporaryDirectory();
+    final tempDir = temp;
+    final file = File('${tempDir.path}/${widget.matrixFile!.name}');
+    await file.writeAsBytes(widget.matrixFile!.bytes);
+    audioFile = file;
+  }
+  // Pangea#
+
   @override
   void initState() {
     super.initState();
     waveform = _getWaveform();
     // #Pangea
     if (widget.matrixFile != null) {
-      if (!kIsWeb) {
-        getTemporaryDirectory().then((val) {
-          final tempDir = val;
-          final file = File('${tempDir.path}/${widget.matrixFile!.name}');
-          file.writeAsBytesSync(widget.matrixFile!.bytes);
-          audioFile = file;
-        });
-      }
-      status = AudioPlayerStatus.downloaded;
-      setState(() {});
-    }
-
-    if (widget.autoplay) {
+      _downloadMatrixFile().then((_) {
+        setState(() => status = AudioPlayerStatus.downloaded);
+        if (widget.autoplay) {
+          status == AudioPlayerStatus.downloaded
+              ? _playAction()
+              : _downloadAction();
+        }
+      });
+    } else if (widget.autoplay) {
       status == AudioPlayerStatus.downloaded
           ? _playAction()
           : _downloadAction();
-      // Pangea#
     }
+    // Pangea#
   }
 
   @override

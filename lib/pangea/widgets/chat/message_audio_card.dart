@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -46,7 +45,8 @@ class MessageAudioCardState extends State<MessageAudioCard> {
         }
       }
 
-      audioFile = await widget.messageEvent.getMatrixAudioFile(langCode);
+      audioFile =
+          await widget.messageEvent.getMatrixAudioFile(langCode, context);
       if (mounted) setState(() => _isLoading = false);
     } catch (e, _) {
       debugPrint(StackTrace.current.toString());
@@ -78,20 +78,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
   @override
   Widget build(BuildContext context) {
-    final playButton = InkWell(
-      borderRadius: BorderRadius.circular(64),
-      onTap: fetchAudio,
-      child: Material(
-        color: AppConfig.primaryColor.withAlpha(64),
-        borderRadius: BorderRadius.circular(64),
-        child: const Icon(
-          // Change the icon based on some condition. If you have an audio player state, use it here.
-          Icons.play_arrow_outlined,
-          color: AppConfig.primaryColor,
-        ),
-      ),
-    );
-
     return Padding(
       padding: const EdgeInsets.all(8),
       child: _isLoading
