@@ -32,4 +32,6 @@ class MessageTextSelection {
     }
     selectionStream.add(selectedText);
   }
+
+  int get offset => messageText.indexOf(selectedText!);
 }

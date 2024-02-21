@@ -2,6 +2,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -113,14 +114,12 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                         localAudioEvent,
                         color: Theme.of(context).colorScheme.onPrimaryContainer,
                         matrixFile: audioFile,
+                        autoplay: true,
                       ),
                     ],
                   ),
                 )
-              : Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: playButton,
-                ),
+              : const CardErrorWidget(),
     );
   }
 }

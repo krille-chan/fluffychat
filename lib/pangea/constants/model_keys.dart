@@ -51,6 +51,8 @@ class ModelKey {
   static const String word = "word";
   static const String lang = "lang";
   static const String deepL = "deepl";
+  static const String offset = "offset";
+  static const String length = "length";
   static const String langCode = 'lang_code';
   static const String wordLang = "word_lang";
   static const String lemma = "lemma";

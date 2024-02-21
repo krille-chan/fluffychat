@@ -19,6 +19,7 @@ class AudioPlayerWidget extends StatefulWidget {
   // final Event event;
   final Event? event;
   final PangeaAudioFile? matrixFile;
+  final bool autoplay;
   // Pangea#
 
   static String? currentId;
@@ -30,8 +31,9 @@ class AudioPlayerWidget extends StatefulWidget {
     this.color = Colors.black,
     // #Pangea
     this.matrixFile,
-    // Pangea#
     super.key,
+    this.autoplay = false,
+    // Pangea#
   });
 
   @override
@@ -251,7 +253,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       status = AudioPlayerStatus.downloaded;
       setState(() {});
     }
-    // Pangea#
+
+    if (widget.autoplay) {
+      status == AudioPlayerStatus.downloaded
+          ? _playAction()
+          : _downloadAction();
+      // Pangea#
+    }
   }
 
   @override
