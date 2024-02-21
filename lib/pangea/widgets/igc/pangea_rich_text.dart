@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
@@ -38,7 +38,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
   bool _fetchingRepresentation = false;
   double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
   String textSpan = "";
-  RepresentationEvent? repEvent;
+  PangeaRepresentation? repEvent;
 
   @override
   void initState() {
@@ -71,9 +71,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
       debugger(when: kDebugMode);
     }
 
-    repEvent = widget.pangeaMessageEvent.representationByLanguage(
-      widget.pangeaMessageEvent.messageDisplayLangCode,
-    );
+    repEvent = widget.pangeaMessageEvent
+        .representationByLanguage(
+          widget.pangeaMessageEvent.messageDisplayLangCode,
+        )
+        ?.content;
 
     if (repEvent == null) {
       setState(() => _fetchingRepresentation = true);

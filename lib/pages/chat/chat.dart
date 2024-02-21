@@ -1560,7 +1560,6 @@ class ChatController extends State<ChatPageWithRoom>
       timeline: timeline!,
       ownMessage: event.senderId == room.client.userID,
     );
-    _pangeaMessageEvents[eventId]!.setDisplayRepresentation(context);
   }
 
   void setToolbarDisplayController(String eventId) {
