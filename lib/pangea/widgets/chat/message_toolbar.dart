@@ -64,53 +64,56 @@ class ToolbarDisplayController {
       messageWidth = transformTargetSize.width;
     }
 
-    Widget overlayEntry;
-    try {
-      overlayEntry = Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: pangeaMessageEvent.ownMessage
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
-        children: [
-          toolbar!,
-          const SizedBox(height: 6),
-          OverlayMessage(
-            pangeaMessageEvent.event,
-            timeline: pangeaMessageEvent.timeline,
-            immersionMode: immersionMode,
-            ownMessage: pangeaMessageEvent.ownMessage,
-            toolbarController: this,
-            width: messageWidth,
-          ),
-        ],
-      );
-    } catch (err) {
-      ErrorHandler.logError(e: err, s: StackTrace.current);
-      return;
-    }
-    OverlayUtil.showOverlay(
-      context: context,
-      child: overlayEntry,
-      transformTargetId: targetId,
-      targetAnchor: pangeaMessageEvent.ownMessage
-          ? Alignment.bottomRight
-          : Alignment.bottomLeft,
-      followerAnchor: pangeaMessageEvent.ownMessage
-          ? Alignment.bottomRight
-          : Alignment.bottomLeft,
-      backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(164),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Widget overlayEntry;
+      try {
+        overlayEntry = Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: pangeaMessageEvent.ownMessage
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          children: [
+            toolbar!,
+            const SizedBox(height: 6),
+            OverlayMessage(
+              pangeaMessageEvent.event,
+              timeline: pangeaMessageEvent.timeline,
+              immersionMode: immersionMode,
+              ownMessage: pangeaMessageEvent.ownMessage,
+              toolbarController: this,
+              width: messageWidth,
+            ),
+          ],
+        );
+      } catch (err) {
+        ErrorHandler.logError(e: err, s: StackTrace.current);
+        return;
+      }
 
-    if (MatrixState.pAnyState.overlay != null) {
-      overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
-    }
-
-    if (mode != null) {
-      Future.delayed(
-        const Duration(milliseconds: 100),
-        () => toolbarModeStream.add(mode),
+      OverlayUtil.showOverlay(
+        context: context,
+        child: overlayEntry,
+        transformTargetId: targetId,
+        targetAnchor: pangeaMessageEvent.ownMessage
+            ? Alignment.bottomRight
+            : Alignment.bottomLeft,
+        followerAnchor: pangeaMessageEvent.ownMessage
+            ? Alignment.bottomRight
+            : Alignment.bottomLeft,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(164),
       );
-    }
+
+      if (MatrixState.pAnyState.overlay != null) {
+        overlayId = MatrixState.pAnyState.overlay.hashCode.toString();
+      }
+
+      if (mode != null) {
+        Future.delayed(
+          const Duration(milliseconds: 100),
+          () => toolbarModeStream.add(mode),
+        );
+      }
+    });
   }
 
   bool get highlighted =>
@@ -141,12 +144,12 @@ class MessageToolbar extends StatefulWidget {
 
 class MessageToolbarState extends State<MessageToolbar> {
   Widget? child;
-  MessageMode? _currentMode;
+  MessageMode? currentMode;
   bool hasSelectedText = false;
-  late StreamSubscription<String?> _selectionStream;
-  late StreamSubscription<MessageMode> _toolbarModeStream;
+  late StreamSubscription<String?> selectionStream;
+  late StreamSubscription<MessageMode> toolbarModeStream;
 
-  IconData _getIconData(MessageMode mode) {
+  IconData getIconData(MessageMode mode) {
     switch (mode) {
       case MessageMode.translation:
         return Icons.g_translate;
@@ -159,7 +162,7 @@ class MessageToolbarState extends State<MessageToolbar> {
     }
   }
 
-  bool _enabledButton(MessageMode mode) {
+  bool enabledButton(MessageMode mode) {
     switch (mode) {
       case MessageMode.translation:
         return true;
@@ -175,8 +178,8 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   void updateMode(MessageMode newMode) {
     debugPrint("updating toolbar mode");
-    setState(() => _currentMode = newMode);
-    switch (_currentMode) {
+    setState(() => currentMode = newMode);
+    switch (currentMode) {
       case MessageMode.translation:
         showTranslation();
         break;
@@ -240,11 +243,11 @@ class MessageToolbarState extends State<MessageToolbar> {
       hasSelectedText = true;
     }
 
-    _toolbarModeStream = widget.toolbarModeStream.stream.listen((mode) {
+    toolbarModeStream = widget.toolbarModeStream.stream.listen((mode) {
       updateMode(mode);
     });
 
-    _selectionStream =
+    selectionStream =
         widget.textSelection.selectionStream.stream.listen((value) {
       final bool shouldSetState =
           value != null && !hasSelectedText || value == null && hasSelectedText;
@@ -257,8 +260,8 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   @override
   void dispose() {
-    _selectionStream.cancel();
-    _toolbarModeStream.cancel();
+    selectionStream.cancel();
+    toolbarModeStream.cancel();
     super.dispose();
   }
 
@@ -303,12 +306,12 @@ class MessageToolbarState extends State<MessageToolbar> {
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
                     return IconButton(
-                      icon: Icon(_getIconData(mode)),
-                      color: _currentMode == mode
+                      icon: Icon(getIconData(mode)),
+                      color: currentMode == mode
                           ? Theme.of(context).colorScheme.primary
                           : null,
                       onPressed:
-                          _enabledButton(mode) ? () => updateMode(mode) : null,
+                          enabledButton(mode) ? () => updateMode(mode) : null,
                     );
                   }).toList() +
                   [
