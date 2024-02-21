@@ -37,6 +37,8 @@ class FullTextTranslationRequestModel {
   String userL1;
   String userL2;
   bool? deepL;
+  int? offset;
+  int? length;
 
   FullTextTranslationRequestModel({
     required this.text,
@@ -45,6 +47,8 @@ class FullTextTranslationRequestModel {
     required this.userL2,
     required this.userL1,
     this.deepL = false,
+    this.offset,
+    this.length,
   });
 
   //PTODO throw error for null
@@ -56,6 +60,8 @@ class FullTextTranslationRequestModel {
         ModelKey.userL2: userL2,
         ModelKey.userL1: userL1,
         ModelKey.deepL: deepL,
+        ModelKey.offset: offset,
+        ModelKey.length: length,
       };
 }
 

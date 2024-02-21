@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import '../network/requests.dart';
@@ -37,15 +36,17 @@ class TextToSpeechRequest {
 
 class TextToSpeechResponse {
   String audioContent;
-  String mediaType;
+  String mimeType;
   int durationMillis;
   List<int> waveform;
+  String fileExtension;
 
   TextToSpeechResponse({
     required this.audioContent,
-    required this.mediaType,
+    required this.mimeType,
     required this.durationMillis,
     required this.waveform,
+    required this.fileExtension,
   });
 
   factory TextToSpeechResponse.fromJson(
@@ -53,9 +54,10 @@ class TextToSpeechResponse {
   ) =>
       TextToSpeechResponse(
         audioContent: json["audio_content"],
-        mediaType: json["media_type"],
+        mimeType: json["mime_type"],
         durationMillis: json["duration_millis"],
         waveform: List<int>.from(json["wave_form"]),
+        fileExtension: json["file_extension"],
       );
 }
 

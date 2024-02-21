@@ -4,9 +4,9 @@ import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
+import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
@@ -75,11 +75,13 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     final resp = await FullTextTranslationRepo.translate(
       accessToken: accessToken,
       request: FullTextTranslationRequestModel(
-        text: widget.selection.selectedText!,
+        text: widget.selection.messageText,
         tgtLang: translationLangCode()!,
         userL1: l1Code!,
         userL2: l2Code!,
         srcLang: widget.messageEvent.messageDisplayLangCode,
+        length: widget.selection.selectedText!.length,
+        offset: widget.selection.offset,
       ),
     );
 
@@ -131,6 +133,12 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_fetchingRepresentation &&
+        repEvent == null &&
+        selectionTranslation == null) {
+      return const CardErrorWidget();
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8),
       child: _fetchingRepresentation
@@ -147,15 +155,10 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
                   selectionTranslation!,
                   style: BotStyle.text(context),
                 )
-              : repEvent != null
-                  ? Text(
-                      repEvent!.text,
-                      style: BotStyle.text(context),
-                    )
-                  : Text(
-                      L10n.of(context)!.oopsSomethingWentWrong,
-                      style: BotStyle.text(context),
-                    ),
+              : Text(
+                  repEvent!.text,
+                  style: BotStyle.text(context),
+                ),
     );
   }
 }
