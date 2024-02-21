@@ -222,7 +222,7 @@ class MessageToolbarState extends State<MessageToolbar> {
       wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       fullText: widget.textSelection.messageText,
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
-      hasInfo: false,
+      hasInfo: true,
       room: widget.room,
     );
   }
