@@ -21,17 +21,36 @@ class MessageAudioCard extends StatefulWidget {
 class MessageAudioCardState extends State<MessageAudioCard> {
   bool _isLoading = false;
   Event? localAudioEvent;
+  PangeaAudioFile? audioFile;
 
-  void fetchAudio() {
+  Future<void> fetchAudio() async {
     if (!mounted) return;
     setState(() => _isLoading = true);
-    widget.messageEvent
-        .getAudioGlobal(widget.messageEvent.messageDisplayLangCode)
-        .then((Event? event) {
-      localAudioEvent = event;
-    }).catchError((e) {
+    // first, try to get the audio event
+    // if there's not audio event, then call the API
+    // Then, if on mobile, save it to a temp file and use that as audio source
+    // If on web, stream the audio bytes
+
+    try {
+      final String langCode = widget.messageEvent.messageDisplayLangCode;
+      final String? text =
+          widget.messageEvent.representationByLanguage(langCode)?.text;
+      if (text != null) {
+        final Event? localEvent =
+            widget.messageEvent.getAudioLocal(langCode, text);
+        if (localEvent != null) {
+          localAudioEvent = localEvent;
+          if (mounted) setState(() => _isLoading = false);
+          return;
+        }
+      }
+
+      audioFile = await widget.messageEvent.getMatrixAudioFile(langCode);
+      if (mounted) setState(() => _isLoading = false);
+    } catch (e, _) {
       debugPrint(StackTrace.current.toString());
-      if (!mounted) return null;
+      if (!mounted) return;
+      setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(L10n.of(context)!.errorGettingAudio),
@@ -46,10 +65,8 @@ class MessageAudioCardState extends State<MessageAudioCard> {
               widget.messageEvent.messageDisplayLangCode,
         },
       );
-      return null;
-    }).whenComplete(() {
-      if (mounted) setState(() => _isLoading = false);
-    });
+    }
+    return;
   }
 
   @override
@@ -85,7 +102,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                 color: Theme.of(context).colorScheme.primary,
               ),
             )
-          : localAudioEvent != null
+          : localAudioEvent != null || audioFile != null
               ? Container(
                   constraints: const BoxConstraints(
                     maxWidth: 250,
@@ -93,8 +110,9 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                   child: Column(
                     children: [
                       AudioPlayerWidget(
-                        localAudioEvent!,
+                        localAudioEvent,
                         color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        matrixFile: audioFile,
                       ),
                     ],
                   ),
@@ -105,4 +123,16 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                 ),
     );
   }
+}
+
+class PangeaAudioFile extends MatrixAudioFile {
+  List<int>? waveform;
+
+  PangeaAudioFile({
+    required super.bytes,
+    required super.name,
+    super.mimeType,
+    super.duration,
+    this.waveform,
+  });
 }

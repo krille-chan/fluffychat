@@ -809,7 +809,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "bn": [
@@ -1637,7 +1643,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "bo": [
@@ -2465,7 +2477,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ca": [
@@ -3293,7 +3311,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "cs": [
@@ -4121,7 +4145,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "de": [
@@ -4918,7 +4948,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "el": [
@@ -5746,7 +5782,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "eo": [
@@ -6574,14 +6616,26 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "es": [
     "errorGettingAudio",
     "define",
     "listen",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "et": [
@@ -7394,7 +7448,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "eu": [
@@ -8191,7 +8251,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "fa": [
@@ -9019,7 +9085,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "fi": [
@@ -9847,7 +9919,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "fr": [
@@ -10675,7 +10753,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ga": [
@@ -11503,7 +11587,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "gl": [
@@ -12300,7 +12390,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "he": [
@@ -13128,7 +13224,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "hi": [
@@ -13956,7 +14058,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "hr": [
@@ -14771,7 +14879,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "hu": [
@@ -15599,7 +15713,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "id": [
@@ -16427,7 +16547,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ie": [
@@ -17255,7 +17381,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "it": [
@@ -18068,7 +18200,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ja": [
@@ -18896,7 +19034,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ko": [
@@ -19724,7 +19868,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "lt": [
@@ -20552,7 +20702,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "lv": [
@@ -21380,7 +21536,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "nb": [
@@ -22208,7 +22370,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "nl": [
@@ -23036,7 +23204,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "pl": [
@@ -23864,7 +24038,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "pt": [
@@ -24692,7 +24872,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "pt_BR": [
@@ -25489,7 +25675,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "pt_PT": [
@@ -26317,7 +26509,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ro": [
@@ -27145,7 +27343,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ru": [
@@ -27946,7 +28150,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "sk": [
@@ -28774,7 +28984,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "sl": [
@@ -29602,7 +29818,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "sr": [
@@ -30430,7 +30652,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "sv": [
@@ -31258,7 +31486,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "ta": [
@@ -32086,7 +32320,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "th": [
@@ -32914,7 +33154,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "tr": [
@@ -33727,7 +33973,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "uk": [
@@ -34540,7 +34792,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "vi": [
@@ -35368,7 +35626,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "zh": [
@@ -36181,7 +36445,13 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ],
 
   "zh_Hant": [
@@ -37009,6 +37279,12 @@
     "enableModeration",
     "enableModerationDesc",
     "conversationLanguageLevel",
-    "showDefinition"
+    "showDefinition",
+    "acceptedKeyVerification",
+    "canceledKeyVerification",
+    "completedKeyVerification",
+    "isReadyForKeyVerification",
+    "requestedKeyVerification",
+    "startedKeyVerification"
   ]
 }
