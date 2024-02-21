@@ -61,7 +61,9 @@ class _SpaceViewState extends State<SpaceView> {
   // Pangea#
 
   void _refresh() {
-    _lastResponse.remove(widget.controller.activeSpaceId);
+    // #Pangea
+    // _lastResponse.remove(widget.controller.activseSpaceId);
+    // Pangea#
     loadHierarchy();
   }
 
