@@ -114,16 +114,11 @@ class MessageDataController extends BaseController {
     required Room room,
   }) async {
     try {
-      final timer = Stopwatch()..start();
       final Event? repEvent = await room.sendPangeaEvent(
         content: representation.toJson(),
         parentEventId: messageEventId,
         type: PangeaEventTypes.representation,
       );
-      debugPrint(
-        'sendRepresentationMatrixEvent took: ${timer.elapsedMilliseconds}ms',
-      );
-      timer.reset();
 
       return repEvent;
     } catch (err, stack) {
@@ -158,14 +153,11 @@ class MessageDataController extends BaseController {
     );
 
     try {
-      final timer = Stopwatch()..start();
       final FullTextTranslationResponseModel res =
           await FullTextTranslationRepo.translate(
         accessToken: await _pangeaController.userController.accessToken,
         request: req,
       );
-      debugPrint('translation took: ${timer.elapsedMilliseconds}ms');
-      timer.reset();
 
       return PangeaRepresentation(
         langCode: req.tgtLang,

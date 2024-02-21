@@ -340,19 +340,21 @@ class PangeaMessageEvent {
 
     MatrixState.pangeaController.messageData
         .sendRepresentationMatrixEvent(
-          representation: pangeaRep,
-          messageEventId: _latestEdit.eventId,
-          room: _latestEdit.room,
-          target: langCode,
-        )
+      representation: pangeaRep,
+      messageEventId: _latestEdit.eventId,
+      room: _latestEdit.room,
+      target: langCode,
+    )
         .then(
-          (value) => representations.add(
-            RepresentationEvent(
-              event: value,
-              timeline: timeline,
-            ),
+      (value) {
+        representations.add(
+          RepresentationEvent(
+            event: value,
+            timeline: timeline,
           ),
         );
+      },
+    );
 
     return pangeaRep;
   }
