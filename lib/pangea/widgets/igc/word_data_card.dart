@@ -7,9 +7,7 @@ import 'package:fluffychat/pangea/models/language_model.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
-import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -183,10 +181,6 @@ class WordDataCardView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CardHeader(
-              text: controller.widget.word,
-              botExpression: BotExpression.down,
-            ),
             if (controller.widget.choiceFeedback != null)
               Text(
                 controller.widget.choiceFeedback!,
