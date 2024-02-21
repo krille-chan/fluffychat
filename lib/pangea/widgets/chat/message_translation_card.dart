@@ -73,11 +73,13 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     final resp = await FullTextTranslationRepo.translate(
       accessToken: accessToken,
       request: FullTextTranslationRequestModel(
-        text: widget.selection.selectedText!,
+        text: widget.selection.messageText,
         tgtLang: translationLangCode()!,
         userL1: l1Code!,
         userL2: l2Code!,
         srcLang: widget.messageEvent.messageDisplayLangCode,
+        length: widget.selection.selectedText!.length,
+        offset: widget.selection.offset,
       ),
     );
 
