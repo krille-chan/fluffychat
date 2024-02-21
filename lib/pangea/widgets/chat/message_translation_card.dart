@@ -1,5 +1,5 @@
+import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -25,7 +25,7 @@ class MessageTranslationCard extends StatefulWidget {
 }
 
 class MessageTranslationCardState extends State<MessageTranslationCard> {
-  RepresentationEvent? repEvent;
+  PangeaRepresentation? repEvent;
   String? selectionTranslation;
   String? oldSelectedText;
   String? l1Code;
@@ -43,9 +43,11 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     final String? langCode = translationLangCode();
     if (langCode == null) return;
 
-    repEvent = widget.messageEvent.representationByLanguage(
-      langCode,
-    );
+    repEvent = widget.messageEvent
+        .representationByLanguage(
+          langCode,
+        )
+        ?.content;
 
     if (repEvent == null && mounted) {
       repEvent = await widget.messageEvent.representationByLanguageGlobal(
