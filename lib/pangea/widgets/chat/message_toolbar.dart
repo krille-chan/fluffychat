@@ -186,6 +186,8 @@ class MessageToolbarState extends State<MessageToolbar> {
     if (!subscribed) {
       child = MessageUnsubscribedCard(
         languageTool: getModeTitle(newMode),
+        mode: newMode,
+        toolbarModeStream: widget.toolbarModeStream,
       );
     } else {
       switch (currentMode) {
