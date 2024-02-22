@@ -1375,11 +1375,12 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "187390203f6a5a7370490b7036f2defc306fda240f8d744191d406692c128469"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.25.8"
+      path: "."
+      ref: "ggurdin/indexeddb-clear-fix"
+      resolved-ref: e9abfd041283595d38134410abeba71b6cf978f8
+      url: "https://github.com/ggurdin/matrix-dart-sdk.git"
+    source: git
+    version: "0.25.9"
   matrix_api_lite:
     dependency: transitive
     description:
