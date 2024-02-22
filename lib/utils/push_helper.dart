@@ -313,7 +313,7 @@ Future<void> _setShortcut(
   await flutterShortcuts.pushShortcutItem(
     shortcut: ShortcutItem(
       id: event.room.id,
-      action: l10n.openChat,
+      action: AppConfig.inviteLinkPrefix + event.room.id,
       shortLabel: title,
       conversationShortcut: true,
       icon: avatarFile == null

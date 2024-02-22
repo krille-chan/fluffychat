@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -398,6 +399,16 @@ class ChatListController extends State<ChatList>
     if (FluffyChatApp.gotInitialLink == false) {
       FluffyChatApp.gotInitialLink = true;
       getInitialLink().then(_processIncomingUris);
+    }
+
+    if (PlatformInfos.isAndroid) {
+      final shortcuts = FlutterShortcuts();
+      shortcuts.initialize().then(
+            (_) => shortcuts.listenAction((action) {
+              if (!mounted) return;
+              UrlLauncher(context, action).launchUrl();
+            }),
+          );
     }
   }
 
