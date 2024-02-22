@@ -93,7 +93,7 @@ abstract class FluffyThemes {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+        contentPadding: const EdgeInsets.all(12),
         filled: true,
       ),
       appBarTheme: AppBarTheme(
