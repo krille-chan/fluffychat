@@ -17,7 +17,6 @@ import 'package:uni_links/uni_links.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
-import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -775,8 +774,7 @@ class ChatListController extends State<ChatList>
     isTorBrowser = isTor;
   }
 
-  Future<void> dehydrate() =>
-      SettingsSecurityController.dehydrateDevice(context);
+  Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
