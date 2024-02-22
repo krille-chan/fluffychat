@@ -2586,5 +2586,19 @@
     "placeholders": {
       "sender": {}
     }
-  }
+  },
+  "presencesToggle": "Erakutsi beste erabiltzaileen egoera-mezuak",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "Presentzia:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Jasotako mezuak",
+  "@incomingMessages": {},
+  "hidePresences": "Ezkutatu Egoeren Zerrenda?",
+  "@hidePresences": {}
 }
