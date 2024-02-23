@@ -9,10 +9,12 @@ import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 enum MessageMode { translation, play, definition }
@@ -162,35 +164,43 @@ class MessageToolbarState extends State<MessageToolbar> {
     }
   }
 
-  bool enabledButton(MessageMode mode) {
+  String getModeTitle(MessageMode mode) {
     switch (mode) {
       case MessageMode.translation:
-        return true;
+        return L10n.of(context)!.translation;
       case MessageMode.play:
-        return true;
+        return L10n.of(context)!.audio;
       case MessageMode.definition:
-        return widget.textSelection.selectedText != null;
-      // return true;
+        return L10n.of(context)!.definitions;
       default:
-        return false;
+        return L10n.of(context)!
+            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
     }
   }
 
   void updateMode(MessageMode newMode) {
     debugPrint("updating toolbar mode");
+    final bool subscribed =
+        MatrixState.pangeaController.subscriptionController.isSubscribed;
     setState(() => currentMode = newMode);
-    switch (currentMode) {
-      case MessageMode.translation:
-        showTranslation();
-        break;
-      case MessageMode.play:
-        playAudio();
-        break;
-      case MessageMode.definition:
-        showDefinition();
-        break;
-      default:
-        break;
+    if (!subscribed) {
+      child = MessageUnsubscribedCard(
+        languageTool: getModeTitle(newMode),
+      );
+    } else {
+      switch (currentMode) {
+        case MessageMode.translation:
+          showTranslation();
+          break;
+        case MessageMode.play:
+          playAudio();
+          break;
+        case MessageMode.definition:
+          showDefinition();
+          break;
+        default:
+          break;
+      }
     }
     setState(() {});
   }
@@ -214,6 +224,7 @@ class MessageToolbarState extends State<MessageToolbar> {
   void showDefinition() {
     if (widget.textSelection.selectedText == null ||
         widget.textSelection.selectedText!.isEmpty) {
+      child = const SelectToDefine();
       return;
     }
 
@@ -312,8 +323,7 @@ class MessageToolbarState extends State<MessageToolbar> {
                       color: currentMode == mode
                           ? Theme.of(context).colorScheme.primary
                           : null,
-                      onPressed:
-                          enabledButton(mode) ? () => updateMode(mode) : null,
+                      onPressed: () => updateMode(mode),
                     );
                   }).toList() +
                   [

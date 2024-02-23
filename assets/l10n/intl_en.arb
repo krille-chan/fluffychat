@@ -3932,5 +3932,10 @@
     "subscriptionPopupDesc": "Subscribe today to unlock translation and grammar correction!",
     "seeOptions": "See options",
     "continuedWithoutSubscription": "Continue without subscribing",
-    "trialPeriodExpired": "Your trial period has expired"
+    "trialPeriodExpired": "Your trial period has expired",
+    "selectToDefine": "To define a word in this message, just select it!",
+    "translation": "translation",
+    "audio": "message audio",
+    "definitions": "definitions",
+    "subscribedToUnlockTools": "Subscribe to unlock language tools, including"
 }
