@@ -24,7 +24,7 @@ platform :ios do
       key_id: ENV["ASC_KEY_ID"],
       issuer_id: ENV["ASC_ISSUER_ID"],
       key_content: ENV["ASC_KEY"],
-      is_key_content_base64: true,
+      is_key_content_base64: true, # cat key.p8 | base64
       in_house: false # detecting this via ASC private key not currently supported
     )
   end
