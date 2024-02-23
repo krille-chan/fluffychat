@@ -101,13 +101,15 @@ platform :ios do
 
     # turn off automatic signing during build so correct code signing identity is guaranteed to be used
     update_code_signing_settings(
-      use_automatic_signing: false,
-      targets: ["main-target"], # specify which targets to update code signing settings for
-      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
-      bundle_identifier: app_identifier,
-      profile_name: profile_name,
-      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+      use_automatic_signing: true,
     )
+#      use_automatic_signing: false,
+#      targets: ["main-target"], # specify which targets to update code signing settings for
+#      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
+#      bundle_identifier: app_identifier,
+#      profile_name: profile_name,
+#      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+#    )
 
     # build the app
     gym(
