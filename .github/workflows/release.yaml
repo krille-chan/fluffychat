@@ -198,6 +198,7 @@ jobs:
           rm -rf fonts/NotoEmoji
           yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
+      - run: cd ios && pod install && cd ..
       - name: Set up ruby env
         uses: ruby/setup-ruby@v1.138.0
         with:
