@@ -4550,54 +4550,33 @@
   "showDefinition": "Mostrar definición",
   "acceptedKeyVerification": "{sender} verificación de clave aceptada",
   "@acceptedKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
   "canceledKeyVerification": "{sender} canceló la verificación de claves",
   "@canceledKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
   "completedKeyVerification": "{sender} verificación de claves completada",
-  "@canceledKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
   "isReadyForKeyVerification": "{sender} está listo para la verificación de claves",
-  "@canceledKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
   "requestedKeyVerification": "{sender} solicitó verificación de claves",
-  "@canceledKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
   "startedKeyVerification": "{sender} ha iniciado la verificación de claves",
-  "@canceledKeyVerification": {
-        "type": "text",
-        "placeholders": {
-            "sender": {}
-        }
-    },
   "subscriptionPopupTitle": "Esta frase podría tener un error gramatical...",
   "subscriptionPopupDesc": "Suscríbase hoy mismo para desbloquear la traducción y la corrección gramatical.",
   "seeOptions": "Ver opciones",
   "continuedWithoutSubscription": "Continuar sin suscribirse",
   "trialPeriodExpired": "Su periodo de prueba ha expirado",
   "selectToDefine": "Para definir una palabra en este mensaje, ¡sólo tiene que seleccionarla!",
-  "translation": "traducción",
-  "audio": "mensaje de audio",
+  "translations": "traducciónes",
+  "messageAudio": "mensaje de audio",
   "definitions": "definiciones",
-  "subscribedToUnlockTools": "Suscríbase para desbloquear herramientas lingüísticas, como"
+  "subscribedToUnlockTools": "Suscríbase para desbloquear herramientas lingüísticas, como",
+  "more": "Más",
+  "translationTooltip": "Traducir",
+  "audioTooltip": "Reproducir audio"
 }
