@@ -4,7 +4,7 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>im.tawkie.app</string>
+		<string>fr.tawkie.app</string>
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
@@ -32,11 +32,11 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>im.tawkie.app.uris</string>
+			<string>fr.tawkie.app.uris</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ShareMedia</string>
-				<string>im.tawkie</string>
+				<string>fr.tawkie</string>
 				<string>matrix</string>
 			</array>
 		</dict>
