@@ -121,15 +121,18 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = this.audioPlayer ??= AudioPlayer();
     // #Pangea
     // if (AudioPlayerWidget.currentId != widget.event.eventId) {
-    // Pangea#
     if (AudioPlayerWidget.currentId != widget.event?.eventId) {
+      // Pangea#
       if (AudioPlayerWidget.currentId != null) {
         if (audioPlayer.playerState.playing) {
           await audioPlayer.stop();
           setState(() {});
         }
       }
+      // #Pangea
+      // AudioPlayerWidget.currentId = widget.event.eventId;
       AudioPlayerWidget.currentId = widget.event?.eventId;
+      // Pangea#
     }
     if (audioPlayer.playerState.playing) {
       await audioPlayer.pause();
@@ -295,7 +298,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         color: widget.color,
                       ),
                     ),
+                    // #Pangea
+                    // onLongPress: () => widget.event.saveFile(context),
                     onLongPress: () => widget.event?.saveFile(context),
+                    // Pangea#
                     onTap: () {
                       if (status == AudioPlayerStatus.downloaded) {
                         _playAction();

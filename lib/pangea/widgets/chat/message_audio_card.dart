@@ -26,10 +26,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
   Future<void> fetchAudio() async {
     if (!mounted) return;
     setState(() => _isLoading = true);
-    // first, try to get the audio event
-    // if there's not audio event, then call the API
-    // Then, if on mobile, save it to a temp file and use that as audio source
-    // If on web, stream the audio bytes
 
     try {
       final String langCode = widget.messageEvent.messageDisplayLangCode;
