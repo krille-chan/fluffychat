@@ -86,7 +86,8 @@ platform :ios do
     sigh(
       adhoc: options[:adhoc],
       api_key: api_key,
-      readonly: true
+      #readonly: true
+      readonly: false # create provisioning file if needed
     )
   end
 
