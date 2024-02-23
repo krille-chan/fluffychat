@@ -203,12 +203,14 @@ jobs:
         with:
           ruby-version: 3.2.1
           bundler-cache: true
+      - name: Install Fastlane
+        run: gem install fastlane -NV
 
       - name: Decode signing certificate into a file
         env:
           CERTIFICATE_BASE64: ${{ secrets.IOS_DIST_SIGNING_KEY }}
         run: |
-          echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12
+          cd ios && echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12 && cd ..
 
       - name: Build & upload iOS binary
         run: cd ios && fastlane beta
