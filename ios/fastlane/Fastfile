@@ -35,7 +35,9 @@ platform :ios do
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
 
-    current_version = get_version_number
+    current_version = get_version_number(
+      target: "Runner" # replace with your main target, required if you have more than one non-test target
+    )
     latest_build_number = latest_testflight_build_number(
       api_key: api_key,
       version: current_version,
