@@ -175,24 +175,25 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
-  void _toggleSpeed() {
+  void _toggleSpeed() async {
     final audioPlayer = this.audioPlayer;
     if (audioPlayer == null) return;
     switch (audioPlayer.speed) {
       case 1.0:
-        audioPlayer.setSpeed(1.5);
+        await audioPlayer.setSpeed(1.5);
         break;
       case 1.5:
-        audioPlayer.setSpeed(2.0);
+        await audioPlayer.setSpeed(2.0);
         break;
       case 2.0:
-        audioPlayer.setSpeed(0.5);
+        await audioPlayer.setSpeed(0.5);
         break;
       case 0.5:
       default:
-        audioPlayer.setSpeed(1.0);
+        await audioPlayer.setSpeed(1.0);
         break;
     }
+    setState(() {});
   }
 
   @override
