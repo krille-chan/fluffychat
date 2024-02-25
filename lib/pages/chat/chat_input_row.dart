@@ -164,21 +164,6 @@ class ChatInputRow extends StatelessWidget {
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
-                      if (controller.room
-                          .getImagePacks(ImagePackUsage.sticker)
-                          .isNotEmpty)
-                        PopupMenuItem<String>(
-                          value: 'sticker',
-                          child: ListTile(
-                            leading: const CircleAvatar(
-                              backgroundColor: Colors.orange,
-                              foregroundColor: Colors.white,
-                              child: Icon(Icons.emoji_emotions_outlined),
-                            ),
-                            title: Text(L10n.of(context)!.sendSticker),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
                       if (PlatformInfos.isMobile)
                         PopupMenuItem<String>(
                           value: 'location',
@@ -225,7 +210,7 @@ class ChatInputRow extends StatelessWidget {
                       child: Icon(
                         controller.showEmojiPicker
                             ? Icons.keyboard
-                            : Icons.emoji_emotions_outlined,
+                            : Icons.add_reaction_outlined,
                         key: ValueKey(controller.showEmojiPicker),
                       ),
                     ),

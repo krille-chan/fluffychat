@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
-import 'events/image_bubble.dart';
 
 class StickerPickerDialog extends StatefulWidget {
   final Room room;
+  final void Function(ImagePackImageContent) onSelected;
 
-  const StickerPickerDialog({required this.room, super.key});
+  const StickerPickerDialog({
+    required this.onSelected,
+    required this.room,
+    super.key,
+  });
 
   @override
   StickerPickerDialogState createState() => StickerPickerDialogState();
@@ -58,24 +65,14 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
           GridView.builder(
             itemCount: imageKeys.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 100,
+              maxCrossAxisExtent: 128,
             ),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int imageIndex) {
               final image = pack.images[imageKeys[imageIndex]]!;
-              final fakeEvent = Event(
-                type: EventTypes.Sticker,
-                content: {
-                  'url': image.url.toString(),
-                  'info': image.info,
-                },
-                originServerTs: DateTime.now(),
-                room: widget.room,
-                eventId: 'fake_event',
-                senderId: widget.room.client.userID!,
-              );
               return InkWell(
+                radius: AppConfig.borderRadius,
                 key: ValueKey(image.url.toString()),
                 onTap: () {
                   // copy the image
@@ -83,17 +80,16 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                       ImagePackImageContent.fromJson(image.toJson().copy());
                   // set the body, if it doesn't exist, to the key
                   imageCopy.body ??= imageKeys[imageIndex];
-                  Navigator.of(context, rootNavigator: false)
-                      .pop<ImagePackImageContent>(imageCopy);
+                  widget.onSelected(imageCopy);
                 },
                 child: AbsorbPointer(
                   absorbing: true,
-                  child: ImageBubble(
-                    fakeEvent,
-                    tapToView: false,
+                  child: MxcImage(
+                    uri: image.url,
                     fit: BoxFit.contain,
-                    width: 100,
-                    height: 100,
+                    width: 128,
+                    height: 128,
+                    animated: true,
                   ),
                 ),
               );
@@ -112,28 +108,47 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               floating: true,
               pinned: true,
               automaticallyImplyLeading: false,
-              titleSpacing: 0,
               backgroundColor: Theme.of(context).dialogBackgroundColor,
-              leading: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: Navigator.of(context, rootNavigator: false).pop,
-              ),
-              title: TextField(
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: L10n.of(context)!.search,
-                  suffix: const Icon(Icons.search_outlined),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              title: SizedBox(
+                height: 42,
+                child: TextField(
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: L10n.of(context)!.search,
+                    prefixIcon: const Icon(Icons.search_outlined),
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                  onChanged: (s) => setState(() => searchFilter = s),
                 ),
-                onChanged: (s) => setState(() => searchFilter = s),
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                packBuilder,
-                childCount: packSlugs.length,
+            if (packSlugs.isEmpty)
+              SliverFillRemaining(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(L10n.of(context)!.noEmotesFound),
+                      const SizedBox(height: 12),
+                      OutlinedButton.icon(
+                        onPressed: () => UrlLauncher(
+                          context,
+                          'https://matrix.to/#/#fluffychat-stickers:janian.de',
+                        ).launchUrl(),
+                        icon: const Icon(Icons.explore_outlined),
+                        label: Text(L10n.of(context)!.discover),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            else
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  packBuilder,
+                  childCount: packSlugs.length,
+                ),
               ),
-            ),
           ],
         ),
       ),

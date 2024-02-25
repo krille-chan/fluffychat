@@ -2481,5 +2481,7 @@
         }
     },
     "transparent": "Transparent",
-    "incomingMessages": "Incoming messages"
+    "incomingMessages": "Incoming messages",
+    "stickers": "Stickers",
+    "discover": "Discover"
 }
