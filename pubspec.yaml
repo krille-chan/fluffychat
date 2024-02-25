@@ -104,6 +104,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
+  license_checker: ^1.6.0
   msix: ^3.6.2
   translations_cleaner: ^0.0.5
 
