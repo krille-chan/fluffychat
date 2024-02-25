@@ -83,11 +83,23 @@ platform :ios do
     )
 
     # fetches and installs provisioning profiles from ASC
-    sigh(
-      adhoc: options[:adhoc],
+    # https://docs.fastlane.tools/actions/sigh/
+    get_provisioning_profile(
+      app_identifier: "fr.tawkie.app",
+      provisioning_name: "tawkie-distrib-runner",
+      adhoc: false,
       api_key: api_key,
-      #readonly: true
-      readonly: false # create provisioning file if needed
+      readonly: true
+      #readonly: false # create provisioning file if needed
+    )
+
+    get_provisioning_profile(
+      app_identifier: "fr.tawkie.app.Tawkie-Share",
+      provisioning_name: "tawkie-distrib-share",
+      adhoc: false,
+      api_key: api_key,
+      readonly: true
+      #readonly: false # create provisioning file if needed
     )
   end
 
@@ -125,7 +137,6 @@ platform :ios do
         provisioningProfiles: {
           app_identifier => profile_name, # here you can add any additional bundle identifiers and their associated provisioning profiles if you’re also building an app extension or other bundle identifier
           share_ext_app_identifier => share_ext_profile_name
-
         }
       }
     )
