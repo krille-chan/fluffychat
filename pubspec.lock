@@ -5,10 +5,10 @@ packages:
     dependency: "direct main"
     description:
       name: adaptive_dialog
-      sha256: "30dc6deee139cde31e5d10a1d05e1a2a1bb6d592cf0eea27b978884b1ff03405"
+      sha256: "817ff9b4bb441434d1fcb39a8d4492e50be456cd3507e4f19c5c7455c9e279e0"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   animations:
     dependency: "direct main"
     description:
