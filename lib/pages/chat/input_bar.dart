@@ -459,10 +459,11 @@ class InputBar extends StatelessWidget {
               onContentInserted: (KeyboardInsertedContent content) {
                 final data = content.data;
                 if (data == null) return;
+
                 final file = MatrixFile(
                   mimeType: content.mimeType,
                   bytes: data,
-                  name: 'content-insertion',
+                  name: content.uri.split('/').last,
                 );
                 room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
               },
