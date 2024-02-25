@@ -1,4 +1,5 @@
 ## v1.18.0
+- feat: Add speed button for audioplayer (krille-chan)
 - feat: enhanced send video functionality by adding toggle send original (Mubeen Rizvi)
 - feat: add dialog to hide presence list with long-press (Marcus Hoffmann)
 - feat: Add notification shortcuts to android (krille-chan)
