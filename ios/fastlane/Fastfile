@@ -107,7 +107,7 @@ platform :ios do
   lane :build_release do |options|
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
-    profile_name = "tawkie-distrib-runner" # replace with the name of the profile to use for the build
+    profile_name = "tawkie-distrib-runner-02" # replace with the name of the profile to use for the build
     output_name = "example-iOS" # specify the name of the .ipa file to generate
     export_method = "app-store" # specify the export method
     share_ext_app_identifier = "fr.tawkie.app.Tawkie-Share-02"
