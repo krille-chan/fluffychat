@@ -134,10 +134,10 @@ platform :ios do
       configuration: "Release",
       export_options: {
         method: export_method,
-        provisioningProfiles: {
-          app_identifier => profile_name, # here you can add any additional bundle identifiers and their associated provisioning profiles if you’re also building an app extension or other bundle identifier
-          share_ext_app_identifier => share_ext_profile_name
-        }
+#        provisioningProfiles: {
+#          app_identifier => profile_name, # here you can add any additional bundle identifiers and their associated provisioning profiles if you’re also building an app extension or other bundle identifier
+#          share_ext_app_identifier => share_ext_profile_name
+#        }
       }
     )
   end
