@@ -19,6 +19,8 @@ jobs:
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting
         run: dart run import_sorter:main --no-comments --exit-if-changed
+      - name: Check license compliance
+        run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
       - name: Apply google services patch
         run: git apply ./scripts/enable-android-google-services.patch
