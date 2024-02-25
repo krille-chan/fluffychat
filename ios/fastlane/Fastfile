@@ -86,7 +86,7 @@ platform :ios do
     # https://docs.fastlane.tools/actions/sigh/
     get_provisioning_profile(
       app_identifier: "fr.tawkie.app",
-      provisioning_name: "tawkie-distrib-runner",
+      provisioning_name: "tawkie-distrib-runner-02",
       adhoc: false,
       api_key: api_key,
       readonly: true
@@ -95,7 +95,7 @@ platform :ios do
 
     get_provisioning_profile(
       app_identifier: "fr.tawkie.app.Tawkie-Share",
-      provisioning_name: "tawkie-distrib-share",
+      provisioning_name: "tawkie-distrib-share-02",
       adhoc: false,
       api_key: api_key,
       readonly: true
@@ -110,11 +110,20 @@ platform :ios do
     profile_name = "tawkie-distrib-runner" # replace with the name of the profile to use for the build
     output_name = "example-iOS" # specify the name of the .ipa file to generate
     export_method = "app-store" # specify the export method
-    share_ext_app_identifier = "fr.tawkie.app.Tawkie-Share"
-    share_ext_profile_name = "tawkie-distrib-share"
+    share_ext_app_identifier = "fr.tawkie.app.Tawkie-Share-02"
+    share_ext_profile_name = "tawkie-distrib-share-02"
 
     # turn off automatic signing during build so correct code signing identity is guaranteed to be used
     update_code_signing_settings(
+      targets: ["Runner"], # specify which targets to update code signing settings for
+      profile_name: profile_name,
+      use_automatic_signing: false,
+      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
+      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+    )
+    update_code_signing_settings(
+      targets: ["Tawkie Share"], # specify which targets to update code signing settings for
+      profile_name: share_ext_profile_name,
       use_automatic_signing: false,
       code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
       build_configurations: ["Release"] # only toggle code signing settings for Release configurations
