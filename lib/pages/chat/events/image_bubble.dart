@@ -36,11 +36,6 @@ class ImageBubble extends StatelessWidget {
   });
 
   Widget _buildPlaceholder(BuildContext context) {
-    if (event.messageType == MessageTypes.Sticker) {
-      return const Center(
-        child: CircularProgressIndicator.adaptive(),
-      );
-    }
     final String blurHashString =
         event.infoMap['xyz.amorgan.blurhash'] is String
             ? event.infoMap['xyz.amorgan.blurhash']
