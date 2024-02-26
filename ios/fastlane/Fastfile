@@ -16,6 +16,8 @@
 default_platform(:ios)
 
 # https://www.runway.team/blog/how-to-set-up-a-ci-cd-pipeline-for-your-ios-app-fastlane-github-actions
+#
+# Provivision profile names may need to be updated after renewal.
 
 platform :ios do
   desc "Load ASC API Key information to use in subsequent lanes"
