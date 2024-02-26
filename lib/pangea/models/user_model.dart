@@ -1,11 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import 'package:country_picker/country_picker.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../constants/language_keys.dart';
 import 'language_model.dart';
 
@@ -36,6 +35,24 @@ class PUserModel {
     if (profile != null) {
       data[ModelKey.userProfile] = profile!.toJson();
     }
+    return data;
+  }
+}
+
+class MatrixProfile {
+  String dateOfBirth;
+
+  MatrixProfile({
+    required this.dateOfBirth,
+  });
+
+  factory MatrixProfile.fromJson(Map<String, dynamic> json) => MatrixProfile(
+        dateOfBirth: json[ModelKey.userDateOfBirth],
+      );
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data[ModelKey.userDateOfBirth] = dateOfBirth;
     return data;
   }
 }
