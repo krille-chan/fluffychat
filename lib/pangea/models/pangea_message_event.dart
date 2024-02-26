@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -80,6 +81,81 @@ class PangeaMessageEvent {
     if (ownMessage && !selected && !highlighted) return false;
 
     return true;
+  }
+
+  Future<PangeaAudioFile> getMatrixAudioFile(
+    String langCode,
+    BuildContext context,
+  ) async {
+    final String text = (await representationByLanguageGlobal(
+          context: context,
+          langCode: langCode,
+        ))
+            ?.text ??
+        body;
+    final TextToSpeechRequest params = TextToSpeechRequest(
+      text: text,
+      langCode: langCode,
+    );
+
+    final TextToSpeechResponse response =
+        await MatrixState.pangeaController.textToSpeech.get(
+      params,
+    );
+
+    final audioBytes = base64.decode(response.audioContent);
+    final eventIdParam = _event.eventId;
+    final fileName =
+        "audio_for_${eventIdParam}_$langCode.${response.fileExtension}";
+
+    final file = PangeaAudioFile(
+      bytes: audioBytes,
+      name: fileName,
+      mimeType: response.mimeType,
+      duration: response.durationMillis,
+      waveform: response.waveform,
+    );
+
+    sendAudioEvent(file, response, text, langCode);
+
+    return file;
+  }
+
+  Future<Event?> sendAudioEvent(
+    PangeaAudioFile file,
+    TextToSpeechResponse response,
+    String text,
+    String langCode,
+  ) async {
+    final String? eventId = await room.sendFileEvent(
+      file,
+      inReplyTo: _event,
+      extraContent: {
+        'info': {
+          ...file.info,
+          'duration': response.durationMillis,
+        },
+        'org.matrix.msc3245.voice': {},
+        'org.matrix.msc1767.audio': {
+          'duration': response.durationMillis,
+          'waveform': response.waveform,
+        },
+        ModelKey.transcription: {
+          ModelKey.text: text,
+          ModelKey.langCode: langCode,
+        },
+      },
+    );
+
+    debugPrint("eventId in getAudioGlobal $eventId");
+    final Event? audioEvent =
+        eventId != null ? await room.getEventById(eventId) : null;
+
+    if (audioEvent == null) {
+      return null;
+    }
+    allAudio.add(audioEvent);
+    return audioEvent;
   }
 
   //get audio for text and language
