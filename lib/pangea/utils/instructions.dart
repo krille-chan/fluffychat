@@ -50,7 +50,7 @@ class InstructionsController {
 
     final bool userLangsSet =
         await _pangeaController.userController.areUserLanguagesSet;
-    if (!userLangsSet && key == InstructionsEnum.blurMeansTranslate) {
+    if (!userLangsSet) {
       return;
     }
 

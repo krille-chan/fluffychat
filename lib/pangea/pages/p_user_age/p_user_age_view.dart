@@ -41,7 +41,7 @@ class PUserAgeView extends StatelessWidget {
                 ListTile(
                   title: Text(
                     L10n.of(context)!.certifyAge(13),
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   leading: Radio<int>(
                     value: 13,
@@ -52,7 +52,7 @@ class PUserAgeView extends StatelessWidget {
                 ListTile(
                   title: Text(
                     L10n.of(context)!.certifyAge(18),
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   leading: Radio<int>(
                     value: 18,
