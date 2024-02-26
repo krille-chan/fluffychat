@@ -147,7 +147,7 @@ class MessageToolbar extends StatefulWidget {
 class MessageToolbarState extends State<MessageToolbar> {
   Widget? child;
   MessageMode? currentMode;
-  bool hasSelectedText = false;
+  bool updatingMode = false;
   late StreamSubscription<String?> selectionStream;
   late StreamSubscription<MessageMode> toolbarModeStream;
 
@@ -193,10 +193,14 @@ class MessageToolbarState extends State<MessageToolbar> {
   }
 
   void updateMode(MessageMode newMode) {
+    if (updatingMode) return;
     debugPrint("updating toolbar mode");
     final bool subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
-    setState(() => currentMode = newMode);
+    setState(() {
+      currentMode = newMode;
+      updatingMode = true;
+    });
     if (!subscribed) {
       child = MessageUnsubscribedCard(
         languageTool: getModeTitle(newMode),
@@ -218,7 +222,9 @@ class MessageToolbarState extends State<MessageToolbar> {
           break;
       }
     }
-    setState(() {});
+    setState(() {
+      updatingMode = false;
+    });
   }
 
   void showTranslation() {
@@ -266,20 +272,17 @@ class MessageToolbarState extends State<MessageToolbar> {
   @override
   void initState() {
     super.initState();
-    if (widget.textSelection.selectedText != null) {
-      hasSelectedText = true;
-    }
-
     toolbarModeStream = widget.toolbarModeStream.stream.listen((mode) {
       updateMode(mode);
     });
 
-    Timer? timer;
+    updateMode(MessageMode.play);
 
+    Timer? timer;
     selectionStream =
         widget.textSelection.selectionStream.stream.listen((value) {
       timer?.cancel();
-      timer = Timer(const Duration(milliseconds: 750), () {
+      timer = Timer(const Duration(milliseconds: 500), () {
         if (currentMode != null || value != null && value.isNotEmpty) {
           updateMode(currentMode ?? MessageMode.translation);
         }
