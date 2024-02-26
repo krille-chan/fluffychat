@@ -3027,11 +3027,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "yourBirthdayPleaseShort": "Por favor, introduzca su fecha de nacimiento",
-  "@yourBirthdayPleaseShort": {
-    "type": "text",
-    "placeholders": {}
-  },
   "inviteStudentByUserName": "Invitar a estudiantes por usuario",
   "@inviteStudentByUserName": {
     "type": "text",
@@ -4578,5 +4573,13 @@
   "clickMessageBody": "Haga clic en los mensajes para acceder a las definiciones, traducciones y audio.",
   "more": "Más",
   "translationTooltip": "Traducir",
-  "audioTooltip": "Reproducir audio"
+  "audioTooltip": "Reproducir audio",
+  "yourBirthdayPleaseShort": "Seleccione su grupo de edad",
+  "certifyAge": "Certifico que soy mayor de {age} años",
+    "@certifyAge": {
+        "type": "text",
+        "placeholders": {
+            "age": {}
+        }
+    }
 }

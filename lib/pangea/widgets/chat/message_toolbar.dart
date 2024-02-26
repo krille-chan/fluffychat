@@ -276,7 +276,9 @@ class MessageToolbarState extends State<MessageToolbar> {
       updateMode(mode);
     });
 
-    updateMode(MessageMode.play);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      updateMode(MessageMode.play);
+    });
 
     Timer? timer;
     selectionStream =

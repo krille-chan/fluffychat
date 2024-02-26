@@ -2743,7 +2743,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "yourBirthdayPleaseShort": "Please provide your date of birth",
+    "yourBirthdayPleaseShort": "Please selected your age group",
     "@yourBirthdayPleaseShort": {
         "type": "text",
         "placeholders": {}
@@ -3940,5 +3940,12 @@
     "subscribedToUnlockTools": "Subscribe to unlock language tools, including",
     "more": "More",
     "translationTooltip": "Translate",
-    "audioTooltip": "Play Audio"
+    "audioTooltip": "Play Audio",
+    "certifyAge": "I certify that I am over {age} years of age",
+    "@certifyAge": {
+        "type": "text",
+        "placeholders": {
+            "age": {}
+        }
+    }
 }
