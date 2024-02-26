@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -109,6 +110,14 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
   @override
   Widget build(BuildContext context) {
+    if (blur > 0) {
+      pangeaController.instructions.show(
+        context,
+        InstructionsEnum.blurMeansTranslate,
+        widget.pangeaMessageEvent.eventId,
+      );
+    }
+
     //TODO - take out of build function of every message
     final Widget richText = SelectableText.rich(
       onSelectionChanged: (selection, cause) {
