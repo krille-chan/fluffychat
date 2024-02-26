@@ -14,6 +14,9 @@ class PaywallCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool inTrialWindow =
+        MatrixState.pangeaController.userController.inTrialWindow;
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,8 +43,11 @@ class PaywallCard extends StatelessWidget {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    MatrixState.pangeaController.subscriptionController
-                        .showPaywall(context);
+                    inTrialWindow
+                        ? MatrixState.pangeaController.subscriptionController
+                            .activateNewUserTrial()
+                        : MatrixState.pangeaController.subscriptionController
+                            .showPaywall(context);
                     MatrixState.pAnyState.closeOverlay();
                   },
                   style: ButtonStyle(
@@ -49,7 +55,11 @@ class PaywallCard extends StatelessWidget {
                       (AppConfig.primaryColor).withOpacity(0.1),
                     ),
                   ),
-                  child: Text(L10n.of(context)!.seeOptions),
+                  child: Text(
+                    inTrialWindow
+                        ? L10n.of(context)!.activateTrial
+                        : L10n.of(context)!.seeOptions,
+                  ),
                 ),
               ),
               const SizedBox(height: 5.0),

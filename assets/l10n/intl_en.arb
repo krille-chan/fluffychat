@@ -3934,8 +3934,11 @@
     "continuedWithoutSubscription": "Continue without subscribing",
     "trialPeriodExpired": "Your trial period has expired",
     "selectToDefine": "To define a word in this message, just select it!",
-    "translation": "translation",
-    "audio": "message audio",
+    "translations": "translations",
+    "messageAudio": "message audio",
     "definitions": "definitions",
-    "subscribedToUnlockTools": "Subscribe to unlock language tools, including"
+    "subscribedToUnlockTools": "Subscribe to unlock language tools, including",
+    "more": "More",
+    "translationTooltip": "Translate",
+    "audioTooltip": "Play Audio"
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/foundation.dart';
@@ -14,8 +15,10 @@ import '../../../utils/matrix_sdk_extensions/event_extension.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
   final Color color;
-  final Event event;
   // #Pangea
+  // final Event event;
+  final Event? event;
+  final PangeaAudioFile? matrixFile;
   final bool autoplay;
   // Pangea#
 
@@ -26,8 +29,9 @@ class AudioPlayerWidget extends StatefulWidget {
   const AudioPlayerWidget(
     this.event, {
     this.color = Colors.black,
-    super.key,
     // #Pangea
+    this.matrixFile,
+    super.key,
     this.autoplay = false,
     // Pangea#
   });
@@ -68,16 +72,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   }
 
   Future<void> _downloadAction() async {
-    if (status != AudioPlayerStatus.notDownloaded) return;
+    // #Pangea
+    // if (status != AudioPlayerStatus.notDownloaded) return;
+    if (status != AudioPlayerStatus.notDownloaded || widget.event == null) {
+      return;
+    }
+    // Pangea#
     setState(() => status = AudioPlayerStatus.downloading);
     try {
-      final matrixFile = await widget.event.downloadAndDecryptAttachment();
+      // #Pangea
+      // final matrixFile = await widget.event.downloadAndDecryptAttachment();
+      final matrixFile = await widget.event!.downloadAndDecryptAttachment();
+      // Pangea#
       File? file;
 
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+          // #Pangea
+          // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+          widget.event!.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+          // Pangea#
         );
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
         await file.writeAsBytes(matrixFile.bytes);
@@ -104,14 +119,20 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   void _playAction() async {
     final audioPlayer = this.audioPlayer ??= AudioPlayer();
-    if (AudioPlayerWidget.currentId != widget.event.eventId) {
+    // #Pangea
+    // if (AudioPlayerWidget.currentId != widget.event.eventId) {
+    if (AudioPlayerWidget.currentId != widget.event?.eventId) {
+      // Pangea#
       if (AudioPlayerWidget.currentId != null) {
         if (audioPlayer.playerState.playing) {
           await audioPlayer.stop();
           setState(() {});
         }
       }
-      AudioPlayerWidget.currentId = widget.event.eventId;
+      // #Pangea
+      // AudioPlayerWidget.currentId = widget.event.eventId;
+      AudioPlayerWidget.currentId = widget.event?.eventId;
+      // Pangea#
     }
     if (audioPlayer.playerState.playing) {
       await audioPlayer.pause();
@@ -146,27 +167,20 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       audioPlayer.setFilePath(audioFile.path);
     } else {
       // #Pangea
-      // final data = matrixFile!.bytes;
-      final mimeType = matrixFile!.mimeType;
-      //shouldn't have to be settting this here
-      //TODO: figure out why this is necessary
-      matrixFile = MatrixAudioFile(
-        bytes: matrixFile!.bytes,
-        name: matrixFile!.name,
-        mimeType: mimeType,
-      );
-      debugPrint("audioType is $mimeType");
-      // TODO - figure out why it's a wav at this point
-      // if (!TextToSpeechController.isOggFile(matrixFile!.bytes)) {
-      //   debugger(when: kDebugMode);
-      // } else {
-      //   debugPrint("still an ogg file!");
-      // }
       try {
-        // Pangea#
-        await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
-        // #Pangea
-      } catch (e, s) {
+        if (widget.matrixFile != null) {
+          await audioPlayer.setAudioSource(
+            BytesAudioSource(
+              widget.matrixFile!.bytes,
+              widget.matrixFile!.mimeType,
+            ),
+          );
+        } else {
+          // Pangea#
+          await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
+          // #Pangea
+        }
+      } catch (e, _) {
         debugger(when: kDebugMode);
       }
       // Pangea#
@@ -180,18 +194,32 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   static const double buttonSize = 36;
 
   String? get _durationString {
-    final durationInt = widget.event.content
-        .tryGetMap<String, dynamic>('info')
-        ?.tryGet<int>('duration');
+    // #Pangea
+    int? durationInt;
+    if (widget.matrixFile?.duration != null) {
+      durationInt = widget.matrixFile!.duration;
+    } else {
+      // final durationInt = widget.event?.content
+      durationInt = widget.event?.content
+          .tryGetMap<String, dynamic>('info')
+          ?.tryGet<int>('duration');
+    }
+    // Pangea#
     if (durationInt == null) return null;
     final duration = Duration(milliseconds: durationInt);
     return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
   List<int> _getWaveform() {
-    final eventWaveForm = widget.event.content
-        .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
-        ?.tryGetList<int>('waveform');
+    // #Pangea
+    final eventWaveForm = widget.matrixFile?.waveform ??
+        widget.event?.content
+            .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
+            ?.tryGetList<int>('waveform');
+    // final eventWaveForm = widget.event?.content
+    //     .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
+    //     ?.tryGetList<int>('waveform');
+    // Pangea#
     if (eventWaveForm == null || eventWaveForm.isEmpty) {
       return List<int>.filled(AudioPlayerWidget.wavesCount, 500);
     }
@@ -211,17 +239,37 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
+  // #Pangea
+  Future<void> _downloadMatrixFile() async {
+    if (kIsWeb) return;
+    final temp = await getTemporaryDirectory();
+    final tempDir = temp;
+    final file = File('${tempDir.path}/${widget.matrixFile!.name}');
+    await file.writeAsBytes(widget.matrixFile!.bytes);
+    audioFile = file;
+  }
+  // Pangea#
+
   @override
   void initState() {
     super.initState();
     waveform = _getWaveform();
     // #Pangea
-    if (widget.autoplay) {
+    if (widget.matrixFile != null) {
+      _downloadMatrixFile().then((_) {
+        setState(() => status = AudioPlayerStatus.downloaded);
+        if (widget.autoplay) {
+          status == AudioPlayerStatus.downloaded
+              ? _playAction()
+              : _downloadAction();
+        }
+      });
+    } else if (widget.autoplay) {
       status == AudioPlayerStatus.downloaded
           ? _playAction()
           : _downloadAction();
-      // Pangea#
     }
+    // Pangea#
   }
 
   @override
@@ -250,7 +298,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         color: widget.color,
                       ),
                     ),
-                    onLongPress: () => widget.event.saveFile(context),
+                    // #Pangea
+                    // onLongPress: () => widget.event.saveFile(context),
+                    onLongPress: () => widget.event?.saveFile(context),
+                    // Pangea#
                     onTap: () {
                       if (status == AudioPlayerStatus.downloaded) {
                         _playAction();
@@ -330,3 +381,24 @@ class MatrixFileAudioSource extends StreamAudioSource {
     );
   }
 }
+
+// #Pangea
+class BytesAudioSource extends StreamAudioSource {
+  final Uint8List bytes;
+  final String mimeType;
+  BytesAudioSource(this.bytes, this.mimeType);
+
+  @override
+  Future<StreamAudioResponse> request([int? start, int? end]) async {
+    start ??= 0;
+    end ??= bytes.length;
+    return StreamAudioResponse(
+      sourceLength: bytes.length,
+      contentLength: end - start,
+      offset: start,
+      stream: Stream.value(bytes.sublist(start, end)),
+      contentType: mimeType,
+    );
+  }
+}
+// Pangea#

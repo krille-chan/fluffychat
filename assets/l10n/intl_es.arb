@@ -4570,10 +4570,13 @@
   "continuedWithoutSubscription": "Continuar sin suscribirse",
   "trialPeriodExpired": "Su periodo de prueba ha expirado",
   "selectToDefine": "Para definir una palabra en este mensaje, ¡sólo tiene que seleccionarla!",
-  "translation": "traducción",
-  "audio": "mensaje de audio",
+  "translations": "traducciónes",
+  "messageAudio": "mensaje de audio",
   "definitions": "definiciones",
   "subscribedToUnlockTools": "Suscríbase para desbloquear herramientas lingüísticas, como",
   "clickMessageTitle": "¿Necesitas ayuda?",
-  "clickMessageBody": "Haga clic en los mensajes para acceder a las definiciones, traducciones y audio."
+  "clickMessageBody": "Haga clic en los mensajes para acceder a las definiciones, traducciones y audio.",
+  "more": "Más",
+  "translationTooltip": "Traducir",
+  "audioTooltip": "Reproducir audio"
 }
