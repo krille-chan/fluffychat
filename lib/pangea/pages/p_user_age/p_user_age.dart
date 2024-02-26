@@ -1,17 +1,16 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:intl/intl.dart';
-
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age_view.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl/intl.dart';
+
 import '../../utils/bot_name.dart';
 import '../../utils/error_handler.dart';
 
@@ -24,13 +23,11 @@ class PUserAge extends StatefulWidget {
 
 class PUserAgeController extends State<PUserAge> {
   bool loading = false;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  int? selectedAge;
   TextEditingController dobController = TextEditingController();
-  // #Pangea
 
   String? error;
   bool unknownErrorState = false;
-  // DateTime? dateOfBirth;
 
   final PangeaController pangeaController = MatrixState.pangeaController;
 
@@ -52,13 +49,12 @@ class PUserAgeController extends State<PUserAge> {
     );
   }
 
-  String? dobFieldValidator(String? value) {
+  String? dobValidator() {
     try {
-      if (value?.isEmpty ?? true) {
+      if (selectedDate == null) {
         return L10n.of(context)!.yourBirthdayPleaseShort;
       }
-      final DateTime dob = _textToDate!;
-      if (!dob.isAtLeastYearsOld(AgeLimits.toUseTheApp)) {
+      if (!selectedDate!.isAtLeastYearsOld(AgeLimits.toUseTheApp)) {
         return L10n.of(context)!.mustBe13;
       }
       return null;
@@ -68,30 +64,26 @@ class PUserAgeController extends State<PUserAge> {
     }
   }
 
-  DateTime? get _textToDate {
-    try {
-      final DateTime initial = DateFormat.yMd().parse(dobController.text);
-      return initial;
-    } catch (err) {
-      return null;
-    }
+  DateTime? get selectedDate {
+    if (selectedAge == null) return null;
+    final now = DateTime.now();
+    return DateTime(now.year - selectedAge!, now.month, now.day);
   }
-
-  DateTime get initialDate =>
-      _textToDate ?? DateTime.now().subtract(const Duration(days: 13 * 365));
 
   //Note: used linear progress bar (also used in fluffychat signup button) for consistency
   createUserInPangea() async {
     try {
       setState(() {
-        error = null;
+        error = dobValidator();
       });
-      if (!formKey.currentState!.validate()) return;
+
+      if (error?.isNotEmpty == true) return;
+
       setState(() {
         loading = true;
       });
 
-      final String date = DateFormat('MM-dd-yyyy').format(_textToDate!);
+      final String date = DateFormat('MM-dd-yyyy').format(selectedDate!);
 
       if (pangeaController.userController.userModel?.access == null) {
         await pangeaController.userController.createPangeaUser(dob: date);
@@ -100,11 +92,6 @@ class PUserAgeController extends State<PUserAge> {
           dateOfBirth: date,
         );
       }
-      // Matrix.of(context).widget.router!.currentState!.to(
-      //       '/rooms',
-      //       queryParameters:
-      //           Matrix.of(context).widget.router!.currentState!.queryParameters,
-      //     );
       FluffyChatApp.router.go('/rooms');
     } catch (err, s) {
       setState(() {
@@ -115,6 +102,12 @@ class PUserAgeController extends State<PUserAge> {
     } finally {
       loading = false;
     }
+  }
+
+  void setSelectedAge(int? value) {
+    setState(() {
+      selectedAge = value;
+    });
   }
 
   @override
