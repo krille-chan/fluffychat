@@ -5,6 +5,8 @@ class SocialNetwork {
   final Widget logo; // The path to social media image
   final String name; // Social media name
   final String chatBot; // ChatBot for send demand
+  final String? urlLogin;
+  final String? urlRedirect;
   bool? loading; // To find out if state is loading
   bool? connected; // To find out if state is disconnected
   bool error; // Bool to indicate if there is an error
@@ -13,6 +15,8 @@ class SocialNetwork {
     required this.logo,
     required this.name,
     required this.chatBot,
+    this.urlLogin,
+    this.urlRedirect,
     this.loading = true, // Default value true for loading
     this.connected = false, // Default value false for connected
     this.error = false, // Défaut à false
@@ -51,6 +55,8 @@ final List<SocialNetwork> socialNetwork = [
     logo: Logo(Logos.linkedin),
     name: "Linkedin",
     chatBot: "@linkedinbot:alpha.tawkie.fr",
+    urlLogin: "https://www.linkedin.com/login/",
+    urlRedirect: "https://www.linkedin.com/feed/",
   ),
 ];
 

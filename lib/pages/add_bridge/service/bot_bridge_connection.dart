@@ -899,7 +899,7 @@ class BotBridgeConnection {
     });
 
     final gotCookies =
-        await cookieManager.getCookies('https://www.linkedin.com/feed/');
+        await cookieManager.getCookies(network.urlRedirect);
     final formattedCookieString = formatCookies(gotCookies);
 
     // Success phrases to spot

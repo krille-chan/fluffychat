@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
-import 'add_bridge/model/social_network.dart';
-import 'add_bridge/service/bot_bridge_connection.dart';
+import 'model/social_network.dart';
+import 'service/bot_bridge_connection.dart';
 
 class WebViewConnection extends StatefulWidget {
   final BotBridgeConnection botBridgeConnection;
@@ -35,7 +35,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
     return Scaffold(
       body: InAppWebView(
         initialUrlRequest: URLRequest(
-          url: WebUri("https://www.linkedin.com/login/"),
+          url: WebUri(widget.network.urlLogin!),
         ),
         onWebViewCreated: (InAppWebViewController controller) {
           _webViewController = controller;
@@ -48,7 +48,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
           switch (widget.network.name) {
             case "Linkedin":
               if (url != null &&
-                  url.toString().contains("https://www.linkedin.com/feed/")) {
+                  url.toString().contains(widget.network.urlRedirect!)) {
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
