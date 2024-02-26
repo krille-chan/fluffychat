@@ -167,11 +167,25 @@ class MessageToolbarState extends State<MessageToolbar> {
   String getModeTitle(MessageMode mode) {
     switch (mode) {
       case MessageMode.translation:
-        return L10n.of(context)!.translation;
+        return L10n.of(context)!.translations;
       case MessageMode.play:
-        return L10n.of(context)!.audio;
+        return L10n.of(context)!.messageAudio;
       case MessageMode.definition:
         return L10n.of(context)!.definitions;
+      default:
+        return L10n.of(context)!
+            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
+    }
+  }
+
+  String getModeTooltip(MessageMode mode) {
+    switch (mode) {
+      case MessageMode.translation:
+        return L10n.of(context)!.translationTooltip;
+      case MessageMode.play:
+        return L10n.of(context)!.audioTooltip;
+      case MessageMode.definition:
+        return L10n.of(context)!.define;
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
@@ -186,6 +200,8 @@ class MessageToolbarState extends State<MessageToolbar> {
     if (!subscribed) {
       child = MessageUnsubscribedCard(
         languageTool: getModeTitle(newMode),
+        mode: newMode,
+        toolbarModeStream: widget.toolbarModeStream,
       );
     } else {
       switch (currentMode) {
@@ -318,18 +334,24 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
-                    return IconButton(
-                      icon: Icon(getIconData(mode)),
-                      color: currentMode == mode
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                      onPressed: () => updateMode(mode),
+                    return Tooltip(
+                      message: getModeTooltip(mode),
+                      child: IconButton(
+                        icon: Icon(getIconData(mode)),
+                        color: currentMode == mode
+                            ? Theme.of(context).colorScheme.primary
+                            : null,
+                        onPressed: () => updateMode(mode),
+                      ),
                     );
                   }).toList() +
                   [
-                    IconButton(
-                      icon: Icon(Icons.adaptive.more_outlined),
-                      onPressed: showMore,
+                    Tooltip(
+                      message: L10n.of(context)!.more,
+                      child: IconButton(
+                        icon: Icon(Icons.adaptive.more_outlined),
+                        onPressed: showMore,
+                      ),
                     ),
                   ],
             ),
