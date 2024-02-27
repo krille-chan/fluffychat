@@ -429,12 +429,15 @@ class ChatListController extends State<ChatList>
     // For sharing images coming from outside the app while the app is closed
     ReceiveSharingIntent.getInitialMedia().then(_processIncomingSharedFiles);
 
-    // For sharing or opening urls/text coming from outside the app while the app is in the memory
-    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
-        .listen(_processIncomingSharedText, onError: print);
+    // #Pangea
+    // dependency is outdated and prevents app from building
+    // // For sharing or opening urls/text coming from outside the app while the app is in the memory
+    // _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream()
+    //     .listen(_processIncomingSharedText, onError: print);
 
-    // For sharing or opening urls/text coming from outside the app while the app is closed
-    ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+    // // For sharing or opening urls/text coming from outside the app while the app is closed
+    // ReceiveSharingIntent.getInitialText().then(_processIncomingSharedText);
+    // Pangea#
 
     // For receiving shared Uris
     _intentUriStreamSubscription = linkStream.listen(_processIncomingUris);
