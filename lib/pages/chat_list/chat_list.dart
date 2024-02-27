@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -24,9 +25,7 @@ import 'package:uni_links/uni_links.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat_list/chat_list_view.dart';
-import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
-import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
@@ -400,6 +399,16 @@ class ChatListController extends State<ChatList>
       FluffyChatApp.gotInitialLink = true;
       getInitialLink().then(_processIncomingUris);
     }
+
+    if (PlatformInfos.isAndroid) {
+      final shortcuts = FlutterShortcuts();
+      shortcuts.initialize().then(
+            (_) => shortcuts.listenAction((action) {
+              if (!mounted) return;
+              UrlLauncher(context, action).launchUrl();
+            }),
+          );
+    }
   }
 
   @override
@@ -765,8 +774,7 @@ class ChatListController extends State<ChatList>
     isTorBrowser = isTor;
   }
 
-  Future<void> dehydrate() =>
-      SettingsSecurityController.dehydrateDevice(context);
+  Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

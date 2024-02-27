@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tawkie/config/themes.dart';
 
 import 'package:tawkie/utils/error_reporter.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
@@ -174,6 +175,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
+  void _toggleSpeed() async {
+    final audioPlayer = this.audioPlayer;
+    if (audioPlayer == null) return;
+    switch (audioPlayer.speed) {
+      case 1.0:
+        await audioPlayer.setSpeed(1.5);
+        break;
+      case 1.5:
+        await audioPlayer.setSpeed(2.0);
+        break;
+      case 2.0:
+        await audioPlayer.setSpeed(0.5);
+        break;
+      case 0.5:
+      default:
+        await audioPlayer.setSpeed(1.0);
+        break;
+    }
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -183,12 +205,35 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     final statusText = this.statusText ??= _durationString ?? '00:00';
+    final audioPlayer = this.audioPlayer;
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(width: 4),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            child: audioPlayer == null
+                ? const SizedBox.shrink()
+                : SizedBox(
+                    height: 36,
+                    width: 36,
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: _toggleSpeed,
+                      //radius: AppConfig.borderRadius * 2,
+                      icon: Text(
+                        '${audioPlayer.speed.toString()}x',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),
+          ),
+          const SizedBox(width: 8),
           SizedBox(
             width: buttonSize,
             height: buttonSize,

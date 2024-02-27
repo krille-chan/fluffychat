@@ -2482,6 +2482,8 @@
     },
     "transparent": "Transparent",
     "incomingMessages": "Incoming messages",
+    "stickers": "Stickers",
+    "discover": "Discover",
     "youDonTHaveConversation": "You don't have any conversation yet.",
     "connectChatNetworks": "Connect your chat networks",
     "addSocialMessagingAccounts": "Add your social messaging accounts",

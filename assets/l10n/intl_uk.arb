@@ -2586,5 +2586,19 @@
     "placeholders": {
       "sender": {}
     }
-  }
+  },
+  "presenceStyle": "Присутність:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Показувати повідомлення про стан від інших користувачів",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "Сховати список станів?",
+  "@hidePresences": {},
+  "incomingMessages": "Вхідні повідомлення",
+  "@incomingMessages": {}
 }

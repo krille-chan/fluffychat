@@ -40,7 +40,6 @@ import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
-import 'sticker_picker_dialog.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
@@ -599,24 +598,6 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  void sendStickerAction() async {
-    final sticker = await showAdaptiveBottomSheet<ImagePackImageContent>(
-      context: context,
-      builder: (c) => StickerPickerDialog(room: room),
-    );
-    if (sticker == null) return;
-    final eventContent = <String, dynamic>{
-      'body': sticker.body,
-      if (sticker.info != null) 'info': sticker.info,
-      'url': sticker.url.toString(),
-    };
-    // send the sticker
-    await room.sendEvent(
-      eventContent,
-      type: EventTypes.Sticker,
-    );
-  }
-
   void voiceMessageAction() async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
@@ -671,6 +652,10 @@ class ChatController extends State<ChatPageWithRoom>
     setState(() {
       replyEvent = null;
     });
+  }
+
+  void hideEmojiPicker() {
+    setState(() => showEmojiPicker = false);
   }
 
   void emojiPickerAction() {
@@ -1190,9 +1175,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     if (choice == 'camera-video') {
       openVideoCameraAction();
-    }
-    if (choice == 'sticker') {
-      sendStickerAction();
     }
     if (choice == 'location') {
       sendLocationAction();

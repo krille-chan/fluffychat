@@ -2586,5 +2586,19 @@
     "placeholders": {
       "alias": {}
     }
-  }
+  },
+  "presencesToggle": "显示其他用户的状态消息",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "是否在线：",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "隐藏状态列表？",
+  "@hidePresences": {},
+  "incomingMessages": "传入消息",
+  "@incomingMessages": {}
 }
