@@ -2600,5 +2600,9 @@
     "placeholders": {}
   },
   "incomingMessages": "Mensaxes recibidas",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "Adhesivos",
+  "@stickers": {},
+  "discover": "Descubrir",
+  "@discover": {}
 }
