@@ -321,7 +321,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareEmojiMatch": "Per favore confronta le emoji",
+  "compareEmojiMatch": "Per favore confronta gli emoji",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -951,7 +951,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Sembra che tu non abbia servizi Google sul tuo telefono. Questa è una buona decisione per la tua riservatezza! Per ricevere notifiche push in FluffyChat consigliamo di utilizzare https://microg.org/ o https://unifiedpush.org/.",
+  "noGoogleServicesWarning": "Sembra che tu non abbia Firebase Cloud Messaging sul tuo telefono. Per ricevere notifiche push consigliamo di installare ntfy. Con ntfy, o altro provided Unified Push, puoi ricevere le notifiche push in modo sicuro. Puoi scaricare ntfy dal PlayStore o fa F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -1003,7 +1003,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "OK",
+  "ok": "Ok",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1500,7 +1500,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, other{{unreadCount} discussioni non lette}}",
+  "unreadChats": "{unreadCount, plural, =1{1 discussione non letta} other{{unreadCount} discussioni non lette}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1645,7 +1645,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Cancellare il backup della discussione per creare una nuova chiave di sicurezza?",
+  "wipeChatBackup": "Cancellare il backup della discussione per creare una nuova chiave di ripristino?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2157,7 +2157,7 @@
   },
   "doNotShowAgain": "Non mostrare più",
   "@doNotShowAgain": {},
-  "report": "",
+  "report": "segnala",
   "@report": {},
   "hideUnimportantStateEvents": "Nascondi gli eventi di stato non importanti",
   "@hideUnimportantStateEvents": {},
@@ -2458,5 +2458,65 @@
     "placeholders": {
       "alias": {}
     }
-  }
+  },
+  "addChatOrSubSpace": "Aggiungi chat o sotto spazio",
+  "@addChatOrSubSpace": {},
+  "subspace": "Sottospazio",
+  "@subspace": {},
+  "publicSpaces": "Spazio pubblico",
+  "@publicSpaces": {},
+  "hidePresences": "Nascondi Lista Stato?",
+  "@hidePresences": {},
+  "pleaseEnterYourCurrentPassword": "Per favore inserisci la tua password attuale",
+  "@pleaseEnterYourCurrentPassword": {},
+  "passwordIsWrong": "La password inserita è sbagliata",
+  "@passwordIsWrong": {},
+  "databaseBuildErrorBody": "Impossibile costruire il database SQlite. L'applicazione proverà ad usare il database legacy per ora. Per favore segnala questo errore agli sviluppatori su {url}. Il messaggio di errore è: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "select": "Seleziona",
+  "@select": {},
+  "newPassword": "Nuova password",
+  "@newPassword": {},
+  "pleaseChooseAStrongPassword": "Per favore scegli una password forte",
+  "@pleaseChooseAStrongPassword": {},
+  "thisDevice": "Questo dispositivo:",
+  "@thisDevice": {},
+  "forwardMessageTo": "Inoltra messaggio in {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "verifyOtherUser": "🔐 Verifica altro utente",
+  "@verifyOtherUser": {},
+  "verifyOtherUserDescription": "Se verifichi un altro utente, puoi stare certo di conoscere con chi tu stia parlando veramente. 💪\n\nQuando inizi una verifica, tu e l'altro utente vedrete un popup nell'applicazione. Lì vedrete una serie di emoji o numeri che dovrete confrontare l'uno con l'altro.\n\nIl miglior modo per farlo è di incontrarsi o iniziare una chiamata video. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDevice": "🔐 Verifica altro dispositivo",
+  "@verifyOtherDevice": {},
+  "verifyOtherDeviceDescription": "Quando verifichi un altro dispositivo, quei dispositivi possono scambiarsi chiavi, aumentando la tua sicurezza generale. 💪 Quando inizia una verifica, apparirà un popup su entrambi i dispositivi. Lì vedrai una serie di emoji o numeri che dovrai confrontare l'uno con l'altro. È meglio avere entrambi i dispositivi a portata di mano prima di iniziare la verifica. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "discover": "Scopri",
+  "@discover": {},
+  "presencesToggle": "Mostra messaggi di stato degli altri utenti",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicLink": "Collegamento pubblico",
+  "@publicLink": {},
+  "leaveEmptyToClearStatus": "Lasciare vuoto per cancellare il tuo stato.",
+  "@leaveEmptyToClearStatus": {},
+  "decline": "Declina",
+  "@decline": {},
+  "transparent": "Trasparente",
+  "@transparent": {},
+  "incomingMessages": "Messaggi in arrivo",
+  "@incomingMessages": {}
 }
