@@ -4564,7 +4564,6 @@
   "seeOptions": "Ver opciones",
   "continuedWithoutSubscription": "Continuar sin suscribirse",
   "trialPeriodExpired": "Su periodo de prueba ha expirado",
-  "selectToDefine": "Para definir una palabra en este mensaje, ¡sólo tiene que seleccionarla!",
   "translations": "traducciónes",
   "messageAudio": "mensaje de audio",
   "definitions": "definiciones",
@@ -4576,10 +4575,11 @@
   "audioTooltip": "Reproducir audio",
   "yourBirthdayPleaseShort": "Seleccione su grupo de edad",
   "certifyAge": "Certifico que soy mayor de {age} años",
-    "@certifyAge": {
-        "type": "text",
-        "placeholders": {
-            "age": {}
-        }
+  "@certifyAge": {
+    "type": "text",
+    "placeholders": {
+      "age": {}
     }
+  },
+  "selectToDefine": "Haga doble clic en una palabra para ver su definición."
 }

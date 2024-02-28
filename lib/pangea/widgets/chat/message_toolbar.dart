@@ -356,7 +356,7 @@ class MessageToolbarState extends State<MessageToolbar> {
                     Tooltip(
                       message: L10n.of(context)!.more,
                       child: IconButton(
-                        icon: Icon(Icons.adaptive.more_outlined),
+                        icon: const Icon(Icons.add_reaction_outlined),
                         onPressed: showMore,
                       ),
                     ),

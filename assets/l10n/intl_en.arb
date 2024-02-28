@@ -3933,7 +3933,7 @@
     "seeOptions": "See options",
     "continuedWithoutSubscription": "Continue without subscribing",
     "trialPeriodExpired": "Your trial period has expired",
-    "selectToDefine": "To define a word in this message, just select it!",
+    "selectToDefine": "Double click a word to see its definition!",
     "translations": "translations",
     "messageAudio": "message audio",
     "definitions": "definitions",
