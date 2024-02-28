@@ -102,7 +102,7 @@ class ToolbarDisplayController {
         followerAnchor: pangeaMessageEvent.ownMessage
             ? Alignment.bottomRight
             : Alignment.bottomLeft,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(164),
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 1).withAlpha(100),
       );
 
       if (MatrixState.pAnyState.overlay != null) {
