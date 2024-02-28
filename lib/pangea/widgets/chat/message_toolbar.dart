@@ -24,6 +24,7 @@ class ToolbarDisplayController {
   final String targetId;
   final bool immersionMode;
   final ChatController controller;
+  final FocusNode focusNode = FocusNode();
 
   MessageToolbar? toolbar;
   String? overlayId;
@@ -54,8 +55,7 @@ class ToolbarDisplayController {
     if (controller.selectMode) {
       controller.clearSelectedEvents();
     }
-    // focusNode.unfocus();
-    FocusScope.of(context).unfocus();
+    focusNode.requestFocus();
 
     final LayerLinkAndKey layerLinkAndKey =
         MatrixState.pAnyState.layerLinkAndKey(targetId);
