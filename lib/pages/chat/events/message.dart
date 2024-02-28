@@ -558,7 +558,10 @@ class Message extends StatelessWidget {
                       height: 32,
                       child: IconButton(
                         icon: Icon(
-                          Icons.adaptive.more_outlined,
+                          // #Pangea
+                          // Icons.adaptive.more_outlined,
+                          Icons.add_reaction_outlined,
+                          // Pangea#
                           size: 16,
                           color:
                               Theme.of(context).colorScheme.onTertiaryContainer,
