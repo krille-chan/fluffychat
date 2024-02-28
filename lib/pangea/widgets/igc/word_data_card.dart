@@ -121,7 +121,12 @@ class WordDataCardController extends State<WordDataCard> {
   }
 
   Future<void> getWordNet() async {
-    if (mounted) setState(() => isLoadingWordNet = true);
+    if (mounted) {
+      setState(() {
+        wordData = null;
+        isLoadingWordNet = true;
+      });
+    }
     try {
       wordData = await controller.wordNet.getWordDataGlobal(
         word: widget.word,
@@ -137,9 +142,7 @@ class WordDataCardController extends State<WordDataCard> {
       );
       wordNetError = err;
     } finally {
-      if (mounted) {
-        setState(() => isLoadingWordNet = false);
-      }
+      if (mounted) setState(() => isLoadingWordNet = false);
     }
   }
 

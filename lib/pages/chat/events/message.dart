@@ -143,8 +143,10 @@ class Message extends StatelessWidget {
     // #Pangea
     final PangeaMessageEvent? pangeaMessageEvent =
         controller.getPangeaMessageEvent(event.eventId);
-    final ToolbarDisplayController? toolbarController =
-        controller.getToolbarDisplayController(event.eventId);
+    ToolbarDisplayController? toolbarController;
+    if (event.messageType == MessageTypes.Text) {
+      toolbarController = controller.getToolbarDisplayController(event.eventId);
+    }
     // Pangea#
 
     final resetAnimateIn = this.resetAnimateIn;
