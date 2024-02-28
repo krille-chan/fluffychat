@@ -272,6 +272,8 @@ class MessageToolbarState extends State<MessageToolbar> {
   @override
   void initState() {
     super.initState();
+    widget.textSelection.selectedText = null;
+
     toolbarModeStream = widget.toolbarModeStream.stream.listen((mode) {
       updateMode(mode);
     });
