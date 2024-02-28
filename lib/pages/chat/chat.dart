@@ -350,12 +350,13 @@ class ChatController extends State<ChatPageWithRoom>
     try {
       await loadTimelineFuture;
       // #Pangea
-      if (timeline != null) {
+      final String? targetId =
+          timeline?.events.firstWhereOrNull((e) => e.isVisibleInGui)?.eventId;
+      if (targetId != null) {
         choreographer.pangeaController.instructions.show(
           context,
           InstructionsEnum.clickMessage,
-          timeline!.events.firstWhereOrNull((e) => e.isVisibleInGui)?.eventId ??
-              '',
+          targetId,
           true,
         );
       }
@@ -399,6 +400,16 @@ class ChatController extends State<ChatPageWithRoom>
     animateInEventIndex = i;
   }
 
+  // #Pangea
+  List<Event> get visibleEvents =>
+      timeline?.events
+          .where(
+            (x) => x.isVisibleInGui,
+          )
+          .toList() ??
+      <Event>[];
+  // Pangea#
+
   Future<void> _getTimeline({
     String? eventContextId,
   }) async {
@@ -415,22 +426,15 @@ class ChatController extends State<ChatPageWithRoom>
         onInsert: onInsert,
       );
       // #Pangea
-      List<Event>? messageEvents =
-          timeline?.events.where((x) => x.type == 'm.room.message').toList();
-      if (messageEvents != null && messageEvents.length < 10) {
+      if (visibleEvents.length < 10) {
         int prevNumEvents = timeline!.events.length;
         await requestHistory();
-        messageEvents =
-            timeline?.events.where((x) => x.type == 'm.room.message').toList();
         int numRequests = 0;
         while (timeline!.events.length > prevNumEvents &&
-            messageEvents!.length < 10 &&
+            visibleEvents.length < 10 &&
             numRequests <= 5) {
           prevNumEvents = timeline!.events.length;
           await requestHistory();
-          messageEvents = timeline?.events
-              .where((x) => x.type == 'm.room.message')
-              .toList();
           numRequests++;
         }
       }

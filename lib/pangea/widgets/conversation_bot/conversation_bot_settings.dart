@@ -190,31 +190,31 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: SwitchListTile.adaptive(
-                        title: Text(
-                          L10n.of(context)!.enableModeration,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        subtitle: Text(L10n.of(context)!.enableModerationDesc),
-                        secondary: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          foregroundColor:
-                              Theme.of(context).textTheme.bodyLarge!.color,
-                          child: const Icon(Icons.shield_outlined),
-                        ),
-                        activeColor: AppConfig.activeToggleColor,
-                        value: botOptions.safetyModeration,
-                        onChanged: (bool newValue) => updateBotOption(() {
-                          botOptions.safetyModeration = newValue;
-                        }),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 16),
+                    //   child: SwitchListTile.adaptive(
+                    //     title: Text(
+                    //       L10n.of(context)!.enableModeration,
+                    //       style: TextStyle(
+                    //         color: Theme.of(context).colorScheme.secondary,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //     subtitle: Text(L10n.of(context)!.enableModerationDesc),
+                    //     secondary: CircleAvatar(
+                    //       backgroundColor:
+                    //           Theme.of(context).scaffoldBackgroundColor,
+                    //       foregroundColor:
+                    //           Theme.of(context).textTheme.bodyLarge!.color,
+                    //       child: const Icon(Icons.shield_outlined),
+                    //     ),
+                    //     activeColor: AppConfig.activeToggleColor,
+                    //     value: botOptions.safetyModeration,
+                    //     onChanged: (bool newValue) => updateBotOption(() {
+                    //       botOptions.safetyModeration = newValue;
+                    //     }),
+                    //   ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
                       child: Text(
