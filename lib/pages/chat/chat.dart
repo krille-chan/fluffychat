@@ -24,7 +24,6 @@ import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/utils/report_message.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_text_controller.dart';
@@ -349,18 +348,6 @@ class ChatController extends State<ChatPageWithRoom>
     loadTimelineFuture = _getTimeline();
     try {
       await loadTimelineFuture;
-      // #Pangea
-      final String? targetId =
-          timeline?.events.firstWhereOrNull((e) => e.isVisibleInGui)?.eventId;
-      if (targetId != null) {
-        choreographer.pangeaController.instructions.show(
-          context,
-          InstructionsEnum.clickMessage,
-          targetId,
-          true,
-        );
-      }
-      // Pangea#
       final fullyRead = room.fullyRead;
       if (fullyRead.isEmpty) return;
       if (timeline!.events.any((event) => event.eventId == fullyRead)) {
