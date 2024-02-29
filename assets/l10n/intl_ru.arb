@@ -2600,5 +2600,9 @@
     "placeholders": {}
   },
   "hidePresences": "Скрыть список статусов?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "stickers": "Стикеры",
+  "@stickers": {},
+  "discover": "Исследовать",
+  "@discover": {}
 }
