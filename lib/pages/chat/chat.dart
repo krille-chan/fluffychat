@@ -252,6 +252,7 @@ class ChatController extends State<ChatPageWithRoom>
       setState(() => _scrolledUp = true);
     } else if (scrollController.position.pixels <= 0 && _scrolledUp == true) {
       setState(() => _scrolledUp = false);
+      setReadMarker();
     }
 
     if (scrollController.position.pixels == 0 ||
@@ -275,6 +276,7 @@ class ChatController extends State<ChatPageWithRoom>
     _loadDraft();
     super.initState();
     sendingClient = Matrix.of(context).client;
+    WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
   }
 
@@ -286,7 +288,6 @@ class ChatController extends State<ChatPageWithRoom>
       if (fullyRead.isEmpty) return;
       if (timeline!.events.any((event) => event.eventId == fullyRead)) {
         Logs().v('Scroll up to visible event', fullyRead);
-        setReadMarker();
         return;
       }
       if (!mounted) return;
@@ -317,6 +318,11 @@ class ChatController extends State<ChatPageWithRoom>
   int? animateInEventIndex;
 
   void onInsert(int i) {
+    if (timeline?.events[i].status == EventStatus.synced) {
+      final index = timeline!.events.firstIndexWhereNotError;
+      if (i == index) setReadMarker(eventId: timeline?.events[i].eventId);
+    }
+
     // setState will be called by updateView() anyway
     animateInEventIndex = i;
   }
@@ -350,6 +356,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (room.markedUnread) room.markUnread(false);
+    setReadMarker();
 
     // when the scroll controller is attached we want to scroll to an event id, if specified
     // and update the scroll controller...which will trigger a request history, if the
@@ -371,7 +378,6 @@ class ChatController extends State<ChatPageWithRoom>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
-    if (!_scrolledUp) return;
     setReadMarker();
   }
 
@@ -379,13 +385,19 @@ class ChatController extends State<ChatPageWithRoom>
 
   void setReadMarker({String? eventId}) {
     if (_setReadMarkerFuture != null) return;
+    if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
     if (eventId == null &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
       return;
     }
-    if (!Matrix.of(context).webHasFocus) return;
+
+    // Do not send read markers when app is not in foreground
+    if (!Matrix.of(context).webHasFocus ||
+        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+      return;
+    }
 
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
@@ -932,7 +944,6 @@ class ChatController extends State<ChatPageWithRoom>
         );
       });
       await loadTimelineFuture;
-      setReadMarker();
     }
     scrollController.jumpTo(0);
   }
@@ -1174,7 +1185,6 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onInputBarChanged(String text) {
     if (_inputTextIsEmpty != text.isEmpty) {
-      setReadMarker();
       setState(() {
         _inputTextIsEmpty = text.isEmpty;
       });
@@ -1300,3 +1310,12 @@ class ChatController extends State<ChatPageWithRoom>
 }
 
 enum EmojiPickerType { reaction, keyboard }
+
+extension on List<Event> {
+  int get firstIndexWhereNotError {
+    if (isEmpty) return 0;
+    final index = indexWhere((event) => !event.status.isError);
+    if (index == -1) return length;
+    return index;
+  }
+}
