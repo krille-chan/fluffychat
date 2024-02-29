@@ -2600,5 +2600,9 @@
   "hidePresences": "Сховати список станів?",
   "@hidePresences": {},
   "incomingMessages": "Вхідні повідомлення",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "discover": "Огляд",
+  "@discover": {},
+  "stickers": "Наліпки",
+  "@stickers": {}
 }
