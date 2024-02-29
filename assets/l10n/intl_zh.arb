@@ -2600,5 +2600,9 @@
   "hidePresences": "隐藏状态列表？",
   "@hidePresences": {},
   "incomingMessages": "传入消息",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "贴纸",
+  "@stickers": {},
+  "discover": "发现",
+  "@discover": {}
 }
