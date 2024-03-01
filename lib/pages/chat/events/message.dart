@@ -476,25 +476,47 @@ class Message extends StatelessWidget {
                   child: Material(
                     color: Theme.of(context)
                         .colorScheme
-                        .tertiaryContainer
+                        .secondaryContainer
                         .withOpacity(0.9),
                     elevation:
                         Theme.of(context).appBarTheme.scrolledUnderElevation ??
                             4,
                     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: SizedBox(
-                      width: 32,
-                      height: 32,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.adaptive.more_outlined,
-                          size: 16,
-                          color:
-                              Theme.of(context).colorScheme.onTertiaryContainer,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 32,
+                          height: 32,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.check_circle_outline_outlined,
+                              size: 16,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onTertiaryContainer,
+                            ),
+                            tooltip: L10n.of(context)!.select,
+                            onPressed: () => onSelect(event),
+                          ),
                         ),
-                        onPressed: () => onSelect(event),
-                      ),
+                        SizedBox(
+                          width: 32,
+                          height: 32,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.reply_outlined,
+                              size: 16,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onTertiaryContainer,
+                            ),
+                            tooltip: L10n.of(context)!.reply,
+                            onPressed: () => onSwipe(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
