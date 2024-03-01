@@ -2600,5 +2600,9 @@
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "stickers": "الملصقات",
+  "@stickers": {},
+  "discover": "استكشف",
+  "@discover": {}
 }
