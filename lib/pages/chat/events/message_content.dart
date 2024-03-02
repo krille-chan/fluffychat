@@ -110,11 +110,13 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
+            final fit =
+                AppConfig.keepImageAspectRatio ? BoxFit.contain : BoxFit.cover;
             return ImageBubble(
               event,
               width: 400,
               height: 300,
-              fit: BoxFit.cover,
+              fit: fit,
               borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:

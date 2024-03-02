@@ -154,6 +154,11 @@
         "type": "text",
         "placeholder": {}
     },
+    "keepImageAspectRatio": "Keep image aspect ratio",
+    "@keepImageAspectRatio": {
+        "type": "text",
+        "placeholder": {}
+    },
     "badServerLoginTypesException": "The homeserver supports the login types:\n{serverVersions}\nBut this app supports only:\n{supportedVersions}",
     "@badServerLoginTypesException": {
         "type": "text",

@@ -46,6 +46,7 @@ abstract class AppConfig {
   static bool hideUnimportantStateEvents = true;
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
+  static bool keepImageAspectRatio = false;
   static bool sendTypingNotifications = true;
   static bool sendPublicReadReceipts = true;
   static bool? sendOnEnter;
