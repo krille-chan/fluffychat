@@ -2600,5 +2600,9 @@
   "incomingMessages": "Jasotako mezuak",
   "@incomingMessages": {},
   "hidePresences": "Ezkutatu Egoeren Zerrenda?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "discover": "Arakatu",
+  "@discover": {},
+  "stickers": "Pegatinak",
+  "@stickers": {}
 }
