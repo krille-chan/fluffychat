@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tawkie/pages/welcome_slides/datas/sides_datas.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class WelcomeSlidePage extends StatefulWidget {
   const WelcomeSlidePage({super.key});
@@ -87,8 +88,9 @@ class _WelcomeSlidePageState extends State<WelcomeSlidePage> {
                 onPressed: () {
                   GoRouter.of(context).go('/home');
                 },
-                child: Text(
-                    currentIndex == slidesData.length - 1 ? 'Next' : "Skip"),
+                child: Text(currentIndex == slidesData.length - 1
+                    ? L10n.of(context)!.next
+                    : L10n.of(context)!.skip),
               ),
             ),
           ),
@@ -126,7 +128,22 @@ class SlideItem extends StatelessWidget {
         Flexible(
           child: Image(
             image: AssetImage(gifAsset),
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                );
+              }
+            },
           ),
         ),
         const SizedBox(
@@ -135,7 +152,8 @@ class SlideItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            textKey(context), // Call function to obtain resolved localization key (for translations)
+            textKey(
+                context), // Call function to obtain resolved localization key (for translations)
             style: const TextStyle(fontSize: 20),
             textAlign: TextAlign.center,
           ),
