@@ -822,9 +822,16 @@ class BotBridgeConnection {
   }
 
   // Function to delete a conversation with a bot
-  Future<void> deleteConversation(BuildContext context, String chatBot,
+  Future<void> deleteConversation(BuildContext context, SocialNetwork network,
       ConnectionStateModel connectionState) async {
-    final String botUserId = "$chatBot$hostname";
+    String botUserId;
+    switch (network.name) {
+      case 'Linkedin':
+        botUserId = network.chatBot;
+        break;
+      default:
+        botUserId = "${network.chatBot}$hostname";
+    }
     Future.microtask(() {
       connectionState.updateConnectionTitle(
         L10n.of(context)!.loading_deleteRoom,
@@ -898,8 +905,7 @@ class BotBridgeConnection {
           .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
     });
 
-    final gotCookies =
-        await cookieManager.getCookies(network.urlRedirect);
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
     final formattedCookieString = formatCookies(gotCookies);
 
     // Success phrases to spot
