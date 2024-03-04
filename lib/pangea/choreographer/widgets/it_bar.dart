@@ -225,6 +225,13 @@ class ITChoices extends StatelessWidget {
     Color? borderColor,
     String? choiceFeedback,
   ]) {
+    if (controller.currentITStep == null) {
+      ErrorHandler.logError(
+        m: "currentITStep is null in showCard",
+        s: StackTrace.current,
+      );
+      return;
+    }
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: choiceFeedback == null

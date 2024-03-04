@@ -54,6 +54,8 @@ class ModelKey {
   static const String offset = "offset";
   static const String length = "length";
   static const String langCode = 'lang_code';
+  // some old analytics rooms have langCode instead of lang_code in the room creation content
+  static const String oldLangCode = 'langCode';
   static const String wordLang = "word_lang";
   static const String lemma = "lemma";
   static const String saveVocab = "save_vocab";

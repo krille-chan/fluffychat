@@ -116,8 +116,6 @@ class PangeaController {
 
     matrixState.loginHomeserverSummary =
         await matrixState.getLoginClient().checkHomeserver(homeserver);
-    final ssoSupported = matrixState.loginHomeserverSummary!.loginFlows
-        .any((flow) => flow.type == 'm.login.sso');
 
     try {
       await matrixState.getLoginClient().register();

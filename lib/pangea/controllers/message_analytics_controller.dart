@@ -1,15 +1,14 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/models/headwords.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_page.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../constants/class_default_values.dart';
 import '../extensions/client_extension.dart';
 import '../extensions/pangea_room_extension.dart';
@@ -264,7 +263,17 @@ class AnalyticsController extends BaseController {
   ) {
     final Room? analyticsRoom = _pangeaController.matrixState.client
         .analyticsRoomLocal(langCode, studentId);
-    return analyticsRoom!.allConstructEvents;
+    if (analyticsRoom == null) {
+      ErrorHandler.logError(
+        m: "analyticsRoom missing in studentConstructs",
+        s: StackTrace.current,
+        data: {
+          "studentId": studentId,
+          "langCode": langCode,
+        },
+      );
+    }
+    return analyticsRoom?.allConstructEvents ?? Future.value([]);
   }
 
   Future<List<ConstructEvent>> spaceMemberVocab(String spaceId) async {
@@ -309,25 +318,24 @@ class AnalyticsController extends BaseController {
       // as long as a student isn't selected, we want the vocab events for the whole class
       final Room? classRoom =
           _pangeaController.matrixState.client.getRoomById(defaultSelected.id);
-      if (classRoom == null) {
+      if (classRoom?.classSettings == null) {
         throw Exception("classRoom missing in spaceMemberVocab");
       }
-      langCode = classRoom.classSettings!.targetLanguage;
-
-      if (selected?.type != AnalyticsEntryType.student) {
-        eventsFuture = spaceMemberVocab(defaultSelected.id);
-      } else {
-        eventsFuture = studentConstructs(selected!.id, langCode);
-      }
+      langCode = classRoom!.classSettings!.targetLanguage;
+      eventsFuture = selected?.type == AnalyticsEntryType.student
+          ? studentConstructs(selected!.id, langCode)
+          : spaceMemberVocab(defaultSelected.id);
     } else if (defaultSelected.type == AnalyticsEntryType.student) {
       // in this case, we're on an individual's own analytics page
-
       if (selected?.type == AnalyticsEntryType.space ||
           selected?.type == AnalyticsEntryType.student) {
         langCode = _pangeaController.languageController
             .activeL2Code(roomID: selected!.id)!;
         eventsFuture = myConstructs(langCode);
       } else {
+        if (_pangeaController.languageController.userL2 == null) {
+          throw Exception("userL2 missing in vocabHeadsByAnalyticsSelected");
+        }
         langCode = _pangeaController.languageController.userL2!.langCode;
         eventsFuture = myConstructs(langCode);
       }
@@ -361,11 +369,9 @@ class AnalyticsController extends BaseController {
         throw "No target language available";
       }
 
-      if (selected?.type != AnalyticsEntryType.student) {
-        eventFutures = spaceMemberVocab(defaultSelected.id);
-      } else {
-        eventFutures = studentConstructs(selected!.id, langCode);
-      }
+      eventFutures = selected?.type == AnalyticsEntryType.student
+          ? studentConstructs(selected!.id, langCode)
+          : spaceMemberVocab(defaultSelected.id);
     } else if (defaultSelected.type == AnalyticsEntryType.student) {
       // in this case, we're on an individual's own analytics page
 
@@ -375,6 +381,9 @@ class AnalyticsController extends BaseController {
             .activeL2Code(roomID: selected!.id)!;
         eventFutures = myConstructs(langCode);
       } else {
+        if (_pangeaController.languageController.userL2 == null) {
+          throw "userL2 missing in constuctEventsByAnalyticsSelected";
+        }
         langCode = _pangeaController.languageController.userL2!.langCode;
         eventFutures = myConstructs(langCode);
       }

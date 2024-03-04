@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
-import 'package:fluffychat/pangea/models/widget_measurement.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -136,7 +135,7 @@ class Choreographer {
 
   _resetDebounceTimer() {
     if (debounceTimer != null) {
-      debounceTimer!.cancel();
+      debounceTimer?.cancel();
       debounceTimer = null;
     }
   }
@@ -252,6 +251,7 @@ class Choreographer {
           s: StackTrace.current,
         );
         MatrixState.pAnyState.closeOverlay();
+        return;
       }
       if (igc.igcTextData!.matches[matchIndex].match.choices == null) {
         ErrorHandler.logError(
@@ -259,6 +259,7 @@ class Choreographer {
           s: StackTrace.current,
         );
         MatrixState.pAnyState.closeOverlay();
+        return;
       }
 
       //if it's the wrong choice, return
@@ -477,8 +478,6 @@ class Choreographer {
       stateListener.add(0);
     }
   }
-
-  WidgetMeasurements get inputBarSize => _textController.measurements!;
 
   bool get showIsError => !itController.isOpen && errorService.isError;
 

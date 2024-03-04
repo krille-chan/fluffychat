@@ -95,7 +95,7 @@ class RepresentationEvent {
 
     _tokens = tokenEvents.first.getPangeaContent<PangeaMessageTokens>();
 
-    return _tokens!.tokens;
+    return _tokens?.tokens;
   }
 
   Future<List<PangeaToken>?> tokensGlobal(BuildContext context) async {

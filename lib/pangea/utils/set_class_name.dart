@@ -1,13 +1,14 @@
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 void setClassDisplayname(BuildContext context, String? roomId) async {
-  final room = Matrix.of(context).client.getRoomById(roomId!)!;
+  if (roomId == null) return;
+  final room = Matrix.of(context).client.getRoomById(roomId);
+  if (room == null) return;
   final TextEditingController textFieldController = TextEditingController(
     text: room.getLocalizedDisplayname(
       MatrixLocals(

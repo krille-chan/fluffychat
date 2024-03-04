@@ -121,7 +121,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
       managementUrl += "?prefilled_email=${Uri.encodeComponent(email)}";
     }
     final String? purchaseAppId =
-        subscriptionController.subscription?.currentSubscription?.appId!;
+        subscriptionController.subscription?.currentSubscription?.appId;
     if (purchaseAppId == null) return;
 
     final SubscriptionAppIds? appIds =

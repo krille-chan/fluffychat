@@ -1,8 +1,7 @@
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/repo/subscription_repo.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class WebSubscriptionInfo extends SubscriptionInfo {
   WebSubscriptionInfo({required super.pangeaController}) : super();
@@ -12,6 +11,14 @@ class WebSubscriptionInfo extends SubscriptionInfo {
     await setAppIds();
     await setAllProducts();
     await setCustomerInfo();
+
+    if (allProducts == null || appIds == null) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(message: "No products found for current app"),
+      );
+      return;
+    }
+
     availableSubscriptions = allProducts!
         .where((product) => product.appId == appIds!.currentAppId)
         .toList();

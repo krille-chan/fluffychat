@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
-import 'package:jwt_decode/jwt_decode.dart';
-import 'package:matrix/matrix.dart' as matrix;
-
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:matrix/matrix.dart' as matrix;
+
 import '../constants/local.key.dart';
 import '../models/user_model.dart';
 import '../repo/user_repo.dart';
@@ -148,7 +149,11 @@ class UserController extends BaseController {
   }
 
   _savePUserModel(PUserModel? pUserModel) {
-    final jsonUser = pUserModel!.toJson();
+    if (pUserModel == null) {
+      ErrorHandler.logError(e: "trying to save null userModel");
+      return;
+    }
+    final jsonUser = pUserModel.toJson();
     _pangeaController.pStoreService.save(PLocalKey.user, jsonUser);
 
     setState(data: pUserModel);

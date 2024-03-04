@@ -1,9 +1,8 @@
-import 'package:flutter/widgets.dart';
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
+import 'package:flutter/widgets.dart';
+
 import '../../config/firebase_options.dart';
 import '../enum/use_type.dart';
 
@@ -161,22 +160,26 @@ class GoogleAnalytics {
     );
   }
 
-  static FirebaseAnalyticsObserver getAnalyticsObserver() =>
-      FirebaseAnalyticsObserver(
-        analytics: analytics!,
-        routeFilter: (route) {
-          // By default firebase only tracks page routes
-          if (route is! PageRoute ||
-              // No user logged in, so we dont track
-              route.settings.name == "login" ||
-              route.settings.name == "/home" ||
-              route.settings.name == "connect" ||
-              route.settings.name == "signup") {
-            return false;
-          }
-          final String? name = route.settings.name;
-          debugPrint("navigating to route: $name");
-          return true;
-        },
-      );
+  static FirebaseAnalyticsObserver getAnalyticsObserver() {
+    if (analytics == null) {
+      throw Exception("Firebase Analytics not initialized");
+    }
+    return FirebaseAnalyticsObserver(
+      analytics: analytics!,
+      routeFilter: (route) {
+        // By default firebase only tracks page routes
+        if (route is! PageRoute ||
+            // No user logged in, so we dont track
+            route.settings.name == "login" ||
+            route.settings.name == "/home" ||
+            route.settings.name == "connect" ||
+            route.settings.name == "signup") {
+          return false;
+        }
+        final String? name = route.settings.name;
+        debugPrint("navigating to route: $name");
+        return true;
+      },
+    );
+  }
 }

@@ -66,20 +66,26 @@ class SpanCardState extends State<SpanCard> {
   Future<void> getSpanDetails() async {
     try {
       if (widget.scm.pangeaMatch?.isITStart ?? false) return;
+
+      if (!mounted) return;
       setState(() {
         fetchingData = true;
       });
 
       await widget.scm.choreographer.igc.getSpanDetails(widget.scm.matchIndex);
 
-      setState(() => fetchingData = false);
+      if (mounted) {
+        setState(() => fetchingData = false);
+      }
     } catch (e) {
       // debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: StackTrace.current);
-      setState(() {
-        error = e;
-        fetchingData = false;
-      });
+      if (mounted) {
+        setState(() {
+          error = e;
+          fetchingData = false;
+        });
+      }
     }
   }
 
@@ -105,10 +111,10 @@ class WordMatchContent extends StatelessWidget {
         .scm
         .choreographer
         .igc
-        .igcTextData!
-        .matches[controller.widget.scm.matchIndex]
+        .igcTextData
+        ?.matches[controller.widget.scm.matchIndex]
         .match
-        .choices![index]
+        .choices?[index]
         .selected = true;
 
     controller.setState(() => ());
@@ -291,6 +297,10 @@ class PromptAndFeedback extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.widget.scm.pangeaMatch == null) {
+      return const SizedBox();
+    }
+
     return Container(
       constraints: controller.widget.scm.pangeaMatch!.isITStart
           ? null

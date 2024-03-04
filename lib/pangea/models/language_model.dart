@@ -709,7 +709,11 @@ class _LanguageLocal {
       // debugger(when: kDebugMode);
       // ErrorHandler.logError(m: "Bad language key $key", s: StackTrace.current);
     }
-    if (item == null) return key;
+    if (item == null ||
+        (native && !item.containsKey("nativeName") ||
+            (!native && !item.containsKey("name")))) {
+      return key;
+    }
 
     return (native ? item["nativeName"]! : item["name"]!).split(",")[0];
   }
@@ -720,7 +724,8 @@ class _LanguageLocal {
 
     final String searchName = name.toLowerCase().split(" ")[0];
     for (final entry in isoLangs.entries) {
-      if (entry.value["name"]!.toLowerCase().contains(searchName)) {
+      if (entry.value.containsKey("name") &&
+          entry.value["name"]!.toLowerCase().contains(searchName)) {
         return entry.key;
       }
     }

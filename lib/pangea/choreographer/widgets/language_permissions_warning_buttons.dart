@@ -1,17 +1,16 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../../widgets/matrix.dart';
 
 class _ErrorCopy {
@@ -72,6 +71,12 @@ class LanguagePermissionsButtons extends StatelessWidget {
   _ErrorCopy? getCopy(BuildContext context) {
     final bool itDisabled = !choreographer.itEnabled;
     final bool igcDisabled = !choreographer.igcEnabled;
+    if (roomID == null) {
+      ErrorHandler.logError(
+        e: Exception("Room ID is null in language permissions"),
+      );
+      return null;
+    }
     final Room? room = Matrix.of(context).client.getRoomById(roomID!);
 
     final bool itDisabledByClass = choreographer

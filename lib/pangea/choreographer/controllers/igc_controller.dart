@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/models/igc_text_data_model.dart';
@@ -13,6 +8,10 @@ import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
 import 'package:fluffychat/pangea/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../../../widgets/matrix.dart';
 import '../../models/language_detection_model.dart';
 import '../../models/span_card_model.dart';
@@ -136,6 +135,21 @@ class IgcController {
           data: igcTextData!.toJson(),
         );
       }
+
+      if (choreographer.l1LangCode == null ||
+          choreographer.l2LangCode == null) {
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(
+          m: "l1LangCode and/or l2LangCode is null",
+          s: StackTrace.current,
+          data: {
+            "l1LangCode": choreographer.l1LangCode,
+            "l2LangCode": choreographer.l2LangCode,
+          },
+        );
+        return;
+      }
+
       final TokensResponseModel res = await TokensRepo.tokenize(
         await choreographer.pangeaController.userController.accessToken,
         TokensRequestModel(
@@ -155,7 +169,7 @@ class IgcController {
       );
       ErrorHandler.logError(e: err, s: stack);
     } finally {
-      igcTextData!.loading = false;
+      igcTextData?.loading = false;
       choreographer.stopLoading();
     }
   }
@@ -184,7 +198,7 @@ class IgcController {
             cursorOffset: match.match.offset,
           ),
           onITStart: () {
-            if (choreographer.itEnabled) {
+            if (choreographer.itEnabled && igcTextData != null) {
               choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
             }
           },

@@ -256,7 +256,10 @@ class _SpaceViewState extends State<SpaceView> {
       // #Pangea
       case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
-        widget.controller.toggleSelection(room!.id);
+        // #Pangea
+        if (room == null) return;
+        // Pangea#
+        widget.controller.toggleSelection(room.id);
         room.isSpace
             ? await showFutureLoadingDialog(
                 context: context,
@@ -273,7 +276,10 @@ class _SpaceViewState extends State<SpaceView> {
         break;
       case SpaceChildContextAction.addToSpace:
         widget.controller.cancelAction();
-        widget.controller.toggleSelection(room!.id);
+        // #Pangea
+        if (room == null) return;
+        // Pangea#
+        widget.controller.toggleSelection(room.id);
         await widget.controller.addToSpace();
         break;
       // Pangea#

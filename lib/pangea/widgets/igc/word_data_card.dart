@@ -190,7 +190,10 @@ class WordDataCardView extends StatelessWidget {
                 style: BotStyle.text(context),
               ),
             const SizedBox(height: 5.0),
-            if (controller.wordData != null && controller.wordNetError == null)
+            if (controller.wordData != null &&
+                controller.wordNetError == null &&
+                controller.activeL1 != null &&
+                controller.activeL2 != null)
               WordNetInfo(
                 wordData: controller.wordData!,
                 activeL1: controller.activeL1!,

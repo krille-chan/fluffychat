@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 class AddExchangeToClass extends StatefulWidget {
   const AddExchangeToClass({super.key});
@@ -19,8 +17,12 @@ class AddExchangeToClassState extends State<AddExchangeToClass> {
 
   @override
   Widget build(BuildContext context) {
-    final String spaceId =
-        GoRouterState.of(context).pathParameters['exchangeid']!;
+    final String? spaceId =
+        GoRouterState.of(context).pathParameters['exchangeid'];
+    if (spaceId == null) {
+      return const SizedBox();
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

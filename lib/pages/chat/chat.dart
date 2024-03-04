@@ -247,7 +247,8 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   // void requestHistory() async {
   Future<void> requestHistory() async {
-    // #Pangea
+    if (timeline == null) return;
+    // Pangea#
     if (!timeline!.canRequestHistory) return;
     Logs().v('Requesting history...');
     await timeline!.requestHistory(historyCount: _loadHistoryCount);
@@ -425,7 +426,7 @@ class ChatController extends State<ChatPageWithRoom>
           numRequests++;
         }
       }
-      // #Pangea
+      // Pangea#
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
@@ -1575,13 +1576,27 @@ class ChatController extends State<ChatPageWithRoom>
       setPangeaMessageEvent(eventId);
       if (_pangeaMessageEvents[eventId] == null) return;
     }
-    _toolbarDisplayControllers[eventId] = ToolbarDisplayController(
-      targetId: event.eventId,
-      pangeaMessageEvent: _pangeaMessageEvents[eventId]!,
-      immersionMode: choreographer.immersionMode,
-      controller: this,
-    );
-    _toolbarDisplayControllers[eventId]!.setToolbar();
+
+    try {
+      _toolbarDisplayControllers[eventId] = ToolbarDisplayController(
+        targetId: event.eventId,
+        pangeaMessageEvent: _pangeaMessageEvents[eventId]!,
+        immersionMode: choreographer.immersionMode,
+        controller: this,
+      );
+      _toolbarDisplayControllers[eventId]!.setToolbar();
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: "Failed to set toolbar display controller",
+        data: {
+          "eventId": eventId,
+          "event": event.toJson(),
+          "pangeaMessageEvent": _pangeaMessageEvents[eventId]?.toString(),
+        },
+      );
+    }
   }
 
   PangeaMessageEvent? getPangeaMessageEvent(String eventId) {

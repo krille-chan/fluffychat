@@ -169,6 +169,13 @@ class SubscriptionController extends BaseController {
   }
 
   void setNewUserTrial() {
+    if (_pangeaController.userController.userModel?.profile == null) {
+      ErrorHandler.logError(
+        m: "Null user profile in subscription settings",
+        s: StackTrace.current,
+      );
+      return;
+    }
     final String profileCreatedAt =
         _pangeaController.userController.userModel!.profile!.createdAt;
     final DateTime creationTimestamp = DateTime.parse(profileCreatedAt);

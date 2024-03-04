@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
+import 'package:flutter/material.dart';
 
 class CardErrorWidget extends StatelessWidget {
   final Object? error;
@@ -28,11 +27,9 @@ class CardErrorWidget extends StatelessWidget {
           CardHeader(
             text: errorCopy.title,
             botExpression: BotExpression.addled,
-            onClose: () => choreographer != null
-                ? choreographer!.onMatchError(
-                    cursorOffset: offset,
-                  )
-                : null,
+            onClose: () => choreographer?.onMatchError(
+              cursorOffset: offset,
+            ),
           ),
           const SizedBox(height: 10.0),
           Center(

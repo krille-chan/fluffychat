@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../extensions/client_extension.dart';
 import '../extensions/pangea_room_extension.dart';
 import '../models/constructs_analytics_model.dart';
@@ -62,8 +61,10 @@ class MyAnalyticsController {
     List<Room> spaces,
   ) async {
     final List<Future<StudentAnalyticsEvent?>> events = [];
-    for (final space in spaces) {
-      events.add(space.getStudentAnalytics(_userId!));
+    if (_userId != null) {
+      for (final space in spaces) {
+        events.add(space.getStudentAnalytics(_userId!));
+      }
     }
     return Future.wait(events);
   }
@@ -80,6 +81,7 @@ class MyAnalyticsController {
     try {
       final Map<String, List<OneConstructUse>> aggregatedVocabUse = {};
       for (final use in allUses) {
+        if (use.lemma == null) continue;
         aggregatedVocabUse[use.lemma!] ??= [];
         aggregatedVocabUse[use.lemma]!.add(use);
       }
