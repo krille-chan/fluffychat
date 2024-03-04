@@ -117,7 +117,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void ssoLoginAction(String? id) async {
     final redirectUrl = kIsWeb
-        ? '${html.window.origin!}/web/auth.html'
+        ? '${html.window.origin!}/auth.html'
         : isDefaultPlatform
             ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
             : 'http://localhost:3001//login';
