@@ -113,8 +113,7 @@ class BackgroundPush {
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
-    final id = await mapRoomIdToInt(roomId);
-    await FlutterLocalNotificationsPlugin().cancel(id);
+    await FlutterLocalNotificationsPlugin().cancel(roomId.hashCode);
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
@@ -140,6 +139,11 @@ class BackgroundPush {
   }) async {
     if (PlatformInfos.isIOS) {
       await firebase?.requestPermission();
+    } else if (PlatformInfos.isAndroid) {
+      _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestNotificationsPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -230,7 +234,7 @@ class BackgroundPush {
           ? 'ios'
           : null;
 
-  bool _wentToRoomOnStartup = false;
+  static bool _wentToRoomOnStartup = false;
 
   Future<void> setupPush() async {
     Logs().d("SetupPush");
@@ -325,7 +329,7 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    await UnifiedPush.registerAppWithDialog(matrix!.navigatorContext);
+    await UnifiedPush.registerAppWithDialog(matrix!.context);
   }
 
   Future<void> _newUpEndpoint(String newEndpoint, String i) async {

@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart';
 import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_list/chat_list_item.dart';
 import 'package:tawkie/pages/chat_list/search_title.dart';
+import 'package:tawkie/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/widgets/avatar.dart';
@@ -429,6 +430,7 @@ class _SpaceViewState extends State<SpaceView> {
                           onLongPress: () =>
                               _onSpaceChildContextMenu(spaceChild, room),
                           activeChat: widget.controller.activeChat == room.id,
+                          onTap: () => onChatTap(room, context),
                         );
                       }
                       final isSpace = spaceChild.roomType == 'm.space';

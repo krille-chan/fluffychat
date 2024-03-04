@@ -92,8 +92,8 @@ class Avatar extends StatelessWidget {
                     ? Colors.orange
                     : Colors.grey;
             return Positioned(
-              bottom: -4,
-              right: -4,
+              bottom: -3,
+              right: -3,
               child: Container(
                 width: 16,
                 height: 16,
@@ -104,11 +104,15 @@ class Avatar extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Container(
-                  width: 8,
-                  height: 8,
+                  width: 10,
+                  height: 10,
                   decoration: BoxDecoration(
                     color: dotColor,
                     borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      width: 1,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
                   ),
                 ),
               ),

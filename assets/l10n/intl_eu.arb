@@ -2273,7 +2273,7 @@
   },
   "jumpToLastReadMessage": "Joan irakurritako azken mezura",
   "@jumpToLastReadMessage": {},
-  "reportErrorDescription": "O ez! Zerbaitek huts egin du. Saiatu berriro geroago. Nahi izanez gero, eman garatzaileei errorearen berri.",
+  "reportErrorDescription": "😭 O ez! Zerbaitek huts egin du. Nahi izanez gero, eman garatzaileei errorearen berri.",
   "@reportErrorDescription": {},
   "cuddleContent": "{senderName}(e)k samurki besarkatu zaitu",
   "@cuddleContent": {
@@ -2511,5 +2511,94 @@
       "url": {},
       "error": {}
     }
-  }
+  },
+  "youInvitedToBy": "📩 Esteka baten bidez gonbidatu zaituzte:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "transparent": "Gardena",
+  "@transparent": {},
+  "sendReadReceipts": "Bidali irakurri izanaren adierazlea",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Formatua duten mezuak",
+  "@formattedMessages": {},
+  "verifyOtherDevice": "🔐 Egiaztatu beste gailu bat",
+  "@verifyOtherDevice": {},
+  "acceptedKeyVerification": "{sender}(e)k gakoaren egiaztapena onartu du",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "{sender}(e)k gakoen egiaztapena ezeztatu du",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender}(e)k gakoen egiaztapena galdegin du",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendReadReceiptsDescription": "Txateko beste kideek mezu bat irakurri duzula ikus dezakete.",
+  "@sendReadReceiptsDescription": {},
+  "forwardMessageTo": "Birbidali mezua {roomName}(e)ra?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "completedKeyVerification": "{sender}(e)k gakoen egiaztapena osatu du",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} gakoak egiaztatzeko prest dago",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "verifyOtherDeviceDescription": "Beste gailu bat egiaztatzean, gailu horiek gakoak truka ditzakete, eta segurtasun orokorra handitu. 💪 Egiaztapena hasten duzunean, laster-leiho bat agertuko da bi gailuetan. Bertan, elkarrekin alderatu behar diren emoji edo zenbaki batzuk ikusiko dituzu. Hobe da bi gailuak eskura izatea egiaztapena hasi aurretik. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "verifyOtherUserDescription": "Beste erabiltzaile bat egiaztatzen baduzu, ziur egon zaitezke nori idazten ari zaren. 💪\n\nEgiaztapena hasten duzunean, zuk eta beste erabiltzaileak laster-leiho bat ikusiko duzue aplikazioan. Bertan, elkarrekin alderatu behar diren emoji edo zenbaki batzuk erakutsiko dira.\n\nBideo-dei bat hastea edo aurrez-aurre batzea da horretarako modurik onena. 👭",
+  "@verifyOtherUserDescription": {},
+  "formattedMessagesDescription": "Erakutsi mezu aberatsen edukia markdown erabiliz, testu lodia esaterako.",
+  "@formattedMessagesDescription": {},
+  "sendTypingNotificationsDescription": "Txateko beste kideek mezu berri bat idazten ari zarela ikus dezakete.",
+  "@sendTypingNotificationsDescription": {},
+  "verifyOtherUser": "🔐 Egiaztatu beste erabiltzaile bat",
+  "@verifyOtherUser": {},
+  "startedKeyVerification": "{sender}(e)k gakoen egiaztapena hasi du",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presencesToggle": "Erakutsi beste erabiltzaileen egoera-mezuak",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "Presentzia:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Jasotako mezuak",
+  "@incomingMessages": {},
+  "hidePresences": "Ezkutatu Egoeren Zerrenda?",
+  "@hidePresences": {}
 }

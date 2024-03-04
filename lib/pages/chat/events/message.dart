@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -36,6 +37,7 @@ class Message extends StatelessWidget {
   final bool highlightMarker;
   final bool animateIn;
   final void Function()? resetAnimateIn;
+  final Color? avatarPresenceBackgroundColor;
 
   const Message(
     this.event, {
@@ -55,6 +57,7 @@ class Message extends StatelessWidget {
     this.highlightMarker = false,
     this.animateIn = false,
     this.resetAnimateIn,
+    this.avatarPresenceBackgroundColor,
     super.key,
   });
 
@@ -183,6 +186,7 @@ class Message extends StatelessWidget {
                       mxContent: user.avatarUrl,
                       name: user.calcDisplayname(),
                       presenceUserId: user.stateKey,
+                      presenceBackgroundColor: avatarPresenceBackgroundColor,
                       onTap: () => onAvatarTab(event),
                     );
                   },
@@ -225,15 +229,8 @@ class Message extends StatelessWidget {
                         onLongPress: longPressSelect
                             ? null
                             : () {
+                                HapticFeedback.heavyImpact();
                                 onSelect(event);
-                                // Android usually has a vibration effect on long press:
-                                if (PlatformInfos.isAndroid) {
-                                  Vibration.hasVibrator().then((has) {
-                                    if (has == true) {
-                                      Vibration.vibrate(duration: 50);
-                                    }
-                                  });
-                                }
                               },
                         child: AnimatedOpacity(
                           opacity: animateIn

@@ -93,10 +93,11 @@ abstract class FluffyThemes {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        border: UnderlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
+        contentPadding: const EdgeInsets.all(12),
         filled: true,
       ),
       appBarTheme: AppBarTheme(

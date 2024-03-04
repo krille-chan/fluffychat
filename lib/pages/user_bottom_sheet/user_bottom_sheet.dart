@@ -120,6 +120,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         );
         if (score == null) return;
         final reason = await showTextInputDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.whyDoYouWantToReportThis,
           okLabel: L10n.of(context)!.ok,
@@ -149,12 +150,12 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.ban:
         if (user == null) throw ('User must not be null for this action!');
         if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               title: L10n.of(context)!.areYouSure,
               okLabel: L10n.of(context)!.yes,
               cancelLabel: L10n.of(context)!.no,
               message: L10n.of(context)!.banUserDescription,
-              isDestructiveAction: true,
             ) ==
             OkCancelResult.ok) {
           await showFutureLoadingDialog(
@@ -167,6 +168,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.unban:
         if (user == null) throw ('User must not be null for this action!');
         if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               title: L10n.of(context)!.areYouSure,
               okLabel: L10n.of(context)!.yes,
@@ -184,6 +186,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
       case UserBottomSheetAction.kick:
         if (user == null) throw ('User must not be null for this action!');
         if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               title: L10n.of(context)!.areYouSure,
               okLabel: L10n.of(context)!.yes,
@@ -207,6 +210,7 @@ class UserBottomSheetController extends State<UserBottomSheet> {
         if (newPermission != null) {
           if (newPermission == 100 &&
               await showOkCancelAlertDialog(
+                    useRootNavigator: false,
                     context: context,
                     title: L10n.of(context)!.areYouSure,
                     okLabel: L10n.of(context)!.yes,

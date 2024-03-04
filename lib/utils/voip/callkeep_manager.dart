@@ -247,6 +247,7 @@ class CallKeepManager {
     showDialog(
       context: context,
       barrierDismissible: true,
+      useRootNavigator: false,
       builder: (_) => AlertDialog(
         title: Text(L10n.of(context)!.callingPermissions),
         content: Column(

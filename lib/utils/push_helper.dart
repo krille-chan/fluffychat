@@ -2,11 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,20 +50,19 @@ Future<void> pushHelper(
 
     l10n ??= lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
-      0,
+      notification.roomId?.hashCode ?? 0,
       l10n.newMessageInFluffyChat,
       l10n.openAppToReadMessages,
       NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
-          AppConfig.pushNotificationsChannelName,
-          channelDescription: AppConfig.pushNotificationsChannelDescription,
+          l10n.incomingMessages,
           number: notification.counts?.unread,
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
-          importance: Importance.max,
+          importance: Importance.high,
           priority: Priority.max,
-          fullScreenIntent: true, // To show notification popup
+          shortcutId: notification.roomId,
         ),
       ),
     );
@@ -169,31 +170,53 @@ Future<void> _tryPushHelper(
   final avatar = event.room.avatar
       ?.getThumbnail(
         client,
-        width: 126,
-        height: 126,
+        width: 256,
+        height: 256,
       )
       .toString();
-  File? avatarFile;
+  final senderAvatar = event.room.isDirectChat
+      ? avatar
+      : event.senderFromMemoryOrFallback.avatarUrl
+          ?.getThumbnail(
+            client,
+            width: 256,
+            height: 256,
+          )
+          .toString();
+
+  File? roomAvatarFile, senderAvatarFile;
   try {
-    avatarFile = avatar == null
+    roomAvatarFile = avatar == null
         ? null
         : await DefaultCacheManager().getSingleFile(avatar);
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
+  try {
+    senderAvatarFile = event.room.isDirectChat
+        ? roomAvatarFile
+        : senderAvatar == null
+            ? null
+            : await DefaultCacheManager().getSingleFile(senderAvatar);
+  } catch (e, s) {
+    Logs().e('Unable to get avatar picture', e, s);
+  }
 
-  final id = await mapRoomIdToInt(event.room.id);
+  final id = notification.roomId.hashCode;
 
   // Show notification
-  final person = Person(
-    name: event.senderFromMemoryOrFallback.calcDisplayname(),
-    icon:
-        avatarFile == null ? null : BitmapFilePathAndroidIcon(avatarFile.path),
-  );
+
   final newMessage = Message(
     body,
     event.originServerTs,
-    person,
+    Person(
+      bot: event.messageType == MessageTypes.Notice,
+      key: event.senderId,
+      name: event.senderFromMemoryOrFallback.calcDisplayname(),
+      icon: senderAvatarFile == null
+          ? null
+          : BitmapFilePathAndroidIcon(senderAvatarFile.path),
+    ),
   );
 
   final messagingStyleInformation = PlatformInfos.isAndroid
@@ -228,23 +251,29 @@ Future<void> _tryPushHelper(
       ?.createNotificationChannel(roomsChannel);
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-    event.room.id,
-    roomName,
-    channelDescription: groupName,
+    AppConfig.pushNotificationsChannelId,
+    l10n.incomingMessages,
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
+    shortcutId: event.room.id,
     styleInformation: messagingStyleInformation ??
         MessagingStyleInformation(
-          person,
+          Person(
+            name: event.senderFromMemoryOrFallback.calcDisplayname(),
+            icon: roomAvatarFile == null
+                ? null
+                : BitmapFilePathAndroidIcon(roomAvatarFile.path),
+            key: event.roomId,
+            important: event.room.isFavourite,
+          ),
           conversationTitle: roomName,
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
     ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
-    importance: Importance.max,
+    importance: Importance.high,
     priority: Priority.max,
     groupKey: notificationGroupId,
-    fullScreenIntent: true, // To show notification popup
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
@@ -252,11 +281,15 @@ Future<void> _tryPushHelper(
     iOS: iOSPlatformChannelSpecifics,
   );
 
+  final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
+
+  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
+    await _setShortcut(event, l10n, title, roomAvatarFile);
+  }
+
   await flutterLocalNotificationsPlugin.show(
     id,
-    event.room.getLocalizedDisplayname(
-      MatrixLocals(l10n),
-    ),
+    title,
     body,
     platformChannelSpecifics,
     payload: event.roomId,
@@ -264,28 +297,31 @@ Future<void> _tryPushHelper(
   Logs().v('Push helper has been completed!');
 }
 
-/// Workaround for the problem that local notification IDs must be int but we
-/// sort by [roomId] which is a String. To make sure that we don't have duplicated
-/// IDs we map the [roomId] to a number and store this number.
-Future<int> mapRoomIdToInt(String roomId) async {
-  final store = await SharedPreferences.getInstance();
-  final idMap = Map<String, int>.from(
-    jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'),
+/// Creates a shortcut for Android platform but does not block displaying the
+/// notification. This is optional but provides a nicer view of the
+/// notification popup.
+Future<void> _setShortcut(
+  Event event,
+  L10n l10n,
+  String title,
+  File? avatarFile,
+) async {
+  final flutterShortcuts = FlutterShortcuts();
+  await flutterShortcuts.initialize(debug: !kReleaseMode);
+  await flutterShortcuts.pushShortcutItem(
+    shortcut: ShortcutItem(
+      id: event.room.id,
+      action: AppConfig.inviteLinkPrefix + event.room.id,
+      shortLabel: title,
+      conversationShortcut: true,
+      icon: avatarFile == null
+          ? null
+          : ShortcutMemoryIcon(jpegImage: await avatarFile.readAsBytes())
+              .toString(),
+      shortcutIconAsset: avatarFile == null
+          ? ShortcutIconAsset.androidAsset
+          : ShortcutIconAsset.memoryAsset,
+      isImportant: event.room.isFavourite,
+    ),
   );
-  int? currentInt;
-  try {
-    currentInt = idMap[roomId];
-  } catch (_) {
-    currentInt = null;
-  }
-  if (currentInt != null) {
-    return currentInt;
-  }
-  var nCurrentInt = 0;
-  while (idMap.values.contains(nCurrentInt)) {
-    nCurrentInt++;
-  }
-  idMap[roomId] = nCurrentInt;
-  await store.setString(SettingKeys.notificationCurrentIds, json.encode(idMap));
-  return nCurrentInt;
 }

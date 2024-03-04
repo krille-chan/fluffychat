@@ -16,10 +16,12 @@ import 'package:tawkie/pages/chat/pinned_events.dart';
 import 'package:tawkie/pages/chat/reactions_picker.dart';
 import 'package:tawkie/pages/chat/reply_display.dart';
 import 'package:tawkie/pages/chat/tombstone_display.dart';
+import 'package:tawkie/utils/account_config.dart';
 import 'package:tawkie/utils/stream_extension.dart';
 import 'package:tawkie/widgets/chat_settings_popup_menu.dart';
 import 'package:tawkie/widgets/connection_status_header.dart';
 import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 import 'package:tawkie/widgets/unread_rooms_badge.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
@@ -136,6 +138,8 @@ class ChatView extends StatelessWidget {
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
+    final accountConfig = Matrix.of(context).client.applicationAccountConfig;
+
     return PopScope(
       canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
       onPopInvoked: (pop) async {
@@ -198,6 +202,18 @@ class ChatView extends StatelessWidget {
                     onDragExited: controller.onDragExited,
                     child: Stack(
                       children: <Widget>[
+                        if (accountConfig.wallpaperUrl != null)
+                          Opacity(
+                            opacity: accountConfig.wallpaperOpacity ?? 1,
+                            child: MxcImage(
+                              uri: accountConfig.wallpaperUrl,
+                              fit: BoxFit.cover,
+                              isThumbnail: true,
+                              width: FluffyThemes.columnWidth * 4,
+                              height: FluffyThemes.columnWidth * 4,
+                              placeholder: (_) => Container(),
+                            ),
+                          ),
                         SafeArea(
                           child: Column(
                             children: <Widget>[
@@ -300,8 +316,9 @@ class ChatView extends StatelessWidget {
                                             children: [
                                               TextButton.icon(
                                                 style: TextButton.styleFrom(
-                                                  padding:
-                                                      const EdgeInsets.all(16),
+                                                  padding: const EdgeInsets.all(
+                                                    16,
+                                                  ),
                                                   foregroundColor:
                                                       Theme.of(context)
                                                           .colorScheme
@@ -317,8 +334,9 @@ class ChatView extends StatelessWidget {
                                               ),
                                               TextButton.icon(
                                                 style: TextButton.styleFrom(
-                                                  padding:
-                                                      const EdgeInsets.all(16),
+                                                  padding: const EdgeInsets.all(
+                                                    16,
+                                                  ),
                                                 ),
                                                 icon: const Icon(
                                                   Icons.forum_outlined,

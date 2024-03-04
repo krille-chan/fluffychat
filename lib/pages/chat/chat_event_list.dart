@@ -9,6 +9,7 @@ import 'package:tawkie/pages/chat/events/message.dart';
 import 'package:tawkie/pages/chat/seen_by_row.dart';
 import 'package:tawkie/pages/chat/typing_indicators.dart';
 import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:tawkie/utils/account_config.dart';
 import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:tawkie/utils/platform_infos.dart';
@@ -35,6 +36,9 @@ class ChatEventList extends StatelessWidget {
     for (var i = 0; i < events.length; i++) {
       thisEventsKeyMap[events[i].eventId] = i;
     }
+
+    final hasWallpaper =
+        controller.room.client.applicationAccountConfig.wallpaperUrl != null;
 
     return SelectionArea(
       child: ListView.custom(
@@ -144,6 +148,8 @@ class ChatEventList extends StatelessWidget {
                     controller.readMarkerEventId == event.eventId &&
                         controller.timeline?.allowNewEvent == false,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
+                avatarPresenceBackgroundColor:
+                    hasWallpaper ? Colors.transparent : null,
               ),
             );
           },

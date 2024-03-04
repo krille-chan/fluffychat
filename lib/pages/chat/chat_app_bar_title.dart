@@ -37,7 +37,6 @@ class ChatAppBarTitle extends StatelessWidget {
                 MatrixLocals(L10n.of(context)!),
               ),
               size: 32,
-              presenceUserId: room.directChatMatrixID,
             ),
           ),
           const SizedBox(width: 12),

@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/background_push.dart';
 import 'package:tawkie/utils/init_with_restore.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -62,6 +64,7 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
+
   SharedPreferences get store => widget.store;
 
   HomeserverSummary? loginHomeserverSummary;
@@ -70,8 +73,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   bool? loginRegistrationSupported;
 
   BackgroundPush? backgroundPush;
-
-  late BuildContext navigatorContext;
 
   Client get client {
     if (widget.clients.isEmpty) {
@@ -189,26 +190,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
 
-  void _initWithStore() async {
-    try {
-      if (client.isLogged()) {
-        // TODO: Figure out how this works in multi account
-        final statusMsg = store.getString(SettingKeys.ownStatusMessage);
-        if (statusMsg?.isNotEmpty ?? false) {
-          Logs().v('Send cached status message: "$statusMsg"');
-          await client.setPresence(
-            client.userID!,
-            PresenceType.online,
-            statusMsg: statusMsg,
-          );
-        }
-      }
-    } catch (e, s) {
-      client.onLoginStateChanged.addError(e, s);
-      rethrow;
-    }
-  }
-
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
@@ -313,8 +294,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       };
       request.onUpdate = null;
       hidPopup = true;
-
-      await KeyVerificationDialog(request: request).show(navigatorContext);
+      await KeyVerificationDialog(request: request).show(context);
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
@@ -325,7 +305,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
-        ScaffoldMessenger.of(navigatorContext).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(L10n.of(context)!.oneClientLoggedOut),
           ),
@@ -368,8 +348,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initMatrix() {
-    _initWithStore();
-
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
     }
@@ -385,7 +363,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
-            context: navigatorContext,
+            context: context,
             title: L10n.of(context)!.pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
@@ -448,6 +426,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.hideUnknownEvents) ??
             AppConfig.hideUnknownEvents;
 
+    AppConfig.hideUnimportantStateEvents =
+        store.getBool(SettingKeys.hideUnimportantStateEvents) ??
+            AppConfig.hideUnimportantStateEvents;
+
     AppConfig.separateChatTypes =
         store.getBool(SettingKeys.separateChatTypes) ??
             AppConfig.separateChatTypes;
@@ -468,6 +450,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
         AppConfig.experimentalVoip;
+
+    AppConfig.showPresences =
+        store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
   }
 
   @override
@@ -494,6 +479,34 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       create: (_) => this,
       child: widget.child,
     );
+  }
+
+  Future<void> dehydrateAction() async {
+    final response = await showOkCancelAlertDialog(
+      context: context,
+      isDestructiveAction: true,
+      title: L10n.of(context)!.dehydrate,
+      message: L10n.of(context)!.dehydrateWarning,
+    );
+    if (response != OkCancelResult.ok) {
+      return;
+    }
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: client.exportDump,
+    );
+    final export = result.result;
+    if (export == null) return;
+
+    final exportBytes = Uint8List.fromList(
+      const Utf8Codec().encode(export),
+    );
+
+    final exportFileName =
+        'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
+
+    final file = MatrixFile(bytes: exportBytes, name: exportFileName);
+    file.save(context);
   }
 }
 

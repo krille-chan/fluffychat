@@ -2511,5 +2511,94 @@
       "url": {},
       "error": {}
     }
-  }
+  },
+  "transparent": "Läbipaistev",
+  "@transparent": {},
+  "youInvitedToBy": "📩 Sa oled lingiga saanud kutse jututuppa:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "sendReadReceipts": "Saada lugemisteatisi",
+  "@sendReadReceipts": {},
+  "verifyOtherUserDescription": "Kui sa oled vestluse teise osapoole verifitseerinud, siis saad kindel olla, et tead, kellega suhtled. 💪\n\nKui alustad verifitseerimist, siis sinul ja teisel osapoolel tekib rakenduses hüpikaken. Seal kuvatakse emotikonide või numbrite jada, mida peate omavahel võrdlema.\n\nKõige lihtsam on seda teha kas omavahelise kohtumise ajal või videokõne kestel. 👭",
+  "@verifyOtherUserDescription": {},
+  "forwardMessageTo": "Kas edastame sõnumi jututuppa {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "Muud vestluses osalejad saavad näha, kui sa oled uut sõnumit kirjutamas.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Muud vestluses osalejad näevad, kas oled sõnumit lugenud.",
+  "@sendReadReceiptsDescription": {},
+  "formattedMessages": "Vormindatud sõnumid",
+  "@formattedMessages": {},
+  "verifyOtherUser": "🔐 Verifitseeri teine kasutaja",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Verifitseeri oma muu seade",
+  "@verifyOtherDevice": {},
+  "canceledKeyVerification": "{sender} katkestas krüptovõtmete verifitseerimise",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} sai valmis krüptovõtmete verifitseerimise",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "formattedMessagesDescription": "Kasutades markdown-süntaksit kuva vormindust, nagu rasvases kirjas tekst.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherDeviceDescription": "Kui sa oled oma muu seadme verifitseerinud, siis need seadmed võivad vahetada krüptovõtmeid ning see parandab üldist turvalisust. 💪 Kui alustad verifitseerimist, siis sinu mõlemas seadmes tekib rakenduses hüpikaken. Seal kuvatakse emotikonide või numbrite jada, mida pead omavahel võrdlema. On oluline, et mõlemad seadmed on verifitseerimise alustamisel sinu kõrval. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "acceptedKeyVerification": "{sender} nõustus krüptovõtmete verifitseerimisega",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} on valmis krüptovõtmete verifitseerimiseks",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} palus krüptovõtmete verifitseerimist",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} alustas krüptovõtmete verifitseerimist",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presenceStyle": "Olekuteated:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Näita teiste kasutajate olekuteateid",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Saabuvad sõnumid",
+  "@incomingMessages": {},
+  "hidePresences": "Peida olekute loend?",
+  "@hidePresences": {}
 }

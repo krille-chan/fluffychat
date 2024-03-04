@@ -169,10 +169,10 @@ class UrlLauncher {
         // we have the room, so....just open it
         if (event != null) {
           context.go(
-            Uri(
+            '/${Uri(
               pathSegments: ['rooms', room.id],
               queryParameters: {'event': event},
-            ).toString(),
+            )}',
           );
         } else {
           context.go('/rooms/${room.id}');
@@ -189,6 +189,7 @@ class UrlLauncher {
       }
       if (roomIdOrAlias.sigil == '!') {
         if (await showOkCancelAlertDialog(
+              useRootNavigator: false,
               context: context,
               title: 'Join room $roomIdOrAlias',
             ) ==

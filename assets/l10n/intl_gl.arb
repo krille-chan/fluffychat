@@ -2320,7 +2320,7 @@
   "@exportEmotePack": {},
   "replace": "Substituír",
   "@replace": {},
-  "sendTypingNotifications": "Enviar notificación de escritura",
+  "sendTypingNotifications": "Permitir ver que estás escribindo",
   "@sendTypingNotifications": {},
   "createGroup": "Crear grupo",
   "@createGroup": {},
@@ -2511,5 +2511,94 @@
       "url": {},
       "error": {}
     }
-  }
+  },
+  "youInvitedToBy": "📩 Convidáronte cunha ligazón a:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "transparent": "Transparente",
+  "@transparent": {},
+  "sendReadReceipts": "Enviar confirmación de lectura",
+  "@sendReadReceipts": {},
+  "sendReadReceiptsDescription": "Outras participantes na conversa poden ver cando liches unha mensaxe.",
+  "@sendReadReceiptsDescription": {},
+  "formattedMessages": "Mensaxes con formato",
+  "@formattedMessages": {},
+  "verifyOtherDevice": "🔐 Verificar outro dispositivo",
+  "@verifyOtherDevice": {},
+  "verifyOtherUser": "🔐 Verificar outra usuaria",
+  "@verifyOtherUser": {},
+  "verifyOtherDeviceDescription": "Ao verificar outro dispositivo estás compartindo as chaves, aumentando a túa seguridade 💪. Ao iniciar a verificación aparecerá unha ventá emerxente nos dous dispositivos. Nesa ventá verás varios emojis ou números que tes que comparar entre eles. O mellor xeito de facelo é ter os dous dispositivos contigo cando inicias o proceso de verificación. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "canceledKeyVerification": "{sender} desbotou a verificación da chave",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} xa pode verificar a chave",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "forwardMessageTo": "Reenviar a mensaxe a {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "As outras participantes da conversa poden ver cando estás a escribir unha mensaxe.",
+  "@sendTypingNotificationsDescription": {},
+  "formattedMessagesDescription": "Mostrar texto enriquecido nas mensaxes como letra grosa usando markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUserDescription": "Se verificas a outra usuaria, podes ter a certeza de que sabes con quen estás a conversar. 💪\n\nAo iniciar a verificación, ti mais a outra usuaria veredes unha ventá emerxente na app onde aparecerán varios emojis ou números que teredes que comparar entre vós.\n\nO mellor xeito de facelo é en persoa o cunha chamada de vídeo. 👭",
+  "@verifyOtherUserDescription": {},
+  "requestedKeyVerification": "{sender} solicitou verificar a chave",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} aceptou a verificación da chave",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} completou a verificación da chave",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} comezou coa verificación da chave",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presenceStyle": "Presenza:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "Agochar Lista de estados?",
+  "@hidePresences": {},
+  "presencesToggle": "Mostra mensaxes de estado de outras usuarias",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Mensaxes recibidas",
+  "@incomingMessages": {}
 }

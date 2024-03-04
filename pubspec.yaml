@@ -2,13 +2,13 @@ name: tawkie
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 1.17.2+3526
+version: 1.18.0+3528
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^2.0.0
+  adaptive_dialog: ^2.1.0
   animations: ^2.0.8
   archive: ^3.4.9
   async: ^2.11.0
@@ -22,7 +22,7 @@ dependencies:
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8
-  emoji_picker_flutter: ^1.6.3
+  emoji_picker_flutter: ^1.6.4
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
@@ -32,12 +32,13 @@ dependencies:
   flutter_app_badger: ^1.5.0
   flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
+  flutter_file_dialog: ^3.0.2
   flutter_foreground_task: ^6.0.0+1
   flutter_highlighter: ^0.1.1
   flutter_html: ^3.0.0-beta.2
   flutter_html_table: ^3.0.0-beta.2
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^16.1.0
+  flutter_local_notifications: ^16.3.2
   flutter_localizations:
     sdk: flutter
   flutter_map: ^4.0.0
@@ -46,12 +47,14 @@ dependencies:
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
-  flutter_typeahead: ^4.8.0
+  flutter_shortcuts:
+    git: https://github.com/krille-chan/flutter_shortcuts.git
+  flutter_typeahead: ^5.2.0
   flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
-  go_router: ^12.1.1
+  go_router: ^13.1.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   html: ^0.15.4
@@ -62,16 +65,16 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  matrix: ^0.25.6
+  matrix: ^0.25.7
   native_imaging: ^0.1.0
-  package_info_plus: ^4.0.0
+  package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
   path_provider: ^2.0.9
   permission_handler: ^11.0.1
+  pretty_qr_code: ^3.2.1
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.0
-  qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
   scroll_to_index: ^3.0.1
@@ -96,9 +99,9 @@ dependencies:
   # Add for Tawkie
   icons_plus: ^4.0.0
   intl_phone_field: ^3.2.0
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
-  dart_code_metrics: ^5.7.5
   flutter_lints: ^3.0.0
   flutter_native_splash: ^2.0.3+1
   flutter_test:
@@ -106,6 +109,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
+  license_checker: ^1.6.0
   msix: ^3.6.2
   translations_cleaner: ^0.0.5
 

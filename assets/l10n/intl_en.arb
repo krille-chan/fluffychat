@@ -1734,6 +1734,16 @@
     "type": "text",
     "placeholders": {}
   },
+  "presenceStyle": "Presence:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Show status messages from other users",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
   "singlesignon": "Single Sign on",
   "@singlesignon": {
     "type": "text",
@@ -2184,6 +2194,12 @@
       "user": {}
     }
   },
+  "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
   "youInvitedBy": "📩 You have been invited by {user}",
   "@youInvitedBy": {
     "placeholders": {
@@ -2284,6 +2300,7 @@
     }
   },
   "hideUnimportantStateEvents": "Hide unimportant state events",
+  "hidePresences": "Hide Status List?",
   "doNotShowAgain": "Do not show again",
   "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
   "@wasDirectChatDisplayName": {
@@ -2414,7 +2431,7 @@
   },
   "sendReadReceipts": "Send read receipts",
   "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
-  "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
+  "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
   "formattedMessages": "Formatted messages",
   "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
   "verifyOtherUser": "🔐 Verify other user",
@@ -2463,13 +2480,10 @@
       "sender": {}
     }
   },
-  "todoLists": "(Beta) Todolists",
-  "newTodo": "New todo",
-  "noTodosYet": "No todos have been added to this chat yet. Create your first todo and start cooperating with others. 📝",
-  "editTodo": "Edit todo",
-  "pleaseAddATitle": "Please add a title",
-  "todoListChangedError": "Oops... The todo list has been changed while you edited it.",
-  "todosUnencrypted": "Please notice that todos are visible by everyone in the chat and are not end to end encrypted.",
+  "transparent": "Transparent",
+  "incomingMessages": "Incoming messages",
+  "stickers": "Stickers",
+  "discover": "Discover",
   "youDonTHaveConversation": "You don't have any conversation yet.",
   "connectChatNetworks": "Connect your chat networks",
   "addSocialMessagingAccounts": "Add your social messaging accounts",

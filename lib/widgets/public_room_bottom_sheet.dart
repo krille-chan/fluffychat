@@ -148,7 +148,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
                 const SizedBox(height: 16),
                 ListTile(
                   title: Text(
-                    profile?.name ?? chunk!.roomId.localpart ?? '',
+                    profile?.name ??
+                        roomAlias?.localpart ??
+                        chunk?.roomId.localpart ??
+                        L10n.of(context)!.chat,
                   ),
                   subtitle: Text(
                     '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',

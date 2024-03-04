@@ -9,6 +9,10 @@ concurrency:
   group: release_workflow
   cancel-in-progress: true
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   build_web:
     runs-on: ubuntu-latest

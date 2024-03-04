@@ -7,10 +7,12 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -23,9 +25,7 @@ import 'package:uni_links/uni_links.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat_list/chat_list_view.dart';
-import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/utils/localized_exception_extension.dart';
-import 'package:tawkie/utils/matrix_sdk_extensions/client_stories_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
@@ -177,6 +177,7 @@ class ChatListController extends State<ChatList>
 
   void setServer() async {
     final newServer = await showTextInputDialog(
+      useRootNavigator: false,
       title: L10n.of(context)!.changeTheHomeserver,
       context: context,
       okLabel: L10n.of(context)!.ok,
@@ -398,6 +399,16 @@ class ChatListController extends State<ChatList>
       FluffyChatApp.gotInitialLink = true;
       getInitialLink().then(_processIncomingUris);
     }
+
+    if (PlatformInfos.isAndroid) {
+      final shortcuts = FlutterShortcuts();
+      shortcuts.initialize().then(
+            (_) => shortcuts.listenAction((action) {
+              if (!mounted) return;
+              UrlLauncher(context, action).launchUrl();
+            }),
+          );
+    }
   }
 
   @override
@@ -495,12 +506,12 @@ class ChatListController extends State<ChatList>
 
   Future<void> archiveAction() async {
     final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
           message: L10n.of(context)!.archiveRoomDescription,
-          isDestructiveAction: true,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -511,10 +522,23 @@ class ChatListController extends State<ChatList>
     setState(() {});
   }
 
+  void dismissStatusList() async {
+    final result = await showOkCancelAlertDialog(
+      title: L10n.of(context)!.hidePresences,
+      context: context,
+    );
+    if (result == OkCancelResult.ok) {
+      await Matrix.of(context).store.setBool(SettingKeys.showPresences, false);
+      AppConfig.showPresences = false;
+      setState(() {});
+    }
+  }
+
   void setStatus() async {
     final client = Matrix.of(context).client;
     final currentPresence = await client.fetchCurrentPresence(client.userID!);
     final input = await showTextInputDialog(
+      useRootNavigator: false,
       context: context,
       title: L10n.of(context)!.setStatus,
       message: L10n.of(context)!.leaveEmptyToClearStatus,
@@ -618,6 +642,7 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
+    await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
 
@@ -749,8 +774,7 @@ class ChatListController extends State<ChatList>
     isTorBrowser = isTor;
   }
 
-  Future<void> dehydrate() =>
-      SettingsSecurityController.dehydrateDevice(context);
+  Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
