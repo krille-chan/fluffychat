@@ -279,7 +279,7 @@ class MessageContent extends StatelessWidget {
                 style: messageTextStyle,
                 pangeaMessageEvent: pangeaMessageEvent!,
                 immersionMode: immersionMode,
-                toolbarController: toolbarController!,
+                toolbarController: toolbarController,
               );
             }
             // Pangea#

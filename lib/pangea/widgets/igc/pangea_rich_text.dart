@@ -19,7 +19,7 @@ import '../../models/pangea_match_model.dart';
 class PangeaRichText extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final bool immersionMode;
-  final ToolbarDisplayController toolbarController;
+  final ToolbarDisplayController? toolbarController;
   final TextStyle? style;
 
   const PangeaRichText({
@@ -89,7 +89,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
           .onError((error, stackTrace) => ErrorHandler.logError())
           .then((event) {
         repEvent = event;
-        widget.toolbarController.toolbar?.textSelection.setMessageText(
+        widget.toolbarController?.toolbar?.textSelection.setMessageText(
           repEvent?.text ?? widget.pangeaMessageEvent.body,
         );
       }).whenComplete(() {
@@ -99,7 +99,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
       });
       return widget.pangeaMessageEvent.body;
     } else {
-      widget.toolbarController.toolbar?.textSelection.setMessageText(
+      widget.toolbarController?.toolbar?.textSelection.setMessageText(
         repEvent!.text,
       );
       setState(() {});
@@ -129,31 +129,33 @@ class PangeaRichTextState extends State<PangeaRichText> {
     final Widget richText = SelectableText.rich(
       onSelectionChanged: (selection, cause) {
         if (cause == SelectionChangedCause.longPress &&
-            !widget.toolbarController.highlighted &&
-            !widget.toolbarController.controller.selectedEvents.any(
-              (e) => e.eventId == widget.pangeaMessageEvent.eventId,
-            )) {
-          widget.toolbarController.controller.onSelectMessage(
+            !(widget.toolbarController?.highlighted ?? false) &&
+            !(widget.toolbarController?.controller.selectedEvents.any(
+                  (e) => e.eventId == widget.pangeaMessageEvent.eventId,
+                ) ??
+                false)) {
+          widget.toolbarController?.controller.onSelectMessage(
             widget.pangeaMessageEvent.event,
           );
           return;
         }
-        widget.toolbarController.toolbar?.textSelection
+        widget.toolbarController?.toolbar?.textSelection
             .onTextSelection(selection);
       },
-      onTap: () => widget.toolbarController.showToolbar(context),
-      enableInteractiveSelection: widget.toolbarController.highlighted,
+      onTap: () => widget.toolbarController?.showToolbar(context),
+      enableInteractiveSelection:
+          widget.toolbarController?.highlighted ?? false,
       contextMenuBuilder: (context, state) =>
-          widget.toolbarController.highlighted
+          widget.toolbarController?.highlighted ?? true
               ? const SizedBox.shrink()
               : MessageContextMenu.contextMenuOverride(
                   context: context,
                   textSelection: state,
-                  onDefine: () => widget.toolbarController.showToolbar(
+                  onDefine: () => widget.toolbarController?.showToolbar(
                     context,
                     mode: MessageMode.definition,
                   ),
-                  onListen: () => widget.toolbarController.showToolbar(
+                  onListen: () => widget.toolbarController?.showToolbar(
                     context,
                     mode: MessageMode.play,
                   ),
