@@ -192,6 +192,7 @@ extension PangeaRoom on Room {
   //a space show up in spaceChildren but the user has not been invited to them.
   List<String> get childrenAndGrandChildrenDirectChatIds {
     final List<String> nonDirectChatRoomIds = childrenAndGrandChildren
+        .where((child) => child.roomId != null)
         .map((e) => client.getRoomById(e.roomId!))
         .where((r) => r != null && !r.isDirectChat)
         .map((e) => e!.id)
@@ -280,11 +281,11 @@ extension PangeaRoom on Room {
   bool isMadeByUser(String userId) =>
       getState(EventTypes.RoomCreate)?.senderId == userId;
 
-  bool isMadeForLang(String langCode) =>
-      getState(EventTypes.RoomCreate)
-          ?.content
-          .tryGet<String>(ModelKey.langCode) ==
-      langCode;
+  bool isMadeForLang(String langCode) {
+    final creationContent = getState(EventTypes.RoomCreate)?.content;
+    return creationContent?.tryGet<String>(ModelKey.langCode) == langCode ||
+        creationContent?.tryGet<String>(ModelKey.oldLangCode) == langCode;
+  }
 
   bool isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);
@@ -766,6 +767,9 @@ extension PangeaRoom on Room {
 
   /// update state event and return eventId
   Future<String> updateStateEvent(Event stateEvent) {
+    if (stateEvent.stateKey == null) {
+      throw Exception("stateEvent.stateKey is null");
+    }
     return client.setRoomStateWithKey(
       id,
       stateEvent.type,
@@ -923,7 +927,8 @@ extension PangeaRoom on Room {
     if (isDirectChat) return false;
     if (!isSpace) {
       if (eventsDefaultPowerLevel == null) return null;
-      return eventsDefaultPowerLevel! >= ClassDefaultValues.powerLevelOfAdmin;
+      return (eventsDefaultPowerLevel ?? 0) >=
+          ClassDefaultValues.powerLevelOfAdmin;
     }
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;

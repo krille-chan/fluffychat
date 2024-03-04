@@ -1,15 +1,14 @@
 import 'dart:developer';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import '../../../widgets/matrix.dart';
 import '../../utils/error_handler.dart';
 import '../../utils/firebase_analytics.dart';
@@ -92,7 +91,7 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
   Future<void> _addSingleParent(String roomToAddId, Room newParent) async {
     GoogleAnalytics.addParent(roomToAddId, newParent.classCode);
     final List<List<User>> existingMembers = await Future.wait([
-      room!.requestParticipants(),
+      room?.requestParticipants() ?? Future.value([]),
       newParent.requestParticipants(),
     ]);
     final List<User> roomMembers = existingMembers[0];
@@ -102,7 +101,7 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
       newParent.setSpaceChild(roomToAddId, suggested: true),
     ];
     for (final spaceMember
-        in spaceMembers.where((element) => element.id != room!.client.userID)) {
+        in spaceMembers.where((element) => element.id != room?.client.userID)) {
       if (!roomMembers.any(
         (m) => m.id == spaceMember.id && m.membership == Membership.join,
       )) {
@@ -118,7 +117,7 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
   //function for kicking single student and haandling error
   Future<void> _kickSpaceMember(User spaceMember) async {
     try {
-      await room!.kick(spaceMember.id);
+      await room?.kick(spaceMember.id);
       debugPrint('Kicked ${spaceMember.id}');
     } catch (e) {
       debugger(when: kDebugMode);
@@ -129,7 +128,7 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
   //function for adding single student and haandling error
   Future<void> _inviteSpaceMember(User spaceMember) async {
     try {
-      await room!.invite(spaceMember.id);
+      await room?.invite(spaceMember.id);
       debugPrint('added ${spaceMember.id}');
     } catch (e) {
       debugger(when: kDebugMode);
@@ -153,14 +152,14 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
       return;
     }
     final List<List<User>> roomsMembers = await Future.wait([
-      room!.requestParticipants(),
+      room?.requestParticipants() ?? Future.value([]),
       spaceToRemove.requestParticipants(),
     ]);
 
     final List<User> toKick = roomsMembers[1]
         .where(
           (element) =>
-              element.id != room!.client.userID &&
+              element.id != room?.client.userID &&
               roomsMembers[0].any((m) => m.id == element.id),
         )
         .toList();
@@ -176,9 +175,11 @@ class AddToClassAndInviteState extends State<AddToClassAndInviteToggles> {
     // if (widget.setParentState != null) {
     //   widget.setParentState!();
     // }
-    await room!.requestParticipants();
+    await room?.requestParticipants();
 
-    GoogleAnalytics.kickClassFromExchange(room!.id, spaceToRemove.id);
+    if (room != null) {
+      GoogleAnalytics.kickClassFromExchange(room!.id, spaceToRemove.id);
+    }
     return;
   }
 

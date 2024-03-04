@@ -119,7 +119,6 @@ class ITController {
       choreographer.startLoading();
 
       final String currentText = choreographer.currentText;
-      final String? translationId = currentITStep?.translationId;
 
       if (sourceText == null) await _setSourceText();
 
@@ -264,6 +263,7 @@ class ITController {
 
   //maybe we store IT data in the same format? make a specific kind of match?
   void selectTranslation(int chosenIndex) {
+    if (currentITStep == null) return;
     final itStep = ITStep(currentITStep!.continuances, chosen: chosenIndex);
 
     completedITSteps.add(itStep);

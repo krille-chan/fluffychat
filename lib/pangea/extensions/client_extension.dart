@@ -104,7 +104,6 @@ extension PangeaClient on Client {
     });
     if (analyticsRoom != null &&
         analyticsRoom.membership == Membership.invite) {
-      final membership = analyticsRoom.membership;
       debugger(when: kDebugMode);
       analyticsRoom
           .join()

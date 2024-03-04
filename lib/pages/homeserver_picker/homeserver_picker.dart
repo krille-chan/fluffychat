@@ -119,7 +119,6 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   // #Pangea
   // void ssoLoginAction(String id) async {
   void ssoLoginAction(IdentityProvider provider) async {
-    final id = provider.id!;
     //Pangea#
     final redirectUrl = kIsWeb
         // #Pangea
@@ -131,7 +130,11 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         : '${AppConfig.appOpenUrlScheme.toLowerCase()}://login';
     //Pangea#
     final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-      path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
+      // #Pangea
+      // path: '/_matrix/client/v3/login/sso/redirect${id == null ? '' : '/$id'}',
+      path:
+          '/_matrix/client/v3/login/sso/redirect${provider.id == null ? '' : '/${provider.id}'}',
+      // Pangea#
       queryParameters: {'redirectUrl': redirectUrl},
     );
 

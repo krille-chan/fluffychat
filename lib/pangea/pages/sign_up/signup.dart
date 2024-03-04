@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/pages/sign_up/signup_view.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -133,7 +131,7 @@ class SignupPageController extends State<SignupPage> {
       //Pangea#
 
       // Set displayname
-      if (displayname != localPart) {
+      if (displayname != localPart && client.userID != null) {
         await client.setDisplayName(
           client.userID!,
           displayname,

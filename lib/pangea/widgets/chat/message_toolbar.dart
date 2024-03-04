@@ -68,6 +68,7 @@ class ToolbarDisplayController {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Widget overlayEntry;
+      if (toolbar == null) return;
       try {
         overlayEntry = Column(
           mainAxisSize: MainAxisSize.min,

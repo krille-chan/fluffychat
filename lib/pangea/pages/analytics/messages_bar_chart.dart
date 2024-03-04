@@ -1,14 +1,13 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/pages/analytics/bar_chart_placeholder_data.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../../enum/time_span.dart';
 import '../../enum/use_type.dart';
 import '../../models/chart_analytics_model.dart';
@@ -245,11 +244,12 @@ class MessagesBarChartState extends State<MessagesBarChart> {
         final TimeSeriesInterval? last =
             intervalGroupings.isNotEmpty ? intervalGroupings.last.last : null;
 
-        if (isInSameGroup(
-          last,
-          timeSeriesInterval,
-          widget.chartAnalytics!.timeSpan,
-        )) {
+        if (widget.chartAnalytics != null &&
+            isInSameGroup(
+              last,
+              timeSeriesInterval,
+              widget.chartAnalytics!.timeSpan,
+            )) {
           intervalGroupings.last.add(timeSeriesInterval);
         } else {
           intervalGroupings.add([timeSeriesInterval]);

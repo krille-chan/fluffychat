@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
-
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/pangea/enum/span_choice_type.dart';
 import 'package:fluffychat/pangea/enum/span_data_type.dart';
 import 'package:fluffychat/pangea/models/span_data.dart';
+import 'package:http/http.dart';
+
 import '../constants/model_keys.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
@@ -31,15 +31,15 @@ class SpanDataRepo {
   }
 }
 
-Future<SpanDetailsRepoReqAndRes> getMock(SpanDetailsRepoReqAndRes req) async {
-  await Future.delayed(const Duration(seconds: 2));
-  if (req.span.choices != null &&
-      req.span.choices!.any((element) => element.selected)) {
-    return req..span = mockReponseWithHintOne.span;
-  } else {
-    return req..span = mockReponseWithChoices.span;
-  }
-}
+// Future<SpanDetailsRepoReqAndRes> getMock(SpanDetailsRepoReqAndRes req) async {
+//   await Future.delayed(const Duration(seconds: 2));
+//   if (req.span.choices != null &&
+//       req.span.choices!.any((element) => element.selected)) {
+//     return req..span = mockReponseWithHintOne.span;
+//   } else {
+//     return req..span = mockReponseWithChoices.span;
+//   }
+// }
 
 class SpanDetailsRepoReqAndRes {
   String userL1;
@@ -105,9 +105,9 @@ SpanDetailsRepoReqAndRes get mockReponseWithChoices {
   return res;
 }
 
-SpanDetailsRepoReqAndRes get mockReponseWithHintOne {
-  final SpanDetailsRepoReqAndRes res = mockReponseWithChoices;
-  res.span.choices![1].selected = true;
-  res.span.message = "Conjugation error";
-  return res;
-}
+// SpanDetailsRepoReqAndRes get mockReponseWithHintOne {
+//   final SpanDetailsRepoReqAndRes res = mockReponseWithChoices;
+//   res.span.choices![1].selected = true;
+//   res.span.message = "Conjugation error";
+//   return res;
+// }

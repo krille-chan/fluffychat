@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/igc/why_button.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -62,6 +63,12 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
   }
 
   Future<void> translateFeedback() async {
+    if (res == null) {
+      ErrorHandler.logError(
+        m: "Cannot translate feedback because res is null",
+      );
+      return;
+    }
     setState(() {
       isTranslating = true;
     });

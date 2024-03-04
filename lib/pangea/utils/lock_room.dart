@@ -49,6 +49,7 @@ Future<void> unlockChat(Room room, Client client) async {
 
 Future<void> lockSpace(Room space, Client client) async {
   for (final spaceChild in space.spaceChildren) {
+    if (spaceChild.roomId == null) continue;
     Room? child = client.getRoomById(spaceChild.roomId!);
     if (child == null) {
       try {
@@ -70,6 +71,7 @@ Future<void> lockSpace(Room space, Client client) async {
 
 Future<void> unlockSpace(Room space, Client client) async {
   for (final spaceChild in space.spaceChildren) {
+    if (spaceChild.roomId == null) continue;
     final Room? child = client.getRoomById(spaceChild.roomId!);
     if (child == null) continue;
     child.isSpace

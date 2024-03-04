@@ -192,8 +192,6 @@ class NewSpaceController extends State<NewSpace> {
         // Pangea#
       );
       // #Pangea
-      Room? room = Matrix.of(context).client.getRoomById(spaceId);
-
       final List<Future<dynamic>> futures = [
         Matrix.of(context).client.waitForRoomInSync(spaceId, join: true),
       ];
@@ -201,8 +199,6 @@ class NewSpaceController extends State<NewSpace> {
         futures.add(addToSpaceKey.currentState!.addSpaces(spaceId));
       }
       await Future.wait(futures);
-
-      room = Matrix.of(context).client.getRoomById(spaceId);
 
       final newChatRoomId = await Matrix.of(context).client.createGroupChat(
             enableEncryption: false,
@@ -212,7 +208,18 @@ class NewSpaceController extends State<NewSpace> {
           );
       GoogleAnalytics.createChat(newChatRoomId);
 
-      room!.setSpaceChild(newChatRoomId, suggested: true);
+      final Room? room = Matrix.of(context).client.getRoomById(spaceId);
+      if (room == null) {
+        ErrorHandler.logError(
+          e: 'Failed to get new space by id $spaceId',
+        );
+        MatrixState.pangeaController.classController
+            .setActiveSpaceIdInChatListController(spaceId);
+        context.push('/spaces/$spaceId');
+        return;
+      }
+
+      room.setSpaceChild(newChatRoomId, suggested: true);
       newClassMode
           ? GoogleAnalytics.addParent(
               newChatRoomId,

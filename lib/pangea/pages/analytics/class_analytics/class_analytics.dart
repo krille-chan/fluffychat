@@ -1,18 +1,17 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:fluffychat/pangea/widgets/common/p_circular_loader.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../../../widgets/matrix.dart';
 import '../../../controllers/pangea_controller.dart';
 import '../../../utils/sync_status_util_v2.dart';
@@ -41,7 +40,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      if (classRoom == null || !classRoom!.isSpace) {
+      if (classRoom == null || (!(classRoom?.isSpace ?? false))) {
         context.go('/rooms');
       }
       stateSub = _pangeaController.matrixState.client.onRoomState.stream
@@ -57,16 +56,17 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
 
   Future<void> getChatAndStudents() async {
     try {
-      await classRoom!.requestParticipants();
+      await classRoom?.requestParticipants();
 
-      students = classRoom!.students;
-
-      chats = classRoom!.spaceChildren
-          .where((element) => element.roomId != null)
-          .map((e) => Matrix.of(context).client.getRoomById(e.roomId!))
-          .where((r) => r != null)
-          .cast<Room>()
-          .toList();
+      if (classRoom != null) {
+        students = classRoom!.students;
+        chats = classRoom!.spaceChildren
+            .where((element) => element.roomId != null)
+            .map((e) => Matrix.of(context).client.getRoomById(e.roomId!))
+            .where((r) => r != null)
+            .cast<Room>()
+            .toList();
+      }
 
       setState(() {
         _initialized = true;
