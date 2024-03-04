@@ -162,9 +162,8 @@ abstract class ClientManager {
         android: AndroidNotificationDetails(
           'error_message',
           'Error Messages',
-          importance: Importance.max,
+          importance: Importance.high,
           priority: Priority.max,
-          fullScreenIntent: true, // To show notification popup
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
       ),

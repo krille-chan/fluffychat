@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ import 'package:tawkie/pages/key_verification/key_verification_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/background_push.dart';
 import 'package:tawkie/utils/init_with_restore.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -477,6 +479,34 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       create: (_) => this,
       child: widget.child,
     );
+  }
+
+  Future<void> dehydrateAction() async {
+    final response = await showOkCancelAlertDialog(
+      context: context,
+      isDestructiveAction: true,
+      title: L10n.of(context)!.dehydrate,
+      message: L10n.of(context)!.dehydrateWarning,
+    );
+    if (response != OkCancelResult.ok) {
+      return;
+    }
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: client.exportDump,
+    );
+    final export = result.result;
+    if (export == null) return;
+
+    final exportBytes = Uint8List.fromList(
+      const Utf8Codec().encode(export),
+    );
+
+    final exportFileName =
+        'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
+
+    final file = MatrixFile(bytes: exportBytes, name: exportFileName);
+    file.save(context);
   }
 }
 

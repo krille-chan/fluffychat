@@ -50,7 +50,7 @@ Future<void> pushHelper(
 
     l10n ??= lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
-      0,
+      notification.roomId?.hashCode ?? 0,
       l10n.newMessageInFluffyChat,
       l10n.openAppToReadMessages,
       NotificationDetails(
@@ -60,10 +60,9 @@ Future<void> pushHelper(
           l10n.incomingMessages,
           number: notification.counts?.unread,
           ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
-          importance: Importance.max,
+          importance: Importance.high,
           priority: Priority.max,
           shortcutId: notification.roomId,
-          fullScreenIntent: true, // To show notification popup
         ),
       ),
     );
@@ -173,7 +172,6 @@ Future<void> _tryPushHelper(
         client,
         width: 256,
         height: 256,
-        method: ThumbnailMethod.scale,
       )
       .toString();
   final senderAvatar = event.room.isDirectChat
@@ -183,7 +181,6 @@ Future<void> _tryPushHelper(
             client,
             width: 256,
             height: 256,
-            method: ThumbnailMethod.scale,
           )
           .toString();
 
@@ -205,7 +202,7 @@ Future<void> _tryPushHelper(
     Logs().e('Unable to get avatar picture', e, s);
   }
 
-  final id = await mapRoomIdToInt(event.room.id);
+  final id = notification.roomId.hashCode;
 
   // Show notification
 
@@ -274,10 +271,9 @@ Future<void> _tryPushHelper(
           messages: [newMessage],
         ),
     ticker: l10n.unreadChats(notification.counts?.unread ?? 1),
-    importance: Importance.max,
+    importance: Importance.high,
     priority: Priority.max,
     groupKey: notificationGroupId,
-    fullScreenIntent: true, // To show notification popup
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
@@ -288,7 +284,7 @@ Future<void> _tryPushHelper(
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
   if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
-    _setShortcut(event, l10n, title, roomAvatarFile);
+    await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
   await flutterLocalNotificationsPlugin.show(
@@ -304,7 +300,7 @@ Future<void> _tryPushHelper(
 /// Creates a shortcut for Android platform but does not block displaying the
 /// notification. This is optional but provides a nicer view of the
 /// notification popup.
-void _setShortcut(
+Future<void> _setShortcut(
   Event event,
   L10n l10n,
   String title,
@@ -315,7 +311,7 @@ void _setShortcut(
   await flutterShortcuts.pushShortcutItem(
     shortcut: ShortcutItem(
       id: event.room.id,
-      action: l10n.openChat,
+      action: AppConfig.inviteLinkPrefix + event.room.id,
       shortLabel: title,
       conversationShortcut: true,
       icon: avatarFile == null
@@ -328,30 +324,4 @@ void _setShortcut(
       isImportant: event.room.isFavourite,
     ),
   );
-}
-
-/// Workaround for the problem that local notification IDs must be int but we
-/// sort by [roomId] which is a String. To make sure that we don't have duplicated
-/// IDs we map the [roomId] to a number and store this number.
-Future<int> mapRoomIdToInt(String roomId) async {
-  final store = await SharedPreferences.getInstance();
-  final idMap = Map<String, int>.from(
-    jsonDecode(store.getString(SettingKeys.notificationCurrentIds) ?? '{}'),
-  );
-  int? currentInt;
-  try {
-    currentInt = idMap[roomId];
-  } catch (_) {
-    currentInt = null;
-  }
-  if (currentInt != null) {
-    return currentInt;
-  }
-  var nCurrentInt = 0;
-  while (idMap.values.contains(nCurrentInt)) {
-    nCurrentInt++;
-  }
-  idMap[roomId] = nCurrentInt;
-  await store.setString(SettingKeys.notificationCurrentIds, json.encode(idMap));
-  return nCurrentInt;
 }
