@@ -106,6 +106,9 @@ class InvitationSelectionView extends StatelessWidget {
                             controller.foundProfiles[i].displayName ??
                                 controller.foundProfiles[i].userId.localpart ??
                                 L10n.of(context)!.user,
+                            // #Pangea
+                            mode: controller.mode,
+                            // Pangea#
                           ),
                         ),
                       )
@@ -143,6 +146,9 @@ class InvitationSelectionView extends StatelessWidget {
                                 contacts[i].displayName ??
                                     contacts[i].id.localpart ??
                                     L10n.of(context)!.user,
+                                // #Pangea
+                                mode: controller.mode,
+                                // Pangea#
                               ),
                             ),
                           );

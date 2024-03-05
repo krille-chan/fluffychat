@@ -239,9 +239,12 @@ class UserBottomSheetController extends State<UserBottomSheet> {
 
         final roomIdResult = await showFutureLoadingDialog(
           context: widget.outerContext,
-          future: () => Matrix.of(widget.outerContext)
-              .client
-              .startDirectChat(user?.id ?? widget.profile!.userId),
+          future: () => Matrix.of(widget.outerContext).client.startDirectChat(
+                user?.id ?? widget.profile!.userId,
+                // #Pangea
+                enableEncryption: false,
+                // Pangea#
+              ),
         );
         final roomId = roomIdResult.result;
         if (roomId == null) return;

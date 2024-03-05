@@ -168,4 +168,15 @@ extension PangeaClient on Client {
       )
       .firstOrNull
       ?.classSettings;
+
+  Future<bool> get hasBotDM async {
+    final List<Room> chats = rooms
+        .where((room) => !room.isSpace && room.membership == Membership.join)
+        .toList();
+
+    for (final Room chat in chats) {
+      if (await chat.isBotDM) return true;
+    }
+    return false;
+  }
 }

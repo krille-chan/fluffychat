@@ -111,7 +111,15 @@ class ChatListItem extends StatelessWidget {
 
     if (room.membership == Membership.join) {
       // Share content into this room
-      final shareContent = Matrix.of(context).shareContent;
+      // #Pangea
+      // final shareContent = Matrix.of(context).shareContent;
+      Map<String, dynamic>? shareContent;
+      try {
+        shareContent = Matrix.of(context).shareContent;
+      } catch (e) {
+        shareContent = null;
+      }
+      // Pangea#
       if (shareContent != null) {
         final shareFile = shareContent.tryGet<MatrixFile>('file');
         if (shareContent.tryGet<String>('msgtype') ==
@@ -365,7 +373,7 @@ class ChatListItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   // #Pangea
-                  if (room.locked ?? false)
+                  if (room.locked)
                     const Padding(
                       padding: EdgeInsets.only(right: 4.0),
                       child: Icon(

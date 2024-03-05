@@ -923,17 +923,17 @@ extension PangeaRoom on Room {
       ?.content
       .tryGet<int>('events_default');
 
-  bool? get locked {
+  bool get locked {
     if (isDirectChat) return false;
     if (!isSpace) {
-      if (eventsDefaultPowerLevel == null) return null;
+      if (eventsDefaultPowerLevel == null) return false;
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room?.locked == false && (room?.canChangePowerLevel ?? false)) {
+      if (room?.locked == false) {
         return false;
       }
     }
@@ -994,6 +994,9 @@ extension PangeaRoom on Room {
       (User user) => user.id == BotName.byEnvironment,
     );
   }
+
+  Future<bool> get isBotDM async =>
+      (await isBotRoom) && getParticipants().length == 2;
 
   BotOptionsModel? get botOptions {
     if (isSpace) return null;
