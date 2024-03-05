@@ -995,6 +995,9 @@ extension PangeaRoom on Room {
     );
   }
 
+  Future<bool> get isBotDM async =>
+      (await isBotRoom) && getParticipants().length == 2;
+
   BotOptionsModel? get botOptions {
     if (isSpace) return null;
     return BotOptionsModel.fromJson(
