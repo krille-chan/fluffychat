@@ -75,7 +75,9 @@ class InvitationSelectionController extends State<InvitationSelection> {
     }
 
     final eligibleStudents = <User>[];
-    final spaceParents = room.pangeaSpaceParents;
+    final spaceParents = room?.pangeaSpaceParents;
+    if (spaceParents == null) return eligibleStudents;
+
     final userId = Matrix.of(context).client.userID;
     for (final Room space in spaceParents) {
       eligibleStudents.addAll(
@@ -115,15 +117,25 @@ class InvitationSelectionController extends State<InvitationSelection> {
     );
   }
 
-  List<User> studentsInRoom(BuildContext context) => room
-      .getParticipants()
-      .where(
-        (u) => [Membership.join, Membership.invite].contains(u.membership),
-      )
-      .toList();
+  List<User?> studentsInRoom(BuildContext context) =>
+      room
+          ?.getParticipants()
+          .where(
+            (u) => [Membership.join, Membership.invite].contains(u.membership),
+          )
+          .toList() ??
+      <User>[];
   //Pangea#
 
-  void inviteAction(BuildContext context, String id, String displayname) async {
+  // #Pangea
+  // void inviteAction(BuildContext context, String id, String displayname) async {
+  void inviteAction(
+    BuildContext context,
+    String id,
+    String displayname, {
+    InvitationSelectionMode? mode,
+  }) async {
+    // Pangea#
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     if (OkCancelResult.ok !=
         await showOkCancelAlertDialog(
@@ -144,25 +156,12 @@ class InvitationSelectionController extends State<InvitationSelection> {
       context: context,
       //#Pangea
       // future: () => room.invite(id),
-      future: () => Future.wait([
-        room.invite(id),
-        room.setPower(id, ClassDefaultValues.powerLevelOfAdmin),
-        if (room.isSpace)
-          ...room.spaceChildren
-              .map(
-                (e) => roomId != null
-                    ? Matrix.of(context).client.getRoomById(e.roomId!)
-                    : null,
-              )
-              .where((element) => element != null)
-              .cast<Room>()
-              .map(
-                (e) => Future.wait([
-                  e.invite(id),
-                  e.setPower(id, ClassDefaultValues.powerLevelOfAdmin),
-                ]),
-              ),
-      ]),
+      future: () async {
+        await room.invite(id);
+        if (mode == InvitationSelectionMode.admin) {
+          await inviteTeacherAction(room, id);
+        }
+      },
       // Pangea#
     );
     if (success.error == null) {
@@ -173,6 +172,26 @@ class InvitationSelectionController extends State<InvitationSelection> {
       );
     }
   }
+
+  // #Pangea
+  Future<void> inviteTeacherAction(Room room, String id) async {
+    room.setPower(id, ClassDefaultValues.powerLevelOfAdmin);
+    if (room.isSpace) {
+      for (final spaceChild in room.spaceChildren) {
+        if (spaceChild.roomId == null) continue;
+        final spaceChildRoom =
+            Matrix.of(context).client.getRoomById(spaceChild.roomId!);
+        if (spaceChildRoom != null) {
+          await spaceChildRoom.invite(id);
+          await spaceChildRoom.setPower(
+            id,
+            ClassDefaultValues.powerLevelOfAdmin,
+          );
+        }
+      }
+    }
+  }
+  // Pangea#
 
   void searchUserWithCoolDown(String text) async {
     coolDown?.cancel();
@@ -224,8 +243,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
       //#Pangea
       final participants = Matrix.of(context)
           .client
-          .getRoomById(roomId!)!
-          .getParticipants()
+          .getRoomById(roomId!)
+          ?.getParticipants()
           .where(
             (user) =>
                 [Membership.join, Membership.invite].contains(user.membership),
@@ -233,7 +252,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
           .toList();
       foundProfiles.removeWhere(
         (profile) =>
-            participants.indexWhere((u) => u.id == profile.userId) != -1 &&
+            participants?.indexWhere((u) => u.id == profile.userId) != -1 &&
             BotName.byEnvironment != profile.userId,
       );
       //Pangea#
@@ -242,17 +261,19 @@ class InvitationSelectionController extends State<InvitationSelection> {
 
   //#Pangea
   Room? _room;
-  Room get room => _room ??= Matrix.of(context).client.getRoomById(roomId!)!;
+  Room? get room => _room ??= Matrix.of(context).client.getRoomById(roomId!);
 
   // request participants for all parent spaces
   Future<void> requestParentSpaceParticipants() async {
-    final spaceParents = room.pangeaSpaceParents;
-    await Future.wait([
-      ...spaceParents.map((r) async {
-        await r.requestParticipants();
-      }),
-      room.requestParticipants(),
-    ]);
+    final spaceParents = room?.pangeaSpaceParents;
+    if (spaceParents != null) {
+      await Future.wait([
+        ...spaceParents.map((r) async {
+          await r.requestParticipants();
+        }),
+        room!.requestParticipants(),
+      ]);
+    }
   }
 
   InvitationSelectionMode mode = InvitationSelectionMode.member;
@@ -263,7 +284,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     Future.delayed(
       Duration.zero,
       () => setState(
-        () => mode = room.isSpace
+        () => mode = room?.isSpace ?? false
             ? InvitationSelectionMode.admin
             : InvitationSelectionMode.member,
       ),
@@ -275,9 +296,11 @@ class InvitationSelectionController extends State<InvitationSelection> {
         .where(
           (event) =>
               event.rooms?.join?.keys.any(
-                (ithRoomId) => room.pangeaSpaceParents
-                    .map((e) => e.id)
-                    .contains(ithRoomId),
+                (ithRoomId) =>
+                    room?.pangeaSpaceParents
+                        .map((e) => e.id)
+                        .contains(ithRoomId) ??
+                    false,
               ) ??
               false,
         )
