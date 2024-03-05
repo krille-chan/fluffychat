@@ -1872,7 +1872,7 @@
   },
   "jumpToLastReadMessage": "",
   "@jumpToLastReadMessage": {},
-  "allRooms": "",
+  "allRooms": "Minden csoport chat",
   "@allRooms": {
     "type": "text",
     "placeholders": {}
@@ -1978,7 +1978,7 @@
   "@emailOrUsername": {},
   "newSpaceDescription": "",
   "@newSpaceDescription": {},
-  "chatDescription": "",
+  "chatDescription": "Chat leírás",
   "@chatDescription": {},
   "callingAccountDetails": "",
   "@callingAccountDetails": {},
@@ -2037,7 +2037,7 @@
   },
   "invalidServerName": "",
   "@invalidServerName": {},
-  "chatPermissions": "",
+  "chatPermissions": "Chat engedélyek",
   "@chatPermissions": {},
   "wipeChatBackup": "",
   "@wipeChatBackup": {
@@ -2268,7 +2268,7 @@
       "seconds": {}
     }
   },
-  "sendTypingNotifications": "",
+  "sendTypingNotifications": "Gépelési infó megjelenítése",
   "@sendTypingNotifications": {},
   "inviteGroupChat": "",
   "@inviteGroupChat": {},
@@ -2304,7 +2304,7 @@
   "@users": {},
   "openGallery": "",
   "@openGallery": {},
-  "chatDescriptionHasBeenChanged": "",
+  "chatDescriptionHasBeenChanged": "Chat leírás megváltozott",
   "@chatDescriptionHasBeenChanged": {},
   "newGroup": "",
   "@newGroup": {},
@@ -2345,13 +2345,13 @@
   },
   "shareInviteLink": "",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "",
+  "commandHint_markasdm": "room megjelölése mint társalgó Matrix ID-vel",
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "",
   "@recoveryKeyLost": {},
   "deviceKeys": "",
   "@deviceKeys": {},
-  "emoteKeyboardNoRecents": "",
+  "emoteKeyboardNoRecents": "Nemrég használt emojik fognak itt megjelenni...",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
@@ -2385,7 +2385,7 @@
   "@emojis": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "createGroup": "",
+  "createGroup": "Csoport létrehozása",
   "@createGroup": {},
   "hydrateTorLong": "",
   "@hydrateTorLong": {},
@@ -2418,5 +2418,11 @@
   "screenSharingDetail": "",
   "@screenSharingDetail": {},
   "placeCall": "",
-  "@placeCall": {}
+  "@placeCall": {},
+  "block": "blokkolás",
+  "@block": {},
+  "blockedUsers": "Blokkolt felhasználók",
+  "@blockedUsers": {},
+  "blockListDescription": "Az Önt zavaró felhasználókat blokkolhatja. A blokkolt listán található felhasználóktól nem tud fogadni üzenetet vagy room meghívást.",
+  "@blockListDescription": {}
 }
