@@ -1,10 +1,8 @@
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/utils/bot_name.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import '../../widgets/avatar.dart';
 import '../user_bottom_sheet/user_bottom_sheet.dart';
 
@@ -27,33 +25,16 @@ class ParticipantListItem extends StatelessWidget {
             ? L10n.of(context)!.moderator
             : '';
 
-    // #Pangea
-    if (user.id == BotName.byEnvironment) {
-      return const SizedBox();
-    }
-    // Pangea#
-
     return Opacity(
-      //#Pangea
-      // opacity: user.membership == Membership.join? 1 : 0.5,
-      opacity:
-          user.membership == Membership.join && user.id != BotName.byEnvironment
-              ? 1
-              : 0.5,
-      //Pangea#
+      opacity: user.membership == Membership.join ? 1 : 0.5,
       child: ListTile(
-        //#Pangea
-        // onTap: () => showAdaptiveBottomSheet(
-        onTap: user.id == BotName.byEnvironment
-            ? null
-            : () => showAdaptiveBottomSheet(
-                  //Pangea#
-                  context: context,
-                  builder: (c) => UserBottomSheet(
-                    user: user,
-                    outerContext: context,
-                  ),
-                ),
+        onTap: () => showAdaptiveBottomSheet(
+          context: context,
+          builder: (c) => UserBottomSheet(
+            user: user,
+            outerContext: context,
+          ),
+        ),
         title: Row(
           children: <Widget>[
             Expanded(

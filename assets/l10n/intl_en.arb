@@ -3947,5 +3947,6 @@
         "placeholders": {
             "age": {}
         }
-    }
+    },
+    "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat."
 }

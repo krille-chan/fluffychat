@@ -4581,5 +4581,6 @@
       "age": {}
     }
   },
-  "selectToDefine": "Haga doble clic en una palabra para ver su definición."
+  "selectToDefine": "Haga doble clic en una palabra para ver su definición.",
+  "kickBotWarning": "Patear Pangea Bot eliminará el bot de conversación de este chat."
 }
