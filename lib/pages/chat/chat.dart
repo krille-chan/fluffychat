@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -394,7 +395,8 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // Do not send read markers when app is not in foreground
-    if (!Matrix.of(context).webHasFocus ||
+    if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+    if (!kIsWeb &&
         WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
       return;
     }
