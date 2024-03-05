@@ -83,7 +83,7 @@ class PUserAgeController extends State<PUserAge> {
         loading = true;
       });
 
-      final String date = DateFormat('MM-dd-yyyy').format(selectedDate!);
+      final String date = DateFormat('yyyy-MM-dd').format(selectedDate!);
 
       if (pangeaController.userController.userModel?.access == null) {
         await pangeaController.userController.createPangeaUser(dob: date);

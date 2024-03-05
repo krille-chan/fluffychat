@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -36,6 +37,11 @@ class UserController extends BaseController {
 
       if (newUserModel != null) {
         _savePUserModel(newUserModel);
+        if (newUserModel.profile!.dateOfBirth != null) {
+          await setMatrixProfile(newUserModel.profile!.dateOfBirth!);
+        }
+        final MatrixProfile? matrixProfile = await getMatrixProfile();
+        _saveMatrixProfile(matrixProfile);
       }
       _completeCompleter();
 
@@ -43,6 +49,29 @@ class UserController extends BaseController {
     } catch (err) {
       log("User model not found. Probably first signup and needs Pangea account");
       rethrow;
+    }
+  }
+
+  Future<void> setMatrixProfile(String dob) async {
+    await _pangeaController.matrixState.client.setAccountData(
+      userId!,
+      PangeaEventTypes.userAge,
+      {ModelKey.userDateOfBirth: dob},
+    );
+    final MatrixProfile? matrixProfile = await getMatrixProfile();
+    _saveMatrixProfile(matrixProfile);
+  }
+
+  Future<MatrixProfile?> getMatrixProfile() async {
+    try {
+      final Map<String, dynamic> accountData =
+          await _pangeaController.matrixState.client.getAccountData(
+        userId!,
+        PangeaEventTypes.userAge,
+      );
+      return MatrixProfile.fromJson(accountData);
+    } catch (_) {
+      return null;
     }
   }
 
@@ -92,6 +121,11 @@ class UserController extends BaseController {
     return data != null ? PUserModel.fromJson(data) : null;
   }
 
+  MatrixProfile? get matrixProfile {
+    final data = _pangeaController.pStoreService.read(PLocalKey.matrixProfile);
+    return data != null ? MatrixProfile.fromJson(data) : null;
+  }
+
   Future<bool> get isPUserDataAvailable async {
     try {
       final PUserModel? toCheck = userModel ?? (await fetchUserModel());
@@ -103,8 +137,10 @@ class UserController extends BaseController {
 
   Future<bool> get isUserDataAvailableAndDateOfBirthSet async {
     try {
-      final PUserModel? toCheck = userModel ?? (await fetchUserModel());
-      return toCheck?.profile?.dateOfBirth != null ? true : false;
+      if (matrixProfile == null) {
+        await fetchUserModel();
+      }
+      return matrixProfile?.dateOfBirth != null ? true : false;
     } catch (err) {
       return false;
     }
@@ -146,6 +182,16 @@ class UserController extends BaseController {
     //       _pangeaController.matrix.router!.currentState!.queryParameters,
     // );
     FluffyChatApp.router.go("/rooms/user_age");
+  }
+
+  _saveMatrixProfile(MatrixProfile? matrixProfile) {
+    if (matrixProfile != null) {
+      _pangeaController.pStoreService.save(
+        PLocalKey.matrixProfile,
+        matrixProfile.toJson(),
+      );
+      setState(data: matrixProfile);
+    }
   }
 
   _savePUserModel(PUserModel? pUserModel) {
@@ -204,16 +250,21 @@ class UserController extends BaseController {
         profile: updatedUserProfile,
       ),
     );
+
+    if (dateOfBirth != null) {
+      await setMatrixProfile(dateOfBirth);
+    }
   }
 
   Future<void> createPangeaUser({required String dob}) async {
     final PUserModel newUserModel = await PUserRepo.repoCreatePangeaUser(
       userID: userId!,
-      dateOfBirth: dob,
       fullName: fullname,
       matrixAccessToken: _matrixAccessToken!,
     );
     await _savePUserModel(newUserModel);
+
+    await setMatrixProfile(dob);
   }
 
   String? get _matrixAccessToken =>

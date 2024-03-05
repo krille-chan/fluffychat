@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/config/environment.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -35,7 +36,11 @@ class ErrorHandler {
         options.dsn = Environment.sentryDsn;
         options.tracesSampleRate = 0.1;
         options.debug = kDebugMode;
-        options.environment = Environment.isStaging ? "staging" : "productionC";
+        options.environment = kDebugMode
+            ? "debug"
+            : Environment.isStaging
+                ? "staging"
+                : "productionC";
         // options.beforeSend = (event, {hint}) {
         //   debugger(when: kDebugMode);
         //   return null;
@@ -45,7 +50,7 @@ class ErrorHandler {
 
     // Error handling
     FlutterError.onError = (FlutterErrorDetails details) async {
-      if (!kDebugMode) {
+      if (!kDebugMode || PlatformInfos.isMobile) {
         Sentry.captureException(
           details.exception,
           stackTrace: details.stack ?? StackTrace.current,
