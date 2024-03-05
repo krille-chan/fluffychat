@@ -140,11 +140,14 @@ class ChatListController extends State<ChatList>
       selectedRoomIds.clear();
       activeFilter = getActiveFilterByDestination(i);
     });
+    AppConfig.startFilter = activeFilter;
+    Matrix.of(context).store.setString(
+          SettingKeys.startFilter,
+          activeFilter.name,
+        );
   }
 
-  ActiveFilter activeFilter = AppConfig.separateChatTypes
-      ? ActiveFilter.messages
-      : ActiveFilter.allChats;
+  ActiveFilter activeFilter = AppConfig.startFilter;
 
   bool Function(Room) getRoomFilterByActiveFilter(ActiveFilter activeFilter) {
     switch (activeFilter) {

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/callkeep_manager.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -93,7 +94,16 @@ class SettingsChatView extends StatelessWidget {
                 ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.separateChatTypes,
-                onChanged: (b) => AppConfig.separateChatTypes = b,
+                onChanged: (b) {
+                  AppConfig.separateChatTypes = b;
+                  // the filter on the app start must be one of the visible filters
+                  AppConfig.startFilter =
+                      b ? ActiveFilter.messages : ActiveFilter.allChats;
+                  Matrix.of(context).store.setString(
+                        SettingKeys.startFilter,
+                        AppConfig.startFilter.name,
+                      );
+                },
                 storeKey: SettingKeys.separateChatTypes,
                 defaultValue: AppConfig.separateChatTypes,
               ),
