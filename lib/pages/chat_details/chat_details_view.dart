@@ -461,6 +461,7 @@ class ChatDetailsView extends StatelessWidget {
                         ),
                         // #Pangea
                         if (room.canInvite &&
+                            !room.isDirectChat &&
                             (!room.isSpace || room.isRoomAdmin))
                           ListTile(
                             title: Text(
@@ -491,13 +492,15 @@ class ChatDetailsView extends StatelessWidget {
                             room.showClassEditOptions)
                           ClassInvitationButtons(roomId: controller.roomId!),
                         const Divider(height: 1),
-                        if (!room.isSpace && room.canInvite)
+                        if (!room.isSpace &&
+                            !room.isDirectChat &&
+                            room.canInvite)
                           ConversationBotSettings(
                             key: controller.addConversationBotKey,
                             room: room,
                           ),
                         const Divider(height: 1),
-                        if (!room.isPangeaClass)
+                        if (!room.isPangeaClass && !room.isDirectChat)
                           AddToSpaceToggles(
                             roomId: room.id,
                             key: controller.addToSpaceKey,
@@ -507,7 +510,9 @@ class ChatDetailsView extends StatelessWidget {
                                 : AddToClassMode.chat,
                           ),
                         const Divider(height: 1),
-                        if (!room.isSpace || (room.isSpace && room.isRoomAdmin))
+                        if (!room.isDirectChat &&
+                            (!room.isSpace ||
+                                (room.isSpace && room.isRoomAdmin)))
                           ListTile(
                             title: Text(
                               room.isSpace
@@ -539,7 +544,7 @@ class ChatDetailsView extends StatelessWidget {
                               },
                             ),
                           ),
-                        if (room.isRoomAdmin)
+                        if (room.isRoomAdmin && !room.isDirectChat)
                           SwitchListTile.adaptive(
                             activeColor: AppConfig.activeToggleColor,
                             title: Text(
