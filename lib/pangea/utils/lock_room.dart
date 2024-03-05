@@ -17,7 +17,11 @@ Future<void> lockChat(Room room, Client client) async {
   final Map<String, dynamic> powerLevelsContent = Map<String, dynamic>.from(
     room.getState(EventTypes.RoomPowerLevels)!.content,
   );
+
   powerLevelsContent['events_default'] = 100;
+  if (!powerLevelsContent.containsKey('events')) {
+    powerLevelsContent['events'] = Map<String, dynamic>.from({});
+  }
   powerLevelsContent['events'][EventTypes.spaceChild] = 100;
 
   await room.client.setRoomStateWithKey(

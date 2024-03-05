@@ -365,7 +365,7 @@ class ChatListItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   // #Pangea
-                  if (room.locked ?? false)
+                  if (room.locked)
                     const Padding(
                       padding: EdgeInsets.only(right: 4.0),
                       child: Icon(
