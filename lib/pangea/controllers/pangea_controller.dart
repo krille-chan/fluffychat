@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -164,7 +165,11 @@ class PangeaController {
   void startChatWithBotIfNotPresent() {
     Future.delayed(const Duration(milliseconds: 10000), () async {
       // check if user is logged in
-      if (!matrixState.client.isLogged()) return;
+      if (!matrixState.client.isLogged() ||
+          (await matrixState.client.hasBotDM)) {
+        return;
+      }
+
       try {
         await matrixState.client.startDirectChat(
           BotName.byEnvironment,
