@@ -35,12 +35,6 @@ class Environment {
         'e6fa9fa97031ba0c852efe78457922f278a2fbc109752fe18e465337699e9873';
   }
 
-  //Question for Jordan - does the client ever pass this to the server?
-  static String get googleAuthKey {
-    return dotenv.env['GOOGLE_AUTH_KEY'] ??
-        '466850640825-qegdiq3mpj3h5e0e79ud5hnnq2c22mi3.apps.googleusercontent.com';
-  }
-
   static String get sentryDsn {
     return dotenv.env["SENTRY_DSN"] ??
         'https://c2fd19ab2cdc4ebb939a32d01c0e9fa1@o225078.ingest.sentry.io/1376295';
