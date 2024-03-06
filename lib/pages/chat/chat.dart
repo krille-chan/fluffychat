@@ -13,6 +13,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -122,6 +123,7 @@ class ChatController extends State<ChatPageWithRoom>
   final AutoScrollController scrollController = AutoScrollController();
 
   FocusNode inputFocus = FocusNode();
+  StreamSubscription<html.Event>? onFocusSub;
 
   Timer? typingCoolDown;
   Timer? typingTimeout;
@@ -279,6 +281,9 @@ class ChatController extends State<ChatPageWithRoom>
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
+    if (kIsWeb) {
+      onFocusSub = html.window.onFocus.listen((_) => setReadMarker());
+    }
   }
 
   void _tryLoadTimeline() async {
@@ -424,6 +429,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
+    onFocusSub?.cancel();
     super.dispose();
   }
 
