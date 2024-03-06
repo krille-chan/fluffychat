@@ -176,9 +176,9 @@ class BotBridgeConnection {
     final Room? roomBot = client.getRoomById(directChat);
 
     // Send the "ping" message to the bot
-    try{
+    try {
       await roomBot?.sendTextEvent("ping");
-    }catch(error){
+    } catch (error) {
       Logs().i('Error: $error');
     }
 

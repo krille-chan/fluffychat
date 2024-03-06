@@ -60,7 +60,7 @@ abstract class AppRoutes {
       path: '/home',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
-        const HomeserverPicker(),
+        const Login(),
       ),
       redirect: loggedInRedirect,
       routes: [
