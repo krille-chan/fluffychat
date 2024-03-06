@@ -466,7 +466,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     client.httpClient.close();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
-    backgroundPush?.onRoomSync?.cancel();
 
     linuxNotifications?.close();
 

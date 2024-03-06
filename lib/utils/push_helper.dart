@@ -1,10 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -13,7 +13,6 @@ import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -113,14 +112,20 @@ Future<void> _tryPushHelper(
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
-    if (notification.counts?.unread == 0) {
-      if (notification.counts == null || notification.counts?.unread == 0) {
-        await flutterLocalNotificationsPlugin.cancelAll();
-        final store = await SharedPreferences.getInstance();
-        await store.setString(
-          SettingKeys.notificationCurrentIds,
-          json.encode({}),
+    if (notification.counts?.unread == null ||
+        notification.counts?.unread == 0) {
+      await flutterLocalNotificationsPlugin.cancelAll();
+    } else {
+      await client.roomsLoading;
+      final activeNotifications =
+          await flutterLocalNotificationsPlugin.getActiveNotifications();
+      for (final activeNotification in activeNotifications) {
+        final room = client.rooms.singleWhereOrNull(
+          (room) => room.id.hashCode == activeNotification.id,
         );
+        if (room == null || !room.isUnreadOrInvited) {
+          flutterLocalNotificationsPlugin.cancel(activeNotification.id!);
+        }
       }
     }
     return;
