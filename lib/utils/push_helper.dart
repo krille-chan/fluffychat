@@ -34,7 +34,7 @@ Future<void> pushHelper(
       onSelectNotification: onSelectNotification,
     );
   } catch (e, s) {
-    Logs().wtf('Push Helper has crashed!', e, s);
+    Logs().v('Push Helper has crashed!', e, s);
 
     // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
