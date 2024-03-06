@@ -116,7 +116,9 @@ Future<void> _tryPushHelper(
         notification.counts?.unread == 0) {
       await flutterLocalNotificationsPlugin.cancelAll();
     } else {
+      // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
+      await client.oneShotSync();
       final activeNotifications =
           await flutterLocalNotificationsPlugin.getActiveNotifications();
       for (final activeNotification in activeNotifications) {
