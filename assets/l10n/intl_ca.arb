@@ -1145,35 +1145,35 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "{username} ha enviat un fitxer",
+  "sentAFile": "📁 {username} ha enviat un fitxer",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "{username} ha enviat un àudio",
+  "sentAnAudio": "🎤 {username} ha enviat un àudio",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "{username} ha enviat una imatge",
+  "sentAPicture": "🖼️ {username} ha enviat una imatge",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentASticker": "{username} ha enviat un adhesiu",
+  "sentASticker": "😊 {username} ha enviat un adhesiu",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAVideo": "{username} ha enviat un vídeo",
+  "sentAVideo": "🎥 {username} ha enviat un vídeo",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -1362,7 +1362,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "{username} ha marxat del xat",
+  "userLeftTheChat": "🚪 {username} ha marxat del xat",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1437,7 +1437,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wallpaper": "Fons",
+  "wallpaper": "Fons:",
   "@wallpaper": {
     "type": "text",
     "placeholders": {}
@@ -1883,36 +1883,36 @@
   },
   "commandHint_cuddle": "Envia una carícia",
   "@commandHint_cuddle": {},
-  "widgetVideo": "",
+  "widgetVideo": "Vídeo",
   "@widgetVideo": {},
-  "dismiss": "",
+  "dismiss": "Ignora-ho",
   "@dismiss": {},
   "reportErrorDescription": "",
   "@reportErrorDescription": {},
-  "removeYourAvatar": "",
+  "removeYourAvatar": "Esborra el teu avatar",
   "@removeYourAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "unsupportedAndroidVersion": "",
+  "unsupportedAndroidVersion": "Aquesta versió d'Android és incompatible",
   "@unsupportedAndroidVersion": {},
-  "widgetJitsi": "",
+  "widgetJitsi": "Jitsi Meet",
   "@widgetJitsi": {},
-  "messageType": "",
+  "messageType": "Tipus de missatge",
   "@messageType": {},
-  "indexedDbErrorLong": "",
+  "indexedDbErrorLong": "L'emmagatzematge de missatges no està disponible per defecte en el mode privat.\nVisita\n - about:config\n - posa a true l'opció dom.indexedDB.privateBrowsing.enabled\nSi no ho fas, no podràs fer servir FluffyChat en mode privat.",
   "@indexedDbErrorLong": {},
-  "oneClientLoggedOut": "",
+  "oneClientLoggedOut": "Una de les teves aplicacions ha tancat la sessió",
   "@oneClientLoggedOut": {},
-  "startFirstChat": "",
+  "startFirstChat": "Comença el teu primer xat",
   "@startFirstChat": {},
-  "callingAccount": "",
+  "callingAccount": "Compte de la trucada",
   "@callingAccount": {},
-  "setColorTheme": "",
+  "setColorTheme": "Tria el color del tema:",
   "@setColorTheme": {},
-  "nextAccount": "",
+  "nextAccount": "Compte següent",
   "@nextAccount": {},
-  "allSpaces": "",
+  "allSpaces": "Tots els espais",
   "@allSpaces": {},
   "supposedMxid": "Això hauria de ser {mxid}",
   "@supposedMxid": {
@@ -1921,9 +1921,9 @@
       "mxid": {}
     }
   },
-  "user": "",
+  "user": "Usuàrïi",
   "@user": {},
-  "youAcceptedTheInvitation": "",
+  "youAcceptedTheInvitation": "👍 Has acceptat la invitació",
   "@youAcceptedTheInvitation": {},
   "noMatrixServer": "{server1} no és un servidor de matrix, vols fer servir {server2} ?",
   "@noMatrixServer": {
@@ -1933,92 +1933,92 @@
       "server2": {}
     }
   },
-  "youInvitedBy": "",
+  "youInvitedBy": "📩 {user} t'ha convidat",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "banUserDescription": "",
+  "banUserDescription": "L'usuàrïi serà vetat de la sala",
   "@banUserDescription": {},
-  "widgetEtherpad": "",
+  "widgetEtherpad": "Nota de text",
   "@widgetEtherpad": {},
-  "removeDevicesDescription": "",
+  "removeDevicesDescription": "Tancaràs la sessió d'aquest dispositiu i no hi podràs rebre més missatges.",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "",
+  "separateChatTypes": "Separa xats directes i grups",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
   },
   "tryAgain": "Torna-ho a provar",
   "@tryAgain": {},
-  "youKickedAndBanned": "",
+  "youKickedAndBanned": "🙅 Has expulsat i vetat a {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
     }
   },
-  "unbanUserDescription": "",
+  "unbanUserDescription": "L'usuàrïi ja pot tornar a entrar a la sala.",
   "@unbanUserDescription": {},
-  "youRejectedTheInvitation": "",
+  "youRejectedTheInvitation": "Has rebutjat la invitació",
   "@youRejectedTheInvitation": {},
-  "otherCallingPermissions": "",
+  "otherCallingPermissions": "Micròfon, càmera i altres permisos del FluffyChat",
   "@otherCallingPermissions": {},
   "messagesStyle": "Missatges:",
   "@messagesStyle": {},
-  "widgetUrlError": "",
+  "widgetUrlError": "La URL no és vàlida.",
   "@widgetUrlError": {},
-  "emailOrUsername": "",
+  "emailOrUsername": "Email o nom d'usuàrïi",
   "@emailOrUsername": {},
-  "newSpaceDescription": "",
+  "newSpaceDescription": "Els espais et permeten consolidar ls por",
   "@newSpaceDescription": {},
   "chatDescription": "Descripció del xat",
   "@chatDescription": {},
-  "callingAccountDetails": "",
+  "callingAccountDetails": "Permet al FluffyChat de fer servir l'app de trucades nativa de l'Android.",
   "@callingAccountDetails": {},
   "editRoomAliases": "Canvia els àlies de la sala",
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
   },
-  "enterSpace": "",
+  "enterSpace": "Obre l'espai",
   "@enterSpace": {},
   "encryptThisChat": "",
   "@encryptThisChat": {},
-  "previousAccount": "",
+  "previousAccount": "Compte anterior",
   "@previousAccount": {},
   "reopenChat": "",
   "@reopenChat": {},
-  "pleaseEnterRecoveryKey": "",
+  "pleaseEnterRecoveryKey": "Introdueix la teva clau de recuperació:",
   "@pleaseEnterRecoveryKey": {},
-  "widgetNameError": "",
+  "widgetNameError": "Posa el nom públic.",
   "@widgetNameError": {},
   "inoffensive": "Inofensiu",
   "@inoffensive": {
     "type": "text",
     "placeholders": {}
   },
-  "addToBundle": "",
+  "addToBundle": "Afegeix al pquet",
   "@addToBundle": {},
-  "addWidget": "",
+  "addWidget": "Afegeix un giny",
   "@addWidget": {},
-  "countFiles": "",
+  "countFiles": "{count} arxius",
   "@countFiles": {
     "placeholders": {
       "count": {}
     }
   },
-  "noKeyForThisMessage": "",
+  "noKeyForThisMessage": "Això pot passar si el missatge es va enviar abans que haguessis iniciat sessió al teu compte des d'aquest dispositiu.\n\nTambé pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexió a internet anés malament.\n\nQue pots llegir el missatge des d'una altra sessió? Si és així, llavors pots transferir-lo! Ves a Paràmetres → Dispositius i assegura't que els teus dispositius s'ha verificat mútuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran automàticament.\n\nVols evitar perdre les claus en tancar la sessió o en canviar de dispositiu? Llavors assegura't que has activat la còpia de seguretat del xat als paràmetres.",
   "@noKeyForThisMessage": {},
   "commandHint_markasgroup": "Marca com un grup",
   "@commandHint_markasgroup": {},
   "hydrateTor": "Usuàrïis de Tor: Importa una sessió anterior",
   "@hydrateTor": {},
-  "pushNotificationsNotAvailable": "",
+  "pushNotificationsNotAvailable": "Les notificacions push no estan disponibles",
   "@pushNotificationsNotAvailable": {},
-  "storeInAppleKeyChain": "",
+  "storeInAppleKeyChain": "Desa en la Apple KeyChain",
   "@storeInAppleKeyChain": {},
-  "replaceRoomWithNewerVersion": "",
+  "replaceRoomWithNewerVersion": "Substitueix la sala amb la versió més recent",
   "@replaceRoomWithNewerVersion": {
     "type": "text",
     "placeholders": {}
@@ -2029,9 +2029,9 @@
   "@invalidServerName": {},
   "chatPermissions": "Permisos del xat",
   "@chatPermissions": {},
-  "sender": "",
+  "sender": "Remitent",
   "@sender": {},
-  "storeInAndroidKeystore": "",
+  "storeInAndroidKeystore": "Desa en la Android KeyStore",
   "@storeInAndroidKeystore": {},
   "signInWithPassword": "",
   "@signInWithPassword": {},
@@ -2040,15 +2040,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAdminDescription": "",
+  "makeAdminDescription": "Un cop hagis fet admin aquesta persona ja no podràs desfer-ho, ja que llavors tindrà els mateixos permisos que tu.",
   "@makeAdminDescription": {},
-  "saveKeyManuallyDescription": "",
+  "saveKeyManuallyDescription": "Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls.",
   "@saveKeyManuallyDescription": {},
-  "editBundlesForAccount": "",
+  "editBundlesForAccount": "Edita paquets per aquest compte",
   "@editBundlesForAccount": {},
-  "whyIsThisMessageEncrypted": "",
+  "whyIsThisMessageEncrypted": "Per què no es pot llegir aquest missatge?",
   "@whyIsThisMessageEncrypted": {},
-  "setChatDescription": "",
+  "setChatDescription": "Posa una descripció de xat",
   "@setChatDescription": {},
   "importFromZipFile": "Importa des d'un arxiu zip",
   "@importFromZipFile": {},
@@ -2056,21 +2056,21 @@
   "@dehydrateWarning": {},
   "noOtherDevicesFound": "",
   "@noOtherDevicesFound": {},
-  "redactedBy": "",
+  "redactedBy": "Censurat per {username}",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "videoCallsBetaWarning": "",
+  "videoCallsBetaWarning": "Tingues en compte que les trucades de vídeo estan encara en beta. Pot ser que no funcioni bé o que falli en alguna plataforma.",
   "@videoCallsBetaWarning": {},
-  "participant": "",
+  "participant": "Participant",
   "@participant": {
     "type": "text",
     "placeholders": {}
   },
-  "signInWith": "",
+  "signInWith": "Inicia sessió amb {provider}",
   "@signInWith": {
     "type": "text",
     "placeholders": {
@@ -2081,20 +2081,20 @@
   "@fileIsTooBigForServer": {},
   "homeserver": "Servidor",
   "@homeserver": {},
-  "callingPermissions": "",
+  "callingPermissions": "Permisos de trucada",
   "@callingPermissions": {},
   "readUpToHere": "",
   "@readUpToHere": {},
-  "start": "",
+  "start": "Comença",
   "@start": {},
-  "register": "",
+  "register": "Registra't",
   "@register": {
     "type": "text",
     "placeholders": {}
   },
-  "unlockOldMessages": "",
+  "unlockOldMessages": "Desbloqueja els missatges antics",
   "@unlockOldMessages": {},
-  "numChats": "",
+  "numChats": "{number} xats",
   "@numChats": {
     "type": "number",
     "placeholders": {
@@ -2105,29 +2105,29 @@
   "@optionalRedactReason": {},
   "dehydrate": "Exporta la sessió i neteja el dispositiu",
   "@dehydrate": {},
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "Aquest xat serà arxivat. Els altres contactes del grup ho veuran com si haguessis abandonat la sala.",
   "@archiveRoomDescription": {},
   "exportEmotePack": "Exporta com un pack Emote en .zip",
   "@exportEmotePack": {},
-  "switchToAccount": "",
+  "switchToAccount": "Canvia al compte {number}",
   "@switchToAccount": {
     "type": "number",
     "placeholders": {
       "number": {}
     }
   },
-  "experimentalVideoCalls": "",
+  "experimentalVideoCalls": "Trucades de vídeo experimentals",
   "@experimentalVideoCalls": {},
-  "pleaseEnterRecoveryKeyDescription": "",
+  "pleaseEnterRecoveryKeyDescription": "Per desbloquejar els missatges antics, introdueix la clau de recuperació que vas generar en una sessió anterior. La clau de recuperació NO és la teva contrasenya.",
   "@pleaseEnterRecoveryKeyDescription": {},
-  "openInMaps": "",
+  "openInMaps": "Obre als mapes",
   "@openInMaps": {
     "type": "text",
     "placeholders": {}
   },
   "inviteContactToGroupQuestion": "Vols convidar {contact} al xat \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "",
+  "redactedByBecause": "Censurat per {username} per: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2135,19 +2135,19 @@
       "reason": {}
     }
   },
-  "youHaveWithdrawnTheInvitationFor": "",
+  "youHaveWithdrawnTheInvitationFor": "Has rebutjat la invitació de {user}",
   "@youHaveWithdrawnTheInvitationFor": {
     "placeholders": {
       "user": {}
     }
   },
-  "appearOnTopDetails": "",
+  "appearOnTopDetails": "Permet a l'app que aparegui sobre d'altres apps. No cal si ja has afegit FluffyChat com a compte de trucades",
   "@appearOnTopDetails": {},
-  "enterRoom": "",
+  "enterRoom": "Entra a la sala",
   "@enterRoom": {},
-  "reportUser": "",
+  "reportUser": "Denuncia l'usuàrïi",
   "@reportUser": {},
-  "confirmEventUnpin": "",
+  "confirmEventUnpin": "Vols desfixar l'esdeveniment permanentment?",
   "@confirmEventUnpin": {},
   "badServerVersionsException": "Aquest servidor suporta aquestes versions de Matrix:\n{serverVersions}\nPerò aquesta aplicación només és compatible amb {supportedVersions}",
   "@badServerVersionsException": {
@@ -2157,7 +2157,7 @@
       "supportedVersions": {}
     }
   },
-  "youInvitedUser": "",
+  "youInvitedUser": "📩 Has convidat a {user}",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
@@ -2172,25 +2172,25 @@
   },
   "redactMessageDescription": "Es censurarà el missatge per a totser d'aquesta sala. Aquesta acció és irreversible.",
   "@redactMessageDescription": {},
-  "recoveryKey": "",
+  "recoveryKey": "Clau de recuperació",
   "@recoveryKey": {},
-  "invalidInput": "",
+  "invalidInput": "L'entrada no és vàlida!",
   "@invalidInput": {},
   "dehydrateTorLong": "Per a lis usuàrïis de Tor, es recomana exportar la sessió abans de tancar la finestra.",
   "@dehydrateTorLong": {},
-  "doNotShowAgain": "",
+  "doNotShowAgain": "No ho tornis a mostrar",
   "@doNotShowAgain": {},
   "report": "",
   "@report": {},
-  "serverRequiresEmail": "",
+  "serverRequiresEmail": "Aquest servidor necessita validar la teva adreça per registrar-t'hi.",
   "@serverRequiresEmail": {},
-  "hideUnimportantStateEvents": "",
+  "hideUnimportantStateEvents": "Amaga canvis d'estat poc importants",
   "@hideUnimportantStateEvents": {},
-  "screenSharingTitle": "",
+  "screenSharingTitle": "compartició de pantalla",
   "@screenSharingTitle": {},
-  "widgetCustom": "",
+  "widgetCustom": "Personalització",
   "@widgetCustom": {},
-  "addToSpaceDescription": "",
+  "addToSpaceDescription": "Tria un espai per afegir-hi el xat.",
   "@addToSpaceDescription": {},
   "googlyEyesContent": "{senderName} t'ha enviat un parell d'ulls",
   "@googlyEyesContent": {
@@ -2199,7 +2199,7 @@
       "senderName": {}
     }
   },
-  "youBannedUser": "",
+  "youBannedUser": "Has vetat a {user}",
   "@youBannedUser": {
     "placeholders": {
       "user": {}
@@ -2212,23 +2212,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasKnocked": "",
+  "hasKnocked": "{user} pica a la porta",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
-  "publish": "",
+  "publish": "Publica",
   "@publish": {},
   "openLinkInBrowser": "",
   "@openLinkInBrowser": {},
-  "messageInfo": "",
+  "messageInfo": "Informació del missatge",
   "@messageInfo": {},
   "disableEncryptionWarning": "",
   "@disableEncryptionWarning": {},
-  "directChat": "",
+  "directChat": "Xat directe",
   "@directChat": {},
-  "wrongPinEntered": "",
+  "wrongPinEntered": "Pin incorrecte! Torna-ho a provar en {seconds} segons...",
   "@wrongPinEntered": {
     "type": "text",
     "placeholders": {
@@ -2237,15 +2237,15 @@
   },
   "sendTypingNotifications": "Envia notificacions d'escriptura",
   "@sendTypingNotifications": {},
-  "inviteGroupChat": "",
+  "inviteGroupChat": "📨 Convida al grup",
   "@inviteGroupChat": {},
-  "appearOnTop": "",
+  "appearOnTop": "Mostra per sobre",
   "@appearOnTop": {},
-  "invitePrivateChat": "",
+  "invitePrivateChat": "📨 Convida a un xat privat",
   "@invitePrivateChat": {},
-  "foregroundServiceRunning": "",
+  "foregroundServiceRunning": "Aquesta notificació apareix quan el servei de primer pla està corrent.",
   "@foregroundServiceRunning": {},
-  "voiceCall": "",
+  "voiceCall": "Videotrucada",
   "@voiceCall": {},
   "commandHint_unban": "Desbloca aquesti usuàrïi d'aquesta sala",
   "@commandHint_unban": {
@@ -2254,7 +2254,7 @@
   },
   "importEmojis": "Importa emojis",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "",
+  "wasDirectChatDisplayName": "La sala buida  ( va ser  {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
@@ -2263,43 +2263,43 @@
   },
   "noChatDescriptionYet": "No s'ha afegit una descripció de xat.",
   "@noChatDescriptionYet": {},
-  "removeFromBundle": "",
+  "removeFromBundle": "Esborra del paquet",
   "@removeFromBundle": {},
   "confirmMatrixId": "Confirma la teva ID de Matrix per poder esborrar el compte.",
   "@confirmMatrixId": {},
-  "learnMore": "",
+  "learnMore": "Llegeix-ne més",
   "@learnMore": {},
   "notAnImage": "No és un arxiu d'image.",
   "@notAnImage": {},
-  "users": "",
+  "users": "Usuàrïis",
   "@users": {},
-  "openGallery": "",
+  "openGallery": "Obre la galeria",
   "@openGallery": {},
   "chatDescriptionHasBeenChanged": "Ha canviat la descripció del xat",
   "@chatDescriptionHasBeenChanged": {},
-  "newGroup": "",
+  "newGroup": "Grup nou",
   "@newGroup": {},
-  "bundleName": "",
+  "bundleName": "Nom del paquet",
   "@bundleName": {},
   "dehydrateTor": "Usuàrïis de Tor: Exporta la sessió",
   "@dehydrateTor": {},
-  "removeFromSpace": "",
+  "removeFromSpace": "Esborra de l'espai",
   "@removeFromSpace": {},
-  "roomUpgradeDescription": "",
+  "roomUpgradeDescription": "El xat serà recreat amb una versió de sala nova. Totis lis participants seran notificadis que han de canviar a la nova sala. Pots llegir més sobre les versions de sala a https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
-  "pleaseEnterANumber": "",
+  "pleaseEnterANumber": "Introdueix un número major que 0",
   "@pleaseEnterANumber": {},
-  "youKicked": "",
+  "youKicked": "👞 Has expulsat a {user}",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "profileNotFound": "",
+  "profileNotFound": "No s'ha trobat el compte en aquest servidor. Pot ser un error de connexió, o que realment no existeixi.",
   "@profileNotFound": {},
   "jump": "",
   "@jump": {},
-  "reactedWith": "",
+  "reactedWith": "{sender} ha reaccionat amb {reaction}",
   "@reactedWith": {
     "type": "text",
     "placeholders": {
@@ -2309,7 +2309,7 @@
   },
   "sorryThatsNotPossible": "",
   "@sorryThatsNotPossible": {},
-  "videoWithSize": "",
+  "videoWithSize": "Vídeo {size}",
   "@videoWithSize": {
     "type": "text",
     "placeholders": {
@@ -2320,7 +2320,7 @@
   "@shareInviteLink": {},
   "commandHint_markasdm": "Marca com a conversa directa la sala amb aquesta ID de Matrix",
   "@commandHint_markasdm": {},
-  "recoveryKeyLost": "",
+  "recoveryKeyLost": "Que has perdut la clau de recuperació?",
   "@recoveryKeyLost": {},
   "cuddleContent": "{senderName} et fa una carícia",
   "@cuddleContent": {
@@ -2336,20 +2336,20 @@
     "type": "text",
     "placeholders": {}
   },
-  "setTheme": "",
+  "setTheme": "Tria el tema:",
   "@setTheme": {},
-  "youJoinedTheChat": "",
+  "youJoinedTheChat": "T'has afegit al xat",
   "@youJoinedTheChat": {},
-  "openVideoCamera": "",
+  "openVideoCamera": "Obre la càmera per a fer un vídeo",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "markAsRead": "",
+  "markAsRead": "Marca com a llegit",
   "@markAsRead": {},
-  "widgetName": "",
+  "widgetName": "Nom",
   "@widgetName": {},
-  "errorAddingWidget": "",
+  "errorAddingWidget": "S'ha produït un error en afegir el giny.",
   "@errorAddingWidget": {},
   "commandHint_hug": "Envia una abraçada",
   "@commandHint_hug": {},
@@ -2360,63 +2360,63 @@
     "type": "text",
     "placeholders": {}
   },
-  "youUnbannedUser": "",
+  "youUnbannedUser": "Has aixecat el veto a {user}",
   "@youUnbannedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "newSpace": "",
+  "newSpace": "Espai nou",
   "@newSpace": {},
-  "emojis": "",
+  "emojis": "Emojis",
   "@emojis": {},
-  "pleaseEnterYourPin": "",
+  "pleaseEnterYourPin": "Introdueix el teu pin",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChoose": "",
+  "pleaseChoose": "Escull",
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
   },
   "commandHint_googly": "Envia uns ulls curiosos",
   "@commandHint_googly": {},
-  "pleaseTryAgainLaterOrChooseDifferentServer": "",
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Torna-ho a provar més tard o tria un servidor diferent.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "createGroup": "Crea un grup",
   "@createGroup": {},
   "hydrateTorLong": "Que vas exportar la teva última sessió a Tor? La pots importar ara i continuar xatejant.",
   "@hydrateTorLong": {},
-  "time": "",
+  "time": "Temps",
   "@time": {},
-  "custom": "",
+  "custom": "Personalitzat",
   "@custom": {},
   "noBackupWarning": "",
   "@noBackupWarning": {},
-  "storeInSecureStorageDescription": "",
+  "storeInSecureStorageDescription": "Desa la clau de recuperació en l'emmagatzematge segur d'aquest dispositiu.",
   "@storeInSecureStorageDescription": {},
-  "openChat": "",
+  "openChat": "Obre el xat",
   "@openChat": {},
-  "kickUserDescription": "",
+  "kickUserDescription": "L'usuàrïi ha estat expulsadi però no vetadi. Als xats públics, pot tornar-hi a entrar en qualsevol moment.",
   "@kickUserDescription": {},
   "importNow": "Importa-ho ara",
   "@importNow": {},
-  "pinMessage": "",
+  "pinMessage": "Fixa a la sala",
   "@pinMessage": {},
-  "invite": "",
+  "invite": "Convida",
   "@invite": {},
-  "enableMultiAccounts": "",
+  "enableMultiAccounts": "(Beta) Activa multi-compte en aquest dispositiu",
   "@enableMultiAccounts": {},
-  "indexedDbErrorTitle": "",
+  "indexedDbErrorTitle": "Problemes amb el mode privat",
   "@indexedDbErrorTitle": {},
-  "unsupportedAndroidVersionLong": "",
+  "unsupportedAndroidVersionLong": "Aquesta funcionalitat només funciona amb versions d'Android més noves.",
   "@unsupportedAndroidVersionLong": {},
-  "storeSecurlyOnThisDevice": "",
+  "storeSecurlyOnThisDevice": "Desa de forma segura en aquest dispositiu",
   "@storeSecurlyOnThisDevice": {},
-  "screenSharingDetail": "",
+  "screenSharingDetail": "Estàs compartint la teva pantalla a FluffyChat",
   "@screenSharingDetail": {},
-  "placeCall": "",
+  "placeCall": "Truca",
   "@placeCall": {},
   "block": "bloca",
   "@block": {},
@@ -2425,5 +2425,183 @@
   "blockedUsers": "Usuàrïis blocadis",
   "@blockedUsers": {},
   "blockListDescription": "Pots bloquejar usuàrïis que et molestin. No rebràs missatges seus ni invitacions de part seva a cap sala.",
-  "@blockListDescription": {}
+  "@blockListDescription": {},
+  "pleaseChooseAStrongPassword": "Tria una contrasenya forta",
+  "@pleaseChooseAStrongPassword": {},
+  "youInvitedToBy": "📩 T'han enviat un enllaç d'invitació per:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "groupName": "Nom del grup",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Crea un grup i convida-hi usuàrïis",
+  "@createGroupAndInviteUsers": {},
+  "wrongRecoveryKey": "Malauradament, aquesta clau de recuperació no és la correcta.",
+  "@wrongRecoveryKey": {},
+  "publicLink": "Enllaç públic",
+  "@publicLink": {},
+  "transparent": "Transparent",
+  "@transparent": {},
+  "sendReadReceiptsDescription": "Lis altris participants d'un xat poden veure quan has llegit un missatge.",
+  "@sendReadReceiptsDescription": {},
+  "yourGlobalUserIdIs": "La teva ID global és: ",
+  "@yourGlobalUserIdIs": {},
+  "startConversation": "Comença una conversa",
+  "@startConversation": {},
+  "commandHint_sendraw": "Envia un json pelat",
+  "@commandHint_sendraw": {},
+  "databaseMigrationTitle": "La base de dades ha estat optimitzada",
+  "@databaseMigrationTitle": {},
+  "pleaseEnterYourCurrentPassword": "Fica la teva contrasenya actual",
+  "@pleaseEnterYourCurrentPassword": {},
+  "newPassword": "Contrasenya nova",
+  "@newPassword": {},
+  "restoreSessionBody": "L'aplicació provarà de restaurar la teva sessió des de la còpia de seguretat. Si us plau, comunica aquest error a l'equi pde desenvolupament a {url}. El missatge d'error és {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "formattedMessages": "Missatges amb format",
+  "@formattedMessages": {},
+  "formattedMessagesDescription": "Mostra contingut amb format enriquit com text en cursiva, fent servir markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Verifica uni altri usuàrïi",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Verifica un altre dispositiu",
+  "@verifyOtherDevice": {},
+  "databaseBuildErrorBody": "No s'ha pogut construir la base de dades SQLite. L'aplicació provarà de fer servir un format de base de dades antiquat. Si us plau, comunica aquesta situació a la comunitat de desenvolupament a {url}. El missatge d'error és: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "S'ha produït un error mentre s'inicialitzava l'aplicació",
+  "@initAppError": {},
+  "hidePresences": "Amagar la llista de Status?",
+  "@hidePresences": {},
+  "noUsersFoundWithQuery": "No s'ha trobat cap usuàrïi amb \"{query}\". Revisa si ho has escrit malament.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "leaveEmptyToClearStatus": "Per esborrar el teu estat, deixa-ho en blanc.",
+  "@leaveEmptyToClearStatus": {},
+  "select": "Tria",
+  "@select": {},
+  "searchForUsers": "Cerca @usuariis...",
+  "@searchForUsers": {},
+  "subspace": "Subespai",
+  "@subspace": {},
+  "addChatOrSubSpace": "Afegeix una sala o un subespai",
+  "@addChatOrSubSpace": {},
+  "decline": "Denega",
+  "@decline": {},
+  "sendReadReceipts": "Envia informes de tecleig",
+  "@sendReadReceipts": {},
+  "sendTypingNotificationsDescription": "Lis altris participants d'un xat poden veure quan estàs teclejant un missatge nou.",
+  "@sendTypingNotificationsDescription": {},
+  "incomingMessages": "Missatge d'entrada",
+  "@incomingMessages": {},
+  "presenceStyle": "Presència:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedKeyVerification": "{sender} ha acceptat la verificació de claus",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "{sender} ha canceŀlat la verificació de claus",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} ha comletat la verificació de claus",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} està a punt per verificar les claus",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "nothingFound": "No s'ha trobat res...",
+  "@nothingFound": {},
+  "searchChatsRooms": "Cerca #sales, @usuariis...",
+  "@searchChatsRooms": {},
+  "groupCanBeFoundViaSearch": "El grup es pot trobar per la cerca general",
+  "@groupCanBeFoundViaSearch": {},
+  "databaseMigrationBody": "Espereu un moment, si us plau.",
+  "@databaseMigrationBody": {},
+  "passwordsDoNotMatch": "Les contrasenyes no coincideixen",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "La contrasenya introduïda és incorrecta",
+  "@passwordIsWrong": {},
+  "joinSpace": "Fica't a l'espai",
+  "@joinSpace": {},
+  "publicSpaces": "Espais públics",
+  "@publicSpaces": {},
+  "thisDevice": "Aquest dispositiu:",
+  "@thisDevice": {},
+  "sessionLostBody": "S'ha perdut la teva sessió. Si us plau, comunica aquest error a l'equip de desenvolupament a {url}. El missatge d'error és: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "forwardMessageTo": "Vols reenviar el missatge a {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "verifyOtherUserDescription": "Si verifiques aquesti usuàrïi, podràs estar seguri de a qui estàs escrivint. . 💪\n\nQuan inicies una verificació, l'altra persona i tu veureu un missatge emergent a l'app. Us sortiran un seguit d'emojis o números a cada pantalla, que haureu de comparar.\n\nLa millor manera de fer-ho és quedar en persona o fer una vídeo-trucada. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "Quan verifiques un altre dispositiu, aquests poden intercanviar claus, així que es millora la seguretat total. 💪 Quan comences una verificació, apareixerà un missatge emergent a tots dos dispositius. A cadascun hi apareixerà un seguit d'emojis o de números que hauràs de comparar. El millor és tenir tots dos dispositius a mà abans d'iniciar la verificació. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "requestedKeyVerification": "{sender} ha soŀlicitat verificar claus",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} ha iniciat la verificació de claus",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presencesToggle": "Mostra els missatges d'estat d'altres usuàrïis",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "stickers": "Enganxines",
+  "@stickers": {},
+  "discover": "Descobreix",
+  "@discover": {}
 }
