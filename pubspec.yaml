@@ -141,7 +141,7 @@ msix_config:
   display_name: FluffyChat
   publisher_display_name: FluffyChat
   publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
-  identity_name: chat.fluffy.fluffychat
+  identity_name: chat.fluffy.kemetchat
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https
