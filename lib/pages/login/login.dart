@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:matrix/matrix.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'login_view.dart';
 import 'package:one_of/one_of.dart';
 
@@ -13,6 +18,14 @@ class Login extends StatefulWidget {
 }
 
 class LoginController extends State<Login> {
+  Map<String, dynamic>? _rawLoginTypes;
+  HomeserverSummary? loginHomeserverSummary;
+  bool _supportsFlow(String flowType) =>
+      loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
+      false;
+
+  bool get supportsSso => _supportsFlow('m.login.sso');
+
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? usernameError;
@@ -27,6 +40,8 @@ class LoginController extends State<Login> {
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
+      // Once the session token has been stored, launch login
+      await loginWithSessionToken(sessionToken);
     }
   }
 
@@ -72,17 +87,95 @@ class LoginController extends State<Login> {
       // Processing the response to obtain the connection session token
       final sessionToken = loginResponse.data?.sessionToken;
 
-      // Store the session token securely
+      // Store the session token
       await storeSessionToken(sessionToken);
 
       return sessionToken;
     } catch (e) {
-      print('Error logging in: $e');
+      Logs().v('Error logging in: $e');
       return null;
     }
   }
 
-  static int sendAttempt = 0;
+  Future<void> loginWithSessionToken(String sessionToken) async {
+    final matrix = Matrix.of(context);
+
+    setState(() => loading = true);
+
+    try {
+      final responseMatrix = await dio.get(
+        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/getMatrixToken',
+        options: Options(
+          headers: {
+            'X-Session-Token': sessionToken,
+          },
+        ),
+      );
+
+      final Map<String, dynamic> responseData = responseMatrix.data;
+
+      final String matrixLoginJwt = responseData['matrixLoginJwt'];
+      final String serverName = responseData['serverName'];
+
+      var homeserver = Uri.parse(serverName);
+      if (homeserver.scheme.isEmpty) {
+        homeserver = Uri.https(serverName, '');
+      }
+
+      final client = Matrix.of(context).getLoginClient();
+      loginHomeserverSummary = await client.checkHomeserver(homeserver);
+      if (supportsSso) {
+        _rawLoginTypes = await client.request(
+          RequestType.GET,
+          '/client/v3/login',
+        );
+      }
+
+      const url = 'https://matrix.staging.tawkie.fr/_matrix/client/r0/login';
+      final headers = {'Content-Type': 'application/json'};
+      final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
+
+      try {
+        final response = await dio.post(
+          url,
+          options: Options(headers: headers),
+          data: jsonEncode(data),
+        );
+
+        if (response.statusCode == 200) {
+          final responseData = response.data;
+          final userId = responseData['user_id'];
+          final accessToken = responseData['access_token'];
+          final deviceId = responseData['device_id'];
+
+          // Initialize with recovered data
+          try {
+            await matrix.getLoginClient().init(
+                  newToken: accessToken,
+                  newUserID: userId,
+                  newHomeserver: homeserver,
+                  newDeviceID: deviceId,
+                  newDeviceName: PlatformInfos.clientName,
+                );
+          } catch (e) {
+            Logs().v("l'init: $e");
+          }
+        } else {
+          Logs().v('Request failed with status: ${response.statusCode}');
+        }
+      } catch (e) {
+        Logs().v('Exception during login: $e');
+      }
+    } on MatrixException catch (exception) {
+      setState(() => passwordError = exception.errorMessage);
+      return setState(() => loading = false);
+    } catch (exception) {
+      setState(() => passwordError = exception.toString());
+      return setState(() => loading = false);
+    }
+
+    if (mounted) setState(() => loading = false);
+  }
 
   @override
   Widget build(BuildContext context) => LoginView(this);
