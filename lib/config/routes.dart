@@ -14,7 +14,6 @@ import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_members/chat_members.dart';
 import 'package:tawkie/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:tawkie/pages/device_settings/device_settings.dart';
-import 'package:tawkie/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:tawkie/pages/invitation_selection/invitation_selection.dart';
 import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/pages/new_group/new_group.dart';
@@ -217,24 +216,24 @@ abstract class AppRoutes {
                       ],
                       redirect: loggedOutRedirect,
                     ),
-                    GoRoute(
-                      path: 'addaccount',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        const HomeserverPicker(),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'login',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            const Login(),
-                          ),
-                          redirect: loggedOutRedirect,
-                        ),
-                      ],
-                    ),
+                    // GoRoute(
+                    //   path: 'addaccount',
+                    //   redirect: loggedOutRedirect,
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     const HomeserverPicker(),
+                    //   ),
+                    //   routes: [
+                    //     GoRoute(
+                    //       path: 'login',
+                    //       pageBuilder: (context, state) => defaultPageBuilder(
+                    //         context,
+                    //         const Login(),
+                    //       ),
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //   ],
+                    // ),
 
                     // Route to social networking page via chat bot
                     // The entire path is: /rooms/settings/addbridgebot
