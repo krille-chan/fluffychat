@@ -121,6 +121,7 @@ abstract class ClientManager {
       nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
       enableDehydratedDevices: true,
+      onSoftLogout: (client) => client.refreshAccessToken(),
     );
   }
 
