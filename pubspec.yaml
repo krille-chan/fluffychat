@@ -34,8 +34,6 @@ dependencies:
   flutter_file_dialog: ^3.0.2
   flutter_foreground_task: ^6.0.0+1
   flutter_highlighter: ^0.1.1
-  flutter_html: ^3.0.0-beta.2
-  flutter_html_table: ^3.0.0-beta.2
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^16.3.2
   flutter_localizations:
@@ -51,6 +49,7 @@ dependencies:
   flutter_typeahead: ^5.2.0
   flutter_web_auth_2: ^3.0.4
   flutter_webrtc: ^0.9.46
+  flutter_widget_from_html: ^0.14.11
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
   go_router: ^13.1.0
