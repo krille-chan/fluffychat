@@ -42,11 +42,7 @@ class MessageContent extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            event.type == EventTypes.Encrypted
-                ? l10n.needPantalaimonWarning
-                : event.calcLocalizedBodyFallback(
-                    MatrixLocals(l10n),
-                  ),
+            event.calcLocalizedBodyFallback(MatrixLocals(l10n)),
           ),
         ),
       );
