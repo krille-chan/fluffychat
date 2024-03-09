@@ -64,12 +64,6 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.keepImageAspectRatio,
-                onChanged: (b) => AppConfig.keepImageAspectRatio = b,
-                storeKey: SettingKeys.keepImageAspectRatio,
-                defaultValue: AppConfig.keepImageAspectRatio,
-              ),
               const Divider(),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,

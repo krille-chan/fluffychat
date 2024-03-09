@@ -22,8 +22,6 @@ abstract class SettingKeys {
   static const String dontAskForBootstrapKey =
       'chat.fluffychat.dont_ask_bootstrap';
   static const String autoplayImages = 'chat.fluffy.autoplay_images';
-  static const String keepImageAspectRatio =
-      'chat.fluffy.keep_image_aspect_ratio';
   static const String sendTypingNotifications =
       'chat.fluffy.send_typing_notifications';
   static const String sendPublicReadReceipts =

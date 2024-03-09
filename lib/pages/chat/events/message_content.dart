@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -110,13 +111,17 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
-            final fit =
-                AppConfig.keepImageAspectRatio ? BoxFit.contain : BoxFit.cover;
+            final double realWidth = event.infoMap['w']?.toDouble() ?? 400;
+            final double realHeight = event.infoMap['h']?.toDouble() ?? 300;
+            double width = 500;
+            final double height =
+                max(min(realHeight / realWidth * width, 500), 100);
+            width = max(height / realHeight * realWidth, 100);
             return ImageBubble(
               event,
-              width: 400,
-              height: 300,
-              fit: fit,
+              width: width,
+              height: height,
+              fit: BoxFit.contain,
               borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:
