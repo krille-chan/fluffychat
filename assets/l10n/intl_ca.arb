@@ -1700,7 +1700,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "Voleu suprimir la còpia de seguretat dels xats per a crear una clau de seguretat nova?",
+  "wipeChatBackup": "Voleu suprimir la còpia de seguretat dels xats per a crear una clau de recuperació nova?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -1874,7 +1874,7 @@
       "senderName": {}
     }
   },
-  "jumpToLastReadMessage": "",
+  "jumpToLastReadMessage": "Salta a l'últim missatge llegit",
   "@jumpToLastReadMessage": {},
   "allRooms": "Tots els xats de grup",
   "@allRooms": {
@@ -1887,7 +1887,7 @@
   "@widgetVideo": {},
   "dismiss": "Ignora-ho",
   "@dismiss": {},
-  "reportErrorDescription": "",
+  "reportErrorDescription": "😭 Oh no. Hi ha hagut algun error. Si vols, pots informar d'aquest bug a l'equip de desenvolupament.",
   "@reportErrorDescription": {},
   "removeYourAvatar": "Esborra el teu avatar",
   "@removeYourAvatar": {
@@ -1983,11 +1983,11 @@
   },
   "enterSpace": "Obre l'espai",
   "@enterSpace": {},
-  "encryptThisChat": "",
+  "encryptThisChat": "Xifra aquest xat",
   "@encryptThisChat": {},
   "previousAccount": "Compte anterior",
   "@previousAccount": {},
-  "reopenChat": "",
+  "reopenChat": "Reobre el xat",
   "@reopenChat": {},
   "pleaseEnterRecoveryKey": "Introdueix la teva clau de recuperació:",
   "@pleaseEnterRecoveryKey": {},
@@ -2033,7 +2033,7 @@
   "@sender": {},
   "storeInAndroidKeystore": "Desa en la Android KeyStore",
   "@storeInAndroidKeystore": {},
-  "signInWithPassword": "",
+  "signInWithPassword": "Inicia sessió amb contrasenya",
   "@signInWithPassword": {},
   "offensive": "Ofensiu",
   "@offensive": {
@@ -2054,7 +2054,7 @@
   "@importFromZipFile": {},
   "dehydrateWarning": "Aquesta acció és irreversible. Assegura't que deses l'arxiu de recuperació en un lloc segur.",
   "@dehydrateWarning": {},
-  "noOtherDevicesFound": "",
+  "noOtherDevicesFound": "No s'han trobat més dispositius",
   "@noOtherDevicesFound": {},
   "redactedBy": "Censurat per {username}",
   "@redactedBy": {
@@ -2077,13 +2077,13 @@
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "",
+  "fileIsTooBigForServer": "El servidor ha rebutjat l'arxiu perquè és massa gran.",
   "@fileIsTooBigForServer": {},
   "homeserver": "Servidor",
   "@homeserver": {},
   "callingPermissions": "Permisos de trucada",
   "@callingPermissions": {},
-  "readUpToHere": "",
+  "readUpToHere": "Llegit fins aquí",
   "@readUpToHere": {},
   "start": "Comença",
   "@start": {},
@@ -2163,7 +2163,7 @@
       "user": {}
     }
   },
-  "fileHasBeenSavedAt": "",
+  "fileHasBeenSavedAt": "S'ha desat l'arxiu a {path}",
   "@fileHasBeenSavedAt": {
     "type": "text",
     "placeholders": {
@@ -2180,7 +2180,7 @@
   "@dehydrateTorLong": {},
   "doNotShowAgain": "No ho tornis a mostrar",
   "@doNotShowAgain": {},
-  "report": "",
+  "report": "informa",
   "@report": {},
   "serverRequiresEmail": "Aquest servidor necessita validar la teva adreça per registrar-t'hi.",
   "@serverRequiresEmail": {},
@@ -2220,11 +2220,11 @@
   },
   "publish": "Publica",
   "@publish": {},
-  "openLinkInBrowser": "",
+  "openLinkInBrowser": "Obre l'enllaç en un navegador",
   "@openLinkInBrowser": {},
   "messageInfo": "Informació del missatge",
   "@messageInfo": {},
-  "disableEncryptionWarning": "",
+  "disableEncryptionWarning": "Per motius de seguretat, un cop activat, no es pot desactivar el xifratge.",
   "@disableEncryptionWarning": {},
   "directChat": "Xat directe",
   "@directChat": {},
@@ -2297,7 +2297,7 @@
   },
   "profileNotFound": "No s'ha trobat el compte en aquest servidor. Pot ser un error de connexió, o que realment no existeixi.",
   "@profileNotFound": {},
-  "jump": "",
+  "jump": "Salta",
   "@jump": {},
   "reactedWith": "{sender} ha reaccionat amb {reaction}",
   "@reactedWith": {
@@ -2307,7 +2307,7 @@
       "reaction": {}
     }
   },
-  "sorryThatsNotPossible": "",
+  "sorryThatsNotPossible": "Aquesta acció no és possible",
   "@sorryThatsNotPossible": {},
   "videoWithSize": "Vídeo {size}",
   "@videoWithSize": {
@@ -2329,7 +2329,7 @@
       "senderName": {}
     }
   },
-  "deviceKeys": "",
+  "deviceKeys": "Claus del dispositiu:",
   "@deviceKeys": {},
   "emoteKeyboardNoRecents": "Els últims emotes usats apareixeran aquí...",
   "@emoteKeyboardNoRecents": {
@@ -2392,7 +2392,7 @@
   "@time": {},
   "custom": "Personalitzat",
   "@custom": {},
-  "noBackupWarning": "",
+  "noBackupWarning": "Compte! Si no actives la còpia de seguretat dels xats, perdràs accés als teus missatges xifrats. És molt recomanable activar-ho abans de tancar la sessió.",
   "@noBackupWarning": {},
   "storeInSecureStorageDescription": "Desa la clau de recuperació en l'emmagatzematge segur d'aquest dispositiu.",
   "@storeInSecureStorageDescription": {},
