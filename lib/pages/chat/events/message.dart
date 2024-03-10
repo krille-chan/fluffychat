@@ -215,7 +215,6 @@ class Message extends StatelessWidget {
                                     displayname,
                                     style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.bold,
                                       color: (Theme.of(context).brightness ==
                                               Brightness.light
                                           ? displayname.color
