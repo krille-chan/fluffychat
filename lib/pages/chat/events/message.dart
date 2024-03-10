@@ -21,6 +21,7 @@ import 'verification_request_content.dart';
 class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
+  final Event? previousEvent;
   final bool displayReadMarker;
   final void Function(Event) onSelect;
   final void Function(Event) onAvatarTab;
@@ -38,6 +39,7 @@ class Message extends StatelessWidget {
   const Message(
     this.event, {
     this.nextEvent,
+    this.previousEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
     required this.onSelect,
@@ -80,31 +82,39 @@ class Message extends StatelessWidget {
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
-    final sameSender = nextEvent != null &&
+    final nextEventSameSender = nextEvent != null &&
         {
           EventTypes.Message,
           EventTypes.Sticker,
           EventTypes.Encrypted,
         }.contains(nextEvent!.type) &&
-        nextEvent?.relationshipType == null &&
         nextEvent!.senderId == event.senderId &&
         !displayTime;
+
+    final previousEventSameSender = previousEvent != null &&
+        {
+          EventTypes.Message,
+          EventTypes.Sticker,
+          EventTypes.Encrypted,
+        }.contains(previousEvent!.type) &&
+        previousEvent!.senderId == event.senderId;
+
     final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimaryContainer
-        : Theme.of(context).colorScheme.onBackground;
+        ? Theme.of(context).colorScheme.onPrimary
+        : Theme.of(context).colorScheme.onSurfaceVariant;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     final displayEvent = event.getDisplayEvent(timeline);
+    const hardCorner = Radius.circular(4);
+    const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
-      topRight: const Radius.circular(AppConfig.borderRadius),
-      bottomLeft: const Radius.circular(AppConfig.borderRadius),
-      bottomRight: ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
+      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      bottomLeft:
+          !ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
+      bottomRight:
+          ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
     final noBubble = {
           MessageTypes.Video,
@@ -120,7 +130,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).colorScheme.primaryContainer;
+          : Theme.of(context).colorScheme.primary;
     }
 
     final resetAnimateIn = this.resetAnimateIn;
@@ -152,7 +162,7 @@ class Message extends StatelessWidget {
                     onChanged: (_) => onSelect(event),
                   ),
                 )
-              else if (sameSender || ownMessage)
+              else if (nextEventSameSender || ownMessage)
                 SizedBox(
                   width: Avatar.defaultSize,
                   child: Center(
@@ -189,7 +199,7 @@ class Message extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!sameSender)
+                    if (!nextEventSameSender)
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                         child: ownMessage || event.room.isDirectChat
@@ -454,9 +464,11 @@ class Message extends StatelessWidget {
                 constraints: const BoxConstraints(
                   maxWidth: FluffyThemes.columnWidth * 2.5,
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 4.0,
+                padding: EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: nextEventSameSender ? 1.0 : 4.0,
+                  bottom: previousEventSameSender ? 1.0 : 4.0,
                 ),
                 child: container,
               ),

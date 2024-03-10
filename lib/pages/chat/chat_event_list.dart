@@ -144,6 +144,7 @@ class ChatEventList extends StatelessWidget {
                     controller.readMarkerEventId == event.eventId &&
                         controller.timeline?.allowNewEvent == false,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
+                previousEvent: i > 0 ? events[i - 1] : null,
                 avatarPresenceBackgroundColor:
                     hasWallpaper ? Colors.transparent : null,
               ),
