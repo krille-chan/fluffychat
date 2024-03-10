@@ -266,7 +266,7 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  void onSearchEnter(String text) {
+  void onSearchEnter(String text, {bool globalSearch = true}) {
     if (text.isEmpty) {
       cancelSearch(unfocus: false);
       return;
@@ -276,7 +276,9 @@ class ChatListController extends State<ChatList>
       isSearchMode = true;
     });
     _coolDown?.cancel();
-    _coolDown = Timer(const Duration(milliseconds: 500), _search);
+    if (globalSearch) {
+      _coolDown = Timer(const Duration(milliseconds: 500), _search);
+    }
   }
 
   void startSearch() {

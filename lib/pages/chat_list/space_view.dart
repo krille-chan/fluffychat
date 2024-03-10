@@ -279,10 +279,17 @@ class _SpaceViewState extends State<SpaceView> {
     if (activeSpaceId == null) {
       final rootSpaces = allSpaces
           .where(
-            (space) => !allSpaces.any(
-              (parentSpace) => parentSpace.spaceChildren
-                  .any((child) => child.roomId == space.id),
-            ),
+            (space) =>
+                !allSpaces.any(
+                  (parentSpace) => parentSpace.spaceChildren
+                      .any((child) => child.roomId == space.id),
+                ) &&
+                space
+                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+                    .toLowerCase()
+                    .contains(
+                      widget.controller.searchController.text.toLowerCase(),
+                    ),
           )
           .toList();
 
@@ -347,7 +354,7 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller),
+            ChatListHeader(controller: widget.controller, globalSearch: false),
             SliverAppBar(
               automaticallyImplyLeading: false,
               primary: false,
@@ -490,7 +497,8 @@ class _SpaceViewState extends State<SpaceView> {
                           L10n.of(context)!.chat;
                       if (widget.controller.isSearchMode &&
                           !name.toLowerCase().contains(
-                                widget.controller.searchController.text,
+                                widget.controller.searchController.text
+                                    .toLowerCase(),
                               )) {
                         return const SizedBox.shrink();
                       }
