@@ -101,7 +101,7 @@ class Message extends StatelessWidget {
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onSurfaceVariant;
+        : Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 

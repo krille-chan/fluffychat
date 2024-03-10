@@ -64,7 +64,7 @@ abstract class AppConfig {
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
-  static const double borderRadius = 16.0;
+  static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
     scheme: 'https',
