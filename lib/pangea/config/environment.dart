@@ -68,4 +68,8 @@ class Environment {
     return dotenv.env["STRIPE_MANAGEMENT_LINK"] ??
         'https://billing.stripe.com/p/login/dR6dSkf5p6rBc4EcMM';
   }
+
+  static String get supportUserId {
+    return isStaging ? '@support:staging.pangea.chat' : '@support:pangea.chat';
+  }
 }

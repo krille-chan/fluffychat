@@ -4469,7 +4469,6 @@
     }
   },
   "freeTrialDesc": "Los nuevos usuarios reciben una semana de prueba gratuita de Pangea Chat",
-  "activateTrial": "Activar prueba",
   "successfullySubscribed": "Se ha suscrito correctamente.",
   "clickToManageSubscription": "Haga clic aquí para gestionar su suscripción.",
   "emptyInviteWarning": "Añade este chat a una clase o intercambio para invitar a otros usuarios.",
@@ -4582,5 +4581,7 @@
     }
   },
   "selectToDefine": "Haga doble clic en una palabra para ver su definición.",
-  "kickBotWarning": "Patear Pangea Bot eliminará el bot de conversación de este chat."
+  "kickBotWarning": "Patear Pangea Bot eliminará el bot de conversación de este chat.",
+  "activateTrial": "Activar prueba gratuita",
+  "refresh": "Actualizar"
 }

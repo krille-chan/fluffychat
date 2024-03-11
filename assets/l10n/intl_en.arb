@@ -3790,7 +3790,7 @@
         }
     },
     "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
-    "activateTrial": "Activate Trial",
+    "activateTrial": "Activate Free Trial",
     "inNoSpaces": "You are not a member of any classes or exchanges",
     "successfullySubscribed": "You have successfully subscribed!",
     "clickToManageSubscription": "Click here to manage your subscription.",
@@ -3948,5 +3948,6 @@
             "age": {}
         }
     },
-    "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat."
+    "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat.",
+    "refresh": "Refresh"
 }

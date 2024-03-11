@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import 'settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -208,7 +208,22 @@ class SettingsView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
               title: Text(L10n.of(context)!.help),
-              onTap: () => launchUrlString(AppConfig.supportUrl),
+              // #Pangea
+              // onTap: () => launchUrlString(AppConfig.supportUrl),
+              onTap: () async {
+                await showFutureLoadingDialog(
+                  context: context,
+                  future: () async {
+                    final String roomId =
+                        await Matrix.of(context).client.startDirectChat(
+                              Environment.supportUserId,
+                              enableEncryption: false,
+                            );
+                    context.go('/rooms/$roomId');
+                  },
+                );
+              },
+              // Pangea#
               trailing: const Icon(Icons.open_in_new_outlined),
             ),
             ListTile(
