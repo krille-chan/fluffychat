@@ -91,23 +91,7 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading
-                        ? null
-                        : () async {
-                            if (!controller.loading) {
-                              // Initiate Kratos connection flow
-                              // Connect the user with the login details entered
-                              final sessionToken = await controller.login();
-
-                              // Manage Kratos's reply
-                              if (sessionToken != null &&
-                                  sessionToken.isNotEmpty) {
-                                // Action
-                              } else {
-                                // display an error message to the user
-                              }
-                            }
-                          },
+                    onPressed: controller.loading ? null : controller.login,
                     icon: const Icon(Icons.login_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()

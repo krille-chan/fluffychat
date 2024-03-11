@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'login_view.dart';
@@ -49,7 +51,27 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  Future<String?> login() async {
+  void login() async {
+    final matrix = Matrix.of(context);
+    if (usernameController.text.isEmpty) {
+      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
+    } else {
+      setState(() => usernameError = null);
+    }
+    if (passwordController.text.isEmpty) {
+      setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
+    } else {
+      setState(() => passwordError = null);
+    }
+
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      return;
+    }
+
+    setState(() => loading = true);
+
+    _coolDown?.cancel();
+
     final OryKratosClient kratosClient = OryKratosClient(dio: dio);
 
     try {
@@ -88,14 +110,17 @@ class LoginController extends State<Login> {
       final sessionToken = loginResponse.data?.sessionToken;
 
       // Store the session token
-      await storeSessionToken(sessionToken);
-
-      return sessionToken;
-    } catch (e) {
-      Logs().v('Error logging in: $e');
-      return null;
+      return await storeSessionToken(sessionToken);
+    } on MatrixException catch (exception) {
+      setState(() => passwordError = exception.errorMessage);
+      return setState(() => loading = false);
+    } catch (exception) {
+      setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
+      return setState(() => loading = false);
     }
   }
+
+  Timer? _coolDown;
 
   Future<void> loginWithSessionToken(String sessionToken) async {
     final matrix = Matrix.of(context);
