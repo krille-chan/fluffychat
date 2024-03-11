@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
@@ -531,18 +532,33 @@ class ChatDetailsView extends StatelessWidget {
                                 Icons.archive_outlined,
                               ),
                             ),
-                            onTap: () => showFutureLoadingDialog(
-                              context: context,
-                              future: () async {
-                                room.isSpace
-                                    ? await archiveSpace(
-                                        room,
-                                        Matrix.of(context).client,
-                                      )
-                                    : await room.leave();
-                                context.go('/rooms');
-                              },
-                            ),
+                            onTap: () async {
+                              final confirmed = await showOkCancelAlertDialog(
+                                useRootNavigator: false,
+                                context: context,
+                                title: L10n.of(context)!.areYouSure,
+                                okLabel: L10n.of(context)!.ok,
+                                cancelLabel: L10n.of(context)!.cancel,
+                                message:
+                                    L10n.of(context)!.archiveRoomDescription,
+                              );
+                              if (confirmed == OkCancelResult.ok) {
+                                final success = await showFutureLoadingDialog(
+                                  context: context,
+                                  future: () async {
+                                    room.isSpace
+                                        ? await archiveSpace(
+                                            room,
+                                            Matrix.of(context).client,
+                                          )
+                                        : await room.leave();
+                                  },
+                                );
+                                if (success.error == null) {
+                                  context.go('/rooms');
+                                }
+                              }
+                            },
                           ),
                         if (room.isRoomAdmin && !room.isDirectChat)
                           SwitchListTile.adaptive(

@@ -13,6 +13,7 @@ import '../network/urls.dart';
 class PUserRepo {
   static Future<PUserModel> repoCreatePangeaUser({
     required String userID,
+    required String dob,
     required fullName,
     required String matrixAccessToken,
   }) async {
@@ -24,6 +25,7 @@ class PUserRepo {
     final Map<String, dynamic> body = {
       ModelKey.userFullName: fullName,
       ModelKey.userPangeaUserId: userID,
+      ModelKey.userDateOfBirth: dob,
     };
     final Response res = await req.post(
       url: PApiUrls.createUser,
