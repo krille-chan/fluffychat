@@ -19,6 +19,7 @@
 		C1005C4C261071B5002F4F32 /* Tawkie Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1005C42261071B5002F4F32 /* Tawkie Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C137635E2AD1446100A8F905 /* notification.caf in Resources */ = {isa = PBXBuildFile; fileRef = C137635D2AD1446100A8F905 /* notification.caf */; };
 		C149567C25C7274F00A16396 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C149567B25C7274F00A16396 /* GoogleService-Info.plist */; };
+		D0920BD22B9ECCBC00BCABEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0920BD12B9ECCBC00BCABEF /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		C137635D2AD1446100A8F905 /* notification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notification.caf; sourceTree = "<group>"; };
 		C149567B25C7274F00A16396 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C149567D25C7276200A16396 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		D0920BD12B9ECCBC00BCABEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EA246783222E02DD03959891 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB0F2865DE230DE37373E0E0 /* Pods_Runner.framework in Frameworks */,
+				D0920BD22B9ECCBC00BCABEF /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 		075EE1BE25359E34308E0B78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0920BD12B9ECCBC00BCABEF /* StoreKit.framework */,
 				50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
