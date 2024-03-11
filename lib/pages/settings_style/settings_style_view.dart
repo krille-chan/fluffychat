@@ -230,9 +230,7 @@ class SettingsStyleView extends StatelessWidget {
                               bottom: 12,
                             ),
                             child: Material(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer,
+                              color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(
                                 AppConfig.borderRadius,
                               ),
@@ -244,9 +242,8 @@ class SettingsStyleView extends StatelessWidget {
                                 child: Text(
                                   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                                   style: TextStyle(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
                                     fontSize: AppConfig.messageFontSize *
                                         AppConfig.fontSizeFactor,
                                   ),
