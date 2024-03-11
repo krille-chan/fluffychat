@@ -13,7 +13,7 @@ import 'login_view.dart';
 import 'package:one_of/one_of.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key});
+  const Login({super.key});
 
   @override
   LoginController createState() => LoginController();
@@ -38,6 +38,9 @@ class LoginController extends State<Login> {
       Dio(BaseOptions(baseUrl: 'https://staging.tawkie.fr/panel/api/.ory'));
 
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  void toggleShowPassword() =>
+      setState(() => showPassword = !loading && !showPassword);
 
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {

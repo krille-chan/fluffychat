@@ -69,9 +69,7 @@ class LoginView extends StatelessWidget {
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
                       suffixIcon: IconButton(
-                        onPressed: () {
-                          //controller.toggleShowPassword
-                        },
+                        onPressed: controller.toggleShowPassword,
                         icon: Icon(
                           controller.showPassword
                               ? Icons.visibility_off_outlined
