@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
+import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
@@ -55,7 +56,6 @@ class LoginController extends State<Login> {
   }
 
   void login() async {
-    final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
     } else {
@@ -80,7 +80,12 @@ class LoginController extends State<Login> {
     try {
       // Initialize API connection flow
       final frontendApi = kratosClient.getFrontendApi();
-      final response = await frontendApi.createNativeLoginFlow();
+      Response<kratos.LoginFlow> response;
+      if (PlatformInfos.isWeb) {
+        response = await frontendApi.createBrowserLoginFlow();
+      } else {
+        response = await frontendApi.createNativeLoginFlow();
+      }
 
       // Retrieve action URL from connection flow
       final actionUrl = response.data?.ui.action;
@@ -118,6 +123,7 @@ class LoginController extends State<Login> {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
     } catch (exception) {
+      print(exception);
       setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
       return setState(() => loading = false);
     }
