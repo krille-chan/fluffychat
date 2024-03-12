@@ -250,10 +250,10 @@ abstract class AppRoutes {
                     // The entire path is: /rooms/settings/subscription
                     GoRoute(
                       path: 'subscription',
-                      pageBuilder: (context, state) =>
-                          defaultPageBuilder(context, Container()
-                              //SubscriptionView(productDetails: ,),
-                              ),
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SubscriptionView(),
+                      ),
                       redirect: loggedOutRedirect,
                     ),
                     GoRoute(

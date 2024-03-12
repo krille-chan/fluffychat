@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SubscriptionView extends StatefulWidget {
-  const SubscriptionView({Key? key});
+  const SubscriptionView({super.key});
 
   @override
   State<SubscriptionView> createState() => _SubscriptionPageState();
@@ -41,6 +42,22 @@ class _SubscriptionPageState extends State<SubscriptionView> {
     }
   }
 
+  Future<void> _purchasePackage(Package package) async {
+    try {
+      final CustomerInfo customerInfo =
+          await Purchases.purchasePackage(package);
+      if (customerInfo.entitlements.all["tawkie_sub"]!.isActive) {
+        // Unlock premium content
+      }
+    } on PlatformException catch (e) {
+      var errorCode = PurchasesErrorHelper.getErrorCode(e);
+      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
+        print("error: $e");
+        //showError(e);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +71,7 @@ class _SubscriptionPageState extends State<SubscriptionView> {
   Widget _buildSubscriptionList() {
     if (_loadingFailed) {
       // Afficher un message d'erreur si le chargement des offres a échoué
-      return Center(
+      return const Center(
         child:
             Text('Erreur réseau. Veuillez vérifier votre connexion internet.'),
       );
@@ -73,7 +90,8 @@ class _SubscriptionPageState extends State<SubscriptionView> {
             title: Text(package.identifier),
             subtitle: Text('Price: ${package.storeProduct.priceString}'),
             onTap: () {
-              // Handle onTap
+              // Handle onTap to purchase package
+              _purchasePackage(package);
             },
           );
         },
