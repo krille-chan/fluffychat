@@ -115,7 +115,10 @@ class MessageContent extends StatelessWidget {
             );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
-            return Sticker(event);
+            return Sticker(
+              event,
+              borderRadius: borderRadius,
+            );
           case CuteEventContent.eventType:
             return CuteContent(event);
           case MessageTypes.Audio:

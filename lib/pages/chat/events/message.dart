@@ -97,7 +97,8 @@ class Message extends StatelessWidget {
           EventTypes.Sticker,
           EventTypes.Encrypted,
         }.contains(previousEvent!.type) &&
-        previousEvent!.senderId == event.senderId;
+        previousEvent!.senderId == event.senderId &&
+        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary

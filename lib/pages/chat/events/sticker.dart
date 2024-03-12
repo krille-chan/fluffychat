@@ -9,8 +9,9 @@ import 'image_bubble.dart';
 
 class Sticker extends StatefulWidget {
   final Event event;
+  final BorderRadius borderRadius;
 
-  const Sticker(this.event, {super.key});
+  const Sticker(this.event, {required this.borderRadius, super.key});
 
   @override
   StickerState createState() => StickerState();
@@ -26,6 +27,7 @@ class StickerState extends State<Sticker> {
       width: 256,
       height: 256,
       fit: BoxFit.contain,
+      borderRadius: widget.borderRadius,
       onTap: () {
         setState(() => animated = true);
         showOkAlertDialog(
