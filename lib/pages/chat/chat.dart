@@ -291,9 +291,13 @@ class ChatController extends State<ChatPageWithRoom>
     try {
       await loadTimelineFuture;
       final fullyRead = room.fullyRead;
-      if (fullyRead.isEmpty) return;
+      if (fullyRead.isEmpty) {
+        setReadMarker();
+        return;
+      }
       if (timeline!.events.any((event) => event.eventId == fullyRead)) {
         Logs().v('Scroll up to visible event', fullyRead);
+        setReadMarker();
         return;
       }
       if (!mounted) return;
@@ -362,7 +366,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (room.markedUnread) room.markUnread(false);
-    setReadMarker();
 
     // when the scroll controller is attached we want to scroll to an event id, if specified
     // and update the scroll controller...which will trigger a request history, if the
