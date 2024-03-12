@@ -63,18 +63,15 @@ Future<void> initPlatformState() async {
 
   PurchasesConfiguration configuration;
   if (Platform.isAndroid) {
-    configuration = PurchasesConfiguration("revenuecat_project_google_api_key");
+    configuration = PurchasesConfiguration("goog_lhTZglaLiBBNlhsGkdTyfcltutm");
   } else if (Platform.isIOS) {
-    configuration = PurchasesConfiguration("revenuecat_project_apple_api_key");
+    configuration = PurchasesConfiguration("appl_vgoGBkjRMINLCIEFTYHxdGDRrKK");
   } else {
     // Fallback configuration in case neither Android nor iOS
     configuration =
         PurchasesConfiguration("revenuecat_project_default_api_key");
   }
   await Purchases.configure(configuration);
-
-  // Or if id app anonyme
-  // await Purchases.configure(PurchasesConfiguration(<public_sdk_key>));
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.
