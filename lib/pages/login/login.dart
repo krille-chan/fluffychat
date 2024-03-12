@@ -10,6 +10,7 @@ import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
+import 'change_username_page.dart';
 import 'login_view.dart';
 import 'package:one_of/one_of.dart';
 
@@ -53,11 +54,23 @@ class LoginController extends State<Login> {
 
       // Checking the three userState possibilities
       if (queueStatus['userState'] == 'CREATED') {
-        await loginWithSessionToken(sessionToken);
-      } else if (queueStatus['userState'] == 'IN_QUEUE') {
-        print('IN_QUEUE');
-      } else if (queueStatus['userState'] == 'ACCEPTED') {
-        print('ACCEPTED');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangeUsernamePage(queueStatus: queueStatus),
+          ),
+        );
+
+        //await loginWithSessionToken(sessionToken);
+      } else if (queueStatus['userState'] == 'IN_QUEUE' ||
+          queueStatus['userState'] == 'ACCEPTED') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangeUsernamePage(queueStatus: queueStatus),
+          ),
+        );
+        print('IN_QUEUE/ACCEPTED');
       } else {
         // If the state is not one of the expected states
         print('User is in an unexpected state : ${queueStatus['userState']}');
