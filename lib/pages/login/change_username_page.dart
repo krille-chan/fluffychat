@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tawkie/pages/subscription/subscription_view.dart';
 import 'login.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
@@ -92,6 +93,13 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
                 print("Result: $result");
                 if (result == 'success') {
+                  if (widget.queueStatus['userState'] == 'IN_QUEUE') {
+                  } else if (widget.queueStatus['userState'] == 'ACCEPTED') {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => const SubscriptionView(),
+                    );
+                  }
                 } else {}
               },
               child: Text('Save'),
