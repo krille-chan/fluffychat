@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tawkie/config/app_config.dart';
@@ -20,6 +23,7 @@ void main() async {
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
+  await initPlatformState();
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
@@ -51,6 +55,26 @@ void main() async {
     '${AppConfig.applicationName} started in foreground mode. Rendering GUI...',
   );
   await startGui(clients, store);
+}
+
+// Function to initialize Revenu Cat
+Future<void> initPlatformState() async {
+  await Purchases.setDebugLogsEnabled(true);
+
+  PurchasesConfiguration configuration;
+  if (Platform.isAndroid) {
+    configuration = PurchasesConfiguration("revenuecat_project_google_api_key");
+  } else if (Platform.isIOS) {
+    configuration = PurchasesConfiguration("revenuecat_project_apple_api_key");
+  } else {
+    // Fallback configuration in case neither Android nor iOS
+    configuration =
+        PurchasesConfiguration("revenuecat_project_default_api_key");
+  }
+  await Purchases.configure(configuration);
+
+  // Or if id app anonyme
+  // await Purchases.configure(PurchasesConfiguration(<public_sdk_key>));
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.

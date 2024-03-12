@@ -765,6 +765,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.46"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -1560,6 +1568,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  purchases_flutter:
+    dependency: "direct main"
+    description:
+      name: purchases_flutter
+      sha256: "6ed4b0d61913caf1ee53eb5b0f38898399121a259b4007776fd84a82057e6baf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.23.0"
   qr:
     dependency: transitive
     description:
