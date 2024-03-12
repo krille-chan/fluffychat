@@ -54,20 +54,14 @@ class LoginController extends State<Login> {
 
       // Checking the three userState possibilities
       if (queueStatus['userState'] == 'CREATED') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangeUsernamePage(queueStatus: queueStatus),
-          ),
-        );
-
-        //await loginWithSessionToken(sessionToken);
+        await loginWithSessionToken(sessionToken);
       } else if (queueStatus['userState'] == 'IN_QUEUE' ||
           queueStatus['userState'] == 'ACCEPTED') {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChangeUsernamePage(queueStatus: queueStatus),
+            builder: (context) =>
+                ChangeUsernamePage(queueStatus: queueStatus, controller: this),
           ),
         );
         print('IN_QUEUE/ACCEPTED');
@@ -75,6 +69,32 @@ class LoginController extends State<Login> {
         // If the state is not one of the expected states
         print('User is in an unexpected state : ${queueStatus['userState']}');
       }
+    }
+  }
+
+  Future<String> changeUserNameOry(String newUsername) async {
+    try {
+      String? sessionToken = await _secureStorage.read(key: 'sessionToken');
+
+      final response = await dio.post(
+        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
+        data: {'username': newUsername},
+        options: Options(
+          headers: {
+            'X-Session-Token': sessionToken,
+            'content-type': 'application/json',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return 'success';
+      } else {
+        return 'failed';
+      }
+    } catch (e) {
+      print(e);
+      return 'failed';
     }
   }
 

@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
 
-class ChangeUsernamePage extends StatelessWidget {
+class ChangeUsernamePage extends StatefulWidget {
   final Map<String, dynamic> queueStatus;
+  final LoginController controller;
 
-  const ChangeUsernamePage({super.key, required this.queueStatus});
+  const ChangeUsernamePage(
+      {super.key, required this.queueStatus, required this.controller});
+
+  @override
+  State<ChangeUsernamePage> createState() => _ChangeUsernamePageState();
+}
+
+class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
+  final TextEditingController _usernameController = TextEditingController();
+  String? _usernameError;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +27,7 @@ class ChangeUsernamePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            queueStatus['userState'] == 'IN_QUEUE'
+            widget.queueStatus['userState'] == 'IN_QUEUE'
                 ? Column(
                     children: [
                       Text(
@@ -24,7 +35,7 @@ class ChangeUsernamePage extends StatelessWidget {
                         style: TextStyle(fontSize: 18),
                       ),
                       Text(
-                        queueStatus['queuePosition'].toString(),
+                        widget.queueStatus['queuePosition'].toString(),
                         style: TextStyle(fontSize: 23),
                       ),
                     ],
@@ -33,21 +44,48 @@ class ChangeUsernamePage extends StatelessWidget {
                     "It's your turn!",
                     style: TextStyle(fontSize: 23),
                   ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               'Choose your Tawkie name',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
+              controller: _usernameController,
               decoration: InputDecoration(
                 labelText: 'Username',
+                errorText: _usernameError,
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Username cannot be empty';
+                }
+                return null;
+              },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Add your logic to update the username
+              onPressed: () async {
+                final newUsername = _usernameController.text;
+
+                if (_usernameController.text.isEmpty) {
+                  setState(() {
+                    _usernameError = 'Username cannot be empty';
+                  });
+                  return;
+                } else {
+                  setState(() {
+                    _usernameError = null;
+                  });
+                }
+
+                // Function to update the username
+                final result =
+                    await widget.controller.changeUserNameOry(newUsername);
+
+                print("Result: $result");
+                if (result == 'success') {
+                } else {}
               },
               child: Text('Save'),
             ),
@@ -55,5 +93,11 @@ class ChangeUsernamePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
   }
 }
