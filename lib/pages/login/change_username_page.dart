@@ -27,6 +27,13 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Flexible(
+              child: Image.asset(
+                'assets/logo.png',
+                width: 100,
+                height: 100,
+              ),
+            ),
             widget.queueStatus['userState'] == 'IN_QUEUE'
                 ? Column(
                     children: [
