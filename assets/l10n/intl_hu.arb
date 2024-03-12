@@ -674,7 +674,7 @@
       "count": {}
     }
   },
-  "loadingPleaseWait": "Betöltés… Kérlek, várj.",
+  "loadingPleaseWait": "Betöltés… Kérem, várjon.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -721,7 +721,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 Új FluffyChat-üzenet",
+  "newMessageInFluffyChat": "💬 Új FluffyChat üzenet",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -736,7 +736,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "Nincsenek hangulatjelek. 😕",
+  "noEmotesFound": "Emojik nem elérhetőek. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -751,12 +751,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPermission": "Nincsenek engedélyek",
+  "noPermission": "Nincs engedély",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "Nem találhatók szobák…",
+  "noRoomsFound": "Nem találhatóak szobák…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -766,7 +766,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "OK",
+  "ok": "Rendben",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -781,7 +781,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsSomethingWentWrong": "Hoppá, valami baj történt…",
+  "oopsSomethingWentWrong": "Hoppá, valami hiba lépett fel…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -796,7 +796,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "Jelmondat vagy visszaállítási kulcs",
+  "passphraseOrKey": "jelmondat vagy visszaállítási kulcs",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -806,7 +806,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHasBeenChanged": "A jelszó módosítva",
+  "passwordHasBeenChanged": "A jelszó módosításra került",
   "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -828,12 +828,12 @@
       "fileName": {}
     }
   },
-  "pleaseEnterYourPassword": "Add meg a jelszavad",
+  "pleaseEnterYourPassword": "Kérem adja meg jelszavát",
   "@pleaseEnterYourPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "Add meg a felhasználónevedet",
+  "pleaseEnterYourUsername": "Adja meg a felhasználónevét",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -860,7 +860,7 @@
       "username": {}
     }
   },
-  "reject": "Elutasítás",
+  "reject": "Elutasít",
   "@reject": {
     "type": "text",
     "placeholders": {}
@@ -872,7 +872,7 @@
       "username": {}
     }
   },
-  "rejoin": "Újracsatlakozás",
+  "rejoin": "Újra csatlakozás",
   "@rejoin": {
     "type": "text",
     "placeholders": {}
@@ -887,7 +887,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "removedBy": "{username} törölte",
+  "removedBy": "{username} által törölve",
   "@removedBy": {
     "type": "text",
     "placeholders": {
@@ -899,7 +899,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Chat kitiltás feloldása",
+  "unbanFromChat": "Csevegés kitiltás feloldása",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -966,7 +966,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentAFile": "📁 {username} fájlt küldött",
+  "sentAFile": "📁 {username} küldött egy fájlt",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
@@ -987,7 +987,7 @@
       "username": {}
     }
   },
-  "sentASticker": "😊 {username} levonót küldött",
+  "sentASticker": "😊 {username} matricát küldött",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
@@ -1052,7 +1052,7 @@
       "senderName": {}
     }
   },
-  "statusExampleMessage": "Hogy vagy?",
+  "statusExampleMessage": "Hogy érzi ma magát?",
   "@statusExampleMessage": {
     "type": "text",
     "placeholders": {}
@@ -1088,7 +1088,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unavailable": "Nem érhető el",
+  "unavailable": "Nem elérhető",
   "@unavailable": {
     "type": "text",
     "placeholders": {}
@@ -1116,14 +1116,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "unknownEvent": "Ismeretlen esemény: „{type}”",
+  "unknownEvent": "Ismeretlen esemény: '{type}'",
   "@unknownEvent": {
     "type": "text",
     "placeholders": {
       "type": {}
     }
   },
-  "unmuteChat": "Csevegés némításának megszüntetése",
+  "unmuteChat": "Csevegés némítás feloldása",
   "@unmuteChat": {
     "type": "text",
     "placeholders": {}
@@ -1133,7 +1133,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
+  "unreadChats": "{unreadCount, plural, =1{1 olvasatlan csevegés} other{{unreadCount} olvasatlan csevegés}}",
   "@unreadChats": {
     "type": "text",
     "placeholders": {
@@ -1163,7 +1163,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "🚪 {username} elhagyta a chatet",
+  "userLeftTheChat": "🚪 {username} elhagyta a csevegést",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1183,7 +1183,7 @@
       "type": {}
     }
   },
-  "verify": "Hitelesítés",
+  "verify": "Hitelesít",
   "@verify": {
     "type": "text",
     "placeholders": {}
@@ -1228,12 +1228,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerAcceptRequest": "Várakozás partnerre, amíg elfogadja a kérést…",
+  "waitingPartnerAcceptRequest": "Várakozás a partnerre, hogy elfogadja a kérést…",
   "@waitingPartnerAcceptRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "waitingPartnerEmoji": "Várakozás partnerre, hogy elfogadja a hangulatjeleket…",
+  "waitingPartnerEmoji": "Várakozás a partnerre, hogy elfogadja az emojit…",
   "@waitingPartnerEmoji": {
     "type": "text",
     "placeholders": {}
@@ -1258,7 +1258,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "writeAMessage": "Írj egy üzenetet…",
+  "writeAMessage": "Írjon egy üzenetet…",
   "@writeAMessage": {
     "type": "text",
     "placeholders": {}
@@ -1268,27 +1268,27 @@
     "type": "text",
     "placeholders": {}
   },
-  "you": "Te",
+  "you": "Ön",
   "@you": {
     "type": "text",
     "placeholders": {}
   },
-  "youAreNoLongerParticipatingInThisChat": "Nem veszel részt ebben a csevegésben",
+  "youAreNoLongerParticipatingInThisChat": "Immáron nem vesz részt ebben a csevegésben",
   "@youAreNoLongerParticipatingInThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Kitiltottak ebből a csevegésből",
+  "youHaveBeenBannedFromThisChat": "Kitiltották ebből a csevegésből",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "Ezzekkel a címekkel vissza tudod állítani a jelszavad, ha szükséges",
+  "withTheseAddressesRecoveryDescription": "Ezekkel a címekkel vissza tudja állítani a jelszavát.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
   },
-  "weSentYouAnEmail": "Küldtünk neked egy emailt",
+  "weSentYouAnEmail": "Küldtünk Önnek egy emailt",
   "@weSentYouAnEmail": {
     "type": "text",
     "placeholders": {}
@@ -1298,7 +1298,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "Még nem adtál meg semmilyen módot a jelszavad visszaállítására",
+  "noPasswordRecoveryDescription": "Még nem adott meg semmilyen módot a jelszava visszaállítására.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1479,12 +1479,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "A helymeghatározás nincs engedélyezve az alkalmazásnak. Kérlek engedélyezd, hogy meg tudd osztani a helyzeted.",
+  "locationPermissionDeniedNotice": "A helymeghatározás nem engedélyezett az alkalmazás számára. Kérem engedélyezze, hogy meg tudja osztani helyzetét.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "Új beszélgetés",
+  "newChat": "Új csevegés",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -1501,7 +1501,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsPushError": "Oops! Sajnos hiba történt a push értesítések beállításakor.",
+  "oopsPushError": "Hoppá! Sajnos hiba lépett fel a push értesítések beállításakor.",
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
@@ -1516,7 +1516,7 @@
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "locationDisabledNotice": "A helymeghatározás ki van kapcsolva. Kérlek, kapcsold be, hogy meg tudd osztani a helyzeted.",
+  "locationDisabledNotice": "A helymeghatározás ki van kapcsolva. Kérem, kapcsolja be, hogy meg tudja osztani helyzetét.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
@@ -1653,7 +1653,7 @@
       "error": {}
     }
   },
-  "memberChanges": "Tagság változások",
+  "memberChanges": "Tagsági változások",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
@@ -1663,7 +1663,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMatrixServer": "{server1} nem egy Matrix szerver, használjam a {server2} szervert inkább?",
+  "noMatrixServer": "{server1} nem egy Matrix szerver, használja a {server2} szervert inkább?",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
@@ -1730,13 +1730,13 @@
   "@dehydrate": {},
   "dehydrateWarning": "Ez nem visszavonható. Bizonyosodjon meg róla, hogy biztonságos helyen tárolja a mentett fájlt.",
   "@dehydrateWarning": {},
-  "dehydrateTor": "Tor felhasználók: munkamenet dehidratálása",
+  "dehydrateTor": "TOR felhasználók: munkamenet exportálása",
   "@dehydrateTor": {},
-  "dehydrateTorLong": "Tor felhasználóknak ajánlott a munkamenet dehidratálása az ablak bezárása előtt.",
+  "dehydrateTorLong": "TOR felhasználóknak ajánlott a munkamenet exportálása az ablak bezárása előtt.",
   "@dehydrateTorLong": {},
-  "hydrateTor": "Tor felhasználók: hidratált munkamenet importálása",
+  "hydrateTor": "TOR felhasználóknak: munkamenet export importálása",
   "@hydrateTor": {},
-  "hydrate": "Visszaállítás fájlból",
+  "hydrate": "Visszaállítás mentett fájlból",
   "@hydrate": {},
   "link": "Hivatkozás",
   "@link": {},
@@ -1750,7 +1750,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourPin": "Írja be a PIN-kódot",
+  "pleaseEnterYourPin": "Írja be PIN kódját",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
@@ -1800,7 +1800,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomVersion": "Szobaverzió",
+  "roomVersion": "Szoba verzió",
   "@roomVersion": {
     "type": "text",
     "placeholders": {}
@@ -1819,12 +1819,12 @@
   },
   "commandHint_hug": "Ölelés küldése",
   "@commandHint_hug": {},
-  "reason": "Ok",
+  "reason": "Indok",
   "@reason": {
     "type": "text",
     "placeholders": {}
   },
-  "register": "Regisztrálás",
+  "register": "Regisztráció",
   "@register": {
     "type": "text",
     "placeholders": {}
@@ -1870,7 +1870,7 @@
       "senderName": {}
     }
   },
-  "jumpToLastReadMessage": "",
+  "jumpToLastReadMessage": "Az utoljára olvasott üzenethez ugrás",
   "@jumpToLastReadMessage": {},
   "allRooms": "Minden csoport csevegés",
   "@allRooms": {
@@ -1881,7 +1881,7 @@
   "@widgetVideo": {},
   "dismiss": "Elvetés",
   "@dismiss": {},
-  "reportErrorDescription": "",
+  "reportErrorDescription": "😭 Sajnos valami félresiklott. Ha kívánja jelezheti a bugot a fejlesztőknek.",
   "@reportErrorDescription": {},
   "setPermissionsLevel": "Jogok beállítása",
   "@setPermissionsLevel": {
@@ -1908,11 +1908,11 @@
     "type": "text",
     "placeholders": {}
   },
-  "startFirstChat": "Kezdje meg első chat-jét",
+  "startFirstChat": "Kezdje meg első csevegését",
   "@startFirstChat": {},
   "callingAccount": "Hívási fiók",
   "@callingAccount": {},
-  "setColorTheme": "",
+  "setColorTheme": "Szín téma beállítása:",
   "@setColorTheme": {},
   "nextAccount": "Következő fiók",
   "@nextAccount": {},
@@ -1921,7 +1921,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "allSpaces": "",
+  "allSpaces": "Minden tér",
   "@allSpaces": {},
   "supposedMxid": "{mxid}-nek kell lennie",
   "@supposedMxid": {
@@ -1940,13 +1940,13 @@
       "user": {}
     }
   },
-  "banUserDescription": "",
+  "banUserDescription": "A felhasználó kitiltásra kerül a csevegésből, és nem fog tudni visszajönni egészen a kitiltás feloldásáig.",
   "@banUserDescription": {},
   "widgetEtherpad": "Szöveges megjegyzés",
   "@widgetEtherpad": {},
-  "removeDevicesDescription": "",
+  "removeDevicesDescription": "Ki fog jelentkezni a készülékről, és többi nem fog tudni fogadni üzeneteket.",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "Csoportok és közvetlen üzenetek elválasztása",
+  "separateChatTypes": "Csoportok és közvetlen üzenetek elkülönítése",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
@@ -1959,7 +1959,7 @@
       "user": {}
     }
   },
-  "unbanUserDescription": "",
+  "unbanUserDescription": "A felhasználó vissza tud jönni a csevegésbe ha akar.",
   "@unbanUserDescription": {},
   "pleaseClickOnLink": "Kérem kattintson a linkre az emailben, és folytassa a műveletet.",
   "@pleaseClickOnLink": {
@@ -1972,28 +1972,28 @@
   "@otherCallingPermissions": {},
   "messagesStyle": "Üzenetek:",
   "@messagesStyle": {},
-  "widgetUrlError": "Ez nem egy valid cím.",
+  "widgetUrlError": "Ez nem egy valós cím.",
   "@widgetUrlError": {},
   "emailOrUsername": "Email vagy felhasználónév",
   "@emailOrUsername": {},
-  "newSpaceDescription": "",
+  "newSpaceDescription": "A terek lehetővé teszik a csevegések konszolidációját, ezáltal létrehozva publikus vagy privát közösségeket.",
   "@newSpaceDescription": {},
   "chatDescription": "Csevegés leírás",
   "@chatDescription": {},
-  "callingAccountDetails": "Engedélyezés a FluffyChat számára hogy használja a natív hívás applikációt.",
+  "callingAccountDetails": "Engedélyezés a FluffyChat számára hogy használja a natív android hívás applikációt.",
   "@callingAccountDetails": {},
   "pleaseFollowInstructionsOnWeb": "Kérem kövesse az instrukciókat az oldalon, és nyomjon a tovább gombra.",
   "@pleaseFollowInstructionsOnWeb": {
     "type": "text",
     "placeholders": {}
   },
-  "enterSpace": "",
+  "enterSpace": "Belépés a térre",
   "@enterSpace": {},
-  "encryptThisChat": "",
+  "encryptThisChat": "A csevegés titkosítása",
   "@encryptThisChat": {},
   "previousAccount": "Előző fiók",
   "@previousAccount": {},
-  "reopenChat": "",
+  "reopenChat": "Csevegés újranyitása",
   "@reopenChat": {},
   "pleaseEnterRecoveryKey": "Kérem adja meg a visszaállító kódját:",
   "@pleaseEnterRecoveryKey": {},
@@ -2002,9 +2002,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "widgetNameError": "Kérem adjon meg a közzétehető nevet.",
+  "widgetNameError": "Kérem adjon meg egy megjeleníthető nevet.",
   "@widgetNameError": {},
-  "addToBundle": "Csomag hozzáadása",
+  "addToBundle": "Hozzáadás fiókcsoporthoz",
   "@addToBundle": {},
   "spaceIsPublic": "A tér publikus",
   "@spaceIsPublic": {
@@ -2026,7 +2026,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pushNotificationsNotAvailable": "",
+  "pushNotificationsNotAvailable": "Push értesítések nem elérhetőek",
   "@pushNotificationsNotAvailable": {},
   "storeInAppleKeyChain": "Tárolás az Apple KeyChain-be",
   "@storeInAppleKeyChain": {},
@@ -2048,9 +2048,9 @@
   "@sender": {},
   "storeInAndroidKeystore": "Tárolás az Android KeyStore-ba",
   "@storeInAndroidKeystore": {},
-  "signInWithPassword": "",
+  "signInWithPassword": "Bejelentkezés jelszóval",
   "@signInWithPassword": {},
-  "makeAdminDescription": "",
+  "makeAdminDescription": "Miután a felhasználóból admin lesz, nem fogja tudni visszavonni döntését, mivel azonos jogosultsági szinttel fognak rendelkezni.",
   "@makeAdminDescription": {},
   "synchronizingPleaseWait": "Szinkronizálás...kérem várjon.",
   "@synchronizingPleaseWait": {
@@ -2069,11 +2069,11 @@
   },
   "saveKeyManuallyDescription": "A kulcs manuális mentése rendszer megosztás vagy vágólap másolás segítségével.",
   "@saveKeyManuallyDescription": {},
-  "editBundlesForAccount": "Csomagok szerkesztése ehhez a fiókhoz",
+  "editBundlesForAccount": "Fiókcsoportok szerkesztése ehhez a fiókhoz",
   "@editBundlesForAccount": {},
   "whyIsThisMessageEncrypted": "Miért nem olvasható ez az üzenet?",
   "@whyIsThisMessageEncrypted": {},
-  "setChatDescription": "Chat leírás beállítása",
+  "setChatDescription": "Csevegés leírás beállítása",
   "@setChatDescription": {},
   "spaceName": "Tér neve",
   "@spaceName": {
@@ -2087,7 +2087,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noOtherDevicesFound": "",
+  "noOtherDevicesFound": "Nem található más eszköz",
   "@noOtherDevicesFound": {},
   "redactedBy": "{username} által szerkesztve",
   "@redactedBy": {
@@ -2098,29 +2098,29 @@
   },
   "videoCallsBetaWarning": "Kérem vegye figyelembe, hogy a videó hívások jelenleg béta fázisban vannak. Nem biztos, hogy megfelelően fognak működni, vagy egyáltalán elindulnak egyes platformokon.",
   "@videoCallsBetaWarning": {},
-  "signInWith": "",
+  "signInWith": "Bejelentkezés a következővel: {provider}",
   "@signInWith": {
     "type": "text",
     "placeholders": {
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "",
+  "fileIsTooBigForServer": "A szerver számára túl nagy a fájl a küldéshez.",
   "@fileIsTooBigForServer": {},
   "verified": "Visszaigazolt",
   "@verified": {
     "type": "text",
     "placeholders": {}
   },
-  "callingPermissions": "Hívási engedély",
+  "callingPermissions": "Hívási engedélyek",
   "@callingPermissions": {},
-  "readUpToHere": "",
+  "readUpToHere": "Ezidáig elolvasva",
   "@readUpToHere": {},
   "start": "Kezdés",
   "@start": {},
   "unlockOldMessages": "Régi üzenetek feloldása",
   "@unlockOldMessages": {},
-  "numChats": "",
+  "numChats": "{number} csevegés",
   "@numChats": {
     "type": "number",
     "placeholders": {
@@ -2133,7 +2133,7 @@
   "@sendAsText": {
     "type": "text"
   },
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "A csevegés bekerül az archívumba. Más felhasználók látni fogják, hogy elhagyta a csevegést.",
   "@archiveRoomDescription": {},
   "exportEmotePack": "Emojik exportálása zip-be",
   "@exportEmotePack": {},
@@ -2144,7 +2144,7 @@
       "number": {}
     }
   },
-  "setAsCanonicalAlias": "Alapértelmezett aliasként való beállítás",
+  "setAsCanonicalAlias": "Beállítás mint alapértelmezett álnév",
   "@setAsCanonicalAlias": {
     "type": "text",
     "placeholders": {}
@@ -2154,9 +2154,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "experimentalVideoCalls": "Kísérleti videó hívás",
+  "experimentalVideoCalls": "Kísérleti videó hívások",
   "@experimentalVideoCalls": {},
-  "pleaseEnterRecoveryKeyDescription": "A régi üzenetei feloldásához adja meg a korábban generált visszaállítási jelszavát. A visszaállítási jelszó NEM EGYEZIK MEG a jelszóval.",
+  "pleaseEnterRecoveryKeyDescription": "A régi üzenetei feloldásához adja meg a korábban generált visszaállítási jelszavát. A visszaállítási jelszó NEM UGYANAZ mint a jelszó.",
   "@pleaseEnterRecoveryKeyDescription": {},
   "inviteContactToGroupQuestion": "Meg kívánja hívni {contact}-ot a \"{groupName}\" csevegő csoportba?",
   "@inviteContactToGroupQuestion": {},
@@ -2174,9 +2174,9 @@
       "user": {}
     }
   },
-  "appearOnTopDetails": "Engedlyezi az app számára, hogy mindig legfelül jelenjen meg (nem szükséges, ha a FluffyChat mint hívó fiók van beállítva)",
+  "appearOnTopDetails": "Engedélyezi az app számára, hogy mindig legfelül jelenjen meg (nem szükséges, ha a FluffyChat hívó fiókként lett beállítva)",
   "@appearOnTopDetails": {},
-  "enterRoom": "",
+  "enterRoom": "Belépés a szobába",
   "@enterRoom": {},
   "pleaseChooseAPasscode": "Kérem válasszon egy kódot",
   "@pleaseChooseAPasscode": {
@@ -2193,7 +2193,7 @@
       "user": {}
     }
   },
-  "fileHasBeenSavedAt": "",
+  "fileHasBeenSavedAt": "A fájl mentésre került a következő elérési úton {path}",
   "@fileHasBeenSavedAt": {
     "type": "text",
     "placeholders": {
@@ -2204,7 +2204,7 @@
   "@redactMessageDescription": {},
   "recoveryKey": "Visszaállító kulcs",
   "@recoveryKey": {},
-  "invalidInput": "",
+  "invalidInput": "Hibás bevitel!",
   "@invalidInput": {},
   "yourPublicKey": "A publikus kulcsa",
   "@yourPublicKey": {
@@ -2216,9 +2216,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "doNotShowAgain": "",
+  "doNotShowAgain": "Ne mutassa újra",
   "@doNotShowAgain": {},
-  "report": "",
+  "report": "bejelentés",
   "@report": {},
   "status": "Státusz",
   "@status": {
@@ -2227,15 +2227,15 @@
   },
   "unverified": "Nem visszaigazolt",
   "@unverified": {},
-  "serverRequiresEmail": "Ehhez a szerver regisztrációhoz szükség van egy visszaigazolt email címre.",
+  "serverRequiresEmail": "Ehhez a szerverhez szükséges az email címének visszaigazolása.",
   "@serverRequiresEmail": {},
-  "hideUnimportantStateEvents": "",
+  "hideUnimportantStateEvents": "Jelentéktelen esemény státuszok elrejtése",
   "@hideUnimportantStateEvents": {},
-  "screenSharingTitle": "Képernyő megosztás",
+  "screenSharingTitle": "képernyő megosztás",
   "@screenSharingTitle": {},
   "widgetCustom": "Egyéni",
   "@widgetCustom": {},
-  "addToSpaceDescription": "Válassza ki melyik térhez kívánja hozzáadni a chatet.",
+  "addToSpaceDescription": "Válassza ki melyik térhez kívánja hozzáadni a csevegést.",
   "@addToSpaceDescription": {},
   "youBannedUser": "Letitotta {user}-t",
   "@youBannedUser": {
@@ -2253,15 +2253,15 @@
   },
   "publish": "Közzététel",
   "@publish": {},
-  "openLinkInBrowser": "",
+  "openLinkInBrowser": "Hivatkozás megnyitása böngészőben",
   "@openLinkInBrowser": {},
   "messageInfo": "Üzenet információ",
   "@messageInfo": {},
-  "disableEncryptionWarning": "",
+  "disableEncryptionWarning": "Biztonsági okokból nem kapcsolható ki egy korábban bekapcsolt csevegés titkosítás.",
   "@disableEncryptionWarning": {},
-  "directChat": "Közvetlen chat",
+  "directChat": "Közvetlen csevegés",
   "@directChat": {},
-  "wrongPinEntered": "",
+  "wrongPinEntered": "Hibás pinkód került beírásra. Próbálja újra {seconds} mp múlva...",
   "@wrongPinEntered": {
     "type": "text",
     "placeholders": {
@@ -2270,11 +2270,11 @@
   },
   "sendTypingNotifications": "Gépelési infó megjelenítése",
   "@sendTypingNotifications": {},
-  "inviteGroupChat": "",
+  "inviteGroupChat": "📨 Meghívó a csoportba",
   "@inviteGroupChat": {},
   "appearOnTop": "Mindig legfelül jelenik meg",
   "@appearOnTop": {},
-  "invitePrivateChat": "",
+  "invitePrivateChat": "📨 Meghívó csevegéshez",
   "@invitePrivateChat": {},
   "foregroundServiceRunning": "Ez az értesítés akkor jelenik meg ha az előtéri szolgáltatás fut.",
   "@foregroundServiceRunning": {},
@@ -2282,7 +2282,7 @@
   "@voiceCall": {},
   "importEmojis": "Emojik importálása",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "",
+  "wasDirectChatDisplayName": "Üres csevegés (korábban {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
@@ -2291,14 +2291,14 @@
   },
   "noChatDescriptionYet": "Még nincs csevegő szoba leírás.",
   "@noChatDescriptionYet": {},
-  "removeFromBundle": "Eltávolítás a cosmagból",
+  "removeFromBundle": "Eltávolítás a fiókcsoportból",
   "@removeFromBundle": {},
   "whoCanPerformWhichAction": "Ki milyen műveletet végezhet",
   "@whoCanPerformWhichAction": {
     "type": "text",
     "placeholders": {}
   },
-  "learnMore": "",
+  "learnMore": "Tudjon meg többet",
   "@learnMore": {},
   "users": "Felhasználók",
   "@users": {},
@@ -2306,15 +2306,15 @@
   "@openGallery": {},
   "chatDescriptionHasBeenChanged": "Csevegés leírás megváltozott",
   "@chatDescriptionHasBeenChanged": {},
-  "newGroup": "",
+  "newGroup": "Új csoport",
   "@newGroup": {},
-  "bundleName": "Csomag neve",
+  "bundleName": "Fiókcsoport neve",
   "@bundleName": {},
   "removeFromSpace": "Eltávolítás a térről",
   "@removeFromSpace": {},
-  "roomUpgradeDescription": "",
+  "roomUpgradeDescription": "A csevegés újra elkészül az új verzióval. Minden résztvevő értesítést kap, hogy át kell állniuk az új csevegésre. További információkért a szoba verziókról látogasson el a https://spec.matrix.org/latest/rooms/ címre",
   "@roomUpgradeDescription": {},
-  "pleaseEnterANumber": "",
+  "pleaseEnterANumber": "Adjon meg egy 0-nál nagyobb számot",
   "@pleaseEnterANumber": {},
   "youKicked": "👞 Kirúgta {user}-t",
   "@youKicked": {
@@ -2322,9 +2322,9 @@
       "user": {}
     }
   },
-  "profileNotFound": "",
+  "profileNotFound": "A felhasználó nem található a szerveren. Lehetséges, hogy csatlakozási problémák adódtak, vagy nem létezik a felhasználó.",
   "@profileNotFound": {},
-  "jump": "",
+  "jump": "Ugrás",
   "@jump": {},
   "reactedWith": "{sender} a következőt reagálta: {reaction}",
   "@reactedWith": {
@@ -2334,7 +2334,7 @@
       "reaction": {}
     }
   },
-  "sorryThatsNotPossible": "",
+  "sorryThatsNotPossible": "Ez sajnos nem lehetséges",
   "@sorryThatsNotPossible": {},
   "videoWithSize": "Videó ({size})",
   "@videoWithSize": {
@@ -2349,7 +2349,7 @@
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "Elveszett visszaállító kulcs?",
   "@recoveryKeyLost": {},
-  "deviceKeys": "",
+  "deviceKeys": "Eszköz kulcsok:",
   "@deviceKeys": {},
   "emoteKeyboardNoRecents": "Nemrég használt emojik fognak itt megjelenni...",
   "@emoteKeyboardNoRecents": {
@@ -2361,15 +2361,15 @@
     "type": "text",
     "placeholders": {}
   },
-  "setTheme": "",
+  "setTheme": "Téma beállítása:",
   "@setTheme": {},
-  "youJoinedTheChat": "Becsatlakozott a chatbe",
+  "youJoinedTheChat": "Becsatlakozott a csevegésbe",
   "@youJoinedTheChat": {},
   "markAsRead": "Olvasottként megjelölés",
   "@markAsRead": {},
   "widgetName": "Név",
   "@widgetName": {},
-  "errorAddingWidget": "Hiba lépett fel widget hozzáadásánál.",
+  "errorAddingWidget": "Hiba lépett fel a widget hozzáadásánál.",
   "@errorAddingWidget": {},
   "replace": "Kicserél",
   "@replace": {},
@@ -2379,39 +2379,39 @@
       "user": {}
     }
   },
-  "newSpace": "",
+  "newSpace": "Új tér",
   "@newSpace": {},
   "emojis": "Emojik",
   "@emojis": {},
-  "pleaseTryAgainLaterOrChooseDifferentServer": "",
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Próbálja meg máskor, vagy válasszon másik szervert.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "createGroup": "Csoport létrehozása",
   "@createGroup": {},
-  "hydrateTorLong": "Legutóbb TOR segítségével exportálta korábbi társalgásait? Gyorsan importálja őket vissza, és folytassa a chatelést.",
+  "hydrateTorLong": "Legutóbb TOR segítségével exportálta korábbi munkamenetét? Gyorsan importálja őket vissza, és folytassa a csevegést.",
   "@hydrateTorLong": {},
   "time": "Idő",
   "@time": {},
   "custom": "Egyéni",
   "@custom": {},
-  "noBackupWarning": "",
+  "noBackupWarning": "Figyelem! Ha nem kapcsolja be a csevegés mentést, elveszíti a hozzáférést a tikosított üzeneteihez. Erősen ajánlott a csevegés mentés bekapcsolása kijelentkezés előtt.",
   "@noBackupWarning": {},
-  "storeInSecureStorageDescription": "Tárolja a visszaállítási kulcsot az eszköz biztonsági tárában.",
+  "storeInSecureStorageDescription": "Tárolja a visszaállítási kulcsot az eszköz biztonsági tárjában.",
   "@storeInSecureStorageDescription": {},
-  "openChat": "Chat megnyitása",
+  "openChat": "Csevegés megnyitása",
   "@openChat": {},
-  "kickUserDescription": "",
+  "kickUserDescription": "A felhasználó kirúgásra került a csevegésből, de nincs kitiltva. Publikus csevegés esetén a felhasználó bármikor visszatérhet.",
   "@kickUserDescription": {},
   "importNow": "Importálás most",
   "@importNow": {},
-  "pinMessage": "Kitűzése a szobában",
+  "pinMessage": "Kitűzés a szobában",
   "@pinMessage": {},
-  "invite": "",
+  "invite": "Meghívás",
   "@invite": {},
   "enableMultiAccounts": "(BÉTA) Több fiók bekapcsolása az eszközön",
   "@enableMultiAccounts": {},
   "indexedDbErrorTitle": "Privát mód problémák",
   "@indexedDbErrorTitle": {},
-  "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze meg van e hivatalos frissítés, vagy LinageOS támogatás.",
+  "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze be van e frissítve teljesen készüléke, esetlegesen van e LineageOS támogatás hozzá.",
   "@unsupportedAndroidVersionLong": {},
   "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",
   "@storeSecurlyOnThisDevice": {},
@@ -2442,5 +2442,167 @@
     "placeholders": {
       "alias": {}
     }
-  }
+  },
+  "decline": "Elutasítás",
+  "@decline": {},
+  "yourGlobalUserIdIs": "A globális felhasználó-ID-je: ",
+  "@yourGlobalUserIdIs": {},
+  "noUsersFoundWithQuery": "\"{query}\" néven nem található felhasználó. Ellenőrizze nincs e elírás.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} elfogadta a kulcs megerősítést",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "searchForUsers": "Keressen @felhasználókat...",
+  "@searchForUsers": {},
+  "joinSpace": "Csatlakozás a térre",
+  "@joinSpace": {},
+  "publicSpaces": "Nyilvános terek",
+  "@publicSpaces": {},
+  "databaseMigrationTitle": "Adatbázis optimalizálása",
+  "@databaseMigrationTitle": {},
+  "leaveEmptyToClearStatus": "Hagyja üresen a státusz kitörléséhez.",
+  "@leaveEmptyToClearStatus": {},
+  "pleaseEnterYourCurrentPassword": "Kérem adja meg jelenlegi jelszavát",
+  "@pleaseEnterYourCurrentPassword": {},
+  "newPassword": "Új jelszó",
+  "@newPassword": {},
+  "addChatOrSubSpace": "Csevegés vagy al-tér hozzáadása",
+  "@addChatOrSubSpace": {},
+  "pleaseChooseAStrongPassword": "Kérem válasszon egy erős jelszót",
+  "@pleaseChooseAStrongPassword": {},
+  "passwordsDoNotMatch": "A jelszavak nem egyeznek",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "A beírt jelszava hibás",
+  "@passwordIsWrong": {},
+  "subspace": "Al-tér",
+  "@subspace": {},
+  "thisDevice": "Ez az eszköz:",
+  "@thisDevice": {},
+  "forwardMessageTo": "Üzenet továbbítása a {roomName} szobába?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "A csevegés többi tagja látja amikor gépel.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "A csevegés többi tagja látja melyik üzenetet látta.",
+  "@sendReadReceiptsDescription": {},
+  "sendReadReceipts": "Olvasási igazolás küldése",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Formázott üzenetek",
+  "@formattedMessages": {},
+  "formattedMessagesDescription": "Formázott szöveg - mint például félkövér - megjelenítése \"markdown\"-al.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Más felhasználók igazolása",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Más eszköz megerősítése",
+  "@verifyOtherDevice": {},
+  "sessionLostBody": "A munkamenete elvesződött. Kérem jelentse ezt a fejlesztőknek a {url} címen. A hiba szövege a következő: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "databaseBuildErrorBody": "Nem lehetséges az SQlite adatbázis létrehozása. Az app megpróbálja a régi típusú adatbázist használni. Kérem jelentse a hibát a fejlesztőknek a {url} linken. A hiba szövege a következő: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Megpróbálkozunk visszaállítani a munkamenetét egy korábbi mentésből. Kérem jelezze a hibát a fejlesztőknek a {url} címen. A hiba szövege a következő: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "hidePresences": "El kívánja menteni a státusz listát?",
+  "@hidePresences": {},
+  "searchChatsRooms": "Keressen #csevegéseket, @felhasználókat...",
+  "@searchChatsRooms": {},
+  "wrongRecoveryKey": "Sajnos, úgy tűnik hibásan adta meg a visszaállítási kulcsot.",
+  "@wrongRecoveryKey": {},
+  "startConversation": "Beszélgetés indítása",
+  "@startConversation": {},
+  "commandHint_sendraw": "Tiszta json küldése",
+  "@commandHint_sendraw": {},
+  "databaseMigrationBody": "Kérem várjon. Ez igénybe vehet valamennyi időt.",
+  "@databaseMigrationBody": {},
+  "initAppError": "Hiba lépett fel az app indítása során",
+  "@initAppError": {},
+  "canceledKeyVerification": "{sender} nem fogadta el a kulcs megerősítést",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} befejezte a kulcs megerősítést",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} készen áll a kulcs megerősítésre",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} kulcs megerősítést kér",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} elkezdte a kulcs megerősítést",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "Átlátszó",
+  "@transparent": {},
+  "incomingMessages": "Bejövő üzenetek",
+  "@incomingMessages": {},
+  "nothingFound": "Nincs találat...",
+  "@nothingFound": {},
+  "publicLink": "Nyilvános hivatkozás",
+  "@publicLink": {},
+  "select": "Kiválaszt",
+  "@select": {},
+  "stickers": "Matrica",
+  "@stickers": {},
+  "discover": "Felfedezés",
+  "@discover": {},
+  "groupName": "Csoport név",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Hozzon létre egy csoportot és hívjon meg felhasználókat",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "Kereséssel megtalálhatja a kívánt csoportot",
+  "@groupCanBeFoundViaSearch": {},
+  "verifyOtherUserDescription": "Ha megerősít egy másik felhasználót, akkor teljesen biztos lehet abban kivel cseveg. 💪\n\nA megerősítési folyamat kezdetekor megjelenik egy felugró ablak mindkettejüknél. Ekkor egy emoji vagy szám sor összehasonlítási folyamat veszi kezdetét.\n\nA legpraktikusabb módja ennek, hogy találkozzanak, vagy videó hívás során beszéljék meg. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "Amikor egy másik eszközt erősít meg, az eszközök kulcsokat cserélnek egymás között, ezáltal növelve az összbiztonságot. 💪 Amikor megkezdődik a folyamat, mind a két eszközön megjelenik egy felugró üzenet. Emojik és számok sorozata fog megjelenni, amit össze tud hasonlítani a két eszközön. Érdemes tehát mind a két eszközt a közelben tartani. 🤳",
+  "@verifyOtherDeviceDescription": {}
 }
