@@ -169,36 +169,28 @@ class LoginController extends State<Login> {
       final headers = {'Content-Type': 'application/json'};
       final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
 
-      try {
-        final response = await dio.post(
-          url,
-          options: Options(headers: headers),
-          data: jsonEncode(data),
-        );
+      final response = await dio.post(
+        url,
+        options: Options(headers: headers),
+        data: jsonEncode(data),
+      );
 
-        if (response.statusCode == 200) {
-          final responseData = response.data;
-          final userId = responseData['user_id'];
-          final accessToken = responseData['access_token'];
-          final deviceId = responseData['device_id'];
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        final userId = responseData['user_id'];
+        final accessToken = responseData['access_token'];
+        final deviceId = responseData['device_id'];
 
-          // Initialize with recovered data
-          try {
-            await matrix.getLoginClient().init(
-                  newToken: accessToken,
-                  newUserID: userId,
-                  newHomeserver: homeserver,
-                  newDeviceID: deviceId,
-                  newDeviceName: PlatformInfos.clientName,
-                );
-          } catch (e) {
-            Logs().v("l'init: $e");
-          }
-        } else {
-          Logs().v('Request failed with status: ${response.statusCode}');
-        }
-      } catch (e) {
-        Logs().v('Exception during login: $e');
+        // Initialize with recovered data
+        await matrix.getLoginClient().init(
+              newToken: accessToken,
+              newUserID: userId,
+              newHomeserver: homeserver,
+              newDeviceID: deviceId,
+              newDeviceName: PlatformInfos.clientName,
+            );
+      } else {
+        Logs().v('Request failed with status: ${response.statusCode}');
       }
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
