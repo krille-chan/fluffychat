@@ -2542,5 +2542,6 @@
     "loading_disconnectionSuccess": "Successful logout",
     "loading_deleteRoom": "Delete the conversation...",
     "loading_deleteRoomSuccess": "Conversation deleted",
-    "refreshList": "Refresh list"
+    "refreshList": "Refresh list",
+    "subscription": "Subscription"
 }
