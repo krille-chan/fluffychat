@@ -30,6 +30,7 @@ import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/pages/settings_style/settings_style.dart';
 import 'package:tawkie/pages/welcome_slides/slides.dart';
+import 'package:tawkie/pages/subscription/subscription_view.dart';
 import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
 import 'package:tawkie/widgets/log_view.dart';
@@ -224,25 +225,24 @@ abstract class AppRoutes {
                       ],
                       redirect: loggedOutRedirect,
                     ),
-                    // GoRoute(
-                    //   path: 'addaccount',
-                    //   redirect: loggedOutRedirect,
-                    //   pageBuilder: (context, state) => defaultPageBuilder(
-                    //     context,
-                    //     const HomeserverPicker(),
-                    //   ),
-                    //   routes: [
-                    //     GoRoute(
-                    //       path: 'login',
-                    //       pageBuilder: (context, state) => defaultPageBuilder(
-                    //         context,
-                    //         const Login(),
-                    //       ),
-                    //       redirect: loggedOutRedirect,
-                    //     ),
-                    //   ],
-                    // ),
-
+                    GoRoute(
+                      path: 'addaccount',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const Login(),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'login',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            const Login(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                      ],
+                    ),
                     // Route to social networking page via chat bot
                     // The entire path is: /rooms/settings/addbridgebot
                     GoRoute(
@@ -250,6 +250,16 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         const AddBridgeBody(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    // Route to subscription page
+                    // The entire path is: /rooms/settings/subscription
+                    GoRoute(
+                      path: 'subscription',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        const SubscriptionView(),
                       ),
                       redirect: loggedOutRedirect,
                     ),

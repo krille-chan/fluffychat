@@ -160,6 +160,12 @@ class SettingsView extends StatelessWidget {
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
+              leading: const Icon(Icons.credit_card),
+              title: Text(L10n.of(context)!.subscription),
+              onTap: () => context.go('/rooms/settings/subscription'),
+              trailing: const Icon(Icons.chevron_right_outlined),
+            ),
+            ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),
               onTap: () => context.go('/rooms/settings/style'),
