@@ -46,8 +46,22 @@ class LoginController extends State<Login> {
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
+
       // Once the session token has been stored, launch login
-      await loginWithSessionToken(sessionToken);
+      final Map<String, dynamic> queueStatus =
+          await getQueueStatus(sessionToken);
+
+      // Checking the three userState possibilities
+      if (queueStatus['userState'] == 'CREATED') {
+        await loginWithSessionToken(sessionToken);
+      } else if (queueStatus['userState'] == 'IN_QUEUE') {
+        print('IN_QUEUE');
+      } else if (queueStatus['userState'] == 'ACCEPTED') {
+        print('ACCEPTED');
+      } else {
+        // If the state is not one of the expected states
+        print('User is in an unexpected state : ${queueStatus['userState']}');
+      }
     }
   }
 
@@ -55,7 +69,7 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  void login() async {
+  void loginOry() async {
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
     } else {
@@ -130,6 +144,22 @@ class LoginController extends State<Login> {
   }
 
   Timer? _coolDown;
+
+  Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
+    final responseQueueStatus = await dio.get(
+      'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/getQueueStatus',
+      options: Options(
+        headers: {
+          'X-Session-Token': sessionToken,
+        },
+      ),
+    );
+
+    final Map<String, dynamic> responseDataQueueStatus =
+        responseQueueStatus.data;
+
+    return responseDataQueueStatus;
+  }
 
   Future<void> loginWithSessionToken(String sessionToken) async {
     final matrix = Matrix.of(context);
