@@ -1,8 +1,9 @@
-app_identifier("im.tawkie.app") # The bundle identifier of your app
-apple_id("christian-kussowski@posteo.de") # Your Apple email address
+app_identifier("fr.tawkie.app") # The bundle identifier of your app
+apple_id("paul.apple@shimaore.net") # Your Apple email address
 
-itc_team_id("122628977") # App Store Connect Team ID
-team_id("4NXF6Z997G") # Developer Portal Team ID
+itc_team_id("126860106") # App Store Connect Team ID
+# from https://sarunw.com/posts/fastlane-find-team-id/
+team_id("C3DKRS77B8") # Developer Portal Team ID
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile

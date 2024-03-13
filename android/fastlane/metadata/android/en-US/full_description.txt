@@ -1,32 +1,31 @@
-FluffyChat is an open, nonprofit and cute matrix messenger app for Ubuntu Touch, Android and iOS.
+Tawkie is a messaging consolidation and productivity app
+Find messages from:
+- Instagram
+- Messenger
+- WhatsApp
+- LinkedIn
+- Signal
+- Discord
 
-Open
-Opensource and open development where everyone can join.
+on our platform available on your mobile, tablet, computer, or as a web version. More messaging services coming very soon!
+We have also developed many features (some still in preparation 💅) to facilitate your messaging management:
+- Innovative filtering system to easily separate your different lives 🤯
+- Mark messages as unread to respond to them later 📩
+- Send DMs directly from Tawkie 📨
+- Dark mode to save your eyes 🦇
+- "Favorites" function so you don't miss messages from your closest contacts 💌
+- Customize the interface of your app 🎨
+- Connect multiple accounts from the same messaging service 👀
+- Keyboard shortcuts to optimize your experience ⏩️
+- Transcription of voice messages into text 🙊
+- ...
 
-Nonprofit
-FluffyChat is donation funded.
+Tawkie also features an internal messaging service that you can use to chat with other users!
 
-Cute ♥
-Cute design and many theme settings including a dark mode. 
+We are very attentive to the protection of our users' data. All your messages are encrypted, and we do not use or sell any information from your messages or account 🔒️
 
-One-to-one and groupchats
-Unlimited groups and direct chats.
+Our service is available for free for a 1-month trial, and then subscriptions vary depending on your commitment duration.
 
-Easy
-FluffyChat is made as simple to use as possible.
+As a very young startup, your feedback will be invaluable to us in perfecting the app ✨
 
-Free
-Free to use for everyone without ads.
-
-Decentralized
-There is no "FluffyChat server" you are forced to use. Use the server you find trustworthy or host your own.
-
-Compatible
-Compatible with Element, Fractal, Nekho and all matrix messengers.
-
-
-FluffyChat comes with a dream
-
-Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
-A world where there are no companies spying on you when you send selfies to friends and lovers.
-And a world where apps are made for fluffyness and not for profit. ♥
+We wish you a great journey into the world of all-in-one messaging 🚀
