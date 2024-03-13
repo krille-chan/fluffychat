@@ -21,7 +21,7 @@ class _PaywallState extends State<Paywall> {
   @override
   void initState() {
     super.initState();
-    checkEligibility(); // Vérification de l'éligibilité au chargement de la page
+    checkEligibility(); // Check eligibility for page load (iOS)
   }
 
   Future<void> checkEligibility() async {
@@ -29,7 +29,7 @@ class _PaywallState extends State<Paywall> {
       eligibilityMap = await PurchaseManager.checkTrialOrIntroductoryPriceEligibility(
           widget.offering.availablePackages.map((package) => package.identifier).toList());
 
-      // Mettez à jour l'interface utilisateur après avoir obtenu les résultats de l'éligibilité
+      // Mise à jour l'interface utilisateur après avoir obtenu les résultats de l'éligibilité
       setState(() {});
     } catch (e) {
       print('Error checking eligibility: $e');
