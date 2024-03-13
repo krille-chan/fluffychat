@@ -20,6 +20,22 @@ class _SubscriptionPageState extends State<SubscriptionView> {
     _fetchOfferings();
   }
 
+  // Function to retrieve translation based on package identifier
+  String getPackageTranslation(BuildContext context, String packageIdentifier) {
+    // Remove "$" symbols from package identifier
+    final packageIdentifierFormat = packageIdentifier.substring(1);
+    switch (packageIdentifierFormat) {
+      case 'rc_monthly':
+        return L10n.of(context)!.sub_monthly;
+      case 'rc_three_month':
+        return L10n.of(context)!.sub_three_month;
+      case 'rc_annual':
+        return L10n.of(context)!.sub_annual;
+      default:
+        return packageIdentifierFormat;
+    }
+  }
+
   Future<void> _fetchOfferings() async {
     try {
       final Offerings offerings = await Purchases.getOfferings();
@@ -70,24 +86,26 @@ class _SubscriptionPageState extends State<SubscriptionView> {
 
   Widget _buildSubscriptionList() {
     if (_loadingFailed) {
-      // Afficher un message d'erreur si le chargement des offres a échoué
+      // Error message displayed if bid upload failed
       return const Center(
         child:
             Text('Erreur réseau. Veuillez vérifier votre connexion internet.'),
       );
     } else if (_packages == null) {
-      // Afficher un indicateur de chargement si les packages ne sont pas encore chargés
       return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
-      // Afficher la liste des packages
+      // Display package list
       return ListView.builder(
         itemCount: _packages!.length,
         itemBuilder: (context, index) {
           final Package package = _packages![index];
           return ListTile(
-            title: Text(package.identifier),
+            title: Text(
+              getPackageTranslation(context, package.identifier),
+              style: const TextStyle(fontSize: 18),
+            ),
             subtitle: Text('Price: ${package.storeProduct.priceString}'),
             onTap: () {
               // Handle onTap to purchase package
