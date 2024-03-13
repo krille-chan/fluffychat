@@ -87,6 +87,7 @@ class LoginController extends State<Login> {
         ),
       );
 
+      print("Response update name: ${response.data}");
       if (response.statusCode == 200) {
         return 'success';
       } else {
