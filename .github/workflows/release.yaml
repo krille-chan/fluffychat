@@ -180,6 +180,48 @@ jobs:
           # fi
           cd ..
 
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'zulu'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Remove Emoji Font
+        run: |
+          rm -rf fonts/NotoEmoji
+          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - run: flutter pub get
+      - run: cd ios && pod install && cd ..
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1.138.0
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+      - name: Install Fastlane
+        run: gem install fastlane -NV
+
+      - name: Decode signing certificate into a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.IOS_DIST_SIGNING_KEY }}
+        run: |
+          cd ios && echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12 && cd ..
+
+      - name: Build & upload iOS binary
+        run: cd ios && fastlane beta
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.IOS_DIST_SIGNING_KEY_PASSWORD }}
+          SIGNING_KEY_FILE_PATH: signing-cert.p12
+
   # promote_snapcraft:
   #   runs-on: ubuntu-latest
   #   env:

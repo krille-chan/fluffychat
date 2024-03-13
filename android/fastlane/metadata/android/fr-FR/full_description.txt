@@ -1,0 +1,31 @@
+Tawkie est une application de centralisation des messages et de productivité
+Retrouvez les messages de :
+- Instagram
+- Messenger
+- WhatsApp
+- LinkedIn
+- Signal
+- Discord
+
+sur notre plateforme disponible sur votre mobile, tablette, ordinateur ou en version web. D'autres messageries sont à venir très prochainement !
+Nous avons également développé pleins de fonctionnalités (dont certaines encore en préparation 💅) pour faciliter votre gestion des messageries :
+- Système de filtrage innovant pour faciliter la séparation entre vos différentes vies 🤯
+- Remise des messages en non-lus pour y répondre plus tard 📩
+- Envoyer des DM  directement depuis Tawkie 📨
+- Black mode pour économiser vos yeux 🦇
+- Fonction "Favoris" pour ne pas rater les messages de vos très proches 💌
+- Personnalisation de l'interface de votre application 🎨
+- Connexion de plusieurs comptes d'une même messagerie 👀
+- Raccourcis clavier pour optimiser votre expérience  ⏩️
+- Retranscription des messages vocaux en texte 🙊
+- ...
+
+Tawkie dispose également d'une messagerie interne que vous pourrez utiliser pour discuter avec les autres utilisateur·rice·s !
+
+Nous sommes très attentifs à la protection des données de nos utilisateur·rice·s. L'ensemble de vos messages sont chiffrés et nous n'utilisons, ni ne revendons aucune information de vos messages ou de votre compte 🔒️
+
+Notre service est disponible gratuitement pour 1 mois d'essai puis les abonnements varient selon votre durée d'engagement.
+
+En tant que toute jeune start-up, vos feedback nous seront précieux pour perfectionner l'application ✨
+
+Nous vous souhaitons un bon voyage dans le monde du all-in-one messaging 🚀
