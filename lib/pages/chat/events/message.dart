@@ -396,15 +396,20 @@ class Message extends StatelessWidget {
               ),
             ),
           row,
-          if (showReceiptsRow)
-            Padding(
-              padding: EdgeInsets.only(
-                top: 4.0,
-                left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
-                right: 12.0,
-              ),
-              child: MessageReactions(event, timeline),
-            ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            child: !showReceiptsRow
+                ? const SizedBox.shrink()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      top: 4.0,
+                      left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+                      right: ownMessage ? 0 : 12.0,
+                    ),
+                    child: MessageReactions(event, timeline),
+                  ),
+          ),
           if (displayReadMarker)
             Row(
               children: [

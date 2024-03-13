@@ -43,9 +43,11 @@ class MessageReactions extends StatelessWidget {
 
     final reactionList = reactionMap.values.toList();
     reactionList.sort((a, b) => b.count - a.count > 0 ? 1 : -1);
+    final ownMessage = event.senderId == event.room.client.userID;
     return Wrap(
       spacing: 4.0,
       runSpacing: 4.0,
+      alignment: ownMessage ? WrapAlignment.end : WrapAlignment.start,
       children: [
         ...reactionList.map(
           (r) => _Reaction(
@@ -77,8 +79,8 @@ class MessageReactions extends StatelessWidget {
         ),
         if (allReactionEvents.any((e) => e.status.isSending))
           const SizedBox(
-            width: 28,
-            height: 28,
+            width: 24,
+            height: 24,
             child: Padding(
               padding: EdgeInsets.all(4.0),
               child: CircularProgressIndicator.adaptive(strokeWidth: 1),
@@ -91,17 +93,17 @@ class MessageReactions extends StatelessWidget {
 
 class _Reaction extends StatelessWidget {
   final String? reactionKey;
-  final int? count;
+  final int count;
   final bool? reacted;
   final void Function()? onTap;
   final void Function()? onLongPress;
 
   const _Reaction({
-    this.reactionKey,
-    this.count,
-    this.reacted,
-    this.onTap,
-    this.onLongPress,
+    required this.reactionKey,
+    required this.count,
+    required this.reacted,
+    required this.onTap,
+    required this.onLongPress,
   });
 
   @override
@@ -109,7 +111,7 @@ class _Reaction extends StatelessWidget {
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
-    final color = Theme.of(context).scaffoldBackgroundColor;
+    final color = Theme.of(context).colorScheme.background;
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
     Widget content;
     if (reactionKey!.startsWith('mxc://')) {
@@ -121,14 +123,16 @@ class _Reaction extends StatelessWidget {
             width: 9999,
             height: fontSize,
           ),
-          const SizedBox(width: 4),
-          Text(
-            count.toString(),
-            style: TextStyle(
-              color: textColor,
-              fontSize: DefaultTextStyle.of(context).style.fontSize,
+          if (count > 1) ...[
+            const SizedBox(width: 4),
+            Text(
+              count.toString(),
+              style: TextStyle(
+                color: textColor,
+                fontSize: DefaultTextStyle.of(context).style.fontSize,
+              ),
             ),
-          ),
+          ],
         ],
       );
     } else {
@@ -137,7 +141,7 @@ class _Reaction extends StatelessWidget {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
       content = Text(
-        '$renderKey $count',
+        renderKey.toString() + (count > 1 ? ' $count' : ''),
         style: TextStyle(
           color: textColor,
           fontSize: DefaultTextStyle.of(context).style.fontSize,
@@ -147,19 +151,19 @@ class _Reaction extends StatelessWidget {
     return InkWell(
       onTap: () => onTap != null ? onTap!() : null,
       onLongPress: () => onLongPress != null ? onLongPress!() : null,
-      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          border: reacted!
-              ? Border.all(
-                  width: 1,
-                  color: Theme.of(context).colorScheme.primary,
-                )
-              : null,
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          border: Border.all(
+            width: 1,
+            color: reacted!
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.primaryContainer,
+          ),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
         child: content,
       ),
     );
