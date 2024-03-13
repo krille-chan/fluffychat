@@ -2547,5 +2547,8 @@
   "slide_two": "We are a little start-up but with strong values.",
   "slide_three": "Thank you to be one of the first to use Tawkie. Your feed bach with be gold for us.",
   "slide_four": "Enjoy your all-in-one messaging journey.",
-  "subscription": "Subscription"
+  "subscription": "Subscription",
+  "sub_monthly": "Monthly Subscription",
+  "sub_three_month": "Three-Month Subscription",
+  "sub_annual": "Annual Subscription"
 }

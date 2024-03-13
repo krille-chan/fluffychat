@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/subscription/subscription_view.dart';
 import 'login.dart';
 
@@ -16,6 +17,33 @@ class ChangeUsernamePage extends StatefulWidget {
 class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
+
+  Future<void> _checkSubscriptionStatusAndRedirect() async {
+    try {
+      // Retrieve customer information
+      final CustomerInfo customerInfo = await Purchases
+          .getCustomerInfo(); // Remarquez le `?` pour rendre customerInfo nullable
+      print(customerInfo);
+      if (customerInfo.entitlements.all["tawkie_sub"]!.isActive) {
+        // User is already subscribed, do not redirect to SubscriptionView
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Vous êtes déjà abonné."),
+        ));
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SubscriptionView()),
+        );
+      }
+    } catch (e) {
+      print("Error checking subscription status: $e");
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content:
+            Text("Erreur lors de la vérification du statut de l'abonnement."),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,10 +123,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 if (result == 'success') {
                   if (widget.queueStatus['userState'] == 'IN_QUEUE') {
                   } else if (widget.queueStatus['userState'] == 'ACCEPTED') {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => const SubscriptionView(),
-                    );
+                    await _checkSubscriptionStatusAndRedirect();
                   }
                 } else {}
               },
