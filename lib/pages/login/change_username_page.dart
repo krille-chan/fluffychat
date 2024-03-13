@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:tawkie/pages/subscription/subscription_view.dart';
+import 'package:tawkie/pages/subscription/model/style.dart';
+import 'package:tawkie/pages/subscription/paywall.dart';
 import 'login.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
@@ -18,30 +20,44 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
 
-  Future<void> _checkSubscriptionStatusAndRedirect() async {
-    try {
-      // Retrieve customer information
-      final CustomerInfo customerInfo = await Purchases
-          .getCustomerInfo(); // Remarquez le `?` pour rendre customerInfo nullable
-      print(customerInfo);
-      if (customerInfo.entitlements.all["tawkie_sub"]!.isActive) {
-        // User is already subscribed, do not redirect to SubscriptionView
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Vous êtes déjà abonné."),
-        ));
+  void _checkSubscriptionStatusAndRedirect() async {
+
+    CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+
+    if (customerInfo.entitlements.all['tawkie_sub'] != null &&
+        customerInfo.entitlements.all['tawkie_sub']?.isActive == true) {
+
+    } else {
+      Offerings? offerings;
+      try {
+        offerings = await Purchases.getOfferings();
+      } on PlatformException catch (e) {
+        print(e.message);
+      }
+
+      if (offerings == null || offerings.current == null) {
+        // offerings are empty, show a message to user
       } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SubscriptionView()),
+        // current offering is available, show paywall
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          isDismissible: true,
+          isScrollControlled: true,
+          backgroundColor: kColorBackground,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          ),
+          context: context,
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+                builder: (BuildContext context, StateSetter setModalState) {
+                  return Paywall(
+                    offering: offerings!.current!,
+                  );
+                });
+          },
         );
       }
-    } catch (e) {
-      print("Error checking subscription status: $e");
-
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text("Erreur lors de la vérification du statut de l'abonnement."),
-      ));
     }
   }
 
@@ -122,8 +138,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 print("Result: $result");
                 if (result == 'success') {
                   if (widget.queueStatus['userState'] == 'IN_QUEUE') {
+                    _checkSubscriptionStatusAndRedirect();
                   } else if (widget.queueStatus['userState'] == 'ACCEPTED') {
-                    await _checkSubscriptionStatusAndRedirect();
+                    _checkSubscriptionStatusAndRedirect();
                   }
                 } else {}
               },
