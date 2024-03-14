@@ -57,7 +57,7 @@ jobs:
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+        run: ./scripts/enable-google-services.sh
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
