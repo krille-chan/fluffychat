@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/config/themes.dart';
-
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'login.dart';
@@ -14,14 +12,6 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeserver = Matrix.of(context)
-        .getLoginClient()
-        .homeserver
-        .toString()
-        .replaceFirst('https://', '');
-    final title = L10n.of(context)!.logInTo(homeserver);
-    final titleParts = title.split(homeserver);
-
     final textFieldFillColor = FluffyThemes.isColumnMode(context)
         ? Theme.of(context).colorScheme.background
         : Theme.of(context).colorScheme.surfaceVariant;
@@ -32,19 +22,6 @@ class LoginView extends StatelessWidget {
         leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
       ),
       body: Builder(
         builder: (context) {
@@ -60,7 +37,6 @@ class LoginView extends StatelessWidget {
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
-                    onChanged: controller.checkWellKnownWithCoolDown,
                     controller: controller.usernameController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
@@ -126,7 +102,9 @@ class LoginView extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: controller.loading
                         ? () {}
-                        : controller.passwordForgotten,
+                        : () {
+                            //controller.passwordForgotten
+                          },
                     style: TextButton.styleFrom(
                       foregroundColor: Theme.of(context).colorScheme.error,
                     ),
