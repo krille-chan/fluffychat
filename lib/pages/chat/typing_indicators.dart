@@ -70,10 +70,7 @@ class TypingIndicators extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: topPadding),
               child: Material(
-                color: Theme.of(context).appBarTheme.backgroundColor,
-                elevation: 6,
-                shadowColor:
-                    Theme.of(context).secondaryHeaderColor.withAlpha(100),
+                color: Theme.of(context).colorScheme.surfaceVariant,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(2),
                   topRight: Radius.circular(AppConfig.borderRadius),
@@ -87,7 +84,7 @@ class TypingIndicators extends StatelessWidget {
                       : Image.asset(
                           'assets/typing.gif',
                           height: 30,
-                          filterQuality: FilterQuality.medium,
+                          filterQuality: FilterQuality.high,
                         ),
                 ),
               ),
