@@ -65,7 +65,7 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  matrix: ^0.26.0
+  matrix: ^0.26.1
   native_imaging: ^0.1.0
   package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
