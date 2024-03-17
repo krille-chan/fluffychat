@@ -2483,5 +2483,7 @@
     "transparent": "Transparent",
     "incomingMessages": "Incoming messages",
     "stickers": "Stickers",
-    "discover": "Discover"
+    "discover": "Discover",
+    "commandHint_ignore": "Ignore the given matrix ID",
+    "commandHint_unignore": "Unignore the given matrix ID"
 }
