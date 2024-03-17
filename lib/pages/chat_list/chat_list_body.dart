@@ -54,7 +54,7 @@ class ChatListViewBody extends StatelessWidget {
           animation: primaryAnimation,
           secondaryAnimation: secondaryAnimation,
           transitionType: SharedAxisTransitionType.vertical,
-          fillColor: Theme.of(context).scaffoldBackgroundColor,
+          fillColor: Theme.of(context).colorScheme.background,
           child: child,
         );
       },

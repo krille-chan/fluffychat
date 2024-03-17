@@ -57,10 +57,6 @@ class PinnedEvents extends StatelessWidget {
   Widget build(BuildContext context) {
     final pinnedEventIds = controller.room.pinnedEventIds;
 
-    if (pinnedEventIds.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
     return FutureBuilder<Event?>(
       future: controller.room.getEventById(pinnedEventIds.last),
       builder: (context, snapshot) {

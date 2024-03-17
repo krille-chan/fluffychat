@@ -131,7 +131,13 @@ class ChatListView extends StatelessWidget {
                         .toList();
                     final destinations = getNavigationDestinations(context);
 
-                    return SizedBox(
+                    return Container(
+                      margin: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondaryContainer,
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius),
+                      ),
                       width: FluffyThemes.navRailWidth,
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
@@ -170,10 +176,6 @@ class ChatListView extends StatelessWidget {
                       ),
                     );
                   },
-                ),
-                Container(
-                  color: Theme.of(context).dividerColor,
-                  width: 1,
                 ),
               ],
               Expanded(

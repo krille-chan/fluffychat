@@ -15,6 +15,7 @@ class TwoColumnLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldMessenger(
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Row(
           children: [
             Container(
@@ -23,12 +24,9 @@ class TwoColumnLayout extends StatelessWidget {
               width: 360.0 + (displayNavigationRail ? 64 : 0),
               child: mainView,
             ),
-            Container(
-              width: 1.0,
-              color: Theme.of(context).dividerColor,
-            ),
             Expanded(
               child: ClipRRect(
+                clipBehavior: Clip.hardEdge,
                 child: sideView,
               ),
             ),
