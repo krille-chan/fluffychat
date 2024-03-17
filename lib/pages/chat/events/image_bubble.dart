@@ -15,8 +15,8 @@ class ImageBubble extends StatelessWidget {
   final Color? backgroundColor;
   final bool thumbnailOnly;
   final bool animated;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
 
@@ -25,7 +25,7 @@ class ImageBubble extends StatelessWidget {
     this.tapToView = true,
     this.maxSize = true,
     this.backgroundColor,
-    this.fit = BoxFit.cover,
+    this.fit = BoxFit.contain,
     this.thumbnailOnly = true,
     this.width = 400,
     this.height = 300,
@@ -98,8 +98,8 @@ class ImageBubble extends StatelessWidget {
           child: ConstrainedBox(
             constraints: maxSize
                 ? BoxConstraints(
-                    maxWidth: width,
-                    maxHeight: height,
+                    maxWidth: width ?? double.infinity,
+                    maxHeight: height ?? double.infinity,
                   )
                 : const BoxConstraints.expand(),
             child: MxcImage(

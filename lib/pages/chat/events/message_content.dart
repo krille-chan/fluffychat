@@ -106,11 +106,22 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
+            const width = 200;
+            const ratio = 2.0;
+            final w = event.content
+                    .tryGetMap<String, Object?>('info')
+                    ?.tryGet<int>('w') ??
+                width;
+            final h = event.content
+                    .tryGetMap<String, Object?>('info')
+                    ?.tryGet<int>('h') ??
+                width;
+            final overRatio = h > w * ratio;
             return ImageBubble(
               event,
-              width: 400,
-              height: 300,
-              fit: BoxFit.cover,
+              height: overRatio ? width * ratio : null,
+              width: width.toDouble(),
+              fit: overRatio ? BoxFit.cover : BoxFit.contain,
               borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:
