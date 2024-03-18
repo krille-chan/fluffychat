@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
@@ -21,6 +22,11 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     return database;
   } catch (e) {
     // #Pangea
+    ErrorHandler.logError(
+      e: e,
+      m: 'Unable to init database',
+      s: StackTrace.current,
+    );
     // Try to delete database so that it can created again on next init:
     // database?.delete().catchError(
     //       (e, s) => Logs().w(
