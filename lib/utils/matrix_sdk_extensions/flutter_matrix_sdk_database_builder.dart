@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,36 +13,39 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart' as ffi;
 import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-
 Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
   MatrixSdkDatabase? database;
   try {
     database = await _constructDatabase(client);
+    // throw "error";
     await database.open();
     return database;
   } catch (e) {
+    // #Pangea
+    ErrorHandler.logError(
+      e: e,
+      m: 'Unable to init database',
+      s: StackTrace.current,
+    );
     // Try to delete database so that it can created again on next init:
-    database?.delete().catchError(
-          (e, s) => Logs().w(
-            'Unable to delete database, after failed construction',
-            e,
-            s,
-          ),
-        );
+    // database?.delete().catchError(
+    //       (e, s) => Logs().w(
+    //         'Unable to delete database, after failed construction',
+    //         e,
+    //         s,
+    //       ),
+    //     );
 
     // Send error notification:
-    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-    ClientManager.sendInitNotification(
-      l10n.initAppError,
-      l10n.databaseBuildErrorBody(
-        AppConfig.newIssueUrl.toString(),
-        e.toString(),
-      ),
-    );
+    // final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+    // ClientManager.sendInitNotification(
+    //   l10n.initAppError,
+    //   l10n.databaseBuildErrorBody(
+    //     AppConfig.newIssueUrl.toString(),
+    //     e.toString(),
+    //   ),
+    // );
+    // Pangea#
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }

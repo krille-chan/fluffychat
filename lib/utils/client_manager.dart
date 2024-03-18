@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -122,7 +121,9 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
-      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      // #Pangea
+      // legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      // Pangea#
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
