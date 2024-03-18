@@ -37,7 +37,8 @@ class LoginController extends State<Login> {
   bool loading = false;
   bool showPassword = false;
   final Dio dio =
-      Dio(BaseOptions(baseUrl: 'https://staging.tawkie.fr/panel/api/.ory'));
+      Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
+  // TODO if debug build, use staging
 
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
@@ -201,8 +202,9 @@ class LoginController extends State<Login> {
     setState(() => loading = true);
 
     try {
+      // TODO use baseUrl
       final responseMatrix = await dio.get(
-        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/getMatrixToken',
+        'https://tawkie.fr/panel/api/mobile-matrix-auth/getMatrixToken',
         options: Options(
           headers: {
             'X-Session-Token': sessionToken,
@@ -214,6 +216,15 @@ class LoginController extends State<Login> {
 
       final String matrixLoginJwt = responseData['matrixLoginJwt'];
       final String serverName = responseData['serverName'];
+
+      // TODO handle errors correctly if not caught and displayed
+      if (!matrixLoginJwt.startsWith('ey')) {
+        throw Exception('Server did not return a valid JWT');
+      }
+
+      if (serverName.isEmpty) {
+        throw Exception('Server did not return a valid server name');
+      }
 
       var homeserver = Uri.parse(serverName);
       if (homeserver.scheme.isEmpty) {
@@ -229,7 +240,8 @@ class LoginController extends State<Login> {
         );
       }
 
-      const url = 'https://matrix.staging.tawkie.fr/_matrix/client/r0/login';
+      // TODO use homeserver variable
+      final url = 'https://' + serverName + '/_matrix/client/r0/login';
       final headers = {'Content-Type': 'application/json'};
       final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
 
