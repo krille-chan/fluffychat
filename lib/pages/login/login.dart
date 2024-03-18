@@ -21,6 +21,9 @@ class Login extends StatefulWidget {
   LoginController createState() => LoginController();
 }
 
+// TODO every API call should be in a try/catch block with appropriate error handling
+// Endpoints will usually return a more specific error message
+
 class LoginController extends State<Login> {
   Map<String, dynamic>? _rawLoginTypes;
   HomeserverSummary? loginHomeserverSummary;
@@ -46,6 +49,8 @@ class LoginController extends State<Login> {
       setState(() => showPassword = !loading && !showPassword);
 
   Future<void> storeSessionToken(String? sessionToken) async {
+    // TODO this function is ambiguous because it does multiple things
+    // with a name implying a single action
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
 
@@ -77,8 +82,9 @@ class LoginController extends State<Login> {
     try {
       String? sessionToken = await _secureStorage.read(key: 'sessionToken');
 
+      // TODO use baseUrl
       final response = await dio.post(
-        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
+        'https://tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
         data: {'username': newUsername},
         options: Options(
           headers: {
@@ -129,12 +135,14 @@ class LoginController extends State<Login> {
     try {
       // Initialize API connection flow
       final frontendApi = kratosClient.getFrontendApi();
+      print('Successfully initialized Kratos API');
       Response<kratos.LoginFlow> response;
       if (PlatformInfos.isWeb) {
         response = await frontendApi.createBrowserLoginFlow();
       } else {
         response = await frontendApi.createNativeLoginFlow();
       }
+      print('Successfully created login flow');
 
       // Retrieve action URL from connection flow
       final actionUrl = response.data?.ui.action;
@@ -159,17 +167,28 @@ class LoginController extends State<Login> {
           ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
       );
 
+      print('Before sending POST request to update login flow with user credentials');
+
       // Sends a POST request with user credentials
       final loginResponse = await frontendApi.updateLoginFlow(
           flow: response.data!.id, updateLoginFlowBody: updateLoginFlowBody);
+      print('Successfully updated login flow with user credentials');
 
       // Processing the response to obtain the connection session token
       final sessionToken = loginResponse.data?.sessionToken;
+
+      print('Session token: $sessionToken');
 
       // Store the session token
       return await storeSessionToken(sessionToken);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
+      return setState(() => loading = false);
+    } on DioError catch (e) {
+      print("Exception when calling Kratos log: $e\n");
+      Logs().v("Error Kratos login : ${e.response?.data}");
+      //print(e.response?.data.details);
+      setState(() => passwordError = "Dio error with Kratos");
       return setState(() => loading = false);
     } catch (exception) {
       print(exception);
@@ -181,8 +200,9 @@ class LoginController extends State<Login> {
   Timer? _coolDown;
 
   Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
+    // TODO use baseUrl
     final responseQueueStatus = await dio.get(
-      'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/getQueueStatus',
+      'https://tawkie.fr/panel/api/mobile-matrix-auth/getQueueStatus',
       options: Options(
         headers: {
           'X-Session-Token': sessionToken,
