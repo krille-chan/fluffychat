@@ -17,7 +17,6 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
   MatrixSdkDatabase? database;
   try {
     database = await _constructDatabase(client);
-    // throw "error";
     await database.open();
     return database;
   } catch (e) {
