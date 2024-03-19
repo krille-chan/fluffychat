@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
@@ -40,47 +41,66 @@ class LoginController extends State<Login> {
   String? passwordError;
   bool loading = false;
   bool showPassword = false;
-  final Dio dio = Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
-  // TODO if debug build, use staging
-
+  String baseUrl =
+      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+  late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  @override
+  void initState() {
+    super.initState();
+    dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
+  }
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
   Future<void> storeSessionToken(String? sessionToken) async {
-    // TODO this function is ambiguous because it does multiple things
-    // with a name implying a single action
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
-
-      // Once the session token has been stored, launch login
-      final Map<String, dynamic> queueStatus =
-          await getQueueStatus(sessionToken);
-
-      // Checking the three userState possibilities
-      if (queueStatus['userState'] == 'CREATED') {
-        final bool isSubscribed = SubscriptionManager.isSubscribed();
-        if (isSubscribed) {
-          await loginWithSessionToken(sessionToken);
-        } else {
-          SubscriptionManager().checkSubscriptionStatusAndRedirect(context);
-        }
-      } else if (queueStatus['userState'] == 'IN_QUEUE' ||
-          queueStatus['userState'] == 'ACCEPTED') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                ChangeUsernamePage(queueStatus: queueStatus, controller: this),
-          ),
-        );
-        print('IN_QUEUE/ACCEPTED');
-      } else {
-        // If the state is not one of the expected states
-        print('User is in an unexpected state : ${queueStatus['userState']}');
-      }
+      await handleSessionToken(sessionToken);
     }
+  }
+
+  Future<void> handleSessionToken(String sessionToken) async {
+    final Map<String, dynamic> queueStatus = await getQueueStatus(sessionToken);
+    final String userState = queueStatus['userState'];
+
+    if (userState == 'CREATED') {
+      await handleUserCreated(queueStatus, sessionToken);
+    } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
+      handleUserInQueueOrAccepted(queueStatus);
+    } else {
+      handleUnexpectedUserState(userState);
+    }
+  }
+
+  Future<void> handleUserCreated(
+      Map<String, dynamic> queueStatus, String sessionToken) async {
+    final bool isSubscribed = SubscriptionManager.isSubscribed();
+
+    if (isSubscribed) {
+      await loginWithSessionToken(sessionToken);
+    } else {
+      SubscriptionManager().checkSubscriptionStatusAndRedirect(context);
+    }
+  }
+
+  void handleUserInQueueOrAccepted(Map<String, dynamic> queueStatus) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeUsernamePage(
+          queueStatus: queueStatus,
+          controller: this,
+        ),
+      ),
+    );
+    print('IN_QUEUE/ACCEPTED');
+  }
+
+  void handleUnexpectedUserState(String userState) {
+    print('User is in an unexpected state : $userState');
   }
 
   Future<String> changeUserNameOry(String newUsername) async {
@@ -89,7 +109,7 @@ class LoginController extends State<Login> {
 
       // TODO use baseUrl
       final response = await dio.post(
-        'https://tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
+        '${baseUrl}panel/api/mobile-matrix-auth/updateUsername',
         data: {'username': newUsername},
         options: Options(
           headers: {
@@ -208,7 +228,7 @@ class LoginController extends State<Login> {
   Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
     // TODO use baseUrl
     final responseQueueStatus = await dio.get(
-      'https://tawkie.fr/panel/api/mobile-matrix-auth/getQueueStatus',
+      '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
       options: Options(
         headers: {
           'X-Session-Token': sessionToken,
@@ -230,7 +250,7 @@ class LoginController extends State<Login> {
     try {
       // TODO use baseUrl
       final responseMatrix = await dio.get(
-        'https://tawkie.fr/panel/api/mobile-matrix-auth/getMatrixToken',
+        '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
         options: Options(
           headers: {
             'X-Session-Token': sessionToken,
