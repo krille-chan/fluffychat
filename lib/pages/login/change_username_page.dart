@@ -98,11 +98,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 print("Result: $result");
                 if (result == 'success') {
                   if (widget.queueStatus['userState'] == 'IN_QUEUE') {
-                    SubscriptionManager()
-                        .checkSubscriptionStatusAndRedirect(context);
+                    SubscriptionManager().presentPaywall();
                   } else if (widget.queueStatus['userState'] == 'ACCEPTED') {
-                    SubscriptionManager()
-                        .checkSubscriptionStatusAndRedirect(context);
+                    SubscriptionManager().presentPaywall();
                   }
                 } else {}
               },

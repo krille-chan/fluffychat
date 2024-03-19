@@ -1,25 +1,23 @@
 package fr.tawkie.app
 
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.engine.FlutterEngine
-
 import android.content.Context
 import androidx.multidex.MultiDex
+import io.flutter.embedding.android.FlutterFragmentActivity
+import io.flutter.embedding.engine.FlutterEngine
 
-class MainActivity : FlutterActivity() {
+class MainActivity : FlutterFragmentActivity() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
 
-
     override fun provideFlutterEngine(context: Context): FlutterEngine? {
         return provideEngine(this)
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
-        // do nothing, because the engine was been configured in provideEngine
+        // ne rien faire, car le moteur a été configuré dans provideEngine
     }
 
     companion object {

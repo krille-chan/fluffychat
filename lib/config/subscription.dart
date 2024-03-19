@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:developer';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/subscription/model/style.dart';
 import 'package:tawkie/pages/subscription/paywall.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 class SubscriptionManager {
   static bool _isSubscribed = false;
@@ -34,6 +36,17 @@ class SubscriptionManager {
   static bool isSubscribed() {
     // Resend subscription status
     return _isSubscribed;
+  }
+
+  void presentPaywall() async {
+    final paywallResult = await RevenueCatUI.presentPaywall();
+    log('Paywall result: $paywallResult');
+  }
+
+  void presentPaywallIfNeeded() async {
+    final paywallResult =
+        await RevenueCatUI.presentPaywallIfNeeded("tawkie_sub");
+    log('Paywall result: $paywallResult');
   }
 
   void checkSubscriptionStatusAndRedirect(BuildContext context) async {

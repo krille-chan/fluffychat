@@ -50,6 +50,13 @@ class LoginController extends State<Login> {
   void initState() {
     super.initState();
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
+
+    // Check if sessionToken exists and handle it
+    getSessionToken().then((sessionToken) {
+      if (sessionToken != null) {
+        handleSessionToken(sessionToken);
+      }
+    });
   }
 
   void toggleShowPassword() =>
@@ -82,7 +89,7 @@ class LoginController extends State<Login> {
     if (isSubscribed) {
       await loginWithSessionToken(sessionToken);
     } else {
-      SubscriptionManager().checkSubscriptionStatusAndRedirect(context);
+      SubscriptionManager().presentPaywallIfNeeded();
     }
   }
 
@@ -107,7 +114,6 @@ class LoginController extends State<Login> {
     try {
       String? sessionToken = await _secureStorage.read(key: 'sessionToken');
 
-      // TODO use baseUrl
       final response = await dio.post(
         '${baseUrl}panel/api/mobile-matrix-auth/updateUsername',
         data: {'username': newUsername},
@@ -226,7 +232,6 @@ class LoginController extends State<Login> {
   Timer? _coolDown;
 
   Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
-    // TODO use baseUrl
     final responseQueueStatus = await dio.get(
       '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
       options: Options(
@@ -248,7 +253,6 @@ class LoginController extends State<Login> {
     setState(() => loading = true);
 
     try {
-      // TODO use baseUrl
       final responseMatrix = await dio.get(
         '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
         options: Options(
@@ -287,7 +291,7 @@ class LoginController extends State<Login> {
       }
 
       // TODO use homeserver variable
-      final url = 'https://' + serverName + '/_matrix/client/r0/login';
+      final url = 'https://$serverName/_matrix/client/r0/login';
       final headers = {'Content-Type': 'application/json'};
       final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
 
