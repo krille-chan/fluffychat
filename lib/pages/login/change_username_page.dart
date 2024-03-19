@@ -26,7 +26,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
     if (customerInfo.entitlements.all['tawkie_sub'] != null &&
         customerInfo.entitlements.all['tawkie_sub']?.isActive == true) {
-
+      // Connect to Matrix
     } else {
       Offerings? offerings;
       try {

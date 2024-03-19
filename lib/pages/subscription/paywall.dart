@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:tawkie/pages/subscription/purchase_manager.dart';
 
 import 'model/singletons_data.dart';
 import 'model/style.dart';
@@ -16,7 +15,7 @@ class Paywall extends StatefulWidget {
 
 
 class _PaywallState extends State<Paywall> {
-  Map<String, IntroEligibility> eligibilityMap = {};
+  Map<String, IntroEligibilityStatus> eligibilityStatusMap = {};
 
   @override
   void initState() {
@@ -26,18 +25,48 @@ class _PaywallState extends State<Paywall> {
 
   Future<void> checkEligibility() async {
     try {
-      eligibilityMap = await PurchaseManager.checkTrialOrIntroductoryPriceEligibility(
-          widget.offering.availablePackages.map((package) => package.identifier).toList());
+      // Check eligibility with available product identifiers
+      final Map<String, IntroEligibility> eligibilityMap = await Purchases.checkTrialOrIntroductoryPriceEligibility(
+        widget.offering.availablePackages.map((package) => package.identifier).toList(),
+      );
 
-      // Mise à jour l'interface utilisateur après avoir obtenu les résultats de l'éligibilité
-      setState(() {});
+      print(eligibilityMap);
+
+      // Check if the user is eligible for the trial period for all available offers
+      bool allEligible = true;
+      for (var package in widget.offering.availablePackages) {
+        print(eligibilityMap[package.identifier]?.status);
+        var eligibility = eligibilityMap[package.identifier]?.status ?? IntroEligibilityStatus.introEligibilityStatusUnknown;
+        if (eligibility != IntroEligibilityStatus.introEligibilityStatusEligible) {
+          allEligible = false;
+          break;
+        }
+      }
+
+      // MAJ interface
+      setState(() {
+        if (allEligible) {
+          eligibilityStatusMap = Map.fromIterable(
+            eligibilityMap.entries,
+            key: (entry) => entry.key,
+            value: (entry) => entry.value.status,
+          );
+        } else {
+          eligibilityStatusMap.clear();
+        }
+      });
     } catch (e) {
       print('Error checking eligibility: $e');
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    
+    bool isEligibleForAll = eligibilityStatusMap.isNotEmpty;
+
+    print("Eligibilité: $isEligibleForAll");
     return SingleChildScrollView(
       child: SafeArea(
         child: Wrap(
@@ -56,7 +85,7 @@ class _PaywallState extends State<Paywall> {
                       Flexible(
                           child: Image.asset('assets/logo.png',),
                     ),
-                      Text('✨Tawkie', style: kTitleTextStyle)
+                      Text('Tawkie', style: kTitleTextStyle)
                     ],
                   )
                   ),
@@ -81,13 +110,14 @@ class _PaywallState extends State<Paywall> {
                   child: ListTile(
                       onTap: () async {
                         try {
-                          CustomerInfo customerInfo =
+                          final CustomerInfo customerInfo =
                           await Purchases.purchasePackage(
                               myProductList[index]);
-                          EntitlementInfo? entitlement =
+                          final EntitlementInfo? entitlement =
                           customerInfo.entitlements.all['tawkie_sub'];
                           appData.entitlementIsActive =
                               entitlement?.isActive ?? false;
+
                         } catch (e) {
                           print(e);
                         }
@@ -112,6 +142,9 @@ class _PaywallState extends State<Paywall> {
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
             ),
+            isEligibleForAll
+            ?Text("Vous êtes éligible à un mois d'essai")
+            :Container(),
             const Padding(
               padding:
               EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
