@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
 import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'change_username_page.dart';
@@ -39,8 +40,7 @@ class LoginController extends State<Login> {
   String? passwordError;
   bool loading = false;
   bool showPassword = false;
-  final Dio dio =
-      Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
+  final Dio dio = Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
   // TODO if debug build, use staging
 
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
@@ -60,7 +60,12 @@ class LoginController extends State<Login> {
 
       // Checking the three userState possibilities
       if (queueStatus['userState'] == 'CREATED') {
-        await loginWithSessionToken(sessionToken);
+        final bool isSubscribed = SubscriptionManager.isSubscribed();
+        if (isSubscribed) {
+          await loginWithSessionToken(sessionToken);
+        } else {
+          SubscriptionManager().checkSubscriptionStatusAndRedirect(context);
+        }
       } else if (queueStatus['userState'] == 'IN_QUEUE' ||
           queueStatus['userState'] == 'ACCEPTED') {
         Navigator.push(
@@ -167,7 +172,8 @@ class LoginController extends State<Login> {
           ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
       );
 
-      print('Before sending POST request to update login flow with user credentials');
+      print(
+          'Before sending POST request to update login flow with user credentials');
 
       // Sends a POST request with user credentials
       final loginResponse = await frontendApi.updateLoginFlow(

@@ -10,9 +10,8 @@ class Paywall extends StatefulWidget {
   const Paywall({super.key, required this.offering});
 
   @override
-  State<Paywall>  createState() => _PaywallState();
+  State<Paywall> createState() => _PaywallState();
 }
-
 
 class _PaywallState extends State<Paywall> {
   Map<String, IntroEligibilityStatus> eligibilityStatusMap = {};
@@ -26,8 +25,11 @@ class _PaywallState extends State<Paywall> {
   Future<void> checkEligibility() async {
     try {
       // Check eligibility with available product identifiers
-      final Map<String, IntroEligibility> eligibilityMap = await Purchases.checkTrialOrIntroductoryPriceEligibility(
-        widget.offering.availablePackages.map((package) => package.identifier).toList(),
+      final Map<String, IntroEligibility> eligibilityMap =
+          await Purchases.checkTrialOrIntroductoryPriceEligibility(
+        widget.offering.availablePackages
+            .map((package) => package.identifier)
+            .toList(),
       );
 
       print(eligibilityMap);
@@ -36,8 +38,10 @@ class _PaywallState extends State<Paywall> {
       bool allEligible = true;
       for (var package in widget.offering.availablePackages) {
         print(eligibilityMap[package.identifier]?.status);
-        var eligibility = eligibilityMap[package.identifier]?.status ?? IntroEligibilityStatus.introEligibilityStatusUnknown;
-        if (eligibility != IntroEligibilityStatus.introEligibilityStatusEligible) {
+        var eligibility = eligibilityMap[package.identifier]?.status ??
+            IntroEligibilityStatus.introEligibilityStatusUnknown;
+        if (eligibility !=
+            IntroEligibilityStatus.introEligibilityStatusEligible) {
           allEligible = false;
           break;
         }
@@ -60,10 +64,8 @@ class _PaywallState extends State<Paywall> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    
     bool isEligibleForAll = eligibilityStatusMap.isNotEmpty;
 
     print("Eligibilité: $isEligibleForAll");
@@ -77,22 +79,23 @@ class _PaywallState extends State<Paywall> {
               decoration: const BoxDecoration(
                   color: kColorNavIcon,
                   borderRadius:
-                  BorderRadius.vertical(top: Radius.circular(25.0))),
+                      BorderRadius.vertical(top: Radius.circular(25.0))),
               child: Center(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                          child: Image.asset('assets/logo.png',),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Image.asset(
+                      'assets/logo.png',
                     ),
-                      Text('Tawkie', style: kTitleTextStyle)
-                    ],
-                  )
                   ),
+                  Text('Tawkie', style: kTitleTextStyle)
+                ],
+              )),
             ),
             const Padding(
               padding:
-              EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
+                  EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
               child: SizedBox(
                 child: Text(
                   'Tawkie Subscription',
@@ -111,13 +114,12 @@ class _PaywallState extends State<Paywall> {
                       onTap: () async {
                         try {
                           final CustomerInfo customerInfo =
-                          await Purchases.purchasePackage(
-                              myProductList[index]);
+                              await Purchases.purchasePackage(
+                                  myProductList[index]);
                           final EntitlementInfo? entitlement =
-                          customerInfo.entitlements.all['tawkie_sub'];
+                              customerInfo.entitlements.all['tawkie_sub'];
                           appData.entitlementIsActive =
                               entitlement?.isActive ?? false;
-
                         } catch (e) {
                           print(e);
                         }
@@ -143,11 +145,11 @@ class _PaywallState extends State<Paywall> {
               physics: const ClampingScrollPhysics(),
             ),
             isEligibleForAll
-            ?Text("Vous êtes éligible à un mois d'essai")
-            :Container(),
+                ? Text("Vous êtes éligible à un mois d'essai")
+                : Container(),
             const Padding(
               padding:
-              EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
+                  EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
               child: SizedBox(
                 child: Text(
                   """Don't forget to add subscription terms and conditions. 
