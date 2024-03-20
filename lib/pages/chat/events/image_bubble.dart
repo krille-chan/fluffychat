@@ -15,8 +15,8 @@ class ImageBubble extends StatelessWidget {
   final Color? backgroundColor;
   final bool thumbnailOnly;
   final bool animated;
-  final double? width;
-  final double? height;
+  final double width;
+  final double height;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
 
@@ -45,8 +45,8 @@ class ImageBubble extends StatelessWidget {
       height: height,
       child: BlurHash(
         hash: blurHashString,
-        decodingWidth: width?.round() ?? 64,
-        decodingHeight: height?.round() ?? 64,
+        decodingWidth: width.round(),
+        decodingHeight: height.round(),
         imageFit: fit,
       ),
     );
@@ -83,22 +83,14 @@ class ImageBubble extends StatelessWidget {
         borderRadius: borderRadius,
         child: Hero(
           tag: event.eventId,
-          child: ConstrainedBox(
-            constraints: maxSize
-                ? BoxConstraints(
-                    maxWidth: width ?? double.infinity,
-                    maxHeight: height ?? double.infinity,
-                  )
-                : const BoxConstraints.expand(),
-            child: MxcImage(
-              event: event,
-              width: width,
-              height: height,
-              fit: fit,
-              animated: animated,
-              isThumbnail: thumbnailOnly,
-              placeholder: _buildPlaceholder,
-            ),
+          child: MxcImage(
+            event: event,
+            width: width,
+            height: height,
+            fit: fit,
+            animated: animated,
+            isThumbnail: thumbnailOnly,
+            placeholder: _buildPlaceholder,
           ),
         ),
       ),
