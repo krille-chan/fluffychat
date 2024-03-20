@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -106,22 +108,28 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
-            const width = 200;
-            const ratio = 2.0;
+            const maxSize = 256.0;
             final w = event.content
                     .tryGetMap<String, Object?>('info')
                     ?.tryGet<int>('w') ??
-                width;
+                maxSize;
             final h = event.content
                     .tryGetMap<String, Object?>('info')
                     ?.tryGet<int>('h') ??
-                width;
-            final overRatio = h > w * ratio;
+                maxSize;
+            double width, height;
+            if (w > h) {
+              width = maxSize;
+              height = max(32, maxSize * (h / w));
+            } else {
+              height = maxSize;
+              width = max(32, maxSize * (w / h));
+            }
             return ImageBubble(
               event,
-              height: overRatio ? width * ratio : null,
-              width: width.toDouble(),
-              fit: overRatio ? BoxFit.cover : BoxFit.contain,
+              width: width,
+              height: height,
+              fit: BoxFit.contain,
               borderRadius: borderRadius,
             );
           case MessageTypes.Sticker:

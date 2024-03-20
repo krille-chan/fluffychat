@@ -40,25 +40,13 @@ class ImageBubble extends StatelessWidget {
         event.infoMap['xyz.amorgan.blurhash'] is String
             ? event.infoMap['xyz.amorgan.blurhash']
             : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
-    final ratio = event.infoMap['w'] is int && event.infoMap['h'] is int
-        ? event.infoMap['w'] / event.infoMap['h']
-        : 1.0;
-    var width = 32;
-    var height = 32;
-    if (ratio > 1.0) {
-      height = (width / ratio).round();
-      if (height <= 0) height = 1;
-    } else {
-      width = (height * ratio).round();
-      if (width <= 0) width = 1;
-    }
     return SizedBox(
-      width: this.width,
-      height: this.height,
+      width: width,
+      height: height,
       child: BlurHash(
         hash: blurHashString,
-        decodingWidth: width,
-        decodingHeight: height,
+        decodingWidth: width?.round() ?? 64,
+        decodingHeight: height?.round() ?? 64,
         imageFit: fit,
       ),
     );
