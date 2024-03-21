@@ -1,5 +1,4 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:blurhash_dart/blurhash_dart.dart' as b;
@@ -26,16 +25,29 @@ class BlurHash extends StatefulWidget {
 class _BlurHashState extends State<BlurHash> {
   Uint8List? _data;
 
-  Future<Uint8List> getBlurhashData() async {
-    final blurhash = b.BlurHash.decode(widget.blurhash);
-    final img = blurhash.toImage(widget.width.round(), widget.height.round());
-    return _data ??= Uint8List.fromList(image.encodePng(img));
+  static Future<Uint8List> getBlurhashData(
+    BlurhashData blurhashData,
+  ) async {
+    final blurhash = b.BlurHash.decode(blurhashData.hsh);
+    final img = blurhash.toImage(blurhashData.w, blurhashData.h);
+    return Uint8List.fromList(image.encodePng(img));
+  }
+
+  Future<Uint8List?> _computeBlurhashData() async {
+    return _data ??= await compute(
+      getBlurhashData,
+      BlurhashData(
+        hsh: widget.blurhash,
+        w: widget.width.round(),
+        h: widget.height.round(),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Uint8List>(
-      future: getBlurhashData(),
+    return FutureBuilder<Uint8List?>(
+      future: _computeBlurhashData(),
       builder: (context, snapshot) {
         final data = snapshot.data;
         if (data == null) {
@@ -54,4 +66,28 @@ class _BlurHashState extends State<BlurHash> {
       },
     );
   }
+}
+
+class BlurhashData {
+  final String hsh;
+  final int w;
+  final int h;
+
+  const BlurhashData({
+    required this.hsh,
+    required this.w,
+    required this.h,
+  });
+
+  factory BlurhashData.fromJson(Map<String, dynamic> json) => BlurhashData(
+        hsh: json['hsh'],
+        w: json['w'],
+        h: json['h'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'hsh': hsh,
+        'w': w,
+        'h': h,
+      };
 }

@@ -130,8 +130,13 @@ class _MxcImageState extends State<MxcImage> {
     }
   }
 
+  bool _hasDataFromBeginning = false;
+
   void _tryLoad(_) async {
-    if (_imageData != null) return;
+    if (_imageData != null) {
+      _hasDataFromBeginning = true;
+      return;
+    }
     try {
       await _load();
     } catch (_) {
@@ -160,7 +165,7 @@ class _MxcImageState extends State<MxcImage> {
 
     return Stack(
       children: [
-        if (!hasData) placeholder(context),
+        if (!_hasDataFromBeginning) placeholder(context),
         AnimatedOpacity(
           opacity: hasData ? 1 : 0,
           duration: FluffyThemes.animationDuration,
@@ -171,7 +176,9 @@ class _MxcImageState extends State<MxcImage> {
                   width: widget.width,
                   height: widget.height,
                   fit: widget.fit,
-                  filterQuality: FilterQuality.medium,
+                  filterQuality: widget.isThumbnail
+                      ? FilterQuality.low
+                      : FilterQuality.medium,
                   errorBuilder: (context, __, ___) {
                     _isCached = false;
                     _imageData = null;
