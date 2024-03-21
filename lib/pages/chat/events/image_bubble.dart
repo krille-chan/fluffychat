@@ -90,7 +90,9 @@ class ImageBubble extends StatelessWidget {
             fit: fit,
             animated: animated,
             isThumbnail: thumbnailOnly,
-            placeholder: _buildPlaceholder,
+            placeholder: event.messageType == MessageTypes.Sticker
+                ? null
+                : _buildPlaceholder,
           ),
         ),
       ),

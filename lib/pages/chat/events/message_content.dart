@@ -22,7 +22,6 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
-import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -108,6 +107,8 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
+          case MessageTypes.Sticker:
+            if (event.redacted) continue textmessage;
             const maxSize = 256.0;
             final w = event.content
                     .tryGetMap<String, Object?>('info')
@@ -130,12 +131,6 @@ class MessageContent extends StatelessWidget {
               width: width,
               height: height,
               fit: BoxFit.contain,
-              borderRadius: borderRadius,
-            );
-          case MessageTypes.Sticker:
-            if (event.redacted) continue textmessage;
-            return Sticker(
-              event,
               borderRadius: borderRadius,
             );
           case CuteEventContent.eventType:
