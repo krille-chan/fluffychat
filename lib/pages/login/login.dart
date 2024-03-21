@@ -65,20 +65,28 @@ class LoginController extends State<Login> {
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
-      await handleSessionToken(sessionToken);
+      handleSessionToken(sessionToken);
     }
   }
 
-  Future<void> handleSessionToken(String sessionToken) async {
-    final Map<String, dynamic> queueStatus = await getQueueStatus(sessionToken);
-    final String userState = queueStatus['userState'];
+  void handleSessionToken(String sessionToken) async {
+    try {
+      final Map<String, dynamic> queueStatus =
+          await getQueueStatus(sessionToken);
+      final String userState = queueStatus['userState'];
 
-    if (userState == 'CREATED') {
-      await handleUserCreated(queueStatus, sessionToken);
-    } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
-      handleUserInQueueOrAccepted(queueStatus);
-    } else {
-      handleUnexpectedUserState(userState);
+      if (userState == 'CREATED') {
+        await handleUserCreated(queueStatus, sessionToken);
+      } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
+        handleUserInQueueOrAccepted(queueStatus);
+      } else {
+        handleUnexpectedUserState(userState);
+      }
+    } catch (e) {
+      // In the event of an error, do nothing, and let the user enter his identifiers normally.
+      if (kDebugMode) {
+        print("Error fetching queue status: $e");
+      }
     }
   }
 
@@ -103,11 +111,15 @@ class LoginController extends State<Login> {
         ),
       ),
     );
-    print('IN_QUEUE/ACCEPTED');
+    if (kDebugMode) {
+      print('IN_QUEUE/ACCEPTED');
+    }
   }
 
   void handleUnexpectedUserState(String userState) {
-    print('User is in an unexpected state : $userState');
+    if (kDebugMode) {
+      print('User is in an unexpected state : $userState');
+    }
   }
 
   Future<String> changeUserNameOry(String newUsername) async {
@@ -125,14 +137,18 @@ class LoginController extends State<Login> {
         ),
       );
 
-      print("Response update name: ${response.data}");
+      if (kDebugMode) {
+        print("Response update name: ${response.data}");
+      }
       if (response.statusCode == 200) {
         return 'success';
       } else {
         return 'failed';
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       return 'failed';
     }
   }
@@ -166,14 +182,18 @@ class LoginController extends State<Login> {
     try {
       // Initialize API connection flow
       final frontendApi = kratosClient.getFrontendApi();
-      print('Successfully initialized Kratos API');
+      if (kDebugMode) {
+        print('Successfully initialized Kratos API');
+      }
       Response<kratos.LoginFlow> response;
       if (PlatformInfos.isWeb) {
         response = await frontendApi.createBrowserLoginFlow();
       } else {
         response = await frontendApi.createNativeLoginFlow();
       }
-      print('Successfully created login flow');
+      if (kDebugMode) {
+        print('Successfully created login flow');
+      }
 
       // Retrieve action URL from connection flow
       final actionUrl = response.data?.ui.action;
@@ -198,32 +218,48 @@ class LoginController extends State<Login> {
           ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
       );
 
-      print(
-          'Before sending POST request to update login flow with user credentials');
+      if (kDebugMode) {
+        print(
+            'Before sending POST request to update login flow with user credentials');
+      }
 
       // Sends a POST request with user credentials
       final loginResponse = await frontendApi.updateLoginFlow(
           flow: response.data!.id, updateLoginFlowBody: updateLoginFlowBody);
-      print('Successfully updated login flow with user credentials');
+      if (kDebugMode) {
+        print('Successfully updated login flow with user credentials');
+      }
 
       // Processing the response to obtain the connection session token
       final sessionToken = loginResponse.data?.sessionToken;
 
-      print('Session token: $sessionToken');
+      if (kDebugMode) {
+        print('Session token: $sessionToken');
+      }
 
       // Store the session token
       return await storeSessionToken(sessionToken);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
-    } on DioError catch (e) {
-      print("Exception when calling Kratos log: $e\n");
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e\n");
+      }
       Logs().v("Error Kratos login : ${e.response?.data}");
-      //print(e.response?.data.details);
-      setState(() => passwordError = "Dio error with Kratos");
+
+      // Display Kratos error messages to the user
+      if (e.response?.data != null) {
+        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+        setState(() => passwordError = errorMessage);
+      } else {
+        setState(() => passwordError = "Dio error with Kratos");
+      }
       return setState(() => loading = false);
     } catch (exception) {
-      print(exception);
+      if (kDebugMode) {
+        print(exception);
+      }
       setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
       return setState(() => loading = false);
     }
@@ -290,8 +326,7 @@ class LoginController extends State<Login> {
         );
       }
 
-      // TODO use homeserver variable
-      final url = 'https://$serverName/_matrix/client/r0/login';
+      final url = 'https://$homeserver/_matrix/client/r0/login';
       final headers = {'Content-Type': 'application/json'};
       final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
 

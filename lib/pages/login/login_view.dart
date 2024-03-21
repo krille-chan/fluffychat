@@ -45,6 +45,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
+                      errorMaxLines: 3,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.emailOrUsername,
@@ -66,6 +67,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
+                      errorMaxLines: 3,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
                       suffixIcon: IconButton(
