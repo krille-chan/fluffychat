@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/subscription.dart';
-import 'package:tawkie/pages/subscription/model/style.dart';
-import 'package:tawkie/pages/subscription/paywall.dart';
 import 'login.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
@@ -98,9 +94,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 print("Result: $result");
                 if (result == 'success') {
                   if (widget.queueStatus['userState'] == 'IN_QUEUE') {
-                    SubscriptionManager().presentPaywall();
+                    SubscriptionManager().checkSubscriptionStatusAndRedirect();
                   } else if (widget.queueStatus['userState'] == 'ACCEPTED') {
-                    SubscriptionManager().presentPaywall();
+                    SubscriptionManager().checkSubscriptionStatusAndRedirect();
                   }
                 } else {}
               },
