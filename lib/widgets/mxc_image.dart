@@ -157,26 +157,20 @@ class _MxcImageState extends State<MxcImage> {
   Widget build(BuildContext context) {
     final data = _imageData;
 
-    return AnimatedCrossFade(
-      duration: widget.animationDuration,
-      crossFadeState:
-          data == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      firstChild: placeholder(context),
-      secondChild: data == null || data.isEmpty
-          ? const SizedBox.shrink()
-          : Image.memory(
-              data,
-              width: widget.width,
-              height: widget.height,
-              fit: widget.fit,
-              filterQuality: FilterQuality.medium,
-              errorBuilder: (context, __, ___) {
-                _isCached = false;
-                _imageData = null;
-                WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
-                return placeholder(context);
-              },
-            ),
-    );
+    return data == null || data.isEmpty
+        ? placeholder(context)
+        : Image.memory(
+            data,
+            width: widget.width,
+            height: widget.height,
+            fit: widget.fit,
+            filterQuality: FilterQuality.medium,
+            errorBuilder: (context, __, ___) {
+              _isCached = false;
+              _imageData = null;
+              WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+              return placeholder(context);
+            },
+          );
   }
 }
