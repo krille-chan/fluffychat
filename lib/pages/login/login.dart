@@ -284,10 +284,27 @@ class LoginController extends State<Login> {
   }
 
   Future<void> loginWithSessionToken(String sessionToken) async {
-    final matrix = Matrix.of(context);
-
     setState(() => loading = true);
 
+    try {
+      // Retrieve JWT and server name
+      final jwtAndServerName = await getMatrixLoginJwt(sessionToken);
+      final String matrixLoginJwt = jwtAndServerName['matrixLoginJwt'];
+      final String serverName = jwtAndServerName['serverName'];
+
+      // Connect with JWT and server name
+      await matrixLogin(matrixLoginJwt, serverName);
+
+      // If all goes well, reset passwordError
+      setState(() => passwordError = null);
+    } catch (e) {
+      setState(() => passwordError = L10n.of(context)!.tryAgain);
+    }
+
+    setState(() => loading = false);
+  }
+
+  Future<Map<String, dynamic>> getMatrixLoginJwt(String sessionToken) async {
     try {
       final responseMatrix = await dio.get(
         '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
@@ -312,12 +329,25 @@ class LoginController extends State<Login> {
         throw Exception('Server did not return a valid server name');
       }
 
+      return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
+    } catch (e) {
+      throw Exception(
+          'An error occurred while retrieving the JWT and the server name: $e');
+    }
+  }
+
+  Future<void> matrixLogin(String matrixLoginJwt, String serverName) async {
+    final matrix = Matrix.of(context);
+    final client = matrix.getLoginClient();
+
+    setState(() => loading = true);
+
+    try {
       var homeserver = Uri.parse(serverName);
       if (homeserver.scheme.isEmpty) {
         homeserver = Uri.https(serverName, '');
       }
 
-      final client = Matrix.of(context).getLoginClient();
       loginHomeserverSummary = await client.checkHomeserver(homeserver);
       if (supportsSso) {
         _rawLoginTypes = await client.request(
@@ -326,7 +356,7 @@ class LoginController extends State<Login> {
         );
       }
 
-      final url = 'https://$homeserver/_matrix/client/r0/login';
+      final url = '$homeserver/_matrix/client/r0/login';
       final headers = {'Content-Type': 'application/json'};
       final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
 
@@ -343,13 +373,13 @@ class LoginController extends State<Login> {
         final deviceId = responseData['device_id'];
 
         // Initialize with recovered data
-        await matrix.getLoginClient().init(
-              newToken: accessToken,
-              newUserID: userId,
-              newHomeserver: homeserver,
-              newDeviceID: deviceId,
-              newDeviceName: PlatformInfos.clientName,
-            );
+        await client.init(
+          newToken: accessToken,
+          newUserID: userId,
+          newHomeserver: homeserver,
+          newDeviceID: deviceId,
+          newDeviceName: PlatformInfos.clientName,
+        );
       } else {
         Logs().v('Request failed with status: ${response.statusCode}');
       }
