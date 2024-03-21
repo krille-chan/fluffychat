@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../../widgets/blur_hash.dart';
 
 class ImageBubble extends StatelessWidget {
   final Event event;
@@ -40,15 +40,11 @@ class ImageBubble extends StatelessWidget {
         event.infoMap['xyz.amorgan.blurhash'] is String
             ? event.infoMap['xyz.amorgan.blurhash']
             : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
-    return SizedBox(
+    return BlurHash(
+      blurhash: blurHashString,
       width: width,
       height: height,
-      child: BlurHash(
-        hash: blurHashString,
-        decodingWidth: width.round(),
-        decodingHeight: height.round(),
-        imageFit: fit,
-      ),
+      fit: fit,
     );
   }
 

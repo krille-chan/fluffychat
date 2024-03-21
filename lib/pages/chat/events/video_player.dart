@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chewie/chewie.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,6 +13,7 @@ import 'package:video_player/video_player.dart';
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:fluffychat/widgets/blur_hash.dart';
 import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {
@@ -112,7 +112,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                       ),
                     )
                   else
-                    BlurHash(hash: blurHash),
+                    BlurHash(blurhash: blurHash, width: 300, height: 300),
                   Center(
                     child: OutlinedButton.icon(
                       style: OutlinedButton.styleFrom(

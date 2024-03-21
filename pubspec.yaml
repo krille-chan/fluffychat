@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
-  flutter_blurhash: ^0.8.2
   flutter_cache_manager: ^3.3.0
   flutter_file_dialog: ^3.0.2
   flutter_foreground_task: ^6.0.0+1
@@ -59,6 +58,7 @@ dependencies:
   hive_flutter: ^1.1.0
   html: ^0.15.4
   http: ^0.13.6
+  image: ^4.1.7
   image_picker: ^1.0.0
   intl: any
   just_audio: ^0.9.30
