@@ -34,12 +34,21 @@ class _BlurHashState extends State<BlurHash> {
   }
 
   Future<Uint8List?> _computeBlurhashData() async {
+    final ratio = widget.width / widget.height;
+    var width = 32;
+    var height = 32;
+    if (ratio > 1.0) {
+      height = (width / ratio).round();
+    } else {
+      width = (height * ratio).round();
+    }
+
     return _data ??= await compute(
       getBlurhashData,
       BlurhashData(
         hsh: widget.blurhash,
-        w: widget.width.round(),
-        h: widget.height.round(),
+        w: width,
+        h: height,
       ),
     );
   }
