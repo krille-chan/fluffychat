@@ -40,11 +40,15 @@ class ImageBubble extends StatelessWidget {
         event.infoMap['xyz.amorgan.blurhash'] is String
             ? event.infoMap['xyz.amorgan.blurhash']
             : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
-    return BlurHash(
-      blurhash: blurHashString,
+    return SizedBox(
       width: width,
       height: height,
-      fit: fit,
+      child: BlurHash(
+        blurhash: blurHashString,
+        width: width,
+        height: height,
+        fit: fit,
+      ),
     );
   }
 
