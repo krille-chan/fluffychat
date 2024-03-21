@@ -156,21 +156,35 @@ class _MxcImageState extends State<MxcImage> {
   @override
   Widget build(BuildContext context) {
     final data = _imageData;
+    final hasData = data != null && data.isNotEmpty;
 
-    return data == null || data.isEmpty
-        ? placeholder(context)
-        : Image.memory(
-            data,
-            width: widget.width,
-            height: widget.height,
-            fit: widget.fit,
-            filterQuality: FilterQuality.medium,
-            errorBuilder: (context, __, ___) {
-              _isCached = false;
-              _imageData = null;
-              WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
-              return placeholder(context);
-            },
-          );
+    return Stack(
+      children: [
+        if (!hasData) placeholder(context),
+        AnimatedOpacity(
+          opacity: hasData ? 1 : 0,
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
+          child: hasData
+              ? Image.memory(
+                  data,
+                  width: widget.width,
+                  height: widget.height,
+                  fit: widget.fit,
+                  filterQuality: FilterQuality.medium,
+                  errorBuilder: (context, __, ___) {
+                    _isCached = false;
+                    _imageData = null;
+                    WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+                    return placeholder(context);
+                  },
+                )
+              : SizedBox(
+                  width: widget.width,
+                  height: widget.height,
+                ),
+        ),
+      ],
+    );
   }
 }
