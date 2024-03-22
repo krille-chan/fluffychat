@@ -53,7 +53,7 @@ class SettingsSecurityView extends StatelessWidget {
                         style: const TextStyle(color: Colors.orange),
                       ),
                     ),
-                  if (capabilities?.mChangePassword?.enabled == true ||
+                  if (capabilities?.mChangePassword?.enabled != false ||
                       error != null) ...[
                     ListTile(
                       leading: const Icon(Icons.key_outlined),
