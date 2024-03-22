@@ -40,7 +40,8 @@ class SubscriptionButtons extends StatelessWidget {
               selected: controller.selectedSubscription == subscription,
               selectedTileColor:
                   Theme.of(context).colorScheme.secondary.withAlpha(16),
-              enabled: !subscription.isTrial || inTrialWindow,
+              enabled: (!subscription.isTrial || inTrialWindow) &&
+                  !controller.isCurrentSubscription(subscription),
               onTap: () {
                 controller.selectSubscription(subscription);
               },

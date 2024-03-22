@@ -523,12 +523,25 @@ class _SpaceViewState extends State<SpaceView> {
                           MatrixLocals(L10n.of(context)!),
                         ),
                 ),
-                trailing: IconButton(
-                  icon: loading
-                      ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
-                      : const Icon(Icons.refresh_outlined),
-                  onPressed: loading ? null : _refresh,
+                // #Pangea
+                // trailing: IconButton(
+                //   icon: loading
+                //       ? const CircularProgressIndicator.adaptive(strokeWidth: 2)
+                //       : const Icon(Icons.refresh_outlined),
+                //   onPressed: loading ? null : _refresh,
+                // ),
+                trailing: Tooltip(
+                  message: L10n.of(context)!.refresh,
+                  child: IconButton(
+                    icon: loading
+                        ? const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2,
+                          )
+                        : const Icon(Icons.refresh_outlined),
+                    onPressed: loading ? null : _refresh,
+                  ),
                 ),
+                // Pangea#
               ),
             ),
             Builder(

@@ -260,6 +260,7 @@ class UserController extends BaseController {
     final PUserModel newUserModel = await PUserRepo.repoCreatePangeaUser(
       userID: userId!,
       fullName: fullname,
+      dob: dob,
       matrixAccessToken: _matrixAccessToken!,
     );
     await _savePUserModel(newUserModel);

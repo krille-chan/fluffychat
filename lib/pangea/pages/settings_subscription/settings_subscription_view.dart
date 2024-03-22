@@ -13,6 +13,44 @@ class SettingsSubscriptionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> managementButtons = [
+      if (controller.currentSubscriptionAvailable)
+        ListTile(
+          title: Text(L10n.of(context)!.currentSubscription),
+          subtitle: Text(controller.currentSubscriptionTitle),
+          trailing: Text(controller.currentSubscriptionPrice),
+        ),
+      Column(
+        children: [
+          ListTile(
+            title: Text(L10n.of(context)!.cancelSubscription),
+            enabled: controller.showManagementOptions,
+            onTap: () => controller.launchMangementUrl(
+              ManagementOption.cancel,
+            ),
+            trailing: const Icon(Icons.cancel_outlined),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            title: Text(L10n.of(context)!.paymentMethod),
+            trailing: const Icon(Icons.credit_card),
+            onTap: () => controller.launchMangementUrl(
+              ManagementOption.paymentMethod,
+            ),
+            enabled: controller.showManagementOptions,
+          ),
+          ListTile(
+            title: Text(L10n.of(context)!.paymentHistory),
+            trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+            onTap: () => controller.launchMangementUrl(
+              ManagementOption.history,
+            ),
+            enabled: controller.showManagementOptions,
+          ),
+        ],
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -23,53 +61,19 @@ class SettingsSubscriptionView extends StatelessWidget {
       body: ListTileTheme(
         iconColor: Theme.of(context).textTheme.bodyLarge!.color,
         child: MaxWidthBody(
-          child: !(controller.subscriptionController.isSubscribed)
-              ? ChangeSubscription(controller: controller)
-              : Column(
-                  children: [
-                    if (controller.currentSubscriptionAvailable)
-                      ListTile(
-                        title: Text(L10n.of(context)!.currentSubscription),
-                        subtitle: Text(controller.currentSubscriptionTitle),
-                        trailing: Text(controller.currentSubscriptionPrice),
-                      ),
-                    Column(
-                      children: [
-                        ListTile(
-                          title: Text(L10n.of(context)!.cancelSubscription),
-                          enabled: controller.showManagementOptions,
-                          onTap: () => controller.launchMangementUrl(
-                            ManagementOption.cancel,
-                          ),
-                          trailing: const Icon(Icons.cancel_outlined),
-                        ),
-                        const Divider(height: 1),
-                        ListTile(
-                          title: Text(L10n.of(context)!.paymentMethod),
-                          trailing: const Icon(Icons.credit_card),
-                          onTap: () => controller.launchMangementUrl(
-                            ManagementOption.paymentMethod,
-                          ),
-                          enabled: controller.showManagementOptions,
-                        ),
-                        ListTile(
-                          title: Text(L10n.of(context)!.paymentHistory),
-                          trailing:
-                              const Icon(Icons.keyboard_arrow_right_outlined),
-                          onTap: () => controller.launchMangementUrl(
-                            ManagementOption.history,
-                          ),
-                          enabled: controller.showManagementOptions,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 50),
-                    if (!(controller.showManagementOptions))
-                      ManagementNotAvailableWarning(
-                        controller: controller,
-                      ),
-                  ],
+          child: Column(
+            children: [
+              if (controller.subscriptionController.isSubscribed &&
+                  !controller.showManagementOptions)
+                ManagementNotAvailableWarning(
+                  controller: controller,
                 ),
+              if (!(controller.subscriptionController.isSubscribed) ||
+                  controller.isNewUserTrial)
+                ChangeSubscription(controller: controller),
+              if (controller.showManagementOptions) ...managementButtons,
+            ],
+          ),
         ),
       ),
     );

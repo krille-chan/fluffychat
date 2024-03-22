@@ -85,7 +85,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
       "";
 
   bool get showManagementOptions {
-    if (!currentSubscriptionAvailable) {
+    if (!currentSubscriptionAvailable || isNewUserTrial) {
       return false;
     }
     if (subscriptionController.subscription!.purchasedOnWeb) {
@@ -102,7 +102,9 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
         context,
         isPromo: isPromo,
       );
-      setState(() {});
+      setState(() {
+        selectedSubscription = null;
+      });
     } catch (err) {
       showOkAlertDialog(
         context: context,
@@ -163,6 +165,11 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   void selectSubscription(SubscriptionDetails? subscription) {
     setState(() => selectedSubscription = subscription);
   }
+
+  bool isCurrentSubscription(SubscriptionDetails subscription) =>
+      subscriptionController.subscription?.currentSubscription ==
+          subscription ||
+      isNewUserTrial && subscription.isTrial;
 
   @override
   Widget build(BuildContext context) => SettingsSubscriptionView(this);
