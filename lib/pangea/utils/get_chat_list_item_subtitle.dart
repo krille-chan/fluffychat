@@ -18,10 +18,32 @@ class GetChatListItemSubtitle {
   ) async {
     if (event == null) return L10n.of(context)!.emptyChat;
     try {
+      String? eventContextId = event.eventId;
+      if (!event.eventId.isValidMatrixId || event.eventId.sigil != '\$') {
+        eventContextId = null;
+      }
+      final Timeline timeline =
+          await event.room.getTimeline(eventContextId: eventContextId);
+
+      if (event.content.tryGet(ModelKey.transcription) != null) {
+        int index = timeline.events.indexWhere(
+          (e) => e.eventId == event!.eventId,
+        );
+
+        while (index < timeline.events.length &&
+            timeline.events[index].content.tryGet(ModelKey.transcription) !=
+                null) {
+          index++;
+        }
+
+        if (timeline.events.length > index + 1) {
+          event = timeline.events[index];
+        }
+      }
+
       if (event.type != EventTypes.Message ||
           !pangeaController.permissionsController
-              .isToolEnabled(ToolSetting.immersionMode, event.room) ||
-          event.content.tryGet(ModelKey.transcription) != null) {
+              .isToolEnabled(ToolSetting.immersionMode, event.room)) {
         return event.calcLocalizedBody(
           MatrixLocals(L10n.of(context)!),
           hideReply: true,
@@ -32,13 +54,6 @@ class GetChatListItemSubtitle {
               event.room.directChatMatrixID != event.room.lastEvent?.senderId,
         );
       }
-
-      String? eventContextId = event.eventId;
-      if (!event.eventId.isValidMatrixId || event.eventId.sigil != '\$') {
-        eventContextId = null;
-      }
-      final Timeline timeline =
-          await event.room.getTimeline(eventContextId: eventContextId);
 
       final PangeaMessageEvent pangeaMessageEvent = PangeaMessageEvent(
         event: event,
@@ -78,7 +93,7 @@ class GetChatListItemSubtitle {
     } catch (e, s) {
       // debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
-      return event.body;
+      return event?.body ?? L10n.of(context)!.emptyChat;
     }
   }
 }
