@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
+import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
@@ -468,6 +469,19 @@ class PangeaMessageEvent {
 
     final String? langCode = immersionMode ? l2Code : originalLangCode;
     return langCode ?? LanguageKeys.unknownLanguage;
+  }
+
+  PangeaMatch? firstErrorStep(String lemma) {
+    final RepresentationEvent? repEvent = originalSent ?? originalWritten;
+    if (repEvent?.choreo == null) return null;
+
+    final PangeaMatch? step = repEvent!.choreo!.choreoSteps
+        .firstWhereOrNull(
+          (element) =>
+              element.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
+        )
+        ?.acceptedOrIgnoredMatch;
+    return step;
   }
 
   // List<SpanData> get activities =>

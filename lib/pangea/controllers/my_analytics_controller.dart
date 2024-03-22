@@ -47,7 +47,6 @@ class MyAnalyticsController {
       final List<StudentAnalyticsEvent?> events = await analyticsEvents(spaces);
 
       for (final event in events) {
-        debugPrint("adding to total ${event?.content.messages.length}");
         if (event != null) {
           event.handleNewMessage(messageRecord);
         }
@@ -69,9 +68,10 @@ class MyAnalyticsController {
     return Future.wait(events);
   }
 
-  Future<List<StudentAnalyticsEvent?>> allMyAnalyticsEvents() =>
+  Future<List<StudentAnalyticsEvent?>> allMyAnalyticsEvents() async =>
       analyticsEvents(
-        _pangeaController.matrixState.client.classesAndExchangesImStudyingIn,
+        await _pangeaController
+            .matrixState.client.classesAndExchangesImStudyingIn,
       );
 
   Future<void> saveConstructsMixed(

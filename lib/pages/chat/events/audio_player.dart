@@ -105,9 +105,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       });
       _playAction();
     } catch (e, s) {
-      // #Pangea
-      debugger();
-      // Pangea#
       Logs().v('Could not download audio file', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

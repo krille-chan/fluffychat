@@ -1,17 +1,14 @@
-import 'package:flutter/material.dart';
-
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
 class BarChartCard extends StatelessWidget {
   const BarChartCard({
     super.key,
-    required this.barChartTitle,
     required this.barChart,
     required this.legend,
     required this.loadingData,
   });
 
-  final String barChartTitle;
   final BarChart? barChart;
   final Widget legend;
   final bool loadingData;
@@ -28,11 +25,6 @@ class BarChartCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 6),
-            Text(
-              barChartTitle,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
             const SizedBox(height: 14),
             Expanded(
               child: loadingData || barChart == null

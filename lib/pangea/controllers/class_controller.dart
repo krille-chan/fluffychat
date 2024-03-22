@@ -35,8 +35,8 @@ class ClassController extends BaseController {
   Future<void> fixClassPowerLevels() async {
     try {
       final List<Future<void>> classFixes = [];
-      for (final room in _pangeaController
-          .matrixState.client.classesAndExchangesImTeaching) {
+      for (final room in (await _pangeaController
+          .matrixState.client.classesAndExchangesImTeaching)) {
         classFixes.add(room.setClassPowerlLevels());
       }
       await Future.wait(classFixes);

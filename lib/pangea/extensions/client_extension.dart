@@ -24,13 +24,22 @@ extension PangeaClient on Client {
       )
       .toList();
 
-  List<Room> get classesAndExchangesImTeaching => rooms
-      .where(
-        (e) =>
-            (e.isPangeaClass || e.isExchange) &&
-            e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
-      )
-      .toList();
+  Future<List<Room>> get classesAndExchangesImTeaching async {
+    for (final Room space in rooms.where((room) => room.isSpace)) {
+      if (space.getState(EventTypes.RoomPowerLevels) == null) {
+        await space.postLoad();
+      }
+    }
+
+    final spaces = rooms
+        .where(
+          (e) =>
+              (e.isPangeaClass || e.isExchange) &&
+              e.ownPowerLevel == ClassDefaultValues.powerLevelOfAdmin,
+        )
+        .toList();
+    return spaces;
+  }
 
   List<Room> get classesImIn => rooms
       .where(
@@ -40,20 +49,43 @@ extension PangeaClient on Client {
       )
       .toList();
 
-  List<Room> get classesAndExchangesImStudyingIn => rooms
-      .where(
-        (e) =>
-            (e.isPangeaClass || e.isExchange) &&
-            e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
-      )
-      .toList();
+  Future<List<Room>> get classesAndExchangesImStudyingIn async {
+    for (final Room space in rooms.where((room) => room.isSpace)) {
+      if (space.getState(EventTypes.RoomPowerLevels) == null) {
+        await space.postLoad();
+      }
+    }
+
+    final spaces = rooms
+        .where(
+          (e) =>
+              (e.isPangeaClass || e.isExchange) &&
+              e.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin,
+        )
+        .toList();
+    return spaces;
+  }
 
   List<Room> get classesAndExchangesImIn =>
       rooms.where((e) => e.isPangeaClass || e.isExchange).toList();
 
+  Future<List<String>> get teacherRoomIds async {
+    final List<String> adminRoomIds = [];
+    for (final Room adminSpace in (await classesAndExchangesImTeaching)) {
+      adminRoomIds.add(adminSpace.id);
+      final children = adminSpace.childrenAndGrandChildren;
+      final List<String> adminSpaceRooms = children
+          .where((e) => e.roomId != null)
+          .map((e) => e.roomId!)
+          .toList();
+      adminRoomIds.addAll(adminSpaceRooms);
+    }
+    return adminRoomIds;
+  }
+
   Future<List<User>> get myTeachers async {
     final List<User> teachers = [];
-    for (final classRoom in classesImIn) {
+    for (final classRoom in classesAndExchangesImIn) {
       for (final teacher in await classRoom.teachers) {
         if (!teachers.any((e) => e.id == teacher.id)) {
           teachers.add(teacher);
@@ -68,7 +100,7 @@ extension PangeaClient on Client {
   ]) async {
     try {
       final List<Future<void>> updateFutures = [];
-      for (final classRoom in classesImIn) {
+      for (final classRoom in classesAndExchangesImIn) {
         updateFutures
             .add(classRoom.updateMyLearningAnalyticsForClass(storageService));
       }
@@ -152,13 +184,14 @@ extension PangeaClient on Client {
     return getRoomById(roomId)!;
   }
 
-  PangeaRoomRules? get lastUpdatedRoomRules => classesAndExchangesImTeaching
-      .where((space) => space.rulesUpdatedAt != null)
-      .sorted(
-        (a, b) => b.rulesUpdatedAt!.compareTo(a.rulesUpdatedAt!),
-      )
-      .firstOrNull
-      ?.pangeaRoomRules;
+  Future<PangeaRoomRules?> get lastUpdatedRoomRules async =>
+      (await classesAndExchangesImTeaching)
+          .where((space) => space.rulesUpdatedAt != null)
+          .sorted(
+            (a, b) => b.rulesUpdatedAt!.compareTo(a.rulesUpdatedAt!),
+          )
+          .firstOrNull
+          ?.pangeaRoomRules;
 
   ClassSettingsModel? get lastUpdatedClassSettings => classesImTeaching
       .where((space) => space.classSettingsUpdatedAt != null)

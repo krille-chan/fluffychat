@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
 import '../enum/construct_type_enum.dart';
 
 class ConstructUses {
@@ -177,5 +178,15 @@ class OneConstructUse {
     }
 
     return data;
+  }
+
+  Room? getRoom(Client client) {
+    return client.getRoomById(chatId);
+  }
+
+  Future<Event?> getEvent(Client client) async {
+    final Room? room = getRoom(client);
+    if (room == null || msgId == null) return null;
+    return room.getEventById(msgId!);
   }
 }

@@ -170,6 +170,24 @@ extension PangeaRoom on Room {
   }
 
   //note this only will return rooms that the user has joined or been invited to
+  List<Room> get joinedChildren {
+    if (!isSpace) return [];
+    return spaceChildren
+        .where((child) => child.roomId != null)
+        .map(
+          (child) => client.getRoomById(child.roomId!),
+        )
+        .where((child) => child != null)
+        .cast<Room>()
+        .where(
+          (child) => child.membership == Membership.join,
+        )
+        .toList();
+  }
+
+  List<String> get joinedChildrenRoomIds =>
+      joinedChildren.map((child) => child.id).toList();
+
   List<SpaceChild> get childrenAndGrandChildren {
     if (!isSpace) return [];
     final List<SpaceChild> kids = [];
@@ -331,7 +349,6 @@ extension PangeaRoom on Room {
     bool forcedUpdate = false,
   }) async {
     try {
-      debugPrint("getStudentAnalytics $studentId");
       if (!isSpace) {
         debugger(when: kDebugMode);
         throw Exception("calling getStudentAnalyticsLocal on non-space room");
@@ -475,7 +492,7 @@ extension PangeaRoom on Room {
 
       if (storageService?.read(migratedAnalyticsKey) ?? false) return;
 
-      if (!isPangeaClass) {
+      if (!isPangeaClass && !isExchange) {
         throw Exception(
           "In updateMyLearningAnalyticsForClass with room that is not not a class",
         );
@@ -558,24 +575,21 @@ extension PangeaRoom on Room {
       final List<RecentMessageRecord> msgs = [];
       for (final event in timeline.events) {
         if (event.senderId == client.userID &&
-            event.type == EventTypes.Message) {
-          if (event.content['msgtype'] == MessageTypes.Text) {
-            final PangeaMessageEvent pMsgEvent = PangeaMessageEvent(
-              event: event,
-              timeline: timeline,
-              ownMessage: true,
-            );
-            msgs.add(
-              RecentMessageRecord(
-                eventId: event.eventId,
-                chatId: id,
-                useType: pMsgEvent.useType,
-                time: event.originServerTs,
-              ),
-            );
-          } else {
-            debugger(when: kDebugMode);
-          }
+            event.type == EventTypes.Message &&
+            event.content['msgtype'] == MessageTypes.Text) {
+          final PangeaMessageEvent pMsgEvent = PangeaMessageEvent(
+            event: event,
+            timeline: timeline,
+            ownMessage: true,
+          );
+          msgs.add(
+            RecentMessageRecord(
+              eventId: event.eventId,
+              chatId: id,
+              useType: pMsgEvent.useType,
+              time: event.originServerTs,
+            ),
+          );
         }
       }
       return msgs;
@@ -702,7 +716,6 @@ extension PangeaRoom on Room {
 
   Future<List<ConstructEvent>> get allConstructEvents async {
     await postLoad();
-
     return states[PangeaEventTypes.vocab]
             ?.values
             .map((Event event) => ConstructEvent(event: event))
@@ -753,7 +766,7 @@ extension PangeaRoom on Room {
             .map((e) => e.id),
         BotName.byEnvironment,
       ];
-      for (final teacher in await client.myTeachers) {
+      for (final teacher in (await client.myTeachers)) {
         if (!toAdd.contains(teacher.id)) {
           debugPrint("inviting ${teacher.id} to analytics room");
           await invite(teacher.id);

@@ -2,6 +2,7 @@ name: fluffychat
 # #Pangea
 # description: Chat with your friends.
 description: Learn a language while texting your friends.
+# !!!!!! flutter version: 3.16.9 !!!!!!
 # Pangea#
 publish_to: none
 version: 1.11.2+3453

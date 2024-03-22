@@ -3948,5 +3948,6 @@
             "age": {}
         }
     },
-    "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat."
+    "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat.",
+    "joinToView": "Join this room to view details"
 }
