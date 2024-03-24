@@ -111,7 +111,7 @@ class ChatListItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
-                      style: unread
+                      style: unread || room.hasNewMessages
                           ? const TextStyle(fontWeight: FontWeight.bold)
                           : null,
                     ),
@@ -222,7 +222,9 @@ class ChatListItem extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontWeight: unread ? FontWeight.w600 : null,
+                                  fontWeight: unread || room.hasNewMessages
+                                      ? FontWeight.bold
+                                      : null,
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurfaceVariant,
