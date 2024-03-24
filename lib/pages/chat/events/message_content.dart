@@ -111,26 +111,29 @@ class MessageContent extends StatelessWidget {
             if (event.redacted) continue textmessage;
             const maxSize = 256.0;
             final w = event.content
-                    .tryGetMap<String, Object?>('info')
-                    ?.tryGet<int>('w') ??
-                maxSize;
+                .tryGetMap<String, Object?>('info')
+                ?.tryGet<int>('w');
             final h = event.content
-                    .tryGetMap<String, Object?>('info')
-                    ?.tryGet<int>('h') ??
-                maxSize;
-            double width, height;
-            if (w > h) {
-              width = maxSize;
-              height = max(32, maxSize * (h / w));
-            } else {
-              height = maxSize;
-              width = max(32, maxSize * (w / h));
+                .tryGetMap<String, Object?>('info')
+                ?.tryGet<int>('h');
+            var width = maxSize;
+            var height = maxSize;
+            var fit = BoxFit.cover;
+            if (w != null && h != null) {
+              fit = BoxFit.contain;
+              if (w > h) {
+                width = maxSize;
+                height = max(32, maxSize * (h / w));
+              } else {
+                height = maxSize;
+                width = max(32, maxSize * (w / h));
+              }
             }
             return ImageBubble(
               event,
               width: width,
               height: height,
-              fit: BoxFit.contain,
+              fit: fit,
               borderRadius: borderRadius,
             );
           case CuteEventContent.eventType:

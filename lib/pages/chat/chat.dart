@@ -152,7 +152,8 @@ class ChatController extends State<ChatPageWithRoom>
               return MatrixFile(
                 bytes: await xfile.readAsBytes(),
                 name: xfile.name,
-              );
+                mimeType: xfile.mimeType,
+              ).detectFileType;
             },
           ),
         );

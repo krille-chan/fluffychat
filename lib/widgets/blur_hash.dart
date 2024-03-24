@@ -34,6 +34,7 @@ class _BlurHashState extends State<BlurHash> {
   }
 
   Future<Uint8List?> _computeBlurhashData() async {
+    if (_data != null) return _data!;
     final ratio = widget.width / widget.height;
     var width = 32;
     var height = 32;
@@ -57,13 +58,14 @@ class _BlurHashState extends State<BlurHash> {
   Widget build(BuildContext context) {
     return FutureBuilder<Uint8List?>(
       future: _computeBlurhashData(),
+      initialData: _data,
       builder: (context, snapshot) {
         final data = snapshot.data;
         if (data == null) {
           return Container(
             width: widget.width,
             height: widget.height,
-            color: Theme.of(context).colorScheme.surface,
+            color: Theme.of(context).colorScheme.onInverseSurface,
           );
         }
         return Image.memory(

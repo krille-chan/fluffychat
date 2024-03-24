@@ -130,11 +130,8 @@ class _MxcImageState extends State<MxcImage> {
     }
   }
 
-  bool _hasDataFromBeginning = false;
-
   void _tryLoad(_) async {
     if (_imageData != null) {
-      _hasDataFromBeginning = true;
       return;
     }
     try {
@@ -163,35 +160,30 @@ class _MxcImageState extends State<MxcImage> {
     final data = _imageData;
     final hasData = data != null && data.isNotEmpty;
 
-    return Stack(
-      children: [
-        if (!_hasDataFromBeginning) placeholder(context),
-        AnimatedOpacity(
-          opacity: hasData ? 1 : 0,
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-          child: hasData
-              ? Image.memory(
-                  data,
-                  width: widget.width,
-                  height: widget.height,
-                  fit: widget.fit,
-                  filterQuality: widget.isThumbnail
-                      ? FilterQuality.low
-                      : FilterQuality.medium,
-                  errorBuilder: (context, __, ___) {
-                    _isCached = false;
-                    _imageData = null;
-                    WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
-                    return placeholder(context);
-                  },
-                )
-              : SizedBox(
-                  width: widget.width,
-                  height: widget.height,
-                ),
-        ),
-      ],
+    return AnimatedCrossFade(
+      crossFadeState:
+          hasData ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      duration: FluffyThemes.animationDuration,
+      firstChild: placeholder(context),
+      secondChild: hasData
+          ? Image.memory(
+              data,
+              width: widget.width,
+              height: widget.height,
+              fit: widget.fit,
+              filterQuality:
+                  widget.isThumbnail ? FilterQuality.low : FilterQuality.medium,
+              errorBuilder: (context, __, ___) {
+                _isCached = false;
+                _imageData = null;
+                WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+                return placeholder(context);
+              },
+            )
+          : SizedBox(
+              width: widget.width,
+              height: widget.height,
+            ),
     );
   }
 }
