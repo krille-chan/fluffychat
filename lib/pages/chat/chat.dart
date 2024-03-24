@@ -79,14 +79,7 @@ class ChatPage extends StatelessWidget {
           Container(
             width: FluffyThemes.columnWidth,
             clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  width: 1,
-                  color: Theme.of(context).dividerColor,
-                ),
-              ),
-            ),
+            decoration: const BoxDecoration(),
             child: ChatDetails(roomId: roomId),
           ),
       ],

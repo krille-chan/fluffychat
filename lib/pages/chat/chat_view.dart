@@ -140,6 +140,10 @@ class ChatView extends StatelessWidget {
 
     final accountConfig = Matrix.of(context).client.applicationAccountConfig;
 
+    final backgroundColor = FluffyThemes.isColumnMode(context)
+        ? Theme.of(context).colorScheme.secondaryContainer
+        : Theme.of(context).colorScheme.background;
+
     return PopScope(
       canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
       onPopInvoked: (pop) async {
@@ -156,101 +160,150 @@ class ChatView extends StatelessWidget {
         builder: (context, snapshot) => FutureBuilder(
           future: controller.loadTimelineFuture,
           builder: (BuildContext context, snapshot) {
-            return Scaffold(
-              appBar: AppBar(
-                actionsIconTheme: IconThemeData(
-                  color: controller.selectedEvents.isEmpty
-                      ? null
-                      : Theme.of(context).colorScheme.primary,
-                ),
-                leading: controller.selectMode
-                    ? IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: controller.clearSelectedEvents,
-                        tooltip: L10n.of(context)!.close,
-                        color: Theme.of(context).colorScheme.primary,
-                      )
-                    : UnreadRoomsBadge(
-                        filter: (r) => r.id != controller.roomId,
-                        badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                        child: const Center(child: BackButton()),
+            return Container(
+              margin: FluffyThemes.isColumnMode(context)
+                  ? const EdgeInsets.all(12)
+                  : null,
+              decoration: FluffyThemes.isColumnMode(context)
+                  ? BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Theme.of(context).colorScheme.primaryContainer,
+                          Theme.of(context).colorScheme.secondaryContainer,
+                          Theme.of(context).colorScheme.tertiaryContainer,
+                        ],
+                        stops: const [0.25, 0.5, 0.75],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                titleSpacing: 0,
-                title: ChatAppBarTitle(controller),
-                actions: _appBarActions(context),
-              ),
-              floatingActionButton: controller.showScrollDownButton &&
-                      controller.selectedEvents.isEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.only(bottom: 56.0),
-                      child: FloatingActionButton(
-                        onPressed: controller.scrollDown,
-                        heroTag: null,
-                        mini: true,
-                        child: const Icon(Icons.arrow_downward_outlined),
-                      ),
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
                     )
                   : null,
-              body: DropTarget(
-                onDragDone: controller.onDragDone,
-                onDragEntered: controller.onDragEntered,
-                onDragExited: controller.onDragExited,
-                child: Stack(
-                  children: <Widget>[
-                    if (accountConfig.wallpaperUrl != null)
-                      Opacity(
-                        opacity: accountConfig.wallpaperOpacity ?? 1,
-                        child: MxcImage(
-                          uri: accountConfig.wallpaperUrl,
-                          fit: BoxFit.cover,
-                          isThumbnail: true,
-                          width: FluffyThemes.columnWidth * 4,
-                          height: FluffyThemes.columnWidth * 4,
-                          placeholder: (_) => Container(),
+              clipBehavior: Clip.hardEdge,
+              child: Scaffold(
+                extendBody: true,
+                extendBodyBehindAppBar: true,
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  elevation: 0,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: backgroundColor.withOpacity(0.9),
+                  surfaceTintColor: backgroundColor.withOpacity(0.9),
+                  actionsIconTheme: IconThemeData(
+                    color: controller.selectedEvents.isEmpty
+                        ? null
+                        : Theme.of(context).colorScheme.primary,
+                  ),
+                  leading: controller.selectMode
+                      ? IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: controller.clearSelectedEvents,
+                          tooltip: L10n.of(context)!.close,
+                          color: Theme.of(context).colorScheme.primary,
+                        )
+                      : UnreadRoomsBadge(
+                          filter: (r) => r.id != controller.roomId,
+                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
+                          child: const Center(child: BackButton()),
                         ),
-                      ),
-                    SafeArea(
-                      child: Column(
-                        children: <Widget>[
+                  titleSpacing: 0,
+                  title: ChatAppBarTitle(controller),
+                  actions: _appBarActions(context),
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(
+                      64 *
+                          ((controller.room
+                                          .getState(EventTypes.RoomTombstone) !=
+                                      null
+                                  ? 1
+                                  : 0) +
+                              (scrollUpBannerEventId != null ? 1 : 0) +
+                              (controller.room.pinnedEventIds.isNotEmpty
+                                  ? 1
+                                  : 0)),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (controller.room
+                                .getState(EventTypes.RoomTombstone) !=
+                            null)
                           TombstoneDisplay(controller),
-                          if (scrollUpBannerEventId != null)
-                            Material(
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
-                              shape: Border(
-                                bottom: BorderSide(
-                                  width: 1,
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                              ),
-                              child: ListTile(
-                                leading: IconButton(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                  icon: const Icon(Icons.close),
-                                  tooltip: L10n.of(context)!.close,
-                                  onPressed: () {
-                                    controller.discardScrollUpBannerEventId();
-                                    controller.setReadMarker();
-                                  },
-                                ),
-                                title: Text(
-                                  L10n.of(context)!.jumpToLastReadMessage,
-                                ),
-                                contentPadding: const EdgeInsets.only(left: 8),
-                                trailing: TextButton(
-                                  onPressed: () {
-                                    controller.scrollToEventId(
-                                      scrollUpBannerEventId,
-                                    );
-                                    controller.discardScrollUpBannerEventId();
-                                  },
-                                  child: Text(L10n.of(context)!.jump),
-                                ),
+                        if (scrollUpBannerEventId != null)
+                          Material(
+                            color: Theme.of(context).colorScheme.surfaceVariant,
+                            shape: Border(
+                              bottom: BorderSide(
+                                width: 1,
+                                color: Theme.of(context).dividerColor,
                               ),
                             ),
+                            child: ListTile(
+                              leading: IconButton(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurfaceVariant,
+                                icon: const Icon(Icons.close),
+                                tooltip: L10n.of(context)!.close,
+                                onPressed: () {
+                                  controller.discardScrollUpBannerEventId();
+                                  controller.setReadMarker();
+                                },
+                              ),
+                              title: Text(
+                                L10n.of(context)!.jumpToLastReadMessage,
+                              ),
+                              contentPadding: const EdgeInsets.only(left: 8),
+                              trailing: TextButton(
+                                onPressed: () {
+                                  controller.scrollToEventId(
+                                    scrollUpBannerEventId,
+                                  );
+                                  controller.discardScrollUpBannerEventId();
+                                },
+                                child: Text(L10n.of(context)!.jump),
+                              ),
+                            ),
+                          ),
+                        if (controller.room.pinnedEventIds.isNotEmpty)
                           PinnedEvents(controller),
+                      ],
+                    ),
+                  ),
+                ),
+                floatingActionButton: controller.showScrollDownButton &&
+                        controller.selectedEvents.isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 56.0),
+                        child: FloatingActionButton(
+                          onPressed: controller.scrollDown,
+                          heroTag: null,
+                          mini: true,
+                          child: const Icon(Icons.arrow_downward_outlined),
+                        ),
+                      )
+                    : null,
+                body: DropTarget(
+                  onDragDone: controller.onDragDone,
+                  onDragEntered: controller.onDragEntered,
+                  onDragExited: controller.onDragExited,
+                  child: Stack(
+                    children: <Widget>[
+                      if (accountConfig.wallpaperUrl != null)
+                        Opacity(
+                          opacity: accountConfig.wallpaperOpacity ?? 1,
+                          child: MxcImage(
+                            uri: accountConfig.wallpaperUrl,
+                            fit: BoxFit.cover,
+                            isThumbnail: true,
+                            width: FluffyThemes.columnWidth * 4,
+                            height: FluffyThemes.columnWidth * 4,
+                            placeholder: (_) => Container(),
+                          ),
+                        ),
+                      Column(
+                        children: <Widget>[
                           Expanded(
                             child: GestureDetector(
                               onTap: controller.clearSingleSelectedEvent,
@@ -350,19 +403,19 @@ class ChatView extends StatelessWidget {
                             ),
                         ],
                       ),
-                    ),
-                    if (controller.dragging)
-                      Container(
-                        color: Theme.of(context)
-                            .scaffoldBackgroundColor
-                            .withOpacity(0.9),
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.upload_outlined,
-                          size: 100,
+                      if (controller.dragging)
+                        Container(
+                          color: Theme.of(context)
+                              .scaffoldBackgroundColor
+                              .withOpacity(0.9),
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.upload_outlined,
+                            size: 100,
+                          ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
