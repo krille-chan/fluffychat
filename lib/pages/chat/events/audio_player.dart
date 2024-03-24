@@ -8,7 +8,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -287,6 +286,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           Stack(
             children: [
               IconButton(
+                constraints: const BoxConstraints(
+                  maxHeight: buttonSize,
+                ),
                 icon: Icon(Icons.mic_none_outlined, color: widget.color),
                 onPressed: _toggleSpeed,
               ),
