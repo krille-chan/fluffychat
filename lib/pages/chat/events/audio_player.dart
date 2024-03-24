@@ -211,29 +211,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          AnimatedSize(
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
-            child: audioPlayer == null
-                ? const SizedBox.shrink()
-                : SizedBox(
-                    height: 36,
-                    width: 36,
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: _toggleSpeed,
-                      //radius: AppConfig.borderRadius * 2,
-                      icon: Text(
-                        '${audioPlayer.speed.toString()}x',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ),
-          ),
-          const SizedBox(width: 8),
           SizedBox(
             width: buttonSize,
             height: buttonSize,
@@ -306,6 +283,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 color: widget.color,
               ),
             ),
+          ),
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.mic_none_outlined, color: widget.color),
+                onPressed: _toggleSpeed,
+              ),
+              if (audioPlayer != null)
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Text(
+                    '${audioPlayer.speed.toString()}x',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontSize: 9.0,
+                      color: widget.color,
+                    ),
+                  ),
+                ),
+            ],
           ),
         ],
       ),
