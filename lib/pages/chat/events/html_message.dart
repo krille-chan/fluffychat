@@ -532,6 +532,7 @@ class MatrixPill extends StatelessWidget {
               color: Theme.of(outerContext).colorScheme.primary,
               decoration: TextDecoration.underline,
               fontSize: fontSize,
+              height: 1.25,
             ),
           ),
         ],
