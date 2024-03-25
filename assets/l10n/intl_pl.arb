@@ -2420,5 +2420,7 @@
   "kickUserDescription": "",
   "@kickUserDescription": {},
   "block": "zablokuj",
-  "@block": {}
+  "@block": {},
+  "blockedUsers": "Zablokowani użytkownicy",
+  "@blockedUsers": {}
 }
