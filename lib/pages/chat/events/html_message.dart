@@ -147,7 +147,7 @@ class HtmlMessage extends StatelessWidget {
         ),
       },
       extensions: [
-        RoomPillExtension(context, room),
+        RoomPillExtension(context, room, fontSize),
         CodeExtension(fontSize: fontSize),
         MatrixMathExtension(
           style: TextStyle(fontSize: fontSize, color: textColor),
@@ -432,8 +432,9 @@ class FallbackTextExtension extends HtmlExtension {
 class RoomPillExtension extends HtmlExtension {
   final Room room;
   final BuildContext context;
+  final double fontSize;
 
-  RoomPillExtension(this.context, this.room);
+  RoomPillExtension(this.context, this.room, this.fontSize);
   @override
   Set<String> get supportedTags => {'a'};
 
@@ -470,6 +471,7 @@ class RoomPillExtension extends HtmlExtension {
             avatar: _cachedUsers[room.id + matrixId]?.avatarUrl,
             uri: href,
             outerContext: this.context,
+            fontSize: fontSize,
           ),
         ),
       );
@@ -485,6 +487,7 @@ class RoomPillExtension extends HtmlExtension {
             avatar: room.avatar,
             uri: href,
             outerContext: this.context,
+            fontSize: fontSize,
           ),
         );
       }
@@ -499,6 +502,7 @@ class MatrixPill extends StatelessWidget {
   final BuildContext outerContext;
   final Uri? avatar;
   final String uri;
+  final double? fontSize;
 
   const MatrixPill({
     super.key,
@@ -506,41 +510,31 @@ class MatrixPill extends StatelessWidget {
     required this.outerContext,
     this.avatar,
     required this.uri,
+    required this.fontSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: UrlLauncher(outerContext, uri).launchUrl,
-      child: Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          side: BorderSide(
-            color: Theme.of(outerContext).colorScheme.onPrimaryContainer,
-            width: 0.5,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Avatar(
+            mxContent: avatar,
+            name: name,
+            size: 16,
           ),
-        ),
-        color: Theme.of(outerContext).colorScheme.primaryContainer,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Avatar(
-                mxContent: avatar,
-                name: name,
-                size: 16,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                name,
-                style: TextStyle(
-                  color: Theme.of(outerContext).colorScheme.onPrimaryContainer,
-                ),
-              ),
-            ],
+          const SizedBox(width: 6),
+          Text(
+            name,
+            style: TextStyle(
+              color: Theme.of(outerContext).colorScheme.primary,
+              decoration: TextDecoration.underline,
+              fontSize: fontSize,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
