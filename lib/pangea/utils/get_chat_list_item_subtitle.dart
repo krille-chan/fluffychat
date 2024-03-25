@@ -31,8 +31,9 @@ class GetChatListItemSubtitle {
         );
 
         while (index < timeline.events.length &&
-            timeline.events[index].content.tryGet(ModelKey.transcription) !=
-                null) {
+            (timeline.events[index].content.tryGet(ModelKey.transcription) !=
+                    null ||
+                timeline.events[index].type != EventTypes.Message)) {
           index++;
         }
 

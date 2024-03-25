@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -280,7 +281,13 @@ class MessageToolbarState extends State<MessageToolbar> {
     });
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      updateMode(MessageMode.play);
+      final bool autoplay = MatrixState.pangeaController.pStoreService.read(
+            PLocalKey.autoPlayMessages,
+          ) ??
+          true;
+      autoplay
+          ? updateMode(MessageMode.play)
+          : updateMode(MessageMode.translation);
     });
 
     Timer? timer;

@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -10,6 +6,10 @@ import 'package:fluffychat/pangea/widgets/user_settings/country_picker_tile.dart
 import 'package:fluffychat/pangea/widgets/user_settings/language_tile.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_settings_switch_list_tile.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+
 import '../../../config/app_config.dart';
 
 class SettingsLearningView extends StatelessWidget {
@@ -60,6 +60,15 @@ class SettingsLearningView extends StatelessWidget {
                   subtitle: setting.toolDescription(context),
                   pStoreKey: setting.toString(),
                 ),
+              PSettingsSwitchListTile.adaptive(
+                defaultValue: controller.pangeaController.pStoreService.read(
+                      PLocalKey.autoPlayMessages,
+                    ) ??
+                    true,
+                title: L10n.of(context)!.autoPlayTitle,
+                subtitle: L10n.of(context)!.autoPlayDesc,
+                pStoreKey: PLocalKey.autoPlayMessages,
+              ),
             ],
           ),
         ),
