@@ -535,6 +535,7 @@ class MatrixPill extends StatelessWidget {
             name,
             style: TextStyle(
               color: color,
+              decorationColor: color,
               decoration: TextDecoration.underline,
               fontSize: fontSize,
               height: 1.25,
