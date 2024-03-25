@@ -292,18 +292,20 @@ class ChatView extends StatelessWidget {
                                   ),
                                 ),
                                 clipBehavior: Clip.hardEdge,
-                                color: Theme.of(context).colorScheme.background,
+                                color: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.white
+                                    : Colors.black,
                                 child: Material(
                                   color: Theme.of(context)
                                       .colorScheme
                                       .primary
                                       .withOpacity(0.1),
-                                  elevation: Theme.of(context)
-                                          .appBarTheme
-                                          .scrolledUnderElevation ??
-                                      0,
-                                  shadowColor:
-                                      Theme.of(context).appBarTheme.shadowColor,
+                                  elevation: 4.0,
+                                  shadowColor: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.33),
                                   child: controller.room.isAbandonedDMRoom ==
                                           true
                                       ? Row(
