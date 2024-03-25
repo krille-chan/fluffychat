@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -388,5 +388,5 @@ abstract class AppRoutes {
                   (context, animation, secondaryAnimation, child) =>
                       FadeTransition(opacity: animation, child: child),
             )
-          : CupertinoPage(child: child);
+          : MaterialPage(child: child);
 }
