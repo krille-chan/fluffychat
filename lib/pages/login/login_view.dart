@@ -89,7 +89,9 @@ class LoginView extends StatelessWidget {
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
-                    onChanged: controller.checkWellKnownWithCoolDown,
+                    // #Pangea
+                    // onChanged: controller.checkWellKnownWithCoolDown,
+                    // Pangea#
                     controller: controller.usernameController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,

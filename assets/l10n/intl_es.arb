@@ -4583,5 +4583,8 @@
   "selectToDefine": "Haga doble clic en una palabra para ver su definición.",
   "kickBotWarning": "Patear Pangea Bot eliminará el bot de conversación de este chat.",
   "activateTrial": "Activar prueba gratuita",
-  "refresh": "Actualizar"
+  "refresh": "Actualizar",
+  "joinToView": "Únete a esta sala para ver los detalles",
+  "autoPlayTitle": "Reproducción automática de mensajes",
+  "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione."
 }

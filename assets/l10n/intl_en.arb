@@ -3950,5 +3950,7 @@
     },
     "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat.",
     "joinToView": "Join this room to view details",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "autoPlayTitle": "Auto Play Messages",
+    "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected."
 }
