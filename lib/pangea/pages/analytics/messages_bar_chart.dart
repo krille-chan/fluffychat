@@ -16,12 +16,10 @@ import 'messages_legend_widget.dart';
 
 class MessagesBarChart extends StatefulWidget {
   final ChartAnalyticsModel? chartAnalytics;
-  final String barChartTitle;
 
   const MessagesBarChart({
     super.key,
     required this.chartAnalytics,
-    required this.barChartTitle,
   });
 
   @override
@@ -95,7 +93,6 @@ class MessagesBarChartState extends State<MessagesBarChart> {
     );
 
     return BarChartCard(
-      barChartTitle: widget.barChartTitle,
       barChart: barChart,
       loadingData: widget.chartAnalytics == null,
       legend: const MessagesLegendsListWidget(),

@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/analytics_list_tile.dart';
 import 'package:fluffychat/pangea/pages/analytics/time_span_menu_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../widgets/matrix.dart';
 import '../../../enum/time_span.dart';
-import '../base_analytics_page.dart';
+import '../base_analytics.dart';
 import 'class_list.dart';
 
 class AnalyticsClassListView extends StatelessWidget {
@@ -18,8 +16,6 @@ class AnalyticsClassListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Room> classesAndExchanges =
-        Matrix.of(context).client.classesAndExchangesImTeaching;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -48,25 +44,25 @@ class AnalyticsClassListView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // MessagesBarChart(
-          //   chartAnalytics: controller.chartData(context),
-          //   barChartTitle: "",
-          // ),
           Flexible(
-            child: ListView.builder(
-              itemCount: classesAndExchanges.length,
-              itemBuilder: (context, i) => AnalyticsListTile(
-                avatar: classesAndExchanges[i].avatar,
-                model: controller.pangeaController.analytics
-                    .getAnalyticsLocal(classId: classesAndExchanges[i].id),
-                displayName: classesAndExchanges[i].name,
-                id: classesAndExchanges[i].id,
-                type: AnalyticsEntryType.space,
-                selected: false,
-                onTap: (selected) => context.go(
-                  '/rooms/analytics/${selected.id}',
+            child: FutureBuilder(
+              future: Matrix.of(context).client.classesAndExchangesImTeaching,
+              builder: (context, snapshot) => ListView.builder(
+                itemCount: snapshot.hasData ? snapshot.data?.length ?? 0 : 0,
+                itemBuilder: (context, i) => AnalyticsListTile(
+                  avatar: snapshot.data![i].avatar,
+                  model: controller.pangeaController.analytics
+                      .getAnalyticsLocal(classId: snapshot.data![i].id),
+                  displayName: snapshot.data![i].name,
+                  id: snapshot.data![i].id,
+                  type: AnalyticsEntryType.space,
+                  // selected: false,
+                  onTap: (selected) => context.go(
+                    '/rooms/analytics/${selected.id}',
+                  ),
+                  allowNavigateOnSelect: true,
+                  selected: false,
                 ),
-                allowNavigateOnSelect: true,
               ),
             ),
           ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../../../utils/matrix_sdk_extensions/matrix_locals.dart';
-import '../base_analytics_page.dart';
+import '../base_analytics.dart';
 import 'class_analytics.dart';
 
 class ClassAnalyticsView extends StatelessWidget {
@@ -21,10 +19,9 @@ class ClassAnalyticsView extends StatelessWidget {
       items: controller.chats
           .map(
             (room) => TabItem(
-              avatar: room.avatar,
-              displayName:
-                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
-              id: room.id,
+              avatar: room.avatarUrl,
+              displayName: room.name ?? "",
+              id: room.roomId,
             ),
           )
           .toList(),
@@ -46,15 +43,14 @@ class ClassAnalyticsView extends StatelessWidget {
     return controller.classId != null
         ? BaseAnalyticsPage(
             pageTitle: pageTitle,
-            tabData1: tab1,
-            tabData2: tab2,
-            defaultAnalyticsSelected: AnalyticsSelected(
+            tabs: [tab1, tab2],
+            refreshData: controller.getChatAndStudentAnalytics,
+            alwaysSelected: AnalyticsSelected(
               controller.classId!,
               AnalyticsEntryType.space,
               controller.className(context),
             ),
-            refreshData: controller.getChatAndStudentAnalytics,
-            alwaysSelected: AnalyticsSelected(
+            defaultSelected: AnalyticsSelected(
               controller.classId!,
               AnalyticsEntryType.space,
               controller.className(context),

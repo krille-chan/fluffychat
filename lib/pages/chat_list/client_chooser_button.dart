@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
@@ -57,7 +58,11 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        enabled: matrix.client.classesAndExchangesImTeaching.isNotEmpty,
+        enabled: matrix.client.rooms.any(
+          (room) =>
+              room.isSpace &&
+              room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin,
+        ),
         value: SettingsAction.classAnalytics,
         child: Row(
           children: [
@@ -68,7 +73,7 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        enabled: matrix.client.classesImIn.isNotEmpty,
+        enabled: matrix.client.classesAndExchangesImIn.isNotEmpty,
         value: SettingsAction.myAnalytics,
         child: Row(
           children: [

@@ -1,5 +1,6 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
@@ -142,11 +143,25 @@ class NewSpaceView extends StatelessWidget {
                     ? AddToClassMode.exchange
                     : AddToClassMode.chat,
               ),
-            RoomRulesEditor(
-              key: controller.rulesEditorKey,
-              roomId: null,
-              startOpen: false,
-              initialRules: Matrix.of(context).client.lastUpdatedRoomRules,
+            FutureBuilder<PangeaRoomRules?>(
+              future: Matrix.of(context).client.lastUpdatedRoomRules,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return RoomRulesEditor(
+                    key: controller.rulesEditorKey,
+                    roomId: null,
+                    startOpen: false,
+                    initialRules: snapshot.data,
+                  );
+                } else {
+                  return const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+                    ),
+                  );
+                }
+              },
             ),
             // SwitchListTile.adaptive(
             //   title: Text(L10n.of(context)!.spaceIsPublic),
