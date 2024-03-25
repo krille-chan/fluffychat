@@ -233,10 +233,6 @@ class AnalyticsController extends BaseController {
     }
   }
 
-  /////////////////////////
-  // AnalyticsSelected? defaultSelected;
-  // AnalyticsSelected? selected;
-  // AnalyticsEntryType? selectedTab;
   List<ConstructEvent>? _constructs;
   bool settingConstructs = false;
 
@@ -565,15 +561,15 @@ class AnalyticsController extends BaseController {
     );
 
     if (langCode == null) {
-      // ErrorHandler.logError(
-      //   m: "langCode missing in getConstructs",
-      //   data: {
-      //     "constructType": constructType,
-      //     "AnalyticsEntryType": filter?.type,
-      //     "Analytics Entry Id": filter?.id,
-      //     "space": space,
-      //   },
-      // );
+      ErrorHandler.logError(
+        m: "langCode missing in getConstructs",
+        data: {
+          "constructType": constructType,
+          "AnalyticsEntryType": defaultSelected.type,
+          "AnalyticsEntryId": defaultSelected.id,
+          "space": space,
+        },
+      );
       throw "langCode missing in getConstructs";
     }
 
@@ -615,174 +611,8 @@ class AnalyticsController extends BaseController {
     settingConstructs = false;
     return _constructs;
   }
-
-  /////////////////////////
-  // Future<List<ConstructEvent>> studentConstructs(
-  //   String studentId,
-  //   String langCode,
-  // ) {
-  //   final Room? analyticsRoom = _pangeaController.matrixState.client
-  //       .analyticsRoomLocal(langCode, studentId);
-  //   if (analyticsRoom == null) {
-  //     ErrorHandler.logError(
-  //       m: "analyticsRoom missing in studentConstructs",
-  //       s: StackTrace.current,
-  //       data: {
-  //         "studentId": studentId,
-  //         "langCode": langCode,
-  //       },
-  //     );
-  //   }
-  //   return analyticsRoom?.allConstructEvents ?? Future.value([]);
-  // }
-
-  /// in student analytics page, the [defaultSelected] is the student
-  /// in class analytics page, the [defaultSelected] is the class
-  /// [defaultSelected] should never be a chat
-  /// the specific [selected] will be those items in the lists - chat, student or class
-  // Future<List<ConstructEvent>> constuctEventsByAnalyticsSelected({
-  //   required AnalyticsSelected? selected,
-  //   required AnalyticsSelected defaultSelected,
-  //   required ConstructType constructType,
-  // }) async {
-  //   late Future<List<ConstructEvent>> eventFutures;
-  //   String? langCode;
-  //   if (defaultSelected.type == AnalyticsEntryType.space) {
-  //     // as long as a student isn't selected, we want the vocab events for the whole class
-  //     final Room? space =
-  //         _pangeaController.matrixState.client.getRoomById(defaultSelected.id);
-  //     if (space == null) {
-  //       throw "No space available";
-  //     }
-  //     langCode = space.firstLanguageSettings?.targetLanguage;
-  //     if (langCode == null) {
-  //       throw "No target language available";
-  //     }
-
-  //     eventFutures = selected?.type == AnalyticsEntryType.student
-  //         ? studentConstructs(selected!.id, langCode)
-  //         : spaceMemberConstructs(space, langCode);
-  //   } else if (defaultSelected.type == AnalyticsEntryType.student) {
-  //     // in this case, we're on an individual's own analytics page
-
-  //     if (selected?.type == AnalyticsEntryType.space ||
-  //         selected?.type == AnalyticsEntryType.student) {
-  //       langCode = _pangeaController.languageController
-  //           .activeL2Code(roomID: selected!.id)!;
-  //       eventFutures = myConstructs(langCode);
-  //     } else {
-  //       if (_pangeaController.languageController.userL2 == null) {
-  //         throw "userL2 missing in constuctEventsByAnalyticsSelected";
-  //       }
-  //       langCode = _pangeaController.languageController.userL2!.langCode;
-  //       eventFutures = myConstructs(langCode);
-  //     }
-  //   } else {
-  //     throw "invalid defaultSelected.type - ${defaultSelected.type}";
-  //   }
-
-  //   final List<ConstructEvent> events = (await eventFutures)
-  //       .where(
-  //         (element) => element.content.type == constructType,
-  //       )
-  //       .toList();
-
-  //   final List<String> chatIdsToFilterBy = [];
-  //   if (selected?.type == AnalyticsEntryType.room) {
-  //     chatIdsToFilterBy.add(selected!.id);
-  //   } else if (selected?.type == AnalyticsEntryType.privateChats) {
-  //     chatIdsToFilterBy.addAll(
-  //       _pangeaController.matrixState.client
-  //               .getRoomById(defaultSelected.id)
-  //               ?.childrenAndGrandChildrenDirectChatIds ??
-  //           [],
-  //     );
-  //   } else if (defaultSelected.type == AnalyticsEntryType.space) {
-  //     chatIdsToFilterBy.addAll(
-  //       _pangeaController.matrixState.client
-  //               .getRoomById(defaultSelected.id)
-  //               ?.childrenAndGrandChildren
-  //               .where((e) => e.roomId != null)
-  //               .map((e) => e.roomId!) ??
-  //           [],
-  //     );
-  //   }
-  //   if (chatIdsToFilterBy.isNotEmpty) {
-  //     for (final event in events) {
-  //       event.content.uses
-  //           .removeWhere((u) => !chatIdsToFilterBy.contains(u.chatId));
-  //     }
-  //     events.removeWhere((e) => e.content.uses.isEmpty);
-  //   }
-
-  //   return events;
-  // }
-
-  // Future<VocabHeadwords> vocabHeadwordsWithTotals(
-  //   String langCode,
-  //   List<ConstructEvent> vocab, [
-  //   String? chatId,
-  // ]) async {
-  //   final VocabHeadwords vocabHeadwords =
-  //       await VocabHeadwords.getHeadwords(langCode);
-  //   for (final vocabList in vocabHeadwords.lists) {
-  //     for (final vocabEvent in vocab) {
-  //       vocabList.addVocabUse(
-  //         vocabEvent.content.lemma,
-  //         vocabEvent.content.uses,
-  //       );
-  //     }
-  //   }
-  //   return vocabHeadwords;
-  // }
-
-  /// in student analytics page, the [defaultSelected] is the student
-  /// in class analytics page, the [defaultSelected] is the class
-  /// [defaultSelected] should never be a chat
-  /// the specific [selected] will be those items in the lists - chat, student or class
-  // Future<VocabHeadwords> vocabHeadsByAnalyticsSelected({
-  //   required AnalyticsSelected? selected,
-  //   required AnalyticsSelected defaultSelected,
-  // }) async {
-  //   Future<List<ConstructEvent>> eventsFuture;
-  //   String langCode;
-
-  //   if (defaultSelected.type == AnalyticsEntryType.space) {
-  //     // as long as a student isn't selected, we want the vocab events for the whole class
-  //     final Room? classRoom =
-  //         _pangeaController.matrixState.client.getRoomById(defaultSelected.id);
-  //     if (classRoom?.classSettings == null) {
-  //       throw Exception("classRoom missing in spaceMemberVocab");
-  //     }
-  //     langCode = classRoom!.classSettings!.targetLanguage;
-  //     eventsFuture = selected?.type == AnalyticsEntryType.student
-  //         ? studentConstructs(selected!.id, langCode)
-  //         : spaceMemberVocab(defaultSelected.id);
-  //   } else if (defaultSelected.type == AnalyticsEntryType.student) {
-  //     // in this case, we're on an individual's own analytics page
-  //     if (selected?.type == AnalyticsEntryType.space ||
-  //         selected?.type == AnalyticsEntryType.student) {
-  //       langCode = _pangeaController.languageController
-  //           .activeL2Code(roomID: selected!.id)!;
-  //       eventsFuture = myConstructs(langCode);
-  //     } else {
-  //       if (_pangeaController.languageController.userL2 == null) {
-  //         throw Exception("userL2 missing in vocabHeadsByAnalyticsSelected");
-  //       }
-  //       langCode = _pangeaController.languageController.userL2!.langCode;
-  //       eventsFuture = myConstructs(langCode);
-  //     }
-  //   } else {
-  //     throw Exception("invalid defaultSelected.type - ${defaultSelected.type}");
-  //   }
-
-  //   return vocabHeadwordsWithTotals(langCode, await eventsFuture);
-  // }
 }
 
-// this is a cache for the top level constructs data, before filtering
-// (either all of a student's analytics, for my analytics, or all of a space's
-// analytics, for class analytics)
 class ConstructCacheEntry {
   final TimeSpan timeSpan;
   final ConstructType type;
