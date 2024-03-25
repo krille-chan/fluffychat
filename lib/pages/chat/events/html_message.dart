@@ -147,7 +147,7 @@ class HtmlMessage extends StatelessWidget {
         ),
       },
       extensions: [
-        RoomPillExtension(context, room, fontSize),
+        RoomPillExtension(context, room, fontSize, linkColor),
         CodeExtension(fontSize: fontSize),
         MatrixMathExtension(
           style: TextStyle(fontSize: fontSize, color: textColor),
@@ -433,8 +433,9 @@ class RoomPillExtension extends HtmlExtension {
   final Room room;
   final BuildContext context;
   final double fontSize;
+  final Color color;
 
-  RoomPillExtension(this.context, this.room, this.fontSize);
+  RoomPillExtension(this.context, this.room, this.fontSize, this.color);
   @override
   Set<String> get supportedTags => {'a'};
 
@@ -472,6 +473,7 @@ class RoomPillExtension extends HtmlExtension {
             uri: href,
             outerContext: this.context,
             fontSize: fontSize,
+            color: color,
           ),
         ),
       );
@@ -488,6 +490,7 @@ class RoomPillExtension extends HtmlExtension {
             uri: href,
             outerContext: this.context,
             fontSize: fontSize,
+            color: color,
           ),
         );
       }
@@ -503,6 +506,7 @@ class MatrixPill extends StatelessWidget {
   final Uri? avatar;
   final String uri;
   final double? fontSize;
+  final Color? color;
 
   const MatrixPill({
     super.key,
@@ -511,6 +515,7 @@ class MatrixPill extends StatelessWidget {
     this.avatar,
     required this.uri,
     required this.fontSize,
+    required this.color,
   });
 
   @override
@@ -529,7 +534,7 @@ class MatrixPill extends StatelessWidget {
           Text(
             name,
             style: TextStyle(
-              color: Theme.of(outerContext).colorScheme.primary,
+              color: color,
               decoration: TextDecoration.underline,
               fontSize: fontSize,
               height: 1.25,
