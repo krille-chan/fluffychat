@@ -55,6 +55,7 @@
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -65,6 +66,7 @@
                     android:host="matrix.to"
                     android:scheme="https" />
             </intent-filter>
+            -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
