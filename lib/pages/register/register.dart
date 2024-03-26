@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:built_value/json_object.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -36,16 +36,38 @@ class RegisterController extends State<Register> {
       setState(() => showPassword = !loading && !showPassword);
 
   Future<void> register() async {
-    if (emailController.text.isEmpty ||
-        usernameController.text.isEmpty ||
-        passwordController.text.isEmpty ||
-        confirmPasswordController.text.isEmpty) {
-      // Todo: Display an error
+    if (emailController.text.isEmpty) {
+      setState(() => emailError = L10n.of(context)!.register_requiredField);
       return;
+    } else {
+      setState(() => emailError = null);
+    }
+
+    if (usernameController.text.isEmpty) {
+      setState(() => usernameError = L10n.of(context)!.register_requiredField);
+      return;
+    } else {
+      setState(() => usernameError = null);
+    }
+
+    if (passwordController.text.isEmpty) {
+      setState(() => passwordError = L10n.of(context)!.register_requiredField);
+      return;
+    } else {
+      setState(() => passwordError = null);
+    }
+
+    if (confirmPasswordController.text.isEmpty) {
+      setState(() =>
+          confirmPasswordError = L10n.of(context)!.register_requiredField);
+      return;
+    } else {
+      setState(() => confirmPasswordError = null);
     }
 
     if (passwordController.text != confirmPasswordController.text) {
-      // Todo: Display an error
+      setState(() =>
+          confirmPasswordError = L10n.of(context)!.register_notSamePassword);
       return;
     }
 

@@ -2545,5 +2545,7 @@
     "refreshList": "Refresh list",
     "register_confirmPassword": "Confirm your password",
     "register_pleaseEnterYourEmail": "Please enter your Email",
-    "register_pleaseConfirmYourPassword": "Please confirm your password"
+    "register_pleaseConfirmYourPassword": "Please confirm your password",
+    "register_notSamePassword": "Passwords don't match",
+    "register_requiredField": "This field is required"
 }

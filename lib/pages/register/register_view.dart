@@ -32,7 +32,7 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
@@ -53,7 +53,7 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
@@ -74,7 +74,7 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofillHints:
@@ -94,7 +94,7 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofillHints:
