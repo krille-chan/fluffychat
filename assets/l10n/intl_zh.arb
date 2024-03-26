@@ -2604,5 +2604,9 @@
   "stickers": "贴纸",
   "@stickers": {},
   "discover": "发现",
-  "@discover": {}
+  "@discover": {},
+  "commandHint_ignore": "忽略给定的 matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "取消忽略给定的 matrix ID",
+  "@commandHint_unignore": {}
 }
