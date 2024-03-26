@@ -286,7 +286,7 @@ class ChatView extends StatelessWidget {
                                 clipBehavior: Clip.hardEdge,
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .surface
+                                    .onInverseSurface
                                     .withOpacity(0.9),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: const BorderRadius.all(
