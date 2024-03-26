@@ -106,6 +106,7 @@ class RegisterView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.confirmPasswordError,
                       errorStyle: const TextStyle(color: Colors.orange),
+                      errorMaxLines: 3,
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.register_confirmPassword,
                     ),
