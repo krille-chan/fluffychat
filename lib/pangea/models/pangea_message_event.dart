@@ -69,6 +69,12 @@ class PangeaMessageEvent {
           .firstOrNull ??
       _event;
 
+  Event updateLatestEdit() {
+    _latestEditCache = null;
+    _representations = null;
+    return _latestEdit;
+  }
+
   bool showRichText(bool selected, bool highlighted) {
     if (!_isValidPangeaMessageEvent) {
       return false;

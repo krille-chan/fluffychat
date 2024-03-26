@@ -68,10 +68,21 @@ class Message extends StatelessWidget {
     super.key,
   });
 
+  // #Pangea
+  PangeaMessageEvent? get pangeaMessageEvent =>
+      controller.getPangeaMessageEvent(event.eventId);
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     // #Pangea
     debugPrint('Message.build()');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (controller.edittingEvents.contains(event.eventId)) {
+        pangeaMessageEvent?.updateLatestEdit();
+        controller.clearEdittingEvent(event.eventId);
+      }
+    });
     // Pangea#
     if (!{
       EventTypes.Message,
@@ -141,8 +152,6 @@ class Message extends StatelessWidget {
     }
 
     // #Pangea
-    final PangeaMessageEvent? pangeaMessageEvent =
-        controller.getPangeaMessageEvent(event.eventId);
     ToolbarDisplayController? toolbarController;
     if (event.messageType == MessageTypes.Text ||
         event.messageType == MessageTypes.Notice) {

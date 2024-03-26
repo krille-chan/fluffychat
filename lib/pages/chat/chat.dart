@@ -535,6 +535,12 @@ class ChatController extends State<ChatPageWithRoom>
       });
 
   // #Pangea
+  final List<String> edittingEvents = [];
+  void clearEdittingEvent(String eventId) {
+    edittingEvents.remove(eventId);
+    setState(() {});
+  }
+
   // Future<void> send() async {
   // Original send function gets the tx id within the matrix lib,
   // but for choero, the tx id is generated before the message send.
@@ -577,6 +583,7 @@ class ChatController extends State<ChatPageWithRoom>
     //   editEventId: editEvent?.eventId,
     //   parseCommands: parseCommands,
     // );
+    final previousEdit = editEvent;
     room
         .pangeaSendTextEvent(
       sendController.text,
@@ -592,6 +599,13 @@ class ChatController extends State<ChatPageWithRoom>
     )
         .then(
       (String? msgEventId) {
+        // #Pangea
+        setState(() {
+          if (previousEdit != null) {
+            edittingEvents.add(previousEdit.eventId);
+          }
+        });
+        // Pangea#
         GoogleAnalytics.sendMessage(
           room.id,
           room.classCode,
@@ -1219,7 +1233,7 @@ class ChatController extends State<ChatPageWithRoom>
   void clearSelectedEvents() => setState(() {
         selectedEvents.clear();
         showEmojiPicker = false;
-//#Pangea
+        //#Pangea
         choreographer.messageOptions.resetSelectedDisplayLang();
         //Pangea#
       });
