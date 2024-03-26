@@ -284,18 +284,13 @@ class ChatView extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Material(
                                 clipBehavior: Clip.hardEdge,
-                                color: Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.white.withOpacity(0.95)
-                                    : Colors.black.withOpacity(0.87),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surface
+                                    .withOpacity(0.9),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                    bottomRight: Radius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(AppConfig.borderRadius * 2),
                                   ),
                                   side: BorderSide(
                                     color: Theme.of(context).dividerColor,

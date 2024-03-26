@@ -25,6 +25,7 @@ class ChatInputRow extends StatelessWidget {
         controller.emojiPickerType == EmojiPickerType.reaction) {
       return const SizedBox.shrink();
     }
+    const height = 48.0;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +34,7 @@ class ChatInputRow extends StatelessWidget {
               if (controller.selectedEvents
                   .every((event) => event.status == EventStatus.error))
                 SizedBox(
-                  height: 56,
+                  height: height,
                   child: TextButton(
                     style: TextButton.styleFrom(
                       foregroundColor: Theme.of(context).colorScheme.error,
@@ -49,7 +50,7 @@ class ChatInputRow extends StatelessWidget {
                 )
               else
                 SizedBox(
-                  height: 56,
+                  height: height,
                   child: TextButton(
                     onPressed: controller.forwardEventsAction,
                     child: Row(
@@ -66,7 +67,7 @@ class ChatInputRow extends StatelessWidget {
                           .status
                           .isSent
                       ? SizedBox(
-                          height: 56,
+                          height: height,
                           child: TextButton(
                             onPressed: controller.replyAction,
                             child: Row(
@@ -78,7 +79,7 @@ class ChatInputRow extends StatelessWidget {
                           ),
                         )
                       : SizedBox(
-                          height: 56,
+                          height: height,
                           child: TextButton(
                             onPressed: controller.sendAgainAction,
                             child: Row(
@@ -93,6 +94,7 @@ class ChatInputRow extends StatelessWidget {
                   : const SizedBox.shrink(),
             ]
           : <Widget>[
+              const SizedBox(width: 4),
               KeyBoardShortcuts(
                 keysToPress: {
                   LogicalKeyboardKey.altLeft,
@@ -104,8 +106,8 @@ class ChatInputRow extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
-                  height: 56,
-                  width: controller.sendController.text.isEmpty ? 56 : 0,
+                  height: height,
+                  width: controller.sendController.text.isEmpty ? height : 0,
                   alignment: Alignment.center,
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(),
@@ -182,7 +184,8 @@ class ChatInputRow extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 56,
+                height: height,
+                width: height,
                 alignment: Alignment.center,
                 child: KeyBoardShortcuts(
                   keysToPress: {
@@ -222,13 +225,14 @@ class ChatInputRow extends StatelessWidget {
                   Matrix.of(context).hasComplexBundles &&
                   Matrix.of(context).currentBundle!.length > 1)
                 Container(
-                  height: 56,
+                  width: height,
+                  height: height,
                   alignment: Alignment.center,
                   child: _ChatAccountPicker(controller),
                 ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.symmetric(vertical: 0.0),
                   child: InputBar(
                     room: controller.room,
                     minLines: 1,
@@ -244,6 +248,12 @@ class ChatInputRow extends StatelessWidget {
                     focusNode: controller.inputFocus,
                     controller: controller.sendController,
                     decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(
+                        left: 6.0,
+                        right: 6.0,
+                        bottom: 6.0,
+                        top: 3.0,
+                      ),
                       hintText: L10n.of(context)!.writeAMessage,
                       hintMaxLines: 1,
                       border: InputBorder.none,
@@ -255,7 +265,7 @@ class ChatInputRow extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 56,
+                height: height,
                 alignment: Alignment.center,
                 child: AnimatedCrossFade(
                   crossFadeState: PlatformInfos.platformCanRecord &&
@@ -276,6 +286,7 @@ class ChatInputRow extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(width: 4),
             ],
     );
   }
