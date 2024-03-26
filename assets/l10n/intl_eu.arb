@@ -2604,5 +2604,9 @@
   "discover": "Arakatu",
   "@discover": {},
   "stickers": "Pegatinak",
-  "@stickers": {}
+  "@stickers": {},
+  "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Muzin egin Matrix ID honi",
+  "@commandHint_ignore": {}
 }
