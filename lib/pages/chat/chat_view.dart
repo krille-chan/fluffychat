@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
@@ -290,7 +289,7 @@ class ChatView extends StatelessWidget {
                                     .withOpacity(0.9),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: const BorderRadius.all(
-                                    Radius.circular(AppConfig.borderRadius * 2),
+                                    Radius.circular(24),
                                   ),
                                   side: BorderSide(
                                     color: Theme.of(context).dividerColor,
