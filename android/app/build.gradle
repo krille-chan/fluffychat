@@ -32,6 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
+    namespace 'chat.fluffy.fluffychat'
     compileSdkVersion 34
 
     sourceSets {
