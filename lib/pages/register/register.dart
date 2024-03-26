@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:built_value/json_object.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
 import 'package:tawkie/pages/register/register_view.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
@@ -149,30 +151,22 @@ class RegisterController extends State<Register> {
       final queuePosition = queueStatus['queuePosition'];
       final queueState = queueStatus['userState'];
 
-      if (queueState != 'IN_QUEUE') {
-        throw Exception('Error during queue status: unexpected state');
+      if (kDebugMode) {
+        print('Registration successful');
       }
-
-      // Update username
-      final updateUsernameResponse = await dio.post(
-        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
-        options: Options(headers: {'X-Session-Token': sessionToken}),
-        data: jsonEncode({'username': usernameController.text}),
-      );
-      final matrixUsername = updateUsernameResponse.data['username'];
-
-      if (matrixUsername != usernameController.text) {
-        throw Exception('Error during username update');
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e\n");
       }
+      Logs().v("Error Kratos login : ${e.response?.data}");
 
-      // TODO: Accept user
-      // TODO: Create matrix user
-      // TODO: Output message / send email
-
-      print('Registration successful');
-    } on DioException catch (exception) {
-      setState(() => confirmPasswordError = exception.response?.data);
-      //Todo: Better error message recovery
+      // Display Kratos error messages to the user
+      if (e.response?.data != null) {
+        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+        setState(() => confirmPasswordError = errorMessage);
+      } else {
+        setState(() => confirmPasswordError = "Dio error with Kratos");
+      }
       return setState(() => loading = false);
     } catch (exception) {
       setState(() => confirmPasswordError = exception.toString());
