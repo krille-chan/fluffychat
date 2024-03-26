@@ -66,12 +66,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Accés dels usuaris convidats",
+  "areGuestsAllowedToJoin": "Es pot entrar a la sala com a convidadi",
   "@areGuestsAllowedToJoin": {
     "type": "text",
     "placeholders": {}
   },
-  "areYouSure": "N’esteu segur?",
+  "areYouSure": "N’esteu seguri?",
   "@areYouSure": {
     "type": "text",
     "placeholders": {}
@@ -93,7 +93,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "banned": "Vetat",
+  "banned": "Vetadi",
   "@banned": {
     "type": "text",
     "placeholders": {}
@@ -289,7 +289,7 @@
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHint_op": "Estableix el nivell d'autoritat de l'usuari (per defecte: 50)",
+  "commandHint_op": "Estableix el nivell d'autoritat d'uni usuàriï (per defecte: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
@@ -334,7 +334,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsUserName": "Conté el nom d’usuari",
+  "containsUserName": "Inclou nom d'usuàriï",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
@@ -410,7 +410,7 @@
       "day": {}
     }
   },
-  "deactivateAccountWarning": "Es desactivarà el vostre compte d’usuari. Això no es pot desfer! Esteu segur de fer-ho?",
+  "deactivateAccountWarning": "Es desactivarà el vostre compte d’usuàriï. És irreversible! Voleu fer-ho igualment?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -612,7 +612,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideRedactedEvents": "Amaga els esdeveniments velats",
+  "hideRedactedEvents": "Amaga els esdeveniments estripats",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
@@ -672,7 +672,7 @@
       "targetName": {}
     }
   },
-  "invitedUsersOnly": "Només usuaris convidats",
+  "invitedUsersOnly": "Només usuàriïs convidadis",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -884,7 +884,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numUsersTyping": "{count} usuaris escrivint…",
+  "numUsersTyping": "{count} usuàriïs escrivint…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -993,7 +993,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterYourUsername": "Introdueix el teu nom d'usuari",
+  "pleaseEnterYourUsername": "Introdueix el teu nom d'usuàriï",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -1018,7 +1018,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username} ha velat un esdeveniment",
+  "redactedAnEvent": "{username} ha estripat un esdeveniment",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
@@ -1064,7 +1064,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "Desfés l'expulsió",
+  "unbanFromChat": "Aixeca el veto",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1292,7 +1292,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username} ha tret el veto a {targetName}",
+  "unbannedUser": "{username} ha aixecat el veto a {targetName}",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1369,7 +1369,7 @@
       "username": {}
     }
   },
-  "username": "Nom d’usuari",
+  "username": "Nom d’usuàriï",
   "@username": {
     "type": "text",
     "placeholders": {}
@@ -1482,7 +1482,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "Has estat vetat d'aquest xat",
+  "youHaveBeenBannedFromThisChat": "T'han vetat en aquest xat",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1535,7 +1535,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactMessage": "Vela el missatge",
+  "redactMessage": "Estripa el missatge",
   "@redactMessage": {
     "type": "text",
     "placeholders": {}
@@ -1812,7 +1812,7 @@
     "type": "text",
     "description": "Usage hint for the command /join"
   },
-  "commandHint_kick": "Elimina l'usuari indicat d'aquesta sala",
+  "commandHint_kick": "Expulsa uni usuàriï d'aquesta sala",
   "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
@@ -1827,12 +1827,12 @@
     "type": "text",
     "description": "Usage hint for the command /dm"
   },
-  "commandHint_invite": "Convida l'usuari indicat a aquesta sala",
+  "commandHint_invite": "Convida uni usuàriï a aquesta sala",
   "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_ban": "Prohibeix l'usuari indicat d'aquesta sala",
+  "commandHint_ban": "Veta uni usuàriï d'aquesta sala",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -1939,7 +1939,7 @@
       "user": {}
     }
   },
-  "banUserDescription": "L'usuàrïi serà vetat de la sala",
+  "banUserDescription": "Es vetarà li usuàriï vetadi a la sala i no podrà tornar-hi a entrar fins que se li aixequi el veto.",
   "@banUserDescription": {},
   "widgetEtherpad": "Nota de text",
   "@widgetEtherpad": {},
@@ -2056,7 +2056,7 @@
   "@dehydrateWarning": {},
   "noOtherDevicesFound": "No s'han trobat més dispositius",
   "@noOtherDevicesFound": {},
-  "redactedBy": "Censurat per {username}",
+  "redactedBy": "Estripat per {username}",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
@@ -2101,7 +2101,7 @@
       "number": {}
     }
   },
-  "optionalRedactReason": "(Opcional) El motiu per censurar el missatge...",
+  "optionalRedactReason": "(Opcional) El motiu per estripar el missatge...",
   "@optionalRedactReason": {},
   "dehydrate": "Exporta la sessió i neteja el dispositiu",
   "@dehydrate": {},
@@ -2127,7 +2127,7 @@
   },
   "inviteContactToGroupQuestion": "Vols convidar {contact} al xat \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "Censurat per {username} per: \"{reason}\"",
+  "redactedByBecause": "Estripat per {username} per: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2170,7 +2170,7 @@
       "path": {}
     }
   },
-  "redactMessageDescription": "Es censurarà el missatge per a totser d'aquesta sala. Aquesta acció és irreversible.",
+  "redactMessageDescription": "S'estriparà el missatge per a totser d'aquesta sala. Aquesta acció és irreversible.",
   "@redactMessageDescription": {},
   "recoveryKey": "Clau de recuperació",
   "@recoveryKey": {},
@@ -2247,7 +2247,7 @@
   "@foregroundServiceRunning": {},
   "voiceCall": "Videotrucada",
   "@voiceCall": {},
-  "commandHint_unban": "Desbloca aquesti usuàrïi d'aquesta sala",
+  "commandHint_unban": "Aixeca el veto a aquesti usuàriï per aquesta sala",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -2398,7 +2398,7 @@
   "@storeInSecureStorageDescription": {},
   "openChat": "Obre el xat",
   "@openChat": {},
-  "kickUserDescription": "L'usuàrïi ha estat expulsadi però no vetadi. Als xats públics, pot tornar-hi a entrar en qualsevol moment.",
+  "kickUserDescription": "Li usuàrïi ha estat expulsadi però no vetadi. Als xats públics, pot tornar-hi a entrar en qualsevol moment.",
   "@kickUserDescription": {},
   "importNow": "Importa-ho ara",
   "@importNow": {},
@@ -2497,7 +2497,7 @@
   "@leaveEmptyToClearStatus": {},
   "select": "Tria",
   "@select": {},
-  "searchForUsers": "Cerca @usuariis...",
+  "searchForUsers": "Cerca @usuariïs...",
   "@searchForUsers": {},
   "subspace": "Subespai",
   "@subspace": {},
@@ -2546,7 +2546,7 @@
   },
   "nothingFound": "No s'ha trobat res...",
   "@nothingFound": {},
-  "searchChatsRooms": "Cerca #sales, @usuariis...",
+  "searchChatsRooms": "Cerca #sales, @usuariïs...",
   "@searchChatsRooms": {},
   "groupCanBeFoundViaSearch": "El grup es pot trobar per la cerca general",
   "@groupCanBeFoundViaSearch": {},
@@ -2603,5 +2603,9 @@
   "stickers": "Enganxines",
   "@stickers": {},
   "discover": "Descobreix",
-  "@discover": {}
+  "@discover": {},
+  "commandHint_ignore": "Ignora el compte de matrix especificat",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Deixa d'ignorar el compt de matrix especificat",
+  "@commandHint_unignore": {}
 }
