@@ -2547,5 +2547,7 @@
     "register_pleaseEnterYourEmail": "Please enter your Email",
     "register_pleaseConfirmYourPassword": "Please confirm your password",
     "register_notSamePassword": "Passwords don't match",
-    "register_requiredField": "This field is required"
+    "register_requiredField": "This field is required",
+    "register_passwordErrorOne": "Password must be 3-16 characters long and contain only lowercase letters and numbers.",
+    "register_passwordErrorTwo": "Password cannot contain common keywords."
 }
