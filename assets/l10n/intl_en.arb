@@ -2542,5 +2542,8 @@
     "loading_disconnectionSuccess": "Successful logout",
     "loading_deleteRoom": "Delete the conversation...",
     "loading_deleteRoomSuccess": "Conversation deleted",
-    "refreshList": "Refresh list"
+    "refreshList": "Refresh list",
+    "register_confirmPassword": "Confirm your password",
+    "register_pleaseEnterYourEmail": "Please enter your Email",
+    "register_pleaseConfirmYourPassword": "Please confirm your password"
 }
