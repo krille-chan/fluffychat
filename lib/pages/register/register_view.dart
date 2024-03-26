@@ -56,27 +56,6 @@ class RegisterView extends StatelessWidget {
                   child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
-                    autofocus: true,
-                    controller: controller.usernameController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
-                      errorText: controller.usernameError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.username,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextFormField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
                     autofillHints:
                         controller.loading ? null : [AutofillHints.newPassword],
                     controller: controller.passwordController,
@@ -86,6 +65,7 @@ class RegisterView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
                       errorStyle: const TextStyle(color: Colors.orange),
+                      errorMaxLines: 3,
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.password,
                     ),
