@@ -2549,5 +2549,10 @@
     "register_notSamePassword": "Passwords don't match",
     "register_requiredField": "This field is required",
     "register_passwordErrorOne": "Password must be 3-16 characters long and contain only lowercase letters and numbers.",
-    "register_passwordErrorTwo": "Password cannot contain common keywords."
+    "register_passwordErrorTwo": "Password cannot contain common keywords.",
+    "username_pageTitle": "Choose Username",
+    "username_yourPosition": "Your position in the list:",
+    "username_itsYourTurn": "It's your turn!",
+    "username_changeUsername": "Choose your Tawkie name",
+    "username_advertisement": "This username is reserved for you. If you change it, you risk losing it."
 }

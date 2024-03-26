@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
+import 'package:tawkie/pages/login/change_username_page.dart';
 import 'package:tawkie/pages/register/register_view.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
 
@@ -20,12 +21,10 @@ class Register extends StatefulWidget {
 
 class RegisterController extends State<Register> {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
   String? emailError;
-  String? usernameError;
   String? passwordError;
   String? confirmPasswordError;
   bool loading = false;
@@ -71,13 +70,6 @@ class RegisterController extends State<Register> {
       return;
     } else {
       setState(() => emailError = null);
-    }
-
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context)!.register_requiredField);
-      return;
-    } else {
-      setState(() => usernameError = null);
     }
 
     if (passwordController.text.isEmpty) {
@@ -140,7 +132,6 @@ class RegisterController extends State<Register> {
 
       // Process registration response
       final sessionToken = registerResponse.data?.sessionToken;
-      final userId = registerResponse.data?.identity.id;
 
       // Fetch user queue status
       final queueStatusResponse = await dio.get(
@@ -148,8 +139,19 @@ class RegisterController extends State<Register> {
         options: Options(headers: {'X-Session-Token': sessionToken}),
       );
       final queueStatus = queueStatusResponse.data;
-      final queuePosition = queueStatus['queuePosition'];
-      final queueState = queueStatus['userState'];
+
+      if (queueStatus != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangeUsernamePage(
+              queueStatus: queueStatus,
+              dio: dio,
+              sessionToken: sessionToken!,
+            ),
+          ),
+        );
+      }
 
       if (kDebugMode) {
         print('Registration successful');
@@ -161,7 +163,7 @@ class RegisterController extends State<Register> {
       Logs().v("Error Kratos login : ${e.response?.data}");
 
       // Display Kratos error messages to the user
-      if (e.response?.data != null) {
+      if (e.response!.data['ui']['messages'][0]['text'] != null) {
         final errorMessage = e.response!.data['ui']['messages'][0]['text'];
         setState(() => confirmPasswordError = errorMessage);
       } else {
