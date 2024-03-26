@@ -254,28 +254,28 @@ class ChatInputRow extends StatelessWidget {
                   ),
                 ),
               ),
-              if (PlatformInfos.platformCanRecord &&
-                  controller.sendController.text.isEmpty)
-                Container(
-                  height: 56,
-                  alignment: Alignment.center,
-                  child: IconButton(
+              Container(
+                height: 56,
+                alignment: Alignment.center,
+                child: AnimatedCrossFade(
+                  crossFadeState: PlatformInfos.platformCanRecord &&
+                          controller.sendController.text.isEmpty
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  duration: FluffyThemes.animationDuration,
+                  sizeCurve: FluffyThemes.animationCurve,
+                  firstChild: IconButton(
                     tooltip: L10n.of(context)!.voiceMessage,
-                    icon: const Icon(Icons.mic_none_outlined),
                     onPressed: controller.voiceMessageAction,
+                    icon: const Icon(Icons.mic_none_outlined),
                   ),
-                ),
-              if (!PlatformInfos.isMobile ||
-                  controller.sendController.text.isNotEmpty)
-                Container(
-                  height: 56,
-                  alignment: Alignment.center,
-                  child: IconButton(
-                    icon: const Icon(Icons.send_outlined),
+                  secondChild: IconButton(
+                    tooltip: L10n.of(context)!.voiceMessage,
                     onPressed: controller.send,
-                    tooltip: L10n.of(context)!.send,
+                    icon: const Icon(Icons.send_outlined),
                   ),
                 ),
+              ),
             ],
     );
   }

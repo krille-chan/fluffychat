@@ -283,24 +283,24 @@ class ChatView extends StatelessWidget {
                               ),
                               alignment: Alignment.center,
                               child: Material(
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                  bottomRight: Radius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                ),
                                 clipBehavior: Clip.hardEdge,
                                 color: Theme.of(context).brightness ==
                                         Brightness.light
-                                    ? Colors.white
-                                    : Colors.black,
-                                elevation: 4.0,
-                                shadowColor: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.33),
+                                    ? Colors.white.withOpacity(0.95)
+                                    : Colors.black.withOpacity(0.87),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(
+                                      AppConfig.borderRadius,
+                                    ),
+                                    bottomRight: Radius.circular(
+                                      AppConfig.borderRadius,
+                                    ),
+                                  ),
+                                  side: BorderSide(
+                                    color: Theme.of(context).dividerColor,
+                                  ),
+                                ),
                                 child: controller.room.isAbandonedDMRoom == true
                                     ? Row(
                                         mainAxisAlignment:
