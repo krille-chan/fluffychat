@@ -31,8 +31,8 @@ class StateMessage extends StatelessWidget {
                     ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 13 * AppConfig.fontSizeFactor,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  fontSize: 12 * AppConfig.fontSizeFactor,
+                  color: Theme.of(context).colorScheme.secondary,
                   decoration:
                       event.redacted ? TextDecoration.lineThrough : null,
                 ),
