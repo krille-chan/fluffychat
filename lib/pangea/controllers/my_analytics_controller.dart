@@ -24,8 +24,9 @@ class MyAnalyticsController {
   //PTODO - locally cache and update periodically
   Future<void> handleMessage(
     Room room,
-    RecentMessageRecord messageRecord,
-  ) async {
+    RecentMessageRecord messageRecord, {
+    bool isEdit = false,
+  }) async {
     try {
       debugPrint("in handle message with type ${messageRecord.useType}");
       if (_userId == null) {
@@ -48,7 +49,7 @@ class MyAnalyticsController {
 
       for (final event in events) {
         if (event != null) {
-          event.handleNewMessage(messageRecord);
+          event.handleNewMessage(messageRecord, isEdit: isEdit);
         }
       }
     } catch (err) {
@@ -76,8 +77,9 @@ class MyAnalyticsController {
 
   Future<void> saveConstructsMixed(
     List<OneConstructUse> allUses,
-    String langCode,
-  ) async {
+    String langCode, {
+    bool isEdit = false,
+  }) async {
     try {
       final Map<String, List<OneConstructUse>> aggregatedVocabUse = {};
       for (final use in allUses) {
@@ -96,6 +98,7 @@ class MyAnalyticsController {
             uses.key,
             uses.value.first.constructType!,
             uses.value,
+            isEdit: isEdit,
           ),
         );
       }

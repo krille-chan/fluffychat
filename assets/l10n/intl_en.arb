@@ -3952,5 +3952,6 @@
     "joinToView": "Join this room to view details",
     "refresh": "Refresh",
     "autoPlayTitle": "Auto Play Messages",
-    "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected."
+    "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected.",
+    "messageAnalytics": "Message Analytics"
 }

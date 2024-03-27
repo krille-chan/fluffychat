@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+
 import '../enum/use_type.dart';
 
 class RecentMessageRecord {
@@ -76,6 +77,12 @@ class StudentAnalyticsSummary {
         _messages.add(msg);
       }
     }
+  }
+
+  void removeEdittedMessages(Client client, List<String> removeEventIds) {
+    _messages.removeWhere(
+      (element) => removeEventIds.contains(element.eventId),
+    );
   }
 
   List<RecentMessageRecord> get messages => _messages;

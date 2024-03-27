@@ -628,6 +628,7 @@ class ChatController extends State<ChatPageWithRoom>
             useType: useType ?? UseType.un,
             time: DateTime.now(),
           ),
+          isEdit: previousEdit != null,
         );
 
         if (choreo != null &&
@@ -641,6 +642,7 @@ class ChatController extends State<ChatPageWithRoom>
               ...choreo.toGrammarConstructUse(msgEventId, room.id),
             ],
             originalSent!.langCode,
+            isEdit: previousEdit != null,
           );
         }
       },
