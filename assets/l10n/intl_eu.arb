@@ -2600,5 +2600,13 @@
   "incomingMessages": "Jasotako mezuak",
   "@incomingMessages": {},
   "hidePresences": "Ezkutatu Egoeren Zerrenda?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "discover": "Arakatu",
+  "@discover": {},
+  "stickers": "Pegatinak",
+  "@stickers": {},
+  "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Muzin egin Matrix ID honi",
+  "@commandHint_ignore": {}
 }

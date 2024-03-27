@@ -2600,5 +2600,9 @@
   "incomingMessages": "Saabuvad sõnumid",
   "@incomingMessages": {},
   "hidePresences": "Peida olekute loend?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "stickers": "Kleepsud",
+  "@stickers": {},
+  "discover": "Otsi ja leia",
+  "@discover": {}
 }

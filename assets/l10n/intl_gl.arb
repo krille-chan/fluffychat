@@ -2600,5 +2600,13 @@
     "placeholders": {}
   },
   "incomingMessages": "Mensaxes recibidas",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "Adhesivos",
+  "@stickers": {},
+  "discover": "Descubrir",
+  "@discover": {},
+  "commandHint_ignore": "Ignorar o ID matrix indicado",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Non ignorar o ID matrix indicado",
+  "@commandHint_unignore": {}
 }
