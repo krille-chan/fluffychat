@@ -36,6 +36,7 @@ class ConstructEvent {
     Client client,
   ) async {
     _contentCache ??= ConstructUses.fromJson(event.content);
+    if (_contentCache == null || _event.stateKey == null) return;
     final previousLength = _contentCache!.uses.length;
     _contentCache!.uses.removeWhere(
       (element) => removeIds.contains(element.msgId),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -96,7 +97,7 @@ class MyAnalyticsController {
         saveFutures.add(
           analyticsRoom.saveConstructUsesSameLemma(
             uses.key,
-            uses.value.first.constructType!,
+            uses.value.first.constructType ?? ConstructType.grammar,
             uses.value,
             isEdit: isEdit,
           ),
