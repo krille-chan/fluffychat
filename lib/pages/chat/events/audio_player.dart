@@ -283,22 +283,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
               ),
             ),
           ),
+          const SizedBox(width: 4),
           Stack(
             children: [
-              IconButton(
-                constraints: const BoxConstraints(
-                  maxHeight: buttonSize,
+              SizedBox(
+                width: buttonSize,
+                height: buttonSize,
+                child: InkWell(
+                  splashColor: widget.color.withAlpha(128),
+                  borderRadius: BorderRadius.circular(64),
+                  onTap: audioPlayer == null ? null : _toggleSpeed,
+                  child: Icon(Icons.mic_none_outlined, color: widget.color),
                 ),
-                icon: Icon(Icons.mic_none_outlined, color: widget.color),
-                onPressed: _toggleSpeed,
               ),
               if (audioPlayer != null)
                 Positioned(
                   bottom: 0,
+                  left: 0,
                   right: 0,
                   child: Text(
                     '${audioPlayer.speed.toString()}x',
-                    textAlign: TextAlign.right,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 9.0,
                       color: widget.color,
