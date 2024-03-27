@@ -266,6 +266,7 @@ class ChatInputRow extends StatelessWidget {
               ),
               Container(
                 height: height,
+                width: height,
                 alignment: Alignment.center,
                 child: AnimatedCrossFade(
                   crossFadeState: PlatformInfos.platformCanRecord &&
@@ -274,19 +275,32 @@ class ChatInputRow extends StatelessWidget {
                       : CrossFadeState.showSecond,
                   duration: FluffyThemes.animationDuration,
                   sizeCurve: FluffyThemes.animationCurve,
-                  firstChild: IconButton(
+                  firstChild: FloatingActionButton.small(
                     tooltip: L10n.of(context)!.voiceMessage,
                     onPressed: controller.voiceMessageAction,
-                    icon: const Icon(Icons.mic_none_outlined),
+                    elevation: 0,
+                    heroTag: null,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(height),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    child: const Icon(Icons.mic_none_outlined),
                   ),
-                  secondChild: IconButton(
+                  secondChild: FloatingActionButton.small(
                     tooltip: L10n.of(context)!.voiceMessage,
                     onPressed: controller.send,
-                    icon: const Icon(Icons.send_outlined),
+                    elevation: 0,
+                    heroTag: null,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(height),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                    child: const Icon(Icons.send_outlined),
                   ),
                 ),
               ),
-              const SizedBox(width: 4),
             ],
     );
   }
