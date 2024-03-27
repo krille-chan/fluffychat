@@ -268,38 +268,35 @@ class ChatInputRow extends StatelessWidget {
                 height: height,
                 width: height,
                 alignment: Alignment.center,
-                child: AnimatedCrossFade(
-                  crossFadeState: PlatformInfos.platformCanRecord &&
-                          controller.sendController.text.isEmpty
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                  duration: FluffyThemes.animationDuration,
-                  sizeCurve: FluffyThemes.animationCurve,
-                  firstChild: FloatingActionButton.small(
-                    tooltip: L10n.of(context)!.voiceMessage,
-                    onPressed: controller.voiceMessageAction,
-                    elevation: 0,
-                    heroTag: null,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height),
-                    ),
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    child: const Icon(Icons.mic_none_outlined),
-                  ),
-                  secondChild: FloatingActionButton.small(
-                    tooltip: L10n.of(context)!.voiceMessage,
-                    onPressed: controller.send,
-                    elevation: 0,
-                    heroTag: null,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height),
-                    ),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
-                    child: const Icon(Icons.send_outlined),
-                  ),
-                ),
+                child: PlatformInfos.platformCanRecord &&
+                        controller.sendController.text.isEmpty
+                    ? FloatingActionButton.small(
+                        tooltip: L10n.of(context)!.voiceMessage,
+                        onPressed: controller.voiceMessageAction,
+                        elevation: 0,
+                        heroTag: null,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(height),
+                        ),
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
+                        child: const Icon(Icons.mic_none_outlined),
+                      )
+                    : FloatingActionButton.small(
+                        tooltip: L10n.of(context)!.send,
+                        onPressed: controller.send,
+                        elevation: 0,
+                        heroTag: null,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(height),
+                        ),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.onPrimaryContainer,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimary,
+                        child: const Icon(Icons.send_outlined),
+                      ),
               ),
             ],
     );
