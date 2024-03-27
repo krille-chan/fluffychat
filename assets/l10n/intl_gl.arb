@@ -2604,5 +2604,9 @@
   "stickers": "Adhesivos",
   "@stickers": {},
   "discover": "Descubrir",
-  "@discover": {}
+  "@discover": {},
+  "commandHint_ignore": "Ignorar o ID matrix indicado",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Non ignorar o ID matrix indicado",
+  "@commandHint_unignore": {}
 }
