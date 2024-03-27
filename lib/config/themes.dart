@@ -88,6 +88,9 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
       ),
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: colorScheme.onBackground.withAlpha(128),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
