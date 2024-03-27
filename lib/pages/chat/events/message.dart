@@ -203,53 +203,27 @@ class Message extends StatelessWidget {
                     if (!nextEventSameSender)
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, bottom: 4),
-                        child: Row(
-                          mainAxisAlignment: ownMessage
-                              ? MainAxisAlignment.end
-                              : MainAxisAlignment.start,
-                          children: [
-                            if (ownMessage || event.room.isDirectChat)
-                              const SizedBox(height: 12)
-                            else
-                              FutureBuilder<User?>(
+                        child: ownMessage || event.room.isDirectChat
+                            ? const SizedBox(height: 12)
+                            : FutureBuilder<User?>(
                                 future: event.fetchSenderUser(),
                                 builder: (context, snapshot) {
                                   final displayname =
                                       snapshot.data?.calcDisplayname() ??
                                           event.senderFromMemoryOrFallback
                                               .calcDisplayname();
-                                  return ConstrainedBox(
-                                    constraints: const BoxConstraints(
-                                      maxWidth: FluffyThemes.columnWidth / 2,
-                                    ),
-                                    child: Text(
-                                      displayname,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: (Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? displayname.color
-                                            : displayname.lightColorText),
-                                      ),
+                                  return Text(
+                                    displayname,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: (Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? displayname.color
+                                          : displayname.lightColorText),
                                     ),
                                   );
                                 },
                               ),
-                            Text(
-                              (ownMessage || event.room.isDirectChat
-                                      ? ''
-                                      : ' | ') +
-                                  event.originServerTs
-                                      .localizedTimeOfDay(context),
-                              style: TextStyle(
-                                fontSize: 12 * AppConfig.fontSizeFactor,
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
                     Container(
                       alignment: alignment,
@@ -389,12 +363,38 @@ class Message extends StatelessWidget {
     Widget container;
     final showReceiptsRow =
         event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
-    if (showReceiptsRow || selected || displayReadMarker) {
+    if (showReceiptsRow || displayTime || selected || displayReadMarker) {
       container = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
+          if (displayTime || selected)
+            Padding(
+              padding: displayTime
+                  ? const EdgeInsets.symmetric(vertical: 8.0)
+                  : EdgeInsets.zero,
+              child: Center(
+                child: Material(
+                  color: displayTime
+                      ? Theme.of(context).colorScheme.background
+                      : Theme.of(context)
+                          .colorScheme
+                          .background
+                          .withOpacity(0.33),
+                  borderRadius:
+                      BorderRadius.circular(AppConfig.borderRadius / 2),
+                  clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      event.originServerTs.localizedTime(context),
+                      style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           row,
           AnimatedSize(
             duration: FluffyThemes.animationDuration,
