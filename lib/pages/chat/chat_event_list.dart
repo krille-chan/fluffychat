@@ -5,12 +5,14 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/events/date_separator.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
@@ -106,6 +108,8 @@ class ChatEventList extends StatelessWidget {
 
             // The message at this index:
             final event = events[i];
+            final nextEvent = i + 1 < events.length ? events[i + 1] : null;
+            final previousEvent = i > 0 ? events[i - 1] : null;
             final animateIn = animateInEventIndex != null &&
                 controller.timeline!.events.length > animateInEventIndex &&
                 event == controller.timeline!.events[animateInEventIndex];
@@ -114,39 +118,48 @@ class ChatEventList extends StatelessWidget {
               key: ValueKey(event.eventId),
               index: i,
               controller: controller.scrollController,
-              child: Message(
-                event,
-                animateIn: animateIn,
-                resetAnimateIn: () {
-                  controller.animateInEventIndex = null;
-                },
-                onSwipe: () => controller.replyAction(replyTo: event),
-                onInfoTab: controller.showEventInfo,
-                onAvatarTab: (Event event) => showAdaptiveBottomSheet(
-                  context: context,
-                  builder: (c) => UserBottomSheet(
-                    user: event.senderFromMemoryOrFallback,
-                    outerContext: context,
-                    onMention: () => controller.sendController.text +=
-                        '${event.senderFromMemoryOrFallback.mention} ',
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (nextEvent?.originServerTs
+                          .isSameDate(event.originServerTs) !=
+                      true)
+                    DateSeparator(date: event.originServerTs),
+                  Message(
+                    event,
+                    animateIn: animateIn,
+                    resetAnimateIn: () {
+                      controller.animateInEventIndex = null;
+                    },
+                    onSwipe: () => controller.replyAction(replyTo: event),
+                    onInfoTab: controller.showEventInfo,
+                    onAvatarTab: (Event event) => showAdaptiveBottomSheet(
+                      context: context,
+                      builder: (c) => UserBottomSheet(
+                        user: event.senderFromMemoryOrFallback,
+                        outerContext: context,
+                        onMention: () => controller.sendController.text +=
+                            '${event.senderFromMemoryOrFallback.mention} ',
+                      ),
+                    ),
+                    highlightMarker:
+                        controller.scrollToEventIdMarker == event.eventId,
+                    onSelect: controller.onSelectMessage,
+                    scrollToEventId: (String eventId) =>
+                        controller.scrollToEventId(eventId),
+                    longPressSelect: controller.selectedEvents.isNotEmpty,
+                    selected: controller.selectedEvents
+                        .any((e) => e.eventId == event.eventId),
+                    timeline: controller.timeline!,
+                    displayReadMarker:
+                        controller.readMarkerEventId == event.eventId &&
+                            controller.timeline?.allowNewEvent == false,
+                    nextEvent: nextEvent,
+                    previousEvent: previousEvent,
+                    avatarPresenceBackgroundColor:
+                        hasWallpaper ? Colors.transparent : null,
                   ),
-                ),
-                highlightMarker:
-                    controller.scrollToEventIdMarker == event.eventId,
-                onSelect: controller.onSelectMessage,
-                scrollToEventId: (String eventId) =>
-                    controller.scrollToEventId(eventId),
-                longPressSelect: controller.selectedEvents.isNotEmpty,
-                selected: controller.selectedEvents
-                    .any((e) => e.eventId == event.eventId),
-                timeline: controller.timeline!,
-                displayReadMarker:
-                    controller.readMarkerEventId == event.eventId &&
-                        controller.timeline?.allowNewEvent == false,
-                nextEvent: i + 1 < events.length ? events[i + 1] : null,
-                previousEvent: i > 0 ? events[i - 1] : null,
-                avatarPresenceBackgroundColor:
-                    hasWallpaper ? Colors.transparent : null,
+                ],
               ),
             );
           },

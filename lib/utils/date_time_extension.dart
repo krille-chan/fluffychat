@@ -45,7 +45,7 @@ extension DateTimeExtension on DateTime {
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
-  String localizedTimeShort(BuildContext context) {
+  String localizedTimeShort(BuildContext context, {bool dateOnly = false}) {
     final now = DateTime.now();
 
     final sameYear = now.year == year;
@@ -58,7 +58,7 @@ extension DateTimeExtension on DateTime {
             1000 * 60 * 60 * 24 * 7;
 
     if (sameDay) {
-      return localizedTimeOfDay(context);
+      return dateOnly ? L10n.of(context)!.today : localizedTimeOfDay(context);
     } else if (sameWeek) {
       return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
           .format(this);
@@ -90,6 +90,10 @@ extension DateTimeExtension on DateTime {
       localizedTimeShort(context),
       localizedTimeOfDay(context),
     );
+  }
+
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
   }
 
   static String _z(int i) => i < 10 ? '0${i.toString()}' : i.toString();
