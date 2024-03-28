@@ -36,12 +36,27 @@ class RegisterController extends State<Register> {
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
+  bool _validateEmail(String email) {
+    // Define regex to validate email format
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    // Check if the email matches the regex
+    if (!emailRegex.hasMatch(email)) {
+      setState(() => emailError = L10n.of(context)?.register_emailError);
+      return false;
+    }
+
+    // Reset email error if valid
+    setState(() => emailError = null);
+    return true;
+  }
+
   bool _validatePassword(String password) {
     // Define regex to validate password format
-    final RegExp passwordRegex = RegExp(r'^[a-z0-9]{3,16}$');
-
-    // List of keywords to check
-    final List<String> keywords = ['password', '123456', 'qwerty'];
+    final RegExp passwordRegex =
+        RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{3,16}$');
 
     // Check that the password matches the regex
     if (!passwordRegex.hasMatch(password)) {
@@ -51,6 +66,7 @@ class RegisterController extends State<Register> {
     }
 
     // Check if the password contains one of the following keywords
+    final List<String> keywords = ['password', '123456', 'qwerty'];
     for (final keyword in keywords) {
       if (password.contains(keyword)) {
         setState(
@@ -65,11 +81,17 @@ class RegisterController extends State<Register> {
   }
 
   Future<void> register() async {
+    setState(() => confirmPasswordError = null);
+
     if (emailController.text.isEmpty) {
       setState(() => emailError = L10n.of(context)!.register_requiredField);
       return;
     } else {
       setState(() => emailError = null);
+    }
+
+    if (!_validateEmail(emailController.text)) {
+      return;
     }
 
     if (passwordController.text.isEmpty) {
