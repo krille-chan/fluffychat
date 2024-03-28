@@ -22,13 +22,58 @@ class ChangeUsernamePage extends StatefulWidget {
 }
 
 class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
+  String baseUrl =
+      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
 
+  bool _validateUsername(String username) {
+    // Define regex to validate password format
+    final RegExp usernameRegex = RegExp(r'^(?=.*[a-z])(?=.*\d)[a-z0-9]{3,16}$');
+
+    // List of keywords to check
+    final List<String> keywords = ['password', '123456', 'qwerty'];
+
+    // Check that the password matches the regex
+    if (!usernameRegex.hasMatch(username)) {
+      setState(() => _usernameError = L10n.of(context)?.username_validateError);
+      return false;
+    }
+
+    // Check if the password contains one of the following keywords
+    for (final keyword in keywords) {
+      if (username.contains(keyword)) {
+        setState(
+            () => _usernameError = L10n.of(context)?.register_passwordErrorTwo);
+        return false;
+      }
+    }
+
+    // Reset password error if valid
+    setState(() => _usernameError = null);
+    return true;
+  }
+
+  String _formatUsername(String username) {
+    // Remove leading capital letter
+    if (username.isNotEmpty && username[0].toUpperCase() == username[0]) {
+      username = username.replaceFirst(username[0], username[0].toLowerCase());
+    }
+    return username;
+  }
+
   Future<void> updateUsername(String sessionToken, String newUsername) async {
     try {
+      newUsername = _formatUsername(newUsername);
+
+      // Validate the username
+      if (!_validateUsername(newUsername)) {
+        return;
+      }
+
       final updateUsernameResponse = await widget.dio.post(
-        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/updateUsername',
+        '${baseUrl}panel/api/mobile-matrix-auth/updateUsername',
         options: Options(headers: {'X-Session-Token': sessionToken}),
         data: jsonEncode({'username': newUsername}),
       );
@@ -120,6 +165,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 decoration: InputDecoration(
                   labelText: L10n.of(context)!.username,
                   errorText: _usernameError,
+                  errorMaxLines: 3,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
