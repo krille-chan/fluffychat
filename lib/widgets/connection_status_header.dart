@@ -47,7 +47,7 @@ class ConnectionStatusHeaderState extends State<ConnectionStatusHeader> {
       curve: FluffyThemes.animationCurve,
       height: hide ? 0 : 36,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+      decoration: const BoxDecoration(color: Colors.transparent),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
