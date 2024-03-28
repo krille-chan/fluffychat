@@ -29,12 +29,19 @@ class RegisterController extends State<Register> {
   String? confirmPasswordError;
   bool loading = false;
   bool showPassword = false;
-  final Dio dio =
-      Dio(BaseOptions(baseUrl: 'https://staging.tawkie.fr/panel/api/.ory'));
+  String baseUrl =
+      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+  late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
+
+  @override
+  void initState() {
+    super.initState();
+    dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
+  }
 
   bool _validateEmail(String email) {
     // Define regex to validate email format
@@ -157,8 +164,12 @@ class RegisterController extends State<Register> {
 
       // Fetch user queue status
       final queueStatusResponse = await dio.get(
-        'https://staging.tawkie.fr/panel/api/mobile-matrix-auth/getQueueStatus',
-        options: Options(headers: {'X-Session-Token': sessionToken}),
+        '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
+        options: Options(
+          headers: {
+            'X-Session-Token': sessionToken,
+          },
+        ),
       );
       final queueStatus = queueStatusResponse.data;
 
