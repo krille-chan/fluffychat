@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 
 Future<T?> showAdaptiveBottomSheet<T>({
   required BuildContext context,
@@ -14,7 +13,8 @@ Future<T?> showAdaptiveBottomSheet<T>({
     showModalBottomSheet(
       context: context,
       builder: builder,
-      useRootNavigator: !PlatformInfos.isMobile,
+      // this sadly is ugly on desktops but otherwise breaks `.of(context)` calls
+      useRootNavigator: false,
       isDismissible: isDismissible,
       isScrollControlled: isScrollControlled,
       constraints: BoxConstraints(
