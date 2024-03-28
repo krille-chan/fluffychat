@@ -2543,6 +2543,7 @@
     "loading_deleteRoom": "Delete the conversation...",
     "loading_deleteRoomSuccess": "Conversation deleted",
     "refreshList": "Refresh list",
+    "register_title": "Create your account Tawkie",
     "register_confirmPassword": "Confirm your password",
     "register_pleaseEnterYourEmail": "Please enter your Email",
     "register_pleaseConfirmYourPassword": "Please confirm your password",

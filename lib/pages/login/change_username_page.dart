@@ -46,7 +46,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       // Display a SnackBar to indicate a successful name change
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Changement de nom réussi pour $newUsername'),
+          content: Text('${L10n.of(context)!.username_success} $newUsername'),
           backgroundColor: Colors.green,
         ),
       );
