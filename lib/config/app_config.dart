@@ -48,7 +48,7 @@ abstract class AppConfig {
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
   static bool sendPublicReadReceipts = true;
-  static bool? sendOnEnter;
+  static bool sendOnEnter = false;
   static bool showPresences = true;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
