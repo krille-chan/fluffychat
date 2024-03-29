@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
@@ -11,6 +12,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'cipher.dart';
 
 import 'sqlcipher_stub.dart'
@@ -54,9 +56,11 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   final cipher = await getDatabaseCipher();
 
-  final fileStoragePath = await getApplicationSupportDirectory();
+  final fileStoragePath = PlatformInfos.isIOS || PlatformInfos.isMacOS
+      ? await getLibraryDirectory()
+      : await getApplicationSupportDirectory();
 
-  final path = '${fileStoragePath.path}/${client.clientName}.sqlite';
+  final path = join(fileStoragePath.path, '${client.clientName}.sqlite');
 
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
@@ -64,10 +68,11 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
   final factory =
       createDatabaseFactoryFfi(ffiInit: SQfLiteEncryptionHelper.ffiInit);
 
-  // required for [getDatabasesPath]
-  databaseFactory = factory;
   // migrate from potential previous SQLite database path to current one
   await _migrateLegacyLocation(path, client.clientName);
+
+  // required for [getDatabasesPath]
+  databaseFactory = factory;
 
   // in case we got a cipher, we use the encryption helper
   // to manage SQLite encryption
@@ -102,12 +107,18 @@ Future<void> _migrateLegacyLocation(
   String sqlFilePath,
   String clientName,
 ) async {
-  final oldPath = await getDatabasesPath();
-  final oldFilePath = '$oldPath/$clientName';
+  final oldPath = PlatformInfos.isDesktop
+      ? (await getApplicationSupportDirectory()).path
+      : await getDatabasesPath();
+
+  final oldFilePath = join(oldPath, clientName);
   if (oldFilePath == sqlFilePath) return;
 
   final maybeOldFile = File(oldFilePath);
   if (await maybeOldFile.exists()) {
+    Logs().i(
+      'Migrate legacy location for database from "$oldFilePath" to "$sqlFilePath"',
+    );
     await maybeOldFile.copy(sqlFilePath);
     await maybeOldFile.delete();
   }

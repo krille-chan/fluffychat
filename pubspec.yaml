@@ -69,6 +69,7 @@ dependencies:
   native_imaging: ^0.1.0
   package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
+  path: ^1.9.0
   path_provider: ^2.0.9
   permission_handler: ^11.0.1
   pretty_qr_code: ^3.2.1
