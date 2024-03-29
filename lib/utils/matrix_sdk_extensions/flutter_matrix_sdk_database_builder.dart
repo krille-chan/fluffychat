@@ -23,15 +23,8 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     database = await _constructDatabase(client);
     await database.open();
     return database;
-  } catch (e) {
-    // Try to delete database so that it can created again on next init:
-    database?.delete().catchError(
-          (e, s) => Logs().w(
-            'Unable to delete database, after failed construction',
-            e,
-            s,
-          ),
-        );
+  } catch (e, s) {
+    Logs().wtf('Unable to build database!', e, s);
 
     // Send error notification:
     final l10n = lookupL10n(PlatformDispatcher.instance.locale);
@@ -100,6 +93,8 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
         .catchError((_) {});
     Logs().w('Unable to init database encryption', e, s);
   }
+
+  print('$path/${client.clientName}');
 
   return MatrixSdkDatabase(
     client.clientName,
