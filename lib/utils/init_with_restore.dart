@@ -127,7 +127,9 @@ extension InitWithRestoreExtension on Client {
         ClientManager.sendInitNotification(
           l10n.initAppError,
           l10n.restoreSessionBody(
-              AppConfig.newIssueUrl.toString(), e.toString()),
+            AppConfig.newIssueUrl.toString(),
+            e.toString(),
+          ),
         );
       } catch (e, s) {
         Logs().wtf('Restore client failed!', e, s);
