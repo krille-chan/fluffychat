@@ -94,8 +94,6 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     Logs().w('Unable to init database encryption', e, s);
   }
 
-  print('$path/${client.clientName}');
-
   return MatrixSdkDatabase(
     client.clientName,
     database: await openDatabase(
