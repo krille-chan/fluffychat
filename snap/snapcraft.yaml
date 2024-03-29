@@ -77,8 +77,7 @@ parts:
     stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
-      - libsqlite3-0
-      - libsqlite3-dev
+      - libssl-dev
 
 slots:
   dbus-svc:
@@ -89,7 +88,7 @@ slots:
 apps:
   fluffychat:
     command: fluffychat
-    extensions: [gnome]
+    extensions: [ gnome ]
     plugs:
       - audio-playback
       - desktop
