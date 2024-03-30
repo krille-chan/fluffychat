@@ -118,7 +118,9 @@ class MessageContent extends StatelessWidget {
                 ?.tryGet<int>('h');
             var width = maxSize;
             var height = maxSize;
-            var fit = BoxFit.cover;
+            var fit = event.messageType == MessageTypes.Sticker
+                ? BoxFit.contain
+                : BoxFit.cover;
             if (w != null && h != null) {
               fit = BoxFit.contain;
               if (w > h) {

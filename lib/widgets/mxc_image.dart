@@ -151,8 +151,11 @@ class _MxcImageState extends State<MxcImage> {
 
   Widget placeholder(BuildContext context) =>
       widget.placeholder?.call(context) ??
-      const Center(
-        child: CircularProgressIndicator.adaptive(strokeWidth: 2),
+      Container(
+        width: widget.width,
+        height: widget.height,
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator.adaptive(strokeWidth: 2),
       );
 
   @override
