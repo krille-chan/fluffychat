@@ -484,7 +484,7 @@ class Message extends StatelessWidget {
               Positioned(
                 left: ownMessage ? null : 48,
                 right: ownMessage ? 4 : null,
-                bottom: showReceiptsRow ? 28 : 0,
+                top: displayTime ? 38 : 0,
                 child: AnimatedScale(
                   duration: Duration(
                     milliseconds:
@@ -507,12 +507,30 @@ class Message extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        if (event.room.canSendDefaultMessages)
+                          SizedBox(
+                            width: 32,
+                            height: 32,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.reply_outlined,
+                                size: 16,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onTertiaryContainer,
+                              ),
+                              tooltip: L10n.of(context)!.reply,
+                              onPressed: event.room.canSendDefaultMessages
+                                  ? () => onSwipe()
+                                  : null,
+                            ),
+                          ),
                         SizedBox(
                           width: 32,
                           height: 32,
                           child: IconButton(
                             icon: Icon(
-                              Icons.check_circle_outline_outlined,
+                              Icons.more_vert,
                               size: 16,
                               color: Theme.of(context)
                                   .colorScheme
@@ -520,21 +538,6 @@ class Message extends StatelessWidget {
                             ),
                             tooltip: L10n.of(context)!.select,
                             onPressed: () => onSelect(event),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 32,
-                          height: 32,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.reply_outlined,
-                              size: 16,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onTertiaryContainer,
-                            ),
-                            tooltip: L10n.of(context)!.reply,
-                            onPressed: () => onSwipe(),
                           ),
                         ),
                       ],
