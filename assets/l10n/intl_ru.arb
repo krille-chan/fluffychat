@@ -2275,7 +2275,7 @@
   },
   "startFirstChat": "Начните Ваш первый чат",
   "@startFirstChat": {},
-  "jumpToLastReadMessage": "Перейти к последнему прочитанному сообщению",
+  "jumpToLastReadMessage": "Последнее прочитанное сообщение",
   "@jumpToLastReadMessage": {},
   "wasDirectChatDisplayName": "Пустой чат (был {oldDisplayName})",
   "@wasDirectChatDisplayName": {
@@ -2423,7 +2423,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Заглушённые пользователи",
   "@blockedUsers": {},
-  "block": "заглушить",
+  "block": "Заглушить",
   "@block": {},
   "blockUsername": "Игнорировать имя пользователя",
   "@blockUsername": {},
