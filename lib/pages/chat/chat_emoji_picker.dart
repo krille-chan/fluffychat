@@ -65,7 +65,7 @@ class ChatEmojiPicker extends StatelessWidget {
                             controller.room.sendEvent(
                               {
                                 'body': sticker.body,
-                                if (sticker.info != null) 'info': sticker.info,
+                                'info': sticker.info ?? {},
                                 'url': sticker.url.toString(),
                               },
                               type: EventTypes.Sticker,
