@@ -8,13 +8,13 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pages/chat/tombstone_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/connection_status_header.dart';
@@ -155,6 +155,18 @@ class ChatView extends StatelessWidget {
         builder: (context, snapshot) => FutureBuilder(
           future: controller.loadTimelineFuture,
           builder: (BuildContext context, snapshot) {
+            var appbarBottomHeight = 0.0;
+            if (controller.room.pinnedEventIds.isNotEmpty) {
+              appbarBottomHeight += 42;
+            }
+            if (scrollUpBannerEventId != null) {
+              appbarBottomHeight += 42;
+            }
+            final tombstoneEvent =
+                controller.room.getState(EventTypes.RoomTombstone);
+            if (tombstoneEvent != null) {
+              appbarBottomHeight += 42;
+            }
             return Scaffold(
               appBar: AppBar(
                 actionsIconTheme: IconThemeData(
@@ -177,6 +189,50 @@ class ChatView extends StatelessWidget {
                 titleSpacing: 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(appbarBottomHeight),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      PinnedEvents(controller),
+                      if (tombstoneEvent != null)
+                        ChatAppBarListTile(
+                          title: tombstoneEvent.parsedTombstoneContent.body,
+                          leading: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(Icons.upgrade_outlined),
+                          ),
+                          trailing: TextButton(
+                            onPressed: controller.goToNewRoomAction,
+                            child: Text(L10n.of(context)!.goToTheNewRoom),
+                          ),
+                        ),
+                      if (scrollUpBannerEventId != null)
+                        ChatAppBarListTile(
+                          leading: IconButton(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                            icon: const Icon(Icons.close),
+                            tooltip: L10n.of(context)!.close,
+                            onPressed: () {
+                              controller.discardScrollUpBannerEventId();
+                              controller.setReadMarker();
+                            },
+                          ),
+                          title: L10n.of(context)!.jumpToLastReadMessage,
+                          trailing: TextButton(
+                            onPressed: () {
+                              controller.scrollToEventId(
+                                scrollUpBannerEventId,
+                              );
+                              controller.discardScrollUpBannerEventId();
+                            },
+                            child: Text(L10n.of(context)!.jump),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
               ),
               floatingActionButton: controller.showScrollDownButton &&
                       controller.selectedEvents.isEmpty
@@ -211,45 +267,6 @@ class ChatView extends StatelessWidget {
                     SafeArea(
                       child: Column(
                         children: <Widget>[
-                          TombstoneDisplay(controller),
-                          if (scrollUpBannerEventId != null)
-                            Material(
-                              color:
-                                  Theme.of(context).colorScheme.surfaceVariant,
-                              shape: Border(
-                                bottom: BorderSide(
-                                  width: 1,
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                              ),
-                              child: ListTile(
-                                leading: IconButton(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                  icon: const Icon(Icons.close),
-                                  tooltip: L10n.of(context)!.close,
-                                  onPressed: () {
-                                    controller.discardScrollUpBannerEventId();
-                                    controller.setReadMarker();
-                                  },
-                                ),
-                                title: Text(
-                                  L10n.of(context)!.jumpToLastReadMessage,
-                                ),
-                                contentPadding: const EdgeInsets.only(left: 8),
-                                trailing: TextButton(
-                                  onPressed: () {
-                                    controller.scrollToEventId(
-                                      scrollUpBannerEventId,
-                                    );
-                                    controller.discardScrollUpBannerEventId();
-                                  },
-                                  child: Text(L10n.of(context)!.jump),
-                                ),
-                              ),
-                            ),
-                          PinnedEvents(controller),
                           Expanded(
                             child: GestureDetector(
                               onTap: controller.clearSingleSelectedEvent,
