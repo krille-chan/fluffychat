@@ -10,12 +10,14 @@ class ReplyContent extends StatelessWidget {
   final Event replyEvent;
   final bool ownMessage;
   final Timeline? timeline;
+  final Color? backgroundColor;
 
   const ReplyContent(
     this.replyEvent, {
     this.ownMessage = false,
     super.key,
     this.timeline,
+    this.backgroundColor,
   });
 
   static const BorderRadius borderRadius = BorderRadius.only(
@@ -34,10 +36,11 @@ class ReplyContent extends StatelessWidget {
         : Theme.of(context).colorScheme.primary;
 
     return Material(
-      color: Theme.of(context)
-          .colorScheme
-          .background
-          .withOpacity(ownMessage ? 0.2 : 0.33),
+      color: backgroundColor ??
+          Theme.of(context)
+              .colorScheme
+              .background
+              .withOpacity(ownMessage ? 0.2 : 0.33),
       borderRadius: borderRadius,
       child: Row(
         mainAxisSize: MainAxisSize.min,

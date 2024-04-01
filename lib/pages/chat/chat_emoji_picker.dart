@@ -42,9 +42,8 @@ class ChatEmojiPicker extends StatelessWidget {
                           onBackspacePressed: controller.emojiPickerBackspace,
                           config: Config(
                             backspaceColor: theme.colorScheme.primary,
-                            bgColor: theme.brightness == Brightness.light
-                                ? Colors.white
-                                : Colors.black,
+                            bgColor:
+                                Theme.of(context).colorScheme.onInverseSurface,
                             iconColor:
                                 theme.colorScheme.primary.withOpacity(0.5),
                             iconColorSelected: theme.colorScheme.primary,

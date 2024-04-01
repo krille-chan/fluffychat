@@ -100,6 +100,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     };
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
       body: SizedBox(
         width: double.maxFinite,
         child: CustomScrollView(
@@ -108,7 +109,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
               floating: true,
               pinned: true,
               automaticallyImplyLeading: false,
-              backgroundColor: Theme.of(context).dialogBackgroundColor,
+              backgroundColor: Colors.transparent,
               title: SizedBox(
                 height: 42,
                 child: TextField(
