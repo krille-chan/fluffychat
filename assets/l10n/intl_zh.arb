@@ -2608,5 +2608,13 @@
   "commandHint_ignore": "忽略给定的 matrix ID",
   "@commandHint_ignore": {},
   "commandHint_unignore": "取消忽略给定的 matrix ID",
-  "@commandHint_unignore": {}
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} 未读聊天",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
