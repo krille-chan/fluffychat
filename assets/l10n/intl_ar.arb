@@ -2608,5 +2608,13 @@
   "commandHint_ignore": "تجاهل معرف المصفوفة المعطى",
   "@commandHint_ignore": {},
   "commandHint_unignore": "إلغاء تجاهل معرف المصفوفة المحدد",
-  "@commandHint_unignore": {}
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} الدردشات غير المقروءة",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
