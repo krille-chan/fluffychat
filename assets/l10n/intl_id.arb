@@ -2549,7 +2549,7 @@
   "@commandHint_sendraw": {},
   "sendReadReceiptsDescription": "Anggota lain dalam percakapan dapat melihat ketika kamu membaca sebuah pesan.",
   "@sendReadReceiptsDescription": {},
-  "block": "blokir",
+  "block": "Blokir",
   "@block": {},
   "blockedUsers": "Pengguna yang terblokir",
   "@blockedUsers": {},
@@ -2607,5 +2607,13 @@
   "commandHint_ignore": "Abaikan ID Matrix yang diberikan",
   "@commandHint_ignore": {},
   "commandHint_unignore": "Batalkan pengabaian ID Matrix yang diberikan",
-  "@commandHint_unignore": {}
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} obrolan belum dibaca",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
