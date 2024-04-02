@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:fluffychat/pages/chat_list/chat_list_body.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:tawkie/pages/chat_list/chat_list_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tawkie/pages/login/login_view.dart';
 
 import '../users.dart';
 import 'wait_for.dart';
@@ -132,7 +132,7 @@ extension DefaultFlowExtensions on WidgetTester {
     final tester = this;
     await tester.pumpAndSettle();
 
-    final homeserverPickerFinder = find.byType(HomeserverPicker);
+    final homeserverPickerFinder = find.byType(LoginView);
     final chatListFinder = find.byType(ChatListViewBody);
 
     final end = DateTime.now().add(timeout);

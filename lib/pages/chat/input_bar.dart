@@ -8,12 +8,12 @@ import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
-import '../../widgets/avatar.dart';
-import '../../widgets/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {

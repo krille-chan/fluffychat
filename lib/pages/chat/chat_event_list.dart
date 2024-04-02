@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/events/message.dart';
-import 'package:fluffychat/pages/chat/seen_by_row.dart';
-import 'package:fluffychat/pages/chat/typing_indicators.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/chat/chat.dart';
+import 'package:tawkie/pages/chat/events/message.dart';
+import 'package:tawkie/pages/chat/seen_by_row.dart';
+import 'package:tawkie/pages/chat/typing_indicators.dart';
+import 'package:tawkie/pages/user_bottom_sheet/user_bottom_sheet.dart';
+import 'package:tawkie/utils/account_config.dart';
+import 'package:tawkie/utils/adaptive_bottom_sheet.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
@@ -131,14 +131,18 @@ class ChatEventList extends StatelessWidget {
                         '${event.senderFromMemoryOrFallback.mention} ',
                   ),
                 ),
-                highlightMarker:
-                    controller.scrollToEventIdMarker == event.eventId,
+                onDoubleTap:
+                    // here is the logic for "liking" the message
+                    controller.handleMessageLike,
+                onTab: controller
+                    .onTabInfoCallback, // To launch the details function
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),
+                onTabInfo: controller.tabInfoEvent == event ? true : false,
                 timeline: controller.timeline!,
                 displayReadMarker:
                     controller.readMarkerEventId == event.eventId &&

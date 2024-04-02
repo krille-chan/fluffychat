@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_linkify/flutter_linkify.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/url_launcher.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
   final Widget? leading;

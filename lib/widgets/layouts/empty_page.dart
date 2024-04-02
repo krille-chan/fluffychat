@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:tawkie/pages/chat_list/add_chat_network.dart';
 import 'package:flutter/material.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;
@@ -16,14 +18,35 @@ class EmptyPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       extendBodyBehindAppBar: true,
-      body: Container(
-        alignment: Alignment.center,
-        child: Image.asset(
-          'assets/info-logo.png',
-          width: width,
-          height: width,
-          filterQuality: FilterQuality.medium,
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Hero(
+              tag: 'info-logo',
+              child: Image.asset(
+                'assets/favicon.png',
+                width: width,
+                height: width,
+                filterQuality: FilterQuality.medium,
+              ),
+            ),
+          ),
+          // if (loading)
+          //   Center(
+          //     child: SizedBox(
+          //       width: width,
+          //       child: const LinearProgressIndicator(),
+          //     ),
+          //   ),
+
+          // Button for add bridge when no conversation
+          if (PlatformInfos.isWeb ||
+              PlatformInfos.isDesktop ||
+              PlatformInfos.isLinux ||
+              PlatformInfos.isMacOS)
+            const AddChatNetwork(),
+        ],
       ),
     );
   }

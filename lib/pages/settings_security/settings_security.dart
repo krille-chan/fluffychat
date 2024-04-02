@@ -4,10 +4,11 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
 
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:tawkie/widgets/app_lock.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'settings_security_view.dart';
 
 class SettingsSecurity extends StatefulWidget {

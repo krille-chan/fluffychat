@@ -14,7 +14,7 @@ index bf972f30..46cebdc6 100644
      }
      // https://stackoverflow.com/a/77494454/8222484
 @@ -78,8 +82,11 @@ flutter {
- 
+
  dependencies {
      implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 -    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
@@ -24,7 +24,7 @@ index bf972f30..46cebdc6 100644
 +    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
      implementation 'androidx.multidex:multidex:2.0.1'
  }
- 
+
 -//apply plugin: 'com.google.gms.google-services'
 +apply plugin: 'com.google.gms.google-services'
 diff --git a/android/app/proguard-rules.pro b/android/app/proguard-rules.pro
@@ -77,36 +77,36 @@ index d0e0fbc9..0a546da0 100644
 +
 +##---------------End: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
 \ No newline at end of file
-diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+diff --git a/android/app/src/main/kotlin/fr/tawkie/app/FcmPushService.kt b/android/app/src/main/kotlin/fr/tawkie/app/FcmPushService.kt
 index d9930f55..510e9845 100644
---- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
-+++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/FcmPushService.kt
+--- a/android/app/src/main/kotlin/fr/tawkie/app/FcmPushService.kt
++++ b/android/app/src/main/kotlin/fr/tawkie/app/FcmPushService.kt
 @@ -1,4 +1,4 @@
--/*package chat.fluffy.fluffychat
-+package chat.fluffy.fluffychat
- 
+-/*package fr.tawkie.app
++package fr.tawkie.app
+
  import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
- 
-@@ -33,4 +33,3 @@ class FcmPushService : FcmSharedIsolateService() {
+
+@@ -32,4 +32,4 @@ class FcmPushService : FcmSharedIsolateService() {
+             return engine
          }
      }
- }
--*/
-\ No newline at end of file
-diff --git a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
+-}*/
++}
+diff --git a/android/app/src/main/kotlin/fr/tawkie/app/MainActivity.kt b/android/app/src/main/kotlin/fr/tawkie/app/MainActivity.kt
 index 1afc4606..894d1571 100644
---- a/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
-+++ b/android/app/src/main/kotlin/chat/fluffy/fluffychat/MainActivity.kt
+--- a/android/app/src/main/kotlin/fr/tawkie/app/MainActivity.kt
++++ b/android/app/src/main/kotlin/fr/tawkie/app/MainActivity.kt
 @@ -7,13 +7,11 @@ import android.content.Context
  import androidx.multidex.MultiDex
- 
+
  class MainActivity : FlutterActivity() {
 -
      override fun attachBaseContext(base: Context) {
          super.attachBaseContext(base)
          MultiDex.install(this)
      }
- 
+
 -
      override fun provideFlutterEngine(context: Context): FlutterEngine? {
          return provideEngine(this)
@@ -123,29 +123,29 @@ index bd394967..2e9d54de 100644
 +        classpath 'com.google.gms:google-services:4.3.8'
      }
  }
- 
+
 diff --git a/lib/utils/background_push.dart b/lib/utils/background_push.dart
 index 8e67ae92..da4da5c3 100644
 --- a/lib/utils/background_push.dart
 +++ b/lib/utils/background_push.dart
-@@ -39,7 +39,7 @@ import '../config/setting_keys.dart';
- import '../widgets/matrix.dart';
+@@ -39,7 +39,7 @@ import 'package:tawkie/utils/push_helper.dart';
+ import 'package:tawkie/widgets/fluffy_chat_app.dart';
  import 'platform_infos.dart';
- 
+
 -//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 +import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
- 
+
  class NoTokenException implements Exception {
    String get cause => 'Cannot get firebase token';
 @@ -64,7 +64,7 @@ class BackgroundPush {
- 
+
    final pendingTests = <String, Completer<void>>{};
- 
+
 -  final dynamic firebase = null; //FcmSharedIsolate();
 +  final dynamic firebase = FcmSharedIsolate();
- 
+
    DateTime? lastReceivedPush;
- 
+
 diff --git a/pubspec.yaml b/pubspec.yaml
 index 193e6ed6..f70e48d4 100644
 --- a/pubspec.yaml

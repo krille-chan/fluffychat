@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -22,6 +22,10 @@ abstract class FluffyThemes {
     fontFamily: 'Roboto',
     fontFamilyFallback: ['NotoEmoji'],
   );
+
+  static const Color facebookColor = Color(0xFF00B2FF);
+  static const Color instagramColor = Color(0xFFE1306C);
+  static const Color whatsAppColor = Color(0xFF25D366);
 
   static var fallbackTextTheme = const TextTheme(
     bodyLarge: fallbackTextStyle,

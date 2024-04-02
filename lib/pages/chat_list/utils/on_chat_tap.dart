@@ -6,9 +6,9 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat/send_file_dialog.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/chat/send_file_dialog.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 void onChatTap(Room room, BuildContext context) async {
   if (room.membership == Membership.invite) {

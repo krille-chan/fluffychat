@@ -10,8 +10,8 @@ import 'package:matrix/matrix.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/size_string.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/utils/size_string.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {

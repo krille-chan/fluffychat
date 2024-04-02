@@ -8,9 +8,9 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/new_space/new_space_view.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/new_space/new_space_view.dart';
+import 'package:tawkie/utils/localized_exception_extension.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 class NewSpace extends StatefulWidget {
   const NewSpace({super.key});

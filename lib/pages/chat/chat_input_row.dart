@@ -6,11 +6,11 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../config/themes.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'chat.dart';
 import 'input_bar.dart';
 

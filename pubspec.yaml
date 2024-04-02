@@ -1,4 +1,4 @@
-name: fluffychat
+name: tawkie
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid
@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
+  flutter_blurhash: ^0.7.0
   flutter_cache_manager: ^3.3.0
   flutter_file_dialog: ^3.0.2
   flutter_foreground_task: ^6.0.0+1
@@ -96,6 +97,14 @@ dependencies:
   wakelock_plus: ^1.1.3
   webrtc_interface: ^1.0.13
 
+  # Add for Tawkie
+  icons_plus: ^4.0.0
+  intl_phone_field: ^3.2.0
+  qr_flutter: ^4.0.0
+  ory_kratos_client: ^1.1.0
+  dio: ^5.4.1
+  one_of: ^1.5.0
+
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_native_splash: ^2.0.3+1
@@ -138,19 +147,29 @@ flutter:
         - asset: fonts/NotoEmoji/NotoColorEmoji.ttf
 
 msix_config:
-  display_name: FluffyChat
-  publisher_display_name: FluffyChat
-  publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
-  identity_name: chat.fluffy.fluffychat
+  display_name: Tawkie
+  publisher_display_name: Tawkie
+  publisher: CN=Tawkie, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
+  identity_name: fr.tawkie.fr
   logo_path: assets\logo.png
   capabilities: internetClient, location, microphone, webcam
   protocol_activation: https
-  app_uri_handler_hosts: fluffychat.im, matrix.to
-  execution_alias: fluffychat
+  app_uri_handler_hosts: tawkie.im, matrix.to
+  execution_alias: tawkie
   sign_msix: false
   install_certificate: false
 
 dependency_overrides:
+  # https://github.com/fluttercommunity/flutter_blurhash/pull/58
+  flutter_blurhash:
+    git:
+      url: https://github.com/Craftplacer/flutter_blurhash.git
+      ref: eb9565f9d5731d4729bd7605510cec0f9e172e5f
+  # https://github.com/simpleclub-extended/flutter_math_fork/pull/87
+  flutter_math_fork:
+    git:
+      url: https://github.com/The-Redhat/flutter_math_fork.git
+      ref: 3442b36a436880ce1c023e25c868d6f4004c4c24
   # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
   flutter_secure_storage_linux: 1.1.3
   geolocator_android:

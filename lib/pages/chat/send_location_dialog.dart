@@ -8,7 +8,7 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat/events/map_bubble.dart';
+import 'package:tawkie/pages/chat/events/map_bubble.dart';
 
 class SendLocationDialog extends StatefulWidget {
   final Room room;

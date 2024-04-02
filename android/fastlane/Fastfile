@@ -46,6 +46,7 @@ platform :android do
     last_version = versions[0].to_i
     upload_to_play_store(
       track: 'internal',
+      release_status: 'draft',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
       version_code: "#{last_version+1}",
     )

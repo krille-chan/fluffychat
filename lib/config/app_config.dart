@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
-  static String _applicationName = 'FluffyChat';
+  static String _applicationName = 'Tawkie';
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
-  static String _defaultHomeserver = 'matrix.org';
+  static String _defaultHomeserver = 'alpha.tawkie.fr';
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
@@ -15,11 +15,10 @@ abstract class AppConfig {
   static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const Color primaryColor = Color(0xFF5625BA);
-  static const Color primaryColorLight = Color(0xFFCCBDEA);
-  static const Color secondaryColor = Color(0xFF41a2bc);
-  static String _privacyUrl =
-      'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
+  static const Color primaryColor = Color(0xFF3614A6);
+  static const Color primaryColorLight = Color(0xFFFEEA77);
+  static const Color secondaryColor = Color(0xFFFAAB22);
+  static String _privacyUrl = 'https://tawkie.fr/legal/';
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
       'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
@@ -27,12 +26,11 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
   static const String startChatTutorial =
       'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
-  static const String appId = 'im.fluffychat.FluffyChat';
+  static const String appId = 'fr.tawkie.fr';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+  static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static final Uri newIssueUrl = Uri(
@@ -64,7 +62,8 @@ abstract class AppConfig {
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
-  static const double borderRadius = 18.0;
+  static const String aboutUrl = 'https://tawkie.fr/faq/';
+  static const double borderRadius = 16.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
     scheme: 'https',

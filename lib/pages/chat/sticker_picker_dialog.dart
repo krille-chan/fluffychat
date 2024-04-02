@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/url_launcher.dart';
+import 'package:tawkie/widgets/avatar.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
-import '../../widgets/avatar.dart';
+import 'events/image_bubble.dart';
 
 class StickerPickerDialog extends StatefulWidget {
   final Room room;

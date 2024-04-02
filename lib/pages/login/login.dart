@@ -1,16 +1,17 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import '../../utils/platform_infos.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart';
+import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:tawkie/utils/platform_infos.dart';
+import 'package:tawkie/widgets/matrix.dart';
 import 'login_view.dart';
+import 'package:one_of/one_of.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -20,18 +21,42 @@ class Login extends StatefulWidget {
 }
 
 class LoginController extends State<Login> {
+  Map<String, dynamic>? _rawLoginTypes;
+  HomeserverSummary? loginHomeserverSummary;
+  bool _supportsFlow(String flowType) =>
+      loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
+      false;
+
+  bool get supportsSso => _supportsFlow('m.login.sso');
+
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? usernameError;
   String? passwordError;
   bool loading = false;
   bool showPassword = false;
+  final Dio dio =
+      Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
+  // TODO if debug build, use staging
+
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
+  Future<void> storeSessionToken(String? sessionToken) async {
+    if (sessionToken != null) {
+      await _secureStorage.write(key: 'sessionToken', value: sessionToken);
+      // Once the session token has been stored, launch login
+      await loginWithSessionToken(sessionToken);
+    }
+  }
+
+  Future<String?> getSessionToken() async {
+    return await _secureStorage.read(key: 'sessionToken');
+  }
+
   void login() async {
-    final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
     } else {
@@ -51,33 +76,134 @@ class LoginController extends State<Login> {
 
     _coolDown?.cancel();
 
+    final OryKratosClient kratosClient = OryKratosClient(dio: dio);
+
     try {
-      final username = usernameController.text;
-      AuthenticationIdentifier identifier;
-      if (username.isEmail) {
-        identifier = AuthenticationThirdPartyIdentifier(
-          medium: 'email',
-          address: username,
-        );
-      } else if (username.isPhoneNumber) {
-        identifier = AuthenticationThirdPartyIdentifier(
-          medium: 'msisdn',
-          address: username,
-        );
+      // Initialize API connection flow
+      final frontendApi = kratosClient.getFrontendApi();
+      Response<kratos.LoginFlow> response;
+      if (PlatformInfos.isWeb) {
+        response = await frontendApi.createBrowserLoginFlow();
       } else {
-        identifier = AuthenticationUserIdentifier(user: username);
+        response = await frontendApi.createNativeLoginFlow();
       }
-      await matrix.getLoginClient().login(
-            LoginType.mLoginPassword,
-            identifier: identifier,
-            // To stay compatible with older server versions
-            // ignore: deprecated_member_use
-            user: identifier.type == AuthenticationIdentifierTypes.userId
-                ? username
-                : null,
-            password: passwordController.text,
-            initialDeviceDisplayName: PlatformInfos.clientName,
-          );
+
+      // Retrieve action URL from connection flow
+      final actionUrl = response.data?.ui.action;
+      if (actionUrl == null) {
+        throw Exception('Action URL not found in login flow response');
+      }
+
+      // Retrieving TextEditingControllers values
+      final String email = usernameController.text;
+      final String password = passwordController.text;
+
+      // Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
+      final updateLoginFlowWithPasswordMethod =
+          UpdateLoginFlowWithPasswordMethod((builder) => builder
+            ..identifier = email
+            ..method = 'password'
+            ..password = password);
+
+      // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
+      final updateLoginFlowBody = UpdateLoginFlowBody(
+        (builder) => builder
+          ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
+      );
+
+      // Sends a POST request with user credentials
+      final loginResponse = await frontendApi.updateLoginFlow(
+          flow: response.data!.id, updateLoginFlowBody: updateLoginFlowBody);
+
+      // Processing the response to obtain the connection session token
+      final sessionToken = loginResponse.data?.sessionToken;
+
+      // Store the session token
+      return await storeSessionToken(sessionToken);
+    } on MatrixException catch (exception) {
+      setState(() => passwordError = exception.errorMessage);
+      return setState(() => loading = false);
+    } catch (exception) {
+      print(exception);
+      setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
+      return setState(() => loading = false);
+    }
+  }
+
+  Timer? _coolDown;
+
+  Future<void> loginWithSessionToken(String sessionToken) async {
+    final matrix = Matrix.of(context);
+
+    setState(() => loading = true);
+
+    try {
+      // TODO use baseUrl
+      final responseMatrix = await dio.get(
+        'https://tawkie.fr/panel/api/mobile-matrix-auth/getMatrixToken',
+        options: Options(
+          headers: {
+            'X-Session-Token': sessionToken,
+          },
+        ),
+      );
+
+      final Map<String, dynamic> responseData = responseMatrix.data;
+
+      final String matrixLoginJwt = responseData['matrixLoginJwt'];
+      final String serverName = responseData['serverName'];
+
+      // TODO handle errors correctly if not caught and displayed
+      if (!matrixLoginJwt.startsWith('ey')) {
+        throw Exception('Server did not return a valid JWT');
+      }
+
+      if (serverName.isEmpty) {
+        throw Exception('Server did not return a valid server name');
+      }
+
+      var homeserver = Uri.parse(serverName);
+      if (homeserver.scheme.isEmpty) {
+        homeserver = Uri.https(serverName, '');
+      }
+
+      final client = Matrix.of(context).getLoginClient();
+      loginHomeserverSummary = await client.checkHomeserver(homeserver);
+      if (supportsSso) {
+        _rawLoginTypes = await client.request(
+          RequestType.GET,
+          '/client/v3/login',
+        );
+      }
+
+      // TODO use homeserver variable
+      final url = 'https://' + serverName + '/_matrix/client/r0/login';
+      final headers = {'Content-Type': 'application/json'};
+      final data = {'type': 'org.matrix.login.jwt', 'token': matrixLoginJwt};
+
+      final response = await dio.post(
+        url,
+        options: Options(headers: headers),
+        data: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        final userId = responseData['user_id'];
+        final accessToken = responseData['access_token'];
+        final deviceId = responseData['device_id'];
+
+        // Initialize with recovered data
+        await matrix.getLoginClient().init(
+              newToken: accessToken,
+              newUserID: userId,
+              newHomeserver: homeserver,
+              newDeviceID: deviceId,
+              newDeviceName: PlatformInfos.clientName,
+            );
+      } else {
+        Logs().v('Request failed with status: ${response.statusCode}');
+      }
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
@@ -89,170 +215,6 @@ class LoginController extends State<Login> {
     if (mounted) setState(() => loading = false);
   }
 
-  Timer? _coolDown;
-
-  void checkWellKnownWithCoolDown(String userId) async {
-    _coolDown?.cancel();
-    _coolDown = Timer(
-      const Duration(seconds: 1),
-      () => _checkWellKnown(userId),
-    );
-  }
-
-  void _checkWellKnown(String userId) async {
-    if (mounted) setState(() => usernameError = null);
-    if (!userId.isValidMatrixId) return;
-    final oldHomeserver = Matrix.of(context).getLoginClient().homeserver;
-    try {
-      var newDomain = Uri.https(userId.domain!, '');
-      Matrix.of(context).getLoginClient().homeserver = newDomain;
-      DiscoveryInformation? wellKnownInformation;
-      try {
-        wellKnownInformation =
-            await Matrix.of(context).getLoginClient().getWellknown();
-        if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
-          newDomain = wellKnownInformation.mHomeserver.baseUrl;
-        }
-      } catch (_) {
-        // do nothing, newDomain is already set to a reasonable fallback
-      }
-      if (newDomain != oldHomeserver) {
-        await Matrix.of(context).getLoginClient().checkHomeserver(newDomain);
-
-        if (Matrix.of(context).getLoginClient().homeserver == null) {
-          Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
-          // okay, the server we checked does not appear to be a matrix server
-          Logs().v(
-            '$newDomain is not running a homeserver, asking to use $oldHomeserver',
-          );
-          final dialogResult = await showOkCancelAlertDialog(
-            context: context,
-            useRootNavigator: false,
-            message:
-                L10n.of(context)!.noMatrixServer(newDomain, oldHomeserver!),
-            okLabel: L10n.of(context)!.ok,
-            cancelLabel: L10n.of(context)!.cancel,
-          );
-          if (dialogResult == OkCancelResult.ok) {
-            if (mounted) setState(() => usernameError = null);
-          } else {
-            Navigator.of(context, rootNavigator: false).pop();
-            return;
-          }
-        }
-        usernameError = null;
-        if (mounted) setState(() {});
-      } else {
-        Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
-        if (mounted) {
-          setState(() {});
-        }
-      }
-    } catch (e) {
-      Matrix.of(context).getLoginClient().homeserver = oldHomeserver;
-      usernameError = e.toLocalizedString(context);
-      if (mounted) setState(() {});
-    }
-  }
-
-  void passwordForgotten() async {
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.enterAnEmailAddress,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        DialogTextField(
-          initialText:
-              usernameController.text.isEmail ? usernameController.text : '',
-          hintText: L10n.of(context)!.enterAnEmailAddress,
-          keyboardType: TextInputType.emailAddress,
-        ),
-      ],
-    );
-    if (input == null) return;
-    final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
-    final response = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          Matrix.of(context).getLoginClient().requestTokenToResetPasswordEmail(
-                clientSecret,
-                input.single,
-                sendAttempt++,
-              ),
-    );
-    if (response.error != null) return;
-    final password = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.passwordForgotten,
-      message: L10n.of(context)!.chooseAStrongPassword,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
-      fullyCapitalizedForMaterial: false,
-      textFields: [
-        const DialogTextField(
-          hintText: '******',
-          obscureText: true,
-          minLines: 1,
-          maxLines: 1,
-        ),
-      ],
-    );
-    if (password == null) return;
-    final ok = await showOkAlertDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context)!.weSentYouAnEmail,
-      message: L10n.of(context)!.pleaseClickOnLink,
-      okLabel: L10n.of(context)!.iHaveClickedOnLink,
-      fullyCapitalizedForMaterial: false,
-    );
-    if (ok != OkCancelResult.ok) return;
-    final data = <String, dynamic>{
-      'new_password': password.single,
-      'logout_devices': false,
-      "auth": AuthenticationThreePidCreds(
-        type: AuthenticationTypes.emailIdentity,
-        threepidCreds: ThreepidCreds(
-          sid: response.result!.sid,
-          clientSecret: clientSecret,
-        ),
-      ).toJson(),
-    };
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).getLoginClient().request(
-            RequestType.POST,
-            '/client/v3/account/password',
-            data: data,
-          ),
-    );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.passwordHasBeenChanged)),
-      );
-      usernameController.text = input.single;
-      passwordController.text = password.single;
-      login();
-    }
-  }
-
-  static int sendAttempt = 0;
-
   @override
   Widget build(BuildContext context) => LoginView(this);
-}
-
-extension on String {
-  static final RegExp _phoneRegex =
-      RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
-  static final RegExp _emailRegex = RegExp(r'(.+)@(.+)\.(.+)');
-
-  bool get isEmail => _emailRegex.hasMatch(this);
-
-  bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }

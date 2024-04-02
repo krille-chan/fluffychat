@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/pages/image_viewer/image_viewer.dart';
+import 'package:tawkie/widgets/mxc_image.dart';
 import '../../../widgets/blur_hash.dart';
 
 class ImageBubble extends StatelessWidget {
@@ -21,25 +21,25 @@ class ImageBubble extends StatelessWidget {
   final BorderRadius? borderRadius;
 
   const ImageBubble(
-    this.event, {
-    this.tapToView = true,
-    this.maxSize = true,
-    this.backgroundColor,
-    this.fit = BoxFit.contain,
-    this.thumbnailOnly = true,
-    this.width = 400,
-    this.height = 300,
-    this.animated = false,
-    this.onTap,
-    this.borderRadius,
-    super.key,
-  });
+      this.event, {
+        this.tapToView = true,
+        this.maxSize = true,
+        this.backgroundColor,
+        this.fit = BoxFit.contain,
+        this.thumbnailOnly = true,
+        this.width = 400,
+        this.height = 300,
+        this.animated = false,
+        this.onTap,
+        this.borderRadius,
+        super.key,
+      });
 
   Widget _buildPlaceholder(BuildContext context) {
     final String blurHashString =
-        event.infoMap['xyz.amorgan.blurhash'] is String
-            ? event.infoMap['xyz.amorgan.blurhash']
-            : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
+    event.infoMap['xyz.amorgan.blurhash'] is String
+        ? event.infoMap['xyz.amorgan.blurhash']
+        : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
     return SizedBox(
       width: width,
       height: height,

@@ -9,10 +9,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/client_manager.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'cipher.dart';
 
 import 'sqlcipher_stub.dart'

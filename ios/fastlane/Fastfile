@@ -15,23 +15,165 @@
 
 default_platform(:ios)
 
+# https://www.runway.team/blog/how-to-set-up-a-ci-cd-pipeline-for-your-ios-app-fastlane-github-actions
+#
+# Provivision profile names may need to be updated after renewal.
+
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
+  desc "Load ASC API Key information to use in subsequent lanes"
+  lane :load_asc_api_key do
+    app_store_connect_api_key(
+      key_id: ENV["ASC_KEY_ID"],
+      issuer_id: ENV["ASC_ISSUER_ID"],
+      key_content: ENV["ASC_KEY"],
+      is_key_content_base64: true, # cat key.p8 | base64
+      in_house: false # detecting this via ASC private key not currently supported
+    )
+  end
+
+  desc "Bump build number based on most recent TestFlight build number"
+  lane :fetch_and_increment_build_number do
+    #fetch read your app identifier defined in your Appfile
+    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+    api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+
+    current_version = get_version_number(
+      target: "Runner" # replace with your main target, required if you have more than one non-test target
+    )
+    latest_build_number = latest_testflight_build_number(
+      api_key: api_key,
+      version: current_version,
+      app_identifier: app_identifier
+    )
     increment_build_number(
       xcodeproj: "Runner.xcodeproj",
-      build_number: latest_testflight_build_number + 1
+      build_number: (latest_build_number + 1),
     )
+
+    # increment VERSION number
     re = /version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*/i
     config = File.read("../../pubspec.yaml")
     version_name = config.match(re).captures[0]
     increment_version_number(version_number: version_name)
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    upload_to_testflight(
-      distribute_external: true,
-      groups: "FluffyChat Betatest",
-      changelog: "This is a release candidate for FluffyChat. Please test if the app is overall in a good condition before we push this to production.",
+  end
+
+  desc "Installs signing certificate in the keychain and downloads provisioning profiles from App Store Connect"
+  lane :prepare_signing do |options|
+    team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+    api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+
+    keychain_name = "signing"
+    keychain_password = "temp"
+
+    delete_keychain(
+      name: keychain_name
+    ) if File.exist? File.expand_path("~/Library/Keychains/#{keychain_name}-db")
+
+    create_keychain(
+      name: keychain_name,
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
     )
+
+    import_certificate(
+      certificate_path: ENV["SIGNING_KEY_FILE_PATH"],
+      certificate_password: ENV["SIGNING_KEY_PASSWORD"],
+      keychain_name: keychain_name,
+      keychain_password: keychain_password
+    )
+
+    # fetches and installs provisioning profiles from ASC
+    # https://docs.fastlane.tools/actions/sigh/
+    get_provisioning_profile(
+      app_identifier: "fr.tawkie.app",
+      provisioning_name: "tawkie-distrib-runner-02",
+      adhoc: false,
+      api_key: api_key,
+      readonly: true
+      #readonly: false # create provisioning file if needed
+    )
+
+    get_provisioning_profile(
+      app_identifier: "fr.tawkie.app.Tawkie-Share",
+      provisioning_name: "tawkie-distrib-share-02",
+      adhoc: false,
+      api_key: api_key,
+      readonly: true
+      #readonly: false # create provisioning file if needed
+    )
+  end
+
+  desc "Build the iOS app for release"
+  lane :build_release do |options|
+    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+    profile_name = "tawkie-distrib-runner-02" # replace with the name of the profile to use for the build
+    output_name = "example-iOS" # specify the name of the .ipa file to generate
+    export_method = "app-store" # specify the export method
+    share_ext_app_identifier = "fr.tawkie.app.Tawkie-Share-02"
+    share_ext_profile_name = "tawkie-distrib-share-02"
+
+    # turn off automatic signing during build so correct code signing identity is guaranteed to be used
+    update_code_signing_settings(
+      targets: ["Runner"], # specify which targets to update code signing settings for
+      profile_name: profile_name,
+      use_automatic_signing: false,
+      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
+      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+    )
+    update_code_signing_settings(
+      targets: ["Tawkie Share"], # specify which targets to update code signing settings for
+      profile_name: share_ext_profile_name,
+      use_automatic_signing: false,
+      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
+      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+    )
+#      use_automatic_signing: false,
+#      targets: ["main-target"], # specify which targets to update code signing settings for
+#      code_sign_identity: "Apple Distribution", # replace with name of code signing identity if different
+#      bundle_identifier: app_identifier,
+#      profile_name: profile_name,
+#      build_configurations: ["Release"] # only toggle code signing settings for Release configurations
+#    )
+
+    # build the app
+    gym(
+      scheme: "Runner", # replace with name of your project’s scheme
+      output_name: output_name,
+      configuration: "Release",
+      export_options: {
+        method: export_method,
+#        provisioningProfiles: {
+#          app_identifier => profile_name, # here you can add any additional bundle identifiers and their associated provisioning profiles if you’re also building an app extension or other bundle identifier
+#          share_ext_app_identifier => share_ext_profile_name
+#        }
+      }
+    )
+  end
+
+  desc "Upload to TestFlight / ASC"
+  lane :upload_release do
+    api_key = lane_context[SharedValues::APP_STORE_CONNECT_API_KEY]
+
+    deliver(
+        api_key: api_key,
+        skip_screenshots: true,
+        skip_metadata: true,
+        skip_app_version_update: true,
+        force: true, # skips verification of HTML preview file (since this will be run from a CI machine)
+        run_precheck_before_submit: false # not supported through ASC API yet
+    )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    load_asc_api_key
+    fetch_and_increment_build_number
+    prepare_signing
+    build_release
+    upload_release
   end
 end
 
@@ -40,5 +182,5 @@ lane :release do
   sync_code_signing(type: "appstore")  # see code signing guide for more information
   build_app(scheme: "Runner")
   upload_to_app_store                  # upload your app to App Store Connect
-  slack(message: "Successfully uploaded a new App Store build")
+  #slack(message: "Successfully uploaded a new App Store build")
 end
