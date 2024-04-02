@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/config/subscription.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
   final Map<String, dynamic> queueStatus;
@@ -214,8 +215,12 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               isUsernameSet()
                   ? ElevatedButton(
                       onPressed: () async {
-                        SubscriptionManager()
-                            .checkSubscriptionStatusAndRedirect();
+                        if (PlatformInfos.shouldInitializePurchase()) {
+                          SubscriptionManager()
+                              .checkSubscriptionStatusAndRedirect();
+                        } else {
+                          // Todo: make purchases for Web, Windows and Linux
+                        }
                       },
                       child: Text(L10n.of(context)!.next),
                     )

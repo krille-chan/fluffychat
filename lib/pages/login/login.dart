@@ -188,11 +188,8 @@ class LoginController extends State<Login> {
         print('Successfully initialized Kratos API');
       }
       Response<kratos.LoginFlow> response;
-      if (PlatformInfos.isWeb) {
-        response = await frontendApi.createBrowserLoginFlow();
-      } else {
-        response = await frontendApi.createNativeLoginFlow();
-      }
+      // Todo: create connection logic for the web
+      response = await frontendApi.createNativeLoginFlow();
       if (kDebugMode) {
         print('Successfully created login flow');
       }

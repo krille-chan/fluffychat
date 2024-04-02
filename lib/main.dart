@@ -23,7 +23,9 @@ void main() async {
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
-  await initPlatformState();
+  if (PlatformInfos.shouldInitializePurchase()) {
+    await initPlatformState();
+  }
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
