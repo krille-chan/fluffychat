@@ -29,6 +29,11 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
 
+  bool isUsernameSet() {
+    return widget.queueStatus['username'] != null &&
+        widget.queueStatus['username'] != "";
+  }
+
   bool _validateUsername(String username) {
     // Define regex to validate password format
     final RegExp usernameRegex = RegExp(r'^(?=.*[a-z])(?=.*\d)[a-z0-9]{3,16}$');
@@ -112,8 +117,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   void initState() {
     super.initState();
 
-    if (widget.queueStatus['username'] != null &&
-        widget.queueStatus['username'] != "") {
+    if (isUsernameSet()) {
       _usernameController.text = widget.queueStatus['username'];
     }
   }
@@ -176,8 +180,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 },
               ),
               const SizedBox(height: 20),
-              widget.queueStatus['username'] != null &&
-                      widget.queueStatus['username'] != ""
+              isUsernameSet()
                   ? Text(
                       L10n.of(context)!.username_advertisement,
                     )
@@ -202,14 +205,21 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
                       // Update user name
                       await updateUsername(widget.sessionToken, newUsername);
-
-                      SubscriptionManager()
-                          .checkSubscriptionStatusAndRedirect();
                     }
                   }
                 },
                 child: Text(L10n.of(context)!.submit),
               ),
+              const SizedBox(height: 50),
+              isUsernameSet()
+                  ? ElevatedButton(
+                      onPressed: () async {
+                        SubscriptionManager()
+                            .checkSubscriptionStatusAndRedirect();
+                      },
+                      child: Text(L10n.of(context)!.next),
+                    )
+                  : Container(),
             ],
           ),
         ),
