@@ -78,7 +78,7 @@ class LoginController extends State<Login> {
       if (userState == 'CREATED') {
         await handleUserCreated(queueStatus, sessionToken);
       } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
-        handleUserInQueueOrAccepted(queueStatus);
+        handleUserInQueueOrAccepted(queueStatus, sessionToken);
       } else {
         handleUnexpectedUserState(userState);
       }
@@ -101,13 +101,15 @@ class LoginController extends State<Login> {
     }
   }
 
-  void handleUserInQueueOrAccepted(Map<String, dynamic> queueStatus) {
+  void handleUserInQueueOrAccepted(
+      Map<String, dynamic> queueStatus, String sessionToken) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ChangeUsernamePage(
           queueStatus: queueStatus,
-          controller: this,
+          dio: dio,
+          sessionToken: sessionToken,
         ),
       ),
     );
