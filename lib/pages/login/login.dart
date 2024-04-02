@@ -23,7 +23,6 @@ class Login extends StatefulWidget {
   LoginController createState() => LoginController();
 }
 
-// TODO every API call should be in a try/catch block with appropriate error handling
 // Endpoints will usually return a more specific error message
 
 class LoginController extends State<Login> {
@@ -319,7 +318,6 @@ class LoginController extends State<Login> {
       final String matrixLoginJwt = responseData['matrixLoginJwt'];
       final String serverName = responseData['serverName'];
 
-      // TODO handle errors correctly if not caught and displayed
       if (!matrixLoginJwt.startsWith('ey')) {
         throw Exception('Server did not return a valid JWT');
       }
@@ -330,8 +328,18 @@ class LoginController extends State<Login> {
 
       return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
     } catch (e) {
-      throw Exception(
-          'An error occurred while retrieving the JWT and the server name: $e');
+      if (e is DioException) {
+        if (e.response != null) {
+          final errorMessage =
+              e.response!.data['ui']['messages'][0]['text'] ?? 'Unknown error';
+          setState(() => passwordError = errorMessage);
+          throw Exception('Error fetching JWT and server name: $errorMessage');
+        } else {
+          throw Exception('Network error: ${e.message}');
+        }
+      } else {
+        throw Exception('An unexpected error occurred: $e');
+      }
     }
   }
 
