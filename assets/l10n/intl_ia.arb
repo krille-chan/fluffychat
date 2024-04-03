@@ -51,5 +51,7 @@
     "placeholders": {
       "mxid": {}
     }
-  }
+  },
+  "custom": "",
+  "@custom": {}
 }
