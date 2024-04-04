@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
 import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/pages/login/web_login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
@@ -277,6 +278,10 @@ class LoginController extends State<Login> {
 
     final Map<String, dynamic> responseDataQueueStatus =
         responseQueueStatus.data;
+    final String userId = responseDataQueueStatus['userId'];
+
+    // Function to log user with Kratos id on Revenu Cat
+    final LogInResult result = await Purchases.logIn(userId);
 
     return responseDataQueueStatus;
   }
