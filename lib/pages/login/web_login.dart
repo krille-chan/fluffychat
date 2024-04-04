@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -5,7 +6,7 @@ import 'package:tawkie/pages/login/login.dart';
 
 class WebLogin extends StatefulWidget {
   final LoginController loginController;
-  const WebLogin({Key? key, required this.loginController}) : super(key: key);
+  const WebLogin({super.key, required this.loginController});
 
   @override
   State<WebLogin> createState() => _WebLoginState();
@@ -14,16 +15,15 @@ class WebLogin extends StatefulWidget {
 class _WebLoginState extends State<WebLogin> {
   InAppWebViewController? _webViewController;
 
+  String baseUrl =
+      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
       body: InAppWebView(
         initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://staging.tawkie.fr/panel/api/browser/getMatrixToken')),
+            url: WebUri('${baseUrl}panel/api/browser/getMatrixToken')),
         initialSettings: InAppWebViewSettings(
           javaScriptEnabled: true,
         ),
