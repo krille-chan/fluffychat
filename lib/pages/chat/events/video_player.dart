@@ -53,7 +53,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
       if (kIsWeb && networkUri != null && _chewieManager == null) {
         _chewieManager ??= ChewieController(
           videoPlayerController:
-          VideoPlayerController.networkUrl(Uri.parse(networkUri)),
+              VideoPlayerController.networkUrl(Uri.parse(networkUri)),
           autoPlay: true,
           autoInitialize: true,
         );
@@ -92,7 +92,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   Widget build(BuildContext context) {
     final hasThumbnail = widget.event.hasThumbnail;
     final blurHash = (widget.event.infoMap as Map<String, dynamic>)
-        .tryGet<String>('xyz.amorgan.blurhash') ??
+            .tryGet<String>('xyz.amorgan.blurhash') ??
         fallbackBlurHash;
 
     final chewieManager = _chewieManager;
@@ -103,42 +103,42 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         child: chewieManager != null
             ? Center(child: Chewie(controller: chewieManager))
             : Stack(
-          children: [
-            if (hasThumbnail)
-              Center(
-                child: ImageBubble(
-                  widget.event,
-                  tapToView: false,
-                ),
-              )
-            else
-              BlurHash(blurhash: blurHash, width: 300, height: 300),
-            Center(
-              child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                ),
-                icon: _isDownloading
-                    ? const SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: CircularProgressIndicator.adaptive(
-                    strokeWidth: 2,
+                children: [
+                  if (hasThumbnail)
+                    Center(
+                      child: ImageBubble(
+                        widget.event,
+                        tapToView: false,
+                      ),
+                    )
+                  else
+                    BlurHash(blurhash: blurHash, width: 300, height: 300),
+                  Center(
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.surface,
+                      ),
+                      icon: _isDownloading
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : const Icon(Icons.download_outlined),
+                      label: Text(
+                        _isDownloading
+                            ? L10n.of(context)!.loadingPleaseWait
+                            : L10n.of(context)!.videoWithSize(
+                                widget.event.sizeString ?? '?MB',
+                              ),
+                      ),
+                      onPressed: _isDownloading ? null : _downloadAction,
+                    ),
                   ),
-                )
-                    : const Icon(Icons.download_outlined),
-                label: Text(
-                  _isDownloading
-                      ? L10n.of(context)!.loadingPleaseWait
-                      : L10n.of(context)!.videoWithSize(
-                    widget.event.sizeString ?? '?MB',
-                  ),
-                ),
-                onPressed: _isDownloading ? null : _downloadAction,
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
