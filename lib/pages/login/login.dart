@@ -10,6 +10,7 @@ import 'package:ory_kratos_client/ory_kratos_client.dart';
 import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/config/subscription.dart';
+import 'package:tawkie/pages/login/web_login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'change_username_page.dart';
@@ -402,5 +403,13 @@ class LoginController extends State<Login> {
   }
 
   @override
-  Widget build(BuildContext context) => LoginView(this);
+  Widget build(BuildContext context) {
+    if (PlatformInfos.isWeb) {
+      return WebLogin(
+        loginController: this,
+      );
+    } else {
+      return LoginView(this);
+    }
+  }
 }

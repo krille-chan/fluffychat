@@ -105,6 +105,7 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading
                         ? () {}
                         : () {
+                            //Todo: make forgotten password function
                             //controller.passwordForgotten
                           },
                     style: TextButton.styleFrom(
