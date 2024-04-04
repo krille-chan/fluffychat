@@ -47,6 +47,12 @@ class SubscriptionManager {
     log('Paywall result: $paywallResult');
   }
 
+  static Future<bool> checkSubscriptionStatus() async {
+    CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+    return customerInfo.entitlements.all['tawkie_sub'] != null &&
+        customerInfo.entitlements.all['tawkie_sub']!.isActive == true;
+  }
+
   void checkSubscriptionStatusAndRedirect() async {
     CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
