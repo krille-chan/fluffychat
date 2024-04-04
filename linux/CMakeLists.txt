@@ -13,6 +13,9 @@ set(APPLICATION_ID "chat.fluffy.fluffychat")
 # versions of CMake.
 cmake_policy(SET CMP0063 NEW)
 
+# dynamically link OpenSSL
+set(OPENSSL_USE_STATIC_LIBS OFF)
+
 # Load bundled libraries from the lib/ directory relative to the binary.
 set(CMAKE_INSTALL_RPATH "$ORIGIN/lib")
 
