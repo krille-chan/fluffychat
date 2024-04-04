@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Usuarias bloqueadas",
   "@blockedUsers": {},
-  "block": "bloquear",
+  "block": "Bloquer",
   "@block": {},
   "blockUsername": "Ignorar identificador",
   "@blockUsername": {},
@@ -2608,5 +2608,13 @@
   "commandHint_ignore": "Ignorar o ID matrix indicado",
   "@commandHint_ignore": {},
   "commandHint_unignore": "Non ignorar o ID matrix indicado",
-  "@commandHint_unignore": {}
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} chats sen ler",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
