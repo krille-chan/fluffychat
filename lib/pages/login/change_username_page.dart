@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
@@ -216,8 +218,15 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   ? ElevatedButton(
                       onPressed: () async {
                         if (PlatformInfos.shouldInitializePurchase()) {
-                          SubscriptionManager()
-                              .checkSubscriptionStatusAndRedirect();
+                          final hasSubscription = await SubscriptionManager
+                              .checkSubscriptionStatus();
+
+                          if (!hasSubscription) {
+                            final paywallResult =
+                                await RevenueCatUI.presentPaywall();
+                          } else {
+                            // Todo: Connect to Matrix if  queuePosition is 0
+                          }
                         } else {
                           // Todo: make purchases for Web, Windows and Linux
                         }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:tawkie/config/subscription.dart';
 
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
@@ -16,6 +17,7 @@ import 'package:tawkie/pages/chat_permissions_settings/chat_permissions_settings
 import 'package:tawkie/pages/device_settings/device_settings.dart';
 import 'package:tawkie/pages/invitation_selection/invitation_selection.dart';
 import 'package:tawkie/pages/login/login.dart';
+import 'package:tawkie/pages/login/not_subscribe.dart';
 import 'package:tawkie/pages/new_group/new_group.dart';
 import 'package:tawkie/pages/new_private_chat/new_private_chat.dart';
 import 'package:tawkie/pages/new_space/new_space.dart';
@@ -39,14 +41,35 @@ abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? '/rooms' : null;
+  ) async {
+    // Check connection to Matrix
+    if (Matrix.of(context).client.isLogged()) {
+      // If the user is connected to Matrix, check the subscription
+      final hasSubscription =
+          await SubscriptionManager.checkSubscriptionStatus();
+      if (hasSubscription) {
+        // If the user have a subscription, redirect to /rooms
+        return '/rooms';
+      }
+    }
+    return null;
+  }
 
   static FutureOr<String?> loggedOutRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? null : '/home';
+  ) async {
+    // Check connection to Matrix
+    final hasLogin = Matrix.of(context).client.isLogged();
+    final hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    if (!hasLogin) {
+      return '/home';
+    } else if (hasLogin && !hasSubscription) {
+      // If the user doesn't have a subscription, redirect to /subscribe
+      return '/subscribe';
+    }
+    return null;
+  }
 
   AppRoutes();
 
@@ -63,6 +86,13 @@ abstract class AppRoutes {
         state,
         const WelcomeSlidePage(), // Welcome slide show widget
       ),
+      redirect: loggedInRedirect,
+    ),
+    GoRoute(
+      path: '/subscribe',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: NotSubscribePage()),
+      redirect: loggedInRedirect,
     ),
     GoRoute(
       path: '/home',
