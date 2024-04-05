@@ -128,7 +128,7 @@ dependencies:
   matrix_homeserver_recommendations: ^0.3.0
   new_version_plus: ^0.0.10
   open_file: ^3.3.2
-  purchases_flutter: ^5.6.0
+  purchases_flutter: ^6.25.0
   sentry_flutter: ^7.4.0
   shimmer: ^3.0.0
   syncfusion_flutter_datepicker: ^23.2.7
