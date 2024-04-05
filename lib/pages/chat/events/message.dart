@@ -2,7 +2,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -141,10 +140,9 @@ class Message extends StatelessWidget {
     }
 
     // #Pangea
-    final PangeaMessageEvent? pangeaMessageEvent =
-        controller.getPangeaMessageEvent(event.eventId);
     ToolbarDisplayController? toolbarController;
-    if (event.messageType == MessageTypes.Text ||
+    if (event.type == EventTypes.Message &&
+            event.messageType == MessageTypes.Text ||
         event.messageType == MessageTypes.Notice) {
       toolbarController = controller.getToolbarDisplayController(event.eventId);
     }
@@ -351,7 +349,8 @@ class Message extends StatelessWidget {
                                       borderRadius: borderRadius,
                                       // #Pangea
                                       selected: selected,
-                                      pangeaMessageEvent: pangeaMessageEvent,
+                                      pangeaMessageEvent:
+                                          toolbarController?.pangeaMessageEvent,
                                       immersionMode: immersionMode,
                                       toolbarController: toolbarController,
                                       // Pangea#
@@ -361,7 +360,9 @@ class Message extends StatelessWidget {
                                               RelationshipTypes.edit,
                                             ) // #Pangea
                                             ||
-                                            (pangeaMessageEvent?.showUseType ??
+                                            (toolbarController
+                                                    ?.pangeaMessageEvent
+                                                    .showUseType ??
                                                 false)
                                         // Pangea#
                                         )
@@ -373,10 +374,12 @@ class Message extends StatelessWidget {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             // #Pangea
-                                            if (pangeaMessageEvent
-                                                    ?.showUseType ??
+                                            if (toolbarController
+                                                    ?.pangeaMessageEvent
+                                                    .showUseType ??
                                                 false) ...[
-                                              pangeaMessageEvent!.useType
+                                              toolbarController!
+                                                  .pangeaMessageEvent.useType
                                                   .iconView(
                                                 context,
                                                 textColor.withAlpha(164),

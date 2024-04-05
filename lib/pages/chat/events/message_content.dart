@@ -125,6 +125,15 @@ class MessageContent extends StatelessWidget {
     switch (event.type) {
       case EventTypes.Message:
       case EventTypes.Encrypted:
+        // #Pangea
+        return _ButtonContent(
+          textColor: buttonTextColor,
+          onPressed: () {},
+          icon: '🔒',
+          label: L10n.of(context)!.encrypted,
+          fontSize: fontSize,
+        );
+      // Pangea#
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
@@ -190,14 +199,16 @@ class MessageContent extends StatelessWidget {
             // else we fall through to the normal message rendering
             continue textmessage;
           case MessageTypes.BadEncrypted:
-          case EventTypes.Encrypted:
-            return _ButtonContent(
-              textColor: buttonTextColor,
-              onPressed: () => _verifyOrRequestKey(context),
-              icon: '🔒',
-              label: L10n.of(context)!.encrypted,
-              fontSize: fontSize,
-            );
+          // #Pangea
+          // case EventTypes.Encrypted:
+          //   return _ButtonContent(
+          //     textColor: buttonTextColor,
+          //     onPressed: () => _verifyOrRequestKey(context),
+          //     icon: '🔒',
+          //     label: L10n.of(context)!.encrypted,
+          //     fontSize: fontSize,
+          //   );
+          // Pangea#
           case MessageTypes.Location:
             final geoUri =
                 Uri.tryParse(event.content.tryGet<String>('geo_uri')!);
