@@ -2,14 +2,11 @@ import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_actions.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';
@@ -103,175 +100,186 @@ class ChatInputRow extends StatelessWidget {
                       : const SizedBox.shrink(),
                 ]
               : <Widget>[
-                  KeyBoardShortcuts(
-                    keysToPress: {
-                      LogicalKeyboardKey.altLeft,
-                      LogicalKeyboardKey.keyA,
-                    },
-                    onKeysPressed: () =>
-                        controller.onAddPopupMenuButtonSelected('file'),
-                    helpLabel: L10n.of(context)!.sendFile,
-                    child: AnimatedContainer(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      height: 56,
-                      //#Pangea
-                      // width: controller.sendController.text.isEmpty ? 56 : 0,
-                      width: controller.sendController.text.isEmpty &&
-                              controller.pangeaController.permissionsController
-                                  .showChatInputAddButton(controller.roomId)
-                          ? 56
-                          : 0,
-                      //Pangea#
-                      alignment: Alignment.center,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: const BoxDecoration(),
-                      child: PopupMenuButton<String>(
-                        icon: const Icon(Icons.add_outlined),
-                        onSelected: controller.onAddPopupMenuButtonSelected,
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<String>>[
-                          //#Pangea
-                          if (controller.pangeaController.permissionsController
-                              .canShareFile(controller.roomId))
-                            //Pangea#
-                            PopupMenuItem<String>(
-                              value: 'file',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.green,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.attachment_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.sendFile),
-                                contentPadding: const EdgeInsets.all(0),
+                  // #Pangea
+                  // KeyBoardShortcuts(
+                  //   keysToPress: {
+                  //     LogicalKeyboardKey.altLeft,
+                  //     LogicalKeyboardKey.keyA,
+                  //   },
+                  //   onKeysPressed: () =>
+                  //       controller.onAddPopupMenuButtonSelected('file'),
+                  //   helpLabel: L10n.of(context)!.sendFile,
+                  //   child:
+                  // Pangea#
+                  AnimatedContainer(
+                    duration: FluffyThemes.animationDuration,
+                    curve: FluffyThemes.animationCurve,
+                    height: 56,
+                    //#Pangea
+                    // width: controller.sendController.text.isEmpty ? 56 : 0,
+                    width: controller.sendController.text.isEmpty &&
+                            controller.pangeaController.permissionsController
+                                .showChatInputAddButton(controller.roomId)
+                        ? 56
+                        : 0,
+                    //Pangea#
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: const BoxDecoration(),
+                    child: PopupMenuButton<String>(
+                      icon: const Icon(Icons.add_outlined),
+                      onSelected: controller.onAddPopupMenuButtonSelected,
+                      itemBuilder: (BuildContext context) =>
+                          <PopupMenuEntry<String>>[
+                        //#Pangea
+                        if (controller.pangeaController.permissionsController
+                            .canShareFile(controller.roomId))
+                          //Pangea#
+                          PopupMenuItem<String>(
+                            value: 'file',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.green,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.attachment_outlined),
                               ),
+                              title: Text(L10n.of(context)!.sendFile),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
-                          //#Pangea
-                          if (controller.pangeaController.permissionsController
-                              .canSharePhoto(controller.roomId))
-                            //Pangea#
-                            PopupMenuItem<String>(
-                              value: 'image',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.blue,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.image_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.sendImage),
-                                contentPadding: const EdgeInsets.all(0),
+                          ),
+                        //#Pangea
+                        if (controller.pangeaController.permissionsController
+                            .canSharePhoto(controller.roomId))
+                          //Pangea#
+                          PopupMenuItem<String>(
+                            value: 'image',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.blue,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.image_outlined),
                               ),
+                              title: Text(L10n.of(context)!.sendImage),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
+                          ),
 //#Pangea
-                          // if (PlatformInfos.isMobile)
-                          if (PlatformInfos.isMobile &&
-                              controller.pangeaController.permissionsController
-                                  .canSharePhoto(controller.roomId))
-                            //Pangea#
-                            PopupMenuItem<String>(
-                              value: 'camera',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.purple,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.camera_alt_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.openCamera),
-                                contentPadding: const EdgeInsets.all(0),
+                        // if (PlatformInfos.isMobile)
+                        if (PlatformInfos.isMobile &&
+                            controller.pangeaController.permissionsController
+                                .canSharePhoto(controller.roomId))
+                          //Pangea#
+                          PopupMenuItem<String>(
+                            value: 'camera',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.purple,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.camera_alt_outlined),
                               ),
+                              title: Text(L10n.of(context)!.openCamera),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
-                          //#Pangea
-                          // if (PlatformInfos.isMobile)
-                          if (PlatformInfos.isMobile &&
-                              controller.pangeaController.permissionsController
-                                  .canShareVideo(controller.roomId))
-                            //Pangea#
-                            PopupMenuItem<String>(
-                              value: 'camera-video',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.red,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.videocam_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.openVideoCamera),
-                                contentPadding: const EdgeInsets.all(0),
+                          ),
+                        //#Pangea
+                        // if (PlatformInfos.isMobile)
+                        if (PlatformInfos.isMobile &&
+                            controller.pangeaController.permissionsController
+                                .canShareVideo(controller.roomId))
+                          //Pangea#
+                          PopupMenuItem<String>(
+                            value: 'camera-video',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.videocam_outlined),
                               ),
+                              title: Text(L10n.of(context)!.openVideoCamera),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
-                          if (controller.room
-                              .getImagePacks(ImagePackUsage.sticker)
-                              .isNotEmpty)
-                            PopupMenuItem<String>(
-                              value: 'sticker',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.orange,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.emoji_emotions_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.sendSticker),
-                                contentPadding: const EdgeInsets.all(0),
+                          ),
+                        if (controller.room
+                            .getImagePacks(ImagePackUsage.sticker)
+                            .isNotEmpty)
+                          PopupMenuItem<String>(
+                            value: 'sticker',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.emoji_emotions_outlined),
                               ),
+                              title: Text(L10n.of(context)!.sendSticker),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
-                          //#Pangea
-                          // if (PlatformInfos.isMobile)
-                          if (PlatformInfos.isMobile &&
-                              controller.pangeaController.permissionsController
-                                  .canShareLocation(controller.roomId))
-                            //Pangea#
-                            PopupMenuItem<String>(
-                              value: 'location',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.brown,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.gps_fixed_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.shareLocation),
-                                contentPadding: const EdgeInsets.all(0),
+                          ),
+                        //#Pangea
+                        // if (PlatformInfos.isMobile)
+                        if (PlatformInfos.isMobile &&
+                            controller.pangeaController.permissionsController
+                                .canShareLocation(controller.roomId))
+                          //Pangea#
+                          PopupMenuItem<String>(
+                            value: 'location',
+                            child: ListTile(
+                              leading: const CircleAvatar(
+                                backgroundColor: Colors.brown,
+                                foregroundColor: Colors.white,
+                                child: Icon(Icons.gps_fixed_outlined),
                               ),
+                              title: Text(L10n.of(context)!.shareLocation),
+                              contentPadding: const EdgeInsets.all(0),
                             ),
-                        ],
-                      ),
+                          ),
+                      ],
                     ),
                   ),
+                  // #Pangea
+                  // ),
+                  // Pangea#
                   Container(
                     height: 56,
                     alignment: Alignment.center,
-                    child: KeyBoardShortcuts(
-                      keysToPress: {
-                        LogicalKeyboardKey.altLeft,
-                        LogicalKeyboardKey.keyE,
-                      },
-                      onKeysPressed: controller.emojiPickerAction,
-                      helpLabel: L10n.of(context)!.emojis,
-                      child: IconButton(
-                        tooltip: L10n.of(context)!.emojis,
-                        icon: PageTransitionSwitcher(
-                          transitionBuilder: (
-                            Widget child,
-                            Animation<double> primaryAnimation,
-                            Animation<double> secondaryAnimation,
-                          ) {
-                            return SharedAxisTransition(
-                              animation: primaryAnimation,
-                              secondaryAnimation: secondaryAnimation,
-                              transitionType: SharedAxisTransitionType.scaled,
-                              fillColor: Colors.transparent,
-                              child: child,
-                            );
-                          },
-                          child: Icon(
-                            controller.showEmojiPicker
-                                ? Icons.keyboard
-                                : Icons.emoji_emotions_outlined,
-                            key: ValueKey(controller.showEmojiPicker),
-                          ),
+                    child:
+                        // #Pangea
+                        // KeyBoardShortcuts(
+                        //   keysToPress: {
+                        //     LogicalKeyboardKey.altLeft,
+                        //     LogicalKeyboardKey.keyE,
+                        //   },
+                        //   onKeysPressed: controller.emojiPickerAction,
+                        //   helpLabel: L10n.of(context)!.emojis,
+                        //   child:
+                        // Pangea#
+                        IconButton(
+                      tooltip: L10n.of(context)!.emojis,
+                      icon: PageTransitionSwitcher(
+                        transitionBuilder: (
+                          Widget child,
+                          Animation<double> primaryAnimation,
+                          Animation<double> secondaryAnimation,
+                        ) {
+                          return SharedAxisTransition(
+                            animation: primaryAnimation,
+                            secondaryAnimation: secondaryAnimation,
+                            transitionType: SharedAxisTransitionType.scaled,
+                            fillColor: Colors.transparent,
+                            child: child,
+                          );
+                        },
+                        child: Icon(
+                          controller.showEmojiPicker
+                              ? Icons.keyboard
+                              : Icons.emoji_emotions_outlined,
+                          key: ValueKey(controller.showEmojiPicker),
                         ),
-                        onPressed: controller.emojiPickerAction,
                       ),
+                      onPressed: controller.emojiPickerAction,
                     ),
+                    // #Pangea
+                    // ),
+                    // Pangea#
                   ),
                   // #Pangea
                   // if (Matrix.of(context).isMultiAccount &&
