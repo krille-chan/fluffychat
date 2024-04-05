@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../widgets/matrix.dart';
 import '../constants/language_keys.dart';
@@ -270,32 +271,41 @@ class PangeaMessageEvent {
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {
     if (_representations != null) return _representations!;
-
     _representations = [];
 
     if (_latestEdit.content[ModelKey.originalSent] != null) {
       try {
-        _representations!.add(
-          RepresentationEvent(
-            content: PangeaRepresentation.fromJson(
-              _latestEdit.content[ModelKey.originalSent]
-                  as Map<String, dynamic>,
-            ),
-            tokens: _latestEdit.content[ModelKey.tokensSent] != null
-                ? PangeaMessageTokens.fromJson(
-                    _latestEdit.content[ModelKey.tokensSent]
-                        as Map<String, dynamic>,
-                  )
-                : null,
-            choreo: _latestEdit.content[ModelKey.choreoRecord] != null
-                ? ChoreoRecord.fromJson(
-                    _latestEdit.content[ModelKey.choreoRecord]
-                        as Map<String, dynamic>,
-                  )
-                : null,
-            timeline: timeline,
+        final RepresentationEvent sent = RepresentationEvent(
+          content: PangeaRepresentation.fromJson(
+            _latestEdit.content[ModelKey.originalSent] as Map<String, dynamic>,
           ),
+          tokens: _latestEdit.content[ModelKey.tokensSent] != null
+              ? PangeaMessageTokens.fromJson(
+                  _latestEdit.content[ModelKey.tokensSent]
+                      as Map<String, dynamic>,
+                )
+              : null,
+          choreo: _latestEdit.content[ModelKey.choreoRecord] != null
+              ? ChoreoRecord.fromJson(
+                  _latestEdit.content[ModelKey.choreoRecord]
+                      as Map<String, dynamic>,
+                )
+              : null,
+          timeline: timeline,
         );
+        if (_latestEdit.content[ModelKey.choreoRecord] == null) {
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "originalSent created without _event or _choreo",
+              data: {
+                "eventId": _latestEdit.eventId,
+                "room": _latestEdit.room.id,
+                "sender": _latestEdit.senderId,
+              },
+            ),
+          );
+        }
+        _representations!.add(sent);
       } catch (err, s) {
         ErrorHandler.logError(
           m: "error parsing originalSent",
