@@ -515,28 +515,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheRoomInvitationLink": "{username}이 초대 링크 바꿈",
+  "changedTheRoomInvitationLink": "{username}님이 초대 링크를 바꿈",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheRoomAliases": "{username}이 방 별명을 바꿈",
+  "changedTheRoomAliases": "{username}님이 방 별명을 바꿈",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheProfileAvatar": "{username}이 자신의 아바타를 바꿈",
+  "changedTheProfileAvatar": "{username}님이 자신의 아바타를 바꿈",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheJoinRulesTo": "{username}이 참가 규칙을 {joinRules} 로 바꿈",
+  "changedTheJoinRulesTo": "{username}님이 참가 규칙을 {joinRules} 로 바꿈",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -544,14 +544,14 @@
       "joinRules": {}
     }
   },
-  "changedTheJoinRules": "{username}이 참가 규칙을 바꿈",
+  "changedTheJoinRules": "{username}님이 참가 규칙을 바꿈",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheHistoryVisibilityTo": "{username}이 대화 기록 설정을 {rules} 로 바꿈",
+  "changedTheHistoryVisibilityTo": "{username}님이 대화 기록 설정을 {rules} 로 바꿈",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -559,14 +559,14 @@
       "rules": {}
     }
   },
-  "changedTheHistoryVisibility": "{username}이 대화 기록 설정을 변경함",
+  "changedTheHistoryVisibility": "{username}님이 대화 기록 설정을 변경함",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "{username}이 게스트 접근 규칙을 {rules} 로 변경함",
+  "changedTheGuestAccessRulesTo": "{username}님이 게스트 접근 규칙을 {rules} 로 변경함",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -574,14 +574,14 @@
       "rules": {}
     }
   },
-  "changedTheGuestAccessRules": "{username}이 게스트 접근 규칙을 변경함",
+  "changedTheGuestAccessRules": "{username}님이 게스트 접근 규칙을 변경함",
   "@changedTheGuestAccessRules": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username}이 닉네임을 '{displayname}' 으로 바꿈",
+  "changedTheDisplaynameTo": "{username}님이 닉네임을 '{displayname}' 으로 바꿈",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -589,14 +589,14 @@
       "displayname": {}
     }
   },
-  "changedTheChatPermissions": "{username}이 채팅 권한을 바꿈",
+  "changedTheChatPermissions": "{username}님이 채팅 권한을 바꿈",
   "@changedTheChatPermissions": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "changedTheChatNameTo": "{username}이 채팅 이름을 '{chatname}' 으로 바꿈",
+  "changedTheChatNameTo": "{username}님이 채팅 이름을 '{chatname}' 으로 바꿈",
   "@changedTheChatNameTo": {
     "type": "text",
     "placeholders": {
@@ -604,7 +604,7 @@
       "chatname": {}
     }
   },
-  "changedTheChatDescriptionTo": "{username}이 채팅 설명을 '{description}' 으로 변경함",
+  "changedTheChatDescriptionTo": "{username}님이 채팅 설명을 '{description}' 으로 변경함",
   "@changedTheChatDescriptionTo": {
     "type": "text",
     "placeholders": {
@@ -612,7 +612,7 @@
       "description": {}
     }
   },
-  "changedTheChatAvatar": "{username}이 채팅 아바타 바꿈",
+  "changedTheChatAvatar": "{username}님이 채팅 아바타를 바꿈",
   "@changedTheChatAvatar": {
     "type": "text",
     "placeholders": {
@@ -644,7 +644,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username}이 {targetName} 밴함",
+  "bannedUser": "{username}님이 {targetName} 밴함",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -800,7 +800,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "{username}이 {targetName}에 대한 초대를 철회함",
+  "hasWithdrawnTheInvitationFor": "{username}님이 {targetName}님에 대한 초대를 철회함",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -982,14 +982,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "userLeftTheChat": "🚪 {username}이 채팅을 나감",
+  "userLeftTheChat": "🚪 {username}님이 채팅을 나감",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "userIsTyping": "{username}이 입력 중…",
+  "userIsTyping": "{username}님이 입력 중…",
   "@userIsTyping": {
     "type": "text",
     "placeholders": {
@@ -1255,7 +1255,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "userSentUnknownEvent": "{username}이 {type} 이벤트 보냄",
+  "userSentUnknownEvent": "{username}님이 {type} 이벤트 보냄",
   "@userSentUnknownEvent": {
     "type": "text",
     "placeholders": {
@@ -1280,7 +1280,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbannedUser": "{username}이 {targetName} 밴 해제함",
+  "unbannedUser": "{username}님이 {targetName}님에대한 영구추방을 해제함",
   "@unbannedUser": {
     "type": "text",
     "placeholders": {
@@ -1544,7 +1544,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sharedTheLocation": "{username}이 위치 공유함",
+  "sharedTheLocation": "{username}님이 위치를 공유함",
   "@sharedTheLocation": {
     "type": "text",
     "placeholders": {
@@ -1593,7 +1593,7 @@
       "senderName": {}
     }
   },
-  "sentAVideo": "🎥 {username}이 영상 보냄",
+  "sentAVideo": "🎥 {username}님이 영상을 보냄",
   "@sentAVideo": {
     "type": "text",
     "placeholders": {
@@ -1639,7 +1639,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "seenByUser": "{username}이 읽음",
+  "seenByUser": "{username}님이 읽음",
   "@seenByUser": {
     "type": "text",
     "placeholders": {
@@ -1728,7 +1728,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "{username}이 당신을 FluffyChat에 초대했습니다.\n1. FluffyChat 설치: https://fluffychat.im\n2. 가입하거나 로그인\n3. 초대 링크 열기: \n{link}",
+  "inviteText": "{username}님이 당신을 FluffyChat에 초대했습니다.\n1. FluffyChat 설치: https://fluffychat.im \n2. 가입하거나 로그인 \n3. 초대 링크 열기: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -1786,28 +1786,28 @@
     "type": "text",
     "placeholders": {}
   },
-  "sentASticker": "😊 {username}이 스티커 보냄",
+  "sentASticker": "😊 {username}님이 스티커를 보냄",
   "@sentASticker": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAPicture": "🖼️ {username}이 사진 보냄",
+  "sentAPicture": "🖼️ {username}님이 사진을 보냄",
   "@sentAPicture": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAnAudio": "🎤 {username}이 오디오 보냄",
+  "sentAnAudio": "🎤 {username}님이 오디오를 보냄",
   "@sentAnAudio": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "sentAFile": "📁 {username}이 파일 보냄",
+  "sentAFile": "📁 {username}님이 파일을 보냄",
   "@sentAFile": {
     "type": "text",
     "placeholders": {
@@ -1876,7 +1876,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "rejectedTheInvitation": "{username}이 초대를 거절함",
+  "rejectedTheInvitation": "{username}님이 초대를 거절함",
   "@rejectedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -1898,7 +1898,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "redactedAnEvent": "{username}이 이벤트를 지움",
+  "redactedAnEvent": "{username}님이 이벤트를 지움",
   "@redactedAnEvent": {
     "type": "text",
     "placeholders": {
