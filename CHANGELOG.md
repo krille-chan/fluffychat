@@ -1,3 +1,14 @@
+## v1.19.1
+Minor bugfix release for login with SSO on web.
+
+- feat: Show/hide third column in chat view (krille-chan)
+- design: Adjust some colors in inputbar (krille-chan)
+- fix: Login with SSO on web (krille-chan)
+- fix: Make chat permission settings null and type safe (krille-chan)
+- chore: do not use static openssl (ShootingStarDragons)
+- refactor: Move room headers into appbar bottom field (krille-chan)
+- refactor: new flutter only typing animation (krille-chan)
+
 ## v1.19.0
 FluffyChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the hood.
 
