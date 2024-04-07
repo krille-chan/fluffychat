@@ -31,14 +31,14 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             if (room == null) {
               return Center(child: Text(L10n.of(context)!.noRoomsFound));
             }
-            final powerLevelsContent = Map<String, dynamic>.from(
-              room.getState(EventTypes.RoomPowerLevels)!.content,
+            final powerLevelsContent = Map<String, Object?>.from(
+              room.getState(EventTypes.RoomPowerLevels)?.content ?? {},
             );
             final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
               ..removeWhere((k, v) => v is! int);
-            final eventsPowerLevels =
-                Map<String, dynamic>.from(powerLevelsContent['events'] ?? {})
-                  ..removeWhere((k, v) => v is! int);
+            final eventsPowerLevels = Map<String, int?>.from(
+              powerLevelsContent.tryGetMap<String, int?>('events') ?? {},
+            )..removeWhere((k, v) => v is! int);
             return Column(
               children: [
                 Column(
@@ -67,9 +67,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         const key = 'rooms';
-                        final int value = powerLevelsContent
+                        final value = powerLevelsContent
                                 .containsKey('notifications')
-                            ? powerLevelsContent['notifications']['rooms'] ?? 0
+                            ? powerLevelsContent
+                                    .tryGetMap<String, Object?>('notifications')
+                                    ?.tryGet<int>('rooms') ??
+                                0
                             : 0;
                         return PermissionsListTile(
                           permissionKey: key,
@@ -98,11 +101,11 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                       PermissionsListTile(
                         permissionKey: entry.key,
                         category: 'events',
-                        permission: entry.value,
+                        permission: entry.value ?? 0,
                         onTap: () => controller.editPowerLevel(
                           context,
                           entry.key,
-                          entry.value,
+                          entry.value ?? 0,
                           category: 'events',
                         ),
                       ),
