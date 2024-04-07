@@ -22,10 +22,12 @@ enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
   final String roomId;
+  final Widget? embeddedCloseButton;
 
   const ChatDetails({
     super.key,
     required this.roomId,
+    this.embeddedCloseButton,
   });
 
   @override

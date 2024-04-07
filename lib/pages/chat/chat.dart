@@ -22,6 +22,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
@@ -65,31 +66,10 @@ class ChatPage extends StatelessWidget {
       );
     }
 
-    return Row(
-      children: [
-        Expanded(
-          child: ChatPageWithRoom(
-            key: Key('chat_page_$roomId'),
-            room: room,
-            shareText: shareText,
-          ),
-        ),
-        if (FluffyThemes.isThreeColumnMode(context) &&
-            room.membership == Membership.join)
-          Container(
-            width: FluffyThemes.columnWidth,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  width: 1,
-                  color: Theme.of(context).dividerColor,
-                ),
-              ),
-            ),
-            child: ChatDetails(roomId: roomId),
-          ),
-      ],
+    return ChatPageWithRoom(
+      key: Key('chat_page_$roomId'),
+      room: room,
+      shareText: shareText,
     );
   }
 }
@@ -279,6 +259,10 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.addListener(_inputFocusListener);
     _loadDraft();
     super.initState();
+    _displayChatDetailsColumn = ValueNotifier(
+      Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
+          false,
+    );
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
@@ -1317,8 +1301,60 @@ class ChatController extends State<ChatPageWithRoom>
         editEvent = null;
       });
 
+  late final ValueNotifier<bool> _displayChatDetailsColumn;
+
+  void toggleDisplayChatDetailsColumn() async {
+    await Matrix.of(context).store.setBool(
+          SettingKeys.displayChatDetailsColumn,
+          !_displayChatDetailsColumn.value,
+        );
+    _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
+  }
+
   @override
-  Widget build(BuildContext context) => ChatView(this);
+  Widget build(BuildContext context) => Row(
+        children: [
+          Expanded(
+            child: ChatView(this),
+          ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            child: ValueListenableBuilder(
+              valueListenable: _displayChatDetailsColumn,
+              builder: (context, displayChatDetailsColumn, _) {
+                if (!FluffyThemes.isThreeColumnMode(context) ||
+                    room.membership != Membership.join ||
+                    !displayChatDetailsColumn) {
+                  return const SizedBox(
+                    height: double.infinity,
+                    width: 0,
+                  );
+                }
+                return Container(
+                  width: FluffyThemes.columnWidth,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 1,
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  ),
+                  child: ChatDetails(
+                    roomId: roomId,
+                    embeddedCloseButton: IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: toggleDisplayChatDetailsColumn,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      );
 }
 
 enum EmojiPickerType { reaction, keyboard }
