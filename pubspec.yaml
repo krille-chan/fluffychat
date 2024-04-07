@@ -22,7 +22,7 @@ dependencies:
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8
-  emoji_picker_flutter: ^1.6.4
+  emoji_picker_flutter: ^2.1.1
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0

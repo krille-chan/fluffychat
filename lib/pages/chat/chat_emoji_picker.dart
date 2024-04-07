@@ -41,21 +41,30 @@ class ChatEmojiPicker extends StatelessWidget {
                           onEmojiSelected: controller.onEmojiSelected,
                           onBackspacePressed: controller.emojiPickerBackspace,
                           config: Config(
-                            backspaceColor: theme.colorScheme.primary,
-                            bgColor:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            iconColor:
-                                theme.colorScheme.primary.withOpacity(0.5),
-                            iconColorSelected: theme.colorScheme.primary,
-                            indicatorColor: theme.colorScheme.primary,
-                            noRecents: const NoRecent(),
-                            skinToneDialogBgColor: Color.lerp(
-                              theme.colorScheme.background,
-                              theme.colorScheme.primaryContainer,
-                              0.75,
-                            )!,
-                            skinToneIndicatorColor:
-                                theme.colorScheme.onBackground,
+                            emojiViewConfig: EmojiViewConfig(
+                              noRecents: const NoRecent(),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onInverseSurface,
+                            ),
+                            bottomActionBarConfig: const BottomActionBarConfig(
+                              enabled: false,
+                            ),
+                            categoryViewConfig: CategoryViewConfig(
+                              backspaceColor: theme.colorScheme.primary,
+                              iconColor:
+                                  theme.colorScheme.primary.withOpacity(0.5),
+                              iconColorSelected: theme.colorScheme.primary,
+                              indicatorColor: theme.colorScheme.primary,
+                            ),
+                            skinToneConfig: SkinToneConfig(
+                              dialogBackgroundColor: Color.lerp(
+                                theme.colorScheme.background,
+                                theme.colorScheme.primaryContainer,
+                                0.75,
+                              )!,
+                              indicatorColor: theme.colorScheme.onBackground,
+                            ),
                           ),
                         ),
                         StickerPickerDialog(
