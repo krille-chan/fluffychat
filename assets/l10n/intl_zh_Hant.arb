@@ -10,7 +10,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username}已接受邀請",
+  "acceptedTheInvitation": "👍{username}已接受邀請",
   "@acceptedTheInvitation": {
     "type": "text",
     "placeholders": {
@@ -22,7 +22,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username}已啟用點對點加密",
+  "activatedEndToEndEncryption": "🔐{username}已啟用點對點加密",
   "@activatedEndToEndEncryption": {
     "type": "text",
     "placeholders": {
@@ -296,7 +296,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chatBackupDescription": "您的聊天記錄備份已被安全金鑰鑰加密。請您確保不會弄丟它。",
+  "chatBackupDescription": "您的過往聊天記錄已被恢復金鑰加密。請您確保不會弄丟它。",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -1784,7 +1784,7 @@
   "@chatHasBeenAddedToThisSpace": {},
   "clearArchive": "清除存檔",
   "@clearArchive": {},
-  "hugContent": "",
+  "hugContent": "{senderName}擁抱您",
   "@hugContent": {
     "type": "text",
     "placeholders": {
@@ -1803,7 +1803,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_cuddle": "",
+  "commandHint_cuddle": "發送一個摟抱表情",
   "@commandHint_cuddle": {},
   "widgetVideo": "",
   "@widgetVideo": {},
@@ -1848,7 +1848,7 @@
   },
   "allSpaces": "",
   "@allSpaces": {},
-  "supposedMxid": "",
+  "supposedMxid": "此處應爲{mxid}",
   "@supposedMxid": {
     "type": "text",
     "placeholders": {
@@ -2180,7 +2180,7 @@
   "@widgetCustom": {},
   "addToSpaceDescription": "",
   "@addToSpaceDescription": {},
-  "googlyEyesContent": "",
+  "googlyEyesContent": "{senderName}向您發送了瞪眼表情",
   "@googlyEyesContent": {
     "type": "text",
     "placeholders": {
@@ -2228,7 +2228,7 @@
       "seconds": {}
     }
   },
-  "sendTypingNotifications": "",
+  "sendTypingNotifications": "傳送「輸入中」通知",
   "@sendTypingNotifications": {},
   "inviteGroupChat": "",
   "@inviteGroupChat": {},
@@ -2322,7 +2322,7 @@
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "",
   "@recoveryKeyLost": {},
-  "cuddleContent": "",
+  "cuddleContent": "{senderName}摟抱您",
   "@cuddleContent": {
     "type": "text",
     "placeholders": {
@@ -2351,7 +2351,7 @@
   "@widgetName": {},
   "errorAddingWidget": "",
   "@errorAddingWidget": {},
-  "commandHint_hug": "",
+  "commandHint_hug": "發送一個擁抱表情",
   "@commandHint_hug": {},
   "replace": "取代",
   "@replace": {},
@@ -2380,7 +2380,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_googly": "",
+  "commandHint_googly": "發送一些瞪眼表情",
   "@commandHint_googly": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
