@@ -53,7 +53,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: '3.3'
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
