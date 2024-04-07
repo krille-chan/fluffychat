@@ -1,0 +1,37 @@
+name: Auto Pull Request
+
+#on:
+#  schedule:
+#    - cron: '0 0 * * 0'  # Run at midnight (00:00) every Sunday
+
+on:
+  push:
+    branches:
+      - auto-pr  # Change this to match your main branch name
+
+jobs:
+  auto_pull_request:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Pull changes from FluffyChat
+      run: |
+        git remote add fluffychat https://github.com/krille-chan/fluffychat
+        git fetch fluffychat
+        git merge --no-edit fluffychat/main
+        
+    - name: Push changes
+      run: |
+        git push origin HEAD:main-update-fluffy-automatic
+      
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+        title: Updated fork with new fluffy changes
+        body: |
+          This is an automatic PR created by GitHub Actions.
+        branch: main
