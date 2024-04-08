@@ -20,8 +20,8 @@ jobs:
     - name: Pull changes from FluffyChat
       run: |
         git remote add fluffychat https://github.com/krille-chan/fluffychat
-        git fetch fluffychat
-        git merge --no-edit fluffychat/main
+        git fetch fluffychat main
+        git merge --no-edit fluffychat/main --allow-unrelated-histories
         
     - name: Push changes
       run: |
