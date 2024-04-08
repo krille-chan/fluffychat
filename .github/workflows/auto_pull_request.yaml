@@ -15,7 +15,9 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+    - name: Test
+      run: echo ${{ github.head_ref }}.${{ github.sha }}
       
     - name: Pull changes from FluffyChat
       run: |
