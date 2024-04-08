@@ -16,7 +16,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
+import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -169,12 +169,10 @@ abstract class ClientManager {
       body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          AppConfig.pushNotificationsChannelName,
-          channelDescription: AppConfig.pushNotificationsChannelDescription,
-          importance: Importance.max,
+          'error_message',
+          'Error Messages',
+          importance: Importance.high,
           priority: Priority.max,
-          fullScreenIntent: true, // To show notification popup
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
       ),

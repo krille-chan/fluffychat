@@ -13,15 +13,12 @@ class StateMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 4.0,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Center(
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onInverseSurface,
+            color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
           child: FutureBuilder<String>(
@@ -34,8 +31,7 @@ class StateMessage extends StatelessWidget {
                     ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14 * AppConfig.fontSizeFactor,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  fontSize: 12 * AppConfig.fontSizeFactor,
                   decoration:
                       event.redacted ? TextDecoration.lineThrough : null,
                 ),

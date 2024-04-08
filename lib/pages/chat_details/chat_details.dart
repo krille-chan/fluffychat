@@ -24,10 +24,12 @@ enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
   final String roomId;
+  final Widget? embeddedCloseButton;
 
   const ChatDetails({
     super.key,
     required this.roomId,
+    this.embeddedCloseButton,
   });
 
   @override
@@ -84,34 +86,19 @@ class ChatDetailsController extends State<ChatDetails> {
   void editAliases() async {
     final room = Matrix.of(context).client.getRoomById(roomId!);
 
-    // The current endpoint doesnt seem to be implemented in Synapse. This may
-    // change in the future and then we just need to switch to this api call:
-    //
-    // final aliases = await showFutureLoadingDialog(
-    //   context: context,
-    //   future: () => room.client.requestRoomAliases(room.id),
-    // );
-    //
-    // While this is not working we use the unstable api:
-    final aliases = await showFutureLoadingDialog(
+    final aliasesResult = await showFutureLoadingDialog(
       context: context,
-      future: () => room!.client
-          .request(
-            RequestType.GET,
-            '/client/unstable/org.matrix.msc2432/rooms/${Uri.encodeComponent(room.id)}/aliases',
-          )
-          .then(
-            (response) => List<String>.from(response['aliases'] as Iterable),
-          ),
+      future: () => room!.client.getLocalAliases(room.id),
     );
-    // Switch to the stable api once it is implemented.
 
-    if (aliases.error != null) return;
-    final adminMode = room!.canSendEvent('m.room.canonical_alias');
-    if (aliases.result!.isEmpty && (room.canonicalAlias.isNotEmpty)) {
-      aliases.result!.add(room.canonicalAlias);
+    final aliases = aliasesResult.result;
+
+    if (aliases == null) return;
+    final adminMode = room!.canSendEvent(EventTypes.RoomCanonicalAlias);
+    if (aliases.isEmpty && (room.canonicalAlias.isNotEmpty)) {
+      aliases.add(room.canonicalAlias);
     }
-    if (aliases.result!.isEmpty && adminMode) {
+    if (aliases.isEmpty && adminMode) {
       return setAliasAction();
     }
     final select = await showConfirmationDialog(
@@ -123,8 +110,7 @@ class ChatDetailsController extends State<ChatDetails> {
       actions: [
         if (adminMode)
           AlertDialogAction(label: L10n.of(context)!.create, key: 'new'),
-        ...aliases.result!
-            .map((alias) => AlertDialogAction(key: alias, label: alias)),
+        ...aliases.map((alias) => AlertDialogAction(key: alias, label: alias)),
       ],
     );
     if (select == null) return;

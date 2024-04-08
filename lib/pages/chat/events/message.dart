@@ -25,6 +25,7 @@ import 'verification_request_content.dart';
 class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
+  final Event? previousEvent;
   final bool displayReadMarker;
   final void Function(Event) onSelect;
   final void Function(Event) onAvatarTab;
@@ -43,10 +44,12 @@ class Message extends StatelessWidget {
   final bool definitions;
   final ChatController controller;
   // Pangea#
+  final Color? avatarPresenceBackgroundColor;
 
   const Message(
     this.event, {
     this.nextEvent,
+    this.previousEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
     required this.onSelect,
@@ -65,6 +68,7 @@ class Message extends StatelessWidget {
     required this.definitions,
     required this.controller,
     // Pangea#
+    this.avatarPresenceBackgroundColor,
     super.key,
   });
 
@@ -97,31 +101,40 @@ class Message extends StatelessWidget {
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
-    final sameSender = nextEvent != null &&
+    final nextEventSameSender = nextEvent != null &&
         {
           EventTypes.Message,
           EventTypes.Sticker,
           EventTypes.Encrypted,
         }.contains(nextEvent!.type) &&
-        nextEvent?.relationshipType == null &&
         nextEvent!.senderId == event.senderId &&
         !displayTime;
+
+    final previousEventSameSender = previousEvent != null &&
+        {
+          EventTypes.Message,
+          EventTypes.Sticker,
+          EventTypes.Encrypted,
+        }.contains(previousEvent!.type) &&
+        previousEvent!.senderId == event.senderId &&
+        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
+
     final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimaryContainer
+        ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onBackground;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
     final displayEvent = event.getDisplayEvent(timeline);
+    const hardCorner = Radius.circular(4);
+    const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
-      topRight: const Radius.circular(AppConfig.borderRadius),
-      bottomLeft: const Radius.circular(AppConfig.borderRadius),
-      bottomRight: ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
+      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      bottomLeft:
+          !ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
+      bottomRight:
+          ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
     final noBubble = {
           MessageTypes.Video,
@@ -137,7 +150,7 @@ class Message extends StatelessWidget {
     if (ownMessage) {
       color = displayEvent.status.isError
           ? Colors.redAccent
-          : Theme.of(context).colorScheme.primaryContainer;
+          : Theme.of(context).colorScheme.primary;
     }
 
     // #Pangea
@@ -179,7 +192,7 @@ class Message extends StatelessWidget {
                     onChanged: (_) => onSelect(event),
                   ),
                 )
-              else if (sameSender || ownMessage)
+              else if (nextEventSameSender || ownMessage)
                 SizedBox(
                   width: Avatar.defaultSize,
                   child: Center(
@@ -206,6 +219,7 @@ class Message extends StatelessWidget {
                       mxContent: user.avatarUrl,
                       name: user.calcDisplayname(),
                       presenceUserId: user.stateKey,
+                      presenceBackgroundColor: avatarPresenceBackgroundColor,
                       onTap: () => onAvatarTab(event),
                     );
                   },
@@ -215,7 +229,7 @@ class Message extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (!sameSender)
+                    if (!nextEventSameSender)
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                         child: ownMessage || event.room.isDirectChat
@@ -231,7 +245,6 @@ class Message extends StatelessWidget {
                                     displayname,
                                     style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.bold,
                                       color: (Theme.of(context).brightness ==
                                               Brightness.light
                                           ? displayname.color
@@ -253,8 +266,8 @@ class Message extends StatelessWidget {
                         onLongPress: longPressSelect
                             ? null
                             : () {
+                                HapticFeedback.heavyImpact();
                                 onSelect(event);
-                                HapticFeedback.selectionClick();
                               },
                         child: AnimatedOpacity(
                           opacity: animateIn
@@ -447,25 +460,34 @@ class Message extends StatelessWidget {
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
                   child: Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
                       event.originServerTs.localizedTime(context),
-                      style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12 * AppConfig.fontSizeFactor,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           row,
-          if (showReceiptsRow)
-            Padding(
-              padding: EdgeInsets.only(
-                top: 4.0,
-                left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
-                right: 12.0,
-              ),
-              child: MessageReactions(event, timeline),
-            ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            child: !showReceiptsRow
+                ? const SizedBox.shrink()
+                : Padding(
+                    padding: EdgeInsets.only(
+                      top: 4.0,
+                      left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+                      right: ownMessage ? 0 : 12.0,
+                    ),
+                    child: MessageReactions(event, timeline),
+                  ),
+          ),
           if (displayReadMarker)
             Row(
               children: [
@@ -525,16 +547,18 @@ class Message extends StatelessWidget {
                 constraints: const BoxConstraints(
                   maxWidth: FluffyThemes.columnWidth * 2.5,
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 4.0,
+                padding: EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: nextEventSameSender ? 1.0 : 4.0,
+                  bottom: previousEventSameSender ? 1.0 : 4.0,
                 ),
                 child: container,
               ),
               Positioned(
                 left: ownMessage ? null : 48,
                 right: ownMessage ? 4 : null,
-                bottom: showReceiptsRow ? 28 : 0,
+                top: displayTime ? 38 : 0,
                 child: AnimatedScale(
                   duration: Duration(
                     milliseconds:
@@ -547,28 +571,50 @@ class Message extends StatelessWidget {
                   child: Material(
                     color: Theme.of(context)
                         .colorScheme
-                        .tertiaryContainer
+                        .secondaryContainer
                         .withOpacity(0.9),
                     elevation:
                         Theme.of(context).appBarTheme.scrolledUnderElevation ??
                             4,
                     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: SizedBox(
-                      width: 32,
-                      height: 32,
-                      child: IconButton(
-                        icon: Icon(
-                          // #Pangea
-                          // Icons.adaptive.more_outlined,
-                          Icons.add_reaction_outlined,
-                          // Pangea#
-                          size: 16,
-                          color:
-                              Theme.of(context).colorScheme.onTertiaryContainer,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (event.room.canSendDefaultMessages)
+                          SizedBox(
+                            width: 32,
+                            height: 32,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.reply_outlined,
+                                size: 16,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onTertiaryContainer,
+                              ),
+                              tooltip: L10n.of(context)!.reply,
+                              onPressed: event.room.canSendDefaultMessages
+                                  ? () => onSwipe()
+                                  : null,
+                            ),
+                          ),
+                        SizedBox(
+                          width: 32,
+                          height: 32,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.more_vert,
+                              size: 16,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onTertiaryContainer,
+                            ),
+                            tooltip: L10n.of(context)!.select,
+                            onPressed: () => onSelect(event),
+                          ),
                         ),
-                        onPressed: () => onSelect(event),
-                      ),
+                      ],
                     ),
                   ),
                 ),

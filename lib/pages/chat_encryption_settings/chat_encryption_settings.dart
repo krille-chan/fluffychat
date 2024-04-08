@@ -70,6 +70,15 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   }
 
   void startVerification() async {
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.verifyOtherUser,
+      message: L10n.of(context)!.verifyOtherUserDescription,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      fullyCapitalizedForMaterial: false,
+    );
+    if (consent != OkCancelResult.ok) return;
     final req = await room.client.userDeviceKeys[room.directChatMatrixID]!
         .startVerification();
     req.onUpdate = () {

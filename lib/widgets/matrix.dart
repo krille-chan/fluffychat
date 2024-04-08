@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -190,26 +192,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   final StreamController<Map<String, dynamic>?> onShareContentChanged =
       StreamController.broadcast();
-
-  void _initWithStore() async {
-    try {
-      if (client.isLogged()) {
-        // TODO: Figure out how this works in multi account
-        final statusMsg = store.getString(SettingKeys.ownStatusMessage);
-        if (statusMsg?.isNotEmpty ?? false) {
-          Logs().v('Send cached status message: "$statusMsg"');
-          await client.setPresence(
-            client.userID!,
-            PresenceType.online,
-            statusMsg: statusMsg,
-          );
-        }
-      }
-    } catch (e, s) {
-      client.onLoginStateChanged.addError(e, s);
-      rethrow;
-    }
-  }
 
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
@@ -391,8 +373,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initMatrix() {
-    _initWithStore();
-
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
     }
@@ -474,6 +454,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.hideUnknownEvents) ??
             AppConfig.hideUnknownEvents;
 
+    AppConfig.hideUnimportantStateEvents =
+        store.getBool(SettingKeys.hideUnimportantStateEvents) ??
+            AppConfig.hideUnimportantStateEvents;
+
     AppConfig.separateChatTypes =
         store.getBool(SettingKeys.separateChatTypes) ??
             AppConfig.separateChatTypes;
@@ -485,11 +469,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         store.getBool(SettingKeys.sendTypingNotifications) ??
             AppConfig.sendTypingNotifications;
 
+    AppConfig.sendPublicReadReceipts =
+        store.getBool(SettingKeys.sendPublicReadReceipts) ??
+            AppConfig.sendPublicReadReceipts;
+
     AppConfig.sendOnEnter =
         store.getBool(SettingKeys.sendOnEnter) ?? AppConfig.sendOnEnter;
 
     AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
         AppConfig.experimentalVoip;
+
+    AppConfig.showPresences =
+        store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
   }
 
   @override
@@ -503,7 +494,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     client.httpClient.close();
     onFocusSub?.cancel();
     onBlurSub?.cancel();
-    backgroundPush?.onRoomSync?.cancel();
 
     linuxNotifications?.close();
 
@@ -516,6 +506,34 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       create: (_) => this,
       child: widget.child,
     );
+  }
+
+  Future<void> dehydrateAction() async {
+    final response = await showOkCancelAlertDialog(
+      context: context,
+      isDestructiveAction: true,
+      title: L10n.of(context)!.dehydrate,
+      message: L10n.of(context)!.dehydrateWarning,
+    );
+    if (response != OkCancelResult.ok) {
+      return;
+    }
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: client.exportDump,
+    );
+    final export = result.result;
+    if (export == null) return;
+
+    final exportBytes = Uint8List.fromList(
+      const Utf8Codec().encode(export),
+    );
+
+    final exportFileName =
+        'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
+
+    final file = MatrixFile(bytes: exportBytes, name: exportFileName);
+    file.save(context);
   }
 }
 

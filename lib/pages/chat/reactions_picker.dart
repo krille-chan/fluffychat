@@ -60,7 +60,7 @@ class ReactionsPicker extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: Theme.of(context).colorScheme.onInverseSurface,
                       borderRadius: const BorderRadius.only(
                         bottomRight: Radius.circular(AppConfig.borderRadius),
                       ),
@@ -92,7 +92,7 @@ class ReactionsPicker extends StatelessWidget {
                     width: 36,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: Theme.of(context).colorScheme.onInverseSurface,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.add_outlined),

@@ -125,7 +125,7 @@ class PresenceAvatar extends StatelessWidget {
         final statusMsgBubbleElevation =
             Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4;
         final statusMsgBubbleShadowColor =
-            Theme.of(context).appBarTheme.shadowColor;
+            Theme.of(context).colorScheme.onBackground;
         final statusMsgBubbleColor = Colors.white.withAlpha(245);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -187,53 +187,57 @@ class PresenceAvatar extends StatelessWidget {
                                   left: 0,
                                   top: 0,
                                   right: 8,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      Material(
-                                        elevation: statusMsgBubbleElevation,
-                                        shadowColor: statusMsgBubbleShadowColor,
-                                        borderRadius: BorderRadius.circular(
-                                          AppConfig.borderRadius / 2,
-                                        ),
-                                        color: statusMsgBubbleColor,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(2.0),
-                                          child: Text(
-                                            statusMsg,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.5,
-                                            ),
-                                          ),
+                                  child: Material(
+                                    elevation: statusMsgBubbleElevation,
+                                    shadowColor: statusMsgBubbleShadowColor,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 2,
+                                    ),
+                                    color: statusMsgBubbleColor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Text(
+                                        statusMsg,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.5,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          left: 26.0,
-                                          top: 4.0,
-                                        ),
-                                        child: Center(
-                                          child: SizedBox(
-                                            width: 12,
-                                            height: 12,
-                                            child: Material(
-                                              elevation:
-                                                  statusMsgBubbleElevation,
-                                              shadowColor:
-                                                  statusMsgBubbleShadowColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(99),
-                                              color: statusMsgBubbleColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 8,
+                                  top: 32,
+                                  child: Material(
+                                    color: statusMsgBubbleColor,
+                                    elevation: statusMsgBubbleElevation,
+                                    shadowColor: statusMsgBubbleShadowColor,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 2,
+                                    ),
+                                    child: const SizedBox(
+                                      width: 8,
+                                      height: 8,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 14,
+                                  top: 40,
+                                  child: Material(
+                                    color: statusMsgBubbleColor,
+                                    elevation: statusMsgBubbleElevation,
+                                    shadowColor: statusMsgBubbleShadowColor,
+                                    borderRadius: BorderRadius.circular(
+                                      AppConfig.borderRadius / 2,
+                                    ),
+                                    child: const SizedBox(
+                                      width: 4,
+                                      height: 4,
+                                    ),
                                   ),
                                 ),
                               ],

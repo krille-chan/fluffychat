@@ -1601,11 +1601,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "renderRichContent": "Render rich message content",
-    "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
     "replaceRoomWithNewerVersion": "Replace room with newer version",
     "@replaceRoomWithNewerVersion": {
         "type": "text",
@@ -1808,6 +1803,16 @@
     },
     "showPassword": "Show password",
     "@showPassword": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "presenceStyle": "Presence:",
+    "@presenceStyle": {
+        "type": "text",
+        "placeholders": {}
+    },
+    "presencesToggle": "Show status messages from other users",
+    "@presencesToggle": {
         "type": "text",
         "placeholders": {}
     },
@@ -2261,6 +2266,12 @@
             "user": {}
         }
     },
+    "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
+    "@youInvitedToBy": {
+        "placeholders": {
+            "alias": {}
+        }
+    },
     "youInvitedBy": "📩 You have been invited by {user}",
     "@youInvitedBy": {
         "placeholders": {
@@ -2361,6 +2372,7 @@
         }
     },
     "hideUnimportantStateEvents": "Hide unimportant state events",
+    "hidePresences": "Hide Status List?",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -3887,6 +3899,16 @@
     "conversationLanguageLevel": "What is the language level of this conversation?",
     "showDefinition": "Show Definition",
         "acceptedKeyVerification": "{sender} accepted key verification",
+    "sendReadReceipts": "Send read receipts",
+    "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
+    "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
+    "formattedMessages": "Formatted messages",
+    "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
+    "verifyOtherUser": "🔐 Verify other user",
+    "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
+    "verifyOtherDevice": "🔐 Verify other device",
+    "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
+    "acceptedKeyVerification": "{sender} accepted key verification",
     "@acceptedKeyVerification": {
         "type": "text",
         "placeholders": {
@@ -3952,5 +3974,19 @@
     "joinToView": "Join this room to view details",
     "refresh": "Refresh",
     "autoPlayTitle": "Auto Play Messages",
-    "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected."
+    "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected.",
+    "transparent": "Transparent",
+    "incomingMessages": "Incoming messages",
+    "stickers": "Stickers",
+    "discover": "Discover",
+    "commandHint_ignore": "Ignore the given matrix ID",
+    "commandHint_unignore": "Unignore the given matrix ID",
+    "unreadChatsInApp": "{appname}: {unread} unread chats",
+    "@unreadChatsInApp": {
+        "type": "text",
+        "placeholders": {
+            "appname": {},
+            "unread": {}
+        }
+    }
 }

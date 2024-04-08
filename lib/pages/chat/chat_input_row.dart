@@ -2,7 +2,6 @@ import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_actions.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -27,6 +26,7 @@ class ChatInputRow extends StatelessWidget {
         controller.emojiPickerType == EmojiPickerType.reaction) {
       return const SizedBox.shrink();
     }
+    const height = 48.0;
     // #Pangea
     return Column(
       children: [
@@ -43,7 +43,7 @@ class ChatInputRow extends StatelessWidget {
                   if (controller.selectedEvents
                       .every((event) => event.status == EventStatus.error))
                     SizedBox(
-                      height: 56,
+                      height: height,
                       child: TextButton(
                         style: TextButton.styleFrom(
                           foregroundColor: Theme.of(context).colorScheme.error,
@@ -59,7 +59,7 @@ class ChatInputRow extends StatelessWidget {
                     )
                   else
                     SizedBox(
-                      height: 56,
+                      height: height,
                       child: TextButton(
                         onPressed: controller.forwardEventsAction,
                         child: Row(
@@ -76,7 +76,7 @@ class ChatInputRow extends StatelessWidget {
                               .status
                               .isSent
                           ? SizedBox(
-                              height: 56,
+                              height: height,
                               child: TextButton(
                                 onPressed: controller.replyAction,
                                 child: Row(
@@ -88,7 +88,7 @@ class ChatInputRow extends StatelessWidget {
                               ),
                             )
                           : SizedBox(
-                              height: 56,
+                              height: height,
                               child: TextButton(
                                 onPressed: controller.sendAgainAction,
                                 child: Row(
@@ -103,6 +103,7 @@ class ChatInputRow extends StatelessWidget {
                       : const SizedBox.shrink(),
                 ]
               : <Widget>[
+                  const SizedBox(width: 4),
                   KeyBoardShortcuts(
                     keysToPress: {
                       LogicalKeyboardKey.altLeft,
@@ -114,13 +115,13 @@ class ChatInputRow extends StatelessWidget {
                     child: AnimatedContainer(
                       duration: FluffyThemes.animationDuration,
                       curve: FluffyThemes.animationCurve,
-                      height: 56,
+                      height: height,
                       //#Pangea
                       // width: controller.sendController.text.isEmpty ? 56 : 0,
                       width: controller.sendController.text.isEmpty &&
                               controller.pangeaController.permissionsController
                                   .showChatInputAddButton(controller.roomId)
-                          ? 56
+                          ? height
                           : 0,
                       //Pangea#
                       alignment: Alignment.center,
@@ -163,7 +164,8 @@ class ChatInputRow extends StatelessWidget {
                                 contentPadding: const EdgeInsets.all(0),
                               ),
                             ),
-//#Pangea
+
+                          //#Pangea
                           // if (PlatformInfos.isMobile)
                           if (PlatformInfos.isMobile &&
                               controller.pangeaController.permissionsController
@@ -189,30 +191,15 @@ class ChatInputRow extends StatelessWidget {
                             //Pangea#
                             PopupMenuItem<String>(
                               value: 'camera-video',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.red,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.videocam_outlined),
+                                child: ListTile(
+                                  leading: const CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    foregroundColor: Colors.white,
+                                    child: Icon(Icons.videocam_outlined),
+                                  ),
+                                  title: Text(L10n.of(context)!.openVideoCamera),
+                                  contentPadding: const EdgeInsets.all(0),
                                 ),
-                                title: Text(L10n.of(context)!.openVideoCamera),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                          if (controller.room
-                              .getImagePacks(ImagePackUsage.sticker)
-                              .isNotEmpty)
-                            PopupMenuItem<String>(
-                              value: 'sticker',
-                              child: ListTile(
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.orange,
-                                  foregroundColor: Colors.white,
-                                  child: Icon(Icons.emoji_emotions_outlined),
-                                ),
-                                title: Text(L10n.of(context)!.sendSticker),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
                             ),
                           //#Pangea
                           // if (PlatformInfos.isMobile)
@@ -232,12 +219,29 @@ class ChatInputRow extends StatelessWidget {
                                 contentPadding: const EdgeInsets.all(0),
                               ),
                             ),
+
+                          if (controller.room
+                              .getImagePacks(ImagePackUsage.sticker)
+                              .isNotEmpty)
+                            PopupMenuItem<String>(
+                              value: 'sticker',
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.orange,
+                                  foregroundColor: Colors.white,
+                                  child: Icon(Icons.emoji_emotions_outlined),
+                                ),
+                                title: Text(L10n.of(context)!.sendSticker),
+                                contentPadding: const EdgeInsets.all(0),
+                              ),
+                            ),
                         ],
                       ),
                     ),
                   ),
                   Container(
-                    height: 56,
+                    height: height,
+                    width: height,
                     alignment: Alignment.center,
                     child: KeyBoardShortcuts(
                       keysToPress: {
@@ -308,12 +312,18 @@ class ChatInputRow extends StatelessWidget {
                         focusNode: controller.inputFocus,
                         controller: controller.sendController,
                         decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(
+                            left: 6.0,
+                            right: 6.0,
+                            bottom: 6.0,
+                            top: 3.0,
+                          ),
                           hintText: L10n.of(context)!.writeAMessage,
                           hintMaxLines: 1,
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           filled: false,
-                        ),
+                      ),
                         onChanged: controller.onInputBarChanged,
                       ),
                     ),
@@ -321,13 +331,38 @@ class ChatInputRow extends StatelessWidget {
                   if (PlatformInfos.platformCanRecord &&
                       controller.sendController.text.isEmpty)
                     Container(
-                      height: 56,
+                      height: height,
+                      width: height,
                       alignment: Alignment.center,
-                      child: IconButton(
-                        tooltip: L10n.of(context)!.voiceMessage,
-                        icon: const Icon(Icons.mic_none_outlined),
-                        onPressed: controller.voiceMessageAction,
-                      ),
+                      child: PlatformInfos.platformCanRecord &&
+                              controller.sendController.text.isEmpty
+                          ? FloatingActionButton.small(
+                              tooltip: L10n.of(context)!.voiceMessage,
+                              onPressed: controller.voiceMessageAction,
+                              elevation: 0,
+                              heroTag: null,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(height),
+                              ),
+                              backgroundColor: Theme.of(context).colorScheme.primary,
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              child: const Icon(Icons.mic_none_outlined),
+                            )
+                          : FloatingActionButton.small(
+                              tooltip: L10n.of(context)!.send,
+                              onPressed: controller.send,
+                              elevation: 0,
+                              heroTag: null,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(height),
+                              ),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              child: const Icon(Icons.send_outlined),
+                            ),
                     ),
                   if (!PlatformInfos.isMobile ||
                       controller.sendController.text.isNotEmpty)

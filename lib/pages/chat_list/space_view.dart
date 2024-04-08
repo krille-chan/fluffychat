@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
+import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
@@ -385,11 +386,18 @@ class _SpaceViewState extends State<SpaceView> {
       final rootSpaces = allSpaces
           // #Pangea
           // .where(
-          //   (space) => !allSpaces.any(
-          //     (parentSpace) => parentSpace.spaceChildren
-          //         .any((child) => child.roomId == space.id),
-          //   ),
-          // )
+          //  (space) =>
+          //      !allSpaces.any(
+          //        (parentSpace) => parentSpace.spaceChildren
+          //            .any((child) => child.roomId == space.id),
+          //      ) &&
+          //      space
+          //          .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+          //          .toLowerCase()
+          //          .contains(
+          //            widget.controller.searchController.text.toLowerCase(),
+          //          ),
+          //)
           // Pangea#
           .toList();
 
@@ -506,7 +514,7 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller),
+            ChatListHeader(controller: widget.controller, globalSearch: false),
             SliverAppBar(
               automaticallyImplyLeading: false,
               primary: false,
@@ -650,6 +658,7 @@ class _SpaceViewState extends State<SpaceView> {
                           onLongPress: () =>
                               _onSpaceChildContextMenu(spaceChild, room),
                           activeChat: widget.controller.activeChat == room.id,
+                          onTap: () => onChatTap(room, context),
                         );
                       }
                       final isSpace = spaceChild.roomType == 'm.space';
@@ -719,7 +728,8 @@ class _SpaceViewState extends State<SpaceView> {
                           L10n.of(context)!.chat;
                       if (widget.controller.isSearchMode &&
                           !name.toLowerCase().contains(
-                                widget.controller.searchController.text,
+                                widget.controller.searchController.text
+                                    .toLowerCase(),
                               )) {
                         return const SizedBox.shrink();
                       }

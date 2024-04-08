@@ -5,13 +5,14 @@ description: Learn a language while texting your friends.
 # !!!!!! flutter version: 3.16.9 !!!!!!
 # Pangea#
 publish_to: none
-version: 1.11.2+3453
+# On version bump also increase the build number for F-Droid
+version: 1.19.1+3530
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  adaptive_dialog: ^2.0.0
+  adaptive_dialog: ^2.1.0
   animations: ^2.0.8
   archive: ^3.4.9
   async: ^2.11.0
@@ -27,7 +28,7 @@ dependencies:
   desktop_notifications: ^0.6.3
   device_info_plus: ^9.1.0
   dynamic_color: ^1.6.8
-  emoji_picker_flutter: ^1.6.3
+  emoji_picker_flutter: ^1.6.4
   emoji_proposal: ^0.0.1
   emojis: ^0.9.9
   #fcm_shared_isolate: ^0.1.0
@@ -35,14 +36,14 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_app_badger: ^1.5.0
-  flutter_blurhash: ^0.8.2
   flutter_cache_manager: ^3.3.0
+  flutter_file_dialog: ^3.0.2
   flutter_foreground_task: ^6.0.0+1
   flutter_highlighter: ^0.1.1
   flutter_html: ^3.0.0-beta.2
   flutter_html_table: ^3.0.0-beta.2
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^16.1.0
+  flutter_local_notifications: ^16.3.2
   flutter_localizations:
     sdk: flutter
   flutter_map: ^4.0.0
@@ -51,16 +52,19 @@ dependencies:
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
   flutter_secure_storage: ^9.0.0
-  flutter_typeahead: ^4.8.0
+  flutter_shortcuts:
+    git: https://github.com/krille-chan/flutter_shortcuts.git
+  flutter_typeahead: ^5.2.0
   flutter_web_auth_2: ^3.1.1
   flutter_webrtc: ^0.9.46
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
-  go_router: ^12.1.1
+  go_router: ^13.1.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   html: ^0.15.4
   http: ^0.13.6
+  image: ^4.1.7
   image_picker: ^1.0.0
   intl: any
   # #Pangea
@@ -70,20 +74,17 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
-  # #Pangea
-  # matrix: ^0.25.7
-  matrix: ^0.25.11
-  # until https://github.com/famedly/matrix-dart-sdk/pull/1712
-  # Pangea#
+  matrix: ^0.26.1
   native_imaging: ^0.1.0
-  package_info_plus: ^4.0.0
+  package_info_plus: ^5.0.1
   pasteboard: ^0.2.0
+  path: ^1.9.0
   path_provider: ^2.0.9
   permission_handler: ^11.0.1
+  pretty_qr_code: ^3.2.1
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.0
-  qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
   # #Pangea
   # record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
@@ -93,9 +94,8 @@ dependencies:
   share_plus: ^7.2.1
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
-  sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.0+4
-  sqflite_sqlcipher: ^2.2.1
+  sqlcipher_flutter_libs: ^0.6.1
   swipe_to_action: ^0.2.0
   tor_detector_web: ^1.1.0
   uni_links: ^0.5.1
@@ -126,7 +126,6 @@ dependencies:
   jwt_decode: ^0.3.1
   language_tool: ^2.1.1
   matrix_homeserver_recommendations: ^0.3.0
-  new_version_plus: ^0.0.10
   open_file: ^3.3.2
   purchases_flutter: ^5.6.0
   sentry_flutter: ^7.4.0
@@ -143,6 +142,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
+  license_checker: ^1.6.0
   msix: ^3.6.2
   translations_cleaner: ^0.0.5
 

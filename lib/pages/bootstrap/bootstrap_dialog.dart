@@ -266,6 +266,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                         ),
                         hintText: L10n.of(context)!.recoveryKey,
                         errorText: _recoveryKeyInputError,
+                        errorMaxLines: 2,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -290,6 +291,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 final key = _recoveryKeyTextEditingController
                                     .text
                                     .trim();
+                                if (key.isEmpty) return;
                                 await bootstrap.newSsssKey!.unlock(
                                   keyOrPassphrase: key,
                                 );
@@ -316,6 +318,11 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 setState(
                                   () => _recoveryKeyInputError =
                                       e.toLocalizedString(context),
+                                );
+                              } on FormatException catch (_) {
+                                setState(
+                                  () => _recoveryKeyInputError =
+                                      L10n.of(context)!.wrongRecoveryKey,
                                 );
                               } catch (e, s) {
                                 ErrorReporter(
@@ -351,6 +358,16 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                       onPressed: _recoveryKeyInputLoading
                           ? null
                           : () async {
+                              final consent = await showOkCancelAlertDialog(
+                                context: context,
+                                title: L10n.of(context)!.verifyOtherDevice,
+                                message: L10n.of(context)!
+                                    .verifyOtherDeviceDescription,
+                                okLabel: L10n.of(context)!.ok,
+                                cancelLabel: L10n.of(context)!.cancel,
+                                fullyCapitalizedForMaterial: false,
+                              );
+                              if (consent != OkCancelResult.ok) return;
                               final req = await showFutureLoadingDialog(
                                 context: context,
                                 future: () async {
