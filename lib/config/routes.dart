@@ -31,6 +31,7 @@ import 'package:tawkie/pages/settings_notifications/settings_notifications.dart'
 import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/pages/settings_style/settings_style.dart';
+import 'package:tawkie/pages/sub/sub_body.dart';
 import 'package:tawkie/pages/welcome_slides/slides.dart';
 import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
@@ -45,8 +46,8 @@ abstract class AppRoutes {
     // Check connection to Matrix
     if (Matrix.of(context).client.isLogged()) {
       // If the user is connected to Matrix, check the subscription
-      final hasSubscription =
-          await SubscriptionManager.checkSubscriptionStatus();
+      var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+      print("L'abonnement est: $hasSubscription");
       if (hasSubscription) {
         // If the user have a subscription, redirect to /rooms
         return '/rooms';
@@ -61,7 +62,8 @@ abstract class AppRoutes {
   ) async {
     // Check connection to Matrix
     final hasLogin = Matrix.of(context).client.isLogged();
-    final hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    print("L'abonnement est: $hasSubscription");
     if (!hasLogin) {
       return '/home';
     } else if (hasLogin && !hasSubscription) {
@@ -304,7 +306,16 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                     ),
                     // Route to subscription page
-                    // The entire path is: /rooms/settings/subscription
+                    // The entire path is: /rooms/settings/subs
+                    GoRoute(
+                      path: 'subs',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        SubscriptionPage(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'security',
                       redirect: loggedOutRedirect,
