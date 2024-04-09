@@ -11,6 +11,8 @@ import '../../../config/app_config.dart';
 
 class OverlayMessage extends StatelessWidget {
   final Event event;
+  final Event? nextEvent;
+  final Event? previousEvent;
   final bool selected;
   final Timeline timeline;
   // #Pangea
@@ -24,6 +26,8 @@ class OverlayMessage extends StatelessWidget {
 
   const OverlayMessage(
     this.event, {
+    this.nextEvent,
+    this.previousEvent,
     this.selected = false,
     required this.timeline,
     // #Pangea
@@ -44,19 +48,43 @@ class OverlayMessage extends StatelessWidget {
 
     var color = Theme.of(context).colorScheme.surfaceVariant;
     final textColor = ownMessage
-        ? Theme.of(context).colorScheme.onPrimaryContainer
+        ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onBackground;
 
+    const hardCorner = Radius.circular(4);
+
+    final displayTime = event.type == EventTypes.RoomCreate ||
+        nextEvent == null ||
+        !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
+
+    final nextEventSameSender = nextEvent != null &&
+        {
+          EventTypes.Message,
+          EventTypes.Sticker,
+          EventTypes.Encrypted,
+        }.contains(nextEvent!.type) &&
+        nextEvent!.senderId == event.senderId &&
+        !displayTime;
+
+    final previousEventSameSender = previousEvent != null &&
+        {
+          EventTypes.Message,
+          EventTypes.Sticker,
+          EventTypes.Encrypted,
+        }.contains(previousEvent!.type) &&
+        previousEvent!.senderId == event.senderId &&
+        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
+
+    const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
-      topRight: const Radius.circular(AppConfig.borderRadius),
-      bottomLeft: const Radius.circular(AppConfig.borderRadius),
-      bottomRight: ownMessage
-          ? const Radius.circular(4)
-          : const Radius.circular(AppConfig.borderRadius),
+      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      bottomLeft:
+          !ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
+      bottomRight:
+          ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
+
     final noBubble = {
           MessageTypes.Video,
           MessageTypes.Image,
@@ -69,7 +97,7 @@ class OverlayMessage extends StatelessWidget {
     }.contains(event.messageType);
 
     if (ownMessage) {
-      color = Theme.of(context).colorScheme.primaryContainer;
+      color = Theme.of(context).colorScheme.primary;
     }
 
     // #Pangea

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
@@ -7,7 +5,6 @@ import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -110,17 +107,6 @@ class ClientChooserButton extends StatelessWidget {
             const Icon(Icons.connecting_airports),
             const SizedBox(width: 18),
             Expanded(child: Text(L10n.of(context)!.newExchange)),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: SettingsAction.findAClass,
-        enabled: false,
-        child: Row(
-          children: [
-            const Icon(Icons.class_outlined),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.findAClass)),
           ],
         ),
       ),
@@ -421,9 +407,6 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.myAnalytics:
           context.go('/rooms/mylearning');
           break;
-        case SettingsAction.findAClass:
-          debugger(when: kDebugMode, message: "left to implement");
-          break;
         case SettingsAction.logout:
           pLogoutAction(context);
           break;
@@ -514,7 +497,6 @@ enum SettingsAction {
   joinWithClassCode,
   classAnalytics,
   myAnalytics,
-  findAClass,
   findAConversationPartner,
   logout,
   newClass,

@@ -1,7 +1,4 @@
 import 'package:badges/badges.dart';
-// #Pangea
-// import 'package:desktop_drop/desktop_drop.dart';
-// Pangea#
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
@@ -122,7 +119,8 @@ class ChatView extends StatelessWidget {
         ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
       ];
     }
-    // } else if (!controller.room.isArchived) {
+
+    // else if (!controller.room.isArchived) {
     //   return [
     //     if (Matrix.of(context).voipPlugin != null &&
     //         controller.room.isDirectChat)
@@ -200,7 +198,7 @@ class ChatView extends StatelessWidget {
                             // #Pangea
                             &&
                             !r.isAnalyticsRoom,
-                        // Pangea#
+                        // Pangea#,
                         badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                         child: const Center(child: BackButton()),
                       ),
@@ -252,6 +250,9 @@ class ChatView extends StatelessWidget {
                   ),
                 ),
               ),
+              // #Pangea
+              // floatingActionButton: controller.showScrollDownButton &&
+              //         controller.selectedEvents.isEmpty
               floatingActionButton: controller.selectedEvents.isEmpty
                   ? (controller.showScrollDownButton
                       // Pangea#
@@ -427,7 +428,6 @@ class ChatView extends StatelessWidget {
                   // Pangea#
                 ],
               ),
-              // ),
             );
           },
         ),
