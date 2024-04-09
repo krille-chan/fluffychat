@@ -3,7 +3,7 @@ import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
 class NotSubscribePage extends StatelessWidget {
-  const NotSubscribePage({Key? key}) : super(key: key);
+  const NotSubscribePage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -93,13 +93,7 @@ class LoginController extends State<Login> {
 
   Future<void> handleUserCreated(
       Map<String, dynamic> queueStatus, String sessionToken) async {
-    final bool isSubscribed = SubscriptionManager.isSubscribed();
-
-    if (isSubscribed) {
-      await loginWithSessionToken(sessionToken);
-    } else {
-      SubscriptionManager().presentPaywallIfNeeded();
-    }
+    await loginWithSessionToken(sessionToken);
   }
 
   void handleUserInQueueOrAccepted(

@@ -31,6 +31,7 @@ import 'package:tawkie/pages/settings_notifications/settings_notifications.dart'
 import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/pages/settings_style/settings_style.dart';
+import 'package:tawkie/pages/sub/sub_body.dart';
 import 'package:tawkie/pages/welcome_slides/slides.dart';
 import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
@@ -60,14 +61,14 @@ abstract class AppRoutes {
     GoRouterState state,
   ) async {
     // Check connection to Matrix
-    if (Matrix.of(context).client.isLogged()) {
-      // If the user is connected to Matrix, check the subscription
-      final hasSubscription =
-          await SubscriptionManager.checkSubscriptionStatus();
-      if (!hasSubscription) {
-        // If the user doesn't have a subscription, redirect to /subscribe
-        return '/subscribe';
-      }
+    final hasLogin = Matrix.of(context).client.isLogged();
+    var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    print("L'abonnement est: $hasSubscription");
+    if (!hasLogin) {
+      return '/home';
+    } else if (hasLogin && !hasSubscription) {
+      // If the user doesn't have a subscription, redirect to /subscribe
+      return '/subscribe';
     }
     return null;
   }
@@ -87,6 +88,13 @@ abstract class AppRoutes {
         state,
         const WelcomeSlidePage(), // Welcome slide show widget
       ),
+      redirect: loggedInRedirect,
+    ),
+    GoRoute(
+      path: '/subscribe',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: NotSubscribePage()),
+      redirect: loggedInRedirect,
     ),
     GoRoute(
       path: '/subscribe',
@@ -303,7 +311,16 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                     ),
                     // Route to subscription page
-                    // The entire path is: /rooms/settings/subscription
+                    // The entire path is: /rooms/settings/subs
+                    GoRoute(
+                      path: 'subs',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        SubscriptionPage(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'security',
                       redirect: loggedOutRedirect,

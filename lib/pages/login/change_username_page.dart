@@ -224,9 +224,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                           if (!hasSubscription) {
                             final paywallResult =
                                 await RevenueCatUI.presentPaywall();
-                            log('Paywall result: $paywallResult');
                           } else {
-                            print("L'utilisateur a déjà un abonnement");
+                            // Todo: Connect to Matrix if  queuePosition is 0
                           }
                         } else {
                           // Todo: make purchases for Web, Windows and Linux

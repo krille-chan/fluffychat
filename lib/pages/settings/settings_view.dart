@@ -162,7 +162,7 @@ class SettingsView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.credit_card),
               title: Text(L10n.of(context)!.subscription),
-              onTap: () => context.go('/rooms/settings/subscription'),
+              onTap: () => context.go('/rooms/settings/subs'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
