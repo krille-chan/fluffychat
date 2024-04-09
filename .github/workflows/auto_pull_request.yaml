@@ -15,13 +15,17 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+    - name: Test
+      run: echo ${{ github.head_ref }}.${{ github.sha }}
       
     - name: Pull changes from FluffyChat
       run: |
+        git config --global user.email "${{ vars.CI_EMAIL }}"
+        git config --global user.name "${{ vars.CI_USERNAME }}"
         git remote add fluffychat https://github.com/krille-chan/fluffychat
-        git fetch fluffychat
-        git merge --no-edit fluffychat/main
+        git fetch fluffychat main
+        git merge --no-edit fluffychat/main --allow-unrelated-histories
         
     - name: Push changes
       run: |
