@@ -218,6 +218,10 @@ class PangeaController {
     final List<Room> spaces =
         matrixState.client.rooms.where((room) => room.isSpace).toList();
     for (final Room space in spaces) {
+      if (space.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin ||
+          !space.canInvite) {
+        continue;
+      }
       List<User> participants;
       try {
         participants = await space.requestParticipants();
@@ -228,7 +232,7 @@ class PangeaController {
         continue;
       }
       final List<String> userIds = participants.map((user) => user.id).toList();
-      if (space.canInvite && !userIds.contains(BotName.byEnvironment)) {
+      if (!userIds.contains(BotName.byEnvironment)) {
         try {
           await space.invite(BotName.byEnvironment);
           await space.setPower(
@@ -238,6 +242,18 @@ class PangeaController {
         } catch (err) {
           ErrorHandler.logError(
             e: "Failed to invite pangea bot to space ${space.id}",
+          );
+        }
+      } else if (space.getPowerLevelByUserId(BotName.byEnvironment) <
+          ClassDefaultValues.powerLevelOfAdmin) {
+        try {
+          await space.setPower(
+            BotName.byEnvironment,
+            ClassDefaultValues.powerLevelOfAdmin,
+          );
+        } catch (err) {
+          ErrorHandler.logError(
+            e: "Failed to reset power level for pangea bot in space ${space.id}",
           );
         }
       }
