@@ -514,7 +514,13 @@ extension PangeaRoom on Room {
         return;
       }
 
-      myAnalEvent.bulkUpdate(await _messageListForAllChildChats);
+      final updateMessages = await _messageListForAllChildChats;
+      updateMessages.removeWhere(
+        (element) => myAnalEvent.content.messages.any(
+          (e) => e.eventId == element.eventId,
+        ),
+      );
+      myAnalEvent.bulkUpdate(updateMessages);
 
       storageService?.save(migratedAnalyticsKey, true);
     } catch (err, s) {
