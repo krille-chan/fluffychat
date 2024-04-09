@@ -123,7 +123,9 @@ class MessageContent extends StatelessWidget {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
-      case EventTypes.Message:
+      // #Pangea
+      // case EventTypes.Message:
+      // Pangea#
       case EventTypes.Encrypted:
         // #Pangea
         return _ButtonContent(
@@ -133,6 +135,7 @@ class MessageContent extends StatelessWidget {
           label: L10n.of(context)!.encrypted,
           fontSize: fontSize,
         );
+      case EventTypes.Message:
       // Pangea#
       case EventTypes.Sticker:
         switch (event.messageType) {
