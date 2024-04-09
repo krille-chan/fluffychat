@@ -47,7 +47,6 @@ abstract class AppRoutes {
     if (Matrix.of(context).client.isLogged()) {
       // If the user is connected to Matrix, check the subscription
       var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
-      print("L'abonnement est: $hasSubscription");
       if (hasSubscription) {
         // If the user have a subscription, redirect to /rooms
         return '/rooms';
