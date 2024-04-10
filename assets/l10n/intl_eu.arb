@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Blokeatutako erabiltzaileak",
   "@blockedUsers": {},
-  "block": "blokeatu",
+  "block": "Blokeatu",
   "@block": {},
   "blockUsername": "Ezikusi erabiltzaile-izena",
   "@blockUsername": {},
@@ -2600,5 +2600,21 @@
   "incomingMessages": "Jasotako mezuak",
   "@incomingMessages": {},
   "hidePresences": "Ezkutatu Egoeren Zerrenda?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "discover": "Arakatu",
+  "@discover": {},
+  "stickers": "Pegatinak",
+  "@stickers": {},
+  "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Muzin egin Matrix ID honi",
+  "@commandHint_ignore": {},
+  "unreadChatsInApp": "{appname}: {unread} mezu irakurri gabe",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }

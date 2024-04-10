@@ -2600,5 +2600,21 @@
   "hidePresences": "隐藏状态列表？",
   "@hidePresences": {},
   "incomingMessages": "传入消息",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "贴纸",
+  "@stickers": {},
+  "discover": "发现",
+  "@discover": {},
+  "commandHint_ignore": "忽略给定的 matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "取消忽略给定的 matrix ID",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} 未读聊天",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
