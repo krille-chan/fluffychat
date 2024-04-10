@@ -151,7 +151,7 @@ index 193e6ed6..f70e48d4 100644
 --- a/pubspec.yaml
 +++ b/pubspec.yaml
 @@ -26,7 +26,7 @@ dependencies:
-   emoji_picker_flutter: ^1.6.4
+   emoji_picker_flutter: ^2.1.1
    emoji_proposal: ^0.0.1
    emojis: ^0.9.9
 -  #fcm_shared_isolate: ^0.1.0
