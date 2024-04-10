@@ -22,6 +22,7 @@ import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
+
   static Future<List<Client>> getClients({
     bool initialize = true,
     required SharedPreferences store,
@@ -113,7 +114,11 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
-      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
+      // workaround : migrate back from SQLite to Hive on Linux
+      // Related : https://github.com/krille-chan/fluffychat/issues/972
+      legacyDatabaseBuilder: PlatformInfos.isLinux
+          ? (client) => flutterMatrixSdkDatabaseBuilder(client, isLegacy: true)
+          : FlutterHiveCollectionsDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,

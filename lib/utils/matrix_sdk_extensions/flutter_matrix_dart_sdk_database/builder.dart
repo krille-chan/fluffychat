@@ -18,9 +18,15 @@ import 'cipher.dart';
 import 'sqlcipher_stub.dart'
     if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
-Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
+Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(
+  Client client, {
+  bool isLegacy = false,
+}) async {
   MatrixSdkDatabase? database;
   try {
+    // unless it's the migration builder, always fall back onto Hive on Linux
+    if (PlatformInfos.isLinux && !isLegacy) throw UnimplementedError();
+
     database = await _constructDatabase(client);
     await database.open();
     return database;
@@ -34,15 +40,23 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
           ),
         );
 
-    // Send error notification:
-    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-    ClientManager.sendInitNotification(
-      l10n.initAppError,
-      l10n.databaseBuildErrorBody(
-        AppConfig.newIssueUrl.toString(),
-        e.toString(),
-      ),
-    );
+    final bool hideErrorMessage = PlatformInfos.isLinux;
+    if (!hideErrorMessage) {
+      // Send error notification:
+      final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      ClientManager.sendInitNotification(
+        l10n.initAppError,
+        l10n.databaseBuildErrorBody(
+          AppConfig.newIssueUrl.toString(),
+          e.toString(),
+        ),
+      );
+    } else {
+      Logs().w(
+        'Linux database error using SQfLite. Due to many issues in this implementation, falling back to Hive.',
+        e,
+      );
+    }
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }
