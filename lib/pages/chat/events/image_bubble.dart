@@ -70,6 +70,7 @@ class ImageBubble extends StatelessWidget {
     final borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
     return Material(
+      color: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
         side: BorderSide(
