@@ -1,1 +1,423 @@
-{}
+{
+  "remove": "Tanggalin",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importNow": "I-import ngayon",
+  "@importNow": {},
+  "importEmojis": "I-import ang mga Emoji",
+  "@importEmojis": {},
+  "importFromZipFile": "Mag-import mula sa .zip file",
+  "@importFromZipFile": {},
+  "exportEmotePack": "I-export ang Emote pack bilang .zip",
+  "@exportEmotePack": {},
+  "accept": "Tanggapin",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "account": "Account",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addEmail": "Magdagdag ng email",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmMatrixId": "Paki-kumpirma ang iyong Matrix ID para burahin ang iyong account.",
+  "@confirmMatrixId": {},
+  "addChatDescription": "Magdagdag ng deskripsyon ng chat...",
+  "@addChatDescription": {},
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "alyas",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Lahat",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Lahat ng mga chat",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_googly": "Magpadala ng mga googly eye",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Magpadala ng yakap",
+  "@commandHint_cuddle": {},
+  "cuddleContent": "Niyakap ka ni {senderName}",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "hugContent": "Niyakap ka ni {senderName}",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Pwede sumali ang anumang tao",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Lock ng app",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Archive",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Pwede ba sumali ang mga bisita",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Sigurado ka?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Tanggapin ang hiling ng verification mula sa {username}?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "autoplayImages": "Awtomatikong i-play ang mga gumagalaw na sticker at emote",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "sendTypingNotifications": "Ipadala ang mga typing notification",
+  "@sendTypingNotifications": {},
+  "blockDevice": "I-block ang Device",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "blocked": "Na-block",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Palitan ang pangalan ng device",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "Pinalitan ni {username} ang avatar ng chat",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRules": "Pinalitan ni {username} ang mga tuntunin sa pag-access ng bisita",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibility": "Pinalitan ni {username} ang kakayahan ng pagkikita ng history",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "Pinalitan ni {username} ang kakayahan ng pagkikita ng history sa: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheRoomAliases": "Pinalitan ni {username} ang mga alias ng room",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changePassword": "Palitan ang password",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Palitan ang iyong avatar",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "Nasira ang encryption",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Chat",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatBackup": "Pag-backup ng chat",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "Mga detalye ng chat",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Nadagdag ang chat sa space na ito",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chats": "Mga Chat",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Pumili ng malakas na password",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "I-clear ang archive",
+  "@clearArchive": {},
+  "close": "Isara",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_markasgroup": "Markahan bilang grupo",
+  "@commandHint_markasgroup": {},
+  "commandHint_ban": "Pagbawalan ang ibinigay na user sa room na ito",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "repeatPassword": "Ulitin ang password",
+  "@repeatPassword": {},
+  "notAnImage": "Hindi isang file na larawan.",
+  "@notAnImage": {},
+  "replace": "Palitan",
+  "@replace": {},
+  "about": "Tungkol sa",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 Tinanggap ni {username} ang imbitasyon",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "activatedEndToEndEncryption": "🔐 Na-activate ni {username} ang end to end encryption",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "supposedMxid": "Dapat ito ay {mxid}",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "addToSpace": "Idagdag sa space",
+  "@addToSpace": {},
+  "commandHint_hug": "Magpadala ng yakap",
+  "@commandHint_hug": {},
+  "googlyEyesContent": "Nagpadala si {senderName} ng googly eyes",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "answeredTheCall": "Sinagot ni {senderName} ang tawag",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "areYouSureYouWantToLogout": "Sigurado kang gusto mong mag-log out?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Para i-sign ang isa pang tao, pakilagay ang iyong secure store passphrase o recovery key.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Ang homeserver ay sinusuportahan ang sumusunod na uri ng login:\n{serverVersions}\nNgunit sinusuportahan lang ng app ang:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "sendOnEnter": "Ipadala sa pagpindot ng enter",
+  "@sendOnEnter": {},
+  "badServerVersionsException": "Ang homeserver ay sinusuportahan ang mga Spec bersyon:\n{serverVersions}\nNgunit sinusuportahan lang ng app ang {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "banFromChat": "Pagbawalan sa chat",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Pinagbawalan",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Mga mensahe ng bot",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Kanselahin",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "Pinagbawalan ni {username} si {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "cantOpenUri": "Hindi mabuksan ang URI na {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changedTheJoinRules": "Pinalitan ni {username} ang mga tuntunin sa pagsali",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "Pinalitan ni {username} ang mga tuntunin sa pagsali sa: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "Pinalitan ni {username} ang deskripsyon ng chat sa: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheProfileAvatar": "Pinalitan ni {username} ang kanilang avatar",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatNameTo": "Pinalitan ni {username} ang pangalan ng chat sa: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "Pinalitan ni {username} ang link ng imbitasyon",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeTheHomeserver": "Palitan ang homeserver",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Palitan ang iyong istilio",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatPermissions": "Pinalitan ni {username} ang mga pahintulot ng chat",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changeTheNameOfTheGroup": "Palitan ng pangalan ng grupo",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "Pinalitan ni {username} ang kanilang displayname sa: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "yourChatBackupHasBeenSetUp": "Na-set up na ang iyong chat backup.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatBackupDescription": "Naka-secure ang iyong mga lumang mensahe gamit ng recovery key. Siguraduhing hindi mo ito mawalan.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_markasdm": "Markahan bilang direktang mensahe na room para sa ibinigay na Matrix ID",
+  "@commandHint_markasdm": {},
+  "changedTheGuestAccessRulesTo": "Pinalitan ni {username} ang mga tuntunin sa pag-access ng bisita sa: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  }
+}
