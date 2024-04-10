@@ -101,6 +101,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
+  inno_bundle: ^0.4.1
   integration_test:
     sdk: flutter
   license_checker: ^1.6.0
@@ -148,6 +149,16 @@ msix_config:
   execution_alias: fluffychat
   sign_msix: false
   install_certificate: false
+
+inno_bundle:
+  id: 7c872d9b-2c56-56de-b8dc-3763cd082da9 # <-- dart run inno_bundle:id --ns "chat.fluffy.fluffychat"
+  name: FluffyChat
+  publisher: Famedly GmbH
+  admin: false
+  installer_icon: assets/favicon.ico
+  url: https://fluffychat.im
+  support_url: https://github.com/krille-chan/fluffychat/wiki
+  updates_url: https://github.com/krille-chan/fluffychat/releases
 
 dependency_overrides:
   # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
