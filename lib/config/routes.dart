@@ -78,6 +78,7 @@ abstract class AppRoutes {
           path: 'register',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             const Register(),
           ),
           redirect: loggedInRedirect,
