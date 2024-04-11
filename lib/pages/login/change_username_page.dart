@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -61,17 +62,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     return true;
   }
 
-  String _formatUsername(String username) {
-    // Remove leading capital letter
-    if (username.isNotEmpty && username[0].toUpperCase() == username[0]) {
-      username = username.replaceFirst(username[0], username[0].toLowerCase());
-    }
-    return username;
-  }
-
   Future<void> updateUsername(String sessionToken, String newUsername) async {
     try {
-      newUsername = _formatUsername(newUsername);
 
       // Validate the username
       if (!_validateUsername(newUsername)) {
@@ -168,6 +160,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 20),
               TextFormField(
                 controller: _usernameController,
+                inputFormatters: [LowerCaseTextFormatter()],
                 decoration: InputDecoration(
                   labelText: L10n.of(context)!.username,
                   errorText: _usernameError,
@@ -223,5 +216,16 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   void dispose() {
     _usernameController.dispose();
     super.dispose();
+  }
+}
+
+// Custom TextInputFormatter to convert to lower case
+class LowerCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toLowerCase(),
+      selection: newValue.selection,
+    );
   }
 }
