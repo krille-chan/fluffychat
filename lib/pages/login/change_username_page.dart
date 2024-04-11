@@ -33,7 +33,13 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     final RegExp usernameRegex = RegExp(r'^(?=.*[a-z])(?=.*\d)[a-z0-9]{3,16}$');
 
     // List of keywords to check
-    final List<String> keywords = ['password', '123456', 'qwerty'];
+    final List<String> keywords = [
+      'password',
+      '123456',
+      'qwerty',
+      'bot',
+      'admin'
+    ];
 
     // Check that the password matches the regex
     if (!usernameRegex.hasMatch(username)) {
