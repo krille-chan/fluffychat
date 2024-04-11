@@ -1,14 +1,21 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:purchases_flutter/models/offerings_wrapper.dart';
+import 'package:flutter/services.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 class SubscriptionChangePage extends StatelessWidget {
   final Offerings? offerings;
   final String activeSubscriptionId;
+  final String? expirationDate;
 
   const SubscriptionChangePage({
     super.key,
     required this.offerings,
     required this.activeSubscriptionId,
+    this.expirationDate,
   });
 
   @override
@@ -25,6 +32,10 @@ class SubscriptionChangePage extends StatelessWidget {
           price: package.storeProduct.price.toString(),
           description: package.storeProduct.description,
           isActive: isActive,
+          onChangeSubscription: !isActive
+              ? () => _showConfirmationDialog(context, package)
+              : null,
+          expirationDate: expirationDate,
         );
         if (isActive) {
           activeSubscriptionCards.add(card);
@@ -38,6 +49,11 @@ class SubscriptionChangePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       children: [
         if (activeSubscriptionCards.isNotEmpty) ...activeSubscriptionCards,
+        if (Platform.isIOS)
+          Text(
+            "Si vous avait changé votre abonnement, le nouveau s'affichera à l'expiration de l'abonnement en cour.",
+            textAlign: TextAlign.center,
+          ),
         const SizedBox(height: 20),
         Text(
           'Tous les abonnements disponibles :',
@@ -49,20 +65,79 @@ class SubscriptionChangePage extends StatelessWidget {
       ],
     );
   }
+
+  void _showConfirmationDialog(BuildContext context, Package package) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Changer d'abonnement"),
+          content: Text(
+              "Êtes-vous sûr de vouloir changer pour ${package.storeProduct.title}?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Annuler'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                showFutureLoadingDialog(
+                    context: context,
+                    future: () => _onChangeSubscription(context, package));
+              },
+              child: Text('Confirmer'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _onChangeSubscription(
+      BuildContext context, Package package) async {
+    try {
+      GoogleProductChangeInfo? googleProductChangeInfo;
+      // Creation of a GoogleProductChangeInfo object with the old Google product ID and proration information if necessary
+      // Only for google android
+      if (activeSubscriptionId.isNotEmpty) {
+        googleProductChangeInfo = GoogleProductChangeInfo(
+          activeSubscriptionId, // Old Google product ID
+        );
+      }
+
+      //  Purchase by passing googleProductChangeInfo to purchasePackage
+      final CustomerInfo customerInfo = await Purchases.purchasePackage(package,
+          googleProductChangeInfo: googleProductChangeInfo);
+
+      log("The subscription has been purchased");
+    } on PlatformException catch (e) {
+      final errorCode = PurchasesErrorHelper.getErrorCode(e);
+      if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
+        log("Error: $e");
+      }
+    }
+  }
 }
 
 class SubscriptionCard extends StatelessWidget {
   final String name;
   final String price;
   final String description;
+  final String? expirationDate;
   final bool isActive;
+  final VoidCallback? onChangeSubscription;
 
   const SubscriptionCard({
     super.key,
     required this.name,
     required this.price,
     required this.description,
+    this.expirationDate,
     required this.isActive,
+    this.onChangeSubscription,
   });
 
   @override
@@ -99,12 +174,18 @@ class SubscriptionCard extends StatelessWidget {
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 10),
-          isActive
-              ? Text(
-                  'Statut : Actif',
-                  style: TextStyle(fontSize: 16, color: Colors.green),
-                )
-              : Container(),
+          if (isActive)
+            Text(
+              'Statut : Actif',
+              style: TextStyle(fontSize: 16, color: Colors.green),
+            )
+          else
+            ElevatedButton(
+              onPressed: onChangeSubscription,
+              child: Text('Changer d\'abonnement'),
+            ),
+          if (isActive && expirationDate != null)
+            Text("L'abonnement se renouvelle le: $expirationDate"),
         ],
       ),
     );

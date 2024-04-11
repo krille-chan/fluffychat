@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/sub/sub_change.dart';
 
@@ -17,13 +18,16 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   void initState() {
     super.initState();
-    _loadOfferings();
+    // Listener for subscription updates
+    Purchases.addCustomerInfoUpdateListener((info) {
+      _loadOfferings();
+    });
   }
 
   Future<void> _loadOfferings() async {
     try {
-      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-      Offerings offerings = await Purchases.getOfferings();
+      final CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      final Offerings offerings = await Purchases.getOfferings();
       setState(() {
         this.customerInfo = customerInfo;
         _offerings = offerings;
@@ -44,8 +48,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
             ? SubscriptionChangePage(
                 offerings: _offerings,
                 activeSubscriptionId: _findActiveSubscriptionId(customerInfo)!,
+                expirationDate: getExpirationDate(customerInfo!),
               )
-            : CircularProgressIndicator(),
+            : const CircularProgressIndicator(),
       ),
     );
   }
@@ -55,6 +60,27 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
       for (final subscription in customerInfo.activeSubscriptions) {
         return subscription;
       }
+    }
+    return null;
+  }
+
+  String? getExpirationDate(CustomerInfo customerInfo) {
+    if (customerInfo.entitlements.active.isNotEmpty) {
+      // Recover the expiration date of the active subscription
+      final String? expirationDate =
+          customerInfo.entitlements.active.values.first.expirationDate;
+
+      // Convert date string to DateTime object
+      DateTime expirationDateTime = DateTime.parse(expirationDate!);
+
+      // Set date to local time
+      expirationDateTime = expirationDateTime.toLocal();
+
+      // Format
+      final String formattedExpirationDate =
+          DateFormat('yyyy-MM-dd HH:mm').format(expirationDateTime);
+
+      return formattedExpirationDate;
     }
     return null;
   }
