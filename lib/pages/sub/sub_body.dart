@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:intl/intl.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/sub/sub_change.dart';
 
@@ -17,13 +19,16 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   @override
   void initState() {
     super.initState();
-    _loadOfferings();
+    // Listener for subscription updates
+    Purchases.addCustomerInfoUpdateListener((info) {
+      _loadOfferings();
+    });
   }
 
   Future<void> _loadOfferings() async {
     try {
-      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-      Offerings offerings = await Purchases.getOfferings();
+      final CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      final Offerings offerings = await Purchases.getOfferings();
       setState(() {
         this.customerInfo = customerInfo;
         _offerings = offerings;
@@ -37,63 +42,20 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gérer mon abonnement'),
+        title: Text(
+          L10n.of(context)!.sub_mySub,
+        ),
       ),
       body: Center(
         child: _offerings != null
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (_offerings!.current!.availablePackages.isNotEmpty)
-                    _buildActiveSubscriptionWidget(),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SubscriptionChangePage(
-                                  offerings: _offerings,
-                                  activeSubscriptionId:
-                                      _findActiveSubscriptionId(customerInfo)!,
-                                )),
-                      );
-                    },
-                    child: Text('Changer de forfait'),
-                  ),
-                ],
+            ? SubscriptionChangePage(
+                offerings: _offerings,
+                activeSubscriptionId: _findActiveSubscriptionId(customerInfo)!,
+                expirationDate: getExpirationDate(customerInfo!),
               )
-            : CircularProgressIndicator(),
+            : const CircularProgressIndicator(),
       ),
     );
-  }
-
-  Widget _buildActiveSubscriptionWidget() {
-    final activePackage =
-        _offerings!.current!.availablePackages.firstWhereOrNull(
-      (package) => _isSubscriptionActive(package.storeProduct.identifier),
-    );
-    if (activePackage != null) {
-      return SubscriptionCard(
-        name: activePackage.storeProduct.title,
-        price: activePackage.storeProduct.price.toString(),
-        description: activePackage.storeProduct.description,
-        isActive: true,
-      );
-    } else {
-      return const SizedBox.shrink(); // If not sub
-    }
-  }
-
-  bool _isSubscriptionActive(String packageIdentifier) {
-    if (customerInfo != null && customerInfo!.activeSubscriptions.isNotEmpty) {
-      final active =
-          customerInfo!.activeSubscriptions.contains(packageIdentifier);
-      return active;
-    } else {
-      return false;
-    }
   }
 
   String? _findActiveSubscriptionId(CustomerInfo? customerInfo) {
@@ -101,6 +63,27 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
       for (final subscription in customerInfo.activeSubscriptions) {
         return subscription;
       }
+    }
+    return null;
+  }
+
+  String? getExpirationDate(CustomerInfo customerInfo) {
+    if (customerInfo.entitlements.active.isNotEmpty) {
+      // Recover the expiration date of the active subscription
+      final String? expirationDate =
+          customerInfo.entitlements.active.values.first.expirationDate;
+
+      // Convert date string to DateTime object
+      DateTime expirationDateTime = DateTime.parse(expirationDate!);
+
+      // Set date to local time
+      expirationDateTime = expirationDateTime.toLocal();
+
+      // Format
+      final String formattedExpirationDate =
+          DateFormat('yyyy-MM-dd HH:mm').format(expirationDateTime);
+
+      return formattedExpirationDate;
     }
     return null;
   }

@@ -62,7 +62,6 @@ abstract class AppRoutes {
     // Check connection to Matrix
     final hasLogin = Matrix.of(context).client.isLogged();
     var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
-    print("L'abonnement est: $hasSubscription");
     if (!hasLogin) {
       return '/home';
     } else if (hasLogin && !hasSubscription) {

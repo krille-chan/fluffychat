@@ -19,7 +19,6 @@ class LoginView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
       ),
