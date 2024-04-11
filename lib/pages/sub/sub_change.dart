@@ -177,7 +177,7 @@ class SubscriptionCard extends StatelessWidget {
           if (isActive)
             Text(
               L10n.of(context)!.sub_subStatus,
-              style: TextStyle(fontSize: 16, color: Colors.green),
+              style: const TextStyle(fontSize: 16, color: Colors.green),
             )
           else
             ElevatedButton(
