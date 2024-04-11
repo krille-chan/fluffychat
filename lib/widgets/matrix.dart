@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/utils/client_manager.dart';
@@ -372,7 +373,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
                   e.type == EventUpdateType.timeline &&
                   [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
                       .contains(e.content['type']) &&
-                  e.content['sender'] != c.userID,
+                  e.content['sender'] != c.userID
+                  // #Pangea
+                  &&
+                  !e.content['content']?.containsKey(ModelKey.transcription),
+              // Pangea#,
             )
             .listen(showLocalNotification);
       });

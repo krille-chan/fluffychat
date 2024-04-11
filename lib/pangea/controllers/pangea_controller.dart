@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
@@ -241,6 +242,37 @@ class PangeaController {
           );
         }
       }
+    }
+  }
+
+  Future<void> setPangeaPushRules() async {
+    if (!(matrixState.client.globalPushRules?.override?.any(
+          (element) => element.ruleId == PangeaEventTypes.textToSpeechRule,
+        ) ??
+        false)) {
+      await matrixState.client.setPushRule(
+        'global',
+        PushRuleKind.override,
+        PangeaEventTypes.textToSpeechRule,
+        [PushRuleAction.dontNotify],
+        conditions: [
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.msgtype',
+            pattern: MessageTypes.Audio,
+          ),
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.transcription.lang_code',
+            pattern: '*',
+          ),
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.transcription.text',
+            pattern: '*',
+          ),
+        ],
+      );
     }
   }
 }
