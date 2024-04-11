@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:purchases_flutter/models/customer_info_wrapper.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:tawkie/pages/sub/sub_change.dart';
 
 class SubscriptionPage extends StatefulWidget {
+  const SubscriptionPage({super.key});
+
   @override
-  _SubscriptionPageState createState() => _SubscriptionPageState();
+  State<SubscriptionPage> createState() => _SubscriptionPageState();
 }
 
 class _SubscriptionPageState extends State<SubscriptionPage> {
@@ -23,6 +25,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
       CustomerInfo customerInfo = await Purchases.getCustomerInfo();
       Offerings offerings = await Purchases.getOfferings();
       setState(() {
+        this.customerInfo = customerInfo;
         _offerings = offerings;
       });
     } on PlatformException catch (e) {
@@ -40,62 +43,65 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
         child: _offerings != null
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Vos abonnements disponibles :',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  if (_offerings!.current!.availablePackages.isNotEmpty)
+                    _buildActiveSubscriptionWidget(),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SubscriptionChangePage(
+                                  offerings: _offerings,
+                                  activeSubscriptionId:
+                                      _findActiveSubscriptionId(customerInfo)!,
+                                )),
+                      );
+                    },
+                    child: Text('Changer de forfait'),
                   ),
-                  SizedBox(height: 20),
-                  for (final package in _offerings!.current!.availablePackages)
-                    SubscriptionCard(
-                        name: package.storeProduct.title,
-                        price: package.storeProduct.price.toString(),
-                        isActive: customerInfo?.activeSubscriptions.single ==
-                            package.storeProduct.identifier),
                 ],
               )
             : CircularProgressIndicator(),
       ),
     );
   }
-}
 
-class SubscriptionCard extends StatelessWidget {
-  final String name;
-  final String price;
-  final bool isActive;
-
-  SubscriptionCard(
-      {required this.name, required this.price, required this.isActive});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              name,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Prix : $price',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 10),
-            Text(
-              isActive ? 'Statut : Actif' : 'Statut : Inactif',
-              style: TextStyle(
-                  fontSize: 16, color: isActive ? Colors.green : Colors.red),
-            ),
-          ],
-        ),
-      ),
+  Widget _buildActiveSubscriptionWidget() {
+    final activePackage =
+        _offerings!.current!.availablePackages.firstWhereOrNull(
+      (package) => _isSubscriptionActive(package.storeProduct.identifier),
     );
+    if (activePackage != null) {
+      return SubscriptionCard(
+        name: activePackage.storeProduct.title,
+        price: activePackage.storeProduct.price.toString(),
+        description: activePackage.storeProduct.description,
+        isActive: true,
+      );
+    } else {
+      return const SizedBox.shrink(); // If not sub
+    }
+  }
+
+  bool _isSubscriptionActive(String packageIdentifier) {
+    if (customerInfo != null && customerInfo!.activeSubscriptions.isNotEmpty) {
+      final active =
+          customerInfo!.activeSubscriptions.contains(packageIdentifier);
+      return active;
+    } else {
+      return false;
+    }
+  }
+
+  String? _findActiveSubscriptionId(CustomerInfo? customerInfo) {
+    if (customerInfo != null && customerInfo.activeSubscriptions.isNotEmpty) {
+      for (final subscription in customerInfo.activeSubscriptions) {
+        return subscription;
+      }
+    }
+    return null;
   }
 }
