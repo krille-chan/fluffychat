@@ -43,7 +43,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
     // Check that the password matches the regex
     if (!usernameRegex.hasMatch(username)) {
-      setState(() => _usernameError = L10n.of(context)?.username_validateError);
+      setState(() => _usernameError = L10n.of(context)?.username_requirements);
       return false;
     }
 

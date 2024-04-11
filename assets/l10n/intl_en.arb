@@ -2568,5 +2568,5 @@
     "username_changeUsername": "Choose your Tawkie name",
     "username_advertisement": "This username is reserved for you. If you change it, you risk losing it.",
     "username_success": "Successful name change for",
-    "username_validateError": "Username must have at least 3 and at most 16 characters consisting of lowercase letters and digits"
+    "username_requirements": "Username must have at least 3 and at most 16 characters consisting of lowercase letters and digits"
 }
