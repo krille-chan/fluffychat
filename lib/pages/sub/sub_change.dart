@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
 
 class SubscriptionChangePage extends StatelessWidget {
   final Offerings? offerings;
@@ -118,6 +119,7 @@ class SubscriptionChangePage extends StatelessWidget {
       if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
         log("Error: $e");
       }
+      showCatchErrorDialog(context, e);
     }
   }
 }
