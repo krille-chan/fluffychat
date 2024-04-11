@@ -30,7 +30,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   bool _validateUsername(String username) {
     // Define regex to validate password format
-    final RegExp usernameRegex = RegExp(r'^(?=.*[a-z])(?=.*\d)[a-z0-9]{3,16}$');
+    final RegExp usernameRegex = RegExp(r'^[a-z0-9]{3,16}$');
 
     // List of keywords to check
     final List<String> keywords = [
