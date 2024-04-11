@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:tawkie/config/subscription.dart';
+import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
@@ -224,8 +225,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                           if (!hasSubscription) {
                             final paywallResult =
                                 await RevenueCatUI.presentPaywall();
-                          } else {
-                            // Todo: Connect to Matrix if  queuePosition is 0
+                          } else if (widget.queueStatus['queuePosition'] <= 0) {
+                            await LoginController()
+                                .loginWithSessionToken(widget.sessionToken);
                           }
                         } else {
                           // Todo: make purchases for Web, Windows and Linux
