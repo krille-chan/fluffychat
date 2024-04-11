@@ -22,7 +22,7 @@ Decentralized
 There is no "FluffyChat server" you are forced to use. Use the server you find trustworthy or host your own.
 
 Compatible
-Compatible with Element, Fractal, Nekho and all matrix messengers.
+Compatible with Element, Fractal, Nheko and all matrix messengers.
 
 
 FluffyChat comes with a dream
