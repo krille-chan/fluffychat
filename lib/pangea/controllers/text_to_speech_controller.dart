@@ -126,25 +126,6 @@ class TextToSpeechController {
 
     return TextToSpeechResponse.fromJson(json);
   }
-  //   if (json["wave_form"] == null) {
-  //     json["wave_form"] = getWaveForm();
-  //   }
-
-  //   return TextToSpeechResponse(
-  //       audioContent: String.fromCharCodes(base64Decode(json["audio_content"])),
-  //       mediaType: json["media_type"],
-  //       durationMillis: durationMillis(json["duration_millis"]),
-  //       waveform: getWaveForm(json["audio_content"]),
-  //       );
-  // }
-
-  // static List<int> getWaveForm(audioContent) {
-  //   return [];
-  // }
-
-  // static int durationMillis(audioContent) {
-  //   return 0;
-  // }
 
   static bool isOggFile(Uint8List bytes) {
     // Check if the file has enough bytes for the header

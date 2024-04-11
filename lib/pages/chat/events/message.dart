@@ -145,7 +145,8 @@ class Message extends StatelessWidget {
         controller.getPangeaMessageEvent(event.eventId);
     ToolbarDisplayController? toolbarController;
     if (event.messageType == MessageTypes.Text ||
-        event.messageType == MessageTypes.Notice) {
+        event.messageType == MessageTypes.Notice ||
+        event.messageType == MessageTypes.Audio) {
       toolbarController = controller.getToolbarDisplayController(event.eventId);
     }
     // Pangea#

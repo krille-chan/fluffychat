@@ -33,7 +33,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
           widget.messageEvent.representationByLanguage(langCode)?.text;
       if (text != null) {
         final Event? localEvent =
-            widget.messageEvent.getAudioLocal(langCode, text);
+            widget.messageEvent.getTextToSpeechLocal(langCode, text);
         if (localEvent != null) {
           localAudioEvent = localEvent;
           if (mounted) setState(() => _isLoading = false);

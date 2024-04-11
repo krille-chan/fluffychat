@@ -50,7 +50,7 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
 
   Event? get localAudioEvent =>
       langCode != null && text != null && text!.isNotEmpty
-          ? _pangeaMessageEvent.getAudioLocal(langCode!, text!)
+          ? _pangeaMessageEvent.getTextToSpeechLocal(langCode!, text!)
           : null;
 
   String? get langCode =>
@@ -69,7 +69,7 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
       if (langCode == null || langCode!.isEmpty) return;
 
       setState(() => _isLoading = true);
-      await _pangeaMessageEvent.getAudioGlobal(langCode!);
+      await _pangeaMessageEvent.getTextToSpeechGlobal(langCode!);
       setState(() => _isLoading = false);
     } catch (e) {
       setState(() => _isLoading = false);

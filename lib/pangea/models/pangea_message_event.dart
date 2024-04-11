@@ -148,7 +148,7 @@ class PangeaMessageEvent {
       },
     );
 
-    debugPrint("eventId in getAudioGlobal $eventId");
+    debugPrint("eventId in getTextToSpeechGlobal $eventId");
     final Event? audioEvent =
         eventId != null ? await room.getEventById(eventId) : null;
 
@@ -162,10 +162,10 @@ class PangeaMessageEvent {
   //get audio for text and language
   //if no audio exists, create it
   //if audio exists, return it
-  Future<Event?> getAudioGlobal(String langCode) async {
+  Future<Event?> getTextToSpeechGlobal(String langCode) async {
     final String text = representationByLanguage(langCode)?.text ?? body;
 
-    final local = getAudioLocal(langCode, text);
+    final local = getTextToSpeechLocal(langCode, text);
 
     if (local != null) return Future.value(local);
 
@@ -223,16 +223,16 @@ class PangeaMessageEvent {
     // .timeout(
     //   Durations.long4,
     //   onTimeout: () {
-    //     debugPrint("timeout in getAudioGlobal");
+    //     debugPrint("timeout in getTextToSpeechGlobal");
     //     return null;
     //   },
     // );
 
-    debugPrint("eventId in getAudioGlobal $eventId");
+    debugPrint("eventId in getTextToSpeechGlobal $eventId");
     return eventId != null ? room.getEventById(eventId) : null;
   }
 
-  Event? getAudioLocal(String langCode, String text) {
+  Event? getTextToSpeechLocal(String langCode, String text) {
     return allAudio.firstWhereOrNull(
       (element) {
         // Safely access the transcription map

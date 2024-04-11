@@ -1,5 +1,6 @@
 import 'package:fluffychat/pages/chat/events/html_message.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
+import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
@@ -340,7 +341,7 @@ class MessageContent extends StatelessWidget {
                               ),
                               onListen: () => toolbarController?.showToolbar(
                                 context,
-                                mode: MessageMode.play,
+                                mode: MessageMode.conversion,
                               ),
                             ),
                   enableInteractiveSelection:

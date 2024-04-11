@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import '../../enum/message_mode_enum.dart';
 
 class MessageUnsubscribedCard extends StatelessWidget {
   final String languageTool;

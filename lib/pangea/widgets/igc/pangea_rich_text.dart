@@ -14,6 +14,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../enum/message_mode_enum.dart';
 import '../../models/pangea_match_model.dart';
 
 class PangeaRichText extends StatefulWidget {
@@ -157,7 +158,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
                   ),
                   onListen: () => widget.toolbarController?.showToolbar(
                     context,
-                    mode: MessageMode.play,
+                    mode: MessageMode.conversion,
                   ),
                 ),
       TextSpan(
