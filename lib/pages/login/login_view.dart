@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
@@ -110,6 +111,21 @@ class LoginView extends StatelessWidget {
                     ),
                     icon: const Icon(Icons.safety_check_outlined),
                     label: Text(L10n.of(context)!.passwordForgotten),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Register redirection
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextButton.icon(
+                    onPressed: controller.loading
+                        ? () {}
+                        : () => context.go('/home/register'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                    icon: const Icon(Icons.app_registration),
+                    label: Text(L10n.of(context)!.register),
                   ),
                 ),
                 const SizedBox(height: 16),

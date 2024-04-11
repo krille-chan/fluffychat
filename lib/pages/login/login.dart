@@ -35,8 +35,7 @@ class LoginController extends State<Login> {
   String? passwordError;
   bool loading = false;
   bool showPassword = false;
-  final Dio dio =
-      Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
+  final Dio dio = Dio(BaseOptions(baseUrl: 'https://tawkie.fr/panel/api/.ory'));
   // TODO if debug build, use staging
 
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
