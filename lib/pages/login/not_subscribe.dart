@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
@@ -29,18 +30,20 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Subscribe'),
+        title: Text(
+          L10n.of(context)!.subscription,
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Vous devez avoir un abonnement pour utiliser l\'application.',
+              L10n.of(context)!.sub_subNeed,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (PlatformInfos.shouldInitializePurchase()) {
@@ -49,7 +52,7 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
                   // Todo: make purchases for Web, Windows and Linux
                 }
               },
-              child: Text('Souscrire à un abonnement'),
+              child: Text(L10n.of(context)!.sub_payWallButton),
             ),
           ],
         ),

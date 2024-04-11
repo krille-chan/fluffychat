@@ -2567,7 +2567,17 @@
   "register_requiredField": "This field is required",
   "register_passwordErrorTwo": "Cannot contain common keywords.",
   "subscription": "Subscription",
+  "sub_subNeed": "You need a subscription to use the application.",
+  "sub_payWallButton": "Subscribe to a subscription",
   "sub_monthly": "Monthly Subscription",
   "sub_three_month": "Three-Month Subscription",
-  "sub_annual": "Annual Subscription"
+  "sub_annual": "Annual Subscription",
+  "sub_mySub": "My subscription",
+  "sub_changeAfterExp": "If you have changed subscription, the new subscription will be displayed after the expiry date of the current subscription.",
+  "sub_availableSubs": "All available subscriptions :",
+  "sub_subStatus": "Statute : On",
+  "sub_changeSub": "Change subscription for",
+  "sub_changeSubText": "Are you sure you want to change your subscription?",
+  "sub_changeButton": "Change subscription",
+  "sub_renewedOn": "The subscription is renewed on:"
 }

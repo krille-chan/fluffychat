@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -51,13 +51,13 @@ class SubscriptionChangePage extends StatelessWidget {
         if (activeSubscriptionCards.isNotEmpty) ...activeSubscriptionCards,
         if (Platform.isIOS)
           Text(
-            "Si vous avait changé votre abonnement, le nouveau s'affichera à l'expiration de l'abonnement en cour.",
+            L10n.of(context)!.sub_changeAfterExp,
             textAlign: TextAlign.center,
           ),
         const SizedBox(height: 20),
         Text(
-          'Tous les abonnements disponibles :',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          L10n.of(context)!.sub_availableSubs,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 20),
@@ -71,15 +71,15 @@ class SubscriptionChangePage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Changer d'abonnement"),
-          content: Text(
-              "Êtes-vous sûr de vouloir changer pour ${package.storeProduct.title}?"),
+          title: Text(
+              '${L10n.of(context)!.sub_changeSub} ${package.storeProduct.title}'),
+          content: Text(L10n.of(context)!.sub_changeSubText),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Annuler'),
+              child: Text(L10n.of(context)!.cancel),
             ),
             ElevatedButton(
               onPressed: () {
@@ -88,7 +88,7 @@ class SubscriptionChangePage extends StatelessWidget {
                     context: context,
                     future: () => _onChangeSubscription(context, package));
               },
-              child: Text('Confirmer'),
+              child: Text(L10n.of(context)!.confirm),
             ),
           ],
         );
@@ -176,16 +176,16 @@ class SubscriptionCard extends StatelessWidget {
           const SizedBox(height: 10),
           if (isActive)
             Text(
-              'Statut : Actif',
+              L10n.of(context)!.sub_subStatus,
               style: TextStyle(fontSize: 16, color: Colors.green),
             )
           else
             ElevatedButton(
               onPressed: onChangeSubscription,
-              child: Text('Changer d\'abonnement'),
+              child: Text(L10n.of(context)!.sub_changeButton),
             ),
           if (isActive && expirationDate != null)
-            Text("L'abonnement se renouvelle le: $expirationDate"),
+            Text("${L10n.of(context)!.sub_renewedOn} $expirationDate"),
         ],
       ),
     );

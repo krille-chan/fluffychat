@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/sub/sub_change.dart';
@@ -41,7 +42,9 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mon abonnement'),
+        title: Text(
+          L10n.of(context)!.sub_mySub,
+        ),
       ),
       body: Center(
         child: _offerings != null
