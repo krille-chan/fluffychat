@@ -64,7 +64,6 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
-
   SharedPreferences get store => widget.store;
 
   HomeserverSummary? loginHomeserverSummary;

@@ -19,7 +19,7 @@ class EmptyPage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: Image.asset(
-          'assets/info-logo.png',
+          'assets/login_wallpaper.png',
           width: width,
           height: width,
           filterQuality: FilterQuality.medium,

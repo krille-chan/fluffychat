@@ -28,31 +28,42 @@ class LoginView extends StatelessWidget {
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
-      appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
-      ),
+      // appBar: AppBar(
+      //   leading: controller.loading ? null : const Center(child: BackButton()),
+      //   automaticallyImplyLeading: !controller.loading,
+      //   titleSpacing: !controller.loading ? 0 : null,
+      //   title: Text.rich(
+      //     TextSpan(
+      //       children: [
+      //         TextSpan(text: titleParts.first),
+      //         TextSpan(
+      //           text: homeserver,
+      //           style: const TextStyle(fontWeight: FontWeight.bold),
+      //         ),
+      //         TextSpan(text: titleParts.last),
+      //       ],
+      //     ),
+      //     style: const TextStyle(fontSize: 18),
+      //   ),
+      // ),
       body: Builder(
         builder: (context) {
           return AutofillGroup(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
-                Image.asset('assets/landing_page_unauth.jpeg'),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                    right: 8.0,
+                    left: 8.0,
+                    bottom: 8.0,
+                  ),
+                  child: Image.asset(
+                    'assets/landing_page_unauth.jpeg',
+                  ),
+                ),
+                // Image.asset('assets/landing_page_unauth.jpeg'),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
