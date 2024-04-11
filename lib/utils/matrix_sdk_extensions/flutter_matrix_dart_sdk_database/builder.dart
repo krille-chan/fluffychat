@@ -24,25 +24,30 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
     database = await _constructDatabase(client);
     await database.open();
     return database;
-  } catch (e) {
+  } catch (e, s) {
+    Logs().wtf('Unable to construct database!', e, s);
     // Try to delete database so that it can created again on next init:
     database?.delete().catchError(
-          (e, s) => Logs().w(
+          (e, s) => Logs().wtf(
             'Unable to delete database, after failed construction',
             e,
             s,
           ),
         );
 
-    // Send error notification:
-    final l10n = lookupL10n(PlatformDispatcher.instance.locale);
-    ClientManager.sendInitNotification(
-      l10n.initAppError,
-      l10n.databaseBuildErrorBody(
-        AppConfig.newIssueUrl.toString(),
-        e.toString(),
-      ),
-    );
+    try {
+      // Send error notification:
+      final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      ClientManager.sendInitNotification(
+        l10n.initAppError,
+        l10n.databaseBuildErrorBody(
+          AppConfig.newIssueUrl.toString(),
+          e.toString(),
+        ),
+      );
+    } catch (e, s) {
+      Logs().e('Unable to send error notification', e, s);
+    }
 
     return FlutterHiveCollectionsDatabase.databaseBuilder(client);
   }
