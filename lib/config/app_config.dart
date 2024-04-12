@@ -32,9 +32,9 @@ abstract class AppConfig {
   static String _webBaseUrl = 'https://fluffychat.im/web';
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+      'https://github.com/gekmovement/kemetchat';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://github.com/gekmovement/kemetchat/support';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
