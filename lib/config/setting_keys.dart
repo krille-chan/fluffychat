@@ -30,4 +30,6 @@ abstract class SettingKeys {
   static const String showPresences = 'chat.fluffy.show_presences';
   static const String displayChatDetailsColumn =
       'chat.fluffy.display_chat_details_column';
+  static const String noEncryptionWarningShown =
+      'chat.fluffy.no_encryption_warning_shown';
 }

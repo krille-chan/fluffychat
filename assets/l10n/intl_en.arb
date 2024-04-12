@@ -2601,5 +2601,6 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "noDatabaseEncryption": "Database encryption is not supported on this platform"
 }
