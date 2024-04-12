@@ -943,6 +943,7 @@ extension PangeaRoom on Room {
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
+    if (spaceChildren.isEmpty) return false;
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);

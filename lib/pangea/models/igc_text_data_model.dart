@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/models/span_card_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
+import 'package:fluffychat/pangea/widgets/igc/span_card.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants/model_keys.dart';
-import '../widgets/igc/span_card.dart';
 import 'language_detection_model.dart';
 
 // import 'package:language_tool/language_tool.dart';
@@ -285,10 +285,9 @@ class IGCTextData {
 
       String matchText;
       try {
-        matchText = originalInput.substring(
-          matchTokens[tokenIndex].token.text.offset,
-          matchTokens[nextTokenIndex - 1].token.end,
-        );
+        final int start = matchTokens[tokenIndex].token.text.offset;
+        final int end = matchTokens[nextTokenIndex - 1].token.end;
+        matchText = originalInput.characters.getRange(start, end).toString();
       } catch (err) {
         return [
           TextSpan(
@@ -318,12 +317,14 @@ class IGCTextData {
         ),
       );
 
-      final String beforeNextToken = originalInput.substring(
-        matchTokens[nextTokenIndex - 1].token.end,
-        nextTokenIndex < matchTokens.length
-            ? matchTokens[nextTokenIndex].token.text.offset
-            : originalInput.length,
-      );
+      final String beforeNextToken = originalInput.characters
+          .getRange(
+            matchTokens[nextTokenIndex - 1].token.end,
+            nextTokenIndex < matchTokens.length
+                ? matchTokens[nextTokenIndex].token.text.offset
+                : originalInput.length,
+          )
+          .toString();
 
       if (beforeNextToken.isNotEmpty) {
         items.add(

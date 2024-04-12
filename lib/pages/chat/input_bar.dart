@@ -465,8 +465,9 @@ class InputBar extends StatelessWidget {
             // show suggestions after 50ms idle time (default is 300)
             // #Pangea
             key: controller!.choreographer.inputLayerLinkAndKey.key,
-            // Pangea#
-            builder: (context, controller, focusNode) => TextField(
+            // builder: (context, controller, focusNode) => TextField(
+            builder: (context, _, focusNode) => TextField(
+              // Pangea#
               controller: controller,
               focusNode: focusNode,
               contentInsertionConfiguration: ContentInsertionConfiguration(
@@ -494,9 +495,9 @@ class InputBar extends StatelessWidget {
               },
               // #Pangea
               onTap: () {
-                this.controller!.onInputTap(
+                controller!.onInputTap(
                   context,
-                      fNode: focusNode,
+                  fNode: focusNode,
                 );
               },
               // Pangea#
