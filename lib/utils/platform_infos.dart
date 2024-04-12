@@ -72,7 +72,7 @@ abstract class PlatformInfos {
         ),
       ],
       applicationIcon: Image.asset(
-        'assets/logo.png',
+        'assets/ic_launcher.png',
         width: 64,
         height: 64,
         filterQuality: FilterQuality.medium,
