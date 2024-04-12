@@ -1,8 +1,7 @@
 # Privacy
 
-FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
+KemetChat is available on Android, iOS and as a web version. 
 
-*   [Matrix](#matrix)
 *   Sentry
 *   [Database](#database)
 *   [Encryption](#encryption)
@@ -11,7 +10,7 @@ FluffyChat is available on Android, iOS and as a web version. Desktop versions f
 *   [Stories](#stories)
 
 ## Matrix<a id="matrix"/>
-FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
+KemetChat uses the Matrix protocol. This means that KemetChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
 
 For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 

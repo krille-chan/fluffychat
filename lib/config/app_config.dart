@@ -34,7 +34,7 @@ abstract class AppConfig {
   static const String sourceCodeUrl =
       'https://github.com/gekmovement/kemetchat';
   static const String supportUrl =
-      'https://github.com/gekmovement/kemetchat/support';
+      'https://github.com/gekmovement/kemetchat/blob/main/README.md';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
