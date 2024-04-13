@@ -341,7 +341,7 @@ class MessageContent extends StatelessWidget {
                               ),
                               onListen: () => toolbarController?.showToolbar(
                                 context,
-                                mode: MessageMode.conversion,
+                                mode: MessageMode.textToSpeech,
                               ),
                             ),
                   enableInteractiveSelection:

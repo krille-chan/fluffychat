@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -28,7 +31,7 @@ class SpeechToTextController {
   }
 
   void _initializeCacheClearing() {
-    const duration = Duration(minutes: 15);
+    const duration = Duration(minutes: 2);
     _cacheClearTimer = Timer.periodic(duration, (Timer t) => _clearCache());
   }
 
@@ -41,7 +44,8 @@ class SpeechToTextController {
   }
 
   Future<SpeechToTextResponseModel> get(
-      SpeechToTextRequestModel requestModel) async {
+    SpeechToTextRequestModel requestModel,
+  ) async {
     final int cacheKey = requestModel.hashCode;
 
     if (_cache.containsKey(cacheKey)) {
@@ -52,11 +56,35 @@ class SpeechToTextController {
         requestModel: requestModel,
       );
       _cache[cacheKey] = _SpeechToTextCacheItem(data: response);
+
       return response;
     }
   }
 
-  static Future<SpeechToTextResponseModel> _fetchResponse({
+  Future<void> saveTranscriptAsMatrixEvent(
+    SpeechToTextResponseModel response,
+    SpeechToTextRequestModel requestModel,
+  ) {
+    if (requestModel.audioEvent == null) {
+      debugPrint(
+        'Audio event is null, case of giving speech to text before message sent, currently not implemented',
+      );
+      return Future.value(null);
+    }
+    debugPrint('Saving transcript as matrix event');
+    final json = response.toJson();
+
+    requestModel.audioEvent?.room.sendPangeaEvent(
+      content: response.toJson(),
+      parentEventId: requestModel.audioEvent!.eventId,
+      type: PangeaEventTypes.transcript,
+    );
+    debugPrint('Transcript saved as matrix event');
+
+    return Future.value(null);
+  }
+
+  Future<SpeechToTextResponseModel> _fetchResponse({
     required String accessToken,
     required SpeechToTextRequestModel requestModel,
   }) async {
@@ -72,7 +100,14 @@ class SpeechToTextController {
 
     if (res.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(utf8.decode(res.bodyBytes));
-      return SpeechToTextResponseModel.fromJson(json);
+
+      final response = SpeechToTextResponseModel.fromJson(json);
+
+      saveTranscriptAsMatrixEvent(response, requestModel).onError(
+        (error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace),
+      );
+
+      return response;
     } else {
       debugPrint('Error converting speech to text: ${res.body}');
       throw Exception('Failed to convert speech to text');

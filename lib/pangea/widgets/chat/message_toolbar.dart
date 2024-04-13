@@ -176,13 +176,21 @@ class MessageToolbarState extends State<MessageToolbar> {
         case MessageMode.translation:
           showTranslation();
           break;
-        case MessageMode.conversion:
-          showConversion();
+        case MessageMode.textToSpeech:
+          showTextToSpeech();
+          break;
+        case MessageMode.speechToText:
+          showSpeechToText();
           break;
         case MessageMode.definition:
           showDefinition();
           break;
         default:
+          ErrorHandler.logError(
+            e: "Invalid toolbar mode",
+            s: StackTrace.current,
+            data: {"newMode": newMode},
+          );
           break;
       }
     }
@@ -200,21 +208,22 @@ class MessageToolbarState extends State<MessageToolbar> {
     );
   }
 
-  void showConversion() {
-    debugPrint("show conversion");
-    if (isAudioMessage) {
-      debugPrint("is audio message");
-      toolbarContent = MessageSpeechToTextCard(
-        messageEvent: widget.pangeaMessageEvent,
-      );
-    } else {
-      toolbarContent = MessageAudioCard(
-        messageEvent: widget.pangeaMessageEvent,
-      );
-    }
+  void showTextToSpeech() {
+    debugPrint("show text to speech");
+    toolbarContent = MessageAudioCard(
+      messageEvent: widget.pangeaMessageEvent,
+    );
+  }
+
+  void showSpeechToText() {
+    debugPrint("show speech to text");
+    toolbarContent = MessageSpeechToTextCard(
+      messageEvent: widget.pangeaMessageEvent,
+    );
   }
 
   void showDefinition() {
+    debugPrint("show definition");
     if (widget.textSelection.selectedText == null ||
         widget.textSelection.selectedText!.isEmpty) {
       toolbarContent = const SelectToDefine();
@@ -229,10 +238,6 @@ class MessageToolbarState extends State<MessageToolbar> {
       hasInfo: true,
       room: widget.room,
     );
-  }
-
-  bool get isAudioMessage {
-    return widget.pangeaMessageEvent.event.messageType == MessageTypes.Audio;
   }
 
   void showImage() {}
@@ -259,7 +264,9 @@ class MessageToolbarState extends State<MessageToolbar> {
           ) ??
           true;
       autoplay
-          ? updateMode(MessageMode.conversion)
+          ? updateMode(widget.pangeaMessageEvent.isAudioMessage
+              ? MessageMode.speechToText
+              : MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });
 
@@ -322,13 +329,19 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
-                    if (mode == MessageMode.definition && isAudioMessage) {
+                    if ([MessageMode.definition, MessageMode.textToSpeech]
+                            .contains(mode) &&
+                        widget.pangeaMessageEvent.isAudioMessage) {
+                      return const SizedBox.shrink();
+                    }
+                    if (mode == MessageMode.speechToText &&
+                        !widget.pangeaMessageEvent.isAudioMessage) {
                       return const SizedBox.shrink();
                     }
                     return Tooltip(
                       message: mode.tooltip(context),
                       child: IconButton(
-                        icon: Icon(mode.icon(isAudioMessage)),
+                        icon: Icon(mode.icon),
                         color: currentMode == mode
                             ? Theme.of(context).colorScheme.primary
                             : null,

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-enum MessageMode { conversion, translation, definition }
+enum MessageMode { translation, definition, speechToText, textToSpeech }
 
 extension MessageModeExtension on MessageMode {
-  IconData icon(bool isAudioMessage) {
+  IconData get icon {
     switch (this) {
       case MessageMode.translation:
         return Icons.g_translate;
-      case MessageMode.conversion:
+      case MessageMode.textToSpeech:
         return Icons.play_arrow;
+      case MessageMode.speechToText:
+        return Icons.mic;
       //TODO change icon for audio messages
       case MessageMode.definition:
         return Icons.book;
@@ -22,8 +24,10 @@ extension MessageModeExtension on MessageMode {
     switch (this) {
       case MessageMode.translation:
         return L10n.of(context)!.translations;
-      case MessageMode.conversion:
+      case MessageMode.textToSpeech:
         return L10n.of(context)!.messageAudio;
+      case MessageMode.speechToText:
+        return L10n.of(context)!.transcriptTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.definitions;
       default:
@@ -36,8 +40,10 @@ extension MessageModeExtension on MessageMode {
     switch (this) {
       case MessageMode.translation:
         return L10n.of(context)!.translationTooltip;
-      case MessageMode.conversion:
+      case MessageMode.textToSpeech:
         return L10n.of(context)!.audioTooltip;
+      case MessageMode.speechToText:
+        return L10n.of(context)!.transcriptTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.define;
       default:

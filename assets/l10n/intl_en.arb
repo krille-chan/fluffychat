@@ -2415,9 +2415,6 @@
             "seconds": {}
         }
     },
-    "pleaseEnterANumber": "Please enter a number greater than 0",
-    "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-    "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
     "allCorrect": "That's how I would say it! Nice!",
     "newWayAllGood": "That's not how I would have said it but it looks good!",
     "othersAreBetter": "Hm, there might be a better way to say that.",
@@ -2568,15 +2565,7 @@
         "placeholders": {}
     },
     "copyClassLink": "Copy invite link",
-    "@copyClassLink": {
-        "type": "text",
-        "placeholders": {}
-    },
     "copyClassLinkDesc": "Clicking this link will take students to the app, direct them to make an account and they will automatically join this space.",
-    "@copyClassLink": {
-        "type": "text",
-        "placeholders": {}
-    },
     "copyClassCode": "Copy invite code",
     "inviteStudentByUserName": "Invite student by username",
     "@inviteStudentByUserName": {
@@ -2745,11 +2734,6 @@
     },
     "yourBirthdayPleaseShort": "Please selected your age group",
     "@yourBirthdayPleaseShort": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "errorPleaseRefresh": "We're looking into it! Please reload and try again.",
-    "@errorPleaseRefresh": {
         "type": "text",
         "placeholders": {}
     },
@@ -2973,26 +2957,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "error502504Title": "Wow, there are a lot of students online!",
-    "@error502504Title": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "error502504Desc": "Translation and grammar tools may be slow or unavailable while the Pangea bots catch up.",
-    "@error502504Desc": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "error404Title": "Translation error!",
-    "@error404Title": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "error404Desc": "Pangea Bot isn't sure how to translate that...",
-    "@error404Desc": {
-        "type": "text",
-        "placeholders": {}
-    },
     "errorDisableIT": "Translation assistance is turned off.",
     "errorDisableIGC": "Grammar assistance is turned off.",
     "errorDisableLanguageAssistance": "Translation assistance and grammar assistance are turned off.",
@@ -3095,11 +3059,6 @@
         "type": "text",
         "placeholders": {}
     },
-    "classDescription": "Space Description",
-    "@classDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
     "inviteStudentByUserNameDesc": "If your student already has an account, you can search for them.",
     "@inviteStudentByUserNameDesc": {
         "type": "text",
@@ -3116,7 +3075,6 @@
     "clickMessageTitle": "Need help?",
     "clickMessageBody": "Click messages to access definitions, translations, and audio!",
     "understandingMessagesTitle": "Definitions and translations!",
-    "addToClass": "Add this chat to ",
     "understandingMessagesBody": "Click underlined words for definitions. Translate with message options (upper right).",
     "allDone": "All done!",
     "vocab": "Vocabulary",
@@ -3649,7 +3607,6 @@
             "user": {}
         }
     },
-    "decline": "Decline",
     "declinedInvitation": "Declined invitation",
     "acceptedInvitation": "Accepted invitation",
     "youreInvited": "📩 You're invited!",
@@ -3728,7 +3685,6 @@
     },
     "acceptSelection": "Accept Correction",
     "acceptSelectionAnyway": "Use this anyway",
-    "replace": "Make correction",
     "makingActivity": "Making activity",
     "why": "Why?",
     "definition": "Definition",
@@ -3751,12 +3707,6 @@
         }
     },
     "noTeachersFound": "No teachers found to report to",
-    "pushNotificationsNotAvailable": "Push notifications not available",
-    "learnMore": "Learn more",
-    "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
-    "unbanUserDescription": "The user will be able to enter the chat again if they try.",
-    "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
-    "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
     "pleaseEnterANumber": "Please enter a number greater than 0",
     "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
     "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
@@ -3776,10 +3726,6 @@
         }
     },
     "searchChatsRooms": "Search for #chats, @users...",
-    "groupName": "Group name",
-    "createGroupAndInviteUsers": "Create a group and invite users",
-    "groupCanBeFoundViaSearch": "Group can be found via search",
-    "inNoSpaces": "You are not a member of any classes or exchanges",
     "createClass": "Create class",
     "createExchange": "Create exchange",
     "viewArchive": "View Archive",
@@ -3886,7 +3832,7 @@
     "enableModerationDesc": "Enable automatic moderation to review messages before they are sent",
     "conversationLanguageLevel": "What is the language level of this conversation?",
     "showDefinition": "Show Definition",
-        "acceptedKeyVerification": "{sender} accepted key verification",
+    "acceptedKeyVerification": "{sender} accepted key verification",
     "@acceptedKeyVerification": {
         "type": "text",
         "placeholders": {
@@ -3941,6 +3887,7 @@
     "more": "More",
     "translationTooltip": "Translate",
     "audioTooltip": "Play Audio",
+    "transcriptTooltip": "Transcript",
     "certifyAge": "I certify that I am over {age} years of age",
     "@certifyAge": {
         "type": "text",

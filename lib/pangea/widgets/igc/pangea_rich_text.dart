@@ -87,7 +87,8 @@ class PangeaRichTextState extends State<PangeaRichText> {
             context: context,
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           )
-          .onError((error, stackTrace) => ErrorHandler.logError())
+          .onError((error, stackTrace) =>
+              ErrorHandler.logError(e: error, s: stackTrace))
           .then((event) {
         repEvent = event;
         widget.toolbarController?.toolbar?.textSelection.setMessageText(
@@ -158,7 +159,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
                   ),
                   onListen: () => widget.toolbarController?.showToolbar(
                     context,
-                    mode: MessageMode.conversion,
+                    mode: MessageMode.textToSpeech,
                   ),
                 ),
       TextSpan(

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
 
 class SpeechToTextAudioConfigModel {
   final AudioEncodingEnum encoding;
@@ -33,10 +34,12 @@ class SpeechToTextAudioConfigModel {
 class SpeechToTextRequestModel {
   final Uint8List audioContent;
   final SpeechToTextAudioConfigModel config;
+  final Event? audioEvent;
 
   SpeechToTextRequestModel({
     required this.audioContent,
     required this.config,
+    this.audioEvent,
   });
 
   Map<String, dynamic> toJson() => {
@@ -68,7 +71,7 @@ class WordInfo {
   final String word;
   final Duration? startTime;
   final Duration? endTime;
-  final double? confidence;
+  final int? confidence;
 
   WordInfo({
     required this.word,
@@ -85,13 +88,20 @@ class WordInfo {
         endTime: json['end_time'] != null
             ? Duration(milliseconds: json['end_time'])
             : null,
-        confidence: (json['confidence'] as num?)?.toDouble(),
+        confidence: json['confidence'],
       );
+
+  Map<String, dynamic> toJson() => {
+        "word": word,
+        "start_time": startTime?.inMilliseconds,
+        "end_time": endTime?.inMilliseconds,
+        "confidence": confidence,
+      };
 }
 
 class Transcript {
   final String transcript;
-  final double confidence;
+  final int confidence;
   final List<WordInfo> words;
 
   Transcript({
@@ -106,6 +116,12 @@ class Transcript {
         words:
             (json['words'] as List).map((e) => WordInfo.fromJson(e)).toList(),
       );
+
+  Map<String, dynamic> toJson() => {
+        "transcript": transcript,
+        "confidence": confidence,
+        "words": words.map((e) => e.toJson()).toList(),
+      };
 }
 
 class SpeechToTextResult {
@@ -119,6 +135,10 @@ class SpeechToTextResult {
             .map((e) => Transcript.fromJson(e))
             .toList(),
       );
+
+  Map<String, dynamic> toJson() => {
+        "transcripts": transcripts.map((e) => e.toJson()).toList(),
+      };
 }
 
 class SpeechToTextResponseModel {
@@ -134,4 +154,8 @@ class SpeechToTextResponseModel {
             .map((e) => SpeechToTextResult.fromJson(e))
             .toList(),
       );
+
+  Map<String, dynamic> toJson() => {
+        "results": results.map((e) => e.toJson()).toList(),
+      };
 }

@@ -2,14 +2,15 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,8 @@ class PangeaMessageEvent {
   String get eventId => _event.eventId;
 
   Room get room => _event.room;
+
+  bool get isAudioMessage => _event.messageType == MessageTypes.Audio;
 
   Event? _latestEditCache;
   Event get _latestEdit => _latestEditCache ??= _event
@@ -267,6 +270,78 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
+  Set<Event> get transcriptionEvents => _event.aggregatedEvents(
+        timeline,
+        PangeaEventTypes.transcript,
+      );
+
+  Event? get transcriptionEvent => transcriptionEvents.lastOrNull;
+
+  Future<SpeechToTextResponseModel?> getSpeechToTextLocal() async {
+    if (transcriptionEvent == null) return null;
+
+    return SpeechToTextResponseModel.fromJson(
+      transcriptionEvent!.content[PangeaEventTypes.transcript]
+          as Map<String, dynamic>,
+    );
+  }
+
+  Future<SpeechToTextResponseModel?> getSpeechToTextGlobal(
+    String l1Code,
+    String l2Code,
+  ) async {
+    if (!isAudioMessage) {
+      ErrorHandler.logError(
+        e: 'Message is not an audio message ${_event.eventId}',
+        s: StackTrace.current,
+        data: _event.content,
+      );
+      return null;
+    }
+
+    if (transcriptionEvent != null) return getSpeechToTextLocal();
+
+    final matrixFile = await _event.downloadAndDecryptAttachment();
+    // Pangea#
+    // File? file;
+
+    // TODO: Test on mobile and see if we need this case, doeesn't seem so
+    // if (!kIsWeb) {
+    //   final tempDir = await getTemporaryDirectory();
+    //   final fileName = Uri.encodeComponent(
+    //     // #Pangea
+    //     // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+    //     widget.messageEvent.event
+    //         .attachmentOrThumbnailMxcUrl()!
+    //         .pathSegments
+    //         .last,
+    //     // Pangea#
+    //   );
+    //   file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+    //   await file.writeAsBytes(matrixFile.bytes);
+    // }
+
+    // audioFile = file;
+
+    final SpeechToTextResponseModel response =
+        await MatrixState.pangeaController.speechToText.get(
+      SpeechToTextRequestModel(
+        audioContent: matrixFile.bytes,
+        audioEvent: _event,
+        config: SpeechToTextAudioConfigModel(
+          encoding: mimeTypeToAudioEncoding(matrixFile.mimeType),
+          //this is the default in the RecordConfig in record package
+          //TODO: check if this is the correct value and make it a constant somewhere
+          sampleRateHertz: 44100,
+          userL1: l1Code,
+          userL2: l2Code,
+        ),
+      ),
+    );
+
+    return response;
+  }
+
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {
     if (_representations != null) return _representations!;
@@ -431,6 +506,8 @@ class PangeaMessageEvent {
           ),
         );
       },
+    ).onError(
+      (error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace),
     );
 
     return pangeaRep;
@@ -456,7 +533,7 @@ class PangeaMessageEvent {
       _event.room.isSpaceAdmin &&
       _event.senderId != BotName.byEnvironment &&
       !room.isUserSpaceAdmin(_event.senderId) &&
-      _event.messageType != PangeaMessageTypes.report;
+      _event.messageType != PangeaEventTypes.report;
 
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState
