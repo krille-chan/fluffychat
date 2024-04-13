@@ -81,21 +81,23 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   // in case we got a cipher, we use the encryption helper
   // to manage SQLite encryption
-  final helper = SQfLiteEncryptionHelper(
-    factory: factory,
-    path: path,
-    cipher: cipher,
-  );
+  final helper = cipher == null
+      ? null
+      : SQfLiteEncryptionHelper(
+          factory: factory,
+          path: path,
+          cipher: cipher,
+        );
 
   // check whether the DB is already encrypted and otherwise do so
-  await helper.ensureDatabaseFileEncrypted();
+  await helper?.ensureDatabaseFileEncrypted();
 
   final database = await factory.openDatabase(
     path,
     options: OpenDatabaseOptions(
       version: 1,
       // most important : apply encryption when opening the DB
-      onConfigure: helper.applyPragmaKey,
+      onConfigure: helper?.applyPragmaKey,
     ),
   );
 
