@@ -1,3 +1,40 @@
+## v1.19.2
+Bugfix release to mostly fix the new database encryption on Linux and update the translations.
+
+- build: (deps): bump peaceiris/actions-gh-pages from 3 to 4 (dependabot[bot])
+- build: Update all dependencies and remove vibrator package (krille-chan)
+- build: Update emoji picker package (krille-chan)
+- build: Update flutter_map package (krille-chan)
+- docs: Fix typo in android app description (Krille)
+- fix: Allow unencrypted database if gnome keyring not present or platform does not support it (krille-chan)
+- fix: Background color of images with transparency (Krille)
+- fix: Localizations from weblate confused by unknownEvent locale (Krille)
+- fix: More logs when database fails to init and trycatch sendInitNotification (Krille)
+- Added translation using Weblate (Filipino) (searinminecraft)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Catalan) (fadelkon)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Traditional)) (D0735)
+- Translated using Weblate (Chinese (Traditional)) (Kyanos Chiu)
+- Translated using Weblate (Croatian) (v1s7)
+- Translated using Weblate (English) (v1s7)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Filipino) (searinminecraft)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Interlingua) (kdh8219)
+- Translated using Weblate (Italian) (Krystian)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Persian) (EndermanXD)
+- Translated using Weblate (Polish) (Adam Strączek)
+- Translated using Weblate (Polish) (Krystian)
+- Translated using Weblate (Russian) (v1s7)
+- Translated using Weblate (Swedish) (Joaquim Homrighausen)
+- Translated using Weblate (Turkish) (v1s7)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
 ## v1.19.1
 Minor bugfix release for login with SSO on web.
 
