@@ -134,7 +134,10 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                         )
                       : IconButton(
                           icon: Icon(Icons.adaptive.share_outlined),
-                          onPressed: () => FluffyShare.share(room.id, context),
+                          onPressed: () => FluffyShare.share(
+                            'https://matrix.to/#/${room.canonicalAlias}',
+                            context,
+                          ),
                         ),
                 ),
               ],
