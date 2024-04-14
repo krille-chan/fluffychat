@@ -140,6 +140,9 @@ abstract class FluffyThemes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.secondaryContainer,
+          foregroundColor: colorScheme.onSecondaryContainer,
+          elevation: 0,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
           shape: RoundedRectangleBorder(

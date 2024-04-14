@@ -91,12 +91,6 @@ class SettingsChatView extends StatelessWidget {
                     child: Icon(Icons.call),
                   ),
                 ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.separateChatTypes,
-                onChanged: (b) => AppConfig.separateChatTypes = b,
-                storeKey: SettingKeys.separateChatTypes,
-                defaultValue: AppConfig.separateChatTypes,
-              ),
             ],
           ),
         ),

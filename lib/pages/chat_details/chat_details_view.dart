@@ -221,10 +221,18 @@ class ChatDetailsView extends StatelessWidget {
                         else
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: OutlinedButton.icon(
+                            child: TextButton.icon(
                               onPressed: controller.setTopicAction,
                               label: Text(L10n.of(context)!.setChatDescription),
                               icon: const Icon(Icons.edit_outlined),
+                              style: TextButton.styleFrom(
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryContainer,
+                                foregroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .onSecondaryContainer,
+                              ),
                             ),
                           ),
                         Padding(

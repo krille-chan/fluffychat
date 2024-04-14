@@ -1384,6 +1384,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "overview": "Overview",
+  "notifyMeFor": "Notify me for",
+  "passwordRecoverySettings": "Password recovery settings",
   "passwordRecovery": "Password recovery",
   "@passwordRecovery": {
     "type": "text",
@@ -2602,5 +2605,10 @@
       "unread": {}
     }
   },
-  "noDatabaseEncryption": "Database encryption is not supported on this platform"
+  "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  }
 }
