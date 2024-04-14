@@ -2404,7 +2404,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Percakapan akan dipindahkan ke arsip. Pengguna lain akan melihat bahwa kamu telah meninggalkan percakapan.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} telah dikeluarkan",
+  "hasKnocked": "🚪 {user} telah dikeluarkan",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2647,5 +2647,7 @@
   "overview": "Ikhtisar",
   "@overview": {},
   "passwordRecoverySettings": "Pengaturan pemulihan kata sandi",
-  "@passwordRecoverySettings": {}
+  "@passwordRecoverySettings": {},
+  "usersMustKnock": "Pengguna harus mengetuk",
+  "@usersMustKnock": {}
 }
