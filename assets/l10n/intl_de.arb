@@ -2618,5 +2618,59 @@
       "appname": {},
       "unread": {}
     }
+  },
+  "customEmojisAndStickersBody": "Eigene Emojis oder Sticker zur Nutzung im Chat hinzufügen oder teilen.",
+  "@customEmojisAndStickersBody": {},
+  "globalChatId": "Globale Chat-ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Zugang und Sichtbarkeit",
+  "@accessAndVisibility": {},
+  "hideMemberChangesInPublicChats": "Mitglieder-Änderungen in öffentlichen Chats ausblenden",
+  "@hideMemberChangesInPublicChats": {},
+  "accessAndVisibilityDescription": "Wer darf dem Chat beitreten und wie kann der Chat gefunden werden.",
+  "@accessAndVisibilityDescription": {},
+  "hideMemberChangesInPublicChatsBody": "Zeige keine Beitritt- oder Verlassen-Ereignisse von Mitgliedern in der Timeline an, um die Lesbarkeit in öffentlichen Chats zu verbessern.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} würde dem Chat gerne beitreten.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Es wurde noch kein öffentlicher Link erstellt",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat kann über die Suche auf {server} gefunden werden",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appLockDescription": "App mit einer PIN sperren, wenn sie nicht verwendet wird",
+  "@appLockDescription": {},
+  "calls": "Anrufe",
+  "@calls": {},
+  "customEmojisAndStickers": "Eigene Emojis und Sticker",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessages": "Geschwärzte Nachrichten verstecken",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Wenn jemand eine Nachricht schwärzt/löscht, dann wird diese Nachricht im Chat nicht mehr sichtbar sein.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Ungültige und unbekannte Nachrichten-Formate ausblenden",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Übersicht",
+  "@overview": {},
+  "notifyMeFor": "Benachrichtige mich für",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Passwort-Wiederherstellungs-Einstellungen",
+  "@passwordRecoverySettings": {},
+  "knock": "Anklopfen",
+  "@knock": {},
+  "knocking": "Klopft",
+  "@knocking": {},
+  "thereAreCountUsersBlocked": "Im Augenblick werden {count} Benutzer blockiert.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
   }
 }
