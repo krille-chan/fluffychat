@@ -2672,5 +2672,9 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "usersMustKnock": "Benutzer müssen anklopfen",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Niemand kann beitreten",
+  "@noOneCanJoin": {}
 }
