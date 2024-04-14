@@ -142,7 +142,11 @@ class PublicRoomBottomSheet extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => _joinRoom(context),
                     label: Text(
-                      chunk?.joinRule == 'knock'
+                      chunk?.joinRule == 'knock' &&
+                              Matrix.of(context)
+                                      .client
+                                      .getRoomById(chunk!.roomId) ==
+                                  null
                           ? L10n.of(context)!.knock
                           : chunk?.roomType == 'm.space'
                               ? L10n.of(context)!.joinSpace
