@@ -2273,7 +2273,7 @@
       "user": {}
     }
   },
-  "hasKnocked": "{user} has knocked",
+  "hasKnocked": "🚪 {user} has knocked",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
