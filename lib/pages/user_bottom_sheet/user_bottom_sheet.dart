@@ -250,6 +250,26 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     }
   }
 
+  void knockAccept() async {
+    final user = widget.user!;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => user.room.invite(user.id),
+    );
+    if (result.error != null) return;
+    Navigator.of(context).pop();
+  }
+
+  void knockDecline() async {
+    final user = widget.user!;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => user.room.kick(user.id),
+    );
+    if (result.error != null) return;
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) => UserBottomSheetView(this);
 }

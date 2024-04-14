@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -111,7 +110,7 @@ class UserBottomSheetView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Material(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   child: ListTile(
                     minVerticalPadding: 16,
@@ -131,10 +130,7 @@ class UserBottomSheetView extends StatelessWidget {
                             foregroundColor:
                                 Theme.of(context).colorScheme.primary,
                           ),
-                          onPressed: () => showFutureLoadingDialog(
-                            context: context,
-                            future: () => user!.room.invite(user.id),
-                          ),
+                          onPressed: controller.knockAccept,
                           icon: const Icon(Icons.check_outlined),
                           label: Text(L10n.of(context)!.accept),
                         ),
@@ -146,10 +142,7 @@ class UserBottomSheetView extends StatelessWidget {
                             foregroundColor:
                                 Theme.of(context).colorScheme.onErrorContainer,
                           ),
-                          onPressed: () => showFutureLoadingDialog(
-                            context: context,
-                            future: () => user!.room.kick(user.id),
-                          ),
+                          onPressed: controller.knockDecline,
                           icon: const Icon(Icons.cancel_outlined),
                           label: Text(L10n.of(context)!.decline),
                         ),
