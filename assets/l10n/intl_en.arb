@@ -929,7 +929,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "Hide unknown events",
+  "hideRedactedMessages": "Hide redacted messages",
+  "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
+  "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}
@@ -1384,6 +1386,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
   "overview": "Overview",
   "notifyMeFor": "Notify me for",
   "passwordRecoverySettings": "Password recovery settings",

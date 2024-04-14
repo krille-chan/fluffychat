@@ -31,7 +31,10 @@ class SettingsChatView extends StatelessWidget {
                 trailing: const Icon(Icons.chevron_right_outlined),
                 leading: const Icon(Icons.emoji_emotions_outlined),
               ),
-              const Divider(),
+              Divider(
+                height: 1,
+                color: Theme.of(context).dividerColor,
+              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.formattedMessages,
                 subtitle: L10n.of(context)!.formattedMessagesDescription,
@@ -40,22 +43,24 @@ class SettingsChatView extends StatelessWidget {
                 defaultValue: AppConfig.renderHtml,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideRedactedEvents,
+                title: L10n.of(context)!.hideMemberChangesInPublicChats,
+                subtitle: L10n.of(context)!.hideMemberChangesInPublicChatsBody,
+                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
+                storeKey: SettingKeys.hideUnimportantStateEvents,
+                defaultValue: AppConfig.hideUnimportantStateEvents,
+              ),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.hideRedactedMessages,
+                subtitle: L10n.of(context)!.hideRedactedMessagesBody,
                 onChanged: (b) => AppConfig.hideRedactedEvents = b,
                 storeKey: SettingKeys.hideRedactedEvents,
                 defaultValue: AppConfig.hideRedactedEvents,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideUnknownEvents,
+                title: L10n.of(context)!.hideInvalidOrUnknownMessageFormats,
                 onChanged: (b) => AppConfig.hideUnknownEvents = b,
                 storeKey: SettingKeys.hideUnknownEvents,
                 defaultValue: AppConfig.hideUnknownEvents,
-              ),
-              SettingsSwitchListTile.adaptive(
-                title: L10n.of(context)!.hideUnimportantStateEvents,
-                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
-                storeKey: SettingKeys.hideUnimportantStateEvents,
-                defaultValue: AppConfig.hideUnimportantStateEvents,
               ),
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
@@ -64,7 +69,10 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
-              const Divider(),
+              Divider(
+                height: 1,
+                color: Theme.of(context).dividerColor,
+              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
