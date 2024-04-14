@@ -293,7 +293,8 @@ class ChatDetailsView extends StatelessWidget {
                               Icons.insert_emoticon_outlined,
                             ),
                           ),
-                          title: Text(L10n.of(context)!.emoteSettings),
+                          title:
+                              Text(L10n.of(context)!.customEmojisAndStickers),
                           subtitle: Text(L10n.of(context)!.setCustomEmotes),
                           onTap: controller.goToEmoteSettings,
                           trailing: const Icon(Icons.chevron_right_outlined),

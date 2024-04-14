@@ -131,6 +131,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "appLockDescription": "Lock the app when not using with a pin code",
   "archive": "Archive",
   "@archive": {
     "type": "text",
@@ -759,6 +760,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "customEmojisAndStickers": "Custom emojis and stickers",
+  "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
   "emoteShortcode": "Emote shortcode",
   "@emoteShortcode": {
     "type": "text",

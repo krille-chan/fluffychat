@@ -25,16 +25,6 @@ class SettingsChatView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              ListTile(
-                title: Text(L10n.of(context)!.emoteSettings),
-                onTap: () => context.go('/rooms/settings/chat/emotes'),
-                trailing: const Icon(Icons.chevron_right_outlined),
-                leading: const Icon(Icons.emoji_emotions_outlined),
-              ),
-              Divider(
-                height: 1,
-                color: Theme.of(context).dividerColor,
-              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.formattedMessages,
                 subtitle: L10n.of(context)!.formattedMessagesDescription,
@@ -69,15 +59,28 @@ class SettingsChatView extends StatelessWidget {
                   storeKey: SettingKeys.autoplayImages,
                   defaultValue: AppConfig.autoplayImages,
                 ),
-              Divider(
-                height: 1,
-                color: Theme.of(context).dividerColor,
-              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.sendOnEnter,
                 onChanged: (b) => AppConfig.sendOnEnter = b,
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
+              ),
+              Divider(
+                height: 1,
+                color: Theme.of(context).dividerColor,
+              ),
+              ListTile(
+                title: Text(L10n.of(context)!.customEmojisAndStickers),
+                subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
+                onTap: () => context.go('/rooms/settings/chat/emotes'),
+                trailing: const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Icon(Icons.emoji_emotions_outlined),
+                ),
+              ),
+              Divider(
+                height: 1,
+                color: Theme.of(context).dividerColor,
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.experimentalVideoCalls,
