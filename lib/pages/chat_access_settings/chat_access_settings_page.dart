@@ -61,8 +61,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
               for (final joinRule in JoinRules.values)
                 RadioListTile<JoinRules>.adaptive(
                   title: Text(
-                    joinRule
-                        .getLocalizedString(MatrixLocals(L10n.of(context)!)),
+                    joinRule.localizedString(L10n.of(context)!),
                   ),
                   value: joinRule,
                   groupValue: room.joinRules,
@@ -168,5 +167,20 @@ class ChatAccessSettingsPageView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+extension JoinRulesDisplayString on JoinRules {
+  String localizedString(L10n l10n) {
+    switch (this) {
+      case JoinRules.public:
+        return l10n.anyoneCanJoin;
+      case JoinRules.invite:
+        return l10n.invitedUsersOnly;
+      case JoinRules.knock:
+        return l10n.usersMustKnock;
+      case JoinRules.private:
+        return l10n.noOneCanJoin;
+    }
   }
 }

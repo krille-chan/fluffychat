@@ -2279,6 +2279,8 @@
       "user": {}
     }
   },
+  "usersMustKnock": "Users must knock",
+  "noOneCanJoin": "No one can join",
   "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
