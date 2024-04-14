@@ -2616,5 +2616,7 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "noDatabaseEncryption": "Plataforma honetan ezin da datu-basea zifratu",
+  "@noDatabaseEncryption": {}
 }

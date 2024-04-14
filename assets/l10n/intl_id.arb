@@ -2615,5 +2615,7 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "noDatabaseEncryption": "Enkripsi basis data tidak didukung di platform ini",
+  "@noDatabaseEncryption": {}
 }
