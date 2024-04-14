@@ -2649,5 +2649,31 @@
   "passwordRecoverySettings": "Pengaturan pemulihan kata sandi",
   "@passwordRecoverySettings": {},
   "usersMustKnock": "Pengguna harus mengetuk",
-  "@usersMustKnock": {}
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Tidak ada siapa pun yang dapat bergabung",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} ingin bergabung dengan obrolan.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Belum ada tautan publik yang dibuat",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Ketuk",
+  "@knock": {},
+  "knocking": "Mengetuk",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Obrolan dapat ditemukan melalui pencarian di {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Saat ini ada {count} pengguna yang diblokir.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  }
 }
