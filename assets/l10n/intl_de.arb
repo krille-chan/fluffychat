@@ -2586,5 +2586,37 @@
     }
   },
   "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
-  "@verifyOtherDeviceDescription": {}
+  "@verifyOtherDeviceDescription": {},
+  "presenceStyle": "Statusmeldungen:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Status-Nachrichten anderer Benutzer anzeigen",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Eingehende Nachrichten",
+  "@incomingMessages": {},
+  "commandHint_unignore": "Angegebene Matrix-ID nicht mehr ignorieren",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Angegebene Matrix-ID ignorieren",
+  "@commandHint_ignore": {},
+  "noDatabaseEncryption": "Datenbankverschlüsselung wird auf dieser Plattform nicht unterstützt",
+  "@noDatabaseEncryption": {},
+  "hidePresences": "Status-Liste verbergen?",
+  "@hidePresences": {},
+  "stickers": "Sticker",
+  "@stickers": {},
+  "discover": "Entdecken",
+  "@discover": {},
+  "unreadChatsInApp": "{appname}: {unread} ungelesene Chats",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
