@@ -267,23 +267,6 @@ class ChatDetailsView extends StatelessWidget {
                           height: 1,
                           color: Theme.of(context).dividerColor,
                         ),
-                        if (room.joinRules == JoinRules.public)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(Icons.link_outlined),
-                            ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: controller.editAliases,
-                            title: Text(L10n.of(context)!.editRoomAliases),
-                            subtitle: Text(
-                              (room.canonicalAlias.isNotEmpty)
-                                  ? room.canonicalAlias
-                                  : L10n.of(context)!.none,
-                            ),
-                          ),
                         ListTile(
                           leading: CircleAvatar(
                             backgroundColor:
@@ -308,69 +291,14 @@ class ChatDetailsView extends StatelessWidget {
                               child: const Icon(Icons.shield_outlined),
                             ),
                             title: Text(
-                              L10n.of(context)!.whoIsAllowedToJoinThisGroup,
-                            ),
-                            trailing: room.canChangeJoinRules
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            subtitle: Text(
-                              room.joinRules?.getLocalizedString(
-                                    MatrixLocals(L10n.of(context)!),
-                                  ) ??
-                                  L10n.of(context)!.none,
-                            ),
-                            onTap: room.canChangeJoinRules
-                                ? controller.setJoinRules
-                                : null,
-                          ),
-                        if (!room.isDirectChat)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(Icons.visibility_outlined),
-                            ),
-                            trailing: room.canChangeHistoryVisibility
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            title: Text(
-                              L10n.of(context)!.visibilityOfTheChatHistory,
+                              L10n.of(context)!.accessAndVisibility,
                             ),
                             subtitle: Text(
-                              room.historyVisibility?.getLocalizedString(
-                                    MatrixLocals(L10n.of(context)!),
-                                  ) ??
-                                  L10n.of(context)!.none,
+                              L10n.of(context)!.accessAndVisibilityDescription,
                             ),
-                            onTap: room.canChangeHistoryVisibility
-                                ? controller.setHistoryVisibility
-                                : null,
-                          ),
-                        if (room.joinRules == JoinRules.public)
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.person_add_alt_1_outlined,
-                              ),
-                            ),
-                            trailing: room.canChangeGuestAccess
-                                ? const Icon(Icons.chevron_right_outlined)
-                                : null,
-                            title: Text(
-                              L10n.of(context)!.areGuestsAllowedToJoin,
-                            ),
-                            subtitle: Text(
-                              room.guestAccess.getLocalizedString(
-                                MatrixLocals(L10n.of(context)!),
-                              ),
-                            ),
-                            onTap: room.canChangeGuestAccess
-                                ? controller.setGuestAccess
-                                : null,
+                            onTap: () => context
+                                .push('/rooms/${room.id}/details/access'),
+                            trailing: const Icon(Icons.chevron_right_outlined),
                           ),
                         if (!room.isDirectChat)
                           ListTile(

@@ -760,6 +760,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "globalChatId": "Global chat ID",
+  "accessAndVisibility": "Access and visibility",
+  "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
   "calls": "Calls",
   "customEmojisAndStickers": "Custom emojis and stickers",
   "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
@@ -2276,6 +2279,14 @@
       "user": {}
     }
   },
+  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "knock": "Knock",
   "users": "Users",
   "@users": {},
   "unlockOldMessages": "Unlock old messages",
@@ -2448,6 +2459,14 @@
     "type": "text",
     "placeholders": {
       "query": {}
+    }
+  },
+  "knocking": "Knocking",
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
     }
   },
   "searchChatsRooms": "Search for #chats, @users...",
