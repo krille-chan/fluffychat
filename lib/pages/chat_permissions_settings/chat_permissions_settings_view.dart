@@ -54,7 +54,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                           entry.value,
                         ),
                       ),
-                    const Divider(thickness: 1),
+                    Divider(color: Theme.of(context).dividerColor),
                     ListTile(
                       title: Text(
                         L10n.of(context)!.notifications,
@@ -87,7 +87,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         );
                       },
                     ),
-                    const Divider(thickness: 1),
+                    Divider(color: Theme.of(context).dividerColor),
                     ListTile(
                       title: Text(
                         L10n.of(context)!.configureChat,
@@ -109,33 +109,6 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                           category: 'events',
                         ),
                       ),
-                    if (room.canSendEvent(EventTypes.RoomTombstone)) ...{
-                      const Divider(thickness: 1),
-                      FutureBuilder<Capabilities>(
-                        future: room.client.getCapabilities(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(
-                                strokeWidth: 2,
-                              ),
-                            );
-                          }
-                          final roomVersion = room
-                                  .getState(EventTypes.RoomCreate)!
-                                  .content['room_version'] as String? ??
-                              '1';
-
-                          return ListTile(
-                            title: Text(
-                              '${L10n.of(context)!.roomVersion}: $roomVersion',
-                            ),
-                            onTap: () =>
-                                controller.updateRoomAction(snapshot.data!),
-                          );
-                        },
-                      ),
-                    },
                   ],
                 ),
               ],
