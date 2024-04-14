@@ -2616,5 +2616,7 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "noDatabaseEncryption": "تشفير قاعدة البيانات غير مدعوم على هذا النظام الأساسي",
+  "@noDatabaseEncryption": {}
 }
