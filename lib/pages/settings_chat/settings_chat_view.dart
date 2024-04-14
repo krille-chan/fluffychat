@@ -70,17 +70,35 @@ class SettingsChatView extends StatelessWidget {
                 color: Theme.of(context).dividerColor,
               ),
               ListTile(
+                title: Text(
+                  L10n.of(context)!.customEmojisAndStickers,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
                 title: Text(L10n.of(context)!.customEmojisAndStickers),
                 subtitle: Text(L10n.of(context)!.customEmojisAndStickersBody),
                 onTap: () => context.go('/rooms/settings/chat/emotes'),
                 trailing: const Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Icon(Icons.emoji_emotions_outlined),
+                  child: Icon(Icons.chevron_right_outlined),
                 ),
               ),
               Divider(
                 height: 1,
                 color: Theme.of(context).dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  L10n.of(context)!.calls,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context)!.experimentalVideoCalls,

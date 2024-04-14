@@ -760,6 +760,7 @@
     "type": "text",
     "placeholders": {}
   },
+  "calls": "Calls",
   "customEmojisAndStickers": "Custom emojis and stickers",
   "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
   "emoteShortcode": "Emote shortcode",

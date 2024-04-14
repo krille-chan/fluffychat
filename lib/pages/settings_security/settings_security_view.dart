@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -107,35 +106,14 @@ class SettingsSecurityView extends StatelessWidget {
                       style: const TextStyle(fontFamily: 'monospace'),
                     ),
                   ),
-                  if (error != null)
-                    ListTile(
-                      leading: const Icon(
-                        Icons.warning_outlined,
-                        color: Colors.orange,
-                      ),
-                      title: Text(
-                        error.toLocalizedString(context),
-                        style: const TextStyle(color: Colors.orange),
-                      ),
-                    ),
                   if (capabilities?.mChangePassword?.enabled != false ||
                       error != null)
                     ListTile(
                       leading: const Icon(Icons.password_outlined),
-                      trailing: error != null
-                          ? null
-                          : const Icon(Icons.chevron_right_outlined),
-                      title: Text(
-                        L10n.of(context)!.changePassword,
-                        style: TextStyle(
-                          decoration:
-                              error == null ? null : TextDecoration.lineThrough,
-                        ),
-                      ),
-                      onTap: error != null
-                          ? null
-                          : () =>
-                              context.go('/rooms/settings/security/password'),
+                      trailing: const Icon(Icons.chevron_right_outlined),
+                      title: Text(L10n.of(context)!.changePassword),
+                      onTap: () =>
+                          context.go('/rooms/settings/security/password'),
                     ),
                   ListTile(
                     iconColor: Colors.orange,
