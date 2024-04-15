@@ -2509,6 +2509,8 @@
   "@passwordIsWrong": {},
   "publicLink": "Public link",
   "@publicLink": {},
+  "publicLinks": "Public links",
+  "createNewLink": "Create new link",
   "joinSpace": "Join space",
   "@joinSpace": {},
   "publicSpaces": "Public spaces",

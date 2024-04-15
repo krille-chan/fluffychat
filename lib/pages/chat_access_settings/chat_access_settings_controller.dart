@@ -152,30 +152,75 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     );
   }
 
-  void setCanonicalAlias() async {
+  Future<void> addAlias() async {
+    final domain = room.client.userID?.domain;
+    if (domain == null) {
+      throw Exception('userID or domain is null! This should never happen.');
+    }
+
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context)!.editRoomAliases,
-      cancelLabel: L10n.of(context)!.cancel,
-      okLabel: L10n.of(context)!.ok,
       textFields: [
         DialogTextField(
           prefixText: '#',
-          suffixText: room.client.userID!.domain!,
-          initialText: room.canonicalAlias.localpart,
+          suffixText: domain,
+          hintText: L10n.of(context)!.alias,
         ),
       ],
     );
-    final newAliasLocalpart = input?.singleOrNull?.trim();
-    if (newAliasLocalpart == null || newAliasLocalpart.isEmpty) return;
+    final aliasLocalpart = input?.singleOrNull?.trim();
+    if (aliasLocalpart == null || aliasLocalpart.isEmpty) return;
+    final alias = '#$aliasLocalpart:$domain';
+
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => room.client.setRoomAlias(alias, room.id),
+    );
+    if (result.error != null) return;
+
+    final canonicalAliasConsent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.setAsCanonicalAlias,
+      message: alias,
+      okLabel: L10n.of(context)!.yes,
+      cancelLabel: L10n.of(context)!.no,
+    );
+
+    final altAliases = room
+            .getState(EventTypes.RoomCanonicalAlias)
+            ?.content
+            .tryGetList<String>('alt_aliases')
+            ?.toSet() ??
+        {};
+    if (room.canonicalAlias.isNotEmpty) altAliases.add(room.canonicalAlias);
+    altAliases.add(alias);
+    if (canonicalAliasConsent == OkCancelResult.ok) {
+      altAliases.remove(alias);
+    } else {
+      altAliases.remove(room.canonicalAlias);
+    }
 
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.setCanonicalAlias(
-        '#$newAliasLocalpart:${room.client.userID!.domain!}',
+      future: () => room.client.setRoomStateWithKey(
+        room.id,
+        EventTypes.RoomCanonicalAlias,
+        '',
+        {
+          'alias': canonicalAliasConsent == OkCancelResult.ok
+              ? alias
+              : room.canonicalAlias,
+          if (altAliases.isNotEmpty) 'alt_aliases': altAliases.toList(),
+        },
       ),
     );
   }
+
+  void deleteAlias(String alias) => showFutureLoadingDialog(
+        context: context,
+        future: () => room.client.deleteRoomAlias(alias),
+      );
 
   void setChatVisibilityOnDirectory(bool? visibility) async {
     if (visibility == null) return;
