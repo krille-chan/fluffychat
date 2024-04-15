@@ -58,7 +58,8 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   ),
                 ),
               ),
-              for (final joinRule in JoinRules.values)
+              for (final joinRule
+                  in JoinRules.values..remove(JoinRules.private))
                 RadioListTile<JoinRules>.adaptive(
                   title: Text(
                     joinRule.localizedString(L10n.of(context)!),
