@@ -48,11 +48,13 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                       PermissionsListTile(
                         permissionKey: entry.key,
                         permission: entry.value,
-                        onTap: () => controller.editPowerLevel(
+                        onChanged: (level) => controller.editPowerLevel(
                           context,
                           entry.key,
                           entry.value,
+                          newLevel: level,
                         ),
+                        canEdit: room.canChangePowerLevel,
                       ),
                     Divider(color: Theme.of(context).dividerColor),
                     ListTile(
@@ -78,10 +80,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                           permissionKey: key,
                           permission: value,
                           category: 'notifications',
-                          onTap: () => controller.editPowerLevel(
+                          canEdit: room.canChangePowerLevel,
+                          onChanged: (level) => controller.editPowerLevel(
                             context,
                             key,
                             value,
+                            newLevel: level,
                             category: 'notifications',
                           ),
                         );
@@ -102,10 +106,12 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                         permissionKey: entry.key,
                         category: 'events',
                         permission: entry.value ?? 0,
-                        onTap: () => controller.editPowerLevel(
+                        canEdit: room.canChangePowerLevel,
+                        onChanged: (level) => controller.editPowerLevel(
                           context,
                           entry.key,
                           entry.value ?? 0,
+                          newLevel: level,
                           category: 'events',
                         ),
                       ),

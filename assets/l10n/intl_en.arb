@@ -2525,6 +2525,13 @@
   "@thisDevice": {},
   "initAppError": "An error occured while init the app",
   "@initAppError": {},
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
