@@ -17,7 +17,6 @@ enum UserBottomSheetAction {
   ban,
   kick,
   unban,
-  permission,
   message,
   ignore,
 }
@@ -201,30 +200,6 @@ class UserBottomSheetController extends State<UserBottomSheet> {
           Navigator.of(context).pop();
         }
         break;
-      case UserBottomSheetAction.permission:
-        if (user == null) throw ('User must not be null for this action!');
-        final newPermission = await showPermissionChooser(
-          context,
-          currentLevel: user.powerLevel,
-        );
-        if (newPermission != null) {
-          if (newPermission == 100 &&
-              await showOkCancelAlertDialog(
-                    useRootNavigator: false,
-                    context: context,
-                    title: L10n.of(context)!.areYouSure,
-                    okLabel: L10n.of(context)!.yes,
-                    cancelLabel: L10n.of(context)!.no,
-                    message: L10n.of(context)!.makeAdminDescription,
-                  ) !=
-                  OkCancelResult.ok) break;
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => user.setPower(newPermission),
-          );
-          Navigator.of(context).pop();
-        }
-        break;
       case UserBottomSheetAction.message:
         Navigator.of(context).pop();
         // Workaround for https://github.com/flutter/flutter/issues/27495
@@ -268,6 +243,35 @@ class UserBottomSheetController extends State<UserBottomSheet> {
     );
     if (result.error != null) return;
     Navigator.of(context).pop();
+  }
+
+  void setPowerLevel(int? newLevel) async {
+    final user = widget.user;
+    if (user == null) throw ('User must not be null for this action!');
+
+    final level = newLevel ??
+        await showPermissionChooser(
+          context,
+          currentLevel: user.powerLevel,
+        );
+    if (level == null) return;
+
+    if (level == 100) {
+      final consent = await showOkCancelAlertDialog(
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context)!.areYouSure,
+        okLabel: L10n.of(context)!.yes,
+        cancelLabel: L10n.of(context)!.no,
+        message: L10n.of(context)!.makeAdminDescription,
+      );
+      if (consent != OkCancelResult.ok) return;
+    }
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => user.setPower(level),
+    );
   }
 
   @override

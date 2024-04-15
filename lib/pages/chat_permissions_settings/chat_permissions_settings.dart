@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +9,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 
 class ChatPermissionsSettings extends StatefulWidget {
   const ChatPermissionsSettings({super.key});
@@ -35,30 +35,9 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
       );
       return;
     }
-    newLevel ??= int.tryParse(
-      (await showTextInputDialog(
-            context: context,
-            title: L10n.of(context)!.setPermissionsLevel,
-            textFields: [
-              DialogTextField(
-                initialText: currentLevel.toString(),
-                keyboardType: TextInputType.number,
-                autocorrect: false,
-                validator: (text) {
-                  if (text == null) {
-                    return L10n.of(context)!.pleaseEnterANumber;
-                  }
-                  final level = int.tryParse(text);
-                  if (level == null || level < 0) {
-                    return L10n.of(context)!.pleaseEnterANumber;
-                  }
-                  return null;
-                },
-              ),
-            ],
-          ))
-              ?.singleOrNull ??
-          '',
+    newLevel ??= await showPermissionChooser(
+      context,
+      currentLevel: currentLevel,
     );
     if (newLevel == null) return;
     final content = Map<String, dynamic>.from(
