@@ -288,40 +288,49 @@ class UserBottomSheetView extends StatelessWidget {
                         .participantAction(UserBottomSheetAction.mention),
                   ),
                 if (user != null) ...[
-                  Divider(height: 1, color: Theme.of(context).dividerColor),
+                  Divider(color: Theme.of(context).dividerColor),
                   ListTile(
                     title: Text(
                       '${L10n.of(context)!.userRole} (${user.powerLevel})',
                     ),
                     leading: const Icon(Icons.person_outlined),
-                    trailing: DropdownButton<int>(
-                      onChanged: user.canChangePowerLevel
-                          ? controller.setPowerLevel
-                          : null,
-                      value: {0, 50, 100}.contains(user.powerLevel)
-                          ? user.powerLevel
-                          : null,
-                      items: [
-                        DropdownMenuItem(
-                          value: 0,
-                          child: Text(L10n.of(context)!.user),
-                        ),
-                        DropdownMenuItem(
-                          value: 50,
-                          child: Text(L10n.of(context)!.moderator),
-                        ),
-                        DropdownMenuItem(
-                          value: 100,
-                          child: Text(L10n.of(context)!.admin),
-                        ),
-                        DropdownMenuItem(
-                          value: null,
-                          child: Text(L10n.of(context)!.custom),
-                        ),
-                      ],
+                    trailing: Material(
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius / 2),
+                      color: Theme.of(context).colorScheme.onInverseSurface,
+                      child: DropdownButton<int>(
+                        onChanged: user.canChangePowerLevel
+                            ? controller.setPowerLevel
+                            : null,
+                        value: {0, 50, 100}.contains(user.powerLevel)
+                            ? user.powerLevel
+                            : null,
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius / 2),
+                        underline: const SizedBox.shrink(),
+                        items: [
+                          DropdownMenuItem(
+                            value: 0,
+                            child: Text(L10n.of(context)!.user),
+                          ),
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text(L10n.of(context)!.moderator),
+                          ),
+                          DropdownMenuItem(
+                            value: 100,
+                            child: Text(L10n.of(context)!.admin),
+                          ),
+                          DropdownMenuItem(
+                            value: null,
+                            child: Text(L10n.of(context)!.custom),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Divider(height: 1, color: Theme.of(context).dividerColor),
+                  Divider(color: Theme.of(context).dividerColor),
                 ],
                 if (user != null && user.canKick)
                   ListTile(

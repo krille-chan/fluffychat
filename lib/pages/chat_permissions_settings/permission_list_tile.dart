@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+
 class PermissionsListTile extends StatelessWidget {
   final String permissionKey;
   final int permission;
@@ -72,27 +74,34 @@ class PermissionsListTile extends StatelessWidget {
       subtitle: Text(
         L10n.of(context)!.minimumPowerLevel(permission.toString()),
       ),
-      trailing: DropdownButton<int>(
-        onChanged: canEdit ? onChanged : null,
-        value: {0, 50, 100}.contains(permission) ? permission : null,
-        items: [
-          DropdownMenuItem(
-            value: 0,
-            child: Text(L10n.of(context)!.user),
-          ),
-          DropdownMenuItem(
-            value: 50,
-            child: Text(L10n.of(context)!.moderator),
-          ),
-          DropdownMenuItem(
-            value: 100,
-            child: Text(L10n.of(context)!.admin),
-          ),
-          DropdownMenuItem(
-            value: null,
-            child: Text(L10n.of(context)!.custom),
-          ),
-        ],
+      trailing: Material(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        color: Theme.of(context).colorScheme.onInverseSurface,
+        child: DropdownButton<int>(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          underline: const SizedBox.shrink(),
+          onChanged: canEdit ? onChanged : null,
+          value: {0, 50, 100}.contains(permission) ? permission : null,
+          items: [
+            DropdownMenuItem(
+              value: 0,
+              child: Text(L10n.of(context)!.user),
+            ),
+            DropdownMenuItem(
+              value: 50,
+              child: Text(L10n.of(context)!.moderator),
+            ),
+            DropdownMenuItem(
+              value: 100,
+              child: Text(L10n.of(context)!.admin),
+            ),
+            DropdownMenuItem(
+              value: null,
+              child: Text(L10n.of(context)!.custom),
+            ),
+          ],
+        ),
       ),
     );
   }
