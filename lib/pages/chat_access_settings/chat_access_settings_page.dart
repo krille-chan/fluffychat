@@ -107,7 +107,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   Divider(color: Theme.of(context).dividerColor),
                   ListTile(
                     title: Text(
-                      L10n.of(context)!.publicLinks,
+                      L10n.of(context)!.publicChatAddresses,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
@@ -115,7 +115,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.add_outlined),
-                      tooltip: L10n.of(context)!.createNewLink,
+                      tooltip: L10n.of(context)!.createNewAddress,
                       onPressed: controller.addAlias,
                     ),
                   ),
@@ -138,6 +138,30 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                           ? () => controller.deleteAlias(alias)
                           : null,
                     ),
+                  FutureBuilder(
+                    future: room.client.getLocalAliases(room.id),
+                    builder: (context, snapshot) {
+                      final localAddresses = snapshot.data;
+                      if (localAddresses == null) {
+                        return const SizedBox.shrink();
+                      }
+                      localAddresses.remove(room.canonicalAlias);
+                      localAddresses
+                          .removeWhere((alias) => altAliases.contains(alias));
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: localAddresses
+                            .map(
+                              (alias) => _AliasListTile(
+                                alias: alias,
+                                published: false,
+                                onDelete: () => controller.deleteAlias(alias),
+                              ),
+                            )
+                            .toList(),
+                      );
+                    },
+                  ),
                   Divider(color: Theme.of(context).dividerColor),
                   FutureBuilder(
                     future: room.client.getRoomVisibilityOnDirectory(room.id),
@@ -190,11 +214,13 @@ class _AliasListTile extends StatelessWidget {
     required this.alias,
     required this.onDelete,
     this.isCanonicalAlias = false,
+    this.published = true,
   });
 
   final String alias;
   final void Function()? onDelete;
   final bool isCanonicalAlias;
+  final bool published;
 
   @override
   Widget build(BuildContext context) {

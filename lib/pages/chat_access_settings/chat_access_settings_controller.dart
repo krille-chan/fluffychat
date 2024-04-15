@@ -178,6 +178,9 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
       future: () => room.client.setRoomAlias(alias, room.id),
     );
     if (result.error != null) return;
+    setState(() {});
+
+    if (!room.canChangeStateEvent(EventTypes.RoomCanonicalAlias)) return;
 
     final canonicalAliasConsent = await showOkCancelAlertDialog(
       context: context,
@@ -217,10 +220,13 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     );
   }
 
-  void deleteAlias(String alias) => showFutureLoadingDialog(
-        context: context,
-        future: () => room.client.deleteRoomAlias(alias),
-      );
+  void deleteAlias(String alias) async {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.client.deleteRoomAlias(alias),
+    );
+    setState(() {});
+  }
 
   void setChatVisibilityOnDirectory(bool? visibility) async {
     if (visibility == null) return;
