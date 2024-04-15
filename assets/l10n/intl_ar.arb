@@ -2393,7 +2393,7 @@
       "seconds": {}
     }
   },
-  "hasKnocked": "لقد طرق {user}",
+  "hasKnocked": "🚪 لقد طرق {user}",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2618,5 +2618,63 @@
     }
   },
   "noDatabaseEncryption": "تشفير قاعدة البيانات غير مدعوم على هذا النظام الأساسي",
-  "@noDatabaseEncryption": {}
+  "@noDatabaseEncryption": {},
+  "appLockDescription": "قفل التطبيق عند عدم استخدامه بالرمز السري",
+  "@appLockDescription": {},
+  "accessAndVisibility": "الوصول والرؤية",
+  "@accessAndVisibility": {},
+  "calls": "المكالمات",
+  "@calls": {},
+  "customEmojisAndStickers": "الرموز التعبيرية والملصقات المخصصة",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessagesBody": "إذا قام شخص ما بتنقيح رسالة، فلن تكون هذه الرسالة مرئية في الدردشة بعد الآن.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "إخفاء تنسيقات الرسائل غير الصالحة أو غير المعروفة",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "نظرة عامة",
+  "@overview": {},
+  "notifyMeFor": "أعلمني بـ",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "إعدادات استعادة كلمة المرور",
+  "@passwordRecoverySettings": {},
+  "globalChatId": "معرف الدردشة العامة",
+  "@globalChatId": {},
+  "accessAndVisibilityDescription": "من المسموح له بالانضمام إلى هذه الدردشة وكيف يمكن اكتشاف الدردشة.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickersBody": "قم بإضافة أو مشاركة الرموز التعبيرية أو الملصقات المخصصة التي يمكن استخدامها في أي دردشة.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "إخفاء الرسائل المكررة",
+  "@hideRedactedMessages": {},
+  "hideMemberChangesInPublicChats": "إخفاء تغييرات الأعضاء في الدردشات العامة",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "لا تظهر في المخطط الزمني للدردشة إذا انضم شخص ما إلى محادثة عامة أو غادرها لتحسين إمكانية القراءة.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "usersMustKnock": "المستخدم يجب أن يطرق الباب",
+  "@usersMustKnock": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "يمكن اكتشاف الشات عن طريق البحث في {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "noOneCanJoin": "لا أحد يستطيع الانضمام",
+  "@noOneCanJoin": {},
+  "knocking": "طرق",
+  "@knocking": {},
+  "userWouldLikeToChangeTheChat": "{user} يرغب في الانضمام إلى الدردشة.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "لم يتم بعد إنشاء أي رابط عام",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "دق",
+  "@knock": {},
+  "thereAreCountUsersBlocked": "يوجد حاليًا {count} من المستخدمين المحظورين.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  }
 }
