@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
@@ -41,21 +40,30 @@ class ChatEmojiPicker extends StatelessWidget {
                           onEmojiSelected: controller.onEmojiSelected,
                           onBackspacePressed: controller.emojiPickerBackspace,
                           config: Config(
-                            backspaceColor: theme.colorScheme.primary,
-                            bgColor:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            iconColor:
-                                theme.colorScheme.primary.withOpacity(0.5),
-                            iconColorSelected: theme.colorScheme.primary,
-                            indicatorColor: theme.colorScheme.primary,
-                            noRecents: const NoRecent(),
-                            skinToneDialogBgColor: Color.lerp(
-                              theme.colorScheme.background,
-                              theme.colorScheme.primaryContainer,
-                              0.75,
-                            )!,
-                            skinToneIndicatorColor:
-                                theme.colorScheme.onBackground,
+                            emojiViewConfig: EmojiViewConfig(
+                              noRecents: const NoRecent(),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onInverseSurface,
+                            ),
+                            bottomActionBarConfig: const BottomActionBarConfig(
+                              enabled: false,
+                            ),
+                            categoryViewConfig: CategoryViewConfig(
+                              backspaceColor: theme.colorScheme.primary,
+                              iconColor:
+                                  theme.colorScheme.primary.withOpacity(0.5),
+                              iconColorSelected: theme.colorScheme.primary,
+                              indicatorColor: theme.colorScheme.primary,
+                            ),
+                            skinToneConfig: SkinToneConfig(
+                              dialogBackgroundColor: Color.lerp(
+                                theme.colorScheme.background,
+                                theme.colorScheme.primaryContainer,
+                                0.75,
+                              )!,
+                              indicatorColor: theme.colorScheme.onBackground,
+                            ),
                           ),
                         ),
                         StickerPickerDialog(
