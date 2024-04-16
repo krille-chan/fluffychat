@@ -233,6 +233,10 @@ class NewSpaceController extends State<NewSpace> {
       GoogleAnalytics.createClass(room.name, room.classCode);
       try {
         await room.invite(BotName.byEnvironment);
+        await room.setPower(
+          BotName.byEnvironment,
+          ClassDefaultValues.powerLevelOfAdmin,
+        );
       } catch (err) {
         ErrorHandler.logError(
           e: "Failed to invite pangea bot to space ${room.id}",

@@ -117,7 +117,12 @@ extension PangeaClient on Client {
   // set description to let people know what the hell it is
   Future<Room> getMyAnalyticsRoom(String langCode) async {
     await roomsLoading;
-
+    // ensure room state events (room create,
+    // to check for analytics type) are loaded
+    for (final room in rooms) {
+      if (room.partial) await room.postLoad();
+    }
+    
     final Room? analyticsRoom = analyticsRoomLocal(langCode);
 
     if (analyticsRoom != null) return analyticsRoom;
