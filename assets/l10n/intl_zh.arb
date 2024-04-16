@@ -2676,5 +2676,18 @@
   "usersMustKnock": "用户必须请求加入",
   "@usersMustKnock": {},
   "noDatabaseEncryption": "数据库加密在此平台上不受支持",
-  "@noDatabaseEncryption": {}
+  "@noDatabaseEncryption": {},
+  "userRole": "用户角色",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} 是最低权限等级。",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "公开聊天的地址",
+  "@publicChatAddresses": {},
+  "createNewAddress": "新建地址",
+  "@createNewAddress": {}
 }
