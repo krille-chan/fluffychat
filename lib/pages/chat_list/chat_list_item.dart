@@ -97,11 +97,43 @@ class ChatListItem extends StatelessWidget {
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               onLongPress: onLongPress,
-              leading: Avatar(
-                mxContent: room.avatar,
-                name: displayname,
-                presenceUserId: room.directChatMatrixID,
-                presenceBackgroundColor: backgroundColor,
+              leading: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  HoverBuilder(
+                    builder: (context, hovered) => AnimatedScale(
+                      duration: FluffyThemes.animationDuration,
+                      curve: FluffyThemes.animationCurve,
+                      scale: hovered ? 1.1 : 1.0,
+                      child: Avatar(
+                        mxContent: room.avatar,
+                        name: displayname,
+                        presenceUserId: room.directChatMatrixID,
+                        presenceBackgroundColor: backgroundColor,
+                        onTap: onLongPress,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -2,
+                    right: -2,
+                    child: AnimatedScale(
+                      duration: FluffyThemes.animationDuration,
+                      curve: FluffyThemes.animationCurve,
+                      scale: (hovered || selected) ? 1.0 : 0.0,
+                      child: Material(
+                        color: backgroundColor,
+                        borderRadius: BorderRadius.circular(16),
+                        child: Icon(
+                          selected
+                              ? Icons.check_circle
+                              : Icons.check_circle_outlined,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               title: Row(
                 children: <Widget>[
@@ -281,19 +313,7 @@ class ChatListItem extends StatelessWidget {
               ),
               onTap: onTap,
               trailing: onForget == null
-                  ? hovered || selected
-                      ? IconButton(
-                          color: selected
-                              ? Theme.of(context).colorScheme.primary
-                              : null,
-                          icon: Icon(
-                            selected
-                                ? Icons.check_circle
-                                : Icons.check_circle_outlined,
-                          ),
-                          onPressed: onLongPress,
-                        )
-                      : null
+                  ? null
                   : IconButton(
                       icon: const Icon(Icons.delete_outlined),
                       onPressed: onForget,
