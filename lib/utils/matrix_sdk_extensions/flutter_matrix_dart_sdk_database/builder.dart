@@ -61,11 +61,19 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
 
   final cipher = await getDatabaseCipher();
 
-  final fileStoragePath = PlatformInfos.isIOS || PlatformInfos.isMacOS
+  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
       ? await getLibraryDirectory()
       : await getApplicationSupportDirectory();
+  Directory? fileStorageLocation;
+  try {
+    fileStorageLocation = await getTemporaryDirectory();
+  } on MissingPlatformDirectoryException catch (_) {
+    Logs().w(
+      'No temporary directory for file cache available on this platform.',
+    );
+  }
 
-  final path = join(fileStoragePath.path, '${client.clientName}.sqlite');
+  final path = join(databaseDirectory.path, '${client.clientName}.sqlite');
 
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
@@ -105,7 +113,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     client.clientName,
     database: database,
     maxFileSize: 1024 * 1024 * 10,
-    fileStoragePath: fileStoragePath,
+    fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
   );
 }
