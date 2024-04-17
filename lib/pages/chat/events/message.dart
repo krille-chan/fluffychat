@@ -157,6 +157,7 @@ class Message extends StatelessWidget {
                 right: 0,
                 child: InkWell(
                   onTap: () => onSelect(event),
+                  onLongPress: () => onSelect(event),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   child: Material(
