@@ -104,8 +104,8 @@ dependencies:
   ory_kratos_client: ^1.1.0
   dio: ^5.4.1
   one_of: ^1.5.0
-  purchases_flutter: ^6.24.0
-  purchases_ui_flutter: ^6.24.0
+  purchases_flutter: ^6.26.0
+  purchases_ui_flutter: ^6.26.0
   flutter_inappwebview: ^6.0.0
 
 dev_dependencies:

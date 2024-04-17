@@ -2580,5 +2580,8 @@
   "sub_changeSubText": "Are you sure you want to change your subscription?",
   "sub_changeButton": "Change subscription",
   "sub_renewedOn": "The subscription is renewed on:",
-  "sub_restore": "Restore my subscription"
+  "sub_restore": "Restore my subscription",
+  "sub_restoreText": "This button allows you to restore any subscription previously purchased on another device in order to regain access to premium content or special features.",
+  "sub_notFound": "No subscriptions found",
+  "sub_notFoundText": "No subscriptions were found to restore."
 }

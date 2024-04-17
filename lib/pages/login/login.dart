@@ -276,6 +276,7 @@ class LoginController extends State<Login> {
 
     // Function to log user with Kratos id on Revenu Cat
     final LogInResult result = await Purchases.logIn(userId);
+    print('le login: $userId');
 
     return responseDataQueueStatus;
   }

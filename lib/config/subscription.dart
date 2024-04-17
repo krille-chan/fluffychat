@@ -40,14 +40,19 @@ class SubscriptionManager {
     }
   }
 
-  Future<CustomerInfo?> restoreSub() async {
+  Future<bool> restoreSub() async {
     try {
       CustomerInfo customerInfo = await Purchases.restorePurchases();
-      return customerInfo;
+      if (customerInfo.entitlements.active.isNotEmpty) {
+        //user has access to some entitlement
+        return true;
+      } else {
+        return false;
+      }
     } on PlatformException catch (e) {
       // Error restoring purchases
       print('error: $e');
-      return null;
+      return false;
     }
   }
 }
