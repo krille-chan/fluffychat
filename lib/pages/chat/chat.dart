@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -43,10 +42,12 @@ import 'send_location_dialog.dart';
 class ChatPage extends StatelessWidget {
   final String roomId;
   final String? shareText;
+  final String? eventId;
 
   const ChatPage({
     super.key,
     required this.roomId,
+    this.eventId,
     this.shareText,
   });
 
@@ -70,6 +71,7 @@ class ChatPage extends StatelessWidget {
       key: Key('chat_page_$roomId'),
       room: room,
       shareText: shareText,
+      eventId: eventId,
     );
   }
 }
@@ -77,11 +79,13 @@ class ChatPage extends StatelessWidget {
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
   final String? shareText;
+  final String? eventId;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
     this.shareText,
+    this.eventId,
   });
 
   @override
@@ -257,12 +261,14 @@ class ChatController extends State<ChatPageWithRoom>
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
+
     _loadDraft();
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
           false,
     );
+
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
@@ -272,7 +278,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _tryLoadTimeline() async {
-    loadTimelineFuture = _getTimeline();
+    readMarkerEventId = widget.eventId;
+    loadTimelineFuture = _getTimeline(eventContextId: readMarkerEventId);
     try {
       await loadTimelineFuture;
       final fullyRead = room.fullyRead;
@@ -351,18 +358,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (room.markedUnread) room.markUnread(false);
-
-    // when the scroll controller is attached we want to scroll to an event id, if specified
-    // and update the scroll controller...which will trigger a request history, if the
-    // "load more" button is visible on the screen
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (mounted) {
-        final event = GoRouterState.of(context).uri.queryParameters['event'];
-        if (event != null) {
-          scrollToEventId(event);
-        }
-      }
-    });
 
     return;
   }

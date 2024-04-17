@@ -12,6 +12,8 @@ import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
 
+enum ChatPopupMenuActions { details, mute, unmute, leave, search }
+
 class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
   final bool displayChatDetails;
@@ -41,54 +43,6 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         .listen(
           (u) => setState(() {}),
         );
-    final items = <PopupMenuEntry<String>>[
-      widget.room.pushRuleState == PushRuleState.notify
-          ? PopupMenuItem<String>(
-              value: 'mute',
-              child: Row(
-                children: [
-                  const Icon(Icons.notifications_off_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context)!.muteChat),
-                ],
-              ),
-            )
-          : PopupMenuItem<String>(
-              value: 'unmute',
-              child: Row(
-                children: [
-                  const Icon(Icons.notifications_on_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context)!.unmuteChat),
-                ],
-              ),
-            ),
-      PopupMenuItem<String>(
-        value: 'leave',
-        child: Row(
-          children: [
-            const Icon(Icons.delete_outlined),
-            const SizedBox(width: 12),
-            Text(L10n.of(context)!.leave),
-          ],
-        ),
-      ),
-    ];
-    if (widget.displayChatDetails) {
-      items.insert(
-        0,
-        PopupMenuItem<String>(
-          value: 'details',
-          child: Row(
-            children: [
-              const Icon(Icons.info_outline_rounded),
-              const SizedBox(width: 12),
-              Text(L10n.of(context)!.chatDetails),
-            ],
-          ),
-        ),
-      );
-    }
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -101,10 +55,10 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           onKeysPressed: _showChatDetails,
           child: const SizedBox.shrink(),
         ),
-        PopupMenuButton(
-          onSelected: (String choice) async {
+        PopupMenuButton<ChatPopupMenuActions>(
+          onSelected: (choice) async {
             switch (choice) {
-              case 'leave':
+              case ChatPopupMenuActions.leave:
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
                   context: context,
@@ -123,29 +77,83 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   }
                 }
                 break;
-              case 'mute':
+              case ChatPopupMenuActions.mute:
                 await showFutureLoadingDialog(
                   context: context,
                   future: () =>
                       widget.room.setPushRuleState(PushRuleState.mentionsOnly),
                 );
                 break;
-              case 'unmute':
+              case ChatPopupMenuActions.unmute:
                 await showFutureLoadingDialog(
                   context: context,
                   future: () =>
                       widget.room.setPushRuleState(PushRuleState.notify),
                 );
                 break;
-              case 'todos':
-                context.go('/rooms/${widget.room.id}/tasks');
-                break;
-              case 'details':
+              case ChatPopupMenuActions.details:
                 _showChatDetails();
+                break;
+              case ChatPopupMenuActions.search:
+                context.go('/rooms/${widget.room.id}/search');
                 break;
             }
           },
-          itemBuilder: (BuildContext context) => items,
+          itemBuilder: (BuildContext context) => [
+            if (widget.displayChatDetails)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.details,
+                child: Row(
+                  children: [
+                    const Icon(Icons.info_outline_rounded),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.chatDetails),
+                  ],
+                ),
+              ),
+            if (widget.room.pushRuleState == PushRuleState.notify)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.mute,
+                child: Row(
+                  children: [
+                    const Icon(Icons.notifications_off_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.muteChat),
+                  ],
+                ),
+              )
+            else
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.unmute,
+                child: Row(
+                  children: [
+                    const Icon(Icons.notifications_on_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context)!.unmuteChat),
+                  ],
+                ),
+              ),
+            PopupMenuItem<ChatPopupMenuActions>(
+              value: ChatPopupMenuActions.search,
+              child: Row(
+                children: [
+                  const Icon(Icons.search_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.search),
+                ],
+              ),
+            ),
+            PopupMenuItem<ChatPopupMenuActions>(
+              value: ChatPopupMenuActions.leave,
+              child: Row(
+                children: [
+                  const Icon(Icons.delete_outlined),
+                  const SizedBox(width: 12),
+                  Text(L10n.of(context)!.leave),
+                ],
+              ),
+            ),
+          ],
         ),
       ],
     );
