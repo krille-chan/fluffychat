@@ -54,6 +54,14 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
               },
               child: Text(L10n.of(context)!.sub_payWallButton),
             ),
+            const SizedBox(height: 20),
+            if (PlatformInfos.shouldInitializePurchase())
+              ElevatedButton(
+                onPressed: () async {
+                  await SubscriptionManager().restoreSub();
+                },
+                child: Text(L10n.of(context)!.sub_restore),
+              ),
           ],
         ),
       ),

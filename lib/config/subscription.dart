@@ -39,4 +39,15 @@ class SubscriptionManager {
       SubscriptionManager().presentPaywall();
     }
   }
+
+  Future<CustomerInfo?> restoreSub() async {
+    try {
+      CustomerInfo customerInfo = await Purchases.restorePurchases();
+      return customerInfo;
+    } on PlatformException catch (e) {
+      // Error restoring purchases
+      print('error: $e');
+      return null;
+    }
+  }
 }

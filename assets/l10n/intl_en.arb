@@ -2579,5 +2579,6 @@
   "sub_changeSub": "Change subscription for",
   "sub_changeSubText": "Are you sure you want to change your subscription?",
   "sub_changeButton": "Change subscription",
-  "sub_renewedOn": "The subscription is renewed on:"
+  "sub_renewedOn": "The subscription is renewed on:",
+  "sub_restore": "Restore my subscription"
 }
