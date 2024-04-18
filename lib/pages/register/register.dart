@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:built_value/json_object.dart';
@@ -61,25 +60,15 @@ class RegisterController extends State<Register> {
   }
 
   bool _validatePassword(String password) {
-    // Define regex to validate password format
+    // Define regex to validate password format and length
     final RegExp passwordRegex =
-        RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{3,16}$');
+        RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$');
 
     // Check that the password matches the regex
     if (!passwordRegex.hasMatch(password)) {
       setState(
           () => passwordError = L10n.of(context)?.register_passwordErrorOne);
       return false;
-    }
-
-    // Check if the password contains one of the following keywords
-    final List<String> keywords = ['password', '123456', 'qwerty'];
-    for (final keyword in keywords) {
-      if (password.contains(keyword)) {
-        setState(
-            () => passwordError = L10n.of(context)?.register_passwordErrorTwo);
-        return false;
-      }
     }
 
     // Reset password error if valid
