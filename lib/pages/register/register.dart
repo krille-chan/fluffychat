@@ -87,6 +87,7 @@ class RegisterController extends State<Register> {
     }
 
     if (!_validateEmail(emailController.text)) {
+      setState(() => emailError = L10n.of(context)!.register_invalidEmail);
       return;
     }
 
