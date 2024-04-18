@@ -17,10 +17,10 @@ Future<void> deleteConversationDialog(BuildContext context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(
-          L10n.of(context)!.bridgeBot_deleteConvTitle,
+          L10n.of(context)!.bridgeBotDeleteConvTitle,
         ),
         content: Text(
-          L10n.of(context)!.bridgeBot_deleteConvDescription,
+          L10n.of(context)!.bridgeBotDeleteConvDescription,
         ),
         actions: <Widget>[
           TextButton(

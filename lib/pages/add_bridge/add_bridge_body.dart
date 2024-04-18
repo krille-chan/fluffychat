@@ -97,7 +97,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           network.setError(true);
         });
         showCatchErrorDialog(
-            context, "${L10n.of(context)!.err_toConnect} ${result['name']}");
+            context, "${L10n.of(context)!.errToConnect} ${result['name']}");
       }
     });
   }
@@ -241,7 +241,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           await deleteConversationDialog(context, network, botConnection);
         } else {
           // Display error message to warn user
-          showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+          showCatchErrorDialog(context, L10n.of(context)!.errTimeOut);
         }
       }
 
@@ -270,7 +270,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
           });
           // error message
           showCatchErrorDialog(
-              context, "${L10n.of(context)!.err_toConnect} ${network.name}");
+              context, "${L10n.of(context)!.errToConnect} ${network.name}");
         }
       }
     }
@@ -297,7 +297,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         );
       } else {
         return Text(
-          L10n.of(context)!.err_loading,
+          L10n.of(context)!.errLoading,
           style: const TextStyle(
             color: Colors.red,
           ),

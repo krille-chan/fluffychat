@@ -30,7 +30,7 @@ class RegisterView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
                 Text(
-                  L10n.of(context)!.register_title.toUpperCase(),
+                  L10n.of(context)!.registerTitle.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 24,
@@ -96,7 +96,7 @@ class RegisterView extends StatelessWidget {
                       errorStyle: const TextStyle(color: Colors.orange),
                       errorMaxLines: 3,
                       fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.register_confirmPassword,
+                      hintText: L10n.of(context)!.registerConfirmPassword,
                     ),
                   ),
                 ),

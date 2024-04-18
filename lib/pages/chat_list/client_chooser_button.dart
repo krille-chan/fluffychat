@@ -167,7 +167,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.account_tree_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.bridgeBot_menuItemTitle),
+            Text(L10n.of(context)!.bridgeBotMenuItemTitle),
           ],
         ),
       ),

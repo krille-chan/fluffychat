@@ -44,7 +44,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
     // Check that the password matches the regex
     if (!usernameRegex.hasMatch(username)) {
-      setState(() => _usernameError = L10n.of(context)?.username_requirements);
+      setState(() => _usernameError = L10n.of(context)?.usernameRequirements);
       return false;
     }
 
@@ -52,7 +52,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     for (final keyword in keywords) {
       if (username.contains(keyword)) {
         setState(
-            () => _usernameError = L10n.of(context)?.register_passwordErrorTwo);
+            () => _usernameError = L10n.of(context)?.registerPasswordErrorTwo);
         return false;
       }
     }
@@ -88,7 +88,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       // Display a SnackBar to indicate a successful name change
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${L10n.of(context)!.username_success} $newUsername'),
+          content: Text('${L10n.of(context)!.usernameSuccess} $newUsername'),
           backgroundColor: Colors.green,
         ),
       );
@@ -120,7 +120,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
       if (_usernameController.text.isEmpty) {
         setState(() {
-          _usernameError = L10n.of(context)!.register_requiredField;
+          _usernameError = L10n.of(context)!.registerRequiredField;
         });
         return;
       } else {
@@ -138,7 +138,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.username_pageTitle),
+        title: Text(L10n.of(context)!.usernamePageTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -158,7 +158,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   ? Column(
                       children: [
                         Text(
-                          L10n.of(context)!.username_yourPosition,
+                          L10n.of(context)!.usernameYourPosition,
                           style: const TextStyle(fontSize: 18),
                         ),
                         Text(
@@ -168,12 +168,12 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                       ],
                     )
                   : Text(
-                      L10n.of(context)!.username_itsYourTurn,
+                      L10n.of(context)!.usernameItsYourTurn,
                       style: const TextStyle(fontSize: 23),
                     ),
               const SizedBox(height: 10),
               Text(
-                L10n.of(context)!.username_changeUsername,
+                L10n.of(context)!.usernameChangeUsername,
                 style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 20),
@@ -187,7 +187,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return L10n.of(context)!.register_requiredField;
+                    return L10n.of(context)!.registerRequiredField;
                   }
                   return null;
                 },
@@ -196,7 +196,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               widget.queueStatus['username'] != null &&
                       widget.queueStatus['username'] != ""
                   ? Text(
-                      L10n.of(context)!.username_advertisement,
+                      L10n.of(context)!.usernameAdvertisement,
                     )
                   : Container(),
               const SizedBox(height: 20),

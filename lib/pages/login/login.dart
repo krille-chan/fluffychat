@@ -124,7 +124,7 @@ class LoginController extends State<Login> {
       return setState(() => loading = false);
     } catch (exception) {
       print(exception);
-      setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
+      setState(() => passwordError = L10n.of(context)!.errUsernameOrPassword);
       return setState(() => loading = false);
     }
   }

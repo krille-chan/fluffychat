@@ -36,7 +36,7 @@ Future<bool> twoFactorDemandCode(
         child: SingleChildScrollView(
           child: AlertDialog(
             title: Text(
-              L10n.of(context)!.twoFactor_title,
+              L10n.of(context)!.twoFactorTitle,
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ Future<bool> twoFactorDemandCode(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    L10n.of(context)!.twoFactor_content,
+                    L10n.of(context)!.twoFactorContent,
                   ),
                   const SizedBox(height: 5),
                   TextFormField(
@@ -57,7 +57,7 @@ Future<bool> twoFactorDemandCode(
                     // InputDecoration(labelText: 'code'),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return L10n.of(context)!.err_emptyField;
+                        return L10n.of(context)!.errEmptyField;
                       }
                       return null;
                     },
@@ -115,12 +115,12 @@ Future<bool> twoFactorDemandCode(
                             ); // returns True if the connection is successful
                           } else if (invalidMatch.hasMatch(result)) {
                             showCatchErrorDialog(context,
-                                L10n.of(context)!.err_invalidTwoFactorCode);
+                                L10n.of(context)!.errInvalidTwoFactorCode);
                             result = "";
                           } else {
                             showCatchErrorDialog(
                               context,
-                              L10n.of(context)!.err_timeOut,
+                              L10n.of(context)!.errTimeOut,
                             );
                             result = "";
                           }
@@ -145,7 +145,7 @@ Future<bool> twoFactorDemandCode(
                           } else if (invalidMatch.hasMatch(result)) {
                             showCatchErrorDialog(
                               context,
-                              L10n.of(context)!.err_invalidTwoFactorCode,
+                              L10n.of(context)!.errInvalidTwoFactorCode,
                             );
                             result = "";
                           }

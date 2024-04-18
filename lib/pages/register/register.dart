@@ -50,7 +50,7 @@ class RegisterController extends State<Register> {
 
     // Check if the email matches the regex
     if (!emailRegex.hasMatch(email)) {
-      setState(() => emailError = L10n.of(context)?.register_emailError);
+      setState(() => emailError = L10n.of(context)?.registerEmailError);
       return false;
     }
 
@@ -67,7 +67,7 @@ class RegisterController extends State<Register> {
     // Check that the password matches the regex
     if (!passwordRegex.hasMatch(password)) {
       setState(
-          () => passwordError = L10n.of(context)?.register_passwordErrorOne);
+          () => passwordError = L10n.of(context)?.registerPasswordErrorOne);
       return false;
     }
 
@@ -80,27 +80,27 @@ class RegisterController extends State<Register> {
     setState(() => confirmPasswordError = null);
 
     if (emailController.text.isEmpty) {
-      setState(() => emailError = L10n.of(context)!.register_requiredField);
+      setState(() => emailError = L10n.of(context)!.registerRequiredField);
       return;
     } else {
       setState(() => emailError = null);
     }
 
     if (!_validateEmail(emailController.text)) {
-      setState(() => emailError = L10n.of(context)!.register_invalidEmail);
+      setState(() => emailError = L10n.of(context)!.registerInvalidEmail);
       return;
     }
 
     if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context)!.register_requiredField);
+      setState(() => passwordError = L10n.of(context)!.registerRequiredField);
       return;
     } else {
       setState(() => passwordError = null);
     }
 
     if (confirmPasswordController.text.isEmpty) {
-      setState(() =>
-          confirmPasswordError = L10n.of(context)!.register_requiredField);
+      setState(
+          () => confirmPasswordError = L10n.of(context)!.registerRequiredField);
       return;
     } else {
       setState(() => confirmPasswordError = null);
@@ -112,7 +112,7 @@ class RegisterController extends State<Register> {
 
     if (passwordController.text != confirmPasswordController.text) {
       setState(() =>
-          confirmPasswordError = L10n.of(context)!.register_notSamePassword);
+          confirmPasswordError = L10n.of(context)!.registerNotSamePassword);
       return;
     }
 
@@ -161,6 +161,7 @@ class RegisterController extends State<Register> {
           },
         ),
       );
+
       final queueStatus = queueStatusResponse.data;
 
       if (queueStatus != null) {
