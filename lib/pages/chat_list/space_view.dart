@@ -56,8 +56,8 @@ class _SpaceViewState extends State<SpaceView> {
   // #Pangea
   @override
   void dispose() {
-    super.dispose();
     _roomSubscription?.cancel();
+    super.dispose();
   }
   // Pangea#
 
@@ -108,9 +108,15 @@ class _SpaceViewState extends State<SpaceView> {
       });
       rethrow;
     } finally {
-      setState(() {
-        loading = false;
-      });
+      // #Pangea
+      if (mounted) {
+        // Pangea#
+        setState(() {
+          loading = false;
+        });
+        // #Pangea
+      }
+      // Pangea#
     }
   }
 
@@ -482,11 +488,11 @@ class _SpaceViewState extends State<SpaceView> {
       onTapSpaceChild, and they interfere with each other */
       if (event.isMembershipUpdateByType(
             Membership.leave,
-            Matrix.of(context).client.userID!,
+            client.userID!,
           ) ||
           event.isMembershipUpdateByType(
             Membership.invite,
-            Matrix.of(context).client.userID!,
+            client.userID!,
           ) ||
           event.isSpaceChildUpdate(activeSpaceId)) {
         _refresh();

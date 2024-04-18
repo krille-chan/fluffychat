@@ -949,15 +949,18 @@ extension PangeaRoom on Room {
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
-    if (spaceChildren.isEmpty) return false;
+    int joinedRooms = 0;
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
       if (room?.locked == false) {
         return false;
       }
+      if (room != null) {
+        joinedRooms += 1;
+      }
     }
-    return true;
+    return joinedRooms > 0 ? true : false;
   }
 
   Future<bool> suggestedInSpace(Room space) async {

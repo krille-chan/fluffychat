@@ -393,7 +393,6 @@ class ClientChooserButton extends StatelessWidget {
           ClassCodeUtil.joinWithClassCodeDialog(
             context,
             controller.pangeaController,
-            null,
           );
           break;
         case SettingsAction.findAConversationPartner:
