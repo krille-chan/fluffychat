@@ -64,7 +64,6 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   Future<void> updateUsername(String sessionToken, String newUsername) async {
     try {
-
       // Validate the username
       if (!_validateUsername(newUsername)) {
         return;
@@ -112,6 +111,26 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     if (widget.queueStatus['username'] != null &&
         widget.queueStatus['username'] != "") {
       _usernameController.text = widget.queueStatus['username'];
+    }
+  }
+
+  void _onSubmitButtonPressed() async {
+    if (widget.queueStatus['username'] != _usernameController.text) {
+      final newUsername = _usernameController.text;
+
+      if (_usernameController.text.isEmpty) {
+        setState(() {
+          _usernameError = L10n.of(context)!.register_requiredField;
+        });
+        return;
+      } else {
+        setState(() {
+          _usernameError = null;
+        });
+
+        // Update user name
+        await updateUsername(widget.sessionToken, newUsername);
+      }
     }
   }
 
@@ -182,27 +201,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   : Container(),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  if (widget.queueStatus['username'] !=
-                      _usernameController.text) {
-                    final newUsername = _usernameController.text;
-
-                    if (_usernameController.text.isEmpty) {
-                      setState(() {
-                        _usernameError =
-                            L10n.of(context)!.register_requiredField;
-                      });
-                      return;
-                    } else {
-                      setState(() {
-                        _usernameError = null;
-                      });
-
-                      // Update user name
-                      await updateUsername(widget.sessionToken, newUsername);
-                    }
-                  }
-                },
+                onPressed: _onSubmitButtonPressed,
                 child: Text(L10n.of(context)!.submit),
               ),
             ],
@@ -222,7 +221,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 // Custom TextInputFormatter to convert to lower case
 class LowerCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     return TextEditingValue(
       text: newValue.text.toLowerCase(),
       selection: newValue.selection,
