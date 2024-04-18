@@ -225,30 +225,27 @@ class _AliasListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Row(
-        children: [
-          TextButton.icon(
-            onPressed: () => FluffyShare.share(
-              'https://matrix.to/#/$alias',
-              context,
-            ),
-            icon: isCanonicalAlias
-                ? const Icon(Icons.star)
-                : const Icon(Icons.link_outlined),
-            label: SelectableText(
-              'https://matrix.to/#/$alias',
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-                decorationColor: Theme.of(context).colorScheme.primary,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
+      leading: isCanonicalAlias
+          ? const Icon(Icons.star)
+          : const Icon(Icons.link_outlined),
+      title: InkWell(
+        onTap: () => FluffyShare.share(
+          'https://matrix.to/#/$alias',
+          context,
+        ),
+        child: Text(
+          'https://matrix.to/#/$alias',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            decorationColor: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.primary,
+            fontSize: 14,
           ),
-          const Spacer(),
-        ],
+        ),
       ),
       trailing: onDelete != null
           ? IconButton(
+              color: Theme.of(context).colorScheme.error,
               icon: const Icon(Icons.delete_outlined),
               onPressed: onDelete,
             )
