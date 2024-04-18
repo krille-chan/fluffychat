@@ -335,9 +335,12 @@ class ChatDetailsView extends StatelessWidget {
                           ListTile(
                             title: Text(L10n.of(context)!.inviteContact),
                             leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary,
-                              foregroundColor: Colors.white,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                              foregroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
                               radius: Avatar.defaultSize / 2,
                               child: const Icon(Icons.add_outlined),
                             ),
