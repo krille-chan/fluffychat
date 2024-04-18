@@ -232,6 +232,7 @@ class PangeaController {
       if (space.canInvite && !userIds.contains(BotName.byEnvironment)) {
         try {
           await space.invite(BotName.byEnvironment);
+          await space.postLoad();
           await space.setPower(
             BotName.byEnvironment,
             ClassDefaultValues.powerLevelOfAdmin,

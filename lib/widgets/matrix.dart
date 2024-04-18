@@ -268,8 +268,14 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
       LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
-      LoadingDialog.defaultOnError =
-          (e) => (e as Object?)!.toLocalizedString(context);
+      // #Pangea
+      // LoadingDialog.defaultOnError =
+      //     (e) => (e as Object?)!.toLocalizedString(context);
+      LoadingDialog.defaultOnError = (e) =>
+          (e as Object?)?.toLocalizedString(context) ??
+          e?.toString() ??
+          L10n.of(context)!.oopsSomethingWentWrong;
+      // Pangea#
     });
   }
 
