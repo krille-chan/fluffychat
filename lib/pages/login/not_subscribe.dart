@@ -30,14 +30,28 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.7),
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // White Container with Opacity Gradient
           Container(
-            height: 250,
-            color: Colors.white,
+            height: 260,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white.withOpacity(0.9),
+                  Colors.white.withOpacity(0.9), // Opacity at the top
+                  Colors.white.withOpacity(0.4),
+                  Colors.white.withOpacity(0), // Opacity at the bottom
+                ],
+              ),
+            ),
+            child: null,
           ),
           Expanded(
             child: Padding(
