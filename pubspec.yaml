@@ -63,10 +63,7 @@ dependencies:
   http: ^0.13.6
   image_picker: ^1.0.0
   intl: any
-  # #Pangea
-  # just_audio: ^0.9.0
-  just_audio: ^0.9.36
-  # Pangea#
+  just_audio: ^0.9.37
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.8.1
   linkify: ^5.0.0
@@ -85,10 +82,7 @@ dependencies:
   qr_code_scanner: ^1.0.0
   qr_flutter: ^4.0.0
   receive_sharing_intent: ^1.4.5
-  # #Pangea
-  # record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
-  record: ^5.0.4
-  # Pangea#
+  record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
   scroll_to_index: ^3.0.1
   share_plus: ^7.2.1
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
