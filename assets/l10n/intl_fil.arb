@@ -419,5 +419,452 @@
       "username": {},
       "rules": {}
     }
+  },
+  "commandHint_clearcache": "I-clear ang cache",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Iwaksi ang sesyon",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_create": "Gumawa ng walang lamang group chat\nGumamit ng --no-encryption para i-disable ang encryption",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "configureChat": "I-configure ang chat",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Kumpirmahin",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Paki-kumpara ang mga numero",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Kinopya sa clipboard",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Kopyahin",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Kopyahin sa clipboard",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countParticipants": "{count} mga kasali",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "createdTheChat": "💬 Ginawa ni {username} ang chat",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "createGroup": "Gumawa ng grupo",
+  "@createGroup": {},
+  "createNewSpace": "Bagong space",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentlyActive": "Kasalukuyang aktibo",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Madilim",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Pinalitan na ang display name",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Mga Direktang Chat",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allRooms": "Lahat ng Mga Group Chat",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "I-download ang file",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editBlockedServers": "I-edit ang mga naka-block na server",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatPermissions": "Mga pahintulot ng chat",
+  "@chatPermissions": {},
+  "editDisplayname": "I-edit ang display name",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "I-edit ang mga alyas ng room",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "I-edit",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "I-edit ang avatar ng room",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "Umiiral na ang emote!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Walang lamang chat",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "I-enable ang encryption",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Pag-encrypt",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Naka-encrypt",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Hindi naka-enable ang encryption",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Handa na ang lahat!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLockDescription": "I-lock ang app kapag hindi ginagamit sa pamamagitan ng pin code",
+  "@appLockDescription": {},
+  "commandHint_dm": "Magsimula ng direktong chat\nGumamit ng --no-encryptiom para i-disable ang encryption",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "Magpadala ng HTML-formatted na text",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_invite": "Imbitahan ang ibinigay na user sa room na ito",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "Sumali sa ibinigay na room",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "Tanggalin ang ibinigay na user sa room na ito",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "Umalis sa room na ito",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_me": "Ilarawan ang iyong sarili",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_myroomavatar": "Ilapat ang iyong larawan para sa room na ito (bilang mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "Ilapat ang iyong display name para sa room na ito",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_op": "Ilapat ang level ng lakas sa ibinigay na user (default: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "Magpadala ng reply bilang reaksyon",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_send": "Magpadala ng text",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHint_unban": "I-unban ang ibinigay na user sa room na ito",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Hindi wastong command",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "compareEmojiMatch": "Paki-kumpara ang mga emoji",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Kumonekta",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Naglalaman ng display name",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Gumawa",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{month}/{day}",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{month}/{day}/{year}",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deactivateAccountWarning": "Ide-deactivate nito ang iyong user account. Hindi na ito maaaring bawiin! Sigurado ka?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Burahin",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Burahin ang mensahe",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Device",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "ID ng Device",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Mga Device",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Hindi wastong shortcode ng emote!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteKeyboardNoRecents": "Ang mga kamakailang ginamit na emote ay lalabas dito...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "calls": "Mga Tawag",
+  "@calls": {},
+  "customEmojisAndStickers": "Mga custom emoji at sticker",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Magdagdag o magbahagi ng mga custom emoji o sticker na maaring gamitin sa anumang chat.",
+  "@customEmojisAndStickersBody": {},
+  "emoteShortcode": "Shortcode ng emoji",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Kailangan mong pumili ng emote shortcode at isang larawan!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "I-enable ang emote pack globally",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "Tinapos ni {senderName} ang tawag",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterAnEmailAddress": "Maglagay ng email address",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserver": "Homeserver",
+  "@homeserver": {},
+  "enterYourHomeserver": "Ilagay ang iyong homeserver",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Lubhang nakakasakit",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_plain": "Magpadala ng hindi na-format na text",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandMissing": "Hindi isang command ang {command}.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "contactHasBeenInvitedToTheGroup": "Inimbita ang contact sa group",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Naglalaman ng username",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "Inulat ang nilalaman sa mga pangangasiwa ng server",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Hindi ma-decrypt ang mensahe: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "defaultPermissionLevel": "Default na antas ng pahintulot",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Burahin ang account",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Mga emote pack para sa room",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Mga Setting ng Emote",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "globalChatId": "Global chat ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Pag-access at visibility",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Sino ang pinapayagang sumali sa chat at paano matutuklas ang chat.",
+  "@accessAndVisibilityDescription": {},
+  "enableEncryptionWarning": "Hindi mo madi-disable ang encryption. Sigurado ka ba?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Hindi makuha ang lokasyon: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "fileName": "Pangalan ng file",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Laki ng font",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
   }
 }
