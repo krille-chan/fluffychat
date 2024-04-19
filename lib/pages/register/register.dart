@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:built_value/json_object.dart';
@@ -195,7 +196,26 @@ class RegisterController extends State<Register> {
         print("Exception when calling Kratos log: $e\n");
       }
       Logs().v("Error Kratos login : ${e.response?.data}");
+      if (e.error is SocketException) {
+        // Connection errors
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(L10n.of(context)!.noConnectionToTheServer),
+            content: Text(L10n.of(context)!.errorConnectionText),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(L10n.of(context)!.ok),
+              ),
+            ],
+          ),
+        );
 
+        return setState(() => loading = false);
+      }
       // Display Kratos error messages to the user
       if (e.response!.data['ui']['messages'][0]['text'] != null) {
         final errorMessage = e.response!.data['ui']['messages'][0]['text'];

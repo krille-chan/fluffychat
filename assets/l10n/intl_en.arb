@@ -2569,5 +2569,6 @@
     "usernameAdvertisement": "This username is reserved for you. If you change it, you risk losing it.",
     "usernameSuccess": "Successful name change for",
     "usernameRequirements": "Username must have at least 3 and at most 16 characters consisting of lowercase letters and digits",
-    "registerInvalidEmail": "Please enter a valid email address."
+    "registerInvalidEmail": "Please enter a valid email address.",
+    "errorConnectionText": "Please check your Internet connection and try again."
 }

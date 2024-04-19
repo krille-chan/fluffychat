@@ -2494,5 +2494,6 @@
     "usernameAdvertisement": "Ce nom d'utilisateur vous est réservé. Si vous le changez, vous risquez de le perdre.",
     "usernameSuccess": "Changement de nom réussi pour",
     "usernameRequirements": "Le nom d'utilisateur doit comporter au moins 3 et au plus 16 caractères, composés de lettres minuscules et de chiffres",
-    "registerInvalidEmail": "Veuillez entrer une adresse e-mail valide."
+    "registerInvalidEmail": "Veuillez entrer une adresse e-mail valide.",
+    "errorConnectionText": "Veuillez vérifier votre connexion Internet et réessayer."
 }
