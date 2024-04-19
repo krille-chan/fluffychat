@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -18,7 +19,10 @@ void chatListHandleSpaceTap(
 ) {
   void setActiveSpaceAndCloseChat() {
     controller.setActiveSpace(space.id);
-    if (controller.activeChat != null &&
+
+    if (FluffyThemes.isColumnMode(context)) {
+      context.push('/spaces/${space.id}');
+    } else if (controller.activeChat != null &&
         !space.isFirstOrSecondChild(controller.activeChat!)) {
       context.go("/rooms");
     }
