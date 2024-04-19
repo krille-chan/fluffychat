@@ -30,44 +30,61 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          L10n.of(context)!.subscription,
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: Colors.black.withOpacity(0.7),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            height: 250,
+            color: Colors.white,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    L10n.of(context)!.sub_subNeed,
+                    'Start Messaging Today',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 20),
                   ),
-                  const SizedBox(height: 20),
-                  // Arguments for the subscription need
-                  Column(
-                    children: [
-                      _buildFeatureRow(
-                          "📱 Centralize all your messaging apps: Messenger, WhatsApp, Instagram, LinkedIn, Discord...",
-                          context),
-                      _buildFeatureRow(
-                          "✉️ Respond from Tawkie without restrictions",
-                          context),
-                      _buildFeatureRow(
-                          "🔔 Receive notifications from any messaging app directly on Tawkie",
-                          context),
-                      _buildFeatureRow(
-                          "📸 Send videos, photos, audio recordings, and share posts",
-                          context),
-                    ],
+                  const SizedBox(height: 20.0),
+                  Text(
+                    'Toutes tes messageries favorites rassemblées',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
                   ),
-                  const SizedBox(height: 20),
+                  Text(
+                    'Voceaux, photos, videos, post/reel',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Chiffrement des messages',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Remettre en non-lu',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () {
                       if (PlatformInfos.shouldInitializePurchase()) {
@@ -77,17 +94,25 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
                         // Todo: make purchases for Web, Windows and Linux
                       }
                     },
-                    child: Text(L10n.of(context)!.sub_payWallButton),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                    ),
+                    child: Text(
+                      L10n.of(context)!.next,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
                   ),
-                ],
-              ),
-              if (PlatformInfos.shouldInitializePurchase())
-                Column(
-                  children: [
-                    Text(L10n.of(context)!.sub_restoreText),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () async {
+                  if (PlatformInfos.shouldInitializePurchase())
+                    InkWell(
+                      onTap: () async {
                         final success = await showFutureLoadingDialog<bool>(
                           context: context,
                           future: SubscriptionManager().restoreSub,
@@ -112,13 +137,19 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
                           );
                         }
                       },
-                      child: Text(L10n.of(context)!.sub_restore),
+                      child: Text(
+                        L10n.of(context)!.sub_restore,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ],
-                )
-            ],
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -126,24 +157,5 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
   // Method to redirect to the '/rooms' page
   void _redirectToRooms() {
     context.go('/rooms');
-  }
-
-  // Helper method to build a row for a feature argument
-  Widget _buildFeatureRow(String feature, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        children: [
-          Icon(Icons.arrow_forward_ios, size: 16),
-          SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              feature,
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
