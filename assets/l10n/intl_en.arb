@@ -2583,5 +2583,10 @@
   "sub_restore": "Restore my subscription",
   "sub_restoreText": "This button allows you to restore any subscription previously purchased on another device in order to regain access to premium content or special features.",
   "sub_notFound": "No subscriptions found",
-  "sub_notFoundText": "No subscriptions were found to restore."
+  "sub_notFoundText": "No subscriptions were found to restore.",
+  "sub_not_sub_title": "Start Messaging Today",
+  "sub_not_sub_arg_one": "All your favorite messengers together",
+  "sub_not_sub_arg_two": "Voice, photo, video, post/reel",
+  "sub_not_sub_arg_three": "Message encryption",
+  "sub_not_sub_arg_four": "Put back in non-lu"
 }

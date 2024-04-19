@@ -38,20 +38,27 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
           // White Container with Opacity Gradient
           Container(
             height: 260,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.9),
-                  Colors.white.withOpacity(0.9), // Opacity at the top
-                  Colors.white.withOpacity(0.4),
-                  Colors.white.withOpacity(0), // Opacity at the bottom
-                ],
+            child: ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white.withOpacity(0.9),
+                    Colors.white.withOpacity(0.9), // Opacity at the top
+                    Colors.white.withOpacity(0.4),
+                    Colors.white.withOpacity(0), // Opacity at the bottom
+                  ],
+                ).createShader(bounds);
+              },
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                'assets/no_sub.png',
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+                height: 260,
               ),
             ),
-            child: null,
           ),
           Expanded(
             child: Padding(
@@ -61,7 +68,7 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Start Messaging Today',
+                    L10n.of(context)!.sub_not_sub_title,
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -71,28 +78,28 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
                   ),
                   const SizedBox(height: 20.0),
                   Text(
-                    'Toutes tes messageries favorites rassemblées',
+                    L10n.of(context)!.sub_not_sub_arg_one,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    'Voceaux, photos, videos, post/reel',
+                    L10n.of(context)!.sub_not_sub_arg_two,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    'Chiffrement des messages',
+                    L10n.of(context)!.sub_not_sub_arg_three,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    'Remettre en non-lu',
+                    L10n.of(context)!.sub_not_sub_arg_four,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,

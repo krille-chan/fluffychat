@@ -2504,5 +2504,10 @@
     "sub_changeSub": "Changer d'abonnement pour",
     "sub_changeSubText": "Êtes-vous sûr de vouloir changer d'abonnement ?",
     "sub_changeButton": "Changer d'abonnement",
-    "sub_renewedOn": "Le renouvellement de l'abonnement se fait le :"
+    "sub_renewedOn": "Le renouvellement de l'abonnement se fait le :",
+    "sub_not_sub_title": "Commencez à envoyer des messages dès aujourd'hui",
+    "sub_not_sub_arg_one": "Toutes tes messageries favorites rassemblées",
+    "sub_not_sub_arg_two": "Vocaux, photos, videos, post/reel",
+    "sub_not_sub_arg_three": "Chiffrement des messages",
+    "sub_not_sub_arg_four": "Remettre en non-lu"
 }
