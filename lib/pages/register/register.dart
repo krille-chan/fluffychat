@@ -28,6 +28,7 @@ class RegisterController extends State<Register> {
   String? confirmPasswordError;
   bool loading = false;
   bool showPassword = false;
+  bool showConfirmPassword = false;
   String baseUrl =
       kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
   late final Dio dio;
@@ -35,6 +36,9 @@ class RegisterController extends State<Register> {
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
+
+  void toggleShowConfirmPassword() =>
+      setState(() => showConfirmPassword = !loading && !showConfirmPassword);
 
   @override
   void initState() {

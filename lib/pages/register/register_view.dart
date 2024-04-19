@@ -68,7 +68,7 @@ class RegisterView extends StatelessWidget {
                         controller.loading ? null : [AutofillHints.newPassword],
                     controller: controller.passwordController,
                     textInputAction: TextInputAction.next,
-                    obscureText: true,
+                    obscureText: !controller.showPassword,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
@@ -76,6 +76,15 @@ class RegisterView extends StatelessWidget {
                       errorMaxLines: 3,
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.password,
+                      suffixIcon: IconButton(
+                        onPressed: controller.toggleShowPassword,
+                        icon: Icon(
+                          controller.showPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -89,7 +98,7 @@ class RegisterView extends StatelessWidget {
                         controller.loading ? null : [AutofillHints.newPassword],
                     controller: controller.confirmPasswordController,
                     textInputAction: TextInputAction.done,
-                    obscureText: true,
+                    obscureText: !controller.showConfirmPassword,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.confirmPasswordError,
@@ -97,6 +106,15 @@ class RegisterView extends StatelessWidget {
                       errorMaxLines: 3,
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.registerConfirmPassword,
+                      suffixIcon: IconButton(
+                        onPressed: controller.toggleShowConfirmPassword,
+                        icon: Icon(
+                          controller.showConfirmPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ),
