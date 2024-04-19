@@ -181,7 +181,9 @@ class InvitationSelectionController extends State<InvitationSelection> {
         if (spaceChild.roomId == null) continue;
         final spaceChildRoom =
             Matrix.of(context).client.getRoomById(spaceChild.roomId!);
-        if (spaceChildRoom != null) {
+        if (spaceChildRoom != null &&
+            !(await spaceChildRoom.isBotDM) &&
+            !spaceChildRoom.isDirectChat) {
           await spaceChildRoom.invite(id);
           await spaceChildRoom.setPower(
             id,
