@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +8,6 @@ import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 
 class ErrorReporter {
   final BuildContext context;
@@ -22,7 +18,7 @@ class ErrorReporter {
   void onErrorCallback(Object error, [StackTrace? stackTrace]) async {
     Logs().e(message ?? 'Error caught', error, stackTrace);
     final text = '$error\n${stackTrace ?? ''}';
-    final consent = await showAdaptiveDialog<bool>(
+    await showAdaptiveDialog(
       context: context,
       builder: (context) => AlertDialog.adaptive(
         title: Text(L10n.of(context)!.reportErrorDescription),
@@ -39,7 +35,7 @@ class ErrorReporter {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop<bool>(false),
+            onPressed: () => Navigator.of(context).pop(),
             child: Text(L10n.of(context)!.close),
           ),
           TextButton(
@@ -49,35 +45,21 @@ class ErrorReporter {
             child: Text(L10n.of(context)!.copy),
           ),
           TextButton(
-            onPressed: () => Navigator.of(context).pop<bool>(true),
+            onPressed: () => launchUrl(
+              AppConfig.newIssueUrl.resolveUri(
+                Uri(
+                  queryParameters: {
+                    'template': 'bug_report.yaml',
+                    'title': '[BUG]: ${message ?? error.toString()}',
+                  },
+                ),
+              ),
+              mode: LaunchMode.externalApplication,
+            ),
             child: Text(L10n.of(context)!.report),
           ),
         ],
       ),
-    );
-    if (consent != true) return;
-    final os = kIsWeb ? 'web' : Platform.operatingSystem;
-    final version = await PlatformInfos.getVersion();
-    final description = '''
-- Operating system: $os
-- Version: $version
-
-### Exception
-$error
-
-### StackTrace
-${stackTrace?.toString().split('\n').take(10).join('\n')}
-''';
-    launchUrl(
-      AppConfig.newIssueUrl.resolveUri(
-        Uri(
-          queryParameters: {
-            'title': '[BUG]: ${message ?? error.toString()}',
-            'body': description,
-          },
-        ),
-      ),
-      mode: LaunchMode.externalApplication,
     );
   }
 }
