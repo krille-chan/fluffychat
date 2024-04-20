@@ -2604,5 +2604,65 @@
   "verifyOtherUserDescription": "Ha megerősít egy másik felhasználót, akkor teljesen biztos lehet abban kivel cseveg. 💪\n\nA megerősítési folyamat kezdetekor megjelenik egy felugró ablak mindkettejüknél. Ekkor egy emoji vagy szám sor összehasonlítási folyamat veszi kezdetét.\n\nA legpraktikusabb módja ennek, hogy találkozzanak, vagy videó hívás során beszéljék meg. 👭",
   "@verifyOtherUserDescription": {},
   "verifyOtherDeviceDescription": "Amikor egy másik eszközt erősít meg, az eszközök kulcsokat cserélnek egymás között, ezáltal növelve az összbiztonságot. 💪 Amikor megkezdődik a folyamat, mind a két eszközön megjelenik egy felugró üzenet. Emojik és számok sorozata fog megjelenni, amit össze tud hasonlítani a két eszközön. Érdemes tehát mind a két eszközt a közelben tartani. 🤳",
-  "@verifyOtherDeviceDescription": {}
+  "@verifyOtherDeviceDescription": {},
+  "accessAndVisibility": "Hozzáférés és láthatóság",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Kinek engedélyezett a csevegéshez való csatlakozás és a csevegést hogyan lehet megtalálni.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Hívások",
+  "@calls": {},
+  "hideInvalidOrUnknownMessageFormats": "Érvénytelen vagy ismeretlen üzenetformátum elrejtése",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChatsBody": "Ne mutassa ha valaki be- vagy kilép a csevegésből az olvashatóság javítása végett.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "notifyMeFor": "Értesítsen engem",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Jelszó-helyreállítási beállítások",
+  "@passwordRecoverySettings": {},
+  "noOneCanJoin": "Senki sem csatlakozhat",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} szeretne csatlakozni a csevegéshez.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Még nem lett létrehozva nyilvános link",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Csevegés felfedezhető a {server} szerveren történő kereséssel",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appLockDescription": "Alkalmazás zárolása PIN-kód használat hiányában",
+  "@appLockDescription": {},
+  "customEmojisAndStickers": "Egyedi emotikonok és matricák",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Egyedi emotikonok és matricák létrehozása, amelyek bármely csevegésben használhatóak.",
+  "@customEmojisAndStickersBody": {},
+  "overview": "Áttekintés",
+  "@overview": {},
+  "publicChatAddresses": "Nyilvános csevegés címek",
+  "@publicChatAddresses": {},
+  "userRole": "Felhasználói szerep",
+  "@userRole": {},
+  "createNewAddress": "Új cím létrehozása",
+  "@createNewAddress": {},
+  "noDatabaseEncryption": "Adatbázis titkosítása nem támogatott ezen a platformon",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Jelenleg {count} felhasználó van letiltva.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "unreadChatsInApp": "{appname}: {unread} olvasatlan csevegések",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }
