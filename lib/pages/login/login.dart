@@ -66,7 +66,6 @@ class LoginController extends State<Login> {
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
-      checkUserQueueState(sessionToken);
     }
   }
 
@@ -231,7 +230,8 @@ class LoginController extends State<Login> {
       }
 
       // Store the session token
-      return await storeSessionToken(sessionToken);
+      await storeSessionToken(sessionToken);
+      return checkUserQueueState(sessionToken!);
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
