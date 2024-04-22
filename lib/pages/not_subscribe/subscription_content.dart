@@ -22,44 +22,9 @@ class SubscriptionContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  L10n.of(context)!.sub_not_sub_title,
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                _buildTitle(context),
                 const SizedBox(height: 20.0),
-                Text(
-                  L10n.of(context)!.sub_not_sub_arg_one,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  L10n.of(context)!.sub_not_sub_arg_two,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  L10n.of(context)!.sub_not_sub_arg_three,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  L10n.of(context)!.sub_not_sub_arg_four,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white,
-                  ),
-                ),
+                Expanded(child: _buildSubscriptionDetails(context)),
                 const SizedBox(height: 20.0),
                 NextButton(
                   onPressed: () {
@@ -80,6 +45,41 @@ class SubscriptionContent extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget _buildTitle(BuildContext context) {
+  return Text(
+    L10n.of(context)!.sub_not_sub_title,
+    style: const TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+    textAlign: TextAlign.center,
+  );
+}
+
+Widget _buildSubscriptionDetails(BuildContext context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_one),
+      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_two),
+      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_three),
+      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_four),
+    ],
+  );
+}
+
+Widget _buildSubscriptionDetailText(String text) {
+  return Text(
+    text,
+    style: const TextStyle(
+      fontSize: 18.0,
+      color: Colors.white,
+    ),
+  );
 }
 
 class RestoreSubscriptionButton extends StatelessWidget {
