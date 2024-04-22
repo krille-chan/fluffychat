@@ -249,6 +249,7 @@ class PangeaController {
       } else if (space.getPowerLevelByUserId(BotName.byEnvironment) <
           ClassDefaultValues.powerLevelOfAdmin) {
         try {
+          await space.postLoad();
           await space.setPower(
             BotName.byEnvironment,
             ClassDefaultValues.powerLevelOfAdmin,
