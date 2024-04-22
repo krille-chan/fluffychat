@@ -55,7 +55,7 @@ class LoginController extends State<Login> {
     // Check if sessionToken exists and handle it
     getSessionToken().then((sessionToken) {
       if (sessionToken != null) {
-        handleSessionToken(sessionToken);
+        checkUserQueueState(sessionToken);
       }
     });
   }
@@ -66,22 +66,22 @@ class LoginController extends State<Login> {
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
-      handleSessionToken(sessionToken);
+      checkUserQueueState(sessionToken);
     }
   }
 
-  void handleSessionToken(String sessionToken) async {
+  void checkUserQueueState(String sessionToken) async {
     try {
       final Map<String, dynamic> queueStatus =
           await getQueueStatus(sessionToken);
       final String userState = queueStatus['userState'];
 
       if (userState == 'CREATED') {
-        await handleUserCreated(queueStatus, sessionToken);
+        await redirectUserCreated(queueStatus, sessionToken);
       } else if (userState == 'IN_QUEUE' || userState == 'ACCEPTED') {
-        handleUserInQueueOrAccepted(queueStatus, sessionToken);
+        redirectUserInQueueOrAccepted(queueStatus, sessionToken);
       } else {
-        handleUnexpectedUserState(userState);
+        redirectUnexpectedUserState(userState);
       }
     } catch (e) {
       // In the event of an error, do nothing, and let the user enter his identifiers normally.
@@ -91,12 +91,12 @@ class LoginController extends State<Login> {
     }
   }
 
-  Future<void> handleUserCreated(
+  Future<void> redirectUserCreated(
       Map<String, dynamic> queueStatus, String sessionToken) async {
     await loginWithSessionToken(sessionToken);
   }
 
-  void handleUserInQueueOrAccepted(
+  void redirectUserInQueueOrAccepted(
       Map<String, dynamic> queueStatus, String sessionToken) {
     Navigator.push(
       context,
@@ -113,7 +113,7 @@ class LoginController extends State<Login> {
     }
   }
 
-  void handleUnexpectedUserState(String userState) {
+  void redirectUnexpectedUserState(String userState) {
     if (kDebugMode) {
       print('User is in an unexpected state : $userState');
     }
