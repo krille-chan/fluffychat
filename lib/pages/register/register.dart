@@ -71,12 +71,9 @@ class RegisterController extends State<Register> {
 
   bool _validatePassword(String password) {
     // Define regex to validate password format and length
-    final RegExp passwordRegex =
-        RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$');
 
     // Check that the password matches the regex
-    if (!passwordRegex.hasMatch(password) ||
-        !_validatePasswordLength(passwordController.text)) {
+    if (!_validatePasswordLength(passwordController.text)) {
       setState(
           () => passwordError = L10n.of(context)?.registerPasswordErrorOne);
       return false;

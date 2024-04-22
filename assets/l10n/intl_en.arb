@@ -2560,7 +2560,7 @@
     "registerNotSamePassword": "Passwords don't match",
     "registerRequiredField": "This field is required",
     "registerEmailError": "Please enter a valid email",
-    "registerPasswordErrorOne": "Password must be 8-64 characters long and contain only lowercase letters and numbers.",
+    "registerPasswordErrorOne": "Password must be 8-64 characters long.",
     "registerPasswordErrorTwo": "Cannot contain common keywords.",
     "usernamePageTitle": "Choose username",
     "usernameYourPosition": "Your position in the list:",

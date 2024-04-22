@@ -2485,7 +2485,7 @@
     "registerNotSamePassword": "Les mots de passe ne correspondent pas",
     "registerRequiredField": "Ce champ est requis",
     "registerEmailError": "Veuillez entrer une adresse e-mail valide",
-    "registerPasswordErrorOne": "Le mot de passe doit comporter entre 8 et 64 caractères et ne contenir que des lettres minuscules et des chiffres.",
+    "registerPasswordErrorOne": "Le mot de passe doit comporter entre 8 et 64 caractères.",
     "registerPasswordErrorTwo": "Ne peut pas contenir de mots-clés courants.",
     "usernamePageTitle": "Choisissez un nom d'utilisateur",
     "usernameYourPosition": "Votre position dans la liste :",
