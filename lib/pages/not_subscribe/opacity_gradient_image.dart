@@ -5,8 +5,13 @@ class OpacityGradientImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen height
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    // Set image height
+    final imageHeight = screenHeight * 0.60;
     return SizedBox(
-      height: 260,
+      height: imageHeight,
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
           return LinearGradient(
