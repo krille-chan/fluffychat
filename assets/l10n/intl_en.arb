@@ -3988,5 +3988,6 @@
             "appname": {},
             "unread": {}
         }
-    }
+    },
+    "messageAnalytics": "Message Analytics"
 }

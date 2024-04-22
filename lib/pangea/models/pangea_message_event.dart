@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
@@ -69,6 +68,12 @@ class PangeaMessageEvent {
           )
           .firstOrNull ??
       _event;
+
+  Event updateLatestEdit() {
+    _latestEditCache = null;
+    _representations = null;
+    return _latestEdit;
+  }
 
   bool showRichText(bool selected, bool highlighted) {
     if (!_isValidPangeaMessageEvent) {
@@ -466,7 +471,7 @@ class PangeaMessageEvent {
       _event.room.isSpaceAdmin &&
       _event.senderId != BotName.byEnvironment &&
       !room.isUserSpaceAdmin(_event.senderId) &&
-      _event.messageType != PangeaMessageTypes.report;
+      _event.messageType == MessageTypes.Text;
 
   String get messageDisplayLangCode {
     final bool immersionMode = MatrixState

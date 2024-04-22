@@ -2,6 +2,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -71,10 +72,21 @@ class Message extends StatelessWidget {
     super.key,
   });
 
+  // #Pangea
+  PangeaMessageEvent? get pangeaMessageEvent =>
+      controller.getPangeaMessageEvent(event.eventId);
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     // #Pangea
     debugPrint('Message.build()');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (controller.edittingEvents.contains(event.eventId)) {
+        pangeaMessageEvent?.updateLatestEdit();
+        controller.clearEdittingEvent(event.eventId);
+      }
+    });
     // Pangea#
     if (!{
       EventTypes.Message,

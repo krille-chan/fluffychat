@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -24,8 +25,9 @@ class MyAnalyticsController {
   //PTODO - locally cache and update periodically
   Future<void> handleMessage(
     Room room,
-    RecentMessageRecord messageRecord,
-  ) async {
+    RecentMessageRecord messageRecord, {
+    bool isEdit = false,
+  }) async {
     try {
       debugPrint("in handle message with type ${messageRecord.useType}");
       if (_userId == null) {
@@ -48,7 +50,7 @@ class MyAnalyticsController {
 
       for (final event in events) {
         if (event != null) {
-          event.handleNewMessage(messageRecord);
+          event.handleNewMessage(messageRecord, isEdit: isEdit);
         }
       }
     } catch (err) {
@@ -76,8 +78,9 @@ class MyAnalyticsController {
 
   Future<void> saveConstructsMixed(
     List<OneConstructUse> allUses,
-    String langCode,
-  ) async {
+    String langCode, {
+    bool isEdit = false,
+  }) async {
     try {
       final Map<String, List<OneConstructUse>> aggregatedVocabUse = {};
       for (final use in allUses) {
@@ -94,8 +97,9 @@ class MyAnalyticsController {
         saveFutures.add(
           analyticsRoom.saveConstructUsesSameLemma(
             uses.key,
-            uses.value.first.constructType!,
+            uses.value.first.constructType ?? ConstructType.grammar,
             uses.value,
+            isEdit: isEdit,
           ),
         );
       }

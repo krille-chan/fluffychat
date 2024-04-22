@@ -818,6 +818,7 @@ class ChatListController extends State<ChatList>
       await pangeaController.subscriptionController.initialize();
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
+      await pangeaController.setPangeaPushRules();
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",

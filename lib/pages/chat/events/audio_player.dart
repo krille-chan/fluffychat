@@ -31,9 +31,9 @@ class AudioPlayerWidget extends StatefulWidget {
     this.color = Colors.black,
     // #Pangea
     this.matrixFile,
-    super.key,
     this.autoplay = false,
     // Pangea#
+    super.key,
   });
 
   @override
@@ -236,17 +236,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
-  // #Pangea
-  Future<void> _downloadMatrixFile() async {
-    if (kIsWeb) return;
-    final temp = await getTemporaryDirectory();
-    final tempDir = temp;
-    final file = File('${tempDir.path}/${widget.matrixFile!.name}');
-    await file.writeAsBytes(widget.matrixFile!.bytes);
-    audioFile = file;
-  }
-
-  // Pangea#
   void _toggleSpeed() async {
     final audioPlayer = this.audioPlayer;
     if (audioPlayer == null) return;
@@ -267,6 +256,17 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
     setState(() {});
   }
+
+  // #Pangea
+  Future<void> _downloadMatrixFile() async {
+    if (kIsWeb) return;
+    final temp = await getTemporaryDirectory();
+    final tempDir = temp;
+    final file = File('${tempDir.path}/${widget.matrixFile!.name}');
+    await file.writeAsBytes(widget.matrixFile!.bytes);
+    audioFile = file;
+  }
+  // Pangea#
 
   @override
   void initState() {

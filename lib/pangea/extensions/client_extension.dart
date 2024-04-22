@@ -217,4 +217,31 @@ extension PangeaClient on Client {
     }
     return false;
   }
+
+  Future<List<String>> getEditHistory(
+    String roomId,
+    String eventId,
+  ) async {
+    final Room? room = getRoomById(roomId);
+    final Event? editEvent = await room?.getEventById(eventId);
+    final String? edittedEventId =
+        editEvent?.content.tryGetMap('m.relates_to')?['event_id'];
+    if (edittedEventId == null) return [];
+
+    final Event? originalEvent = await room!.getEventById(edittedEventId);
+    if (originalEvent == null) return [];
+
+    final Timeline timeline = await room.getTimeline();
+    final List<Event> editEvents = originalEvent
+        .aggregatedEvents(
+          timeline,
+          RelationshipTypes.edit,
+        )
+        .sorted(
+          (a, b) => b.originServerTs.compareTo(a.originServerTs),
+        )
+        .toList();
+    editEvents.add(originalEvent);
+    return editEvents.slice(1).map((e) => e.eventId).toList();
+  }
 }

@@ -49,10 +49,6 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   }
 
   Future<void> initialize() async {
-    await _pangeaController.matrixState.client
-        .updateMyLearningAnalyticsForAllClassesImIn(
-      _pangeaController.pStoreService,
-    );
     await getClassAndChatAnalytics(context);
     stateSub = _pangeaController.matrixState.client.onRoomState.stream
         .where(
