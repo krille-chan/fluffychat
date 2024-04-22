@@ -217,7 +217,9 @@ class LoginController extends State<Login> {
         final errorMessage = e.response!.data['ui']['messages'][0]['text'];
         setState(() => passwordError = errorMessage);
       } else {
-        setState(() => passwordError = "Dio error with Kratos");
+        setState(
+          () => passwordError = L10n.of(context)!.err_tryAgain,
+        );
       }
       return setState(() => loading = false);
     } catch (exception) {
