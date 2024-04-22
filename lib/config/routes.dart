@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:tawkie/config/subscription.dart';
 
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
@@ -19,6 +20,7 @@ import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/pages/new_group/new_group.dart';
 import 'package:tawkie/pages/new_private_chat/new_private_chat.dart';
 import 'package:tawkie/pages/new_space/new_space.dart';
+import 'package:tawkie/pages/not_subscribe/not_subscribe_page.dart';
 import 'package:tawkie/pages/settings/settings.dart';
 import 'package:tawkie/pages/settings_3pid/settings_3pid.dart';
 import 'package:tawkie/pages/settings_chat/settings_chat.dart';
@@ -29,6 +31,8 @@ import 'package:tawkie/pages/settings_notifications/settings_notifications.dart'
 import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/pages/settings_security/settings_security.dart';
 import 'package:tawkie/pages/settings_style/settings_style.dart';
+import 'package:tawkie/pages/sub/sub_body.dart';
+import 'package:tawkie/pages/welcome_slides/slides.dart';
 import 'package:tawkie/widgets/layouts/empty_page.dart';
 import 'package:tawkie/widgets/layouts/two_column_layout.dart';
 import 'package:tawkie/widgets/log_view.dart';
@@ -38,14 +42,34 @@ abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? '/rooms' : null;
+  ) async {
+    // Check connection to Matrix
+    if (Matrix.of(context).client.isLogged()) {
+      // If the user is connected to Matrix, check the subscription
+      var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+      if (hasSubscription) {
+        // If the user have a subscription, redirect to /rooms
+        return '/rooms';
+      }
+    }
+    return null;
+  }
 
   static FutureOr<String?> loggedOutRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).client.isLogged() ? null : '/home';
+  ) async {
+    // Check connection to Matrix
+    final hasLogin = Matrix.of(context).client.isLogged();
+    var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    if (!hasLogin) {
+      return '/home';
+    } else if (hasLogin && !hasSubscription) {
+      // If the user doesn't have a subscription, redirect to /subscribe
+      return '/subscribe';
+    }
+    return null;
+  }
 
   AppRoutes();
 
@@ -53,7 +77,22 @@ abstract class AppRoutes {
     GoRoute(
       path: '/',
       redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/home',
+          Matrix.of(context).client.isLogged() ? '/rooms' : '/welcome',
+    ),
+    GoRoute(
+      path: '/welcome',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        const WelcomeSlidePage(), // Welcome slide show widget
+      ),
+      redirect: loggedInRedirect,
+    ),
+    GoRoute(
+      path: '/subscribe',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: NotSubscribePage()),
+      redirect: loggedInRedirect,
     ),
     GoRoute(
       path: '/home',
@@ -233,25 +272,26 @@ abstract class AppRoutes {
                       ],
                       redirect: loggedOutRedirect,
                     ),
-                    // GoRoute(
-                    //   path: 'addaccount',
-                    //   redirect: loggedOutRedirect,
-                    //   pageBuilder: (context, state) => defaultPageBuilder(
-                    //     context,
-                    //     const HomeserverPicker(),
-                    //   ),
-                    //   routes: [
-                    //     GoRoute(
-                    //       path: 'login',
-                    //       pageBuilder: (context, state) => defaultPageBuilder(
-                    //         context,
-                    //         const Login(),
-                    //       ),
-                    //       redirect: loggedOutRedirect,
-                    //     ),
-                    //   ],
-                    // ),
-
+                    GoRoute(
+                      path: 'addaccount',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const Login(),
+                      ),
+                      routes: [
+                        GoRoute(
+                          path: 'login',
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            state,
+                            const Login(),
+                          ),
+                          redirect: loggedOutRedirect,
+                        ),
+                      ],
+                    ),
                     // Route to social networking page via chat bot
                     // The entire path is: /rooms/settings/addbridgebot
                     GoRoute(
@@ -260,6 +300,17 @@ abstract class AppRoutes {
                         context,
                         state,
                         const AddBridgeBody(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    // Route to subscription page
+                    // The entire path is: /rooms/settings/subs
+                    GoRoute(
+                      path: 'subs',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        SubscriptionPage(),
                       ),
                       redirect: loggedOutRedirect,
                     ),

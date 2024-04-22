@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -32,6 +31,14 @@ abstract class PlatformInfos {
 
   static String get clientName =>
       '${AppConfig.applicationName} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
+
+  static bool shouldInitializePurchase() {
+    if (!kIsWeb) {
+      return Platform.isAndroid || Platform.isIOS || Platform.isMacOS;
+    } else {
+      return false; // Do not initialize web purchases
+    }
+  }
 
   static Future<String> getVersion() async {
     var version = kIsWeb ? 'Web' : 'Unknown';

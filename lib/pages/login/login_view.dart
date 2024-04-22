@@ -19,7 +19,6 @@ class LoginView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
       ),
@@ -45,6 +44,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
+                      errorMaxLines: 3,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
                       hintText: L10n.of(context)!.emailOrUsername,
@@ -62,10 +62,11 @@ class LoginView extends StatelessWidget {
                     controller: controller.passwordController,
                     textInputAction: TextInputAction.go,
                     obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.login(),
+                    onSubmitted: (_) => controller.loginOry(),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
+                      errorMaxLines: 3,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
                       suffixIcon: IconButton(
@@ -89,7 +90,7 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading ? null : controller.login,
+                    onPressed: controller.loading ? null : controller.loginOry,
                     icon: const Icon(Icons.login_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()
@@ -103,6 +104,7 @@ class LoginView extends StatelessWidget {
                     onPressed: controller.loading
                         ? () {}
                         : () {
+                            //Todo: make forgotten password function
                             //controller.passwordForgotten
                           },
                     style: TextButton.styleFrom(

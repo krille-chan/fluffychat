@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
@@ -71,6 +72,12 @@ abstract class AppConfig {
     path: 'servers.json',
   );
 
+  // Ory Kratos URL
+  static const String stagingUrl = 'https://staging.tawkie.fr/';
+  static const String productionUrl = 'https://tawkie.fr/';
+  static const String baseUrl = kDebugMode ? stagingUrl : productionUrl;
+  static String tawkieSubscriptionIdentifier = 'Tawkie subscription';
+
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['chat_color'] != null) {
       try {
@@ -105,6 +112,9 @@ abstract class AppConfig {
     }
     if (json['hide_unknown_events'] is bool) {
       hideUnknownEvents = json['hide_unknown_events'];
+    }
+    if (json['tawkie_subscription_identifier'] is String) {
+      tawkieSubscriptionIdentifier = json['tawkie_subscription_identifier'];
     }
   }
 }

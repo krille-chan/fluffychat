@@ -13,7 +13,6 @@ import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tawkie/config/app_config.dart';
-import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/utils/client_manager.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/platform_infos.dart';
