@@ -100,18 +100,25 @@ class SubscriptionChangePage extends StatelessWidget {
   Future<void> _onChangeSubscription(
       BuildContext context, Package package) async {
     try {
-      GoogleProductChangeInfo? googleProductChangeInfo;
-      // Creation of a GoogleProductChangeInfo object with the old Google product ID and proration information if necessary
-      // Only for google android
-      if (activeSubscriptionId.isNotEmpty) {
-        googleProductChangeInfo = GoogleProductChangeInfo(
-          activeSubscriptionId, // Old Google product ID
-        );
-      }
+      if (Platform.isAndroid) {
+        GoogleProductChangeInfo? googleProductChangeInfo;
+        // Creation of a GoogleProductChangeInfo object with the old Google product ID and proration information if necessary
+        // Only for google android
+        if (activeSubscriptionId.isNotEmpty) {
+          googleProductChangeInfo = GoogleProductChangeInfo(
+            activeSubscriptionId, // Old Google product ID
+          );
+        }
 
-      //  Purchase by passing googleProductChangeInfo to purchasePackage
-      final CustomerInfo customerInfo = await Purchases.purchasePackage(package,
-          googleProductChangeInfo: googleProductChangeInfo);
+        //  Purchase by passing googleProductChangeInfo to purchasePackage
+        final CustomerInfo customerInfo = await Purchases.purchasePackage(
+            package,
+            googleProductChangeInfo: googleProductChangeInfo);
+      } else {
+        //  Purchase
+        final CustomerInfo customerInfo =
+            await Purchases.purchasePackage(package);
+      }
 
       log("The subscription has been purchased");
     } on PlatformException catch (e) {
