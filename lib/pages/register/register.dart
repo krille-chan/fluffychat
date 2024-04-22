@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/change_username_page.dart';
 import 'package:tawkie/pages/register/register_view.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
@@ -30,8 +31,7 @@ class RegisterController extends State<Register> {
   bool loading = false;
   bool showPassword = false;
   bool showConfirmPassword = false;
-  String baseUrl =
-      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+  String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
