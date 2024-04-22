@@ -39,25 +39,13 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   }
 
   bool _validateUsername(String username) {
-    // Define regex to validate password format
-    final RegExp usernameRegex = RegExp(r'^(?=.*[a-z])(?=.*\d)[a-z0-9]{3,16}$');
+    // Define regex to validate username format
+    final RegExp usernameRegex = RegExp(r'^[a-z0-9]{3,16}$');
 
-    // List of keywords to check
-    final List<String> keywords = ['password', '123456', 'qwerty'];
-
-    // Check that the password matches the regex
+    // Check that the username matches the regex
     if (!usernameRegex.hasMatch(username)) {
       setState(() => _usernameError = L10n.of(context)?.username_validateError);
       return false;
-    }
-
-    // Check if the password contains one of the following keywords
-    for (final keyword in keywords) {
-      if (username.contains(keyword)) {
-        setState(
-            () => _usernameError = L10n.of(context)?.register_passwordErrorTwo);
-        return false;
-      }
     }
 
     // Reset password error if valid
