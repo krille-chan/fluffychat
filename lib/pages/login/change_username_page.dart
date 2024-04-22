@@ -213,7 +213,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                           if (!hasSubscription) {
                             final paywallResult =
                                 await RevenueCatUI.presentPaywall();
-                          } else if (widget.queueStatus['queuePosition'] <= 0) {
+                          } else if (widget.queueStatus['userState'] ==
+                              'ACCEPTED') {
                             await LoginController()
                                 .loginWithSessionToken(widget.sessionToken);
                           }
