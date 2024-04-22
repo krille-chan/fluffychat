@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
@@ -70,6 +71,11 @@ abstract class AppConfig {
     host: 'servers.joinmatrix.org',
     path: 'servers.json',
   );
+
+  // Ory Kratos URL
+  static String baseUrl = kDebugMode ? stagingUrl : productionUrl;
+  static String stagingUrl = 'https://staging.tawkie.fr/';
+  static String productionUrl = 'https://tawkie.fr/';
 
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['chat_color'] != null) {
