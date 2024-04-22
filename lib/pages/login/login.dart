@@ -118,37 +118,6 @@ class LoginController extends State<Login> {
     }
   }
 
-  Future<String> changeUserNameOry(String newUsername) async {
-    try {
-      String? sessionToken = await _secureStorage.read(key: 'sessionToken');
-
-      final response = await dio.post(
-        '${baseUrl}panel/api/mobile-matrix-auth/updateUsername',
-        data: {'username': newUsername},
-        options: Options(
-          headers: {
-            'X-Session-Token': sessionToken,
-            'content-type': 'application/json',
-          },
-        ),
-      );
-
-      if (kDebugMode) {
-        print("Response update name: ${response.data}");
-      }
-      if (response.statusCode == 200) {
-        return 'success';
-      } else {
-        return 'failed';
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      return 'failed';
-    }
-  }
-
   Future<String?> getSessionToken() async {
     return await _secureStorage.read(key: 'sessionToken');
   }
