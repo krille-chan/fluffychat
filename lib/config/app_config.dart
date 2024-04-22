@@ -73,9 +73,9 @@ abstract class AppConfig {
   );
 
   // Ory Kratos URL
-  static String baseUrl = kDebugMode ? stagingUrl : productionUrl;
-  static String stagingUrl = 'https://staging.tawkie.fr/';
-  static String productionUrl = 'https://tawkie.fr/';
+  static const String stagingUrl = 'https://staging.tawkie.fr/';
+  static const String productionUrl = 'https://tawkie.fr/';
+  static const String baseUrl = kDebugMode ? stagingUrl : productionUrl;
   static String tawkieSubscriptionIdentifier = 'Tawkie subscription';
 
   static void loadFromJson(Map<String, dynamic> json) {
