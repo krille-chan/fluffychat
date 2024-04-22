@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -245,7 +247,6 @@ class LoginController extends State<Login> {
 
     // Function to log user with Kratos id on Revenu Cat
     final LogInResult result = await Purchases.logIn(userId);
-    print('le login: $userId');
 
     return responseDataQueueStatus;
   }
@@ -264,8 +265,27 @@ class LoginController extends State<Login> {
 
       // If all goes well, reset passwordError
       setState(() => passwordError = null);
-    } catch (e) {
-      setState(() => passwordError = L10n.of(context)!.tryAgain);
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e\n");
+      }
+      Logs().v("Error Kratos login : ${e.response?.data}");
+      if (e.error is SocketException) {
+        return showAlertDialog(
+          context: context,
+          title: L10n.of(context)!.noConnectionToTheServer,
+          message: L10n.of(context)!.errorConnectionText,
+        );
+      } else {
+        return showAlertDialog(
+          context: context,
+          title: L10n.of(context)!.err_,
+          message: L10n.of(context)!.err_tryAgain,
+        );
+      }
+    } finally {
+      // Set loading to false after handling the error
+      setState(() => loading = false);
     }
 
     setState(() => loading = false);

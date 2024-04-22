@@ -2588,5 +2588,6 @@
   "sub_not_sub_arg_one": "All your favorite messengers together",
   "sub_not_sub_arg_two": "Voice, photo, video, post/reel",
   "sub_not_sub_arg_three": "Message encryption",
-  "sub_not_sub_arg_four": "Put back in non-lu"
+  "sub_not_sub_arg_four": "Put back in non-lu",
+  "errorConnectionText": "Please check your Internet connection and try again."
 }
