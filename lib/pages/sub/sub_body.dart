@@ -34,8 +34,28 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
         _offerings = offerings;
       });
     } on PlatformException catch (e) {
-      // optional error handling
+      _showErrorDialogAndPop(context);
     }
+  }
+
+  void _showErrorDialogAndPop(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(L10n.of(context)!.err_),
+        content: Text(L10n.of(context)!.err_tryAgain),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // Push back to exit page
+            },
+            child: Text(L10n.of(context)!.ok),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
