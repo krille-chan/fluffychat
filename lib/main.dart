@@ -70,13 +70,10 @@ Future<void> initPlatformState() async {
     if (Platform.isAndroid) {
       configuration =
           PurchasesConfiguration("goog_lhTZglaLiBBNlhsGkdTyfcltutm");
-    } else if (Platform.isIOS) {
+    } else {
+      //For iOS and MacOS
       configuration =
           PurchasesConfiguration("appl_vgoGBkjRMINLCIEFTYHxdGDRrKK");
-    } else {
-      // Fallback configuration in case neither Android nor iOS
-      configuration =
-          PurchasesConfiguration("revenuecat_project_default_api_key");
     }
 
     await Purchases.configure(configuration);
