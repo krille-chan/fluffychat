@@ -115,6 +115,24 @@ class LoginController extends State<Login> {
     if (kDebugMode) {
       print('User is in an unexpected state : $userState');
     }
+    // Dialog box with error message
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(L10n.of(context)!.err_),
+          content: Text(L10n.of(context)!.err_tryAgain),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(L10n.of(context)!.ok),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<String?> getSessionToken() async {
