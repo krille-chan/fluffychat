@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -62,19 +63,24 @@ void main() async {
 
 // Function to initialize Revenu Cat
 Future<void> initPlatformState() async {
-  await Purchases.setDebugLogsEnabled(true);
+  if (kDebugMode) await Purchases.setDebugLogsEnabled(true);
 
   PurchasesConfiguration configuration;
-  if (Platform.isAndroid) {
-    configuration = PurchasesConfiguration("goog_lhTZglaLiBBNlhsGkdTyfcltutm");
-  } else if (Platform.isIOS) {
-    configuration = PurchasesConfiguration("appl_vgoGBkjRMINLCIEFTYHxdGDRrKK");
-  } else {
-    // Fallback configuration in case neither Android nor iOS
-    configuration =
-        PurchasesConfiguration("revenuecat_project_default_api_key");
+  if (PlatformInfos.shouldInitializePurchase()) {
+    if (Platform.isAndroid) {
+      configuration =
+          PurchasesConfiguration("goog_lhTZglaLiBBNlhsGkdTyfcltutm");
+    } else if (Platform.isIOS) {
+      configuration =
+          PurchasesConfiguration("appl_vgoGBkjRMINLCIEFTYHxdGDRrKK");
+    } else {
+      // Fallback configuration in case neither Android nor iOS
+      configuration =
+          PurchasesConfiguration("revenuecat_project_default_api_key");
+    }
+
+    await Purchases.configure(configuration);
   }
-  await Purchases.configure(configuration);
 }
 
 /// Fetch the pincode for the applock and start the flutter engine.
