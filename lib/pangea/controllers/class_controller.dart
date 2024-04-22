@@ -132,11 +132,6 @@ class ClassController extends BaseController {
 
     setActiveSpaceIdInChatListController(classChunk.roomId);
     GoogleAnalytics.joinClass(classCode);
-
-    ClassCodeUtil.messageSnack(
-      context,
-      L10n.of(context)!.welcomeToYourNewClass,
-    );
     return;
     // P-EPIC
     // prereq - server needs ability to invite to private room. how?
