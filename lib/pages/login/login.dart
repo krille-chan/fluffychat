@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +12,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/pages/login/web_login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
+import 'package:tawkie/widgets/show_error_dialog.dart';
 import 'change_username_page.dart';
 import 'login_view.dart';
 import 'package:one_of/one_of.dart';
@@ -271,19 +269,9 @@ class LoginController extends State<Login> {
         print("Exception when calling Kratos log: $e\n");
       }
       Logs().v("Error Kratos login : ${e.response?.data}");
-      if (e.error is SocketException) {
-        return showAlertDialog(
-          context: context,
-          title: L10n.of(context)!.noConnectionToTheServer,
-          message: L10n.of(context)!.errorConnectionText,
-        );
-      } else {
-        return showAlertDialog(
-          context: context,
-          title: L10n.of(context)!.err_,
-          message: L10n.of(context)!.err_tryAgain,
-        );
-      }
+      // Explanation to the user
+      DioErrorHandler.fetchError(context, e);
+      throw Exception();
     } finally {
       // Set loading to false after handling the error
       setState(() => loading = false);
@@ -318,18 +306,9 @@ class LoginController extends State<Login> {
 
       return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
     } catch (e) {
-      if (e is DioException) {
-        if (e.response != null) {
-          final errorMessage =
-              e.response!.data['ui']['messages'][0]['text'] ?? 'Unknown error';
-          setState(() => passwordError = errorMessage);
-          throw Exception('Error fetching JWT and server name: $errorMessage');
-        } else {
-          throw Exception('Network error: ${e.message}');
-        }
-      } else {
-        throw Exception('An unexpected error occurred: $e');
-      }
+      // Explanation to the user
+      DioErrorHandler.fetchError(context, e as DioException);
+      throw Exception();
     }
   }
 
