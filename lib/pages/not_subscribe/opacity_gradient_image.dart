@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 
 class OpacityGradientImage extends StatelessWidget {
   const OpacityGradientImage({super.key});
@@ -7,9 +8,9 @@ class OpacityGradientImage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get screen height
     final screenHeight = MediaQuery.of(context).size.height;
-
+    final isMobile = PlatformInfos.isMobile;
     // Set image height
-    final imageHeight = screenHeight * 0.60;
+    final imageHeight = isMobile ? screenHeight * 0.35 : screenHeight * 0.60;
     return SizedBox(
       height: imageHeight,
       child: ShaderMask(
