@@ -6,19 +6,15 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class DioErrorHandler {
   static void fetchError(BuildContext context, DioException e) {
-    if (e.error is SocketException) {
+    if (_hasUiErrorMessage(e)) {
+      final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+      _showErrorDialog(context, '', errorMessage);
+    } else if (e.error is SocketException) {
       _showErrorDialog(
         context,
         L10n.of(context)!.noConnectionToTheServer,
         L10n.of(context)!.errorConnectionText,
       );
-    } else if (e.response != null &&
-        e.response!.data != null &&
-        e.response!.data['ui'] != null &&
-        e.response!.data['ui']['messages'] != null &&
-        e.response!.data['ui']['messages'].isNotEmpty) {
-      final errorMessage = e.response!.data['ui']['messages'][0]['text'];
-      _showErrorDialog(context, '', errorMessage);
     } else {
       _showErrorDialog(
         context,
@@ -26,6 +22,14 @@ class DioErrorHandler {
         L10n.of(context)!.err_tryAgain,
       );
     }
+  }
+
+  static bool _hasUiErrorMessage(DioException e) {
+    return e.response != null &&
+        e.response!.data != null &&
+        e.response!.data['ui'] != null &&
+        e.response!.data['ui']['messages'] != null &&
+        e.response!.data['ui']['messages'].isNotEmpty;
   }
 
   static void _showErrorDialog(
