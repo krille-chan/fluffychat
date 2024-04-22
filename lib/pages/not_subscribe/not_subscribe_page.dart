@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/not_subscribe/subscription_content.dart';
 
 class NotSubscribePage extends StatefulWidget {
@@ -16,7 +17,9 @@ class _NotSubscribePageState extends State<NotSubscribePage> {
     super.initState();
     // Listener for subscription updates
     Purchases.addCustomerInfoUpdateListener((info) {
-      if (info.entitlements.active.isNotEmpty) {
+      if (info.entitlements.active.isNotEmpty &&
+          info.entitlements.all[AppConfig.tawkieSubscriptionIdentifier]!
+              .isActive) {
         //user has access to some entitlement
         _redirectToRooms();
       }

@@ -76,6 +76,7 @@ abstract class AppConfig {
   static String baseUrl = kDebugMode ? stagingUrl : productionUrl;
   static String stagingUrl = 'https://staging.tawkie.fr/';
   static String productionUrl = 'https://tawkie.fr/';
+  static String tawkieSubscriptionIdentifier = 'Tawkie subscription';
 
   static void loadFromJson(Map<String, dynamic> json) {
     if (json['chat_color'] != null) {
@@ -111,6 +112,9 @@ abstract class AppConfig {
     }
     if (json['hide_unknown_events'] is bool) {
       hideUnknownEvents = json['hide_unknown_events'];
+    }
+    if (json['tawkie_subscription_identifier'] is String) {
+      tawkieSubscriptionIdentifier = json['tawkie_subscription_identifier'];
     }
   }
 }

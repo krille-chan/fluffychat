@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+import 'package:tawkie/config/app_config.dart';
 
 class SubscriptionManager {
   void presentPaywall() async {
@@ -19,7 +20,9 @@ class SubscriptionManager {
     try {
       CustomerInfo customerInfo = await Purchases.getCustomerInfo();
       // access latest customerInfo
-      if (customerInfo.entitlements.active.isNotEmpty) {
+      if (customerInfo.entitlements.active.isNotEmpty &&
+          customerInfo.entitlements.all[AppConfig.tawkieSubscriptionIdentifier]!
+              .isActive) {
         // Grant user "pro" access
         return true;
       } else {
