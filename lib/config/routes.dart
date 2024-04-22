@@ -95,11 +95,6 @@ abstract class AppRoutes {
       redirect: loggedInRedirect,
     ),
     GoRoute(
-      path: '/subscribe',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: NotSubscribePage()),
-    ),
-    GoRoute(
       path: '/home',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
