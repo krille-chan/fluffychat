@@ -30,7 +30,7 @@ class SubscriptionChangePage extends StatelessWidget {
             package.storeProduct.identifier == activeSubscriptionId;
         final card = SubscriptionCard(
           name: package.storeProduct.title,
-          price: package.storeProduct.price.toString(),
+          price: package.storeProduct.priceString,
           description: package.storeProduct.description,
           isActive: isActive,
           onChangeSubscription: !isActive
