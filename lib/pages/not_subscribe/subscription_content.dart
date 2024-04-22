@@ -36,6 +36,9 @@ class SubscriptionContent extends StatelessWidget {
                     }
                   },
                 ),
+                const SizedBox(
+                  height: 10.0,
+                ),
                 if (PlatformInfos.shouldInitializePurchase())
                   const RestoreSubscriptionButton(),
               ],
