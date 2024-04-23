@@ -32,7 +32,7 @@ class LoginController extends State<Login> {
   HomeserverSummary? loginHomeserverSummary;
   bool _supportsFlow(String flowType) =>
       loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
-          false;
+      false;
 
   bool get supportsSso => _supportsFlow('m.login.sso');
 
@@ -71,7 +71,7 @@ class LoginController extends State<Login> {
   void checkUserQueueState(String sessionToken) async {
     try {
       final Map<String, dynamic> queueStatus =
-      await getQueueStatus(sessionToken);
+          await getQueueStatus(sessionToken);
       final String userState = queueStatus['userState'];
 
       if (userState == 'CREATED') {
@@ -185,14 +185,14 @@ class LoginController extends State<Login> {
 
       // Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
       final updateLoginFlowWithPasswordMethod =
-      UpdateLoginFlowWithPasswordMethod((builder) => builder
-        ..identifier = email
-        ..method = 'password'
-        ..password = password);
+          UpdateLoginFlowWithPasswordMethod((builder) => builder
+            ..identifier = email
+            ..method = 'password'
+            ..password = password);
 
       // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
       final updateLoginFlowBody = UpdateLoginFlowBody(
-            (builder) => builder
+        (builder) => builder
           ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
       );
 
@@ -233,7 +233,7 @@ class LoginController extends State<Login> {
         setState(() => passwordError = errorMessage);
       } else {
         setState(
-              () => passwordError = L10n.of(context)!.errTryAgain,
+          () => passwordError = L10n.of(context)!.errTryAgain,
         );
       }
       return setState(() => loading = false);
