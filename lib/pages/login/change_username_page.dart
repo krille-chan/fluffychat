@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
@@ -89,7 +90,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       // Display a SnackBar to indicate a successful name change
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${L10n.of(context)!.username_success} $newUsername'),
+          content: Text('${L10n.of(context)!.usernameSuccess} $newUsername'),
           backgroundColor: Colors.green,
         ),
       );
@@ -111,6 +112,26 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
     if (isUsernameSet()) {
       _usernameController.text = widget.queueStatus['username'];
+    }
+  }
+
+  void _onSubmitButtonPressed() async {
+    if (widget.queueStatus['username'] != _usernameController.text) {
+      final newUsername = _usernameController.text;
+
+      if (_usernameController.text.isEmpty) {
+        setState(() {
+          _usernameError = L10n.of(context)!.registerRequiredField;
+        });
+        return;
+      } else {
+        setState(() {
+          _usernameError = null;
+        });
+
+        // Update user name
+        await updateUsername(widget.sessionToken, newUsername);
+      }
     }
   }
 
@@ -173,8 +194,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 },
               ),
               const SizedBox(height: 20),
-              widget.queueStatus['username'] != null &&
-                      widget.queueStatus['username'] != ""
+              isUsernameSet()
                   ? Text(
                       L10n.of(context)!.usernameAdvertisement,
                     )
@@ -184,6 +204,29 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 onPressed: _onSubmitButtonPressed,
                 child: Text(L10n.of(context)!.submit),
               ),
+              const SizedBox(height: 50),
+              isUsernameSet()
+                  ? ElevatedButton(
+                      onPressed: () async {
+                        if (PlatformInfos.shouldInitializePurchase()) {
+                          final hasSubscription = await SubscriptionManager
+                              .checkSubscriptionStatus();
+
+                          if (!hasSubscription) {
+                            final paywallResult =
+                                await RevenueCatUI.presentPaywall();
+                          } else if (widget.queueStatus['userState'] ==
+                              'ACCEPTED') {
+                            await LoginController()
+                                .loginWithSessionToken(widget.sessionToken);
+                          }
+                        } else {
+                          // Todo: make purchases for Web, Windows and Linux
+                        }
+                      },
+                      child: Text(L10n.of(context)!.next),
+                    )
+                  : Container(),
             ],
           ),
         ),

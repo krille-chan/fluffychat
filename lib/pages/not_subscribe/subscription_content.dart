@@ -52,7 +52,7 @@ class SubscriptionContent extends StatelessWidget {
 
 Widget _buildTitle(BuildContext context) {
   return Text(
-    L10n.of(context)!.sub_not_sub_title,
+    L10n.of(context)!.subNotSubTitle,
     style: const TextStyle(
       fontSize: 24.0,
       fontWeight: FontWeight.bold,
@@ -67,10 +67,10 @@ Widget _buildSubscriptionDetails(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
-      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_one),
-      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_two),
-      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_three),
-      _buildSubscriptionDetailText(L10n.of(context)!.sub_not_sub_arg_four),
+      _buildSubscriptionDetailText(L10n.of(context)!.subNotSubArgOne),
+      _buildSubscriptionDetailText(L10n.of(context)!.subNotSubArgTwo),
+      _buildSubscriptionDetailText(L10n.of(context)!.subNotSubArgThree),
+      _buildSubscriptionDetailText(L10n.of(context)!.subNotSubArgFour),
     ],
   );
 }
@@ -102,8 +102,8 @@ class RestoreSubscriptionButton extends StatelessWidget {
           await showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text(L10n.of(context)!.sub_notFound),
-              content: Text(L10n.of(context)!.sub_notFoundText),
+              title: Text(L10n.of(context)!.subNotFound),
+              content: Text(L10n.of(context)!.subNotFoundText),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -117,7 +117,7 @@ class RestoreSubscriptionButton extends StatelessWidget {
         }
       },
       child: Text(
-        L10n.of(context)!.sub_restore,
+        L10n.of(context)!.subRestore,
         textAlign: TextAlign.center,
         style: const TextStyle(
           color: Colors.white,

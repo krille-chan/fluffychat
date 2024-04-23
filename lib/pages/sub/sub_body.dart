@@ -44,7 +44,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         title: Text(L10n.of(context)!.err_),
-        content: Text(L10n.of(context)!.err_tryAgain),
+        content: Text(L10n.of(context)!.errTryAgain),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -63,7 +63,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          L10n.of(context)!.sub_mySub,
+          L10n.of(context)!.subMySub,
         ),
       ),
       body: Center(
