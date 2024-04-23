@@ -75,7 +75,7 @@ class RegisterController extends State<Register> {
     // Check that the password matches the regex
     if (!_validatePasswordLength(passwordController.text)) {
       setState(
-          () => passwordError = L10n.of(context)?.registerPasswordErrorOne);
+          () => passwordError = L10n.of(context)?.registerPasswordError);
       return false;
     }
 

@@ -185,7 +185,7 @@ class SubscriptionCard extends StatelessWidget {
           const SizedBox(height: 10),
           if (isActive)
             Text(
-              L10n.of(context)!.subSubStatus,
+              L10n.of(context)!.subStatus,
               style: const TextStyle(fontSize: 16, color: Colors.green),
             )
           else
