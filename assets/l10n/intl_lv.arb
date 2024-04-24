@@ -11,7 +11,7 @@
       "senderName": {}
     }
   },
-  "darkTheme": "",
+  "darkTheme": "Tumšs",
   "@darkTheme": {
     "type": "text",
     "placeholders": {}
@@ -31,14 +31,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "connect": "",
+  "connect": "Savienot",
   "@connect": {
     "type": "text",
     "placeholders": {}
   },
   "jumpToLastReadMessage": "",
   "@jumpToLastReadMessage": {},
-  "allRooms": "",
+  "allRooms": "Visas kopu tērzēšanas",
   "@allRooms": {
     "type": "text",
     "placeholders": {}
@@ -50,7 +50,7 @@
   },
   "commandHint_cuddle": "Nosūtīt samīļojienu",
   "@commandHint_cuddle": {},
-  "chats": "",
+  "chats": "Tērzēšanas",
   "@chats": {
     "type": "text",
     "placeholders": {}
@@ -64,7 +64,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteShortcode": "",
+  "emoteShortcode": "Emocijas īskods",
   "@emoteShortcode": {
     "type": "text",
     "placeholders": {}
@@ -81,7 +81,7 @@
   },
   "reportErrorDescription": "",
   "@reportErrorDescription": {},
-  "directChats": "",
+  "directChats": "Tiešās tērzēšanas",
   "@directChats": {
     "type": "text",
     "placeholders": {}
@@ -100,24 +100,24 @@
   },
   "addAccount": "",
   "@addAccount": {},
-  "close": "",
+  "close": "Aizvērt",
   "@close": {
     "type": "text",
     "placeholders": {}
   },
-  "configureChat": "",
+  "configureChat": "Konfigurēt tērzēšanu",
   "@configureChat": {
     "type": "text",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "",
+  "chatHasBeenAddedToThisSpace": "Šai vietai tika pievienota tērzēšana",
   "@chatHasBeenAddedToThisSpace": {},
   "reply": "",
   "@reply": {
     "type": "text",
     "placeholders": {}
   },
-  "currentlyActive": "",
+  "currentlyActive": "Pašreiz darbīgi",
   "@currentlyActive": {
     "type": "text",
     "placeholders": {}
@@ -129,7 +129,7 @@
   },
   "unsupportedAndroidVersion": "",
   "@unsupportedAndroidVersion": {},
-  "device": "",
+  "device": "Ierīce",
   "@device": {
     "type": "text",
     "placeholders": {}
@@ -139,7 +139,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_html": "",
+  "commandHint_html": "Nosūtīt ar HTML formatētu tekstu",
   "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
@@ -151,7 +151,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "encryption": "",
+  "encryption": "Šifrēšana",
   "@encryption": {
     "type": "text",
     "placeholders": {}
@@ -183,7 +183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheNameOfTheGroup": "",
+  "changeTheNameOfTheGroup": "Mainīt kopas nosaukumu",
   "@changeTheNameOfTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -226,7 +226,7 @@
       "username": {}
     }
   },
-  "invited": "",
+  "invited": "Uzaicināts",
   "@invited": {
     "type": "text",
     "placeholders": {}
@@ -243,7 +243,7 @@
   "@setColorTheme": {},
   "nextAccount": "",
   "@nextAccount": {},
-  "commandHint_create": "",
+  "commandHint_create": "Izveidot tukšu kopas tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
   "@commandHint_create": {
     "type": "text",
     "description": "Usage hint for the command /create"
@@ -272,7 +272,7 @@
       "mxid": {}
     }
   },
-  "editDisplayname": "",
+  "editDisplayname": "Labot attēlojamo vārdu",
   "@editDisplayname": {
     "type": "text",
     "placeholders": {}
@@ -373,12 +373,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "changeTheme": "",
+  "changeTheme": "Mainīt izskatu",
   "@changeTheme": {
     "type": "text",
     "placeholders": {}
   },
-  "id": "",
+  "id": "Id",
   "@id": {
     "type": "text",
     "placeholders": {}
@@ -393,7 +393,7 @@
       "description": {}
     }
   },
-  "countParticipants": "",
+  "countParticipants": "{count} dalībnieki",
   "@countParticipants": {
     "type": "text",
     "placeholders": {
@@ -405,7 +405,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tryAgain": "",
+  "tryAgain": "Jāmēģina vēlreiz",
   "@tryAgain": {},
   "areGuestsAllowedToJoin": "Vai vieslietotājiem ir ļauts pievienoties",
   "@areGuestsAllowedToJoin": {
@@ -423,7 +423,7 @@
       "user": {}
     }
   },
-  "dateWithoutYear": "",
+  "dateWithoutYear": "{day}.{month}.",
   "@dateWithoutYear": {
     "type": "text",
     "placeholders": {
@@ -476,14 +476,14 @@
   "@otherCallingPermissions": {},
   "messagesStyle": "",
   "@messagesStyle": {},
-  "couldNotDecryptMessage": "",
+  "couldNotDecryptMessage": "Nevarēja atšifrēt ziņu: {error}",
   "@couldNotDecryptMessage": {
     "type": "text",
     "placeholders": {
       "error": {}
     }
   },
-  "invitedUsersOnly": "",
+  "invitedUsersOnly": "Tikai uzaicināti lietotāji",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -496,7 +496,7 @@
   "@emailOrUsername": {},
   "newSpaceDescription": "",
   "@newSpaceDescription": {},
-  "chatDescription": "",
+  "chatDescription": "Tērzēšanas apraksts",
   "@chatDescription": {},
   "callingAccountDetails": "",
   "@callingAccountDetails": {},
@@ -517,7 +517,7 @@
       "username": {}
     }
   },
-  "dateWithYear": "",
+  "dateWithYear": "{day}.{month}.{year}.",
   "@dateWithYear": {
     "type": "text",
     "placeholders": {
@@ -526,7 +526,7 @@
       "day": {}
     }
   },
-  "editRoomAliases": "",
+  "editRoomAliases": "Labot istabu aizstājvārdus",
   "@editRoomAliases": {
     "type": "text",
     "placeholders": {}
@@ -535,7 +535,7 @@
   "@enterSpace": {},
   "encryptThisChat": "",
   "@encryptThisChat": {},
-  "fileName": "",
+  "fileName": "Datnes nosaukums",
   "@fileName": {
     "type": "text",
     "placeholders": {}
@@ -562,12 +562,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "",
+  "incorrectPassphraseOrKey": "Nepareiza paroles vārdkopa vai atkopšanas atslēga",
   "@incorrectPassphraseOrKey": {
     "type": "text",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "",
+  "emoteWarnNeedToPick": "Nepieciešams izvēlēties emocijas īskodu un attēlu.",
   "@emoteWarnNeedToPick": {
     "type": "text",
     "placeholders": {}
@@ -576,7 +576,7 @@
   "@reopenChat": {},
   "pleaseEnterRecoveryKey": "",
   "@pleaseEnterRecoveryKey": {},
-  "create": "",
+  "create": "Izveidot",
   "@create": {
     "type": "text",
     "placeholders": {}
@@ -645,7 +645,7 @@
   },
   "noKeyForThisMessage": "",
   "@noKeyForThisMessage": {},
-  "enableEncryptionWarning": "",
+  "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
   "@enableEncryptionWarning": {
     "type": "text",
     "placeholders": {}
@@ -668,9 +668,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_markasgroup": "",
+  "commandHint_markasgroup": "Atzīmēt kā kopu",
   "@commandHint_markasgroup": {},
-  "errorObtainingLocation": "",
+  "errorObtainingLocation": "Kļūda atrašanās vietas iegūšanā: {error}",
   "@errorObtainingLocation": {
     "type": "text",
     "placeholders": {
@@ -695,9 +695,9 @@
   },
   "hydrate": "",
   "@hydrate": {},
-  "invalidServerName": "",
+  "invalidServerName": "Nederīgs servera nosaukums",
   "@invalidServerName": {},
-  "chatPermissions": "",
+  "chatPermissions": "Tērzēšanas atļaujas",
   "@chatPermissions": {},
   "voiceMessage": "",
   "@voiceMessage": {
@@ -752,7 +752,7 @@
       "localizedTimeShort": {}
     }
   },
-  "changedTheGuestAccessRulesTo": "",
+  "changedTheGuestAccessRulesTo": "{username} nomainīja viesu piekļuves nosacījumus uz {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "text",
     "placeholders": {
@@ -777,7 +777,7 @@
   },
   "makeAdminDescription": "",
   "@makeAdminDescription": {},
-  "edit": "",
+  "edit": "Labot",
   "@edit": {
     "type": "text",
     "placeholders": {}
@@ -787,7 +787,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEmotesFound": "",
+  "noEmotesFound": "Netika atrastas emocijas. 😕",
   "@noEmotesFound": {
     "type": "text",
     "placeholders": {}
@@ -812,12 +812,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "goToTheNewRoom": "",
+  "goToTheNewRoom": "Doties uz jauno istabu",
   "@goToTheNewRoom": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_clearcache": "",
+  "commandHint_clearcache": "Iztīrīt kešatmiņu",
   "@commandHint_clearcache": {
     "type": "text",
     "description": "Usage hint for the command /clearcache"
@@ -827,7 +827,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copy": "",
+  "copy": "Ievietot starpliktuvē",
   "@copy": {
     "type": "text",
     "placeholders": {}
@@ -846,7 +846,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "enableEncryption": "",
+  "enableEncryption": "Iespējot šifrēšanu",
   "@enableEncryption": {
     "type": "text",
     "placeholders": {}
@@ -907,7 +907,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "emptyChat": "",
+  "emptyChat": "Tukša tērzēšana",
   "@emptyChat": {
     "type": "text",
     "placeholders": {}
@@ -921,9 +921,9 @@
   },
   "storeSecurlyOnThisDevice": "",
   "@storeSecurlyOnThisDevice": {},
-  "yourChatBackupHasBeenSetUp": "",
+  "yourChatBackupHasBeenSetUp": "Tērzēšanas rezerves kopēšana tika iestatīta.",
   "@yourChatBackupHasBeenSetUp": {},
-  "chatBackup": "",
+  "chatBackup": "Tērzēšanas rezerves kopēšana",
   "@chatBackup": {
     "type": "text",
     "placeholders": {}
@@ -947,7 +947,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "",
+  "createdTheChat": "💬 {username} izveidoja tērzēšanu",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -966,7 +966,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "compareEmojiMatch": "",
+  "compareEmojiMatch": "Lūgums salīdzināt emocijzīmes",
   "@compareEmojiMatch": {
     "type": "text",
     "placeholders": {}
@@ -988,7 +988,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "containsDisplayName": "",
+  "containsDisplayName": "Satur attēlojamo vārdu",
   "@containsDisplayName": {
     "type": "text",
     "placeholders": {}
@@ -1005,7 +1005,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheRoomAliases": "",
+  "changedTheRoomAliases": "{username} nomainīja istabas aizstājvārdus",
   "@changedTheRoomAliases": {
     "type": "text",
     "placeholders": {
@@ -1014,14 +1014,14 @@
   },
   "fileIsTooBigForServer": "",
   "@fileIsTooBigForServer": {},
-  "homeserver": "",
+  "homeserver": "Mājasserveris",
   "@homeserver": {},
-  "help": "",
+  "help": "Palīdzība",
   "@help": {
     "type": "text",
     "placeholders": {}
   },
-  "chatDetails": "",
+  "chatDetails": "Tērzēšanas izvērsums",
   "@chatDetails": {
     "type": "text",
     "placeholders": {}
@@ -1031,7 +1031,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheHistoryVisibilityTo": "",
+  "changedTheHistoryVisibilityTo": "{username} nomainīja vēstures redzamību uz {rules}",
   "@changedTheHistoryVisibilityTo": {
     "type": "text",
     "placeholders": {
@@ -1056,7 +1056,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupWith": "",
+  "groupWith": "Kopa ar {displayname}",
   "@groupWith": {
     "type": "text",
     "placeholders": {
@@ -1065,7 +1065,7 @@
   },
   "callingPermissions": "",
   "@callingPermissions": {},
-  "delete": "",
+  "delete": "Izdzēst",
   "@delete": {
     "type": "text",
     "placeholders": {}
@@ -1079,12 +1079,12 @@
   "@readUpToHere": {},
   "start": "",
   "@start": {},
-  "downloadFile": "",
+  "downloadFile": "Lejupielādēt datni",
   "@downloadFile": {
     "type": "text",
     "placeholders": {}
   },
-  "deviceId": "",
+  "deviceId": "Ierīces Id",
   "@deviceId": {
     "type": "text",
     "placeholders": {}
@@ -1096,7 +1096,7 @@
   },
   "unlockOldMessages": "",
   "@unlockOldMessages": {},
-  "identity": "",
+  "identity": "Identitāte",
   "@identity": {
     "type": "text",
     "placeholders": {}
@@ -1108,7 +1108,7 @@
       "number": {}
     }
   },
-  "changedTheJoinRulesTo": "",
+  "changedTheJoinRulesTo": "{username} nomainīja pievienošanās nosacījumus uz {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "text",
     "placeholders": {
@@ -1152,7 +1152,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "channelCorruptedDecryptError": "",
+  "channelCorruptedDecryptError": "Šifrēšana tika bojāta",
   "@channelCorruptedDecryptError": {
     "type": "text",
     "placeholders": {}
@@ -1162,7 +1162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "guestsCanJoin": "",
+  "guestsCanJoin": "Viesi var pievienoties",
   "@guestsCanJoin": {
     "type": "text",
     "placeholders": {}
@@ -1172,7 +1172,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "copyToClipboard": "",
+  "copyToClipboard": "Ievietot starpliktuvē",
   "@copyToClipboard": {
     "type": "text",
     "placeholders": {}
@@ -1189,7 +1189,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hasWithdrawnTheInvitationFor": "",
+  "hasWithdrawnTheInvitationFor": "{username} atsauca uzaicinājumu {targetName}",
   "@hasWithdrawnTheInvitationFor": {
     "type": "text",
     "placeholders": {
@@ -1250,7 +1250,7 @@
       "number": {}
     }
   },
-  "commandInvalid": "",
+  "commandInvalid": "Nederīga komanda",
   "@commandInvalid": {
     "type": "text"
   },
@@ -1278,7 +1278,7 @@
       "username": {}
     }
   },
-  "changedTheRoomInvitationLink": "",
+  "changedTheRoomInvitationLink": "{username} nomainīja uzaicinājuma saiti",
   "@changedTheRoomInvitationLink": {
     "type": "text",
     "placeholders": {
@@ -1295,12 +1295,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_plain": "",
+  "commandHint_plain": "Nosūtīt neformatētu tekstu",
   "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "emoteSettings": "",
+  "emoteSettings": "Emociju iestatījumi",
   "@emoteSettings": {
     "type": "text",
     "placeholders": {}
@@ -1314,7 +1314,7 @@
   },
   "pleaseEnterRecoveryKeyDescription": "",
   "@pleaseEnterRecoveryKeyDescription": {},
-  "guestsAreForbidden": "",
+  "guestsAreForbidden": "Viesi nav ļauti",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
@@ -1334,9 +1334,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroupQuestion": "",
+  "inviteContactToGroupQuestion": "Vai vēlies uzaicināt {contact} uz tērzēšanu \"{groupName}\"?",
   "@inviteContactToGroupQuestion": {},
-  "emoteExists": "",
+  "emoteExists": "Emocija jau pastāv.",
   "@emoteExists": {
     "type": "text",
     "placeholders": {}
@@ -1360,12 +1360,12 @@
       "user": {}
     }
   },
-  "chat": "",
+  "chat": "Tērzēšana",
   "@chat": {
     "type": "text",
     "placeholders": {}
   },
-  "group": "",
+  "group": "Kopa",
   "@group": {
     "type": "text",
     "placeholders": {}
@@ -1389,7 +1389,7 @@
   },
   "enterRoom": "",
   "@enterRoom": {},
-  "enableEmotesGlobally": "",
+  "enableEmotesGlobally": "Iespējot kā vispārēju emociju paku",
   "@enableEmotesGlobally": {
     "type": "text",
     "placeholders": {}
@@ -1409,7 +1409,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheProfileAvatar": "",
+  "changedTheProfileAvatar": "{username} nomainīja savu attēlu",
   "@changedTheProfileAvatar": {
     "type": "text",
     "placeholders": {
@@ -1430,7 +1430,7 @@
       "username": {}
     }
   },
-  "commandHint_send": "",
+  "commandHint_send": "Nosūtīt tekstu",
   "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
@@ -1496,7 +1496,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandMissing": "",
+  "commandMissing": "{command} nav komanda.",
   "@commandMissing": {
     "type": "text",
     "placeholders": {
@@ -1523,7 +1523,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_discardsession": "",
+  "commandHint_discardsession": "Atmest sesiju",
   "@commandHint_discardsession": {
     "type": "text",
     "description": "Usage hint for the command /discardsession"
@@ -1535,7 +1535,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "",
+  "chooseAStrongPassword": "Jāizvēlas spēcīga parole",
   "@chooseAStrongPassword": {
     "type": "text",
     "placeholders": {}
@@ -1557,7 +1557,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUser": "",
+  "invitedUser": "📩 {username} uzaicināja {targetName}",
   "@invitedUser": {
     "type": "text",
     "placeholders": {
@@ -1570,7 +1570,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_myroomnick": "",
+  "commandHint_myroomnick": "Iestatīt savu attēlojamo vārdu šajā istabā",
   "@commandHint_myroomnick": {
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
@@ -1601,12 +1601,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "compareNumbersMatch": "",
+  "compareNumbersMatch": "Lūgums salīdzināt skaitļus",
   "@compareNumbersMatch": {
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "",
+  "groupIsPublic": "Kopa ir publiska",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
@@ -1628,12 +1628,12 @@
   },
   "unverified": "",
   "@unverified": {},
-  "fluffychat": "",
+  "fluffychat": "FluffyChat",
   "@fluffychat": {
     "type": "text",
     "placeholders": {}
   },
-  "howOffensiveIsThisContent": "",
+  "howOffensiveIsThisContent": "Cik aizskarošs ir šis saturs?",
   "@howOffensiveIsThisContent": {
     "type": "text",
     "placeholders": {}
@@ -1678,7 +1678,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "displaynameHasBeenChanged": "",
+  "displaynameHasBeenChanged": "Attēlojamais vārds tika nomainīts",
   "@displaynameHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -1692,22 +1692,22 @@
       "username": {}
     }
   },
-  "editRoomAvatar": "",
+  "editRoomAvatar": "Labot istabas attēlu",
   "@editRoomAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "encrypted": "",
+  "encrypted": "Šifrēta",
   "@encrypted": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_leave": "",
+  "commandHint_leave": "Pamest šo istabu",
   "@commandHint_leave": {
     "type": "text",
     "description": "Usage hint for the command /leave"
   },
-  "commandHint_myroomavatar": "",
+  "commandHint_myroomavatar": "Iestatīt savu attēlu šajā istabā (ar mxc-uri)",
   "@commandHint_myroomavatar": {
     "type": "text",
     "description": "Usage hint for the command /myroomavatar"
@@ -1727,26 +1727,26 @@
   "@publish": {},
   "openLinkInBrowser": "",
   "@openLinkInBrowser": {},
-  "clearArchive": "",
+  "clearArchive": "Iztīrīt arhīvu",
   "@clearArchive": {},
   "appLock": "Lietotnes aizslēgšana",
   "@appLock": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_react": "",
+  "commandHint_react": "Nosūtīt atbildi kā reakciju",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "changedTheHistoryVisibility": "",
+  "changedTheHistoryVisibility": "{username} mainīja vēstures redzamību",
   "@changedTheHistoryVisibility": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "commandHint_me": "",
+  "commandHint_me": "Apraksti sevi",
   "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
@@ -1762,7 +1762,7 @@
   "@disableEncryptionWarning": {},
   "directChat": "",
   "@directChat": {},
-  "encryptionNotEnabled": "",
+  "encryptionNotEnabled": "Šifrēšana nav iespējota",
   "@encryptionNotEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1794,29 +1794,29 @@
   },
   "foregroundServiceRunning": "",
   "@foregroundServiceRunning": {},
-  "enterAnEmailAddress": "",
+  "enterAnEmailAddress": "Jāievada e-pasta adrese",
   "@enterAnEmailAddress": {
     "type": "text",
     "placeholders": {}
   },
   "voiceCall": "",
   "@voiceCall": {},
-  "commandHint_kick": "",
+  "commandHint_kick": "Noņemt norādīto lietotāju no šīs istabas",
   "@commandHint_kick": {
     "type": "text",
     "description": "Usage hint for the command /kick"
   },
-  "copiedToClipboard": "",
+  "copiedToClipboard": "Ievietots starpliktuvē",
   "@copiedToClipboard": {
     "type": "text",
     "placeholders": {}
   },
-  "createNewSpace": "",
+  "createNewSpace": "Jauna vieta",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_unban": "",
+  "commandHint_unban": "Atcelt norādītā lietotāja izslēgšanu no šīs istabas",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -1826,14 +1826,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "",
+  "commandHint_ban": "Izslēgt norādīto lietotāju no šīs istabas",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
   },
   "importEmojis": "Ievietot emocijzīmes",
   "@importEmojis": {},
-  "confirm": "",
+  "confirm": "Apstiprināt",
   "@confirm": {
     "type": "text",
     "placeholders": {}
@@ -1845,9 +1845,9 @@
       "oldDisplayName": {}
     }
   },
-  "noChatDescriptionYet": "",
+  "noChatDescriptionYet": "Vēl nav izveidots tērzēšanas apraksts.",
   "@noChatDescriptionYet": {},
-  "defaultPermissionLevel": "",
+  "defaultPermissionLevel": "Noklusējuma atļauju līmenis",
   "@defaultPermissionLevel": {
     "type": "text",
     "placeholders": {}
@@ -1861,7 +1861,7 @@
       "count": {}
     }
   },
-  "fontSize": "",
+  "fontSize": "Fonta izmērs",
   "@fontSize": {
     "type": "text",
     "placeholders": {}
@@ -1875,7 +1875,7 @@
   "@confirmMatrixId": {},
   "learnMore": "",
   "@learnMore": {},
-  "iHaveClickedOnLink": "",
+  "iHaveClickedOnLink": "Es uzklikšķināju uz saites",
   "@iHaveClickedOnLink": {
     "type": "text",
     "placeholders": {}
@@ -1891,7 +1891,7 @@
   "@users": {},
   "openGallery": "",
   "@openGallery": {},
-  "chatDescriptionHasBeenChanged": "",
+  "chatDescriptionHasBeenChanged": "Tērzēšanas apraksts ir mainījies",
   "@chatDescriptionHasBeenChanged": {},
   "search": "",
   "@search": {
@@ -1906,7 +1906,7 @@
   "@dehydrateTor": {},
   "removeFromSpace": "",
   "@removeFromSpace": {},
-  "dateAndTimeOfDay": "",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "text",
     "placeholders": {
@@ -1914,12 +1914,12 @@
       "timeOfDay": {}
     }
   },
-  "commandHint_op": "",
+  "commandHint_op": "Iestatīt norādītā lietotāja spēka līmeni (noklusējums: 50)",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "commandHint_join": "",
+  "commandHint_join": "Pievienoties norādītajai istabai",
   "@commandHint_join": {
     "type": "text",
     "description": "Usage hint for the command /join"
@@ -1931,7 +1931,7 @@
   },
   "roomUpgradeDescription": "",
   "@roomUpgradeDescription": {},
-  "commandHint_invite": "",
+  "commandHint_invite": "Uzaicināt norādīto lietotāju šajā istabā",
   "@commandHint_invite": {
     "type": "text",
     "description": "Usage hint for the command /invite"
@@ -1953,7 +1953,7 @@
   },
   "pleaseEnterANumber": "",
   "@pleaseEnterANumber": {},
-  "contactHasBeenInvitedToTheGroup": "",
+  "contactHasBeenInvitedToTheGroup": "Kontaktpersona tika uzaicināta kopā",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "text",
     "placeholders": {}
@@ -1969,7 +1969,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "changedTheJoinRules": "",
+  "changedTheJoinRules": "{username} nomainīja pievienošanās nosacījumus",
   "@changedTheJoinRules": {
     "type": "text",
     "placeholders": {
@@ -1980,7 +1980,7 @@
   "@profileNotFound": {},
   "jump": "",
   "@jump": {},
-  "groups": "",
+  "groups": "Kopas",
   "@groups": {
     "type": "text",
     "placeholders": {}
@@ -2024,7 +2024,7 @@
   },
   "shareInviteLink": "",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "",
+  "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
   "@commandHint_markasdm": {},
   "recoveryKeyLost": "",
   "@recoveryKeyLost": {},
@@ -2042,7 +2042,7 @@
       "username": {}
     }
   },
-  "containsUserName": "",
+  "containsUserName": "Satur lietotājvārdu",
   "@containsUserName": {
     "type": "text",
     "placeholders": {}
@@ -2069,7 +2069,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "everythingReady": "",
+  "everythingReady": "Viss ir gatavs!",
   "@everythingReady": {
     "type": "text",
     "placeholders": {}
@@ -2079,12 +2079,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "emoteKeyboardNoRecents": "",
+  "emoteKeyboardNoRecents": "Nesen izmantotās emocijas parādīsies šeit...",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
   },
-  "setCustomEmotes": "",
+  "setCustomEmotes": "Iestatīt pielāgotas emocijas",
   "@setCustomEmotes": {
     "type": "text",
     "placeholders": {}
@@ -2096,7 +2096,7 @@
       "senderName": {}
     }
   },
-  "emoteInvalid": "",
+  "emoteInvalid": "Nederīgs emocijas īskods.",
   "@emoteInvalid": {
     "type": "text",
     "placeholders": {}
@@ -2111,7 +2111,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "deleteMessage": "",
+  "deleteMessage": "Izdzēst ziņu",
   "@deleteMessage": {
     "type": "text",
     "placeholders": {}
@@ -2128,7 +2128,7 @@
   },
   "setTheme": "",
   "@setTheme": {},
-  "changeTheHomeserver": "",
+  "changeTheHomeserver": "Mainīt mājasserveri",
   "@changeTheHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -2152,7 +2152,7 @@
       "fileName": {}
     }
   },
-  "chatBackupDescription": "",
+  "chatBackupDescription": "Iepriekšējās ziņas ir aizsargātas ar atkopšanas atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
   "@chatBackupDescription": {
     "type": "text",
     "placeholders": {}
@@ -2195,7 +2195,7 @@
   },
   "errorAddingWidget": "",
   "@errorAddingWidget": {},
-  "commandHint_dm": "",
+  "commandHint_dm": "Uzsākt tiešu tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
   "@commandHint_dm": {
     "type": "text",
     "description": "Usage hint for the command /dm"
@@ -2209,12 +2209,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "extremeOffensive": "",
+  "extremeOffensive": "Īpaši aizskarošs",
   "@extremeOffensive": {
     "type": "text",
     "placeholders": {}
   },
-  "editBlockedServers": "",
+  "editBlockedServers": "Labot liegtos serveros",
   "@editBlockedServers": {
     "type": "text",
     "placeholders": {}
@@ -2230,7 +2230,7 @@
       "user": {}
     }
   },
-  "deactivateAccountWarning": "",
+  "deactivateAccountWarning": "Tas atspējos Tavu lietotāja kontu. To nevar atdarīt. Vai tiešām?",
   "@deactivateAccountWarning": {
     "type": "text",
     "placeholders": {}
@@ -2259,12 +2259,12 @@
   },
   "newSpace": "",
   "@newSpace": {},
-  "changePassword": "",
+  "changePassword": "Nomainīt paroli",
   "@changePassword": {
     "type": "text",
     "placeholders": {}
   },
-  "devices": "",
+  "devices": "Ierīces",
   "@devices": {
     "type": "text",
     "placeholders": {}
@@ -2302,14 +2302,14 @@
   "@commandHint_googly": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "createGroup": "",
+  "createGroup": "Izveidot kopu",
   "@createGroup": {},
   "privacy": "",
   "@privacy": {
     "type": "text",
     "placeholders": {}
   },
-  "changeYourAvatar": "",
+  "changeYourAvatar": "Mainīt savu attēlu",
   "@changeYourAvatar": {
     "type": "text",
     "placeholders": {}
@@ -2323,7 +2323,7 @@
   "@hydrateTorLong": {},
   "time": "",
   "@time": {},
-  "enterYourHomeserver": "",
+  "enterYourHomeserver": "Jāievada mājasserveris",
   "@enterYourHomeserver": {
     "type": "text",
     "placeholders": {}
@@ -2333,7 +2333,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "contentHasBeenReported": "",
+  "contentHasBeenReported": "Par saturu tika ziņos servera pārvaldītājiem",
   "@contentHasBeenReported": {
     "type": "text",
     "placeholders": {}
@@ -2375,7 +2375,7 @@
   },
   "importNow": "Ievietot tagad",
   "@importNow": {},
-  "deleteAccount": "",
+  "deleteAccount": "Izdzēst kontu",
   "@deleteAccount": {
     "type": "text",
     "placeholders": {}
@@ -2403,14 +2403,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "emotePacks": "",
+  "emotePacks": "Emociju pakas istabai",
   "@emotePacks": {
     "type": "text",
     "placeholders": {}
   },
   "indexedDbErrorTitle": "",
   "@indexedDbErrorTitle": {},
-  "endedTheCall": "",
+  "endedTheCall": "{senderName} beidza zvanu",
   "@endedTheCall": {
     "type": "text",
     "placeholders": {
@@ -2418,5 +2418,21 @@
     }
   },
   "appLockDescription": "Aizslēgt lietotni ar PIN kodu, kad tā netiek izmantota",
-  "@appLockDescription": {}
+  "@appLockDescription": {},
+  "globalChatId": "Vispārējais tērzēšanas Id",
+  "@globalChatId": {},
+  "accessAndVisibilityDescription": "Kam ir ļauts pievienoties šai tērzēšanai un kā tērzēšana var tikt atklāta.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickers": "Pielāgotas emocijzīmes un uzlīmes",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Pievienot vai kopīgot pielāgotas emocijzīmes vai uzlīmes, kas var tikt izmantotas jebkurā tērzēšanā.",
+  "@customEmojisAndStickersBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Paslēpt nederīgus vai nezināmus ziņu formātus",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "blockUsername": "Neņemt vērā lietotājvārdu",
+  "@blockUsername": {},
+  "accessAndVisibility": "Piekļuve un redzamība",
+  "@accessAndVisibility": {},
+  "calls": "Zvani",
+  "@calls": {}
 }
