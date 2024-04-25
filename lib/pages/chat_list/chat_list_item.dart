@@ -86,7 +86,7 @@ class ChatListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
-        child: FutureBuilder(future: () async {return Future.value(room.hasNewMessages);} (),
+        child: FutureBuilder(future: Future.microtask(() => room.hasNewMessages),
         initialData: false, 
         builder: (context, hasMoreMessage)  {
           final hasNewMessages = hasMoreMessage.data ?? false;
