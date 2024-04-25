@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tawkie/config/themes.dart';
+import 'package:tawkie/pages/register/register.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import 'login.dart';
 
-class LoginView extends StatelessWidget {
-  final LoginController controller;
+class RegisterView extends StatelessWidget {
+  final RegisterController controller;
 
-  const LoginView(this.controller, {super.key});
+  const RegisterView(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +19,7 @@ class LoginView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
+        leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
       ),
@@ -29,47 +29,53 @@ class LoginView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
-                Image.asset('assets/banner_transparent.png'),
+                Text(
+                  L10n.of(context)!.registerTitle.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
-                    controller: controller.usernameController,
+                    controller: controller.emailController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
+                        controller.loading ? null : [AutofillHints.email],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_box_outlined),
-                      errorText: controller.usernameError,
-                      errorMaxLines: 3,
+                      prefixIcon: const Icon(Icons.email_outlined),
+                      errorText: controller.emailError,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.emailOrUsername,
+                      hintText: L10n.of(context)!.email,
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
+                  child: TextFormField(
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofillHints:
-                        controller.loading ? null : [AutofillHints.password],
+                        controller.loading ? null : [AutofillHints.newPassword],
                     controller: controller.passwordController,
-                    textInputAction: TextInputAction.go,
+                    textInputAction: TextInputAction.next,
                     obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.loginOry(),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
-                      errorMaxLines: 3,
                       errorStyle: const TextStyle(color: Colors.orange),
+                      errorMaxLines: 3,
                       fillColor: textFieldFillColor,
+                      hintText: L10n.of(context)!.password,
                       suffixIcon: IconButton(
                         onPressed: controller.toggleShowPassword,
                         icon: Icon(
@@ -79,7 +85,36 @@ class LoginView extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      hintText: L10n.of(context)!.password,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextFormField(
+                    readOnly: controller.loading,
+                    autocorrect: false,
+                    autofillHints:
+                        controller.loading ? null : [AutofillHints.newPassword],
+                    controller: controller.confirmPasswordController,
+                    textInputAction: TextInputAction.done,
+                    obscureText: !controller.showConfirmPassword,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock_outlined),
+                      errorText: controller.confirmPasswordError,
+                      errorStyle: const TextStyle(color: Colors.orange),
+                      errorMaxLines: 3,
+                      fillColor: textFieldFillColor,
+                      hintText: L10n.of(context)!.registerConfirmPassword,
+                      suffixIcon: IconButton(
+                        onPressed: controller.toggleShowConfirmPassword,
+                        icon: Icon(
+                          controller.showConfirmPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -91,43 +126,11 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading ? null : controller.loginOry,
-                    icon: const Icon(Icons.login_outlined),
+                    onPressed: controller.loading ? null : controller.register,
+                    icon: const Icon(Icons.person_add_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton.icon(
-                    onPressed: controller.loading
-                        ? () {}
-                        : () {
-                            //Todo: make forgotten password function
-                            //controller.passwordForgotten
-                          },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
-                    ),
-                    icon: const Icon(Icons.safety_check_outlined),
-                    label: Text(L10n.of(context)!.passwordForgotten),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // Register redirection
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton.icon(
-                    onPressed: controller.loading
-                        ? () {}
-                        : () => context.go('/home/register'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
-                    ),
-                    icon: const Icon(Icons.app_registration),
-                    label: Text(L10n.of(context)!.register),
+                        : Text(L10n.of(context)!.register),
                   ),
                 ),
                 const SizedBox(height: 16),

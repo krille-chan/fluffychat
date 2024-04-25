@@ -21,6 +21,7 @@ import 'package:tawkie/pages/new_group/new_group.dart';
 import 'package:tawkie/pages/new_private_chat/new_private_chat.dart';
 import 'package:tawkie/pages/new_space/new_space.dart';
 import 'package:tawkie/pages/not_subscribe/not_subscribe_page.dart';
+import 'package:tawkie/pages/register/register.dart';
 import 'package:tawkie/pages/settings/settings.dart';
 import 'package:tawkie/pages/settings_3pid/settings_3pid.dart';
 import 'package:tawkie/pages/settings_chat/settings_chat.dart';
@@ -109,6 +110,15 @@ abstract class AppRoutes {
             context,
             state,
             const Login(),
+          ),
+          redirect: loggedInRedirect,
+        ),
+        GoRoute(
+          path: 'register',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            const Register(),
           ),
           redirect: loggedInRedirect,
         ),

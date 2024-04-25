@@ -54,7 +54,7 @@ class BotBridgeConnection {
     final String botUserId = '$bot$hostname';
 
     Future.microtask(() {
-      connectionState.updateConnectionTitle(L10n.of(context)!.loading_sendCode);
+      connectionState.updateConnectionTitle(L10n.of(context)!.loadingSendCode);
     });
 
     // Add a direct chat with the bot (if you haven't already)
@@ -70,7 +70,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_verificationCode);
+          .updateConnectionTitle(L10n.of(context)!.loadingVerificationCode);
     });
 
     await Future.delayed(const Duration(seconds: 3)); // Wait sec
@@ -267,7 +267,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(
-        L10n.of(context)!.loading_disconnectionDemand,
+        L10n.of(context)!.loadingDisconnectionDemand,
       );
     });
 
@@ -356,7 +356,7 @@ class BotBridgeConnection {
 
             Future.microtask(() {
               connectionState.updateConnectionTitle(
-                L10n.of(context)!.loading_disconnectionSuccess,
+                L10n.of(context)!.loadingDisconnectionSuccess,
               );
               connectionState.updateLoading(false);
             });
@@ -395,7 +395,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
     // Success phrases to spot
@@ -427,7 +427,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_verification);
+          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
     await Future.delayed(const Duration(seconds: 1)); // Wait sec
@@ -522,7 +522,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
     // Success phrases to spot
@@ -545,7 +545,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_verificationNumber);
+          .updateConnectionTitle(L10n.of(context)!.loadingVerificationNumber);
     });
     // Send the "login" message to the bot
     await roomBot?.sendTextEvent("login $phoneNumber");
@@ -668,7 +668,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_demandToConnect);
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
     // Success phrases to spot
@@ -696,7 +696,7 @@ class BotBridgeConnection {
 
     Future.microtask(() {
       connectionState
-          .updateConnectionTitle(L10n.of(context)!.loading_verification);
+          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
     // Send the "login" message to the bot
@@ -730,7 +730,7 @@ class BotBridgeConnection {
 
           Future.microtask(() {
             connectionState.updateConnectionTitle(
-                L10n.of(context)!.loading_verificationCode);
+                L10n.of(context)!.loadingVerificationCode);
           });
 
           await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
@@ -792,7 +792,7 @@ class BotBridgeConnection {
     final String botUserId = "$chatBot$hostname";
     Future.microtask(() {
       connectionState.updateConnectionTitle(
-        L10n.of(context)!.loading_deleteRoom,
+        L10n.of(context)!.loadingDeleteRoom,
       );
     });
     try {
@@ -804,7 +804,7 @@ class BotBridgeConnection {
 
         Future.microtask(() {
           connectionState.updateConnectionTitle(
-            L10n.of(context)!.loading_deleteRoomSuccess,
+            L10n.of(context)!.loadingDeleteRoomSuccess,
           );
           connectionState.updateLoading(false);
         });
@@ -834,7 +834,7 @@ class BotBridgeConnection {
       Logs().v("Ping timeout");
 
       // Display error message to warn user
-      showCatchErrorDialog(context, L10n.of(context)!.err_timeOut);
+      showCatchErrorDialog(context, L10n.of(context)!.errTimeOut);
 
       throw TimeoutException("Ping timeout");
     } catch (error) {

@@ -94,7 +94,7 @@ Future<bool> connectWithTwoFields(
           // Display a showDialog with an error message related to the User/password error
           showCatchErrorDialog(
             context,
-            L10n.of(context)!.err_usernameOrPassword,
+            L10n.of(context)!.errUsernameOrPassword,
           );
         } else if (result == "rateLimitError") {
           // Display a showDialog with an error message related to the rate limit
@@ -106,10 +106,10 @@ Future<bool> connectWithTwoFields(
           // Display a showDialog with an unknown error message
           showCatchErrorDialog(
             context,
-            L10n.of(context)!.err_tryAgain,
+            L10n.of(context)!.errTryAgain,
           );
         } else if (result == "alreadyConnected") {
-          showCatchErrorDialog(context, L10n.of(context)!.err_alreadyConnected);
+          showCatchErrorDialog(context, L10n.of(context)!.errAlreadyConnected);
           Navigator.of(context).pop();
           completer.complete(
             true,

@@ -59,7 +59,7 @@ Future<bool> showBottomSheetBridge(
                   // Display a showDialog with an unknown error message
                   showCatchErrorDialog(
                     context,
-                    L10n.of(context)!.err_tryAgain,
+                    L10n.of(context)!.errTryAgain,
                   );
                 }
               } catch (e) {

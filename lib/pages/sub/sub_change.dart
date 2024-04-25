@@ -52,12 +52,12 @@ class SubscriptionChangePage extends StatelessWidget {
         if (activeSubscriptionCards.isNotEmpty) ...activeSubscriptionCards,
         if (Platform.isIOS)
           Text(
-            L10n.of(context)!.sub_changeAfterExp,
+            L10n.of(context)!.subChangeAfterExp,
             textAlign: TextAlign.center,
           ),
         const SizedBox(height: 20),
         Text(
-          L10n.of(context)!.sub_availableSubs,
+          L10n.of(context)!.subAvailableSubs,
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -73,8 +73,8 @@ class SubscriptionChangePage extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-              '${L10n.of(context)!.sub_changeSub} ${package.storeProduct.title}'),
-          content: Text(L10n.of(context)!.sub_changeSubText),
+              '${L10n.of(context)!.subChangeSub} ${package.storeProduct.title}'),
+          content: Text(L10n.of(context)!.subChangeSubText),
           actions: [
             TextButton(
               onPressed: () {
@@ -185,16 +185,16 @@ class SubscriptionCard extends StatelessWidget {
           const SizedBox(height: 10),
           if (isActive)
             Text(
-              L10n.of(context)!.sub_subStatus,
+              L10n.of(context)!.subStatus,
               style: const TextStyle(fontSize: 16, color: Colors.green),
             )
           else
             ElevatedButton(
               onPressed: onChangeSubscription,
-              child: Text(L10n.of(context)!.sub_changeButton),
+              child: Text(L10n.of(context)!.subChangeButton),
             ),
           if (isActive && expirationDate != null)
-            Text("${L10n.of(context)!.sub_renewedOn} $expirationDate"),
+            Text("${L10n.of(context)!.subRenewedOn} $expirationDate"),
         ],
       ),
     );

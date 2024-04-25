@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
@@ -44,11 +45,11 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
     // Check that the username matches the regex
     if (!usernameRegex.hasMatch(username)) {
-      setState(() => _usernameError = L10n.of(context)?.username_validateError);
+      setState(() => _usernameError = L10n.of(context)?.usernameRequirements);
       return false;
     }
 
-    // Reset password error if valid
+    // Reset username error if valid
     setState(() => _usernameError = null);
     return true;
   }
@@ -89,7 +90,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       // Display a SnackBar to indicate a successful name change
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${L10n.of(context)!.username_success} $newUsername'),
+          content: Text('${L10n.of(context)!.usernameSuccess} $newUsername'),
           backgroundColor: Colors.green,
         ),
       );
@@ -114,11 +115,31 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     }
   }
 
+  void _onSubmitButtonPressed() async {
+    if (widget.queueStatus['username'] != _usernameController.text) {
+      final newUsername = _usernameController.text;
+
+      if (_usernameController.text.isEmpty) {
+        setState(() {
+          _usernameError = L10n.of(context)!.registerRequiredField;
+        });
+        return;
+      } else {
+        setState(() {
+          _usernameError = null;
+        });
+
+        // Update user name
+        await updateUsername(widget.sessionToken, newUsername);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.username_pageTitle),
+        title: Text(L10n.of(context)!.usernamePageTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -138,7 +159,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   ? Column(
                       children: [
                         Text(
-                          L10n.of(context)!.username_yourPosition,
+                          L10n.of(context)!.usernameYourPosition,
                           style: const TextStyle(fontSize: 18),
                         ),
                         Text(
@@ -148,17 +169,18 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                       ],
                     )
                   : Text(
-                      L10n.of(context)!.username_itsYourTurn,
+                      L10n.of(context)!.usernameItsYourTurn,
                       style: const TextStyle(fontSize: 23),
                     ),
               const SizedBox(height: 10),
               Text(
-                L10n.of(context)!.username_changeUsername,
+                L10n.of(context)!.usernameChangeUsername,
                 style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 20),
               TextFormField(
                 controller: _usernameController,
+                inputFormatters: [LowerCaseTextFormatter()],
                 decoration: InputDecoration(
                   labelText: L10n.of(context)!.username,
                   errorText: _usernameError,
@@ -166,7 +188,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return L10n.of(context)!.register_requiredField;
+                    return L10n.of(context)!.registerRequiredField;
                   }
                   return null;
                 },
@@ -174,32 +196,12 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 20),
               isUsernameSet()
                   ? Text(
-                      L10n.of(context)!.username_advertisement,
+                      L10n.of(context)!.usernameAdvertisement,
                     )
                   : Container(),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () async {
-                  if (widget.queueStatus['username'] !=
-                      _usernameController.text) {
-                    final newUsername = _usernameController.text;
-
-                    if (_usernameController.text.isEmpty) {
-                      setState(() {
-                        _usernameError =
-                            L10n.of(context)!.register_requiredField;
-                      });
-                      return;
-                    } else {
-                      setState(() {
-                        _usernameError = null;
-                      });
-
-                      // Update user name
-                      await updateUsername(widget.sessionToken, newUsername);
-                    }
-                  }
-                },
+                onPressed: _onSubmitButtonPressed,
                 child: Text(L10n.of(context)!.submit),
               ),
               const SizedBox(height: 50),
@@ -236,5 +238,17 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   void dispose() {
     _usernameController.dispose();
     super.dispose();
+  }
+}
+
+// Custom TextInputFormatter to convert to lower case
+class LowerCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toLowerCase(),
+      selection: newValue.selection,
+    );
   }
 }

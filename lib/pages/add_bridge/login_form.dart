@@ -118,11 +118,11 @@ class WhatsAppLoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            L10n.of(context)!.phoneField_explain,
+            L10n.of(context)!.phoneFieldExplain,
           ),
           const SizedBox(height: 5),
           Text(
-            L10n.of(context)!.phoneField_initialZero,
+            L10n.of(context)!.phoneFieldInitialZero,
           ),
         ],
       ),

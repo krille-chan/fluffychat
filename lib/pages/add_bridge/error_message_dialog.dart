@@ -17,7 +17,7 @@ void showCatchErrorDialog(BuildContext context, Object e) {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(L10n.of(context)!.err_desc),
+            Text(L10n.of(context)!.errDesc),
             Text(e.toString()),
           ],
         ),

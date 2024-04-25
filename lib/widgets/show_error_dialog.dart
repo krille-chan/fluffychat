@@ -19,7 +19,7 @@ class DioErrorHandler {
       _showErrorDialog(
         context,
         L10n.of(context)!.err_,
-        L10n.of(context)!.err_tryAgain,
+        L10n.of(context)!.errTryAgain,
       );
     }
   }

@@ -121,7 +121,7 @@ class LoginController extends State<Login> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(L10n.of(context)!.err_),
-          content: Text(L10n.of(context)!.err_tryAgain),
+          content: Text(L10n.of(context)!.errTryAgain),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -233,7 +233,7 @@ class LoginController extends State<Login> {
         setState(() => passwordError = errorMessage);
       } else {
         setState(
-          () => passwordError = L10n.of(context)!.err_tryAgain,
+          () => passwordError = L10n.of(context)!.errTryAgain,
         );
       }
       return setState(() => loading = false);
@@ -241,7 +241,7 @@ class LoginController extends State<Login> {
       if (kDebugMode) {
         print(exception);
       }
-      setState(() => passwordError = L10n.of(context)!.err_usernameOrPassword);
+      setState(() => passwordError = L10n.of(context)!.errUsernameOrPassword);
       return setState(() => loading = false);
     }
   }

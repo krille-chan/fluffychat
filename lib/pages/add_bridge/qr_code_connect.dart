@@ -46,7 +46,7 @@ class _QRCodeConnectPageState extends State<QRCodeConnectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.whatsApp_qrTitle),
+        title: Text(L10n.of(context)!.whatsAppQrTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -82,27 +82,27 @@ class WhatsAppQRExplanation extends StatelessWidget {
     return Column(
       children: [
         Text(
-          L10n.of(context)!.whatsApp_qrExplainOne,
+          L10n.of(context)!.whatsAppQrExplainOne,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainTwo,
+          L10n.of(context)!.whatsAppQrExplainTwo,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainTree,
+          L10n.of(context)!.whatsAppQrExplainTree,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainFour,
+          L10n.of(context)!.whatsAppQrExplainFour,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainFive,
+          L10n.of(context)!.whatsAppQrExplainFive,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
@@ -133,26 +133,26 @@ class WhatsAppQRExplanation extends StatelessWidget {
           height: 20,
         ),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainSix,
+          L10n.of(context)!.whatsAppQrExplainSix,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(L10n.of(context)!.whatsApp_qrExplainSeven,
+            Text(L10n.of(context)!.whatsAppQrExplainSeven,
                 style: const TextStyle(
                   fontSize: 16,
                 )),
             Text(
-              L10n.of(context)!.whatsApp_qrExplainEight,
+              L10n.of(context)!.whatsAppQrExplainEight,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ],
         ),
         const SizedBox(height: 8),
         Text(
-          L10n.of(context)!.whatsApp_qrExplainTen,
+          L10n.of(context)!.whatsAppQrExplainTen,
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 8),
@@ -218,7 +218,7 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
             L10n.of(context)!.wellDone,
           ),
           content: Text(
-            L10n.of(context)!.whatsApp_connectedText,
+            L10n.of(context)!.whatsAppConnectedText,
           ),
           actions: [
             TextButton(
@@ -249,10 +249,10 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            L10n.of(context)!.err_elapsedTime,
+            L10n.of(context)!.errElapsedTime,
           ),
           content: Text(
-            L10n.of(context)!.err_expiredSession,
+            L10n.of(context)!.errExpiredSession,
           ),
           actions: [
             TextButton(
