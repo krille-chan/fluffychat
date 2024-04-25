@@ -91,7 +91,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroup": "",
+  "inviteContactToGroup": "Uzaicināt kontaktpersonu {groupName}",
   "@inviteContactToGroup": {
     "type": "text",
     "placeholders": {
@@ -169,7 +169,7 @@
   },
   "unsupportedAndroidVersionLong": "",
   "@unsupportedAndroidVersionLong": {},
-  "kicked": "",
+  "kicked": "👞 {username} izmeta {targetName}",
   "@kicked": {
     "type": "text",
     "placeholders": {
@@ -346,7 +346,7 @@
   },
   "banUserDescription": "",
   "@banUserDescription": {},
-  "inviteContact": "",
+  "inviteContact": "Uzaicināt kontaktpersonu",
   "@inviteContact": {
     "type": "text",
     "placeholders": {}
@@ -552,7 +552,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "fromTheInvitation": "",
+  "fromTheInvitation": "No uzaicinājuma",
   "@fromTheInvitation": {
     "type": "text",
     "placeholders": {}
@@ -598,7 +598,7 @@
   },
   "widgetNameError": "",
   "@widgetNameError": {},
-  "inoffensive": "",
+  "inoffensive": "Nav aizskarošs",
   "@inoffensive": {
     "type": "text",
     "placeholders": {}
@@ -650,7 +650,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "inviteText": "",
+  "inviteText": "{username} uzaicināja pievienoties FluffyChat.\n1. Jāapmeklē fluffychat.im un jāuzstāda lietotne \n2. Jāizveido konts vai jāpiesakās \n3. Jāatver uzaicinājuma saite: \n {link}",
   "@inviteText": {
     "type": "text",
     "placeholders": {
@@ -677,7 +677,7 @@
       "error": {}
     }
   },
-  "hydrateTor": "",
+  "hydrateTor": "TOR lietotāji: ievietot sesijas izguvi",
   "@hydrateTor": {},
   "pushNotificationsNotAvailable": "",
   "@pushNotificationsNotAvailable": {},
@@ -728,12 +728,12 @@
   "@sender": {},
   "storeInAndroidKeystore": "",
   "@storeInAndroidKeystore": {},
-  "hideRedactedEvents": "",
+  "hideRedactedEvents": "Paslēpt labošanas notikumus",
   "@hideRedactedEvents": {
     "type": "text",
     "placeholders": {}
   },
-  "online": "",
+  "online": "Tiešsaistē",
   "@online": {
     "type": "text",
     "placeholders": {}
@@ -745,7 +745,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lastActiveAgo": "",
+  "lastActiveAgo": "Pēdējoreiz redzēts: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "text",
     "placeholders": {
@@ -893,7 +893,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dehydrateWarning": "",
+  "dehydrateWarning": "Šī darbība nav atdarāma. Jānodrošina, ka rezerves kopijas datne tiek droši uzglabāta.",
   "@dehydrateWarning": {},
   "sendOriginal": "",
   "@sendOriginal": {
@@ -1039,7 +1039,7 @@
       "rules": {}
     }
   },
-  "leftTheChat": "",
+  "leftTheChat": "Pameta tērzēšanu",
   "@leftTheChat": {
     "type": "text",
     "placeholders": {}
@@ -1138,7 +1138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalRedactReason": "",
+  "optionalRedactReason": "(Izvēles) Ziņas labošanas iemesls...",
   "@optionalRedactReason": {},
   "acceptedTheInvitation": "👍 {username} pieņēma uzaicinājumu",
   "@acceptedTheInvitation": {
@@ -1167,7 +1167,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "ok": "",
+  "ok": "Labi",
   "@ok": {
     "type": "text",
     "placeholders": {}
@@ -1177,7 +1177,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dehydrate": "",
+  "dehydrate": "Izgūt sesiju un iztīrīt ierīci",
   "@dehydrate": {},
   "locationPermissionDeniedNotice": "",
   "@locationPermissionDeniedNotice": {
@@ -1216,7 +1216,7 @@
   "@sendAsText": {
     "type": "text"
   },
-  "inviteForMe": "",
+  "inviteForMe": "Uzaicinājums man",
   "@inviteForMe": {
     "type": "text",
     "placeholders": {}
@@ -1349,7 +1349,7 @@
       "reason": {}
     }
   },
-  "isTyping": "",
+  "isTyping": "raksta…",
   "@isTyping": {
     "type": "text",
     "placeholders": {}
@@ -1370,7 +1370,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "leave": "",
+  "leave": "Pamest",
   "@leave": {
     "type": "text",
     "placeholders": {}
@@ -1435,7 +1435,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "onlineKeyBackupEnabled": "",
+  "onlineKeyBackupEnabled": "Tiešsaistes atslēgas rezerves kopēšana ir iespējota",
   "@onlineKeyBackupEnabled": {
     "type": "text",
     "placeholders": {}
@@ -1464,7 +1464,7 @@
       "user": {}
     }
   },
-  "kickedAndBanned": "",
+  "kickedAndBanned": "🙅 {username} izmeta {targetName} un liedza piekļuvi",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -1484,7 +1484,7 @@
       "path": {}
     }
   },
-  "license": "",
+  "license": "Licence",
   "@license": {
     "type": "text",
     "placeholders": {}
@@ -1504,7 +1504,7 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "redactMessageDescription": "",
+  "redactMessageDescription": "Ziņa tiks labota visiem šīs sarunas dalībniekiem. To nevar atdarīt.",
   "@redactMessageDescription": {},
   "rejoin": "",
   "@rejoin": {
@@ -1518,7 +1518,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "forward": "",
+  "forward": "Pārsūtīt",
   "@forward": {
     "type": "text",
     "placeholders": {}
@@ -1545,7 +1545,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "dehydrateTorLong": "",
+  "dehydrateTorLong": "TOR lietotājiem ir ieteicams izgūt sesiju pirms loga aizvēršanas.",
   "@dehydrateTorLong": {},
   "yourPublicKey": "",
   "@yourPublicKey": {
@@ -1565,7 +1565,7 @@
       "targetName": {}
     }
   },
-  "kickFromChat": "",
+  "kickFromChat": "Izmest no tērzēšanas",
   "@kickFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1621,7 +1621,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinRoom": "",
+  "joinRoom": "Pievienoties istabai",
   "@joinRoom": {
     "type": "text",
     "placeholders": {}
@@ -1776,7 +1776,7 @@
   },
   "sendTypingNotifications": "Nosūtīt rakstīšanas paziņojumus",
   "@sendTypingNotifications": {},
-  "lightTheme": "",
+  "lightTheme": "Gaišs",
   "@lightTheme": {
     "type": "text",
     "placeholders": {}
@@ -1902,7 +1902,7 @@
   "@newGroup": {},
   "bundleName": "",
   "@bundleName": {},
-  "dehydrateTor": "",
+  "dehydrateTor": "TOR lietotāji: izgūt sesiju",
   "@dehydrateTor": {},
   "removeFromSpace": "",
   "@removeFromSpace": {},
@@ -2015,7 +2015,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadCountMoreParticipants": "",
+  "loadCountMoreParticipants": "Ielādēt vēl {count} dalībniekus",
   "@loadCountMoreParticipants": {
     "type": "text",
     "placeholders": {
@@ -2240,7 +2240,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "joinedTheChat": "",
+  "joinedTheChat": "👋 {username} pievienojās tērzēšanai",
   "@joinedTheChat": {
     "type": "text",
     "placeholders": {
@@ -2342,7 +2342,7 @@
   "@custom": {},
   "noBackupWarning": "",
   "@noBackupWarning": {},
-  "fromJoining": "",
+  "fromJoining": "No pievienošanās",
   "@fromJoining": {
     "type": "text",
     "placeholders": {}
@@ -2434,5 +2434,9 @@
   "accessAndVisibility": "Piekļuve un redzamība",
   "@accessAndVisibility": {},
   "calls": "Zvani",
-  "@calls": {}
+  "@calls": {},
+  "hideRedactedMessages": "Paslēpt labošanas ziņas",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
+  "@hideRedactedMessagesBody": {}
 }
