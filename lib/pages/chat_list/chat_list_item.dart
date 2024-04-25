@@ -67,11 +67,6 @@ class ChatListItem extends StatelessWidget {
     final lastEvent = room.lastEvent;
     final ownMessage = lastEvent?.senderId == Matrix.of(context).client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
-    final unreadBubbleSize = unread || room.hasNewMessages
-        ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
-        : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor = selected
         ? Theme.of(context).colorScheme.primaryContainer
@@ -81,6 +76,7 @@ class ChatListItem extends StatelessWidget {
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
+    final isDirectChat = room.isDirectChat;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -90,7 +86,16 @@ class ChatListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
-        child: FutureBuilder(
+        child: FutureBuilder(future: () async {return Future.value(room.hasNewMessages);} (),
+        initialData: false, 
+        builder: (context, hasMoreMessage)  {
+          final hasNewMessages = hasMoreMessage.data ?? false;
+             final unreadBubbleSize = unread || hasNewMessages
+          ? room.notificationCount > 0
+            ? 20.0
+            : 14.0
+        : 0.0;
+            return FutureBuilder(
           future: room.loadHeroUsers(),
           builder: (context, snapshot) => HoverBuilder(
             builder: (context, hovered) => ListTile(
@@ -143,7 +148,7 @@ class ChatListItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
-                      style: unread || room.hasNewMessages
+                      style: unread || hasNewMessages
                           ? const TextStyle(fontWeight: FontWeight.bold)
                           : null,
                     ),
@@ -225,7 +230,7 @@ class ChatListItem extends StatelessWidget {
                                   hideEdit: true,
                                   plaintextBody: true,
                                   removeMarkdown: true,
-                                  withSenderNamePrefix: !room.isDirectChat ||
+                                  withSenderNamePrefix: !isDirectChat ||
                                       room.directChatMatrixID !=
                                           room.lastEvent?.senderId,
                                 ) ??
@@ -233,7 +238,7 @@ class ChatListItem extends StatelessWidget {
                             builder: (context, snapshot) {
                               return Text(
                                 room.membership == Membership.invite
-                                    ? room.isDirectChat
+                                    ? isDirectChat
                                         ? L10n.of(context)!.invitePrivateChat
                                         : L10n.of(context)!.inviteGroupChat
                                     : snapshot.data ??
@@ -245,7 +250,7 @@ class ChatListItem extends StatelessWidget {
                                           plaintextBody: true,
                                           removeMarkdown: true,
                                           withSenderNamePrefix:
-                                              !room.isDirectChat ||
+                                              !isDirectChat ||
                                                   room.directChatMatrixID !=
                                                       room.lastEvent?.senderId,
                                         ) ??
@@ -254,7 +259,7 @@ class ChatListItem extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontWeight: unread || room.hasNewMessages
+                                  fontWeight: unread || hasNewMessages
                                       ? FontWeight.bold
                                       : null,
                                   color: Theme.of(context)
@@ -274,7 +279,7 @@ class ChatListItem extends StatelessWidget {
                     curve: FluffyThemes.animationCurve,
                     padding: const EdgeInsets.symmetric(horizontal: 7),
                     height: unreadBubbleSize,
-                    width: !hasNotifications && !unread && !room.hasNewMessages
+                    width: !hasNotifications && !unread && !hasNewMessages
                         ? 0
                         : (unreadBubbleSize - 9) *
                                 room.notificationCount.toString().length +
@@ -320,6 +325,8 @@ class ChatListItem extends StatelessWidget {
                     ),
             ),
           ),
+          ); 
+          },
         ),
       ),
     );
