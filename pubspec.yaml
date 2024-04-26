@@ -75,7 +75,7 @@ dependencies:
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.1
-  receive_sharing_intent: ^1.4.5
+  receive_sharing_intent: 1.4.5
   record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
   scroll_to_index: ^3.0.1
   share_plus: ^8.0.2
