@@ -16,7 +16,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passphraseOrKey": "",
+  "passphraseOrKey": "paroles vārdkopa vai atkopšanas atslēga",
   "@passphraseOrKey": {
     "type": "text",
     "placeholders": {}
@@ -43,7 +43,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "obtainingLocation": "",
+  "obtainingLocation": "Iegūst atrašanās vietu…",
   "@obtainingLocation": {
     "type": "text",
     "placeholders": {}
@@ -69,7 +69,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noEncryptionForPublicRooms": "",
+  "noEncryptionForPublicRooms": "Šifrēšanu var iespējot tikai tad, kad istaba vairs nav publiski pieejama.",
   "@noEncryptionForPublicRooms": {
     "type": "text",
     "placeholders": {}
@@ -98,7 +98,7 @@
       "groupName": {}
     }
   },
-  "addAccount": "",
+  "addAccount": "Pievienot kontu",
   "@addAccount": {},
   "close": "Aizvērt",
   "@close": {
@@ -160,7 +160,7 @@
   "@messageType": {},
   "indexedDbErrorLong": "",
   "@indexedDbErrorLong": {},
-  "oneClientLoggedOut": "",
+  "oneClientLoggedOut": "Viens no klientiem ir atteicies",
   "@oneClientLoggedOut": {},
   "toggleMuted": "",
   "@toggleMuted": {
@@ -205,7 +205,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newVerificationRequest": "",
+  "newVerificationRequest": "Jauns apliecināšanas pieprasījums.",
   "@newVerificationRequest": {
     "type": "text",
     "placeholders": {}
@@ -258,7 +258,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "password": "",
+  "password": "Parole",
   "@password": {
     "type": "text",
     "placeholders": {}
@@ -303,7 +303,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noMatrixServer": "",
+  "noMatrixServer": "{server1} nav Matrix serveris, tā vietā izmantot {server2}?",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
@@ -332,7 +332,7 @@
       "username": {}
     }
   },
-  "openAppToReadMessages": "",
+  "openAppToReadMessages": "Atvērt lietotni, lai lasītu ziņas",
   "@openAppToReadMessages": {
     "type": "text",
     "placeholders": {}
@@ -351,7 +351,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "askSSSSSign": "Lai varētu parakstītu otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopšanas atslēgu.",
+  "askSSSSSign": "Lai varētu parakstīt otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopšanas atslēgu.",
   "@askSSSSSign": {
     "type": "text",
     "placeholders": {}
@@ -446,7 +446,7 @@
       "username2": {}
     }
   },
-  "pleaseClickOnLink": "",
+  "pleaseClickOnLink": "Lūgums klikšķināt uz saites e-pastā un tad turpināt.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
@@ -458,7 +458,7 @@
   },
   "sendOnEnter": "Nosūtīt ar Enter",
   "@sendOnEnter": {},
-  "pickImage": "",
+  "pickImage": "Izvēlēties attēlu",
   "@pickImage": {
     "type": "text",
     "placeholders": {}
@@ -474,7 +474,7 @@
   "@youRejectedTheInvitation": {},
   "otherCallingPermissions": "",
   "@otherCallingPermissions": {},
-  "messagesStyle": "",
+  "messagesStyle": "Ziņas:",
   "@messagesStyle": {},
   "couldNotDecryptMessage": "Nevarēja atšifrēt ziņu: {error}",
   "@couldNotDecryptMessage": {
@@ -488,7 +488,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "link": "",
+  "link": "Saite",
   "@link": {},
   "widgetUrlError": "",
   "@widgetUrlError": {},
@@ -500,7 +500,7 @@
   "@chatDescription": {},
   "callingAccountDetails": "",
   "@callingAccountDetails": {},
-  "next": "",
+  "next": "Nākamais",
   "@next": {
     "type": "text",
     "placeholders": {}
@@ -574,7 +574,7 @@
   },
   "reopenChat": "",
   "@reopenChat": {},
-  "pleaseEnterRecoveryKey": "",
+  "pleaseEnterRecoveryKey": "Lūgums ievadīt savu atkopšanas atslēgu:",
   "@pleaseEnterRecoveryKey": {},
   "create": "Izveidot",
   "@create": {
@@ -586,7 +586,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "no": "",
+  "no": "Nē",
   "@no": {
     "type": "text",
     "placeholders": {}
@@ -608,7 +608,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToBundle": "",
+  "addToBundle": "Pievienot komplektam",
   "@addToBundle": {},
   "reportMessage": "",
   "@reportMessage": {
@@ -681,7 +681,7 @@
   "@hydrateTor": {},
   "pushNotificationsNotAvailable": "",
   "@pushNotificationsNotAvailable": {},
-  "passwordRecovery": "",
+  "passwordRecovery": "Paroles atjaunošana",
   "@passwordRecovery": {
     "type": "text",
     "placeholders": {}
@@ -693,7 +693,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hydrate": "",
+  "hydrate": "Atjaunot no rezerves kopijas datnes",
   "@hydrate": {},
   "invalidServerName": "Nederīgs servera nosaukums",
   "@invalidServerName": {},
@@ -712,7 +712,7 @@
       "supportedVersions": {}
     }
   },
-  "wipeChatBackup": "",
+  "wipeChatBackup": "Notīrīt tērzēšanas rezerves kopiju, lai izveidotu jaunu atkopšanas atslēgu?",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -765,12 +765,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "offensive": "",
+  "offensive": "Aizskarošs",
   "@offensive": {
     "type": "text",
     "placeholders": {}
   },
-  "needPantalaimonWarning": "",
+  "needPantalaimonWarning": "Lūgums ņemt vērā, ka pagaidām ir nepieciešams Pantalaimon, lai izmantotu pilnīgu šifrēšanu.",
   "@needPantalaimonWarning": {
     "type": "text",
     "placeholders": {}
@@ -782,7 +782,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "loadMore": "",
+  "loadMore": "Ielādēt vēl…",
   "@loadMore": {
     "type": "text",
     "placeholders": {}
@@ -802,7 +802,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordHasBeenChanged": "",
+  "passwordHasBeenChanged": "Parole tikai nomainīta",
   "@passwordHasBeenChanged": {
     "type": "text",
     "placeholders": {}
@@ -822,7 +822,7 @@
     "type": "text",
     "description": "Usage hint for the command /clearcache"
   },
-  "loadingPleaseWait": "",
+  "loadingPleaseWait": "Ielādē... Lūgums uzgaidīt.",
   "@loadingPleaseWait": {
     "type": "text",
     "placeholders": {}
@@ -834,12 +834,12 @@
   },
   "saveKeyManuallyDescription": "",
   "@saveKeyManuallyDescription": {},
-  "none": "",
+  "none": "Neviens",
   "@none": {
     "type": "text",
     "placeholders": {}
   },
-  "editBundlesForAccount": "",
+  "editBundlesForAccount": "Labot šī konta komplektus",
   "@editBundlesForAccount": {},
   "renderRichContent": "",
   "@renderRichContent": {
@@ -888,7 +888,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "or": "",
+  "or": "Vai",
   "@or": {
     "type": "text",
     "placeholders": {}
@@ -971,12 +971,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "participant": "",
+  "participant": "Dalībnieks",
   "@participant": {
     "type": "text",
     "placeholders": {}
   },
-  "logInTo": "",
+  "logInTo": "PIeteikties {homeserver}",
   "@logInTo": {
     "type": "text",
     "placeholders": {
@@ -1026,7 +1026,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "people": "",
+  "people": "Cilvēki",
   "@people": {
     "type": "text",
     "placeholders": {}
@@ -1070,7 +1070,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "",
+  "newMessageInFluffyChat": "💬 Jauna ziņa FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "text",
     "placeholders": {}
@@ -1133,7 +1133,7 @@
       "username": {}
     }
   },
-  "moderator": "",
+  "moderator": "Moderators",
   "@moderator": {
     "type": "text",
     "placeholders": {}
@@ -1179,7 +1179,7 @@
   },
   "dehydrate": "Izgūt sesiju un iztīrīt ierīci",
   "@dehydrate": {},
-  "locationPermissionDeniedNotice": "",
+  "locationPermissionDeniedNotice": "Atrašanās vietas atļauja noliegta. Lūgums nodrošināt to, lai būtu iespējams kopīgot savu atrašanās vietu.",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
@@ -1202,7 +1202,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noRoomsFound": "",
+  "noRoomsFound": "Istabas netika atrastas…",
   "@noRoomsFound": {
     "type": "text",
     "placeholders": {}
@@ -1264,7 +1264,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "locationDisabledNotice": "",
+  "locationDisabledNotice": "Atrašanās vietas pakalpojumi ir atspējoti. Lūgums tos iespējot, lai būtu iespējams kopīgot savu atrašanās vietu.",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
@@ -1285,12 +1285,12 @@
       "username": {}
     }
   },
-  "newChat": "",
+  "newChat": "Jauna tērzēšana",
   "@newChat": {
     "type": "text",
     "placeholders": {}
   },
-  "notifications": "",
+  "notifications": "Paziņojumi",
   "@notifications": {
     "type": "text",
     "placeholders": {}
@@ -1307,29 +1307,29 @@
   },
   "experimentalVideoCalls": "",
   "@experimentalVideoCalls": {},
-  "openCamera": "",
+  "openCamera": "Atvērt kameru",
   "@openCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnterRecoveryKeyDescription": "",
+  "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopšanas atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopšanas atslēga NAV parole.",
   "@pleaseEnterRecoveryKeyDescription": {},
   "guestsAreForbidden": "Viesi nav ļauti",
   "@guestsAreForbidden": {
     "type": "text",
     "placeholders": {}
   },
-  "mention": "",
+  "mention": "Pieminēt",
   "@mention": {
     "type": "text",
     "placeholders": {}
   },
-  "openInMaps": "",
+  "openInMaps": "Atvērt kartēs",
   "@openInMaps": {
     "type": "text",
     "placeholders": {}
   },
-  "withTheseAddressesRecoveryDescription": "",
+  "withTheseAddressesRecoveryDescription": "Ar šīm adresēm var atjaunot savu paroli.",
   "@withTheseAddressesRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1399,12 +1399,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChooseAPasscode": "",
+  "pleaseChooseAPasscode": "Lūgums izvēlēties piekļuves kodu",
   "@pleaseChooseAPasscode": {
     "type": "text",
     "placeholders": {}
   },
-  "noPasswordRecoveryDescription": "",
+  "noPasswordRecoveryDescription": "Vēl nav pievienots paroles atjaunošanas veids.",
   "@noPasswordRecoveryDescription": {
     "type": "text",
     "placeholders": {}
@@ -1472,7 +1472,7 @@
       "targetName": {}
     }
   },
-  "noConnectionToTheServer": "",
+  "noConnectionToTheServer": "Nav savienojuma ar serveri",
   "@noConnectionToTheServer": {
     "type": "text",
     "placeholders": {}
@@ -1511,7 +1511,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "recoveryKey": "",
+  "recoveryKey": "Atkopšanas atslēga",
   "@recoveryKey": {},
   "redactMessage": "",
   "@redactMessage": {
@@ -1575,12 +1575,12 @@
     "type": "text",
     "description": "Usage hint for the command /myroomnick"
   },
-  "offline": "",
+  "offline": "Bezsaistē",
   "@offline": {
     "type": "text",
     "placeholders": {}
   },
-  "noPermission": "",
+  "noPermission": "Nav atļaujas",
   "@noPermission": {
     "type": "text",
     "placeholders": {}
@@ -1616,7 +1616,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "memberChanges": "",
+  "memberChanges": "Dalībnieku izmaiņas",
   "@memberChanges": {
     "type": "text",
     "placeholders": {}
@@ -1638,7 +1638,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "serverRequiresEmail": "",
+  "serverRequiresEmail": "Šim serverim ir nepieciešams pārbaudīt Tavu e-pasta adresi reģistrācijai.",
   "@serverRequiresEmail": {},
   "hideUnimportantStateEvents": "",
   "@hideUnimportantStateEvents": {},
@@ -1751,7 +1751,7 @@
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "pleaseEnterYourUsername": "",
+  "pleaseEnterYourUsername": "Lūgums ievadīt savu lietotājvārdu",
   "@pleaseEnterYourUsername": {
     "type": "text",
     "placeholders": {}
@@ -1852,9 +1852,9 @@
     "type": "text",
     "placeholders": {}
   },
-  "removeFromBundle": "",
+  "removeFromBundle": "Noņemt no šī komplekta",
   "@removeFromBundle": {},
-  "numUsersTyping": "",
+  "numUsersTyping": "{count} lietotāji raksta…",
   "@numUsersTyping": {
     "type": "text",
     "placeholders": {
@@ -1900,7 +1900,7 @@
   },
   "newGroup": "",
   "@newGroup": {},
-  "bundleName": "",
+  "bundleName": "Komplekta nosaukums",
   "@bundleName": {},
   "dehydrateTor": "TOR lietotāji: izgūt sesiju",
   "@dehydrateTor": {},
@@ -1944,9 +1944,9 @@
       "type": {}
     }
   },
-  "scanQrCode": "",
+  "scanQrCode": "Nolasīt kvadrātkodu",
   "@scanQrCode": {},
-  "logout": "",
+  "logout": "Atteikties",
   "@logout": {
     "type": "text",
     "placeholders": {}
@@ -2010,7 +2010,7 @@
       "size": {}
     }
   },
-  "oopsSomethingWentWrong": "",
+  "oopsSomethingWentWrong": "Ups! Kaut kas nogāja greizi…",
   "@oopsSomethingWentWrong": {
     "type": "text",
     "placeholders": {}
@@ -2022,11 +2022,11 @@
       "count": {}
     }
   },
-  "shareInviteLink": "",
+  "shareInviteLink": "Kopīgot uzaicinājuma saiti",
   "@shareInviteLink": {},
   "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
   "@commandHint_markasdm": {},
-  "recoveryKeyLost": "",
+  "recoveryKeyLost": "Pazaudēta atkopšanas atslēga?",
   "@recoveryKeyLost": {},
   "cuddleContent": "{senderName} samīļo Tevi",
   "@cuddleContent": {
@@ -2047,12 +2047,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "messages": "",
+  "messages": "Ziņas",
   "@messages": {
     "type": "text",
     "placeholders": {}
   },
-  "login": "",
+  "login": "Pieteikties",
   "@login": {
     "type": "text",
     "placeholders": {}
@@ -2064,7 +2064,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "",
+  "noGoogleServicesWarning": "Izskatās, ka Firebase mākoņziņojumapmaiņa nav pieejama šajā ierīcē. Lai joprojām saņemtu pašpiegādes paziņojumus, mēs iesakām uzstādīt ntfy. Ar ntfy vai citu Vienotās pašpiegādes nodrošinātāju ir iespējams saņemt pašpiegādes paziņojumus drošā veidā. ntfy var lejupielādēt no PlayStore vai F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "text",
     "placeholders": {}
@@ -2106,7 +2106,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "",
+  "notificationsEnabledForThisAccount": "Paziņojumi iespējoti šim kontam",
   "@notificationsEnabledForThisAccount": {
     "type": "text",
     "placeholders": {}
@@ -2140,12 +2140,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "openVideoCamera": "",
+  "openVideoCamera": "Atvērt kameru video uzņemšanai",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "play": "",
+  "play": "Atskaņot {fileName}",
   "@play": {
     "type": "text",
     "placeholders": {
@@ -2162,7 +2162,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "passwordForgotten": "",
+  "passwordForgotten": "Aizmirsta parole",
   "@passwordForgotten": {
     "type": "text",
     "placeholders": {}
@@ -2219,7 +2219,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "oopsPushError": "",
+  "oopsPushError": "Ups! Diemžēl atgadījās kļūda pašpiegādes paziņojumu iestatīšanas laikā.",
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
@@ -2252,7 +2252,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseEnter4Digits": "",
+  "pleaseEnter4Digits": "Lūgums ievadīt 4 ciparus vai atstāt tukšu, lai atspējotu lietotnes slēgu.",
   "@pleaseEnter4Digits": {
     "type": "text",
     "placeholders": {}
@@ -2283,12 +2283,12 @@
   },
   "emojis": "",
   "@emojis": {},
-  "pleaseEnterYourPin": "",
+  "pleaseEnterYourPin": "Lūgums ievadīt savu PIN",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChoose": "",
+  "pleaseChoose": "Lūgums izvēlēties",
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
@@ -2319,7 +2319,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hydrateTorLong": "",
+  "hydrateTorLong": "Vai sesija pēdējoreiz tika izgūta TOR? Ātri ievieto to un turpini tērzēšanu!",
   "@hydrateTorLong": {},
   "time": "",
   "@time": {},
@@ -2357,7 +2357,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "storeInSecureStorageDescription": "",
+  "storeInSecureStorageDescription": "Glabāt atkopšanas atslēgu šīs ierīces drošajā krātuvē.",
   "@storeInSecureStorageDescription": {},
   "openChat": "",
   "@openChat": {},
@@ -2368,7 +2368,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pin": "",
+  "pin": "PIN",
   "@pin": {
     "type": "text",
     "placeholders": {}
@@ -2389,14 +2389,14 @@
   "@pinMessage": {},
   "screenSharingDetail": "",
   "@screenSharingDetail": {},
-  "muteChat": "",
+  "muteChat": "Apklusināt tērzēšanu",
   "@muteChat": {
     "type": "text",
     "placeholders": {}
   },
   "invite": "",
   "@invite": {},
-  "enableMultiAccounts": "",
+  "enableMultiAccounts": "(BETA) Iespējot vairākus kontus šajā ierīcē",
   "@enableMultiAccounts": {},
   "anyoneCanJoin": "Ikviens var pievienoties",
   "@anyoneCanJoin": {
@@ -2438,5 +2438,23 @@
   "hideRedactedMessages": "Paslēpt labošanas ziņas",
   "@hideRedactedMessages": {},
   "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
-  "@hideRedactedMessagesBody": {}
+  "@hideRedactedMessagesBody": {},
+  "blockListDescription": "Ir iespējams atslēgt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā izslēgšanas sarakstā.",
+  "@blockListDescription": {},
+  "hideMemberChangesInPublicChatsBody": "Nerādīt tērzēšanas plūsmā, ja kāds pievienojas publiskai tērzēšanai vai pamet to, lai uzlabotu lasāmību.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Pārskats",
+  "@overview": {},
+  "notifyMeFor": "Paziņot man par",
+  "@notifyMeFor": {},
+  "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopšanas atslēga.",
+  "@wrongRecoveryKey": {},
+  "block": "Izslēgt",
+  "@block": {},
+  "hideMemberChangesInPublicChats": "Paslēpt dalībnieku izmaiņas publiskajās tērzēšanās",
+  "@hideMemberChangesInPublicChats": {},
+  "passwordRecoverySettings": "Paroles atjaunošanas iestatījumi",
+  "@passwordRecoverySettings": {},
+  "blockedUsers": "Atslēgtie lietotāji",
+  "@blockedUsers": {}
 }
