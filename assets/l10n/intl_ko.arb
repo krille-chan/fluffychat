@@ -2286,7 +2286,7 @@
   },
   "addChatDescription": "채팅 설명 추가하기...",
   "@addChatDescription": {},
-  "hasKnocked": "{user}가 입장을 요청했습니다",
+  "hasKnocked": "🚪 {user}가 입장을 요청했습니다",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
