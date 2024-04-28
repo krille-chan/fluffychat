@@ -198,7 +198,12 @@ class _LoginButton extends StatelessWidget {
         width: double.infinity,
         child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            side: BorderSide.none,
+            side: FluffyThemes.isColumnMode(context)
+                ? BorderSide.none
+                : BorderSide(
+                    color: Theme.of(context).colorScheme.outlineVariant,
+                    width: 1,
+                  ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(99),
             ),
