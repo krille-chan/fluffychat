@@ -1,0 +1,38 @@
+# This is a config for a license compliance checker script. It runs in CI.
+#
+# To run locally:
+# dart run license_checker check-licenses -c licenses.yaml --problematic
+#
+# SPDX license list: https://spdx.org/licenses/
+
+# Before you add a license here: Is it free software? Is it compatible with AGPL-3.0?
+permittedLicenses:
+  - AGPL-3.0
+  - Apache-2.0
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - EUPL-1.2
+  - MIT
+  - MPL-2.0
+  - Zlib
+
+packageLicenseOverride:
+  dependency_validator: Apache-2.0
+  flutter_gen: MIT
+  hive: Apache-2.0
+  hive_flutter: Apache-2.0
+  latlong2: Apache-2.0
+  platform_detect: Apache-2.0
+  rxdart: Apache-2.0
+
+  # flutter's internal packages
+  flutter_driver: BSD-3-Clause
+  flutter_localizations: BSD-3-Clause
+  flutter_test: BSD-3-Clause
+  flutter_web_plugins: BSD-3-Clause
+  fuchsia_remote_debug_protocol: BSD-3-Clause
+  integration_test: BSD-3-Clause
+  sky_engine: BSD-3-Clause
+
+rejectedLicenses:
+  - BUSL-1.1

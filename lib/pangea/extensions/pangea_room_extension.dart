@@ -514,7 +514,13 @@ extension PangeaRoom on Room {
         return;
       }
 
-      myAnalEvent.bulkUpdate(await _messageListForAllChildChats);
+      final updateMessages = await _messageListForAllChildChats;
+      updateMessages.removeWhere(
+        (element) => myAnalEvent.content.messages.any(
+          (e) => e.eventId == element.eventId,
+        ),
+      );
+      myAnalEvent.bulkUpdate(updateMessages);
 
       storageService?.save(migratedAnalyticsKey, true);
     } catch (err, s) {
@@ -692,16 +698,39 @@ extension PangeaRoom on Room {
     }
   }
 
+  Future<List<OneConstructUse>> removeEdittedLemmas(
+    List<OneConstructUse> lemmaUses,
+  ) async {
+    final List<String> removeUses = [];
+    for (final use in lemmaUses) {
+      if (use.msgId == null) continue;
+      final List<String> removeIds = await client.getEditHistory(
+        use.chatId,
+        use.msgId!,
+      );
+      removeUses.addAll(removeIds);
+    }
+    lemmaUses.removeWhere((use) => removeUses.contains(use.msgId));
+    final allEvents = await allConstructEvents;
+    for (final constructEvent in allEvents) {
+      await constructEvent.removeEdittedUses(removeUses, client);
+    }
+    return lemmaUses;
+  }
+
   Future<void> saveConstructUsesSameLemma(
     String lemma,
     ConstructType type,
-    List<OneConstructUse> lemmaUses,
-  ) async {
+    List<OneConstructUse> lemmaUses, {
+    bool isEdit = false,
+  }) async {
     final ConstructEvent? localEvent = _vocabEventLocal(lemma);
 
+    if (isEdit) {
+      lemmaUses = await removeEdittedLemmas(lemmaUses);
+    }
+
     if (localEvent == null) {
-      final json =
-          ConstructUses(lemma: lemma, type: type, uses: lemmaUses).toJson();
       await client.setRoomStateWithKey(
         id,
         PangeaEventTypes.vocab,
@@ -943,14 +972,18 @@ extension PangeaRoom on Room {
       return (eventsDefaultPowerLevel ?? 0) >=
           ClassDefaultValues.powerLevelOfAdmin;
     }
+    int joinedRooms = 0;
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
       if (room?.locked == false) {
         return false;
       }
+      if (room != null) {
+        joinedRooms += 1;
+      }
     }
-    return true;
+    return joinedRooms > 0 ? true : false;
   }
 
   Future<bool> suggestedInSpace(Room space) async {

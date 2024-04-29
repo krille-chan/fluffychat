@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
+import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
@@ -55,21 +56,25 @@ class _SpaceViewState extends State<SpaceView> {
   // #Pangea
   @override
   void dispose() {
-    super.dispose();
     _roomSubscription?.cancel();
+    super.dispose();
   }
   // Pangea#
 
   void _refresh() {
     // #Pangea
     // _lastResponse.remove(widget.controller.activseSpaceId);
+    if (mounted) {
+      // Pangea#
+      loadHierarchy();
+      // #Pangea
+    }
     // Pangea#
-    loadHierarchy();
   }
 
   Future<GetSpaceHierarchyResponse> loadHierarchy([String? prevBatch]) async {
     // #Pangea
-    if (widget.controller.activeSpaceId == null) {
+    if (widget.controller.activeSpaceId == null || loading) {
       return GetSpaceHierarchyResponse(
         rooms: [],
         nextBatch: null,
@@ -371,6 +376,31 @@ class _SpaceViewState extends State<SpaceView> {
     _refresh();
   }
 
+  // #Pangea
+  void refreshOnUpdate(SyncUpdate event) {
+    /* refresh on leave, invite, and space child update
+      not join events, because there's already a listener on 
+      onTapSpaceChild, and they interfere with each other */
+    if (widget.controller.activeSpaceId == null || !mounted) {
+      return;
+    }
+    final client = Matrix.of(context).client;
+    if (event.isMembershipUpdateByType(
+          Membership.leave,
+          client.userID!,
+        ) ||
+        event.isMembershipUpdateByType(
+          Membership.invite,
+          client.userID!,
+        ) ||
+        event.isSpaceChildUpdate(
+          widget.controller.activeSpaceId!,
+        )) {
+      _refresh();
+    }
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
@@ -385,11 +415,18 @@ class _SpaceViewState extends State<SpaceView> {
       final rootSpaces = allSpaces
           // #Pangea
           // .where(
-          //   (space) => !allSpaces.any(
-          //     (parentSpace) => parentSpace.spaceChildren
-          //         .any((child) => child.roomId == space.id),
-          //   ),
-          // )
+          //  (space) =>
+          //      !allSpaces.any(
+          //        (parentSpace) => parentSpace.spaceChildren
+          //            .any((child) => child.roomId == space.id),
+          //      ) &&
+          //      space
+          //          .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+          //          .toLowerCase()
+          //          .contains(
+          //            widget.controller.searchController.text.toLowerCase(),
+          //          ),
+          //)
           // Pangea#
           .toList();
 
@@ -468,23 +505,6 @@ class _SpaceViewState extends State<SpaceView> {
     }
 
     // #Pangea
-    void refreshOnUpdate(SyncUpdate event) {
-      /* refresh on leave, invite, and space child update
-      not join events, because there's already a listener on 
-      onTapSpaceChild, and they interfere with each other */
-      if (event.isMembershipUpdateByType(
-            Membership.leave,
-            Matrix.of(context).client.userID!,
-          ) ||
-          event.isMembershipUpdateByType(
-            Membership.invite,
-            Matrix.of(context).client.userID!,
-          ) ||
-          event.isSpaceChildUpdate(activeSpaceId)) {
-        _refresh();
-      }
-    }
-
     _roomSubscription ??= client.onSync.stream
         .where((event) => event.hasRoomUpdate)
         .listen(refreshOnUpdate);
@@ -506,7 +526,7 @@ class _SpaceViewState extends State<SpaceView> {
         child: CustomScrollView(
           controller: widget.scrollController,
           slivers: [
-            ChatListHeader(controller: widget.controller),
+            ChatListHeader(controller: widget.controller, globalSearch: false),
             SliverAppBar(
               automaticallyImplyLeading: false,
               primary: false,
@@ -650,6 +670,7 @@ class _SpaceViewState extends State<SpaceView> {
                           onLongPress: () =>
                               _onSpaceChildContextMenu(spaceChild, room),
                           activeChat: widget.controller.activeChat == room.id,
+                          onTap: () => onChatTap(room, context),
                         );
                       }
                       final isSpace = spaceChild.roomType == 'm.space';
@@ -719,7 +740,8 @@ class _SpaceViewState extends State<SpaceView> {
                           L10n.of(context)!.chat;
                       if (widget.controller.isSearchMode &&
                           !name.toLowerCase().contains(
-                                widget.controller.searchController.text,
+                                widget.controller.searchController.text
+                                    .toLowerCase(),
                               )) {
                         return const SizedBox.shrink();
                       }
@@ -734,15 +756,20 @@ class _SpaceViewState extends State<SpaceView> {
                           ),
                           title: Row(
                             children: [
-                              Expanded(
-                                child: Text(
-                                  name,
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              // #Pangea
+                              // Expanded(
+                              //   child:
+                              // Pangea#
+                              Text(
+                                name,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              // #Pangea
+                              // ),
+                              // Pangea#
                               if (!isSpace) ...[
                                 const Icon(
                                   Icons.people_outline,

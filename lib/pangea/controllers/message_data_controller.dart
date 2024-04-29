@@ -18,8 +18,7 @@ class MessageDataController extends BaseController {
   late PangeaController _pangeaController;
 
   final List<CacheItem> _cache = [];
-
-  final Map<String, MessageDataQueueItem> _messageDataToSave = {};
+  final List<RepresentationCacheItem> _representationCache = [];
 
   MessageDataController(PangeaController pangeaController) {
     _pangeaController = pangeaController;
@@ -29,6 +28,14 @@ class MessageDataController extends BaseController {
       _cache.firstWhereOrNull(
         (e) =>
             e.parentId == parentId && e.type == type && e.langCode == langCode,
+      );
+
+  RepresentationCacheItem? getRepresentationCacheItem(
+    String parentId,
+    String langCode,
+  ) =>
+      _representationCache.firstWhereOrNull(
+        (e) => e.parentId == parentId && e.langCode == langCode,
       );
 
   Future<PangeaMessageTokens?> _getTokens(
@@ -142,6 +149,32 @@ class MessageDataController extends BaseController {
     required String target,
     required Room room,
   }) async {
+    final RepresentationCacheItem? item =
+        getRepresentationCacheItem(text, target);
+    if (item != null) return item.data;
+
+    _representationCache.add(
+      RepresentationCacheItem(
+        text,
+        target,
+        _getPangeaRepresentation(
+          text: text,
+          source: source,
+          target: target,
+          room: room,
+        ),
+      ),
+    );
+
+    return _representationCache.last.data;
+  }
+
+  Future<PangeaRepresentation?> _getPangeaRepresentation({
+    required String text,
+    required String? source,
+    required String target,
+    required Room room,
+  }) async {
     final req = FullTextTranslationRequestModel(
       text: text,
       tgtLang: target,
@@ -234,4 +267,12 @@ class CacheItem {
   Future<Event?> data;
 
   CacheItem(this.parentId, this.type, this.langCode, this.data);
+}
+
+class RepresentationCacheItem {
+  String parentId;
+  String langCode;
+  Future<PangeaRepresentation?> data;
+
+  RepresentationCacheItem(this.parentId, this.langCode, this.data);
 }

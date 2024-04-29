@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
@@ -218,6 +219,10 @@ class PangeaController {
     final List<Room> spaces =
         matrixState.client.rooms.where((room) => room.isSpace).toList();
     for (final Room space in spaces) {
+      if (space.ownPowerLevel < ClassDefaultValues.powerLevelOfAdmin ||
+          !space.canInvite) {
+        continue;
+      }
       List<User> participants;
       try {
         participants = await space.requestParticipants();
@@ -228,9 +233,10 @@ class PangeaController {
         continue;
       }
       final List<String> userIds = participants.map((user) => user.id).toList();
-      if (space.canInvite && !userIds.contains(BotName.byEnvironment)) {
+      if (!userIds.contains(BotName.byEnvironment)) {
         try {
           await space.invite(BotName.byEnvironment);
+          await space.postLoad();
           await space.setPower(
             BotName.byEnvironment,
             ClassDefaultValues.powerLevelOfAdmin,
@@ -240,7 +246,51 @@ class PangeaController {
             e: "Failed to invite pangea bot to space ${space.id}",
           );
         }
+      } else if (space.getPowerLevelByUserId(BotName.byEnvironment) <
+          ClassDefaultValues.powerLevelOfAdmin) {
+        try {
+          await space.postLoad();
+          await space.setPower(
+            BotName.byEnvironment,
+            ClassDefaultValues.powerLevelOfAdmin,
+          );
+        } catch (err) {
+          ErrorHandler.logError(
+            e: "Failed to reset power level for pangea bot in space ${space.id}",
+          );
+        }
       }
+    }
+  }
+
+  Future<void> setPangeaPushRules() async {
+    if (!(matrixState.client.globalPushRules?.override?.any(
+          (element) => element.ruleId == PangeaEventTypes.textToSpeechRule,
+        ) ??
+        false)) {
+      await matrixState.client.setPushRule(
+        'global',
+        PushRuleKind.override,
+        PangeaEventTypes.textToSpeechRule,
+        [PushRuleAction.dontNotify],
+        conditions: [
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.msgtype',
+            pattern: MessageTypes.Audio,
+          ),
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.transcription.lang_code',
+            pattern: '*',
+          ),
+          PushCondition(
+            kind: 'event_match',
+            key: 'content.transcription.text',
+            pattern: '*',
+          ),
+        ],
+      );
     }
   }
 }

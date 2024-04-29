@@ -136,10 +136,10 @@ class RepresentationEvent {
     if (_choreo != null) return _choreo;
 
     if (_event == null) {
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: '_event and _choreo both null',
-        s: StackTrace.current,
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "_event and _choreo both null",
+        ),
       );
       return null;
     }

@@ -131,7 +131,9 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   void _tryLoad(_) async {
-    if (_imageData != null) return;
+    if (_imageData != null) {
+      return;
+    }
     try {
       await _load();
     } catch (_) {
@@ -149,33 +151,41 @@ class _MxcImageState extends State<MxcImage> {
 
   Widget placeholder(BuildContext context) =>
       widget.placeholder?.call(context) ??
-      const Center(
-        child: CircularProgressIndicator.adaptive(),
+      Container(
+        width: widget.width,
+        height: widget.height,
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator.adaptive(strokeWidth: 2),
       );
 
   @override
   Widget build(BuildContext context) {
     final data = _imageData;
+    final hasData = data != null && data.isNotEmpty;
 
     return AnimatedCrossFade(
-      duration: widget.animationDuration,
       crossFadeState:
-          data == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+          hasData ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      duration: FluffyThemes.animationDuration,
       firstChild: placeholder(context),
-      secondChild: data == null || data.isEmpty
-          ? const SizedBox.shrink()
-          : Image.memory(
+      secondChild: hasData
+          ? Image.memory(
               data,
               width: widget.width,
               height: widget.height,
               fit: widget.fit,
-              filterQuality: FilterQuality.medium,
+              filterQuality:
+                  widget.isThumbnail ? FilterQuality.low : FilterQuality.medium,
               errorBuilder: (context, __, ___) {
                 _isCached = false;
                 _imageData = null;
                 WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
                 return placeholder(context);
               },
+            )
+          : SizedBox(
+              width: widget.width,
+              height: widget.height,
             ),
     );
   }

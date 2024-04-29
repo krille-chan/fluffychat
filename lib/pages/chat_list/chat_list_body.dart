@@ -3,6 +3,7 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
+import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/widgets/chat_list/chat_list_body_text.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -130,10 +131,14 @@ class ChatListViewBody extends StatelessWidget {
                       ],
                       // #Pangea
                       // if (!controller.isSearchMode &&
-                      //     controller.activeFilter != ActiveFilter.groups)
-                      //   StatusMessageList(
-                      //     onStatusEdit: controller.setStatus,
-                      //   ),
+                      //    controller.activeFilter != ActiveFilter.groups &&
+                      //    AppConfig.showPresences)
+                      //  GestureDetector(
+                      //    onLongPress: () => controller.dismissStatusList(),
+                      //    child: StatusMessageList(
+                      //      onStatusEdit: controller.setStatus,
+                      //    ),
+                      //  ),
                       // Pangea#
                       const ConnectionStatusHeader(),
                       AnimatedContainer(
@@ -253,6 +258,7 @@ class ChatListViewBody extends StatelessWidget {
                             )) {
                           return const SizedBox.shrink();
                         }
+                        final activeChat = controller.activeChat == rooms[i].id;
                         return ChatListItem(
                           rooms[i],
                           key: Key('chat_list_item_${rooms[i].id}'),
@@ -260,10 +266,10 @@ class ChatListViewBody extends StatelessWidget {
                               controller.selectedRoomIds.contains(rooms[i].id),
                           onTap: controller.selectMode == SelectMode.select
                               ? () => controller.toggleSelection(rooms[i].id)
-                              : null,
+                              : () => onChatTap(rooms[i], context),
                           onLongPress: () =>
                               controller.toggleSelection(rooms[i].id),
-                          activeChat: controller.activeChat == rooms[i].id,
+                          activeChat: activeChat,
                         );
                       },
                       childCount: rooms.length,

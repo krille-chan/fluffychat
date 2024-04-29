@@ -6,6 +6,7 @@ import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/widgets/chat/locked_chat_message.dart';
+import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -27,7 +28,6 @@ class ChatEventList extends StatelessWidget {
     final events = controller.timeline!.events
         .where((event) => event.isVisibleInGui)
         .toList();
-
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
@@ -37,11 +37,14 @@ class ChatEventList extends StatelessWidget {
       thisEventsKeyMap[events[i].eventId] = i;
     }
 
+    final hasWallpaper =
+        controller.room.client.applicationAccountConfig.wallpaperUrl != null;
+
     return SelectionArea(
       child: ListView.custom(
         padding: EdgeInsets.only(
           top: 16,
-          bottom: 4,
+          bottom: 8,
           left: horizontalPadding,
           right: horizontalPadding,
         ),
@@ -94,8 +97,12 @@ class ChatEventList extends StatelessWidget {
               if (controller.timeline!.canRequestHistory) {
                 return Builder(
                   builder: (context) {
+                    // #Pangea
                     WidgetsBinding.instance
                         .addPostFrameCallback((_) => controller.requestHistory);
+                    // WidgetsBinding.instance
+                    //     .addPostFrameCallback(controller.requestHistory);
+                    // Pangea#
                     return Center(
                       child: IconButton(
                         onPressed: controller.requestHistory,
@@ -147,8 +154,8 @@ class ChatEventList extends StatelessWidget {
                 onSelect: controller.onSelectMessage,
                 scrollToEventId: (String eventId) =>
                     controller.scrollToEventId(eventId),
-                // #Pangea
                 longPressSelect: controller.selectedEvents.isNotEmpty,
+                // #Pangea
                 selectedDisplayLang:
                     controller.choreographer.messageOptions.selectedDisplayLang,
                 immersionMode: controller.choreographer.immersionMode,
@@ -162,6 +169,9 @@ class ChatEventList extends StatelessWidget {
                     controller.readMarkerEventId == event.eventId &&
                         controller.timeline?.allowNewEvent == false,
                 nextEvent: i + 1 < events.length ? events[i + 1] : null,
+                previousEvent: i > 0 ? events[i - 1] : null,
+                avatarPresenceBackgroundColor:
+                    hasWallpaper ? Colors.transparent : null,
               ),
             );
           },

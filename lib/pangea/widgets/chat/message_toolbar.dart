@@ -26,6 +26,8 @@ class ToolbarDisplayController {
   final bool immersionMode;
   final ChatController controller;
   final FocusNode focusNode = FocusNode();
+  Event? nextEvent;
+  Event? previousEvent;
 
   MessageToolbar? toolbar;
   String? overlayId;
@@ -38,6 +40,8 @@ class ToolbarDisplayController {
     required this.targetId,
     required this.immersionMode,
     required this.controller,
+    this.nextEvent,
+    this.previousEvent,
   });
 
   void setToolbar() {
@@ -86,6 +90,8 @@ class ToolbarDisplayController {
               ownMessage: pangeaMessageEvent.ownMessage,
               toolbarController: this,
               width: messageWidth,
+              nextEvent: nextEvent,
+              previousEvent: previousEvent,
             ),
           ],
         );

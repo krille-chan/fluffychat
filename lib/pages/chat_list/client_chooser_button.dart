@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
@@ -7,12 +5,10 @@ import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/find_conversation_partner_dialog.dart';
 import 'package:fluffychat/pangea/utils/logout.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../utils/fluffy_share.dart';
@@ -110,17 +106,6 @@ class ClientChooserButton extends StatelessWidget {
             const Icon(Icons.connecting_airports),
             const SizedBox(width: 18),
             Expanded(child: Text(L10n.of(context)!.newExchange)),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: SettingsAction.findAClass,
-        enabled: false,
-        child: Row(
-          children: [
-            const Icon(Icons.class_outlined),
-            const SizedBox(width: 18),
-            Expanded(child: Text(L10n.of(context)!.findAClass)),
           ],
         ),
       ),
@@ -279,38 +264,40 @@ class ClientChooserButton extends StatelessWidget {
       builder: (context, snapshot) => Stack(
         alignment: Alignment.center,
         children: [
-          ...List.generate(
-            clientCount,
-            (index) => KeyBoardShortcuts(
-              keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-              onKeysPressed: () => _handleKeyboardShortcut(
-                matrix,
-                index,
-                context,
-              ),
-              child: const SizedBox.shrink(),
-            ),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.nextAccount,
-            onKeysPressed: () => _nextAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.shiftLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.previousAccount,
-            onKeysPressed: () => _previousAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
+          // #Pangea
+          // ...List.generate(
+          //   clientCount,
+          //   (index) => KeyBoardShortcuts(
+          //     keysToPress: _buildKeyboardShortcut(index + 1),
+          //     helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+          //     onKeysPressed: () => _handleKeyboardShortcut(
+          //       matrix,
+          //       index,
+          //       context,
+          //     ),
+          //     child: const SizedBox.shrink(),
+          //   ),
+          // ),
+          // KeyBoardShortcuts(
+          //   keysToPress: {
+          //     LogicalKeyboardKey.controlLeft,
+          //     LogicalKeyboardKey.tab,
+          //   },
+          //   helpLabel: L10n.of(context)!.nextAccount,
+          //   onKeysPressed: () => _nextAccount(matrix, context),
+          //   child: const SizedBox.shrink(),
+          // ),
+          // KeyBoardShortcuts(
+          //   keysToPress: {
+          //     LogicalKeyboardKey.controlLeft,
+          //     LogicalKeyboardKey.shiftLeft,
+          //     LogicalKeyboardKey.tab,
+          //   },
+          //   helpLabel: L10n.of(context)!.previousAccount,
+          //   onKeysPressed: () => _previousAccount(matrix, context),
+          //   child: const SizedBox.shrink(),
+          // ),
+          // Pangea#
           PopupMenuButton<Object>(
             onSelected: (o) => _clientSelected(o, context),
             itemBuilder: _bundleMenuItems,
@@ -406,7 +393,6 @@ class ClientChooserButton extends StatelessWidget {
           ClassCodeUtil.joinWithClassCodeDialog(
             context,
             controller.pangeaController,
-            null,
           );
           break;
         case SettingsAction.findAConversationPartner:
@@ -420,9 +406,6 @@ class ClientChooserButton extends StatelessWidget {
           break;
         case SettingsAction.myAnalytics:
           context.go('/rooms/mylearning');
-          break;
-        case SettingsAction.findAClass:
-          debugger(when: kDebugMode, message: "left to implement");
           break;
         case SettingsAction.logout:
           pLogoutAction(context);
@@ -514,7 +497,6 @@ enum SettingsAction {
   joinWithClassCode,
   classAnalytics,
   myAnalytics,
-  findAClass,
   findAConversationPartner,
   logout,
   newClass,

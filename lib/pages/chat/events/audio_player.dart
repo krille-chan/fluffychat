@@ -31,9 +31,9 @@ class AudioPlayerWidget extends StatefulWidget {
     this.color = Colors.black,
     // #Pangea
     this.matrixFile,
-    super.key,
     this.autoplay = false,
     // Pangea#
+    super.key,
   });
 
   @override
@@ -236,6 +236,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
+  void _toggleSpeed() async {
+    final audioPlayer = this.audioPlayer;
+    if (audioPlayer == null) return;
+    switch (audioPlayer.speed) {
+      case 1.0:
+        await audioPlayer.setSpeed(1.5);
+        break;
+      case 1.5:
+        await audioPlayer.setSpeed(2.0);
+        break;
+      case 2.0:
+        await audioPlayer.setSpeed(0.5);
+        break;
+      case 0.5:
+      default:
+        await audioPlayer.setSpeed(1.0);
+        break;
+    }
+    setState(() {});
+  }
+
   // #Pangea
   Future<void> _downloadMatrixFile() async {
     if (kIsWeb) return;
@@ -272,12 +293,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     final statusText = this.statusText ??= _durationString ?? '00:00';
+    final audioPlayer = this.audioPlayer;
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(width: 4),
           SizedBox(
             width: buttonSize,
             height: buttonSize,
@@ -353,6 +374,35 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 color: widget.color,
               ),
             ),
+          ),
+          const SizedBox(width: 4),
+          Stack(
+            children: [
+              SizedBox(
+                width: buttonSize,
+                height: buttonSize,
+                child: InkWell(
+                  splashColor: widget.color.withAlpha(128),
+                  borderRadius: BorderRadius.circular(64),
+                  onTap: audioPlayer == null ? null : _toggleSpeed,
+                  child: Icon(Icons.mic_none_outlined, color: widget.color),
+                ),
+              ),
+              if (audioPlayer != null)
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Text(
+                    '${audioPlayer.speed.toString()}x',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 9.0,
+                      color: widget.color,
+                    ),
+                  ),
+                ),
+            ],
           ),
         ],
       ),

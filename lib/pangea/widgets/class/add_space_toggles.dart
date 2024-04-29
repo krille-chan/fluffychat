@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
@@ -134,6 +135,13 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
         future: () => add
             ? _addSingleSpace(room!.id, possibleParent)
             : possibleParent.removeSpaceChild(room!.id),
+        onError: (e) {
+          // if error occurs, do not change value of toggle
+          add = !add;
+          return (e as Object?)?.toLocalizedString(context) ??
+              e?.toString() ??
+              L10n.of(context)!.oopsSomethingWentWrong;
+        },
       );
     }
 
