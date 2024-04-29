@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:country_picker/country_picker.dart';
+import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -37,23 +41,56 @@ class PUserModel {
     }
     return data;
   }
+
+  Future<void> save(PangeaController pangeaController) async {
+    await pangeaController.pStoreService.save(
+      PLocalKey.user,
+      toJson(),
+      local: true,
+    );
+  }
 }
 
-class MatrixProfile {
-  String dateOfBirth;
+enum MatrixProfile {
+  dateOfBirth,
+  autoPlayMessages,
+  activatedFreeTrial,
+  interactiveTranslator,
+  interactiveGrammar,
+  immersionMode,
+  definitions,
+  translations,
+  showedItInstructions,
+  showedClickMessage,
+  showedBlurMeansTranslate,
+}
 
-  MatrixProfile({
-    required this.dateOfBirth,
-  });
-
-  factory MatrixProfile.fromJson(Map<String, dynamic> json) => MatrixProfile(
-        dateOfBirth: json[ModelKey.userDateOfBirth],
-      );
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data[ModelKey.userDateOfBirth] = dateOfBirth;
-    return data;
+extension MatrixProfileExtension on MatrixProfile {
+  String get title {
+    switch (this) {
+      case MatrixProfile.dateOfBirth:
+        return ModelKey.userDateOfBirth;
+      case MatrixProfile.autoPlayMessages:
+        return PLocalKey.autoPlayMessages;
+      case MatrixProfile.activatedFreeTrial:
+        return PLocalKey.activatedTrialKey;
+      case MatrixProfile.interactiveTranslator:
+        return ToolSetting.interactiveTranslator.toString();
+      case MatrixProfile.interactiveGrammar:
+        return ToolSetting.interactiveGrammar.toString();
+      case MatrixProfile.immersionMode:
+        return ToolSetting.immersionMode.toString();
+      case MatrixProfile.definitions:
+        return ToolSetting.definitions.toString();
+      case MatrixProfile.translations:
+        return ToolSetting.translations.toString();
+      case MatrixProfile.showedItInstructions:
+        return InstructionsEnum.itInstructions.toString();
+      case MatrixProfile.showedClickMessage:
+        return InstructionsEnum.clickMessage.toString();
+      case MatrixProfile.showedBlurMeansTranslate:
+        return InstructionsEnum.blurMeansTranslate.toString();
+    }
   }
 }
 
