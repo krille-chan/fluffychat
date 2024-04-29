@@ -559,6 +559,39 @@ class ChatDetailsView extends StatelessWidget {
                               }
                             },
                           ),
+                        if (!room.isDirectChat)
+                          ListTile(
+                            title: Text(L10n.of(context)!.archive),
+                            subtitle: Text(
+                              L10n.of(context)!.archiveRoomDescription,
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.edit_attributes_outlined,
+                              ),
+                            ),
+                            trailing: const Icon(Icons.chevron_right_outlined),
+                            onTap: () async {
+                              final confirmed = await showOkCancelAlertDialog(
+                                useRootNavigator: false,
+                                context: context,
+                                title: L10n.of(context)!.areYouSure,
+                                okLabel: L10n.of(context)!.yes,
+                                cancelLabel: L10n.of(context)!.no,
+                                message:
+                                    L10n.of(context)!.archiveRoomDescription,
+                              );
+                              if (confirmed == OkCancelResult.cancel) return;
+                              await showFutureLoadingDialog(
+                                context: context,
+                                future: () => room.leave(),
+                              );
+                            },
+                          ),
+
                         if (room.isRoomAdmin && !room.isDirectChat)
                           SwitchListTile.adaptive(
                             activeColor: AppConfig.activeToggleColor,
