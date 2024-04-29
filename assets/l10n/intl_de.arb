@@ -2381,7 +2381,7 @@
   "@invitePrivateChat": {},
   "invalidInput": "Ungültige Eingabe!",
   "@invalidInput": {},
-  "hasKnocked": "{user} hat angeklopft",
+  "hasKnocked": "🚪 {user} hat angeklopft",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2676,5 +2676,18 @@
   "usersMustKnock": "Benutzer müssen anklopfen",
   "@usersMustKnock": {},
   "noOneCanJoin": "Niemand kann beitreten",
-  "@noOneCanJoin": {}
+  "@noOneCanJoin": {},
+  "createNewAddress": "Neue Adresse erstellen",
+  "@createNewAddress": {},
+  "userRole": "Benutzerrolle",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is das minimale Power-Level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "Öffentliche Chat-Adressen",
+  "@publicChatAddresses": {}
 }
