@@ -1,7 +1,7 @@
 // For ping Response
 class PingPatterns {
   // Instagram
-  static RegExp instagramOnlineMatch = RegExp(r"MQTT connection is active");
+  static RegExp instagramOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp instagramNotLoggedMatch = RegExp(r"You're not logged in");
 
   // WhatsApp
