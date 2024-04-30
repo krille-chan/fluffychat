@@ -99,9 +99,8 @@ class ChatListItem extends StatelessWidget {
     }
 
     void removeInstagramTag() {
-      if (displayname.contains('(Instagram)')) {
-        displayname =
-            displayname.replaceAll('(Instagram)', ''); // Delete (Instagram)
+      if (displayname.contains('(IG)')) {
+        displayname = displayname.replaceAll('(IG)', ''); // Delete (Instagram)
       }
     }
 
