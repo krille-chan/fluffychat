@@ -26,6 +26,16 @@ class WebViewConnection extends StatefulWidget {
 class _WebViewConnectionState extends State<WebViewConnection> {
   InAppWebViewController? _webViewController;
   final cookieManager = WebviewCookieManager();
+  bool _isDisposed = false; // Variable to track widget status
+
+  @override
+  void dispose() {
+    if (_webViewController != null && mounted) {
+      _webViewController!.dispose();
+    }
+    _isDisposed = true; // Mark widget disposed
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +72,14 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                   },
                 );
               }
-              if (result == "success") {
+              if (result == "success" && !_isDisposed) {
                 // Close the current page
-                Navigator.pop(context);
-
-                // Close the current page
-                if (_webViewController != null && mounted) {
+                if (_webViewController != null) {
                   _webViewController!.dispose();
                 }
+
+                // Close the current page
+                Navigator.pop(context);
 
                 // Call callback function with success result
                 widget.onConnectionResult(true);
@@ -88,14 +98,14 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                   },
                 );
               }
-              if (result == "success") {
+              if (result == "success" && !_isDisposed) {
                 // Close the current page
-                Navigator.pop(context);
-
-                // Close the current page
-                if (_webViewController != null && mounted) {
+                if (_webViewController != null) {
                   _webViewController!.dispose();
                 }
+
+                // Close the current page
+                Navigator.pop(context);
 
                 // Call callback function with success result
                 widget.onConnectionResult(true);
@@ -106,13 +116,5 @@ class _WebViewConnectionState extends State<WebViewConnection> {
         },
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    if (_webViewController != null && mounted) {
-      _webViewController!.dispose();
-    }
-    super.dispose();
   }
 }
