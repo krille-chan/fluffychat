@@ -299,7 +299,7 @@ class UserBottomSheetView extends StatelessWidget {
                           BorderRadius.circular(AppConfig.borderRadius / 2),
                       color: Theme.of(context).colorScheme.onInverseSurface,
                       child: DropdownButton<int>(
-                        onChanged: user.canChangePowerLevel ||
+                        onChanged: user.canChangeUserPowerLevel ||
                                 // Workaround until https://github.com/famedly/matrix-dart-sdk/pull/1765
                                 (user.room.canChangePowerLevel &&
                                     user.id == user.room.client.userID)

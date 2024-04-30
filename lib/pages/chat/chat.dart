@@ -1269,25 +1269,12 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (callType == null) return;
 
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials(),
-    );
-    if (success.result != null) {
-      final voipPlugin = Matrix.of(context).voipPlugin;
-      try {
-        await voipPlugin!.voip.inviteToCall(room.id, callType);
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedString(context))),
-        );
-      }
-    } else {
-      await showOkAlertDialog(
-        context: context,
-        title: L10n.of(context)!.unavailable,
-        okLabel: L10n.of(context)!.next,
+    final voipPlugin = Matrix.of(context).voipPlugin;
+    try {
+      await voipPlugin!.voip.inviteToCall(room, callType);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
       );
     }
   }
