@@ -37,16 +37,19 @@ class SocialNetwork {
 
 final List<SocialNetwork> socialNetwork = [
   SocialNetwork(
-      logo: Logo(Logos.facebook_messenger),
-      name: "Facebook Messenger",
-      chatBot: "@messenger2bot:",
-      urlLogin: "https://www.messenger.com/",
-      urlRedirect: "https://www.messenger.com/t/"),
+    logo: Logo(Logos.facebook_messenger),
+    name: "Facebook Messenger",
+    chatBot: "@messenger2bot:",
+    urlLogin: "https://www.messenger.com/",
+    urlRedirect: "https://www.messenger.com/t/",
+  ),
   SocialNetwork(
-      logo: Logo(Logos.instagram),
-      name: "Instagram",
-      chatBot: "@instagram2bot:",
-      urlLogin: "https://www.instagram.com/accounts/login/"),
+    logo: Logo(Logos.instagram),
+    name: "Instagram",
+    chatBot: "@instagram2bot:",
+    urlLogin: "https://www.instagram.com/accounts/login/",
+    urlRedirect: "https://www.instagram.com/",
+  ),
   SocialNetwork(
     logo: Logo(Logos.whatsapp),
     name: "WhatsApp",

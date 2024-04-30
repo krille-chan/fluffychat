@@ -75,6 +75,32 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                 widget.onConnectionResult(true);
               }
               break;
+
+            case "Instagram":
+              if (url != null &&
+                  url.toString() == widget.network.urlRedirect!) {
+                await showCustomLoadingDialog(
+                  context: context,
+                  future: () async {
+                    result = await widget.botBridgeConnection
+                        .createBridgeInstagram(context, cookieManager,
+                            connectionState, widget.network);
+                  },
+                );
+              }
+              if (result == "success") {
+                // Close the current page
+                Navigator.pop(context);
+
+                // Close the current page
+                if (_webViewController != null && mounted) {
+                  _webViewController!.dispose();
+                }
+
+                // Call callback function with success result
+                widget.onConnectionResult(true);
+              }
+              break;
             // Other network
           }
         },

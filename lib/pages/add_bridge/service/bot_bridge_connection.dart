@@ -381,30 +381,22 @@ class BotBridgeConnection {
 
   // Instagram
   // Function for create and login bridge with instagram bot
-  Future<String> createBridgeInstagram(BuildContext context, String username,
-      String password, ConnectionStateModel connectionState) async {
-    final String botUserId = '@instagrambot:$hostname';
+  Future<String> createBridgeInstagram(
+    BuildContext context,
+    WebviewCookieManager cookieManager,
+    ConnectionStateModel connectionState,
+    SocialNetwork network,
+  ) async {
+    final String botUserId = '${network.chatBot}$hostname';
 
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
-    // Success phrases to spot
     final RegExp successMatch = LoginRegex.instagramSuccessMatch;
-    final RegExp alreadySuccessMatch = LoginRegex.instagramAlreadySuccessMatch;
-
-    // Error phrase to spot
-    final RegExp usernameErrorMatch = LoginRegex.instagramUsernameErrorMatch;
-    final RegExp passwordErrorMatch = LoginRegex.instagramPasswordErrorMatch;
-    final RegExp nameOrPasswordErrorMatch =
-        LoginRegex.instagramNameOrPasswordErrorMatch;
-    final RegExp accountNotExistMatch =
-        LoginRegex.instagramAccountNotExistErrorMatch;
-    final RegExp rateLimitErrorMatch = LoginRegex.instagramRateLimitErrorMatch;
-
-    // Code request message for two-factor identification
-    final RegExp twoFactorMatch = LoginRegex.instagramTwoFactorMatch;
+    final RegExp alreadyConnected = LoginRegex.instagramAlreadySuccessMatch;
+    final RegExp pasteCookie = LoginRegex.instagramPasteCookieMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -412,8 +404,7 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login $username $password");
+    String result = ""; // Variable to track the result of the connection
 
     await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
@@ -422,15 +413,17 @@ class BotBridgeConnection {
           .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
-    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString = formatCookiesToJsonString(gotCookies);
 
-    String result = ""; // Variable to track the result of the connection
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login");
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-    // variable for loop limit
+    // Variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
 
-    // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -443,8 +436,16 @@ class BotBridgeConnection {
           latestMessages.first.content['body'].toString() ?? '';
 
       if (latestMessages.isNotEmpty) {
-        if (successMatch.hasMatch(latestMessage) ||
-            alreadySuccessMatch.hasMatch(latestMessage)) {
+        if (kDebugMode) {
+          print('latestMessage : $latestMessage');
+        }
+        if (pasteCookie.hasMatch(latestMessage)) {
+          await roomBot?.sendTextEvent(formattedCookieString);
+        } else if (alreadyConnected.hasMatch(latestMessage)) {
+          Logs().v("Already Connected to Instagram");
+          result = "alreadyConnected";
+          break;
+        } else if (successMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Instagram");
 
           result = "success";
@@ -458,38 +459,15 @@ class BotBridgeConnection {
           });
 
           await Future.delayed(const Duration(seconds: 1)); // Wait sec
+          Future.microtask(() {
+            connectionState.reset();
+          });
 
           break; // Exit the loop once the "login" message has been sent and is success
-        } else if (twoFactorMatch.hasMatch(latestMessage)) {
-          Logs().v("Authenticator two factor demand");
-
-          result = "twoFactorDemand";
-
-          break;
-        } else if (!successMatch.hasMatch(latestMessage) &&
-                usernameErrorMatch.hasMatch(latestMessage) ||
-            nameOrPasswordErrorMatch.hasMatch(latestMessage) ||
-            accountNotExistMatch.hasMatch(latestMessage)) {
-          Logs().v("Login cannot be found");
-
-          result = "errorUsername";
-
-          break;
-        } else if (passwordErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("Password incorrect");
-
-          result = "errorPassword";
-
-          break;
-        } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("rate limit error");
-
-          result = "rateLimitError";
-
-          break;
         }
       }
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+      await Future.delayed(const Duration(seconds: 3)); // Wait sec
       currentIteration++;
     }
 
@@ -498,10 +476,6 @@ class BotBridgeConnection {
 
       result = 'error';
     }
-
-    Future.microtask(() {
-      connectionState.reset();
-    });
 
     return result;
   }
