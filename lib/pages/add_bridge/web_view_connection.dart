@@ -27,6 +27,10 @@ class _WebViewConnectionState extends State<WebViewConnection> {
   InAppWebViewController? _webViewController;
   final cookieManager = WebviewCookieManager();
   bool _isDisposed = false; // Variable to track widget status
+  bool _facebookBridgeCreated =
+      false; // Variable to track if the Facebook bridge has been created
+  bool _instagramBridgeCreated =
+      false; // Variable to track if the Instagram bridge has been created
 
   @override
   void dispose() {
@@ -61,17 +65,22 @@ class _WebViewConnectionState extends State<WebViewConnection> {
 
           switch (widget.network.name) {
             case "Facebook Messenger":
-              if (url != null &&
+              if (!_facebookBridgeCreated &&
+                  url != null &&
                   url.toString().contains(widget.network.urlRedirect!)) {
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
+                    // Mark the Facebook bridge as created
+                    _facebookBridgeCreated = true;
+
                     result = await widget.botBridgeConnection
                         .createBridgeFacebook(context, cookieManager,
                             connectionState, widget.network);
                   },
                 );
               }
+
               if (result == "success" && !_isDisposed) {
                 // Close the current page
                 if (_webViewController != null) {
@@ -87,17 +96,22 @@ class _WebViewConnectionState extends State<WebViewConnection> {
               break;
 
             case "Instagram":
-              if (url != null &&
+              if (!_instagramBridgeCreated &&
+                  url != null &&
                   url.toString() == widget.network.urlRedirect!) {
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
+                    // Mark the Instagram bridge as created
+                    _instagramBridgeCreated = true;
+
                     result = await widget.botBridgeConnection
                         .createBridgeInstagram(context, cookieManager,
                             connectionState, widget.network);
                   },
                 );
               }
+
               if (result == "success" && !_isDisposed) {
                 // Close the current page
                 if (_webViewController != null) {
