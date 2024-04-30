@@ -5,7 +5,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
-import 'package:tawkie/pages/chat/send_file_dialog.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:tawkie/utils/room_status_extension.dart';
@@ -82,11 +81,11 @@ class ChatListItem extends StatelessWidget {
     );
 
     bool containsFacebook(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@facebook'));
+      return participantsIds.any((id) => id.contains('@messenger2'));
     }
 
     bool containsInstagram(List<String> participantsIds) {
-      return participantsIds.any((id) => id.contains('@instagram_'));
+      return participantsIds.any((id) => id.contains('@instagram2_'));
     }
 
     bool containsWhatsApp(List<String> participantsIds) {
