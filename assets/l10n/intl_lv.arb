@@ -158,7 +158,7 @@
   },
   "messageType": "Ziņas veids",
   "@messageType": {},
-  "indexedDbErrorLong": "",
+  "indexedDbErrorLong": "Diemžēl ziņu krātuve pēc noklusējuma nav iespējota privātajā režīmā.\nLūgums apmeklēt\n - about:config\n - iestatīt dom.indexedDB.privateBrowsing.enabled kā true\nPretējā gadījumā nav iespējams palaist FluffyChat.",
   "@indexedDbErrorLong": {},
   "oneClientLoggedOut": "Viens no klientiem ir atteicies",
   "@oneClientLoggedOut": {},
@@ -344,7 +344,7 @@
       "username": {}
     }
   },
-  "banUserDescription": "",
+  "banUserDescription": "Lietotājam tiks liegta piekļuve tērzēšanai, un vairs nevarēs vēlreiz pievienoties tērzēšanai, līdz liegums tiks atcelts.",
   "@banUserDescription": {},
   "inviteContact": "Uzaicināt kontaktpersonu",
   "@inviteContact": {
@@ -632,7 +632,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unblockDevice": "",
+  "unblockDevice": "Atslēgt ierīci",
   "@unblockDevice": {
     "type": "text",
     "placeholders": {}
@@ -643,7 +643,7 @@
       "count": {}
     }
   },
-  "noKeyForThisMessage": "",
+  "noKeyForThisMessage": "Tas var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanas rezerves kopija.",
   "@noKeyForThisMessage": {},
   "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
   "@enableEncryptionWarning": {
@@ -775,7 +775,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "makeAdminDescription": "",
+  "makeAdminDescription": "Tiklīdz šis lietotājs tiks padarīts par pārvaldītāju, to vairs nevarēs atdarīt, jo tad tam būs tādas pašas atļaujas kā Tev.",
   "@makeAdminDescription": {},
   "edit": "Labot",
   "@edit": {
@@ -832,7 +832,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "saveKeyManuallyDescription": "",
+  "saveKeyManuallyDescription": "Šo atslēgu var pašrocīgi saglabāt ar sistēmas kopīgošanas dialogloga vai starpliktuves izsaukšanu.",
   "@saveKeyManuallyDescription": {},
   "none": "Neviens",
   "@none": {
@@ -1221,7 +1221,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "Tērzēšana tiks pārvietota uz arhīvu. Citi lietotāji redzēs, ka pameti tērzēšanu.",
   "@archiveRoomDescription": {},
   "exportEmotePack": "Izgūt emociju paku kā .zip",
   "@exportEmotePack": {},
@@ -1758,7 +1758,7 @@
   },
   "messageInfo": "Informācija par ziņu",
   "@messageInfo": {},
-  "disableEncryptionWarning": "",
+  "disableEncryptionWarning": "Drošības iemeslu dēļ tērzēšanā nevar atspējot šifrēšanu, ja tā ir pirms tam ir bijusi iespējota.",
   "@disableEncryptionWarning": {},
   "directChat": "Tiešā tērzēšana",
   "@directChat": {},
@@ -1929,7 +1929,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "roomUpgradeDescription": "",
+  "roomUpgradeDescription": "Tērzēšana tad tiks atkārtoti izveidota ar jauno istabas versiju. Visiem dalībniekiem tiks paziņots, ka viņiem ir jāpārslēdzas uz jauno tērzēšanu. Vairāk par istabu versijām var atrast https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
   "commandHint_invite": "Uzaicināt norādīto lietotāju šajā istabā",
   "@commandHint_invite": {
@@ -1976,7 +1976,7 @@
       "username": {}
     }
   },
-  "profileNotFound": "",
+  "profileNotFound": "Lietotāju serverī nevarēja atrast. Varbūt ir nebūšanas ar savienojumu vai lietotājs nepastāv.",
   "@profileNotFound": {},
   "jump": "Pārlēkt",
   "@jump": {},
@@ -2340,7 +2340,7 @@
   },
   "custom": "Pielāgots",
   "@custom": {},
-  "noBackupWarning": "",
+  "noBackupWarning": "Uzmanību! Bez tērzēšanas rezerves kopijas iespējošanas tiks zaudēta piekļuve savām šifrētajām ziņām. Ir ļoti ieteicams iespējot tērzēšanas rezerves kopiju pirms atteikšanās.",
   "@noBackupWarning": {},
   "fromJoining": "No pievienošanās",
   "@fromJoining": {
@@ -2361,7 +2361,7 @@
   "@storeInSecureStorageDescription": {},
   "openChat": "Atvērt tērzēšanu",
   "@openChat": {},
-  "kickUserDescription": "",
+  "kickUserDescription": "Lietotājs ir izmests no tērzēšanas, bet piekļuve nav liegta. Publiskās tērzēšanās lietotājs var atkārtoti pievienoties jebkurā laikā.",
   "@kickUserDescription": {},
   "sendAMessage": "Nosūtīt ziņu",
   "@sendAMessage": {
@@ -2408,7 +2408,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "indexedDbErrorTitle": "",
+  "indexedDbErrorTitle": "Privātā režīma nebūšanas",
   "@indexedDbErrorTitle": {},
   "endedTheCall": "{senderName} beidza zvanu",
   "@endedTheCall": {
@@ -2637,5 +2637,55 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "subspace": "Apakšvieta",
+  "@subspace": {},
+  "addChatOrSubSpace": "Pievienot tērzēšanu vai apakšvietu",
+  "@addChatOrSubSpace": {},
+  "formattedMessagesDescription": "Attēlot bagātinātu ziņu saturu, piemēram, ar Markdown iezīmētu treknrakstu.",
+  "@formattedMessagesDescription": {},
+  "databaseBuildErrorBody": "Nebija iespējams izveidot SQlite datubāzi. Lietotne pagaidām mēģina izmantot iepriekšējo datubāzi. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sessionLostBody": "Sesija ir zaudēta. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "verifyOtherUserDescription": "Ar cita lietotāja apliecināšanu vari pārliecināties, ka zini, kam Tu tiešām raksti. 💪\n\nKad uzsāc apliecināšanu, Tu un otrs lietotājs lietotnē redzēs uznirstošo logu. Tajā jūs redzēsiet dažādas emocijzīmes vai skaitļus, kas ir jāsalīdzina savā starpā.\n\nLabākais veids, kā to izdarīt, ir satikties vai uzsākt videozvanu. 👭",
+  "@verifyOtherUserDescription": {},
+  "sendTypingNotificationsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad raksti jaunu ziņu.",
+  "@sendTypingNotificationsDescription": {},
+  "noUsersFoundWithQuery": "Diemžēl ar \"{query}\" netika atrasts neviens lietotājs. Lūgums pārbaudīt, vai ir pieļauta drukas kļūda.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "restoreSessionBody": "Lietotne tagad mēģina atjaunot sesiju no rezerves kopijas. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendReadReceiptsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad izlasīji ziņu.",
+  "@sendReadReceiptsDescription": {},
+  "thereAreCountUsersBlocked": "Šobrīd ir izslēgti {count} lietotāji.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Kad uzsāc apliecināšanu, abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
+  "@verifyOtherDeviceDescription": {}
 }
