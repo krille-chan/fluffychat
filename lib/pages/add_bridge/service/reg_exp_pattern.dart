@@ -46,9 +46,9 @@ class LoginRegex {
 class LogoutRegex {
   // Instagram
   static final RegExp instagramSuccessMatch =
-      RegExp(r"Successfully logged out");
+      RegExp(r"Disconnected and deleted session");
   static final RegExp instagramAlreadyLogoutMatch =
-      RegExp(r"That command requires you to be logged in.");
+      RegExp(r"You weren't logged in, but deleted session anyway");
 
   // WhatsApp
   static final RegExp whatsappSuccessMatch =
@@ -57,7 +57,8 @@ class LogoutRegex {
       RegExp(r"You're not logged in.");
 
   // Facebook Messenger
-  static final RegExp facebookSuccessMatch = RegExp(r".*Disconnected");
+  static final RegExp facebookSuccessMatch =
+      RegExp(r"Disconnected and deleted session");
   static final RegExp facebookAlreadyLogoutMatch =
-      RegExp(r"That command requires you to be logged in.");
+      RegExp(r"TYou weren't logged in, but deleted session anyway");
 }

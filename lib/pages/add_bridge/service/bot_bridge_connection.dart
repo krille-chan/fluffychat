@@ -299,8 +299,11 @@ class BotBridgeConnection {
       case "Facebook Messenger":
         eventName = 'delete-session';
         break;
+      case "Instagram":
+        eventName = 'delete-session';
+        break;
       default:
-        eventName = 'login';
+        eventName = 'logout';
     }
 
     // Send the "logout" message to the bot
@@ -335,6 +338,7 @@ class BotBridgeConnection {
           final String latestMessage =
               latestMessages.first.content['body'].toString() ?? '';
 
+          print("latestMessage: $latestMessage");
           // to find out if we're connected
           if (!successMatch.hasMatch(latestMessage) &&
               !alreadyLogoutMatch.hasMatch(latestMessage)) {
