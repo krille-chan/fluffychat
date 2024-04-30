@@ -452,6 +452,13 @@ class BotBridgeConnection {
         } else if (successMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Instagram");
 
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle("Récupération des conversations");
+          });
+          await Future.delayed(
+              const Duration(seconds: 10)); // Wait sec for rooms loading
+          await handleNewRoomsSync(context, network);
           result = "success";
 
           Future.microtask(() {
@@ -699,6 +706,14 @@ class BotBridgeConnection {
         } else if (successMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Messenger");
 
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle("Récupération des conversations");
+          });
+          await Future.delayed(
+              const Duration(seconds: 10)); // Wait sec for rooms loading
+          await handleNewRoomsSync(context, network);
+
           result = "success";
 
           Future.microtask(() {
@@ -797,5 +812,41 @@ class BotBridgeConnection {
     }
 
     return json.encode(formattedCookies);
+  }
+
+  // Function to manage the synchronization of new rooms from the Matrix server
+  Future<void> handleNewRoomsSync(
+      BuildContext context, SocialNetwork network) async {
+    // Retrieve newly added rooms from the Matrix server
+    final List<Room> newRooms = client.rooms;
+
+    // Iterating on new rooms
+    for (final Room newRoom in newRooms) {
+      acceptInvitation(newRoom, context);
+    }
+  }
+
+  // Create a set to keep track of invitations already processed
+  Set<String> acceptedInvitations = Set();
+
+// Function to accept an invitation to a conversation
+  void acceptInvitation(Room room, BuildContext context) async {
+    try {
+      // Check if the invitation has already been processed
+      if (!acceptedInvitations.contains(room.id)) {
+        // Mark the invitation as processed by adding it to the set of accepted invitations
+        acceptedInvitations.add(room.id);
+
+        // Accept invitation
+        final waitForRoom = room.client.waitForRoomInSync(
+          room.id,
+          join: true,
+        );
+        await room.join();
+        await waitForRoom;
+      }
+    } catch (e) {
+      print("error: $e");
+    }
   }
 }
