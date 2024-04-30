@@ -19,24 +19,11 @@ class PingPatterns {
 // For login response
 class LoginRegex {
   // Instagram
-  static final RegExp instagramSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp instagramSuccessMatch = RegExp(r".*Successfully logged");
   static final RegExp instagramAlreadySuccessMatch =
       RegExp(r"You're already logged in");
-
-  static final RegExp instagramUsernameErrorMatch = RegExp(r"Invalid username");
-  static final RegExp instagramPasswordErrorMatch =
-      RegExp(r"Incorrect password");
-  static final RegExp instagramNameOrPasswordErrorMatch =
-      RegExp(r"Incorrect username or password");
-  static final RegExp instagramAccountNotExistErrorMatch = RegExp(
-      r"The username you entered doesn't appear to belong to an account. Please check your username and try again.");
-  static final RegExp instagramRateLimitErrorMatch =
-      RegExp(r"rate_limit_error");
-
-  static final RegExp instagramTwoFactorMatch =
-      RegExp(r"Send the code from your authenticator app here.");
-  static final RegExp instagramIncorrectTwoFactorMatch =
-      RegExp(r"Invalid 2-factor authentication code. Please try again");
+  static final RegExp instagramPasteCookieMatch =
+      RegExp(r'^.*Paste your cookies here.*');
 
   // WhatsApp
   static final RegExp whatsAppSuccessMatch = RegExp(r"Successfully logged");
