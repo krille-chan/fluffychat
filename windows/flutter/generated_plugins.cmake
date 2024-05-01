@@ -3,8 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  connectivity_plus
-  desktop_lifecycle
   dynamic_color
   emoji_picker_flutter
   file_selector_windows
