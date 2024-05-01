@@ -27,7 +27,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_ban": "이 룸에서 주어진 유저 밴하기",
+  "commandHint_ban": "이 방에서 주어진 유저 영구 추방하기",
   "@commandHint_ban": {
     "type": "text",
     "description": "Usage hint for the command /ban"
@@ -62,7 +62,7 @@
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "commandHint_unban": "주어진 유저 이 룸에서 밴 해제하기",
+  "commandHint_unban": "주어진 유저를 이 방에서 영구추방 해제하기",
   "@commandHint_unban": {
     "type": "text",
     "description": "Usage hint for the command /unban"
@@ -104,7 +104,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "groupIsPublic": "그룸 공개됨",
+  "groupIsPublic": "그룹 공개됨",
   "@groupIsPublic": {
     "type": "text",
     "placeholders": {}
@@ -581,7 +581,7 @@
       "username": {}
     }
   },
-  "changedTheDisplaynameTo": "{username}님이 닉네임을 '{displayname}' 으로 바꿈",
+  "changedTheDisplaynameTo": "{username}님이 닉네임을 '{displayname}' 로 바꿈",
   "@changedTheDisplaynameTo": {
     "type": "text",
     "placeholders": {
@@ -644,7 +644,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "bannedUser": "{username}님이 {targetName} 밴함",
+  "bannedUser": "{username}님이 {targetName}님을 영구 추방함",
   "@bannedUser": {
     "type": "text",
     "placeholders": {
@@ -652,12 +652,12 @@
       "targetName": {}
     }
   },
-  "banned": "밴됨",
+  "banned": "영구 추방됨",
   "@banned": {
     "type": "text",
     "placeholders": {}
   },
-  "banFromChat": "채팅에서 밴",
+  "banFromChat": "채팅에서 영구 추방",
   "@banFromChat": {
     "type": "text",
     "placeholders": {}
@@ -685,7 +685,7 @@
     "type": "text",
     "placeholder": {}
   },
-  "askVerificationRequest": "{username}의 인증 요청을 수락할까요?",
+  "askVerificationRequest": "{username}님의 인증 요청을 수락할까요?",
   "@askVerificationRequest": {
     "type": "text",
     "placeholders": {
@@ -996,7 +996,7 @@
       "username": {}
     }
   },
-  "userAndUserAreTyping": "{username}과 {username2}가 입력 중…",
+  "userAndUserAreTyping": "{username}님과 {username2}님이 입력 중…",
   "@userAndUserAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1004,7 +1004,7 @@
       "username2": {}
     }
   },
-  "userAndOthersAreTyping": "{username}과 {count}명이 입력 중…",
+  "userAndOthersAreTyping": "{username}님 + {count}명이 입력 중…",
   "@userAndOthersAreTyping": {
     "type": "text",
     "placeholders": {
@@ -1183,7 +1183,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "newChat": "새로운 채팅",
+  "newChat": "새 채팅",
   "@newChat": {
     "type": "text",
     "placeholders": {}
@@ -1235,7 +1235,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "youHaveBeenBannedFromThisChat": "당신은 이 채팅에서 밴되었습니다",
+  "youHaveBeenBannedFromThisChat": "당신은 이 채팅에서 영구 추방되었습니다",
   "@youHaveBeenBannedFromThisChat": {
     "type": "text",
     "placeholders": {}
@@ -1741,7 +1741,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "invitedUsersOnly": "초대한 사용자만",
+  "invitedUsersOnly": "초대된 유저만",
   "@invitedUsersOnly": {
     "type": "text",
     "placeholders": {}
@@ -1844,7 +1844,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "unbanFromChat": "채팅에서 밴 해제",
+  "unbanFromChat": "채팅에서 영구추방 해제됨",
   "@unbanFromChat": {
     "type": "text",
     "placeholders": {}
@@ -1998,7 +1998,7 @@
   "@dismiss": {},
   "markAsRead": "읽음으로 표시하기",
   "@markAsRead": {},
-  "reportUser": "사용자 신고",
+  "reportUser": "유저 신고",
   "@reportUser": {},
   "openChat": "채팅 열기",
   "@openChat": {},
@@ -2098,7 +2098,7 @@
       "user": {}
     }
   },
-  "banUserDescription": "사용자는 채팅에서 영구추방되며 추방 해제 전까지 채팅을 다시 입력할 수 없습니다.",
+  "banUserDescription": "유저는 채팅에서 영구 추방되며 추방 해제 전까지 채팅을 다시 입력할 수 없습니다.",
   "@banUserDescription": {},
   "widgetEtherpad": "텍스트 메모",
   "@widgetEtherpad": {},
@@ -2117,7 +2117,7 @@
       "user": {}
     }
   },
-  "unbanUserDescription": "사용자가 다시 채팅을 입력할 수 있습니다.",
+  "unbanUserDescription": "유저가 다시 채팅을 입력할 수 있습니다.",
   "@unbanUserDescription": {},
   "youRejectedTheInvitation": "초대를 거부했습니다",
   "@youRejectedTheInvitation": {},
@@ -2171,7 +2171,7 @@
   "@storeInAndroidKeystore": {},
   "signInWithPassword": "비밀번호로 로그인",
   "@signInWithPassword": {},
-  "makeAdminDescription": "사용자를 한 번 관리자로 만들면, 당신과 같은 권한을 가지시에 당신은 이를 되돌릴 수 없습니다.",
+  "makeAdminDescription": "유저를 한 번 관리자로 만들면, 당신과 같은 권한을 가지기때문에 권한 회수가 불가능합니다.",
   "@makeAdminDescription": {},
   "saveKeyManuallyDescription": "공유나 클립보드를 이용해 수동으로 키를 저장합니다.",
   "@saveKeyManuallyDescription": {},
@@ -2183,7 +2183,7 @@
   "@importFromZipFile": {},
   "noOtherDevicesFound": "다른 기기 발견되지 않음",
   "@noOtherDevicesFound": {},
-  "redactedBy": "{username}에 의해 수정됨",
+  "redactedBy": "{username}님에 의해 삭제됨",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
@@ -2214,7 +2214,7 @@
   },
   "optionalRedactReason": "(선택) 이 메시지를 편집하는 이유...",
   "@optionalRedactReason": {},
-  "archiveRoomDescription": "채팅이 보관함으로 이동합니다. 다른 사용자들은 당신이 떠난다는것을 볼 수 있습니다.",
+  "archiveRoomDescription": "채팅이 보관함으로 이동합니다. 다른 유저들은 당신이 떠난다는것을 볼 수 있습니다.",
   "@archiveRoomDescription": {},
   "exportEmotePack": ".zip 파일로 이모트 내보내기",
   "@exportEmotePack": {},
@@ -2229,7 +2229,7 @@
   "@pleaseEnterRecoveryKeyDescription": {},
   "inviteContactToGroupQuestion": "{contact} 를 \"{groupName}\"에 초대할까요?",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "{username}에 의해 수정됨. 사유: \"{reason}\"",
+  "redactedByBecause": "{username}님에 의해 삭제됨. 사유: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2260,7 +2260,7 @@
       "path": {}
     }
   },
-  "redactMessageDescription": "메시지는 이 대화의 모든 참여자에게 수정될 것 입니다. 이는 되돌릴 수 없습니다.",
+  "redactMessageDescription": "메시지는 이 대화의 모든 참여자에게 삭제될 것 입니다. 되돌릴 수 없습니다.",
   "@redactMessageDescription": {},
   "recoveryKey": "복구키",
   "@recoveryKey": {},
@@ -2286,7 +2286,7 @@
   },
   "addChatDescription": "채팅 설명 추가하기...",
   "@addChatDescription": {},
-  "hasKnocked": "🚪 {user}가 입장을 요청했습니다",
+  "hasKnocked": "🚪 {user}가 참가를 요청했습니다",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2330,7 +2330,7 @@
   "@learnMore": {},
   "notAnImage": "이미지 파일이 아닙니다.",
   "@notAnImage": {},
-  "users": "사용자",
+  "users": "유저",
   "@users": {},
   "chatDescriptionHasBeenChanged": "채팅 설명 변경됨",
   "@chatDescriptionHasBeenChanged": {},
@@ -2406,7 +2406,7 @@
   "@noBackupWarning": {},
   "storeInSecureStorageDescription": "이 기기의 보안 스토리지에 복구키를 저장합니다.",
   "@storeInSecureStorageDescription": {},
-  "kickUserDescription": "사용자는 채팅에서 추방되지만 영구추방되지 않습니다. 공개 채팅에서는, 언제든 사용자가 다시 들어올 수 있습니다.",
+  "kickUserDescription": "유저는 채팅에서 추방되지만 영구 추방되지 않습니다. 공개 채팅의 경우, 언제든 유저가 다시 들어올 수 있습니다.",
   "@kickUserDescription": {},
   "importNow": "지금 불러오기",
   "@importNow": {},
@@ -2422,7 +2422,7 @@
   "@blockUsername": {},
   "block": "차단",
   "@block": {},
-  "blockedUsers": "차단된 사용자",
+  "blockedUsers": "차단된 유저",
   "@blockedUsers": {},
   "groupName": "그룹 이름",
   "@groupName": {},
@@ -2434,7 +2434,7 @@
   "@addChatOrSubSpace": {},
   "subspace": "하위 스페이스",
   "@subspace": {},
-  "youInvitedToBy": "📩 다음 링크를 통해 초대되셨습니다:\n{alias}",
+  "youInvitedToBy": "📩 링크를 통해 초대되셨습니다:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {}
@@ -2464,7 +2464,7 @@
       "sender": {}
     }
   },
-  "createGroupAndInviteUsers": "그룹을 생성하고 사용자를 초대",
+  "createGroupAndInviteUsers": "그룹을 생성하고 유저를 초대",
   "@createGroupAndInviteUsers": {},
   "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다",
   "@passwordsDoNotMatch": {},
@@ -2501,7 +2501,7 @@
       "sender": {}
     }
   },
-  "presencesToggle": "다른 사용자의 상태 메시지 표시",
+  "presencesToggle": "다른 유저의 상태 메시지 표시",
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
@@ -2518,7 +2518,7 @@
   "@commandHint_ignore": {},
   "commandHint_unignore": "주어진 matrix ID 무시 해제",
   "@commandHint_unignore": {},
-  "blockListDescription": "당신은 당신을 방해하는 사용자들을 차단할 수 있습니다. 당신은 당신의 개인 차단 목록에 있는 어떠한 사용자의 메시지와 방 초대도 받지 않을것 입니다.",
+  "blockListDescription": "당신은 당신을 방해하는 유저들을 차단할 수 있습니다. 당신은 당신의 개인 차단 목록에 있는 어떠한 유저의 메시지와 방 초대도 받지 않을것 입니다.",
   "@blockListDescription": {},
   "presenceStyle": "상태:",
   "@presenceStyle": {
@@ -2533,9 +2533,9 @@
       "error": {}
     }
   },
-  "yourGlobalUserIdIs": "글로벌 사용자 ID: ",
+  "yourGlobalUserIdIs": "글로벌 유저 ID: ",
   "@yourGlobalUserIdIs": {},
-  "noUsersFoundWithQuery": "불행히도 \"{query}\"로 사용자를 찾을 수 없습니다. 오타가 있는지 확인하십시오.",
+  "noUsersFoundWithQuery": "안타깝게도 \"{query}\"로 유저를 찾을 수 없습니다. 오타가 없는지 확인하십시오.",
   "@noUsersFoundWithQuery": {
     "type": "text",
     "placeholders": {
@@ -2575,9 +2575,9 @@
   },
   "verifyOtherDevice": "🔐 다른 기기를 확인",
   "@verifyOtherDevice": {},
-  "verifyOtherUserDescription": "다른 사용자를 확인하면, 당신은 당신이 누구에게 말하고있는지 알 수 있습니다. 💪\n\n확인을 시작할 때, 다른 사용자는 앱에서 팝업을 볼 수 있습니다. 당신은 그런 다음 서로 비교해야 이모티콘 또는 숫자의 목록을 볼 수 있습니다.\n\n이 작업을 수행하는 가장 좋은 방법은 직접 만나거나 영상통화를 하는것입니다. 👭",
+  "verifyOtherUserDescription": "다른 유저를 확인하면, 당신은 당신이 누구에게 말하고있는지 알 수 있습니다. 💪\n\n확인을 시작할 때, 다른 유저는 앱에서 팝업을 볼 수 있습니다. 당신은 그런 다음 서로 비교해야 이모지 또는 숫자의 목록을 볼 수 있습니다.\n\n이 작업을 수행하는 가장 좋은 방법은 직접 만나거나 영상통화를 하는것입니다. 👭",
   "@verifyOtherUserDescription": {},
-  "verifyOtherDeviceDescription": "다른 장치를 확인하면, 장치와 키를 교환하고, 전반적인 보안을 증가시킵니다. 💪 확인을 시작하면 팝업은 두 장치에 나타납니다. 그런 다음 서로 비교해야 이모티콘 또는 숫자의 목록를 볼 수 있습니다. 확인을 시작하기 전에 모든 장치를 준비하세요. 🤳",
+  "verifyOtherDeviceDescription": "다른 장치를 확인하면, 장치와 키를 교환하고, 전반적인 보안을 증가시킵니다. 💪 확인을 시작하면 팝업은 두 장치에 나타납니다. 그런 다음 서로 비교해야 이모지 또는 숫자의 목록를 볼 수 있습니다. 확인을 시작하기 전에 모든 장치를 준비하세요. 🤳",
   "@verifyOtherDeviceDescription": {},
   "isReadyForKeyVerification": "{sender}가 키 검증 준비를 완료함",
   "@isReadyForKeyVerification": {
@@ -2615,5 +2615,78 @@
       "appname": {},
       "unread": {}
     }
-  }
+  },
+  "appLockDescription": "앱을 사용하지 않을 때 pin으로 잠금",
+  "@appLockDescription": {},
+  "calls": "전화",
+  "@calls": {},
+  "globalChatId": "글로벌 채팅 ID",
+  "@globalChatId": {},
+  "customEmojisAndStickers": "개인 이모지와 스티커",
+  "@customEmojisAndStickers": {},
+  "accessAndVisibilityDescription": "채팅에 참여하거나 찾을 수 있는 사람을 설정합니다.",
+  "@accessAndVisibilityDescription": {},
+  "accessAndVisibility": "방 가입과 대화 기록",
+  "@accessAndVisibility": {},
+  "customEmojisAndStickersBody": "모든 채팅에서 사용할 수있는 개인 이모지와 스티커를 추가하거나 공유합니다.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "삭제된 메시지 숨기기",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "누군가가 메시지를 삭제하면 메시지를 더 이상 볼 수 없습니다.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "잘못되거나 알 수 없는 메시지 형식 숨김",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "개요",
+  "@overview": {},
+  "notifyMeFor": "나에게 알림",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "비밀번호 복구 설정",
+  "@passwordRecoverySettings": {},
+  "hideMemberChangesInPublicChats": "공개 채팅에서의 참가자 변화 숨김",
+  "@hideMemberChangesInPublicChats": {},
+  "userWouldLikeToChangeTheChat": "{user}가 참가를 희망합니다.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "공개 링크가 아직 생성되지 않았음",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "참가 요청",
+  "@knock": {},
+  "usersMustKnock": "유저들이 참가를 허가받아야함",
+  "@usersMustKnock": {},
+  "knocking": "참가 요청중",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "채팅은 {server} 에서 검색하여 찾을 수 있습니다.",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "noOneCanJoin": "아무도 들어올 수 없음",
+  "@noOneCanJoin": {},
+  "thereAreCountUsersBlocked": "여기 {count}명의 차단된 유저가 있습니다.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "minimumPowerLevel": "{level}은 최소 권한 레벨입니다.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "noDatabaseEncryption": "데이터베이스 암호화는 이 플랫폼에서 지원되지 않음",
+  "@noDatabaseEncryption": {},
+  "publicChatAddresses": "공개 채팅 주소",
+  "@publicChatAddresses": {},
+  "userRole": "유저 역할",
+  "@userRole": {},
+  "createNewAddress": "새 주소 만들기",
+  "@createNewAddress": {},
+  "hideMemberChangesInPublicChatsBody": "공개채팅에 누군가가 가입하거나 떠날때 타임라인에 표시하지 않습니다.",
+  "@hideMemberChangesInPublicChatsBody": {}
 }
