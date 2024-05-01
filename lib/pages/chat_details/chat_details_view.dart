@@ -510,9 +510,7 @@ class ChatDetailsView extends StatelessWidget {
                                 : AddToClassMode.chat,
                           ),
                         const Divider(height: 1),
-                        if (!room.isDirectChat &&
-                            (!room.isSpace ||
-                                (room.isSpace && room.isRoomAdmin)))
+                        if (!room.isDirectChat)
                           ListTile(
                             title: Text(
                               room.isSpace
