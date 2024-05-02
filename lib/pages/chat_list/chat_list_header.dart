@@ -47,6 +47,14 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 )
               // #Pangea
               : ClientChooserButton(controller),
+      // :
+      // Expanded(
+      // Container(
+      //     width: double.infinity,
+      //     height: 5,
+      //     color: Colors.blue,
+      //   ),
+      // ),
       // : TextField(
       //     controller: controller.searchController,
       //     focusNode: controller.searchFocusNode,

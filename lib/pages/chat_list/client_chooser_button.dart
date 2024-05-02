@@ -298,35 +298,18 @@ class ClientChooserButton extends StatelessWidget {
           //   child: const SizedBox.shrink(),
           // ),
           // Pangea#
-          PopupMenuButton<Object>(
-            onSelected: (o) => _clientSelected(o, context),
-            itemBuilder: _bundleMenuItems,
-            // #Pangea
-            child: Material(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12),
-              ),
-              clipBehavior: Clip.hardEdge,
+          SizedBox(
+            width: double.infinity,
+            child: PopupMenuButton<Object>(
+              onSelected: (o) => _clientSelected(o, context),
+              itemBuilder: _bundleMenuItems,
+              // #Pangea
               child: ListTile(
-                tileColor: Theme.of(context).scaffoldBackgroundColor,
-                hoverColor: Theme.of(context).colorScheme.onSurfaceVariant,
-                leading: const Icon(Icons.settings_outlined),
                 title: Text(L10n.of(context)!.mainMenu),
+                leading: const Icon(Icons.settings_outlined),
               ),
+              // Pangea#
             ),
-            // child: Material(
-            //   color: Colors.transparent,
-            //   borderRadius: BorderRadius.circular(99),
-            //   child: Avatar(
-            //     mxContent: snapshot.data?.avatarUrl,
-            //     name: snapshot.data?.displayName ??
-            //         matrix.client.userID!.localpart,
-            //     size: 32,
-            //     fontSize: 12,
-            //   ),
-            // ),
-            // Pangea#
           ),
         ],
       ),

@@ -27,6 +27,11 @@ class ChatInputRow extends StatelessWidget {
     const height = 48.0;
 
     // #Pangea
+    final activel1 =
+        controller.pangeaController.languageController.activeL1Model();
+    final activel2 =
+        controller.pangeaController.languageController.activeL2Model();
+
     return Column(
       children: [
         ITBar(
@@ -325,7 +330,16 @@ class ChatInputRow extends StatelessWidget {
                             bottom: 6.0,
                             top: 3.0,
                           ),
-                          hintText: L10n.of(context)!.writeAMessage,
+                          hintText: activel1 != null && activel2 != null
+                              ? L10n.of(context)!.writeAMessageFlag(
+                                  activel1.languageEmoji ??
+                                      activel1.getDisplayName(context) ??
+                                      activel1.langCode,
+                                  activel2.languageEmoji ??
+                                      activel2.getDisplayName(context) ??
+                                      activel2.langCode,
+                                )
+                              : L10n.of(context)!.writeAMessage,
                           hintMaxLines: 1,
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,
