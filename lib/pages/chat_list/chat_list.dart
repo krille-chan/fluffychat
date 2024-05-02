@@ -946,15 +946,6 @@ class ChatListController extends State<ChatList>
   }
 
   Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
-
-  // #Pangea
-  bool hovered = false;
-  void setHovered(bool value) {
-    setState(() {
-      hovered = value;
-    });
-  }
-  // Pangea#
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }
