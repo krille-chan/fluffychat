@@ -1138,7 +1138,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "optionalRedactReason": "(Izvēles) Ziņas labošanas iemesls...",
+  "optionalRedactReason": "(Pēc izvēles) Ziņas labošanas iemesls...",
   "@optionalRedactReason": {},
   "acceptedTheInvitation": "👍 {username} pieņēma uzaicinājumu",
   "@acceptedTheInvitation": {
