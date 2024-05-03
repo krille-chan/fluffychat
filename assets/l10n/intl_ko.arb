@@ -2030,7 +2030,7 @@
   "@videoCallsBetaWarning": {},
   "emailOrUsername": "이메일이나 유저 이름",
   "@emailOrUsername": {},
-  "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 확인해 주세요.",
+  "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 입력해 주세요.",
   "@confirmMatrixId": {},
   "commandHint_googly": "왕눈이 눈알 보내기",
   "@commandHint_googly": {},
@@ -2183,7 +2183,7 @@
   "@importFromZipFile": {},
   "noOtherDevicesFound": "다른 기기 발견되지 않음",
   "@noOtherDevicesFound": {},
-  "redactedBy": "{username}님에 의해 삭제됨",
+  "redactedBy": "{username}님이 삭제함",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
@@ -2229,7 +2229,7 @@
   "@pleaseEnterRecoveryKeyDescription": {},
   "inviteContactToGroupQuestion": "{contact} 를 \"{groupName}\"에 초대할까요?",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "{username}님에 의해 삭제됨. 사유: \"{reason}\"",
+  "redactedByBecause": "{username}님이 삭제함. 사유: \"{reason}\"",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
