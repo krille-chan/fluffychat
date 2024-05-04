@@ -2300,55 +2300,35 @@
   "@signInWithPassword": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "لطفا بعدا تلاش کنید یا سرور دیگری انتخاب کنید.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "setColorTheme": "",
   "@setColorTheme": {},
-  "banUserDescription": "",
   "@banUserDescription": {},
-  "removeDevicesDescription": "",
   "@removeDevicesDescription": {},
-  "tryAgain": "",
   "@tryAgain": {},
-  "unbanUserDescription": "",
   "@unbanUserDescription": {},
-  "messagesStyle": "",
   "@messagesStyle": {},
-  "chatDescription": "",
   "@chatDescription": {},
-  "pushNotificationsNotAvailable": "",
   "@pushNotificationsNotAvailable": {},
-  "invalidServerName": "",
   "@invalidServerName": {},
-  "chatPermissions": "",
   "@chatPermissions": {},
-  "makeAdminDescription": "",
   "@makeAdminDescription": {},
-  "setChatDescription": "",
   "@setChatDescription": {},
-  "importFromZipFile": "",
   "@importFromZipFile": {},
-  "redactedBy": "",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "signInWith": "",
   "@signInWith": {
     "type": "text",
     "placeholders": {
       "provider": {}
     }
   },
-  "optionalRedactReason": "",
   "@optionalRedactReason": {},
-  "archiveRoomDescription": "",
   "@archiveRoomDescription": {},
-  "exportEmotePack": "",
   "@exportEmotePack": {},
-  "inviteContactToGroupQuestion": "",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2356,66 +2336,42 @@
       "reason": {}
     }
   },
-  "redactMessageDescription": "",
   "@redactMessageDescription": {},
-  "invalidInput": "",
   "@invalidInput": {},
-  "addChatDescription": "",
   "@addChatDescription": {},
-  "hasKnocked": "",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
-  "directChat": "",
   "@directChat": {},
-  "wrongPinEntered": "",
   "@wrongPinEntered": {
     "type": "text",
     "placeholders": {
       "seconds": {}
     }
   },
-  "sendTypingNotifications": "",
   "@sendTypingNotifications": {},
-  "inviteGroupChat": "",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "",
   "@invitePrivateChat": {},
-  "importEmojis": "",
   "@importEmojis": {},
-  "noChatDescriptionYet": "",
   "@noChatDescriptionYet": {},
-  "learnMore": "",
   "@learnMore": {},
   "notAnImage": "یک فایل تصویری نیست.",
   "@notAnImage": {},
-  "chatDescriptionHasBeenChanged": "",
   "@chatDescriptionHasBeenChanged": {},
-  "roomUpgradeDescription": "",
   "@roomUpgradeDescription": {},
-  "pleaseEnterANumber": "",
   "@pleaseEnterANumber": {},
-  "profileNotFound": "",
   "@profileNotFound": {},
-  "shareInviteLink": "",
   "@shareInviteLink": {},
-  "emoteKeyboardNoRecents": "",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
   },
-  "setTheme": "",
   "@setTheme": {},
-  "replace": "",
   "@replace": {},
-  "createGroup": "",
   "@createGroup": {},
-  "kickUserDescription": "",
   "@kickUserDescription": {},
-  "importNow": "",
   "@importNow": {},
-  "invite": "",
   "@invite": {}
 }

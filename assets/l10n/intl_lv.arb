@@ -740,7 +740,6 @@
   },
   "signInWithPassword": "Pieteikties ar paroli",
   "@signInWithPassword": {},
-  "ignoredUsers": "",
   "@ignoredUsers": {
     "type": "text",
     "placeholders": {}
@@ -841,7 +840,6 @@
   },
   "editBundlesForAccount": "Labot šī konta komplektus",
   "@editBundlesForAccount": {},
-  "renderRichContent": "",
   "@renderRichContent": {
     "type": "text",
     "placeholders": {}
@@ -1116,7 +1114,6 @@
       "joinRules": {}
     }
   },
-  "ignore": "",
   "@ignore": {
     "type": "text",
     "placeholders": {}
@@ -1540,7 +1537,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "hideUnknownEvents": "",
   "@hideUnknownEvents": {
     "type": "text",
     "placeholders": {}

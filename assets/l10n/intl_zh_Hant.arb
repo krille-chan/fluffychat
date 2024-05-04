@@ -1791,62 +1791,42 @@
       "senderName": {}
     }
   },
-  "jumpToLastReadMessage": "",
   "@jumpToLastReadMessage": {},
-  "allRooms": "",
   "@allRooms": {
     "type": "text",
     "placeholders": {}
   },
-  "obtainingLocation": "",
   "@obtainingLocation": {
     "type": "text",
     "placeholders": {}
   },
   "commandHint_cuddle": "發送一個摟抱表情",
   "@commandHint_cuddle": {},
-  "widgetVideo": "",
   "@widgetVideo": {},
-  "dismiss": "",
   "@dismiss": {},
-  "reportErrorDescription": "",
   "@reportErrorDescription": {},
-  "addAccount": "",
   "@addAccount": {},
-  "removeYourAvatar": "",
   "@removeYourAvatar": {
     "type": "text",
     "placeholders": {}
   },
-  "unsupportedAndroidVersion": "",
   "@unsupportedAndroidVersion": {},
-  "commandHint_html": "",
   "@commandHint_html": {
     "type": "text",
     "description": "Usage hint for the command /html"
   },
-  "widgetJitsi": "",
   "@widgetJitsi": {},
-  "messageType": "",
   "@messageType": {},
-  "indexedDbErrorLong": "",
   "@indexedDbErrorLong": {},
-  "oneClientLoggedOut": "",
   "@oneClientLoggedOut": {},
-  "startFirstChat": "",
   "@startFirstChat": {},
-  "callingAccount": "",
   "@callingAccount": {},
-  "setColorTheme": "",
   "@setColorTheme": {},
-  "nextAccount": "",
   "@nextAccount": {},
-  "singlesignon": "",
   "@singlesignon": {
     "type": "text",
     "placeholders": {}
   },
-  "allSpaces": "",
   "@allSpaces": {},
   "supposedMxid": "此處應爲{mxid}",
   "@supposedMxid": {
@@ -1855,11 +1835,8 @@
       "mxid": {}
     }
   },
-  "user": "",
   "@user": {},
-  "youAcceptedTheInvitation": "",
   "@youAcceptedTheInvitation": {},
-  "noMatrixServer": "",
   "@noMatrixServer": {
     "type": "text",
     "placeholders": {
@@ -1867,211 +1844,144 @@
       "server2": {}
     }
   },
-  "youInvitedBy": "",
   "@youInvitedBy": {
     "placeholders": {
       "user": {}
     }
   },
-  "banUserDescription": "",
   "@banUserDescription": {},
-  "widgetEtherpad": "",
   "@widgetEtherpad": {},
-  "removeDevicesDescription": "",
   "@removeDevicesDescription": {},
-  "separateChatTypes": "",
   "@separateChatTypes": {
     "type": "text",
     "placeholders": {}
   },
-  "tryAgain": "",
   "@tryAgain": {},
-  "youKickedAndBanned": "",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
     }
   },
-  "unbanUserDescription": "",
   "@unbanUserDescription": {},
-  "saveFile": "",
   "@saveFile": {
     "type": "text",
     "placeholders": {}
   },
-  "youRejectedTheInvitation": "",
   "@youRejectedTheInvitation": {},
-  "otherCallingPermissions": "",
   "@otherCallingPermissions": {},
-  "messagesStyle": "",
   "@messagesStyle": {},
-  "link": "",
   "@link": {},
-  "widgetUrlError": "",
   "@widgetUrlError": {},
-  "emailOrUsername": "",
   "@emailOrUsername": {},
-  "newSpaceDescription": "",
   "@newSpaceDescription": {},
-  "chatDescription": "",
   "@chatDescription": {},
-  "callingAccountDetails": "",
   "@callingAccountDetails": {},
-  "enterSpace": "",
   "@enterSpace": {},
-  "encryptThisChat": "",
   "@encryptThisChat": {},
-  "previousAccount": "",
   "@previousAccount": {},
-  "reopenChat": "",
   "@reopenChat": {},
-  "pleaseEnterRecoveryKey": "",
   "@pleaseEnterRecoveryKey": {},
-  "widgetNameError": "",
   "@widgetNameError": {},
-  "addToBundle": "",
   "@addToBundle": {},
-  "spaceIsPublic": "",
   "@spaceIsPublic": {
     "type": "text",
     "placeholders": {}
   },
-  "addWidget": "",
   "@addWidget": {},
-  "countFiles": "",
   "@countFiles": {
     "placeholders": {
       "count": {}
     }
   },
-  "noKeyForThisMessage": "",
   "@noKeyForThisMessage": {},
-  "shareLocation": "",
   "@shareLocation": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_markasgroup": "",
   "@commandHint_markasgroup": {},
-  "errorObtainingLocation": "",
   "@errorObtainingLocation": {
     "type": "text",
     "placeholders": {
       "error": {}
     }
   },
-  "hydrateTor": "",
   "@hydrateTor": {},
-  "pushNotificationsNotAvailable": "",
   "@pushNotificationsNotAvailable": {},
-  "storeInAppleKeyChain": "",
   "@storeInAppleKeyChain": {},
-  "hydrate": "",
   "@hydrate": {},
   "invalidServerName": "伺服器名稱錯誤",
   "@invalidServerName": {},
-  "chatPermissions": "",
   "@chatPermissions": {},
-  "sender": "",
   "@sender": {},
-  "storeInAndroidKeystore": "",
   "@storeInAndroidKeystore": {},
-  "signInWithPassword": "",
   "@signInWithPassword": {},
-  "makeAdminDescription": "",
   "@makeAdminDescription": {},
-  "synchronizingPleaseWait": "",
   "@synchronizingPleaseWait": {
     "type": "text",
     "placeholders": {}
   },
-  "saveKeyManuallyDescription": "",
   "@saveKeyManuallyDescription": {},
-  "editBundlesForAccount": "",
   "@editBundlesForAccount": {},
-  "whyIsThisMessageEncrypted": "",
   "@whyIsThisMessageEncrypted": {},
-  "setChatDescription": "",
   "@setChatDescription": {},
-  "spaceName": "",
   "@spaceName": {
     "type": "text",
     "placeholders": {}
   },
   "importFromZipFile": "從 zip 檔案匯入",
   "@importFromZipFile": {},
-  "or": "",
   "@or": {
     "type": "text",
     "placeholders": {}
   },
-  "dehydrateWarning": "",
   "@dehydrateWarning": {},
-  "noOtherDevicesFound": "",
   "@noOtherDevicesFound": {},
-  "redactedBy": "",
   "@redactedBy": {
     "type": "text",
     "placeholders": {
       "username": {}
     }
   },
-  "videoCallsBetaWarning": "",
   "@videoCallsBetaWarning": {},
-  "signInWith": "",
   "@signInWith": {
     "type": "text",
     "placeholders": {
       "provider": {}
     }
   },
-  "fileIsTooBigForServer": "",
   "@fileIsTooBigForServer": {},
   "homeserver": "伺服器",
   "@homeserver": {},
-  "callingPermissions": "",
   "@callingPermissions": {},
-  "readUpToHere": "",
   "@readUpToHere": {},
-  "start": "",
   "@start": {},
-  "register": "",
   "@register": {
     "type": "text",
     "placeholders": {}
   },
-  "unlockOldMessages": "",
   "@unlockOldMessages": {},
-  "numChats": "",
   "@numChats": {
     "type": "number",
     "placeholders": {
       "number": {}
     }
   },
-  "optionalRedactReason": "",
   "@optionalRedactReason": {},
-  "dehydrate": "",
   "@dehydrate": {},
-  "locationPermissionDeniedNotice": "",
   "@locationPermissionDeniedNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "sendAsText": "",
   "@sendAsText": {
     "type": "text"
   },
-  "archiveRoomDescription": "",
   "@archiveRoomDescription": {},
   "exportEmotePack": "將表情包匯出成 zip 檔案",
   "@exportEmotePack": {},
-  "sendSticker": "",
   "@sendSticker": {
     "type": "text",
     "placeholders": {}
   },
-  "switchToAccount": "",
   "@switchToAccount": {
     "type": "number",
     "placeholders": {
@@ -2082,33 +1992,25 @@
   "@commandInvalid": {
     "type": "text"
   },
-  "setAsCanonicalAlias": "",
   "@setAsCanonicalAlias": {
     "type": "text",
     "placeholders": {}
   },
-  "locationDisabledNotice": "",
   "@locationDisabledNotice": {
     "type": "text",
     "placeholders": {}
   },
-  "commandHint_plain": "",
   "@commandHint_plain": {
     "type": "text",
     "description": "Usage hint for the command /plain"
   },
-  "experimentalVideoCalls": "",
   "@experimentalVideoCalls": {},
-  "pleaseEnterRecoveryKeyDescription": "",
   "@pleaseEnterRecoveryKeyDescription": {},
-  "openInMaps": "",
   "@openInMaps": {
     "type": "text",
     "placeholders": {}
   },
-  "inviteContactToGroupQuestion": "",
   "@inviteContactToGroupQuestion": {},
-  "redactedByBecause": "",
   "@redactedByBecause": {
     "type": "text",
     "placeholders": {
@@ -2116,32 +2018,24 @@
       "reason": {}
     }
   },
-  "youHaveWithdrawnTheInvitationFor": "",
   "@youHaveWithdrawnTheInvitationFor": {
     "placeholders": {
       "user": {}
     }
   },
-  "appearOnTopDetails": "",
   "@appearOnTopDetails": {},
-  "enterRoom": "",
   "@enterRoom": {},
-  "reportUser": "",
   "@reportUser": {},
-  "commandHint_send": "",
   "@commandHint_send": {
     "type": "text",
     "description": "Usage hint for the command /send"
   },
-  "confirmEventUnpin": "",
   "@confirmEventUnpin": {},
-  "youInvitedUser": "",
   "@youInvitedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "fileHasBeenSavedAt": "",
   "@fileHasBeenSavedAt": {
     "type": "text",
     "placeholders": {
@@ -2156,29 +2050,17 @@
     },
     "description": "State that {command} is not a valid /command."
   },
-  "redactMessageDescription": "",
   "@redactMessageDescription": {},
-  "recoveryKey": "",
   "@recoveryKey": {},
-  "invalidInput": "",
   "@invalidInput": {},
-  "dehydrateTorLong": "",
   "@dehydrateTorLong": {},
-  "doNotShowAgain": "",
   "@doNotShowAgain": {},
-  "report": "",
   "@report": {},
-  "unverified": "",
   "@unverified": {},
-  "serverRequiresEmail": "",
   "@serverRequiresEmail": {},
-  "hideUnimportantStateEvents": "",
   "@hideUnimportantStateEvents": {},
-  "screenSharingTitle": "",
   "@screenSharingTitle": {},
-  "widgetCustom": "",
   "@widgetCustom": {},
-  "addToSpaceDescription": "",
   "@addToSpaceDescription": {},
   "googlyEyesContent": "{senderName}向您發送了瞪眼表情",
   "@googlyEyesContent": {
@@ -2187,7 +2069,6 @@
       "senderName": {}
     }
   },
-  "youBannedUser": "",
   "@youBannedUser": {
     "placeholders": {
       "user": {}
@@ -2195,33 +2076,24 @@
   },
   "addChatDescription": "新增聊天說明...",
   "@addChatDescription": {},
-  "hasKnocked": "",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
     }
   },
-  "publish": "",
   "@publish": {},
-  "openLinkInBrowser": "",
   "@openLinkInBrowser": {},
-  "commandHint_react": "",
   "@commandHint_react": {
     "type": "text",
     "description": "Usage hint for the command /react"
   },
-  "commandHint_me": "",
   "@commandHint_me": {
     "type": "text",
     "description": "Usage hint for the command /me"
   },
-  "messageInfo": "",
   "@messageInfo": {},
-  "disableEncryptionWarning": "",
   "@disableEncryptionWarning": {},
-  "directChat": "",
   "@directChat": {},
-  "wrongPinEntered": "",
   "@wrongPinEntered": {
     "type": "text",
     "placeholders": {
@@ -2230,76 +2102,51 @@
   },
   "sendTypingNotifications": "傳送「輸入中」通知",
   "@sendTypingNotifications": {},
-  "inviteGroupChat": "",
   "@inviteGroupChat": {},
-  "appearOnTop": "",
   "@appearOnTop": {},
-  "invitePrivateChat": "",
   "@invitePrivateChat": {},
-  "foregroundServiceRunning": "",
   "@foregroundServiceRunning": {},
-  "voiceCall": "",
   "@voiceCall": {},
-  "createNewSpace": "",
   "@createNewSpace": {
     "type": "text",
     "placeholders": {}
   },
   "importEmojis": "匯入表情包",
   "@importEmojis": {},
-  "wasDirectChatDisplayName": "",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
       "oldDisplayName": {}
     }
   },
-  "noChatDescriptionYet": "",
   "@noChatDescriptionYet": {},
-  "removeFromBundle": "",
   "@removeFromBundle": {},
   "confirmMatrixId": "如需要刪除你的帳戶，請確認你的Matrix ID。",
   "@confirmMatrixId": {},
-  "learnMore": "",
   "@learnMore": {},
   "notAnImage": "不是圖片檔案。",
   "@notAnImage": {},
-  "users": "",
   "@users": {},
-  "openGallery": "",
   "@openGallery": {},
-  "chatDescriptionHasBeenChanged": "",
   "@chatDescriptionHasBeenChanged": {},
-  "newGroup": "",
   "@newGroup": {},
-  "bundleName": "",
   "@bundleName": {},
-  "dehydrateTor": "",
   "@dehydrateTor": {},
-  "removeFromSpace": "",
   "@removeFromSpace": {},
-  "commandHint_op": "",
   "@commandHint_op": {
     "type": "text",
     "description": "Usage hint for the command /op"
   },
-  "roomUpgradeDescription": "",
   "@roomUpgradeDescription": {},
-  "scanQrCode": "",
   "@scanQrCode": {},
-  "pleaseEnterANumber": "",
   "@pleaseEnterANumber": {},
-  "youKicked": "",
   "@youKicked": {
     "placeholders": {
       "user": {}
     }
   },
-  "profileNotFound": "",
   "@profileNotFound": {},
-  "jump": "",
   "@jump": {},
-  "reactedWith": "",
   "@reactedWith": {
     "type": "text",
     "placeholders": {
@@ -2307,20 +2154,15 @@
       "reaction": {}
     }
   },
-  "sorryThatsNotPossible": "",
   "@sorryThatsNotPossible": {},
-  "videoWithSize": "",
   "@videoWithSize": {
     "type": "text",
     "placeholders": {
       "size": {}
     }
   },
-  "shareInviteLink": "",
   "@shareInviteLink": {},
-  "commandHint_markasdm": "",
   "@commandHint_markasdm": {},
-  "recoveryKeyLost": "",
   "@recoveryKeyLost": {},
   "cuddleContent": "{senderName}摟抱您",
   "@cuddleContent": {
@@ -2329,94 +2171,63 @@
       "senderName": {}
     }
   },
-  "deviceKeys": "",
   "@deviceKeys": {},
-  "emoteKeyboardNoRecents": "",
   "@emoteKeyboardNoRecents": {
     "type": "text",
     "placeholders": {}
   },
-  "setTheme": "",
   "@setTheme": {},
-  "youJoinedTheChat": "",
   "@youJoinedTheChat": {},
-  "openVideoCamera": "",
   "@openVideoCamera": {
     "type": "text",
     "placeholders": {}
   },
-  "markAsRead": "",
   "@markAsRead": {},
-  "widgetName": "",
   "@widgetName": {},
-  "errorAddingWidget": "",
   "@errorAddingWidget": {},
   "commandHint_hug": "發送一個擁抱表情",
   "@commandHint_hug": {},
   "replace": "取代",
   "@replace": {},
-  "oopsPushError": "",
   "@oopsPushError": {
     "type": "text",
     "placeholders": {}
   },
-  "youUnbannedUser": "",
   "@youUnbannedUser": {
     "placeholders": {
       "user": {}
     }
   },
-  "newSpace": "",
   "@newSpace": {},
-  "emojis": "",
   "@emojis": {},
-  "pleaseEnterYourPin": "",
   "@pleaseEnterYourPin": {
     "type": "text",
     "placeholders": {}
   },
-  "pleaseChoose": "",
   "@pleaseChoose": {
     "type": "text",
     "placeholders": {}
   },
   "commandHint_googly": "發送一些瞪眼表情",
   "@commandHint_googly": {},
-  "pleaseTryAgainLaterOrChooseDifferentServer": "",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "createGroup": "",
   "@createGroup": {},
-  "hydrateTorLong": "",
   "@hydrateTorLong": {},
-  "time": "",
   "@time": {},
-  "custom": "",
   "@custom": {},
-  "noBackupWarning": "",
   "@noBackupWarning": {},
-  "storeInSecureStorageDescription": "",
   "@storeInSecureStorageDescription": {},
-  "openChat": "",
   "@openChat": {},
-  "kickUserDescription": "",
   "@kickUserDescription": {},
   "importNow": "立即匯入",
   "@importNow": {},
-  "pinMessage": "",
   "@pinMessage": {},
-  "invite": "",
   "@invite": {},
-  "enableMultiAccounts": "",
   "@enableMultiAccounts": {},
-  "indexedDbErrorTitle": "",
   "@indexedDbErrorTitle": {},
-  "unsupportedAndroidVersionLong": "",
   "@unsupportedAndroidVersionLong": {},
-  "storeSecurlyOnThisDevice": "",
   "@storeSecurlyOnThisDevice": {},
-  "screenSharingDetail": "",
   "@screenSharingDetail": {},
-  "placeCall": "",
   "@placeCall": {},
   "blockListDescription": "你可以封鎖打擾你的使用者。你不會再收到任何從已封鎖使用者發來的訊息或聊天室邀請。",
   "@blockListDescription": {},

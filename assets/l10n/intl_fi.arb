@@ -2403,18 +2403,11 @@
   "@importNow": {},
   "invite": "Kutsu",
   "@invite": {},
-  "banUserDescription": "",
   "@banUserDescription": {},
-  "removeDevicesDescription": "",
   "@removeDevicesDescription": {},
-  "unbanUserDescription": "",
   "@unbanUserDescription": {},
-  "pushNotificationsNotAvailable": "",
   "@pushNotificationsNotAvailable": {},
-  "makeAdminDescription": "",
   "@makeAdminDescription": {},
-  "learnMore": "",
   "@learnMore": {},
-  "kickUserDescription": "",
   "@kickUserDescription": {}
 }
