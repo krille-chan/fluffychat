@@ -128,6 +128,7 @@ class RegisterController extends State<Register> {
     try {
       final OryKratosClient kratosClient = OryKratosClient(dio: dio);
 
+      Logs().v('Registering user with email: ${emailController.text}');
       // Fetch register flow
       final frontendApi = kratosClient.getFrontendApi();
       final response = await frontendApi.createNativeRegistrationFlow();
@@ -135,6 +136,8 @@ class RegisterController extends State<Register> {
       if (actionUrl == null) {
         throw Exception('Action URL not found in registration flow response');
       }
+
+      Logs().v('Register flow ID: ${response.data!.id}');
 
       // Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
       final updateRegistrationFlowWithPasswordMethod =
@@ -150,7 +153,9 @@ class RegisterController extends State<Register> {
               OneOf.fromValue1(value: updateRegistrationFlowWithPasswordMethod),
       );
 
+
       // Send POST request to complete registration
+      Logs().v('Completing registration flow');
       final registerResponse = await frontendApi.updateRegistrationFlow(
         flow: response.data!.id,
         updateRegistrationFlowBody: updateRegisterFlowBody,
@@ -159,6 +164,7 @@ class RegisterController extends State<Register> {
       // Process registration response
       final sessionToken = registerResponse.data?.sessionToken;
 
+      Logs().v('Registration successful');
       // Fetch user queue status
       final queueStatusResponse = await dio.get(
         '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
@@ -170,6 +176,7 @@ class RegisterController extends State<Register> {
       );
 
       final queueStatus = queueStatusResponse.data;
+      Logs().v('Queue status: $queueStatus');
 
       if (queueStatus != null) {
         Navigator.push(
@@ -189,7 +196,7 @@ class RegisterController extends State<Register> {
       }
     } on DioException catch (e) {
       if (kDebugMode) {
-        print("Exception when calling Kratos log: $e\n");
+        print("Dio Exception when calling Kratos log: $e\n");
       }
       Logs().v("Error Kratos login : ${e.response?.data}");
       if (e.error is SocketException) {
@@ -213,14 +220,17 @@ class RegisterController extends State<Register> {
         return setState(() => loading = false);
       }
       // Display Kratos error messages to the user
-      if (e.response!.data['ui']['messages'][0]['text'] != null) {
-        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+      try {
+        final errorMessage = e.response?.data['ui']['messages'][0]['text'];
         setState(() => confirmPasswordError = errorMessage);
-      } else {
-        setState(() => confirmPasswordError = "Dio error with Kratos");
+      } catch (exception) {
+        setState(() => confirmPasswordError = "Error logging in. Please contact support.");
       }
       return setState(() => loading = false);
     } catch (exception) {
+      if (kDebugMode) {
+        print("Non-Dio Exception while logging in: $exception\n");
+      }
       setState(() => confirmPasswordError = exception.toString());
       return setState(() => loading = false);
     }
