@@ -672,5 +672,73 @@
   "@about": {
     "type": "text",
     "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} შეცვალა ნაჩვენები სახელი: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "commandHint_create": "ცარიელი ჯგუფური ჩატის შექმნა\nგამოიყენეთ --no-encryption გაშიფვრის გასათიშად",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_dm": "პირდაპირი ჩატის დაწყება\nგამოიყენეთ --no-encryption გაშიფვრის გასათიშად",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "HTML ფორმატირებული ტექსტის გაგზავნა",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_myroomavatar": "თქვენი ფოტოს დაყენება ამ ოთახისათვის(mxc-uri-ს დახმარებით)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "ამ ოთახისათვის ნაჩვენები სახელის დაყენება",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_op": "მოცემული მომხმარებლისათვის უფლებების დონის დაყენება (ჩვეულებრივ: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "რეაქციის სახით პასუხის გაგზავნა",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "containsDisplayName": "ნაჩვენებ სახელს შეიცავს",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "ეს კონტენტი გაგზავნილ იქნა სერვერის ადმინისტრატორებთან",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "ნაგულისხმევი უფლების დონე",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "ნაჩვენები სახელი შეიცვალა",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "ნაჩვენები სახელის შეცვლა",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
   }
 }
