@@ -221,7 +221,7 @@ class RegisterController extends State<Register> {
       }
       // Display Kratos error messages to the user
       try {
-        final errorMessage = e.response?.data['ui']['messages'][0]['text'];
+        final errorMessage = e.response!.data['ui']['nodes'][2]['messages'][0]['text'];
         setState(() => confirmPasswordError = errorMessage);
       } catch (exception) {
         setState(() => confirmPasswordError = "Error logging in. Please contact support.");
