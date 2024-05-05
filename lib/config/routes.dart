@@ -13,6 +13,7 @@ import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settin
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -131,6 +132,7 @@ abstract class AppRoutes {
                     state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
+                      eventId: state.uri.queryParameters['event'],
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -311,10 +313,22 @@ abstract class AppRoutes {
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
+                  eventId: state.uri.queryParameters['event'],
                 ),
               ),
               redirect: loggedOutRedirect,
               routes: [
+                GoRoute(
+                  path: 'search',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ChatSearchPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
                 GoRoute(
                   path: 'encryption',
                   pageBuilder: (context, state) => defaultPageBuilder(
