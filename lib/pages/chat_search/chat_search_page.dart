@@ -83,10 +83,10 @@ class ChatSearchController extends State<ChatSearchPage>
     setState(() {
       galleryStream = timeline
           .startSearch(
-            searchFunc: (event) =>
-                event.messageType == MessageTypes.File ||
-                (event.messageType == MessageTypes.Audio &&
-                    !event.content.containsKey('org.matrix.msc3245.voice')),
+            searchFunc: (event) => {
+              MessageTypes.Image,
+              MessageTypes.Video,
+            }.contains(event.messageType),
             prevBatch: prevBatch,
             requestHistoryCount: 1000,
             limit: 32,
@@ -113,10 +113,10 @@ class ChatSearchController extends State<ChatSearchPage>
     setState(() {
       fileStream = timeline
           .startSearch(
-            searchFunc: (event) => {
-              MessageTypes.Image,
-              MessageTypes.Video,
-            }.contains(event.messageType),
+            searchFunc: (event) =>
+                event.messageType == MessageTypes.File ||
+                (event.messageType == MessageTypes.Audio &&
+                    !event.content.containsKey('org.matrix.msc3245.voice')),
             prevBatch: prevBatch,
             requestHistoryCount: 1000,
             limit: 32,
