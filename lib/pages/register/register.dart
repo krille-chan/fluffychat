@@ -221,15 +221,32 @@ class RegisterController extends State<Register> {
       }
       // Display Kratos error messages to the user
       try {
-        final errorMessage = e.response!.data['ui']['nodes'][2]['messages'][0]['text'];
-        setState(() => confirmPasswordError = errorMessage);
+        final nodes = e.response!.data['ui']['nodes'];
+        final messages = e.response!.data['ui']['messages'];
+
+        final bool hasMessages = messages is List && messages.length > 0;
+        final bool hasEmailError = nodes.length >= 3 && nodes[1]['messages'].length > 0;
+        final bool hasPasswordError = nodes.length >= 3 && nodes[2]['messages'].length > 0;
+
+        if (hasMessages) {
+          setState(() => confirmPasswordError = messages[0]['text']);
+        } else if (hasEmailError) {
+          final errorMessage = nodes[1]['messages'][0]['text'];
+          setState(() => emailError = errorMessage);
+        } else if (hasPasswordError) {
+          final errorMessage = nodes[2]['messages'][0]['text'];
+          setState(() => confirmPasswordError = errorMessage);
+        } else {
+          setState(() => confirmPasswordError = "Error registering. Please contact support");
+        }
       } catch (exception) {
-        setState(() => confirmPasswordError = "Error logging in. Please contact support.");
+        Logs().v("Error Kratos loginhihi : $exception");
+        setState(() => confirmPasswordError = "Error registering. Please contact support.");
       }
       return setState(() => loading = false);
     } catch (exception) {
       if (kDebugMode) {
-        print("Non-Dio Exception while logging in: $exception\n");
+        print("Non-Dio Exception while registering: $exception\n");
       }
       setState(() => confirmPasswordError = exception.toString());
       return setState(() => loading = false);
