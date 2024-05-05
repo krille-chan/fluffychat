@@ -39,6 +39,10 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         widget.queueStatus['username'] != "";
   }
 
+  bool isAccepted() {
+    return widget.queueStatus['userState'] == 'ACCEPTED';
+  }
+
   bool _validateUsername(String username) {
     // Define regex to validate username format
     final RegExp usernameRegex = RegExp(r'^[a-z0-9]{3,16}$');
@@ -205,7 +209,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 child: Text(L10n.of(context)!.submit),
               ),
               const SizedBox(height: 50),
-              isUsernameSet()
+              isUsernameSet() && isAccepted()
                   ? ElevatedButton(
                       onPressed: () async {
                         if (PlatformInfos.shouldInitializePurchase()) {
@@ -215,8 +219,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                           if (!hasSubscription) {
                             final paywallResult =
                                 await RevenueCatUI.presentPaywall();
-                          } else if (widget.queueStatus['userState'] ==
-                              'ACCEPTED') {
+                          } else if (isAccepted()) {
                             await LoginController()
                                 .loginWithSessionToken(widget.sessionToken);
                           }
