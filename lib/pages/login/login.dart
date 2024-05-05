@@ -376,6 +376,8 @@ class LoginController extends State<Login> {
         );
       } else {
         Logs().v('Request failed with status: ${response.statusCode}');
+        // TODO improve error handling
+        setState(() => passwordError = L10n.of(context)!.errTryAgain);
       }
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
@@ -28,8 +29,7 @@ class ChangeUsernamePage extends StatefulWidget {
 }
 
 class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
-  String baseUrl =
-      kDebugMode ? 'https://staging.tawkie.fr/' : 'https://tawkie.fr/';
+  String baseUrl = AppConfig.baseUrl;
 
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
