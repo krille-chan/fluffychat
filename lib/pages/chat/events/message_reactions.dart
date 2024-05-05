@@ -112,7 +112,6 @@ class _Reaction extends StatelessWidget {
         ? Colors.white
         : Colors.black;
     final color = Theme.of(context).colorScheme.background;
-    final fontSize = DefaultTextStyle.of(context).style.fontSize;
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       content = Row(
@@ -120,8 +119,9 @@ class _Reaction extends StatelessWidget {
         children: <Widget>[
           MxcImage(
             uri: Uri.parse(reactionKey),
-            width: 9999,
-            height: fontSize,
+            width: 20,
+            height: 20,
+            animated: false,
           ),
           if (count > 1) ...[
             const SizedBox(width: 4),
