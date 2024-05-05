@@ -47,6 +47,12 @@ class RegisterController extends State<Register> {
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
   }
 
+  Future<void> storeSessionToken(String? sessionToken) async {
+    if (sessionToken != null) {
+      await _secureStorage.write(key: 'sessionToken', value: sessionToken);
+    }
+  }
+
   bool _validateEmail(String email) {
     // Define regex to validate email format
     final RegExp emailRegex = RegExp(
@@ -163,6 +169,7 @@ class RegisterController extends State<Register> {
 
       // Process registration response
       final sessionToken = registerResponse.data?.sessionToken;
+      await storeSessionToken(sessionToken);
 
       Logs().v('Registration successful');
       // Fetch user queue status
