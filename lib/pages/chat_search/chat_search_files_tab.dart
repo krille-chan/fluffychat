@@ -94,7 +94,7 @@ class ChatSearchFilesTab extends StatelessWidget {
                       icon: const Icon(
                         Icons.arrow_downward_outlined,
                       ),
-                      label: const Text('Search more...'),
+                      label: Text(L10n.of(context)!.searchMore),
                     ),
                   ),
                 );
