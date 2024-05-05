@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:tawkie/config/subscription.dart';
@@ -44,15 +45,23 @@ abstract class AppRoutes {
     BuildContext context,
     GoRouterState state,
   ) async {
-    // Check connection to Matrix
-    if (Matrix.of(context).client.isLogged()) {
-      // If the user is connected to Matrix, check the subscription
-      var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
+    final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+    final sessionToken = await _secureStorage.read(key: 'sessionToken');
+
+    final bool isLoggedKratos = sessionToken is String && sessionToken.isNotEmpty;
+    final bool isLoggedMatrix = Matrix.of(context).client.isLogged();
+
+    if (isLoggedKratos && isLoggedMatrix) {
+      final bool hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
       if (hasSubscription) {
-        // If the user have a subscription, redirect to /rooms
         return '/rooms';
+      } else {
+        return '/subscribe';
       }
+    } else if (isLoggedKratos) {
+      return '/home';
     }
+
     return null;
   }
 
