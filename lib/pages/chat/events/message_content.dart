@@ -155,10 +155,7 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
-            if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
-              return EventVideoPlayer(event);
-            }
-            return MessageDownloadContent(event, textColor);
+            return EventVideoPlayer(event);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
 

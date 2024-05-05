@@ -66,7 +66,7 @@ class ChatSearchView extends StatelessWidget {
               controller: controller.tabController,
               tabs: [
                 Tab(child: Text(L10n.of(context)!.messages)),
-                Tab(child: Text(L10n.of(context)!.photos)),
+                Tab(child: Text(L10n.of(context)!.gallery)),
                 Tab(child: Text(L10n.of(context)!.files)),
               ],
             ),
