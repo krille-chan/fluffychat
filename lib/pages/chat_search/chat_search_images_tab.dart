@@ -140,6 +140,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                   ],
                 ),
                 GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   mainAxisSpacing: padding,
                   crossAxisSpacing: padding,

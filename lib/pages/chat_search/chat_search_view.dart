@@ -57,11 +57,7 @@ class ChatSearchView extends StatelessWidget {
                 autofocus: true,
                 enabled: controller.tabController.index == 0,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.searchIn(
-                    room.getLocalizedDisplayname(
-                      MatrixLocals(L10n.of(context)!),
-                    ),
-                  ),
+                  hintText: L10n.of(context)!.search,
                   suffixIcon: const Icon(Icons.search_outlined),
                 ),
               ),
