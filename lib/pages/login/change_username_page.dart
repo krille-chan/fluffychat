@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
@@ -217,8 +218,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                               .checkSubscriptionStatus();
 
                           if (!hasSubscription) {
-                            final paywallResult =
-                                await RevenueCatUI.presentPaywall();
+                            Logs().v('No subscription found, redirecting to subscribe page.');
+                            context.go('/subscribe');
                           } else if (isAccepted()) {
                             await LoginController()
                                 .loginWithSessionToken(widget.sessionToken);

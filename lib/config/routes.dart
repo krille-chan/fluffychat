@@ -50,6 +50,7 @@ abstract class AppRoutes {
 
     final bool isLoggedKratos = sessionToken is String && sessionToken.isNotEmpty;
     final bool isLoggedMatrix = Matrix.of(context).client.isLogged();
+    final bool onSubscribePage = state.path == '/subscribe';
 
     if (isLoggedKratos && isLoggedMatrix) {
       final bool hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
@@ -58,7 +59,7 @@ abstract class AppRoutes {
       } else {
         return '/subscribe';
       }
-    } else if (isLoggedKratos) {
+    } else if (!isLoggedMatrix && !onSubscribePage) {
       return '/home';
     }
 
