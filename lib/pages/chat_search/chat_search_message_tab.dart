@@ -49,15 +49,7 @@ class ChatSearchMessageTab extends StatelessWidget {
             ],
           );
         }
-        final events = snapshot.data?.$1
-                .where(
-                  (event) => {
-                    MessageTypes.Text,
-                    MessageTypes.Notice,
-                  }.contains(event.messageType),
-                )
-                .toList() ??
-            [];
+        final events = snapshot.data?.$1 ?? [];
 
         return SelectionArea(
           child: ListView.separated(
@@ -166,14 +158,17 @@ class _MessageSearchResultListTile extends StatelessWidget {
           decorationColor: Theme.of(context).colorScheme.primary,
         ),
         onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-        text: event.calcLocalizedBodyFallback(
-          plaintextBody: true,
-          removeMarkdown: true,
-          MatrixLocals(
-            L10n.of(context)!,
-          ),
-        ),
-        maxLines: 4,
+        text: event
+            .calcLocalizedBodyFallback(
+              plaintextBody: true,
+              removeMarkdown: true,
+              MatrixLocals(
+                L10n.of(context)!,
+              ),
+            )
+            .trim(),
+        maxLines: 7,
+        overflow: TextOverflow.ellipsis,
       ),
       trailing: IconButton(
         icon: const Icon(

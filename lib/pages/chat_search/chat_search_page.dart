@@ -25,9 +25,11 @@ class ChatSearchController extends State<ChatSearchPage>
   Timeline? timeline;
 
   Stream<(List<Event>, String?)>? searchStream;
+  Stream<(List<Event>, String?)>? galleryStream;
+  Stream<(List<Event>, String?)>? fileStream;
 
   void restartSearch() {
-    if (tabController.index == 0 && searchController.text.isEmpty) {
+    if (searchController.text.isEmpty) {
       setState(() {
         searchStream = null;
       });
@@ -37,11 +39,11 @@ class ChatSearchController extends State<ChatSearchPage>
       searchStream = const Stream.empty();
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      startSearch();
+      startMessageSearch();
     });
   }
 
-  void startSearch({
+  void startMessageSearch({
     String? prevBatch,
     List<Event>? previousSearchResult,
   }) async {
@@ -54,12 +56,7 @@ class ChatSearchController extends State<ChatSearchPage>
     setState(() {
       searchStream = timeline
           .startSearch(
-            searchTerm: tabController.index == 0 ? searchController.text : null,
-            searchFunc: switch (tabController.index) {
-              1 => (event) => event.messageType == MessageTypes.Image,
-              2 => (event) => event.messageType == MessageTypes.File,
-              int() => null,
-            },
+            searchTerm: searchController.text,
             prevBatch: prevBatch,
             requestHistoryCount: 1000,
             limit: 32,
@@ -77,16 +74,90 @@ class ChatSearchController extends State<ChatSearchPage>
     });
   }
 
+  void startGallerySearch({
+    String? prevBatch,
+    List<Event>? previousSearchResult,
+  }) async {
+    final timeline = this.timeline ??= await room!.getTimeline();
+
+    setState(() {
+      galleryStream = timeline
+          .startSearch(
+            searchFunc: (event) =>
+                event.messageType == MessageTypes.File ||
+                (event.messageType == MessageTypes.Audio &&
+                    !event.content.containsKey('org.matrix.msc3245.voice')),
+            prevBatch: prevBatch,
+            requestHistoryCount: 1000,
+            limit: 32,
+          )
+          .map(
+            (result) => (
+              [
+                if (previousSearchResult != null) ...previousSearchResult,
+                ...result.$1,
+              ],
+              result.$2,
+            ),
+          )
+          .asBroadcastStream();
+    });
+  }
+
+  void startFileSearch({
+    String? prevBatch,
+    List<Event>? previousSearchResult,
+  }) async {
+    final timeline = this.timeline ??= await room!.getTimeline();
+
+    setState(() {
+      fileStream = timeline
+          .startSearch(
+            searchFunc: (event) => {
+              MessageTypes.Image,
+              MessageTypes.Video,
+            }.contains(event.messageType),
+            prevBatch: prevBatch,
+            requestHistoryCount: 1000,
+            limit: 32,
+          )
+          .map(
+            (result) => (
+              [
+                if (previousSearchResult != null) ...previousSearchResult,
+                ...result.$1,
+              ],
+              result.$2,
+            ),
+          )
+          .asBroadcastStream();
+    });
+  }
+
+  void _onTabChanged() {
+    switch (tabController.index) {
+      case 1:
+        startGallerySearch();
+        break;
+      case 2:
+        startFileSearch();
+        break;
+      default:
+        restartSearch();
+        break;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     tabController = TabController(initialIndex: 0, length: 3, vsync: this);
-    tabController.addListener(restartSearch);
+    tabController.addListener(_onTabChanged);
   }
 
   @override
   void dispose() {
-    tabController.removeListener(restartSearch);
+    tabController.removeListener(_onTabChanged);
     super.dispose();
   }
 

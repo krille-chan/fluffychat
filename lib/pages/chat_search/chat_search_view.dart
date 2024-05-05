@@ -81,18 +81,18 @@ class ChatSearchView extends StatelessWidget {
                   ChatSearchMessageTab(
                     searchQuery: controller.searchController.text,
                     room: room,
-                    startSearch: controller.startSearch,
+                    startSearch: controller.startMessageSearch,
                     searchStream: controller.searchStream,
                   ),
                   ChatSearchImagesTab(
                     room: room,
-                    startSearch: controller.startSearch,
-                    searchStream: controller.searchStream,
+                    startSearch: controller.startGallerySearch,
+                    searchStream: controller.galleryStream,
                   ),
                   ChatSearchFilesTab(
                     room: room,
-                    startSearch: controller.startSearch,
-                    searchStream: controller.searchStream,
+                    startSearch: controller.startFileSearch,
+                    searchStream: controller.fileStream,
                   ),
                 ],
               ),

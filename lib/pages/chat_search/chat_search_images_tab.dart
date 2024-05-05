@@ -27,11 +27,12 @@ class ChatSearchImagesTab extends StatelessWidget {
     return StreamBuilder(
       stream: searchStream,
       builder: (context, snapshot) {
-        if (searchStream == null) {
+        final events = snapshot.data?.$1;
+        if (searchStream == null || events == null) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.search_outlined, size: 64),
+              const CircularProgressIndicator.adaptive(strokeWidth: 2),
               const SizedBox(height: 8),
               Text(
                 L10n.of(context)!.searchIn(
@@ -43,10 +44,6 @@ class ChatSearchImagesTab extends StatelessWidget {
             ],
           );
         }
-        final events = snapshot.data?.$1
-                .where((event) => event.messageType == MessageTypes.Image)
-                .toList() ??
-            [];
         if (events.isEmpty) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
