@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/subscription.dart';
+import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
 import 'package:tawkie/pages/login/login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 
@@ -226,6 +227,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                           }
                         } else {
                           // Todo: make purchases for Web, Windows and Linux
+                          showCatchErrorDialog(context, 'Well this is awkward. Try subscribing from the panel or mobile app.');
                         }
                       },
                       child: Text(L10n.of(context)!.next),
