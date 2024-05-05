@@ -68,7 +68,7 @@ class MessageReactions extends StatelessWidget {
                   );
                 }
               } else {
-                event.room.sendReaction(event.eventId, r.key!);
+                event.room.sendReaction(event.eventId, r.key);
               }
             },
             onLongPress: () async => await _AdaptableReactorsDialog(
@@ -92,7 +92,7 @@ class MessageReactions extends StatelessWidget {
 }
 
 class _Reaction extends StatelessWidget {
-  final String? reactionKey;
+  final String reactionKey;
   final int count;
   final bool? reacted;
   final void Function()? onTap;
@@ -114,12 +114,12 @@ class _Reaction extends StatelessWidget {
     final color = Theme.of(context).colorScheme.background;
     final fontSize = DefaultTextStyle.of(context).style.fontSize;
     Widget content;
-    if (reactionKey!.startsWith('mxc://')) {
+    if (reactionKey.startsWith('mxc://')) {
       content = Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           MxcImage(
-            uri: Uri.parse(reactionKey!),
+            uri: Uri.parse(reactionKey),
             width: 9999,
             height: fontSize,
           ),
@@ -136,7 +136,7 @@ class _Reaction extends StatelessWidget {
         ],
       );
     } else {
-      var renderKey = Characters(reactionKey!);
+      var renderKey = Characters(reactionKey);
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
@@ -171,13 +171,13 @@ class _Reaction extends StatelessWidget {
 }
 
 class _ReactionEntry {
-  String? key;
+  String key;
   int count;
   bool reacted;
   List<User>? reactors;
 
   _ReactionEntry({
-    this.key,
+    required this.key,
     required this.count,
     required this.reacted,
     this.reactors,
@@ -222,7 +222,7 @@ class _AdaptableReactorsDialog extends StatelessWidget {
       ),
     );
 
-    final title = Center(child: Text(reactionEntry!.key!));
+    final title = Center(child: Text(reactionEntry!.key));
 
     return AlertDialog.adaptive(
       title: title,
