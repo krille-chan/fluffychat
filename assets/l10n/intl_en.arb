@@ -704,6 +704,7 @@
     },
     "chatPermissions": "Chat permissions",
     "editDisplayname": "Edit displayname",
+    "editDisplaynameMessage": "Note: Only Tawkie users can see it.",
     "@editDisplayname": {
         "type": "text",
         "placeholders": {}

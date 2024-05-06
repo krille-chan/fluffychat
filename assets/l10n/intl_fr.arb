@@ -624,6 +624,7 @@
         "placeholders": {}
     },
     "editDisplayname": "Changer de nom d'affichage",
+    "editDisplaynameMessage": "Note: Visible uniquement par les utilisateur·ices de Tawkie.",
     "@editDisplayname": {
         "type": "text",
         "placeholders": {}
