@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
+import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class SpeechToTextAudioConfigModel {
@@ -67,21 +70,37 @@ class SpeechToTextRequestModel {
   }
 }
 
-class WordInfo {
-  final String word;
+class STTToken {
+  final PangeaToken token;
   final Duration? startTime;
   final Duration? endTime;
   final int? confidence;
 
-  WordInfo({
-    required this.word,
+  STTToken({
+    required this.token,
     this.startTime,
     this.endTime,
     this.confidence,
   });
 
-  factory WordInfo.fromJson(Map<String, dynamic> json) => WordInfo(
-        word: json['word'],
+  int get offset => token.text.offset;
+
+  int get length => token.text.length;
+
+  Color color(BuildContext context) {
+    if (confidence == null || confidence! > 80) {
+      return Theme.of(context).brightness == Brightness.dark
+          ? AppConfig.primaryColorLight
+          : AppConfig.primaryColor;
+    }
+    if (confidence! > 50) {
+      return const Color.fromARGB(255, 184, 142, 43);
+    }
+    return Colors.red;
+  }
+
+  factory STTToken.fromJson(Map<String, dynamic> json) => STTToken(
+        token: PangeaToken.fromJson(json['token']),
         startTime: json['start_time'] != null
             ? Duration(milliseconds: json['start_time'])
             : null,
@@ -92,7 +111,7 @@ class WordInfo {
       );
 
   Map<String, dynamic> toJson() => {
-        "word": word,
+        "token": token,
         "start_time": startTime?.inMilliseconds,
         "end_time": endTime?.inMilliseconds,
         "confidence": confidence,
@@ -100,27 +119,32 @@ class WordInfo {
 }
 
 class Transcript {
-  final String transcript;
+  final String text;
   final int confidence;
-  final List<WordInfo> words;
+  final List<STTToken> sttTokens;
+  final String langCode;
 
   Transcript({
-    required this.transcript,
+    required this.text,
     required this.confidence,
-    required this.words,
+    required this.sttTokens,
+    required this.langCode,
   });
 
   factory Transcript.fromJson(Map<String, dynamic> json) => Transcript(
-        transcript: json['transcript'],
+        text: json['transcript'],
         confidence: json['confidence'].toDouble(),
-        words:
-            (json['words'] as List).map((e) => WordInfo.fromJson(e)).toList(),
+        sttTokens: (json['stt_tokens'] as List)
+            .map((e) => STTToken.fromJson(e))
+            .toList(),
+        langCode: json['lang_code'],
       );
 
   Map<String, dynamic> toJson() => {
-        "transcript": transcript,
+        "transcript": text,
         "confidence": confidence,
-        "words": words.map((e) => e.toJson()).toList(),
+        "stt_tokens": sttTokens.map((e) => e.toJson()).toList(),
+        "lang_code": langCode,
       };
 }
 
@@ -141,15 +165,19 @@ class SpeechToTextResult {
       };
 }
 
-class SpeechToTextResponseModel {
+class SpeechToTextModel {
   final List<SpeechToTextResult> results;
 
-  SpeechToTextResponseModel({
+  SpeechToTextModel({
     required this.results,
   });
 
-  factory SpeechToTextResponseModel.fromJson(Map<String, dynamic> json) =>
-      SpeechToTextResponseModel(
+  Transcript get transcript => results.first.transcripts.first;
+
+  String get langCode => results.first.transcripts.first.langCode;
+
+  factory SpeechToTextModel.fromJson(Map<String, dynamic> json) =>
+      SpeechToTextModel(
         results: (json['results'] as List)
             .map((e) => SpeechToTextResult.fromJson(e))
             .toList(),

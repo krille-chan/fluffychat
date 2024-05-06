@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/models/message_data_models.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
@@ -87,8 +87,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
             context: context,
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           )
-          .onError((error, stackTrace) =>
-              ErrorHandler.logError(e: error, s: stackTrace))
+          .onError(
+            (error, stackTrace) =>
+                ErrorHandler.logError(e: error, s: stackTrace),
+          )
           .then((event) {
         repEvent = event;
         widget.toolbarController?.toolbar?.textSelection.setMessageText(

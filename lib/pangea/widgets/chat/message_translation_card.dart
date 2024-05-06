@@ -1,9 +1,10 @@
-import 'package:fluffychat/pangea/models/message_data_models.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -139,17 +140,9 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const CardErrorWidget();
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
+    return Container(
       child: _fetchingRepresentation
-          ? SizedBox(
-              height: 14,
-              width: 14,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.0,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            )
+          ? const ToolbarContentLoadingIndicator()
           : selectionTranslation != null
               ? Text(
                   selectionTranslation!,

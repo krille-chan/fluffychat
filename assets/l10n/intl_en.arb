@@ -3887,7 +3887,7 @@
     "more": "More",
     "translationTooltip": "Translate",
     "audioTooltip": "Play Audio",
-    "transcriptTooltip": "Transcript",
+    "speechToTextTooltip": "Transcript",
     "certifyAge": "I certify that I am over {age} years of age",
     "@certifyAge": {
         "type": "text",

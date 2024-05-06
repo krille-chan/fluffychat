@@ -27,7 +27,7 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.textToSpeech:
         return L10n.of(context)!.messageAudio;
       case MessageMode.speechToText:
-        return L10n.of(context)!.transcriptTooltip;
+        return L10n.of(context)!.speechToTextTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.definitions;
       default:
@@ -43,7 +43,7 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.textToSpeech:
         return L10n.of(context)!.audioTooltip;
       case MessageMode.speechToText:
-        return L10n.of(context)!.transcriptTooltip;
+        return L10n.of(context)!.speechToTextTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.define;
       default:

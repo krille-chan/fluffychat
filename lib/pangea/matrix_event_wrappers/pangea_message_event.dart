@@ -5,12 +5,13 @@ import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/material.dart';
@@ -270,36 +271,33 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
-  Set<Event> get transcriptionEvents => _event.aggregatedEvents(
-        timeline,
-        PangeaEventTypes.transcript,
-      );
-
-  Event? get transcriptionEvent => transcriptionEvents.lastOrNull;
-
-  Future<SpeechToTextResponseModel?> getSpeechToTextLocal() async {
-    if (transcriptionEvent == null) return null;
-
-    return SpeechToTextResponseModel.fromJson(
-      transcriptionEvent!.content[PangeaEventTypes.transcript]
-          as Map<String, dynamic>,
-    );
-  }
-
-  Future<SpeechToTextResponseModel?> getSpeechToTextGlobal(
+  Future<SpeechToTextModel?> getSpeechToText(
     String l1Code,
     String l2Code,
   ) async {
     if (!isAudioMessage) {
       ErrorHandler.logError(
-        e: 'Message is not an audio message ${_event.eventId}',
+        e: 'Calling getSpeechToText on non-audio message',
         s: StackTrace.current,
-        data: _event.content,
+        data: {
+          "content": _event.content,
+          "eventId": _event.eventId,
+          "roomId": _event.roomId,
+          "userId": _event.room.client.userID,
+          "account_data": _event.room.client.accountData,
+        },
       );
       return null;
     }
 
-    if (transcriptionEvent != null) return getSpeechToTextLocal();
+    final SpeechToTextModel? speechToTextLocal = representations
+        .firstWhereOrNull(
+          (element) => element.content.speechToText != null,
+        )
+        ?.content
+        .speechToText;
+
+    if (speechToTextLocal != null) return speechToTextLocal;
 
     final matrixFile = await _event.downloadAndDecryptAttachment();
     // Pangea#
@@ -323,7 +321,10 @@ class PangeaMessageEvent {
 
     // audioFile = file;
 
-    final SpeechToTextResponseModel response =
+    debugPrint("mimeType ${matrixFile.mimeType}");
+    debugPrint("encoding ${mimeTypeToAudioEncoding(matrixFile.mimeType)}");
+
+    final SpeechToTextModel response =
         await MatrixState.pangeaController.speechToText.get(
       SpeechToTextRequestModel(
         audioContent: matrixFile.bytes,
@@ -332,7 +333,7 @@ class PangeaMessageEvent {
           encoding: mimeTypeToAudioEncoding(matrixFile.mimeType),
           //this is the default in the RecordConfig in record package
           //TODO: check if this is the correct value and make it a constant somewhere
-          sampleRateHertz: 44100,
+          sampleRateHertz: 22050,
           userL1: l1Code,
           userL2: l2Code,
         ),

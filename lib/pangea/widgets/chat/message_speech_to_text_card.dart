@@ -1,7 +1,9 @@
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
-import 'package:fluffychat/pangea/utils/bot_style.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/pangea/widgets/chat/speech_to_text_score.dart';
+import 'package:fluffychat/pangea/widgets/chat/speech_to_text_text.dart';
+import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class MessageSpeechToTextCard extends StatefulWidget {
 }
 
 class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
-  SpeechToTextResponseModel? speechToTextResponse;
+  SpeechToTextModel? speechToTextResponse;
   bool _fetchingTranscription = true;
   Object? error;
 
@@ -32,9 +34,6 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         roomID: widget.messageEvent.room.id,
       );
 
-  String? get transcription => speechToTextResponse
-      ?.results.firstOrNull?.transcripts.firstOrNull?.transcript;
-
   // look for transcription in message event
   // if not found, call API to transcribe audio
   Future<void> getSpeechToText() async {
@@ -43,7 +42,11 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         throw Exception('Language selection not found');
       }
       speechToTextResponse ??=
-          await widget.messageEvent.getSpeechToTextGlobal(l1Code!, l2Code!);
+          await widget.messageEvent.getSpeechToText(l1Code!, l2Code!);
+
+      debugPrint(
+        'Speech to text transcript: ${speechToTextResponse?.transcript.text}',
+      );
     } catch (e, s) {
       error = e;
       ErrorHandler.logError(
@@ -64,25 +67,23 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_fetchingTranscription && speechToTextResponse == null) {
+    if (_fetchingTranscription) {
+      return const ToolbarContentLoadingIndicator();
+    }
+
+    //done fetchig but not results means some kind of error
+    if (speechToTextResponse == null) {
       return CardErrorWidget(error: error);
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: _fetchingTranscription
-          ? SizedBox(
-              height: 14,
-              width: 14,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.0,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            )
-          : Text(
-              transcription!,
-              style: BotStyle.text(context),
-            ),
+    return Column(
+      children: [
+        SpeechToTextText(transcript: speechToTextResponse!.transcript),
+        const Divider(),
+        SpeechToTextScoreWidget(
+          score: speechToTextResponse!.transcript.confidence,
+        ),
+      ],
     );
   }
 }

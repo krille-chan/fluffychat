@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
@@ -13,10 +14,10 @@ import '../config/environment.dart';
 import '../network/requests.dart';
 import '../network/urls.dart';
 
-// Assuming SpeechToTextRequestModel, SpeechToTextResponseModel and related models are already defined as in your provided code.
+// Assuming SpeechToTextRequestModel, SpeechToTextModel and related models are already defined as in your provided code.
 
 class _SpeechToTextCacheItem {
-  Future<SpeechToTextResponseModel> data;
+  Future<SpeechToTextModel> data;
 
   _SpeechToTextCacheItem({required this.data});
 }
@@ -43,7 +44,7 @@ class SpeechToTextController {
     _cacheClearTimer?.cancel();
   }
 
-  Future<SpeechToTextResponseModel> get(
+  Future<SpeechToTextModel> get(
     SpeechToTextRequestModel requestModel,
   ) async {
     final int cacheKey = requestModel.hashCode;
@@ -51,7 +52,7 @@ class SpeechToTextController {
     if (_cache.containsKey(cacheKey)) {
       return _cache[cacheKey]!.data;
     } else {
-      final Future<SpeechToTextResponseModel> response = _fetchResponse(
+      final Future<SpeechToTextModel> response = _fetchResponse(
         accessToken: await _pangeaController.userController.accessToken,
         requestModel: requestModel,
       );
@@ -61,8 +62,8 @@ class SpeechToTextController {
     }
   }
 
-  Future<void> saveTranscriptAsMatrixEvent(
-    SpeechToTextResponseModel response,
+  Future<void> saveSpeechToTextAsRepresentationEvent(
+    SpeechToTextModel response,
     SpeechToTextRequestModel requestModel,
   ) {
     if (requestModel.audioEvent == null) {
@@ -72,19 +73,24 @@ class SpeechToTextController {
       return Future.value(null);
     }
     debugPrint('Saving transcript as matrix event');
-    final json = response.toJson();
 
     requestModel.audioEvent?.room.sendPangeaEvent(
-      content: response.toJson(),
+      content: PangeaRepresentation(
+        langCode: response.langCode,
+        text: response.transcript.text,
+        originalSent: false,
+        originalWritten: false,
+        speechToText: response,
+      ).toJson(),
       parentEventId: requestModel.audioEvent!.eventId,
-      type: PangeaEventTypes.transcript,
+      type: PangeaEventTypes.representation,
     );
     debugPrint('Transcript saved as matrix event');
 
     return Future.value(null);
   }
 
-  Future<SpeechToTextResponseModel> _fetchResponse({
+  Future<SpeechToTextModel> _fetchResponse({
     required String accessToken,
     required SpeechToTextRequestModel requestModel,
   }) async {
@@ -101,9 +107,9 @@ class SpeechToTextController {
     if (res.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(utf8.decode(res.bodyBytes));
 
-      final response = SpeechToTextResponseModel.fromJson(json);
+      final response = SpeechToTextModel.fromJson(json);
 
-      saveTranscriptAsMatrixEvent(response, requestModel).onError(
+      saveSpeechToTextAsRepresentationEvent(response, requestModel).onError(
         (error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace),
       );
 

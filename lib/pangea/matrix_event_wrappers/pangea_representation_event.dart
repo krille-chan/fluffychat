@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/models/pangea_choreo_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/repo/tokens_repo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +15,9 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import '../../widgets/matrix.dart';
 import '../constants/language_keys.dart';
 import '../constants/pangea_event_types.dart';
+import '../models/choreo_record.dart';
+import '../models/representation_content_model.dart';
 import '../utils/error_handler.dart';
-import 'choreo_record.dart';
-import 'message_data_models.dart';
 import 'pangea_tokens_event.dart';
 
 class RepresentationEvent {
@@ -25,12 +27,15 @@ class RepresentationEvent {
   ChoreoRecord? _choreo;
   Timeline timeline;
 
+  SpeechToTextModel? _speechToTextResponse;
+
   RepresentationEvent({
     required this.timeline,
     Event? event,
     PangeaRepresentation? content,
     PangeaMessageTokens? tokens,
     ChoreoRecord? choreo,
+    SpeechToTextModel? speechToTextResponse,
   }) {
     if (event != null && event.type != PangeaEventTypes.representation) {
       throw Exception(
@@ -41,10 +46,14 @@ class RepresentationEvent {
     _content = content;
     _tokens = tokens;
     _choreo = choreo;
+    _speechToTextResponse = speechToTextResponse;
   }
 
   Event? get event => _event;
 
+  // Note: in the case where the event is the originalSent or originalWritten event,
+  // the content will be set on initialization by the PangeaMessageEvent
+  // Otherwise, the content will be fetched from the event where it is stored in content[type]
   PangeaRepresentation get content {
     if (_content != null) return _content!;
     _content = _event?.getPangeaContent<PangeaRepresentation>();

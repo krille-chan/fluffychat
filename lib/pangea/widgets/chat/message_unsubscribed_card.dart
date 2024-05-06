@@ -37,34 +37,31 @@ class MessageUnsubscribedCard extends StatelessWidget {
       MatrixState.pAnyState.closeOverlay();
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Column(
-        children: [
-          Text(
-            style: BotStyle.text(context),
-            "${L10n.of(context)!.subscribedToUnlockTools} $languageTool",
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: TextButton(
-              onPressed: onButtonPress,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  (AppConfig.primaryColor).withOpacity(0.1),
-                ),
-              ),
-              child: Text(
-                inTrialWindow
-                    ? L10n.of(context)!.activateTrial
-                    : L10n.of(context)!.getAccess,
+    return Column(
+      children: [
+        Text(
+          style: BotStyle.text(context),
+          "${L10n.of(context)!.subscribedToUnlockTools} $languageTool",
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          child: TextButton(
+            onPressed: onButtonPress,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                (AppConfig.primaryColor).withOpacity(0.1),
               ),
             ),
+            child: Text(
+              inTrialWindow
+                  ? L10n.of(context)!.activateTrial
+                  : L10n.of(context)!.getAccess,
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

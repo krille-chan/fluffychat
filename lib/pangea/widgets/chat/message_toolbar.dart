@@ -5,7 +5,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
@@ -264,9 +264,11 @@ class MessageToolbarState extends State<MessageToolbar> {
           ) ??
           true;
       autoplay
-          ? updateMode(widget.pangeaMessageEvent.isAudioMessage
-              ? MessageMode.speechToText
-              : MessageMode.textToSpeech)
+          ? updateMode(
+              widget.pangeaMessageEvent.isAudioMessage
+                  ? MessageMode.speechToText
+                  : MessageMode.textToSpeech,
+            )
           : updateMode(MessageMode.translation);
     });
 
@@ -319,7 +321,10 @@ class MessageToolbarState extends State<MessageToolbar> {
                   duration: FluffyThemes.animationDuration,
                   child: Column(
                     children: [
-                      toolbarContent ?? const SizedBox(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: toolbarContent ?? const SizedBox(),
+                      ),
                       SizedBox(height: toolbarContent == null ? 0 : 20),
                     ],
                   ),
@@ -329,7 +334,7 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
-                    if ([MessageMode.definition, MessageMode.textToSpeech]
+                    if ([MessageMode.definition, MessageMode.textToSpeech, MessageMode.translation]
                             .contains(mode) &&
                         widget.pangeaMessageEvent.isAudioMessage) {
                       return const SizedBox.shrink();

@@ -4572,7 +4572,7 @@
   "more": "Más",
   "translationTooltip": "Traducir",
   "audioTooltip": "Reproducir audio",
-  "transcriptTooltip": "Transcripción",
+  "speechToTextTooltip": "Transcripción",
   "yourBirthdayPleaseShort": "Seleccione su grupo de edad",
   "certifyAge": "Certifico que soy mayor de {age} años",
   "@certifyAge": {

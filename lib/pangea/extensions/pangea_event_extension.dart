@@ -1,12 +1,11 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
-import 'package:fluffychat/pangea/models/message_data_models.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
 
 extension PangeaEvent on Event {
   V getPangeaContent<V>() {
