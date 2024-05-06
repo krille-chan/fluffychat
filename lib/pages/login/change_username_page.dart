@@ -41,7 +41,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         widget.queueStatus['username'] != "";
   }
 
-  bool isAccepted() {
+  bool _isAccepted() {
     return widget.queueStatus['userState'] == 'ACCEPTED';
   }
 
@@ -149,7 +149,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       if (!hasSubscription) {
         Logs().v('No subscription found, redirecting to subscribe page.');
         context.go('/subscribe');
-      } else if (isAccepted()) {
+      } else if (_isAccepted()) {
         // TODO create matrix user
         await LoginController()
             .loginWithSessionToken(widget.sessionToken);
@@ -230,7 +230,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                 child: Text(L10n.of(context)!.submit),
               ),
               const SizedBox(height: 50),
-              isUsernameSet() && isAccepted()
+              isUsernameSet() && _isAccepted()
                   ? ElevatedButton(
                       onPressed: _onNextButtonPressed,
                       child: Text(L10n.of(context)!.next),
