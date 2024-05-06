@@ -55,6 +55,7 @@ class SettingsSecurityView extends StatelessWidget {
                     ),
                   if (capabilities?.mChangePassword?.enabled != false ||
                       error != null) ...[
+                    /* TODO using kratos
                     ListTile(
                       leading: const Icon(Icons.key_outlined),
                       trailing: error != null
@@ -88,6 +89,7 @@ class SettingsSecurityView extends StatelessWidget {
                           ? null
                           : () => context.go('/rooms/settings/security/3pid'),
                     ),
+                    */
                   ],
                   ListTile(
                     leading: const Icon(Icons.block_outlined),

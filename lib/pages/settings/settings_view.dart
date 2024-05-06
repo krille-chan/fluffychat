@@ -177,12 +177,14 @@ class SettingsView extends StatelessWidget {
               onTap: () => context.go('/rooms/settings/notifications'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
+            /* TODO display kratos sessions
             ListTile(
               leading: const Icon(Icons.devices_outlined),
               title: Text(L10n.of(context)!.devices),
               onTap: () => context.go('/rooms/settings/devices'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
+            */
             ListTile(
               leading: const Icon(Icons.forum_outlined),
               title: Text(L10n.of(context)!.chat),
