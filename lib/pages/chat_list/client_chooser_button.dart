@@ -38,6 +38,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      /*
       PopupMenuItem(
         value: SettingsAction.newSpace,
         child: Row(
@@ -58,6 +59,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      */
       PopupMenuItem(
         value: SettingsAction.invite,
         child: Row(
@@ -89,6 +91,7 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       const PopupMenuDivider(),
+      /*
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
             matrix.accountBundles[bundle]!.single!.userID != bundle)
@@ -159,6 +162,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      */
 
       // PopupMenuItem to redirect to the social network connections page via bot bridge
       PopupMenuItem(
