@@ -4,6 +4,7 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:matrix/matrix.dart';
 
@@ -31,7 +32,9 @@ class PermissionsController extends BaseController {
 
   /// Returns false if user is null
   bool isUser18() {
-    final dob = _pangeaController.userController.matrixProfile?.dateOfBirth;
+    final dob = _pangeaController.pStoreService.read(
+      MatrixProfile.dateOfBirth.title,
+    );
     return dob != null
         ? DateTime.parse(dob).isAtLeastYearsOld(AgeLimits.toAccessFeatures)
         : false;

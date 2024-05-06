@@ -33,8 +33,10 @@ class AnalyticsController extends BaseController {
 
   TimeSpan get currentAnalyticsTimeSpan {
     try {
-      final String? str =
-          _pangeaController.pStoreService.read(_analyticsTimeSpanKey);
+      final String? str = _pangeaController.pStoreService.read(
+        _analyticsTimeSpanKey,
+        local: true,
+      );
       return str != null
           ? TimeSpan.values.firstWhere((e) {
               final spanString = e.toString();
@@ -48,8 +50,11 @@ class AnalyticsController extends BaseController {
   }
 
   Future<void> setCurrentAnalyticsTimeSpan(TimeSpan timeSpan) async {
-    await _pangeaController.pStoreService
-        .save(_analyticsTimeSpanKey, timeSpan.toString());
+    await _pangeaController.pStoreService.save(
+      _analyticsTimeSpanKey,
+      timeSpan.toString(),
+      local: true,
+    );
   }
 
   Future<List<ChartAnalyticsModel?>> allClassAnalytics() async {
