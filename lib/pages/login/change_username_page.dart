@@ -35,6 +35,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   final TextEditingController _usernameController = TextEditingController();
   String? _usernameError;
+  bool _loadingUpdateUsername = false;
+  bool _loadingCreateUser = false;
 
   bool isUsernameSet() {
     return widget.queueStatus['username'] != null &&
@@ -43,6 +45,10 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   bool _isAccepted() {
     return widget.queueStatus['userState'] == 'ACCEPTED';
+  }
+
+  bool _isLoading() {
+    return _loadingUpdateUsername || _loadingCreateUser;
   }
 
   bool _validateUsername(String username) {
@@ -70,6 +76,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   Future<void> updateUsername(String sessionToken, String newUsername) async {
     try {
+      setState(() => _loadingUpdateUsername = true);
       newUsername = _formatUsername(newUsername);
 
       // Validate the username
@@ -91,6 +98,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
       setState(() {
         widget.queueStatus['username'] = newUsername;
+        _loadingUpdateUsername = false;
       });
 
       // Display a SnackBar to indicate a successful name change
@@ -105,10 +113,45 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         print("Exception when calling Kratos log: $e\n");
       }
       Logs().v("Error Kratos login : ${e.response?.data}");
+      setState(() {
+        _usernameError = e.response?.data['message'];
+        _loadingUpdateUsername = false;
+      });
+    } catch (exception) {
+      setState(() {
+        _usernameError = exception.toString();
+        _loadingUpdateUsername = false;
+      });
+      throw Exception('Error during username update');
+    }
+  }
+
+  Future<void> createUser(String sessionToken) async {
+    try {
+      Logs().v("Creating matrix user");
+      final updateUsernameResponse = await widget.dio.post(
+        '${baseUrl}panel/api/mobile-matrix-auth/createUser',
+        options: Options(headers: {'X-Session-Token': sessionToken}),
+      );
+      final newState = updateUsernameResponse.data['userState'];
+
+      if (newState != 'ACCEPTED') {
+        throw Exception('Error during user creation');
+      }
+
+      setState(() {
+        widget.queueStatus['userState'] = newState;
+      });
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos creation: $e\n");
+      }
+      Logs().v("Error response data : ${e.response?.data}");
       setState(() => _usernameError = e.response?.data['message']);
     } catch (exception) {
+      Logs().v("Error creating user: $exception");
       setState(() => _usernameError = exception.toString());
-      throw Exception('Error during username update');
+      throw Exception('Error during user creation');
     }
   }
 
@@ -142,6 +185,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   }
 
   void _onNextButtonPressed() async {
+    setState(() => _loadingCreateUser = true);
     if (PlatformInfos.shouldInitializePurchase()) {
       final hasSubscription = await SubscriptionManager
           .checkSubscriptionStatus();
@@ -226,14 +270,14 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   : Container(),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _onSubmitButtonPressed,
-                child: Text(L10n.of(context)!.submit),
+                onPressed: _isLoading() ? null : _onSubmitButtonPressed,
+                child: _loadingUpdateUsername ? const LinearProgressIndicator() : Text(L10n.of(context)!.submit),
               ),
               const SizedBox(height: 50),
               isUsernameSet() && _isAccepted()
                   ? ElevatedButton(
-                      onPressed: _onNextButtonPressed,
-                      child: Text(L10n.of(context)!.next),
+                      onPressed: _isLoading() ? null : _onNextButtonPressed,
+                      child: _loadingCreateUser ? const LinearProgressIndicator() : Text(L10n.of(context)!.next),
                     )
                   : Container(),
             ],
