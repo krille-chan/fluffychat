@@ -141,6 +141,25 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     }
   }
 
+  void _onNextButtonPressed() async {
+    if (PlatformInfos.shouldInitializePurchase()) {
+      final hasSubscription = await SubscriptionManager
+          .checkSubscriptionStatus();
+
+      if (!hasSubscription) {
+        Logs().v('No subscription found, redirecting to subscribe page.');
+        context.go('/subscribe');
+      } else if (isAccepted()) {
+        // TODO create matrix user
+        await LoginController()
+            .loginWithSessionToken(widget.sessionToken);
+      }
+    } else {
+      // Todo: make purchases for Web, Windows and Linux
+      showCatchErrorDialog(context, 'Well this is awkward. Try subscribing from the panel or mobile app.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,23 +232,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 50),
               isUsernameSet() && isAccepted()
                   ? ElevatedButton(
-                      onPressed: () async {
-                        if (PlatformInfos.shouldInitializePurchase()) {
-                          final hasSubscription = await SubscriptionManager
-                              .checkSubscriptionStatus();
-
-                          if (!hasSubscription) {
-                            Logs().v('No subscription found, redirecting to subscribe page.');
-                            context.go('/subscribe');
-                          } else if (isAccepted()) {
-                            await LoginController()
-                                .loginWithSessionToken(widget.sessionToken);
-                          }
-                        } else {
-                          // Todo: make purchases for Web, Windows and Linux
-                          showCatchErrorDialog(context, 'Well this is awkward. Try subscribing from the panel or mobile app.');
-                        }
-                      },
+                      onPressed: _onNextButtonPressed,
                       child: Text(L10n.of(context)!.next),
                     )
                   : Container(),
