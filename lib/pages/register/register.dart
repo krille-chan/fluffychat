@@ -9,6 +9,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/change_username_page.dart';
 import 'package:tawkie/pages/register/register_view.dart';
@@ -170,7 +171,12 @@ class RegisterController extends State<Register> {
 
       // Process registration response
       final sessionToken = registerResponse.data?.sessionToken;
+      final userId = registerResponse.data!.identity!.id;
+
+      // Store kratos session token
       await storeSessionToken(sessionToken);
+      // Indicate new App User Id to RevenueCat
+      await Purchases.logIn(userId);
 
       Logs().v('Registration successful');
       // redirect to login page, which will handle the matrix login
