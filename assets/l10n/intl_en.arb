@@ -999,6 +999,13 @@
             "link": {}
         }
     },
+    "inviteTextTawkie": "{username} invited you to chat on Tawkie! \nCentralise all your messages today. \nhttps://tawkie.fr",
+    "@inviteText": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
     "isTyping": "is typing…",
     "@isTyping": {
         "type": "text",

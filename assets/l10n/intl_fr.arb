@@ -910,6 +910,13 @@
             "link": {}
         }
     },
+    "inviteTextTawkie": "{username} t'a invité·e sur Tawkie. \nCentralise tes messages dès aujourd'hui. \nhttps://tawkie.fr",
+    "@inviteText": {
+        "type": "text",
+        "placeholders": {
+            "username": {}
+        }
+    },
     "isTyping": "est en train d'écrire…",
     "@isTyping": {
         "type": "text",
