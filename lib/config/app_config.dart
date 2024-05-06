@@ -19,25 +19,25 @@ abstract class AppConfig {
   static const Color primaryColor = Color(0xFF3614A6);
   static const Color primaryColorLight = Color(0xFFFEEA77);
   static const Color secondaryColor = Color(0xFFFAAB22);
-  static String _privacyUrl = 'https://tawkie.fr/legal/';
+  static String _privacyUrl = 'https://tawkie.fr/privacy-policy/';
   static String get privacyUrl => _privacyUrl;
   static const String enablePushTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
+      'https://www.tawkie.fr/faq/';
   static const String encryptionTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
+      'https://www.tawkie.fr/faq/';
   static const String startChatTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
+      'https://www.tawkie.fr/faq/';
   static const String appId = 'fr.tawkie.fr';
   static const String appOpenUrlScheme = 'im.fluffychat';
-  static String _webBaseUrl = 'https://fluffychat.im/web';
+  static String _webBaseUrl = 'https://tawkie.fr/web/';
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://www.tawkie.fr/faq/';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    path: '/Tawkie/tawkie-app/issues/new',
   );
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
