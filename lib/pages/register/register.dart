@@ -6,6 +6,7 @@ import 'package:built_value/json_object.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
 import 'package:tawkie/config/app_config.dart';
@@ -172,31 +173,9 @@ class RegisterController extends State<Register> {
       await storeSessionToken(sessionToken);
 
       Logs().v('Registration successful');
-      // Fetch user queue status
-      final queueStatusResponse = await dio.get(
-        '${baseUrl}panel/api/mobile-matrix-auth/getQueueStatus',
-        options: Options(
-          headers: {
-            'X-Session-Token': sessionToken,
-          },
-        ),
-      );
-
-      final queueStatus = queueStatusResponse.data;
-      Logs().v('Queue status: $queueStatus');
-
-      if (queueStatus != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangeUsernamePage(
-              queueStatus: queueStatus,
-              dio: dio,
-              sessionToken: sessionToken!,
-            ),
-          ),
-        );
-      }
+      // redirect to login page, which will handle the matrix login
+      // and onboarding
+      context.go('/login');
 
       if (kDebugMode) {
         print('Registration successful');

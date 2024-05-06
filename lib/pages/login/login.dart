@@ -103,6 +103,7 @@ class LoginController extends State<Login> {
           queueStatus: queueStatus,
           dio: dio,
           sessionToken: sessionToken,
+          onUserCreated: loginWithSessionToken,
         ),
       ),
     );
@@ -273,10 +274,12 @@ class LoginController extends State<Login> {
 
     try {
       // Retrieve JWT and server name
+      Logs().v('Getting JWT and server name');
       final jwtAndServerName = await getMatrixLoginJwt(sessionToken);
       final String matrixLoginJwt = jwtAndServerName['matrixLoginJwt'];
       final String serverName = jwtAndServerName['serverName'];
 
+      Logs().v('Logging in with JWT into Matrix');
       // Connect with JWT and server name
       await matrixLogin(matrixLoginJwt, serverName);
 
@@ -286,10 +289,9 @@ class LoginController extends State<Login> {
       if (kDebugMode) {
         print("Exception when calling Kratos log: $e\n");
       }
-      Logs().v("Error Kratos login : ${e.response?.data}");
+      Logs().v("Error logging in with jwt : ${e.response?.data}");
       // Explanation to the user
       DioErrorHandler.fetchError(context, e);
-      throw Exception();
     } finally {
       // Set loading to false after handling the error
       setState(() => loading = false);
@@ -299,35 +301,29 @@ class LoginController extends State<Login> {
   }
 
   Future<Map<String, dynamic>> getMatrixLoginJwt(String sessionToken) async {
-    try {
-      final responseMatrix = await dio.get(
-        '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
-        options: Options(
-          headers: {
-            'X-Session-Token': sessionToken,
-          },
-        ),
-      );
+    final responseMatrix = await dio.get(
+      '${baseUrl}panel/api/mobile-matrix-auth/getMatrixToken',
+      options: Options(
+        headers: {
+          'X-Session-Token': sessionToken,
+        },
+      ),
+    );
 
-      final Map<String, dynamic> responseData = responseMatrix.data;
+    final Map<String, dynamic> responseData = responseMatrix.data;
 
-      final String matrixLoginJwt = responseData['matrixLoginJwt'];
-      final String serverName = responseData['serverName'];
+    final String matrixLoginJwt = responseData['matrixLoginJwt'];
+    final String serverName = responseData['serverName'];
 
-      if (!matrixLoginJwt.startsWith('ey')) {
-        throw Exception('Server did not return a valid JWT');
-      }
-
-      if (serverName.isEmpty) {
-        throw Exception('Server did not return a valid server name');
-      }
-
-      return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
-    } catch (e) {
-      // Explanation to the user
-      DioErrorHandler.fetchError(context, e as DioException);
-      throw Exception();
+    if (!matrixLoginJwt.startsWith('ey')) {
+      throw Exception('Server did not return a valid JWT');
     }
+
+    if (serverName.isEmpty) {
+      throw Exception('Server did not return a valid server name');
+    }
+
+    return {'matrixLoginJwt': matrixLoginJwt, 'serverName': serverName};
   }
 
   Future<void> matrixLogin(String matrixLoginJwt, String serverName) async {

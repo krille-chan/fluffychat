@@ -19,12 +19,14 @@ class ChangeUsernamePage extends StatefulWidget {
   final Map<String, dynamic> queueStatus;
   final Dio dio;
   final String sessionToken;
+  final Future<void> Function(String sessionToken) onUserCreated;
 
   const ChangeUsernamePage(
       {super.key,
       required this.queueStatus,
       required this.dio,
-      required this.sessionToken});
+      required this.sessionToken,
+      required this.onUserCreated});
 
   @override
   State<ChangeUsernamePage> createState() => _ChangeUsernamePageState();
@@ -45,6 +47,10 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   bool _isAccepted() {
     return widget.queueStatus['userState'] == 'ACCEPTED';
+  }
+
+  bool _isCreated() {
+    return widget.queueStatus['userState'] == 'CREATED';
   }
 
   bool _isLoading() {
@@ -194,9 +200,18 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         Logs().v('No subscription found, redirecting to subscribe page.');
         context.go('/subscribe');
       } else if (_isAccepted()) {
-        // TODO create matrix user
-        await LoginController()
-            .loginWithSessionToken(widget.sessionToken);
+        try {
+          await createUser(widget.sessionToken);
+        } catch (e) {
+          Logs().v('Error creating user: $e');
+          setState(() => _loadingCreateUser = false);
+          showCatchErrorDialog(context, e.toString());
+        }
+        if (_isCreated()) {
+          Navigator.of(context).pop();
+          await widget.onUserCreated(widget.sessionToken);
+          // don't update state because we popped the page
+        }
       }
     } else {
       // Todo: make purchases for Web, Windows and Linux
