@@ -1165,7 +1165,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 New message in FluffyChat",
+    "newMessageInFluffyChat": "💬 New message in Tawkie",
     "@newMessageInFluffyChat": {
         "type": "text",
         "placeholders": {}
@@ -2277,13 +2277,13 @@
     "@callingPermissions": {},
     "callingAccount": "Calling account",
     "@callingAccount": {},
-    "callingAccountDetails": "Allows FluffyChat to use the native android dialer app.",
+    "callingAccountDetails": "Allows Tawkie to use the native android dialer app.",
     "@callingAccountDetails": {},
     "appearOnTop": "Appear on top",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+    "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Tawkie setup as a calling account)",
     "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Microphone, camera and other FluffyChat permissions",
+    "otherCallingPermissions": "Microphone, camera and other Tawkie permissions",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Why is this message unreadable?",
     "@whyIsThisMessageEncrypted": {},
