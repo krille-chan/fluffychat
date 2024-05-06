@@ -83,7 +83,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
       widget.pangeaMessageEvent
           .representationByLanguageGlobal(
-            context: context,
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           )
           .onError((error, stackTrace) => ErrorHandler.logError())
