@@ -112,6 +112,7 @@ class ChatView extends StatelessWidget {
       ];
     } else if (!controller.room.isArchived) {
       return [
+        /*
         if (Matrix.of(context).voipPlugin != null &&
             controller.room.isDirectChat)
           IconButton(
@@ -121,6 +122,7 @@ class ChatView extends StatelessWidget {
           ),
         EncryptionButton(controller.room),
         ChatSettingsPopupMenu(controller.room, true),
+        */
       ];
     }
     return [];
