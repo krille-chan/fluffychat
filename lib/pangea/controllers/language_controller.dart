@@ -1,17 +1,16 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import '../widgets/user_settings/p_language_dialog.dart';
 
 class LanguageController {
@@ -31,15 +30,18 @@ class LanguageController {
       );
       return;
     }
-    if (_userL1Code == null ||
-        _userL2Code == null ||
-        _userL1Code!.isEmpty ||
-        _userL2Code!.isEmpty ||
-        _userL1Code == LanguageKeys.unknownLanguage ||
-        _userL2Code == LanguageKeys.unknownLanguage) {
+    if (!languagesSet) {
       pLanguageDialog(dialogContext, callback);
     }
   }
+
+  bool get languagesSet =>
+      _userL1Code != null &&
+      _userL2Code != null &&
+      _userL1Code!.isNotEmpty &&
+      _userL2Code!.isNotEmpty &&
+      _userL1Code != LanguageKeys.unknownLanguage &&
+      _userL2Code != LanguageKeys.unknownLanguage;
 
   String? get _userL1Code {
     final source =

@@ -2123,9 +2123,13 @@
         "placeholders": {}
     },
     "writeAMessage": "Write a message…",
-    "@writeAMessage": {
+    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}…",
+    "@writeAMessageFlag": {
         "type": "text",
-        "placeholders": {}
+        "placeholders": {
+            "l1flag": {},
+            "l2flag": {}
+        }
     },
     "yes": "Yes",
     "@yes": {
@@ -3989,5 +3993,6 @@
             "unread": {}
         }
     },
-    "messageAnalytics": "Message Analytics"
+    "messageAnalytics": "Message Analytics",
+    "noPaymentInfo": "No payment info necessary!"
 }

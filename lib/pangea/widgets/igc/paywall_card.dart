@@ -5,7 +5,6 @@ import 'package:fluffychat/pangea/widgets/igc/card_header.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PaywallCard extends StatelessWidget {
   const PaywallCard({
@@ -31,10 +30,13 @@ class PaywallCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const OptionsShimmer(),
-              const SizedBox(height: 15.0),
               Text(
                 L10n.of(context)!.subscriptionPopupDesc,
+                style: BotStyle.text(context),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                L10n.of(context)!.noPaymentInfo,
                 style: BotStyle.text(context),
                 textAlign: TextAlign.center,
               ),
@@ -85,49 +87,6 @@ class PaywallCard extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class OptionsShimmer extends StatelessWidget {
-  const OptionsShimmer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-      highlightColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-      direction: ShimmerDirection.ltr,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        children: List.generate(
-          3,
-          (_) => Container(
-            margin: const EdgeInsets.all(2),
-            padding: EdgeInsets.zero,
-            child: TextButton(
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 7),
-                ),
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              onPressed: () {},
-              child: Text(
-                "",
-                style: BotStyle.text(context),
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
