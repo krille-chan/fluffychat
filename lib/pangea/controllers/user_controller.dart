@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:flutter/material.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
@@ -23,6 +20,17 @@ class UserController extends BaseController {
     _pangeaController = pangeaController;
   }
 
+  Future<void> createPangeaUser({required String dob}) async {
+    final PUserModel newUserModel = await PUserRepo.repoCreatePangeaUser(
+      userID: userId!,
+      fullName: fullname,
+      dob: dob,
+      matrixAccessToken: _matrixAccessToken!,
+    );
+    newUserModel.save(_pangeaController);
+    await updateMatrixProfile(dateOfBirth: dob);
+  }
+
   Future<PUserModel?> fetchUserModel() async {
     try {
       if (_matrixAccessToken == null) {
@@ -30,48 +38,301 @@ class UserController extends BaseController {
           "calling fetchUserModel with matrixAccesstoken == null",
         );
       }
+
       final PUserModel? newUserModel = await PUserRepo.fetchPangeaUserInfo(
         userID: userId!,
         matrixAccessToken: _matrixAccessToken!,
       );
-
-      if (newUserModel != null) {
-        _savePUserModel(newUserModel);
-        if (newUserModel.profile!.dateOfBirth != null) {
-          await setMatrixProfile(newUserModel.profile!.dateOfBirth!);
-        }
-        final MatrixProfile? matrixProfile = await getMatrixProfile();
-        _saveMatrixProfile(matrixProfile);
-      }
+      newUserModel?.save(_pangeaController);
+      await migrateMatrixProfile();
       _completeCompleter();
 
       return newUserModel;
     } catch (err) {
-      log("User model not found. Probably first signup and needs Pangea account");
+      debugPrint(
+        "User model not found. Probably first signup and needs Pangea account",
+      );
       rethrow;
     }
   }
 
-  Future<void> setMatrixProfile(String dob) async {
-    await _pangeaController.matrixState.client.setAccountData(
-      userId!,
-      PangeaEventTypes.userAge,
-      {ModelKey.userDateOfBirth: dob},
+  dynamic migratedProfileInfo(MatrixProfile key) {
+    final dynamic localValue = _pangeaController.pStoreService.read(
+      key.title,
+      local: true,
     );
-    final MatrixProfile? matrixProfile = await getMatrixProfile();
-    _saveMatrixProfile(matrixProfile);
+    final dynamic matrixValue = _pangeaController.pStoreService.read(
+      key.title,
+    );
+    return localValue != null && matrixValue != localValue ? localValue : null;
   }
 
-  Future<MatrixProfile?> getMatrixProfile() async {
-    try {
-      final Map<String, dynamic> accountData =
-          await _pangeaController.matrixState.client.getAccountData(
-        userId!,
-        PangeaEventTypes.userAge,
+  Future<void> migrateMatrixProfile() async {
+    final Profile? pangeaProfile = userModel?.profile;
+
+    final String? pangeaDob = pangeaProfile?.dateOfBirth;
+    final String? matrixDob = _pangeaController.pStoreService.read(
+      ModelKey.userDateOfBirth,
+    );
+    final String? dob =
+        pangeaDob != null && matrixDob != pangeaDob ? pangeaDob : null;
+
+    final pangeaCreatedAt = pangeaProfile?.createdAt;
+    final matrixCreatedAt = _pangeaController.pStoreService.read(
+      MatrixProfile.createdAt.title,
+    );
+    final String? createdAt =
+        pangeaCreatedAt != null && matrixCreatedAt != pangeaCreatedAt
+            ? pangeaCreatedAt
+            : null;
+
+    final String? pangeaTargetLanguage = pangeaProfile?.targetLanguage;
+    final String? matrixTargetLanguage = _pangeaController.pStoreService.read(
+      MatrixProfile.targetLanguage.title,
+    );
+    final String? targetLanguage = pangeaTargetLanguage != null &&
+            matrixTargetLanguage != pangeaTargetLanguage
+        ? pangeaTargetLanguage
+        : null;
+
+    final String? pangeaSourceLanguage = pangeaProfile?.sourceLanguage;
+    final String? matrixSourceLanguage = _pangeaController.pStoreService.read(
+      MatrixProfile.sourceLanguage.title,
+    );
+    final String? sourceLanguage = pangeaSourceLanguage != null &&
+            matrixSourceLanguage != pangeaSourceLanguage
+        ? pangeaSourceLanguage
+        : null;
+
+    final String? pangeaCountry = pangeaProfile?.country;
+    final String? matrixCountry = _pangeaController.pStoreService.read(
+      MatrixProfile.country.title,
+    );
+    final String? country =
+        pangeaCountry != null && matrixCountry != pangeaCountry
+            ? pangeaCountry
+            : null;
+
+    final bool? pangeaPublicProfile = pangeaProfile?.publicProfile;
+    final bool? matrixPublicProfile = _pangeaController.pStoreService.read(
+      MatrixProfile.publicProfile.title,
+    );
+    final bool? publicProfile = pangeaPublicProfile != null &&
+            matrixPublicProfile != pangeaPublicProfile
+        ? pangeaPublicProfile
+        : null;
+
+    final bool? autoPlay = migratedProfileInfo(MatrixProfile.autoPlayMessages);
+    final bool? trial = migratedProfileInfo(MatrixProfile.activatedFreeTrial);
+    final bool? interactiveTranslator =
+        migratedProfileInfo(MatrixProfile.interactiveTranslator);
+    final bool? interactiveGrammar =
+        migratedProfileInfo(MatrixProfile.interactiveGrammar);
+    final bool? immersionMode =
+        migratedProfileInfo(MatrixProfile.immersionMode);
+    final bool? definitions = migratedProfileInfo(MatrixProfile.definitions);
+    final bool? translations = migratedProfileInfo(MatrixProfile.translations);
+    final bool? showItInstructions =
+        migratedProfileInfo(MatrixProfile.showedItInstructions);
+    final bool? showClickMessage =
+        migratedProfileInfo(MatrixProfile.showedClickMessage);
+    final bool? showBlurMeansTranslate =
+        migratedProfileInfo(MatrixProfile.showedBlurMeansTranslate);
+
+    await updateMatrixProfile(
+      dateOfBirth: dob,
+      autoPlayMessages: autoPlay,
+      activatedFreeTrial: trial,
+      interactiveTranslator: interactiveTranslator,
+      interactiveGrammar: interactiveGrammar,
+      immersionMode: immersionMode,
+      definitions: definitions,
+      translations: translations,
+      showedItInstructions: showItInstructions,
+      showedClickMessage: showClickMessage,
+      showedBlurMeansTranslate: showBlurMeansTranslate,
+      createdAt: createdAt,
+      targetLanguage: targetLanguage,
+      sourceLanguage: sourceLanguage,
+      country: country,
+      publicProfile: publicProfile,
+    );
+  }
+
+  Future<void> updateUserProfile({
+    String? dateOfBirth,
+    String? targetLanguage,
+    String? sourceLanguage,
+    String? country,
+    List<String>? interests,
+    List<String>? speaks,
+    bool? publicProfile,
+  }) async {
+    if (userModel == null) throw Exception("Local userModel not defined");
+    final profileJson = userModel!.profile!.toJson();
+
+    if (dateOfBirth != null) {
+      profileJson[ModelKey.userDateOfBirth] = dateOfBirth;
+    }
+    if (targetLanguage != null) {
+      profileJson[ModelKey.userTargetLanguage] = targetLanguage;
+    }
+    if (sourceLanguage != null) {
+      profileJson[ModelKey.userSourceLanguage] = sourceLanguage;
+    }
+    if (interests != null) {
+      profileJson[ModelKey.userInterests] = interests.toString();
+    }
+    if (speaks != null) {
+      profileJson[ModelKey.userSpeaks] = speaks.toString();
+    }
+    if (country != null) {
+      profileJson[ModelKey.userCountry] = country;
+    }
+    if (publicProfile != null) {
+      profileJson[ModelKey.publicProfile] = publicProfile;
+    }
+    final Profile updatedUserProfile = await PUserRepo.updateUserProfile(
+      Profile.fromJson(profileJson),
+      await accessToken,
+    );
+
+    PUserModel(
+      access: await accessToken,
+      refresh: userModel!.refresh,
+      profile: updatedUserProfile,
+    ).save(_pangeaController);
+
+    await updateMatrixProfile(
+      dateOfBirth: dateOfBirth,
+      targetLanguage: targetLanguage,
+      sourceLanguage: sourceLanguage,
+      country: country,
+      publicProfile: publicProfile,
+    );
+  }
+
+  PUserModel? get userModel {
+    final data = _pangeaController.pStoreService.read(
+      PLocalKey.user,
+      local: true,
+    );
+    return data != null ? PUserModel.fromJson(data) : null;
+  }
+
+  Future<void> updateMatrixProfile({
+    String? dateOfBirth,
+    bool? autoPlayMessages,
+    bool? activatedFreeTrial,
+    bool? interactiveTranslator,
+    bool? interactiveGrammar,
+    bool? immersionMode,
+    bool? definitions,
+    bool? translations,
+    bool? showedItInstructions,
+    bool? showedClickMessage,
+    bool? showedBlurMeansTranslate,
+    String? createdAt,
+    String? targetLanguage,
+    String? sourceLanguage,
+    String? country,
+    bool? publicProfile,
+  }) async {
+    if (dateOfBirth != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.dateOfBirth.title,
+        dateOfBirth,
       );
-      return MatrixProfile.fromJson(accountData);
-    } catch (_) {
-      return null;
+    }
+    if (autoPlayMessages != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.autoPlayMessages.title,
+        autoPlayMessages,
+      );
+    }
+    if (activatedFreeTrial != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.activatedFreeTrial.title,
+        activatedFreeTrial,
+      );
+    }
+    if (interactiveTranslator != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.interactiveTranslator.title,
+        interactiveTranslator,
+      );
+    }
+    if (interactiveGrammar != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.interactiveGrammar.title,
+        interactiveGrammar,
+      );
+    }
+    if (immersionMode != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.immersionMode.title,
+        immersionMode,
+      );
+    }
+    if (definitions != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.definitions.title,
+        definitions,
+      );
+    }
+    if (translations != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.translations.title,
+        translations,
+      );
+    }
+    if (showedItInstructions != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedItInstructions.title,
+        showedItInstructions,
+      );
+    }
+    if (showedClickMessage != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedClickMessage.title,
+        showedClickMessage,
+      );
+    }
+    if (showedBlurMeansTranslate != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedBlurMeansTranslate.title,
+        showedBlurMeansTranslate,
+      );
+    }
+    if (createdAt != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.createdAt.title,
+        createdAt,
+      );
+    }
+    if (targetLanguage != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.targetLanguage.title,
+        targetLanguage,
+      );
+    }
+    if (sourceLanguage != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.sourceLanguage.title,
+        sourceLanguage,
+      );
+    }
+    if (country != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.country.title,
+        country,
+      );
+    }
+    if (publicProfile != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.publicProfile.title,
+        publicProfile,
+      );
     }
   }
 
@@ -116,16 +377,6 @@ class UserController extends BaseController {
     return userID.substring(0, userID.indexOf(":")).replaceAll("@", "");
   }
 
-  PUserModel? get userModel {
-    final data = _pangeaController.pStoreService.read(PLocalKey.user);
-    return data != null ? PUserModel.fromJson(data) : null;
-  }
-
-  MatrixProfile? get matrixProfile {
-    final data = _pangeaController.pStoreService.read(PLocalKey.matrixProfile);
-    return data != null ? MatrixProfile.fromJson(data) : null;
-  }
-
   Future<bool> get isPUserDataAvailable async {
     try {
       final PUserModel? toCheck = userModel ?? (await fetchUserModel());
@@ -137,10 +388,15 @@ class UserController extends BaseController {
 
   Future<bool> get isUserDataAvailableAndDateOfBirthSet async {
     try {
-      if (matrixProfile == null) {
-        await fetchUserModel();
+      final client = _pangeaController.matrixState.client;
+      if (client.prevBatch == null) {
+        await client.onSync.stream.first;
       }
-      return matrixProfile?.dateOfBirth != null ? true : false;
+      await fetchUserModel();
+      final localAccountData = _pangeaController.pStoreService.read(
+        ModelKey.userDateOfBirth,
+      );
+      return localAccountData != null;
     } catch (err) {
       return false;
     }
@@ -173,99 +429,6 @@ class UserController extends BaseController {
     } catch (err) {
       return false;
     }
-  }
-
-  redirectToUserInfo() {
-    // _pangeaController.matrix.router!.currentState!.to(
-    //   "/home/connect/user_age",
-    //   queryParameters:
-    //       _pangeaController.matrix.router!.currentState!.queryParameters,
-    // );
-    FluffyChatApp.router.go("/rooms/user_age");
-  }
-
-  _saveMatrixProfile(MatrixProfile? matrixProfile) {
-    if (matrixProfile != null) {
-      _pangeaController.pStoreService.save(
-        PLocalKey.matrixProfile,
-        matrixProfile.toJson(),
-      );
-      setState(data: matrixProfile);
-    }
-  }
-
-  _savePUserModel(PUserModel? pUserModel) {
-    if (pUserModel == null) {
-      ErrorHandler.logError(e: "trying to save null userModel");
-      return;
-    }
-    final jsonUser = pUserModel.toJson();
-    _pangeaController.pStoreService.save(PLocalKey.user, jsonUser);
-
-    setState(data: pUserModel);
-  }
-
-  Future<void> updateUserProfile({
-    String? dateOfBirth,
-    String? targetLanguage,
-    String? sourceLanguage,
-    String? country,
-    List<String>? interests,
-    List<String>? speaks,
-    bool? publicProfile,
-  }) async {
-    if (userModel == null) throw Exception("Local userModel not defined");
-    final profileJson = userModel!.profile!.toJson();
-
-    if (dateOfBirth != null) {
-      profileJson[ModelKey.userDateOfBirth] = dateOfBirth;
-    }
-    if (targetLanguage != null) {
-      profileJson[ModelKey.userTargetLanguage] = targetLanguage;
-    }
-    if (sourceLanguage != null) {
-      profileJson[ModelKey.userSourceLanguage] = sourceLanguage;
-    }
-    if (interests != null) {
-      profileJson[ModelKey.userInterests] = interests.toString();
-    }
-    if (speaks != null) {
-      profileJson[ModelKey.userSpeaks] = speaks.toString();
-    }
-    if (country != null) {
-      profileJson[ModelKey.userCountry] = country;
-    }
-    if (publicProfile != null) {
-      profileJson[ModelKey.publicProfile] = publicProfile;
-    }
-    final Profile updatedUserProfile = await PUserRepo.updateUserProfile(
-      Profile.fromJson(profileJson),
-      await accessToken,
-    );
-
-    await _savePUserModel(
-      PUserModel(
-        access: await accessToken,
-        refresh: userModel!.refresh,
-        profile: updatedUserProfile,
-      ),
-    );
-
-    if (dateOfBirth != null) {
-      await setMatrixProfile(dateOfBirth);
-    }
-  }
-
-  Future<void> createPangeaUser({required String dob}) async {
-    final PUserModel newUserModel = await PUserRepo.repoCreatePangeaUser(
-      userID: userId!,
-      fullName: fullname,
-      dob: dob,
-      matrixAccessToken: _matrixAccessToken!,
-    );
-    await _savePUserModel(newUserModel);
-
-    await setMatrixProfile(dob);
   }
 
   String? get _matrixAccessToken =>

@@ -1,10 +1,9 @@
 import 'dart:async';
 
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/widgets/matrix.dart';
 import '../controllers/pangea_controller.dart';
 
 class PAuthGaurd {
@@ -16,10 +15,10 @@ class PAuthGaurd {
     GoRouterState state,
   ) async {
     if (pController != null) {
-      final bool setDob = await pController!
-          .userController.isUserDataAvailableAndDateOfBirthSet;
       if (Matrix.of(context).client.isLogged()) {
-        return !setDob ? '/user_age' : '/rooms';
+        final bool dobIsSet = await pController!
+            .userController.isUserDataAvailableAndDateOfBirthSet;
+        return dobIsSet ? '/rooms' : '/user_age';
       }
       return null;
     } else {
@@ -34,13 +33,12 @@ class PAuthGaurd {
     GoRouterState state,
   ) async {
     if (pController != null) {
-      final bool setDob = await pController!
+      if (!Matrix.of(context).client.isLogged()) {
+        return '/home';
+      }
+      final bool dobIsSet = await pController!
           .userController.isUserDataAvailableAndDateOfBirthSet;
-      return !Matrix.of(context).client.isLogged()
-          ? '/home'
-          : !setDob
-              ? '/user_age'
-              : null;
+      return dobIsSet ? null : '/user_age';
     } else {
       debugPrint("controller is null in pguard check");
       return Matrix.of(context).client.isLogged() ? null : '/home';

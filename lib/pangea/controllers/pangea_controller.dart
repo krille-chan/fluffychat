@@ -139,7 +139,12 @@ class PangeaController {
       _logOutfromPangea();
     }
     Sentry.configureScope(
-      (scope) => scope.setUser(SentryUser(id: matrixState.client.userID)),
+      (scope) => scope.setUser(
+        SentryUser(
+          id: matrixState.client.userID,
+          name: matrixState.client.userID,
+        ),
+      ),
     );
     GoogleAnalytics.analyticsUserUpdate(matrixState.client.userID);
   }

@@ -491,7 +491,11 @@ extension PangeaRoom on Room {
       final String migratedAnalyticsKey =
           "MIGRATED_ANALYTICS_KEY${id.localpart}";
 
-      if (storageService?.read(migratedAnalyticsKey) ?? false) return;
+      if (storageService?.read(
+            migratedAnalyticsKey,
+            local: true,
+          ) ??
+          false) return;
 
       if (!isPangeaClass && !isExchange) {
         throw Exception(
@@ -523,7 +527,11 @@ extension PangeaRoom on Room {
       );
       myAnalEvent.bulkUpdate(updateMessages);
 
-      storageService?.save(migratedAnalyticsKey, true);
+      await storageService?.save(
+        migratedAnalyticsKey,
+        true,
+        local: true,
+      );
     } catch (err, s) {
       if (kDebugMode) rethrow;
       // debugger(when: kDebugMode);

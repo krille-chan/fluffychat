@@ -1,3 +1,30 @@
+Pangea Chat Client Setup:
+
+* Download VSCode if you do not already have it installed
+* Download flutter on your device using this guide: https://docs.flutter.dev/get-started/install
+* Test to make sure that flutter is properly installed by running “flutter –version”
+    * You may need to add flutter to your path manually. Instructions can be found here: https://docs.flutter.dev/get-started/install/macos/mobile-ios?tab=download#add-flutter-to-your-path
+* Ensure that Google Chrome is installed
+* Install the latest version of XCode
+    * After downloading XCode, ensure that the iOS simulator runtime is installed. To do this, after initially downloading XCode, a screen will open where you can select the platforms you wish to develop for. Selected iOS and download from there.
+* Install the latest version of Android Studio
+    * After downloading Android Studio, open Android Studio and go through setup wizard
+* In Android Studio, open settings -> Android SDK -> SDK tools, then click “Android SDK Command Line Tools” and click OK to run the download
+* If you do not have homebrew install on your device, install homebrew by follow the instructions here: https://brew.sh/
+* Run “brew install cocoapods” to install cocoapods
+* Run “flutter doctor” and for any missing components, follow the instructions from the print out to install / setup
+* Clone the client repo
+* Copy the .env file (and the .env.prod file, if you want to run production builds), into the root folder of the client and the assets/ folder
+* Uncomment the lines in the pubspec.yaml file in the assets section with paths to .env file
+* To run on iOS:
+    * Run “flutter precache --ios”
+    * Go to the iOS folder and run “pod install”
+* To run on Android:
+    * Download Android File Transfer here: ​​https://www.android.com/filetransfer/
+* To run the app from VSCode terminal:
+    * On web, run `flutter run -d chrome –hot`
+    * On mobile device or simulator, run `flutter run –hot -d <DEVICE_NAME>`
+
 ![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
 
 [FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.

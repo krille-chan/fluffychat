@@ -203,8 +203,9 @@ class NewSpaceController extends State<NewSpace> {
       final newChatRoomId = await Matrix.of(context).client.createGroupChat(
             enableEncryption: false,
             preset: sdk.CreateRoomPreset.publicChat,
+            // Welcome chat name is '[space name acronym]: Welcome Chat'
             groupName:
-                '${nameController.text.trim()}: ${L10n.of(context)!.classWelcomeChat}',
+                '${nameController.text.trim().split(RegExp(r"\s+")).map((s) => s[0]).join()}: ${L10n.of(context)!.classWelcomeChat}',
           );
       GoogleAnalytics.createChat(newChatRoomId);
 

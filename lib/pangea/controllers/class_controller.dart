@@ -49,12 +49,14 @@ class ClassController extends BaseController {
     final String? classCode = _pangeaController.pStoreService.read(
       PLocalKey.cachedClassCodeToJoin,
       addClientIdToKey: false,
+      local: true,
     );
 
     if (classCode != null) {
-      _pangeaController.pStoreService.delete(
+      await _pangeaController.pStoreService.delete(
         PLocalKey.cachedClassCodeToJoin,
         addClientIdToKey: false,
+        local: true,
       );
       await joinClasswithCode(
         context,

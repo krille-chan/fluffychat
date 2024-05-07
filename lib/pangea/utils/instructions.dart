@@ -25,8 +25,14 @@ class InstructionsController {
       _instructionsClosed[key] ??
       false;
 
-  void updateEnableInstructions(InstructionsEnum key, bool value) =>
-      _pangeaController.pStoreService.save(key.toString(), value);
+  Future<void> updateEnableInstructions(
+    InstructionsEnum key,
+    bool value,
+  ) async =>
+      await _pangeaController.pStoreService.save(
+        key.toString(),
+        value,
+      );
 
   Future<void> show(
     BuildContext context,
@@ -149,9 +155,11 @@ class InstructionsToggleState extends State<InstructionsToggle> {
       title: Text(L10n.of(context)!.doNotShowAgain),
       value: pangeaController.instructions
           .wereInstructionsTurnedOff(widget.instructionsKey),
-      onChanged: ((value) {
-        pangeaController.instructions
-            .updateEnableInstructions(widget.instructionsKey, value);
+      onChanged: ((value) async {
+        await pangeaController.instructions.updateEnableInstructions(
+          widget.instructionsKey,
+          value,
+        );
         setState(() {});
       }),
     );
