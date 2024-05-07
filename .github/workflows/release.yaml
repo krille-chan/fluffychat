@@ -209,6 +209,8 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Install Fastlane
         run: gem install fastlane -NV
+      - name: Apply Google Services Patch
+        run: git apply ./scripts/enable-android-google-services.patch
 
       - name: Decode signing certificate into a file
         env:
