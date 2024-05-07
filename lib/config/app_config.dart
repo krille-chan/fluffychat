@@ -27,8 +27,8 @@ abstract class AppConfig {
       'https://www.tawkie.fr/faq/';
   static const String startChatTutorial =
       'https://www.tawkie.fr/faq/';
-  static const String appId = 'fr.tawkie.fr';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appId = 'fr.tawkie.app';
+  static const String appOpenUrlScheme = 'fr.tawkie';
   static String _webBaseUrl = 'https://tawkie.fr/web/';
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl = 'https://github.com/Tawkie/tawkie-app';
