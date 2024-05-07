@@ -50,6 +50,7 @@ class RecordingDialogState extends State<RecordingDialog> {
         bitRate: bitRate,
         samplingRate: samplingRate,
         encoder: AudioEncoder.wav,
+        numChannels: 1,
       );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
