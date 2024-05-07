@@ -99,7 +99,8 @@ extension InitWithRestoreExtension on Client {
           );
         }
       }
-    } catch (e) {
+    } catch (e, s) {
+      Logs().wtf('Client init failed!', e, s);
       final l10n = lookupL10n(PlatformDispatcher.instance.locale);
       final sessionBackupString = await storage?.read(key: storageKey);
       if (sessionBackupString == null) {
@@ -110,10 +111,6 @@ extension InitWithRestoreExtension on Client {
         rethrow;
       }
 
-      ClientManager.sendInitNotification(
-        l10n.initAppError,
-        l10n.restoreSessionBody(AppConfig.newIssueUrl.toString(), e.toString()),
-      );
       try {
         final sessionBackup = SessionBackup.fromJsonString(sessionBackupString);
         await init(
@@ -127,7 +124,15 @@ extension InitWithRestoreExtension on Client {
           waitUntilLoadCompletedLoaded: false,
           onMigration: onMigration,
         );
-      } catch (e) {
+        ClientManager.sendInitNotification(
+          l10n.initAppError,
+          l10n.restoreSessionBody(
+            AppConfig.newIssueUrl.toString(),
+            e.toString(),
+          ),
+        );
+      } catch (e, s) {
+        Logs().wtf('Restore client failed!', e, s);
         ClientManager.sendInitNotification(
           l10n.initAppError,
           l10n.sessionLostBody(AppConfig.newIssueUrl.toString(), e.toString()),

@@ -82,9 +82,6 @@ class BackgroundPush {
     onLogin ??=
         client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
     // Pangea#
-    onRoomSync ??= client.onSync.stream
-        .where((s) => s.hasRoomUpdate)
-        .listen((s) => _onClearingPush(getFromServer: false));
     firebase?.setListeners(
       onMessage: (message) => pushHelper(
         PushNotification.fromJson(
@@ -134,7 +131,6 @@ class BackgroundPush {
   void handleLoginStateChanged(_) => setupPush();
 
   StreamSubscription<LoginState>? onLogin;
-  StreamSubscription<SyncUpdate>? onRoomSync;
 
   void _newFcmToken(String token) {
     _fcmToken = token;
@@ -145,8 +141,7 @@ class BackgroundPush {
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
-    final id = await mapRoomIdToInt(roomId);
-    await FlutterLocalNotificationsPlugin().cancel(id);
+    await FlutterLocalNotificationsPlugin().cancel(roomId.hashCode);
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
@@ -170,6 +165,11 @@ class BackgroundPush {
   }) async {
     if (PlatformInfos.isIOS) {
       await firebase?.requestPermission();
+    } else if (PlatformInfos.isAndroid) {
+      _flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestNotificationsPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -269,7 +269,7 @@ class BackgroundPush {
           ? 'ios'
           : null;
 
-  bool _wentToRoomOnStartup = false;
+  static bool _wentToRoomOnStartup = false;
 
   Future<void> setupPush() async {
     Logs().d("SetupPush");
@@ -449,97 +449,6 @@ class BackgroundPush {
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
     );
-  }
-
-  /// Workaround for the problem that local notification IDs must be int but we
-  /// sort by [roomId] which is a String. To make sure that we don't have duplicated
-  /// IDs we map the [roomId] to a number and matrix?.store this number.
-  late Map<String, int> idMap;
-  Future<void> _loadIdMap() async {
-    idMap = Map<String, int>.from(
-      json.decode(
-        (matrix?.store.getString(SettingKeys.notificationCurrentIds)) ?? '{}',
-      ),
-    );
-  }
-
-  bool _clearingPushLock = false;
-  Future<void> _onClearingPush({bool getFromServer = true}) async {
-    if (_clearingPushLock) {
-      return;
-    }
-    try {
-      _clearingPushLock = true;
-      late Iterable<String> emptyRooms;
-      if (getFromServer) {
-        Logs().v('[Push] Got new clearing push');
-        var syncErrored = false;
-        if (client.syncPending) {
-          Logs().v('[Push] waiting for existing sync');
-          // we need to catchError here as the Future might be in a different execution zone
-          await client.oneShotSync().catchError((e) {
-            syncErrored = true;
-            Logs().v('[Push] Error one-shot syncing', e);
-          });
-        }
-        if (!syncErrored) {
-          Logs().v('[Push] single oneShotSync');
-          // we need to catchError here as the Future might be in a different execution zone
-          await client.oneShotSync().catchError((e) {
-            syncErrored = true;
-            Logs().v('[Push] Error one-shot syncing', e);
-          });
-          if (!syncErrored) {
-            emptyRooms = client.rooms
-                .where((r) => r.notificationCount == 0)
-                .map((r) => r.id);
-          }
-        }
-        if (syncErrored) {
-          try {
-            Logs().v(
-              '[Push] failed to sync for fallback push, fetching notifications endpoint...',
-            );
-            final notifications = await client.getNotifications(limit: 20);
-            final notificationRooms =
-                notifications.notifications.map((n) => n.roomId).toSet();
-            emptyRooms = client.rooms
-                .where((r) => !notificationRooms.contains(r.id))
-                .map((r) => r.id);
-          } catch (e) {
-            Logs().v(
-              '[Push] failed to fetch pending notifications for clearing push, falling back...',
-              e,
-            );
-            emptyRooms = client.rooms
-                .where((r) => r.notificationCount == 0)
-                .map((r) => r.id);
-          }
-        }
-      } else {
-        emptyRooms = client.rooms
-            .where((r) => r.notificationCount == 0)
-            .map((r) => r.id);
-      }
-      await _loadIdMap();
-      var changed = false;
-      for (final roomId in emptyRooms) {
-        final id = idMap[roomId];
-        if (id != null) {
-          idMap.remove(roomId);
-          changed = true;
-          await _flutterLocalNotificationsPlugin.cancel(id);
-        }
-      }
-      if (changed) {
-        await matrix?.store.setString(
-          SettingKeys.notificationCurrentIds,
-          json.encode(idMap),
-        );
-      }
-    } finally {
-      _clearingPushLock = false;
-    }
   }
 
   // #Pangea

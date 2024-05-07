@@ -46,7 +46,7 @@ class HtmlMessage extends StatelessWidget {
       final newHtml = parts
           .map(
             (linkifyElement) => linkifyElement is! UrlElement
-                ? Uri.encodeComponent(linkifyElement.text)
+                ? linkifyElement.text.replaceAll('<', '&#60;')
                 : '<a href="${linkifyElement.text}">${linkifyElement.text}</a>',
           )
           .join(' ');
@@ -163,7 +163,7 @@ class HtmlMessage extends StatelessWidget {
             ),
           },
           extensions: [
-            RoomPillExtension(context, room),
+            RoomPillExtension(context, room, fontSize, linkColor),
             CodeExtension(fontSize: fontSize),
             MatrixMathExtension(
               style: TextStyle(fontSize: fontSize, color: textColor),
@@ -172,6 +172,7 @@ class HtmlMessage extends StatelessWidget {
             SpoilerExtension(textColor: textColor),
             const ImageExtension(),
             FontColorExtension(),
+            FallbackTextExtension(fontSize: fontSize),
           ],
           onLinkTap: (url, _, element) => UrlLauncher(
             context,
@@ -194,6 +195,8 @@ class HtmlMessage extends StatelessWidget {
     //   ),
     // );
   }
+
+  static const Set<String> fallbackTextTags = {'tg-forward'};
 
   /// Keep in sync with: https://spec.matrix.org/v1.6/client-server-api/#mroommessage-msgtypes
   static const Set<String> allowedHtmlTags = {
@@ -240,7 +243,7 @@ class HtmlMessage extends StatelessWidget {
     'rp',
     'rt',
     // Workaround for https://github.com/krille-chan/fluffychat/issues/507
-    'tg-forward',
+    ...fallbackTextTags,
   };
 }
 
@@ -433,11 +436,29 @@ class CodeExtension extends HtmlExtension {
       );
 }
 
+class FallbackTextExtension extends HtmlExtension {
+  final double fontSize;
+
+  FallbackTextExtension({required this.fontSize});
+  @override
+  Set<String> get supportedTags => HtmlMessage.fallbackTextTags;
+
+  @override
+  InlineSpan build(ExtensionContext context) => TextSpan(
+        text: context.element?.text ?? '',
+        style: TextStyle(
+          fontSize: fontSize,
+        ),
+      );
+}
+
 class RoomPillExtension extends HtmlExtension {
   final Room room;
   final BuildContext context;
+  final double fontSize;
+  final Color color;
 
-  RoomPillExtension(this.context, this.room);
+  RoomPillExtension(this.context, this.room, this.fontSize, this.color);
   @override
   Set<String> get supportedTags => {'a'};
 
@@ -474,6 +495,8 @@ class RoomPillExtension extends HtmlExtension {
             avatar: _cachedUsers[room.id + matrixId]?.avatarUrl,
             uri: href,
             outerContext: this.context,
+            fontSize: fontSize,
+            color: color,
           ),
         ),
       );
@@ -489,6 +512,8 @@ class RoomPillExtension extends HtmlExtension {
             avatar: room.avatar,
             uri: href,
             outerContext: this.context,
+            fontSize: fontSize,
+            color: color,
           ),
         );
       }
@@ -503,6 +528,8 @@ class MatrixPill extends StatelessWidget {
   final BuildContext outerContext;
   final Uri? avatar;
   final String uri;
+  final double? fontSize;
+  final Color? color;
 
   const MatrixPill({
     super.key,
@@ -510,41 +537,34 @@ class MatrixPill extends StatelessWidget {
     required this.outerContext,
     this.avatar,
     required this.uri,
+    required this.fontSize,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: UrlLauncher(outerContext, uri).launchUrl,
-      child: Material(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          side: BorderSide(
-            color: Theme.of(outerContext).colorScheme.onPrimaryContainer,
-            width: 0.5,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Avatar(
+            mxContent: avatar,
+            name: name,
+            size: 16,
           ),
-        ),
-        color: Theme.of(outerContext).colorScheme.primaryContainer,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Avatar(
-                mxContent: avatar,
-                name: name,
-                size: 16,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                name,
-                style: TextStyle(
-                  color: Theme.of(outerContext).colorScheme.onPrimaryContainer,
-                ),
-              ),
-            ],
+          const SizedBox(width: 6),
+          Text(
+            name,
+            style: TextStyle(
+              color: color,
+              decorationColor: color,
+              decoration: TextDecoration.underline,
+              fontSize: fontSize,
+              height: 1.25,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

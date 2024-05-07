@@ -6,11 +6,9 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/download_chat.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
@@ -152,15 +150,17 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        KeyBoardShortcuts(
-          keysToPress: {
-            LogicalKeyboardKey.controlLeft,
-            LogicalKeyboardKey.keyI,
-          },
-          helpLabel: L10n.of(context)!.chatDetails,
-          onKeysPressed: _showChatDetails,
-          child: const SizedBox.shrink(),
-        ),
+        // #Pangea
+        // KeyBoardShortcuts(
+        //   keysToPress: {
+        //     LogicalKeyboardKey.controlLeft,
+        //     LogicalKeyboardKey.keyI,
+        //   },
+        //   helpLabel: L10n.of(context)!.chatDetails,
+        //   onKeysPressed: _showChatDetails,
+        //   child: const SizedBox.shrink(),
+        // ),
+        // Pangea#
         PopupMenuButton(
           onSelected: (String choice) async {
             switch (choice) {

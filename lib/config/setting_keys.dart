@@ -17,13 +17,17 @@ abstract class SettingKeys {
   static const String unifiedPushRegistered =
       'chat.fluffy.unifiedpush.registered';
   static const String unifiedPushEndpoint = 'chat.fluffy.unifiedpush.endpoint';
-  static const String notificationCurrentIds = 'chat.fluffy.notification_ids';
   static const String ownStatusMessage = 'chat.fluffy.status_msg';
   static const String dontAskForBootstrapKey =
       'chat.fluffychat.dont_ask_bootstrap';
   static const String autoplayImages = 'chat.fluffy.autoplay_images';
   static const String sendTypingNotifications =
       'chat.fluffy.send_typing_notifications';
+  static const String sendPublicReadReceipts =
+      'chat.fluffy.send_public_read_receipts';
   static const String sendOnEnter = 'chat.fluffy.send_on_enter';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
+  static const String showPresences = 'chat.fluffy.show_presences';
+  static const String displayChatDetailsColumn =
+      'chat.fluffy.display_chat_details_column';
 }

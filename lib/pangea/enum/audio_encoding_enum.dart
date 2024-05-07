@@ -8,6 +8,8 @@ AudioEncodingEnum mimeTypeToAudioEncoding(String mimeType) {
       return AudioEncodingEnum.oggOpus;
     case 'audio/x-flac':
       return AudioEncodingEnum.flac;
+    case 'audio/x-wav':
+      return AudioEncodingEnum.linear16;
     default:
       return AudioEncodingEnum.encodingUnspecified;
   }

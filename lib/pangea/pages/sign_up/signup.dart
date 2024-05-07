@@ -139,9 +139,12 @@ class SignupPageController extends State<SignupPage> {
       }
     } catch (e) {
       //#Pangea
-      ErrorHandler.logError(e: e);
-      //Pangea#
-      error = (e).toLocalizedString(context);
+      const cancelledString = "Exception: Request has been canceled";
+      if (e.toString() != cancelledString) {
+        ErrorHandler.logError(e: e);
+        error = (e).toLocalizedString(context);
+      }
+      // Pangea#
     } finally {
       if (mounted) {
         setState(() => loading = false);

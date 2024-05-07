@@ -114,6 +114,10 @@ class NewGroupController extends State<NewGroup> {
         //       content: {'url': avatarUrl.toString()},
         //     ),
         // ],
+        initialState: [
+          if (addConversationBotKey.currentState?.addBot ?? false)
+            addConversationBotKey.currentState!.botOptions.toStateEvent,
+        ],
         groupName: nameController.text,
         preset: sdk.CreateRoomPreset.publicChat,
         powerLevelContentOverride:

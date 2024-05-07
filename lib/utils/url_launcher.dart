@@ -169,10 +169,10 @@ class UrlLauncher {
         // we have the room, so....just open it
         if (event != null) {
           context.go(
-            Uri(
+            '/${Uri(
               pathSegments: ['rooms', room.id],
               queryParameters: {'event': event},
-            ).toString(),
+            )}',
           );
         } else {
           context.go('/rooms/${room.id}');

@@ -22,4 +22,5 @@ class PangeaEventTypes {
   static const userAge = "pangea.user_age";
 
   static const String report = 'm.report';
+  static const textToSpeechRule = "p.rule.text_to_speech";
 }

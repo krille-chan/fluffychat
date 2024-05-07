@@ -3,7 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  desktop_lifecycle
   dynamic_color
   emoji_picker_flutter
   file_selector_linux
@@ -12,6 +11,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   pasteboard
   record_linux
   sentry_flutter
+  sqlcipher_flutter_libs
   url_launcher_linux
   window_to_front
 )

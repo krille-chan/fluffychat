@@ -1,6 +1,6 @@
+import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import '../constants/pangea_event_types.dart';
 
 class ConstructEvent {
@@ -29,5 +29,25 @@ class ConstructEvent {
   void addAll(List<OneConstructUse> uses) {
     content.uses.addAll(uses);
     event.content = content.toJson();
+  }
+
+  Future<void> removeEdittedUses(
+    List<String> removeIds,
+    Client client,
+  ) async {
+    _contentCache ??= ConstructUses.fromJson(event.content);
+    if (_contentCache == null || _event.stateKey == null) return;
+    final previousLength = _contentCache!.uses.length;
+    _contentCache!.uses.removeWhere(
+      (element) => removeIds.contains(element.msgId),
+    );
+    if (previousLength > _contentCache!.uses.length) {
+      await client.setRoomStateWithKey(
+        _event.room.id,
+        _event.type,
+        _event.stateKey!,
+        _contentCache!.toJson(),
+      );
+    }
   }
 }

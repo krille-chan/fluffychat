@@ -1,12 +1,10 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import '../controllers/pangea_controller.dart';
 
 class ClassCodeUtil {
@@ -23,59 +21,32 @@ class ClassCodeUtil {
         .join();
   }
 
-  static void joinWithClassCodeDialog(
-    BuildContext outerContext,
+  static Future<void> joinWithClassCodeDialog(
+    BuildContext context,
     PangeaController pangeaController,
-    String? classCode,
-  ) {
-    final TextEditingController textFieldController = TextEditingController(
-      text: classCode,
+  ) async {
+    final List<String>? classCode = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context)!.joinWithClassCode,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      textFields: [
+        DialogTextField(hintText: L10n.of(context)!.joinWithClassCodeHint),
+      ],
     );
+    if (classCode == null || classCode.single.isEmpty) return;
 
-    showDialog(
-      context: outerContext,
-      useRootNavigator: false,
-      builder: (BuildContext context) => Scaffold(
-        backgroundColor: Colors.transparent,
-        body: AlertDialog(
-          title: Text(L10n.of(context)!.joinWithClassCode),
-          content: TextField(
-            controller: textFieldController,
-            decoration: InputDecoration(
-              hintText: L10n.of(context)!.joinWithClassCodeHint,
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text(L10n.of(context)!.cancel),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            TextButton(
-              child: Text(L10n.of(context)!.ok),
-              onPressed: () => showFutureLoadingDialog(
-                context: context,
-                future: () async {
-                  try {
-                    await pangeaController.classController.joinClasswithCode(
-                      outerContext,
-                      textFieldController.text,
-                    );
-                  } catch (err) {
-                    messageSnack(
-                      outerContext,
-                      ErrorCopy(outerContext, err).body,
-                    );
-                  } finally {
-                    context.go("/rooms");
-                    Navigator.of(context).pop();
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    try {
+      await pangeaController.classController.joinClasswithCode(
+        context,
+        classCode.first,
+      );
+    } catch (err) {
+      messageSnack(
+        context,
+        ErrorCopy(context, err).body,
+      );
+    }
   }
 
   static messageDialog(

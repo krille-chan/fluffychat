@@ -38,7 +38,7 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../pangea/pages/analytics/class_analytics/class_analytics.dart';
@@ -77,6 +77,7 @@ abstract class AppRoutes {
       path: '/home',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
+        state,
         const HomeserverPicker(),
       ),
       redirect: loggedInRedirect,
@@ -85,6 +86,7 @@ abstract class AppRoutes {
           path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             const Login(),
           ),
           redirect: loggedInRedirect,
@@ -94,6 +96,7 @@ abstract class AppRoutes {
           path: 'signup',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             const SignupPage(),
           ),
           redirect: loggedInRedirect,
@@ -105,6 +108,7 @@ abstract class AppRoutes {
       path: '/logs',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
+        state,
         const LogViewer(),
       ),
     ),
@@ -113,6 +117,7 @@ abstract class AppRoutes {
       path: '/user_age',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
+        state,
         const PUserAge(),
       ),
       redirect: loggedOutRedirect,
@@ -121,6 +126,7 @@ abstract class AppRoutes {
     ShellRoute(
       pageBuilder: (context, state, child) => defaultPageBuilder(
         context,
+        state,
         FluffyThemes.isColumnMode(context) &&
                 state.fullPath?.startsWith('/rooms/settings') == false
             ? TwoColumnLayout(
@@ -141,6 +147,7 @@ abstract class AppRoutes {
           path: '/spaces/:roomid',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             ChatDetails(
               roomId: state.pathParameters['roomid']!,
             ),
@@ -151,6 +158,7 @@ abstract class AppRoutes {
           path: '/join_with_link',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             const JoinClassWithLink(),
           ),
           redirect: loggedOutRedirect,
@@ -161,6 +169,7 @@ abstract class AppRoutes {
           redirect: loggedOutRedirect,
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             FluffyThemes.isColumnMode(context)
                 ? const EmptyPage()
                 : ChatList(
@@ -173,6 +182,7 @@ abstract class AppRoutes {
               path: 'mylearning',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const StudentAnalyticsPage(),
               ),
               redirect: loggedOutRedirect,
@@ -181,6 +191,7 @@ abstract class AppRoutes {
               path: 'analytics',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const AnalyticsClassList(),
               ),
               redirect: loggedOutRedirect,
@@ -190,6 +201,7 @@ abstract class AppRoutes {
                   redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     const ClassAnalyticsPage(),
                   ),
                 ),
@@ -200,6 +212,7 @@ abstract class AppRoutes {
               path: 'archive',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const Archive(),
               ),
               routes: [
@@ -207,6 +220,7 @@ abstract class AppRoutes {
                   path: ':roomid',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
                     ),
@@ -220,6 +234,7 @@ abstract class AppRoutes {
               path: 'newprivatechat',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewPrivateChat(),
               ),
               redirect: loggedOutRedirect,
@@ -231,6 +246,7 @@ abstract class AppRoutes {
               // Pangea#
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewGroup(),
               ),
               redirect: loggedOutRedirect,
@@ -239,6 +255,7 @@ abstract class AppRoutes {
                   path: ':spaceid',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     const NewGroup(),
                   ),
                   redirect: loggedOutRedirect,
@@ -249,6 +266,7 @@ abstract class AppRoutes {
               path: 'newspace',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewSpace(),
               ),
               redirect: loggedOutRedirect,
@@ -258,6 +276,7 @@ abstract class AppRoutes {
               path: 'newspace/:newexchange',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewSpace(),
               ),
               redirect: loggedOutRedirect,
@@ -266,6 +285,7 @@ abstract class AppRoutes {
               path: 'join_exchange/:exchangeid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const AddExchangeToClass(),
               ),
               redirect: loggedOutRedirect,
@@ -274,6 +294,7 @@ abstract class AppRoutes {
               path: 'partner',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const FindPartner(),
               ),
               redirect: loggedOutRedirect,
@@ -282,6 +303,7 @@ abstract class AppRoutes {
             ShellRoute(
               pageBuilder: (context, state, child) => defaultPageBuilder(
                 context,
+                state,
                 FluffyThemes.isColumnMode(context)
                     ? TwoColumnLayout(
                         mainView: const Settings(),
@@ -295,6 +317,7 @@ abstract class AppRoutes {
                   path: 'settings',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     FluffyThemes.isColumnMode(context)
                         ? const EmptyPage()
                         : const Settings(),
@@ -304,6 +327,7 @@ abstract class AppRoutes {
                       path: 'notifications',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsNotifications(),
                       ),
                       redirect: loggedOutRedirect,
@@ -312,6 +336,7 @@ abstract class AppRoutes {
                       path: 'style',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsStyle(),
                       ),
                       redirect: loggedOutRedirect,
@@ -320,6 +345,7 @@ abstract class AppRoutes {
                       path: 'devices',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const DevicesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -328,6 +354,7 @@ abstract class AppRoutes {
                       path: 'chat',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsChat(),
                       ),
                       routes: [
@@ -335,6 +362,7 @@ abstract class AppRoutes {
                           path: 'emotes',
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
+                            state,
                             const EmotesSettings(),
                           ),
                         ),
@@ -366,6 +394,7 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsSecurity(),
                       ),
                       routes: [
@@ -374,6 +403,7 @@ abstract class AppRoutes {
                           pageBuilder: (context, state) {
                             return defaultPageBuilder(
                               context,
+                              state,
                               const SettingsPassword(),
                             );
                           },
@@ -384,6 +414,7 @@ abstract class AppRoutes {
                           pageBuilder: (context, state) {
                             return defaultPageBuilder(
                               context,
+                              state,
                               SettingsIgnoreList(
                                 initialUserId: state.extra?.toString(),
                               ),
@@ -395,6 +426,7 @@ abstract class AppRoutes {
                           path: '3pid',
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
+                            state,
                             const Settings3Pid(),
                           ),
                           redirect: loggedOutRedirect,
@@ -406,6 +438,7 @@ abstract class AppRoutes {
                       path: 'learning',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsLearning(),
                       ),
                       redirect: loggedOutRedirect,
@@ -414,6 +447,7 @@ abstract class AppRoutes {
                       path: 'subscription',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SubscriptionManagement(),
                       ),
                       redirect: loggedOutRedirect,
@@ -428,6 +462,7 @@ abstract class AppRoutes {
               path: ':roomid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
@@ -440,6 +475,7 @@ abstract class AppRoutes {
                 //   path: 'encryption',
                 //   pageBuilder: (context, state) => defaultPageBuilder(
                 //     context,
+                //     state,
                 //     const ChatEncryptionSettings(),
                 //   ),
                 //   redirect: loggedOutRedirect,
@@ -449,6 +485,7 @@ abstract class AppRoutes {
                   path: 'invite',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     InvitationSelection(
                       roomId: state.pathParameters['roomid']!,
                     ),
@@ -459,6 +496,7 @@ abstract class AppRoutes {
                   path: 'details',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     ChatDetails(
                       roomId: state.pathParameters['roomid']!,
                     ),
@@ -468,6 +506,7 @@ abstract class AppRoutes {
                       path: 'members',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         ChatMembersPage(
                           roomId: state.pathParameters['roomid']!,
                         ),
@@ -478,6 +517,7 @@ abstract class AppRoutes {
                       path: 'permissions',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const ChatPermissionsSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -487,6 +527,7 @@ abstract class AppRoutes {
                       path: 'class_settings',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const ClassSettingsPage(),
                       ),
                       redirect: loggedOutRedirect,
@@ -496,6 +537,7 @@ abstract class AppRoutes {
                       path: 'invite',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         InvitationSelection(
                           roomId: state.pathParameters['roomid']!,
                         ),
@@ -506,6 +548,7 @@ abstract class AppRoutes {
                       path: 'multiple_emotes',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const MultipleEmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -514,6 +557,7 @@ abstract class AppRoutes {
                       path: 'emotes',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const EmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -522,6 +566,7 @@ abstract class AppRoutes {
                       path: 'emotes/:state_key',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const EmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -537,17 +582,23 @@ abstract class AppRoutes {
     ),
   ];
 
-  static Page defaultPageBuilder(BuildContext context, Widget child) =>
-      CustomTransitionPage(
-        child: child,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FluffyThemes.isColumnMode(context)
-                ? FadeTransition(opacity: animation, child: child)
-                : CupertinoPageTransition(
-                    primaryRouteAnimation: animation,
-                    secondaryRouteAnimation: secondaryAnimation,
-                    linearTransition: false,
-                    child: child,
-                  ),
-      );
+  static Page defaultPageBuilder(
+    BuildContext context,
+    GoRouterState state,
+    Widget child,
+  ) =>
+      FluffyThemes.isColumnMode(context)
+          ? CustomTransitionPage(
+              key: state.pageKey,
+              restorationId: state.pageKey.value,
+              child: child,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(opacity: animation, child: child),
+            )
+          : MaterialPage(
+              key: state.pageKey,
+              restorationId: state.pageKey.value,
+              child: child,
+            );
 }

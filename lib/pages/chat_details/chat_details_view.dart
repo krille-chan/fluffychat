@@ -46,8 +46,6 @@ class ChatDetailsView extends StatelessWidget {
       );
     }
 
-    final isEmbedded = GoRouterState.of(context).fullPath == '/rooms/:roomid';
-
     return StreamBuilder(
       stream: room.onUpdate.stream,
       builder: (context, snapshot) {
@@ -62,36 +60,35 @@ class ChatDetailsView extends StatelessWidget {
           MatrixLocals(L10n.of(context)!),
         );
         return Scaffold(
-          appBar: isEmbedded
-              ? null
-              : AppBar(
-                  leading: const Center(child: BackButton()),
-                  elevation: Theme.of(context).appBarTheme.elevation,
-                  actions: <Widget>[
-                    // #Pangeas
-                    // if (room.canonicalAlias.isNotEmpty)
-                    //   IconButton(
-                    //     tooltip: L10n.of(context)!.share,
-                    //     icon: Icon(Icons.adaptive.share_outlined),
-                    //     onPressed: () => FluffyShare.share(
-                    //       AppConfig.inviteLinkPrefix + room.canonicalAlias,
-                    //       context,
-                    //     ),
-                    //   ),
-                    if (!room.isSpace)
-                      // Pangea#
-                      ChatSettingsPopupMenu(room, false),
-                  ],
-                  // #Pangea
-                  title: ClassNameHeader(
-                    controller: controller,
-                    room: room,
-                  ),
-                  // title: Text(L10n.of(context)!.chatDetails),
-                  // Pangea#
-                  backgroundColor:
-                      Theme.of(context).appBarTheme.backgroundColor,
-                ),
+          appBar: AppBar(
+            leading: controller.widget.embeddedCloseButton ??
+                const Center(child: BackButton()),
+            elevation: Theme.of(context).appBarTheme.elevation,
+            actions: <Widget>[
+              // #Pangeas
+              //if (room.canonicalAlias.isNotEmpty)
+              //  IconButton(
+              //    tooltip: L10n.of(context)!.share,
+              //    icon: Icon(Icons.adaptive.share_outlined),
+              //    onPressed: () => FluffyShare.share(
+              //      L10n.of(context)!.youInvitedToBy(
+              //        AppConfig.inviteLinkPrefix + room.canonicalAlias,
+              //      ),
+              //      context,
+              //    ),
+              //  ),
+              if (controller.widget.embeddedCloseButton == null)
+                ChatSettingsPopupMenu(room, false),
+            ],
+            // #Pangea
+            title: ClassNameHeader(
+              controller: controller,
+              room: room,
+            ),
+            // title: Text(L10n.of(context)!.chatDetails),
+            // Pangea#
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          ),
           body: MaxWidthBody(
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -124,7 +121,9 @@ class ChatDetailsView extends StatelessWidget {
                                       ),
                                     ),
                                     child: Hero(
-                                      tag: isEmbedded
+                                      tag: controller
+                                                  .widget.embeddedCloseButton !=
+                                              null
                                           ? 'embedded_content_banner'
                                           : 'content_banner',
                                       child: Avatar(
@@ -511,9 +510,7 @@ class ChatDetailsView extends StatelessWidget {
                                 : AddToClassMode.chat,
                           ),
                         const Divider(height: 1),
-                        if (!room.isDirectChat &&
-                            (!room.isSpace ||
-                                (room.isSpace && room.isRoomAdmin)))
+                        if (!room.isDirectChat)
                           ListTile(
                             title: Text(
                               room.isSpace

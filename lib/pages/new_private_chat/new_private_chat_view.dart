@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 class NewPrivateChatView extends StatelessWidget {
   final NewPrivateChatController controller;
@@ -159,11 +159,23 @@ class NewPrivateChatView extends StatelessWidget {
                             shadowColor:
                                 Theme.of(context).appBarTheme.shadowColor,
                             clipBehavior: Clip.hardEdge,
-                            child: QrImageView(
-                              data:
-                                  'https://matrix.to/#/${Matrix.of(context).client.userID}',
-                              version: QrVersions.auto,
-                              // size: qrCodeSize,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: PrettyQrView.data(
+                                data:
+                                    'https://matrix.to/#/${Matrix.of(context).client.userID}',
+                                decoration: PrettyQrDecoration(
+                                  shape: PrettyQrSmoothSymbol(
+                                    roundFactor: 1,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),

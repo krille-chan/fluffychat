@@ -12,7 +12,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'm4a';
+  static const String recordingFileType = 'wav';
   const RecordingDialog({
     super.key,
   });
@@ -27,10 +27,7 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  // #Pangea
-  // final _audioRecorder = Record();
-  final _audioRecorder = AudioRecorder();
-  // Pangea#
+  final _audioRecorder = Record();
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
@@ -48,28 +45,12 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
-
-      // We try to pick Opus where supported, since that is a codec optimized
-      // for speech as well as what the voice messages MSC uses.
-      final audioCodec =
-          (await _audioRecorder.isEncoderSupported(AudioEncoder.opus))
-              ? AudioEncoder.opus
-              : AudioEncoder.aacLc;
-      // #Pangea
-      // await _audioRecorder.start(
-      //   path: _recordedPath,
-      //   bitRate: bitRate,
-      //   samplingRate: samplingRate,
-      // );
       await _audioRecorder.start(
-        RecordConfig(
-          encoder: audioCodec,
-          bitRate: bitRate,
-          // samplingRate: samplingRate,
-        ),
-        path: _recordedPath!,
+        path: _recordedPath,
+        bitRate: bitRate,
+        samplingRate: samplingRate,
+        encoder: AudioEncoder.wav,
       );
-      // Pangea#
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription =
