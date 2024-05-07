@@ -40,7 +40,7 @@ Future<void> pushHelper(
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
+        android: AndroidInitializationSettings('ic_stat_notification'),
         iOS: DarwinInitializationSettings(),
       ),
       onDidReceiveNotificationResponse: onSelectNotification,
@@ -96,7 +96,7 @@ Future<void> _tryPushHelper(
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
-      android: AndroidInitializationSettings('notifications_icon'),
+      android: AndroidInitializationSettings('ic_stat_notification'),
       iOS: DarwinInitializationSettings(),
     ),
     onDidReceiveNotificationResponse: onSelectNotification,
