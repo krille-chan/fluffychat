@@ -181,7 +181,7 @@ class RegisterController extends State<Register> {
       Logs().v('Registration successful');
       // redirect to login page, which will handle the matrix login
       // and onboarding
-      context.go('/login');
+      context.go('/home/login');
 
       if (kDebugMode) {
         print('Registration successful');

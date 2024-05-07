@@ -50,18 +50,21 @@ abstract class AppRoutes {
 
     final bool isLoggedKratos = sessionToken is String && sessionToken.isNotEmpty;
     final bool isLoggedMatrix = Matrix.of(context).client.isLogged();
-    final bool onSubscribePage = state.path == '/subscribe';
+    final bool preAuth = state.fullPath!.startsWith('/home');
 
     if (isLoggedKratos && isLoggedMatrix) {
       final bool hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
       if (hasSubscription) {
         return '/rooms';
       } else {
-        return '/subscribe';
+        return '/home/subscribe';
       }
-    } else if (!isLoggedMatrix && !onSubscribePage) {
-      return '/home';
+    } else if (isLoggedKratos && !isLoggedMatrix) {
+      return '/home/login';
+    } else if (!isLoggedMatrix && !preAuth) {
+      return '/home/welcome';
     }
+    print('returning ning');
 
     return null;
   }
@@ -77,7 +80,7 @@ abstract class AppRoutes {
       return '/home';
     } else if (hasLogin && !hasSubscription) {
       // If the user doesn't have a subscription, redirect to /subscribe
-      return '/subscribe';
+      return '/home/subscribe';
     }
     return null;
   }
@@ -88,22 +91,7 @@ abstract class AppRoutes {
     GoRoute(
       path: '/',
       redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/welcome',
-    ),
-    GoRoute(
-      path: '/welcome',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        state,
-        const WelcomeSlidePage(), // Welcome slide show widget
-      ),
-      redirect: loggedInRedirect,
-    ),
-    GoRoute(
-      path: '/subscribe',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: NotSubscribePage()),
-      redirect: loggedInRedirect,
+          Matrix.of(context).client.isLogged() ? '/rooms' : '/home/welcome',
     ),
     GoRoute(
       path: '/home',
@@ -114,6 +102,15 @@ abstract class AppRoutes {
       ),
       redirect: loggedInRedirect,
       routes: [
+        GoRoute(
+          path: 'welcome',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            const WelcomeSlidePage(), // Welcome slide show widget
+          ),
+          redirect: loggedInRedirect,
+        ),
         GoRoute(
           path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
@@ -130,6 +127,12 @@ abstract class AppRoutes {
             state,
             const Register(),
           ),
+          redirect: loggedInRedirect,
+        ),
+        GoRoute(
+          path: 'subscribe',
+          pageBuilder: (context, state) =>
+              const MaterialPage(child: NotSubscribePage()),
           redirect: loggedInRedirect,
         ),
       ],
