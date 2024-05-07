@@ -6,6 +6,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -77,7 +78,11 @@ class SettingsController extends State<Settings> {
     final matrix = Matrix.of(context);
     await showFutureLoadingDialog(
       context: context,
-      future: () => matrix.client.logout(),
+      future: () async {
+        final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+        await secureStorage.delete(key: 'sessionToken');
+        matrix.client.logout();
+      },
     );
   }
 
