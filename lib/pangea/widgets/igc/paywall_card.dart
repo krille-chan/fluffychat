@@ -35,11 +35,12 @@ class PaywallCard extends StatelessWidget {
                 style: BotStyle.text(context),
                 textAlign: TextAlign.center,
               ),
-              Text(
-                L10n.of(context)!.noPaymentInfo,
-                style: BotStyle.text(context),
-                textAlign: TextAlign.center,
-              ),
+              if (inTrialWindow)
+                Text(
+                  L10n.of(context)!.noPaymentInfo,
+                  style: BotStyle.text(context),
+                  textAlign: TextAlign.center,
+                ),
               const SizedBox(height: 15.0),
               SizedBox(
                 width: double.infinity,
