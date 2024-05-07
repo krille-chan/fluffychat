@@ -3935,5 +3935,9 @@
             "unread": {}
         }
     },
-    "messageAnalytics": "Message Analytics"
+    "messageAnalytics": "Message Analytics",
+    "words": "Words",
+    "score": "Score",
+    "accuracy": "Accuracy",
+    "points": "Points"
 }

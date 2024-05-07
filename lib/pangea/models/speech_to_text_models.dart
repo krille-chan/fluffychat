@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:flutter/foundation.dart';
@@ -88,10 +87,14 @@ class STTToken {
   int get length => token.text.length;
 
   Color color(BuildContext context) {
-    if (confidence == null || confidence! > 80) {
-      return Theme.of(context).brightness == Brightness.dark
-          ? AppConfig.primaryColorLight
-          : AppConfig.primaryColor;
+    if (confidence == null) {
+      return Theme.of(context).textTheme.bodyMedium?.color ??
+          (Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black);
+    }
+    if (confidence! > 80) {
+      return const Color.fromARGB(255, 0, 152, 0);
     }
     if (confidence! > 50) {
       return const Color.fromARGB(255, 184, 142, 43);
@@ -99,16 +102,19 @@ class STTToken {
     return Colors.red;
   }
 
-  factory STTToken.fromJson(Map<String, dynamic> json) => STTToken(
-        token: PangeaToken.fromJson(json['token']),
-        startTime: json['start_time'] != null
-            ? Duration(milliseconds: json['start_time'])
-            : null,
-        endTime: json['end_time'] != null
-            ? Duration(milliseconds: json['end_time'])
-            : null,
-        confidence: json['confidence'],
-      );
+  factory STTToken.fromJson(Map<String, dynamic> json) {
+    // debugPrint('STTToken.fromJson: $json');
+    return STTToken(
+      token: PangeaToken.fromJson(json['token']),
+      startTime: json['start_time'] != null
+          ? Duration(milliseconds: json['start_time'] * 1000.toInt())
+          : null,
+      endTime: json['end_time'] != null
+          ? Duration(milliseconds: json['end_time'] * 1000.toInt())
+          : null,
+      confidence: json['confidence'],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -116,6 +122,27 @@ class STTToken {
         "end_time": endTime?.inMilliseconds,
         "confidence": confidence,
       };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! STTToken) return false;
+
+    return token == other.token &&
+        startTime == other.startTime &&
+        endTime == other.endTime &&
+        confidence == other.confidence;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([
+      token.hashCode,
+      startTime.hashCode,
+      endTime.hashCode,
+      confidence.hashCode,
+    ]);
+  }
 }
 
 class Transcript {
@@ -133,7 +160,9 @@ class Transcript {
 
   factory Transcript.fromJson(Map<String, dynamic> json) => Transcript(
         text: json['transcript'],
-        confidence: json['confidence'].toDouble(),
+        confidence: json['confidence'] <= 100
+            ? json['confidence']
+            : json['confidence'] / 100,
         sttTokens: (json['stt_tokens'] as List)
             .map((e) => STTToken.fromJson(e))
             .toList(),

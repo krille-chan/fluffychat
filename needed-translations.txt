@@ -814,7 +814,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "be": [
@@ -2227,7 +2231,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "bn": [
@@ -3102,7 +3110,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "bo": [
@@ -3977,7 +3989,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ca": [
@@ -4852,7 +4868,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "cs": [
@@ -5727,7 +5747,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "de": [
@@ -6549,7 +6573,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "el": [
@@ -7424,7 +7452,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "eo": [
@@ -8299,7 +8331,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "es": [
@@ -8322,7 +8358,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "et": [
@@ -9140,7 +9180,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "eu": [
@@ -9958,7 +10002,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "fa": [
@@ -10833,7 +10881,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "fi": [
@@ -11708,7 +11760,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "fr": [
@@ -12583,7 +12639,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ga": [
@@ -13458,7 +13518,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "gl": [
@@ -14276,7 +14340,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "he": [
@@ -15151,7 +15219,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "hi": [
@@ -16026,7 +16098,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "hr": [
@@ -16888,7 +16964,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "hu": [
@@ -17763,7 +17843,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ia": [
@@ -19162,7 +19246,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "id": [
@@ -20037,7 +20125,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ie": [
@@ -20912,7 +21004,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "it": [
@@ -21772,7 +21868,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ja": [
@@ -22647,7 +22747,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ko": [
@@ -23522,7 +23626,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "lt": [
@@ -24397,7 +24505,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "lv": [
@@ -25272,7 +25384,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "nb": [
@@ -26147,7 +26263,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "nl": [
@@ -27022,7 +27142,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "pl": [
@@ -27897,7 +28021,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "pt": [
@@ -28772,7 +28900,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "pt_BR": [
@@ -29616,7 +29748,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "pt_PT": [
@@ -30491,7 +30627,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ro": [
@@ -31366,7 +31506,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ru": [
@@ -32184,7 +32328,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "sk": [
@@ -33059,7 +33207,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "sl": [
@@ -33934,7 +34086,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "sr": [
@@ -34809,7 +34965,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "sv": [
@@ -35649,7 +35809,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "ta": [
@@ -36524,7 +36688,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "th": [
@@ -37399,7 +37567,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "tr": [
@@ -38259,7 +38431,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "uk": [
@@ -39077,7 +39253,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "vi": [
@@ -39952,7 +40132,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "zh": [
@@ -40770,7 +40954,11 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ],
 
   "zh_Hant": [
@@ -41645,6 +41833,10 @@
     "commandHint_ignore",
     "commandHint_unignore",
     "unreadChatsInApp",
-    "messageAnalytics"
+    "messageAnalytics",
+    "words",
+    "score",
+    "accuracy",
+    "points"
   ]
 }
