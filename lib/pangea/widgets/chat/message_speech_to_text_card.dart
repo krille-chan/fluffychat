@@ -7,6 +7,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../../utils/bot_style.dart';
 
@@ -163,13 +164,13 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
               toolTip: L10n.of(context)!.words,
             ),
             IconNumberWidget(
-              icon: Icons.approval,
+              icon: Symbols.target,
               number:
                   "${selectedToken?.confidence ?? speechToTextResponse!.transcript.confidence}%",
               toolTip: L10n.of(context)!.accuracy,
             ),
             IconNumberWidget(
-              icon: Icons.score,
+              icon: Icons.speed,
               number: (selectedToken?.confidence ?? total).toString(),
               toolTip: L10n.of(context)!.points,
             ),

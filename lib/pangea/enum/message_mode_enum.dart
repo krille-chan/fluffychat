@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 enum MessageMode { translation, definition, speechToText, textToSpeech }
 
@@ -9,9 +10,9 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.translation:
         return Icons.g_translate;
       case MessageMode.textToSpeech:
-        return Icons.play_arrow;
+        return Symbols.text_to_speech;
       case MessageMode.speechToText:
-        return Icons.mic;
+        return Symbols.speech_to_text;
       //TODO change icon for audio messages
       case MessageMode.definition:
         return Icons.book;
