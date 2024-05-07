@@ -63,6 +63,11 @@ enum MatrixProfile {
   showedItInstructions,
   showedClickMessage,
   showedBlurMeansTranslate,
+  createdAt,
+  targetLanguage,
+  sourceLanguage,
+  country,
+  publicProfile,
 }
 
 extension MatrixProfileExtension on MatrixProfile {
@@ -90,6 +95,16 @@ extension MatrixProfileExtension on MatrixProfile {
         return InstructionsEnum.clickMessage.toString();
       case MatrixProfile.showedBlurMeansTranslate:
         return InstructionsEnum.blurMeansTranslate.toString();
+      case MatrixProfile.createdAt:
+        return ModelKey.userCreatedAt;
+      case MatrixProfile.targetLanguage:
+        return ModelKey.l2LanguageKey;
+      case MatrixProfile.sourceLanguage:
+        return ModelKey.l1LanguageKey;
+      case MatrixProfile.country:
+        return ModelKey.userCountry;
+      case MatrixProfile.publicProfile:
+        return ModelKey.publicProfile;
     }
   }
 }

@@ -68,12 +68,59 @@ class UserController extends BaseController {
   }
 
   Future<void> migrateMatrixProfile() async {
-    final String? pangeaDob = userModel?.profile?.dateOfBirth;
+    final Profile? pangeaProfile = userModel?.profile;
+
+    final String? pangeaDob = pangeaProfile?.dateOfBirth;
     final String? matrixDob = _pangeaController.pStoreService.read(
       ModelKey.userDateOfBirth,
     );
     final String? dob =
         pangeaDob != null && matrixDob != pangeaDob ? pangeaDob : null;
+
+    final pangeaCreatedAt = pangeaProfile?.createdAt;
+    final matrixCreatedAt = _pangeaController.pStoreService.read(
+      MatrixProfile.createdAt.title,
+    );
+    final String? createdAt =
+        pangeaCreatedAt != null && matrixCreatedAt != pangeaCreatedAt
+            ? pangeaCreatedAt
+            : null;
+
+    final String? pangeaTargetLanguage = pangeaProfile?.targetLanguage;
+    final String? matrixTargetLanguage = _pangeaController.pStoreService.read(
+      MatrixProfile.targetLanguage.title,
+    );
+    final String? targetLanguage = pangeaTargetLanguage != null &&
+            matrixTargetLanguage != pangeaTargetLanguage
+        ? pangeaTargetLanguage
+        : null;
+
+    final String? pangeaSourceLanguage = pangeaProfile?.sourceLanguage;
+    final String? matrixSourceLanguage = _pangeaController.pStoreService.read(
+      MatrixProfile.sourceLanguage.title,
+    );
+    final String? sourceLanguage = pangeaSourceLanguage != null &&
+            matrixSourceLanguage != pangeaSourceLanguage
+        ? pangeaSourceLanguage
+        : null;
+
+    final String? pangeaCountry = pangeaProfile?.country;
+    final String? matrixCountry = _pangeaController.pStoreService.read(
+      MatrixProfile.country.title,
+    );
+    final String? country =
+        pangeaCountry != null && matrixCountry != pangeaCountry
+            ? pangeaCountry
+            : null;
+
+    final bool? pangeaPublicProfile = pangeaProfile?.publicProfile;
+    final bool? matrixPublicProfile = _pangeaController.pStoreService.read(
+      MatrixProfile.publicProfile.title,
+    );
+    final bool? publicProfile = pangeaPublicProfile != null &&
+            matrixPublicProfile != pangeaPublicProfile
+        ? pangeaPublicProfile
+        : null;
 
     final bool? autoPlay = migratedProfileInfo(MatrixProfile.autoPlayMessages);
     final bool? trial = migratedProfileInfo(MatrixProfile.activatedFreeTrial);
@@ -104,6 +151,11 @@ class UserController extends BaseController {
       showedItInstructions: showItInstructions,
       showedClickMessage: showClickMessage,
       showedBlurMeansTranslate: showBlurMeansTranslate,
+      createdAt: createdAt,
+      targetLanguage: targetLanguage,
+      sourceLanguage: sourceLanguage,
+      country: country,
+      publicProfile: publicProfile,
     );
   }
 
@@ -150,9 +202,14 @@ class UserController extends BaseController {
       refresh: userModel!.refresh,
       profile: updatedUserProfile,
     ).save(_pangeaController);
-    if (dateOfBirth != null) {
-      await updateMatrixProfile(dateOfBirth: dateOfBirth);
-    }
+
+    await updateMatrixProfile(
+      dateOfBirth: dateOfBirth,
+      targetLanguage: targetLanguage,
+      sourceLanguage: sourceLanguage,
+      country: country,
+      publicProfile: publicProfile,
+    );
   }
 
   PUserModel? get userModel {
@@ -175,6 +232,11 @@ class UserController extends BaseController {
     bool? showedItInstructions,
     bool? showedClickMessage,
     bool? showedBlurMeansTranslate,
+    String? createdAt,
+    String? targetLanguage,
+    String? sourceLanguage,
+    String? country,
+    bool? publicProfile,
   }) async {
     if (dateOfBirth != null) {
       await _pangeaController.pStoreService.save(
@@ -240,6 +302,36 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.showedBlurMeansTranslate.title,
         showedBlurMeansTranslate,
+      );
+    }
+    if (createdAt != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.createdAt.title,
+        createdAt,
+      );
+    }
+    if (targetLanguage != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.targetLanguage.title,
+        targetLanguage,
+      );
+    }
+    if (sourceLanguage != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.sourceLanguage.title,
+        sourceLanguage,
+      );
+    }
+    if (country != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.country.title,
+        country,
+      );
+    }
+    if (publicProfile != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.publicProfile.title,
+        publicProfile,
       );
     }
   }
