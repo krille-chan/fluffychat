@@ -83,7 +83,7 @@
 
                 <data
                     android:host="chat"
-                    android:scheme="im.tawkie" />
+                    android:scheme="fr.tawkie" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
