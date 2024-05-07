@@ -90,6 +90,7 @@ Future<T?> showCustomLoadingDialog<T>({
 }) async {
   return await showDialog<T>(
     context: context,
+    barrierDismissible: false,
     builder: (context) => CustomLoadingDialog<T>(
       future: future,
     ),

@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io' as io;
 
+import 'package:flutter/foundation.dart';
 import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
 // For all bot bridge conversations
 class BotBridgeConnection {
@@ -128,42 +132,24 @@ class BotBridgeConnection {
 
     // Messages to spot when we're online
     RegExp? onlineMatch;
-    RegExp? successfullyMatch;
-    RegExp? alreadySuccessMatch;
-    RegExp? syncCompleteMatch;
 
     // Messages to spot when we're not online
     RegExp? notLoggedMatch;
-    RegExp? disconnectMatch;
-    RegExp? connectedButNotLoggedMatch;
     RegExp? mQTTNotMatch;
 
     switch (socialNetwork.name) {
       case "WhatsApp":
         onlineMatch = PingPatterns.whatsAppOnlineMatch;
-        successfullyMatch = PingPatterns.whatsAppSuccessfullyMatch;
-        alreadySuccessMatch = PingPatterns.whatsAppAlreadySuccessMatch;
         notLoggedMatch = PingPatterns.whatsAppNotLoggedMatch;
-        disconnectMatch = PingPatterns.whatsAppDisconnectMatch;
-        connectedButNotLoggedMatch =
-            PingPatterns.whatsAppConnectedButNotLoggedMatch;
         mQTTNotMatch = PingPatterns.whatsAppLoggedButNotConnectedMatch;
         break;
       case "Facebook Messenger":
         onlineMatch = PingPatterns.facebookOnlineMatch;
-        successfullyMatch = PingPatterns.facebookSuccessfullyMatch;
         notLoggedMatch = PingPatterns.facebookNotLoggedMatch;
-        disconnectMatch = PingPatterns.facebookDisconnectMatch;
-        mQTTNotMatch = PingPatterns.facebookMQTTNotMatch;
         break;
       case "Instagram":
         onlineMatch = PingPatterns.instagramOnlineMatch;
-        successfullyMatch = PingPatterns.instagramSuccessfullyMatch;
-        alreadySuccessMatch = PingPatterns.instagramAlreadySuccessMatch;
-        syncCompleteMatch = PingPatterns.instagramSyncComplete;
         notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
-        disconnectMatch = PingPatterns.instagramDisconnectMatch;
-        mQTTNotMatch = PingPatterns.instagramMQTTNotMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
@@ -205,24 +191,20 @@ class BotBridgeConnection {
             latestMessages.first.content['body'].toString() ?? '';
 
         // To find out if we're connected
-        if (onlineMatch.hasMatch(latestMessage) ||
-            alreadySuccessMatch?.hasMatch(latestMessage) == true ||
-            successfullyMatch.hasMatch(latestMessage) == true ||
-            syncCompleteMatch?.hasMatch(latestMessage) == true) {
+        if (onlineMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to ${socialNetwork.name}");
 
           result = 'Connected';
 
           break; // Exit the loop if the bridge is connected
-        } else if (notLoggedMatch.hasMatch(latestMessage) == true ||
-            disconnectMatch.hasMatch(latestMessage) == true ||
-            connectedButNotLoggedMatch?.hasMatch(latestMessage) == true) {
+        }
+        if (notLoggedMatch.hasMatch(latestMessage) == true) {
           Logs().v('Not connected to ${socialNetwork.name}');
 
           result = 'Not Connected';
 
           break; // Exit the loop if the bridge is disconnected
-        } else if (mQTTNotMatch.hasMatch(latestMessage) == true) {
+        } else if (mQTTNotMatch?.hasMatch(latestMessage) == true) {
           String eventToSend;
 
           switch (socialNetwork.name) {
@@ -311,9 +293,22 @@ class BotBridgeConnection {
       return 'error';
     }
 
+    String eventName;
+
+    switch (network.name) {
+      case "Facebook Messenger":
+        eventName = 'delete-session';
+        break;
+      case "Instagram":
+        eventName = 'delete-session';
+        break;
+      default:
+        eventName = 'logout';
+    }
+
     // Send the "logout" message to the bot
     try {
-      await roomBot?.sendTextEvent('logout');
+      await roomBot?.sendTextEvent(eventName);
     } catch (e) {
       Logs().v('Error sending text event: $e');
       // Handle the error, you can log it or return an error message
@@ -343,6 +338,7 @@ class BotBridgeConnection {
           final String latestMessage =
               latestMessages.first.content['body'].toString() ?? '';
 
+          print("latestMessage: $latestMessage");
           // to find out if we're connected
           if (!successMatch.hasMatch(latestMessage) &&
               !alreadyLogoutMatch.hasMatch(latestMessage)) {
@@ -389,30 +385,22 @@ class BotBridgeConnection {
 
   // Instagram
   // Function for create and login bridge with instagram bot
-  Future<String> createBridgeInstagram(BuildContext context, String username,
-      String password, ConnectionStateModel connectionState) async {
-    final String botUserId = '@instagrambot:$hostname';
+  Future<String> createBridgeInstagram(
+    BuildContext context,
+    WebviewCookieManager cookieManager,
+    ConnectionStateModel connectionState,
+    SocialNetwork network,
+  ) async {
+    final String botUserId = '${network.chatBot}$hostname';
 
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
-    // Success phrases to spot
     final RegExp successMatch = LoginRegex.instagramSuccessMatch;
-    final RegExp alreadySuccessMatch = LoginRegex.instagramAlreadySuccessMatch;
-
-    // Error phrase to spot
-    final RegExp usernameErrorMatch = LoginRegex.instagramUsernameErrorMatch;
-    final RegExp passwordErrorMatch = LoginRegex.instagramPasswordErrorMatch;
-    final RegExp nameOrPasswordErrorMatch =
-        LoginRegex.instagramNameOrPasswordErrorMatch;
-    final RegExp accountNotExistMatch =
-        LoginRegex.instagramAccountNotExistErrorMatch;
-    final RegExp rateLimitErrorMatch = LoginRegex.instagramRateLimitErrorMatch;
-
-    // Code request message for two-factor identification
-    final RegExp twoFactorMatch = LoginRegex.instagramTwoFactorMatch;
+    final RegExp alreadyConnected = LoginRegex.instagramAlreadySuccessMatch;
+    final RegExp pasteCookie = LoginRegex.instagramPasteCookieMatch;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -420,8 +408,7 @@ class BotBridgeConnection {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login $username $password");
+    String result = ""; // Variable to track the result of the connection
 
     await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
@@ -430,15 +417,17 @@ class BotBridgeConnection {
           .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
-    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString = formatCookiesToJsonString(gotCookies);
 
-    String result = ""; // Variable to track the result of the connection
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login");
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
-    // variable for loop limit
+    // Variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
 
-    // Get the latest messages from the room (limited to the specified number)
     while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
@@ -451,10 +440,25 @@ class BotBridgeConnection {
           latestMessages.first.content['body'].toString() ?? '';
 
       if (latestMessages.isNotEmpty) {
-        if (successMatch.hasMatch(latestMessage) ||
-            alreadySuccessMatch.hasMatch(latestMessage)) {
+        if (kDebugMode) {
+          print('latestMessage : $latestMessage');
+        }
+        if (pasteCookie.hasMatch(latestMessage)) {
+          await roomBot?.sendTextEvent(formattedCookieString);
+        } else if (alreadyConnected.hasMatch(latestMessage)) {
+          Logs().v("Already Connected to Instagram");
+          result = "alreadyConnected";
+          break;
+        } else if (successMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Instagram");
 
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle("Récupération des conversations");
+          });
+          await Future.delayed(
+              const Duration(seconds: 10)); // Wait sec for rooms loading
+          await handleNewRoomsSync(context, network);
           result = "success";
 
           Future.microtask(() {
@@ -466,38 +470,15 @@ class BotBridgeConnection {
           });
 
           await Future.delayed(const Duration(seconds: 1)); // Wait sec
+          Future.microtask(() {
+            connectionState.reset();
+          });
 
           break; // Exit the loop once the "login" message has been sent and is success
-        } else if (twoFactorMatch.hasMatch(latestMessage)) {
-          Logs().v("Authenticator two factor demand");
-
-          result = "twoFactorDemand";
-
-          break;
-        } else if (!successMatch.hasMatch(latestMessage) &&
-                usernameErrorMatch.hasMatch(latestMessage) ||
-            nameOrPasswordErrorMatch.hasMatch(latestMessage) ||
-            accountNotExistMatch.hasMatch(latestMessage)) {
-          Logs().v("Login cannot be found");
-
-          result = "errorUsername";
-
-          break;
-        } else if (passwordErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("Password incorrect");
-
-          result = "errorPassword";
-
-          break;
-        } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("rate limit error");
-
-          result = "rateLimitError";
-
-          break;
         }
       }
-      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+
+      await Future.delayed(const Duration(seconds: 3)); // Wait sec
       currentIteration++;
     }
 
@@ -506,10 +487,6 @@ class BotBridgeConnection {
 
       result = 'error';
     }
-
-    Future.microtask(() {
-      connectionState.reset();
-    });
 
     return result;
   }
@@ -662,27 +639,22 @@ class BotBridgeConnection {
 
   //Facebook Messenger
   // Function to login Facebook
-  Future<String> createBridgeFacebook(BuildContext context, String username,
-      String password, ConnectionStateModel connectionState) async {
-    final String botUserId = '@facebookbot:$hostname';
+  Future<String> createBridgeFacebook(
+    BuildContext context,
+    WebviewCookieManager cookieManager,
+    ConnectionStateModel connectionState,
+    SocialNetwork network,
+  ) async {
+    final String botUserId = '${network.chatBot}$hostname';
 
     Future.microtask(() {
       connectionState
           .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
     });
 
-    // Success phrases to spot
-    final RegExp sendPassword = LoginRegex.facebookSendPasswordMatch;
-
-    // Code request message for two-factor identification
-    final RegExp twoFactorMatch = LoginRegex.facebookTwoFactorMatch;
-
-    // Error phrases to spot
-    final RegExp nameOrPasswordErrorMatch =
-        LoginRegex.facebookNameOrPasswordErrorMatch;
-    final RegExp rateLimitErrorMatch = LoginRegex.facebookRateLimitErrorMatch;
-
+    final RegExp successMatch = LoginRegex.facebookSuccessMatch;
     final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
+    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
 
     // Add a direct chat with the Instagram bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
@@ -699,16 +671,16 @@ class BotBridgeConnection {
           .updateConnectionTitle(L10n.of(context)!.loadingVerification);
     });
 
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString = formatCookiesToJsonString(gotCookies);
+
     // Send the "login" message to the bot
-    await roomBot?.sendTextEvent("login $username");
+    await roomBot?.sendTextEvent("login");
     await Future.delayed(const Duration(seconds: 5)); // Wait sec
 
     // Variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
-
-    // Flag to track whether the password has been sent
-    bool passwordSent = false;
 
     while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -722,54 +694,42 @@ class BotBridgeConnection {
           latestMessages.first.content['body'].toString() ?? '';
 
       if (latestMessages.isNotEmpty) {
-        if (sendPassword.hasMatch(latestMessage) && !passwordSent) {
-          Logs().v("Enter Password");
-
-          // Send the password message to the bot
-          await roomBot?.sendTextEvent(password);
-
-          Future.microtask(() {
-            connectionState.updateConnectionTitle(
-                L10n.of(context)!.loadingVerificationCode);
-          });
-
-          await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-
-          // Set the flag to true after sending the password
-          passwordSent = true;
+        if (kDebugMode) {
+          print('latestMessage : $latestMessage');
+        }
+        if (pasteCookie.hasMatch(latestMessage)) {
+          await roomBot?.sendTextEvent(formattedCookieString);
         } else if (alreadyConnected.hasMatch(latestMessage)) {
           Logs().v("Already Connected to Facebook");
-          // Set the result to "twoFactorDemand"
           result = "alreadyConnected";
           break;
-        }
+        } else if (successMatch.hasMatch(latestMessage)) {
+          Logs().v("You're logged to Messenger");
 
-        // Continue handling other cases...
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle("Récupération des conversations");
+          });
+          await Future.delayed(
+              const Duration(seconds: 10)); // Wait sec for rooms loading
+          await handleNewRoomsSync(context, network);
 
-        if (twoFactorMatch.hasMatch(latestMessage)) {
-          Logs().v("Authenticator two-factor demand");
+          result = "success";
 
-          // Set the result to "twoFactorDemand"
-          result = "twoFactorDemand";
+          Future.microtask(() {
+            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          });
 
-          // Exit the loop
-          break;
-        } else if (nameOrPasswordErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("Incorrect username or password");
+          Future.microtask(() {
+            connectionState.updateLoading(false);
+          });
 
-          // Set the result to "errorNameOrPassword"
-          result = "errorNameOrPassword";
+          await Future.delayed(const Duration(seconds: 1)); // Wait sec
+          Future.microtask(() {
+            connectionState.reset();
+          });
 
-          // Exit the loop
-          break;
-        } else if (rateLimitErrorMatch.hasMatch(latestMessage)) {
-          Logs().v("Rate limit error");
-
-          // Set the result to "rateLimitError"
-          result = "rateLimitError";
-
-          // Exit the loop
-          break;
+          break; // Exit the loop once the "login" message has been sent and is success
         }
       }
 
@@ -840,6 +800,53 @@ class BotBridgeConnection {
     } catch (error) {
       Logs().v("Error pinging: $error");
       rethrow;
+    }
+  }
+
+  String formatCookiesToJsonString(List<io.Cookie> cookies) {
+    Map<String, String> formattedCookies = {};
+
+    for (var cookie in cookies) {
+      String decodedValue = Uri.decodeComponent(cookie.value);
+      formattedCookies[cookie.name] = decodedValue;
+    }
+
+    return json.encode(formattedCookies);
+  }
+
+  // Function to manage the synchronization of new rooms from the Matrix server
+  Future<void> handleNewRoomsSync(
+      BuildContext context, SocialNetwork network) async {
+    // Retrieve newly added rooms from the Matrix server
+    final List<Room> newRooms = client.rooms;
+
+    // Iterating on new rooms
+    for (final Room newRoom in newRooms) {
+      acceptInvitation(newRoom, context);
+    }
+  }
+
+  // Create a set to keep track of invitations already processed
+  Set<String> acceptedInvitations = Set();
+
+// Function to accept an invitation to a conversation
+  void acceptInvitation(Room room, BuildContext context) async {
+    try {
+      // Check if the invitation has already been processed
+      if (!acceptedInvitations.contains(room.id)) {
+        // Mark the invitation as processed by adding it to the set of accepted invitations
+        acceptedInvitations.add(room.id);
+
+        // Accept invitation
+        final waitForRoom = room.client.waitForRoomInSync(
+          room.id,
+          join: true,
+        );
+        await room.join();
+        await waitForRoom;
+      }
+    } catch (e) {
+      print("error: $e");
     }
   }
 }

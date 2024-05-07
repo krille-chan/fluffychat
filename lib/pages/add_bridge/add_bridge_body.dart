@@ -6,6 +6,7 @@ import 'package:tawkie/pages/add_bridge/service/bot_bridge_connection.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:tawkie/pages/add_bridge/success_message.dart';
+import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
 import 'package:tawkie/widgets/matrix.dart';
@@ -198,11 +199,28 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
         bool success = false;
         switch (network.name) {
           case "Instagram":
-            // Trying to connect to Instagram
-            success = await connectWithTwoFields(
+            // Navigate to WebViewConnection and provide callback function
+            Navigator.push(
               context,
-              network,
-              botConnection,
+              MaterialPageRoute(
+                builder: (context) => WebViewConnection(
+                  botBridgeConnection: botConnection,
+                  network: network,
+                  onConnectionResult: (bool success) {
+                    if (success) {
+                      setState(() {
+                        network.connected = true;
+                      });
+                      showCatchSuccessDialog(context,
+                          "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
+                    } else {
+                      // Handle connection failure
+                      showCatchErrorDialog(context,
+                          "${L10n.of(context)!.errToConnect} ${network.name}");
+                    }
+                  },
+                ),
+              ),
             );
             break;
           case "WhatsApp":
@@ -211,10 +229,28 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
             break;
           case "Facebook Messenger":
             // Trying to connect
-            success = await connectWithTwoFields(
+            // Navigate to WebViewConnection and provide callback function
+            Navigator.push(
               context,
-              network,
-              botConnection,
+              MaterialPageRoute(
+                builder: (context) => WebViewConnection(
+                  botBridgeConnection: botConnection,
+                  network: network,
+                  onConnectionResult: (bool success) {
+                    if (success) {
+                      setState(() {
+                        network.connected = true;
+                      });
+                      showCatchSuccessDialog(context,
+                          "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
+                    } else {
+                      // Handle connection failure
+                      showCatchErrorDialog(context,
+                          "${L10n.of(context)!.errToConnect} ${network.name}");
+                    }
+                  },
+                ),
+              ),
             );
             break;
 
