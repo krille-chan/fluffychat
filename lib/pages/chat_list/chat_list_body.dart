@@ -87,6 +87,7 @@ class ChatListViewBody extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
+                      /*
                       if (controller.isSearchMode) ...[
                         SearchTitle(
                           title: L10n.of(context)!.publicRooms,
@@ -167,6 +168,7 @@ class ChatListViewBody extends StatelessWidget {
                           title: L10n.of(context)!.chats,
                           icon: const Icon(Icons.forum_outlined),
                         ),
+                      */
                       if (client.prevBatch != null &&
                           rooms.isEmpty &&
                           !controller.isSearchMode) ...[
