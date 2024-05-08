@@ -258,8 +258,11 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                     ),
               const SizedBox(height: 10),
               Text(
-                L10n.of(context)!.usernameChangeUsername,
+                widget.queueStatus['userState'] == 'IN_QUEUE'
+                  ? L10n.of(context)!.usernameInQueueChangeUsername
+                  : L10n.of(context)!.usernameChangeUsername,
                 style: const TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20),
               TextFormField(
@@ -286,9 +289,16 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _isLoading() ? null : _onSubmitButtonPressed,
-                child: _loadingUpdateUsername ? const LinearProgressIndicator() : Text(L10n.of(context)!.submit),
+                child: _loadingUpdateUsername ? const LinearProgressIndicator() : Text(L10n.of(context)!.usernameSubmit),
               ),
               const SizedBox(height: 50),
+              isUsernameSet()
+                  ? Text(
+                      _isAccepted()
+                          ? L10n.of(context)!.usernameUsernameImmutable
+                          : L10n.of(context)!.usernameWaitingForAcceptance,
+                    )
+                  : Container(),
               isUsernameSet() && _isAccepted()
                   ? ElevatedButton(
                       onPressed: _isLoading() ? null : _onNextButtonPressed,
