@@ -763,7 +763,7 @@ class ChatController extends State<ChatPageWithRoom>
         );
       }
       for (final event in selectedEvents) {
-        await event.remove();
+        await event.cancelSend();
       }
       setState(selectedEvents.clear);
     } catch (e, s) {
@@ -813,7 +813,7 @@ class ChatController extends State<ChatPageWithRoom>
               );
             }
           } else {
-            await event.remove();
+            await event.cancelSend();
           }
         },
       );
