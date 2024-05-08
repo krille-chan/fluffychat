@@ -114,6 +114,14 @@ abstract class AppRoutes {
     ),
     // #Pangea
     GoRoute(
+      path: '/join_with_link',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        const JoinClassWithLink(),
+      ),
+    ),
+    GoRoute(
       path: '/user_age',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
@@ -151,15 +159,6 @@ abstract class AppRoutes {
             ChatDetails(
               roomId: state.pathParameters['roomid']!,
             ),
-          ),
-          redirect: loggedOutRedirect,
-        ),
-        GoRoute(
-          path: '/join_with_link',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            const JoinClassWithLink(),
           ),
           redirect: loggedOutRedirect,
         ),

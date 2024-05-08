@@ -1,7 +1,6 @@
 import 'package:fluffychat/pangea/constants/url_query_parameter_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
-import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +27,7 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration.zero, () async {
       classCode = GoRouterState.of(context)
           .uri
           .queryParameters[UrlQueryParameterKeys.classCode];
@@ -42,35 +41,32 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
       }
 
       if (!Matrix.of(context).client.isLogged()) {
-        return ClassCodeUtil.messageDialog(
-            context, L10n.of(context)!.pleaseLoginFirst, () async {
-          await _pangeaController.pStoreService.save(
-            PLocalKey.cachedClassCodeToJoin,
-            classCode,
-            addClientIdToKey: false,
-            local: true,
-          );
-          context.go("/home");
-        });
+        await _pangeaController.pStoreService.save(
+          PLocalKey.cachedClassCodeToJoin,
+          classCode,
+          addClientIdToKey: false,
+          local: true,
+        );
+        context.go("/home");
+        return;
       }
 
       _pangeaController.classController
           .joinClasswithCode(
-            context,
-            classCode!,
-          )
-          .onError(
-            (error, stackTrace) => ClassCodeUtil.messageSnack(
-              context,
-              ErrorCopy(context, error).body,
-            ),
-          )
-          .whenComplete(
-            () => context.go("/rooms"),
-          );
+        context,
+        classCode!,
+      )
+          .onError((error, stackTrace) {
+        ClassCodeUtil.messageSnack(
+          context,
+          ErrorCopy(context, error).body,
+        );
+      }).whenComplete(
+        () => context.go("/rooms"),
+      );
     });
   }
 
   @override
-  Widget build(BuildContext context) => const EmptyPage();
+  Widget build(BuildContext context) => const SizedBox();
 }
