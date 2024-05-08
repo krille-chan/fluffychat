@@ -51,7 +51,6 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
     if (repEvent == null && mounted) {
       repEvent = await widget.messageEvent.representationByLanguageGlobal(
-        context: context,
         langCode: langCode,
       );
     }
