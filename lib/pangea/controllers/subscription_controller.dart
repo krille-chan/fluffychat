@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/models/mobile_subscriptions.dart';
+import 'package:fluffychat/pangea/models/user_model.dart';
 import 'package:fluffychat/pangea/models/web_subscriptions.dart';
 import 'package:fluffychat/pangea/network/requests.dart';
 import 'package:fluffychat/pangea/network/urls.dart';
@@ -95,9 +96,13 @@ class SubscriptionController extends BaseController {
       } else {
         final bool? beganWebPayment = _pangeaController.pStoreService.read(
           PLocalKey.beganWebPayment,
+          local: true,
         );
         if (beganWebPayment ?? false) {
-          _pangeaController.pStoreService.delete(PLocalKey.beganWebPayment);
+          await _pangeaController.pStoreService.delete(
+            PLocalKey.beganWebPayment,
+            local: true,
+          );
           if (_pangeaController.subscriptionController.isSubscribed) {
             subscriptionStream.add(true);
           }
@@ -133,9 +138,10 @@ class SubscriptionController extends BaseController {
           selectedSubscription.duration!,
           isPromo: isPromo,
         );
-        _pangeaController.pStoreService.save(
+        await _pangeaController.pStoreService.save(
           PLocalKey.beganWebPayment,
           true,
+          local: true,
         );
         setState();
         launchUrlString(
@@ -177,12 +183,18 @@ class SubscriptionController extends BaseController {
 
   bool get _activatedNewUserTrial =>
       _pangeaController.userController.inTrialWindow &&
-      (_pangeaController.pStoreService.read(PLocalKey.activatedTrialKey) ??
+      (_pangeaController.pStoreService.read(
+            MatrixProfile.activatedFreeTrial.title,
+          ) ??
           false);
 
   void activateNewUserTrial() {
-    _pangeaController.pStoreService.save(PLocalKey.activatedTrialKey, true);
-    setNewUserTrial();
+    _pangeaController.pStoreService
+        .save(
+          MatrixProfile.activatedFreeTrial.title,
+          true,
+        )
+        .then((_) => setNewUserTrial());
   }
 
   void setNewUserTrial() {
@@ -226,6 +238,7 @@ class SubscriptionController extends BaseController {
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = _pangeaController.pStoreService.read(
       PLocalKey.dismissedPaywall,
+      local: true,
     );
     if (lastDismissed == null) return null;
     return DateTime.tryParse(lastDismissed);
@@ -234,6 +247,7 @@ class SubscriptionController extends BaseController {
   int? get _paywallBackoff {
     final backoff = _pangeaController.pStoreService.read(
       PLocalKey.paywallBackoff,
+      local: true,
     );
     if (backoff == null) return null;
     return backoff;
@@ -247,18 +261,24 @@ class SubscriptionController extends BaseController {
                 (24 * (_paywallBackoff ?? 1)));
   }
 
-  void dismissPaywall() {
-    _pangeaController.pStoreService.save(
+  void dismissPaywall() async {
+    await _pangeaController.pStoreService.save(
       PLocalKey.dismissedPaywall,
       DateTime.now().toString(),
+      local: true,
     );
 
     if (_paywallBackoff == null) {
-      _pangeaController.pStoreService.save(PLocalKey.paywallBackoff, 1);
+      await _pangeaController.pStoreService.save(
+        PLocalKey.paywallBackoff,
+        1,
+        local: true,
+      );
     } else {
-      _pangeaController.pStoreService.save(
+      await _pangeaController.pStoreService.save(
         PLocalKey.paywallBackoff,
         _paywallBackoff! + 1,
+        local: true,
       );
     }
   }

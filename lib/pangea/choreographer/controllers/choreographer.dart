@@ -75,7 +75,7 @@ class Choreographer {
       OverlayUtil.showPositionedCard(
         context: context,
         cardToShow: const PaywallCard(),
-        cardSize: const Size(325, 375),
+        cardSize: const Size(325, 325),
         transformTargetId: inputTransformTargetKey,
       );
       return;

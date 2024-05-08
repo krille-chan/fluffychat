@@ -37,7 +37,10 @@ class PangeaRichText extends StatefulWidget {
 class PangeaRichTextState extends State<PangeaRichText> {
   final PangeaController pangeaController = MatrixState.pangeaController;
   bool _fetchingRepresentation = false;
-  double get blur => _fetchingRepresentation && widget.immersionMode ? 5 : 0;
+  double get blur => (_fetchingRepresentation && widget.immersionMode) ||
+          !pangeaController.languageController.languagesSet
+      ? 5
+      : 0;
   String textSpan = "";
   PangeaRepresentation? repEvent;
 

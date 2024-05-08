@@ -11,6 +11,7 @@ class LanguageModel {
   final String langCode;
   final String languageFlag;
   final String displayName;
+  final String? languageEmoji;
   final bool l2;
   final bool l1;
 
@@ -20,6 +21,7 @@ class LanguageModel {
     required this.displayName,
     required this.l2,
     required this.l1,
+    this.languageEmoji,
   });
 
   factory LanguageModel.fromJson(json) {
@@ -37,6 +39,7 @@ class LanguageModel {
       ),
       l2: json["l2"] ?? code.contains("es") || code.contains("en"),
       l1: json["l1"] ?? !code.contains("es") && !code.contains("en"),
+      languageEmoji: json['language_emoji'],
     );
   }
 
@@ -46,6 +49,7 @@ class LanguageModel {
         'language_flag': languageFlag,
         'l2': l2,
         'l1': l1,
+        'language_emoji': languageEmoji,
       };
 
   // Discuss with Jordan - adding langCode field to language objects as separate from displayName
@@ -81,6 +85,7 @@ class LanguageModel {
         l1: false,
         langCode: LanguageKeys.multiLanguage,
         languageFlag: 'assets/colors.png',
+        languageEmoji: "🌎",
       );
 
   // Discuss with Jordan

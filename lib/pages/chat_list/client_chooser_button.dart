@@ -297,22 +297,21 @@ class ClientChooserButton extends StatelessWidget {
           //   onKeysPressed: () => _previousAccount(matrix, context),
           //   child: const SizedBox.shrink(),
           // ),
-          // Pangea#
-          PopupMenuButton<Object>(
-            onSelected: (o) => _clientSelected(o, context),
-            itemBuilder: _bundleMenuItems,
-            // #Pangea
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
             child: Material(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12),
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: ListTile(
-                tileColor: Theme.of(context).scaffoldBackgroundColor,
-                hoverColor: Theme.of(context).colorScheme.onSurfaceVariant,
-                leading: const Icon(Icons.settings_outlined),
-                title: Text(L10n.of(context)!.mainMenu),
+              color: Colors.transparent,
+              child:
+                  // Pangea#
+                  PopupMenuButton<Object>(
+                onSelected: (o) => _clientSelected(o, context),
+                itemBuilder: _bundleMenuItems,
+                // #Pangea
+                child: ListTile(
+                  mouseCursor: SystemMouseCursors.click,
+                  leading: const Icon(Icons.settings_outlined),
+                  title: Text(L10n.of(context)!.mainMenu),
+                ),
               ),
             ),
             // child: Material(

@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/pangea/constants/url_query_parameter_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../widgets/matrix.dart';
 import '../../constants/local.key.dart';
 import '../../utils/error_handler.dart';
@@ -49,6 +48,7 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
             PLocalKey.cachedClassCodeToJoin,
             classCode,
             addClientIdToKey: false,
+            local: true,
           );
           context.go("/home");
         });

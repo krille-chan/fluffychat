@@ -59,6 +59,7 @@ class SettingsLearningView extends StatelessWidget {
                   title: setting.toolName(context),
                   subtitle: setting.toolDescription(context),
                   pStoreKey: setting.toString(),
+                  local: false,
                 ),
               PSettingsSwitchListTile.adaptive(
                 defaultValue: controller.pangeaController.pStoreService.read(
@@ -68,6 +69,7 @@ class SettingsLearningView extends StatelessWidget {
                 title: L10n.of(context)!.autoPlayTitle,
                 subtitle: L10n.of(context)!.autoPlayDesc,
                 pStoreKey: PLocalKey.autoPlayMessages,
+                local: false,
               ),
             ],
           ),
