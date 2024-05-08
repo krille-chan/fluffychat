@@ -51,6 +51,7 @@ class PApiUrls {
   static String subseqStep = "/it_step";
 
   static String textToSpeech = "${Environment.choreoApi}/text_to_speech";
+  static String speechToText = "${Environment.choreoApi}/speech_to_text";
 
   ///-------------------------------- revenue cat --------------------------
   static String rcApiV1 = "https://api.revenuecat.com/v1";

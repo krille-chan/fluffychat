@@ -1,8 +1,8 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/enum/use_type.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/language_model.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -168,7 +168,8 @@ class Message extends StatelessWidget {
     ToolbarDisplayController? toolbarController;
     if (event.type == EventTypes.Message &&
             event.messageType == MessageTypes.Text ||
-        event.messageType == MessageTypes.Notice) {
+        event.messageType == MessageTypes.Notice ||
+        event.messageType == MessageTypes.Audio) {
       toolbarController = controller.getToolbarDisplayController(
         event.eventId,
         nextEvent: nextEvent,

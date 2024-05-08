@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/bot_style.dart';
-import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+import '../../enum/message_mode_enum.dart';
 
 class MessageUnsubscribedCard extends StatelessWidget {
   final String languageTool;
@@ -35,34 +36,31 @@ class MessageUnsubscribedCard extends StatelessWidget {
       }
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      child: Column(
-        children: [
-          Text(
-            style: BotStyle.text(context),
-            "${L10n.of(context)!.subscribedToUnlockTools} $languageTool",
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: TextButton(
-              onPressed: onButtonPress,
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  (AppConfig.primaryColor).withOpacity(0.1),
-                ),
-              ),
-              child: Text(
-                inTrialWindow
-                    ? L10n.of(context)!.activateTrial
-                    : L10n.of(context)!.getAccess,
+    return Column(
+      children: [
+        Text(
+          style: BotStyle.text(context),
+          "${L10n.of(context)!.subscribedToUnlockTools} $languageTool",
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          width: double.infinity,
+          child: TextButton(
+            onPressed: onButtonPress,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                (AppConfig.primaryColor).withOpacity(0.1),
               ),
             ),
+            child: Text(
+              inTrialWindow
+                  ? L10n.of(context)!.activateTrial
+                  : L10n.of(context)!.getAccess,
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

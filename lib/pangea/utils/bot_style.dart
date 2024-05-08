@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:flutter/material.dart';
 
 class BotStyle {
   static TextStyle text(
@@ -25,6 +24,7 @@ class BotStyle {
                 ? AppConfig.primaryColorLight
                 : AppConfig.primaryColor
             : null,
+        inherit: true,
       );
 
       return existingStyle?.merge(botStyle) ?? botStyle;

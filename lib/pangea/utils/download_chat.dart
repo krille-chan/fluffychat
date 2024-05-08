@@ -16,7 +16,7 @@ import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:universal_html/html.dart' as webFile;
 
 import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../models/choreo_record.dart';
 

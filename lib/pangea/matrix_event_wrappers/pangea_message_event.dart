@@ -3,12 +3,15 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/models/message_data_models.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/models/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +58,8 @@ class PangeaMessageEvent {
   String get eventId => _event.eventId;
 
   Room get room => _event.room;
+
+  bool get isAudioMessage => _event.messageType == MessageTypes.Audio;
 
   Event? _latestEditCache;
   Event get _latestEdit => _latestEditCache ??= _event
@@ -153,7 +158,7 @@ class PangeaMessageEvent {
       },
     );
 
-    debugPrint("eventId in getAudioGlobal $eventId");
+    debugPrint("eventId in getTextToSpeechGlobal $eventId");
     final Event? audioEvent =
         eventId != null ? await room.getEventById(eventId) : null;
 
@@ -167,10 +172,10 @@ class PangeaMessageEvent {
   //get audio for text and language
   //if no audio exists, create it
   //if audio exists, return it
-  Future<Event?> getAudioGlobal(String langCode) async {
+  Future<Event?> getTextToSpeechGlobal(String langCode) async {
     final String text = representationByLanguage(langCode)?.text ?? body;
 
-    final local = getAudioLocal(langCode, text);
+    final local = getTextToSpeechLocal(langCode, text);
 
     if (local != null) return Future.value(local);
 
@@ -228,16 +233,16 @@ class PangeaMessageEvent {
     // .timeout(
     //   Durations.long4,
     //   onTimeout: () {
-    //     debugPrint("timeout in getAudioGlobal");
+    //     debugPrint("timeout in getTextToSpeechGlobal");
     //     return null;
     //   },
     // );
 
-    debugPrint("eventId in getAudioGlobal $eventId");
+    debugPrint("eventId in getTextToSpeechGlobal $eventId");
     return eventId != null ? room.getEventById(eventId) : null;
   }
 
-  Event? getAudioLocal(String langCode, String text) {
+  Event? getTextToSpeechLocal(String langCode, String text) {
     return allAudio.firstWhereOrNull(
       (element) {
         // Safely access the transcription map
@@ -271,6 +276,78 @@ class PangeaMessageEvent {
             ) !=
             null;
       }).toSet();
+
+  Future<SpeechToTextModel?> getSpeechToText(
+    String l1Code,
+    String l2Code,
+  ) async {
+    if (!isAudioMessage) {
+      ErrorHandler.logError(
+        e: 'Calling getSpeechToText on non-audio message',
+        s: StackTrace.current,
+        data: {
+          "content": _event.content,
+          "eventId": _event.eventId,
+          "roomId": _event.roomId,
+          "userId": _event.room.client.userID,
+          "account_data": _event.room.client.accountData,
+        },
+      );
+      return null;
+    }
+
+    final SpeechToTextModel? speechToTextLocal = representations
+        .firstWhereOrNull(
+          (element) => element.content.speechToText != null,
+        )
+        ?.content
+        .speechToText;
+
+    if (speechToTextLocal != null) return speechToTextLocal;
+
+    final matrixFile = await _event.downloadAndDecryptAttachment();
+    // Pangea#
+    // File? file;
+
+    // TODO: Test on mobile and see if we need this case, doeesn't seem so
+    // if (!kIsWeb) {
+    //   final tempDir = await getTemporaryDirectory();
+    //   final fileName = Uri.encodeComponent(
+    //     // #Pangea
+    //     // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+    //     widget.messageEvent.event
+    //         .attachmentOrThumbnailMxcUrl()!
+    //         .pathSegments
+    //         .last,
+    //     // Pangea#
+    //   );
+    //   file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+    //   await file.writeAsBytes(matrixFile.bytes);
+    // }
+
+    // audioFile = file;
+
+    debugPrint("mimeType ${matrixFile.mimeType}");
+    debugPrint("encoding ${mimeTypeToAudioEncoding(matrixFile.mimeType)}");
+
+    final SpeechToTextModel response =
+        await MatrixState.pangeaController.speechToText.get(
+      SpeechToTextRequestModel(
+        audioContent: matrixFile.bytes,
+        audioEvent: _event,
+        config: SpeechToTextAudioConfigModel(
+          encoding: mimeTypeToAudioEncoding(matrixFile.mimeType),
+          //this is the default in the RecordConfig in record package
+          //TODO: check if this is the correct value and make it a constant somewhere
+          sampleRateHertz: 22050,
+          userL1: l1Code,
+          userL2: l2Code,
+        ),
+      ),
+    );
+
+    return response;
+  }
 
   List<RepresentationEvent>? _representations;
   List<RepresentationEvent> get representations {
@@ -444,6 +521,8 @@ class PangeaMessageEvent {
           ),
         );
       },
+    ).onError(
+      (error, stackTrace) => ErrorHandler.logError(e: error, s: stackTrace),
     );
 
     return pangeaRep;
@@ -469,6 +548,7 @@ class PangeaMessageEvent {
       _event.room.isSpaceAdmin &&
       _event.senderId != BotName.byEnvironment &&
       !room.isUserSpaceAdmin(_event.senderId) &&
+      _event.messageType != PangeaEventTypes.report &&
       _event.messageType == MessageTypes.Text;
 
   String get messageDisplayLangCode {

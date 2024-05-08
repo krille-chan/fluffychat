@@ -1,24 +1,26 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/overlay.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_audio_card.dart';
+import 'package:fluffychat/pangea/widgets/chat/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_text_selection.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
-
-enum MessageMode { translation, play, definition }
 
 class ToolbarDisplayController {
   final PangeaMessageEvent pangeaMessageEvent;
@@ -96,6 +98,7 @@ class ToolbarDisplayController {
           ],
         );
       } catch (err) {
+        debugger(when: kDebugMode);
         ErrorHandler.logError(e: err, s: StackTrace.current);
         return;
       }
@@ -153,52 +156,11 @@ class MessageToolbar extends StatefulWidget {
 }
 
 class MessageToolbarState extends State<MessageToolbar> {
-  Widget? child;
+  Widget? toolbarContent;
   MessageMode? currentMode;
   bool updatingMode = false;
   late StreamSubscription<String?> selectionStream;
   late StreamSubscription<MessageMode> toolbarModeStream;
-
-  IconData getIconData(MessageMode mode) {
-    switch (mode) {
-      case MessageMode.translation:
-        return Icons.g_translate;
-      case MessageMode.play:
-        return Icons.play_arrow;
-      case MessageMode.definition:
-        return Icons.book;
-      default:
-        return Icons.error; // Icon to indicate an error or unsupported mode
-    }
-  }
-
-  String getModeTitle(MessageMode mode) {
-    switch (mode) {
-      case MessageMode.translation:
-        return L10n.of(context)!.translations;
-      case MessageMode.play:
-        return L10n.of(context)!.messageAudio;
-      case MessageMode.definition:
-        return L10n.of(context)!.definitions;
-      default:
-        return L10n.of(context)!
-            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
-    }
-  }
-
-  String getModeTooltip(MessageMode mode) {
-    switch (mode) {
-      case MessageMode.translation:
-        return L10n.of(context)!.translationTooltip;
-      case MessageMode.play:
-        return L10n.of(context)!.audioTooltip;
-      case MessageMode.definition:
-        return L10n.of(context)!.define;
-      default:
-        return L10n.of(context)!
-            .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
-    }
-  }
 
   void updateMode(MessageMode newMode) {
     if (updatingMode) return;
@@ -210,8 +172,8 @@ class MessageToolbarState extends State<MessageToolbar> {
       updatingMode = true;
     });
     if (!subscribed) {
-      child = MessageUnsubscribedCard(
-        languageTool: getModeTitle(newMode),
+      toolbarContent = MessageUnsubscribedCard(
+        languageTool: newMode.title(context),
         mode: newMode,
         toolbarModeStream: widget.toolbarModeStream,
       );
@@ -220,13 +182,21 @@ class MessageToolbarState extends State<MessageToolbar> {
         case MessageMode.translation:
           showTranslation();
           break;
-        case MessageMode.play:
-          playAudio();
+        case MessageMode.textToSpeech:
+          showTextToSpeech();
+          break;
+        case MessageMode.speechToText:
+          showSpeechToText();
           break;
         case MessageMode.definition:
           showDefinition();
           break;
         default:
+          ErrorHandler.logError(
+            e: "Invalid toolbar mode",
+            s: StackTrace.current,
+            data: {"newMode": newMode},
+          );
           break;
       }
     }
@@ -237,28 +207,36 @@ class MessageToolbarState extends State<MessageToolbar> {
 
   void showTranslation() {
     debugPrint("show translation");
-    child = MessageTranslationCard(
+    toolbarContent = MessageTranslationCard(
       messageEvent: widget.pangeaMessageEvent,
       immersionMode: widget.immersionMode,
       selection: widget.textSelection,
     );
   }
 
-  void playAudio() {
-    debugPrint("play audio");
-    child = MessageAudioCard(
+  void showTextToSpeech() {
+    debugPrint("show text to speech");
+    toolbarContent = MessageAudioCard(
+      messageEvent: widget.pangeaMessageEvent,
+    );
+  }
+
+  void showSpeechToText() {
+    debugPrint("show speech to text");
+    toolbarContent = MessageSpeechToTextCard(
       messageEvent: widget.pangeaMessageEvent,
     );
   }
 
   void showDefinition() {
+    debugPrint("show definition");
     if (widget.textSelection.selectedText == null ||
         widget.textSelection.selectedText!.isEmpty) {
-      child = const SelectToDefine();
+      toolbarContent = const SelectToDefine();
       return;
     }
 
-    child = WordDataCard(
+    toolbarContent = WordDataCard(
       word: widget.textSelection.selectedText!,
       wordLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       fullText: widget.textSelection.messageText,
@@ -292,7 +270,11 @@ class MessageToolbarState extends State<MessageToolbar> {
           ) ??
           true;
       autoplay
-          ? updateMode(MessageMode.play)
+          ? updateMode(
+              widget.pangeaMessageEvent.isAudioMessage
+                  ? MessageMode.speechToText
+                  : MessageMode.textToSpeech,
+            )
           : updateMode(MessageMode.translation);
     });
 
@@ -350,8 +332,11 @@ class MessageToolbarState extends State<MessageToolbar> {
                   duration: FluffyThemes.animationDuration,
                   child: Column(
                     children: [
-                      child ?? const SizedBox(),
-                      SizedBox(height: child == null ? 0 : 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: toolbarContent ?? const SizedBox(),
+                      ),
+                      SizedBox(height: toolbarContent == null ? 0 : 20),
                     ],
                   ),
                 ),
@@ -360,10 +345,19 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
+                    if ([MessageMode.definition, MessageMode.textToSpeech, MessageMode.translation]
+                            .contains(mode) &&
+                        widget.pangeaMessageEvent.isAudioMessage) {
+                      return const SizedBox.shrink();
+                    }
+                    if (mode == MessageMode.speechToText &&
+                        !widget.pangeaMessageEvent.isAudioMessage) {
+                      return const SizedBox.shrink();
+                    }
                     return Tooltip(
-                      message: getModeTooltip(mode),
+                      message: mode.tooltip(context),
                       child: IconButton(
-                        icon: Icon(getIconData(mode)),
+                        icon: Icon(mode.icon),
                         color: currentMode == mode
                             ? Theme.of(context).colorScheme.primary
                             : null,

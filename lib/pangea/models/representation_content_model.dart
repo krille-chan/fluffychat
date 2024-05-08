@@ -1,8 +1,7 @@
-import 'dart:convert';
-
+import 'package:fluffychat/pangea/constants/language_keys.dart';
+import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 
 /// this class is contained within a [RepresentationEvent]
 /// this event is the child of a [EventTypes.Message]
@@ -21,6 +20,9 @@ class PangeaRepresentation {
 
   bool originalSent;
   bool originalWritten;
+
+  // a representation can be create via speech to text on the original message
+  SpeechToTextModel? speechToText;
 
   // how do we know which representation was sent by author?
   // RepresentationEvent.text == PangeaMessageEvent.event.body
@@ -49,20 +51,33 @@ class PangeaRepresentation {
     required this.text,
     required this.originalSent,
     required this.originalWritten,
+    this.speechToText,
   });
 
-  factory PangeaRepresentation.fromJson(Map<String, dynamic> json) =>
-      PangeaRepresentation(
-        langCode: json[_langCodeKey],
-        text: json[_textKey],
-        originalSent: json[_originalSentKey] ?? false,
-        originalWritten: json[_originalWrittenKey] ?? false,
+  factory PangeaRepresentation.fromJson(Map<String, dynamic> json) {
+    if (json[_langCodeKey] == LanguageKeys.unknownLanguage) {
+      ErrorHandler.logError(
+        e: Exception("Language code cannot be 'unk'"),
+        s: StackTrace.current,
+        data: {"rep_content": json},
       );
+    }
+    return PangeaRepresentation(
+      langCode: json[_langCodeKey],
+      text: json[_textKey],
+      originalSent: json[_originalSentKey] ?? false,
+      originalWritten: json[_originalWrittenKey] ?? false,
+      speechToText: json[_speechToTextKey] == null
+          ? null
+          : SpeechToTextModel.fromJson(json[_speechToTextKey]),
+    );
+  }
 
   static const _textKey = "txt";
   static const _langCodeKey = "lang";
   static const _originalSentKey = "snt";
   static const _originalWrittenKey = "wrttn";
+  static const _speechToTextKey = "stt";
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -70,35 +85,9 @@ class PangeaRepresentation {
     data[_langCodeKey] = langCode;
     if (originalSent) data[_originalSentKey] = originalSent;
     if (originalWritten) data[_originalWrittenKey] = originalWritten;
-    return data;
-  }
-}
-
-/// this class lives within a [PangeaTokensEvent]
-/// it always has a [RepresentationEvent] parent
-/// These live as separate event so that anyone can add and edit tokens to
-/// representation
-class PangeaMessageTokens {
-  List<PangeaToken> tokens;
-
-  PangeaMessageTokens({
-    required this.tokens,
-  });
-
-  factory PangeaMessageTokens.fromJson(Map<String, dynamic> json) {
-    return PangeaMessageTokens(
-      tokens: (jsonDecode(json[_tokensKey] ?? "[]") as Iterable)
-          .map((e) => PangeaToken.fromJson(e))
-          .toList()
-          .cast<PangeaToken>(),
-    );
-  }
-
-  static const _tokensKey = "tkns";
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data[_tokensKey] = jsonEncode(tokens.map((e) => e.toJson()).toList());
+    if (speechToText != null) {
+      data[_speechToTextKey] = speechToText!.toJson();
+    }
     return data;
   }
 }

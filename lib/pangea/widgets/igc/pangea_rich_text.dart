@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/models/message_data_models.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/utils/instructions.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
@@ -14,6 +14,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../enum/message_mode_enum.dart';
 import '../../models/pangea_match_model.dart';
 
 class PangeaRichText extends StatefulWidget {
@@ -88,7 +89,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
           .representationByLanguageGlobal(
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           )
-          .onError((error, stackTrace) => ErrorHandler.logError())
+          .onError(
+            (error, stackTrace) =>
+                ErrorHandler.logError(e: error, s: stackTrace),
+          )
           .then((event) {
         repEvent = event;
         widget.toolbarController?.toolbar?.textSelection.setMessageText(
@@ -159,7 +163,7 @@ class PangeaRichTextState extends State<PangeaRichText> {
                   ),
                   onListen: () => widget.toolbarController?.showToolbar(
                     context,
-                    mode: MessageMode.play,
+                    mode: MessageMode.textToSpeech,
                   ),
                 ),
       TextSpan(

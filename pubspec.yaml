@@ -56,7 +56,7 @@ dependencies:
     git: https://github.com/krille-chan/flutter_shortcuts.git
   flutter_typeahead: ^5.2.0
   flutter_web_auth_2: ^3.1.1
-  flutter_webrtc: ^0.9.46
+  flutter_webrtc: ^0.10.3
   future_loading_dialog: ^0.3.0
   geolocator: ^7.6.2
   go_router: ^13.2.2
@@ -82,7 +82,7 @@ dependencies:
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner: ^1.0.1
-  receive_sharing_intent: ^1.4.5
+  receive_sharing_intent: 1.4.5 # Update needs more work
   record: 4.4.4 # Upgrade to 5 currently breaks playing on iOS
   scroll_to_index: ^3.0.1
   share_plus: ^8.0.2
@@ -115,6 +115,7 @@ dependencies:
   in_app_purchase: ^3.1.13
   jwt_decode: ^0.3.1
   language_tool: ^2.2.0
+  material_symbols_icons: ^4.2741.0
   open_file: ^3.3.2
   purchases_flutter: ^6.26.0
   sentry_flutter: ^7.19.0

@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:fluffychat/pages/chat/events/video_player.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/enum/message_mode_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_context_menu.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_toolbar.dart';
 import 'package:fluffychat/pangea/widgets/igc/pangea_rich_text.dart';
@@ -372,7 +373,7 @@ class MessageContent extends StatelessWidget {
                               ),
                               onListen: () => toolbarController?.showToolbar(
                                 context,
-                                mode: MessageMode.play,
+                                mode: MessageMode.textToSpeech,
                               ),
                             ),
                   enableInteractiveSelection:

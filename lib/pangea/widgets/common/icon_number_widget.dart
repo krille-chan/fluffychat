@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class IconNumberWidget extends StatelessWidget {
+  final IconData icon;
+  final String number;
+  final Color? iconColor;
+  final double? iconSize;
+  final String? toolTip;
+
+  const IconNumberWidget({
+    super.key,
+    required this.icon,
+    required this.number,
+    this.toolTip,
+    this.iconColor,
+    this.iconSize,
+  });
+
+  Widget _content(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Icon(
+          icon,
+          color: iconColor ?? Theme.of(context).iconTheme.color,
+          size: iconSize ?? Theme.of(context).iconTheme.size,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          number.toString(),
+          style: TextStyle(
+            fontSize:
+                iconSize ?? Theme.of(context).textTheme.bodyMedium?.fontSize,
+            color: iconColor ?? Theme.of(context).textTheme.bodyMedium?.color,
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return toolTip != null
+        ? Tooltip(message: toolTip!, child: _content(context))
+        : _content(context);
+  }
+}

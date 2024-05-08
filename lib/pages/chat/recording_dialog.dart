@@ -12,7 +12,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
-  static const String recordingFileType = 'm4a';
+  static const String recordingFileType = 'wav';
   const RecordingDialog({
     super.key,
   });
@@ -49,6 +49,8 @@ class RecordingDialogState extends State<RecordingDialog> {
         path: _recordedPath,
         bitRate: bitRate,
         samplingRate: samplingRate,
+        encoder: AudioEncoder.wav,
+        numChannels: 1,
       );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();

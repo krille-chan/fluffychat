@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
-import 'package:fluffychat/pangea/models/pangea_message_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -50,7 +50,7 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
 
   Event? get localAudioEvent =>
       langCode != null && text != null && text!.isNotEmpty
-          ? _pangeaMessageEvent.getAudioLocal(langCode!, text!)
+          ? _pangeaMessageEvent.getTextToSpeechLocal(langCode!, text!)
           : null;
 
   String? get langCode =>
@@ -69,7 +69,7 @@ class _TextToSpeechButtonState extends State<TextToSpeechButton> {
       if (langCode == null || langCode!.isEmpty) return;
 
       setState(() => _isLoading = true);
-      await _pangeaMessageEvent.getAudioGlobal(langCode!);
+      await _pangeaMessageEvent.getTextToSpeechGlobal(langCode!);
       setState(() => _isLoading = false);
     } catch (e) {
       setState(() => _isLoading = false);

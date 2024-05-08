@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/pangea/constants/pangea_message_types.dart';
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 Future<void> reportMessage(
   BuildContext context,
@@ -66,7 +64,7 @@ Future<void> reportMessage(
   final String message = "$messageTitle\n\n$messageBody";
   for (final Room reportDM in reportDMs) {
     final event = <String, dynamic>{
-      'msgtype': PangeaMessageTypes.report,
+      'msgtype': PangeaEventTypes.report,
       'body': message,
     };
     await reportDM.sendEvent(event);

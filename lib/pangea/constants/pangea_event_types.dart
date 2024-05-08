@@ -2,6 +2,8 @@ class PangeaEventTypes {
   static const classSettings = "pangea.class";
   static const pangeaExchange = "p.exchange";
 
+  static const transcript = "pangea.transcript";
+
   static const rules = "p.rules";
 
   static const studentAnalyticsSummary = "pangea.usranalytics";
@@ -18,5 +20,7 @@ class PangeaEventTypes {
   static const botOptions = "pangea.bot_options";
 
   static const userAge = "pangea.user_age";
+
+  static const String report = 'm.report';
   static const textToSpeechRule = "p.rule.text_to_speech";
 }
