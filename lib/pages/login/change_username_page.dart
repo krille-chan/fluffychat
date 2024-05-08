@@ -141,7 +141,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
       );
       final newState = updateUsernameResponse.data['userState'];
 
-      if (newState != 'ACCEPTED') {
+      if (newState != 'CREATED') {
         throw Exception('Error during user creation');
       }
 
