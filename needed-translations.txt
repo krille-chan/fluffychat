@@ -14,6 +14,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -818,7 +819,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "be": [
@@ -1257,6 +1259,7 @@
     "wipeChatBackup",
     "withTheseAddressesRecoveryDescription",
     "writeAMessage",
+    "writeAMessageFlag",
     "yes",
     "you",
     "youAreNoLongerParticipatingInThisChat",
@@ -2235,7 +2238,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "bn": [
@@ -2259,6 +2263,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -3114,7 +3119,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "bo": [
@@ -3138,6 +3144,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -3993,7 +4000,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ca": [
@@ -4017,6 +4025,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -4872,7 +4881,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "cs": [
@@ -4896,6 +4906,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -5751,7 +5762,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "de": [
@@ -5771,6 +5783,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "hidePresences",
     "requests",
     "allCorrect",
@@ -6577,7 +6590,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "el": [
@@ -6601,6 +6615,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -7456,7 +7471,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "eo": [
@@ -7480,6 +7496,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -8335,12 +8352,14 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "es": [
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "sendReadReceipts",
@@ -8362,7 +8381,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "et": [
@@ -8380,6 +8400,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -9184,7 +9205,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "eu": [
@@ -9202,6 +9224,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -10006,7 +10029,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "fa": [
@@ -10030,6 +10054,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -10885,7 +10910,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "fi": [
@@ -10909,6 +10935,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -11764,7 +11791,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "fr": [
@@ -11788,6 +11816,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -12643,7 +12672,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ga": [
@@ -12667,6 +12697,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -13522,7 +13553,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "gl": [
@@ -13540,6 +13572,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -14344,7 +14377,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "he": [
@@ -14368,6 +14402,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -15223,7 +15258,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "hi": [
@@ -15247,6 +15283,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -16102,7 +16139,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "hr": [
@@ -16123,6 +16161,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -16968,7 +17007,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "hu": [
@@ -16992,6 +17032,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -17847,7 +17888,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ia": [
@@ -18272,6 +18314,7 @@
     "wipeChatBackup",
     "withTheseAddressesRecoveryDescription",
     "writeAMessage",
+    "writeAMessageFlag",
     "yes",
     "you",
     "youAreNoLongerParticipatingInThisChat",
@@ -19250,7 +19293,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "id": [
@@ -19274,6 +19318,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -20129,7 +20174,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ie": [
@@ -20153,6 +20199,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -21008,7 +21055,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "it": [
@@ -21028,6 +21076,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -21872,7 +21921,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ja": [
@@ -21896,6 +21946,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -22751,7 +22802,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ko": [
@@ -22775,6 +22827,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -23630,7 +23683,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "lt": [
@@ -23654,6 +23708,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -24509,7 +24564,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "lv": [
@@ -24533,6 +24589,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -25388,7 +25445,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "nb": [
@@ -25412,6 +25470,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -26267,7 +26326,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "nl": [
@@ -26291,6 +26351,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -27146,7 +27207,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "pl": [
@@ -27170,6 +27232,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -28025,7 +28088,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "pt": [
@@ -28049,6 +28113,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -28904,7 +28969,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "pt_BR": [
@@ -28924,6 +28990,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -29752,7 +29819,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "pt_PT": [
@@ -29776,6 +29844,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -30631,7 +30700,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ro": [
@@ -30655,6 +30725,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -31510,7 +31581,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ru": [
@@ -31528,6 +31600,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -32332,7 +32405,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "sk": [
@@ -32356,6 +32430,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -33211,7 +33286,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "sl": [
@@ -33235,6 +33311,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -34090,7 +34167,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "sr": [
@@ -34114,6 +34192,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -34969,7 +35048,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "sv": [
@@ -34989,6 +35069,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -35813,7 +35894,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "ta": [
@@ -35837,6 +35919,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -36692,7 +36775,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "th": [
@@ -36716,6 +36800,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -37571,7 +37656,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "tr": [
@@ -37591,6 +37677,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -38435,7 +38522,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "uk": [
@@ -38453,6 +38541,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -39257,7 +39346,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "vi": [
@@ -39281,6 +39371,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -40136,7 +40227,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "zh": [
@@ -40154,6 +40246,7 @@
     "ignoreListDescription",
     "ignoreUsername",
     "optionalGroupName",
+    "writeAMessageFlag",
     "requests",
     "allCorrect",
     "newWayAllGood",
@@ -40958,7 +41051,8 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ],
 
   "zh_Hant": [
@@ -40982,6 +41076,7 @@
     "optionalGroupName",
     "presenceStyle",
     "presencesToggle",
+    "writeAMessageFlag",
     "youInvitedToBy",
     "hidePresences",
     "requests",
@@ -41837,6 +41932,7 @@
     "words",
     "score",
     "accuracy",
-    "points"
+    "points",
+    "noPaymentInfo"
   ]
 }

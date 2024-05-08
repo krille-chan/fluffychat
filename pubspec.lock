@@ -293,10 +293,10 @@ packages:
     dependency: transitive
     description:
       name: dart_webrtc
-      sha256: "5897a3bdd6c7fded07e80e250260ca4c9cd61f9080911aa308b516e1206745a9"
+      sha256: b3a4f109c551a10170ece8fc79b5ca1b98223f24bcebc0f971d7fe35daad7a3b
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.3"
+    version: "1.4.4"
   dbus:
     dependency: transitive
     description:
@@ -870,10 +870,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_webrtc
-      sha256: "577216727181cb13776a65d3e7cb33e783e740c5496335011aed4a038b28c3fe"
+      sha256: "63295f3aaba6e0e2520064a928fd0b79bf3636695af9c89cb219241994a45bf6"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.47"
+    version: "0.10.4"
   freezed_annotation:
     dependency: transitive
     description:
@@ -1397,6 +1397,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.0"
+  material_symbols_icons:
+    dependency: "direct main"
+    description:
+      name: material_symbols_icons
+      sha256: "36d4e5dd72f2fd282aca127cc4c4c29786d702cb506231ea73a5497fc324bf46"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2741.0"
   matrix:
     dependency: "direct main"
     description:
@@ -2614,10 +2622,10 @@ packages:
     dependency: "direct main"
     description:
       name: webrtc_interface
-      sha256: "2efbd3e4e5ebeb2914253bcc51dafd3053c4b87b43f3076c74835a9deecbae3a"
+      sha256: abec3ab7956bd5ac539cf34a42fa0c82ea26675847c0966bb85160400eea9388
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.0"
   win32:
     dependency: transitive
     description:
