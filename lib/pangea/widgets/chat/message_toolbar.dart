@@ -283,8 +283,13 @@ class MessageToolbarState extends State<MessageToolbar> {
         widget.textSelection.selectionStream.stream.listen((value) {
       timer?.cancel();
       timer = Timer(const Duration(milliseconds: 500), () {
-        if (currentMode != null || value != null && value.isNotEmpty) {
-          updateMode(currentMode ?? MessageMode.translation);
+        if (value != null && value.isNotEmpty) {
+          final MessageMode newMode = currentMode == MessageMode.definition
+              ? MessageMode.definition
+              : MessageMode.translation;
+          updateMode(newMode);
+        } else if (currentMode != null) {
+          updateMode(currentMode!);
         }
       });
     });

@@ -205,7 +205,7 @@ class ChatListItem extends StatelessWidget {
                             //     Future.value(L10n.of(context)!.emptyChat),
                             future: room.lastEvent != null
                                 ? GetChatListItemSubtitle().getSubtitle(
-                                    context,
+                                    L10n.of(context)!,
                                     room.lastEvent,
                                     MatrixState.pangeaController,
                                   )

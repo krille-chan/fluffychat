@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -35,18 +34,10 @@ class ClassCodeUtil {
       ],
     );
     if (classCode == null || classCode.single.isEmpty) return;
-
-    try {
-      await pangeaController.classController.joinClasswithCode(
-        context,
-        classCode.first,
-      );
-    } catch (err) {
-      messageSnack(
-        context,
-        ErrorCopy(context, err).body,
-      );
-    }
+    await pangeaController.classController.joinClasswithCode(
+      context,
+      classCode.first,
+    );
   }
 
   static messageDialog(

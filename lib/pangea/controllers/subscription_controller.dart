@@ -33,9 +33,8 @@ enum CanSendStatus {
 class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
   SubscriptionInfo? subscription;
-
-  bool initialized = false;
   final StreamController subscriptionStream = StreamController.broadcast();
+  final StreamController trialActivationStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -46,7 +45,28 @@ class SubscriptionController extends BaseController {
       (subscription!.currentSubscriptionId != null ||
           subscription!.currentSubscription != null);
 
+  bool _isInitializing = false;
+  Completer<void> initialized = Completer<void>();
+
   Future<void> initialize() async {
+    if (initialized.isCompleted) return;
+    if (_isInitializing) {
+      await initialized.future;
+      return;
+    }
+    _isInitializing = true;
+    await _initialize();
+    _isInitializing = false;
+    initialized.complete();
+  }
+
+  Future<void> reinitialize() async {
+    initialized = Completer<void>();
+    _isInitializing = false;
+    await initialize();
+  }
+
+  Future<void> _initialize() async {
     try {
       if (_pangeaController.matrixState.client.userID == null) {
         debugPrint(
@@ -63,8 +83,6 @@ class SubscriptionController extends BaseController {
       if (_activatedNewUserTrial) {
         setNewUserTrial();
       }
-
-      initialized = true;
 
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
@@ -174,10 +192,13 @@ class SubscriptionController extends BaseController {
   void activateNewUserTrial() {
     _pangeaController.pStoreService
         .save(
-          MatrixProfile.activatedFreeTrial.title,
-          true,
-        )
-        .then((_) => setNewUserTrial());
+      MatrixProfile.activatedFreeTrial.title,
+      true,
+    )
+        .then((_) {
+      setNewUserTrial();
+      trialActivationStream.add(true);
+    });
   }
 
   void setNewUserTrial() {
@@ -198,6 +219,9 @@ class SubscriptionController extends BaseController {
   }
 
   Future<void> updateCustomerInfo() async {
+    if (!initialized.isCompleted) {
+      await initialize();
+    }
     if (subscription == null) {
       ErrorHandler.logError(
         m: "Null subscription info in subscription settings",
@@ -234,7 +258,7 @@ class SubscriptionController extends BaseController {
   }
 
   bool get _shouldShowPaywall {
-    return initialized &&
+    return initialized.isCompleted &&
         !isSubscribed &&
         (_lastDismissedPaywall == null ||
             DateTime.now().difference(_lastDismissedPaywall!).inHours >
@@ -265,7 +289,7 @@ class SubscriptionController extends BaseController {
 
   Future<void> showPaywall(BuildContext context) async {
     try {
-      if (!initialized) {
+      if (!initialized.isCompleted) {
         await initialize();
       }
       if (subscription?.availableSubscriptions.isEmpty ?? true) {

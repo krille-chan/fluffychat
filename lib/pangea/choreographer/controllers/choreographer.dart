@@ -52,6 +52,7 @@ class Choreographer {
   String? _lastChecked;
   ChoreoMode choreoMode = ChoreoMode.igc;
   final StreamController stateListener = StreamController();
+  StreamSubscription? trialStream;
 
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
@@ -64,6 +65,9 @@ class Choreographer {
     errorService = ErrorService(this);
     altTranslator = AlternativeTranslator(this);
     _textController.addListener(_onChangeListener);
+    trialStream = pangeaController
+        .subscriptionController.trialActivationStream.stream
+        .listen((_) => _onChangeListener);
 
     clear();
   }
@@ -215,7 +219,7 @@ class Choreographer {
       if (choreoMode == ChoreoMode.it &&
           itController.isTranslationDone &&
           !tokensOnly) {
-        debugger(when: kDebugMode);
+        // debugger(when: kDebugMode);
       }
 
       await (choreoMode == ChoreoMode.it && !itController.isTranslationDone
@@ -414,6 +418,7 @@ class Choreographer {
 
   dispose() {
     _textController.dispose();
+    trialStream?.cancel();
   }
 
   LanguageModel? get l2Lang {

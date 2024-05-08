@@ -72,7 +72,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
       final activeSpace =
           Matrix.of(context).client.getRoomById(widget.activeSpaceId!);
       if (activeSpace != null && activeSpace.canIAddSpaceChild(null)) {
-        parents.add(SuggestionStatus(false, activeSpace));
+        parents.add(SuggestionStatus(true, activeSpace));
       } else {
         ErrorHandler.logError(
           e: Exception('activeSpaceId ${widget.activeSpaceId} not found'),
@@ -111,12 +111,13 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
     }
   }
 
-  Future<void> _addSingleSpace(String roomToAddId, Room newParent) {
+  Future<void> _addSingleSpace(String roomToAddId, Room newParent) async {
     GoogleAnalytics.addParent(roomToAddId, newParent.classCode);
-    return newParent.setSpaceChild(
+    await newParent.setSpaceChild(
       roomToAddId,
       suggested: isSuggestedInSpace(newParent),
     );
+    await setSuggested(true, newParent);
   }
 
   Future<void> addSpaces(String roomToAddId) async {
@@ -147,7 +148,7 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
 
     setState(
       () => add
-          ? parents.add(SuggestionStatus(false, possibleParent))
+          ? parents.add(SuggestionStatus(true, possibleParent))
           : parents.removeWhere(
               (suggestionStatus) =>
                   suggestionStatus.room.id == possibleParent.id,

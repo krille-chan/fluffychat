@@ -34,7 +34,6 @@ class MessageUnsubscribedCard extends StatelessWidget {
         MatrixState.pangeaController.subscriptionController
             .showPaywall(context);
       }
-      MatrixState.pAnyState.closeOverlay();
     }
 
     return Column(

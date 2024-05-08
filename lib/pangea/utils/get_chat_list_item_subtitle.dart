@@ -4,7 +4,6 @@ import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -12,16 +11,17 @@ import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class GetChatListItemSubtitle {
   Future<String> getSubtitle(
-    BuildContext context,
+    L10n l10n,
     Event? event,
     PangeaController pangeaController,
   ) async {
-    if (event == null) return L10n.of(context)!.emptyChat;
+    if (event == null) return l10n.emptyChat;
     try {
       String? eventContextId = event.eventId;
       if (!event.eventId.isValidMatrixId || event.eventId.sigil != '\$') {
         eventContextId = null;
       }
+
       final Timeline timeline =
           await event.room.getTimeline(eventContextId: eventContextId);
 
@@ -47,7 +47,7 @@ class GetChatListItemSubtitle {
           !pangeaController.permissionsController
               .isToolEnabled(ToolSetting.immersionMode, event.room)) {
         return event.calcLocalizedBody(
-          MatrixLocals(L10n.of(context)!),
+          MatrixLocals(l10n),
           hideReply: true,
           hideEdit: true,
           plaintextBody: true,
@@ -71,14 +71,13 @@ class GetChatListItemSubtitle {
 
       final String? text =
           (await pangeaMessageEvent.representationByLanguageGlobal(
-        context: context,
         langCode: l2Code,
       ))
               ?.text;
 
-      final i18n = MatrixLocals(L10n.of(context)!);
+      final i18n = MatrixLocals(l10n);
 
-      if (text == null) return L10n.of(context)!.emptyChat;
+      if (text == null) return l10n.emptyChat;
 
       if (!event.room.isDirectChat ||
           event.room.directChatMatrixID != event.room.lastEvent?.senderId) {
@@ -95,7 +94,7 @@ class GetChatListItemSubtitle {
     } catch (e, s) {
       // debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: s);
-      return event?.body ?? L10n.of(context)!.emptyChat;
+      return event?.body ?? l10n.emptyChat;
     }
   }
 }

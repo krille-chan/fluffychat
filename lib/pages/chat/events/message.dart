@@ -575,70 +575,72 @@ class Message extends StatelessWidget {
                 ),
                 child: container,
               ),
-              Positioned(
-                left: ownMessage ? null : 48,
-                right: ownMessage ? 4 : null,
-                top: displayTime ? 38 : 0,
-                child: AnimatedScale(
-                  duration: Duration(
-                    milliseconds:
-                        (FluffyThemes.animationDuration.inMilliseconds / 2)
-                            .floor(),
-                  ),
-                  curve: FluffyThemes.animationCurve,
-                  scale: !longPressSelect && hovered ? 1 : 0,
-                  alignment: Alignment.center,
-                  child: Material(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondaryContainer
-                        .withOpacity(0.9),
-                    elevation:
-                        Theme.of(context).appBarTheme.scrolledUnderElevation ??
-                            4,
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                    shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (event.room.canSendDefaultMessages)
-                          SizedBox(
-                            width: 32,
-                            height: 32,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.reply_outlined,
-                                size: 16,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiaryContainer,
-                              ),
-                              tooltip: L10n.of(context)!.reply,
-                              onPressed: event.room.canSendDefaultMessages
-                                  ? () => onSwipe()
-                                  : null,
-                            ),
-                          ),
-                        SizedBox(
-                          width: 32,
-                          height: 32,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.more_vert,
-                              size: 16,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onTertiaryContainer,
-                            ),
-                            tooltip: L10n.of(context)!.select,
-                            onPressed: () => onSelect(event),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // #Pangea
+              // Positioned(
+              //   left: ownMessage ? null : 48,
+              //   right: ownMessage ? 4 : null,
+              //   top: displayTime ? 38 : 0,
+              //   child: AnimatedScale(
+              //     duration: Duration(
+              //       milliseconds:
+              //           (FluffyThemes.animationDuration.inMilliseconds / 2)
+              //               .floor(),
+              //     ),
+              //     curve: FluffyThemes.animationCurve,
+              //     scale: !longPressSelect && hovered ? 1 : 0,
+              //     alignment: Alignment.center,
+              //     child: Material(
+              //       color: Theme.of(context)
+              //           .colorScheme
+              //           .secondaryContainer
+              //           .withOpacity(0.9),
+              //       elevation:
+              //           Theme.of(context).appBarTheme.scrolledUnderElevation ??
+              //               4,
+              //       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              //       shadowColor: Theme.of(context).appBarTheme.shadowColor,
+              //       child: Row(
+              //         mainAxisSize: MainAxisSize.min,
+              //         children: [
+              //           if (event.room.canSendDefaultMessages)
+              //             SizedBox(
+              //               width: 32,
+              //               height: 32,
+              //               child: IconButton(
+              //                 icon: Icon(
+              //                   Icons.reply_outlined,
+              //                   size: 16,
+              //                   color: Theme.of(context)
+              //                       .colorScheme
+              //                       .onTertiaryContainer,
+              //                 ),
+              //                 tooltip: L10n.of(context)!.reply,
+              //                 onPressed: event.room.canSendDefaultMessages
+              //                     ? () => onSwipe()
+              //                     : null,
+              //               ),
+              //             ),
+              //           SizedBox(
+              //             width: 32,
+              //             height: 32,
+              //             child: IconButton(
+              //               icon: Icon(
+              //                 Icons.more_vert,
+              //                 size: 16,
+              //                 color: Theme.of(context)
+              //                     .colorScheme
+              //                     .onTertiaryContainer,
+              //               ),
+              //               tooltip: L10n.of(context)!.select,
+              //               onPressed: () => onSelect(event),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Pangea#
             ],
           ),
         ),

@@ -77,9 +77,9 @@ class SpanCardState extends State<SpanCard> {
       if (mounted) {
         setState(() => fetchingData = false);
       }
-    } catch (e) {
+    } catch (e, s) {
       // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: StackTrace.current);
+      ErrorHandler.logError(e: e, s: s);
       if (mounted) {
         setState(() {
           error = e;

@@ -30,7 +30,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
 
   @override
   void initState() {
-    if (!subscriptionController.initialized) {
+    if (!subscriptionController.initialized.isCompleted) {
       subscriptionController.initialize().then((_) => setState(() {}));
     }
 

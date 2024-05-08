@@ -100,7 +100,6 @@ class PangeaMessageEvent {
     BuildContext context,
   ) async {
     final String text = (await representationByLanguageGlobal(
-          context: context,
           langCode: langCode,
         ))
             ?.text ??
@@ -476,7 +475,6 @@ class PangeaMessageEvent {
   }
 
   Future<PangeaRepresentation?> representationByLanguageGlobal({
-    required BuildContext context,
     required String langCode,
   }) async {
     // try {
