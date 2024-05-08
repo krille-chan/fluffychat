@@ -81,7 +81,7 @@ class SettingsController extends State<Settings> {
       future: () async {
         final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
         await secureStorage.delete(key: 'sessionToken');
-        matrix.client.logout();
+        await matrix.client.logoutAll();
       },
     );
   }
