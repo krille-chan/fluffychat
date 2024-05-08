@@ -76,12 +76,26 @@ Widget _buildSubscriptionDetails(BuildContext context) {
 }
 
 Widget _buildSubscriptionDetailText(String text) {
-  return Text(
-    text,
-    style: const TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
+  return Row(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: Icon(
+          Icons.fiber_manual_record,
+          size: 12.0,
+          color: Colors.white,
+        ),
+      ),
+      Expanded(
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 18.0,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ],
   );
 }
 
