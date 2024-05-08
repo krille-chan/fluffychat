@@ -72,6 +72,7 @@ class BackgroundPush {
     firebase?.setListeners(
       onMessage: (message) {
         Logs().v('[FCM] onMessage', message);
+        // Workaround to support Sygnal push notifications
         message['devices'] = [{'app_id': AppConfig.pushNotificationsAppId, 'pushkey': 'bogus'}];
         return pushHelper(
         PushNotification.fromJson(
