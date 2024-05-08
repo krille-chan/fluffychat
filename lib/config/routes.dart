@@ -59,7 +59,7 @@ abstract class AppRoutes {
       } else {
         return '/home/subscribe';
       }
-    } else if (isLoggedKratos && !isLoggedMatrix) {
+    } else if (isLoggedKratos && !isLoggedMatrix && !preAuth) {
       return '/home/login';
     } else if (!isLoggedMatrix && !preAuth) {
       return '/home/welcome';

@@ -198,7 +198,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
       if (!hasSubscription) {
         Logs().v('No subscription found, redirecting to subscribe page.');
-        context.go('/subscribe');
+        context.go('/home/subscribe');
       } else if (_isAccepted()) {
         try {
           await createUser(widget.sessionToken);
