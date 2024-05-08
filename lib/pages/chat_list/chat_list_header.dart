@@ -101,6 +101,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                                   ),
                                 ),
                               )
+                            : null
+                            /*
                             : TextButton.icon(
                                 onPressed: controller.setServer,
                                 style: TextButton.styleFrom(
@@ -119,6 +121,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                                   maxLines: 2,
                                 ),
                               )
+                            */
                         : SizedBox(
                             width: 0,
                             child: ClientChooserButton(controller),
