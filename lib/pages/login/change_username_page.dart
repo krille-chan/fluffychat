@@ -82,13 +82,13 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   Future<void> updateUsername(String sessionToken, String newUsername) async {
     try {
-      setState(() => _loadingUpdateUsername = true);
       newUsername = _formatUsername(newUsername);
 
       // Validate the username
       if (!_validateUsername(newUsername)) {
         return;
       }
+      setState(() => _loadingUpdateUsername = true);
 
       final updateUsernameResponse = await widget.dio.post(
         '${baseUrl}panel/api/mobile-matrix-auth/updateUsername',
