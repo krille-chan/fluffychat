@@ -127,7 +127,7 @@ class LoginView extends StatelessWidget {
                       foregroundColor: Theme.of(context).colorScheme.error,
                     ),
                     icon: const Icon(Icons.app_registration),
-                    label: Text(L10n.of(context)!.register),
+                    label: Text(L10n.of(context)!.noAccountRegister),
                   ),
                 ),
                 const SizedBox(height: 16),
