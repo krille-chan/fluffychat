@@ -105,36 +105,44 @@ class ClassController extends BaseController {
   }
 
   Future<void> joinClasswithCode(BuildContext context, String classCode) async {
-    final QueryPublicRoomsResponse queryPublicRoomsResponse =
-        await Matrix.of(context).client.queryPublicRooms(
-              limit: 1,
-              filter: PublicRoomQueryFilter(genericSearchTerm: classCode),
-            );
+    try {
+      final QueryPublicRoomsResponse queryPublicRoomsResponse =
+          await Matrix.of(context).client.queryPublicRooms(
+                limit: 1,
+                filter: PublicRoomQueryFilter(genericSearchTerm: classCode),
+              );
 
-    final PublicRoomsChunk? classChunk =
-        queryPublicRoomsResponse.chunk.firstWhereOrNull((element) {
-      return element.canonicalAlias?.replaceAll("#", "").split(":")[0] ==
-          classCode;
-    });
+      final PublicRoomsChunk? classChunk =
+          queryPublicRoomsResponse.chunk.firstWhereOrNull((element) {
+        return element.canonicalAlias?.replaceAll("#", "").split(":")[0] ==
+            classCode;
+      });
 
-    if (classChunk == null) {
-      ClassCodeUtil.messageSnack(context, L10n.of(context)!.unableToFindClass);
-      return;
-    }
+      if (classChunk == null) {
+        ClassCodeUtil.messageSnack(
+            context, L10n.of(context)!.unableToFindClass);
+        return;
+      }
 
-    if (Matrix.of(context)
-        .client
-        .rooms
-        .any((room) => room.id == classChunk.roomId)) {
+      if (Matrix.of(context)
+          .client
+          .rooms
+          .any((room) => room.id == classChunk.roomId)) {
+        setActiveSpaceIdInChatListController(classChunk.roomId);
+        ClassCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
+        return;
+      }
+      await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
+
       setActiveSpaceIdInChatListController(classChunk.roomId);
-      ClassCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
+      GoogleAnalytics.joinClass(classCode);
       return;
+    } catch (err) {
+      ClassCodeUtil.messageSnack(
+        context,
+        ErrorCopy(context, err).body,
+      );
     }
-    await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
-
-    setActiveSpaceIdInChatListController(classChunk.roomId);
-    GoogleAnalytics.joinClass(classCode);
-    return;
     // P-EPIC
     // prereq - server needs ability to invite to private room. how?
     // does server api have ability with admin token?

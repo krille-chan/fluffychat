@@ -34,6 +34,7 @@ class SubscriptionController extends BaseController {
   late PangeaController _pangeaController;
   SubscriptionInfo? subscription;
   final StreamController subscriptionStream = StreamController.broadcast();
+  final StreamController trialActivationStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -191,10 +192,13 @@ class SubscriptionController extends BaseController {
   void activateNewUserTrial() {
     _pangeaController.pStoreService
         .save(
-          MatrixProfile.activatedFreeTrial.title,
-          true,
-        )
-        .then((_) => setNewUserTrial());
+      MatrixProfile.activatedFreeTrial.title,
+      true,
+    )
+        .then((_) {
+      setNewUserTrial();
+      trialActivationStream.add(true);
+    });
   }
 
   void setNewUserTrial() {

@@ -81,17 +81,25 @@ class _SpaceViewState extends State<SpaceView> {
         nextBatch: null,
       );
     }
+
+    setState(() {
+      error = null;
+      loading = true;
+    });
     // Pangea#
+
     final activeSpaceId = widget.controller.activeSpaceId!;
     final client = Matrix.of(context).client;
 
     final activeSpace = client.getRoomById(activeSpaceId);
     await activeSpace?.postLoad();
 
-    setState(() {
-      error = null;
-      loading = true;
-    });
+    // #Pangea
+    // setState(() {
+    //   error = null;
+    //   loading = true;
+    // });
+    // Pangea#
 
     try {
       final response = await client.getSpaceHierarchy(
