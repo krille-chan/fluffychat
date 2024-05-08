@@ -20,12 +20,14 @@ import '../../utils/error_handler.dart';
 class ConversationBotSettings extends StatefulWidget {
   final Room? room;
   final bool startOpen;
+  final String? activeSpaceId;
   // final ClassSettingsModel? initialSettings;
 
   const ConversationBotSettings({
     super.key,
     this.room,
     this.startOpen = false,
+    this.activeSpaceId,
     // this.initialSettings,
   });
 
@@ -37,6 +39,7 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
   late BotOptionsModel botOptions;
   late bool isOpen;
   bool addBot = false;
+  Room? parentSpace;
 
   ConversationBotSettingsState({Key? key});
 
@@ -50,6 +53,12 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
         addBot = isBotRoom;
       });
     });
+    parentSpace = widget.activeSpaceId != null
+        ? Matrix.of(context).client.getRoomById(widget.activeSpaceId!)
+        : null;
+    if (parentSpace != null && botOptions.languageLevel == null) {
+      botOptions.languageLevel = parentSpace?.classSettings?.languageLevel;
+    }
   }
 
   Future<void> updateBotOption(void Function() makeLocalChange) async {

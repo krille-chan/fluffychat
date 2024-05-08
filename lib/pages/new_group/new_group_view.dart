@@ -86,6 +86,7 @@ class NewGroupView extends StatelessWidget {
             // ),
             ConversationBotSettings(
               key: controller.addConversationBotKey,
+              activeSpaceId: controller.activeSpaceId,
             ),
             const Divider(height: 1),
             AddToSpaceToggles(
