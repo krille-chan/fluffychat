@@ -12,7 +12,6 @@ import 'package:fluffychat/widgets/hover_builder.dart';
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
-import '../../widgets/matrix.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
@@ -65,8 +64,11 @@ class ChatListItem extends StatelessWidget {
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
     final lastEvent = room.lastEvent;
-    final ownMessage = lastEvent?.senderId == Matrix.of(context).client.userID;
+    final ownMessage = lastEvent?.senderId == room.client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
+    final theme = Theme.of(context);
+    final directChatMatrixId = room.directChatMatrixID;
+    final isDirectChat = directChatMatrixId != null;
     final unreadBubbleSize = unread || room.hasNewMessages
         ? room.notificationCount > 0
             ? 20.0
@@ -74,9 +76,9 @@ class ChatListItem extends StatelessWidget {
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor = selected
-        ? Theme.of(context).colorScheme.primaryContainer
+        ? theme.colorScheme.primaryContainer
         : activeChat
-            ? Theme.of(context).colorScheme.secondaryContainer
+            ? theme.colorScheme.secondaryContainer
             : null;
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
@@ -108,7 +110,7 @@ class ChatListItem extends StatelessWidget {
                       child: Avatar(
                         mxContent: room.avatar,
                         name: displayname,
-                        presenceUserId: room.directChatMatrixID,
+                        presenceUserId: directChatMatrixId,
                         presenceBackgroundColor: backgroundColor,
                         onTap: onLongPress,
                       ),
@@ -164,7 +166,7 @@ class ChatListItem extends StatelessWidget {
                       child: Icon(
                         Icons.push_pin,
                         size: 16,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: theme.colorScheme.primary,
                       ),
                     ),
                   if (lastEvent != null && room.membership != Membership.invite)
@@ -175,8 +177,8 @@ class ChatListItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 13,
                           color: unread
-                              ? Theme.of(context).colorScheme.secondary
-                              : Theme.of(context).textTheme.bodyMedium!.color,
+                              ? theme.colorScheme.secondary
+                              : theme.textTheme.bodyMedium!.color,
                         ),
                       ),
                     ),
@@ -204,7 +206,7 @@ class ChatListItem extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 4),
                     child: Icon(
                       Icons.edit_outlined,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       size: 14,
                     ),
                   ),
@@ -213,7 +215,7 @@ class ChatListItem extends StatelessWidget {
                         ? Text(
                             typingText,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
+                              color: theme.colorScheme.primary,
                             ),
                             maxLines: 1,
                             softWrap: false,
@@ -225,15 +227,15 @@ class ChatListItem extends StatelessWidget {
                                   hideEdit: true,
                                   plaintextBody: true,
                                   removeMarkdown: true,
-                                  withSenderNamePrefix: !room.isDirectChat ||
-                                      room.directChatMatrixID !=
+                                  withSenderNamePrefix: !isDirectChat ||
+                                      directChatMatrixId !=
                                           room.lastEvent?.senderId,
                                 ) ??
                                 Future.value(L10n.of(context)!.emptyChat),
                             builder: (context, snapshot) {
                               return Text(
                                 room.membership == Membership.invite
-                                    ? room.isDirectChat
+                                    ? isDirectChat
                                         ? L10n.of(context)!.invitePrivateChat
                                         : L10n.of(context)!.inviteGroupChat
                                     : snapshot.data ??
@@ -244,10 +246,9 @@ class ChatListItem extends StatelessWidget {
                                           hideEdit: true,
                                           plaintextBody: true,
                                           removeMarkdown: true,
-                                          withSenderNamePrefix:
-                                              !room.isDirectChat ||
-                                                  room.directChatMatrixID !=
-                                                      room.lastEvent?.senderId,
+                                          withSenderNamePrefix: !isDirectChat ||
+                                              directChatMatrixId !=
+                                                  room.lastEvent?.senderId,
                                         ) ??
                                         L10n.of(context)!.emptyChat,
                                 softWrap: false,
@@ -257,9 +258,7 @@ class ChatListItem extends StatelessWidget {
                                   fontWeight: unread || room.hasNewMessages
                                       ? FontWeight.bold
                                       : null,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
+                                  color: theme.colorScheme.onSurfaceVariant,
                                   decoration: room.lastEvent?.redacted == true
                                       ? TextDecoration.lineThrough
                                       : null,
@@ -284,8 +283,8 @@ class ChatListItem extends StatelessWidget {
                               room.membership == Membership.invite
                           ? Colors.red
                           : hasNotifications || room.markedUnread
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primaryContainer,
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.primaryContainer,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                     ),
@@ -297,12 +296,8 @@ class ChatListItem extends StatelessWidget {
                                 color: room.highlightCount > 0
                                     ? Colors.white
                                     : hasNotifications
-                                        ? Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onPrimaryContainer,
+                                        ? theme.colorScheme.onPrimary
+                                        : theme.colorScheme.onPrimaryContainer,
                                 fontSize: 13,
                               ),
                             )
