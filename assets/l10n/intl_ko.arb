@@ -2688,5 +2688,18 @@
   "createNewAddress": "새 주소 만들기",
   "@createNewAddress": {},
   "hideMemberChangesInPublicChatsBody": "공개채팅에 누군가가 가입하거나 떠날때 타임라인에 표시하지 않습니다.",
-  "@hideMemberChangesInPublicChatsBody": {}
+  "@hideMemberChangesInPublicChatsBody": {},
+  "searchMore": "더 검색...",
+  "@searchMore": {},
+  "files": "파일",
+  "@files": {},
+  "searchIn": "{chat}에서 검색...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "gallery": "갤러리",
+  "@gallery": {}
 }
