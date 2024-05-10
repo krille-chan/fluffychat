@@ -286,6 +286,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           ),
           const SizedBox(width: 8),
           Badge(
+            isLabelVisible: audioPlayer != null,
             label: audioPlayer == null
                 ? null
                 : Text(
