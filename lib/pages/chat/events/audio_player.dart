@@ -38,8 +38,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   StreamSubscription? onPlayerError;
 
   String? statusText;
-  double currentPosition = 0.0;
-  double maxPosition = 1.0;
+  int currentPosition = 0;
+  double maxPosition = 0;
 
   MatrixFile? matrixFile;
   File? audioFile;
@@ -113,7 +113,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       setState(() {
         statusText =
             '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
-        currentPosition = state.inMilliseconds.toDouble();
+        currentPosition = ((state.inMilliseconds.toDouble() / maxPosition) *
+                AudioPlayerWidget.wavesCount)
+            .round();
       });
       if (state.inMilliseconds.toDouble() == maxPosition) {
         audioPlayer.stop();
@@ -149,14 +151,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
-  List<int>? _getWaveform() {
+  List<int> _getWaveform() {
     final eventWaveForm = widget.event.content
         .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
         ?.tryGetList<int>('waveform');
-    if (eventWaveForm == null ||
-        eventWaveForm.isEmpty ||
-        eventWaveForm.length > 100) {
-      return null;
+    if (eventWaveForm == null || eventWaveForm.isEmpty) {
+      return List<int>.filled(AudioPlayerWidget.wavesCount, 500);
     }
     while (eventWaveForm.length < AudioPlayerWidget.wavesCount) {
       for (var i = 0; i < eventWaveForm.length; i = i + 2) {
@@ -172,7 +172,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     return eventWaveForm.map((i) => i > 1024 ? 1024 : i).toList();
   }
 
-  late final List<int>? waveform;
+  late final List<int> waveform;
 
   void _toggleSpeed() async {
     final audioPlayer = this.audioPlayer;
@@ -208,9 +208,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   Widget build(BuildContext context) {
     final statusText = this.statusText ??= _durationString ?? '00:00';
     final audioPlayer = this.audioPlayer;
-    final waveform = this.waveform;
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -241,90 +240,70 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                     },
                   ),
           ),
-          Expanded(
-            child: Stack(
-              children: [
-                if (waveform != null)
-                  Container(
-                    height: 40,
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < waveform.length; i++)
-                          Expanded(
-                            child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: widget.color.withAlpha(64),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                                height: 56 * (waveform[i] / 1024),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                if (audioPlayer != null)
-                  SizedBox(
-                    height: 40,
-                    child: Slider(
-                      activeColor: widget.color,
-                      thumbColor: widget.color,
-                      value: currentPosition,
-                      min: 0,
-                      max: maxPosition,
-                      onChangeStart: (_) => audioPlayer.pause(),
-                      onChangeEnd: (_) => audioPlayer.play(),
-                      onChanged: (pos) => audioPlayer.seek(
-                        Duration(
-                          milliseconds: pos.round(),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            width: 42,
-            child: Text(
-              statusText,
-              style: TextStyle(
-                color: widget.color,
-              ),
-            ),
-          ),
-          const SizedBox(width: 4),
-          Stack(
+          const SizedBox(width: 8),
+          Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                width: buttonSize,
-                height: buttonSize,
-                child: InkWell(
-                  splashColor: widget.color.withAlpha(128),
-                  borderRadius: BorderRadius.circular(64),
-                  onTap: audioPlayer == null ? null : _toggleSpeed,
-                  child: Icon(Icons.mic_none_outlined, color: widget.color),
-                ),
-              ),
-              if (audioPlayer != null)
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Text(
-                    '${audioPlayer.speed.toString()}x',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 9.0,
-                      color: widget.color,
+              for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+                GestureDetector(
+                  onTapDown: (_) => audioPlayer?.seek(
+                    Duration(
+                      milliseconds:
+                          (maxPosition / AudioPlayerWidget.wavesCount).round() *
+                              i,
+                    ),
+                  ),
+                  child: Container(
+                    height: 32,
+                    color: widget.color.withAlpha(0),
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: currentPosition > i ? 1 : 0.5,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 1),
+                        decoration: BoxDecoration(
+                          color: widget.color,
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        width: 2,
+                        height: 32 * (waveform[i] / 1024),
+                      ),
                     ),
                   ),
                 ),
             ],
           ),
+          const SizedBox(width: 8),
+          SizedBox(
+            width: 36,
+            child: Text(
+              statusText,
+              style: TextStyle(
+                color: widget.color,
+                fontSize: 12,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Badge(
+            label: audioPlayer == null
+                ? null
+                : Text(
+                    '${audioPlayer.speed.toString()}x',
+                  ),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            textColor: Theme.of(context).colorScheme.onSecondary,
+            child: InkWell(
+              splashColor: widget.color.withAlpha(128),
+              borderRadius: BorderRadius.circular(64),
+              onTap: audioPlayer == null ? null : _toggleSpeed,
+              child: Icon(
+                Icons.mic_none_outlined,
+                color: widget.color,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
         ],
       ),
     );
