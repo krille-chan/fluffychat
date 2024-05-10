@@ -245,8 +245,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             child: Stack(
               children: [
                 if (waveform != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  Container(
+                    height: 40,
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Row(
                       children: [
                         for (var i = 0; i < waveform.length; i++)
@@ -257,28 +258,31 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                   color: widget.color.withAlpha(64),
                                   borderRadius: BorderRadius.circular(2),
                                 ),
-                                height: 32 * (waveform[i] / 1024),
+                                height: 56 * (waveform[i] / 1024),
                               ),
                             ),
                           ),
                       ],
                     ),
                   ),
-                SizedBox(
-                  height: 28,
-                  child: Slider.adaptive(
-                    value: currentPosition,
-                    min: 0,
-                    max: maxPosition,
-                    onChangeStart: (_) => audioPlayer?.pause(),
-                    onChangeEnd: (_) => audioPlayer?.play(),
-                    onChanged: (pos) => audioPlayer?.seek(
-                      Duration(
-                        milliseconds: pos.round(),
+                if (audioPlayer != null)
+                  SizedBox(
+                    height: 40,
+                    child: Slider(
+                      activeColor: widget.color,
+                      thumbColor: widget.color,
+                      value: currentPosition,
+                      min: 0,
+                      max: maxPosition,
+                      onChangeStart: (_) => audioPlayer.pause(),
+                      onChangeEnd: (_) => audioPlayer.play(),
+                      onChanged: (pos) => audioPlayer.seek(
+                        Duration(
+                          milliseconds: pos.round(),
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
