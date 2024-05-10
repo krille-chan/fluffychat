@@ -31,13 +31,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.forum_outlined),
+            child: const Icon(Icons.chat_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
-            child: const Icon(Icons.forum),
+            child: const Icon(Icons.chat),
           ),
           label: L10n.of(context)!.messages,
         ),
@@ -60,13 +60,13 @@ class ChatListView extends StatelessWidget {
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.forum_outlined),
+            child: const Icon(Icons.chat_outlined),
           ),
           selectedIcon: UnreadRoomsBadge(
             badgePosition: badgePosition,
             filter:
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
-            child: const Icon(Icons.forum),
+            child: const Icon(Icons.chat),
           ),
           label: L10n.of(context)!.chats,
         ),
@@ -187,8 +187,7 @@ class ChatListView extends StatelessWidget {
                         ? NavigationBar(
                             elevation: 4,
                             labelBehavior:
-                                NavigationDestinationLabelBehavior.alwaysHide,
-                            height: 64,
+                                NavigationDestinationLabelBehavior.alwaysShow,
                             shadowColor:
                                 Theme.of(context).colorScheme.onBackground,
                             surfaceTintColor:

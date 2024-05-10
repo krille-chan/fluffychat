@@ -49,8 +49,9 @@ class _SpaceViewState extends State<SpaceView> {
     loadHierarchy();
   }
 
-  Future<GetSpaceHierarchyResponse> loadHierarchy([String? prevBatch]) async {
-    final activeSpaceId = widget.controller.activeSpaceId!;
+  Future<GetSpaceHierarchyResponse?> loadHierarchy([String? prevBatch]) async {
+    final activeSpaceId = widget.controller.activeSpaceId;
+    if (activeSpaceId == null) return null;
     final client = Matrix.of(context).client;
 
     final activeSpace = client.getRoomById(activeSpaceId);
