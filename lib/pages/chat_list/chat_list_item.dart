@@ -22,6 +22,7 @@ class ChatListItem extends StatelessWidget {
   final void Function()? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
+  final String? filter;
 
   const ChatListItem(
     this.room, {
@@ -30,6 +31,7 @@ class ChatListItem extends StatelessWidget {
     required this.onTap,
     this.onLongPress,
     this.onForget,
+    this.filter,
     super.key,
   });
 
@@ -83,6 +85,10 @@ class ChatListItem extends StatelessWidget {
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
+    final filter = this.filter;
+    if (filter != null && !displayname.toLowerCase().contains(filter)) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
