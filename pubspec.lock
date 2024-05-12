@@ -1209,10 +1209,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: b9aa3c1bdb1ca16c2365bb3681f861eeeb86acd0ea2df9c9ba453fdbcb564076
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "krille/test-disable-db-cache"
+      resolved-ref: ce79fbb1717b8c16b29d1748d5282e87b17e7c0d
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "0.29.1"
   meta:
     dependency: transitive
