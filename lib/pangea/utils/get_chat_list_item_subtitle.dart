@@ -42,7 +42,8 @@ class GetChatListItemSubtitle {
         }
       }
 
-      if (event.type != EventTypes.Message ||
+      if (!pangeaController.languageController.languagesSet ||
+          event.type != EventTypes.Message ||
           event.messageType != MessageTypes.Text ||
           !pangeaController.permissionsController
               .isToolEnabled(ToolSetting.immersionMode, event.room)) {
