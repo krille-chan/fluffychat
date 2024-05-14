@@ -96,6 +96,10 @@ class ChatListItem extends StatelessWidget {
       return participantsIds.any((id) => id.contains('@linkedin'));
     }
 
+    bool containsDiscord(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@discord'));
+    }
+
     void removeFacebookTag() {
       if (displayname.contains('(FB)')) {
         displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
@@ -118,6 +122,15 @@ class ChatListItem extends StatelessWidget {
       if (displayname.contains('(Linkedin)')) {
         displayname =
             displayname.replaceAll('(Linkedin)', ''); // Delete (Linkedin)
+      }
+    }
+
+    // It's the only bridge that doesn't display the social network source in the name.
+    // But I'm putting this function here just in case, for the future.
+    void removeDiscordTag() {
+      if (displayname.contains('(Discord)')) {
+        displayname =
+            displayname.replaceAll('(Discord)', ''); // Delete (Discord)
       }
     }
 
@@ -160,6 +173,14 @@ class ChatListItem extends StatelessWidget {
           filterQuality: FilterQuality.high,
         );
         removeLinkedinTag();
+      } else if (containsDiscord(participantsIds)) {
+        networkColor = FluffyThemes.dicordColor;
+        networkImage = Image.asset(
+          'assets/discord.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeDiscordTag();
       }
 
       return [networkColor, networkImage];
