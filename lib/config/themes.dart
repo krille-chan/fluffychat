@@ -27,6 +27,7 @@ abstract class FluffyThemes {
   static const Color instagramColor = Color(0xFFE1306C);
   static const Color whatsAppColor = Color(0xFF25D366);
   static const Color linkedinColor = Color(0xFF0077B5);
+  static const Color dicordColor = Color(0xFF7289DA);
 
   static var fallbackTextTheme = const TextTheme(
     bodyLarge: fallbackTextStyle,
