@@ -1037,6 +1037,35 @@ extension PangeaRoom on Room {
     );
   }
 
+  // add 1 analytics room to 1 space
+  Future<void> addAnalyticsRoomToSpace(Room analyticsRoom) async {
+    if (!isSpace) {
+      debugPrint("addAnalyticsRoomToSpace called on non-space room");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "addAnalyticsRoomToSpace called on non-space room",
+        ),
+      );
+      return Future.value();
+    }
+
+    if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) return;
+    if (canIAddSpaceChild(null)) {
+      try {
+        await setSpaceChild(analyticsRoom.id);
+      } catch (err) {
+        debugPrint(
+          "Failed to add analytics room ${analyticsRoom.id} for student to space $id",
+        );
+        Sentry.addBreadcrumb(
+          Breadcrumb(
+            message: "Failed to add analytics room to space $id",
+          ),
+        );
+      }
+    }
+  }
+
   // Add analytics room to all spaces the user is a student in (1 analytics room to all spaces)
   // So teachers can join them via space hierarchy
   // Will not always work, as there may be spaces where students don't have permission to add chats
@@ -1054,65 +1083,52 @@ extension PangeaRoom on Room {
 
     for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
       if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
-      if (space.canIAddSpaceChild(null)) {
-        try {
-          await space.setSpaceChild(id);
-        } catch (err) {
-          debugPrint(
-            "Failed to add analytics room for student ${client.userID} to space ${space.id}",
-          );
-          Sentry.addBreadcrumb(
-            Breadcrumb(
-              message: "Failed to add analytics room to space ${space.id}",
-            ),
-          );
-        }
-      }
+      await space.addAnalyticsRoomToSpace(this);
     }
   }
 
   // Add all analytics rooms to space
   // Similar to addAnalyticsRoomToSpaces, but all analytics room to 1 space
   Future<void> addAnalyticsRoomsToSpace() async {
-    if (!isSpace) {
-      debugPrint("addAnalyticsRoomsToSpace called on non-space room");
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: "addAnalyticsRoomsToSpace called on non-space room",
-        ),
-      );
-      return;
-    }
-
     await postLoad();
-    if (!canIAddSpaceChild(null)) {
+    final List<Room> allMyAnalyticsRooms = client.allMyAnalyticsRooms;
+    for (final Room analyticsRoom in allMyAnalyticsRooms) {
+      await addAnalyticsRoomToSpace(analyticsRoom);
+    }
+  }
+
+  // invite teachers of 1 space to 1 analytics room
+  Future<void> inviteSpaceTeachersToAnalyticsRoom(Room analyticsRoom) async {
+    if (!isSpace) {
       debugPrint(
-        "addAnalyticsRoomsToSpace called on space without add permission",
+        "inviteSpaceTeachersToAnalyticsRoom called on non-space room",
       );
       Sentry.addBreadcrumb(
         Breadcrumb(
           message:
-              "addAnalyticsRoomsToSpace called on space without add permission",
+              "inviteSpaceTeachersToAnalyticsRoom called on non-space room",
         ),
       );
       return;
     }
-
-    final List<Room> allMyAnalyticsRooms = client.allMyAnalyticsRooms;
-    for (final Room analyticsRoom in allMyAnalyticsRooms) {
-      // add analytics room to space if it hasn't already been added
-      if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) continue;
-      try {
-        await setSpaceChild(analyticsRoom.id);
-      } catch (err) {
-        debugPrint(
-          "Failed to add analytics room ${analyticsRoom.id} to space $id",
-        );
-        Sentry.addBreadcrumb(
-          Breadcrumb(
-            message: "Failed to add analytics room to space $id",
-          ),
-        );
+    if (!analyticsRoom.participantListComplete) {
+      await analyticsRoom.requestParticipants();
+    }
+    final List<User> participants = analyticsRoom.getParticipants();
+    for (final User teacher in (await teachers)) {
+      if (!participants.any((p) => p.id == teacher.id)) {
+        try {
+          await analyticsRoom.invite(teacher.id);
+        } catch (err, s) {
+          debugPrint(
+            "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
+          );
+          ErrorHandler.logError(
+            e: err,
+            m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
+            s: s,
+          );
+        }
       }
     }
   }
@@ -1141,67 +1157,15 @@ extension PangeaRoom on Room {
       return;
     }
 
-    // load all participants of analytics room
-    if (!participantListComplete) {
-      await requestParticipants();
-    }
-    final List<User> participants = getParticipants();
-
-    // invite any teachers who are not already in the room
-    for (final teacher in (await client.myTeachers)) {
-      if (!participants.any((p) => p.id == teacher.id)) {
-        try {
-          await invite(teacher.id);
-        } catch (err, s) {
-          debugPrint(
-            "Failed to invite teacher ${teacher.id} to analytics room $id",
-          );
-          ErrorHandler.logError(
-            e: err,
-            m: "Failed to invite teacher ${teacher.id} to analytics room $id",
-            s: s,
-          );
-        }
-      }
+    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+      await space.inviteSpaceTeachersToAnalyticsRoom(this);
     }
   }
 
   // Invite teachers of 1 space to all users' analytics rooms
   Future<void> inviteSpaceTeachersToAnalyticsRooms() async {
-    if (!isSpace) {
-      debugPrint(
-        "inviteSpaceTeachersToAllAnalyticsRoom called on non-space room",
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message:
-              "inviteSpaceTeachersToAllAnalyticsRoom called on non-space room",
-        ),
-      );
-      return;
-    }
-
     for (final Room analyticsRoom in client.allMyAnalyticsRooms) {
-      if (!analyticsRoom.participantListComplete) {
-        await analyticsRoom.requestParticipants();
-      }
-      final List<User> participants = analyticsRoom.getParticipants();
-      for (final User teacher in (await teachers)) {
-        if (!participants.any((p) => p.id == teacher.id)) {
-          try {
-            await analyticsRoom.invite(teacher.id);
-          } catch (err, s) {
-            debugPrint(
-              "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
-            );
-            ErrorHandler.logError(
-              e: err,
-              m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
-              s: s,
-            );
-          }
-        }
-      }
+      await inviteSpaceTeachersToAnalyticsRoom(analyticsRoom);
     }
   }
 
