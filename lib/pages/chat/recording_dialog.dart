@@ -28,7 +28,10 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
+  // #Pangea
+  // final _audioRecorder = Record();
   final _audioRecorder = AudioRecorder();
+  // Pangea#
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
