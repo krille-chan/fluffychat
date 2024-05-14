@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/utils/update_version_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  final _audioRecorder = Record();
+  final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
@@ -45,13 +46,28 @@ class RecordingDialogState extends State<RecordingDialog> {
         return;
       }
       await WakelockPlus.enable();
-      await _audioRecorder.start(
-        path: _recordedPath,
-        bitRate: bitRate,
-        samplingRate: samplingRate,
-        encoder: AudioEncoder.wav,
-        numChannels: 1,
+      // #Pangea
+      final bool isNotError = await showUpdateVersionDialog(
+        future: () =>
+            // Pangea#
+            _audioRecorder.start(
+          path: _recordedPath!,
+          const RecordConfig(
+            bitRate: bitRate,
+            sampleRate: samplingRate,
+            encoder: AudioEncoder.wav,
+            numChannels: 1,
+          ),
+        ),
+        // #Pangea
+        context: context,
       );
+
+      if (!isNotError) {
+        Navigator.of(context).pop();
+        return;
+      }
+      // Pangea#
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();
       _recorderSubscription =

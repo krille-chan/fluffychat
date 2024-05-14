@@ -107,10 +107,10 @@ class STTToken {
     return STTToken(
       token: PangeaToken.fromJson(json['token']),
       startTime: json['start_time'] != null
-          ? Duration(milliseconds: json['start_time'] * 1000.toInt())
+          ? Duration(milliseconds: (json['start_time'] * 1000).round())
           : null,
       endTime: json['end_time'] != null
-          ? Duration(milliseconds: json['end_time'] * 1000.toInt())
+          ? Duration(milliseconds: (json['end_time'] * 1000).round())
           : null,
       confidence: json['confidence'],
     );
