@@ -100,6 +100,10 @@ class ChatListItem extends StatelessWidget {
       return participantsIds.any((id) => id.contains('@discord'));
     }
 
+    bool containsSignal(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@signal'));
+    }
+
     void removeFacebookTag() {
       if (displayname.contains('(FB)')) {
         displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
@@ -131,6 +135,13 @@ class ChatListItem extends StatelessWidget {
       if (displayname.contains('(Discord)')) {
         displayname =
             displayname.replaceAll('(Discord)', ''); // Delete (Discord)
+      }
+    }
+
+    void removeSignalTag() {
+      if (displayname.contains('(Signal)')) {
+        displayname =
+            displayname.replaceAll('(Signal)', ''); // Delete (Linkedin)
       }
     }
 
@@ -181,6 +192,14 @@ class ChatListItem extends StatelessWidget {
           filterQuality: FilterQuality.high,
         );
         removeDiscordTag();
+      } else if (containsSignal(participantsIds)) {
+        networkColor = FluffyThemes.signalColor;
+        networkImage = Image.asset(
+          'assets/signal.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeSignalTag();
       }
 
       return [networkColor, networkImage];
