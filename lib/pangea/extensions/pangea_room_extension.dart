@@ -1291,44 +1291,4 @@ extension PangeaRoom on Room {
     if (firstLanguageSettings?.targetLanguage == null) return;
     await client.getMyAnalyticsRoom(firstLanguageSettings!.targetLanguage);
   }
-
-  // Check if teacher is in students' analytics rooms
-  // To warn teachers if some data might be missing because they have
-  // not yet joined a students' analytics room
-  // Future<bool> areAllStudentAnalyticsAvailable() async {
-  //   if (!isSpace) {
-  //     debugPrint("areAllStudentAnalyticsAvailable called on non-space room");
-  //     Sentry.addBreadcrumb(
-  //       Breadcrumb(
-  //         message: "areAllStudentAnalyticsAvailable called on non-space room",
-  //       ),
-  //     );
-  //     return false;
-  //   }
-
-  //   final String? spaceLangCode = firstLanguageSettings?.targetLanguage;
-  //   if (spaceLangCode == null) {
-  //     debugPrint(
-  //       "areAllStudentAnalyticsAvailable called on space without language settings",
-  //     );
-  //     Sentry.addBreadcrumb(
-  //       Breadcrumb(
-  //         message:
-  //             "areAllStudentAnalyticsAvailable called on space without language settings",
-  //       ),
-  //     );
-  //     return false;
-  //   }
-
-  //   for (final User student in students) {
-  //     final Room? studentAnalyticsRoom = client.analyticsRoomLocal(
-  //       spaceLangCode,
-  //       student.id,
-  //     );
-  //     if (studentAnalyticsRoom == null) {
-  //       return false;
-  //     }
-  //   }
-  //   return true;
-  // }
 }
