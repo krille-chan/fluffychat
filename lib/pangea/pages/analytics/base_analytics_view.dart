@@ -246,6 +246,15 @@ class BaseAnalyticsView extends StatelessWidget {
                                                   .widget
                                                   .tabs[1]
                                                   .allowNavigateOnSelect,
+                                              enabled:
+                                                  controller.enableSelection(
+                                                AnalyticsSelected(
+                                                  item.id,
+                                                  controller
+                                                      .widget.tabs[1].type,
+                                                  "",
+                                                ),
+                                              ),
                                             ),
                                           )
                                           .toList(),

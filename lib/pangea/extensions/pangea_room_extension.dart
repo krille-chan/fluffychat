@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
@@ -442,6 +443,7 @@ extension PangeaRoom on Room {
   ///   save RoomAnalytics object to PangeaEventTypes.analyticsSummary event
   Future<Event?> _createStudentAnalyticsEvent() async {
     try {
+      await postLoad();
       if (!pangeaCanSendEvent(PangeaEventTypes.studentAnalyticsSummary)) {
         ErrorHandler.logError(
           m: "null powerLevels in createStudentAnalytics",
@@ -453,7 +455,7 @@ extension PangeaRoom on Room {
         debugger(when: kDebugMode);
         throw Exception("null userId in createStudentAnalytics");
       }
-      await postLoad();
+
       final String eventId = await client.setRoomStateWithKey(
         id,
         PangeaEventTypes.studentAnalyticsSummary,
@@ -791,31 +793,6 @@ extension PangeaRoom on Room {
     }
   }
 
-  Future<void> makeSureTeachersAreInvitedToAnalyticsRoom() async {
-    try {
-      if (!isAnalyticsRoom) {
-        throw Exception("not an analytics room");
-      }
-      if (!participantListComplete) {
-        await requestParticipants();
-      }
-      final toAdd = [
-        ...getParticipants([Membership.invite, Membership.join])
-            .map((e) => e.id),
-        BotName.byEnvironment,
-      ];
-      for (final teacher in (await client.myTeachers)) {
-        if (!toAdd.contains(teacher.id)) {
-          debugPrint("inviting ${teacher.id} to analytics room");
-          await invite(teacher.id);
-        }
-      }
-    } catch (err, stack) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: stack);
-    }
-  }
-
   /// update state event and return eventId
   Future<String> updateStateEvent(Event stateEvent) {
     if (stateEvent.stateKey == null) {
@@ -1059,4 +1036,299 @@ extension PangeaRoom on Room {
       getState(PangeaEventTypes.botOptions)?.content ?? {},
     );
   }
+
+  // Add analytics room to all spaces the user is a student in (1 analytics room to all spaces)
+  // So teachers can join them via space hierarchy
+  // Will not always work, as there may be spaces where students don't have permission to add chats
+  // But allows teachers to join analytics rooms without being invited
+  Future<void> addAnalyticsRoomToSpaces() async {
+    if (!isAnalyticsRoomOfUser(client.userID!)) {
+      debugPrint("addAnalyticsRoomToSpaces called on non-analytics room");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "addAnalyticsRoomToSpaces called on non-analytics room",
+        ),
+      );
+      return;
+    }
+
+    for (final Room space in (await client.classesAndExchangesImStudyingIn)) {
+      if (space.spaceChildren.any((sc) => sc.roomId == id)) continue;
+      if (space.canIAddSpaceChild(null)) {
+        try {
+          await space.setSpaceChild(id);
+        } catch (err) {
+          debugPrint(
+            "Failed to add analytics room for student ${client.userID} to space ${space.id}",
+          );
+          Sentry.addBreadcrumb(
+            Breadcrumb(
+              message: "Failed to add analytics room to space ${space.id}",
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  // Add all analytics rooms to space
+  // Similar to addAnalyticsRoomToSpaces, but all analytics room to 1 space
+  Future<void> addAnalyticsRoomsToSpace() async {
+    if (!isSpace) {
+      debugPrint("addAnalyticsRoomsToSpace called on non-space room");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "addAnalyticsRoomsToSpace called on non-space room",
+        ),
+      );
+      return;
+    }
+
+    await postLoad();
+    if (!canIAddSpaceChild(null)) {
+      debugPrint(
+        "addAnalyticsRoomsToSpace called on space without add permission",
+      );
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message:
+              "addAnalyticsRoomsToSpace called on space without add permission",
+        ),
+      );
+      return;
+    }
+
+    final List<Room> allMyAnalyticsRooms = client.allMyAnalyticsRooms;
+    for (final Room analyticsRoom in allMyAnalyticsRooms) {
+      // add analytics room to space if it hasn't already been added
+      if (spaceChildren.any((sc) => sc.roomId == analyticsRoom.id)) continue;
+      try {
+        await setSpaceChild(analyticsRoom.id);
+      } catch (err) {
+        debugPrint(
+          "Failed to add analytics room ${analyticsRoom.id} to space $id",
+        );
+        Sentry.addBreadcrumb(
+          Breadcrumb(
+            message: "Failed to add analytics room to space $id",
+          ),
+        );
+      }
+    }
+  }
+
+  // Invite all teachers to 1 analytics room
+  // Handles case when students cannot add analytics room to space
+  // So teacher is still able to get analytics data for this student
+  Future<void> inviteTeachersToAnalyticsRoom() async {
+    if (client.userID == null) {
+      debugPrint("inviteTeachersToAnalyticsRoom called with null userId");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "inviteTeachersToAnalyticsRoom called with null userId",
+        ),
+      );
+      return;
+    }
+
+    if (!isAnalyticsRoomOfUser(client.userID!)) {
+      debugPrint("inviteTeachersToAnalyticsRoom called on non-analytics room");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "inviteTeachersToAnalyticsRoom called on non-analytics room",
+        ),
+      );
+      return;
+    }
+
+    // load all participants of analytics room
+    if (!participantListComplete) {
+      await requestParticipants();
+    }
+    final List<User> participants = getParticipants();
+
+    // invite any teachers who are not already in the room
+    for (final teacher in (await client.myTeachers)) {
+      if (!participants.any((p) => p.id == teacher.id)) {
+        try {
+          await invite(teacher.id);
+        } catch (err, s) {
+          debugPrint(
+            "Failed to invite teacher ${teacher.id} to analytics room $id",
+          );
+          ErrorHandler.logError(
+            e: err,
+            m: "Failed to invite teacher ${teacher.id} to analytics room $id",
+            s: s,
+          );
+        }
+      }
+    }
+  }
+
+  // Invite teachers of 1 space to all users' analytics rooms
+  Future<void> inviteSpaceTeachersToAnalyticsRooms() async {
+    if (!isSpace) {
+      debugPrint(
+        "inviteSpaceTeachersToAllAnalyticsRoom called on non-space room",
+      );
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message:
+              "inviteSpaceTeachersToAllAnalyticsRoom called on non-space room",
+        ),
+      );
+      return;
+    }
+
+    for (final Room analyticsRoom in client.allMyAnalyticsRooms) {
+      if (!analyticsRoom.participantListComplete) {
+        await analyticsRoom.requestParticipants();
+      }
+      final List<User> participants = analyticsRoom.getParticipants();
+      for (final User teacher in (await teachers)) {
+        if (!participants.any((p) => p.id == teacher.id)) {
+          try {
+            await analyticsRoom.invite(teacher.id);
+          } catch (err, s) {
+            debugPrint(
+              "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
+            );
+            ErrorHandler.logError(
+              e: err,
+              m: "Failed to invite teacher ${teacher.id} to analytics room ${analyticsRoom.id}",
+              s: s,
+            );
+          }
+        }
+      }
+    }
+  }
+
+  // Join analytics rooms in space
+  // Allows teachers to join analytics rooms without being invited
+  Future<void> joinAnalyticsRoomsInSpace() async {
+    if (!isSpace) {
+      debugPrint("joinAnalyticsRoomsInSpace called on non-space room");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "joinAnalyticsRoomsInSpace called on non-space room",
+        ),
+      );
+      return;
+    }
+
+    // added delay because without it power levels don't load and user is not
+    // recognized as admin
+    await Future.delayed(const Duration(milliseconds: 500));
+    await postLoad();
+
+    if (!isRoomAdmin) {
+      debugPrint("joinAnalyticsRoomsInSpace called by non-admin");
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "joinAnalyticsRoomsInSpace called by non-admin",
+        ),
+      );
+      return;
+    }
+
+    final spaceHierarchy = await client.getSpaceHierarchy(
+      id,
+      maxDepth: 1,
+    );
+
+    final List<String> analyticsRoomIds = spaceHierarchy.rooms
+        .where(
+          (r) => r.roomType == PangeaRoomTypes.analytics,
+        )
+        .map((r) => r.roomId)
+        .toList();
+
+    for (final String roomID in analyticsRoomIds) {
+      try {
+        await joinSpaceChild(roomID);
+      } catch (err, s) {
+        debugPrint("Failed to join analytics room $roomID in space $id");
+        ErrorHandler.logError(
+          e: err,
+          m: "Failed to join analytics room $roomID in space $id",
+          s: s,
+        );
+      }
+    }
+  }
+
+  Future<void> joinSpaceChild(String roomID) async {
+    final Room? child = client.getRoomById(roomID);
+    if (child == null) {
+      await client.joinRoom(
+        roomID,
+        serverName: spaceChildren
+            .firstWhereOrNull((child) => child.roomId == roomID)
+            ?.via,
+      );
+      if (client.getRoomById(roomID) == null) {
+        await client.waitForRoomInSync(roomID, join: true);
+      }
+      return;
+    }
+
+    if (![Membership.invite, Membership.join].contains(child.membership)) {
+      final waitForRoom = client.waitForRoomInSync(
+        roomID,
+        join: true,
+      );
+      await child.join();
+      await waitForRoom;
+    }
+  }
+
+  // check if analytics room exists for a given language code
+  // and if not, create it
+  Future<void> ensureAnalyticsRoomExists() async {
+    await postLoad();
+    if (firstLanguageSettings?.targetLanguage == null) return;
+    await client.getMyAnalyticsRoom(firstLanguageSettings!.targetLanguage);
+  }
+
+  // Check if teacher is in students' analytics rooms
+  // To warn teachers if some data might be missing because they have
+  // not yet joined a students' analytics room
+  // Future<bool> areAllStudentAnalyticsAvailable() async {
+  //   if (!isSpace) {
+  //     debugPrint("areAllStudentAnalyticsAvailable called on non-space room");
+  //     Sentry.addBreadcrumb(
+  //       Breadcrumb(
+  //         message: "areAllStudentAnalyticsAvailable called on non-space room",
+  //       ),
+  //     );
+  //     return false;
+  //   }
+
+  //   final String? spaceLangCode = firstLanguageSettings?.targetLanguage;
+  //   if (spaceLangCode == null) {
+  //     debugPrint(
+  //       "areAllStudentAnalyticsAvailable called on space without language settings",
+  //     );
+  //     Sentry.addBreadcrumb(
+  //       Breadcrumb(
+  //         message:
+  //             "areAllStudentAnalyticsAvailable called on space without language settings",
+  //       ),
+  //     );
+  //     return false;
+  //   }
+
+  //   for (final User student in students) {
+  //     final Room? studentAnalyticsRoom = client.analyticsRoomLocal(
+  //       spaceLangCode,
+  //       student.id,
+  //     );
+  //     if (studentAnalyticsRoom == null) {
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
 }

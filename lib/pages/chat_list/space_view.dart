@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
+import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
 import 'package:fluffychat/pangea/utils/archive_space.dart';
@@ -411,6 +412,18 @@ class _SpaceViewState extends State<SpaceView> {
     }
     setState(() => refreshing = false);
   }
+
+  bool includeSpaceChild(sc, matchingSpaceChildren) {
+    final bool isAnalyticsRoom = sc.roomType == PangeaRoomTypes.analytics;
+    final bool isMember = [Membership.join, Membership.invite]
+        .contains(Matrix.of(context).client.getRoomById(sc.roomId)?.membership);
+    final bool isSuggested = matchingSpaceChildren.any(
+      (matchingSpaceChild) =>
+          matchingSpaceChild.roomId == sc.roomId &&
+          matchingSpaceChild.suggested == true,
+    );
+    return !isAnalyticsRoom && (isMember || isSuggested);
+  }
   // Pangea#
 
   @override
@@ -479,7 +492,7 @@ class _SpaceViewState extends State<SpaceView> {
                                   )
                                 : L10n.of(context)!.youreInvited,
                           ),
-                          if (rootSpace.locked ?? false)
+                          if (rootSpace.locked)
                             const Padding(
                               padding: EdgeInsets.only(left: 4.0),
                               child: Icon(
@@ -618,24 +631,17 @@ class _SpaceViewState extends State<SpaceView> {
                             .contains(spaceChild.roomId),
                       )
                       .toList();
+
                   spaceChildren = spaceChildren
                       .where(
-                        (spaceChild) =>
-                            matchingSpaceChildren.any(
-                              (matchingSpaceChild) =>
-                                  matchingSpaceChild.roomId ==
-                                      spaceChild.roomId &&
-                                  matchingSpaceChild.suggested == true,
-                            ) ||
-                            [Membership.join, Membership.invite].contains(
-                              Matrix.of(context)
-                                  .client
-                                  .getRoomById(spaceChild.roomId)
-                                  ?.membership,
-                            ),
+                        (sc) => includeSpaceChild(
+                          sc,
+                          matchingSpaceChildren,
+                        ),
                       )
                       .toList();
                 }
+
                 spaceChildren.sort((a, b) {
                   final bool aIsSpace = a.roomType == 'm.space';
                   final bool bIsSpace = b.roomType == 'm.space';

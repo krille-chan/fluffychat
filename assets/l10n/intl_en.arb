@@ -3944,5 +3944,7 @@
     "score": "Score",
     "accuracy": "Accuracy",
     "points": "Points",
-    "noPaymentInfo": "No payment info necessary!"
+    "noPaymentInfo": "No payment info necessary!",
+    "studentAnalyticsNotAvailable": "Student data not currently available",
+    "roomDataMissing": "Some data may be missing from rooms in which you are not a member."
 }

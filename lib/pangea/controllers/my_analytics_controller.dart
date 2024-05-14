@@ -90,7 +90,7 @@ class MyAnalyticsController {
       }
       final Room analyticsRoom = await _pangeaController.matrixState.client
           .getMyAnalyticsRoom(langCode);
-      analyticsRoom.makeSureTeachersAreInvitedToAnalyticsRoom();
+
       final List<Future<void>> saveFutures = [];
       for (final uses in aggregatedVocabUse.entries) {
         debugPrint("saving of type ${uses.value.first.constructType}");

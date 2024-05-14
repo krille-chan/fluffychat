@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -272,6 +273,16 @@ class PangeaController {
   }
 
   Future<void> setPangeaPushRules() async {
+    final List<Room> analyticsRooms =
+        matrixState.client.rooms.where((room) => room.isAnalyticsRoom).toList();
+
+    for (final Room room in analyticsRooms) {
+      final pushRule = room.pushRuleState;
+      if (pushRule != PushRuleState.dontNotify) {
+        await room.setPushRuleState(PushRuleState.dontNotify);
+      }
+    }
+
     if (!(matrixState.client.globalPushRules?.override?.any(
           (element) => element.ruleId == PangeaEventTypes.textToSpeechRule,
         ) ??

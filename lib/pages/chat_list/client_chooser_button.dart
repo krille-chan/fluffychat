@@ -69,7 +69,7 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        enabled: matrix.client.classesAndExchangesImIn.isNotEmpty,
+        enabled: matrix.client.allMyAnalyticsRooms.isNotEmpty,
         value: SettingsAction.myAnalytics,
         child: Row(
           children: [

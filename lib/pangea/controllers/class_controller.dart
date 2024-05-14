@@ -120,21 +120,41 @@ class ClassController extends BaseController {
 
       if (classChunk == null) {
         ClassCodeUtil.messageSnack(
-            context, L10n.of(context)!.unableToFindClass);
+          context,
+          L10n.of(context)!.unableToFindClass,
+        );
         return;
       }
 
-      if (Matrix.of(context)
-          .client
-          .rooms
+      if (_pangeaController.matrixState.client.rooms
           .any((room) => room.id == classChunk.roomId)) {
         setActiveSpaceIdInChatListController(classChunk.roomId);
         ClassCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
       }
       await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
-
       setActiveSpaceIdInChatListController(classChunk.roomId);
+      if (_pangeaController.matrixState.client.getRoomById(classChunk.roomId) ==
+          null) {
+        await _pangeaController.matrixState.client.waitForRoomInSync(
+          classChunk.roomId,
+          join: true,
+        );
+      }
+
+      // add the user's analytics room to this joined space
+      // so their teachers can join them via the space hierarchy
+      final Room? joinedSpace =
+          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
+
+      // ensure that the user has an analytics room for this space's language
+      await joinedSpace?.ensureAnalyticsRoomExists();
+
+      // when possible, add user's analytics room the to space they joined
+      await joinedSpace?.addAnalyticsRoomsToSpace();
+
+      // and invite the space's teachers to the user's analytics rooms
+      await joinedSpace?.inviteSpaceTeachersToAnalyticsRooms();
       GoogleAnalytics.joinClass(classCode);
       return;
     } catch (err) {

@@ -613,14 +613,14 @@ class ChatController extends State<ChatPageWithRoom>
       useType: useType,
     )
         .then(
-      (String? msgEventId) {
+      (String? msgEventId) async {
         // #Pangea
         setState(() {
           if (previousEdit != null) {
             edittingEvents.add(previousEdit.eventId);
           }
         });
-        // Pangea#
+
         GoogleAnalytics.sendMessage(
           room.id,
           room.classCode,
@@ -635,6 +635,8 @@ class ChatController extends State<ChatPageWithRoom>
           return;
         }
 
+        // ensure that analytics room exists / is created for the active langCode
+        await room.ensureAnalyticsRoomExists();
         pangeaController.myAnalytics.handleMessage(
           room,
           RecentMessageRecord(
