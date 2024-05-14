@@ -87,7 +87,8 @@ extension PangeaClient on Client {
     final List<User> teachers = [];
     for (final classRoom in classesAndExchangesImIn) {
       for (final teacher in await classRoom.teachers) {
-        if (!teachers.any((e) => e.id == teacher.id)) {
+        // If person requesting list of teachers is a teacher in another classroom, don't add them to the list
+        if (!teachers.any((e) => e.id == teacher.id) && userID != teacher.id) {          
           teachers.add(teacher);
         }
       }
