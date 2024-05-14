@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -39,7 +40,17 @@ class PangeaAnyState {
 
   void closeOverlay() {
     if (overlay != null) {
-      overlay?.remove();
+      try {
+        overlay?.remove();
+      } catch (err, s) {
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          data: {
+            "overlay": overlay,
+          },
+        );
+      }
       overlay = null;
     }
   }
