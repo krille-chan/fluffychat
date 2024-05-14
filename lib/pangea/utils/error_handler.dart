@@ -12,25 +12,6 @@ class ErrorHandler {
   ErrorHandler();
 
   static Future<void> initialize() async {
-    FutureOr<void> Function(Scope)? withScope(
-      Scope scope,
-      FlutterErrorDetails details,
-    ) {
-      // if (details.exception is http.Response) {
-      //   final res = details.exception as http.Response;
-      //   scope.addBreadcrumb(
-      //     Breadcrumb.http(
-      //       url: res.request?.url ?? Uri(path: "not available"),
-      //       method: "where does method go?",
-      //       statusCode: res.statusCode,
-      //     ),
-      //   );
-      // } else {
-      //   debugPrint("not an http exception ${details.exception.toString()}");
-      // }
-      return null;
-    }
-
     await SentryFlutter.init(
       (options) {
         options.dsn = Environment.sentryDsn;
@@ -41,10 +22,6 @@ class ErrorHandler {
             : Environment.isStaging
                 ? "staging"
                 : "productionC";
-        // options.beforeSend = (event, {hint}) {
-        //   debugger(when: kDebugMode);
-        //   return null;
-        // };
       },
     );
 
@@ -54,7 +31,6 @@ class ErrorHandler {
         Sentry.captureException(
           details.exception,
           stackTrace: details.stack ?? StackTrace.current,
-          withScope: (scope) => withScope(scope, details),
         );
       }
     };
@@ -70,6 +46,7 @@ class ErrorHandler {
     StackTrace? s,
     String? m,
     Map<String, dynamic>? data,
+    SentryLevel level = SentryLevel.error,
   }) async {
     if (m != null) debugPrint("error message: $m");
     if ((e ?? m) != null) debugPrint("error to string: ${e?.toString() ?? m}");
@@ -77,19 +54,13 @@ class ErrorHandler {
       Sentry.addBreadcrumb(Breadcrumb.fromJson(data));
       debugPrint(data.toString());
     }
-    FlutterError.reportError(
-      FlutterErrorDetails(
-        exception: e ?? Exception(m ?? "no message supplied"),
-        stack: s,
-        library: 'Pangea',
-        context: ErrorSummary(e?.toString() ?? "error not defined"),
-        stackFilter: (input) => input.where(
-          (e) => !(e.contains("org-dartlang-sdk") ||
-              e.contains("future_impl") ||
-              e.contains("microtask") ||
-              e.contains("async_patch")),
-        ),
-      ),
+
+    Sentry.captureException(
+      e ?? Exception(m ?? "no message supplied"),
+      stackTrace: s ?? StackTrace.current,
+      withScope: (scope) {
+        scope.level = level;
+      },
     );
   }
 }

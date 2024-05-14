@@ -118,7 +118,7 @@ dependencies:
   material_symbols_icons: ^4.2741.0
   open_file: ^3.3.2
   purchases_flutter: ^6.26.0
-  sentry_flutter: ^7.19.0
+  sentry_flutter: ^8.2.0
   shimmer: ^3.0.0
   syncfusion_flutter_xlsio: ^25.1.40
   # Pangea#
