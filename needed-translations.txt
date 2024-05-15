@@ -820,7 +820,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "be": [
@@ -2239,7 +2245,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "bn": [
@@ -3120,7 +3132,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "bo": [
@@ -4001,7 +4019,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ca": [
@@ -4882,7 +4906,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "cs": [
@@ -5763,7 +5793,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "de": [
@@ -6591,7 +6627,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "el": [
@@ -7472,7 +7514,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "eo": [
@@ -8353,7 +8401,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "es": [
@@ -8382,7 +8436,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "et": [
@@ -9206,7 +9266,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "eu": [
@@ -10030,7 +10096,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "fa": [
@@ -10911,7 +10983,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "fi": [
@@ -11792,7 +11870,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "fr": [
@@ -12673,7 +12757,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ga": [
@@ -13554,7 +13644,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "gl": [
@@ -14378,7 +14474,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "he": [
@@ -15259,7 +15361,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "hi": [
@@ -16140,7 +16248,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "hr": [
@@ -17008,7 +17122,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "hu": [
@@ -17889,7 +18009,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ia": [
@@ -19294,7 +19420,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "id": [
@@ -20175,7 +20307,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ie": [
@@ -21056,7 +21194,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "it": [
@@ -21922,7 +22066,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ja": [
@@ -22803,7 +22953,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ko": [
@@ -23684,7 +23840,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "lt": [
@@ -24565,7 +24727,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "lv": [
@@ -25446,7 +25614,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "nb": [
@@ -26327,7 +26501,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "nl": [
@@ -27208,7 +27388,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "pl": [
@@ -28089,7 +28275,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "pt": [
@@ -28970,7 +29162,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "pt_BR": [
@@ -29820,7 +30018,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "pt_PT": [
@@ -30701,7 +30905,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ro": [
@@ -31582,7 +31792,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ru": [
@@ -32406,7 +32622,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "sk": [
@@ -33287,7 +33509,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "sl": [
@@ -34168,7 +34396,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "sr": [
@@ -35049,7 +35283,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "sv": [
@@ -35895,7 +36135,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "ta": [
@@ -36776,7 +37022,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "th": [
@@ -37657,7 +37909,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "tr": [
@@ -38523,7 +38781,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "uk": [
@@ -39347,7 +39611,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "vi": [
@@ -40228,7 +40498,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "zh": [
@@ -41052,7 +41328,13 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ],
 
   "zh_Hant": [
@@ -41933,6 +42215,12 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "conversationBotPresetSelectDescription",
+    "conversationBotPresetSelectOption_discussion",
+    "conversationBotPresetSelectOption_custom",
+    "conversationBotPresetSelectOption_conversation",
+    "conversationBotPresetSelectOption_textAdventure"
   ]
 }

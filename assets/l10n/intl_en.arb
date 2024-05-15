@@ -3945,5 +3945,10 @@
     "accuracy": "Accuracy",
     "points": "Points",
     "noPaymentInfo": "No payment info necessary!",
-    "updatePhoneOS": "You may need to update your device's OS version."
+    "updatePhoneOS": "You may need to update your device's OS version.",
+    "conversationBotPresetSelectDescription": "Bot preset",
+    "conversationBotPresetSelectOption_discussion": "Discussion",
+    "conversationBotPresetSelectOption_custom": "Custom",
+    "conversationBotPresetSelectOption_conversation": "Conversation",
+    "conversationBotPresetSelectOption_textAdventure": "Text Adventure"
 }
