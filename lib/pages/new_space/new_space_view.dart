@@ -138,7 +138,7 @@ class NewSpaceView extends StatelessWidget {
             if (!controller.newClassMode)
               AddToSpaceToggles(
                 key: controller.addToSpaceKey,
-                startOpen: false,
+                startOpen: true,
                 mode: !controller.newClassMode
                     ? AddToClassMode.exchange
                     : AddToClassMode.chat,

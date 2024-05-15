@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -173,7 +174,7 @@ class _SpaceViewState extends State<SpaceView> {
       if (spaceChild.roomId == widget.controller.activeSpaceId) {
         // #Pangea
         // context.go('/rooms/${spaceChild.roomId}');
-        context.push('/spaces/${spaceChild.roomId}');
+        context.go('/rooms/${spaceChild.roomId}/details');
         // Pangea#
       } else {
         widget.controller.setActiveSpace(spaceChild.roomId);
@@ -545,12 +546,25 @@ class _SpaceViewState extends State<SpaceView> {
               titleSpacing: 0,
               title: ListTile(
                 leading: BackButton(
-                  onPressed: () =>
-                      widget.controller.setActiveSpace(parentSpace?.id),
+                  // #Pangea
+                  onPressed: () {
+                    !FluffyThemes.isColumnMode(context) ||
+                            parentSpace?.id != null
+                        ? widget.controller.setActiveSpace(parentSpace?.id)
+                        : widget.controller.onDestinationSelected(0);
+                  },
+                  // onPressed: () =>
+                  //     widget.controller.setActiveSpace(parentSpace?.id),
+                  // Pangea#
                 ),
                 title: Text(
                   parentSpace == null
-                      ? L10n.of(context)!.allSpaces
+                      // #Pangea
+                      // ? L10n.of(context)!.allSpaces
+                      ? !FluffyThemes.isColumnMode(context)
+                          ? L10n.of(context)!.allSpaces
+                          : L10n.of(context)!.allChats
+                      // Pangea#
                       : parentSpace.getLocalizedDisplayname(
                           MatrixLocals(L10n.of(context)!),
                         ),
@@ -721,8 +735,8 @@ class _SpaceViewState extends State<SpaceView> {
                               ),
                               // #Pangea
                               // onTap: () => _onJoinSpaceChild(spaceChild),
-                              onTap: () => context.push(
-                                '/spaces/${spaceChild.roomId}',
+                              onTap: () => context.go(
+                                '/rooms/${spaceChild.roomId}/details',
                               ),
                               // Pangea#
                             ),

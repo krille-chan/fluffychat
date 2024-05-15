@@ -4389,7 +4389,7 @@
   "bestAnswerFeedback": "¡Correcto!",
   "definitionDefaultPrompt": "¿Qué significa esta palabra?",
   "practiceDefaultPrompt": "¿Cuál es la mejor respuesta?",
-  "correctionDefaultPrompt": "¿Cuál es la mejor corrección?",
+  "correctionDefaultPrompt": "¿Cuál es el mejor reemplazo?",
   "itStartDefaultPrompt": "¿Quiere ayuda para traducir?",
   "suggestTo": "Sugerir a {spaceName}",
   "suggestChatDesc": "Los chats sugeridos aparecerán en la lista de chats de {spaceName}.",
@@ -4592,17 +4592,17 @@
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
   "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}...",
   "@writeAMessageFlag": {
-        "type": "text",
-        "placeholders": {
-            "l1flag": {},
-            "l2flag": {}
-        }
+    "type": "text",
+    "placeholders": {
+      "l1flag": {},
+      "l2flag": {}
+    }
   },
   "youInvitedToBy": "📩 Has sido invitado a través de un enlace a:\n{alias}",
   "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {}
-        }
+    "placeholders": {
+      "alias": {}
+    }
   },
   "hidePresences": "¿Ocultar la lista de estados?",
   "sendReadReceipts": "Enviar recibos de lectura",
@@ -4621,11 +4621,11 @@
   "commandHint_unignore": "Designorar el ID de matriz dado",
   "unreadChatsInApp": "{appname}: {unread} chats no leídos",
   "@unreadChatsInApp": {
-        "type": "text",
-        "placeholders": {
-            "appname": {},
-            "unread": {}
-        }
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
   },
   "messageAnalytics": "Análisis de mensajes",
   "words": "Palabras",
