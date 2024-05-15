@@ -3945,5 +3945,9 @@
     "accuracy": "Accuracy",
     "points": "Points",
     "noPaymentInfo": "No payment info necessary!",
+<<<<<<< Updated upstream
     "updatePhoneOS": "You may need to update your device's OS version."
+=======
+    "wordsPerMinute": "Words per minute"
+>>>>>>> Stashed changes
 }

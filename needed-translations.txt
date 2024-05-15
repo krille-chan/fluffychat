@@ -820,7 +820,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "be": [
@@ -2239,7 +2240,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "bn": [
@@ -3120,7 +3122,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "bo": [
@@ -4001,7 +4004,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ca": [
@@ -4882,7 +4886,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "cs": [
@@ -5763,7 +5768,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "de": [
@@ -6591,7 +6597,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "el": [
@@ -7472,7 +7479,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "eo": [
@@ -8353,7 +8361,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "es": [
@@ -8382,7 +8391,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "et": [
@@ -9206,7 +9216,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "eu": [
@@ -10030,7 +10041,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "fa": [
@@ -10911,7 +10923,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "fi": [
@@ -11792,7 +11805,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "fr": [
@@ -12673,7 +12687,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ga": [
@@ -13554,7 +13569,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "gl": [
@@ -14378,7 +14394,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "he": [
@@ -15259,7 +15276,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "hi": [
@@ -16140,7 +16158,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "hr": [
@@ -17008,7 +17027,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "hu": [
@@ -17889,7 +17909,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ia": [
@@ -19294,7 +19315,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "id": [
@@ -20175,7 +20197,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ie": [
@@ -21056,7 +21079,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "it": [
@@ -21922,7 +21946,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ja": [
@@ -22803,7 +22828,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ko": [
@@ -23684,7 +23710,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "lt": [
@@ -24565,7 +24592,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "lv": [
@@ -25446,7 +25474,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "nb": [
@@ -26327,7 +26356,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "nl": [
@@ -27208,7 +27238,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "pl": [
@@ -28089,7 +28120,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "pt": [
@@ -28970,7 +29002,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "pt_BR": [
@@ -29820,7 +29853,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "pt_PT": [
@@ -30701,7 +30735,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ro": [
@@ -31582,7 +31617,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ru": [
@@ -32406,7 +32442,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "sk": [
@@ -33287,7 +33324,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "sl": [
@@ -34168,7 +34206,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "sr": [
@@ -35049,7 +35088,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "sv": [
@@ -35895,7 +35935,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "ta": [
@@ -36776,7 +36817,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "th": [
@@ -37657,7 +37699,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "tr": [
@@ -38523,7 +38566,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "uk": [
@@ -39347,7 +39391,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "vi": [
@@ -40228,7 +40273,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "zh": [
@@ -41052,7 +41098,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ],
 
   "zh_Hant": [
@@ -41933,6 +41980,7 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "wordsPerMinute"
   ]
 }

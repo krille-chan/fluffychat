@@ -29,6 +29,8 @@ abstract class AppConfig {
   static const Color primaryColorLight = Color(0xFFDBC9FF);
   static const Color secondaryColor = Color(0xFF41a2bc);
   static const Color activeToggleColor = Color(0xFF33D057);
+  static const Color success = Color(0xFF33D057);
+  static const Color warning = Color.fromARGB(255, 210, 124, 12);
   // static String _privacyUrl =
   //     'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';
   static String _privacyUrl = "https://www.pangeachat.com/privacy";
