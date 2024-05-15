@@ -821,6 +821,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -2241,6 +2242,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -3123,6 +3125,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -4005,6 +4008,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -4887,6 +4891,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -5769,6 +5774,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -6598,6 +6604,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -7480,6 +7487,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -8362,36 +8370,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "wordsPerMinute"
-  ],
-
-  "es": [
-    "presenceStyle",
-    "presencesToggle",
-    "writeAMessageFlag",
-    "youInvitedToBy",
-    "hidePresences",
-    "sendReadReceipts",
-    "sendTypingNotificationsDescription",
-    "sendReadReceiptsDescription",
-    "formattedMessages",
-    "formattedMessagesDescription",
-    "verifyOtherUser",
-    "verifyOtherUserDescription",
-    "verifyOtherDevice",
-    "verifyOtherDeviceDescription",
-    "transparent",
-    "incomingMessages",
-    "stickers",
-    "commandHint_ignore",
-    "commandHint_unignore",
-    "unreadChatsInApp",
-    "messageAnalytics",
-    "words",
-    "score",
-    "accuracy",
-    "points",
-    "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -9217,6 +9196,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -10042,6 +10022,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -10924,6 +10905,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -11806,6 +11788,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -12688,6 +12671,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -13570,6 +13554,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -14395,6 +14380,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -15277,6 +15263,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -16159,6 +16146,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -17028,6 +17016,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -17910,6 +17899,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -19316,6 +19306,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -20198,6 +20189,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -21080,6 +21072,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -21947,6 +21940,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -22829,6 +22823,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -23711,6 +23706,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -24593,6 +24589,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -25475,6 +25472,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -26357,6 +26355,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -27239,6 +27238,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -28121,6 +28121,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -29003,6 +29004,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -29854,6 +29856,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -30736,6 +30739,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -31618,6 +31622,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -32443,6 +32448,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -33325,6 +33331,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -34207,6 +34214,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -35089,6 +35097,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -35936,6 +35945,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -36818,6 +36828,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -37700,6 +37711,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -38567,6 +38579,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -39392,6 +39405,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -40274,6 +40288,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -41099,6 +41114,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ],
 
@@ -41981,6 +41997,7 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "updatePhoneOS",
     "wordsPerMinute"
   ]
 }
