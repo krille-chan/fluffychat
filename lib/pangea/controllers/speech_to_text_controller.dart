@@ -74,18 +74,21 @@ class SpeechToTextController {
     }
     debugPrint('Saving transcript as matrix event');
 
-    requestModel.audioEvent?.room.sendPangeaEvent(
-      content: PangeaRepresentation(
-        langCode: response.langCode,
-        text: response.transcript.text,
-        originalSent: false,
-        originalWritten: false,
-        speechToText: response,
-      ).toJson(),
-      parentEventId: requestModel.audioEvent!.eventId,
-      type: PangeaEventTypes.representation,
-    );
-    debugPrint('Transcript saved as matrix event');
+    requestModel.audioEvent?.room
+        .sendPangeaEvent(
+          content: PangeaRepresentation(
+            langCode: response.langCode,
+            text: response.transcript.text,
+            originalSent: false,
+            originalWritten: false,
+            speechToText: response,
+          ).toJson(),
+          parentEventId: requestModel.audioEvent!.eventId,
+          type: PangeaEventTypes.representation,
+        )
+        .then(
+          (_) => debugPrint('Transcript saved as matrix event'),
+        );
 
     return Future.value(null);
   }

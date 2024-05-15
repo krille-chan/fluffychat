@@ -154,6 +154,18 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      // #Pangea
+      PopupMenuItem(
+        value: SettingsAction.learning,
+        child: Row(
+          children: [
+            const Icon(Icons.psychology_outlined),
+            const SizedBox(width: 18),
+            Expanded(child: Text(L10n.of(context)!.learningSettings)),
+          ],
+        ),
+      ),
+      // Pangea#
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -382,6 +394,9 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.setStatus:
           controller.setStatus();
         // #Pangea
+        case SettingsAction.learning:
+          context.go('/rooms/settings/learning');
+          break;
         case SettingsAction.newClass:
           context.go('/rooms/newspace');
           break;
@@ -493,6 +508,7 @@ enum SettingsAction {
   settings,
   archive,
   // #Pangea
+  learning,
   joinWithClassCode,
   classAnalytics,
   myAnalytics,
