@@ -148,17 +148,20 @@ class STTToken {
 class Transcript {
   final String text;
   final int confidence;
-  final int wordsPerMinute;
   final List<STTToken> sttTokens;
   final String langCode;
+  final int? wordsPerHr;
 
   Transcript({
     required this.text,
     required this.confidence,
     required this.sttTokens,
     required this.langCode,
-    required this.wordsPerMinute,
+    required this.wordsPerHr,
   });
+
+  /// Returns the number of words per minute rounded to one decimal place.
+  double? get wordsPerMinute => wordsPerHr != null ? wordsPerHr! / 60 : null;
 
   factory Transcript.fromJson(Map<String, dynamic> json) => Transcript(
         text: json['transcript'],
@@ -169,7 +172,7 @@ class Transcript {
             .map((e) => STTToken.fromJson(e))
             .toList(),
         langCode: json['lang_code'],
-        wordsPerMinute: json['words_per_minute'].round(),
+        wordsPerHr: json['words_per_hr'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -177,7 +180,7 @@ class Transcript {
         "confidence": confidence,
         "stt_tokens": sttTokens.map((e) => e.toJson()).toList(),
         "lang_code": langCode,
-        "words_per_minute": wordsPerMinute,
+        "words_per_hr": wordsPerHr,
       };
 
   Color color(BuildContext context) {
