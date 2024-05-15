@@ -296,14 +296,14 @@ class PangeaMessageEvent {
       return null;
     }
 
-    // final SpeechToTextModel? speechToTextLocal = representations
-    //     .firstWhereOrNull(
-    //       (element) => element.content.speechToText != null,
-    //     )
-    //     ?.content
-    //     .speechToText;
+    final SpeechToTextModel? speechToTextLocal = representations
+        .firstWhereOrNull(
+          (element) => element.content.speechToText != null,
+        )
+        ?.content
+        .speechToText;
 
-    // if (speechToTextLocal != null) return speechToTextLocal;
+    if (speechToTextLocal != null) return speechToTextLocal;
 
     final matrixFile = await _event.downloadAndDecryptAttachment();
     // Pangea#
