@@ -117,7 +117,7 @@ class STTToken {
   }
 
   Map<String, dynamic> toJson() => {
-        "token": token,
+        "token": token.toJson(),
         "start_time": startTime?.inMilliseconds,
         "end_time": endTime?.inMilliseconds,
         "confidence": confidence,
