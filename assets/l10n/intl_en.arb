@@ -3674,7 +3674,7 @@
     "bestAnswerFeedback": "That's correct!",
     "definitionDefaultPrompt": "What does this word mean?",
     "practiceDefaultPrompt": "What is the best answer?",
-    "correctionDefaultPrompt": "What is the best correction?",
+    "correctionDefaultPrompt": "What is the best replacement?",
     "itStartDefaultPrompt": "Do you want help translating?",
     "languageLevelWarning": "Please select a class language level",
     "lockedChatWarning": "🔒 This chat has been locked",

@@ -91,7 +91,7 @@ class NewGroupView extends StatelessWidget {
             const Divider(height: 1),
             AddToSpaceToggles(
               key: controller.addToSpaceKey,
-              startOpen: false,
+              startOpen: true,
               activeSpaceId: controller.activeSpaceId,
               mode: AddToClassMode.chat,
             ),

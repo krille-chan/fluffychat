@@ -21,7 +21,7 @@ void chatListHandleSpaceTap(
     controller.setActiveSpace(space.id);
 
     if (FluffyThemes.isColumnMode(context)) {
-      context.push('/spaces/${space.id}');
+      context.go('/rooms/${space.id}/details');
     } else if (controller.activeChat != null &&
         !space.isFirstOrSecondChild(controller.activeChat!)) {
       context.go("/rooms");
@@ -107,6 +107,9 @@ void chatListHandleSpaceTap(
       } else {
         showAlertDialog(context);
       }
+      break;
+    case Membership.leave:
+      autoJoin(space);
       break;
     default:
       setActiveSpaceAndCloseChat();
