@@ -133,6 +133,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     getSpeechToText();
   }
 
+  String? get wordsPerMinuteString =>
+      speechToTextResponse?.transcript.wordsPerMinute?.toString();
+
   @override
   Widget build(BuildContext context) {
     if (_fetchingTranscription) {
@@ -158,11 +161,11 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconNumberWidget(
-              icon: Icons.abc,
-              number: (selectedToken == null ? words : 1).toString(),
-              toolTip: L10n.of(context)!.words,
-            ),
+            // IconNumberWidget(
+            //   icon: Icons.abc,
+            //   number: (selectedToken == null ? words : 1).toString(),
+            //   toolTip: L10n.of(context)!.words,
+            // ),
             IconNumberWidget(
               icon: Symbols.target,
               number:
@@ -171,8 +174,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
             ),
             IconNumberWidget(
               icon: Icons.speed,
-              number: (selectedToken?.confidence ?? total).toString(),
-              toolTip: L10n.of(context)!.points,
+              number:
+                  wordsPerMinuteString != null ? "$wordsPerMinuteString" : "??",
+              toolTip: L10n.of(context)!.wordsPerMinute,
             ),
           ],
         ),

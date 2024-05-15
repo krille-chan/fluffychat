@@ -820,7 +820,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "be": [
@@ -2239,7 +2241,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "bn": [
@@ -3120,7 +3124,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "bo": [
@@ -4001,7 +4007,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ca": [
@@ -4882,7 +4890,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "cs": [
@@ -5763,7 +5773,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "de": [
@@ -6591,7 +6603,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "el": [
@@ -7472,7 +7486,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "eo": [
@@ -8353,36 +8369,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
-  ],
-
-  "es": [
-    "presenceStyle",
-    "presencesToggle",
-    "writeAMessageFlag",
-    "youInvitedToBy",
-    "hidePresences",
-    "sendReadReceipts",
-    "sendTypingNotificationsDescription",
-    "sendReadReceiptsDescription",
-    "formattedMessages",
-    "formattedMessagesDescription",
-    "verifyOtherUser",
-    "verifyOtherUserDescription",
-    "verifyOtherDevice",
-    "verifyOtherDeviceDescription",
-    "transparent",
-    "incomingMessages",
-    "stickers",
-    "commandHint_ignore",
-    "commandHint_unignore",
-    "unreadChatsInApp",
-    "messageAnalytics",
-    "words",
-    "score",
-    "accuracy",
-    "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "et": [
@@ -9206,7 +9195,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "eu": [
@@ -10030,7 +10021,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fa": [
@@ -10911,7 +10904,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fi": [
@@ -11792,7 +11787,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fr": [
@@ -12673,7 +12670,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ga": [
@@ -13554,7 +13553,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "gl": [
@@ -14378,7 +14379,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "he": [
@@ -15259,7 +15262,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hi": [
@@ -16140,7 +16145,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hr": [
@@ -17008,7 +17015,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hu": [
@@ -17889,7 +17898,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ia": [
@@ -19294,7 +19305,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "id": [
@@ -20175,7 +20188,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ie": [
@@ -21056,7 +21071,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "it": [
@@ -21922,7 +21939,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ja": [
@@ -22803,7 +22822,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ko": [
@@ -23684,7 +23705,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "lt": [
@@ -24565,7 +24588,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "lv": [
@@ -25446,7 +25471,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "nb": [
@@ -26327,7 +26354,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "nl": [
@@ -27208,7 +27237,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pl": [
@@ -28089,7 +28120,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt": [
@@ -28970,7 +29003,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt_BR": [
@@ -29820,7 +29855,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt_PT": [
@@ -30701,7 +30738,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ro": [
@@ -31582,7 +31621,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ru": [
@@ -32406,7 +32447,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sk": [
@@ -33287,7 +33330,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sl": [
@@ -34168,7 +34213,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sr": [
@@ -35049,7 +35096,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sv": [
@@ -35895,7 +35944,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ta": [
@@ -36776,7 +36827,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "th": [
@@ -37657,7 +37710,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "tr": [
@@ -38523,7 +38578,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "uk": [
@@ -39347,7 +39404,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "vi": [
@@ -40228,7 +40287,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "zh": [
@@ -41052,7 +41113,9 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "zh_Hant": [
@@ -41933,6 +41996,8 @@
     "score",
     "accuracy",
     "points",
-    "noPaymentInfo"
+    "noPaymentInfo",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ]
 }
