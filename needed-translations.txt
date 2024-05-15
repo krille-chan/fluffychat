@@ -822,11 +822,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "be": [
@@ -2247,11 +2247,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "bn": [
@@ -3134,11 +3134,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "bo": [
@@ -4021,11 +4021,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ca": [
@@ -4908,11 +4908,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "cs": [
@@ -5795,11 +5795,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "de": [
@@ -6629,11 +6629,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "el": [
@@ -7516,11 +7516,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "eo": [
@@ -8403,11 +8403,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "es": [
@@ -8438,11 +8438,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "et": [
@@ -9268,11 +9268,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "eu": [
@@ -10098,11 +10098,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "fa": [
@@ -10985,11 +10985,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "fi": [
@@ -11872,11 +11872,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "fr": [
@@ -12759,11 +12759,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ga": [
@@ -13646,11 +13646,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "gl": [
@@ -14476,11 +14476,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "he": [
@@ -15363,11 +15363,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "hi": [
@@ -16250,11 +16250,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "hr": [
@@ -17124,11 +17124,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "hu": [
@@ -18011,11 +18011,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ia": [
@@ -19422,11 +19422,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "id": [
@@ -20309,11 +20309,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ie": [
@@ -21196,11 +21196,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "it": [
@@ -22068,11 +22068,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ja": [
@@ -22955,11 +22955,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ko": [
@@ -23842,11 +23842,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "lt": [
@@ -24729,11 +24729,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "lv": [
@@ -25616,11 +25616,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "nb": [
@@ -26503,11 +26503,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "nl": [
@@ -27390,11 +27390,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "pl": [
@@ -28277,11 +28277,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "pt": [
@@ -29164,11 +29164,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "pt_BR": [
@@ -30020,11 +30020,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "pt_PT": [
@@ -30907,11 +30907,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ro": [
@@ -31794,11 +31794,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ru": [
@@ -32624,11 +32624,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "sk": [
@@ -33511,11 +33511,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "sl": [
@@ -34398,11 +34398,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "sr": [
@@ -35285,11 +35285,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "sv": [
@@ -36137,11 +36137,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "ta": [
@@ -37024,11 +37024,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "th": [
@@ -37911,11 +37911,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "tr": [
@@ -38783,11 +38783,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "uk": [
@@ -39613,11 +39613,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "vi": [
@@ -40500,11 +40500,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "zh": [
@@ -41330,11 +41330,11 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ],
 
   "zh_Hant": [
@@ -42217,10 +42217,10 @@
     "points",
     "noPaymentInfo",
     "updatePhoneOS",
-    "conversationBotPresetSelectDescription",
-    "conversationBotPresetSelectOption_discussion",
-    "conversationBotPresetSelectOption_custom",
-    "conversationBotPresetSelectOption_conversation",
-    "conversationBotPresetSelectOption_textAdventure"
+    "conversationBotModeSelectDescription",
+    "conversationBotModeSelectOption_discussion",
+    "conversationBotModeSelectOption_custom",
+    "conversationBotModeSelectOption_conversation",
+    "conversationBotModeSelectOption_textAdventure"
   ]
 }

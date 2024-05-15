@@ -99,6 +99,6 @@ class ModelKey {
   static const String conversationTopic = "conversation_topic";
   static const String keywords = "keywords";
   static const String safetyModeration = "safety_moderation";
-  static const String preset = "preset";
+  static const String mode = "mode";
   static const String custom = "custom";
 }

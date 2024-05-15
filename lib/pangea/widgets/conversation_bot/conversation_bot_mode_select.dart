@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class ConversationBotPresetSelect extends StatelessWidget {
+class ConversationBotModeSelect extends StatelessWidget {
   final String? initialMode;
   final void Function(String?)? onChanged;
 
-  const ConversationBotPresetSelect({
+  const ConversationBotModeSelect({
     super.key,
     this.initialMode,
     this.onChanged,
@@ -15,12 +15,12 @@ class ConversationBotPresetSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, String> options = {
       "discussion":
-          L10n.of(context)!.conversationBotPresetSelectOption_discussion,
-      "custom": L10n.of(context)!.conversationBotPresetSelectOption_custom,
+          L10n.of(context)!.conversationBotModeSelectOption_discussion,
+      "custom": L10n.of(context)!.conversationBotModeSelectOption_custom,
       "conversation":
-          L10n.of(context)!.conversationBotPresetSelectOption_conversation,
+          L10n.of(context)!.conversationBotModeSelectOption_conversation,
       "text_adventure":
-          L10n.of(context)!.conversationBotPresetSelectOption_textAdventure,
+          L10n.of(context)!.conversationBotModeSelectOption_textAdventure,
     };
 
     return Padding(

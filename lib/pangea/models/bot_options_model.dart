@@ -12,7 +12,7 @@ class BotOptionsModel {
   String topic;
   List<String> keywords;
   bool safetyModeration;
-  String preset;
+  String mode;
   String? custom;
 
   BotOptionsModel({
@@ -20,7 +20,7 @@ class BotOptionsModel {
     this.topic = "General Conversation",
     this.keywords = const [],
     this.safetyModeration = true,
-    this.preset = "discussion",
+    this.mode = "discussion",
     this.custom = "",
   });
 
@@ -30,7 +30,7 @@ class BotOptionsModel {
       topic: json[ModelKey.conversationTopic] ?? "General Conversation",
       keywords: (json[ModelKey.keywords] ?? []).cast<String>(),
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
-      preset: json[ModelKey.preset] ?? "discussion",
+      mode: json[ModelKey.mode] ?? "discussion",
       custom: json[ModelKey.custom],
     );
   }

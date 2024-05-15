@@ -3946,9 +3946,9 @@
     "points": "Points",
     "noPaymentInfo": "No payment info necessary!",
     "updatePhoneOS": "You may need to update your device's OS version.",
-    "conversationBotPresetSelectDescription": "Bot preset",
-    "conversationBotPresetSelectOption_discussion": "Discussion",
-    "conversationBotPresetSelectOption_custom": "Custom",
-    "conversationBotPresetSelectOption_conversation": "Conversation",
-    "conversationBotPresetSelectOption_textAdventure": "Text Adventure"
+    "conversationBotModeSelectDescription": "Bot mode",
+    "conversationBotModeSelectOption_discussion": "Discussion",
+    "conversationBotModeSelectOption_custom": "Custom",
+    "conversationBotModeSelectOption_conversation": "Conversation",
+    "conversationBotModeSelectOption_textAdventure": "Text Adventure"
 }
