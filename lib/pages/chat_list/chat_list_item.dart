@@ -226,51 +226,34 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             softWrap: false,
                           )
-                        : FutureBuilder<String>(
-                            future: room.lastEvent?.calcLocalizedBody(
-                                  MatrixLocals(L10n.of(context)!),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: !isDirectChat ||
-                                      directChatMatrixId !=
-                                          room.lastEvent?.senderId,
-                                ) ??
-                                Future.value(L10n.of(context)!.emptyChat),
-                            builder: (context, snapshot) {
-                              return Text(
-                                room.membership == Membership.invite
-                                    ? isDirectChat
-                                        ? L10n.of(context)!.invitePrivateChat
-                                        : L10n.of(context)!.inviteGroupChat
-                                    : snapshot.data ??
-                                        room.lastEvent
-                                            ?.calcLocalizedBodyFallback(
-                                          MatrixLocals(L10n.of(context)!),
-                                          hideReply: true,
-                                          hideEdit: true,
-                                          plaintextBody: true,
-                                          removeMarkdown: true,
-                                          withSenderNamePrefix: !isDirectChat ||
-                                              directChatMatrixId !=
-                                                  room.lastEvent?.senderId,
-                                        ) ??
-                                        L10n.of(context)!.emptyChat,
-                                softWrap: false,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: unread || room.hasNewMessages
-                                      ? FontWeight.bold
-                                      : null,
-                                  color: theme.colorScheme.onSurfaceVariant,
-                                  decoration: room.lastEvent?.redacted == true
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                ),
-                              );
-                            },
+                        : Text(
+                            room.membership == Membership.invite
+                                ? isDirectChat
+                                    ? L10n.of(context)!.invitePrivateChat
+                                    : L10n.of(context)!.inviteGroupChat
+                                : room.lastEvent?.calcLocalizedBodyFallback(
+                                      MatrixLocals(L10n.of(context)!),
+                                      hideReply: true,
+                                      hideEdit: true,
+                                      plaintextBody: true,
+                                      removeMarkdown: true,
+                                      withSenderNamePrefix: !isDirectChat ||
+                                          directChatMatrixId !=
+                                              room.lastEvent?.senderId,
+                                    ) ??
+                                    L10n.of(context)!.emptyChat,
+                            softWrap: false,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: unread || room.hasNewMessages
+                                  ? FontWeight.bold
+                                  : null,
+                              color: theme.colorScheme.onSurfaceVariant,
+                              decoration: room.lastEvent?.redacted == true
+                                  ? TextDecoration.lineThrough
+                                  : null,
+                            ),
                           ),
                   ),
                   const SizedBox(width: 8),
