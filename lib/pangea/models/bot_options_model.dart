@@ -43,6 +43,8 @@ class BotOptionsModel {
       data[ModelKey.conversationTopic] = topic;
       data[ModelKey.keywords] = keywords;
       data[ModelKey.safetyModeration] = safetyModeration;
+      data[ModelKey.mode] = mode;
+      data[ModelKey.custom] = custom;
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -65,6 +67,12 @@ class BotOptionsModel {
         break;
       case ModelKey.safetyModeration:
         safetyModeration = value;
+        break;
+      case ModelKey.mode:
+        mode = value;
+        break;
+      case ModelKey.custom:
+        custom = value;
         break;
       default:
         throw Exception('Invalid key for bot options - $key');
