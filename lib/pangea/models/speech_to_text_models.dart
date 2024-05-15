@@ -148,7 +148,7 @@ class STTToken {
 class Transcript {
   final String text;
   final int confidence;
-  final double? wordsPerMinute;
+  final int wordsPerMinute;
   final List<STTToken> sttTokens;
   final String langCode;
 
@@ -169,7 +169,7 @@ class Transcript {
             .map((e) => STTToken.fromJson(e))
             .toList(),
         langCode: json['lang_code'],
-        wordsPerMinute: json['words_per_minute'],
+        wordsPerMinute: json['words_per_minute'].round(),
       );
 
   Map<String, dynamic> toJson() => {
