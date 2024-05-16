@@ -830,7 +830,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "be": [
@@ -2259,7 +2263,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "bn": [
@@ -3150,7 +3158,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "bo": [
@@ -4041,7 +4053,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ca": [
@@ -4932,7 +4948,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "cs": [
@@ -5823,7 +5843,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "de": [
@@ -6661,7 +6685,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "el": [
@@ -7552,7 +7580,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "eo": [
@@ -8443,7 +8475,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "es": [
@@ -8482,7 +8518,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "et": [
@@ -9316,7 +9356,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "eu": [
@@ -10150,7 +10194,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "fa": [
@@ -11041,7 +11089,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "fi": [
@@ -11932,7 +11984,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "fr": [
@@ -12823,7 +12879,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ga": [
@@ -13714,7 +13774,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "gl": [
@@ -14548,7 +14612,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "he": [
@@ -15439,7 +15507,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "hi": [
@@ -16330,7 +16402,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "hr": [
@@ -17208,7 +17284,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "hu": [
@@ -18099,7 +18179,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ia": [
@@ -19514,7 +19598,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "id": [
@@ -20405,7 +20493,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ie": [
@@ -21296,7 +21388,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "it": [
@@ -22172,7 +22268,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ja": [
@@ -23063,7 +23163,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ko": [
@@ -23954,7 +24058,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "lt": [
@@ -24845,7 +24953,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "lv": [
@@ -25736,7 +25848,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "nb": [
@@ -26627,7 +26743,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "nl": [
@@ -27518,7 +27638,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "pl": [
@@ -28409,7 +28533,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "pt": [
@@ -29300,7 +29428,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "pt_BR": [
@@ -30160,7 +30292,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "pt_PT": [
@@ -31051,7 +31187,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ro": [
@@ -31942,7 +32082,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ru": [
@@ -32776,7 +32920,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "sk": [
@@ -33667,7 +33815,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "sl": [
@@ -34558,7 +34710,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "sr": [
@@ -35449,7 +35605,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "sv": [
@@ -36305,7 +36465,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "ta": [
@@ -37196,7 +37360,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "th": [
@@ -38087,7 +38255,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "tr": [
@@ -38963,7 +39135,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "uk": [
@@ -39797,7 +39973,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "vi": [
@@ -40688,7 +40868,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "zh": [
@@ -41522,7 +41706,11 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ],
 
   "zh_Hant": [
@@ -42413,6 +42601,10 @@
     "conversationBotDiscussionZone_title",
     "conversationBotDiscussionZone_discussionTopicLabel",
     "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsHintText"
+    "conversationBotDiscussionZone_discussionKeywordsHintText",
+    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
   ]
 }

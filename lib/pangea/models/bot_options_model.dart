@@ -16,6 +16,10 @@ class BotOptionsModel {
   String? custom;
   String? discussionTopic;
   String? discussionKeywords;
+  bool? discussionTriggerScheduleEnabled;
+  int? discussionTriggerScheduleHourInterval;
+  bool? discussionTriggerReactionEnabled;
+  String? discussionTriggerReactionKey;
 
   BotOptionsModel({
     this.languageLevel,
@@ -26,18 +30,27 @@ class BotOptionsModel {
     this.custom = "",
     this.discussionTopic,
     this.discussionKeywords,
+    this.discussionTriggerScheduleEnabled,
+    this.discussionTriggerScheduleHourInterval,
+    this.discussionTriggerReactionEnabled,
+    this.discussionTriggerReactionKey,
   });
 
   factory BotOptionsModel.fromJson(json) {
     return BotOptionsModel(
       languageLevel: json[ModelKey.languageLevel],
-      topic: json[ModelKey.conversationTopic] ?? "General Conversation",
-      keywords: (json[ModelKey.keywords] ?? []).cast<String>(),
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? "discussion",
       custom: json[ModelKey.custom],
       discussionTopic: json[ModelKey.discussionTopic],
       discussionKeywords: json[ModelKey.discussionKeywords],
+      discussionTriggerScheduleEnabled:
+          json[ModelKey.discussionTriggerScheduleEnabled],
+      discussionTriggerScheduleHourInterval:
+          json[ModelKey.discussionTriggerScheduleHourInterval],
+      discussionTriggerReactionEnabled:
+          json[ModelKey.discussionTriggerReactionEnabled],
+      discussionTriggerReactionKey: json[ModelKey.discussionTriggerReactionKey],
     );
   }
 
@@ -46,13 +59,19 @@ class BotOptionsModel {
     try {
       // data[ModelKey.isConversationBotChat] = isConversationBotChat;
       data[ModelKey.languageLevel] = languageLevel;
-      data[ModelKey.conversationTopic] = topic;
-      data[ModelKey.keywords] = keywords;
       data[ModelKey.safetyModeration] = safetyModeration;
       data[ModelKey.mode] = mode;
       data[ModelKey.custom] = custom;
       data[ModelKey.discussionTopic] = discussionTopic;
       data[ModelKey.discussionKeywords] = discussionKeywords;
+      data[ModelKey.discussionTriggerScheduleEnabled] =
+          discussionTriggerScheduleEnabled;
+      data[ModelKey.discussionTriggerScheduleHourInterval] =
+          discussionTriggerScheduleHourInterval;
+      data[ModelKey.discussionTriggerReactionEnabled] =
+          discussionTriggerReactionEnabled;
+      data[ModelKey.discussionTriggerReactionKey] =
+          discussionTriggerReactionKey;
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -67,12 +86,6 @@ class BotOptionsModel {
       case ModelKey.languageLevel:
         languageLevel = value;
         break;
-      case ModelKey.conversationTopic:
-        topic = value;
-        break;
-      case ModelKey.keywords:
-        keywords = value;
-        break;
       case ModelKey.safetyModeration:
         safetyModeration = value;
         break;
@@ -81,6 +94,24 @@ class BotOptionsModel {
         break;
       case ModelKey.custom:
         custom = value;
+        break;
+      case ModelKey.discussionTopic:
+        discussionTopic = value;
+        break;
+      case ModelKey.discussionKeywords:
+        discussionKeywords = value;
+        break;
+      case ModelKey.discussionTriggerScheduleEnabled:
+        discussionTriggerScheduleEnabled = value;
+        break;
+      case ModelKey.discussionTriggerScheduleHourInterval:
+        discussionTriggerScheduleHourInterval = value;
+        break;
+      case ModelKey.discussionTriggerReactionEnabled:
+        discussionTriggerReactionEnabled = value;
+        break;
+      case ModelKey.discussionTriggerReactionKey:
+        discussionTriggerReactionKey = value;
         break;
       default:
         throw Exception('Invalid key for bot options - $key');

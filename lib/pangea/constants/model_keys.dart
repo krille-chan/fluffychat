@@ -96,11 +96,17 @@ class ModelKey {
 
   // bot options
   static const String languageLevel = "difficulty";
-  static const String conversationTopic = "conversation_topic";
-  static const String keywords = "keywords";
   static const String safetyModeration = "safety_moderation";
   static const String mode = "mode";
   static const String custom = "custom";
   static const String discussionTopic = "discussion_topic";
   static const String discussionKeywords = "discussion_keywords";
+  static const String discussionTriggerScheduleEnabled =
+      "discussion_trigger_schedule_enabled";
+  static const String discussionTriggerScheduleHourInterval =
+      "discussion_trigger_schedule_hour_interval";
+  static const String discussionTriggerReactionEnabled =
+      "discussion_trigger_reaction_enabled";
+  static const String discussionTriggerReactionKey =
+      "discussion_trigger_reaction_key";
 }
