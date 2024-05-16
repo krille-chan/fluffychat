@@ -3957,6 +3957,6 @@
     "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion",
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
-    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Send discussion prompt on reaction to bot's message",
+    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Send discussion prompt when user reacts ⏩ to bot message",
     "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt"
 }
