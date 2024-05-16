@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_ev
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -54,7 +55,7 @@ class ConstructListState extends State<ConstructList> {
           selected: widget.selected,
           forceUpdate: true,
         )
-        .then((_) => setState(() => initialized = true));
+        .whenComplete(() => setState(() => initialized = true));
   }
 
   @override
@@ -160,11 +161,11 @@ class ConstructListViewState extends State<ConstructListView> {
     stateSub?.cancel();
   }
 
-  @override
-  void didUpdateWidget(ConstructListView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    fetchUses();
-  }
+  // @override
+  // void didUpdateWidget(ConstructListView oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   fetchUses();
+  // }
 
   int get lemmaIndex =>
       constructs?.indexWhere(
@@ -215,19 +216,29 @@ class ConstructListViewState extends State<ConstructListView> {
     }
 
     setState(() => fetchingUses = true);
-    final List<OneConstructUse> uses = currentConstruct!.content.uses;
-    _msgEvents.clear();
+    try {
+      final List<OneConstructUse> uses = currentConstruct!.content.uses;
+      _msgEvents.clear();
 
-    for (final OneConstructUse use in uses) {
-      final PangeaMessageEvent? msgEvent = await getMessageEvent(use);
-      final RepresentationEvent? repEvent =
-          msgEvent?.originalSent ?? msgEvent?.originalWritten;
-      if (repEvent?.choreo == null) {
-        continue;
+      for (final OneConstructUse use in uses) {
+        final PangeaMessageEvent? msgEvent = await getMessageEvent(use);
+        final RepresentationEvent? repEvent =
+            msgEvent?.originalSent ?? msgEvent?.originalWritten;
+        if (repEvent?.choreo == null) {
+          continue;
+        }
+        _msgEvents.add(msgEvent!);
       }
-      _msgEvents.add(msgEvent!);
+      setState(() => fetchingUses = false);
+    } catch (err, s) {
+      setState(() => fetchingUses = false);
+      debugPrint("Error fetching uses: $err");
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        m: "Failed to fetch uses for current construct ${currentConstruct?.content.lemma}",
+      );
     }
-    setState(() => fetchingUses = false);
   }
 
   List<ConstructEvent>? get constructs =>
@@ -278,12 +289,10 @@ class ConstructListViewState extends State<ConstructListView> {
               children: [
                 if (constructs![lemmaIndex].content.uses.length >
                     _msgEvents.length)
-                  const Center(
+                  Center(
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Some data may be missing from rooms in which you are not a member.",
-                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(L10n.of(context)!.roomDataMissing),
                     ),
                   ),
                 Expanded(

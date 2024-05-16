@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
@@ -103,7 +104,11 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
 
         students = classRoom!.students;
         chats = response.rooms
-            .where((room) => room.roomId != classRoom!.id)
+            .where(
+              (room) =>
+                  room.roomId != classRoom!.id &&
+                  room.roomType != PangeaRoomTypes.analytics,
+            )
             .toList();
         chats.sort((a, b) => a.roomType == 'm.space' ? -1 : 1);
       }

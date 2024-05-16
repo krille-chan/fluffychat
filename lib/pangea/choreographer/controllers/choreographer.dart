@@ -211,7 +211,8 @@ class Choreographer {
       final CanSendStatus canSendStatus =
           pangeaController.subscriptionController.canSendStatus;
 
-      if (canSendStatus != CanSendStatus.subscribed) {
+      if (canSendStatus != CanSendStatus.subscribed ||
+          (!igcEnabled && !itEnabled)) {
         return;
       }
 

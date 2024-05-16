@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
@@ -142,14 +143,29 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   }
 
   bool enableSelection(AnalyticsSelected? selectedParam) {
-    return selectedView == BarChartViewSelection.grammar &&
-            selectedParam?.type == AnalyticsEntryType.room
-        ? Matrix.of(context)
+    if (selectedView == BarChartViewSelection.grammar) {
+      if (selectedParam?.type == AnalyticsEntryType.room) {
+        return Matrix.of(context)
                 .client
                 .getRoomById(selectedParam!.id)
                 ?.membership ==
-            Membership.join
-        : true;
+            Membership.join;
+      }
+
+      if (selectedParam?.type == AnalyticsEntryType.student) {
+        final String? langCode =
+            pangeaController.languageController.activeL2Code(
+          roomID: widget.defaultSelected.id,
+        );
+        if (langCode == null) return false;
+        return Matrix.of(context).client.analyticsRoomLocal(
+                  langCode,
+                  selectedParam?.id,
+                ) !=
+            null;
+      }
+    }
+    return true;
   }
 
   @override
