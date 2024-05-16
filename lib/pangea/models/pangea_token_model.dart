@@ -60,7 +60,7 @@ class PangeaToken {
   static const String _lemmaKey = ModelKey.lemma;
 
   Map<String, dynamic> toJson() => {
-        _textKey: text,
+        _textKey: text.toJson(),
         _hasInfoKey: hasInfo,
         _lemmaKey: lemmas.map((e) => e.toJson()).toList(),
       };

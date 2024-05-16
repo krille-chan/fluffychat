@@ -61,11 +61,22 @@ class ChatDetailsView extends StatelessWidget {
         );
         return Scaffold(
           appBar: AppBar(
-            leading: controller.widget.embeddedCloseButton ??
-                const Center(child: BackButton()),
+            leading:
+                // #Pangea
+                !room.isSpace
+                    ?
+                    // Pangea#
+                    controller.widget.embeddedCloseButton ??
+                        const Center(child: BackButton())
+                    // #Pangea
+                    : BackButton(
+                        onPressed: () => context.go("/rooms"),
+                      )
+            // Pangea#
+            ,
             elevation: Theme.of(context).appBarTheme.elevation,
             actions: <Widget>[
-              // #Pangeas
+              // #Pangea
               //if (room.canonicalAlias.isNotEmpty)
               //  IconButton(
               //    tooltip: L10n.of(context)!.share,

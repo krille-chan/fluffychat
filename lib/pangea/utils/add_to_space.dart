@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 bool canAddToSpace(Room space, PangeaController pangeaController) {
   final bool pangeaPermission =
@@ -27,8 +25,9 @@ Future<void> pangeaAddToSpace(
   Room space,
   List<String> selectedRoomIds,
   BuildContext context,
-  PangeaController pangeaController,
-) async {
+  PangeaController pangeaController, {
+  bool suggested = true,
+}) async {
   if (!canAddToSpace(space, pangeaController)) {
     throw L10n.of(context)!.noAddToSpacePermissions;
   }
@@ -37,6 +36,6 @@ Future<void> pangeaAddToSpace(
     if (room != null && chatIsInSpace(room, space)) {
       throw L10n.of(context)!.alreadyInSpace;
     }
-    await space.setSpaceChild(roomId);
+    await space.setSpaceChild(roomId, suggested: suggested);
   }
 }

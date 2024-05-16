@@ -481,7 +481,16 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // Do not send read markers when app is not in foreground
-    if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+    // #Pangea
+    try {
+      // Pangea#
+      if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+      // #Pangea
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+      return;
+    }
+    // Pangea#
     if (!kIsWeb &&
         WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
       return;
