@@ -564,17 +564,20 @@ class PangeaMessageEvent {
     return langCode ?? LanguageKeys.unknownLanguage;
   }
 
-  PangeaMatch? firstErrorStep(String lemma) {
+  List<PangeaMatch>? errorSteps(String lemma) {
     final RepresentationEvent? repEvent = originalSent ?? originalWritten;
     if (repEvent?.choreo == null) return null;
 
-    final PangeaMatch? step = repEvent!.choreo!.choreoSteps
-        .firstWhereOrNull(
-          (element) =>
-              element.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
+    final List<PangeaMatch> steps = repEvent!.choreo!.choreoSteps
+        .where(
+          (choreoStep) =>
+              choreoStep.acceptedOrIgnoredMatch != null &&
+              choreoStep.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
         )
-        ?.acceptedOrIgnoredMatch;
-    return step;
+        .map((element) => element.acceptedOrIgnoredMatch)
+        .cast<PangeaMatch>()
+        .toList();
+    return steps;
   }
 
   // List<SpanData> get activities =>
