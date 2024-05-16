@@ -55,7 +55,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         value: 'learning_settings',
         child: Row(
           children: [
-            const Icon(Icons.settings),
+            const Icon(Icons.psychology_outlined),
             const SizedBox(width: 12),
             Text(L10n.of(context)!.learningSettings),
           ],
