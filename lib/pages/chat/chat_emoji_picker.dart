@@ -59,11 +59,11 @@ class ChatEmojiPicker extends StatelessWidget {
                             ),
                             skinToneConfig: SkinToneConfig(
                               dialogBackgroundColor: Color.lerp(
-                                theme.colorScheme.background,
+                                theme.colorScheme.surface,
                                 theme.colorScheme.primaryContainer,
                                 0.75,
                               )!,
-                              indicatorColor: theme.colorScheme.onBackground,
+                              indicatorColor: theme.colorScheme.onSurface,
                             ),
                           ),
                         ),
