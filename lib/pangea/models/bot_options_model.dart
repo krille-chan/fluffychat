@@ -14,6 +14,8 @@ class BotOptionsModel {
   bool safetyModeration;
   String mode;
   String? custom;
+  String? discussionTopic;
+  String? discussionKeywords;
 
   BotOptionsModel({
     this.languageLevel,
@@ -22,6 +24,8 @@ class BotOptionsModel {
     this.safetyModeration = true,
     this.mode = "discussion",
     this.custom = "",
+    this.discussionTopic,
+    this.discussionKeywords,
   });
 
   factory BotOptionsModel.fromJson(json) {
@@ -32,6 +36,8 @@ class BotOptionsModel {
       safetyModeration: json[ModelKey.safetyModeration] ?? true,
       mode: json[ModelKey.mode] ?? "discussion",
       custom: json[ModelKey.custom],
+      discussionTopic: json[ModelKey.discussionTopic],
+      discussionKeywords: json[ModelKey.discussionKeywords],
     );
   }
 
@@ -45,6 +51,8 @@ class BotOptionsModel {
       data[ModelKey.safetyModeration] = safetyModeration;
       data[ModelKey.mode] = mode;
       data[ModelKey.custom] = custom;
+      data[ModelKey.discussionTopic] = discussionTopic;
+      data[ModelKey.discussionKeywords] = discussionKeywords;
       return data;
     } catch (e, s) {
       debugger(when: kDebugMode);

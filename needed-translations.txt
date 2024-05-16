@@ -826,7 +826,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "be": [
@@ -2251,7 +2255,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "bn": [
@@ -3138,7 +3146,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "bo": [
@@ -4025,7 +4037,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ca": [
@@ -4912,7 +4928,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "cs": [
@@ -5799,7 +5819,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "de": [
@@ -6633,7 +6657,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "el": [
@@ -7520,7 +7548,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "eo": [
@@ -8407,7 +8439,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "es": [
@@ -8442,7 +8478,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "et": [
@@ -9272,7 +9312,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "eu": [
@@ -10102,7 +10146,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "fa": [
@@ -10989,7 +11037,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "fi": [
@@ -11876,7 +11928,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "fr": [
@@ -12763,7 +12819,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ga": [
@@ -13650,7 +13710,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "gl": [
@@ -14480,7 +14544,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "he": [
@@ -15367,7 +15435,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "hi": [
@@ -16254,7 +16326,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "hr": [
@@ -17128,7 +17204,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "hu": [
@@ -18015,7 +18095,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ia": [
@@ -19426,7 +19510,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "id": [
@@ -20313,7 +20401,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ie": [
@@ -21200,7 +21292,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "it": [
@@ -22072,7 +22168,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ja": [
@@ -22959,7 +23059,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ko": [
@@ -23846,7 +23950,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "lt": [
@@ -24733,7 +24841,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "lv": [
@@ -25620,7 +25732,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "nb": [
@@ -26507,7 +26623,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "nl": [
@@ -27394,7 +27514,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "pl": [
@@ -28281,7 +28405,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "pt": [
@@ -29168,7 +29296,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "pt_BR": [
@@ -30024,7 +30156,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "pt_PT": [
@@ -30911,7 +31047,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ro": [
@@ -31798,7 +31938,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ru": [
@@ -32628,7 +32772,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "sk": [
@@ -33515,7 +33663,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "sl": [
@@ -34402,7 +34554,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "sr": [
@@ -35289,7 +35445,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "sv": [
@@ -36141,7 +36301,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "ta": [
@@ -37028,7 +37192,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "th": [
@@ -37915,7 +38083,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "tr": [
@@ -38787,7 +38959,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "uk": [
@@ -39617,7 +39793,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "vi": [
@@ -40504,7 +40684,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "zh": [
@@ -41334,7 +41518,11 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ],
 
   "zh_Hant": [
@@ -42221,6 +42409,10 @@
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
     "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure"
+    "conversationBotModeSelectOption_textAdventure",
+    "conversationBotDiscussionZone_title",
+    "conversationBotDiscussionZone_discussionTopicLabel",
+    "conversationBotDiscussionZone_discussionKeywordsLabel",
+    "conversationBotDiscussionZone_discussionKeywordsHintText"
   ]
 }

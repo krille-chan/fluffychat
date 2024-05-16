@@ -268,9 +268,16 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(28, 0, 12, 0),
                       child: ConversationBotModeDynamicZone(
-                        mode: botOptions.mode,
+                        initialBotOptions: botOptions,
+                        onChanged: (BotOptionsModel? newOptions) {
+                          updateBotOption(() {
+                            if (newOptions != null) {
+                              botOptions = newOptions;
+                            }
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),

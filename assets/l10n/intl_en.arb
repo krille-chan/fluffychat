@@ -3950,5 +3950,9 @@
     "conversationBotModeSelectOption_discussion": "Discussion",
     "conversationBotModeSelectOption_custom": "Custom",
     "conversationBotModeSelectOption_conversation": "Conversation",
-    "conversationBotModeSelectOption_textAdventure": "Text Adventure"
+    "conversationBotModeSelectOption_textAdventure": "Text Adventure",
+    "conversationBotDiscussionZone_title": "Discussion Settings",
+    "conversationBotDiscussionZone_discussionTopicLabel": "Discussion Topic",
+    "conversationBotDiscussionZone_discussionKeywordsLabel": "Discussion Keywords",
+    "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion"
 }
