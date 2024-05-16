@@ -88,7 +88,7 @@ extension PangeaClient on Client {
     for (final classRoom in classesAndExchangesImIn) {
       for (final teacher in await classRoom.teachers) {
         // If person requesting list of teachers is a teacher in another classroom, don't add them to the list
-        if (!teachers.any((e) => e.id == teacher.id) && userID != teacher.id) {          
+        if (!teachers.any((e) => e.id == teacher.id) && userID != teacher.id) {
           teachers.add(teacher);
         }
       }
@@ -123,7 +123,7 @@ extension PangeaClient on Client {
     for (final room in rooms) {
       if (room.partial) await room.postLoad();
     }
-    
+
     final Room? analyticsRoom = analyticsRoomLocal(langCode);
 
     if (analyticsRoom != null) return analyticsRoom;
@@ -168,14 +168,20 @@ extension PangeaClient on Client {
         // BotName.localBot,
         BotName.byEnvironment,
       ],
-      visibility: Visibility.private,
-      roomAliasName: "${userID!.localpart}_${langCode}_analytics",
     );
     if (getRoomById(roomID) == null) {
       // Wait for room actually appears in sync
       await waitForRoomInSync(roomID, join: true);
     }
 
+    final Room? analyticsRoom = getRoomById(roomID);
+
+    // add this analytics room to all spaces so teachers can join them
+    // via the space hierarchy
+    await analyticsRoom?.addAnalyticsRoomToSpaces();
+
+    // and invite all teachers to new analytics room
+    await analyticsRoom?.inviteTeachersToAnalyticsRoom();
     return getRoomById(roomID)!;
   }
 
@@ -244,5 +250,86 @@ extension PangeaClient on Client {
         .toList();
     editEvents.add(originalEvent);
     return editEvents.slice(1).map((e) => e.eventId).toList();
+  }
+
+  // Get all my analytics rooms
+  List<Room> get allMyAnalyticsRooms => rooms
+      .where(
+        (e) => e.isAnalyticsRoomOfUser(userID!),
+      )
+      .toList();
+
+  // migration function to change analytics rooms' vsibility to public
+  // so they will appear in the space hierarchy
+  Future<void> updateAnalyticsRoomVisibility() async {
+    final List<Future> makePublicFutures = [];
+    for (final Room room in allMyAnalyticsRooms) {
+      final visability = await getRoomVisibilityOnDirectory(room.id);
+      if (visability != Visibility.public) {
+        await setRoomVisibilityOnDirectory(
+          room.id,
+          visibility: Visibility.public,
+        );
+      }
+    }
+    await Future.wait(makePublicFutures);
+  }
+
+  // Add all the users' analytics room to all the spaces the student studies in
+  // So teachers can join them via space hierarchy
+  // Will not always work, as there may be spaces where students don't have permission to add chats
+  // But allows teachers to join analytics rooms without being invited
+  Future<void> addAnalyticsRoomsToAllSpaces() async {
+    final List<Future> addFutures = [];
+    for (final Room room in allMyAnalyticsRooms) {
+      addFutures.add(room.addAnalyticsRoomToSpaces());
+    }
+    await Future.wait(addFutures);
+  }
+
+  // Invite teachers to all my analytics room
+  // Handles case when students cannot add analytics room to space(s)
+  // So teacher is still able to get analytics data for this student
+  Future<void> inviteAllTeachersToAllAnalyticsRooms() async {
+    final List<Future> inviteFutures = [];
+    for (final Room analyticsRoom in allMyAnalyticsRooms) {
+      inviteFutures.add(analyticsRoom.inviteTeachersToAnalyticsRoom());
+    }
+    await Future.wait(inviteFutures);
+  }
+
+  // Join all analytics rooms in all spaces
+  // Allows teachers to join analytics rooms without being invited
+  Future<void> joinAnalyticsRoomsInAllSpaces() async {
+    final List<Future> joinFutures = [];
+    for (final Room space in (await classesAndExchangesImTeaching)) {
+      joinFutures.add(space.joinAnalyticsRoomsInSpace());
+    }
+    await Future.wait(joinFutures);
+  }
+
+  // Join invited analytics rooms
+  // Checks for invites to any student analytics rooms
+  // Handles case of analytics rooms that can't be added to some space(s)
+  Future<void> joinInvitedAnalyticsRooms() async {
+    for (final Room room in rooms) {
+      if (room.membership == Membership.invite && room.isAnalyticsRoom) {
+        try {
+          await room.join();
+        } catch (err) {
+          debugPrint("Failed to join analytics room ${room.id}");
+        }
+      }
+    }
+  }
+
+  // helper function to join all relevant analytics rooms
+  // and set up those rooms to be joined by relevant teachers
+  Future<void> migrateAnalyticsRooms() async {
+    await updateAnalyticsRoomVisibility();
+    await addAnalyticsRoomsToAllSpaces();
+    await inviteAllTeachersToAllAnalyticsRooms();
+    await joinInvitedAnalyticsRooms();
+    await joinAnalyticsRoomsInAllSpaces();
   }
 }

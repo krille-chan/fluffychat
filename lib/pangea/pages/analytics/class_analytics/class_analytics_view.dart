@@ -33,7 +33,7 @@ class ClassAnalyticsView extends StatelessWidget {
           .map(
             (s) => TabItem(
               avatar: s.avatarUrl,
-              displayName: s.displayName ?? "unknown",
+              displayName: s.calcDisplayname(),
               id: s.id,
             ),
           )

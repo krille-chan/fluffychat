@@ -157,7 +157,6 @@ class InvitationSelectionController extends State<InvitationSelection> {
       //#Pangea
       // future: () => room.invite(id),
       future: () async {
-        await room.invite(id);
         if (mode == InvitationSelectionMode.admin) {
           await inviteTeacherAction(room, id);
         }
@@ -175,7 +174,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
 
   // #Pangea
   Future<void> inviteTeacherAction(Room room, String id) async {
-    room.setPower(id, ClassDefaultValues.powerLevelOfAdmin);
+    await room.invite(id);
+    await room.setPower(id, ClassDefaultValues.powerLevelOfAdmin);
     if (room.isSpace) {
       for (final spaceChild in room.spaceChildren) {
         if (spaceChild.roomId == null) continue;

@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
+import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -330,7 +331,12 @@ class ChatInputRow extends StatelessWidget {
                             bottom: 6.0,
                             top: 3.0,
                           ),
-                          hintText: activel1 != null && activel2 != null
+                          hintText: activel1 != null &&
+                                  activel2 != null &&
+                                  activel1.langCode !=
+                                      LanguageKeys.unknownLanguage &&
+                                  activel2.langCode !=
+                                      LanguageKeys.unknownLanguage
                               ? L10n.of(context)!.writeAMessageFlag(
                                   activel1.languageEmoji ??
                                       activel1.getDisplayName(context) ??

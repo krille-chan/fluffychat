@@ -65,6 +65,9 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
+          if (space.isSpace) {
+            await space.joinAnalyticsRoomsInSpace();
+          }
           setActiveSpaceAndCloseChat();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
