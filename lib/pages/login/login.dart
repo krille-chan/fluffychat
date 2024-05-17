@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,30 +38,31 @@ class LoginController extends State<Login> {
   bool get supportsSso => _supportsFlow('m.login.sso');
 
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   String? usernameError;
-  String? passwordError;
-  bool loading = false;
-  bool showPassword = false;
+  bool loading = true;
   String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  FrontendApi? api;
+  String? flowId;
+  List<Widget> authWidgets = [];
+  List<TextEditingController> textControllers = [];
+  List<UiNode> formNodes = [];
 
   @override
   void initState() {
     super.initState();
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
 
+    getLoginOry();
     // Check if sessionToken exists and handle it
-    getSessionToken().then((sessionToken) {
-      if (sessionToken != null) {
-        checkUserQueueState(sessionToken);
-      }
-    });
+    // getSessionToken().then((sessionToken) {
+    //   if (sessionToken != null) {
+    //     checkUserQueueState(sessionToken);
+    //   }
+    // });
   }
-
-  void toggleShowPassword() =>
-      setState(() => showPassword = !loading && !showPassword);
 
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
@@ -140,26 +142,63 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  void loginOry() async {
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
-    } else {
-      setState(() => usernameError = null);
+  Future<void> processKratosNodes(BuiltList<UiNode> nodes) async {
+    List<Widget> formWidgets = [];
+    List<UiNode> Allnodes = [];
+    for (UiNode node in nodes) {
+      print(node);
+      UiNodeInputAttributes attributes = node.attributes.oneOf.value as UiNodeInputAttributes;
+      var controller = TextEditingController(text: attributes.value?.toString() ?? "");
+
+      textControllers.add(controller);
+      if (node.type == UiNodeTypeEnum.input) {
+        final inputWidget = Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: TextFormField(
+            controller: controller,
+            onChanged: (String data) {
+
+            },
+            decoration: InputDecoration(
+              label: Text(node.meta.label!.text),
+            ),
+            enabled: !attributes.disabled,
+          ),
+        );
+        formWidgets.add(inputWidget);
+        Allnodes.add(node);
+      }
     }
-    if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
-    } else {
-      setState(() => passwordError = null);
-    }
+    setState(() {
+      authWidgets = formWidgets;
+      formNodes = Allnodes;
+      loading = false;
+    });
+  }
 
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-      return;
-    }
+  // function to submit data
+  Future<void> submitForm() async {
+      var updateMethod = UpdateLoginFlowWithCodeMethod((b) => b
+        .identifier = textControllers[0].text
+      );
 
-    setState(() => loading = true);
+      final updateLoginFlowBody = UpdateLoginFlowBody(
+            (builder) => builder
+          ..oneOf = OneOf.fromValue1(value: updateMethod),
+      );
 
-    _coolDown?.cancel();
+      final loginResponse = await api?.updateLoginFlow(
+          flow: flowId!, updateLoginFlowBody: updateLoginFlowBody);
 
+      print("reponse: $loginResponse");
+      if (kDebugMode) {
+        print('Successfully updated login flow with user credentials');
+      }
+      
+    //updateNodesOnServer(formNodes);
+  }
+
+  void getLoginOry() async {
     final OryKratosClient kratosClient = OryKratosClient(dio: dio);
 
     try {
@@ -175,74 +214,23 @@ class LoginController extends State<Login> {
       }
 
       // Retrieve action URL from connection flow
-      final actionUrl = response.data?.ui.action;
-      if (actionUrl == null) {
+      final actionNodes = response.data?.ui.nodes;
+      final id = response.data?.id;
+
+
+      if (actionNodes == null) {
         throw Exception('Action URL not found in login flow response');
       }
-
-      // Retrieving TextEditingControllers values
-      final String email = usernameController.text;
-      final String password = passwordController.text;
-
-      // Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
-      final updateLoginFlowWithPasswordMethod =
-          UpdateLoginFlowWithPasswordMethod((builder) => builder
-            ..identifier = email
-            ..method = 'password'
-            ..password = password);
-
-      // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
-      final updateLoginFlowBody = UpdateLoginFlowBody(
-        (builder) => builder
-          ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
-      );
-
-      if (kDebugMode) {
-        print(
-            'Before sending POST request to update login flow with user credentials');
-      }
-
-      // Sends a POST request with user credentials
-      final loginResponse = await frontendApi.updateLoginFlow(
-          flow: response.data!.id, updateLoginFlowBody: updateLoginFlowBody);
-      if (kDebugMode) {
-        print('Successfully updated login flow with user credentials');
-      }
-
-      // Processing the response to obtain the connection session token
-      final sessionToken = loginResponse.data?.sessionToken;
-
-      if (kDebugMode) {
-        print('Session token: $sessionToken');
-      }
-
-      // Store the session token
-      await storeSessionToken(sessionToken);
-      return checkUserQueueState(sessionToken!);
-    } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
-      return setState(() => loading = false);
+      await processKratosNodes(actionNodes);
     } on DioException catch (e) {
       if (kDebugMode) {
-        print("Exception when calling Kratos log: $e\n");
-      }
-      Logs().v("Error Kratos login : ${e.response?.data}");
-
-      // Display Kratos error messages to the user
-      if (e.response?.data != null) {
-        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
-        setState(() => passwordError = errorMessage);
-      } else {
-        setState(
-          () => passwordError = L10n.of(context)!.errTryAgain,
-        );
+        print(e.response?.data);
       }
       return setState(() => loading = false);
     } catch (exception) {
       if (kDebugMode) {
         print(exception);
       }
-      setState(() => passwordError = L10n.of(context)!.errUsernameOrPassword);
       return setState(() => loading = false);
     }
   }
@@ -284,7 +272,7 @@ class LoginController extends State<Login> {
       await matrixLogin(matrixLoginJwt, serverName);
 
       // If all goes well, reset passwordError
-      setState(() => passwordError = null);
+      //setState(() => passwordError = null);
     } on DioException catch (e) {
       if (kDebugMode) {
         print("Exception when calling Kratos log: $e\n");
@@ -373,13 +361,13 @@ class LoginController extends State<Login> {
       } else {
         Logs().v('Request failed with status: ${response.statusCode}');
         // TODO improve error handling
-        setState(() => passwordError = L10n.of(context)!.errTryAgain);
+        //setState(() => passwordError = L10n.of(context)!.errTryAgain);
       }
     } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
+      //setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
     } catch (exception) {
-      setState(() => passwordError = exception.toString());
+      //setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
 

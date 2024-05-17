@@ -25,64 +25,14 @@ class LoginView extends StatelessWidget {
       ),
       body: Builder(
         builder: (context) {
-          return AutofillGroup(
+          return
+            AutofillGroup(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
                 Image.asset('assets/banner_transparent.png'),
                 const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofocus: true,
-                    controller: controller.usernameController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_box_outlined),
-                      errorText: controller.usernameError,
-                      errorMaxLines: 3,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.emailOrUsername,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.password],
-                    controller: controller.passwordController,
-                    textInputAction: TextInputAction.go,
-                    obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.loginOry(),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      errorText: controller.passwordError,
-                      errorMaxLines: 3,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      fillColor: textFieldFillColor,
-                      suffixIcon: IconButton(
-                        onPressed: controller.toggleShowPassword,
-                        icon: Icon(
-                          controller.showPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: Colors.black,
-                        ),
-                      ),
-                      hintText: L10n.of(context)!.password,
-                    ),
-                  ),
-                ),
+                ...controller.authWidgets,
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -91,7 +41,7 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    onPressed: controller.loading ? null : controller.loginOry,
+                    onPressed: controller.loading ? null : controller.submitForm,
                     icon: const Icon(Icons.login_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()
