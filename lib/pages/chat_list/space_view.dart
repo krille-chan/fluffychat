@@ -237,6 +237,10 @@ class _SpaceViewState extends State<SpaceView> {
             icon: Icons.send_outlined,
           ),
         if (spaceChild != null &&
+            // #Pangea
+            room != null &&
+            room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin &&
+            // Pangea#
             (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
