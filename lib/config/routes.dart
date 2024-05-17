@@ -53,18 +53,12 @@ abstract class AppRoutes {
     final bool preAuth = state.fullPath!.startsWith('/home');
 
     if (isLoggedKratos && isLoggedMatrix) {
-      final bool hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
-      if (hasSubscription) {
-        return '/rooms';
-      } else {
-        return '/home/subscribe';
-      }
+      return '/rooms';
     } else if (isLoggedKratos && !isLoggedMatrix && !preAuth) {
       return '/home/login';
     } else if (!isLoggedMatrix && !preAuth) {
       return '/home/welcome';
     }
-    print('returning ning');
 
     return null;
   }
