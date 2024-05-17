@@ -13,6 +13,7 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/change_username_page.dart';
 import 'package:tawkie/pages/register/register_view.dart';
+import 'package:tawkie/widgets/show_error_dialog.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart';
 
 class Register extends StatefulWidget {
@@ -193,21 +194,7 @@ class RegisterController extends State<Register> {
       Logs().v("Error Kratos login : ${e.response?.data}");
       if (e.error is SocketException) {
         // Connection errors
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(L10n.of(context)!.noConnectionToTheServer),
-            content: Text(L10n.of(context)!.errorConnectionText),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(L10n.of(context)!.ok),
-              ),
-            ],
-          ),
-        );
+        DioErrorHandler.showNetworkErrorDialog(context);
 
         return setState(() => loading = false);
       }
