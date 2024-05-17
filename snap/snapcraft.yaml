@@ -1,6 +1,6 @@
 name: fluffychat
 title: FluffyChat
-base: core24
+base: core22
 version: git
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
