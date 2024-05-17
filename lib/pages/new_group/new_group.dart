@@ -17,7 +17,14 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 
 class NewGroup extends StatefulWidget {
-  const NewGroup({super.key});
+  // #Pangea
+  final String? spaceId;
+
+  const NewGroup({
+    super.key,
+    this.spaceId,
+  });
+  // Pangea#
 
   @override
   NewGroupController createState() => NewGroupController();
