@@ -30,7 +30,6 @@ class StartChatFloatingActionButton extends StatelessWidget {
   void _onPressed(BuildContext context) async {
     //#Pangea
     if (controller.activeSpaceId != null) {
-      // context.go('/rooms/newgroup/${controller.activeSpaceId ?? ''}');
       context.go('/rooms/newgroup?spaceId=${controller.activeSpaceId ?? ''}');
       return;
     }
@@ -45,7 +44,6 @@ class StartChatFloatingActionButton extends StatelessWidget {
       case ActiveFilter.groups:
         // #Pangea
         // context.go('/rooms/newgroup');
-        // context.go('/rooms/newgroup/${controller.activeSpaceId ?? ''}');
         context.go('/rooms/newgroup?spaceId=${controller.activeSpaceId ?? ''}');
         // Pangea#
         break;
