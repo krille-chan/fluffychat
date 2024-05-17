@@ -92,6 +92,18 @@ class ChatListItem extends StatelessWidget {
       return participantsIds.any((id) => id.contains('@whatsapp'));
     }
 
+    bool containsLinkedin(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@linkedin'));
+    }
+
+    bool containsDiscord(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@discord'));
+    }
+
+    bool containsSignal(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@signal'));
+    }
+
     void removeFacebookTag() {
       if (displayname.contains('(FB)')) {
         displayname = displayname.replaceAll('(FB)', ''); // Delete (FB)
@@ -107,6 +119,29 @@ class ChatListItem extends StatelessWidget {
     void removeWhatsAppTag() {
       if (displayname.contains('(WA)')) {
         displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+      }
+    }
+
+    void removeLinkedinTag() {
+      if (displayname.contains('(Linkedin)')) {
+        displayname =
+            displayname.replaceAll('(Linkedin)', ''); // Delete (Linkedin)
+      }
+    }
+
+    // It's the only bridge that doesn't display the social network source in the name.
+    // But I'm putting this function here just in case, for the future.
+    void removeDiscordTag() {
+      if (displayname.contains('(Discord)')) {
+        displayname =
+            displayname.replaceAll('(Discord)', ''); // Delete (Discord)
+      }
+    }
+
+    void removeSignalTag() {
+      if (displayname.contains('(Signal)')) {
+        displayname =
+            displayname.replaceAll('(Signal)', ''); // Delete (Linkedin)
       }
     }
 
@@ -141,6 +176,30 @@ class ChatListItem extends StatelessWidget {
           filterQuality: FilterQuality.high,
         );
         removeWhatsAppTag();
+      } else if (containsLinkedin(participantsIds)) {
+        networkColor = FluffyThemes.linkedinColor;
+        networkImage = Image.asset(
+          'assets/linkedin.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeLinkedinTag();
+      } else if (containsDiscord(participantsIds)) {
+        networkColor = FluffyThemes.dicordColor;
+        networkImage = Image.asset(
+          'assets/discord.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeDiscordTag();
+      } else if (containsSignal(participantsIds)) {
+        networkColor = FluffyThemes.signalColor;
+        networkImage = Image.asset(
+          'assets/signal.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeSignalTag();
       }
 
       return [networkColor, networkImage];
