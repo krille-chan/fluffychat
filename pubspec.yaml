@@ -108,6 +108,8 @@ dependencies:
   purchases_ui_flutter: ^6.26.0
   flutter_inappwebview: ^6.0.0
   webview_cookie_manager: ^2.0.6
+  built_collection: ^5.1.1
+  built_value: ^8.9.2
 
 dev_dependencies:
   flutter_lints: ^3.0.0
