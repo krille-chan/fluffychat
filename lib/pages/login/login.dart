@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -205,18 +206,17 @@ class LoginController extends State<Login> {
       // Initialize API connection flow
       final frontendApi = kratosClient.getFrontendApi();
       if (kDebugMode) {
-        print('Successfully initialized Kratos API');
+        print('[Login] Successfully initialized Kratos API');
       }
       Response<kratos.LoginFlow> response;
       response = await frontendApi.createNativeLoginFlow();
       if (kDebugMode) {
-        print('Successfully created login flow');
+        print('[Login] Successfully created login flow : ${response.data}');
       }
 
       // Retrieve action URL from connection flow
       final actionNodes = response.data?.ui.nodes;
       final id = response.data?.id;
-
 
       if (actionNodes == null) {
         throw Exception('Action URL not found in login flow response');
@@ -224,22 +224,18 @@ class LoginController extends State<Login> {
       await processKratosNodes(actionNodes);
     } on DioException catch (e) {
       if (kDebugMode) {
+        print("Exception when calling Kratos log: $e");
         print(e.response?.data);
       }
-      return setState(() => loading = false);
-    } on SocketException catch (e) {
-      if (kDebugMode) {
-        print("[Login] Socket Exception when calling Kratos log: $e");
-      }
-      DioErrorHandler._showNetworkErrorDialog(context);
-      return setState(() => loading = false);
+      if (e.error is SocketException)
+        DioErrorHandler.showNetworkErrorDialog(context);
     } catch (exception) {
-      if (kDebugMode) {
-        print(exception);
-      }
-      return setState(() => loading = false);
+      print(exception);
+      DioErrorHandler.showGenericErrorDialog(context, exception.toString());
     }
+    return setState(() => loading = false);
   }
+  // TODO on pulldown to refresh, call getLoginOry
 
   Timer? _coolDown;
 
