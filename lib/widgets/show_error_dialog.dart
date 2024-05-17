@@ -50,4 +50,12 @@ class DioErrorHandler {
       ),
     );
   }
+
+  static void _showNetworkErrorDialog(BuildContext context) {
+    _showErrorDialog(
+      context,
+      L10n.of(context)!.noConnectionToTheServer,
+      L10n.of(context)!.errorConnectionText,
+    );
+  }
 }

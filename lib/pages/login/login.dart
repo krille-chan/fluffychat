@@ -227,6 +227,12 @@ class LoginController extends State<Login> {
         print(e.response?.data);
       }
       return setState(() => loading = false);
+    } on SocketException catch (e) {
+      if (kDebugMode) {
+        print("[Login] Socket Exception when calling Kratos log: $e");
+      }
+      DioErrorHandler._showNetworkErrorDialog(context);
+      return setState(() => loading = false);
     } catch (exception) {
       if (kDebugMode) {
         print(exception);
