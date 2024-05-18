@@ -15,6 +15,12 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - run: flutter pub get
+      - name: workaround for https://github.com/flutter/flutter/issues/148333
+        run: |
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter gen-l10n
+          flutter pub get
+          flutter gen-l10n
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting
@@ -24,6 +30,11 @@ jobs:
       - run: flutter analyze
       - name: Apply google services patch
         run: git apply ./scripts/enable-android-google-services.patch
+      - name: workaround for https://github.com/flutter/flutter/issues/148333
+        run: |
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter gen-l10n
+          flutter pub get
       - run: flutter analyze
       - run: flutter test
 
