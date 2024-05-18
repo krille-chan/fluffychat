@@ -141,10 +141,17 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      # https://github.com/fastlane/fastlane/issues/21944#issuecomment-2037161396
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.3
+          bundler-cache: false
+      - name: Setup fastlane
+        id: set_up_fastlane
+        run: |
+          gem install bundler -v 2.4.22
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
