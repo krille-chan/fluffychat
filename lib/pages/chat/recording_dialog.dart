@@ -28,16 +28,16 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   bool error = false;
   String? _recordedPath;
-  final _audioRecorder = Record();
+  final _audioRecorder = AudioRecorder();
   final List<double> amplitudeTimeline = [];
 
   static const int bitRate = 64000;
-  static const int samplingRate = 22050;
+  static const int samplingRate = 44100;
 
   Future<void> startRecording() async {
     try {
       final tempDir = await getTemporaryDirectory();
-      _recordedPath =
+      final path = _recordedPath =
           '${tempDir.path}/recording${DateTime.now().microsecondsSinceEpoch}.${RecordingDialog.recordingFileType}';
 
       final result = await _audioRecorder.hasPermission();
@@ -47,9 +47,15 @@ class RecordingDialogState extends State<RecordingDialog> {
       }
       await WakelockPlus.enable();
       await _audioRecorder.start(
-        path: _recordedPath,
-        bitRate: bitRate,
-        samplingRate: samplingRate,
+        const RecordConfig(
+          bitRate: bitRate,
+          sampleRate: samplingRate,
+          numChannels: 1,
+          autoGain: true,
+          echoCancel: true,
+          noiseSuppress: true,
+        ),
+        path: path,
       );
       setState(() => _duration = Duration.zero);
       _recorderSubscription?.cancel();

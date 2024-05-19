@@ -610,7 +610,7 @@ class ChatController extends State<ChatPageWithRoom>
       }
     }
 
-    if (await Record().hasPermission() == false) return;
+    if (await AudioRecorder().hasPermission() == false) return;
     final result = await showDialog<RecordingResult>(
       context: context,
       barrierDismissible: false,
