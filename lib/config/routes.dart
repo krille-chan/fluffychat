@@ -80,8 +80,7 @@ abstract class AppRoutes {
   static final List<RouteBase> routes = [
     GoRoute(
       path: '/',
-      redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/home/welcome',
+      redirect: loggedInRedirect,
     ),
     GoRoute(
       path: '/home',
