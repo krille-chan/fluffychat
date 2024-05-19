@@ -69,12 +69,8 @@ abstract class AppRoutes {
   ) async {
     // Check connection to Matrix
     final hasLogin = Matrix.of(context).client.isLogged();
-    var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
     if (!hasLogin) {
       return '/home';
-    } else if (hasLogin && !hasSubscription) {
-      // If the user doesn't have a subscription, redirect to /subscribe
-      return '/home/subscribe';
     }
     return null;
   }
