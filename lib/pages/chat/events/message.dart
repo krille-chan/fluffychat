@@ -77,7 +77,7 @@ class Message extends StatelessWidget {
     final client = Matrix.of(context).client;
     final ownMessage = event.senderId == client.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.surfaceVariant;
+    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -101,7 +101,7 @@ class Message extends StatelessWidget {
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+        : Theme.of(context).colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -413,11 +413,8 @@ class Message extends StatelessWidget {
               child: Center(
                 child: Material(
                   color: displayTime
-                      ? Theme.of(context).colorScheme.background
-                      : Theme.of(context)
-                          .colorScheme
-                          .background
-                          .withOpacity(0.33),
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
