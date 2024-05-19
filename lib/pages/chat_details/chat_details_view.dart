@@ -36,7 +36,8 @@ class ChatDetailsView extends StatelessWidget {
     }
 
     return StreamBuilder(
-      stream: room.onUpdate.stream,
+      stream: room.client.onRoomState.stream
+          .where((update) => update.roomId == room.id),
       builder: (context, snapshot) {
         var members = room.getParticipants().toList()
           ..sort((b, a) => a.powerLevel.compareTo(b.powerLevel));

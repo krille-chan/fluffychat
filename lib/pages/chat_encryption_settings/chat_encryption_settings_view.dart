@@ -82,7 +82,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   ),
                 ),
                 StreamBuilder(
-                  stream: room.onUpdate.stream,
+                  stream: room.client.onRoomState.stream
+                      .where((update) => update.roomId == controller.room.id),
                   builder: (context, snapshot) =>
                       FutureBuilder<List<DeviceKeys>>(
                     future: room.getUserDeviceKeys(),

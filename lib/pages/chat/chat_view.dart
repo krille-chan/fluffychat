@@ -150,7 +150,8 @@ class ChatView extends StatelessWidget {
         }
       },
       child: StreamBuilder(
-        stream: controller.room.onUpdate.stream
+        stream: controller.room.client.onRoomState.stream
+            .where((update) => update.roomId == controller.room.id)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, snapshot) => FutureBuilder(
           future: controller.loadTimelineFuture,
