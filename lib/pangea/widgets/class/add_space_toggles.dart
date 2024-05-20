@@ -235,8 +235,13 @@ class AddToSpaceState extends State<AddToSpaceToggles> {
                     ),
                     activeColor: AppConfig.activeToggleColor,
                     value: isSuggestedInSpace(possibleParent),
-                    onChanged: (bool suggest) =>
-                        setSuggested(suggest, possibleParent),
+                    onChanged: (bool suggest) => canAdd
+                        ? setSuggested(suggest, possibleParent)
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(L10n.of(context)!.noPermission),
+                            ),
+                          ),
                   )
                 : Container(),
           ),
