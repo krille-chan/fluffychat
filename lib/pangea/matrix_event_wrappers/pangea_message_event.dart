@@ -346,6 +346,19 @@ class PangeaMessageEvent {
       ),
     );
 
+    _representations?.add(
+      RepresentationEvent(
+        timeline: timeline,
+        content: PangeaRepresentation(
+          langCode: response.langCode,
+          text: response.transcript.text,
+          originalSent: false,
+          originalWritten: false,
+          speechToText: response,
+        ),
+      ),
+    );
+
     return response;
   }
 

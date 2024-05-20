@@ -138,7 +138,7 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   }
 
   String? get wordsPerMinuteString =>
-      speechToTextResponse?.transcript.wordsPerMinute?.toString();
+      speechToTextResponse?.transcript.wordsPerMinute?.toStringAsFixed(2);
 
   @override
   Widget build(BuildContext context) {
