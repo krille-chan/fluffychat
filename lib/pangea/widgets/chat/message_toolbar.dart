@@ -172,6 +172,19 @@ class MessageToolbarState extends State<MessageToolbar> {
     debugPrint("updating toolbar mode");
     final bool subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
+
+    if (!newMode.isValidMode(widget.pangeaMessageEvent.event)) {
+      ErrorHandler.logError(
+        e: "Invalid mode for event",
+        s: StackTrace.current,
+        data: {
+          "newMode": newMode,
+          "event": widget.pangeaMessageEvent.event,
+        },
+      );
+      return;
+    }
+
     setState(() {
       currentMode = newMode;
       updatingMode = true;
@@ -274,12 +287,14 @@ class MessageToolbarState extends State<MessageToolbar> {
             PLocalKey.autoPlayMessages,
           ) ??
           true;
+
+      if (widget.pangeaMessageEvent.isAudioMessage) {
+        updateMode(MessageMode.speechToText);
+        return;
+      }
+
       autoplay
-          ? updateMode(
-              widget.pangeaMessageEvent.isAudioMessage
-                  ? MessageMode.speechToText
-                  : MessageMode.textToSpeech,
-            )
+          ? updateMode(MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });
 
