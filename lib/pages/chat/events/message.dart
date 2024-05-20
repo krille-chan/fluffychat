@@ -144,255 +144,270 @@ class Message extends StatelessWidget {
             setState(resetAnimateIn);
           });
         }
-        return AnimatedSlide(
-          offset: Offset(0, animateIn ? 1 : 0),
+        return AnimatedSize(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: InkWell(
-                  onTap: () => onSelect(event),
-                  onLongPress: () => onSelect(event),
-                  borderRadius:
-                      BorderRadius.circular(AppConfig.borderRadius / 2),
-                  child: Material(
-                    borderRadius:
-                        BorderRadius.circular(AppConfig.borderRadius / 2),
-                    color: selected
-                        ? Theme.of(context)
-                            .colorScheme
-                            .secondaryContainer
-                            .withAlpha(100)
-                        : highlightMarker
-                            ? Theme.of(context)
-                                .colorScheme
-                                .tertiaryContainer
-                                .withAlpha(100)
-                            : Colors.transparent,
-                  ),
-                ),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: rowMainAxisAlignment,
-                children: [
-                  if (longPressSelect)
-                    SizedBox(
-                      height: 32,
-                      width: Avatar.defaultSize,
-                      child: Checkbox.adaptive(
-                        value: selected,
-                        shape: const CircleBorder(),
-                        onChanged: (_) => onSelect(event),
-                      ),
-                    )
-                  else if (nextEventSameSender || ownMessage)
-                    SizedBox(
-                      width: Avatar.defaultSize,
-                      child: Center(
-                        child: SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: event.status == EventStatus.error
-                              ? const Icon(Icons.error, color: Colors.red)
-                              : event.fileSendingStatus != null
-                                  ? const CircularProgressIndicator.adaptive(
-                                      strokeWidth: 1,
-                                    )
-                                  : null,
+          child: animateIn
+              ? const SizedBox.shrink()
+              : Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: InkWell(
+                        onTap: () => onSelect(event),
+                        onLongPress: () => onSelect(event),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius / 2),
+                        child: Material(
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius / 2),
+                          color: selected
+                              ? Theme.of(context)
+                                  .colorScheme
+                                  .secondaryContainer
+                                  .withAlpha(100)
+                              : highlightMarker
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .tertiaryContainer
+                                      .withAlpha(100)
+                                  : Colors.transparent,
                         ),
                       ),
-                    )
-                  else
-                    FutureBuilder<User?>(
-                      future: event.fetchSenderUser(),
-                      builder: (context, snapshot) {
-                        final user =
-                            snapshot.data ?? event.senderFromMemoryOrFallback;
-                        return Avatar(
-                          mxContent: user.avatarUrl,
-                          name: user.calcDisplayname(),
-                          presenceUserId: user.stateKey,
-                          presenceBackgroundColor:
-                              avatarPresenceBackgroundColor,
-                          onTap: () => onAvatarTab(event),
-                        );
-                      },
                     ),
-                  Expanded(
-                    child: Column(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: rowMainAxisAlignment,
                       children: [
-                        if (!nextEventSameSender)
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 8.0, bottom: 4),
-                            child: ownMessage || event.room.isDirectChat
-                                ? const SizedBox(height: 12)
-                                : FutureBuilder<User?>(
-                                    future: event.fetchSenderUser(),
-                                    builder: (context, snapshot) {
-                                      final displayname =
-                                          snapshot.data?.calcDisplayname() ??
-                                              event.senderFromMemoryOrFallback
-                                                  .calcDisplayname();
-                                      return Text(
-                                        displayname,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color:
-                                              (Theme.of(context).brightness ==
-                                                      Brightness.light
-                                                  ? displayname.color
-                                                  : displayname.lightColorText),
-                                        ),
-                                      );
-                                    },
-                                  ),
+                        if (longPressSelect)
+                          SizedBox(
+                            height: 32,
+                            width: Avatar.defaultSize,
+                            child: Checkbox.adaptive(
+                              value: selected,
+                              shape: const CircleBorder(),
+                              onChanged: (_) => onSelect(event),
+                            ),
+                          )
+                        else if (nextEventSameSender || ownMessage)
+                          SizedBox(
+                            width: Avatar.defaultSize,
+                            child: Center(
+                              child: SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: event.status == EventStatus.error
+                                    ? const Icon(Icons.error, color: Colors.red)
+                                    : event.fileSendingStatus != null
+                                        ? const CircularProgressIndicator
+                                            .adaptive(
+                                            strokeWidth: 1,
+                                          )
+                                        : null,
+                              ),
+                            ),
+                          )
+                        else
+                          FutureBuilder<User?>(
+                            future: event.fetchSenderUser(),
+                            builder: (context, snapshot) {
+                              final user = snapshot.data ??
+                                  event.senderFromMemoryOrFallback;
+                              return Avatar(
+                                mxContent: user.avatarUrl,
+                                name: user.calcDisplayname(),
+                                presenceUserId: user.stateKey,
+                                presenceBackgroundColor:
+                                    avatarPresenceBackgroundColor,
+                                onTap: () => onAvatarTab(event),
+                              );
+                            },
                           ),
-                        Container(
-                          alignment: alignment,
-                          padding: const EdgeInsets.only(left: 8),
-                          child: GestureDetector(
-                            onLongPress: longPressSelect
-                                ? null
-                                : () {
-                                    HapticFeedback.heavyImpact();
-                                    onSelect(event);
-                                  },
-                            child: AnimatedOpacity(
-                              opacity: animateIn
-                                  ? 0
-                                  : event.redacted ||
-                                          event.messageType ==
-                                              MessageTypes.BadEncrypted ||
-                                          event.status.isSending
-                                      ? 0.5
-                                      : 1,
-                              duration: FluffyThemes.animationDuration,
-                              curve: FluffyThemes.animationCurve,
-                              child: Material(
-                                color: noBubble ? Colors.transparent : color,
-                                clipBehavior: Clip.antiAlias,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: borderRadius,
-                                ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                  ),
-                                  padding: noBubble || noPadding
-                                      ? EdgeInsets.zero
-                                      : const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                          vertical: 8,
-                                        ),
-                                  constraints: const BoxConstraints(
-                                    maxWidth: FluffyThemes.columnWidth * 1.5,
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      if (event.relationshipType ==
-                                          RelationshipTypes.reply)
-                                        FutureBuilder<Event?>(
-                                          future: event.getReplyEvent(timeline),
-                                          builder:
-                                              (BuildContext context, snapshot) {
-                                            final replyEvent = snapshot.hasData
-                                                ? snapshot.data!
-                                                : Event(
-                                                    eventId: event
-                                                        .relationshipEventId!,
-                                                    content: {
-                                                      'msgtype': 'm.text',
-                                                      'body': '...',
-                                                    },
-                                                    senderId: event.senderId,
-                                                    type: 'm.room.message',
-                                                    room: event.room,
-                                                    status: EventStatus.sent,
-                                                    originServerTs:
-                                                        DateTime.now(),
-                                                  );
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                bottom: 4.0,
-                                              ),
-                                              child: InkWell(
-                                                borderRadius:
-                                                    ReplyContent.borderRadius,
-                                                onTap: () => scrollToEventId(
-                                                  replyEvent.eventId,
-                                                ),
-                                                child: AbsorbPointer(
-                                                  child: ReplyContent(
-                                                    replyEvent,
-                                                    ownMessage: ownMessage,
-                                                    timeline: timeline,
-                                                  ),
-                                                ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (!nextEventSameSender)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, bottom: 4),
+                                  child: ownMessage || event.room.isDirectChat
+                                      ? const SizedBox(height: 12)
+                                      : FutureBuilder<User?>(
+                                          future: event.fetchSenderUser(),
+                                          builder: (context, snapshot) {
+                                            final displayname = snapshot.data
+                                                    ?.calcDisplayname() ??
+                                                event.senderFromMemoryOrFallback
+                                                    .calcDisplayname();
+                                            return Text(
+                                              displayname,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: (Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? displayname.color
+                                                    : displayname
+                                                        .lightColorText),
                                               ),
                                             );
                                           },
                                         ),
-                                      MessageContent(
-                                        displayEvent,
-                                        textColor: textColor,
-                                        onInfoTab: onInfoTab,
+                                ),
+                              Container(
+                                alignment: alignment,
+                                padding: const EdgeInsets.only(left: 8),
+                                child: GestureDetector(
+                                  onLongPress: longPressSelect
+                                      ? null
+                                      : () {
+                                          HapticFeedback.heavyImpact();
+                                          onSelect(event);
+                                        },
+                                  child: AnimatedOpacity(
+                                    opacity: animateIn
+                                        ? 0
+                                        : event.redacted ||
+                                                event.messageType ==
+                                                    MessageTypes.BadEncrypted ||
+                                                event.status.isSending
+                                            ? 0.5
+                                            : 1,
+                                    duration: FluffyThemes.animationDuration,
+                                    curve: FluffyThemes.animationCurve,
+                                    child: Material(
+                                      color:
+                                          noBubble ? Colors.transparent : color,
+                                      clipBehavior: Clip.antiAlias,
+                                      shape: RoundedRectangleBorder(
                                         borderRadius: borderRadius,
                                       ),
-                                      if (event.hasAggregatedEvents(
-                                        timeline,
-                                        RelationshipTypes.edit,
-                                      ))
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 4.0,
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                Icons.edit_outlined,
-                                                color: textColor.withAlpha(164),
-                                                size: 14,
-                                              ),
-                                              Text(
-                                                ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                                style: TextStyle(
-                                                  color:
-                                                      textColor.withAlpha(164),
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ],
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
                                           ),
                                         ),
-                                    ],
+                                        padding: noBubble || noPadding
+                                            ? EdgeInsets.zero
+                                            : const EdgeInsets.symmetric(
+                                                horizontal: 16,
+                                                vertical: 8,
+                                              ),
+                                        constraints: const BoxConstraints(
+                                          maxWidth:
+                                              FluffyThemes.columnWidth * 1.5,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            if (event.relationshipType ==
+                                                RelationshipTypes.reply)
+                                              FutureBuilder<Event?>(
+                                                future: event
+                                                    .getReplyEvent(timeline),
+                                                builder: (BuildContext context,
+                                                    snapshot) {
+                                                  final replyEvent = snapshot
+                                                          .hasData
+                                                      ? snapshot.data!
+                                                      : Event(
+                                                          eventId: event
+                                                              .relationshipEventId!,
+                                                          content: {
+                                                            'msgtype': 'm.text',
+                                                            'body': '...',
+                                                          },
+                                                          senderId:
+                                                              event.senderId,
+                                                          type:
+                                                              'm.room.message',
+                                                          room: event.room,
+                                                          status:
+                                                              EventStatus.sent,
+                                                          originServerTs:
+                                                              DateTime.now(),
+                                                        );
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      bottom: 4.0,
+                                                    ),
+                                                    child: InkWell(
+                                                      borderRadius: ReplyContent
+                                                          .borderRadius,
+                                                      onTap: () =>
+                                                          scrollToEventId(
+                                                        replyEvent.eventId,
+                                                      ),
+                                                      child: AbsorbPointer(
+                                                        child: ReplyContent(
+                                                          replyEvent,
+                                                          ownMessage:
+                                                              ownMessage,
+                                                          timeline: timeline,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            MessageContent(
+                                              displayEvent,
+                                              textColor: textColor,
+                                              onInfoTab: onInfoTab,
+                                              borderRadius: borderRadius,
+                                            ),
+                                            if (event.hasAggregatedEvents(
+                                              timeline,
+                                              RelationshipTypes.edit,
+                                            ))
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  top: 4.0,
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.edit_outlined,
+                                                      color: textColor
+                                                          .withAlpha(164),
+                                                      size: 14,
+                                                    ),
+                                                    Text(
+                                                      ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                                      style: TextStyle(
+                                                        color: textColor
+                                                            .withAlpha(164),
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  ],
+                ),
         );
       },
     );
