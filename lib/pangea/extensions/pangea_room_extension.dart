@@ -815,6 +815,9 @@ extension PangeaRoom on Room {
       );
       return false;
     }
+    if (room != null && !room.isRoomAdmin) {
+      return false;
+    }
     if (!pangeaCanSendEvent(EventTypes.spaceChild) && !isRoomAdmin) {
       return false;
     }
