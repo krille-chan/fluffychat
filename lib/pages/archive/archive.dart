@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:fluffychat/pages/archive/archive_view.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/pages/archive/archive_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class Archive extends StatefulWidget {
   const Archive({super.key});
@@ -20,7 +19,11 @@ class ArchiveController extends State<Archive> {
 
   Future<List<Room>> getArchive(BuildContext context) async {
     if (archive.isNotEmpty) return archive;
-    return archive = await Matrix.of(context).client.loadArchive();
+    // #Pangea
+    return archive = (await Matrix.of(context).client.loadArchive())
+        .where((e) => (!e.isSpace && !e.isAnalyticsRoom))
+        .toList();
+    // Pangea#
   }
 
   void forgetRoomAction(int i) async {
