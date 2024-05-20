@@ -1210,8 +1210,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/store-upload-inbound-sessions-in-que"
-      resolved-ref: "97d544ba85fe3f832f639c9e4662734f6b0e5bd6"
+      ref: HEAD
+      resolved-ref: fe637e1627039623bb15c59f9a152f5d906bb48e
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.29.2"

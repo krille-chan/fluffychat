@@ -67,7 +67,6 @@ dependencies:
   matrix:
     git:
       url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: krille/store-upload-inbound-sessions-in-que
   native_imaging: ^0.1.0
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0
