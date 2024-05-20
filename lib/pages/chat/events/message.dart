@@ -147,8 +147,10 @@ class Message extends StatelessWidget {
         return AnimatedSize(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
+          clipBehavior: Clip.none,
+          alignment: ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
           child: animateIn
-              ? const SizedBox.shrink()
+              ? const SizedBox(height: 0, width: double.infinity)
               : Stack(
                   children: [
                     Positioned(
