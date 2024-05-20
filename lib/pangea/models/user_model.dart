@@ -68,6 +68,7 @@ enum MatrixProfile {
   sourceLanguage,
   country,
   publicProfile,
+  autoIGC,
 }
 
 extension MatrixProfileExtension on MatrixProfile {
@@ -89,6 +90,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return ToolSetting.definitions.toString();
       case MatrixProfile.translations:
         return ToolSetting.translations.toString();
+      case MatrixProfile.autoIGC:
+        return ToolSetting.autoIGC.toString();
       case MatrixProfile.showedItInstructions:
         return InstructionsEnum.itInstructions.toString();
       case MatrixProfile.showedClickMessage:

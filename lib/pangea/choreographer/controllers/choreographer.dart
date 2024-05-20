@@ -51,7 +51,7 @@ class Choreographer {
   // last checked by IGC or translation
   String? _lastChecked;
   ChoreoMode choreoMode = ChoreoMode.igc;
-  final StreamController stateListener = StreamController();
+  final StreamController stateListener = StreamController.broadcast();
   StreamSubscription? trialStream;
 
   Choreographer(this.pangeaController, this.chatController) {
@@ -205,14 +205,18 @@ class Choreographer {
     textController.editType = EditType.keyboard;
   }
 
-  Future<void> getLanguageHelp([bool tokensOnly = false]) async {
+  Future<void> getLanguageHelp([
+    bool tokensOnly = false,
+    bool manual = false,
+  ]) async {
     try {
       if (errorService.isError) return;
       final CanSendStatus canSendStatus =
           pangeaController.subscriptionController.canSendStatus;
 
       if (canSendStatus != CanSendStatus.subscribed ||
-          (!igcEnabled && !itEnabled)) {
+          (!igcEnabled && !itEnabled) ||
+          (!isAutoIGCEnabled && !manual && choreoMode != ChoreoMode.it)) {
         return;
       }
 
@@ -535,4 +539,40 @@ class Choreographer {
       pangeaController.permissionsController.isWritingAssistanceEnabled(
         chatController.room,
       );
+
+  bool get isAutoIGCEnabled =>
+      pangeaController.permissionsController.isToolEnabled(
+        ToolSetting.autoIGC,
+        chatController.room,
+      );
+
+  AssistanceState get assistanceState {
+    if (currentText.isEmpty && itController.sourceText == null) {
+      return AssistanceState.noMessage;
+    }
+
+    if (igc.igcTextData?.matches.isNotEmpty ?? false) {
+      return AssistanceState.fetched;
+    }
+
+    if (isFetching) {
+      return AssistanceState.fetching;
+    }
+
+    if (igc.igcTextData == null) {
+      return AssistanceState.notFetched;
+    }
+
+    return AssistanceState.complete;
+  }
+}
+
+// assistance state is, user has not typed a message, user has typed a message and IGC has not run,
+// IGC is running, IGC has run and there are remaining steps (either IT or IGC), or all steps are done
+enum AssistanceState {
+  noMessage,
+  notFetched,
+  fetching,
+  fetched,
+  complete,
 }

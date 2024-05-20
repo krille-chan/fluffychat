@@ -3948,5 +3948,10 @@
     "studentAnalyticsNotAvailable": "Student data not currently available",
     "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
     "updatePhoneOS": "You may need to update your device's OS version.",
-    "wordsPerMinute": "Words per minute"
+    "wordsPerMinute": "Words per minute",
+    "autoIGCToolName": "Run Language Assistance Automatically",
+    "autoIGCToolDescription": "Automatically run language assistance after typing messages",
+    "runGrammarCorrection": "Run grammar correction",
+    "grammarCorrectionFailed": "Grammar correction failed",
+    "grammarCorrectionComplete": "Grammar correction complete"
 }

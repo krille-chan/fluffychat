@@ -1,13 +1,12 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/constants/model_keys.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import '../constants/class_default_values.dart';
 import '../constants/language_keys.dart';
 import '../constants/pangea_event_types.dart';
@@ -124,6 +123,7 @@ class PangeaRoomRules {
   int immersionMode;
   int definitions;
   int translations;
+  int autoIGC;
 
   PangeaRoomRules({
     this.isPublic = false,
@@ -142,6 +142,7 @@ class PangeaRoomRules {
     this.immersionMode = ClassDefaultValues.languageToolPermissions,
     this.definitions = ClassDefaultValues.languageToolPermissions,
     this.translations = ClassDefaultValues.languageToolPermissions,
+    this.autoIGC = ClassDefaultValues.languageToolPermissions,
   });
 
   updatePermission(String key, bool value) {
@@ -201,6 +202,9 @@ class PangeaRoomRules {
       case ToolSetting.translations:
         translations = value;
         break;
+      case ToolSetting.autoIGC:
+        autoIGC = value;
+        break;
       default:
         throw Exception('Invalid key for setting permissions - $setting');
     }
@@ -235,6 +239,7 @@ class PangeaRoomRules {
             json['definitions'] ?? ClassDefaultValues.languageToolPermissions,
         translations:
             json['translations'] ?? ClassDefaultValues.languageToolPermissions,
+        autoIGC: json['auto_igc'] ?? ClassDefaultValues.languageToolPermissions,
       );
 
   Map<String, dynamic> toJson() {
@@ -256,6 +261,7 @@ class PangeaRoomRules {
     data['immersion_mode'] = immersionMode;
     data['definitions'] = definitions;
     data['translations'] = translations;
+    data['auto_igc'] = autoIGC;
     return data;
   }
 
@@ -271,6 +277,8 @@ class PangeaRoomRules {
         return definitions;
       case ToolSetting.translations:
         return translations;
+      case ToolSetting.autoIGC:
+        return autoIGC;
       default:
         throw Exception('Invalid key for setting permissions - $setting');
     }
@@ -299,6 +307,7 @@ enum ToolSetting {
   immersionMode,
   definitions,
   translations,
+  autoIGC,
 }
 
 extension SettingCopy on ToolSetting {
@@ -314,6 +323,8 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.definitionsToolName;
       case ToolSetting.translations:
         return L10n.of(context)!.messageTranslationsToolName;
+      case ToolSetting.autoIGC:
+        return L10n.of(context)!.autoIGCToolName;
     }
   }
 
@@ -330,6 +341,8 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.definitionsToolDescription;
       case ToolSetting.translations:
         return L10n.of(context)!.translationsToolDescrption;
+      case ToolSetting.autoIGC:
+        return L10n.of(context)!.autoIGCToolDescription;
     }
   }
 }
