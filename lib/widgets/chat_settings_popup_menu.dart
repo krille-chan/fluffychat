@@ -83,19 +83,34 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
-      PopupMenuItem<String>(
-        value: 'leave',
-        child: Row(
-          children: [
-            // #Pangea
-            // const Icon(Icons.delete_outlined),
-            const Icon(Icons.arrow_forward),
-            // Pangea#
-            const SizedBox(width: 12),
-            Text(L10n.of(context)!.leave),
-          ],
+      // #Pangea
+      // PopupMenuItem<String>(
+      //   value: 'leave',
+      //   child: Row(
+      //     children: [
+      //       // #Pangea
+      //       // const Icon(Icons.delete_outlined),
+      //       const Icon(Icons.arrow_forward),
+      //       // Pangea#
+      //       const SizedBox(width: 12),
+      //       Text(L10n.of(context)!.leave),
+      //     ],
+      //   ),
+      // ),
+      if (!widget.room.isArchived)
+        PopupMenuItem<String>(
+          value: 'leave',
+          child: Row(
+            children: [
+              // #Pangea
+              // const Icon(Icons.delete_outlined),
+              const Icon(Icons.arrow_forward),
+              // Pangea#
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.leave),
+            ],
+          ),
         ),
-      ),
       // #Pangea
       if (classSettings != null)
         PopupMenuItem<String>(

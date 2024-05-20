@@ -20,6 +20,7 @@ class ArchiveController extends State<Archive> {
   Future<List<Room>> getArchive(BuildContext context) async {
     if (archive.isNotEmpty) return archive;
     // #Pangea
+    //return archive = await Matrix.of(context).client.loadArchive();
     return archive = (await Matrix.of(context).client.loadArchive())
         .where((e) => (!e.isSpace && !e.isAnalyticsRoom))
         .toList();
