@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class SettingsLearning extends StatefulWidget {
   const SettingsLearning({super.key});
@@ -30,6 +29,10 @@ class SettingsLearningController extends State<SettingsLearning> {
         pangeaController.userController.stateStream.listen((event) {
       setState(() {});
     });
+  }
+
+  Future<void> refresh() async {
+    setState(() {});
   }
 
   @override
