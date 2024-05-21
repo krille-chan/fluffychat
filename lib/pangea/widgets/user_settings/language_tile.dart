@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import '../flag.dart';
-import 'p_language_dialog.dart';
 
 //PTODO - move this to settings_learning_view.dart and make callback a setState
 
@@ -83,8 +82,7 @@ class LanguageTile extends StatelessWidget {
       ),
       trailing: const Icon(Icons.edit_outlined),
       onTap: () async {
-        await pLanguageDialog(context, () {});
-        learningController.refresh();
+        learningController.changeLanguage();
       },
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/pages/settings_learning/settings_learning_view.dart';
+import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,8 @@ class SettingsLearningController extends State<SettingsLearning> {
     });
   }
 
-  Future<void> refresh() async {
+  Future<void> changeLanguage() async {
+    await pLanguageDialog(context, () {});
     setState(() {});
   }
 
