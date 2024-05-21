@@ -120,6 +120,7 @@ abstract class ClientManager {
       },
       nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
+      defaultNetworkRequestTimeout: const Duration(minutes: 5),
       enableDehydratedDevices: true,
     );
   }
