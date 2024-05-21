@@ -1,6 +1,10 @@
-Pangea Chat Client Setup:
+# Overview
 
-* Download VSCode if you do not already have it installed
+[Pangea Chat](https://pangea.chat) is a web and mobile platform which lets students ‘learn a language while texting their friends.’ Addressing the gap in communicative language teaching, especially for beginners lacking skill and confidence, Pangea Chat provides a low-stress, high-support environment for language learning through authentic conversations. By integrating human and artificial intelligence, the app enhances communicative abilities and supports educators. Pangea Chat has been grant funded by the National Science Foundation and Virginia Innovation Partnership Corporation based on its technical innovation and potential for broad social impact. Our mission is to build a global, decentralized learning network supporting intercultural learning and exchange.
+
+# Pangea Chat Client Setup
+
+* Download VSCode if you do not already have it installed. This is the preferred IDE for development with Pangea Chat.
 * Download flutter on your device using this guide: https://docs.flutter.dev/get-started/install
 * Test to make sure that flutter is properly installed by running “flutter –version”
     * You may need to add flutter to your path manually. Instructions can be found here: https://docs.flutter.dev/get-started/install/macos/mobile-ios?tab=download#add-flutter-to-your-path
@@ -14,7 +18,7 @@ Pangea Chat Client Setup:
 * Run “brew install cocoapods” to install cocoapods
 * Run “flutter doctor” and for any missing components, follow the instructions from the print out to install / setup
 * Clone the client repo
-* Copy the .env file (and the .env.prod file, if you want to run production builds), into the root folder of the client and the assets/ folder
+* Copy the .env file (and the .env.prod file, if you want to run production builds), into the root folder of the client and the assets/ folder. Contact Gabby for a copy of this file.
 * Uncomment the lines in the pubspec.yaml file in the assets section with paths to .env file
 * To run on iOS:
     * Run “flutter precache --ios”
@@ -25,61 +29,9 @@ Pangea Chat Client Setup:
     * On web, run `flutter run -d chrome –hot`
     * On mobile device or simulator, run `flutter run –hot -d <DEVICE_NAME>`
 
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
-
-[FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
-
-### Links:
-
-- 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
-- 🌍 [[m] Join the community](https://matrix.to/#/#fluffychat:matrix.org)
-- 📰 [[Mastodon] Get updates on social media](https://mastodon.art/@krille)
-- 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
-- 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
-
-<a href='https://ko-fi.com/C1C86VN53' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-### Screenshots:
-
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/product.jpeg?raw=true)
-
-# Features
-
-- 📩 Send all kinds of messages, images and files
-- 🎙️ Voice messages
-- 📍 Location sharing
-- 🔔 Push notifications
-- 💬 Unlimited private and public group chats
-- 📣 Public channels with thousands of participants
-- 🛠️ Feature rich group moderation including all matrix features
-- 🔍 Discover and join public groups
-- 🌙 Dark mode
-- 🎨 Material You design
-- 📟 Hides complexity of Matrix IDs behind simple QR codes
-- 😄 Custom emotes and stickers
-- 🌌 Spaces
-- 🔄 Compatible with Element, Nheko, NeoChat and all other Matrix apps
-- 🔐 End to end encryption
-- 🔒 Encrypted chat backup
-- 😀 Emoji verification & cross signing
-
-... and much more.
-
-
-# Installation
-
-Please visit the website for installation instructions:
-
-- https://fluffychat.im
-
-# How to build
-
-Please visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for build instructions:
-
-- https://github.com/krille-chan/fluffychat/wiki/How-To-Build
-
-
 # Special thanks
+
+* Pangea Chat is a fork of [FluffyChat](https://fluffychat.im), is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of FluffyChat is to create an easy to use instant messenger which is open source and accessible for everyone. You can [support the primary maker of FluffyChat directly here.](https://ko-fi.com/C1C86VN53)
 
 * <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
 
