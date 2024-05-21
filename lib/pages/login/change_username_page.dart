@@ -96,6 +96,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         data: jsonEncode({'username': newUsername}),
       );
       final matrixUsername = updateUsernameResponse.data['username'];
+      final newState = updateUsernameResponse.data['userState'];
 
       Logs().v("New matrixUsername: $matrixUsername");
       if (matrixUsername != newUsername) {
@@ -104,6 +105,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
       setState(() {
         widget.queueStatus['username'] = newUsername;
+        widget.queueStatus['userState'] = newState;
         _loadingUpdateUsername = false;
       });
 
