@@ -34,38 +34,6 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 16),
                 ...controller.authWidgets,
                 const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    onPressed: controller.loading ? null : controller.submitForm,
-                    icon: const Icon(Icons.login_outlined),
-                    label: controller.loading
-                        ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton.icon(
-                    onPressed: controller.loading
-                        ? () {}
-                        : () {
-                            //Todo: make forgotten password function
-                            //controller.passwordForgotten
-                          },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
-                    ),
-                    icon: const Icon(Icons.safety_check_outlined),
-                    label: Text(L10n.of(context)!.passwordForgotten),
-                  ),
-                ),
-                const SizedBox(height: 16),
                 // Register redirection
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
