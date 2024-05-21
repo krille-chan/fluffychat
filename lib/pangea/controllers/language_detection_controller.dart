@@ -9,9 +9,18 @@ import 'package:http/http.dart' as http;
 import '../network/requests.dart';
 
 class LanguageDetectionRequest {
+  /// The full text from which to detect the language.
   String fullText;
-  String userL1;
-  String userL2;
+
+  /// The base language of the user, if known. Including this is much preferred
+  /// and should return better results; however, it is not absolutely necessary.
+  /// This property is nullable to allow for situations where the languages are not set
+  /// at the time of the request.
+  String? userL1;
+
+  /// The target language of the user. This is expected to be set for the request
+  /// but is nullable to handle edge cases where it might not be.
+  String? userL2;
 
   LanguageDetectionRequest({
     required this.fullText,
