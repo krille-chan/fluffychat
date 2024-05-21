@@ -31,7 +31,7 @@ class SettingsLearningView extends StatelessWidget {
           withScrolling: true,
           child: Column(
             children: [
-              LanguageTile(),
+              LanguageTile(controller),
               CountryPickerTile(),
               const SizedBox(height: 8),
               const Divider(height: 1),
