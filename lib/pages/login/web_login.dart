@@ -42,11 +42,11 @@ class _WebLoginState extends State<WebLogin> {
               final matrixToken = queryParameters['mt'];
               final serverName = queryParameters['sn'];
 
-              await showFutureLoadingDialog(
-                context: context,
-                future: () => widget.loginController
-                    .matrixLogin(matrixToken!, serverName!),
-              );
+              // await showFutureLoadingDialog(
+              //   context: context,
+              //   future: () => widget.loginController
+              //       .matrixLogin(matrixToken!, serverName!),
+              // );
             }
           }
         },
