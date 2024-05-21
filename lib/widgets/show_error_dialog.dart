@@ -10,11 +10,7 @@ class DioErrorHandler {
       final errorMessage = e.response!.data['ui']['messages'][0]['text'];
       _showErrorDialog(context, '', errorMessage);
     } else if (e.error is SocketException) {
-      _showErrorDialog(
-        context,
-        L10n.of(context)!.noConnectionToTheServer,
-        L10n.of(context)!.errorConnectionText,
-      );
+      showNetworkErrorDialog(context);
     } else {
       _showErrorDialog(
         context,
@@ -51,11 +47,19 @@ class DioErrorHandler {
     );
   }
 
-  static void _showNetworkErrorDialog(BuildContext context) {
+  static void showNetworkErrorDialog(BuildContext context) {
     _showErrorDialog(
       context,
       L10n.of(context)!.noConnectionToTheServer,
       L10n.of(context)!.errorConnectionText,
+    );
+  }
+
+  static void showGenericErrorDialog(BuildContext context, String message) {
+    _showErrorDialog(
+      context,
+      L10n.of(context)!.err_,
+      message,
     );
   }
 }
