@@ -64,7 +64,10 @@ dependencies:
   keyboard_shortcuts: ^0.1.4
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.29.3
+  matrix:
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/create-missing-object-box
   package_info_plus: ^6.0.0
   pasteboard: ^0.2.0
   path: ^1.9.0
