@@ -288,7 +288,10 @@ class _SpaceViewState extends State<SpaceView> {
           // #Pangea
           // future: room!.leave,
           future: () async {
-            await room!.leave();
+            if (room!.isUnread) {
+              await room.markUnread(false);
+            }
+            await room.leave();
             if (Matrix.of(context).activeRoomId == room.id) {
               context.go('/rooms');
             }
