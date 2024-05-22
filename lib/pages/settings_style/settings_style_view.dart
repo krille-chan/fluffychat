@@ -90,7 +90,7 @@ class SettingsStyleView extends StatelessWidget {
                                                     size: 16,
                                                     color: Theme.of(context)
                                                         .colorScheme
-                                                        .onBackground,
+                                                        .onSurface,
                                                   ),
                                                 ),
                                               Text(
@@ -99,7 +99,7 @@ class SettingsStyleView extends StatelessWidget {
                                                 style: TextStyle(
                                                   color: Theme.of(context)
                                                       .colorScheme
-                                                      .onBackground,
+                                                      .onSurface,
                                                 ),
                                               ),
                                             ],

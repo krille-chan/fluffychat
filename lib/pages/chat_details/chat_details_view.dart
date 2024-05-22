@@ -163,7 +163,7 @@ class ChatDetailsView extends StatelessWidget {
                                     style: TextButton.styleFrom(
                                       foregroundColor: Theme.of(context)
                                           .colorScheme
-                                          .onBackground,
+                                          .onSurface,
                                     ),
                                     label: Text(
                                       room.isDirectChat

@@ -99,7 +99,7 @@ class Avatar extends StatelessWidget {
                 height: 16,
                 decoration: BoxDecoration(
                   color: presenceBackgroundColor ??
-                      Theme.of(context).colorScheme.background,
+                      Theme.of(context).colorScheme.surface,
                   borderRadius: BorderRadius.circular(32),
                 ),
                 alignment: Alignment.center,
@@ -111,7 +111,7 @@ class Avatar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       width: 1,
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                 ),

@@ -3,3 +3,6 @@ template-arb-file: intl_en.arb
 output-localization-file: l10n.dart
 output-class: L10n
 preferred-supported-locales: ["en"]
+# Workaround from https://github.com/flutter/flutter/issues/148333#issuecomment-2122333090
+synthetic-package: false
+nullable-getter: false
