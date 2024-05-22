@@ -48,28 +48,33 @@ class PangeaRichTextState extends State<PangeaRichText> {
   @override
   void initState() {
     super.initState();
-    updateTextSpan();
-  }
-
-  void updateTextSpan() {
-    setState(() {
-      textSpan = getTextSpan();
-    });
+    setTextSpan();
   }
 
   @override
   void didUpdateWidget(PangeaRichText oldWidget) {
     super.didUpdateWidget(oldWidget);
-    updateTextSpan();
+    setTextSpan();
   }
 
-  String getTextSpan() {
+  void _setTextSpan(String newTextSpan) {
+    widget.toolbarController?.toolbar?.textSelection.setMessageText(
+      newTextSpan,
+    );
+    setState(() {
+      textSpan = newTextSpan;
+    });
+  }
+
+  void setTextSpan() {
     if (_fetchingRepresentation == true) {
-      return widget.pangeaMessageEvent.body;
+      _setTextSpan(textSpan = widget.pangeaMessageEvent.body);
+      return;
     }
 
     if (repEvent != null) {
-      return repEvent!.text;
+      _setTextSpan(repEvent!.text);
+      return;
     }
 
     if (widget.pangeaMessageEvent.eventId.contains("webdebug")) {
@@ -84,7 +89,6 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     if (repEvent == null) {
       setState(() => _fetchingRepresentation = true);
-
       widget.pangeaMessageEvent
           .representationByLanguageGlobal(
             langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
@@ -95,23 +99,17 @@ class PangeaRichTextState extends State<PangeaRichText> {
           )
           .then((event) {
         repEvent = event;
-        widget.toolbarController?.toolbar?.textSelection.setMessageText(
-          repEvent?.text ?? widget.pangeaMessageEvent.body,
-        );
+        _setTextSpan(repEvent?.text ?? widget.pangeaMessageEvent.body);
       }).whenComplete(() {
         if (mounted) {
           setState(() => _fetchingRepresentation = false);
         }
       });
-      return widget.pangeaMessageEvent.body;
-    } else {
-      widget.toolbarController?.toolbar?.textSelection.setMessageText(
-        repEvent!.text,
-      );
-      setState(() {});
-    }
 
-    return repEvent!.text;
+      _setTextSpan(widget.pangeaMessageEvent.body);
+    } else {
+      _setTextSpan(repEvent!.text);
+    }
   }
 
   @override
@@ -190,7 +188,10 @@ class PangeaRichTextState extends State<PangeaRichText> {
 
     return blur > 0
         ? ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+            imageFilter: ImageFilter.blur(
+              sigmaX: blur,
+              sigmaY: blur,
+            ),
             child: richText,
           )
         : richText;

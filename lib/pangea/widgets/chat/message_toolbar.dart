@@ -134,8 +134,11 @@ class ToolbarDisplayController {
     });
   }
 
-  bool get highlighted =>
-      MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+  bool get highlighted {
+    if (overlayId == null) return false;
+    if (MatrixState.pAnyState.overlay == null) overlayId = null;
+    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+  }
 }
 
 class MessageToolbar extends StatefulWidget {
