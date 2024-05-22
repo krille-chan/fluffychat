@@ -123,7 +123,7 @@ class LanguageDetectionController {
     LanguageDetectionRequest params,
   ) async {
     final Requests request = Requests(
-      choreoApiKey: Environment.choreoApi,
+      choreoApiKey: Environment.choreoApiKey,
       accessToken: accessToken,
     );
 
