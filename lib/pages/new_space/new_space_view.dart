@@ -95,6 +95,9 @@ class NewSpaceView extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: TextField(
+                      // #Pangea
+                      maxLength: 32,
+                      // Pangea#
                       controller: controller.nameController,
                       autocorrect: false,
                       readOnly: controller.loading,

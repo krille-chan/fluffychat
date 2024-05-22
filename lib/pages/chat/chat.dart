@@ -1078,6 +1078,9 @@ class ChatController extends State<ChatPageWithRoom>
   bool get canEditSelectedEvents {
     if (isArchived ||
         selectedEvents.length != 1 ||
+        // #Pangea
+        selectedEvents.single.messageType != MessageTypes.Text ||
+        // Pangea#
         !selectedEvents.first.status.isSent) {
       return false;
     }

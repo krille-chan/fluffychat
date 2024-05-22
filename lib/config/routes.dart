@@ -232,20 +232,26 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewGroup(),
+                NewGroup(
+                  // #Pangea
+                  spaceId: state.uri.queryParameters['spaceId'],
+                  // Pangea#
+                ),
               ),
               redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: ':spaceid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const NewGroup(),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-              ],
+              // #Pangea
+              // routes: [
+              //   GoRoute(
+              //     path: ':spaceid',
+              //     pageBuilder: (context, state) => defaultPageBuilder(
+              //       context,
+              //       state,
+              //       const NewGroup(),
+              //     ),
+              //     redirect: loggedOutRedirect,
+              //   ),
+              // ],
+              // Pangea#
             ),
             GoRoute(
               path: 'newspace',

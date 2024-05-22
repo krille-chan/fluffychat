@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix.dart';
 
 enum MessageMode { translation, definition, speechToText, textToSpeech }
 
@@ -50,6 +51,19 @@ extension MessageModeExtension on MessageMode {
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
+    }
+  }
+
+  bool isValidMode(Event event) {
+    switch (this) {
+      case MessageMode.translation:
+      case MessageMode.textToSpeech:
+      case MessageMode.definition:
+        return event.messageType == MessageTypes.Text;
+      case MessageMode.speechToText:
+        return event.messageType == MessageTypes.Audio;
+      default:
+        return true;
     }
   }
 }

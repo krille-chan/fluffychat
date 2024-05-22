@@ -1,9 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:flutter/foundation.dart';
 
 class WordData {
   final String word;
@@ -102,10 +101,11 @@ class WordData {
   }) =>
       word == w && userL1 == l1 && userL2 == l2 && fullText == f;
 
-  String formattedPartOfSpeech(LanguageType languageType) {
+  String? formattedPartOfSpeech(LanguageType languageType) {
     final String pos = languageType == LanguageType.base
         ? basePartOfSpeech
         : targetPartOfSpeech;
+    if (pos.isEmpty) return null;
     return pos[0].toUpperCase() + pos.substring(1);
   }
 
