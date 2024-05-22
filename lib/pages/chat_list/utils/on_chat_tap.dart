@@ -45,9 +45,11 @@ void onChatTap(Room room, BuildContext context) async {
       return;
     }
     if (inviteAction == InviteActions.decline) {
+      // #Pangea
       if (room.isUnread) {
         await room.markUnread(false);
       }
+      // Pangea#
       await showFutureLoadingDialog(
         context: context,
         future: room.leave,
