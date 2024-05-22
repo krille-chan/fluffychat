@@ -18,13 +18,17 @@ class HomeserverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField<PublicHomeserver>(
-      suggestionsBoxDecoration: SuggestionsBoxDecoration(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        elevation: Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
-        shadowColor: Theme.of(context).appBarTheme.shadowColor ?? Colors.black,
+      decorationBuilder: (context, child) => ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 256),
+        child: Material(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          elevation: Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4,
+          shadowColor:
+              Theme.of(context).appBarTheme.shadowColor ?? Colors.black,
+          child: child,
+        ),
       ),
-      noItemsFoundBuilder: (context) => ListTile(
+      emptyBuilder: (context) => ListTile(
         leading: const Icon(Icons.search_outlined),
         title: Text(L10n.of(context)!.nothingFound),
       ),
@@ -35,8 +39,7 @@ class HomeserverAppBar extends StatelessWidget {
       errorBuilder: (context, error) => ListTile(
         leading: const Icon(Icons.error_outlined),
         title: Text(
-          error?.toLocalizedString(context) ??
-              L10n.of(context)!.oopsSomethingWentWrong,
+          error.toLocalizedString(context),
         ),
       ),
       itemBuilder: (context, homeserver) => ListTile(
@@ -72,13 +75,15 @@ class HomeserverAppBar extends StatelessWidget {
         }
         return matches;
       },
-      onSuggestionSelected: (suggestion) {
+      onSelected: (suggestion) {
         controller.homeserverController.text = suggestion.name;
         controller.checkHomeserverAction();
       },
-      textFieldConfiguration: TextFieldConfiguration(
+      controller: controller.homeserverController,
+      builder: (context, textEditingController, focusNode) => TextField(
         enabled: !controller.isLoggingIn,
-        controller: controller.homeserverController,
+        controller: textEditingController,
+        focusNode: focusNode,
         decoration: InputDecoration(
           prefixIcon: Navigator.of(context).canPop()
               ? IconButton(

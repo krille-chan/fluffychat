@@ -21,29 +21,28 @@ class ReplyDisplay extends StatelessWidget {
           ? 56
           : 0,
       clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(),
-      child: Material(
-        color: Theme.of(context).secondaryHeaderColor,
-        child: Row(
-          children: <Widget>[
-            IconButton(
-              tooltip: L10n.of(context)!.close,
-              icon: const Icon(Icons.close),
-              onPressed: controller.cancelReplyEventAction,
-            ),
-            Expanded(
-              child: controller.replyEvent != null
-                  ? ReplyContent(
-                      controller.replyEvent!,
-                      timeline: controller.timeline!,
-                    )
-                  : _EditContent(
-                      controller.editEvent
-                          ?.getDisplayEvent(controller.timeline!),
-                    ),
-            ),
-          ],
-        ),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onInverseSurface,
+      ),
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            tooltip: L10n.of(context)!.close,
+            icon: const Icon(Icons.close),
+            onPressed: controller.cancelReplyEventAction,
+          ),
+          Expanded(
+            child: controller.replyEvent != null
+                ? ReplyContent(
+                    controller.replyEvent!,
+                    timeline: controller.timeline!,
+                    backgroundColor: Colors.transparent,
+                  )
+                : _EditContent(
+                    controller.editEvent?.getDisplayEvent(controller.timeline!),
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -67,27 +66,17 @@ class _EditContent extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
         ),
         Container(width: 15.0),
-        FutureBuilder<String>(
-          future: event.calcLocalizedBody(
+        Text(
+          event.calcLocalizedBodyFallback(
             MatrixLocals(L10n.of(context)!),
             withSenderNamePrefix: false,
             hideReply: true,
           ),
-          builder: (context, snapshot) {
-            return Text(
-              snapshot.data ??
-                  event.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)!),
-                    withSenderNamePrefix: false,
-                    hideReply: true,
-                  ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-              ),
-            );
-          },
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyMedium!.color,
+          ),
         ),
       ],
     );

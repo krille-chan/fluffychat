@@ -1,17 +1,19 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
@@ -59,6 +61,7 @@ abstract class AppRoutes {
       path: '/home',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
+        state,
         const HomeserverPicker(),
       ),
       redirect: loggedInRedirect,
@@ -67,6 +70,7 @@ abstract class AppRoutes {
           path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             const Login(),
           ),
           redirect: loggedInRedirect,
@@ -77,12 +81,14 @@ abstract class AppRoutes {
       path: '/logs',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
+        state,
         const LogViewer(),
       ),
     ),
     ShellRoute(
       pageBuilder: (context, state, child) => defaultPageBuilder(
         context,
+        state,
         FluffyThemes.isColumnMode(context) &&
                 state.fullPath?.startsWith('/rooms/settings') == false
             ? TwoColumnLayout(
@@ -103,6 +109,7 @@ abstract class AppRoutes {
           redirect: loggedOutRedirect,
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
+            state,
             FluffyThemes.isColumnMode(context)
                 ? const EmptyPage()
                 : ChatList(
@@ -114,6 +121,7 @@ abstract class AppRoutes {
               path: 'archive',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const Archive(),
               ),
               routes: [
@@ -121,8 +129,10 @@ abstract class AppRoutes {
                   path: ':roomid',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
+                      eventId: state.uri.queryParameters['event'],
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -134,6 +144,7 @@ abstract class AppRoutes {
               path: 'newprivatechat',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewPrivateChat(),
               ),
               redirect: loggedOutRedirect,
@@ -142,6 +153,7 @@ abstract class AppRoutes {
               path: 'newgroup',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewGroup(),
               ),
               redirect: loggedOutRedirect,
@@ -150,6 +162,7 @@ abstract class AppRoutes {
               path: 'newspace',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 const NewSpace(),
               ),
               redirect: loggedOutRedirect,
@@ -157,6 +170,7 @@ abstract class AppRoutes {
             ShellRoute(
               pageBuilder: (context, state, child) => defaultPageBuilder(
                 context,
+                state,
                 FluffyThemes.isColumnMode(context)
                     ? TwoColumnLayout(
                         mainView: const Settings(),
@@ -170,6 +184,7 @@ abstract class AppRoutes {
                   path: 'settings',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     FluffyThemes.isColumnMode(context)
                         ? const EmptyPage()
                         : const Settings(),
@@ -179,6 +194,7 @@ abstract class AppRoutes {
                       path: 'notifications',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsNotifications(),
                       ),
                       redirect: loggedOutRedirect,
@@ -187,6 +203,7 @@ abstract class AppRoutes {
                       path: 'style',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsStyle(),
                       ),
                       redirect: loggedOutRedirect,
@@ -195,6 +212,7 @@ abstract class AppRoutes {
                       path: 'devices',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const DevicesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -203,6 +221,7 @@ abstract class AppRoutes {
                       path: 'chat',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsChat(),
                       ),
                       routes: [
@@ -210,6 +229,7 @@ abstract class AppRoutes {
                           path: 'emotes',
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
+                            state,
                             const EmotesSettings(),
                           ),
                         ),
@@ -221,6 +241,7 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const HomeserverPicker(),
                       ),
                       routes: [
@@ -228,6 +249,7 @@ abstract class AppRoutes {
                           path: 'login',
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
+                            state,
                             const Login(),
                           ),
                           redirect: loggedOutRedirect,
@@ -239,6 +261,7 @@ abstract class AppRoutes {
                       redirect: loggedOutRedirect,
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const SettingsSecurity(),
                       ),
                       routes: [
@@ -247,6 +270,7 @@ abstract class AppRoutes {
                           pageBuilder: (context, state) {
                             return defaultPageBuilder(
                               context,
+                              state,
                               const SettingsPassword(),
                             );
                           },
@@ -257,6 +281,7 @@ abstract class AppRoutes {
                           pageBuilder: (context, state) {
                             return defaultPageBuilder(
                               context,
+                              state,
                               SettingsIgnoreList(
                                 initialUserId: state.extra?.toString(),
                               ),
@@ -268,6 +293,7 @@ abstract class AppRoutes {
                           path: '3pid',
                           pageBuilder: (context, state) => defaultPageBuilder(
                             context,
+                            state,
                             const Settings3Pid(),
                           ),
                           redirect: loggedOutRedirect,
@@ -283,17 +309,31 @@ abstract class AppRoutes {
               path: ':roomid',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
+                state,
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
+                  eventId: state.uri.queryParameters['event'],
                 ),
               ),
               redirect: loggedOutRedirect,
               routes: [
                 GoRoute(
+                  path: 'search',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ChatSearchPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
+                GoRoute(
                   path: 'encryption',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     const ChatEncryptionSettings(),
                   ),
                   redirect: loggedOutRedirect,
@@ -302,6 +342,7 @@ abstract class AppRoutes {
                   path: 'invite',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     InvitationSelection(
                       roomId: state.pathParameters['roomid']!,
                     ),
@@ -312,15 +353,28 @@ abstract class AppRoutes {
                   path: 'details',
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
+                    state,
                     ChatDetails(
                       roomId: state.pathParameters['roomid']!,
                     ),
                   ),
                   routes: [
                     GoRoute(
+                      path: 'access',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatAccessSettings(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
                       path: 'members',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         ChatMembersPage(
                           roomId: state.pathParameters['roomid']!,
                         ),
@@ -331,6 +385,7 @@ abstract class AppRoutes {
                       path: 'permissions',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const ChatPermissionsSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -339,6 +394,7 @@ abstract class AppRoutes {
                       path: 'invite',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         InvitationSelection(
                           roomId: state.pathParameters['roomid']!,
                         ),
@@ -349,6 +405,7 @@ abstract class AppRoutes {
                       path: 'multiple_emotes',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const MultipleEmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -357,6 +414,7 @@ abstract class AppRoutes {
                       path: 'emotes',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const EmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -365,6 +423,7 @@ abstract class AppRoutes {
                       path: 'emotes/:state_key',
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
+                        state,
                         const EmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
@@ -380,17 +439,23 @@ abstract class AppRoutes {
     ),
   ];
 
-  static Page defaultPageBuilder(BuildContext context, Widget child) =>
-      CustomTransitionPage(
-        child: child,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FluffyThemes.isColumnMode(context)
-                ? FadeTransition(opacity: animation, child: child)
-                : CupertinoPageTransition(
-                    primaryRouteAnimation: animation,
-                    secondaryRouteAnimation: secondaryAnimation,
-                    linearTransition: false,
-                    child: child,
-                  ),
-      );
+  static Page defaultPageBuilder(
+    BuildContext context,
+    GoRouterState state,
+    Widget child,
+  ) =>
+      FluffyThemes.isColumnMode(context)
+          ? CustomTransitionPage(
+              key: state.pageKey,
+              restorationId: state.pageKey.value,
+              child: child,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(opacity: animation, child: child),
+            )
+          : MaterialPage(
+              key: state.pageKey,
+              restorationId: state.pageKey.value,
+              child: child,
+            );
 }

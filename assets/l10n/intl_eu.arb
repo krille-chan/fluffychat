@@ -2273,7 +2273,7 @@
   },
   "jumpToLastReadMessage": "Joan irakurritako azken mezura",
   "@jumpToLastReadMessage": {},
-  "reportErrorDescription": "O ez! Zerbaitek huts egin du. Saiatu berriro geroago. Nahi izanez gero, eman garatzaileei errorearen berri.",
+  "reportErrorDescription": "😭 O ez! Zerbaitek huts egin du. Nahi izanez gero, eman garatzaileei errorearen berri.",
   "@reportErrorDescription": {},
   "cuddleContent": "{senderName}(e)k samurki besarkatu zaitu",
   "@cuddleContent": {
@@ -2405,7 +2405,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Txata artxibategira mugituko da. Beste erabiltzaileek txatetik alde egin duzula ikusi ahal izango dute.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user}(e)k baimena eskatu du",
+  "hasKnocked": "🚪 {user}(e)k baimena eskatu du",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Blokeatutako erabiltzaileak",
   "@blockedUsers": {},
-  "block": "blokeatu",
+  "block": "Blokeatu",
   "@block": {},
   "blockUsername": "Ezikusi erabiltzaile-izena",
   "@blockUsername": {},
@@ -2485,5 +2485,209 @@
   "thisDevice": "Gailu hau:",
   "@thisDevice": {},
   "decline": "Baztertu",
-  "@decline": {}
+  "@decline": {},
+  "databaseBuildErrorBody": "Ezin izan da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "Errorea aplikazioa abiaraztean",
+  "@initAppError": {},
+  "sessionLostBody": "Zure saioa galdu da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Aplikazioa babeskopia erabiliz saioa leheneratzen saiatuko da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "youInvitedToBy": "📩 Esteka baten bidez gonbidatu zaituzte:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "transparent": "Gardena",
+  "@transparent": {},
+  "sendReadReceipts": "Bidali irakurri izanaren adierazlea",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Formatua duten mezuak",
+  "@formattedMessages": {},
+  "verifyOtherDevice": "🔐 Egiaztatu beste gailu bat",
+  "@verifyOtherDevice": {},
+  "acceptedKeyVerification": "{sender}(e)k gakoaren egiaztapena onartu du",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "canceledKeyVerification": "{sender}(e)k gakoen egiaztapena ezeztatu du",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender}(e)k gakoen egiaztapena galdegin du",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendReadReceiptsDescription": "Txateko beste kideek mezu bat irakurri duzula ikus dezakete.",
+  "@sendReadReceiptsDescription": {},
+  "forwardMessageTo": "Birbidali mezua {roomName}(e)ra?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "completedKeyVerification": "{sender}(e)k gakoen egiaztapena osatu du",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} gakoak egiaztatzeko prest dago",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "verifyOtherDeviceDescription": "Beste gailu bat egiaztatzean, gailu horiek gakoak truka ditzakete, eta segurtasun orokorra handitu. 💪 Egiaztapena hasten duzunean, laster-leiho bat agertuko da bi gailuetan. Bertan, elkarrekin alderatu behar diren emoji edo zenbaki batzuk ikusiko dituzu. Hobe da bi gailuak eskura izatea egiaztapena hasi aurretik. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "verifyOtherUserDescription": "Beste erabiltzaile bat egiaztatzen baduzu, ziur egon zaitezke nori idazten ari zaren. 💪\n\nEgiaztapena hasten duzunean, zuk eta beste erabiltzaileak laster-leiho bat ikusiko duzue aplikazioan. Bertan, elkarrekin alderatu behar diren emoji edo zenbaki batzuk erakutsiko dira.\n\nBideo-dei bat hastea edo aurrez-aurre batzea da horretarako modurik onena. 👭",
+  "@verifyOtherUserDescription": {},
+  "formattedMessagesDescription": "Erakutsi mezu aberatsen edukia markdown erabiliz, testu lodia esaterako.",
+  "@formattedMessagesDescription": {},
+  "sendTypingNotificationsDescription": "Txateko beste kideek mezu berri bat idazten ari zarela ikus dezakete.",
+  "@sendTypingNotificationsDescription": {},
+  "verifyOtherUser": "🔐 Egiaztatu beste erabiltzaile bat",
+  "@verifyOtherUser": {},
+  "startedKeyVerification": "{sender}(e)k gakoen egiaztapena hasi du",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "presencesToggle": "Erakutsi beste erabiltzaileen egoera-mezuak",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "Presentzia:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Jasotako mezuak",
+  "@incomingMessages": {},
+  "hidePresences": "Ezkutatu Egoeren Zerrenda?",
+  "@hidePresences": {},
+  "discover": "Arakatu",
+  "@discover": {},
+  "stickers": "Pegatinak",
+  "@stickers": {},
+  "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Muzin egin Matrix ID honi",
+  "@commandHint_ignore": {},
+  "unreadChatsInApp": "{appname}: {unread} mezu irakurri gabe",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "Plataforma honetan ezin da datu-basea zifratu",
+  "@noDatabaseEncryption": {},
+  "usersMustKnock": "Erabiltzaileek baimena eskatu behar dute",
+  "@usersMustKnock": {},
+  "userWouldLikeToChangeTheChat": "{user}(e)k txatera batu nahiko luke.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Eskatu baimena",
+  "@knock": {},
+  "knocking": "Baimena eskatzen",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Txata {server}(e)n bilaketa eginez aurkitu daiteke",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Une honetan {count} erabiltzaile daude blokeatuta.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "appLockDescription": "Blokeatu aplikazioa pin kode batekin erabiltzen ari ez zarenean",
+  "@appLockDescription": {},
+  "accessAndVisibility": "Sarbidea eta ikusgaitasuna",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Nork du txat honetara batzeko baimena eta nola aurkitu daiteke txata.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickers": "Emoji eta pegatina propioak",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Gehitu edo partekatu edozein txatetan erabil daitezkeen emoji edo pegatina propioak.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Ezkutatu atzera botatako mezuak",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Norbaitek mezuren bat atzera botaz gero, mezua txatetik kenduko da, abisurik gabe.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Ezkutatu mezuen formatu ezezagun edo baliogabea",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Ikuspegi orokorra",
+  "@overview": {},
+  "notifyMeFor": "Jakinarazi…",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Pasahitza berreskuratzeko ezarpenak",
+  "@passwordRecoverySettings": {},
+  "hideMemberChangesInPublicChats": "Ezkutatu kideen egoera aldaketak txat publikoetan",
+  "@hideMemberChangesInPublicChats": {},
+  "globalChatId": "Txat ID orokorra",
+  "@globalChatId": {},
+  "calls": "Deiak",
+  "@calls": {},
+  "hideMemberChangesInPublicChatsBody": "Ez erakutsi txataren denbora-lerroan norbait txat publikora batu edo txatetik irteten dela, irakurgaitasuna hobetzeko.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "noOneCanJoin": "Ezin da inor batu",
+  "@noOneCanJoin": {},
+  "noPublicLinkHasBeenCreatedYet": "Oraindik ez da esteka publikorik sortu",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "userRole": "Erabiltzailearen rola",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} da gutxieneko botere maila.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "Txataren helbide publikoak",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Sortu helbide berria",
+  "@createNewAddress": {}
 }

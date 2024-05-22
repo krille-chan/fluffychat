@@ -5,14 +5,15 @@ import 'package:animations/animations.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
+import 'package:fluffychat/pages/chat_list/utils/on_chat_tap.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
@@ -41,7 +42,7 @@ class ChatListViewBody extends StatelessWidget {
         Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(100);
     final subtitleColor =
         Theme.of(context).textTheme.bodyLarge!.color!.withAlpha(50);
-
+    final filter = controller.searchController.text.toLowerCase();
     return PageTransitionSwitcher(
       transitionBuilder: (
         Widget child,
@@ -131,9 +132,13 @@ class ChatListViewBody extends StatelessWidget {
                         ),
                       ],
                       if (!controller.isSearchMode &&
-                          controller.activeFilter != ActiveFilter.groups)
-                        StatusMessageList(
-                          onStatusEdit: controller.setStatus,
+                          controller.activeFilter != ActiveFilter.groups &&
+                          AppConfig.showPresences)
+                        GestureDetector(
+                          onLongPress: () => controller.dismissStatusList(),
+                          child: StatusMessageList(
+                            onStatusEdit: controller.setStatus,
+                          ),
                         ),
                       const ConnectionStatusHeader(),
                       AnimatedContainer(
@@ -233,34 +238,23 @@ class ChatListViewBody extends StatelessWidget {
                     ),
                   ),
                 if (client.prevBatch != null)
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int i) {
-                        if (!rooms[i]
-                            .getLocalizedDisplayname(
-                              MatrixLocals(L10n.of(context)!),
-                            )
-                            .toLowerCase()
-                            .contains(
-                              controller.searchController.text.toLowerCase(),
-                            )) {
-                          return const SizedBox.shrink();
-                        }
-                        return ChatListItem(
-                          rooms[i],
-                          key: Key('chat_list_item_${rooms[i].id}'),
-                          selected:
-                              controller.selectedRoomIds.contains(rooms[i].id),
-                          onTap: controller.selectMode == SelectMode.select
-                              ? () => controller.toggleSelection(rooms[i].id)
-                              : null,
-                          onLongPress: () =>
-                              controller.toggleSelection(rooms[i].id),
-                          activeChat: controller.activeChat == rooms[i].id,
-                        );
-                      },
-                      childCount: rooms.length,
-                    ),
+                  SliverList.builder(
+                    itemCount: rooms.length,
+                    itemBuilder: (BuildContext context, int i) {
+                      return ChatListItem(
+                        rooms[i],
+                        key: Key('chat_list_item_${rooms[i].id}'),
+                        filter: filter,
+                        selected:
+                            controller.selectedRoomIds.contains(rooms[i].id),
+                        onTap: controller.selectMode == SelectMode.select
+                            ? () => controller.toggleSelection(rooms[i].id)
+                            : () => onChatTap(rooms[i], context),
+                        onLongPress: () =>
+                            controller.toggleSelection(rooms[i].id),
+                        activeChat: controller.activeChat == rooms[i].id,
+                      );
+                    },
                   ),
               ],
             ),

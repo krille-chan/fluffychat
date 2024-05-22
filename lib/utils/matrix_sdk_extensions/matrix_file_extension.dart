@@ -6,7 +6,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -15,29 +14,26 @@ import 'package:fluffychat/utils/size_string.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
-    if (PlatformInfos.isIOS) {
-      return share(context);
-    }
-
     if (PlatformInfos.isWeb) {
       _webDownload();
       return;
     }
 
-    final downloadPath = PlatformInfos.isAndroid
-        ? await getDownloadPathAndroid()
-        : await FilePicker.platform.saveFile(
-            dialogTitle: L10n.of(context)!.saveFile,
-            fileName: name,
-            type: filePickerFileType,
-          );
+    final downloadPath = await FilePicker.platform.saveFile(
+      dialogTitle: L10n.of(context)!.saveFile,
+      fileName: name,
+      type: filePickerFileType,
+      bytes: bytes,
+    );
     if (downloadPath == null) return;
 
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () => File(downloadPath).writeAsBytes(bytes),
-    );
-    if (result.error != null) return;
+    if (PlatformInfos.isDesktop) {
+      final result = await showFutureLoadingDialog(
+        context: context,
+        future: () => File(downloadPath).writeAsBytes(bytes),
+      );
+      if (result.error != null) return;
+    }
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -46,24 +42,6 @@ extension MatrixFileExtension on MatrixFile {
         ),
       ),
     );
-  }
-
-  Future<String> getDownloadPathAndroid() async {
-    final directory = await getDownloadDirectoryAndroid();
-    var counter = 1;
-    var path = '${directory.path}/$name';
-    while (await File(path).exists()) {
-      path = '${directory.path}/(${counter++})$name';
-    }
-    return path;
-  }
-
-  Future<Directory> getDownloadDirectoryAndroid() async {
-    final defaultDownloadDirectory = Directory('/storage/emulated/0/Download');
-    if (await defaultDownloadDirectory.exists()) {
-      return defaultDownloadDirectory;
-    }
-    return await getApplicationDocumentsDirectory();
   }
 
   FileType get filePickerFileType {

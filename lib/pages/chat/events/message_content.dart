@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -20,7 +22,6 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
-import 'sticker.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -42,11 +43,7 @@ class MessageContent extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            event.type == EventTypes.Encrypted
-                ? l10n.needPantalaimonWarning
-                : event.calcLocalizedBodyFallback(
-                    MatrixLocals(l10n),
-                  ),
+            event.calcLocalizedBodyFallback(MatrixLocals(l10n)),
           ),
         ),
       );
@@ -110,16 +107,37 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
-            return ImageBubble(
-              event,
-              width: 400,
-              height: 300,
-              fit: BoxFit.cover,
-              borderRadius: borderRadius,
-            );
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
-            return Sticker(event);
+            const maxSize = 256.0;
+            final w = event.content
+                .tryGetMap<String, Object?>('info')
+                ?.tryGet<int>('w');
+            final h = event.content
+                .tryGetMap<String, Object?>('info')
+                ?.tryGet<int>('h');
+            var width = maxSize;
+            var height = maxSize;
+            var fit = event.messageType == MessageTypes.Sticker
+                ? BoxFit.contain
+                : BoxFit.cover;
+            if (w != null && h != null) {
+              fit = BoxFit.contain;
+              if (w > h) {
+                width = maxSize;
+                height = max(32, maxSize * (h / w));
+              } else {
+                height = maxSize;
+                width = max(32, maxSize * (w / h));
+              }
+            }
+            return ImageBubble(
+              event,
+              width: width,
+              height: height,
+              fit: fit,
+              borderRadius: borderRadius,
+            );
           case CuteEventContent.eventType:
             return CuteContent(event);
           case MessageTypes.Audio:
@@ -137,10 +155,7 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
-            if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
-              return EventVideoPlayer(event);
-            }
-            return MessageDownloadContent(event, textColor);
+            return EventVideoPlayer(event);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
 
@@ -236,34 +251,24 @@ class MessageContent extends StatelessWidget {
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
-            return FutureBuilder<String>(
-              future: event.calcLocalizedBody(
+            return Linkify(
+              text: event.calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 hideReply: true,
               ),
-              builder: (context, snapshot) {
-                return Linkify(
-                  text: snapshot.data ??
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                        hideReply: true,
-                      ),
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: textColor.withAlpha(150),
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: textColor.withAlpha(150),
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                );
-              },
+              style: TextStyle(
+                color: textColor,
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: event.redacted ? TextDecoration.lineThrough : null,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: textColor.withAlpha(150),
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: textColor.withAlpha(150),
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
         }
       case EventTypes.CallInvite:

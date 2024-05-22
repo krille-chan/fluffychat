@@ -174,6 +174,30 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   late final List<int> waveform;
 
+  void _toggleSpeed() async {
+    final audioPlayer = this.audioPlayer;
+    if (audioPlayer == null) return;
+    switch (audioPlayer.speed) {
+      case 1.0:
+        await audioPlayer.setSpeed(1.25);
+        break;
+      case 1.25:
+        await audioPlayer.setSpeed(1.5);
+        break;
+      case 1.5:
+        await audioPlayer.setSpeed(2.0);
+        break;
+      case 2.0:
+        await audioPlayer.setSpeed(0.5);
+        break;
+      case 0.5:
+      default:
+        await audioPlayer.setSpeed(1.0);
+        break;
+    }
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -183,12 +207,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     final statusText = this.statusText ??= _durationString ?? '00:00';
+    final audioPlayer = this.audioPlayer;
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const SizedBox(width: 4),
           SizedBox(
             width: buttonSize,
             height: buttonSize,
@@ -217,51 +241,70 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                   ),
           ),
           const SizedBox(width: 8),
-          Expanded(
-            child: Row(
-              children: [
-                for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
-                  Expanded(
-                    child: GestureDetector(
-                      onTapDown: (_) => audioPlayer?.seek(
-                        Duration(
-                          milliseconds:
-                              (maxPosition / AudioPlayerWidget.wavesCount)
-                                      .round() *
-                                  i,
-                        ),
-                      ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var i = 0; i < AudioPlayerWidget.wavesCount; i++)
+                GestureDetector(
+                  onTapDown: (_) => audioPlayer?.seek(
+                    Duration(
+                      milliseconds:
+                          (maxPosition / AudioPlayerWidget.wavesCount).round() *
+                              i,
+                    ),
+                  ),
+                  child: Container(
+                    height: 32,
+                    color: widget.color.withAlpha(0),
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: currentPosition > i ? 1 : 0.5,
                       child: Container(
-                        height: 32,
-                        alignment: Alignment.center,
-                        child: Opacity(
-                          opacity: currentPosition > i ? 1 : 0.5,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 1),
-                            decoration: BoxDecoration(
-                              color: widget.color,
-                              borderRadius: BorderRadius.circular(64),
-                            ),
-                            height: 32 * (waveform[i] / 1024),
-                          ),
+                        margin: const EdgeInsets.symmetric(horizontal: 1),
+                        decoration: BoxDecoration(
+                          color: widget.color,
+                          borderRadius: BorderRadius.circular(2),
                         ),
+                        width: 2,
+                        height: 32 * (waveform[i] / 1024),
                       ),
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
           const SizedBox(width: 8),
-          Container(
-            alignment: Alignment.centerRight,
-            width: 42,
+          SizedBox(
+            width: 36,
             child: Text(
               statusText,
               style: TextStyle(
                 color: widget.color,
+                fontSize: 12,
               ),
             ),
           ),
+          const SizedBox(width: 8),
+          Badge(
+            isLabelVisible: audioPlayer != null,
+            label: audioPlayer == null
+                ? null
+                : Text(
+                    '${audioPlayer.speed.toString()}x',
+                  ),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            textColor: Theme.of(context).colorScheme.onSecondary,
+            child: InkWell(
+              splashColor: widget.color.withAlpha(128),
+              borderRadius: BorderRadius.circular(64),
+              onTap: audioPlayer == null ? null : _toggleSpeed,
+              child: Icon(
+                Icons.mic_none_outlined,
+                color: widget.color,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
         ],
       ),
     );

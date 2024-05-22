@@ -32,6 +32,7 @@ void main() async {
       AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
     // Do not send online presences when app is in background fetch mode.
     for (final client in clients) {
+      client.backgroundSync = false;
       client.syncPresence = PresenceType.offline;
     }
 
@@ -94,6 +95,7 @@ class AppStarter with WidgetsBindingObserver {
     );
     // Switching to foreground mode needs to reenable send online sync presence.
     for (final client in clients) {
+      client.backgroundSync = true;
       client.syncPresence = PresenceType.online;
     }
     startGui(clients, store);

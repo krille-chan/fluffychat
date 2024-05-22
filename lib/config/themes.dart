@@ -77,7 +77,7 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: PlatformInfos.isDesktop || PlatformInfos.isWeb
+      textTheme: PlatformInfos.isDesktop
           ? brightness == Brightness.light
               ? Typography.material2018().black.merge(fallbackTextTheme)
               : Typography.material2018().white.merge(fallbackTextTheme)
@@ -93,18 +93,32 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
       ),
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: colorScheme.onBackground.withAlpha(128),
+        selectionHandleColor: colorScheme.secondary,
+      ),
       inputDecorationTheme: InputDecorationTheme(
-        border: UnderlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
+        contentPadding: const EdgeInsets.all(12),
         filled: true,
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
-        shadowColor: Colors.grey.withAlpha(64),
-        surfaceTintColor: colorScheme.background,
-        systemOverlayStyle: getOverlayStyle(brightness, colorScheme),
+        shadowColor: FluffyThemes.isColumnMode(context)
+            ? Colors.grey.withAlpha(64)
+            : null,
+        surfaceTintColor:
+            FluffyThemes.isColumnMode(context) ? colorScheme.background : null,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: brightness.reversed,
+          statusBarBrightness: brightness,
+          systemNavigationBarIconBrightness: brightness.reversed,
+          systemNavigationBarColor: colorScheme.background,
+        ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -132,6 +146,9 @@ abstract class FluffyThemes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.secondaryContainer,
+          foregroundColor: colorScheme.onSecondaryContainer,
+          elevation: 0,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
           shape: RoundedRectangleBorder(

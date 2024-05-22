@@ -9,6 +9,7 @@ import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
@@ -235,7 +236,7 @@ class InputBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '/$command',
+                commandExample(command),
                 style: const TextStyle(fontFamily: 'monospace'),
               ),
               Text(
@@ -444,26 +445,44 @@ class InputBar extends StatelessWidget {
                 ),
               },
         child: TypeAheadField<Map<String, String?>>(
-          direction: AxisDirection.up,
+          direction: VerticalDirection.up,
           hideOnEmpty: true,
           hideOnLoading: true,
-          keepSuggestionsOnSuggestionSelected: true,
+          controller: controller,
+          focusNode: focusNode,
+          hideOnSelect: false,
           debounceDuration: const Duration(milliseconds: 50),
           // show suggestions after 50ms idle time (default is 300)
-          textFieldConfiguration: TextFieldConfiguration(
+          builder: (context, controller, focusNode) => TextField(
+            controller: controller,
+            focusNode: focusNode,
+            contentInsertionConfiguration: ContentInsertionConfiguration(
+              onContentInserted: (KeyboardInsertedContent content) {
+                final data = content.data;
+                if (data == null) return;
+
+                final file = MatrixFile(
+                  mimeType: content.mimeType,
+                  bytes: data,
+                  name: content.uri.split('/').last,
+                ).detectFileType;
+                room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+              },
+            ),
             minLines: minLines,
             maxLines: maxLines,
             keyboardType: keyboardType!,
             textInputAction: textInputAction,
             autofocus: autofocus!,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+            ],
             onSubmitted: (text) {
               // fix for library for now
               // it sets the types for the callback incorrectly
               onSubmitted!(text);
             },
-            controller: controller,
             decoration: decoration!,
-            focusNode: focusNode,
             onChanged: (text) {
               // fix for the library for now
               // it sets the types for the callback incorrectly
@@ -474,13 +493,13 @@ class InputBar extends StatelessWidget {
           suggestionsCallback: getSuggestions,
           itemBuilder: (c, s) =>
               buildSuggestion(c, s, Matrix.of(context).client),
-          onSuggestionSelected: (Map<String, String?> suggestion) =>
+          onSelected: (Map<String, String?> suggestion) =>
               insertSuggestion(context, suggestion),
           errorBuilder: (BuildContext context, Object? error) =>
               const SizedBox.shrink(),
           loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
           // fix loading briefly flickering a dark box
-          noItemsFoundBuilder: (BuildContext context) => const SizedBox
+          emptyBuilder: (BuildContext context) => const SizedBox
               .shrink(), // fix loading briefly showing no suggestions
         ),
       ),

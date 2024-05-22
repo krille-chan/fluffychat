@@ -2,6 +2,28 @@
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+String commandExample(String command) {
+  switch (command) {
+    case 'markasdm':
+    case 'kick':
+    case 'dm':
+    case 'ban':
+    case 'unban':
+    case 'ignore':
+    case 'unignore':
+    case 'invite':
+      return '/$command <matrix-id>';
+    case 'html':
+    case 'sendraw':
+    case 'plain':
+      return '/$command <message>';
+    case 'op':
+      return '/$command <matrix-id> <power-level>';
+    default:
+      return '/$command';
+  }
+}
+
 String commandHint(L10n l10n, String command) {
   switch (command) {
     case "ban":
@@ -52,6 +74,10 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_cuddle;
     case 'sendraw':
       return l10n.commandHint_sendraw;
+    case 'ignore':
+      return l10n.commandHint_ignore;
+    case 'unignore':
+      return l10n.commandHint_unignore;
     default:
       return "";
   }

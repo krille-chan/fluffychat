@@ -88,10 +88,7 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      const PopupMenuItem(
-        value: null,
-        child: Divider(height: 1),
-      ),
+      const PopupMenuDivider(),
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
             matrix.accountBundles[bundle]!.single!.userID != bundle)

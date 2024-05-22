@@ -92,6 +92,15 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   void verifyDeviceAction(Device device) async {
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context)!.verifyOtherDevice,
+      message: L10n.of(context)!.verifyOtherDeviceDescription,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      fullyCapitalizedForMaterial: false,
+    );
+    if (consent != OkCancelResult.ok) return;
     final req = await Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!

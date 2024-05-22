@@ -2298,7 +2298,7 @@
       "path": {}
     }
   },
-  "reportErrorDescription": "😭哦不。出了点差错。如果你愿意，可以向开发人员报告此错误。",
+  "reportErrorDescription": "😭 哦不。出了点差错。如果你愿意，可以向开发人员报告此错误。",
   "@reportErrorDescription": {},
   "noBackupWarning": "警告！如果不启用聊天备份，你将无法访问加密消息。强烈建议在注销前先启用聊天备份。",
   "@noBackupWarning": {},
@@ -2453,5 +2453,241 @@
   "searchChatsRooms": "搜索 #聊天，@用户…",
   "@searchChatsRooms": {},
   "databaseMigrationBody": "请稍候。可能需要稍等片刻。",
-  "@databaseMigrationBody": {}
+  "@databaseMigrationBody": {},
+  "thisDevice": "此设备：",
+  "@thisDevice": {},
+  "publicSpaces": "公开空间",
+  "@publicSpaces": {},
+  "passwordIsWrong": "你输入的密码有误",
+  "@passwordIsWrong": {},
+  "pleaseEnterYourCurrentPassword": "请输入你当前的密码",
+  "@pleaseEnterYourCurrentPassword": {},
+  "publicLink": "公开链接",
+  "@publicLink": {},
+  "nothingFound": "未找到任何内容…",
+  "@nothingFound": {},
+  "decline": "拒绝",
+  "@decline": {},
+  "newPassword": "新的密码",
+  "@newPassword": {},
+  "passwordsDoNotMatch": "密码不匹配",
+  "@passwordsDoNotMatch": {},
+  "subspace": "子空间",
+  "@subspace": {},
+  "select": "选择",
+  "@select": {},
+  "pleaseChooseAStrongPassword": "请选择一个强密码",
+  "@pleaseChooseAStrongPassword": {},
+  "addChatOrSubSpace": "添加聊天或子空间",
+  "@addChatOrSubSpace": {},
+  "leaveEmptyToClearStatus": "留空以清除你的状态。",
+  "@leaveEmptyToClearStatus": {},
+  "joinSpace": "加入空间",
+  "@joinSpace": {},
+  "searchForUsers": "搜索 @用户…",
+  "@searchForUsers": {},
+  "databaseBuildErrorBody": "无法构建 SQLite 数据库。目前应用尝试使用旧数据库。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "initAppError": "在初始化应用时发生错误",
+  "@initAppError": {},
+  "sessionLostBody": "你的会话已丢失。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "应用现在尝试从备份中恢复你的会话。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "聊天中的其他参与者可以看到你正在输入新消息。",
+  "@sendTypingNotificationsDescription": {},
+  "formattedMessagesDescription": "使用 Markdown 显示富文本内容，例如加粗文本。",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUserDescription": "如果你验证了其他用户，就可以确保你清楚自己正在与谁进行通信。💪\n\n当你开始验证时，你和其他用户将在应用中看到一个弹出窗口。然后你会看到一系列表情符号或数字，你和其他用户需要比较它们是否一致。\n\n最好的方式是线下会面或开始视频通话。👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "当你验证另一个设备时，这些设备可以交换密钥，从而提高整体安全性。 💪 当你开始验证时，两个设备上的应用都将显示一个弹出窗口。然后你会看到一系列表情符号或数字，你需要比较两个设备上显示的内容。在开始验证之前，最好将两个设备都放在手边。🤳",
+  "@verifyOtherDeviceDescription": {},
+  "canceledKeyVerification": "{sender} 取消了密钥验证",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendReadReceipts": "发送已读回执",
+  "@sendReadReceipts": {},
+  "formattedMessages": "格式化的消息",
+  "@formattedMessages": {},
+  "verifyOtherDevice": "🔐 验证其它设备",
+  "@verifyOtherDevice": {},
+  "verifyOtherUser": "🔐 验证其他用户",
+  "@verifyOtherUser": {},
+  "forwardMessageTo": "转发消息至 {roomName} ？",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendReadReceiptsDescription": "聊天中的其他参与者可以看到你是否读过消息。",
+  "@sendReadReceiptsDescription": {},
+  "acceptedKeyVerification": "{sender} 接受了密钥验证",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} 已准备好进行密钥验证",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} 完成了密钥验证",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} 请求了密钥验证",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} 开始了密钥验证",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "透明",
+  "@transparent": {},
+  "youInvitedToBy": "📩 你已通过链接被邀请到：\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "presencesToggle": "显示其他用户的状态消息",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presenceStyle": "是否在线：",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hidePresences": "隐藏状态列表？",
+  "@hidePresences": {},
+  "incomingMessages": "传入消息",
+  "@incomingMessages": {},
+  "stickers": "贴纸",
+  "@stickers": {},
+  "discover": "发现",
+  "@discover": {},
+  "commandHint_ignore": "忽略给定的 matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "取消忽略给定的 matrix ID",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} 未读聊天",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "appLockDescription": "用 pin 码在不用 FluffyChat 时锁定它",
+  "@appLockDescription": {},
+  "globalChatId": "全局聊天 ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "访问和可见性",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "谁可以加入此聊天以及怎样发现该聊天。",
+  "@accessAndVisibilityDescription": {},
+  "calls": "通话",
+  "@calls": {},
+  "customEmojisAndStickers": "自定义表情符号和贴纸",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessages": "隐藏被涂黑的消息",
+  "@hideRedactedMessages": {},
+  "overview": "概览",
+  "@overview": {},
+  "notifyMeFor": "提示内容",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "密码发现设置",
+  "@passwordRecoverySettings": {},
+  "noPublicLinkHasBeenCreatedYet": "尚未创建公开链接",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "请求",
+  "@knock": {},
+  "noOneCanJoin": "无人可以加入",
+  "@noOneCanJoin": {},
+  "knocking": "正在请求",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "可通过搜索 {server} 发现聊天",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "目前有 {count} 名用户被封禁。",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "hideRedactedMessagesBody": "如果某人涂黑了一条消息，那么在聊天中再也看不到这条消息。",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "隐藏无效或未知的消息格式",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "在公开聊天中隐藏成员变化",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "不在聊天时间线中显示某人是否加入或离开了公开聊天来改进可读性。",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} 想加入聊天。",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "customEmojisAndStickersBody": "添加或分享可用于任何聊天的表情符号或贴纸。",
+  "@customEmojisAndStickersBody": {},
+  "usersMustKnock": "用户必须请求加入",
+  "@usersMustKnock": {},
+  "noDatabaseEncryption": "数据库加密在此平台上不受支持",
+  "@noDatabaseEncryption": {},
+  "userRole": "用户角色",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} 是最低权限等级。",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "公开聊天的地址",
+  "@publicChatAddresses": {},
+  "createNewAddress": "新建地址",
+  "@createNewAddress": {}
 }

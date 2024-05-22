@@ -18,7 +18,7 @@ import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'matrix_sdk_extensions/flutter_matrix_sdk_database_builder.dart';
+import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
@@ -120,6 +120,7 @@ abstract class ClientManager {
       },
       nativeImplementations: nativeImplementations,
       customImageResizer: PlatformInfos.isMobile ? customImageResizer : null,
+      defaultNetworkRequestTimeout: const Duration(minutes: 5),
       enableDehydratedDevices: true,
     );
   }
@@ -159,12 +160,10 @@ abstract class ClientManager {
       body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          AppConfig.pushNotificationsChannelName,
-          channelDescription: AppConfig.pushNotificationsChannelDescription,
-          importance: Importance.max,
+          'error_message',
+          'Error Messages',
+          importance: Importance.high,
           priority: Priority.max,
-          fullScreenIntent: true, // To show notification popup
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
       ),

@@ -47,7 +47,9 @@ abstract class AppConfig {
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
+  static bool sendPublicReadReceipts = true;
   static bool? sendOnEnter;
+  static bool showPresences = true;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;
@@ -55,9 +57,6 @@ abstract class AppConfig {
   static const String deepLinkPrefix = 'im.fluffychat://chat/';
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
-  static const String pushNotificationsChannelName = 'FluffyChat push channel';
-  static const String pushNotificationsChannelDescription =
-      'Push notifications for FluffyChat';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
   static const String pushNotificationsGatewayUrl =
       'https://push.fluffychat.im/_matrix/push/v1/notify';
@@ -65,7 +64,7 @@ abstract class AppConfig {
   static const String emojiFontName = 'Noto Emoji';
   static const String emojiFontUrl =
       'https://github.com/googlefonts/noto-emoji/';
-  static const double borderRadius = 16.0;
+  static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
     scheme: 'https',

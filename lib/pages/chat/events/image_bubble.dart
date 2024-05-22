@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../../widgets/blur_hash.dart';
 
 class ImageBubble extends StatelessWidget {
   final Event event;
@@ -25,7 +25,7 @@ class ImageBubble extends StatelessWidget {
     this.tapToView = true,
     this.maxSize = true,
     this.backgroundColor,
-    this.fit = BoxFit.cover,
+    this.fit = BoxFit.contain,
     this.thumbnailOnly = true,
     this.width = 400,
     this.height = 300,
@@ -36,35 +36,18 @@ class ImageBubble extends StatelessWidget {
   });
 
   Widget _buildPlaceholder(BuildContext context) {
-    if (event.messageType == MessageTypes.Sticker) {
-      return const Center(
-        child: CircularProgressIndicator.adaptive(),
-      );
-    }
     final String blurHashString =
         event.infoMap['xyz.amorgan.blurhash'] is String
             ? event.infoMap['xyz.amorgan.blurhash']
             : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
-    final ratio = event.infoMap['w'] is int && event.infoMap['h'] is int
-        ? event.infoMap['w'] / event.infoMap['h']
-        : 1.0;
-    var width = 32;
-    var height = 32;
-    if (ratio > 1.0) {
-      height = (width / ratio).round();
-      if (height <= 0) height = 1;
-    } else {
-      width = (height * ratio).round();
-      if (width <= 0) width = 1;
-    }
     return SizedBox(
-      width: this.width,
-      height: this.height,
+      width: width,
+      height: height,
       child: BlurHash(
-        hash: blurHashString,
-        decodingWidth: width,
-        decodingHeight: height,
-        imageFit: fit,
+        blurhash: blurHashString,
+        width: width,
+        height: height,
+        fit: fit,
       ),
     );
   }
@@ -87,6 +70,8 @@ class ImageBubble extends StatelessWidget {
     final borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
     return Material(
+      color: Colors.transparent,
+      clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
         side: BorderSide(
@@ -100,22 +85,16 @@ class ImageBubble extends StatelessWidget {
         borderRadius: borderRadius,
         child: Hero(
           tag: event.eventId,
-          child: ConstrainedBox(
-            constraints: maxSize
-                ? BoxConstraints(
-                    maxWidth: width,
-                    maxHeight: height,
-                  )
-                : const BoxConstraints.expand(),
-            child: MxcImage(
-              event: event,
-              width: width,
-              height: height,
-              fit: fit,
-              animated: animated,
-              isThumbnail: thumbnailOnly,
-              placeholder: _buildPlaceholder,
-            ),
+          child: MxcImage(
+            event: event,
+            width: width,
+            height: height,
+            fit: fit,
+            animated: animated,
+            isThumbnail: thumbnailOnly,
+            placeholder: event.messageType == MessageTypes.Sticker
+                ? null
+                : _buildPlaceholder,
           ),
         ),
       ),

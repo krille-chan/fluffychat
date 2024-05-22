@@ -1,15 +1,10 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
@@ -63,6 +58,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
           message: L10n.of(context)!.deactivateAccountWarning,
           okLabel: L10n.of(context)!.ok,
           cancelLabel: L10n.of(context)!.cancel,
+          isDestructiveAction: true,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -79,6 +75,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
               : L10n.of(context)!.supposedMxid(supposedMxid),
         ),
       ],
+      isDestructiveAction: true,
       okLabel: L10n.of(context)!.delete,
       cancelLabel: L10n.of(context)!.cancel,
     );
@@ -91,6 +88,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       title: L10n.of(context)!.pleaseEnterYourPassword,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
+      isDestructiveAction: true,
       textFields: [
         const DialogTextField(
           obscureText: true,
@@ -120,36 +118,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     ).show(context);
   }
 
-  Future<void> dehydrateAction() => dehydrateDevice(context);
-
-  static Future<void> dehydrateDevice(BuildContext context) async {
-    final response = await showOkCancelAlertDialog(
-      context: context,
-      isDestructiveAction: true,
-      title: L10n.of(context)!.dehydrate,
-      message: L10n.of(context)!.dehydrateWarning,
-    );
-    if (response != OkCancelResult.ok) {
-      return;
-    }
-    final file = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        final export = await Matrix.of(context).client.exportDump();
-        if (export == null) throw Exception('Export data is null.');
-
-        final exportBytes = Uint8List.fromList(
-          const Utf8Codec().encode(export),
-        );
-
-        final exportFileName =
-            'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
-
-        return MatrixFile(bytes: exportBytes, name: exportFileName);
-      },
-    );
-    file.result?.save(context);
-  }
+  Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction();
 
   @override
   Widget build(BuildContext context) => SettingsSecurityView(this);

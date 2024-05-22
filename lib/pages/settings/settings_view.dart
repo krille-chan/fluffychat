@@ -136,7 +136,10 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            const Divider(thickness: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             if (showChatBackupBanner == null)
               ListTile(
                 leading: const Icon(Icons.backup_outlined),
@@ -151,7 +154,10 @@ class SettingsView extends StatelessWidget {
                 title: Text(L10n.of(context)!.chatBackup),
                 onChanged: controller.firstRunBootstrapAction,
               ),
-            const Divider(thickness: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context)!.changeTheme),
@@ -182,7 +188,10 @@ class SettingsView extends StatelessWidget {
               onTap: () => context.go('/rooms/settings/security'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
-            const Divider(thickness: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
               title: Text(L10n.of(context)!.help),

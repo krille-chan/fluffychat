@@ -228,6 +228,13 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             ],
           ),
         );
+        buttons.add(
+          TextButton.icon(
+            icon: const Icon(Icons.close),
+            label: Text(L10n.of(context)!.cancel),
+            onPressed: () => widget.request.cancel(),
+          ),
+        );
 
         break;
       case KeyVerificationState.askSas:
@@ -322,11 +329,13 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
       case KeyVerificationState.error:
+        title = const Text('');
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Icon(Icons.cancel, color: Colors.red, size: 128.0),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
+            // TODO: Add better error UI to user
             Text(
               'Error ${widget.request.canceledCode}: ${widget.request.canceledReason}',
               textAlign: TextAlign.center,

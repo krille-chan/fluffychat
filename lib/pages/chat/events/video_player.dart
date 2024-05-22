@@ -4,16 +4,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chewie/chewie.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/blur_hash.dart';
 import '../../../utils/error_reporter.dart';
 
 class EventVideoPlayer extends StatefulWidget {
@@ -31,6 +33,10 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   File? _tmpFile;
 
   void _downloadAction() async {
+    if (PlatformInfos.isDesktop) {
+      widget.event.saveFile(context);
+      return;
+    }
     setState(() => _isDownloading = true);
     try {
       final videoFile = await widget.event.downloadAndDecryptAttachment();
@@ -98,6 +104,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     final chewieManager = _chewieManager;
     return Material(
       color: Colors.black,
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: SizedBox(
         height: 300,
         child: chewieManager != null
@@ -112,11 +119,12 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                       ),
                     )
                   else
-                    BlurHash(hash: blurHash),
+                    BlurHash(blurhash: blurHash, width: 300, height: 300),
                   Center(
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.surface,
+                    child: IconButton(
+                      style: IconButton.styleFrom(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.background,
                       ),
                       icon: _isDownloading
                           ? const SizedBox(
@@ -126,14 +134,12 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                                 strokeWidth: 2,
                               ),
                             )
-                          : const Icon(Icons.download_outlined),
-                      label: Text(
-                        _isDownloading
-                            ? L10n.of(context)!.loadingPleaseWait
-                            : L10n.of(context)!.videoWithSize(
-                                widget.event.sizeString ?? '?MB',
-                              ),
-                      ),
+                          : const Icon(Icons.play_circle_outlined),
+                      tooltip: _isDownloading
+                          ? L10n.of(context)!.loadingPleaseWait
+                          : L10n.of(context)!.videoWithSize(
+                              widget.event.sizeString ?? '?MB',
+                            ),
                       onPressed: _isDownloading ? null : _downloadAction,
                     ),
                   ),

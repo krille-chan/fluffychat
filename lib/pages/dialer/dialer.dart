@@ -21,17 +21,18 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart' hide VideoRenderer;
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
-import 'package:vibration/vibration.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/voip/video_renderer.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'pip/pip_view.dart';
 
@@ -75,19 +76,13 @@ class _StreamView extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          if (videoMuted)
-            Container(
-              color: Colors.transparent,
-            ),
-          if (!videoMuted)
-            RTCVideoView(
-              // yes, it must explicitly be casted even though I do not feel
-              // comfortable with it...
-              wrappedStream.renderer as RTCVideoRenderer,
-              mirror: mirrored,
-              objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
-            ),
-          if (videoMuted)
+          VideoRenderer(
+            wrappedStream,
+            mirror: mirrored,
+            fit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
+          ),
+          if (videoMuted) ...[
+            Container(color: Colors.black54),
             Positioned(
               child: Avatar(
                 mxContent: avatarUrl,
@@ -98,6 +93,7 @@ class _StreamView extends StatelessWidget {
                 // matrixClient: matrixClient,
               ),
             ),
+          ],
           if (!isScreenSharing)
             Positioned(
               left: 4.0,
@@ -159,8 +155,6 @@ class MyCallingPage extends State<Calling> {
     return null;
   }
 
-  bool get speakerOn => call.speakerOn;
-
   bool get isMicrophoneMuted => call.isMicrophoneMuted;
 
   bool get isLocalVideoMuted => call.isLocalVideoMuted;
@@ -175,9 +169,6 @@ class MyCallingPage extends State<Calling> {
 
   bool get connected => call.state == CallState.kConnected;
 
-  bool get mirrored => call.facingMode == 'user';
-
-  List<WrappedMediaStream> get streams => call.streams;
   double? _localVideoHeight;
   double? _localVideoWidth;
   EdgeInsetsGeometry? _localVideoMargin;
@@ -205,12 +196,12 @@ class MyCallingPage extends State<Calling> {
     final call = this.call;
     call.onCallStateChanged.stream.listen(_handleCallState);
     call.onCallEventChanged.stream.listen((event) {
-      if (event == CallEvent.kFeedsChanged) {
+      if (event == CallStateChange.kFeedsChanged) {
         setState(() {
           call.tryRemoveStopedStreams();
         });
-      } else if (event == CallEvent.kLocalHoldUnhold ||
-          event == CallEvent.kRemoteHoldUnhold) {
+      } else if (event == CallStateChange.kLocalHoldUnhold ||
+          event == CallStateChange.kRemoteHoldUnhold) {
         setState(() {});
         Logs().i(
           'Call hold event: local ${call.localHold}, remote ${call.remoteOnHold}',
@@ -264,11 +255,7 @@ class MyCallingPage extends State<Calling> {
   void _handleCallState(CallState state) {
     Logs().v('CallingPage::handleCallState: ${state.toString()}');
     if ({CallState.kConnected, CallState.kEnded}.contains(state)) {
-      try {
-        Vibration.vibrate(duration: 200);
-      } catch (e) {
-        Logs().e('[Dialer] could not vibrate for call updates');
-      }
+      HapticFeedback.heavyImpact();
     }
 
     if (mounted) {
@@ -290,7 +277,7 @@ class MyCallingPage extends State<Calling> {
       if (call.isRinging) {
         call.reject();
       } else {
-        call.hangup();
+        call.hangup(reason: CallErrorCode.userHangup);
       }
     });
   }
@@ -345,11 +332,6 @@ class MyCallingPage extends State<Calling> {
       await Helper.switchCamera(
         call.localUserMediaStream!.stream!.getVideoTracks()[0],
       );
-      if (PlatformInfos.isMobile) {
-        call.facingMode == 'user'
-            ? call.facingMode = 'environment'
-            : call.facingMode = 'user';
-      }
     }
     setState(() {});
   }
@@ -454,16 +436,10 @@ class MyCallingPage extends State<Calling> {
           hangupButton,
         ];
       case CallState.kFledgling:
-        // TODO: Handle this case.
-        break;
       case CallState.kWaitLocalMedia:
-        // TODO: Handle this case.
-        break;
       case CallState.kCreateOffer:
-        // TODO: Handle this case.
-        break;
+      case CallState.kEnding:
       case null:
-        // TODO: Handle this case.
         break;
     }
     return <Widget>[];

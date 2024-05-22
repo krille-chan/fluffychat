@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -16,11 +17,11 @@ import 'package:uni_links/uni_links.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
-import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import '../../../utils/account_bundles.dart';
+import '../../config/setting_keys.dart';
 import '../../utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import '../../utils/url_launcher.dart';
 import '../../utils/voip/callkeep_manager.dart';
@@ -215,12 +216,34 @@ class ChatListController extends State<ChatList>
     }
     SearchUserDirectoryResponse? userSearchResult;
     QueryPublicRoomsResponse? roomSearchResult;
+    final searchQuery = searchController.text.trim();
     try {
       roomSearchResult = await client.queryPublicRooms(
         server: searchServer,
-        filter: PublicRoomQueryFilter(genericSearchTerm: searchController.text),
+        filter: PublicRoomQueryFilter(genericSearchTerm: searchQuery),
         limit: 20,
       );
+
+      if (searchQuery.isValidMatrixId &&
+          searchQuery.sigil == '#' &&
+          roomSearchResult.chunk
+                  .any((room) => room.canonicalAlias == searchQuery) ==
+              false) {
+        final response = await client.getRoomIdByAlias(searchQuery);
+        final roomId = response.roomId;
+        if (roomId != null) {
+          roomSearchResult.chunk.add(
+            PublicRoomsChunk(
+              name: searchQuery,
+              guestCanJoin: false,
+              numJoinedMembers: 0,
+              roomId: roomId,
+              worldReadable: false,
+              canonicalAlias: searchQuery,
+            ),
+          );
+        }
+      }
       userSearchResult = await client.searchUserDirectory(
         searchController.text,
         limit: 20,
@@ -243,7 +266,7 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  void onSearchEnter(String text) {
+  void onSearchEnter(String text, {bool globalSearch = true}) {
     if (text.isEmpty) {
       cancelSearch(unfocus: false);
       return;
@@ -253,7 +276,9 @@ class ChatListController extends State<ChatList>
       isSearchMode = true;
     });
     _coolDown?.cancel();
-    _coolDown = Timer(const Duration(milliseconds: 500), _search);
+    if (globalSearch) {
+      _coolDown = Timer(const Duration(milliseconds: 500), _search);
+    }
   }
 
   void startSearch() {
@@ -376,6 +401,16 @@ class ChatListController extends State<ChatList>
       FluffyChatApp.gotInitialLink = true;
       getInitialLink().then(_processIncomingUris);
     }
+
+    if (PlatformInfos.isAndroid) {
+      final shortcuts = FlutterShortcuts();
+      shortcuts.initialize().then(
+            (_) => shortcuts.listenAction((action) {
+              if (!mounted) return;
+              UrlLauncher(context, action).launchUrl();
+            }),
+          );
+    }
   }
 
   @override
@@ -482,6 +517,18 @@ class ChatListController extends State<ChatList>
       future: () => _archiveSelectedRooms(),
     );
     setState(() {});
+  }
+
+  void dismissStatusList() async {
+    final result = await showOkCancelAlertDialog(
+      title: L10n.of(context)!.hidePresences,
+      context: context,
+    );
+    if (result == OkCancelResult.ok) {
+      await Matrix.of(context).store.setBool(SettingKeys.showPresences, false);
+      AppConfig.showPresences = false;
+      setState(() {});
+    }
   }
 
   void setStatus() async {
@@ -592,6 +639,7 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
+    await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
 
@@ -723,8 +771,7 @@ class ChatListController extends State<ChatList>
     isTorBrowser = isTor;
   }
 
-  Future<void> dehydrate() =>
-      SettingsSecurityController.dehydrateDevice(context);
+  Future<void> dehydrate() => Matrix.of(context).dehydrateAction();
 }
 
 enum EditBundleAction { addToBundle, removeFromBundle }

@@ -9,8 +9,13 @@ import '../../widgets/matrix.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
+  final bool globalSearch;
 
-  const ChatListHeader({super.key, required this.controller});
+  const ChatListHeader({
+    super.key,
+    required this.controller,
+    this.globalSearch = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +52,17 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   controller: controller.searchController,
                   focusNode: controller.searchFocusNode,
                   textInputAction: TextInputAction.search,
-                  onChanged: controller.onSearchEnter,
+                  onChanged: (text) => controller.onSearchEnter(
+                    text,
+                    globalSearch: globalSearch,
+                  ),
                   decoration: InputDecoration(
                     fillColor: Theme.of(context).colorScheme.secondaryContainer,
-                    border: UnderlineInputBorder(
+                    border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(99),
                     ),
+                    contentPadding: EdgeInsets.zero,
                     hintText: L10n.of(context)!.searchChatsRooms,
                     hintStyle: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -78,7 +87,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                                   .onPrimaryContainer,
                             ),
                           ),
-                    suffixIcon: controller.isSearchMode
+                    suffixIcon: controller.isSearchMode && globalSearch
                         ? controller.isSearching
                             ? const Padding(
                                 padding: EdgeInsets.symmetric(
@@ -138,8 +147,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     tooltip: L10n.of(context)!.toggleUnread,
                     icon: Icon(
                       controller.anySelectedRoomNotMarkedUnread
-                          ? Icons.mark_chat_read_outlined
-                          : Icons.mark_chat_unread_outlined,
+                          ? Icons.mark_chat_unread_outlined
+                          : Icons.mark_chat_read_outlined,
                     ),
                     onPressed: controller.toggleUnread,
                   ),
@@ -147,8 +156,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     tooltip: L10n.of(context)!.toggleFavorite,
                     icon: Icon(
                       controller.anySelectedRoomNotFavorite
-                          ? Icons.push_pin_outlined
-                          : Icons.push_pin,
+                          ? Icons.push_pin
+                          : Icons.push_pin_outlined,
                     ),
                     onPressed: controller.toggleFavouriteRoom,
                   ),
