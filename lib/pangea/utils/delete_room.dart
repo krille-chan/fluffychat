@@ -1,6 +1,6 @@
+import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'error_handler.dart';
 
 Future<void> deleteRoom(String? roomID, Client client) async {
@@ -79,6 +79,9 @@ Future<void> deleteRoom(String? roomID, Client client) async {
   }
 
   try {
+    if (room.isUnread) {
+      await room.markUnread(false);
+    }
     await room.leave();
   } catch (err) {
     ErrorHandler.logError(

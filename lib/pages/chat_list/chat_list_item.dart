@@ -53,6 +53,9 @@ class ChatListItem extends StatelessWidget {
         message: L10n.of(context)!.archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
+      if (room.isUnread) {
+        await room.markUnread(false);
+      }
       await showFutureLoadingDialog(
         context: context,
         future: () => room.leave(),

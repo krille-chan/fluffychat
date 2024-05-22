@@ -728,6 +728,9 @@ class ChatListController extends State<ChatList>
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
       try {
+        if (client.getRoomById(roomId)!.isUnread) {
+          await client.getRoomById(roomId)!.markUnread(false);
+        }
         await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
