@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide Visibility;
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -18,7 +18,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.accessAndVisibility),
+        title: Text(L10n.of(context).accessAndVisibility),
       ),
       body: MaxWidthBody(
         child: StreamBuilder<Object>(
@@ -36,7 +36,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.visibilityOfTheChatHistory,
+                    L10n.of(context).visibilityOfTheChatHistory,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   RadioListTile<HistoryVisibility>.adaptive(
                     title: Text(
                       historyVisibility
-                          .getLocalizedString(MatrixLocals(L10n.of(context)!)),
+                          .getLocalizedString(MatrixLocals(L10n.of(context))),
                     ),
                     value: historyVisibility,
                     groupValue: room.historyVisibility,
@@ -59,7 +59,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                 Divider(color: Theme.of(context).dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.whoIsAllowedToJoinThisGroup,
+                    L10n.of(context).whoIsAllowedToJoinThisGroup,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   if (joinRule != JoinRules.private)
                     RadioListTile<JoinRules>.adaptive(
                       title: Text(
-                        joinRule.localizedString(L10n.of(context)!),
+                        joinRule.localizedString(L10n.of(context)),
                       ),
                       value: joinRule,
                       groupValue: room.joinRules,
@@ -84,7 +84,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     .contains(room.joinRules)) ...[
                   ListTile(
                     title: Text(
-                      L10n.of(context)!.areGuestsAllowedToJoin,
+                      L10n.of(context).areGuestsAllowedToJoin,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     RadioListTile<GuestAccess>.adaptive(
                       title: Text(
                         guestAccess.getLocalizedString(
-                          MatrixLocals(L10n.of(context)!),
+                          MatrixLocals(L10n.of(context)),
                         ),
                       ),
                       value: guestAccess,
@@ -108,7 +108,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   Divider(color: Theme.of(context).dividerColor),
                   ListTile(
                     title: Text(
-                      L10n.of(context)!.publicChatAddresses,
+                      L10n.of(context).publicChatAddresses,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.add_outlined),
-                      tooltip: L10n.of(context)!.createNewAddress,
+                      tooltip: L10n.of(context).createNewAddress,
                       onPressed: controller.addAlias,
                     ),
                   ),
@@ -169,7 +169,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     builder: (context, snapshot) => SwitchListTile.adaptive(
                       value: snapshot.data == Visibility.public,
                       title: Text(
-                        L10n.of(context)!.chatCanBeDiscoveredViaSearchOnServer(
+                        L10n.of(context).chatCanBeDiscoveredViaSearchOnServer(
                           room.client.userID!.domain!,
                         ),
                       ),
@@ -178,7 +178,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   ),
                 ],
                 ListTile(
-                  title: Text(L10n.of(context)!.globalChatId),
+                  title: Text(L10n.of(context).globalChatId),
                   subtitle: SelectableText(room.id),
                   trailing: IconButton(
                     icon: const Icon(Icons.copy_outlined),
@@ -186,7 +186,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text(L10n.of(context)!.roomVersion),
+                  title: Text(L10n.of(context).roomVersion),
                   subtitle: SelectableText(
                     room
                             .getState(EventTypes.RoomCreate)!

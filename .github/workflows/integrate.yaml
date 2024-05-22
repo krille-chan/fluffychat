@@ -15,23 +15,16 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - run: flutter pub get
-      - name: workaround for https://github.com/flutter/flutter/issues/148333
-        run: |
-          flutter gen-l10n
-          flutter pub get
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting
         run: dart run import_sorter:main --no-comments --exit-if-changed
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
+      - run: flutter gen-l10n
       - run: flutter analyze
       - name: Apply google services patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - name: workaround for https://github.com/flutter/flutter/issues/148333
-        run: |
-          flutter gen-l10n
-          flutter pub get
       - run: flutter analyze
       - run: flutter test
 

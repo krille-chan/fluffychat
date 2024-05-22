@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -32,13 +32,13 @@ class PinnedEvents extends StatelessWidget {
         ? events.single?.eventId
         : await showConfirmationDialog<String>(
             context: context,
-            title: L10n.of(context)!.pinMessage,
+            title: L10n.of(context).pinMessage,
             actions: events
                 .map(
                   (event) => AlertDialogAction(
                     key: event?.eventId ?? '',
                     label: event?.calcLocalizedBodyFallback(
-                          MatrixLocals(L10n.of(context)!),
+                          MatrixLocals(L10n.of(context)),
                           withSenderNamePrefix: true,
                           hideReply: true,
                         ) ??
@@ -65,17 +65,17 @@ class PinnedEvents extends StatelessWidget {
         final event = snapshot.data;
         return ChatAppBarListTile(
           title: event?.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
+                MatrixLocals(L10n.of(context)),
                 withSenderNamePrefix: true,
                 hideReply: true,
               ) ??
-              L10n.of(context)!.loadingPleaseWait,
+              L10n.of(context).loadingPleaseWait,
           leading: IconButton(
             splashRadius: 20,
             iconSize: 20,
             color: Theme.of(context).colorScheme.onSurfaceVariant,
             icon: const Icon(Icons.push_pin),
-            tooltip: L10n.of(context)!.unpin,
+            tooltip: L10n.of(context).unpin,
             onPressed: controller.room.canSendEvent(EventTypes.RoomPinnedEvents)
                 ? () => controller.unpinEvent(event!.eventId)
                 : null,

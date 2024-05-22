@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'events/audio_player.dart';
 
@@ -117,7 +117,7 @@ class RecordingDialogState extends State<RecordingDialog> {
     final time =
         '${_duration.inMinutes.toString().padLeft(2, '0')}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}';
     final content = error
-        ? Text(L10n.of(context)!.oopsSomethingWentWrong)
+        ? Text(L10n.of(context).oopsSomethingWentWrong)
         : Row(
             children: [
               Container(
@@ -165,7 +165,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           CupertinoDialogAction(
             onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
             child: Text(
-              L10n.of(context)!.cancel.toUpperCase(),
+              L10n.of(context).cancel.toUpperCase(),
               style: TextStyle(
                 color: Theme.of(context)
                     .textTheme
@@ -178,7 +178,7 @@ class RecordingDialogState extends State<RecordingDialog> {
           if (error != true)
             CupertinoDialogAction(
               onPressed: _stopAndSend,
-              child: Text(L10n.of(context)!.send.toUpperCase()),
+              child: Text(L10n.of(context).send.toUpperCase()),
             ),
         ],
       );
@@ -189,7 +189,7 @@ class RecordingDialogState extends State<RecordingDialog> {
         TextButton(
           onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           child: Text(
-            L10n.of(context)!.cancel.toUpperCase(),
+            L10n.of(context).cancel.toUpperCase(),
             style: TextStyle(
               color:
                   Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
@@ -202,7 +202,7 @@ class RecordingDialogState extends State<RecordingDialog> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(L10n.of(context)!.send.toUpperCase()),
+                Text(L10n.of(context).send.toUpperCase()),
                 const SizedBox(width: 4),
                 const Icon(Icons.send_outlined, size: 15),
               ],

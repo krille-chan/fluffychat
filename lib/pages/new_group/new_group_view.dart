@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -24,7 +23,7 @@ class NewGroupView extends StatelessWidget {
             onPressed: controller.loading ? null : Navigator.of(context).pop,
           ),
         ),
-        title: Text(L10n.of(context)!.createGroup),
+        title: Text(L10n.of(context).createGroup),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -61,7 +60,7 @@ class NewGroupView extends StatelessWidget {
                       readOnly: controller.loading,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.people_outlined),
-                        hintText: L10n.of(context)!.groupName,
+                        hintText: L10n.of(context).groupName,
                       ),
                     ),
                   ),
@@ -78,14 +77,14 @@ class NewGroupView extends StatelessWidget {
                 maxLength: 255,
                 readOnly: controller.loading,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.addChatDescription,
+                  hintText: L10n.of(context).addChatDescription,
                 ),
               ),
             ),
             const SizedBox(height: 16),
             SwitchListTile.adaptive(
               secondary: const Icon(Icons.public_outlined),
-              title: Text(L10n.of(context)!.groupIsPublic),
+              title: Text(L10n.of(context).groupIsPublic),
               value: controller.publicGroup,
               onChanged: controller.loading ? null : controller.setPublicGroup,
             ),
@@ -94,7 +93,7 @@ class NewGroupView extends StatelessWidget {
               child: controller.publicGroup
                   ? SwitchListTile.adaptive(
                       secondary: const Icon(Icons.search_outlined),
-                      title: Text(L10n.of(context)!.groupCanBeFoundViaSearch),
+                      title: Text(L10n.of(context).groupCanBeFoundViaSearch),
                       value: controller.groupCanBeFound,
                       onChanged: controller.loading
                           ? null
@@ -108,7 +107,7 @@ class NewGroupView extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onSurface,
               ),
               title: Text(
-                L10n.of(context)!.enableEncryption,
+                L10n.of(context).enableEncryption,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
@@ -133,7 +132,7 @@ class NewGroupView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                L10n.of(context)!.createGroupAndInviteUsers,
+                                L10n.of(context).createGroupAndInviteUsers,
                               ),
                             ),
                             Icon(Icons.adaptive.arrow_forward_outlined),

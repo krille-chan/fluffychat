@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import '../../config/themes.dart';
 import 'chat_list.dart';
 
@@ -52,12 +52,12 @@ class StartChatFloatingActionButton extends StatelessWidget {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
         return roomsIsEmpty
-            ? L10n.of(context)!.startFirstChat
-            : L10n.of(context)!.newChat;
+            ? L10n.of(context).startFirstChat
+            : L10n.of(context).newChat;
       case ActiveFilter.groups:
-        return L10n.of(context)!.newGroup;
+        return L10n.of(context).newGroup;
       case ActiveFilter.spaces:
-        return L10n.of(context)!.newSpace;
+        return L10n.of(context).newSpace;
     }
   }
 

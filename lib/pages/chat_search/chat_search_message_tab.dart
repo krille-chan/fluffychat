@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -40,9 +40,9 @@ class ChatSearchMessageTab extends StatelessWidget {
               const Icon(Icons.search_outlined, size: 64),
               const SizedBox(height: 8),
               Text(
-                L10n.of(context)!.searchIn(
+                L10n.of(context).searchIn(
                   room.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                   ),
                 ),
               ),
@@ -91,7 +91,7 @@ class ChatSearchMessageTab extends StatelessWidget {
                       icon: const Icon(
                         Icons.arrow_downward_outlined,
                       ),
-                      label: Text(L10n.of(context)!.searchMore),
+                      label: Text(L10n.of(context).searchMore),
                     ),
                   ),
                 );
@@ -99,7 +99,7 @@ class ChatSearchMessageTab extends StatelessWidget {
               final event = events[i];
               final sender = event.senderFromMemoryOrFallback;
               final displayname = sender.calcDisplayname(
-                i18n: MatrixLocals(L10n.of(context)!),
+                i18n: MatrixLocals(L10n.of(context)),
               );
               return _MessageSearchResultListTile(
                 sender: sender,
@@ -163,7 +163,7 @@ class _MessageSearchResultListTile extends StatelessWidget {
               plaintextBody: true,
               removeMarkdown: true,
               MatrixLocals(
-                L10n.of(context)!,
+                L10n.of(context),
               ),
             )
             .trim(),

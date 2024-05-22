@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -24,7 +24,7 @@ class EmotesSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.customEmojisAndStickers),
+        title: Text(L10n.of(context).customEmojisAndStickers),
         actions: [
           PopupMenuButton<PopupMenuEmojiActions>(
             onSelected: (value) {
@@ -41,11 +41,11 @@ class EmotesSettingsView extends StatelessWidget {
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: PopupMenuEmojiActions.import,
-                child: Text(L10n.of(context)!.importFromZipFile),
+                child: Text(L10n.of(context).importFromZipFile),
               ),
               PopupMenuItem(
                 value: PopupMenuEmojiActions.export,
-                child: Text(L10n.of(context)!.exportEmotePack),
+                child: Text(L10n.of(context).exportEmotePack),
               ),
             ],
           ),
@@ -81,7 +81,7 @@ class EmotesSettingsView extends StatelessWidget {
                       minLines: 1,
                       maxLines: 1,
                       decoration: InputDecoration(
-                        hintText: L10n.of(context)!.emoteShortcode,
+                        hintText: L10n.of(context).emoteShortcode,
                         prefixText: ': ',
                         suffixText: ':',
                         prefixStyle: TextStyle(
@@ -112,7 +112,7 @@ class EmotesSettingsView extends StatelessWidget {
               ),
             if (controller.room != null)
               SwitchListTile.adaptive(
-                title: Text(L10n.of(context)!.enableEmotesGlobally),
+                title: Text(L10n.of(context).enableEmotesGlobally),
                 value: controller.isGloballyActive(client),
                 onChanged: controller.setIsGloballyActive,
               ),
@@ -123,7 +123,7 @@ class EmotesSettingsView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        L10n.of(context)!.noEmotesFound,
+                        L10n.of(context).noEmotesFound,
                         style: const TextStyle(fontSize: 20),
                       ),
                     ),
@@ -184,7 +184,7 @@ class EmotesSettingsView extends StatelessWidget {
                                 minLines: 1,
                                 maxLines: 1,
                                 decoration: InputDecoration(
-                                  hintText: L10n.of(context)!.emoteShortcode,
+                                  hintText: L10n.of(context).emoteShortcode,
                                   prefixText: ': ',
                                   suffixText: ':',
                                   prefixStyle: TextStyle(
@@ -269,7 +269,7 @@ class _ImagePickerState extends State<_ImagePicker> {
     if (widget.controller.value == null) {
       return ElevatedButton(
         onPressed: () => widget.onPressed(widget.controller),
-        child: Text(L10n.of(context)!.pickImage),
+        child: Text(L10n.of(context).pickImage),
       );
     } else {
       return _EmoteImage(widget.controller.value!.url);

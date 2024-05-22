@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import '../../widgets/avatar.dart';
 import '../user_bottom_sheet/user_bottom_sheet.dart';
@@ -15,17 +15,17 @@ class ParticipantListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final membershipBatch = switch (user.membership) {
-      Membership.ban => L10n.of(context)!.banned,
-      Membership.invite => L10n.of(context)!.invited,
+      Membership.ban => L10n.of(context).banned,
+      Membership.invite => L10n.of(context).invited,
       Membership.join => null,
-      Membership.knock => L10n.of(context)!.knocking,
-      Membership.leave => L10n.of(context)!.leftTheChat,
+      Membership.knock => L10n.of(context).knocking,
+      Membership.leave => L10n.of(context).leftTheChat,
     };
 
     final permissionBatch = user.powerLevel == 100
-        ? L10n.of(context)!.admin
+        ? L10n.of(context).admin
         : user.powerLevel >= 50
-            ? L10n.of(context)!.moderator
+            ? L10n.of(context).moderator
             : '';
 
     return Opacity(

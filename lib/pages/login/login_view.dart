@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'login.dart';
@@ -19,7 +18,7 @@ class LoginView extends StatelessWidget {
         .homeserver
         .toString()
         .replaceFirst('https://', '');
-    final title = L10n.of(context)!.logInTo(homeserver);
+    final title = L10n.of(context).logInTo(homeserver);
     final titleParts = title.split(homeserver);
 
     final textFieldFillColor = FluffyThemes.isColumnMode(context)
@@ -71,7 +70,7 @@ class LoginView extends StatelessWidget {
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
                       fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.emailOrUsername,
+                      hintText: L10n.of(context).emailOrUsername,
                     ),
                   ),
                 ),
@@ -101,7 +100,7 @@ class LoginView extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      hintText: L10n.of(context)!.password,
+                      hintText: L10n.of(context).password,
                     ),
                   ),
                 ),
@@ -117,7 +116,7 @@ class LoginView extends StatelessWidget {
                     icon: const Icon(Icons.login_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.login),
+                        : Text(L10n.of(context).login),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -131,7 +130,7 @@ class LoginView extends StatelessWidget {
                       foregroundColor: Theme.of(context).colorScheme.error,
                     ),
                     icon: const Icon(Icons.safety_check_outlined),
-                    label: Text(L10n.of(context)!.passwordForgotten),
+                    label: Text(L10n.of(context).passwordForgotten),
                   ),
                 ),
                 const SizedBox(height: 16),

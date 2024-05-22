@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'user_device_list_item.dart';
@@ -16,7 +15,7 @@ class DevicesSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.devices),
+        title: Text(L10n.of(context).devices),
       ),
       body: MaxWidthBody(
         child: FutureBuilder<bool>(
@@ -55,7 +54,7 @@ class DevicesSettingsView extends StatelessWidget {
                           ),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            L10n.of(context)!.thisDevice,
+                            L10n.of(context).thisDevice,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.primary,
@@ -83,7 +82,7 @@ class DevicesSettingsView extends StatelessWidget {
                             child: TextButton.icon(
                               label: Text(
                                 controller.errorDeletingDevices ??
-                                    L10n.of(context)!.removeAllOtherDevices,
+                                    L10n.of(context).removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
                                 foregroundColor: Theme.of(context)
@@ -110,7 +109,7 @@ class DevicesSettingsView extends StatelessWidget {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(L10n.of(context)!.noOtherDevicesFound),
+                            child: Text(L10n.of(context).noOtherDevicesFound),
                           ),
                         ),
                     ],

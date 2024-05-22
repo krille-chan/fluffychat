@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../config/themes.dart';
@@ -53,8 +53,8 @@ class HomeserverPickerView extends StatelessWidget {
               color: Theme.of(context).colorScheme.surface,
               child: ListTile(
                 leading: const Icon(Icons.vpn_key),
-                title: Text(L10n.of(context)!.hydrateTor),
-                subtitle: Text(L10n.of(context)!.hydrateTorLong),
+                title: Text(L10n.of(context).hydrateTor),
+                subtitle: Text(L10n.of(context).hydrateTorLong),
                 trailing: const Icon(Icons.chevron_right_outlined),
                 onTap: controller.restoreBackup,
               ),
@@ -87,7 +87,7 @@ class HomeserverPickerView extends StatelessWidget {
                         ),
                         Center(
                           child: Text(
-                            L10n.of(context)!
+                            L10n.of(context)
                                 .pleaseTryAgainLaterOrChooseDifferentServer,
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -134,10 +134,10 @@ class HomeserverPickerView extends StatelessWidget {
                                       //isThumbnail: false,
                                     ),
                                   ),
-                            label: L10n.of(context)!.signInWith(
+                            label: L10n.of(context).signInWith(
                               provider.name ??
                                   provider.brand ??
-                                  L10n.of(context)!.singlesignon,
+                                  L10n.of(context).singlesignon,
                             ),
                             onPressed: () =>
                                 controller.ssoLoginAction(provider.id),
@@ -147,7 +147,7 @@ class HomeserverPickerView extends StatelessWidget {
                       if (controller.supportsPasswordLogin)
                         _LoginButton(
                           onPressed: controller.login,
-                          label: L10n.of(context)!.signInWithPassword,
+                          label: L10n.of(context).signInWithPassword,
                           icon: const Icon(Icons.lock_open_outlined, size: 16),
                         ),
                       if (regLink != null)
@@ -157,11 +157,11 @@ class HomeserverPickerView extends StatelessWidget {
                             Icons.open_in_new_outlined,
                             size: 16,
                           ),
-                          label: L10n.of(context)!.register,
+                          label: L10n.of(context).register,
                         ),
                       _LoginButton(
                         onPressed: controller.restoreBackup,
-                        label: L10n.of(context)!.hydrate,
+                        label: L10n.of(context).hydrate,
                         withBorder: false,
                       ),
                       const SizedBox(height: 16),

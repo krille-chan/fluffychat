@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 
 class CuteContent extends StatefulWidget {
   final Event event;
@@ -72,19 +72,19 @@ class _CuteContentState extends State<CuteContent> {
   generateLabel(User? user) {
     switch (widget.event.content['cute_type']) {
       case 'googly_eyes':
-        return L10n.of(context)?.googlyEyesContent(
+        return L10n.of(context).googlyEyesContent(
           user?.displayName ??
               widget.event.senderFromMemoryOrFallback.displayName ??
               '',
         );
       case 'cuddle':
-        return L10n.of(context)?.cuddleContent(
+        return L10n.of(context).cuddleContent(
           user?.displayName ??
               widget.event.senderFromMemoryOrFallback.displayName ??
               '',
         );
       case 'hug':
-        return L10n.of(context)?.hugContent(
+        return L10n.of(context).hugContent(
           user?.displayName ??
               widget.event.senderFromMemoryOrFallback.displayName ??
               '',

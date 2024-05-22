@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:emojis/emoji.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -226,7 +226,7 @@ class InputBar extends StatelessWidget {
     const padding = EdgeInsets.all(4.0);
     if (suggestion['type'] == 'command') {
       final command = suggestion['name']!;
-      final hint = commandHint(L10n.of(context)!, command);
+      final hint = commandHint(L10n.of(context), command);
       return Tooltip(
         message: hint,
         waitDuration: const Duration(days: 1), // don't show on hover

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
@@ -47,10 +47,10 @@ class ChatListItem extends StatelessWidget {
       final confirmed = await showOkCancelAlertDialog(
         useRootNavigator: false,
         context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.archiveRoomDescription,
+        title: L10n.of(context).areYouSure,
+        okLabel: L10n.of(context).yes,
+        cancelLabel: L10n.of(context).no,
+        message: L10n.of(context).archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
       await showFutureLoadingDialog(
@@ -83,7 +83,7 @@ class ChatListItem extends StatelessWidget {
             ? theme.colorScheme.secondaryContainer
             : null;
     final displayname = room.getLocalizedDisplayname(
-      MatrixLocals(L10n.of(context)!),
+      MatrixLocals(L10n.of(context)),
     );
     final filter = this.filter;
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
@@ -229,10 +229,10 @@ class ChatListItem extends StatelessWidget {
                         : Text(
                             room.membership == Membership.invite
                                 ? isDirectChat
-                                    ? L10n.of(context)!.invitePrivateChat
-                                    : L10n.of(context)!.inviteGroupChat
+                                    ? L10n.of(context).invitePrivateChat
+                                    : L10n.of(context).inviteGroupChat
                                 : room.lastEvent?.calcLocalizedBodyFallback(
-                                      MatrixLocals(L10n.of(context)!),
+                                      MatrixLocals(L10n.of(context)),
                                       hideReply: true,
                                       hideEdit: true,
                                       plaintextBody: true,
@@ -241,7 +241,7 @@ class ChatListItem extends StatelessWidget {
                                           directChatMatrixId !=
                                               room.lastEvent?.senderId,
                                     ) ??
-                                    L10n.of(context)!.emptyChat,
+                                    L10n.of(context).emptyChat,
                             softWrap: false,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

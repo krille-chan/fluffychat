@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -74,7 +74,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
           ),
         );
     if (!query.chunk.any(_testRoom)) {
-      throw (L10n.of(context)!.noRoomsFound);
+      throw (L10n.of(context).noRoomsFound);
     }
     return query.chunk.firstWhere(_testRoom);
   }
@@ -92,7 +92,7 @@ class PublicRoomBottomSheet extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_downward_outlined),
             onPressed: Navigator.of(context, rootNavigator: false).pop,
-            tooltip: L10n.of(context)!.close,
+            tooltip: L10n.of(context).close,
           ),
           actions: [
             Padding(
@@ -147,10 +147,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
                                       .client
                                       .getRoomById(chunk!.roomId) ==
                                   null
-                          ? L10n.of(context)!.knock
+                          ? L10n.of(context).knock
                           : chunk?.roomType == 'm.space'
-                              ? L10n.of(context)!.joinSpace
-                              : L10n.of(context)!.joinRoom,
+                              ? L10n.of(context).joinSpace
+                              : L10n.of(context).joinRoom,
                     ),
                     icon: const Icon(Icons.login_outlined),
                   ),
@@ -161,16 +161,16 @@ class PublicRoomBottomSheet extends StatelessWidget {
                     profile?.name ??
                         roomAlias?.localpart ??
                         chunk?.roomId.localpart ??
-                        L10n.of(context)!.chat,
+                        L10n.of(context).chat,
                   ),
                   subtitle: Text(
-                    '${L10n.of(context)!.participant}: ${profile?.numJoinedMembers ?? 0}',
+                    '${L10n.of(context).participant}: ${profile?.numJoinedMembers ?? 0}',
                   ),
                   trailing: const Icon(Icons.account_box_outlined),
                 ),
                 if (roomAlias != null)
                   ListTile(
-                    title: Text(L10n.of(context)!.publicLink),
+                    title: Text(L10n.of(context).publicLink),
                     subtitle: SelectableText(roomAlias),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16.0),

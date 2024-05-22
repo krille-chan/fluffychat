@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
@@ -18,7 +18,7 @@ class SettingsNotificationsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.notifications),
+        title: Text(L10n.of(context).notifications),
       ),
       body: MaxWidthBody(
         child: StreamBuilder(
@@ -33,7 +33,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 SwitchListTile.adaptive(
                   value: !Matrix.of(context).client.allPushNotificationsMuted,
                   title: Text(
-                    L10n.of(context)!.notificationsEnabledForThisAccount,
+                    L10n.of(context).notificationsEnabledForThisAccount,
                   ),
                   onChanged: controller.isLoading
                       ? null
@@ -42,7 +42,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 Divider(color: Theme.of(context).dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.notifyMeFor,
+                    L10n.of(context).notifyMeFor,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class SettingsNotificationsView extends StatelessWidget {
                 Divider(color: Theme.of(context).dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.devices,
+                    L10n.of(context).devices,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class SettingsNotificationsView extends StatelessWidget {
                       return Center(
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Text(L10n.of(context)!.noOtherDevicesFound),
+                          child: Text(L10n.of(context).noOtherDevicesFound),
                         ),
                       );
                     }

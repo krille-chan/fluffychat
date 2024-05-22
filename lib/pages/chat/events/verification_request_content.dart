@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import '../../../config/app_config.dart';
 
 class VerificationRequestContent extends StatelessWidget {
@@ -56,10 +56,10 @@ class VerificationRequestContent extends StatelessWidget {
                 canceled
                     ? 'Error ${cancel.first.content.tryGet<String>('code')}: ${cancel.first.content.tryGet<String>('reason')}'
                     : (fullyDone
-                        ? L10n.of(context)!.verifySuccess
+                        ? L10n.of(context).verifySuccess
                         : (started
-                            ? L10n.of(context)!.loadingPleaseWait
-                            : L10n.of(context)!.newVerificationRequest)),
+                            ? L10n.of(context).loadingPleaseWait
+                            : L10n.of(context).newVerificationRequest)),
               ),
             ],
           ),

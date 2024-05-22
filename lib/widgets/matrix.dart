@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -239,8 +239,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void initLoadingDialog() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
-      LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
+      LoadingDialog.defaultTitle = L10n.of(context).loadingPleaseWait;
+      LoadingDialog.defaultBackLabel = L10n.of(context).close;
       LoadingDialog.defaultOnError =
           (e) => (e as Object?)!.toLocalizedString(context);
     });
@@ -306,7 +306,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         ClientManager.removeClientNameFromStore(c.clientName, store);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context)!.oneClientLoggedOut),
+            content: Text(L10n.of(context).oneClientLoggedOut),
           ),
         );
 
@@ -363,13 +363,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           final result = await showOkCancelAlertDialog(
             barrierDismissible: true,
             context: context,
-            title: L10n.of(context)!.pushNotificationsNotAvailable,
+            title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
             fullyCapitalizedForMaterial: false,
-            okLabel: link == null
-                ? L10n.of(context)!.ok
-                : L10n.of(context)!.learnMore,
-            cancelLabel: L10n.of(context)!.doNotShowAgain,
+            okLabel:
+                link == null ? L10n.of(context).ok : L10n.of(context).learnMore,
+            cancelLabel: L10n.of(context).doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
             launchUrlString(
@@ -483,8 +482,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final response = await showOkCancelAlertDialog(
       context: context,
       isDestructiveAction: true,
-      title: L10n.of(context)!.dehydrate,
-      message: L10n.of(context)!.dehydrateWarning,
+      title: L10n.of(context).dehydrate,
+      message: L10n.of(context).dehydrateWarning,
     );
     if (response != OkCancelResult.ok) {
       return;

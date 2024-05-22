@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -135,27 +135,27 @@ class _SpaceViewState extends State<SpaceView> {
       context: context,
       title: spaceChild?.name ??
           room?.getLocalizedDisplayname(
-            MatrixLocals(L10n.of(context)!),
+            MatrixLocals(L10n.of(context)),
           ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
         if (room == null)
           SheetAction(
             key: SpaceChildContextAction.join,
-            label: L10n.of(context)!.joinRoom,
+            label: L10n.of(context).joinRoom,
             icon: Icons.send_outlined,
           ),
         if (spaceChild != null &&
             (activeSpace?.canChangeStateEvent(EventTypes.SpaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
-            label: L10n.of(context)!.removeFromSpace,
+            label: L10n.of(context).removeFromSpace,
             icon: Icons.delete_sweep_outlined,
           ),
         if (room != null)
           SheetAction(
             key: SpaceChildContextAction.leave,
-            label: L10n.of(context)!.leave,
+            label: L10n.of(context).leave,
             icon: Icons.delete_outlined,
             isDestructiveAction: true,
           ),
@@ -185,15 +185,15 @@ class _SpaceViewState extends State<SpaceView> {
   void _addChatOrSubSpace() async {
     final roomType = await showConfirmationDialog(
       context: context,
-      title: L10n.of(context)!.addChatOrSubSpace,
+      title: L10n.of(context).addChatOrSubSpace,
       actions: [
         AlertDialogAction(
           key: AddRoomType.subspace,
-          label: L10n.of(context)!.createNewSpace,
+          label: L10n.of(context).createNewSpace,
         ),
         AlertDialogAction(
           key: AddRoomType.chat,
-          label: L10n.of(context)!.createGroup,
+          label: L10n.of(context).createGroup,
         ),
       ],
     );
@@ -202,32 +202,32 @@ class _SpaceViewState extends State<SpaceView> {
     final names = await showTextInputDialog(
       context: context,
       title: roomType == AddRoomType.subspace
-          ? L10n.of(context)!.createNewSpace
-          : L10n.of(context)!.createGroup,
+          ? L10n.of(context).createNewSpace
+          : L10n.of(context).createGroup,
       textFields: [
         DialogTextField(
           hintText: roomType == AddRoomType.subspace
-              ? L10n.of(context)!.spaceName
-              : L10n.of(context)!.groupName,
+              ? L10n.of(context).spaceName
+              : L10n.of(context).groupName,
           minLines: 1,
           maxLines: 1,
           maxLength: 64,
           validator: (text) {
             if (text == null || text.isEmpty) {
-              return L10n.of(context)!.pleaseChoose;
+              return L10n.of(context).pleaseChoose;
             }
             return null;
           },
         ),
         DialogTextField(
-          hintText: L10n.of(context)!.chatDescription,
+          hintText: L10n.of(context).chatDescription,
           minLines: 4,
           maxLines: 8,
           maxLength: 255,
         ),
       ],
-      okLabel: L10n.of(context)!.create,
-      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context).create,
+      cancelLabel: L10n.of(context).cancel,
     );
     if (names == null) return;
     final client = Matrix.of(context).client;
@@ -286,7 +286,7 @@ class _SpaceViewState extends State<SpaceView> {
                       .any((child) => child.roomId == space.id),
                 ) &&
                 space
-                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!))
+                    .getLocalizedDisplayname(MatrixLocals(L10n.of(context)))
                     .toLowerCase()
                     .contains(
                       widget.controller.searchController.text.toLowerCase(),
@@ -304,7 +304,7 @@ class _SpaceViewState extends State<SpaceView> {
                 (context, i) {
                   final rootSpace = rootSpaces[i];
                   final displayname = rootSpace.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                   );
                   return Material(
                     color: Theme.of(context).colorScheme.surface,
@@ -319,7 +319,7 @@ class _SpaceViewState extends State<SpaceView> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Text(
-                        L10n.of(context)!.numChats(
+                        L10n.of(context).numChats(
                           rootSpace.spaceChildren.length.toString(),
                         ),
                       ),
@@ -367,9 +367,9 @@ class _SpaceViewState extends State<SpaceView> {
                 ),
                 title: Text(
                   parentSpace == null
-                      ? L10n.of(context)!.allSpaces
+                      ? L10n.of(context).allSpaces
                       : parentSpace.getLocalizedDisplayname(
-                          MatrixLocals(L10n.of(context)!),
+                          MatrixLocals(L10n.of(context)),
                         ),
                 ),
                 trailing: IconButton(
@@ -405,7 +405,7 @@ class _SpaceViewState extends State<SpaceView> {
                 if (response == null) {
                   return SliverFillRemaining(
                     child: Center(
-                      child: Text(L10n.of(context)!.loadingPleaseWait),
+                      child: Text(L10n.of(context).loadingPleaseWait),
                     ),
                   );
                 }
@@ -420,7 +420,7 @@ class _SpaceViewState extends State<SpaceView> {
                           child: OutlinedButton.icon(
                             label: loading
                                 ? const LinearProgressIndicator()
-                                : Text(L10n.of(context)!.loadMore),
+                                : Text(L10n.of(context).loadMore),
                             icon: const Icon(Icons.chevron_right_outlined),
                             onPressed: loading
                                 ? null
@@ -484,7 +484,7 @@ class _SpaceViewState extends State<SpaceView> {
                                     child: Icon(Icons.group_add_outlined),
                                   ),
                                   title:
-                                      Text(L10n.of(context)!.addChatOrSubSpace),
+                                      Text(L10n.of(context).addChatOrSubSpace),
                                   trailing:
                                       const Icon(Icons.chevron_right_outlined),
                                   onTap: _addChatOrSubSpace,
@@ -495,7 +495,7 @@ class _SpaceViewState extends State<SpaceView> {
                       }
                       final name = spaceChild.name ??
                           spaceChild.canonicalAlias ??
-                          L10n.of(context)!.chat;
+                          L10n.of(context).chat;
                       if (widget.controller.isSearchMode &&
                           !name.toLowerCase().contains(
                                 widget.controller.searchController.text
@@ -541,8 +541,8 @@ class _SpaceViewState extends State<SpaceView> {
                           subtitle: Text(
                             topic ??
                                 (isSpace
-                                    ? L10n.of(context)!.enterSpace
-                                    : L10n.of(context)!.enterRoom),
+                                    ? L10n.of(context).enterSpace
+                                    : L10n.of(context).enterRoom),
                             maxLines: 1,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,

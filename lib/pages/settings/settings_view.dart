@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -27,11 +27,11 @@ class SettingsView extends StatelessWidget {
             onPressed: () => context.go('/rooms'),
           ),
         ),
-        title: Text(L10n.of(context)!.settings),
+        title: Text(L10n.of(context).settings),
         actions: [
           TextButton.icon(
             onPressed: controller.logoutAction,
-            label: Text(L10n.of(context)!.logout),
+            label: Text(L10n.of(context).logout),
             icon: const Icon(Icons.logout_outlined),
           ),
         ],
@@ -46,7 +46,7 @@ class SettingsView extends StatelessWidget {
               builder: (context, snapshot) {
                 final profile = snapshot.data;
                 final mxid =
-                    Matrix.of(context).client.userID ?? L10n.of(context)!.user;
+                    Matrix.of(context).client.userID ?? L10n.of(context).user;
                 final displayname =
                     profile?.displayName ?? mxid.localpart ?? mxid;
                 return Row(
@@ -143,7 +143,7 @@ class SettingsView extends StatelessWidget {
             if (showChatBackupBanner == null)
               ListTile(
                 leading: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
+                title: Text(L10n.of(context).chatBackup),
                 trailing: const CircularProgressIndicator.adaptive(),
               )
             else
@@ -151,7 +151,7 @@ class SettingsView extends StatelessWidget {
                 controlAffinity: ListTileControlAffinity.trailing,
                 value: controller.showChatBackupBanner == false,
                 secondary: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context)!.chatBackup),
+                title: Text(L10n.of(context).chatBackup),
                 onChanged: controller.firstRunBootstrapAction,
               ),
             Divider(
@@ -160,31 +160,31 @@ class SettingsView extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
-              title: Text(L10n.of(context)!.changeTheme),
+              title: Text(L10n.of(context).changeTheme),
               onTap: () => context.go('/rooms/settings/style'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.notifications_outlined),
-              title: Text(L10n.of(context)!.notifications),
+              title: Text(L10n.of(context).notifications),
               onTap: () => context.go('/rooms/settings/notifications'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.devices_outlined),
-              title: Text(L10n.of(context)!.devices),
+              title: Text(L10n.of(context).devices),
               onTap: () => context.go('/rooms/settings/devices'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.forum_outlined),
-              title: Text(L10n.of(context)!.chat),
+              title: Text(L10n.of(context).chat),
               onTap: () => context.go('/rooms/settings/chat'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.shield_outlined),
-              title: Text(L10n.of(context)!.security),
+              title: Text(L10n.of(context).security),
               onTap: () => context.go('/rooms/settings/security'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
@@ -194,19 +194,19 @@ class SettingsView extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
-              title: Text(L10n.of(context)!.help),
+              title: Text(L10n.of(context).help),
               onTap: () => launchUrlString(AppConfig.supportUrl),
               trailing: const Icon(Icons.open_in_new_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.shield_sharp),
-              title: Text(L10n.of(context)!.privacy),
+              title: Text(L10n.of(context).privacy),
               onTap: () => launchUrlString(AppConfig.privacyUrl),
               trailing: const Icon(Icons.open_in_new_outlined),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline_rounded),
-              title: Text(L10n.of(context)!.about),
+              title: Text(L10n.of(context).about),
               onTap: () => PlatformInfos.showDialog(context),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),

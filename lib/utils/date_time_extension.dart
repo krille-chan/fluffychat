@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
 
 /// Provides extra functionality for formatting the time.
 extension DateTimeExtension on DateTime {
@@ -63,12 +64,12 @@ extension DateTimeExtension on DateTime {
       return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
           .format(this);
     } else if (sameYear) {
-      return L10n.of(context)!.dateWithoutYear(
+      return L10n.of(context).dateWithoutYear(
         month.toString().padLeft(2, '0'),
         day.toString().padLeft(2, '0'),
       );
     }
-    return L10n.of(context)!.dateWithYear(
+    return L10n.of(context).dateWithYear(
       year.toString(),
       month.toString().padLeft(2, '0'),
       day.toString().padLeft(2, '0'),
@@ -86,7 +87,7 @@ extension DateTimeExtension on DateTime {
     final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return L10n.of(context)!.dateAndTimeOfDay(
+    return L10n.of(context).dateAndTimeOfDay(
       localizedTimeShort(context),
       localizedTimeOfDay(context),
     );

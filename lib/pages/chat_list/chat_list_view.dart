@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -39,7 +39,7 @@ class ChatListView extends StatelessWidget {
                 controller.getRoomFilterByActiveFilter(ActiveFilter.messages),
             child: const Icon(Icons.chat),
           ),
-          label: L10n.of(context)!.messages,
+          label: L10n.of(context).messages,
         ),
         NavigationDestination(
           icon: UnreadRoomsBadge(
@@ -52,7 +52,7 @@ class ChatListView extends StatelessWidget {
             filter: controller.getRoomFilterByActiveFilter(ActiveFilter.groups),
             child: const Icon(Icons.group),
           ),
-          label: L10n.of(context)!.groups,
+          label: L10n.of(context).groups,
         ),
       ] else
         NavigationDestination(
@@ -68,7 +68,7 @@ class ChatListView extends StatelessWidget {
                 controller.getRoomFilterByActiveFilter(ActiveFilter.allChats),
             child: const Icon(Icons.chat),
           ),
-          label: L10n.of(context)!.chats,
+          label: L10n.of(context).chats,
         ),
       if (controller.spaces.isNotEmpty)
         const NavigationDestination(
@@ -152,7 +152,7 @@ class ChatListView extends StatelessWidget {
                                   rootSpaces[i].id == controller.activeSpaceId;
                           return NaviRailItem(
                             toolTip: rootSpaces[i].getLocalizedDisplayname(
-                              MatrixLocals(L10n.of(context)!),
+                              MatrixLocals(L10n.of(context)),
                             ),
                             isSelected: isSelected,
                             onTap: () =>
@@ -160,7 +160,7 @@ class ChatListView extends StatelessWidget {
                             icon: Avatar(
                               mxContent: rootSpaces[i].avatar,
                               name: rootSpaces[i].getLocalizedDisplayname(
-                                MatrixLocals(L10n.of(context)!),
+                                MatrixLocals(L10n.of(context)),
                               ),
                               size: 32,
                               fontSize: 12,
@@ -204,7 +204,7 @@ class ChatListView extends StatelessWidget {
                         LogicalKeyboardKey.keyN,
                       },
                       onKeysPressed: () => context.go('/rooms/newprivatechat'),
-                      helpLabel: L10n.of(context)!.newChat,
+                      helpLabel: L10n.of(context).newChat,
                       child: selectMode == SelectMode.normal &&
                               !controller.isSearchMode
                           ? StartChatFloatingActionButton(

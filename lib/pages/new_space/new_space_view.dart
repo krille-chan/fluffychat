@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'new_space.dart';
@@ -16,7 +15,7 @@ class NewSpaceView extends StatelessWidget {
     final avatar = controller.avatar;
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.createNewSpace),
+        title: Text(L10n.of(context).createNewSpace),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -27,7 +26,7 @@ class NewSpaceView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Icon(Icons.info_outlined),
               ),
-              subtitle: Text(L10n.of(context)!.newSpaceDescription),
+              subtitle: Text(L10n.of(context).newSpaceDescription),
             ),
             const SizedBox(height: 16),
             Padding(
@@ -61,7 +60,7 @@ class NewSpaceView extends StatelessWidget {
                       readOnly: controller.loading,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.people_outlined),
-                        hintText: L10n.of(context)!.spaceName,
+                        hintText: L10n.of(context).spaceName,
                         errorText: controller.nameError,
                       ),
                     ),
@@ -79,14 +78,14 @@ class NewSpaceView extends StatelessWidget {
                 maxLength: 255,
                 readOnly: controller.loading,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.addChatDescription,
+                  hintText: L10n.of(context).addChatDescription,
                   errorText: controller.topicError,
                 ),
               ),
             ),
             const SizedBox(height: 16),
             SwitchListTile.adaptive(
-              title: Text(L10n.of(context)!.spaceIsPublic),
+              title: Text(L10n.of(context).spaceIsPublic),
               value: controller.publicGroup,
               onChanged: controller.setPublicGroup,
             ),
@@ -107,7 +106,7 @@ class NewSpaceView extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                L10n.of(context)!.createNewSpace,
+                                L10n.of(context).createNewSpace,
                               ),
                             ),
                             Icon(Icons.adaptive.arrow_forward_outlined),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/homeserver_picker/public_homeserver.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'homeserver_bottom_sheet.dart';
@@ -30,11 +30,11 @@ class HomeserverAppBar extends StatelessWidget {
       ),
       emptyBuilder: (context) => ListTile(
         leading: const Icon(Icons.search_outlined),
-        title: Text(L10n.of(context)!.nothingFound),
+        title: Text(L10n.of(context).nothingFound),
       ),
       loadingBuilder: (context) => ListTile(
         leading: const CircularProgressIndicator.adaptive(strokeWidth: 2),
-        title: Text(L10n.of(context)!.loadingPleaseWait),
+        title: Text(L10n.of(context).loadingPleaseWait),
       ),
       errorBuilder: (context, error) => ListTile(
         leading: const Icon(Icons.error_outlined),
@@ -94,8 +94,8 @@ class HomeserverAppBar extends StatelessWidget {
           fillColor: FluffyThemes.isColumnMode(context)
               ? Theme.of(context).colorScheme.surface
               : Theme.of(context).colorScheme.surfaceContainerHighest,
-          prefixText: '${L10n.of(context)!.homeserver}: ',
-          hintText: L10n.of(context)!.enterYourHomeserver,
+          prefixText: '${L10n.of(context).homeserver}: ',
+          hintText: L10n.of(context).enterYourHomeserver,
           suffixIcon: const Icon(Icons.search),
         ),
         textInputAction: TextInputAction.search,

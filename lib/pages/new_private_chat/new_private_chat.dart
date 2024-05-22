@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
@@ -74,7 +74,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10n.of(context)!.unsupportedAndroidVersionLong,
+              L10n.of(context).unsupportedAndroidVersionLong,
             ),
           ),
         );
@@ -94,7 +94,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       ClipboardData(text: Matrix.of(context).client.userID!),
     );
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
+      SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
     );
   }
 

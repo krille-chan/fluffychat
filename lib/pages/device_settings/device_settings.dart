@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings_view.dart';
 import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -35,10 +35,10 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void removeDevicesAction(List<Device> devices) async {
     if (await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.removeDevicesDescription,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).removeDevicesDescription,
         ) ==
         OkCancelResult.cancel) return;
     final matrix = Matrix.of(context);
@@ -70,9 +70,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void renameDeviceAction(Device device) async {
     final displayName = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.changeDeviceName,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).changeDeviceName,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           hintText: device.displayName,
@@ -94,10 +94,10 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void verifyDeviceAction(Device device) async {
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context)!.verifyOtherDevice,
-      message: L10n.of(context)!.verifyOtherDeviceDescription,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).verifyOtherDevice,
+      message: L10n.of(context).verifyOtherDeviceDescription,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       fullyCapitalizedForMaterial: false,
     );
     if (consent != OkCancelResult.ok) return;

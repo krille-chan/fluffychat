@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/map_bubble.dart';
 
 class SendLocationDialog extends StatefulWidget {
@@ -93,12 +93,12 @@ class SendLocationDialogState extends State<SendLocationDialog> {
         longitude: position!.longitude,
       );
     } else if (disabled) {
-      contentWidget = Text(L10n.of(context)!.locationDisabledNotice);
+      contentWidget = Text(L10n.of(context).locationDisabledNotice);
     } else if (denied) {
-      contentWidget = Text(L10n.of(context)!.locationPermissionDeniedNotice);
+      contentWidget = Text(L10n.of(context).locationPermissionDeniedNotice);
     } else if (error != null) {
       contentWidget =
-          Text(L10n.of(context)!.errorObtainingLocation(error.toString()));
+          Text(L10n.of(context).errorObtainingLocation(error.toString()));
     } else {
       contentWidget = Row(
         mainAxisSize: MainAxisSize.min,
@@ -106,22 +106,22 @@ class SendLocationDialogState extends State<SendLocationDialog> {
         children: [
           const CupertinoActivityIndicator(),
           const SizedBox(width: 12),
-          Text(L10n.of(context)!.obtainingLocation),
+          Text(L10n.of(context).obtainingLocation),
         ],
       );
     }
     return AlertDialog.adaptive(
-      title: Text(L10n.of(context)!.shareLocation),
+      title: Text(L10n.of(context).shareLocation),
       content: contentWidget,
       actions: [
         TextButton(
           onPressed: Navigator.of(context, rootNavigator: false).pop,
-          child: Text(L10n.of(context)!.cancel),
+          child: Text(L10n.of(context).cancel),
         ),
         if (position != null)
           TextButton(
             onPressed: isSending ? null : sendAction,
-            child: Text(L10n.of(context)!.send),
+            child: Text(L10n.of(context).send),
           ),
       ],
     );

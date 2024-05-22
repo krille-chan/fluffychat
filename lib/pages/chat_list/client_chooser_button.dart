@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
@@ -34,7 +34,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.group_add_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createGroup),
+            Text(L10n.of(context).createGroup),
           ],
         ),
       ),
@@ -44,7 +44,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.workspaces_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createNewSpace),
+            Text(L10n.of(context).createNewSpace),
           ],
         ),
       ),
@@ -54,7 +54,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.edit_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.setStatus),
+            Text(L10n.of(context).setStatus),
           ],
         ),
       ),
@@ -64,7 +64,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             Icon(Icons.adaptive.share_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.inviteContact),
+            Text(L10n.of(context).inviteContact),
           ],
         ),
       ),
@@ -74,7 +74,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.archive),
+            Text(L10n.of(context).archive),
           ],
         ),
       ),
@@ -84,7 +84,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.settings_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.settings),
+            Text(L10n.of(context).settings),
           ],
         ),
       ),
@@ -155,7 +155,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.person_add_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.addAccount),
+            Text(L10n.of(context).addAccount),
           ],
         ),
       ),
@@ -177,7 +177,7 @@ class ClientChooserButton extends StatelessWidget {
             clientCount,
             (index) => KeyBoardShortcuts(
               keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
+              helpLabel: L10n.of(context).switchToAccount(index + 1),
               onKeysPressed: () => _handleKeyboardShortcut(
                 matrix,
                 index,
@@ -191,7 +191,7 @@ class ClientChooserButton extends StatelessWidget {
               LogicalKeyboardKey.controlLeft,
               LogicalKeyboardKey.tab,
             },
-            helpLabel: L10n.of(context)!.nextAccount,
+            helpLabel: L10n.of(context).nextAccount,
             onKeysPressed: () => _nextAccount(matrix, context),
             child: const SizedBox.shrink(),
           ),
@@ -201,7 +201,7 @@ class ClientChooserButton extends StatelessWidget {
               LogicalKeyboardKey.shiftLeft,
               LogicalKeyboardKey.tab,
             },
-            helpLabel: L10n.of(context)!.previousAccount,
+            helpLabel: L10n.of(context).previousAccount,
             onKeysPressed: () => _previousAccount(matrix, context),
             child: const SizedBox.shrink(),
           ),
@@ -249,10 +249,10 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.addAccount:
           final consent = await showOkCancelAlertDialog(
             context: context,
-            title: L10n.of(context)!.addAccount,
-            message: L10n.of(context)!.enableMultiAccounts,
-            okLabel: L10n.of(context)!.next,
-            cancelLabel: L10n.of(context)!.cancel,
+            title: L10n.of(context).addAccount,
+            message: L10n.of(context).enableMultiAccounts,
+            okLabel: L10n.of(context).next,
+            cancelLabel: L10n.of(context).cancel,
           );
           if (consent != OkCancelResult.ok) return;
           context.go('/rooms/settings/addaccount');

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/send_file_dialog.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -17,25 +17,25 @@ void onChatTap(Room room, BuildContext context) async {
     final inviteAction = await showModalActionSheet<InviteActions>(
       context: context,
       message: room.isDirectChat
-          ? L10n.of(context)!.invitePrivateChat
-          : L10n.of(context)!.inviteGroupChat,
-      title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+          ? L10n.of(context).invitePrivateChat
+          : L10n.of(context).inviteGroupChat,
+      title: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
       actions: [
         SheetAction(
           key: InviteActions.accept,
-          label: L10n.of(context)!.accept,
+          label: L10n.of(context).accept,
           icon: Icons.check_outlined,
           isDefaultAction: true,
         ),
         SheetAction(
           key: InviteActions.decline,
-          label: L10n.of(context)!.decline,
+          label: L10n.of(context).decline,
           icon: Icons.close_outlined,
           isDestructiveAction: true,
         ),
         SheetAction(
           key: InviteActions.block,
-          label: L10n.of(context)!.block,
+          label: L10n.of(context).block,
           icon: Icons.block_outlined,
           isDestructiveAction: true,
         ),
@@ -70,7 +70,7 @@ void onChatTap(Room room, BuildContext context) async {
   if (room.membership == Membership.ban) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(L10n.of(context)!.youHaveBeenBannedFromThisChat),
+        content: Text(L10n.of(context).youHaveBeenBannedFromThisChat),
       ),
     );
     return;
@@ -99,12 +99,12 @@ void onChatTap(Room room, BuildContext context) async {
     } else {
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context)!.forward,
-        message: L10n.of(context)!.forwardMessageTo(
-          room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+        title: L10n.of(context).forward,
+        message: L10n.of(context).forwardMessageTo(
+          room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
         ),
-        okLabel: L10n.of(context)!.forward,
-        cancelLabel: L10n.of(context)!.cancel,
+        okLabel: L10n.of(context).forward,
+        cancelLabel: L10n.of(context).cancel,
       );
       if (consent == OkCancelResult.cancel) {
         Matrix.of(context).shareContent = null;

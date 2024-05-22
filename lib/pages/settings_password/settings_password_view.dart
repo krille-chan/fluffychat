@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -14,10 +14,10 @@ class SettingsPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.changePassword),
+        title: Text(L10n.of(context).changePassword),
         actions: [
           TextButton(
-            child: Text(L10n.of(context)!.passwordRecoverySettings),
+            child: Text(L10n.of(context).passwordRecoverySettings),
             onPressed: () => context.go('/rooms/settings/security/3pid'),
           ),
         ],
@@ -44,7 +44,7 @@ class SettingsPasswordView extends StatelessWidget {
                   autofocus: true,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.pleaseEnterYourCurrentPassword,
+                    hintText: L10n.of(context).pleaseEnterYourCurrentPassword,
                     errorText: controller.oldPasswordError,
                   ),
                 ),
@@ -55,7 +55,7 @@ class SettingsPasswordView extends StatelessWidget {
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.newPassword,
+                    hintText: L10n.of(context).newPassword,
                     errorText: controller.newPassword1Error,
                   ),
                 ),
@@ -66,7 +66,7 @@ class SettingsPasswordView extends StatelessWidget {
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.repeatPassword,
+                    hintText: L10n.of(context).repeatPassword,
                     errorText: controller.newPassword2Error,
                   ),
                 ),
@@ -79,7 +79,7 @@ class SettingsPasswordView extends StatelessWidget {
                     icon: const Icon(Icons.send_outlined),
                     label: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.changePassword),
+                        : Text(L10n.of(context).changePassword),
                   ),
                 ),
               ],

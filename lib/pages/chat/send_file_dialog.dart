@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import '../../utils/resize_image.dart';
@@ -63,7 +63,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var sendStr = L10n.of(context)!.sendFile;
+    var sendStr = L10n.of(context).sendFile;
     final bool allFilesAreImages =
         widget.files.every((file) => file is MatrixImageFile);
     final sizeString = widget.files
@@ -71,14 +71,14 @@ class SendFileDialogState extends State<SendFileDialog> {
         .sizeString;
     final fileName = widget.files.length == 1
         ? widget.files.single.name
-        : L10n.of(context)!.countFiles(widget.files.length.toString());
+        : L10n.of(context).countFiles(widget.files.length.toString());
 
     if (allFilesAreImages) {
-      sendStr = L10n.of(context)!.sendImage;
+      sendStr = L10n.of(context).sendImage;
     } else if (widget.files.every((file) => file is MatrixAudioFile)) {
-      sendStr = L10n.of(context)!.sendAudio;
+      sendStr = L10n.of(context).sendAudio;
     } else if (widget.files.every((file) => file is MatrixVideoFile)) {
-      sendStr = L10n.of(context)!.sendVideo;
+      sendStr = L10n.of(context).sendVideo;
     }
     Widget contentWidget;
     if (allFilesAreImages) {
@@ -115,7 +115,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10n.of(context)!.sendOriginal,
+                      L10n.of(context).sendOriginal,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(sizeString),
@@ -147,7 +147,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      L10n.of(context)!.sendOriginal,
+                      L10n.of(context).sendOriginal,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(sizeString),
@@ -170,11 +170,11 @@ class SendFileDialogState extends State<SendFileDialog> {
             // just close the dialog
             Navigator.of(context, rootNavigator: false).pop();
           },
-          child: Text(L10n.of(context)!.cancel),
+          child: Text(L10n.of(context).cancel),
         ),
         TextButton(
           onPressed: _send,
-          child: Text(L10n.of(context)!.send),
+          child: Text(L10n.of(context).send),
         ),
       ],
     );

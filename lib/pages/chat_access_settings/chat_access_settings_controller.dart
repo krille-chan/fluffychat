@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart' hide Visibility;
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_page.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -121,7 +121,7 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     if (capabilities == null) return;
     final newVersion = await showConfirmationDialog<String>(
       context: context,
-      title: L10n.of(context)!.replaceRoomWithNewerVersion,
+      title: L10n.of(context).replaceRoomWithNewerVersion,
       actions: capabilities.mRoomVersions!.available.entries
           .where((r) => r.key != roomVersion)
           .map(
@@ -138,10 +138,10 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
             await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
-              okLabel: L10n.of(context)!.yes,
-              cancelLabel: L10n.of(context)!.cancel,
-              title: L10n.of(context)!.areYouSure,
-              message: L10n.of(context)!.roomUpgradeDescription,
+              okLabel: L10n.of(context).yes,
+              cancelLabel: L10n.of(context).cancel,
+              title: L10n.of(context).areYouSure,
+              message: L10n.of(context).roomUpgradeDescription,
               isDestructiveAction: true,
             )) {
       return;
@@ -160,12 +160,12 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
 
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context)!.editRoomAliases,
+      title: L10n.of(context).editRoomAliases,
       textFields: [
         DialogTextField(
           prefixText: '#',
           suffixText: domain,
-          hintText: L10n.of(context)!.alias,
+          hintText: L10n.of(context).alias,
         ),
       ],
     );
@@ -184,10 +184,10 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
 
     final canonicalAliasConsent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context)!.setAsCanonicalAlias,
+      title: L10n.of(context).setAsCanonicalAlias,
       message: alias,
-      okLabel: L10n.of(context)!.yes,
-      cancelLabel: L10n.of(context)!.no,
+      okLabel: L10n.of(context).yes,
+      cancelLabel: L10n.of(context).no,
     );
 
     final altAliases = room

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +15,7 @@ import 'package:uni_links/uni_links.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -178,10 +178,10 @@ class ChatListController extends State<ChatList>
   void setServer() async {
     final newServer = await showTextInputDialog(
       useRootNavigator: false,
-      title: L10n.of(context)!.changeTheHomeserver,
+      title: L10n.of(context).changeTheHomeserver,
       context: context,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
           prefixText: 'https://',
@@ -191,7 +191,7 @@ class ChatListController extends State<ChatList>
           autocorrect: false,
           validator: (server) => server?.contains('.') == true
               ? null
-              : L10n.of(context)!.invalidServerName,
+              : L10n.of(context).invalidServerName,
         ),
       ],
     );
@@ -510,10 +510,10 @@ class ChatListController extends State<ChatList>
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.archiveRoomDescription,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).archiveRoomDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -526,7 +526,7 @@ class ChatListController extends State<ChatList>
 
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
-      title: L10n.of(context)!.hidePresences,
+      title: L10n.of(context).hidePresences,
       context: context,
     );
     if (result == OkCancelResult.ok) {
@@ -542,13 +542,13 @@ class ChatListController extends State<ChatList>
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context)!.setStatus,
-      message: L10n.of(context)!.leaveEmptyToClearStatus,
-      okLabel: L10n.of(context)!.ok,
-      cancelLabel: L10n.of(context)!.cancel,
+      title: L10n.of(context).setStatus,
+      message: L10n.of(context).leaveEmptyToClearStatus,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
       textFields: [
         DialogTextField(
-          hintText: L10n.of(context)!.statusExampleMessage,
+          hintText: L10n.of(context).statusExampleMessage,
           maxLines: 6,
           minLines: 1,
           maxLength: 255,
@@ -583,8 +583,8 @@ class ChatListController extends State<ChatList>
   Future<void> addToSpace() async {
     final selectedSpace = await showConfirmationDialog<String>(
       context: context,
-      title: L10n.of(context)!.addToSpace,
-      message: L10n.of(context)!.addToSpaceDescription,
+      title: L10n.of(context).addToSpace,
+      message: L10n.of(context).addToSpaceDescription,
       fullyCapitalizedForMaterial: false,
       actions: Matrix.of(context)
           .client
@@ -593,8 +593,8 @@ class ChatListController extends State<ChatList>
           .map(
             (space) => AlertDialogAction(
               key: space.id,
-              label: space
-                  .getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+              label:
+                  space.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
             ),
           )
           .toList(),
@@ -615,7 +615,7 @@ class ChatListController extends State<ChatList>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context)!.chatHasBeenAddedToThisSpace),
+          content: Text(L10n.of(context).chatHasBeenAddedToThisSpace),
         ),
       );
     }
@@ -699,22 +699,22 @@ class ChatListController extends State<ChatList>
   }
 
   void editBundlesForAccount(String? userId, String? activeBundle) async {
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
     final client = Matrix.of(context)
         .widget
         .clients[Matrix.of(context).getClientIndexByMatrixId(userId!)];
     final action = await showConfirmationDialog<EditBundleAction>(
       context: context,
-      title: L10n.of(context)!.editBundlesForAccount,
+      title: L10n.of(context).editBundlesForAccount,
       actions: [
         AlertDialogAction(
           key: EditBundleAction.addToBundle,
-          label: L10n.of(context)!.addToBundle,
+          label: L10n.of(context).addToBundle,
         ),
         if (activeBundle != client.userID)
           AlertDialogAction(
             key: EditBundleAction.removeFromBundle,
-            label: L10n.of(context)!.removeFromBundle,
+            label: L10n.of(context).removeFromBundle,
           ),
       ],
     );

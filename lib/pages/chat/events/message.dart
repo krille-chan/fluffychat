@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -236,7 +236,9 @@ class Message extends StatelessWidget {
                               if (!nextEventSameSender)
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8.0, bottom: 4),
+                                    left: 8.0,
+                                    bottom: 4,
+                                  ),
                                   child: ownMessage || event.room.isDirectChat
                                       ? const SizedBox(height: 12)
                                       : FutureBuilder<User?>(
@@ -315,8 +317,10 @@ class Message extends StatelessWidget {
                                               FutureBuilder<Event?>(
                                                 future: event
                                                     .getReplyEvent(timeline),
-                                                builder: (BuildContext context,
-                                                    snapshot) {
+                                                builder: (
+                                                  BuildContext context,
+                                                  snapshot,
+                                                ) {
                                                   final replyEvent = snapshot
                                                           .hasData
                                                       ? snapshot.data!
@@ -483,7 +487,7 @@ class Message extends StatelessWidget {
                     horizontal: 8,
                   ),
                   child: Text(
-                    L10n.of(context)!.readUpToHere,
+                    L10n.of(context).readUpToHere,
                     style:
                         TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),

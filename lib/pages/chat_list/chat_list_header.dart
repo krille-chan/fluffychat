@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import '../../widgets/matrix.dart';
@@ -33,14 +32,14 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: selectMode == SelectMode.normal
           ? null
           : IconButton(
-              tooltip: L10n.of(context)!.cancel,
+              tooltip: L10n.of(context).cancel,
               icon: const Icon(Icons.close_outlined),
               onPressed: controller.cancelAction,
               color: Theme.of(context).colorScheme.primary,
             ),
       title: selectMode == SelectMode.share
           ? Text(
-              L10n.of(context)!.share,
+              L10n.of(context).share,
               key: const ValueKey(SelectMode.share),
             )
           : selectMode == SelectMode.select
@@ -63,7 +62,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                       borderRadius: BorderRadius.circular(99),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    hintText: L10n.of(context)!.searchChatsRooms,
+                    hintText: L10n.of(context).searchChatsRooms,
                     hintStyle: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.normal,
@@ -71,7 +70,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     prefixIcon: controller.isSearchMode
                         ? IconButton(
-                            tooltip: L10n.of(context)!.cancel,
+                            tooltip: L10n.of(context).cancel,
                             icon: const Icon(Icons.close_outlined),
                             onPressed: controller.cancelSearch,
                             color: Theme.of(context)
@@ -139,12 +138,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               ? [
                   if (controller.spaces.isNotEmpty)
                     IconButton(
-                      tooltip: L10n.of(context)!.addToSpace,
+                      tooltip: L10n.of(context).addToSpace,
                       icon: const Icon(Icons.workspaces_outlined),
                       onPressed: controller.addToSpace,
                     ),
                   IconButton(
-                    tooltip: L10n.of(context)!.toggleUnread,
+                    tooltip: L10n.of(context).toggleUnread,
                     icon: Icon(
                       controller.anySelectedRoomNotMarkedUnread
                           ? Icons.mark_chat_unread_outlined
@@ -153,7 +152,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: controller.toggleUnread,
                   ),
                   IconButton(
-                    tooltip: L10n.of(context)!.toggleFavorite,
+                    tooltip: L10n.of(context).toggleFavorite,
                     icon: Icon(
                       controller.anySelectedRoomNotFavorite
                           ? Icons.push_pin
@@ -167,12 +166,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                           ? Icons.notifications_off_outlined
                           : Icons.notifications_outlined,
                     ),
-                    tooltip: L10n.of(context)!.toggleMuted,
+                    tooltip: L10n.of(context).toggleMuted,
                     onPressed: controller.toggleMuted,
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete_outlined),
-                    tooltip: L10n.of(context)!.archive,
+                    tooltip: L10n.of(context).archive,
                     onPressed: controller.archiveAction,
                   ),
                 ]

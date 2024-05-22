@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 class LoginScaffold extends StatelessWidget {
@@ -126,14 +126,14 @@ class _PrivacyButtons extends StatelessWidget {
             TextButton(
               onPressed: () => PlatformInfos.showDialog(context),
               child: Text(
-                L10n.of(context)!.about,
+                L10n.of(context).about,
                 style: shadowTextStyle,
               ),
             ),
             TextButton(
               onPressed: () => launchUrlString(AppConfig.privacyUrl),
               child: Text(
-                L10n.of(context)!.privacy,
+                L10n.of(context).privacy,
                 style: shadowTextStyle,
               ),
             ),

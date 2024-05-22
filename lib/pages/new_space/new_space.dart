@@ -3,11 +3,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -53,7 +53,7 @@ class NewSpaceController extends State<NewSpace> {
     });
     if (nameController.text.isEmpty) {
       setState(() {
-        nameError = L10n.of(context)!.pleaseChoose;
+        nameError = L10n.of(context).pleaseChoose;
       });
       return;
     }

@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -85,17 +85,17 @@ class ChatListViewBody extends StatelessWidget {
                     [
                       if (controller.isSearchMode) ...[
                         SearchTitle(
-                          title: L10n.of(context)!.publicRooms,
+                          title: L10n.of(context).publicRooms,
                           icon: const Icon(Icons.explore_outlined),
                         ),
                         PublicRoomsHorizontalList(publicRooms: publicRooms),
                         SearchTitle(
-                          title: L10n.of(context)!.publicSpaces,
+                          title: L10n.of(context).publicSpaces,
                           icon: const Icon(Icons.workspaces_outlined),
                         ),
                         PublicRoomsHorizontalList(publicRooms: publicSpaces),
                         SearchTitle(
-                          title: L10n.of(context)!.users,
+                          title: L10n.of(context).users,
                           icon: const Icon(Icons.group_outlined),
                         ),
                         AnimatedContainer(
@@ -117,7 +117,7 @@ class ChatListViewBody extends StatelessWidget {
                                             .results[i].displayName ??
                                         userSearchResult
                                             .results[i].userId.localpart ??
-                                        L10n.of(context)!.unknownDevice,
+                                        L10n.of(context).unknownDevice,
                                     avatar:
                                         userSearchResult.results[i].avatarUrl,
                                     onPressed: () => showAdaptiveBottomSheet(
@@ -151,8 +151,8 @@ class ChatListViewBody extends StatelessWidget {
                           color: Theme.of(context).colorScheme.surface,
                           child: ListTile(
                             leading: const Icon(Icons.vpn_key),
-                            title: Text(L10n.of(context)!.dehydrateTor),
-                            subtitle: Text(L10n.of(context)!.dehydrateTorLong),
+                            title: Text(L10n.of(context).dehydrateTor),
+                            subtitle: Text(L10n.of(context).dehydrateTorLong),
                             trailing: const Icon(Icons.chevron_right_outlined),
                             onTap: controller.dehydrate,
                           ),
@@ -160,7 +160,7 @@ class ChatListViewBody extends StatelessWidget {
                       ),
                       if (controller.isSearchMode)
                         SearchTitle(
-                          title: L10n.of(context)!.chats,
+                          title: L10n.of(context).chats,
                           icon: const Icon(Icons.forum_outlined),
                         ),
                       if (client.prevBatch != null &&
@@ -290,7 +290,7 @@ class PublicRoomsHorizontalList extends StatelessWidget {
               itemBuilder: (context, i) => _SearchItem(
                 title: publicRooms[i].name ??
                     publicRooms[i].canonicalAlias?.localpart ??
-                    L10n.of(context)!.group,
+                    L10n.of(context).group,
                 avatar: publicRooms[i].avatarUrl,
                 onPressed: () => showAdaptiveBottomSheet(
                   context: context,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 
 class PermissionsListTile extends StatelessWidget {
   final String permissionKey;
@@ -25,43 +25,43 @@ class PermissionsListTile extends StatelessWidget {
     if (category == null) {
       switch (permissionKey) {
         case 'users_default':
-          return L10n.of(context)!.defaultPermissionLevel;
+          return L10n.of(context).defaultPermissionLevel;
         case 'events_default':
-          return L10n.of(context)!.sendMessages;
+          return L10n.of(context).sendMessages;
         case 'state_default':
-          return L10n.of(context)!.configureChat;
+          return L10n.of(context).configureChat;
         case 'ban':
-          return L10n.of(context)!.banFromChat;
+          return L10n.of(context).banFromChat;
         case 'kick':
-          return L10n.of(context)!.kickFromChat;
+          return L10n.of(context).kickFromChat;
         case 'redact':
-          return L10n.of(context)!.deleteMessage;
+          return L10n.of(context).deleteMessage;
         case 'invite':
-          return L10n.of(context)!.inviteContact;
+          return L10n.of(context).inviteContact;
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
         case 'rooms':
-          return L10n.of(context)!.notifications;
+          return L10n.of(context).notifications;
       }
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
-          return L10n.of(context)!.changeTheNameOfTheGroup;
+          return L10n.of(context).changeTheNameOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context)!.chatPermissions;
+          return L10n.of(context).chatPermissions;
         case EventTypes.HistoryVisibility:
-          return L10n.of(context)!.visibilityOfTheChatHistory;
+          return L10n.of(context).visibilityOfTheChatHistory;
         case EventTypes.RoomCanonicalAlias:
-          return L10n.of(context)!.setInvitationLink;
+          return L10n.of(context).setInvitationLink;
         case EventTypes.RoomAvatar:
-          return L10n.of(context)!.editRoomAvatar;
+          return L10n.of(context).editRoomAvatar;
         case EventTypes.RoomTombstone:
-          return L10n.of(context)!.replaceRoomWithNewerVersion;
+          return L10n.of(context).replaceRoomWithNewerVersion;
         case EventTypes.Encryption:
-          return L10n.of(context)!.enableEncryption;
+          return L10n.of(context).enableEncryption;
         case 'm.room.server_acl':
-          return L10n.of(context)!.editBlockedServers;
+          return L10n.of(context).editBlockedServers;
       }
     }
     return permissionKey;
@@ -72,7 +72,7 @@ class PermissionsListTile extends StatelessWidget {
     return ListTile(
       title: Text(getLocalizedPowerLevelString(context)),
       subtitle: Text(
-        L10n.of(context)!.minimumPowerLevel(permission.toString()),
+        L10n.of(context).minimumPowerLevel(permission.toString()),
       ),
       trailing: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
@@ -86,19 +86,19 @@ class PermissionsListTile extends StatelessWidget {
           items: [
             DropdownMenuItem(
               value: 0,
-              child: Text(L10n.of(context)!.user),
+              child: Text(L10n.of(context).user),
             ),
             DropdownMenuItem(
               value: 50,
-              child: Text(L10n.of(context)!.moderator),
+              child: Text(L10n.of(context).moderator),
             ),
             DropdownMenuItem(
               value: 100,
-              child: Text(L10n.of(context)!.admin),
+              child: Text(L10n.of(context).admin),
             ),
             DropdownMenuItem(
               value: null,
-              child: Text(L10n.of(context)!.custom),
+              child: Text(L10n.of(context).custom),
             ),
           ],
         ),

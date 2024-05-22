@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -43,7 +43,7 @@ class ChatInputRow extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         const Icon(Icons.delete),
-                        Text(L10n.of(context)!.delete),
+                        Text(L10n.of(context).delete),
                       ],
                     ),
                   ),
@@ -56,7 +56,7 @@ class ChatInputRow extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         const Icon(Icons.keyboard_arrow_left_outlined),
-                        Text(L10n.of(context)!.forward),
+                        Text(L10n.of(context).forward),
                       ],
                     ),
                   ),
@@ -72,7 +72,7 @@ class ChatInputRow extends StatelessWidget {
                             onPressed: controller.replyAction,
                             child: Row(
                               children: <Widget>[
-                                Text(L10n.of(context)!.reply),
+                                Text(L10n.of(context).reply),
                                 const Icon(Icons.keyboard_arrow_right),
                               ],
                             ),
@@ -84,7 +84,7 @@ class ChatInputRow extends StatelessWidget {
                             onPressed: controller.sendAgainAction,
                             child: Row(
                               children: <Widget>[
-                                Text(L10n.of(context)!.tryToSendAgain),
+                                Text(L10n.of(context).tryToSendAgain),
                                 const SizedBox(width: 4),
                                 const Icon(Icons.send_outlined, size: 16),
                               ],
@@ -102,7 +102,7 @@ class ChatInputRow extends StatelessWidget {
                 },
                 onKeysPressed: () =>
                     controller.onAddPopupMenuButtonSelected('file'),
-                helpLabel: L10n.of(context)!.sendFile,
+                helpLabel: L10n.of(context).sendFile,
                 child: AnimatedContainer(
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
@@ -124,7 +124,7 @@ class ChatInputRow extends StatelessWidget {
                             foregroundColor: Colors.white,
                             child: Icon(Icons.attachment_outlined),
                           ),
-                          title: Text(L10n.of(context)!.sendFile),
+                          title: Text(L10n.of(context).sendFile),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
@@ -136,7 +136,7 @@ class ChatInputRow extends StatelessWidget {
                             foregroundColor: Colors.white,
                             child: Icon(Icons.image_outlined),
                           ),
-                          title: Text(L10n.of(context)!.sendImage),
+                          title: Text(L10n.of(context).sendImage),
                           contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
@@ -149,7 +149,7 @@ class ChatInputRow extends StatelessWidget {
                               foregroundColor: Colors.white,
                               child: Icon(Icons.camera_alt_outlined),
                             ),
-                            title: Text(L10n.of(context)!.openCamera),
+                            title: Text(L10n.of(context).openCamera),
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
@@ -162,7 +162,7 @@ class ChatInputRow extends StatelessWidget {
                               foregroundColor: Colors.white,
                               child: Icon(Icons.videocam_outlined),
                             ),
-                            title: Text(L10n.of(context)!.openVideoCamera),
+                            title: Text(L10n.of(context).openVideoCamera),
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
@@ -175,7 +175,7 @@ class ChatInputRow extends StatelessWidget {
                               foregroundColor: Colors.white,
                               child: Icon(Icons.gps_fixed_outlined),
                             ),
-                            title: Text(L10n.of(context)!.shareLocation),
+                            title: Text(L10n.of(context).shareLocation),
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
@@ -193,9 +193,9 @@ class ChatInputRow extends StatelessWidget {
                     LogicalKeyboardKey.keyE,
                   },
                   onKeysPressed: controller.emojiPickerAction,
-                  helpLabel: L10n.of(context)!.emojis,
+                  helpLabel: L10n.of(context).emojis,
                   child: IconButton(
-                    tooltip: L10n.of(context)!.emojis,
+                    tooltip: L10n.of(context).emojis,
                     icon: PageTransitionSwitcher(
                       transitionBuilder: (
                         Widget child,
@@ -254,7 +254,7 @@ class ChatInputRow extends StatelessWidget {
                         bottom: 6.0,
                         top: 3.0,
                       ),
-                      hintText: L10n.of(context)!.writeAMessage,
+                      hintText: L10n.of(context).writeAMessage,
                       hintMaxLines: 1,
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
@@ -271,7 +271,7 @@ class ChatInputRow extends StatelessWidget {
                 child: PlatformInfos.platformCanRecord &&
                         controller.sendController.text.isEmpty
                     ? FloatingActionButton.small(
-                        tooltip: L10n.of(context)!.voiceMessage,
+                        tooltip: L10n.of(context).voiceMessage,
                         onPressed: controller.voiceMessageAction,
                         elevation: 0,
                         heroTag: null,
@@ -284,7 +284,7 @@ class ChatInputRow extends StatelessWidget {
                         child: const Icon(Icons.mic_none_outlined),
                       )
                     : FloatingActionButton.small(
-                        tooltip: L10n.of(context)!.send,
+                        tooltip: L10n.of(context).send,
                         onPressed: controller.send,
                         elevation: 0,
                         heroTag: null,
