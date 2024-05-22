@@ -80,18 +80,26 @@ class PangeaMessageEvent {
     return _latestEdit;
   }
 
-  bool showRichText(bool selected, bool highlighted) {
+  bool showRichText(
+    bool selected, {
+    bool highlighted = false,
+    bool isOverlay = false,
+  }) {
     if (!_isValidPangeaMessageEvent) {
       return false;
     }
-    // if (URLFinder.getMatches(event.body).isNotEmpty) {
-    //   return false;
-    // }
+
     if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
       return false;
     }
-    if (ownMessage && !selected && !highlighted) return false;
 
+    if (isOverlay) return true;
+
+    // if ownMessage, don't show rich text if not selected or highlighted
+    // and don't show is the message is not an overlay
+    if (ownMessage && ((!selected && !highlighted) || !isOverlay)) {
+      return false;
+    }
     return true;
   }
 
