@@ -62,6 +62,13 @@ class LanguageDetectionResponse {
       fullText: json['full_text'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'detections': detections,
+      'full_text': fullText,
+    };
+  }
 }
 
 class _LanguageDetectionCacheItem {

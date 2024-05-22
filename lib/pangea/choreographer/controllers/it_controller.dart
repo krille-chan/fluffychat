@@ -15,7 +15,6 @@ import '../../models/it_response_model.dart';
 import '../../models/it_step.dart';
 import '../../models/system_choice_translation_model.dart';
 import '../../repo/interactive_translation_repo.dart';
-import '../../repo/message_service.repo.dart';
 import 'choreographer.dart';
 
 class ITController {
@@ -247,19 +246,19 @@ class ITController {
         ),
       );
 
-  MessageServiceModel? messageServiceModelWithMessageId() =>
-      usedInteractiveTranslation
-          ? MessageServiceModel(
-              classId: choreographer.classId,
-              roomId: choreographer.roomId,
-              message: choreographer.currentText,
-              messageId: null,
-              payloadIds: payLoadIds,
-              userId: choreographer.userId!,
-              l1Lang: sourceLangCode,
-              l2Lang: targetLangCode,
-            )
-          : null;
+  // MessageServiceModel? messageServiceModelWithMessageId() =>
+  //     usedInteractiveTranslation
+  //         ? MessageServiceModel(
+  //             classId: choreographer.classId,
+  //             roomId: choreographer.roomId,
+  //             message: choreographer.currentText,
+  //             messageId: null,
+  //             payloadIds: payLoadIds,
+  //             userId: choreographer.userId!,
+  //             l1Lang: sourceLangCode,
+  //             l2Lang: targetLangCode,
+  //           )
+  //         : null;
 
   //maybe we store IT data in the same format? make a specific kind of match?
   void selectTranslation(int chosenIndex) {
