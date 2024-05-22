@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
+import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/local_settings.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
@@ -51,6 +52,7 @@ class PangeaController {
   late SubscriptionController subscriptionController;
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
+  late LanguageDetectionController languageDetection;
 
   ///store Services
   late PLocalStore pStoreService;
@@ -98,6 +100,7 @@ class PangeaController {
     itFeedback = ITFeedbackController(this);
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
+    languageDetection = LanguageDetectionController(this);
     PAuthGaurd.pController = this;
   }
 

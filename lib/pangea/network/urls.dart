@@ -24,12 +24,11 @@ class PApiUrls {
   ///   ---------------------- Conversation Partner -------------------------
   static String searchUserProfiles = "/account/search";
 
-  ///-------------------------------- Deprecated analytics --------------------
-  static String classAnalytics = "${Environment.choreoApi}/class_analytics";
-  static String messageService = "/message_service";
-
   ///-------------------------------- choreo --------------------------
   static String igc = "${Environment.choreoApi}/grammar";
+
+  static String languageDetection =
+      "${Environment.choreoApi}/language_detection";
 
   static String igcLite = "${Environment.choreoApi}/grammar_lite";
   static String spanDetails = "${Environment.choreoApi}/span_details";

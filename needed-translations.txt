@@ -821,6 +821,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -2242,6 +2244,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -3125,6 +3129,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -4008,6 +4014,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -4891,6 +4899,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -5774,6 +5784,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -6604,6 +6616,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -7487,6 +7501,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -8370,8 +8386,15 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
+  ],
+
+  "es": [
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing"
   ],
 
   "et": [
@@ -9196,6 +9219,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -10022,6 +10047,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -10905,6 +10932,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -11788,6 +11817,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -12671,6 +12702,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -13554,6 +13587,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -14380,6 +14415,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -15263,6 +15300,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -16146,6 +16185,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -17016,6 +17057,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -17899,6 +17942,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -19306,6 +19351,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -20189,6 +20236,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -21072,6 +21121,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -21940,6 +21991,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -22823,6 +22876,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -23706,6 +23761,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -24589,6 +24646,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -25472,6 +25531,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -26355,6 +26416,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -27238,6 +27301,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -28121,6 +28186,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -29004,6 +29071,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -29856,6 +29925,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -30739,6 +30810,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -31622,6 +31695,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -32448,6 +32523,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -33331,6 +33408,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -34214,6 +34293,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -35097,6 +35178,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -35945,6 +36028,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -36828,6 +36913,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -37711,6 +37798,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -38579,6 +38668,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -39405,6 +39496,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -40288,6 +40381,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -41114,6 +41209,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ],
@@ -41997,6 +42094,8 @@
     "accuracy",
     "points",
     "noPaymentInfo",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
     "updatePhoneOS",
     "wordsPerMinute"
   ]
