@@ -1,11 +1,13 @@
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_discussion_keywords_input.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_discussion_topic_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class ConversationBotDiscussionZone extends StatelessWidget {
   final BotOptionsModel initialBotOptions;
   // call this to update propagate changes to parents
-  final void Function(BotOptionsModel?)? onChanged;
+  final void Function(BotOptionsModel) onChanged;
 
   const ConversationBotDiscussionZone({
     super.key,
@@ -15,8 +17,9 @@ class ConversationBotDiscussionZone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String discussionTopic = initialBotOptions.discussionTopic ?? "";
-    String discussionKeywords = initialBotOptions.discussionKeywords ?? "";
+    final String discussionTopic = initialBotOptions.discussionTopic ?? "";
+    final String discussionKeywords =
+        initialBotOptions.discussionKeywords ?? "";
     // int discussionTriggerScheduleHourInterval =
     //     initialBotOptions.discussionTriggerScheduleHourInterval ?? 24;
     // String discussionTriggerReactionKey =
@@ -37,57 +40,47 @@ class ConversationBotDiscussionZone extends StatelessWidget {
           thickness: 1,
         ),
         const SizedBox(height: 12),
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: TextField(
-            controller: TextEditingController(text: discussionTopic),
-            onChanged: (value) {
-              discussionTopic = value;
-            },
-            decoration: InputDecoration(
-              labelText: L10n.of(context)!
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            child: Text(
+              L10n.of(context)!
                   .conversationBotDiscussionZone_discussionTopicLabel,
-              floatingLabelBehavior: FloatingLabelBehavior.auto,
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.check),
-                onPressed: () {
-                  if (discussionTopic != initialBotOptions.discussionTopic) {
-                    initialBotOptions.discussionTopic = discussionTopic;
-                    onChanged?.call(
-                      initialBotOptions,
-                    );
-                  }
-                },
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
         ),
-        const SizedBox(height: 12),
         Padding(
           padding: const EdgeInsets.all(8),
-          child: TextField(
-            controller: TextEditingController(text: discussionKeywords),
-            onChanged: (value) {
-              discussionKeywords = value;
-            },
-            decoration: InputDecoration(
-              labelText: L10n.of(context)!
+          child: ConversationBotDiscussionTopicInput(
+            initialBotOptions: initialBotOptions,
+            onChanged: onChanged,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+            child: Text(
+              L10n.of(context)!
                   .conversationBotDiscussionZone_discussionKeywordsLabel,
-              floatingLabelBehavior: FloatingLabelBehavior.auto,
-              hintText: L10n.of(context)!
-                  .conversationBotDiscussionZone_discussionKeywordsHintText,
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.check),
-                onPressed: () {
-                  if (discussionTopic != initialBotOptions.discussionKeywords) {
-                    initialBotOptions.discussionKeywords = discussionKeywords;
-                    onChanged?.call(
-                      initialBotOptions,
-                    );
-                  }
-                },
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
               ),
             ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: ConversationBotDiscussionKeywordsInput(
+            initialBotOptions: initialBotOptions,
+            onChanged: onChanged,
           ),
         ),
         const SizedBox(height: 12),
@@ -135,7 +128,7 @@ class ConversationBotDiscussionZone extends StatelessWidget {
         //       ),
         //     ),
         //   ),
-        const SizedBox(height: 12),
+        // const SizedBox(height: 12),
         CheckboxListTile(
           title: Text(
             L10n.of(context)!
@@ -146,7 +139,7 @@ class ConversationBotDiscussionZone extends StatelessWidget {
             initialBotOptions.discussionTriggerReactionEnabled = value ?? false;
             initialBotOptions.discussionTriggerReactionKey =
                 "⏩"; // hard code this for now
-            onChanged?.call(initialBotOptions);
+            onChanged.call(initialBotOptions);
           },
         ),
         // if (initialBotOptions.discussionTriggerReactionEnabled == true)

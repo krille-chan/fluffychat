@@ -8,7 +8,7 @@ import 'conversation_bot_discussion_zone.dart';
 
 class ConversationBotModeDynamicZone extends StatelessWidget {
   final BotOptionsModel initialBotOptions;
-  final void Function(BotOptionsModel?)? onChanged;
+  final void Function(BotOptionsModel) onChanged;
 
   const ConversationBotModeDynamicZone({
     super.key,
