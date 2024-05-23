@@ -1,8 +1,5 @@
-import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
-import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// this class is contained within a [RepresentationEvent]
 /// this event is the child of a [EventTypes.Message]
@@ -56,14 +53,6 @@ class PangeaRepresentation {
   });
 
   factory PangeaRepresentation.fromJson(Map<String, dynamic> json) {
-    if (json[_langCodeKey] == LanguageKeys.unknownLanguage) {
-      ErrorHandler.logError(
-        e: Exception("Language code cannot be 'unk'"),
-        s: StackTrace.current,
-        data: {"rep_content": json},
-        level: SentryLevel.warning,
-      );
-    }
     return PangeaRepresentation(
       langCode: json[_langCodeKey],
       text: json[_textKey],
