@@ -17,7 +17,14 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 
 class NewGroup extends StatefulWidget {
-  const NewGroup({super.key});
+  // #Pangea
+  final String? spaceId;
+
+  const NewGroup({
+    super.key,
+    this.spaceId,
+  });
+  // Pangea#
 
   @override
   NewGroupController createState() => NewGroupController();
@@ -50,7 +57,7 @@ class NewGroupController extends State<NewGroup> {
   void setVocab(List<Lemma> vocab) => setState(() => chatTopic.vocab = vocab);
 
   String? get activeSpaceId =>
-      GoRouterState.of(context).pathParameters['spaceid'];
+      GoRouterState.of(context).uri.queryParameters['spaceId'];
   // Pangea#
 
   void setPublicGroup(bool b) => setState(() => publicGroup = b);

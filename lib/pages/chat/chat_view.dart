@@ -117,7 +117,8 @@ class ChatView extends StatelessWidget {
       // #Pangea
     } else {
       return [
-        ChatSettingsPopupMenu(controller.room, !controller.room.isDirectChat),
+        ChatSettingsPopupMenu(controller.room,
+            (!controller.room.isDirectChat && !controller.room.isArchived)),
       ];
     }
 

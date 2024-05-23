@@ -248,6 +248,38 @@ class ConstructListViewState extends State<ConstructListView> {
         (element) => element.content.lemma == widget.controller.currentLemma,
       );
 
+  // given the current lemma and list of message events, return a list of
+  // MessageEventMatch objects, which contain one PangeaMessageEvent to one PangeaMatch
+  // this is because some message events may have has more than one PangeaMatch of a
+  // given lemma type.
+  List<MessageEventMatch> getMessageEventMatches() {
+    if (widget.controller.currentLemma == null) return [];
+    final List<MessageEventMatch> allMsgErrorSteps = [];
+
+    for (final msgEvent in _msgEvents) {
+      if (allMsgErrorSteps.any(
+        (element) => element.msgEvent.eventId == msgEvent.eventId,
+      )) {
+        continue;
+      }
+      // get all the pangea matches in that message which have that lemma
+      final List<PangeaMatch>? msgErrorSteps = msgEvent.errorSteps(
+        widget.controller.currentLemma!,
+      );
+      if (msgErrorSteps == null) continue;
+
+      allMsgErrorSteps.addAll(
+        msgErrorSteps.map(
+          (errorStep) => MessageEventMatch(
+            msgEvent: msgEvent,
+            lemmaMatch: errorStep,
+          ),
+        ),
+      );
+    }
+    return allMsgErrorSteps;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.init || fetchingUses) {
@@ -261,6 +293,8 @@ class ConstructListViewState extends State<ConstructListView> {
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
     }
+
+    final msgEventMatches = getMessageEventMatches();
 
     return widget.controller.currentLemma == null
         ? Expanded(
@@ -299,11 +333,12 @@ class ConstructListViewState extends State<ConstructListView> {
                   child: ListView.separated(
                     separatorBuilder: (context, index) =>
                         const Divider(height: 1),
-                    itemCount: _msgEvents.length,
+                    itemCount: msgEventMatches.length,
                     itemBuilder: (context, index) {
                       return ConstructMessage(
-                        msgEvent: _msgEvents[index],
+                        msgEvent: msgEventMatches[index].msgEvent,
                         lemma: widget.controller.currentLemma!,
+                        errorMessage: msgEventMatches[index].lemmaMatch,
                       );
                     },
                   ),
@@ -316,21 +351,18 @@ class ConstructListViewState extends State<ConstructListView> {
 
 class ConstructMessage extends StatelessWidget {
   final PangeaMessageEvent msgEvent;
+  final PangeaMatch errorMessage;
   final String lemma;
 
   const ConstructMessage({
     super.key,
     required this.msgEvent,
+    required this.errorMessage,
     required this.lemma,
   });
 
   @override
   Widget build(BuildContext context) {
-    final PangeaMatch? errorMessage = msgEvent.firstErrorStep(lemma);
-    if (errorMessage == null) {
-      return const SizedBox.shrink();
-    }
-
     final String? chosen = errorMessage.match.choices
         ?.firstWhereOrNull(
           (element) => element.selected == true,
@@ -488,6 +520,14 @@ class ConstructMessageMetadata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String roomName = msgEvent.event.room.name.isEmpty
+        ? Matrix.of(context)
+                .client
+                .getRoomById(msgEvent.event.room.id)
+                ?.getLocalizedDisplayname() ??
+            ""
+        : msgEvent.event.room.name;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
       child: Column(
@@ -496,9 +536,19 @@ class ConstructMessageMetadata extends StatelessWidget {
             msgEvent.event.originServerTs.localizedTime(context),
             style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
           ),
-          Text(msgEvent.event.room.name),
+          Text(roomName),
         ],
       ),
     );
   }
+}
+
+class MessageEventMatch {
+  final PangeaMessageEvent msgEvent;
+  final PangeaMatch lemmaMatch;
+
+  MessageEventMatch({
+    required this.msgEvent,
+    required this.lemmaMatch,
+  });
 }

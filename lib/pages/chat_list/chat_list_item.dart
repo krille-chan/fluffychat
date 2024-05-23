@@ -53,6 +53,11 @@ class ChatListItem extends StatelessWidget {
         message: L10n.of(context)!.archiveRoomDescription,
       );
       if (confirmed == OkCancelResult.cancel) return;
+      // #Pangea
+      if (room.isUnread) {
+        await room.markUnread(false);
+      }
+      // Pangea#
       await showFutureLoadingDialog(
         context: context,
         future: () => room.leave(),

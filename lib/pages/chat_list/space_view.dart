@@ -237,6 +237,10 @@ class _SpaceViewState extends State<SpaceView> {
             icon: Icons.send_outlined,
           ),
         if (spaceChild != null &&
+            // #Pangea
+            room != null &&
+            room.ownPowerLevel >= ClassDefaultValues.powerLevelOfAdmin &&
+            // Pangea#
             (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
@@ -284,7 +288,10 @@ class _SpaceViewState extends State<SpaceView> {
           // #Pangea
           // future: room!.leave,
           future: () async {
-            await room!.leave();
+            if (room!.isUnread) {
+              await room.markUnread(false);
+            }
+            await room.leave();
             if (Matrix.of(context).activeRoomId == room.id) {
               context.go('/rooms');
             }

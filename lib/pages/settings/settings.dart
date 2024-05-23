@@ -42,6 +42,9 @@ class SettingsController extends State<Settings> {
       cancelLabel: L10n.of(context)!.cancel,
       textFields: [
         DialogTextField(
+          // #Pangea
+          maxLength: 32,
+          // Pangea#
           initialText: profile?.displayName ??
               Matrix.of(context).client.userID!.localpart,
         ),

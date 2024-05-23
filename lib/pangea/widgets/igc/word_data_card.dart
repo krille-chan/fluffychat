@@ -314,6 +314,23 @@ class PartOfSpeechBlock extends StatelessWidget {
     required this.languageType,
   });
 
+  String get exampleSentence => languageType == LanguageType.target
+      ? wordData.targetExampleSentence
+      : wordData.baseExampleSentence;
+
+  String get definition => languageType == LanguageType.target
+      ? wordData.targetDefinition
+      : wordData.baseDefinition;
+
+  String formattedTitle(BuildContext context) {
+    final String word = languageType == LanguageType.target
+        ? wordData.targetWord
+        : wordData.baseWord;
+    String? pos = wordData.formattedPartOfSpeech(languageType);
+    if (pos == null || pos.isEmpty) pos = L10n.of(context)!.unkDisplayName;
+    return "$word (${wordData.formattedPartOfSpeech(languageType)})";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -324,9 +341,7 @@ class PartOfSpeechBlock extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              languageType == LanguageType.target
-                  ? "${wordData.targetWord} (${wordData.formattedPartOfSpeech(languageType)})"
-                  : "${wordData.baseWord} (${wordData.formattedPartOfSpeech(languageType)})",
+              formattedTitle(context),
               style: BotStyle.text(context, italics: true, bold: false),
             ),
           ),
@@ -337,47 +352,43 @@ class PartOfSpeechBlock extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Column(
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      style: BotStyle.text(
-                        context,
-                        italics: false,
-                        bold: false,
+                  if (definition.isNotEmpty)
+                    RichText(
+                      text: TextSpan(
+                        style: BotStyle.text(
+                          context,
+                          italics: false,
+                          bold: false,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "${L10n.of(context)!.definition}: ",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(text: definition),
+                        ],
                       ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "${L10n.of(context)!.definition}: ",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: languageType == LanguageType.target
-                              ? wordData.targetDefinition
-                              : wordData.baseDefinition,
-                        ),
-                      ],
                     ),
-                  ),
                   const SizedBox(height: 10),
-                  RichText(
-                    text: TextSpan(
-                      style: BotStyle.text(
-                        context,
-                        italics: false,
-                        bold: false,
+                  if (exampleSentence.isNotEmpty)
+                    RichText(
+                      text: TextSpan(
+                        style: BotStyle.text(
+                          context,
+                          italics: false,
+                          bold: false,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "${L10n.of(context)!.exampleSentence}: ",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(text: exampleSentence),
+                        ],
                       ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "${L10n.of(context)!.exampleSentence}: ",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                          text: languageType == LanguageType.target
-                              ? wordData.targetExampleSentence
-                              : wordData.baseExampleSentence,
-                        ),
-                      ],
                     ),
-                  ),
                 ],
               ),
             ),
