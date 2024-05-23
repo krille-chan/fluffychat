@@ -8527,26 +8527,6 @@
     "wordsPerMinute"
   ],
 
-  "es": [
-    "conversationBotModeSelectDescription",
-    "conversationBotModeSelectOption_discussion",
-    "conversationBotModeSelectOption_custom",
-    "conversationBotModeSelectOption_conversation",
-    "conversationBotModeSelectOption_textAdventure",
-    "conversationBotDiscussionZone_title",
-    "conversationBotDiscussionZone_discussionTopicLabel",
-    "conversationBotDiscussionZone_discussionTopicPlaceholder",
-    "conversationBotDiscussionZone_discussionKeywordsLabel",
-    "conversationBotDiscussionZone_discussionKeywordsPlaceholder",
-    "conversationBotDiscussionZone_discussionKeywordsHintText",
-    "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
-    "studentAnalyticsNotAvailable",
-    "roomDataMissing"
-  ],
-
   "et": [
     "accountInformation",
     "addGroupDescription",

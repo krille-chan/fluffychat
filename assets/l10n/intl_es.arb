@@ -4634,5 +4634,22 @@
   "points": "Puntos",
   "noPaymentInfo": "No se necesitan datos de pago.",
   "updatePhoneOS": "Puede que necesites actualizar la versión del sistema operativo de tu dispositivo.",
-  "wordsPerMinute": "Palabras por minuto"
+  "wordsPerMinute": "Palabras por minuto",
+  "conversationBotModeSelectDescription": "Modo bot",
+  "conversationBotModeSelectOption_discussion": "Debate",
+  "conversationBotModeSelectOption_custom": "A medida",
+  "conversationBotModeSelectOption_conversation": "Conversación",
+  "conversationBotModeSelectOption_textAdventure": "Aventura textual",
+  "conversationBotDiscussionZone_title": "Configuración del debate",
+  "conversationBotDiscussionZone_discussionTopicLabel": "Tema de debate",
+  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Establecer tema de debate",
+  "conversationBotDiscussionZone_discussionKeywordsLabel": "Palabras clave del debate",
+  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Establecer palabras clave de debate",
+  "conversationBotDiscussionZone_discussionKeywordsHintText": "Lista de palabras clave separadas por comas para orientar el debate",
+  "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Enviar mensajes de debate según un calendario",
+  "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Horas entre temas de debate",
+  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Enviar aviso de discusión cuando el usuario reacciona ⏩ al mensaje del bot.",
+  "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reacción al envío del aviso de debate",
+  "studentAnalyticsNotAvailable": "Datos de los estudiantes no disponibles actualmente",
+  "roomDataMissing": "Es posible que falten algunos datos de las salas de las que no es miembro."
 }
