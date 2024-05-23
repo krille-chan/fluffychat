@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/widgets/common/bot_face_svg.dart';
+import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_mode_dynamic_zone.dart';
 import 'package:fluffychat/pangea/widgets/space/language_level_dropdown.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -156,49 +156,49 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                     ),
                   ),
                   if (addBot) ...[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: ListTile(
-                        onTap: () async {
-                          final topic = await showTextInputDialog(
-                            context: context,
-                            textFields: [
-                              DialogTextField(
-                                initialText: botOptions.topic.isEmpty
-                                    ? ""
-                                    : botOptions.topic,
-                                hintText:
-                                    L10n.of(context)!.enterAConversationTopic,
-                              ),
-                            ],
-                            title: L10n.of(context)!.conversationTopic,
-                          );
-                          if (topic == null) return;
-                          updateBotOption(() {
-                            botOptions.topic = topic.single;
-                          });
-                        },
-                        leading: CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          foregroundColor:
-                              Theme.of(context).textTheme.bodyLarge!.color,
-                          child: const Icon(Icons.topic_outlined),
-                        ),
-                        subtitle: Text(
-                          botOptions.topic.isEmpty
-                              ? L10n.of(context)!.enterAConversationTopic
-                              : botOptions.topic,
-                        ),
-                        title: Text(
-                          L10n.of(context)!.conversationTopic,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 16),
+                    //   child: ListTile(
+                    //     onTap: () async {
+                    //       final topic = await showTextInputDialog(
+                    //         context: context,
+                    //         textFields: [
+                    //           DialogTextField(
+                    //             initialText: botOptions.topic.isEmpty
+                    //                 ? ""
+                    //                 : botOptions.topic,
+                    //             hintText:
+                    //                 L10n.of(context)!.enterAConversationTopic,
+                    //           ),
+                    //         ],
+                    //         title: L10n.of(context)!.conversationTopic,
+                    //       );
+                    //       if (topic == null) return;
+                    //       updateBotOption(() {
+                    //         botOptions.topic = topic.single;
+                    //       });
+                    //     },
+                    //     leading: CircleAvatar(
+                    //       backgroundColor:
+                    //           Theme.of(context).scaffoldBackgroundColor,
+                    //       foregroundColor:
+                    //           Theme.of(context).textTheme.bodyLarge!.color,
+                    //       child: const Icon(Icons.topic_outlined),
+                    //     ),
+                    //     subtitle: Text(
+                    //       botOptions.topic.isEmpty
+                    //           ? L10n.of(context)!.enterAConversationTopic
+                    //           : botOptions.topic,
+                    //     ),
+                    //     title: Text(
+                    //       L10n.of(context)!.conversationTopic,
+                    //       style: TextStyle(
+                    //         color: Theme.of(context).colorScheme.secondary,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     // Padding(
                     //   padding: const EdgeInsets.only(left: 16),
                     //   child: SwitchListTile.adaptive(
@@ -242,6 +242,41 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                         onChanged: (int? newValue) => updateBotOption(() {
                           botOptions.languageLevel = newValue!;
                         }),
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(32, 16, 0, 0),
+                    //   child: Text(
+                    //     L10n.of(context)!.conversationBotModeSelectDescription,
+                    //     style: TextStyle(
+                    //       color: Theme.of(context).colorScheme.secondary,
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 16,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 16),
+                    //   child: ConversationBotModeSelect(
+                    //     initialMode: botOptions.mode,
+                    //     onChanged: (String? mode) => updateBotOption(
+                    //       () {
+                    //         botOptions.mode = mode ?? "discussion";
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(28, 0, 12, 0),
+                      child: ConversationBotModeDynamicZone(
+                        initialBotOptions: botOptions,
+                        onChanged: (BotOptionsModel? newOptions) {
+                          updateBotOption(() {
+                            if (newOptions != null) {
+                              botOptions = newOptions;
+                            }
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),
