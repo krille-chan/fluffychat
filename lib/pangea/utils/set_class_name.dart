@@ -27,6 +27,7 @@ void setClassDisplayname(BuildContext context, String? roomId) async {
             : L10n.of(context)!.changeTheNameOfTheChat,
       ),
       content: TextField(
+        maxLength: 32,
         controller: textFieldController,
       ),
       actions: [

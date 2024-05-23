@@ -38,6 +38,7 @@ class MessageContent extends StatelessWidget {
   //further down in the chain is also using pangeaController so its not constant
   final bool immersionMode;
   final ToolbarDisplayController? toolbarController;
+  final bool isOverlay;
   // Pangea#
 
   const MessageContent(
@@ -50,6 +51,7 @@ class MessageContent extends StatelessWidget {
     this.pangeaMessageEvent,
     required this.immersionMode,
     required this.toolbarController,
+    this.isOverlay = false,
     // Pangea#
     required this.borderRadius,
   });
@@ -203,7 +205,8 @@ class MessageContent extends StatelessWidget {
                     &&
                     !(pangeaMessageEvent?.showRichText(
                           selected,
-                          toolbarController?.highlighted ?? false,
+                          isOverlay: isOverlay,
+                          highlighted: toolbarController?.highlighted ?? false,
                         ) ??
                         false)
                 // Pangea#
@@ -305,7 +308,8 @@ class MessageContent extends StatelessWidget {
             );
             if (pangeaMessageEvent?.showRichText(
                   selected,
-                  toolbarController?.highlighted ?? false,
+                  isOverlay: isOverlay,
+                  highlighted: toolbarController?.highlighted ?? false,
                 ) ??
                 false) {
               return PangeaRichText(

@@ -6,7 +6,9 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
+import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/add_to_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
@@ -521,7 +523,7 @@ class ChatListController extends State<ChatList>
     _invitedSpaceSubscription = pangeaController
         .matrixState.client.onSync.stream
         .where((event) => event.rooms?.invite != null)
-        .listen((event) {
+        .listen((event) async {
       for (final inviteEntry in event.rooms!.invite!.entries) {
         if (inviteEntry.value.inviteState == null) continue;
         final bool isSpace = inviteEntry.value.inviteState!.any(
@@ -529,17 +531,39 @@ class ChatListController extends State<ChatList>
               event.type == EventTypes.RoomCreate &&
               event.content['type'] == 'm.space',
         );
-        if (!isSpace) continue;
-        final String spaceId = inviteEntry.key;
-        final Room? space = pangeaController.matrixState.client.getRoomById(
-          spaceId,
+        final bool isAnalytics = inviteEntry.value.inviteState!.any(
+          (event) =>
+              event.type == EventTypes.RoomCreate &&
+              event.content['type'] == PangeaRoomTypes.analytics,
         );
-        if (space != null) {
-          chatListHandleSpaceTap(
-            context,
-            this,
-            space,
+
+        if (isSpace) {
+          final String spaceId = inviteEntry.key;
+          final Room? space = pangeaController.matrixState.client.getRoomById(
+            spaceId,
           );
+          if (space != null) {
+            chatListHandleSpaceTap(
+              context,
+              this,
+              space,
+            );
+          }
+        }
+
+        if (isAnalytics) {
+          final Room? analyticsRoom =
+              pangeaController.matrixState.client.getRoomById(inviteEntry.key);
+          try {
+            await analyticsRoom?.join();
+          } catch (err, s) {
+            ErrorHandler.logError(
+              m: "Failed to join analytics room",
+              e: err,
+              s: s,
+            );
+          }
+          return;
         }
       }
     });
@@ -704,6 +728,11 @@ class ChatListController extends State<ChatList>
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
       try {
+        // #Pangea
+        if (client.getRoomById(roomId)!.isUnread) {
+          await client.getRoomById(roomId)!.markUnread(false);
+        }
+        // Pangea#
         await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
@@ -819,6 +848,7 @@ class ChatListController extends State<ChatList>
       pangeaController.afterSyncAndFirstLoginInitialization(context);
       await pangeaController.inviteBotToExistingSpaces();
       await pangeaController.setPangeaPushRules();
+      await client.migrateAnalyticsRooms();
     } else {
       ErrorHandler.logError(
         m: "didn't run afterSyncAndFirstLoginInitialization because not mounted",

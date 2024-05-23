@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/chat/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/widgets/common/icon_number_widget.dart';
 import 'package:fluffychat/pangea/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -41,27 +45,27 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
   // look for transcription in message event
   // if not found, call API to transcribe audio
   Future<void> getSpeechToText() async {
-    // try {
-    if (l1Code == null || l2Code == null) {
-      throw Exception('Language selection not found');
-    }
-    speechToTextResponse ??=
-        await widget.messageEvent.getSpeechToText(l1Code!, l2Code!);
+    try {
+      if (l1Code == null || l2Code == null) {
+        throw Exception('Language selection not found');
+      }
+      speechToTextResponse ??=
+          await widget.messageEvent.getSpeechToText(l1Code!, l2Code!);
 
-    debugPrint(
-      'Speech to text transcript: ${speechToTextResponse?.transcript.text}',
-    );
-    // } catch (e, s) {
-    //   debugger(when: kDebugMode);
-    //   error = e;
-    //   ErrorHandler.logError(
-    //     e: e,
-    //     s: s,
-    //     data: widget.messageEvent.event.content,
-    //   );
-    // } finally {
-    setState(() => _fetchingTranscription = false);
-    // }
+      debugPrint(
+        'Speech to text transcript: ${speechToTextResponse?.transcript.text}',
+      );
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      error = e;
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: widget.messageEvent.event.content,
+      );
+    } finally {
+      setState(() => _fetchingTranscription = false);
+    }
   }
 
   TextSpan _buildTranscriptText(BuildContext context) {
@@ -133,6 +137,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     getSpeechToText();
   }
 
+  String? get wordsPerMinuteString =>
+      speechToTextResponse?.transcript.wordsPerMinute?.toStringAsFixed(2);
+
   @override
   Widget build(BuildContext context) {
     if (_fetchingTranscription) {
@@ -158,11 +165,11 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconNumberWidget(
-              icon: Icons.abc,
-              number: (selectedToken == null ? words : 1).toString(),
-              toolTip: L10n.of(context)!.words,
-            ),
+            // IconNumberWidget(
+            //   icon: Icons.abc,
+            //   number: (selectedToken == null ? words : 1).toString(),
+            //   toolTip: L10n.of(context)!.words,
+            // ),
             IconNumberWidget(
               icon: Symbols.target,
               number:
@@ -171,8 +178,9 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
             ),
             IconNumberWidget(
               icon: Icons.speed,
-              number: (selectedToken?.confidence ?? total).toString(),
-              toolTip: L10n.of(context)!.points,
+              number:
+                  wordsPerMinuteString != null ? "$wordsPerMinuteString" : "??",
+              toolTip: L10n.of(context)!.wordsPerMinute,
             ),
           ],
         ),

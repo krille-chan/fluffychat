@@ -1,7 +1,6 @@
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:matrix/matrix.dart';
 
 Future<void> archiveSpace(Room? space, Client client) async {
   if (space == null) {
@@ -14,6 +13,9 @@ Future<void> archiveSpace(Room? space, Client client) async {
 
   final List<Room> children = await space.getChildRooms();
   for (final Room child in children) {
+    if (child.isUnread) {
+      await child.markUnread(false);
+    }
     await child.leave();
   }
   await space.leave();

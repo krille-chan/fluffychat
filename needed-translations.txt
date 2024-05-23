@@ -821,7 +821,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -836,7 +835,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "be": [
@@ -2256,7 +2259,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -2271,7 +2273,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "bn": [
@@ -3153,7 +3159,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -3168,7 +3173,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "bo": [
@@ -4050,7 +4059,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -4065,7 +4073,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ca": [
@@ -4947,7 +4959,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -4962,7 +4973,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "cs": [
@@ -5844,7 +5859,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -5859,7 +5873,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "de": [
@@ -6688,7 +6706,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -6703,7 +6720,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "el": [
@@ -7585,7 +7606,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -7600,7 +7620,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "eo": [
@@ -8482,7 +8506,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -8497,37 +8520,14 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "es": [
-    "presenceStyle",
-    "presencesToggle",
-    "writeAMessageFlag",
-    "youInvitedToBy",
-    "hidePresences",
-    "sendReadReceipts",
-    "sendTypingNotificationsDescription",
-    "sendReadReceiptsDescription",
-    "formattedMessages",
-    "formattedMessagesDescription",
-    "verifyOtherUser",
-    "verifyOtherUserDescription",
-    "verifyOtherDevice",
-    "verifyOtherDeviceDescription",
-    "transparent",
-    "incomingMessages",
-    "stickers",
-    "commandHint_ignore",
-    "commandHint_unignore",
-    "unreadChatsInApp",
-    "messageAnalytics",
-    "words",
-    "score",
-    "accuracy",
-    "points",
-    "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -8542,7 +8542,9 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing"
   ],
 
   "et": [
@@ -9367,7 +9369,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -9382,7 +9383,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "eu": [
@@ -10207,7 +10212,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -10222,7 +10226,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fa": [
@@ -11104,7 +11112,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -11119,7 +11126,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fi": [
@@ -12001,7 +12012,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -12016,7 +12026,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "fr": [
@@ -12898,7 +12912,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -12913,7 +12926,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ga": [
@@ -13795,7 +13812,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -13810,7 +13826,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "gl": [
@@ -14635,7 +14655,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -14650,7 +14669,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "he": [
@@ -15532,7 +15555,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -15547,7 +15569,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hi": [
@@ -16429,7 +16455,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -16444,7 +16469,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hr": [
@@ -17313,7 +17342,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -17328,7 +17356,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "hu": [
@@ -18210,7 +18242,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -18225,7 +18256,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ia": [
@@ -19631,7 +19666,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -19646,7 +19680,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "id": [
@@ -20528,7 +20566,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -20543,7 +20580,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ie": [
@@ -21425,7 +21466,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -21440,7 +21480,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "it": [
@@ -22307,7 +22351,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -22322,7 +22365,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ja": [
@@ -23204,7 +23251,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -23219,7 +23265,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ko": [
@@ -24101,7 +24151,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -24116,7 +24165,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "lt": [
@@ -24998,7 +25051,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -25013,7 +25065,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "lv": [
@@ -25895,7 +25951,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -25910,7 +25965,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "nb": [
@@ -26792,7 +26851,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -26807,7 +26865,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "nl": [
@@ -27689,7 +27751,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -27704,7 +27765,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pl": [
@@ -28586,7 +28651,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -28601,7 +28665,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt": [
@@ -29483,7 +29551,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -29498,7 +29565,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt_BR": [
@@ -30349,7 +30420,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -30364,7 +30434,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "pt_PT": [
@@ -31246,7 +31320,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -31261,7 +31334,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ro": [
@@ -32143,7 +32220,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -32158,7 +32234,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ru": [
@@ -32983,7 +33063,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -32998,7 +33077,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sk": [
@@ -33880,7 +33963,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -33895,7 +33977,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sl": [
@@ -34777,7 +34863,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -34792,7 +34877,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sr": [
@@ -35674,7 +35763,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -35689,7 +35777,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "sv": [
@@ -36536,7 +36628,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -36551,7 +36642,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "ta": [
@@ -37433,7 +37528,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -37448,7 +37542,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "th": [
@@ -38330,7 +38428,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -38345,7 +38442,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "tr": [
@@ -39212,7 +39313,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -39227,7 +39327,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "uk": [
@@ -40052,7 +40156,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -40067,7 +40170,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "vi": [
@@ -40949,7 +41056,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -40964,7 +41070,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "zh": [
@@ -41789,7 +41899,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -41804,7 +41913,11 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ],
 
   "zh_Hant": [
@@ -42686,7 +42799,6 @@
     "accuracy",
     "points",
     "noPaymentInfo",
-    "updatePhoneOS",
     "conversationBotModeSelectDescription",
     "conversationBotModeSelectOption_discussion",
     "conversationBotModeSelectOption_custom",
@@ -42701,6 +42813,10 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel",
+    "studentAnalyticsNotAvailable",
+    "roomDataMissing",
+    "updatePhoneOS",
+    "wordsPerMinute"
   ]
 }

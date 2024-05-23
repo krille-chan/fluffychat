@@ -43,6 +43,7 @@ class GetChatListItemSubtitle {
       }
 
       if (!pangeaController.languageController.languagesSet ||
+          event.redacted ||
           event.type != EventTypes.Message ||
           event.messageType != MessageTypes.Text ||
           !pangeaController.permissionsController

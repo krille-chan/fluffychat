@@ -31,7 +31,7 @@ class SettingsLearningView extends StatelessWidget {
           withScrolling: true,
           child: Column(
             children: [
-              LanguageTile(),
+              LanguageTile(controller),
               CountryPickerTile(),
               const SizedBox(height: 8),
               const Divider(height: 1),
@@ -65,7 +65,7 @@ class SettingsLearningView extends StatelessWidget {
                 defaultValue: controller.pangeaController.pStoreService.read(
                       PLocalKey.autoPlayMessages,
                     ) ??
-                    true,
+                    false,
                 title: L10n.of(context)!.autoPlayTitle,
                 subtitle: L10n.of(context)!.autoPlayDesc,
                 pStoreKey: PLocalKey.autoPlayMessages,

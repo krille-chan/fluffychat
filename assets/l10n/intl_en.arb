@@ -2504,7 +2504,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Settings > Learning Settings.",
+    "interactiveTranslatorAllowedDesc": "Students can choose whether to use translation assistance in space group chats in Main Menu > My Learning Settings.",
     "@interactiveTranslatorAllowedDesc": {
         "type": "text",
         "placeholders": {}
@@ -2984,9 +2984,9 @@
     "errorDisableLanguageAssistanceClassDesc": "Translation assistance and grammar assistance are turned off for the space that this chat is in.",
     "itIsDisabled": "Interactive Translation is disabled",
     "igcIsDisabled": "Interactive Grammar Checking is disabled",
-    "goToLearningSettings": "Go to Learning Settings",
+    "goToLearningSettings": "Go to My Learning Settings",
     "error405Title": "Languages not set",
-    "error405Desc": "Please set your languages in Settings > Learning Settings",
+    "error405Desc": "Please set your languages in Main Menu > My Learning Settings.",
     "loginOrSignup": "Sign in with",
     "@loginOrSignup": {
         "type": "text",
@@ -3049,7 +3049,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "learningSettings": "Learning Settings",
+    "learningSettings": "My Learning Settings",
     "classNameRequired": "Please enter a space name",
     "@classNameRequired": {
         "type": "text",
@@ -3674,7 +3674,7 @@
     "bestAnswerFeedback": "That's correct!",
     "definitionDefaultPrompt": "What does this word mean?",
     "practiceDefaultPrompt": "What is the best answer?",
-    "correctionDefaultPrompt": "What is the best correction?",
+    "correctionDefaultPrompt": "What is the best replacement?",
     "itStartDefaultPrompt": "Do you want help translating?",
     "languageLevelWarning": "Please select a class language level",
     "lockedChatWarning": "🔒 This chat has been locked",
@@ -3945,7 +3945,6 @@
     "accuracy": "Accuracy",
     "points": "Points",
     "noPaymentInfo": "No payment info necessary!",
-    "updatePhoneOS": "You may need to update your device's OS version.",
     "conversationBotModeSelectDescription": "Bot mode",
     "conversationBotModeSelectOption_discussion": "Discussion",
     "conversationBotModeSelectOption_custom": "Custom",
@@ -3960,5 +3959,9 @@
     "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
     "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
     "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Send discussion prompt when user reacts ⏩ to bot message",
-    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt"
+    "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt",
+    "studentAnalyticsNotAvailable": "Student data not currently available",
+    "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
+    "updatePhoneOS": "You may need to update your device's OS version.",
+    "wordsPerMinute": "Words per minute"
 }

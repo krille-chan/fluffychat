@@ -57,6 +57,9 @@ class NewGroupView extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: TextField(
+                      // #Pangea
+                      maxLength: 32,
+                      // Pangea#
                       controller: controller.nameController,
                       autocorrect: false,
                       readOnly: controller.loading,
@@ -91,7 +94,7 @@ class NewGroupView extends StatelessWidget {
             const Divider(height: 1),
             AddToSpaceToggles(
               key: controller.addToSpaceKey,
-              startOpen: false,
+              startOpen: true,
               activeSpaceId: controller.activeSpaceId,
               mode: AddToClassMode.chat,
             ),

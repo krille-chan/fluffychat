@@ -1,3 +1,4 @@
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -20,7 +21,12 @@ class ClassAnalyticsView extends StatelessWidget {
           .map(
             (room) => TabItem(
               avatar: room.avatarUrl,
-              displayName: room.name ?? "",
+              displayName: room.name ??
+                  Matrix.of(context)
+                      .client
+                      .getRoomById(room.roomId)
+                      ?.getLocalizedDisplayname() ??
+                  "",
               id: room.roomId,
             ),
           )
@@ -33,7 +39,7 @@ class ClassAnalyticsView extends StatelessWidget {
           .map(
             (s) => TabItem(
               avatar: s.avatarUrl,
-              displayName: s.displayName ?? "unknown",
+              displayName: s.calcDisplayname(),
               id: s.id,
             ),
           )

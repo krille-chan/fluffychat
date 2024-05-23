@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+
+const int THRESHOLD_FOR_GREEN = 80;
 
 class SpeechToTextAudioConfigModel {
   final AudioEncodingEnum encoding;
@@ -93,13 +96,10 @@ class STTToken {
               ? Colors.white
               : Colors.black);
     }
-    if (confidence! > 80) {
-      return const Color.fromARGB(255, 0, 152, 0);
+    if (confidence! > THRESHOLD_FOR_GREEN) {
+      return AppConfig.success;
     }
-    if (confidence! > 50) {
-      return const Color.fromARGB(255, 184, 142, 43);
-    }
-    return Colors.red;
+    return AppConfig.warning;
   }
 
   factory STTToken.fromJson(Map<String, dynamic> json) {
@@ -117,7 +117,7 @@ class STTToken {
   }
 
   Map<String, dynamic> toJson() => {
-        "token": token,
+        "token": token.toJson(),
         "start_time": startTime?.inMilliseconds,
         "end_time": endTime?.inMilliseconds,
         "confidence": confidence,
@@ -150,13 +150,18 @@ class Transcript {
   final int confidence;
   final List<STTToken> sttTokens;
   final String langCode;
+  final int? wordsPerHr;
 
   Transcript({
     required this.text,
     required this.confidence,
     required this.sttTokens,
     required this.langCode,
+    required this.wordsPerHr,
   });
+
+  /// Returns the number of words per minute rounded to one decimal place.
+  double? get wordsPerMinute => wordsPerHr != null ? wordsPerHr! / 60 : null;
 
   factory Transcript.fromJson(Map<String, dynamic> json) => Transcript(
         text: json['transcript'],
@@ -167,6 +172,7 @@ class Transcript {
             .map((e) => STTToken.fromJson(e))
             .toList(),
         langCode: json['lang_code'],
+        wordsPerHr: json['words_per_hr'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -174,7 +180,15 @@ class Transcript {
         "confidence": confidence,
         "stt_tokens": sttTokens.map((e) => e.toJson()).toList(),
         "lang_code": langCode,
+        "words_per_hr": wordsPerHr,
       };
+
+  Color color(BuildContext context) {
+    if (confidence > THRESHOLD_FOR_GREEN) {
+      return AppConfig.success;
+    }
+    return AppConfig.warning;
+  }
 }
 
 class SpeechToTextResult {

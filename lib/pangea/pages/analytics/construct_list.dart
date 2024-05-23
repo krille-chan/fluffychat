@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_ev
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -54,7 +55,7 @@ class ConstructListState extends State<ConstructList> {
           selected: widget.selected,
           forceUpdate: true,
         )
-        .then((_) => setState(() => initialized = true));
+        .whenComplete(() => setState(() => initialized = true));
   }
 
   @override
@@ -160,11 +161,11 @@ class ConstructListViewState extends State<ConstructListView> {
     stateSub?.cancel();
   }
 
-  @override
-  void didUpdateWidget(ConstructListView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    fetchUses();
-  }
+  // @override
+  // void didUpdateWidget(ConstructListView oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   fetchUses();
+  // }
 
   int get lemmaIndex =>
       constructs?.indexWhere(
@@ -215,19 +216,29 @@ class ConstructListViewState extends State<ConstructListView> {
     }
 
     setState(() => fetchingUses = true);
-    final List<OneConstructUse> uses = currentConstruct!.content.uses;
-    _msgEvents.clear();
+    try {
+      final List<OneConstructUse> uses = currentConstruct!.content.uses;
+      _msgEvents.clear();
 
-    for (final OneConstructUse use in uses) {
-      final PangeaMessageEvent? msgEvent = await getMessageEvent(use);
-      final RepresentationEvent? repEvent =
-          msgEvent?.originalSent ?? msgEvent?.originalWritten;
-      if (repEvent?.choreo == null) {
-        continue;
+      for (final OneConstructUse use in uses) {
+        final PangeaMessageEvent? msgEvent = await getMessageEvent(use);
+        final RepresentationEvent? repEvent =
+            msgEvent?.originalSent ?? msgEvent?.originalWritten;
+        if (repEvent?.choreo == null) {
+          continue;
+        }
+        _msgEvents.add(msgEvent!);
       }
-      _msgEvents.add(msgEvent!);
+      setState(() => fetchingUses = false);
+    } catch (err, s) {
+      setState(() => fetchingUses = false);
+      debugPrint("Error fetching uses: $err");
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        m: "Failed to fetch uses for current construct ${currentConstruct?.content.lemma}",
+      );
     }
-    setState(() => fetchingUses = false);
   }
 
   List<ConstructEvent>? get constructs =>
@@ -236,6 +247,38 @@ class ConstructListViewState extends State<ConstructListView> {
   ConstructEvent? get currentConstruct => constructs?.firstWhereOrNull(
         (element) => element.content.lemma == widget.controller.currentLemma,
       );
+
+  // given the current lemma and list of message events, return a list of
+  // MessageEventMatch objects, which contain one PangeaMessageEvent to one PangeaMatch
+  // this is because some message events may have has more than one PangeaMatch of a
+  // given lemma type.
+  List<MessageEventMatch> getMessageEventMatches() {
+    if (widget.controller.currentLemma == null) return [];
+    final List<MessageEventMatch> allMsgErrorSteps = [];
+
+    for (final msgEvent in _msgEvents) {
+      if (allMsgErrorSteps.any(
+        (element) => element.msgEvent.eventId == msgEvent.eventId,
+      )) {
+        continue;
+      }
+      // get all the pangea matches in that message which have that lemma
+      final List<PangeaMatch>? msgErrorSteps = msgEvent.errorSteps(
+        widget.controller.currentLemma!,
+      );
+      if (msgErrorSteps == null) continue;
+
+      allMsgErrorSteps.addAll(
+        msgErrorSteps.map(
+          (errorStep) => MessageEventMatch(
+            msgEvent: msgEvent,
+            lemmaMatch: errorStep,
+          ),
+        ),
+      );
+    }
+    return allMsgErrorSteps;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -250,6 +293,8 @@ class ConstructListViewState extends State<ConstructListView> {
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
     }
+
+    final msgEventMatches = getMessageEventMatches();
 
     return widget.controller.currentLemma == null
         ? Expanded(
@@ -278,23 +323,22 @@ class ConstructListViewState extends State<ConstructListView> {
               children: [
                 if (constructs![lemmaIndex].content.uses.length >
                     _msgEvents.length)
-                  const Center(
+                  Center(
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Some data may be missing from rooms in which you are not a member.",
-                      ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(L10n.of(context)!.roomDataMissing),
                     ),
                   ),
                 Expanded(
                   child: ListView.separated(
                     separatorBuilder: (context, index) =>
                         const Divider(height: 1),
-                    itemCount: _msgEvents.length,
+                    itemCount: msgEventMatches.length,
                     itemBuilder: (context, index) {
                       return ConstructMessage(
-                        msgEvent: _msgEvents[index],
+                        msgEvent: msgEventMatches[index].msgEvent,
                         lemma: widget.controller.currentLemma!,
+                        errorMessage: msgEventMatches[index].lemmaMatch,
                       );
                     },
                   ),
@@ -307,21 +351,18 @@ class ConstructListViewState extends State<ConstructListView> {
 
 class ConstructMessage extends StatelessWidget {
   final PangeaMessageEvent msgEvent;
+  final PangeaMatch errorMessage;
   final String lemma;
 
   const ConstructMessage({
     super.key,
     required this.msgEvent,
+    required this.errorMessage,
     required this.lemma,
   });
 
   @override
   Widget build(BuildContext context) {
-    final PangeaMatch? errorMessage = msgEvent.firstErrorStep(lemma);
-    if (errorMessage == null) {
-      return const SizedBox.shrink();
-    }
-
     final String? chosen = errorMessage.match.choices
         ?.firstWhereOrNull(
           (element) => element.selected == true,
@@ -479,6 +520,14 @@ class ConstructMessageMetadata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String roomName = msgEvent.event.room.name.isEmpty
+        ? Matrix.of(context)
+                .client
+                .getRoomById(msgEvent.event.room.id)
+                ?.getLocalizedDisplayname() ??
+            ""
+        : msgEvent.event.room.name;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
       child: Column(
@@ -487,9 +536,19 @@ class ConstructMessageMetadata extends StatelessWidget {
             msgEvent.event.originServerTs.localizedTime(context),
             style: TextStyle(fontSize: 13 * AppConfig.fontSizeFactor),
           ),
-          Text(msgEvent.event.room.name),
+          Text(roomName),
         ],
       ),
     );
   }
+}
+
+class MessageEventMatch {
+  final PangeaMessageEvent msgEvent;
+  final PangeaMatch lemmaMatch;
+
+  MessageEventMatch({
+    required this.msgEvent,
+    required this.lemmaMatch,
+  });
 }

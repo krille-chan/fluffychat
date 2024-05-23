@@ -26,7 +26,6 @@ import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
-import 'package:fluffychat/pangea/pages/class_settings/class_settings_page.dart';
 import 'package:fluffychat/pangea/pages/exchange/add_exchange_to_class.dart';
 import 'package:fluffychat/pangea/pages/find_partner/find_partner.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age.dart';
@@ -150,19 +149,6 @@ abstract class AppRoutes {
             : child,
       ),
       routes: [
-        // #Pangea
-        GoRoute(
-          path: '/spaces/:roomid',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            ChatDetails(
-              roomId: state.pathParameters['roomid']!,
-            ),
-          ),
-          redirect: loggedOutRedirect,
-        ),
-        // Pangea#
         GoRoute(
           path: '/rooms',
           redirect: loggedOutRedirect,
@@ -246,20 +232,26 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewGroup(),
+                NewGroup(
+                  // #Pangea
+                  spaceId: state.uri.queryParameters['spaceId'],
+                  // Pangea#
+                ),
               ),
               redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: ':spaceid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const NewGroup(),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-              ],
+              // #Pangea
+              // routes: [
+              //   GoRoute(
+              //     path: ':spaceid',
+              //     pageBuilder: (context, state) => defaultPageBuilder(
+              //       context,
+              //       state,
+              //       const NewGroup(),
+              //     ),
+              //     redirect: loggedOutRedirect,
+              //   ),
+              // ],
+              // Pangea#
             ),
             GoRoute(
               path: 'newspace',
@@ -521,17 +513,6 @@ abstract class AppRoutes {
                       ),
                       redirect: loggedOutRedirect,
                     ),
-                    // #Pangea
-                    GoRoute(
-                      path: 'class_settings',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const ClassSettingsPage(),
-                      ),
-                      redirect: loggedOutRedirect,
-                    ),
-                    // Pangea#
                     GoRoute(
                       path: 'invite',
                       pageBuilder: (context, state) => defaultPageBuilder(

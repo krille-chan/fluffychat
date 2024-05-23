@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,10 @@ class ToolbarDisplayController {
     if (highlighted) return;
     if (controller.selectMode) {
       controller.clearSelectedEvents();
+    }
+    if (!MatrixState.pangeaController.languageController.languagesSet) {
+      pLanguageDialog(context, () {});
+      return;
     }
     focusNode.requestFocus();
 
@@ -129,8 +134,11 @@ class ToolbarDisplayController {
     });
   }
 
-  bool get highlighted =>
-      MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+  bool get highlighted {
+    if (overlayId == null) return false;
+    if (MatrixState.pAnyState.overlay == null) overlayId = null;
+    return MatrixState.pAnyState.overlay.hashCode.toString() == overlayId;
+  }
 }
 
 class MessageToolbar extends StatefulWidget {
@@ -167,6 +175,19 @@ class MessageToolbarState extends State<MessageToolbar> {
     debugPrint("updating toolbar mode");
     final bool subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
+
+    if (!newMode.isValidMode(widget.pangeaMessageEvent.event)) {
+      ErrorHandler.logError(
+        e: "Invalid mode for event",
+        s: StackTrace.current,
+        data: {
+          "newMode": newMode,
+          "event": widget.pangeaMessageEvent.event,
+        },
+      );
+      return;
+    }
+
     setState(() {
       currentMode = newMode;
       updatingMode = true;
@@ -269,12 +290,14 @@ class MessageToolbarState extends State<MessageToolbar> {
             PLocalKey.autoPlayMessages,
           ) ??
           true;
+
+      if (widget.pangeaMessageEvent.isAudioMessage) {
+        updateMode(MessageMode.speechToText);
+        return;
+      }
+
       autoplay
-          ? updateMode(
-              widget.pangeaMessageEvent.isAudioMessage
-                  ? MessageMode.speechToText
-                  : MessageMode.textToSpeech,
-            )
+          ? updateMode(MessageMode.textToSpeech)
           : updateMode(MessageMode.translation);
     });
 
@@ -345,8 +368,11 @@ class MessageToolbarState extends State<MessageToolbar> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: MessageMode.values.map((mode) {
-                    if ([MessageMode.definition, MessageMode.textToSpeech, MessageMode.translation]
-                            .contains(mode) &&
+                    if ([
+                          MessageMode.definition,
+                          MessageMode.textToSpeech,
+                          MessageMode.translation,
+                        ].contains(mode) &&
                         widget.pangeaMessageEvent.isAudioMessage) {
                       return const SizedBox.shrink();
                     }

@@ -80,18 +80,26 @@ class PangeaMessageEvent {
     return _latestEdit;
   }
 
-  bool showRichText(bool selected, bool highlighted) {
+  bool showRichText(
+    bool selected, {
+    bool highlighted = false,
+    bool isOverlay = false,
+  }) {
     if (!_isValidPangeaMessageEvent) {
       return false;
     }
-    // if (URLFinder.getMatches(event.body).isNotEmpty) {
-    //   return false;
-    // }
+
     if ([EventStatus.error, EventStatus.sending].contains(_event.status)) {
       return false;
     }
-    if (ownMessage && !selected && !highlighted) return false;
 
+    if (isOverlay) return true;
+
+    // if ownMessage, don't show rich text if not selected or highlighted
+    // and don't show is the message is not an overlay
+    if (ownMessage && ((!selected && !highlighted) || !isOverlay)) {
+      return false;
+    }
     return true;
   }
 
@@ -346,6 +354,19 @@ class PangeaMessageEvent {
       ),
     );
 
+    _representations?.add(
+      RepresentationEvent(
+        timeline: timeline,
+        content: PangeaRepresentation(
+          langCode: response.langCode,
+          text: response.transcript.text,
+          originalSent: false,
+          originalWritten: false,
+          speechToText: response,
+        ),
+      ),
+    );
+
     return response;
   }
 
@@ -564,17 +585,20 @@ class PangeaMessageEvent {
     return langCode ?? LanguageKeys.unknownLanguage;
   }
 
-  PangeaMatch? firstErrorStep(String lemma) {
+  List<PangeaMatch>? errorSteps(String lemma) {
     final RepresentationEvent? repEvent = originalSent ?? originalWritten;
     if (repEvent?.choreo == null) return null;
 
-    final PangeaMatch? step = repEvent!.choreo!.choreoSteps
-        .firstWhereOrNull(
-          (element) =>
-              element.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
+    final List<PangeaMatch> steps = repEvent!.choreo!.choreoSteps
+        .where(
+          (choreoStep) =>
+              choreoStep.acceptedOrIgnoredMatch != null &&
+              choreoStep.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
         )
-        ?.acceptedOrIgnoredMatch;
-    return step;
+        .map((element) => element.acceptedOrIgnoredMatch)
+        .cast<PangeaMatch>()
+        .toList();
+    return steps;
   }
 
   // List<SpanData> get activities =>

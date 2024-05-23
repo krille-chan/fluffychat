@@ -52,7 +52,11 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
       child: Opacity(
         opacity: widget.enabled ? 1 : 0.5,
         child: Tooltip(
-          message: widget.enabled ? "" : L10n.of(context)!.joinToView,
+          message: widget.enabled
+              ? ""
+              : widget.type == AnalyticsEntryType.room
+                  ? L10n.of(context)!.joinToView
+                  : L10n.of(context)!.studentAnalyticsNotAvailable,
           child: ListTile(
             leading: widget.type == AnalyticsEntryType.privateChats
                 ? CircleAvatar(
@@ -101,18 +105,19 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
                 : null,
             selected: widget.selected,
             enabled: widget.enabled,
-            onTap: () =>
-                (room?.isSpace ?? false) && widget.allowNavigateOnSelect
-                    ? context.go(
-                        '/rooms/analytics/${room!.id}',
-                      )
-                    : widget.onTap(
-                        AnalyticsSelected(
-                          widget.id,
-                          widget.type,
-                          widget.displayName,
-                        ),
+            onTap: () {
+              (room?.isSpace ?? false) && widget.allowNavigateOnSelect
+                  ? context.go(
+                      '/rooms/analytics/${room!.id}',
+                    )
+                  : widget.onTap(
+                      AnalyticsSelected(
+                        widget.id,
+                        widget.type,
+                        widget.displayName,
                       ),
+                    );
+            },
             trailing: (room?.isSpace ?? false) &&
                     widget.type != AnalyticsEntryType.privateChats &&
                     widget.allowNavigateOnSelect

@@ -141,6 +141,7 @@ class OverlayMessage extends StatelessWidget {
               pangeaMessageEvent: pangeaMessageEvent,
               immersionMode: immersionMode,
               toolbarController: toolbarController,
+              isOverlay: true,
             ),
             if (event.hasAggregatedEvents(
                       timeline,

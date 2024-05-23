@@ -95,6 +95,9 @@ class NewSpaceView extends StatelessWidget {
                   const SizedBox(width: 16),
                   Expanded(
                     child: TextField(
+                      // #Pangea
+                      maxLength: 32,
+                      // Pangea#
                       controller: controller.nameController,
                       autocorrect: false,
                       readOnly: controller.loading,
@@ -138,7 +141,7 @@ class NewSpaceView extends StatelessWidget {
             if (!controller.newClassMode)
               AddToSpaceToggles(
                 key: controller.addToSpaceKey,
-                startOpen: false,
+                startOpen: true,
                 mode: !controller.newClassMode
                     ? AddToClassMode.exchange
                     : AddToClassMode.chat,

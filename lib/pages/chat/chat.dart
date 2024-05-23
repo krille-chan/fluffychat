@@ -481,7 +481,16 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // Do not send read markers when app is not in foreground
-    if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+    // #Pangea
+    try {
+      // Pangea#
+      if (kIsWeb && !Matrix.of(context).webHasFocus) return;
+      // #Pangea
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+      return;
+    }
+    // Pangea#
     if (!kIsWeb &&
         WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
       return;
@@ -613,14 +622,14 @@ class ChatController extends State<ChatPageWithRoom>
       useType: useType,
     )
         .then(
-      (String? msgEventId) {
+      (String? msgEventId) async {
         // #Pangea
         setState(() {
           if (previousEdit != null) {
             edittingEvents.add(previousEdit.eventId);
           }
         });
-        // Pangea#
+
         GoogleAnalytics.sendMessage(
           room.id,
           room.classCode,
@@ -635,6 +644,8 @@ class ChatController extends State<ChatPageWithRoom>
           return;
         }
 
+        // ensure that analytics room exists / is created for the active langCode
+        await room.ensureAnalyticsRoomExists();
         pangeaController.myAnalytics.handleMessage(
           room,
           RecentMessageRecord(
@@ -1067,6 +1078,9 @@ class ChatController extends State<ChatPageWithRoom>
   bool get canEditSelectedEvents {
     if (isArchived ||
         selectedEvents.length != 1 ||
+        // #Pangea
+        selectedEvents.single.messageType != MessageTypes.Text ||
+        // Pangea#
         !selectedEvents.first.status.isSent) {
       return false;
     }

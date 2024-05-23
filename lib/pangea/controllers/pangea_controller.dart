@@ -6,6 +6,7 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/class_controller.dart';
 import 'package:fluffychat/pangea/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_controller.dart';
+import 'package:fluffychat/pangea/controllers/language_detection_controller.dart';
 import 'package:fluffychat/pangea/controllers/language_list_controller.dart';
 import 'package:fluffychat/pangea/controllers/local_settings.dart';
 import 'package:fluffychat/pangea/controllers/message_data_controller.dart';
@@ -17,6 +18,7 @@ import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/controllers/user_controller.dart';
 import 'package:fluffychat/pangea/controllers/word_net_controller.dart';
 import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -50,6 +52,7 @@ class PangeaController {
   late SubscriptionController subscriptionController;
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
+  late LanguageDetectionController languageDetection;
 
   ///store Services
   late PLocalStore pStoreService;
@@ -97,6 +100,7 @@ class PangeaController {
     itFeedback = ITFeedbackController(this);
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
+    languageDetection = LanguageDetectionController(this);
     PAuthGaurd.pController = this;
   }
 
@@ -272,6 +276,16 @@ class PangeaController {
   }
 
   Future<void> setPangeaPushRules() async {
+    final List<Room> analyticsRooms =
+        matrixState.client.rooms.where((room) => room.isAnalyticsRoom).toList();
+
+    for (final Room room in analyticsRooms) {
+      final pushRule = room.pushRuleState;
+      if (pushRule != PushRuleState.dontNotify) {
+        await room.setPushRuleState(PushRuleState.dontNotify);
+      }
+    }
+
     if (!(matrixState.client.globalPushRules?.override?.any(
           (element) => element.ruleId == PangeaEventTypes.textToSpeechRule,
         ) ??

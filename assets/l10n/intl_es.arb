@@ -4389,7 +4389,7 @@
   "bestAnswerFeedback": "¡Correcto!",
   "definitionDefaultPrompt": "¿Qué significa esta palabra?",
   "practiceDefaultPrompt": "¿Cuál es la mejor respuesta?",
-  "correctionDefaultPrompt": "¿Cuál es la mejor corrección?",
+  "correctionDefaultPrompt": "¿Cuál es el mejor reemplazo?",
   "itStartDefaultPrompt": "¿Quiere ayuda para traducir?",
   "suggestTo": "Sugerir a {spaceName}",
   "suggestChatDesc": "Los chats sugeridos aparecerán en la lista de chats de {spaceName}.",
@@ -4587,5 +4587,52 @@
   "refresh": "Actualizar",
   "joinToView": "Únete a esta sala para ver los detalles",
   "autoPlayTitle": "Reproducción automática de mensajes",
-  "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione."
+  "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione.",
+  "presenceStyle": "Presencia:",
+  "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
+  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}...",
+  "@writeAMessageFlag": {
+    "type": "text",
+    "placeholders": {
+      "l1flag": {},
+      "l2flag": {}
+    }
+  },
+  "youInvitedToBy": "📩 Has sido invitado a través de un enlace a:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "hidePresences": "¿Ocultar la lista de estados?",
+  "sendReadReceipts": "Enviar recibos de lectura",
+  "sendTypingNotificationsDescription": "Los demás participantes en un chat pueden ver cuándo estás escribiendo un nuevo mensaje.",
+  "sendReadReceiptsDescription": "Los demás participantes en un chat pueden ver cuándo has leído un mensaje.",
+  "formattedMessages": "Mensajes con formato",
+  "formattedMessagesDescription": "Mostrar contenido de mensajes enriquecido como texto en negrita utilizando markdown.",
+  "verifyOtherUser": "🔐 Verificar otro usuario",
+  "verifyOtherUserDescription": "Si verificas a otro usuario, puedes estar seguro de saber a quién estás escribiendo realmente. 💪\n\nCuando inicies una verificación, tú y el otro usuario veréis una ventana emergente en la aplicación. Allí veréis una serie de emojis o números que tendréis que comparar entre vosotros.\n\nLa mejor forma de hacerlo es quedar o iniciar una videollamada. 👭",
+  "verifyOtherDevice": "🔐 Verificar otro dispositivo",
+  "verifyOtherDeviceDescription": "Cuando verificas otro dispositivo, esos dispositivos pueden intercambiar claves, aumentando tu seguridad general. 💪 Cuando inicies una verificación, aparecerá una ventana emergente en la app de ambos dispositivos. Allí verás entonces una serie de emojis o números que tienes que comparar entre sí. Lo mejor es que tengas ambos dispositivos a mano antes de iniciar la verificación. 🤳",
+  "transparent": "Transparente",
+  "incomingMessages": "Mensajes entrantes",
+  "stickers": "Pegatinas",
+  "commandHint_ignore": "Ignorar el ID de matriz dado",
+  "commandHint_unignore": "Designorar el ID de matriz dado",
+  "unreadChatsInApp": "{appname}: {unread} chats no leídos",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "messageAnalytics": "Análisis de mensajes",
+  "words": "Palabras",
+  "score": "Puntuación",
+  "accuracy": "Precisión",
+  "points": "Puntos",
+  "noPaymentInfo": "No se necesitan datos de pago.",
+  "updatePhoneOS": "Puede que necesites actualizar la versión del sistema operativo de tu dispositivo.",
+  "wordsPerMinute": "Palabras por minuto"
 }

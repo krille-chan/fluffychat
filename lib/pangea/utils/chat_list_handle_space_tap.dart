@@ -21,7 +21,7 @@ void chatListHandleSpaceTap(
     controller.setActiveSpace(space.id);
 
     if (FluffyThemes.isColumnMode(context)) {
-      context.push('/spaces/${space.id}');
+      context.go('/rooms/${space.id}/details');
     } else if (controller.activeChat != null &&
         !space.isFirstOrSecondChild(controller.activeChat!)) {
       context.go("/rooms");
@@ -65,6 +65,9 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
+          if (space.isSpace) {
+            await space.joinAnalyticsRoomsInSpace();
+          }
           setActiveSpaceAndCloseChat();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -107,6 +110,9 @@ void chatListHandleSpaceTap(
       } else {
         showAlertDialog(context);
       }
+      break;
+    case Membership.leave:
+      autoJoin(space);
       break;
     default:
       setActiveSpaceAndCloseChat();

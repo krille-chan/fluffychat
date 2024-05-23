@@ -55,7 +55,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         value: 'learning_settings',
         child: Row(
           children: [
-            const Icon(Icons.settings),
+            const Icon(Icons.psychology_outlined),
             const SizedBox(width: 12),
             Text(L10n.of(context)!.learningSettings),
           ],
@@ -83,19 +83,22 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
-      PopupMenuItem<String>(
-        value: 'leave',
-        child: Row(
-          children: [
-            // #Pangea
-            // const Icon(Icons.delete_outlined),
-            const Icon(Icons.arrow_forward),
-            // Pangea#
-            const SizedBox(width: 12),
-            Text(L10n.of(context)!.leave),
-          ],
+      // #Pangea
+      if (!widget.room.isArchived)
+        // Pangea#
+        PopupMenuItem<String>(
+          value: 'leave',
+          child: Row(
+            children: [
+              // #Pangea
+              // const Icon(Icons.delete_outlined),
+              const Icon(Icons.arrow_forward),
+              // Pangea#
+              const SizedBox(width: 12),
+              Text(L10n.of(context)!.leave),
+            ],
+          ),
         ),
-      ),
       // #Pangea
       if (classSettings != null)
         PopupMenuItem<String>(

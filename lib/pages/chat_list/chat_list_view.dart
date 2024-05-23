@@ -75,7 +75,12 @@ class ChatListView extends StatelessWidget {
           label: L10n.of(context)!.allChats,
           // Pangea#
         ),
-      if (controller.spaces.isNotEmpty)
+      if (controller.spaces.isNotEmpty
+              // #Pangea
+              &&
+              !FluffyThemes.isColumnMode(context)
+          // Pangea#
+          )
         // #Pangea
         // const NavigationDestination(
         //   icon: Icon(Icons.workspaces_outlined),
