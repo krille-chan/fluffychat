@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Fluffychat
+Comment=A Matrix client
+Keywords=messaging;chat;matrix;
+Exec=fluffychat
+Icon=im.fluffychat
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Messaging;Chat;Matrix;

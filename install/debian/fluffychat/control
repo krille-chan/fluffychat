@@ -1,0 +1,6 @@
+Package: fluffychat
+Version: {{VERSION}}
+Architecture: amd64
+Maintainer: Krille <c.kussowski@famedly.com>
+Description: FluffyChat Matrix client
+Depends: libolm3, libgtk-3-0, libjsoncpp25
