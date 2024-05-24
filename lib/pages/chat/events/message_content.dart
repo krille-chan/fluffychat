@@ -344,9 +344,11 @@ class MessageContent extends StatelessWidget {
                       MatrixLocals(L10n.of(context)!),
                       hideReply: true,
                     );
-                toolbarController?.toolbar?.textSelection.setMessageText(
-                  messageText,
-                );
+                // #Pangea
+                // toolbarController?.toolbar?.textSelection.setMessageText(
+                //   messageText,
+                // );
+                // Pangea#
                 return SelectableLinkify(
                   onSelectionChanged: (selection, cause) {
                     if (cause == SelectionChangedCause.longPress &&
