@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
-import 'package:ory_kratos_client/ory_kratos_client.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/web_login.dart';
@@ -45,11 +45,11 @@ class LoginController extends State<Login> {
   late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
-  FrontendApi? api;
+  kratos.FrontendApi? api;
   String? flowId;
   List<Widget> authWidgets = [];
   List<TextEditingController> textControllers = [];
-  List<UiNode> formNodes = [];
+  List<kratos.UiNode> formNodes = [];
 
   @override
   void initState() {
@@ -142,24 +142,23 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  Future<void> processKratosNodes(
-      BuiltList<UiNode> nodes, String actionUrl) async {
+  Future<void> processKratosNodes(BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     List<Widget> formWidgets = [];
-    List<UiNode> allNodes = [];
+    List<kratos.UiNode> allNodes = [];
 
-    for (UiNode node in nodes) {
+    for (kratos.UiNode node in nodes) {
       print(node);
-      UiNodeInputAttributes attributes =
-          node.attributes.oneOf.value as UiNodeInputAttributes;
+      kratos.UiNodeInputAttributes attributes =
+      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-          TextEditingController(text: attributes.value?.toString() ?? "");
+      TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
-      if (node.type == UiNodeTypeEnum.input) {
+      if (node.type == kratos.UiNodeTypeEnum.input) {
         Widget inputWidget;
 
-        if (attributes.type == UiNodeInputAttributesTypeEnum.text) {
+        if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.text) {
           inputWidget = Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextFormField(
@@ -171,7 +170,7 @@ class LoginController extends State<Login> {
               enabled: !attributes.disabled,
             ),
           );
-        } else if (attributes.type == UiNodeInputAttributesTypeEnum.submit) {
+        } else if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.submit) {
           inputWidget = Padding(
             padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
@@ -202,10 +201,10 @@ class LoginController extends State<Login> {
 
     // Update node values with controller values
     for (int i = 0; i < formNodes.length; i++) {
-      UiNode node = formNodes[i];
-      if (node.attributes.oneOf.value is UiNodeInputAttributes) {
-        final UiNodeInputAttributes updatedAttributes =
-        (node.attributes.oneOf.value as UiNodeInputAttributes).rebuild(
+      kratos.UiNode node = formNodes[i];
+      if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
+        final kratos.UiNodeInputAttributes updatedAttributes =
+        (node.attributes.oneOf.value as kratos.UiNodeInputAttributes).rebuild(
               (b) => b..value = JsonObject(textControllers[i].text),
         );
         formData[updatedAttributes.name] =
@@ -215,46 +214,55 @@ class LoginController extends State<Login> {
 
     try {
       final response = await dio.post(
-          actionUrl,
-          data: formData,
-          options: Options(
-              headers: {
-                'Content-Type': 'application/json',
-              }
-          )
+        actionUrl,
+        data: formData,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
       );
+
+      print('responseresponse: $response');
 
       if (response.statusCode == 200) {
         print('Succès: ${response.data}');
       } else {
-        print('Erreur: ${response.statusCode}');
+        print('Erreur: ${response.data}');
       }
     } on DioException catch (e) {
       print('Erreur lors de la soumission du formulaire: $e');
       if (e.response != null) {
-        // Process new response to retrieve nodes and URL action
-        final newNodes = e.response?.data['ui']['nodes'];
+        print('response: ${e.response}');
+        // Unserialize the JSON response in LoginFlow
+        final responseData = e.response?.data;
+        final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
+        final loginFlow = kratosClient.serializers.deserializeWith(kratos.LoginFlow.serializer, responseData);
+        
+        print('Flow ID: ${loginFlow?.id}');
 
-        // Converting `newNodes` to `BuiltList<UiNode>` using ory_kratos_client serializers
-        final BuiltList<UiNode> uiNodes = deserializeUiNodes(newNodes);
-        final newActionUrl = e.response?.data['ui']['action'];
+        // new response to retrieve nodes and action URL
+        final newNodes = loginFlow?.ui.nodes;
+        final newActionUrl = loginFlow?.ui.action;
 
-        await processKratosNodes(uiNodes, newActionUrl);
+        if (newNodes != null && newActionUrl != null) {
+          await processKratosNodes(newNodes, newActionUrl);
+        }
       }
     }
   }
 
-  BuiltList<UiNode> deserializeUiNodes(List<dynamic> json) {
-    final OryKratosClient kratosClient = OryKratosClient(dio: dio);
+  BuiltList<kratos.UiNode> deserializeUiNodes(List<dynamic> json) {
+    final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
     final standardSerializers = kratosClient.serializers;
 
-    return BuiltList<UiNode>.from(
-        json.map((dynamic node) => standardSerializers.deserializeWith(UiNode.serializer, node)!)
+    return BuiltList<kratos.UiNode>.from(
+        json.map((dynamic node) => standardSerializers.deserializeWith(kratos.UiNode.serializer, node)!)
     );
   }
 
   void getLoginOry() async {
-    final OryKratosClient kratosClient = OryKratosClient(dio: dio);
+    final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
 
     try {
       // Initialize API connection flow
