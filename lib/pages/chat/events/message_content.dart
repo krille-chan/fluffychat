@@ -365,8 +365,11 @@ class MessageContent extends StatelessWidget {
                         .onTextSelection(selection);
                   },
                   onTap: () => toolbarController?.showToolbar(context),
-                  text: toolbarController?.toolbar?.textSelection.messageText ??
-                      messageText,
+                  // #Pangea
+                  // text: toolbarController?.toolbar?.textSelection.messageText ??
+                  //     messageText,
+                  text: messageText,
+                  // Pangea#
                   contextMenuBuilder: (context, state) =>
                       (toolbarController?.highlighted ?? false)
                           ? const SizedBox.shrink()
