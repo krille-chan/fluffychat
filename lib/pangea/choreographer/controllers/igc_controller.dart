@@ -113,7 +113,11 @@ class IgcController {
       ),
     );
 
-    igcTextData!.matches[matchIndex].match = response.span;
+    try {
+      igcTextData!.matches[matchIndex].match = response.span;
+    } catch (err, s) {
+      ErrorHandler.logError(e: err, s: s);
+    }
 
     choreographer.setState();
   }
