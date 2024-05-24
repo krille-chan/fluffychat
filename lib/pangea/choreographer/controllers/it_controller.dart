@@ -28,6 +28,7 @@ class ITController {
   String? sourceText;
   List<ITStep> completedITSteps = [];
   CurrentITStep? currentITStep;
+  CurrentITStep? nextITStep;
   GoldRouteTracker goldRouteTracker = GoldRouteTracker.defaultTracker;
   List<int> payLoadIds = [];
 
@@ -42,6 +43,7 @@ class ITController {
     sourceText = null;
     completedITSteps = [];
     currentITStep = null;
+    nextITStep = null;
     goldRouteTracker = GoldRouteTracker.defaultTracker;
     payLoadIds = [];
 
@@ -130,36 +132,75 @@ class ITController {
         );
       }
 
-      currentITStep = null;
+      if (nextITStep == null) {
+        currentITStep = null;
 
-      final ITResponseModel res = await _customInputTranslation(currentText);
-      // final ITResponseModel res = await (useCustomInput ||
-      //         currentText.isEmpty ||
-      //         translationId == null ||
-      //         completedITSteps.last.chosenContinuance?.indexSavedByServer ==
-      //             null
-      //     ? _customInputTranslation(currentText)
-      //     : _systemChoiceTranslation(translationId));
+        final ITResponseModel res = await _customInputTranslation(currentText);
+        // final ITResponseModel res = await (useCustomInput ||
+        //         currentText.isEmpty ||
+        //         translationId == null ||
+        //         completedITSteps.last.chosenContinuance?.indexSavedByServer ==
+        //             null
+        //     ? _customInputTranslation(currentText)
+        //     : _systemChoiceTranslation(translationId));
 
-      if (res.goldContinuances != null && res.goldContinuances!.isNotEmpty) {
-        goldRouteTracker = GoldRouteTracker(
-          res.goldContinuances!,
-          sourceText!,
+        if (res.goldContinuances != null && res.goldContinuances!.isNotEmpty) {
+          goldRouteTracker = GoldRouteTracker(
+            res.goldContinuances!,
+            sourceText!,
+          );
+        }
+
+        currentITStep = CurrentITStep(
+          sourceText: sourceText!,
+          currentText: currentText,
+          responseModel: res,
+          storedGoldContinuances: goldRouteTracker.continuances,
         );
+
+        _addPayloadId(res);
+      } else {
+        currentITStep = nextITStep;
+        nextITStep = null;
       }
-
-      currentITStep = CurrentITStep(
-        sourceText: sourceText!,
-        currentText: currentText,
-        responseModel: res,
-        storedGoldContinuances: goldRouteTracker.continuances,
-      );
-
-      _addPayloadId(res);
 
       if (isTranslationDone) {
         choreographer.altTranslator.setTranslationFeedback();
         choreographer.getLanguageHelp(true);
+      } else {
+        getNextTranslationData();
+      }
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      if (e is! http.Response) {
+        ErrorHandler.logError(e: e, s: s);
+      }
+      choreographer.errorService.setErrorAndLock(
+        ChoreoError(type: ChoreoErrorType.unknown, raw: e),
+      );
+    } finally {
+      choreographer.stopLoading();
+    }
+  }
+
+  Future<void>getNextTranslationData() async {
+    try {
+      if (completedITSteps.length < goldRouteTracker.continuances.length) {
+        final String currentText = choreographer.currentText;
+        final String nextText =
+            goldRouteTracker.continuances[completedITSteps.length].text;
+
+        final ITResponseModel res =
+            await _customInputTranslation(currentText + nextText);
+
+        nextITStep = CurrentITStep(
+          sourceText: sourceText!,
+          currentText: nextText,
+          responseModel: res,
+          storedGoldContinuances: goldRouteTracker.continuances,
+        );
+      } else {
+        nextITStep = null;
       }
     } catch (e, s) {
       debugger(when: kDebugMode);
