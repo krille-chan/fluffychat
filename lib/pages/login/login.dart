@@ -198,7 +198,6 @@ class LoginController extends State<Login> {
   }
 
   Future<void> _submitForm(String actionUrl) async {
-    // Card for storing submission data
     final formData = <String, dynamic>{};
 
     // Update node values with controller values
@@ -206,8 +205,8 @@ class LoginController extends State<Login> {
       UiNode node = formNodes[i];
       if (node.attributes.oneOf.value is UiNodeInputAttributes) {
         final UiNodeInputAttributes updatedAttributes =
-            (node.attributes.oneOf.value as UiNodeInputAttributes).rebuild(
-          (b) => b..value = JsonObject(textControllers[i].text),
+        (node.attributes.oneOf.value as UiNodeInputAttributes).rebuild(
+              (b) => b..value = JsonObject(textControllers[i].text),
         );
         formData[updatedAttributes.name] =
             textControllers[i].text; // Convert JsonObject to String
@@ -216,8 +215,13 @@ class LoginController extends State<Login> {
 
     try {
       final response = await dio.post(
-        actionUrl,
-        data: formData,
+          actionUrl,
+          data: formData,
+          options: Options(
+              headers: {
+                'Content-Type': 'application/json',
+              }
+          )
       );
 
       if (response.statusCode == 200) {
@@ -228,9 +232,25 @@ class LoginController extends State<Login> {
     } on DioException catch (e) {
       print('Erreur lors de la soumission du formulaire: $e');
       if (e.response != null) {
-        print('Response data: ${e.response?.data}');
+        // Process new response to retrieve nodes and URL action
+        final newNodes = e.response?.data['ui']['nodes'];
+
+        // Converting `newNodes` to `BuiltList<UiNode>` using ory_kratos_client serializers
+        final BuiltList<UiNode> uiNodes = deserializeUiNodes(newNodes);
+        final newActionUrl = e.response?.data['ui']['action'];
+
+        await processKratosNodes(uiNodes, newActionUrl);
       }
     }
+  }
+
+  BuiltList<UiNode> deserializeUiNodes(List<dynamic> json) {
+    final OryKratosClient kratosClient = OryKratosClient(dio: dio);
+    final standardSerializers = kratosClient.serializers;
+
+    return BuiltList<UiNode>.from(
+        json.map((dynamic node) => standardSerializers.deserializeWith(UiNode.serializer, node)!)
+    );
   }
 
   void getLoginOry() async {
