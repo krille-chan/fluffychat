@@ -585,12 +585,12 @@ class ChatDetailsView extends StatelessWidget {
                                   Theme.of(context).scaffoldBackgroundColor,
                               foregroundColor: iconColor,
                               child: Icon(
-                                room.locked
+                                room.isLocked
                                     ? Icons.lock_outlined
                                     : Icons.no_encryption_outlined,
                               ),
                             ),
-                            value: room.locked,
+                            value: room.isLocked,
                             onChanged: (value) => showFutureLoadingDialog(
                               context: context,
                               future: () => value

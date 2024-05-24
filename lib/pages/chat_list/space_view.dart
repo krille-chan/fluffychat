@@ -603,7 +603,7 @@ class _SpaceViewState extends State<SpaceView> {
                       subtitle: Row(
                         children: [
                           spaceSubtitle(rootSpace),
-                          if (rootSpace.locked)
+                          if (rootSpace.isLocked)
                             const Padding(
                               padding: EdgeInsets.only(left: 4.0),
                               child: Icon(

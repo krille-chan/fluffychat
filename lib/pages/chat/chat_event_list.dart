@@ -81,7 +81,7 @@ class ChatEventList extends StatelessWidget {
 
             // #Pangea
             if (i == 1) {
-              return (controller.room.locked) && !controller.room.isRoomAdmin
+              return (controller.room.isLocked) && !controller.room.isRoomAdmin
                   ? const LockedChatMessage()
                   : const SizedBox.shrink();
             }
