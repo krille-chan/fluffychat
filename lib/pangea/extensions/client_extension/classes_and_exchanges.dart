@@ -12,7 +12,8 @@ extension PangeaClient2 on Client {
       .toList();
 
   Future<List<Room>> get _classesAndExchangesImTeaching async {
-    for (final Room space in rooms.where((room) => room.isSpace)) {
+    final allSpaces = rooms.where((room) => room.isSpace);
+    for (final Room space in allSpaces) {
       if (space.getState(EventTypes.RoomPowerLevels) == null) {
         await space.postLoad();
       }

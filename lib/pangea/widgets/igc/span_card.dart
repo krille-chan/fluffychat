@@ -58,10 +58,14 @@ class SpanCardState extends State<SpanCard> {
   }
 
   //get selected choice
-  SpanChoice? get selectedChoice => selectedChoiceIndex != null &&
-          widget.scm.pangeaMatch?.match.choices != null
-      ? widget.scm.pangeaMatch!.match.choices![selectedChoiceIndex!]
-      : null;
+  SpanChoice? get selectedChoice {
+    if (selectedChoiceIndex == null ||
+        widget.scm.pangeaMatch?.match.choices == null ||
+        widget.scm.pangeaMatch!.match.choices!.length >= selectedChoiceIndex!) {
+      return null;
+    }
+    return widget.scm.pangeaMatch?.match.choices?[selectedChoiceIndex!];
+  }
 
   Future<void> getSpanDetails() async {
     try {
