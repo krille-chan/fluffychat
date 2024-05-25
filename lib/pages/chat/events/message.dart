@@ -236,7 +236,9 @@ class Message extends StatelessWidget {
                               if (!nextEventSameSender)
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8.0, bottom: 4),
+                                    left: 8.0,
+                                    bottom: 4,
+                                  ),
                                   child: ownMessage || event.room.isDirectChat
                                       ? const SizedBox(height: 12)
                                       : FutureBuilder<User?>(
@@ -315,8 +317,10 @@ class Message extends StatelessWidget {
                                               FutureBuilder<Event?>(
                                                 future: event
                                                     .getReplyEvent(timeline),
-                                                builder: (BuildContext context,
-                                                    snapshot) {
+                                                builder: (
+                                                  BuildContext context,
+                                                  snapshot,
+                                                ) {
                                                   final replyEvent = snapshot
                                                           .hasData
                                                       ? snapshot.data!

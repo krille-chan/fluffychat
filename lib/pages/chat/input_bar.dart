@@ -9,7 +9,6 @@ import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
@@ -465,8 +464,11 @@ class InputBar extends StatelessWidget {
                   mimeType: content.mimeType,
                   bytes: data,
                   name: content.uri.split('/').last,
-                ).detectFileType;
-                room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+                );
+                room.sendFileEvent(
+                  file,
+                  shrinkImageMaxDimension: 1600,
+                );
               },
             ),
             minLines: minLines,
