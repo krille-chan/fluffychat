@@ -68,6 +68,9 @@ parts:
     plugin: flutter
     source: .
     override-build: |
+      # Workaround for Flutter Linux broken on 3.22
+      curl -fsSL https://fvm.app/install.sh | bash
+      fvm use 3.19.6
       # Workaround for Flutter build error:
       rm -rf build
       craftctl default
