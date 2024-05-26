@@ -21,7 +21,7 @@ class SettingsSecurityView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(L10n.of(context)!.security)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onBackground,
+        iconColor: Theme.of(context).colorScheme.onSurface,
         child: MaxWidthBody(
           child: FutureBuilder(
             future: Matrix.of(context)

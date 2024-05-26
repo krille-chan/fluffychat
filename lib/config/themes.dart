@@ -89,7 +89,7 @@ abstract class FluffyThemes {
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
-        selectionColor: colorScheme.onBackground.withAlpha(128),
+        selectionColor: colorScheme.onSurface.withAlpha(128),
         selectionHandleColor: colorScheme.secondary,
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -106,13 +106,13 @@ abstract class FluffyThemes {
             ? Colors.grey.withAlpha(64)
             : null,
         surfaceTintColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.background : null,
+            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
           statusBarBrightness: brightness,
           systemNavigationBarIconBrightness: brightness.reversed,
-          systemNavigationBarColor: colorScheme.background,
+          systemNavigationBarColor: colorScheme.surface,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
