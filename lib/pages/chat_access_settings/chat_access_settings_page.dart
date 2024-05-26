@@ -22,7 +22,8 @@ class ChatAccessSettingsPageView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         child: StreamBuilder<Object>(
-          stream: room.onUpdate.stream,
+          stream: room.client.onRoomState.stream
+              .where((update) => update.roomId == controller.room.id),
           builder: (context, snapshot) {
             final canonicalAlias = room.canonicalAlias;
             final altAliases = room
