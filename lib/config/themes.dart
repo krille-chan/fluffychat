@@ -107,6 +107,8 @@ abstract class FluffyThemes {
             : null,
         surfaceTintColor:
             FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
+        backgroundColor:
+            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
