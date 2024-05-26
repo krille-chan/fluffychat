@@ -15,7 +15,7 @@ class MessageReactions extends StatelessWidget {
   final Timeline timeline;
 
   const MessageReactions(this.controller, this.event, this.timeline,
-      {super.key});
+      {super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +113,7 @@ class _Reaction extends StatelessWidget {
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
-    final color = Theme.of(context).colorScheme.background;
+    final color = Theme.of(context).colorScheme.surface;
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       content = Row(
