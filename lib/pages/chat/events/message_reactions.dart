@@ -14,8 +14,12 @@ class MessageReactions extends StatelessWidget {
   final Event event;
   final Timeline timeline;
 
-  const MessageReactions(this.controller, this.event, this.timeline,
-      {super.key,});
+  const MessageReactions(
+    this.controller,
+    this.event,
+    this.timeline, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
