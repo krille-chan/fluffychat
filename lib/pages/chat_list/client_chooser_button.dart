@@ -84,7 +84,8 @@ class ClientChooserButton extends StatelessWidget {
       const PopupMenuDivider(),
       PopupMenuItem(
         value: null,
-        child: StatefulBuilder(
+        child: StreamBuilder<BasicEvent>(
+          stream: Matrix.of(context).client.onAccountData.stream,
           builder: (context, setState) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -152,11 +153,6 @@ class ClientChooserButton extends StatelessWidget {
                                 client.userID,
                                 bundle,
                               );
-                              await client.oneShotSync();
-
-                              if (context.mounted) {
-                                setState(() {});
-                              }
                             },
                           ),
                         ],
