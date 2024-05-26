@@ -428,17 +428,19 @@ class ChatController extends State<ChatPageWithRoom>
       room.setTyping(false);
       currentlyTyping = false;
     }
-    
+
     setState(() {
       sendingClient = c;
     });
 
-    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead).onError(
+    loadTimelineFuture = _getTimeline(eventContextId: room.fullyRead)
+        .onError(
       ErrorReporter(
         context,
         'Unable to load timeline after changing sending Client',
       ).onErrorCallback,
-    ).then((_) {
+    )
+        .then((_) {
       setReadMarker();
     });
   }

@@ -437,10 +437,7 @@ class Message extends StatelessWidget {
                 child: Material(
                   color: displayTime
                       ? Theme.of(context).colorScheme.surface
-                      : Theme.of(context)
-                          .colorScheme
-                          .surface
-                          .withOpacity(0.33),
+                      : Theme.of(context).colorScheme.surface.withOpacity(0.33),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
                   clipBehavior: Clip.antiAlias,
