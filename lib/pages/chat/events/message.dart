@@ -9,7 +9,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import '../../../config/app_config.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
@@ -18,6 +18,7 @@ import 'state_message.dart';
 import 'verification_request_content.dart';
 
 class Message extends StatelessWidget {
+  final ChatController controller;
   final Event event;
   final Event? nextEvent;
   final Event? previousEvent;
@@ -36,6 +37,7 @@ class Message extends StatelessWidget {
   final Color? avatarPresenceBackgroundColor;
 
   const Message(
+    this.controller,
     this.event, {
     this.nextEvent,
     this.previousEvent,
@@ -74,10 +76,9 @@ class Message extends StatelessWidget {
       return VerificationRequestContent(event: event, timeline: timeline);
     }
 
-    final client = Matrix.of(context).client;
-    final ownMessage = event.senderId == client.userID;
+    final ownMessage = event.senderId == controller.sendingClient.userID;
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
-    var color = Theme.of(context).colorScheme.surfaceVariant;
+    var color = Theme.of(context).colorScheme.surfaceContainerHighest;
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
@@ -101,7 +102,7 @@ class Message extends StatelessWidget {
 
     final textColor = ownMessage
         ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onBackground;
+        : Theme.of(context).colorScheme.onSurface;
     final rowMainAxisAlignment =
         ownMessage ? MainAxisAlignment.end : MainAxisAlignment.start;
 
@@ -366,6 +367,7 @@ class Message extends StatelessWidget {
                                                 },
                                               ),
                                             MessageContent(
+                                              controller,
                                               displayEvent,
                                               textColor: textColor,
                                               onInfoTab: onInfoTab,
@@ -434,10 +436,10 @@ class Message extends StatelessWidget {
               child: Center(
                 child: Material(
                   color: displayTime
-                      ? Theme.of(context).colorScheme.background
+                      ? Theme.of(context).colorScheme.surface
                       : Theme.of(context)
                           .colorScheme
-                          .background
+                          .surface
                           .withOpacity(0.33),
                   borderRadius:
                       BorderRadius.circular(AppConfig.borderRadius / 2),
@@ -468,7 +470,7 @@ class Message extends StatelessWidget {
                       left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                       right: ownMessage ? 0 : 12.0,
                     ),
-                    child: MessageReactions(event, timeline),
+                    child: MessageReactions(controller, event, timeline),
                   ),
           ),
           if (displayReadMarker)

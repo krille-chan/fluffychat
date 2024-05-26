@@ -1,3 +1,4 @@
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart' show IterableExtension;
@@ -6,21 +7,21 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class MessageReactions extends StatelessWidget {
+  final ChatController controller;
   final Event event;
   final Timeline timeline;
 
-  const MessageReactions(this.event, this.timeline, {super.key});
+  const MessageReactions(this.controller, this.event, this.timeline, {super.key});
 
   @override
   Widget build(BuildContext context) {
     final allReactionEvents =
         event.aggregatedEvents(timeline, RelationshipTypes.reaction);
     final reactionMap = <String, _ReactionEntry>{};
-    final client = Matrix.of(context).client;
+    final client = controller.sendingClient;
 
     for (final e in allReactionEvents) {
       final key = e.content
@@ -111,7 +112,7 @@ class _Reaction extends StatelessWidget {
     final textColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
-    final color = Theme.of(context).colorScheme.background;
+    final color = Theme.of(context).colorScheme.surface;
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       content = Row(

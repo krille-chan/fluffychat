@@ -351,7 +351,7 @@ class _ChatAccountPicker extends StatelessWidget {
           child: Avatar(
             mxContent: snapshot.data?.avatarUrl,
             name: snapshot.data?.displayName ??
-                Matrix.of(context).client.userID!.localpart,
+                controller.sendingClient.userID!.localpart,
             size: 20,
           ),
         ),

@@ -137,7 +137,7 @@ class ChatView extends StatelessWidget {
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
-    final accountConfig = Matrix.of(context).client.applicationAccountConfig;
+    final accountConfig = controller.sendingClient.applicationAccountConfig;
 
     return PopScope(
       canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
@@ -303,7 +303,7 @@ class ChatView extends StatelessWidget {
                                 clipBehavior: Clip.hardEdge,
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .surfaceVariant,
+                                    .surfaceContainerHighest,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),

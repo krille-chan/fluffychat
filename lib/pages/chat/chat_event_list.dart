@@ -115,6 +115,7 @@ class ChatEventList extends StatelessWidget {
               index: i,
               controller: controller.scrollController,
               child: Message(
+                controller,
                 event,
                 animateIn: animateIn,
                 resetAnimateIn: () {
