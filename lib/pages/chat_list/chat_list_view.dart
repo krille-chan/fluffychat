@@ -189,9 +189,11 @@ class ChatListView extends StatelessWidget {
                             labelBehavior:
                                 NavigationDestinationLabelBehavior.alwaysShow,
                             shadowColor:
-                                Theme.of(context).colorScheme.onBackground,
+                                Theme.of(context).colorScheme.onSurface,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
                             surfaceTintColor:
-                                Theme.of(context).colorScheme.background,
+                                Theme.of(context).colorScheme.surface,
                             selectedIndex: controller.selectedIndex,
                             onDestinationSelected:
                                 controller.onDestinationSelected,

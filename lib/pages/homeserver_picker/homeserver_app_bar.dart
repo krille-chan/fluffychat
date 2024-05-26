@@ -92,8 +92,8 @@ class HomeserverAppBar extends StatelessWidget {
                 )
               : null,
           fillColor: FluffyThemes.isColumnMode(context)
-              ? Theme.of(context).colorScheme.background
-              : Theme.of(context).colorScheme.surfaceVariant,
+              ? Theme.of(context).colorScheme.surface
+              : Theme.of(context).colorScheme.surfaceContainerHighest,
           prefixText: '${L10n.of(context)!.homeserver}: ',
           hintText: L10n.of(context)!.enterYourHomeserver,
           suffixIcon: const Icon(Icons.search),
