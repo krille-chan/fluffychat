@@ -439,9 +439,7 @@ class ChatController extends State<ChatPageWithRoom>
         'Unable to load timeline after changing sending Client',
       ).onErrorCallback,
     ).then((_) {
-      if (mounted) {
-        setReadMarker();
-      }
+      setReadMarker();
     });
   }
 
