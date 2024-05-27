@@ -124,6 +124,8 @@ extension PangeaRoom on Room {
 
   Text nameAndRoomTypeIcon([TextStyle? textStyle]) => Text.rich(
         style: textStyle,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         TextSpan(
           children: [
             WidgetSpan(
