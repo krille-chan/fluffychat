@@ -58,7 +58,7 @@ class NewGroupView extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       // #Pangea
-                      maxLength: 32,
+                      maxLength: 64,
                       // Pangea#
                       controller: controller.nameController,
                       autocorrect: false,
