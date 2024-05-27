@@ -120,7 +120,9 @@ class LoginController extends State<Login> {
       return setState(() => loading = false);
     }
 
-    if (mounted) setState(() => loading = false);
+    // #Pangea
+    // if (mounted) setState(() => loading = false);
+    // Pangea#
   }
 
   Timer? _coolDown;

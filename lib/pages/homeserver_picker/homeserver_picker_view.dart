@@ -70,7 +70,14 @@ class HomeserverPickerView extends StatelessWidget {
           // Pangea#
           Expanded(
             child: controller.isLoading
-                ? const Center(child: CircularProgressIndicator.adaptive())
+                // #Pangea
+                // ? const Center(child: CircularProgressIndicator.adaptive())
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                    ),
+                  )
+                // Pangea#
                 : ListView(
                     children: [
                       if (errorText != null) ...[
