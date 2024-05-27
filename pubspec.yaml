@@ -152,9 +152,8 @@ dependency_overrides:
   # Until https://github.com/mogol/flutter_secure_storage/issues/616 is fixed
   flutter_secure_storage_linux: 1.1.3
   geolocator_android:
-    hosted:
-      name: geolocator_android
-      url: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+    hosted: https://hanntech-gmbh.gitlab.io/free2pass/flutter-geolocator-floss
+    version: ^1.0.1
   # waiting for null safety
   # Upstream pull request: https://github.com/AntoineMarcel/keyboard_shortcuts/pull/13
   keyboard_shortcuts:
