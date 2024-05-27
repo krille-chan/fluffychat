@@ -1,4 +1,4 @@
-part of "../client_extension.dart";
+part of "client_extension.dart";
 
 extension PangeaClient3 on Client {
   Future<List<String>> get _teacherRoomIds async {

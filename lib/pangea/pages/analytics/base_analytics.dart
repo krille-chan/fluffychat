@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';

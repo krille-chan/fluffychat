@@ -20,26 +20,26 @@ import 'package:matrix/src/utils/markdown.dart';
 import 'package:matrix/src/utils/space_child.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../../config/app_config.dart';
-import '../constants/pangea_event_types.dart';
-import '../enum/construct_type_enum.dart';
-import '../enum/use_type.dart';
-import '../matrix_event_wrappers/construct_analytics_event.dart';
-import '../models/choreo_record.dart';
-import '../models/constructs_analytics_model.dart';
-import '../models/representation_content_model.dart';
-import '../models/student_analytics_event.dart';
-import '../models/student_analytics_summary_model.dart';
-import '../utils/p_store.dart';
-import 'client_extension.dart';
+import '../../../config/app_config.dart';
+import '../../constants/pangea_event_types.dart';
+import '../../enum/construct_type_enum.dart';
+import '../../enum/use_type.dart';
+import '../../matrix_event_wrappers/construct_analytics_event.dart';
+import '../../models/choreo_record.dart';
+import '../../models/constructs_analytics_model.dart';
+import '../../models/representation_content_model.dart';
+import '../../models/student_analytics_event.dart';
+import '../../models/student_analytics_summary_model.dart';
+import '../../utils/p_store.dart';
+import '../client_extension/client_extension.dart';
 
-part "pangea_room_extension/analytics.dart";
-part "pangea_room_extension/children_and_parents.dart";
-part "pangea_room_extension/class_and_exchange_settings.dart";
-part "pangea_room_extension/events.dart";
-part "pangea_room_extension/room_information.dart";
-part "pangea_room_extension/room_settings.dart";
-part "pangea_room_extension/user_permissions.dart";
+part "analytics_extension.dart";
+part "children_and_parents_extension.dart";
+part "class_and_exchange_settings_extension.dart";
+part "events_extension.dart";
+part "room_information_extension.dart";
+part "room_settings_extension.dart";
+part "user_permissions_extension.dart";
 
 extension PangeaRoom on Room {
 // analytics

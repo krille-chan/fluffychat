@@ -1,4 +1,4 @@
-part of "../pangea_room_extension.dart";
+part of "pangea_room_extension.dart";
 
 extension PangeaRoom1 on Room {
   // Join analytics rooms in space

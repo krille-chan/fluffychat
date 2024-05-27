@@ -1,4 +1,4 @@
-part of "../client_extension.dart";
+part of "client_extension.dart";
 
 extension PangeaClient2 on Client {
   List<Room> get _classes => rooms.where((e) => e.isPangeaClass).toList();

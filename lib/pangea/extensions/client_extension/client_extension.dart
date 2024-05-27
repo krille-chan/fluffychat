@@ -4,18 +4,18 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
-import '../utils/p_store.dart';
+import '../../utils/p_store.dart';
 
-part "client_extension/analytics.dart";
-part "client_extension/classes_and_exchanges.dart";
-part "client_extension/general_info.dart";
+part "analytics_extension.dart";
+part "classes_and_exchanges_extension.dart";
+part "general_info_extension.dart";
 
 extension PangeaClient on Client {
 // analytics

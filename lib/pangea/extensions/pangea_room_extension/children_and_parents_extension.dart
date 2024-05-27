@@ -1,4 +1,4 @@
-part of "../pangea_room_extension.dart";
+part of "pangea_room_extension.dart";
 
 extension PangeaRoom2 on Room {
   //note this only will return rooms that the user has joined or been invited to

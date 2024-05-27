@@ -1,4 +1,4 @@
-part of "../pangea_room_extension.dart";
+part of "pangea_room_extension.dart";
 
 extension PangeaRoom5 on Room {
   DateTime? get _creationTime =>

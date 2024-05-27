@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/age_limits.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/pages/p_user_age/p_user_age_view.dart';
 import 'package:fluffychat/pangea/utils/p_extension.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';

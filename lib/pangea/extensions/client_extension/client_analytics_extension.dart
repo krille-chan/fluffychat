@@ -1,4 +1,4 @@
-part of "../client_extension.dart";
+part of "client_extension.dart";
 
 extension PangeaClient1 on Client {
   // get analytics room matching targetlanguage

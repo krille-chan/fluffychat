@@ -1,4 +1,4 @@
-part of "../pangea_room_extension.dart";
+part of "pangea_room_extension.dart";
 
 extension PangeaRoom4 on Room {
   Future<Event?> _sendPangeaEvent({

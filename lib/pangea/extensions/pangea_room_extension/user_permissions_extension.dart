@@ -1,4 +1,4 @@
-part of "../pangea_room_extension.dart";
+part of "pangea_room_extension.dart";
 
 extension PangeaRoom7 on Room {
   bool _isMadeByUser(String userId) =>
