@@ -344,11 +344,6 @@ class MessageContent extends StatelessWidget {
                       MatrixLocals(L10n.of(context)!),
                       hideReply: true,
                     );
-                // #Pangea
-                // toolbarController?.toolbar?.textSelection.setMessageText(
-                //   messageText,
-                // );
-                // Pangea#
                 return SelectableLinkify(
                   onSelectionChanged: (selection, cause) {
                     if (cause == SelectionChangedCause.longPress &&
@@ -365,11 +360,7 @@ class MessageContent extends StatelessWidget {
                         .onTextSelection(selection);
                   },
                   onTap: () => toolbarController?.showToolbar(context),
-                  // #Pangea
-                  // text: toolbarController?.toolbar?.textSelection.messageText ??
-                  //     messageText,
                   text: messageText,
-                  // Pangea#
                   contextMenuBuilder: (context, state) =>
                       (toolbarController?.highlighted ?? false)
                           ? const SizedBox.shrink()
