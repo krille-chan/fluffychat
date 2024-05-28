@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
+
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -13,10 +13,6 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldFillColor = FluffyThemes.isColumnMode(context)
-        ? Theme.of(context).colorScheme.background
-        : Theme.of(context).colorScheme.surfaceVariant;
-
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
@@ -25,8 +21,7 @@ class LoginView extends StatelessWidget {
       ),
       body: Builder(
         builder: (context) {
-          return
-            AutofillGroup(
+          return AutofillGroup(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
@@ -34,6 +29,14 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 16),
                 ...controller.authWidgets,
                 const SizedBox(height: 16),
+                if (controller.messageError != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      controller.messageError!,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
                 // Register redirection
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),

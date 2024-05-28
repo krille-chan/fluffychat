@@ -40,6 +40,7 @@ class LoginController extends State<Login> {
 
   final TextEditingController usernameController = TextEditingController();
   bool loading = true;
+  String? messageError;
 
   String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
@@ -232,10 +233,31 @@ class LoginController extends State<Login> {
 
       await storeSessionToken(sessionToken);
       return checkUserQueueState(sessionToken!);
-    } catch (e) {
+    } on MatrixException catch (exception) {
+      setState(() => messageError = exception.errorMessage);
+      return setState(() => loading = false);
+    } on DioException catch (e) {
       if (kDebugMode) {
-        print('Error updating login flow: $e');
+        print("Exception when calling Kratos log: $e\n");
       }
+      Logs().v("Error Kratos login : ${e.response?.data}");
+
+      // Display Kratos error messages to the user
+      if (e.response?.data != null) {
+        final errorMessage = e.response!.data['ui']['messages'][0]['text'];
+        setState(() => messageError = errorMessage);
+      } else {
+        setState(
+              () => messageError = L10n.of(context)!.errTryAgain,
+        );
+      }
+      return setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      setState(() => messageError = L10n.of(context)!.errUsernameOrPassword);
+      return setState(() => loading = false);
     }
   }
 
