@@ -89,6 +89,11 @@ class ChatListItem extends StatelessWidget {
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
       return const SizedBox.shrink();
     }
+
+    final needLastEventSender = lastEvent == null
+        ? false
+        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -226,33 +231,49 @@ class ChatListItem extends StatelessWidget {
                             maxLines: 1,
                             softWrap: false,
                           )
-                        : Text(
-                            room.membership == Membership.invite
-                                ? isDirectChat
-                                    ? L10n.of(context)!.invitePrivateChat
-                                    : L10n.of(context)!.inviteGroupChat
-                                : room.lastEvent?.calcLocalizedBodyFallback(
-                                      MatrixLocals(L10n.of(context)!),
-                                      hideReply: true,
-                                      hideEdit: true,
-                                      plaintextBody: true,
-                                      removeMarkdown: true,
-                                      withSenderNamePrefix: !isDirectChat ||
-                                          directChatMatrixId !=
-                                              room.lastEvent?.senderId,
-                                    ) ??
-                                    L10n.of(context)!.emptyChat,
-                            softWrap: false,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: unread || room.hasNewMessages
-                                  ? FontWeight.bold
-                                  : null,
-                              color: theme.colorScheme.onSurfaceVariant,
-                              decoration: room.lastEvent?.redacted == true
-                                  ? TextDecoration.lineThrough
-                                  : null,
+                        : FutureBuilder(
+                            future: needLastEventSender
+                                ? room.lastEvent?.calcLocalizedBody(
+                                    MatrixLocals(L10n.of(context)!),
+                                    hideReply: true,
+                                    hideEdit: true,
+                                    plaintextBody: true,
+                                    removeMarkdown: true,
+                                    withSenderNamePrefix: !isDirectChat ||
+                                        directChatMatrixId !=
+                                            room.lastEvent?.senderId,
+                                  )
+                                : null,
+                            initialData:
+                                room.lastEvent?.calcLocalizedBodyFallback(
+                              MatrixLocals(L10n.of(context)!),
+                              hideReply: true,
+                              hideEdit: true,
+                              plaintextBody: true,
+                              removeMarkdown: true,
+                              withSenderNamePrefix: !isDirectChat ||
+                                  directChatMatrixId !=
+                                      room.lastEvent?.senderId,
+                            ),
+                            builder: (context, snapshot) => Text(
+                              room.membership == Membership.invite
+                                  ? isDirectChat
+                                      ? L10n.of(context)!.invitePrivateChat
+                                      : L10n.of(context)!.inviteGroupChat
+                                  : snapshot.data ??
+                                      L10n.of(context)!.emptyChat,
+                              softWrap: false,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: unread || room.hasNewMessages
+                                    ? FontWeight.bold
+                                    : null,
+                                color: theme.colorScheme.onSurfaceVariant,
+                                decoration: room.lastEvent?.redacted == true
+                                    ? TextDecoration.lineThrough
+                                    : null,
+                              ),
                             ),
                           ),
                   ),
