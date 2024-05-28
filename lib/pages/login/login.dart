@@ -58,11 +58,11 @@ class LoginController extends State<Login> {
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
     getLoginOry();
     // Check if sessionToken exists and handle it
-    // getSessionToken().then((sessionToken) {
-    //   if (sessionToken != null) {
-    //     checkUserQueueState(sessionToken);
-    //   }
-    // });
+     getSessionToken().then((sessionToken) {
+       if (sessionToken != null) {
+         checkUserQueueState(sessionToken);
+       }
+     });
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {
@@ -309,16 +309,16 @@ class LoginController extends State<Login> {
           print('Erreur: ${response.data}');
         }
       } on DioException catch (e) {
-        print('Erreur lors de la soumission du formulaire: $e');
+        if (kDebugMode) {
+          print('Erreur lors de la soumission du formulaire: $e');
+        }
         if (e.response != null) {
-          print('response: ${e.response}');
           // Unserialize the JSON response in LoginFlow
           final responseData = e.response?.data;
           final loginFlow = kratosClient.serializers
               .deserializeWith(kratos.LoginFlow.serializer, responseData);
 
           setState(() => flowId = loginFlow?.id);
-          print('Flow ID: ${loginFlow?.id}');
 
           // new response to retrieve nodes and action URL
           final newNodes = loginFlow?.ui.nodes;
