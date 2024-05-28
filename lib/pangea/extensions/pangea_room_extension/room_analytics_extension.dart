@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom1 on Room {
+extension AnalyticsRoomExtension on Room {
   // Join analytics rooms in space
   // Allows teachers to join analytics rooms without being invited
   Future<void> _joinAnalyticsRoomsInSpace() async {

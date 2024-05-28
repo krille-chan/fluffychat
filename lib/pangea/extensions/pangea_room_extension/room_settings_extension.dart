@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom6 on Room {
+extension RoomSettingsRoomExtension on Room {
   PangeaRoomRules? get _pangeaRoomRules {
     try {
       final Map<String, dynamic>? content = pangeaRoomRulesStateEvent?.content;

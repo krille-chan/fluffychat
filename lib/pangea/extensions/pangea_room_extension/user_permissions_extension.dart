@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom7 on Room {
+extension UserPermissionsRoomExtension on Room {
   bool _isMadeByUser(String userId) =>
       getState(EventTypes.RoomCreate)?.senderId == userId;
 

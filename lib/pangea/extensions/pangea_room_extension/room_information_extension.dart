@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom5 on Room {
+extension RoomInformationRoomExtension on Room {
   DateTime? get _creationTime =>
       getState(EventTypes.RoomCreate)?.originServerTs;
 

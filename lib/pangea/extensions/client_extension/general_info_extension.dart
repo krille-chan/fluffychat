@@ -1,6 +1,6 @@
 part of "client_extension.dart";
 
-extension PangeaClient3 on Client {
+extension GeneralInfoClientExtension on Client {
   Future<List<String>> get _teacherRoomIds async {
     final List<String> adminRoomIds = [];
     for (final Room adminSpace in (await _classesAndExchangesImTeaching)) {

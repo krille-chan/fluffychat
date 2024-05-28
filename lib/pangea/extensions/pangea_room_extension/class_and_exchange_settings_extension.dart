@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom3 on Room {
+extension ClassAndExchangeSettingsRoomExtension on Room {
   DateTime? get _rulesUpdatedAt {
     if (!isSpace) return null;
     return pangeaRoomRulesStateEvent?.originServerTs ?? creationTime;

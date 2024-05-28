@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom4 on Room {
+extension EventsRoomExtension on Room {
   Future<Event?> _sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,

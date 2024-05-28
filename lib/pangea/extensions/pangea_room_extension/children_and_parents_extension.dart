@@ -1,6 +1,6 @@
 part of "pangea_room_extension.dart";
 
-extension PangeaRoom2 on Room {
+extension ChildrenAndParentsRoomExtension on Room {
   //note this only will return rooms that the user has joined or been invited to
   List<Room> get _joinedChildren {
     if (!isSpace) return [];

@@ -1,6 +1,6 @@
 part of "client_extension.dart";
 
-extension PangeaClient2 on Client {
+extension ClassesAndExchangesClientExtension on Client {
   List<Room> get _classes => rooms.where((e) => e.isPangeaClass).toList();
 
   List<Room> get _classesImTeaching => rooms
