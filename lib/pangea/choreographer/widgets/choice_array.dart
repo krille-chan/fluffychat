@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../utils/bot_style.dart';
 import 'it_shimmer.dart';
@@ -57,10 +58,12 @@ class Choice {
   Choice({
     this.color,
     required this.text,
+    this.isGold = false,
   });
 
   final Color? color;
   final String text;
+  final bool isGold;
 }
 
 class ChoiceItem extends StatelessWidget {
@@ -87,8 +90,10 @@ class ChoiceItem extends StatelessWidget {
         waitDuration: onLongPress != null
             ? const Duration(milliseconds: 500)
             : const Duration(days: 1),
-        child: SelectiveRotatingWidget(
+        child: ChoiceAnimationWidget(
+          key: ValueKey(entry.value.text),
           selected: entry.value.color != null,
+          isGold: entry.value.isGold,
           child: Container(
             margin: const EdgeInsets.all(2),
             padding: EdgeInsets.zero,
@@ -140,19 +145,27 @@ class ChoiceItem extends StatelessWidget {
   }
 }
 
-class SelectiveRotatingWidget extends StatefulWidget {
+class ChoiceAnimationWidget extends StatefulWidget {
   final Widget child;
   final bool selected;
+  final bool isGold;
 
-  const SelectiveRotatingWidget({super.key, required this.child, required this.selected});
+  const ChoiceAnimationWidget({
+    super.key,
+    required this.child,
+    required this.selected,
+    this.isGold = false,
+  });
 
   @override
-  SelectiveRotatingWidgetState createState() => SelectiveRotatingWidgetState();
+  ChoiceAnimationWidgetState createState() => ChoiceAnimationWidgetState();
 }
 
-class SelectiveRotatingWidgetState extends State<SelectiveRotatingWidget> with SingleTickerProviderStateMixin {
+class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
+  bool animationPlayed = false;
 
   @override
   void initState() {
@@ -163,42 +176,64 @@ class SelectiveRotatingWidgetState extends State<SelectiveRotatingWidget> with S
       vsync: this,
     );
 
-    _animation = TweenSequence<double>([
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0, end: -8 * pi / 180),
-        weight: 1.0,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
-        weight: 2.0,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 16 * pi / 180, end: 0),
-        weight: 1.0,
-      ),
-    ]).animate(_controller);
+    _animation = widget.isGold
+      ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
+      : TweenSequence<double>([
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0, end: -8 * pi / 180),
+          weight: 1.0,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
+          weight: 2.0,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 16 * pi / 180, end: 0),
+          weight: 1.0,
+        ),
+      ]).animate(_controller);
 
-    if (widget.selected) {
-      _controller.repeat(reverse: true);
+    if (widget.selected && !animationPlayed) {
+      _controller.forward();
+      animationPlayed = true;
+      setState(() {});
     }
-  }
-
-  @override
-  void didUpdateWidget(SelectiveRotatingWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.selected != oldWidget.selected) {
-      if (widget.selected) {
-        _controller.repeat(reverse: true);
-      } else {
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
         _controller.stop();
         _controller.reset();
       }
+    });
+  }
+
+  @override
+  void didUpdateWidget(ChoiceAnimationWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.selected && !animationPlayed) {
+      _controller.forward();
+      animationPlayed = true;
+      setState(() {});
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
+    return widget.isGold
+    ? AnimatedBuilder(
+      key: UniqueKey(),
+      animation: _animation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: _animation.value,
+          child: child,
+        );
+      },
+      child: widget.child,
+    )
+    : AnimatedBuilder(
+      key: UniqueKey(),
       animation: _animation,
       builder: (context, child) {
         return Transform.rotate(
