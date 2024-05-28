@@ -289,7 +289,8 @@ class ChatController extends State<ChatPageWithRoom>
         setReadMarker();
         return;
       }
-      if (timeline!.events.any((event) => event.eventId == fullyRead)) {
+      if (timeline?.events.any((event) => event.eventId == fullyRead) ??
+          false) {
         Logs().v('Scroll up to visible event', fullyRead);
         setReadMarker();
         return;
