@@ -236,6 +236,7 @@ class IgcController {
 
   clear() {
     igcTextData = null;
+    // Not sure why this is here
     // MatrixState.pAnyState.closeOverlay();
   }
 
