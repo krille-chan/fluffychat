@@ -232,8 +232,9 @@ class ChatListItem extends StatelessWidget {
                             softWrap: false,
                           )
                         : FutureBuilder(
+                            key: ValueKey(lastEvent?.senderId),
                             future: needLastEventSender
-                                ? room.lastEvent?.calcLocalizedBody(
+                                ? lastEvent.calcLocalizedBody(
                                     MatrixLocals(L10n.of(context)!),
                                     hideReply: true,
                                     hideEdit: true,
@@ -244,8 +245,7 @@ class ChatListItem extends StatelessWidget {
                                             room.lastEvent?.senderId,
                                   )
                                 : null,
-                            initialData:
-                                room.lastEvent?.calcLocalizedBodyFallback(
+                            initialData: lastEvent?.calcLocalizedBodyFallback(
                               MatrixLocals(L10n.of(context)!),
                               hideReply: true,
                               hideEdit: true,
