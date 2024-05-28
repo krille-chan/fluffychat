@@ -198,6 +198,47 @@ class LoginController extends State<Login> {
     });
   }
 
+  Future<void> oryLoginWithCode(
+      String email, String code, kratos.OryKratosClient kratosClient) async {
+    final updateLoginFlowWithCodeMethod = kratos.UpdateLoginFlowWithCodeMethod(
+      (builder) => builder
+        ..identifier = email
+        ..method = 'code'
+        ..code = code
+        ..csrfToken = "", // Assuming csrfToken is not required for mobile
+    );
+
+    // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithCodeMethod object
+    final updateLoginFlowBody = kratos.UpdateLoginFlowBody(
+      (builder) => builder
+        ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithCodeMethod),
+    );
+
+    final frontendApi = kratosClient.getFrontendApi();
+
+    try {
+      // Sends a POST request with user credentials
+      final loginResponse = await frontendApi.updateLoginFlow(
+        flow: flowId!,
+        updateLoginFlowBody: updateLoginFlowBody,
+      );
+
+      if (kDebugMode) {
+        print('Successfully updated login flow with user credentials');
+      }
+
+      // Processing the response to obtain the connection session token
+      final sessionToken = loginResponse.data?.sessionToken;
+
+      await storeSessionToken(sessionToken);
+      return checkUserQueueState(sessionToken!);
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error updating login flow: $e');
+      }
+    }
+  }
+
   Future<void> _submitForm(String actionUrl) async {
     final formData = <String, dynamic>{};
     String? email;
@@ -225,44 +266,7 @@ class LoginController extends State<Login> {
     }
 
     if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
-      final updateLoginFlowWithCodeMethod =
-          kratos.UpdateLoginFlowWithCodeMethod(
-        (builder) => builder
-          ..identifier = email
-          ..method = 'code'
-          ..code = code
-          ..csrfToken = "", // Assuming csrfToken is not required for mobile
-      );
-
-      // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
-      final updateLoginFlowBody = kratos.UpdateLoginFlowBody(
-        (builder) => builder
-          ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithCodeMethod),
-      );
-
-      final frontendApi = kratosClient.getFrontendApi();
-
-      try {
-        // Sends a POST request with user credentials
-        final loginResponse = await frontendApi.updateLoginFlow(
-          flow: flowId!,
-          updateLoginFlowBody: updateLoginFlowBody,
-        );
-
-        if (kDebugMode) {
-          print('Successfully updated login flow with user credentials');
-        }
-
-        // Processing the response to obtain the connection session token
-        final sessionToken = loginResponse.data?.sessionToken;
-
-        await storeSessionToken(sessionToken);
-        return checkUserQueueState(sessionToken!);
-      } catch (e) {
-        if (kDebugMode) {
-          print('Error updating login flow: $e');
-        }
-      }
+      await oryLoginWithCode(email, code, kratosClient);
     } else {
       try {
         final response = await dio.post(
