@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:one_of/one_of.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
@@ -142,16 +142,17 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  Future<void> processKratosNodes(BuiltList<kratos.UiNode> nodes, String actionUrl) async {
+  Future<void> processKratosNodes(
+      BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     List<Widget> formWidgets = [];
     List<kratos.UiNode> allNodes = [];
 
     for (kratos.UiNode node in nodes) {
       print(node);
       kratos.UiNodeInputAttributes attributes =
-      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-      TextEditingController(text: attributes.value?.toString() ?? "");
+          TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
@@ -170,7 +171,8 @@ class LoginController extends State<Login> {
               enabled: !attributes.disabled,
             ),
           );
-        } else if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.submit) {
+        } else if (attributes.type ==
+            kratos.UiNodeInputAttributesTypeEnum.submit) {
           inputWidget = Padding(
             padding: const EdgeInsets.all(12.0),
             child: ElevatedButton(
@@ -198,69 +200,122 @@ class LoginController extends State<Login> {
 
   Future<void> _submitForm(String actionUrl) async {
     final formData = <String, dynamic>{};
+    String? email;
+    String? code;
+
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
 
     // Update node values with controller values
     for (int i = 0; i < formNodes.length; i++) {
-      kratos.UiNode node = formNodes[i];
+      final kratos.UiNode node = formNodes[i];
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
-        final kratos.UiNodeInputAttributes updatedAttributes =
-        (node.attributes.oneOf.value as kratos.UiNodeInputAttributes).rebuild(
-              (b) => b..value = JsonObject(textControllers[i].text),
-        );
-        formData[updatedAttributes.name] =
-            textControllers[i].text; // Convert JsonObject to String
+        final kratos.UiNodeInputAttributes attributes =
+            node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+        final value = textControllers[i].text;
+
+        formData[attributes.name] = value; // Convert JsonObject to String
+
+        if (attributes.name == 'identifier') {
+          email = value;
+        } else if (attributes.name == 'resend') {
+          code = value;
+        }
       }
     }
 
-    try {
-      final response = await dio.post(
-        actionUrl,
-        data: formData,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        ),
+    if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
+      final updateLoginFlowWithCodeMethod =
+          kratos.UpdateLoginFlowWithCodeMethod(
+        (builder) => builder
+          ..identifier = email
+          ..method = 'code'
+          ..code = code
+          ..csrfToken = "", // Assuming csrfToken is not required for mobile
       );
 
-      if (response.statusCode == 200) {
-        print('Succès: ${response.data}');
-      } else {
-        print('Erreur: ${response.data}');
+      // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
+      final updateLoginFlowBody = kratos.UpdateLoginFlowBody(
+        (builder) => builder
+          ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithCodeMethod),
+      );
+
+      final frontendApi = kratosClient.getFrontendApi();
+
+      try {
+        // Sends a POST request with user credentials
+        final loginResponse = await frontendApi.updateLoginFlow(
+          flow: flowId!,
+          updateLoginFlowBody: updateLoginFlowBody,
+        );
+
+        if (kDebugMode) {
+          print('Successfully updated login flow with user credentials');
+        }
+
+        // Processing the response to obtain the connection session token
+        final sessionToken = loginResponse.data?.sessionToken;
+
+        await storeSessionToken(sessionToken);
+        return checkUserQueueState(sessionToken!);
+      } catch (e) {
+        if (kDebugMode) {
+          print('Error updating login flow: $e');
+        }
       }
-    } on DioException catch (e) {
-      print('Erreur lors de la soumission du formulaire: $e');
-      if (e.response != null) {
-        print('response: ${e.response}');
-        // Unserialize the JSON response in LoginFlow
-        final responseData = e.response?.data;
-        final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
-        final loginFlow = kratosClient.serializers.deserializeWith(kratos.LoginFlow.serializer, responseData);
+    } else {
+      try {
+        final response = await dio.post(
+          actionUrl,
+          data: formData,
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          ),
+        );
 
-        print('Flow ID: ${loginFlow?.id}');
+        if (response.statusCode == 200) {
+          print('Succès: ${response.data}');
+        } else {
+          print('Erreur: ${response.data}');
+        }
+      } on DioException catch (e) {
+        print('Erreur lors de la soumission du formulaire: $e');
+        if (e.response != null) {
+          print('response: ${e.response}');
+          // Unserialize the JSON response in LoginFlow
+          final responseData = e.response?.data;
+          final loginFlow = kratosClient.serializers
+              .deserializeWith(kratos.LoginFlow.serializer, responseData);
 
-        // new response to retrieve nodes and action URL
-        final newNodes = loginFlow?.ui.nodes;
-        final newActionUrl = loginFlow?.ui.action;
+          setState(() => flowId = loginFlow?.id);
+          print('Flow ID: ${loginFlow?.id}');
 
-        if (newNodes != null && newActionUrl != null) {
-          await processKratosNodes(newNodes, newActionUrl);
+          // new response to retrieve nodes and action URL
+          final newNodes = loginFlow?.ui.nodes;
+          final newActionUrl = loginFlow?.ui.action;
+
+          if (newNodes != null && newActionUrl != null) {
+            await processKratosNodes(newNodes, newActionUrl);
+          }
         }
       }
     }
   }
 
   BuiltList<kratos.UiNode> deserializeUiNodes(List<dynamic> json) {
-    final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
     final standardSerializers = kratosClient.serializers;
 
-    return BuiltList<kratos.UiNode>.from(
-        json.map((dynamic node) => standardSerializers.deserializeWith(kratos.UiNode.serializer, node)!)
-    );
+    return BuiltList<kratos.UiNode>.from(json.map((dynamic node) =>
+        standardSerializers.deserializeWith(kratos.UiNode.serializer, node)!));
   }
 
   void getLoginOry() async {
-    final kratos.OryKratosClient kratosClient = kratos.OryKratosClient(dio: dio);
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
 
     try {
       // Initialize API connection flow
