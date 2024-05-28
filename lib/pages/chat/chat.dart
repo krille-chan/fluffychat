@@ -68,7 +68,7 @@ class ChatPage extends StatelessWidget {
     }
 
     return ChatPageWithRoom(
-      key: Key('chat_page_$roomId'),
+      key: Key('chat_page_${roomId}_$eventId'),
       room: room,
       shareText: shareText,
       eventId: eventId,
@@ -278,10 +278,12 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _tryLoadTimeline() async {
-    readMarkerEventId = widget.eventId;
-    loadTimelineFuture = _getTimeline(eventContextId: readMarkerEventId);
+    final initialEventId = widget.eventId;
+    loadTimelineFuture = _getTimeline();
     try {
       await loadTimelineFuture;
+      if (initialEventId != null) scrollToEventId(initialEventId);
+
       final fullyRead = room.fullyRead;
       if (fullyRead.isEmpty) {
         setReadMarker();
