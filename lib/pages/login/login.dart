@@ -149,7 +149,6 @@ class LoginController extends State<Login> {
     List<kratos.UiNode> allNodes = [];
 
     for (kratos.UiNode node in nodes) {
-      print(node);
       kratos.UiNodeInputAttributes attributes =
           node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
@@ -190,6 +189,8 @@ class LoginController extends State<Login> {
         formWidgets.add(inputWidget);
         allNodes.add(node);
       }
+
+      setState(() => loading = false);
     }
 
     setState(() {
@@ -262,6 +263,7 @@ class LoginController extends State<Login> {
   }
 
   Future<void> _submitForm(String actionUrl) async {
+    setState(() => loading = true);
     final formData = <String, dynamic>{};
     String? email;
     String? code;

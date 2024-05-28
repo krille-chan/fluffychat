@@ -27,7 +27,14 @@ class LoginView extends StatelessWidget {
               children: <Widget>[
                 Image.asset('assets/banner_transparent.png'),
                 const SizedBox(height: 16),
-                ...controller.authWidgets,
+                !controller.loading
+                ?Column(
+                  children: [
+                    ...controller.authWidgets,
+                  ],
+                ):const Center(
+                  child: CircularProgressIndicator(),
+                ),
                 const SizedBox(height: 16),
                 if (controller.messageError != null)
                   Padding(
