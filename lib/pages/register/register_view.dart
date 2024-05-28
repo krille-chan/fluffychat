@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/register/register.dart';
 import 'package:tawkie/widgets/layouts/login_scaffold.dart';
 import 'package:tawkie/widgets/matrix.dart';
@@ -12,10 +11,6 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldFillColor = FluffyThemes.isColumnMode(context)
-        ? Theme.of(context).colorScheme.background
-        : Theme.of(context).colorScheme.surfaceVariant;
-
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
@@ -38,87 +33,24 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextFormField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofocus: true,
-                    controller: controller.emailController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.email],
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email_outlined),
-                      errorText: controller.emailError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.email,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextFormField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.newPassword],
-                    controller: controller.passwordController,
-                    textInputAction: TextInputAction.next,
-                    obscureText: !controller.showPassword,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      errorText: controller.passwordError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      errorMaxLines: 3,
-                      fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.password,
-                      suffixIcon: IconButton(
-                        onPressed: controller.toggleShowPassword,
-                        icon: Icon(
-                          controller.showPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: Colors.black,
-                        ),
+                !controller.loading
+                    ? Column(
+                        children: [
+                          ...controller.authWidgets,
+                        ],
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
                       ),
+                const SizedBox(height: 16),
+                if (controller.messageError != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      controller.messageError!,
+                      style: const TextStyle(color: Colors.red),
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextFormField(
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.newPassword],
-                    controller: controller.confirmPasswordController,
-                    textInputAction: TextInputAction.done,
-                    obscureText: !controller.showConfirmPassword,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      errorText: controller.confirmPasswordError,
-                      errorStyle: const TextStyle(color: Colors.orange),
-                      errorMaxLines: 3,
-                      fillColor: textFieldFillColor,
-                      hintText: L10n.of(context)!.registerConfirmPassword,
-                      suffixIcon: IconButton(
-                        onPressed: controller.toggleShowConfirmPassword,
-                        icon: Icon(
-                          controller.showConfirmPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: ElevatedButton.icon(
