@@ -14,6 +14,8 @@ class TypingIndicators extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const avatarSize = Avatar.defaultSize / 2;
+
     return StreamBuilder<Object>(
       stream: controller.room.client.onSync.stream.where(
         (syncUpdate) =>
@@ -24,7 +26,7 @@ class TypingIndicators extends StatelessWidget {
       builder: (context, _) {
         final typingUsers = controller.room.typingUsers
           ..removeWhere((u) => u.stateKey == Matrix.of(context).client.userID);
-        const topPadding = 20.0;
+
         const bottomPadding = 4.0;
         return Container(
           width: double.infinity,
@@ -32,8 +34,7 @@ class TypingIndicators extends StatelessWidget {
           child: AnimatedContainer(
             constraints:
                 const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
-            height:
-                typingUsers.isEmpty ? 0 : Avatar.defaultSize + bottomPadding,
+            height: typingUsers.isEmpty ? 0 : avatarSize + bottomPadding,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
             alignment: controller.timeline!.events.isNotEmpty &&
@@ -50,14 +51,13 @@ class TypingIndicators extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  height: Avatar.defaultSize,
-                  width: typingUsers.length < 2
-                      ? Avatar.defaultSize
-                      : Avatar.defaultSize + 16,
+                  height: avatarSize,
+                  width: typingUsers.length < 2 ? avatarSize : avatarSize + 16,
                   child: Stack(
                     children: [
                       if (typingUsers.isNotEmpty)
                         Avatar(
+                          size: avatarSize,
                           mxContent: typingUsers.first.avatarUrl,
                           name: typingUsers.first.calcDisplayname(),
                         ),
@@ -65,6 +65,7 @@ class TypingIndicators extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: Avatar(
+                            size: avatarSize,
                             mxContent: typingUsers.length == 2
                                 ? typingUsers.last.avatarUrl
                                 : null,
@@ -77,22 +78,16 @@ class TypingIndicators extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Padding(
-                  padding: const EdgeInsets.only(top: topPadding),
-                  child: Material(
-                    color:
-                        // ignore: deprecated_member_use
-                        Theme.of(context).colorScheme.surfaceVariant,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(2),
-                      topRight: Radius.circular(AppConfig.borderRadius),
-                      bottomLeft: Radius.circular(AppConfig.borderRadius),
-                      bottomRight: Radius.circular(AppConfig.borderRadius),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: typingUsers.isEmpty ? null : const _TypingDots(),
-                    ),
+                Material(
+                  color:
+                      // ignore: deprecated_member_use
+                      Theme.of(context).colorScheme.surfaceVariant,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppConfig.borderRadius),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: typingUsers.isEmpty ? null : const _TypingDots(),
                   ),
                 ),
               ],
