@@ -2659,5 +2659,7 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "restricted": "Restricted",
+  "knockRestricted": "Knock restricted"
 }
