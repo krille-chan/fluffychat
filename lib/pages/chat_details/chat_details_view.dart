@@ -595,8 +595,7 @@ class ChatDetailsView extends StatelessWidget {
                               title: L10n.of(context)!.areYouSure,
                               okLabel: L10n.of(context)!.ok,
                               cancelLabel: L10n.of(context)!.cancel,
-                              message: L10n.of(context)!
-                                  .archiveRoomDescription, // Edit
+                              message: L10n.of(context)!.leaveRoomDescription,
                             );
                             if (confirmed == OkCancelResult.ok) {
                               final success = await showFutureLoadingDialog(

@@ -186,8 +186,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   title: L10n.of(context)!.areYouSure,
                   okLabel: L10n.of(context)!.ok,
                   cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!
-                      .archiveRoomDescription, // Edit - contents
+                  message: L10n.of(context)!.archiveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
@@ -208,8 +207,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   title: L10n.of(context)!.areYouSure,
                   okLabel: L10n.of(context)!.ok,
                   cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!
-                      .archiveRoomDescription, // Edit - leave, not archive
+                  message: L10n.of(context)!.leaveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
