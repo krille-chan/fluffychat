@@ -288,6 +288,13 @@ class ConstructListViewState extends State<ConstructListView> {
     return allMsgErrorSteps;
   }
 
+  Future<void> showConstructMessagesDialog() async {
+    await showDialog<ConstructMessagesDialog>(
+      context: context,
+      builder: (c) => ConstructMessagesDialog(controller: this),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.init || fetchingUses) {
@@ -302,57 +309,92 @@ class ConstructListViewState extends State<ConstructListView> {
       );
     }
 
-    final msgEventMatches = getMessageEventMatches();
-
-    return widget.controller.currentLemma == null
-        ? Expanded(
-            child: ListView.builder(
-              itemCount: constructs!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    constructs![index].lemma,
-                  ),
-                  subtitle: Text(
-                    '${L10n.of(context)!.total} ${constructs![index].uses.length}',
-                  ),
-                  onTap: () {
-                    final String lemma = constructs![index].lemma;
-                    widget.controller.setCurrentLemma(lemma);
-                    fetchUses();
-                  },
-                );
-              },
+    return Expanded(
+      child: ListView.builder(
+        itemCount: constructs!.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(
+              constructs![index].lemma,
             ),
-          )
-        : Expanded(
+            subtitle: Text(
+              '${L10n.of(context)!.total} ${constructs![index].uses.length}',
+            ),
+            onTap: () async {
+              final String lemma = constructs![index].lemma;
+              widget.controller.setCurrentLemma(lemma);
+              fetchUses().then((_) => showConstructMessagesDialog());
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ConstructMessagesDialog extends StatelessWidget {
+  final ConstructListViewState controller;
+  const ConstructMessagesDialog({
+    super.key,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller.widget.controller.currentLemma == null) {
+      return const AlertDialog(content: CircularProgressIndicator.adaptive());
+    }
+
+    final msgEventMatches = controller.getMessageEventMatches();
+
+    return AlertDialog(
+      title: Center(child: Text(controller.widget.controller.currentLemma!)),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (controller.constructs![controller.lemmaIndex].uses.length >
+              controller._msgEvents.length)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(L10n.of(context)!.roomDataMissing),
+              ),
+            ),
+          SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (constructs![lemmaIndex].uses.length > _msgEvents.length)
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context)!.roomDataMissing),
-                    ),
-                  ),
-                Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) =>
+                ...msgEventMatches.mapIndexed(
+                  (index, event) => Column(
+                    children: [
+                      ConstructMessage(
+                        msgEvent: event.msgEvent,
+                        lemma: controller.widget.controller.currentLemma!,
+                        errorMessage: event.lemmaMatch,
+                      ),
+                      if (index < msgEventMatches.length - 1)
                         const Divider(height: 1),
-                    itemCount: msgEventMatches.length,
-                    itemBuilder: (context, index) {
-                      return ConstructMessage(
-                        msgEvent: msgEventMatches[index].msgEvent,
-                        lemma: widget.controller.currentLemma!,
-                        errorMessage: msgEventMatches[index].lemmaMatch,
-                      );
-                    },
+                    ],
                   ),
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
+          child: Text(
+            L10n.of(context)!.close.toUpperCase(),
+            style: TextStyle(
+              color:
+                  Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
