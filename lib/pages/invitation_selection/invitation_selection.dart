@@ -159,6 +159,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
       future: () async {
         if (mode == InvitationSelectionMode.admin) {
           await inviteTeacherAction(room, id);
+        } else {
+          await room.invite(id);
         }
       },
       // Pangea#
