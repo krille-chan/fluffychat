@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
 import 'package:tawkie/pages/add_bridge/model/social_network.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
@@ -128,7 +129,15 @@ class BotBridgeConnection {
 
   // Ping function for each bot
   Future<String> pingSocialNetwork(SocialNetwork socialNetwork) async {
-    final String botUserId = '${socialNetwork.chatBot}$hostname';
+    String botUserId;
+
+    switch (socialNetwork.name) {
+      case "Linkedin":
+        botUserId = socialNetwork.chatBot;
+        break;
+      default:
+        botUserId = '${socialNetwork.chatBot}$hostname';
+    }
 
     // Messages to spot when we're online
     RegExp? onlineMatch;
@@ -147,6 +156,9 @@ class BotBridgeConnection {
       case "Instagram":
         onlineMatch = PingPatterns.instagramOnlineMatch;
         break;
+      case "Linkedin":
+        onlineMatch = PingPatterns.linkedinOnlineMatch;
+        break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
     }
@@ -159,7 +171,13 @@ class BotBridgeConnection {
 
     // Send the "ping" message to the bot
     try {
-      await roomBot?.sendTextEvent("ping");
+      switch (socialNetwork.name) {
+        case "Linkedin":
+          await roomBot?.sendTextEvent("whoami");
+          break;
+        default:
+          await roomBot?.sendTextEvent("ping");
+      }
     } catch (error) {
       Logs().i('Error: $error');
     }
@@ -235,7 +253,15 @@ class BotBridgeConnection {
   // Function to logout
   Future<String> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
-    final String botUserId = '${network.chatBot}$hostname';
+    final String? botUserId;
+
+    switch (network.name) {
+      case "Linkedin":
+        botUserId = network.chatBot;
+        break;
+      default:
+        botUserId = '${network.chatBot}$hostname';
+    }
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(
@@ -259,6 +285,11 @@ class BotBridgeConnection {
         successMatch = LogoutRegex.facebookSuccessMatch;
         alreadyLogoutMatch = LogoutRegex.facebookAlreadyLogoutMatch;
         break;
+      case 'Linkedin':
+        successMatch = LogoutRegex.linkedinSuccessMatch;
+        alreadyLogoutMatch = LogoutRegex.linkedinAlreadyLogoutMatch;
+        break;
+
       default:
         throw ArgumentError('Unsupported network: ${network.name}');
     }
@@ -737,9 +768,16 @@ class BotBridgeConnection {
   }
 
   // Function to delete a conversation with a bot
-  Future<void> deleteConversation(BuildContext context, String chatBot,
+  Future<void> deleteConversation(BuildContext context, SocialNetwork network,
       ConnectionStateModel connectionState) async {
-    final String botUserId = "$chatBot$hostname";
+    String botUserId;
+    switch (network.name) {
+      case 'Linkedin':
+        botUserId = network.chatBot;
+        break;
+      default:
+        botUserId = "${network.chatBot}$hostname";
+    }
     Future.microtask(() {
       connectionState.updateConnectionTitle(
         L10n.of(context)!.loadingDeleteRoom,
@@ -837,6 +875,107 @@ class BotBridgeConnection {
       }
     } catch (e) {
       print("error: $e");
+    }
+
+    // Function to format list cookies
+    String formatCookies(List<io.Cookie> cookies) {
+      return cookies.map((cookie) {
+        return '${cookie.name}="${cookie.value}"';
+      }).join('; ');
+    }
+
+    // Function to create a LinkedIn connection bridge
+    Future<String> createBridgeLinkedin(
+        BuildContext context,
+        WebviewCookieManager cookieManager,
+        ConnectionStateModel connectionState,
+        SocialNetwork network) async {
+      final String botUserId = network.chatBot;
+
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+      });
+
+      final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+      final formattedCookieString = formatCookies(gotCookies);
+
+      // Success phrases to spot
+      final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
+      final RegExp alreadySuccessMatch = LoginRegex.linkedinAlreadySuccessMatch;
+
+      // Add a direct chat with the Instagram bot (if you haven't already)
+      String? directChat = client.getDirectChatFromUserId(botUserId);
+      directChat ??= await client.startDirectChat(botUserId);
+
+      final Room? roomBot = client.getRoomById(directChat);
+
+      // Send the "login" message to the bot
+      await roomBot?.sendTextEvent("login $formattedCookieString");
+
+      await Future.delayed(const Duration(seconds: 3)); // Wait sec
+
+      Future.microtask(() {
+        connectionState
+            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+      });
+
+      await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+      String result = ""; // Variable to track the result of the connection
+
+      // variable for loop limit
+      const int maxIterations = 5;
+      int currentIteration = 0;
+
+      // Get the latest messages from the room (limited to the specified number)
+      while (currentIteration < maxIterations) {
+        final GetRoomEventsResponse response = await client.getRoomEvents(
+          directChat,
+          Direction.b, // To get the latest messages
+          limit: 1, // Number of messages to obtain
+        );
+
+        final List<MatrixEvent> latestMessages = response.chunk ?? [];
+        final String latestMessage =
+            latestMessages.first.content['body'].toString() ?? '';
+
+        if (latestMessages.isNotEmpty) {
+          if (successMatch.hasMatch(latestMessage) ||
+              alreadySuccessMatch.hasMatch(latestMessage)) {
+            Logs().v("You're logged to Linkedin");
+
+            result = "success";
+
+            Future.microtask(() {
+              connectionState
+                  .updateConnectionTitle(L10n.of(context)!.connected);
+            });
+
+            Future.microtask(() {
+              connectionState.updateLoading(false);
+            });
+
+            await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+            break; // Exit the loop once the "login" message has been sent and is success
+          }
+        }
+        await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+        currentIteration++;
+      }
+
+      if (currentIteration == maxIterations) {
+        Logs().v("Maximum iterations reached, setting result to 'error'");
+
+        result = 'error';
+      }
+
+      Future.microtask(() {
+        connectionState.reset();
+      });
+
+      return result;
     }
   }
 }

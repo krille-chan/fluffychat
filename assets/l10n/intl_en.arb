@@ -2609,5 +2609,20 @@
     "subNotSubArgTwo": "Voice messages, photo, video, post/reel",
     "subNotSubArgThree": "Message encryption",
     "subNotSubArgFour": "Mark unread",
-    "noAccountRegister": "No account yet ? Register now"
+    "noAccountRegister": "No account yet ? Register now",
+    "phoneField_explain": "Your numbers must be entered in international format!",
+    "phoneField_initialZero": "Depending on your country, the initial zero of the local number may not be included.",
+    "loading_demandToConnect": "Connection request in progress...",
+    "loading_verification": "Login verification...",
+    "loading_verificationNumber": "Phone number verification...",
+    "loading_sendCode": "Sending the code...",
+    "loading_verificationCode": "Code verification...",
+    "loading_disconnectionDemand": "Logout request...",
+    "loading_disconnectionSuccess": "Successful logout",
+    "loading_deleteRoom": "Delete the conversation...",
+    "loading_deleteRoomSuccess": "Conversation deleted",
+    "linkedinExplain_title": "Linkedin Connection Instructions",
+    "linkedinExplain_instruction": "Linkedin Connection Instructions:",
+    "linkedinExplain_one": "To connect to Linkedin, please use the mobile or desktop application.",
+    "linkedinExplain_two": "Unfortunately, Linkedin does not allow direct web connections for security reasons. This feature will be added in future updates."
 }

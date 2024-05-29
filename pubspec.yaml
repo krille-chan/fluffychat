@@ -100,6 +100,9 @@ dependencies:
   # Add for Tawkie
   icons_plus: ^4.0.0
   intl_phone_field: ^3.2.0
+  webview_cookie_manager: ^2.0.6
+  flutter_inappwebview: ^6.0.0
+  lottie: ^3.0.0
   qr_flutter: ^4.0.0
   ory_kratos_client: ^1.1.0
   dio: ^5.4.1
@@ -136,6 +139,7 @@ flutter:
     - assets/sounds/
     - assets/js/
     - assets/js/package/
+    - assets/js/lottie/
 
   fonts:
     - family: Roboto

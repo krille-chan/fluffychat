@@ -36,7 +36,7 @@ Future<void> deleteConversationDialog(BuildContext context,
                 context: context,
                 future: () async {
                   await botConnection.deleteConversation(
-                      context, network.chatBot, connectionStateModel);
+                      context, network, connectionStateModel);
                 },
               );
               Navigator.of(context).pop(); // Close the dialog

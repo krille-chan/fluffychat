@@ -10,6 +10,9 @@ class PingPatterns {
 
   // Facebook Messenger
   static RegExp facebookOnlineMatch = RegExp(r".*You're logged into Meta");
+
+  // Linkedin
+  static RegExp linkedinOnlineMatch = RegExp(r"You are logged in as");
 }
 
 // For login response
@@ -36,6 +39,13 @@ class LoginRegex {
       RegExp(r"You're already logged in");
   static final RegExp facebookPasteCookies =
       RegExp(r'^.*Paste your cookies here.*');
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged in");
+  static final RegExp linkedinAlreadySuccessMatch =
+      RegExp(r"You're already logged in");
+
+  static final RegExp linkedinNotLogged = RegExp(r"You are not logged in");
 }
 
 // For logout response
@@ -57,4 +67,9 @@ class LogoutRegex {
       RegExp(r"Disconnected and deleted session");
   static final RegExp facebookAlreadyLogoutMatch =
       RegExp(r"TYou weren't logged in, but deleted session anyway");
+
+  // Linkedin
+  static final RegExp linkedinSuccessMatch = RegExp(r"Successfully logged out");
+  static final RegExp linkedinAlreadyLogoutMatch =
+      RegExp(r"You are not logged in.");
 }
