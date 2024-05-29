@@ -14,8 +14,8 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textFieldFillColor = FluffyThemes.isColumnMode(context)
-        ? Theme.of(context).colorScheme.background
-        : Theme.of(context).colorScheme.surfaceVariant;
+        ? Theme.of(context).colorScheme.surface
+        : Theme.of(context).colorScheme.surfaceContainerHighest;
 
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),

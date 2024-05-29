@@ -2405,7 +2405,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Txata artxibategira mugituko da. Beste erabiltzaileek txatetik alde egin duzula ikusi ahal izango dute.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user}(e)k baimena eskatu du",
+  "hasKnocked": "🚪 {user}(e)k baimena eskatu du",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Blokeatutako erabiltzaileak",
   "@blockedUsers": {},
-  "block": "blokeatu",
+  "block": "Blokeatu",
   "@block": {},
   "blockUsername": "Ezikusi erabiltzaile-izena",
   "@blockUsername": {},
@@ -2600,5 +2600,94 @@
   "incomingMessages": "Jasotako mezuak",
   "@incomingMessages": {},
   "hidePresences": "Ezkutatu Egoeren Zerrenda?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "discover": "Arakatu",
+  "@discover": {},
+  "stickers": "Pegatinak",
+  "@stickers": {},
+  "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Muzin egin Matrix ID honi",
+  "@commandHint_ignore": {},
+  "unreadChatsInApp": "{appname}: {unread} mezu irakurri gabe",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "Plataforma honetan ezin da datu-basea zifratu",
+  "@noDatabaseEncryption": {},
+  "usersMustKnock": "Erabiltzaileek baimena eskatu behar dute",
+  "@usersMustKnock": {},
+  "userWouldLikeToChangeTheChat": "{user}(e)k txatera batu nahiko luke.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Eskatu baimena",
+  "@knock": {},
+  "knocking": "Baimena eskatzen",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Txata {server}(e)n bilaketa eginez aurkitu daiteke",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "Une honetan {count} erabiltzaile daude blokeatuta.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "appLockDescription": "Blokeatu aplikazioa pin kode batekin erabiltzen ari ez zarenean",
+  "@appLockDescription": {},
+  "accessAndVisibility": "Sarbidea eta ikusgaitasuna",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Nork du txat honetara batzeko baimena eta nola aurkitu daiteke txata.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickers": "Emoji eta pegatina propioak",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Gehitu edo partekatu edozein txatetan erabil daitezkeen emoji edo pegatina propioak.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Ezkutatu atzera botatako mezuak",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Norbaitek mezuren bat atzera botaz gero, mezua txatetik kenduko da, abisurik gabe.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Ezkutatu mezuen formatu ezezagun edo baliogabea",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Ikuspegi orokorra",
+  "@overview": {},
+  "notifyMeFor": "Jakinarazi…",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Pasahitza berreskuratzeko ezarpenak",
+  "@passwordRecoverySettings": {},
+  "hideMemberChangesInPublicChats": "Ezkutatu kideen egoera aldaketak txat publikoetan",
+  "@hideMemberChangesInPublicChats": {},
+  "globalChatId": "Txat ID orokorra",
+  "@globalChatId": {},
+  "calls": "Deiak",
+  "@calls": {},
+  "hideMemberChangesInPublicChatsBody": "Ez erakutsi txataren denbora-lerroan norbait txat publikora batu edo txatetik irteten dela, irakurgaitasuna hobetzeko.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "noOneCanJoin": "Ezin da inor batu",
+  "@noOneCanJoin": {},
+  "noPublicLinkHasBeenCreatedYet": "Oraindik ez da esteka publikorik sortu",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "userRole": "Erabiltzailearen rola",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} da gutxieneko botere maila.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "Txataren helbide publikoak",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Sortu helbide berria",
+  "@createNewAddress": {}
 }

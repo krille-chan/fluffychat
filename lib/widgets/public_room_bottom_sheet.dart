@@ -31,22 +31,26 @@ class PublicRoomBottomSheet extends StatelessWidget {
   void _joinRoom(BuildContext context) async {
     final client = Matrix.of(outerContext).client;
     final chunk = this.chunk;
+    final knock = chunk?.joinRule == 'knock';
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
         if (chunk != null && client.getRoomById(chunk.roomId) != null) {
           return chunk.roomId;
         }
-        final roomId = chunk != null && chunk.joinRule == 'knock'
+        final roomId = chunk != null && knock
             ? await client.knockRoom(chunk.roomId)
             : await client.joinRoom(roomAlias ?? chunk!.roomId);
 
-        if (client.getRoomById(roomId) == null) {
+        if (!knock && client.getRoomById(roomId) == null) {
           await client.waitForRoomInSync(roomId);
         }
         return roomId;
       },
     );
+    if (knock) {
+      return;
+    }
     if (result.error == null) {
       Navigator.of(context).pop();
       // don't open the room if the joined room is a space
@@ -138,9 +142,15 @@ class PublicRoomBottomSheet extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => _joinRoom(context),
                     label: Text(
-                      chunk?.roomType == 'm.space'
-                          ? L10n.of(context)!.joinSpace
-                          : L10n.of(context)!.joinRoom,
+                      chunk?.joinRule == 'knock' &&
+                              Matrix.of(context)
+                                      .client
+                                      .getRoomById(chunk!.roomId) ==
+                                  null
+                          ? L10n.of(context)!.knock
+                          : chunk?.roomType == 'm.space'
+                              ? L10n.of(context)!.joinSpace
+                              : L10n.of(context)!.joinRoom,
                     ),
                     icon: const Icon(Icons.login_outlined),
                   ),

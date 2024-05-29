@@ -2405,7 +2405,7 @@
   "@makeAdminDescription": {},
   "archiveRoomDescription": "Selle vestluse tõstame nüüd arhiivi. Muud osalejad näevad, et sa oled vestlusest lahkunud.",
   "@archiveRoomDescription": {},
-  "hasKnocked": "{user} on jututoa uksele koputanud",
+  "hasKnocked": "🚪{user} on jututoa uksele koputanud",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2436,7 +2436,7 @@
       "query": {}
     }
   },
-  "block": "blokeeri",
+  "block": "Blokeeri",
   "@block": {},
   "yourGlobalUserIdIs": "Sinu üldine kasutajatunnus on: ",
   "@yourGlobalUserIdIs": {},
@@ -2600,5 +2600,94 @@
   "incomingMessages": "Saabuvad sõnumid",
   "@incomingMessages": {},
   "hidePresences": "Peida olekute loend?",
-  "@hidePresences": {}
+  "@hidePresences": {},
+  "stickers": "Kleepsud",
+  "@stickers": {},
+  "discover": "Otsi ja leia",
+  "@discover": {},
+  "commandHint_ignore": "Eira seda Matrixi kasutajatunnust",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Lõpeta selle Matrixi kasutajatunnuse eiramine",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} lugemata vestlust",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "globalChatId": "Üldine vestluse tunnus",
+  "@globalChatId": {},
+  "accessAndVisibilityDescription": "Kes võib selle vestlusega liituda ja kuidas on võimalik seda vestlust leida.",
+  "@accessAndVisibilityDescription": {},
+  "hideRedactedMessagesBody": "Kui keegi muudab sõnumit, siis teda enam ei kuvataks vestluses.",
+  "@hideRedactedMessagesBody": {},
+  "userWouldLikeToChangeTheChat": "{user} soovib liituda vestlusega.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "hideMemberChangesInPublicChats": "Peida avalike vestluste liikmelisuse muutused",
+  "@hideMemberChangesInPublicChats": {},
+  "notifyMeFor": "Teavita mind kui",
+  "@notifyMeFor": {},
+  "usersMustKnock": "Kasutajad peavad uksele koputama",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Mitte keegi ei saa liituda",
+  "@noOneCanJoin": {},
+  "knocking": "Koputus uksele",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Vestluse või jututoa saad leida otsingust serveris {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "publicChatAddresses": "Vestluse avalik aadress",
+  "@publicChatAddresses": {},
+  "minimumPowerLevel": "{level} on väikseim võimalik õiguste tase.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "noDatabaseEncryption": "Andmebaasi krüptimine pole sellel platvormil toetatud",
+  "@noDatabaseEncryption": {},
+  "noPublicLinkHasBeenCreatedYet": "Avalikult kasutatavat linki pole veel olemas",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Koputa uksele",
+  "@knock": {},
+  "appLockDescription": "Kui sa rakendust parasjagu ei kasuta, siis lukusta ta PIN-koodiga",
+  "@appLockDescription": {},
+  "accessAndVisibility": "Ligipääsetavus ja nähtavus",
+  "@accessAndVisibility": {},
+  "calls": "Kõned",
+  "@calls": {},
+  "customEmojisAndStickers": "Kohandatud emotikonid ja kleepsud",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Lisa või jaga kohandatud emotikone või kleepsupakke, mida võiks kasutada igas vestluses.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "Peida muudetud sõnumid",
+  "@hideRedactedMessages": {},
+  "hideInvalidOrUnknownMessageFormats": "Peida vigase või tundmatu vorminguga sõnumid",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChatsBody": "Parema loetavuse nimel ära näita vestluse ajajoonel avaliku jututoaga liitumisi ja sealt lahkumisi.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Ülevaade",
+  "@overview": {},
+  "passwordRecoverySettings": "Salasõna taastamise seadistused",
+  "@passwordRecoverySettings": {},
+  "createNewAddress": "Loo uus aadress",
+  "@createNewAddress": {},
+  "userRole": "Kasutaja roll",
+  "@userRole": {},
+  "thereAreCountUsersBlocked": "Hetkel on {count} blokeeritud kasutajat.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  }
 }

@@ -2398,7 +2398,7 @@
   "@archiveRoomDescription": {},
   "invalidInput": "Contido non válido!",
   "@invalidInput": {},
-  "hasKnocked": "déronlle unha labazada a {user}",
+  "hasKnocked": "🚪 {user} petou na porta",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2446,7 +2446,7 @@
   "@blockListDescription": {},
   "blockedUsers": "Usuarias bloqueadas",
   "@blockedUsers": {},
-  "block": "bloquear",
+  "block": "Bloquer",
   "@block": {},
   "blockUsername": "Ignorar identificador",
   "@blockUsername": {},
@@ -2600,5 +2600,94 @@
     "placeholders": {}
   },
   "incomingMessages": "Mensaxes recibidas",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "Adhesivos",
+  "@stickers": {},
+  "discover": "Descubrir",
+  "@discover": {},
+  "commandHint_ignore": "Ignorar o ID matrix indicado",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Non ignorar o ID matrix indicado",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} chats sen ler",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "Nesta plataforma non temos soporte para cifrar a base de datos",
+  "@noDatabaseEncryption": {},
+  "accessAndVisibility": "Acceso e Visibilidade",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Quen pode unirse a este chat de que xeito pode ser atopado.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickers": "Emojis personais e adhesivos",
+  "@customEmojisAndStickers": {},
+  "calls": "Chamadas",
+  "@calls": {},
+  "hideRedactedMessages": "Agochar mensaxes editadas",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Se alguén corrixe unha mensaxe entón esta xa non será visible no chat.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Agochar formatos de mensaxe non válidos ou descoñecidos",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "Agochar cambios dos membros nos chats públicos",
+  "@hideMemberChangesInPublicChats": {},
+  "notifyMeFor": "Notificarme sobre",
+  "@notifyMeFor": {},
+  "hideMemberChangesInPublicChatsBody": "Non mostrar na cronoloxía se alguén se une ou deixa un chat público, para mellorar a lexibilidade.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "usersMustKnock": "As usuarias teñen que pedir entrar",
+  "@usersMustKnock": {},
+  "userWouldLikeToChangeTheChat": "{user} quere unirse ao chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knocking": "A solicitar",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "O chat pode ser atopado ao buscar en {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "createNewAddress": "Crear novos enderezos",
+  "@createNewAddress": {},
+  "appLockDescription": "Bloquear a app cun código PIN cando non a uses",
+  "@appLockDescription": {},
+  "globalChatId": "ID Global do chat",
+  "@globalChatId": {},
+  "customEmojisAndStickersBody": "Engade ou comparte emojis personais e adhesivos que poden usarse nos chats.",
+  "@customEmojisAndStickersBody": {},
+  "overview": "Vista xeral",
+  "@overview": {},
+  "passwordRecoverySettings": "Axustes de recuperación do contrasinal",
+  "@passwordRecoverySettings": {},
+  "noPublicLinkHasBeenCreatedYet": "Aínda non se creou unha ligazón pública",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Solicitar acceso",
+  "@knock": {},
+  "noOneCanJoin": "Ninguén pode unirse",
+  "@noOneCanJoin": {},
+  "thereAreCountUsersBlocked": "Agora mesmo hai {count} usuarias bloqueadas.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "publicChatAddresses": "Enderezos públicos do chat",
+  "@publicChatAddresses": {},
+  "userRole": "Rol da usuaria",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} é o nivel mínimo de responsabilidade.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  }
 }

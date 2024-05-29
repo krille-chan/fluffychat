@@ -3,18 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+
 class PermissionsListTile extends StatelessWidget {
   final String permissionKey;
   final int permission;
   final String? category;
-  final void Function()? onTap;
+  final void Function(int? level)? onChanged;
+  final bool canEdit;
 
   const PermissionsListTile({
     super.key,
     required this.permissionKey,
     required this.permission,
     this.category,
-    this.onTap,
+    required this.onChanged,
+    required this.canEdit,
   });
 
   String getLocalizedPowerLevelString(BuildContext context) {
@@ -66,39 +70,39 @@ class PermissionsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: onTap,
-      leading: CircleAvatar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Colors.grey,
-        child: const Icon(Icons.edit_attributes_outlined),
-      ),
       title: Text(getLocalizedPowerLevelString(context)),
-      subtitle: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: Theme.of(context).secondaryHeaderColor,
-              borderRadius: BorderRadius.circular(8),
+      subtitle: Text(
+        L10n.of(context)!.minimumPowerLevel(permission.toString()),
+      ),
+      trailing: Material(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        color: Theme.of(context).colorScheme.onInverseSurface,
+        child: DropdownButton<int>(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          underline: const SizedBox.shrink(),
+          onChanged: canEdit ? onChanged : null,
+          value: {0, 50, 100}.contains(permission) ? permission : null,
+          items: [
+            DropdownMenuItem(
+              value: 0,
+              child: Text(L10n.of(context)!.user),
             ),
-            child: Center(
-              child: Text(permission.toString()),
+            DropdownMenuItem(
+              value: 50,
+              child: Text(L10n.of(context)!.moderator),
             ),
-          ),
-          const SizedBox(width: 8),
-          Text(permission.toLocalizedPowerLevelString(context)),
-        ],
+            DropdownMenuItem(
+              value: 100,
+              child: Text(L10n.of(context)!.admin),
+            ),
+            DropdownMenuItem(
+              value: null,
+              child: Text(L10n.of(context)!.custom),
+            ),
+          ],
+        ),
       ),
     );
-  }
-}
-
-extension on int {
-  String toLocalizedPowerLevelString(BuildContext context) {
-    return this == 100
-        ? L10n.of(context)!.admin
-        : this >= 50
-            ? L10n.of(context)!.moderator
-            : L10n.of(context)!.participant;
   }
 }

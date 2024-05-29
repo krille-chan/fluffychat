@@ -49,8 +49,9 @@ class _SpaceViewState extends State<SpaceView> {
     loadHierarchy();
   }
 
-  Future<GetSpaceHierarchyResponse> loadHierarchy([String? prevBatch]) async {
-    final activeSpaceId = widget.controller.activeSpaceId!;
+  Future<GetSpaceHierarchyResponse?> loadHierarchy([String? prevBatch]) async {
+    final activeSpaceId = widget.controller.activeSpaceId;
+    if (activeSpaceId == null) return null;
     final client = Matrix.of(context).client;
 
     final activeSpace = client.getRoomById(activeSpaceId);
@@ -145,7 +146,7 @@ class _SpaceViewState extends State<SpaceView> {
             icon: Icons.send_outlined,
           ),
         if (spaceChild != null &&
-            (activeSpace?.canChangeStateEvent(EventTypes.spaceChild) ?? false))
+            (activeSpace?.canChangeStateEvent(EventTypes.SpaceChild) ?? false))
           SheetAction(
             key: SpaceChildContextAction.removeFromSpace,
             label: L10n.of(context)!.removeFromSpace,
@@ -306,7 +307,7 @@ class _SpaceViewState extends State<SpaceView> {
                     MatrixLocals(L10n.of(context)!),
                   );
                   return Material(
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.surface,
                     child: ListTile(
                       leading: Avatar(
                         mxContent: rootSpace.avatar,
@@ -474,7 +475,7 @@ class _SpaceViewState extends State<SpaceView> {
                               onTap: () => _onJoinSpaceChild(spaceChild),
                             ),
                             if (activeSpace?.canChangeStateEvent(
-                                  EventTypes.spaceChild,
+                                  EventTypes.SpaceChild,
                                 ) ==
                                 true)
                               Material(
@@ -544,7 +545,7 @@ class _SpaceViewState extends State<SpaceView> {
                                     : L10n.of(context)!.enterRoom),
                             maxLines: 1,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           trailing: isSpace

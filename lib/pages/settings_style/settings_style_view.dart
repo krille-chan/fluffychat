@@ -90,7 +90,7 @@ class SettingsStyleView extends StatelessWidget {
                                                     size: 16,
                                                     color: Theme.of(context)
                                                         .colorScheme
-                                                        .onBackground,
+                                                        .onSurface,
                                                   ),
                                                 ),
                                               Text(
@@ -99,7 +99,7 @@ class SettingsStyleView extends StatelessWidget {
                                                 style: TextStyle(
                                                   color: Theme.of(context)
                                                       .colorScheme
-                                                      .onBackground,
+                                                      .onSurface,
                                                 ),
                                               ),
                                             ],
@@ -135,7 +135,10 @@ class SettingsStyleView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Divider(height: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               title: Text(
                 L10n.of(context)!.setTheme,
@@ -163,10 +166,13 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(L10n.of(context)!.darkTheme),
               onChanged: controller.switchTheme,
             ),
-            const Divider(height: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               title: Text(
-                L10n.of(context)!.presenceStyle,
+                L10n.of(context)!.overview,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
@@ -179,7 +185,16 @@ class SettingsStyleView extends StatelessWidget {
               storeKey: SettingKeys.showPresences,
               defaultValue: AppConfig.showPresences,
             ),
-            const Divider(height: 1),
+            SettingsSwitchListTile.adaptive(
+              title: L10n.of(context)!.separateChatTypes,
+              onChanged: (b) => AppConfig.separateChatTypes = b,
+              storeKey: SettingKeys.separateChatTypes,
+              defaultValue: AppConfig.separateChatTypes,
+            ),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               title: Text(
                 L10n.of(context)!.messagesStyle,
@@ -190,10 +205,14 @@ class SettingsStyleView extends StatelessWidget {
               ),
             ),
             StreamBuilder(
-              stream: client.onAccountData.stream.where(
-                (data) =>
-                    data.type ==
-                    ApplicationAccountConfigExtension.accountDataKey,
+              stream: client.onSync.stream.where(
+                (syncUpdate) =>
+                    syncUpdate.accountData?.any(
+                      (accountData) =>
+                          accountData.type ==
+                          ApplicationAccountConfigExtension.accountDataKey,
+                    ) ??
+                    false,
               ),
               builder: (context, snapshot) {
                 final accountConfig = client.applicationAccountConfig;

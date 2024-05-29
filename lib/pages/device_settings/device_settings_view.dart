@@ -71,11 +71,6 @@ class DevicesSettingsView extends StatelessWidget {
                           block: controller.blockDeviceAction,
                           unblock: controller.unblockDeviceAction,
                         ),
-                        const Divider(
-                          height: 16.0,
-                          indent: 16,
-                          endIndent: 16,
-                        ),
                       ],
                       if (controller.notThisDevice.isNotEmpty)
                         Padding(
@@ -85,17 +80,18 @@ class DevicesSettingsView extends StatelessWidget {
                           ),
                           child: SizedBox(
                             width: double.infinity,
-                            child: OutlinedButton.icon(
+                            child: TextButton.icon(
                               label: Text(
                                 controller.errorDeletingDevices ??
                                     L10n.of(context)!.removeAllOtherDevices,
                               ),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor:
-                                    Theme.of(context).colorScheme.error,
-                                side: BorderSide(
-                                  color: Theme.of(context).colorScheme.error,
-                                ),
+                              style: TextButton.styleFrom(
+                                foregroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .onErrorContainer,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .errorContainer,
                               ),
                               icon: controller.loadingDeletingDevices
                                   ? const CircularProgressIndicator.adaptive(

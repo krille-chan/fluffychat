@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:tawkie/pages/settings_password/settings_password.dart';
 import 'package:tawkie/widgets/layouts/max_width_body.dart';
@@ -12,9 +13,17 @@ class SettingsPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(L10n.of(context)!.changePassword)),
+      appBar: AppBar(
+        title: Text(L10n.of(context)!.changePassword),
+        actions: [
+          TextButton(
+            child: Text(L10n.of(context)!.passwordRecoverySettings),
+            onPressed: () => context.go('/rooms/settings/security/3pid'),
+          ),
+        ],
+      ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onBackground,
+        iconColor: Theme.of(context).colorScheme.onSurface,
         child: MaxWidthBody(
           child: Padding(
             padding: const EdgeInsets.all(16.0),

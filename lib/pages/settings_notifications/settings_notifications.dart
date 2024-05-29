@@ -89,16 +89,52 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     }
   }
 
-  void setNotificationSetting(NotificationSettingsItem item, bool enabled) {
-    showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.setPushRuleEnabled(
+  bool isLoading = false;
+
+  void setNotificationSetting(
+    NotificationSettingsItem item,
+    bool enabled,
+  ) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await Matrix.of(context).client.setPushRuleEnabled(
             'global',
             item.type,
             item.key,
             enabled,
-          ),
-    );
+          );
+    } catch (e, s) {
+      Logs().w('Unable to change notification settings', e, s);
+      scaffoldMessenger
+          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  void onToggleMuteAllNotifications() async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await Matrix.of(context).client.setMuteAllPushNotifications(
+            !Matrix.of(context).client.allPushNotificationsMuted,
+          );
+    } catch (e, s) {
+      Logs().w('Unable to change notification settings', e, s);
+      scaffoldMessenger
+          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   void onPusherTap(Pusher pusher) async {

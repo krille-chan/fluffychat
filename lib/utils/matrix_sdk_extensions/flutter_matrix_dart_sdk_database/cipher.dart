@@ -1,14 +1,20 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/client_manager.dart';
 
 const _passwordStorageKey = 'database_password';
 
-Future<String> getDatabaseCipher() async {
+Future<String?> getDatabaseCipher() async {
   String? password;
 
   try {
@@ -28,21 +34,34 @@ Future<String> getDatabaseCipher() async {
     // workaround for if we just wrote to the key and it still doesn't exist
     password = await secureStorage.read(key: _passwordStorageKey);
     if (password == null) throw MissingPluginException();
-  } on MissingPluginException catch (_) {
+  } on MissingPluginException catch (e) {
     const FlutterSecureStorage()
         .delete(key: _passwordStorageKey)
         .catchError((_) {});
-    Logs().i('Database encryption is not supported on this platform');
+    Logs().w('Database encryption is not supported on this platform', e);
+    _sendNoEncryptionWarning(e);
   } catch (e, s) {
     const FlutterSecureStorage()
         .delete(key: _passwordStorageKey)
         .catchError((_) {});
     Logs().w('Unable to init database encryption', e, s);
+    _sendNoEncryptionWarning(e);
   }
 
-  // with the new database, we should no longer allow unencrypted storage
-  // secure_storage now supports all platforms we support
-  assert(password != null);
+  return password;
+}
 
-  return password!;
+void _sendNoEncryptionWarning(Object exception) async {
+  final store = await SharedPreferences.getInstance();
+  final isStored = store.getBool(SettingKeys.noEncryptionWarningShown);
+
+  if (isStored == true) return;
+
+  final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+  ClientManager.sendInitNotification(
+    l10n.noDatabaseEncryption,
+    exception.toString(),
+  );
+
+  await store.setBool(SettingKeys.noEncryptionWarningShown, true);
 }
