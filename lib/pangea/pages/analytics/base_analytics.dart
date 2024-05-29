@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
@@ -101,18 +102,40 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
     }
   }
 
-  void toggleSelection(AnalyticsSelected selectedParam) {
+  Future<void> toggleSelection(AnalyticsSelected selectedParam) async {
+    final bool joinSelectedRoom =
+        selectedParam.type == AnalyticsEntryType.room &&
+            !enableSelection(
+              selectedParam,
+            );
+
+    if (joinSelectedRoom) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          final waitForRoom = Matrix.of(context).client.waitForRoomInSync(
+                selectedParam.id,
+                join: true,
+              );
+          await Matrix.of(context).client.joinRoom(selectedParam.id);
+          await waitForRoom;
+        },
+      );
+    }
+
     setState(() {
       debugPrint("selectedParam.id is ${selectedParam.id}");
       currentLemma = null;
       selected = isSelected(selectedParam.id) ? null : selectedParam;
     });
+
     pangeaController.analytics.setConstructs(
       constructType: ConstructType.grammar,
       defaultSelected: widget.defaultSelected,
       selected: selected,
       removeIT: true,
     );
+
     Future.delayed(Duration.zero, () => setState(() {}));
   }
 

@@ -198,6 +198,7 @@ class WordMatchContent extends StatelessWidget {
                                   (e) => Choice(
                                     text: e.value,
                                     color: e.selected ? e.type.color : null,
+                                    isGold: e.type.name == 'bestCorrection',
                                   ),
                                 )
                                 .toList(),
