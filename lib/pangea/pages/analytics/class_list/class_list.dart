@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/enum/time_span.dart';
 import 'package:fluffychat/pangea/pages/analytics/class_list/class_list_view.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../../../widgets/matrix.dart';
 import '../../../constants/pangea_event_types.dart';
 import '../../../controllers/pangea_controller.dart';
@@ -42,7 +41,11 @@ class AnalyticsClassListController extends State<AnalyticsClassList> {
     if (!(refreshTimer[newState.room.id]?.isActive ?? false)) {
       refreshTimer[newState.room.id] = Timer(
         const Duration(seconds: 3),
-        () => updateClassAnalytics(context, newState.room),
+        () {
+          if (newState.room.isSpace) {
+            updateClassAnalytics(context, newState.room);
+          }
+        },
       );
     }
   }
