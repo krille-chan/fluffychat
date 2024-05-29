@@ -280,7 +280,11 @@ class ITChoices extends StatelessWidget {
         originalSpan: "dummy",
         choices: controller.currentITStep!.continuances.map((e) {
           try {
-            return Choice(text: e.text.trim(), color: e.color);
+            return Choice(
+                text: e.text.trim(),
+                color: e.color,
+                isGold: e.description == "best",
+            );
           } catch (e) {
             debugger(when: kDebugMode);
             return Choice(text: "error", color: Colors.red);
