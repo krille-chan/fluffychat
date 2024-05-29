@@ -85,20 +85,31 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             ),
       // #Pangea
       if (!widget.room.isArchived)
-        // Pangea#
-        PopupMenuItem<String>(
-          value: 'leave',
-          child: Row(
-            children: [
-              // #Pangea
-              // const Icon(Icons.delete_outlined),
-              const Icon(Icons.arrow_forward),
-              // Pangea#
-              const SizedBox(width: 12),
-              Text(L10n.of(context)!.leave),
-            ],
+        if (widget.room.isRoomAdmin)
+          PopupMenuItem<String>(
+            value: 'archive',
+            child: Row(
+              children: [
+                const Icon(Icons.archive_outlined),
+                const SizedBox(width: 12),
+                Text(L10n.of(context)!.archive),
+              ],
+            ),
           ),
+      // Pangea#
+      PopupMenuItem<String>(
+        value: 'leave',
+        child: Row(
+          children: [
+            // #Pangea
+            // const Icon(Icons.delete_outlined),
+            const Icon(Icons.arrow_forward),
+            // Pangea#
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.leave),
+          ],
         ),
+      ),
       // #Pangea
       if (classSettings != null)
         PopupMenuItem<String>(
@@ -167,6 +178,29 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         PopupMenuButton(
           onSelected: (String choice) async {
             switch (choice) {
+              // #Pangea
+              case 'archive':
+                final confirmed = await showOkCancelAlertDialog(
+                  useRootNavigator: false,
+                  context: context,
+                  title: L10n.of(context)!.areYouSure,
+                  okLabel: L10n.of(context)!.ok,
+                  cancelLabel: L10n.of(context)!.cancel,
+                  message: L10n.of(context)!
+                      .archiveRoomDescription, // Edit - contents
+                );
+                if (confirmed == OkCancelResult.ok) {
+                  final success = await showFutureLoadingDialog(
+                    context: context,
+                    future: () =>
+                        widget.room.leave(), // Edit - archive, not leave
+                  );
+                  if (success.error == null) {
+                    context.go('/rooms');
+                  }
+                }
+                break;
+              // Pangea#
               case 'leave':
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
@@ -174,7 +208,8 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   title: L10n.of(context)!.areYouSure,
                   okLabel: L10n.of(context)!.ok,
                   cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.archiveRoomDescription,
+                  message: L10n.of(context)!
+                      .archiveRoomDescription, // Edit - leave, not archive
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(

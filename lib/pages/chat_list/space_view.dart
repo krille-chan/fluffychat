@@ -291,7 +291,7 @@ class _SpaceViewState extends State<SpaceView> {
             if (room!.isUnread) {
               await room.markUnread(false);
             }
-            await room.leave();
+            await room.leave(); // Edit - use leaveAction?
             if (Matrix.of(context).activeRoomId == room.id) {
               context.go('/rooms');
             }
@@ -306,7 +306,8 @@ class _SpaceViewState extends State<SpaceView> {
         );
         break;
       // #Pangea
-      case SpaceChildContextAction.archive:
+      case SpaceChildContextAction
+            .archive: // Edit - change behavior to archive space for all users
         widget.controller.cancelAction();
         // #Pangea
         if (room == null) return;

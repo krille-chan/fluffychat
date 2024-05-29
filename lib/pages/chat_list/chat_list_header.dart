@@ -1,6 +1,8 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
@@ -168,14 +170,30 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     tooltip: L10n.of(context)!.toggleMuted,
                     onPressed: controller.toggleMuted,
                   ),
-                  IconButton(
-                    // #Pangea
-                    // icon: const Icon(Icons.delete_outlined),
-                    icon: const Icon(Icons.archive_outlined),
+                  // #Pangea
+                  if (controller.selectedRoomIds.length == 1 &&
+                      (Matrix.of(context)
+                              .client
+                              .getRoomById(controller.selectedRoomIds.single)
+                              ?.isRoomAdmin ??
+                          false))
                     // Pangea#
-                    tooltip: L10n.of(context)!.archive,
-                    onPressed: controller.archiveAction,
+                    IconButton(
+                      // #Pangea
+                      // icon: const Icon(Icons.delete_outlined),
+                      icon: const Icon(Icons.archive_outlined),
+                      // Pangea#
+                      tooltip: L10n.of(context)!.archive,
+                      onPressed: controller.archiveAction,
+                    ),
+                  // #Pangea
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    tooltip: L10n.of(context)!.leave,
+                    onPressed:
+                        controller.archiveAction, // Edit - make leaveAction
                   ),
+                  // Pangea#
                 ]
               : null,
     );

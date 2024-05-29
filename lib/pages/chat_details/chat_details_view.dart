@@ -522,52 +522,101 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                         const Divider(height: 1),
                         if (!room.isDirectChat)
-                          ListTile(
-                            title: Text(
-                              room.isSpace
-                                  ? L10n.of(context)!.archiveSpace
-                                  : L10n.of(context)!.archive,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
+                          if (room.isRoomAdmin)
+                            ListTile(
+                              title: Text(
+                                room.isSpace
+                                    ? L10n.of(context)!.archiveSpace
+                                    : L10n.of(context)!.archive,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.archive_outlined,
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                foregroundColor: iconColor,
+                                child: const Icon(
+                                  Icons.archive_outlined,
+                                ),
                               ),
-                            ),
-                            onTap: () async {
-                              final confirmed = await showOkCancelAlertDialog(
-                                useRootNavigator: false,
-                                context: context,
-                                title: L10n.of(context)!.areYouSure,
-                                okLabel: L10n.of(context)!.ok,
-                                cancelLabel: L10n.of(context)!.cancel,
-                                message:
-                                    L10n.of(context)!.archiveRoomDescription,
-                              );
-                              if (confirmed == OkCancelResult.ok) {
-                                final success = await showFutureLoadingDialog(
+                              onTap: () async {
+                                final confirmed = await showOkCancelAlertDialog(
+                                  useRootNavigator: false,
                                   context: context,
-                                  future: () async {
-                                    room.isSpace
-                                        ? await archiveSpace(
-                                            room,
-                                            Matrix.of(context).client,
-                                          )
-                                        : await room.leave();
-                                  },
+                                  title: L10n.of(context)!.areYouSure,
+                                  okLabel: L10n.of(context)!.ok,
+                                  cancelLabel: L10n.of(context)!.cancel,
+                                  message:
+                                      L10n.of(context)!.archiveRoomDescription,
                                 );
-                                if (success.error == null) {
-                                  context.go('/rooms');
+                                if (confirmed == OkCancelResult.ok) {
+                                  final success = await showFutureLoadingDialog(
+                                    context: context,
+                                    future: () async {
+                                      room.isSpace
+                                          ? await archiveSpace(
+                                              // Edit - contents
+                                              room,
+                                              Matrix.of(context).client,
+                                            )
+                                          : await room
+                                              .leave(); // Edit - archive, not leave
+                                    },
+                                  );
+                                  if (success.error == null) {
+                                    context.go('/rooms');
+                                  }
                                 }
-                              }
-                            },
+                              },
+                            ),
+                        ListTile(
+                          title: Text(
+                            L10n.of(context)!.leave,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
+                          leading: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
+                            foregroundColor: iconColor,
+                            child: const Icon(
+                              Icons.arrow_forward,
+                            ),
+                          ),
+                          onTap: () async {
+                            final confirmed = await showOkCancelAlertDialog(
+                              useRootNavigator: false,
+                              context: context,
+                              title: L10n.of(context)!.areYouSure,
+                              okLabel: L10n.of(context)!.ok,
+                              cancelLabel: L10n.of(context)!.cancel,
+                              message: L10n.of(context)!
+                                  .archiveRoomDescription, // Edit
+                            );
+                            if (confirmed == OkCancelResult.ok) {
+                              final success = await showFutureLoadingDialog(
+                                context: context,
+                                future: () async {
+                                  room.isSpace
+                                      ? await archiveSpace(
+                                          // Edit = leaveSpace
+                                          room,
+                                          Matrix.of(context).client,
+                                        )
+                                      : await room.leave();
+                                },
+                              );
+                              if (success.error == null) {
+                                context.go('/rooms');
+                              }
+                            }
+                          },
+                        ),
                         if (room.isRoomAdmin && !room.isDirectChat)
                           SwitchListTile.adaptive(
                             activeColor: AppConfig.activeToggleColor,
