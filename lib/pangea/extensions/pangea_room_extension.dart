@@ -977,7 +977,40 @@ extension PangeaRoom on Room {
     return joinedRooms > 0 ? true : false;
   }
 
-  Future<bool> suggestedInSpace(Room space) async {
+  Future<bool> isSuggested() async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+
+    for (final parent in spaceParents) {
+      final suggested = await isSuggestedInSpace(parent);
+      if (!suggested) return false;
+    }
+    return true;
+  }
+
+  Future<void> setSuggested(bool suggested) async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+    for (final parent in spaceParents) {
+      await setSuggestedInSpace(suggested, parent);
+    }
+  }
+
+  Future<bool> isSuggestedInSpace(Room space) async {
     try {
       final Map<String, dynamic> resp =
           await client.getRoomStateWithKey(space.id, EventTypes.spaceChild, id);
