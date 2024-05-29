@@ -10,8 +10,6 @@ import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
 import 'package:tawkie/widgets/matrix.dart';
-
-import 'web_view_connection.dart';
 import 'Linkedin_connection_explain.dart';
 import 'add_bridge_header.dart';
 import 'connection_bridge_dialog.dart';
@@ -282,7 +280,7 @@ class _AddBridgeBodyState extends State<AddBridgeBody> {
                       } else {
                         // Handle connection failure
                         showCatchErrorDialog(context,
-                            "${L10n.of(context)!.err_toConnect} ${network.name}");
+                            "${L10n.of(context)!.errToConnect} ${network.name}");
                       }
                     },
                   ),

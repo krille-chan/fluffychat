@@ -165,9 +165,15 @@ class BotBridgeConnection {
 
     // Add a direct chat with the bot (if you haven't already)
     String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
+    Room? roomBot;
 
-    final Room? roomBot = client.getRoomById(directChat);
+    try{
+      directChat ??= await client.startDirectChat(botUserId);
+
+      roomBot = client.getRoomById(directChat);
+    }catch(e){
+      print("error: $e");
+    }
 
     // Send the "ping" message to the bot
     try {
@@ -193,7 +199,7 @@ class BotBridgeConnection {
     while (continueProcess && currentIteration < maxIterations) {
       // To take the latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
-        directChat,
+        directChat!,
         Direction.b, // To get the latest messages
         limit: 1, // Number of messages to obtain
       );
@@ -876,6 +882,7 @@ class BotBridgeConnection {
     } catch (e) {
       print("error: $e");
     }
+  }
 
     // Function to format list cookies
     String formatCookies(List<io.Cookie> cookies) {
@@ -977,5 +984,4 @@ class BotBridgeConnection {
 
       return result;
     }
-  }
 }
