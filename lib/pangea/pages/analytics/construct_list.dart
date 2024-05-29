@@ -243,9 +243,13 @@ class ConstructListViewState extends State<ConstructListView> {
 
   List<AggregateConstructUses>? get constructs =>
       widget.pangeaController.analytics.constructs != null
-          ? widget.pangeaController.myAnalytics.aggregateConstructData(
-              widget.pangeaController.analytics.constructs!,
-            )
+          ? widget.pangeaController.myAnalytics
+              .aggregateConstructData(
+                widget.pangeaController.analytics.constructs!,
+              )
+              .sorted(
+                (a, b) => b.uses.length.compareTo(a.uses.length),
+              )
           : null;
 
   AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
