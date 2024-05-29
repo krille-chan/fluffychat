@@ -134,22 +134,18 @@ class BotBridgeConnection {
     RegExp? onlineMatch;
 
     // Messages to spot when we're not online
-    RegExp? notLoggedMatch;
     RegExp? mQTTNotMatch;
 
     switch (socialNetwork.name) {
       case "WhatsApp":
         onlineMatch = PingPatterns.whatsAppOnlineMatch;
-        notLoggedMatch = PingPatterns.whatsAppNotLoggedMatch;
         mQTTNotMatch = PingPatterns.whatsAppLoggedButNotConnectedMatch;
         break;
       case "Facebook Messenger":
         onlineMatch = PingPatterns.facebookOnlineMatch;
-        notLoggedMatch = PingPatterns.facebookNotLoggedMatch;
         break;
       case "Instagram":
         onlineMatch = PingPatterns.instagramOnlineMatch;
-        notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
@@ -197,13 +193,6 @@ class BotBridgeConnection {
           result = 'Connected';
 
           break; // Exit the loop if the bridge is connected
-        }
-        if (notLoggedMatch.hasMatch(latestMessage) == true) {
-          Logs().v('Not connected to ${socialNetwork.name}');
-
-          result = 'Not Connected';
-
-          break; // Exit the loop if the bridge is disconnected
         } else if (mQTTNotMatch?.hasMatch(latestMessage) == true) {
           String eventToSend;
 
@@ -220,10 +209,11 @@ class BotBridgeConnection {
 
           await Future.delayed(const Duration(seconds: 3)); // Wait sec
         } else {
-          // If no new message is received from the bot, we send back a ping
-          // Or no expected answer is found
-          await roomBot?.sendTextEvent("ping");
-          await Future.delayed(const Duration(seconds: 2)); // Wait sec
+          Logs().v('Not connected to ${socialNetwork.name}');
+
+          result = 'Not Connected';
+
+          break; // Exit the loop if the bridge is disconnected
         }
       }
       currentIteration++;
