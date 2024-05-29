@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/construct_analytics_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
@@ -169,7 +169,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
   int get lemmaIndex =>
       constructs?.indexWhere(
-        (element) => element.content.lemma == widget.controller.currentLemma,
+        (element) => element.lemma == widget.controller.currentLemma,
       ) ??
       -1;
 
@@ -217,7 +217,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
     setState(() => fetchingUses = true);
     try {
-      final List<OneConstructUse> uses = currentConstruct!.content.uses;
+      final List<OneConstructUse> uses = currentConstruct!.uses;
       _msgEvents.clear();
 
       for (final OneConstructUse use in uses) {
@@ -236,16 +236,20 @@ class ConstructListViewState extends State<ConstructListView> {
       ErrorHandler.logError(
         e: err,
         s: s,
-        m: "Failed to fetch uses for current construct ${currentConstruct?.content.lemma}",
+        m: "Failed to fetch uses for current construct ${currentConstruct?.lemma}",
       );
     }
   }
 
-  List<ConstructEvent>? get constructs =>
-      widget.pangeaController.analytics.constructs;
+  List<AggregateConstructUses>? get constructs =>
+      widget.pangeaController.analytics.constructs != null
+          ? widget.pangeaController.myAnalytics.aggregateConstructData(
+              widget.pangeaController.analytics.constructs!,
+            )
+          : null;
 
-  ConstructEvent? get currentConstruct => constructs?.firstWhereOrNull(
-        (element) => element.content.lemma == widget.controller.currentLemma,
+  AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
+        (element) => element.lemma == widget.controller.currentLemma,
       );
 
   // given the current lemma and list of message events, return a list of
@@ -303,13 +307,13 @@ class ConstructListViewState extends State<ConstructListView> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    constructs![index].content.lemma,
+                    constructs![index].lemma,
                   ),
                   subtitle: Text(
-                    '${L10n.of(context)!.total} ${constructs![index].content.uses.length}',
+                    '${L10n.of(context)!.total} ${constructs![index].uses.length}',
                   ),
                   onTap: () {
-                    final String lemma = constructs![index].content.lemma;
+                    final String lemma = constructs![index].lemma;
                     widget.controller.setCurrentLemma(lemma);
                     fetchUses();
                   },
@@ -321,8 +325,7 @@ class ConstructListViewState extends State<ConstructListView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (constructs![lemmaIndex].content.uses.length >
-                    _msgEvents.length)
+                if (constructs![lemmaIndex].uses.length > _msgEvents.length)
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
