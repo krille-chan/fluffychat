@@ -1,22 +1,25 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
-import 'package:ory_kratos_client/ory_kratos_client.dart';
-import 'package:ory_kratos_client/src/model/login_flow.dart' as kratos;
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:one_of/one_of.dart';
+import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/web_login.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/show_error_dialog.dart';
+
 import 'change_username_page.dart';
 import 'login_view.dart';
-import 'package:one_of/one_of.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -25,11 +28,10 @@ class Login extends StatefulWidget {
   LoginController createState() => LoginController();
 }
 
-// Endpoints will usually return a more specific error message
-
 class LoginController extends State<Login> {
   Map<String, dynamic>? _rawLoginTypes;
   HomeserverSummary? loginHomeserverSummary;
+
   bool _supportsFlow(String flowType) =>
       loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
       false;
@@ -37,30 +39,31 @@ class LoginController extends State<Login> {
   bool get supportsSso => _supportsFlow('m.login.sso');
 
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  String? usernameError;
-  String? passwordError;
-  bool loading = false;
-  bool showPassword = false;
+  bool loading = true;
+  String? messageError;
+
   String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
+
+  kratos.FrontendApi? api;
+  String? flowId;
+  List<Widget> authWidgets = [];
+  List<TextEditingController> textControllers = [];
+  List<kratos.UiNode> formNodes = [];
 
   @override
   void initState() {
     super.initState();
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
-
+    getLoginOry();
     // Check if sessionToken exists and handle it
-    getSessionToken().then((sessionToken) {
-      if (sessionToken != null) {
-        checkUserQueueState(sessionToken);
-      }
-    });
+     getSessionToken().then((sessionToken) {
+       if (sessionToken != null) {
+         checkUserQueueState(sessionToken);
+       }
+     });
   }
-
-  void toggleShowPassword() =>
-      setState(() => showPassword = !loading && !showPassword);
 
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
@@ -140,71 +143,88 @@ class LoginController extends State<Login> {
     return await _secureStorage.read(key: 'sessionToken');
   }
 
-  void loginOry() async {
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context)!.pleaseEnterYourUsername);
-    } else {
-      setState(() => usernameError = null);
+  Future<void> processKratosNodes(
+      BuiltList<kratos.UiNode> nodes, String actionUrl) async {
+    List<Widget> formWidgets = [];
+    List<kratos.UiNode> allNodes = [];
+
+    for (kratos.UiNode node in nodes) {
+      kratos.UiNodeInputAttributes attributes =
+          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+      var controller =
+          TextEditingController(text: attributes.value?.toString() ?? "");
+
+      textControllers.add(controller);
+
+      if (node.type == kratos.UiNodeTypeEnum.input) {
+        Widget inputWidget;
+
+        if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.text) {
+          inputWidget = Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextFormField(
+              controller: controller,
+              onChanged: (String data) {},
+              decoration: InputDecoration(
+                label: Text(node.meta.label!.text),
+              ),
+              enabled: !attributes.disabled,
+            ),
+          );
+        } else if (attributes.type ==
+            kratos.UiNodeInputAttributesTypeEnum.submit) {
+          inputWidget = Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ElevatedButton(
+              onPressed: () {
+                _submitForm(actionUrl);
+              },
+              child: Text(node.meta.label!.text),
+            ),
+          );
+        } else {
+          inputWidget = Container(); // Placeholder for unsupported types
+        }
+
+        formWidgets.add(inputWidget);
+        allNodes.add(node);
+      }
+
+      setState(() => loading = false);
     }
-    if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context)!.pleaseEnterYourPassword);
-    } else {
-      setState(() => passwordError = null);
-    }
 
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-      return;
-    }
+    setState(() {
+      authWidgets = formWidgets;
+      formNodes = allNodes;
+      loading = false;
+    });
+  }
 
-    setState(() => loading = true);
+  Future<void> oryLoginWithCode(
+      String email, String code, kratos.OryKratosClient kratosClient) async {
+    final updateLoginFlowWithCodeMethod = kratos.UpdateLoginFlowWithCodeMethod(
+      (builder) => builder
+        ..identifier = email
+        ..method = 'code'
+        ..code = code
+        ..csrfToken = "", // Assuming csrfToken is not required for mobile
+    );
 
-    _coolDown?.cancel();
+    // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithCodeMethod object
+    final updateLoginFlowBody = kratos.UpdateLoginFlowBody(
+      (builder) => builder
+        ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithCodeMethod),
+    );
 
-    final OryKratosClient kratosClient = OryKratosClient(dio: dio);
+    final frontendApi = kratosClient.getFrontendApi();
 
     try {
-      // Initialize API connection flow
-      final frontendApi = kratosClient.getFrontendApi();
-      if (kDebugMode) {
-        print('Successfully initialized Kratos API');
-      }
-      Response<kratos.LoginFlow> response;
-      response = await frontendApi.createNativeLoginFlow();
-      if (kDebugMode) {
-        print('Successfully created login flow');
-      }
-
-      // Retrieve action URL from connection flow
-      final actionUrl = response.data?.ui.action;
-      if (actionUrl == null) {
-        throw Exception('Action URL not found in login flow response');
-      }
-
-      // Retrieving TextEditingControllers values
-      final String email = usernameController.text;
-      final String password = passwordController.text;
-
-      // Creation of an UpdateLoginFlowWithPasswordMethod object with identifiers
-      final updateLoginFlowWithPasswordMethod =
-          UpdateLoginFlowWithPasswordMethod((builder) => builder
-            ..identifier = email
-            ..method = 'password'
-            ..password = password);
-
-      // Create an UpdateLoginFlowBodyBuilder object and assign it the UpdateLoginFlowWithPasswordMethod object
-      final updateLoginFlowBody = UpdateLoginFlowBody(
-        (builder) => builder
-          ..oneOf = OneOf.fromValue1(value: updateLoginFlowWithPasswordMethod),
-      );
-
-      if (kDebugMode) {
-        print(
-            'Before sending POST request to update login flow with user credentials');
-      }
-
       // Sends a POST request with user credentials
       final loginResponse = await frontendApi.updateLoginFlow(
-          flow: response.data!.id, updateLoginFlowBody: updateLoginFlowBody);
+        flow: flowId!,
+        updateLoginFlowBody: updateLoginFlowBody,
+      );
+
       if (kDebugMode) {
         print('Successfully updated login flow with user credentials');
       }
@@ -212,15 +232,10 @@ class LoginController extends State<Login> {
       // Processing the response to obtain the connection session token
       final sessionToken = loginResponse.data?.sessionToken;
 
-      if (kDebugMode) {
-        print('Session token: $sessionToken');
-      }
-
-      // Store the session token
       await storeSessionToken(sessionToken);
       return checkUserQueueState(sessionToken!);
     } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
+      setState(() => messageError = exception.errorMessage);
       return setState(() => loading = false);
     } on DioException catch (e) {
       if (kDebugMode) {
@@ -231,10 +246,10 @@ class LoginController extends State<Login> {
       // Display Kratos error messages to the user
       if (e.response?.data != null) {
         final errorMessage = e.response!.data['ui']['messages'][0]['text'];
-        setState(() => passwordError = errorMessage);
+        setState(() => messageError = errorMessage);
       } else {
         setState(
-          () => passwordError = L10n.of(context)!.errTryAgain,
+              () => messageError = L10n.of(context)!.errTryAgain,
         );
       }
       return setState(() => loading = false);
@@ -242,12 +257,124 @@ class LoginController extends State<Login> {
       if (kDebugMode) {
         print(exception);
       }
-      setState(() => passwordError = L10n.of(context)!.errUsernameOrPassword);
+      setState(() => messageError = L10n.of(context)!.errUsernameOrPassword);
       return setState(() => loading = false);
     }
   }
 
-  Timer? _coolDown;
+  Future<void> _submitForm(String actionUrl) async {
+    setState(() => loading = true);
+    final formData = <String, dynamic>{};
+    String? email;
+    String? code;
+
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
+
+    // Update node values with controller values
+    for (int i = 0; i < formNodes.length; i++) {
+      final kratos.UiNode node = formNodes[i];
+      if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
+        final kratos.UiNodeInputAttributes attributes =
+            node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+        final value = textControllers[i].text;
+
+        formData[attributes.name] = value; // Convert JsonObject to String
+
+        if (attributes.name == 'identifier') {
+          email = value;
+        } else if (attributes.name == 'resend') {
+          code = value;
+        }
+      }
+    }
+
+    if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
+      await oryLoginWithCode(email, code, kratosClient);
+    } else {
+      try {
+        final response = await dio.post(
+          actionUrl,
+          data: formData,
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          ),
+        );
+
+        if (response.statusCode == 200) {
+          print('Succès: ${response.data}');
+        } else {
+          print('Erreur: ${response.data}');
+        }
+      } on DioException catch (e) {
+        if (kDebugMode) {
+          print('Erreur lors de la soumission du formulaire: $e');
+        }
+        if (e.response != null) {
+          // Unserialize the JSON response in LoginFlow
+          final responseData = e.response?.data;
+          final loginFlow = kratosClient.serializers
+              .deserializeWith(kratos.LoginFlow.serializer, responseData);
+
+          setState(() => flowId = loginFlow?.id);
+
+          // new response to retrieve nodes and action URL
+          final newNodes = loginFlow?.ui.nodes;
+          final newActionUrl = loginFlow?.ui.action;
+
+          if (newNodes != null && newActionUrl != null) {
+            await processKratosNodes(newNodes, newActionUrl);
+          }
+        }
+      }
+    }
+  }
+
+  BuiltList<kratos.UiNode> deserializeUiNodes(List<dynamic> json) {
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
+    final standardSerializers = kratosClient.serializers;
+
+    return BuiltList<kratos.UiNode>.from(json.map((dynamic node) =>
+        standardSerializers.deserializeWith(kratos.UiNode.serializer, node)!));
+  }
+
+  void getLoginOry() async {
+    final kratos.OryKratosClient kratosClient =
+        kratos.OryKratosClient(dio: dio);
+
+    try {
+      // Initialize API connection flow
+      final frontendApi = kratosClient.getFrontendApi();
+      final response = await frontendApi.createNativeLoginFlow();
+
+      // Retrieve action URL from connection flow
+      final actionNodes = response.data?.ui.nodes;
+      final actionUrl = response.data?.ui.action;
+
+      if (actionNodes == null) {
+        throw Exception(
+            'URL d\'action non trouvée dans la réponse du flux de connexion');
+      }
+      await processKratosNodes(actionNodes, actionUrl!);
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print("Exception when calling Kratos log: $e");
+        print(e.response?.data);
+      }
+      if (e.error is SocketException) {
+        DioErrorHandler.showNetworkErrorDialog(context);
+      }
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      DioErrorHandler.showGenericErrorDialog(context, exception.toString());
+    }
+    return setState(() => loading = false);
+  }
 
   Future<Map<String, dynamic>> getQueueStatus(String sessionToken) async {
     final responseQueueStatus = await dio.get(
@@ -284,7 +411,7 @@ class LoginController extends State<Login> {
       await matrixLogin(matrixLoginJwt, serverName);
 
       // If all goes well, reset passwordError
-      setState(() => passwordError = null);
+      //setState(() => passwordError = null);
     } on DioException catch (e) {
       if (kDebugMode) {
         print("Exception when calling Kratos log: $e\n");
@@ -373,13 +500,13 @@ class LoginController extends State<Login> {
       } else {
         Logs().v('Request failed with status: ${response.statusCode}');
         // TODO improve error handling
-        setState(() => passwordError = L10n.of(context)!.errTryAgain);
+        //setState(() => passwordError = L10n.of(context)!.errTryAgain);
       }
     } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
+      //setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
     } catch (exception) {
-      setState(() => passwordError = exception.toString());
+      //setState(() => passwordError = exception.toString());
       return setState(() => loading = false);
     }
 
