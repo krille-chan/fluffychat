@@ -853,7 +853,7 @@ extension PangeaRoom on Room {
     return success.error == null;
   }
 
-  Future<void> leaveSpace(BuildContext context, Client client) async {
+  Future<bool> leaveSpace(BuildContext context, Client client) async {
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
@@ -863,8 +863,8 @@ extension PangeaRoom on Room {
           message: L10n.of(context)!.leaveSpaceDescription,
         ) ==
         OkCancelResult.ok;
-    if (!confirmed) return;
-    await showFutureLoadingDialog(
+    if (!confirmed) return false;
+    final success = await showFutureLoadingDialog(
       context: context,
       future: () async {
         final List<Room> children = await getChildRooms();
@@ -877,6 +877,7 @@ extension PangeaRoom on Room {
         await leave();
       },
     );
+    return success.error == null;
   }
 
   bool canIAddSpaceChild(Room? room) {

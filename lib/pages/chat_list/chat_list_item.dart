@@ -64,37 +64,6 @@ class ChatListItem extends StatelessWidget {
     }
   }
 
-  // #Pangea
-  Future<void> leaveAction(BuildContext context) async {
-    {
-      if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.forget(),
-        );
-        return;
-      }
-      final confirmed = await showOkCancelAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.leaveRoomDescription,
-      );
-      if (confirmed == OkCancelResult.cancel) return;
-      if (room.isUnread) {
-        await room.markUnread(false);
-      }
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => room.leave(),
-      );
-      return;
-    }
-  }
-  // Pangea#
-
   @override
   Widget build(BuildContext context) {
     final isMuted = room.pushRuleState != PushRuleState.notify;

@@ -543,6 +543,7 @@ class ChatDetailsView extends StatelessWidget {
                               ),
                               onTap: () async {
                                 OkCancelResult confirmed = OkCancelResult.ok;
+                                bool shouldGo = false;
                                 // archiveSpace has its own popup; only show if not space
                                 if (!room.isSpace) {
                                   confirmed = await showOkCancelAlertDialog(
@@ -557,13 +558,10 @@ class ChatDetailsView extends StatelessWidget {
                                 }
                                 if (confirmed == OkCancelResult.ok) {
                                   if (room.isSpace) {
-                                    final archived = await room.archiveSpace(
+                                    shouldGo = await room.archiveSpace(
                                       context,
                                       Matrix.of(context).client,
                                     );
-                                    if (archived) {
-                                      context.go('/rooms');
-                                    }
                                   } else {
                                     final success =
                                         await showFutureLoadingDialog(
@@ -572,9 +570,10 @@ class ChatDetailsView extends StatelessWidget {
                                         await room.archive();
                                       },
                                     );
-                                    if (success.error == null) {
-                                      context.go('/rooms');
-                                    }
+                                    shouldGo = (success.error == null);
+                                  }
+                                  if (shouldGo) {
+                                    context.go('/rooms');
                                   }
                                 }
                               },
@@ -597,7 +596,8 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                           onTap: () async {
                             OkCancelResult confirmed = OkCancelResult.ok;
-                            // leaveSpace has its own popup; only show if not space
+                            bool shouldGo = false;
+                            // archiveSpace has its own popup; only show if not space
                             if (!room.isSpace) {
                               confirmed = await showOkCancelAlertDialog(
                                 useRootNavigator: false,
@@ -609,18 +609,21 @@ class ChatDetailsView extends StatelessWidget {
                               );
                             }
                             if (confirmed == OkCancelResult.ok) {
-                              final success = await showFutureLoadingDialog(
-                                context: context,
-                                future: () async {
-                                  room.isSpace
-                                      ? await room.leaveSpace(
-                                          context,
-                                          Matrix.of(context).client,
-                                        )
-                                      : await room.leave();
-                                },
-                              );
-                              if (success.error == null) {
+                              if (room.isSpace) {
+                                shouldGo = await room.leaveSpace(
+                                  context,
+                                  Matrix.of(context).client,
+                                );
+                              } else {
+                                final success = await showFutureLoadingDialog(
+                                  context: context,
+                                  future: () async {
+                                    await room.leave();
+                                  },
+                                );
+                                shouldGo = (success.error == null);
+                              }
+                              if (shouldGo) {
                                 context.go('/rooms');
                               }
                             }

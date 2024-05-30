@@ -284,7 +284,6 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.leave:
         // #Pangea
         widget.controller.cancelAction();
-        widget.controller.selectedRoomIds.clear();
         if (room == null) return;
         widget.controller.toggleSelection(room.id);
         room.isSpace
@@ -293,6 +292,7 @@ class _SpaceViewState extends State<SpaceView> {
                 Matrix.of(context).client,
               )
             : await widget.controller.leaveAction();
+        widget.controller.selectedRoomIds.clear();
         _refresh();
         break;
       // await showFutureLoadingDialog(
