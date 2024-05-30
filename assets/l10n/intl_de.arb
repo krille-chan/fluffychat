@@ -2698,7 +2698,7 @@
   "@restricted": {},
   "knockRestricted": "Anklopfen beschränkt",
   "@knockRestricted": {},
-  "searchIn": "In {chat} suchen ...",
+  "searchIn": "In Chat \"{chat}\" suchen ...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
