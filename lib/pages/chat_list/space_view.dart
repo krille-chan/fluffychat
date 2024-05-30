@@ -284,17 +284,13 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.leave:
         // #Pangea
         widget.controller.cancelAction();
+        widget.controller.selectedRoomIds.clear();
         if (room == null) return;
         widget.controller.toggleSelection(room.id);
         room.isSpace
-            ? await showFutureLoadingDialog(
-                context: context,
-                future: () async {
-                  await room.leaveSpace(
-                    Matrix.of(context).client,
-                  );
-                  widget.controller.selectedRoomIds.clear();
-                },
+            ? await room.leaveSpace(
+                context,
+                Matrix.of(context).client,
               )
             : await widget.controller.leaveAction();
         _refresh();
@@ -315,20 +311,28 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
         // #Pangea
+        widget.controller.selectedRoomIds.clear();
         if (room == null) return;
         // Pangea#
         widget.controller.toggleSelection(room.id);
         room.isSpace
-            ? await showFutureLoadingDialog(
-                context: context,
-                future: () async {
-                  await room.archiveSpace(
-                    Matrix.of(context).client,
-                  );
-                  widget.controller.selectedRoomIds.clear();
-                },
+            // #Pangea
+            // ? await showFutureLoadingDialog(
+            //         context: context,
+            //         future: () async {
+            //           await room.archiveSpace(
+            //             Matrix.of(context).client,
+            //           );
+            //           widget.controller.selectedRoomIds.clear();
+            //         },
+            //       )
+            //     : await widget.controller.archiveAction();
+            ? await room.archiveSpace(
+                context,
+                Matrix.of(context).client,
               )
             : await widget.controller.archiveAction();
+        // Pangea#
         _refresh();
         break;
       case SpaceChildContextAction.addToSpace:

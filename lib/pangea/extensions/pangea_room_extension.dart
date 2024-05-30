@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -13,6 +14,8 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 // import markdown.dart
 import 'package:html_unescape/html_unescape.dart';
 import 'package:matrix/matrix.dart';
@@ -826,23 +829,54 @@ extension PangeaRoom on Room {
     await leave();
   }
 
-  Future<void> archiveSpace(Client client) async {
-    final List<Room> children = await getChildRooms();
-    for (final Room child in children) {
-      await child.archive();
-    }
-    await archive();
+  Future<bool> archiveSpace(BuildContext context, Client client) async {
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.archiveSpaceDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return false;
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final List<Room> children = await getChildRooms();
+        for (final Room child in children) {
+          await child.archive();
+        }
+        await archive();
+      },
+    );
+    return success.error == null;
   }
 
-  Future<void> leaveSpace(Client client) async {
-    final List<Room> children = await getChildRooms();
-    for (final Room child in children) {
-      if (child.isUnread) {
-        await child.markUnread(false);
-      }
-      await child.leave();
-    }
-    await leave();
+  Future<void> leaveSpace(BuildContext context, Client client) async {
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.leaveSpaceDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final List<Room> children = await getChildRooms();
+        for (final Room child in children) {
+          if (child.isUnread) {
+            await child.markUnread(false);
+          }
+          await child.leave();
+        }
+        await leave();
+      },
+    );
   }
 
   bool canIAddSpaceChild(Room? room) {

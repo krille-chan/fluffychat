@@ -542,28 +542,39 @@ class ChatDetailsView extends StatelessWidget {
                                 ),
                               ),
                               onTap: () async {
-                                final confirmed = await showOkCancelAlertDialog(
-                                  useRootNavigator: false,
-                                  context: context,
-                                  title: L10n.of(context)!.areYouSure,
-                                  okLabel: L10n.of(context)!.ok,
-                                  cancelLabel: L10n.of(context)!.cancel,
-                                  message:
-                                      L10n.of(context)!.archiveRoomDescription,
-                                );
-                                if (confirmed == OkCancelResult.ok) {
-                                  final success = await showFutureLoadingDialog(
+                                OkCancelResult confirmed = OkCancelResult.ok;
+                                // archiveSpace has its own popup; only show if not space
+                                if (!room.isSpace) {
+                                  confirmed = await showOkCancelAlertDialog(
+                                    useRootNavigator: false,
                                     context: context,
-                                    future: () async {
-                                      room.isSpace
-                                          ? await room.archiveSpace(
-                                              Matrix.of(context).client,
-                                            )
-                                          : await room.archive();
-                                    },
+                                    title: L10n.of(context)!.areYouSure,
+                                    okLabel: L10n.of(context)!.ok,
+                                    cancelLabel: L10n.of(context)!.cancel,
+                                    message: L10n.of(context)!
+                                        .archiveRoomDescription,
                                   );
-                                  if (success.error == null) {
-                                    context.go('/rooms');
+                                }
+                                if (confirmed == OkCancelResult.ok) {
+                                  if (room.isSpace) {
+                                    final archived = await room.archiveSpace(
+                                      context,
+                                      Matrix.of(context).client,
+                                    );
+                                    if (archived) {
+                                      context.go('/rooms');
+                                    }
+                                  } else {
+                                    final success =
+                                        await showFutureLoadingDialog(
+                                      context: context,
+                                      future: () async {
+                                        await room.archive();
+                                      },
+                                    );
+                                    if (success.error == null) {
+                                      context.go('/rooms');
+                                    }
                                   }
                                 }
                               },
@@ -585,20 +596,25 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                           ),
                           onTap: () async {
-                            final confirmed = await showOkCancelAlertDialog(
-                              useRootNavigator: false,
-                              context: context,
-                              title: L10n.of(context)!.areYouSure,
-                              okLabel: L10n.of(context)!.ok,
-                              cancelLabel: L10n.of(context)!.cancel,
-                              message: L10n.of(context)!.leaveRoomDescription,
-                            );
+                            OkCancelResult confirmed = OkCancelResult.ok;
+                            // leaveSpace has its own popup; only show if not space
+                            if (!room.isSpace) {
+                              confirmed = await showOkCancelAlertDialog(
+                                useRootNavigator: false,
+                                context: context,
+                                title: L10n.of(context)!.areYouSure,
+                                okLabel: L10n.of(context)!.ok,
+                                cancelLabel: L10n.of(context)!.cancel,
+                                message: L10n.of(context)!.leaveRoomDescription,
+                              );
+                            }
                             if (confirmed == OkCancelResult.ok) {
                               final success = await showFutureLoadingDialog(
                                 context: context,
                                 future: () async {
                                   room.isSpace
                                       ? await room.leaveSpace(
+                                          context,
                                           Matrix.of(context).client,
                                         )
                                       : await room.leave();
