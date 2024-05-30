@@ -163,7 +163,6 @@ class ChatListView extends StatelessWidget {
                                 MatrixLocals(L10n.of(context)!),
                               ),
                               size: 32,
-                              fontSize: 12,
                             ),
                           );
                         },

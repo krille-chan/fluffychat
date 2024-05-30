@@ -187,7 +187,6 @@ class UserBottomSheetView extends StatelessWidget {
                           mxContent: avatarUrl,
                           name: displayname,
                           size: Avatar.defaultSize * 2.5,
-                          fontSize: 18 * 2.5,
                         ),
                       ),
                     ),
