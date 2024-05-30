@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_det
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_invitation_buttons.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_name_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
-import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/lock_room.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
@@ -557,13 +556,10 @@ class ChatDetailsView extends StatelessWidget {
                                     context: context,
                                     future: () async {
                                       room.isSpace
-                                          ? await archiveSpace(
-                                              // Edit - contents
-                                              room,
+                                          ? await room.archiveSpace(
                                               Matrix.of(context).client,
                                             )
-                                          : await room
-                                              .leave(); // Edit - archive, not leave
+                                          : await room.archive();
                                     },
                                   );
                                   if (success.error == null) {
@@ -602,9 +598,7 @@ class ChatDetailsView extends StatelessWidget {
                                 context: context,
                                 future: () async {
                                   room.isSpace
-                                      ? await archiveSpace(
-                                          // Edit = leaveSpace
-                                          room,
+                                      ? await room.leaveSpace(
                                           Matrix.of(context).client,
                                         )
                                       : await room.leave();

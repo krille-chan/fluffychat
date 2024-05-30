@@ -190,8 +190,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   IconButton(
                     icon: const Icon(Icons.arrow_forward),
                     tooltip: L10n.of(context)!.leave,
-                    onPressed:
-                        controller.archiveAction, // Edit - make leaveAction
+                    onPressed: controller.leaveAction,
                   ),
                   // Pangea#
                 ]

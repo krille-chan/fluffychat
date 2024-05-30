@@ -232,8 +232,7 @@ class ChatController extends State<ChatPageWithRoom>
   void archiveChat() async {
     final success = await showFutureLoadingDialog(
       context: context,
-      future: room
-          .leave, // Edit - Add room.archive method in pangea_room_extension.dart
+      future: room.archive,
     );
     if (success.error != null) return;
     context.go('/rooms');

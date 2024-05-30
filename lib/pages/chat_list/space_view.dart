@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
-import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -283,22 +282,29 @@ class _SpaceViewState extends State<SpaceView> {
         _onJoinSpaceChild(spaceChild!);
         break;
       case SpaceChildContextAction.leave:
-        await showFutureLoadingDialog(
-          context: context,
-          // #Pangea
-          // future: room!.leave,
-          future: () async {
-            if (room!.isUnread) {
-              await room.markUnread(false);
-            }
-            await room.leave(); // Edit - use leaveAction?
-            if (Matrix.of(context).activeRoomId == room.id) {
-              context.go('/rooms');
-            }
-          },
-          // Pangea#
-        );
+        // #Pangea
+        widget.controller.cancelAction();
+        if (room == null) return;
+        widget.controller.toggleSelection(room.id);
+        room.isSpace
+            ? await showFutureLoadingDialog(
+                context: context,
+                future: () async {
+                  await room.leaveSpace(
+                    Matrix.of(context).client,
+                  );
+                  widget.controller.selectedRoomIds.clear();
+                },
+              )
+            : await widget.controller.leaveAction();
+        _refresh();
         break;
+      // await showFutureLoadingDialog(
+      //   context: context,
+      //   future: room!.leave,
+      // );
+      // break;
+      // Pangea#
       case SpaceChildContextAction.removeFromSpace:
         await showFutureLoadingDialog(
           context: context,
@@ -306,8 +312,7 @@ class _SpaceViewState extends State<SpaceView> {
         );
         break;
       // #Pangea
-      case SpaceChildContextAction
-            .archive: // Edit - change behavior to archive space for all users
+      case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
         // #Pangea
         if (room == null) return;
@@ -317,8 +322,7 @@ class _SpaceViewState extends State<SpaceView> {
             ? await showFutureLoadingDialog(
                 context: context,
                 future: () async {
-                  await archiveSpace(
-                    room,
+                  await room.archiveSpace(
                     Matrix.of(context).client,
                   );
                   widget.controller.selectedRoomIds.clear();

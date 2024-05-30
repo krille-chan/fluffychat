@@ -679,6 +679,31 @@ class ChatListController extends State<ChatList>
     // Pangea#
   }
 
+  // #Pangea
+  Future<void> leaveAction() async {
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: L10n.of(context)!.leaveRoomDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return;
+    final bool leftActiveRoom =
+        selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => _leaveSelectedRooms(),
+    );
+    setState(() {});
+    if (leftActiveRoom) {
+      context.go('/rooms');
+    }
+  }
+  // Pangea#
+
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
       title: L10n.of(context)!.hidePresences,
@@ -729,16 +754,31 @@ class ChatListController extends State<ChatList>
       final roomId = selectedRoomIds.first;
       try {
         // #Pangea
+        // await client.getRoomById(roomId)!.leave();
+        await client.getRoomById(roomId)!.archive();
+        // Pangea#
+      } finally {
+        toggleSelection(roomId);
+      }
+    }
+  }
+
+  // #Pangea
+  Future<void> _leaveSelectedRooms() async {
+    final client = Matrix.of(context).client;
+    while (selectedRoomIds.isNotEmpty) {
+      final roomId = selectedRoomIds.first;
+      try {
         if (client.getRoomById(roomId)!.isUnread) {
           await client.getRoomById(roomId)!.markUnread(false);
         }
-        // Pangea#
         await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
       }
     }
   }
+  // Pangea#
 
   Future<void> addToSpace() async {
     final selectedSpace = await showConfirmationDialog<String>(

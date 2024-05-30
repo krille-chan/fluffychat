@@ -808,6 +808,43 @@ extension PangeaRoom on Room {
     );
   }
 
+  Future<void> archive() async {
+    final participants = await requestParticipants();
+    final students = participants
+        .where(
+          (e) =>
+              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+              e.id != BotName.byEnvironment,
+        )
+        .toList();
+    for (final student in students) {
+      await kick(student.id);
+    }
+    if (isUnread) {
+      await markUnread(false);
+    }
+    await leave();
+  }
+
+  Future<void> archiveSpace(Client client) async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      await child.archive();
+    }
+    await archive();
+  }
+
+  Future<void> leaveSpace(Client client) async {
+    final List<Room> children = await getChildRooms();
+    for (final Room child in children) {
+      if (child.isUnread) {
+        await child.markUnread(false);
+      }
+      await child.leave();
+    }
+    await leave();
+  }
+
   bool canIAddSpaceChild(Room? room) {
     if (!isSpace) {
       ErrorHandler.logError(
