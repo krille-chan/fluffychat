@@ -132,6 +132,7 @@
     "placeholders": {}
   },
   "appLockDescription": "Lock the app when not using with a pin code",
+  "@appLockDescription": {},
   "archive": "Archive",
   "@archive": {
     "type": "text",
@@ -761,11 +762,17 @@
     "placeholders": {}
   },
   "globalChatId": "Global chat ID",
+  "@globalChatId": {},
   "accessAndVisibility": "Access and visibility",
+  "@accessAndVisibility": {},
   "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
+  "@accessAndVisibilityDescription": {},
   "calls": "Calls",
+  "@calls": {},
   "customEmojisAndStickers": "Custom emojis and stickers",
+  "@customEmojisAndStickers": {},
   "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
+  "@customEmojisAndStickersBody": {},
   "emoteShortcode": "Emote shortcode",
   "@emoteShortcode": {
     "type": "text",
@@ -937,12 +944,11 @@
     "placeholders": {}
   },
   "hideRedactedMessages": "Hide redacted messages",
+  "@hideRedactedMessages": {},
   "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
+  "@hideRedactedMessagesBody": {},
   "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
-  "@hideUnknownEvents": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "@hideInvalidOrUnknownMessageFormats": {},
   "howOffensiveIsThisContent": "How offensive is this content?",
   "@howOffensiveIsThisContent": {
     "type": "text",
@@ -1394,10 +1400,15 @@
     "placeholders": {}
   },
   "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "@hideMemberChangesInPublicChats": {},
   "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
+  "@hideMemberChangesInPublicChatsBody": {},
   "overview": "Overview",
+  "@overview": {},
   "notifyMeFor": "Notify me for",
+  "@notifyMeFor": {},
   "passwordRecoverySettings": "Password recovery settings",
+  "@passwordRecoverySettings": {},
   "passwordRecovery": "Password recovery",
   "@passwordRecovery": {
     "type": "text",
@@ -2280,7 +2291,9 @@
     }
   },
   "usersMustKnock": "Users must knock",
+  "@usersMustKnock": {},
   "noOneCanJoin": "No one can join",
+  "@noOneCanJoin": {},
   "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
@@ -2288,7 +2301,9 @@
     }
   },
   "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "@noPublicLinkHasBeenCreatedYet": {},
   "knock": "Knock",
+  "@knock": {},
   "users": "Users",
   "@users": {},
   "unlockOldMessages": "Unlock old messages",
@@ -2464,6 +2479,7 @@
     }
   },
   "knocking": "Knocking",
+  "@knocking": {},
   "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
   "@chatCanBeDiscoveredViaSearchOnServer": {
     "type": "text",
@@ -2510,7 +2526,9 @@
   "publicLink": "Public link",
   "@publicLink": {},
   "publicChatAddresses": "Public chat addresses",
+  "@publicChatAddresses": {},
   "createNewAddress": "Create new address",
+  "@createNewAddress": {},
   "joinSpace": "Join space",
   "@joinSpace": {},
   "publicSpaces": "Public spaces",
@@ -2526,6 +2544,7 @@
   "initAppError": "An error occured while init the app",
   "@initAppError": {},
   "userRole": "User role",
+  "@userRole": {},
   "minimumPowerLevel": "{level} is the minimum power level.",
   "@minimumPowerLevel": {
     "type": "text",
@@ -2533,7 +2552,7 @@
       "level": {}
     }
   },
-  "searchIn": "Search in {chat}...",
+  "searchIn": "Search in chat \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2541,8 +2560,11 @@
     }
   },
   "searchMore": "Search more...",
+  "@searchMore": {},
   "gallery": "Gallery",
+  "@gallery": {},
   "files": "Files",
+  "@files": {},
   "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
   "@databaseBuildErrorBody": {
     "type": "text",
@@ -2655,11 +2677,14 @@
     }
   },
   "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "@noDatabaseEncryption": {},
   "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
   },
   "restricted": "Restricted",
-  "knockRestricted": "Knock restricted"
+  "@restricted": {},
+  "knockRestricted": "Knock restricted",
+  "@knockRestricted": {}
 }
