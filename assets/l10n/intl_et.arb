@@ -2689,5 +2689,12 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
+  },
+  "searchIn": "Otsi vestlusest {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
   }
 }
