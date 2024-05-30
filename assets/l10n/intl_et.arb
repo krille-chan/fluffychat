@@ -2696,5 +2696,7 @@
     "placeholders": {
       "chat": {}
     }
-  }
+  },
+  "searchMore": "Otsi veel...",
+  "@searchMore": {}
 }
