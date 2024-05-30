@@ -2689,5 +2689,18 @@
     "placeholders": {
       "level": {}
     }
-  }
+  },
+  "searchIn": "Buscar en {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Buscar máis...",
+  "@searchMore": {},
+  "gallery": "Galería",
+  "@gallery": {},
+  "files": "Ficheiros",
+  "@files": {}
 }

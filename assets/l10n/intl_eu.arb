@@ -2689,5 +2689,18 @@
   "publicChatAddresses": "Txataren helbide publikoak",
   "@publicChatAddresses": {},
   "createNewAddress": "Sortu helbide berria",
-  "@createNewAddress": {}
+  "@createNewAddress": {},
+  "files": "Fitxategiak",
+  "@files": {},
+  "gallery": "Galeria",
+  "@gallery": {},
+  "searchIn": "Bilatu {chat}ean...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Bilatu gehiago...",
+  "@searchMore": {}
 }

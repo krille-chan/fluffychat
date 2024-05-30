@@ -2689,5 +2689,18 @@
   "publicChatAddresses": "公开聊天的地址",
   "@publicChatAddresses": {},
   "createNewAddress": "新建地址",
-  "@createNewAddress": {}
+  "@createNewAddress": {},
+  "searchMore": "搜索更多…",
+  "@searchMore": {},
+  "gallery": "图库",
+  "@gallery": {},
+  "files": "文件",
+  "@files": {},
+  "searchIn": "在 {chat} 中搜索…",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  }
 }
