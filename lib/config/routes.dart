@@ -445,13 +445,10 @@ abstract class AppRoutes {
     Widget child,
   ) =>
       FluffyThemes.isColumnMode(context)
-          ? CustomTransitionPage(
+          ? NoTransitionPage(
               key: state.pageKey,
               restorationId: state.pageKey.value,
               child: child,
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(opacity: animation, child: child),
             )
           : MaterialPage(
               key: state.pageKey,
