@@ -3724,7 +3724,7 @@
     },
     "noTeachersFound": "No teachers found to report to",
     "pleaseEnterANumber": "Please enter a number greater than 0",
-    "archiveRoomDescription": "The chat will be moved to the archive for yourself and all students.",
+    "archiveRoomDescription": "The chat will be moved to the archive for yourself and other non-admin users.",
     "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
     "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
     "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
@@ -3965,6 +3965,6 @@
     "updatePhoneOS": "You may need to update your device's OS version.",
     "wordsPerMinute": "Words per minute",
     "leaveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
-    "archiveSpaceDescription": "The space, and any chats within, will be moved to the archive for yourself and all students.",
+    "archiveSpaceDescription": "The space, and any chats within, will be moved to the archive for yourself and other non-admin users.",
     "leaveSpaceDescription": "The space, and any chats within, will be moved to the archive. Other users will be able to see that you have left the space."
 }
