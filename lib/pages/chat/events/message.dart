@@ -260,6 +260,8 @@ class Message extends StatelessWidget {
                                                     : displayname
                                                         .lightColorText),
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             );
                                           },
                                         ),

@@ -27,14 +27,13 @@ class TypingIndicators extends StatelessWidget {
         final typingUsers = controller.room.typingUsers
           ..removeWhere((u) => u.stateKey == Matrix.of(context).client.userID);
 
-        const bottomPadding = 4.0;
         return Container(
           width: double.infinity,
           alignment: Alignment.center,
           child: AnimatedContainer(
             constraints:
                 const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
-            height: typingUsers.isEmpty ? 0 : avatarSize + bottomPadding,
+            height: typingUsers.isEmpty ? 0 : avatarSize + 8,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
             alignment: controller.timeline!.events.isNotEmpty &&
@@ -44,15 +43,16 @@ class TypingIndicators extends StatelessWidget {
                 : Alignment.topLeft,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(),
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              bottom: bottomPadding,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0,
             ),
             child: Row(
               children: [
-                SizedBox(
+                Container(
+                  alignment: Alignment.center,
                   height: avatarSize,
-                  width: typingUsers.length < 2 ? avatarSize : avatarSize + 16,
+                  width: Avatar.defaultSize,
                   child: Stack(
                     children: [
                       if (typingUsers.isNotEmpty)
