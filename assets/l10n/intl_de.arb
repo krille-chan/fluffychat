@@ -2221,7 +2221,7 @@
   },
   "newSpaceDescription": "Mit Spaces kannst du deine Chats zusammenfassen und private oder öffentliche Communities aufbauen.",
   "@newSpaceDescription": {},
-  "wasDirectChatDisplayName": "Leerer Chat (was {oldDisplayName}",
+  "wasDirectChatDisplayName": "Leerer Chat (war {oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "text",
     "placeholders": {
@@ -2689,5 +2689,22 @@
     }
   },
   "publicChatAddresses": "Öffentliche Chat-Adressen",
-  "@publicChatAddresses": {}
+  "@publicChatAddresses": {},
+  "gallery": "Galerie",
+  "@gallery": {},
+  "files": "Dateien",
+  "@files": {},
+  "restricted": "Beschränkt",
+  "@restricted": {},
+  "knockRestricted": "Anklopfen beschränkt",
+  "@knockRestricted": {},
+  "searchIn": "In {chat} suchen ...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Weiter suchen ...",
+  "@searchMore": {}
 }
