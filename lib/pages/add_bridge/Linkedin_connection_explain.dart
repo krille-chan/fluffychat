@@ -12,7 +12,7 @@ class LinkedinConnectionExplain extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(L10n.of(context)!.linkedinExplain_title),
+        title: Text(L10n.of(context)!.linkedinExplainTitle),
       ),
       body: Center(
         child: SizedBox(
@@ -32,7 +32,7 @@ class LinkedinConnectionExplain extends StatelessWidget {
                 ),
               ),
               Text(
-                L10n.of(context)!.linkedinExplain_instruction,
+                L10n.of(context)!.linkedinExplainInstruction,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class LinkedinConnectionExplain extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                L10n.of(context)!.linkedinExplain_one,
+                L10n.of(context)!.linkedinExplainOne,
                 style: const TextStyle(fontSize: 16),
               ),
             ],
