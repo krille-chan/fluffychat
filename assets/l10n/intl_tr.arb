@@ -2690,7 +2690,7 @@
       "unread": {}
     }
   },
-  "searchIn": "{chat} içinde ara...",
+  "searchIn": "\"{chat}\" sohbeti içinde ara...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2702,5 +2702,9 @@
   "gallery": "Galeri",
   "@gallery": {},
   "files": "Dosyalar",
-  "@files": {}
+  "@files": {},
+  "knockRestricted": "Tıklatma kısıtlı",
+  "@knockRestricted": {},
+  "restricted": "Kısıtlı",
+  "@restricted": {}
 }

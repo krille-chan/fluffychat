@@ -2690,7 +2690,7 @@
       "level": {}
     }
   },
-  "searchIn": "Buscar en {chat}...",
+  "searchIn": "Buscar no chat \"{chat}\"...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
@@ -2702,5 +2702,9 @@
   "gallery": "Galería",
   "@gallery": {},
   "files": "Ficheiros",
-  "@files": {}
+  "@files": {},
+  "knockRestricted": "Peta á porta",
+  "@knockRestricted": {},
+  "restricted": "Non accesible",
+  "@restricted": {}
 }

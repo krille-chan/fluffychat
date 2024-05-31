@@ -2698,5 +2698,13 @@
     }
   },
   "searchMore": "Otsi veel...",
-  "@searchMore": {}
+  "@searchMore": {},
+  "knockRestricted": "Koputa piiratud ligipääsuga jututoa uksele",
+  "@knockRestricted": {},
+  "restricted": "Piiratud",
+  "@restricted": {},
+  "gallery": "Galerii",
+  "@gallery": {},
+  "files": "Failid",
+  "@files": {}
 }

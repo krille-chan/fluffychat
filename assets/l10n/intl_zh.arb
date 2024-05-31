@@ -2696,11 +2696,15 @@
   "@gallery": {},
   "files": "文件",
   "@files": {},
-  "searchIn": "在 {chat} 中搜索…",
+  "searchIn": "在 “{chat}” 聊天中搜索…",
   "@searchIn": {
     "type": "text",
     "placeholders": {
       "chat": {}
     }
-  }
+  },
+  "knockRestricted": "“请求加入”请求受限",
+  "@knockRestricted": {},
+  "restricted": "受限",
+  "@restricted": {}
 }
