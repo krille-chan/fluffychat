@@ -2689,5 +2689,22 @@
     "placeholders": {
       "level": {}
     }
-  }
+  },
+  "searchIn": "بحث في {chat}...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "files": "الملفات",
+  "@files": {},
+  "restricted": "مقيد",
+  "@restricted": {},
+  "knockRestricted": "قيود النقر",
+  "@knockRestricted": {},
+  "searchMore": "ابحث أكثر...",
+  "@searchMore": {},
+  "gallery": "المعرض",
+  "@gallery": {}
 }
