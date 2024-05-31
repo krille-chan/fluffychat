@@ -1,2422 +1,2668 @@
 {
-    "@@locale": "hu",
-    "@@last_modified": "2021-08-14 12:41:10.016566",
-    "about": "Névjegy",
-    "@about": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "accept": "Elfogadás",
-    "@accept": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "acceptedTheInvitation": "👍 {username} elfogadta a meghívást",
-    "@acceptedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "account": "Fiók",
-    "@account": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "🔐 {username} aktiválta a végpontok közötti titkosítást",
-    "@activatedEndToEndEncryption": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "admin": "Admin",
-    "@admin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "alias": "álnév",
-    "@alias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "answeredTheCall": "{senderName} megválaszolta a hívást",
-    "@answeredTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "anyoneCanJoin": "Bárki csatlakozhat",
-    "@anyoneCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "archive": "Archívum",
-    "@archive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areGuestsAllowedToJoin": "Csatlakozhatnak-e vendégek",
-    "@areGuestsAllowedToJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "areYouSure": "Biztos vagy benne?",
-    "@areYouSure": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askSSSSSign": "A másik fél igazolásához meg kell adni a biztonságos tároló jelmondatát vagy a visszaállítási kulcsot.",
-    "@askSSSSSign": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "askVerificationRequest": "Elfogadod {username} hitelesítési kérelmét?",
-    "@askVerificationRequest": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "banFromChat": "Kitiltás a csevegésből",
-    "@banFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "banned": "Kitiltva",
-    "@banned": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "bannedUser": "{username} kitiltotta: {targetName}",
-    "@bannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "blockDevice": "Eszköz blokkolása",
-    "@blockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cancel": "Mégse",
-    "@cancel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeDeviceName": "Eszköznév módosítása",
-    "@changeDeviceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changedTheChatAvatar": "{username} módosította a csevegési profilképét",
-    "@changedTheChatAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} módosította a csevegés leírását erre: „{description}”",
-    "@changedTheChatDescriptionTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "description": {}
-        }
-    },
-    "changedTheChatNameTo": "{username} módosította a csevegés nevét erre: „{chatname}”",
-    "@changedTheChatNameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "chatname": {}
-        }
-    },
-    "changedTheChatPermissions": "{username} módosította a csevegési engedélyeket",
-    "@changedTheChatPermissions": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheDisplaynameTo": "{username} módosította a megjenelítési nevét erre: {displayname}",
-    "@changedTheDisplaynameTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "displayname": {}
-        }
-    },
-    "changedTheGuestAccessRules": "{username} módosította a vendégek hozzáférési szabályait",
-    "@changedTheGuestAccessRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username} módosította a vendégek hozzáférési szabályait, így: {rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheHistoryVisibility": "{username} módosította az előzmények láthatóságát",
-    "@changedTheHistoryVisibility": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheHistoryVisibilityTo": "{username} módosította az előzmények láthatóságát, így: {rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "rules": {}
-        }
-    },
-    "changedTheJoinRules": "{username} módosított a csatlakozási szabályokat",
-    "@changedTheJoinRules": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheJoinRulesTo": "{username} módosította a csatlakozási szabályokat, így: {joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "joinRules": {}
-        }
-    },
-    "changedTheProfileAvatar": "{username} módosította a profilképét",
-    "@changedTheProfileAvatar": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomAliases": "{username} módosította a szoba címeit",
-    "@changedTheRoomAliases": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changedTheRoomInvitationLink": "{username} módosította a meghívó hivatkozást",
-    "@changedTheRoomInvitationLink": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "changePassword": "Jelszó módosítása",
-    "@changePassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheHomeserver": "Matrix-kiszolgáló váltása",
-    "@changeTheHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheme": "Stílus módosítása",
-    "@changeTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "changeTheNameOfTheGroup": "Csoport nevének módosítása",
-    "@changeTheNameOfTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "channelCorruptedDecryptError": "A titkosítás megsérült",
-    "@channelCorruptedDecryptError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chat": "Csevegés",
-    "@chat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatDetails": "Csevegés részletei",
-    "@chatDetails": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "Válassz erős jelszót",
-    "@chooseAStrongPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "close": "Bezárás",
-    "@close": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareEmojiMatch": "Hasonlítsd össze az emodzsikat a másik eszközön lévőkkel, és bizonyosodj meg róla, hogy egyeznek:",
-    "@compareEmojiMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "compareNumbersMatch": "Hasonlítsd össze a számokat a másik eszközön lévőkkel, és bizonyosodj meg arról, hogy egyeznek:",
-    "@compareNumbersMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "confirm": "Megerősítés",
-    "@confirm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "connect": "Csatlakozás",
-    "@connect": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "contactHasBeenInvitedToTheGroup": "Meghívtad az ismerősödet a csoportba",
-    "@contactHasBeenInvitedToTheGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copiedToClipboard": "Vágólapra másolva",
-    "@copiedToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "copy": "Másolás",
-    "@copy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "couldNotDecryptMessage": "Nem sikerült visszafejteni a titkosított üzenetet: {error}",
-    "@couldNotDecryptMessage": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "countParticipants": "{count} résztvevő",
-    "@countParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "create": "Létrehozás",
-    "@create": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "createdTheChat": "💬  {username} létrehozta a csevegést",
-    "@createdTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "currentlyActive": "Jelenleg aktív",
-    "@currentlyActive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "darkTheme": "Sötét",
-    "@darkTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dateAndTimeOfDay": "{date}, {timeOfDay}",
-    "@dateAndTimeOfDay": {
-        "type": "text",
-        "placeholders": {
-            "date": {},
-            "timeOfDay": {}
-        }
-    },
-    "dateWithoutYear": "{month}. {day}.",
-    "@dateWithoutYear": {
-        "type": "text",
-        "placeholders": {
-            "month": {},
-            "day": {}
-        }
-    },
-    "dateWithYear": "{year}. {month}. {day}.",
-    "@dateWithYear": {
-        "type": "text",
-        "placeholders": {
-            "year": {},
-            "month": {},
-            "day": {}
-        }
-    },
-    "deactivateAccountWarning": "Ez deaktiválja a felhasználói fiókodat. Ez nem vonható vissza! Biztos vagy benne?",
-    "@deactivateAccountWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "delete": "Törlés",
-    "@delete": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteAccount": "Fiók törlése",
-    "@deleteAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deleteMessage": "Üzenet törlése",
-    "@deleteMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "device": "Eszköz",
-    "@device": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "devices": "Eszközök",
-    "@devices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "displaynameHasBeenChanged": "Megjelenítési név megváltozott",
-    "@displaynameHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "downloadFile": "Fájl letöltése",
-    "@downloadFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editDisplayname": "Megjelenítési név módosítása",
-    "@editDisplayname": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteExists": "A hangulatjel már létezik!",
-    "@emoteExists": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteInvalid": "Érvénytelen hangulatjel rövid kód!",
-    "@emoteInvalid": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emotePacks": "Hangulatjel-csomagok a szobához",
-    "@emotePacks": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteSettings": "Hangulatjel-beállítások",
-    "@emoteSettings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteShortcode": "Rövid kód a hangulatjelhez",
-    "@emoteShortcode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emoteWarnNeedToPick": "A hangulatjelhez egy képet és egy rövid kódot kell választani!",
-    "@emoteWarnNeedToPick": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "emptyChat": "Üres csevegés",
-    "@emptyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEmotesGlobally": "Hangulatjel-csomag engedélyezése globálisan",
-    "@enableEmotesGlobally": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryptionWarning": "Többé nem fogod tudni kikapcsolni a titkosítást. Biztos vagy benne?",
-    "@enableEncryptionWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryption": "Titkosítás",
-    "@encryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encryptionNotEnabled": "Titkosítás nincs engedélyezve",
-    "@encryptionNotEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "endedTheCall": "{senderName} befejezte a hívást",
-    "@endedTheCall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "enterYourHomeserver": "Add meg a Matrix-kiszolgálód",
-    "@enterYourHomeserver": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fileName": "Fájlnév",
-    "@fileName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "forward": "Továbbítás",
-    "@forward": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromJoining": "Csatlakozás óta",
-    "@fromJoining": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fromTheInvitation": "Meghívás óta",
-    "@fromTheInvitation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "group": "Csoport",
-    "@group": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupIsPublic": "A csoport nyilvános",
-    "@groupIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groupWith": "Csoport vele: {displayname}",
-    "@groupWith": {
-        "type": "text",
-        "placeholders": {
-            "displayname": {}
-        }
-    },
-    "guestsAreForbidden": "Nem lehetnek vendégek",
-    "@guestsAreForbidden": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "guestsCanJoin": "Csatlakozhatnak vendégek",
-    "@guestsCanJoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hasWithdrawnTheInvitationFor": "{username} visszavonta {targetName} meghívását",
-    "@hasWithdrawnTheInvitationFor": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "help": "Súgó",
-    "@help": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideRedactedEvents": "Visszavont események elrejtése",
-    "@hideRedactedEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hideUnknownEvents": "Ismeretlen események elrejtése",
-    "@hideUnknownEvents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "identity": "Azonosító",
-    "@identity": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignoredUsers": "Figyelmen kívül hagyott felhasználók",
-    "@ignoredUsers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "incorrectPassphraseOrKey": "Hibás jelmondat vagy visszaállítási kulcs",
-    "@incorrectPassphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContact": "Ismerős meghívása",
-    "@inviteContact": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteContactToGroup": "Ismerős meghívása a(z) {groupName} csoportba",
-    "@inviteContactToGroup": {
-        "type": "text",
-        "placeholders": {
-            "groupName": {}
-        }
-    },
-    "invited": "Meghívott",
-    "@invited": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "invitedUser": "📩 {username} meghívta {targetName}-t",
-    "@invitedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "invitedUsersOnly": "Csak meghívottak",
-    "@invitedUsersOnly": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteText": "{username} meghívott a FluffyChat alkalmazásba. \n1. Telepítsd a FluffyChat appot: https://fluffychat.im \n2. Regisztrálj, vagy jelentkezz be. \n3. Nyisd meg a meghívó hivatkozást: {link}",
-    "@inviteText": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "link": {}
-        }
-    },
-    "isTyping": "gépel…",
-    "@isTyping": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "joinedTheChat": "👋 {username} csatlakozott a csevegéshez",
-    "@joinedTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "joinRoom": "Csatlakozás a szobához",
-    "@joinRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "kicked": "👞 {username} kirúgta {targetName}-t",
-    "@kicked": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickedAndBanned": "🙅 {username} kirúgta és kitiltotta {targetName}-t",
-    "@kickedAndBanned": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "kickFromChat": "Kirúgás a csevegésből",
-    "@kickFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lastActiveAgo": "Utoljára aktív: {localizedTimeShort}",
-    "@lastActiveAgo": {
-        "type": "text",
-        "placeholders": {
-            "localizedTimeShort": {}
-        }
-    },
-    "leave": "Csevegés elhagyása",
-    "@leave": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "leftTheChat": "Elhagyta a csevegést",
-    "@leftTheChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "license": "Licenc",
-    "@license": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "lightTheme": "Világos",
-    "@lightTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadCountMoreParticipants": "További {count} résztvevő betöltése",
-    "@loadCountMoreParticipants": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "loadingPleaseWait": "Betöltés… Kérlek, várj.",
-    "@loadingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "loadMore": "Továbbiak betöltése…",
-    "@loadMore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "login": "Bejelentkezés",
-    "@login": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "logInTo": "Bejelentkezés a(z) {homeserver} Matrix-kiszolgálóra",
-    "@logInTo": {
-        "type": "text",
-        "placeholders": {
-            "homeserver": {}
-        }
-    },
-    "logout": "Kijelentkezés",
-    "@logout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "mention": "Megemlítés",
-    "@mention": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "moderator": "Moderátor",
-    "@moderator": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "muteChat": "Csevegés némítása",
-    "@muteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "needPantalaimonWarning": "Jelenleg a Pantalaimon szükséges a végpontok közötti titkosítás használatához.",
-    "@needPantalaimonWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newMessageInFluffyChat": "💬 Új FluffyChat-üzenet",
-    "@newMessageInFluffyChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newVerificationRequest": "Új hitelesítési kérelem!",
-    "@newVerificationRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "no": "Nem",
-    "@no": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEmotesFound": "Nincsenek hangulatjelek. 😕",
-    "@noEmotesFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noGoogleServicesWarning": "Úgy tűnik, hogy nincsenek Google szolgáltatások a telefonodon. Ez adatvédelmi szempontból jó döntés! Ahhoz, hogy push értesítéseket fogadhass a FluffyChat alkalmazásban, a microG használatát javasoljuk: https://microg.org/.",
-    "@noGoogleServicesWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "none": "Nincs",
-    "@none": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPermission": "Nincsenek engedélyek",
-    "@noPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noRoomsFound": "Nem találhatók szobák…",
-    "@noRoomsFound": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "offline": "Offline",
-    "@offline": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ok": "OK",
-    "@ok": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "onlineKeyBackupEnabled": "Online kulcsmentés engedélyezve",
-    "@onlineKeyBackupEnabled": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "oopsSomethingWentWrong": "Hoppá, valami baj történt…",
-    "@oopsSomethingWentWrong": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openAppToReadMessages": "Alkalmazás megnyitása az üzenetek elolvasásához",
-    "@openAppToReadMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openCamera": "Kamera megnyitása",
-    "@openCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passphraseOrKey": "Jelmondat vagy visszaállítási kulcs",
-    "@passphraseOrKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "password": "Jelszó",
-    "@password": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordHasBeenChanged": "A jelszó módosítva",
-    "@passwordHasBeenChanged": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pickImage": "Kép választása",
-    "@pickImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pin": "Rögzítés",
-    "@pin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "play": "{fileName} lejátszása",
-    "@play": {
-        "type": "text",
-        "placeholders": {
-            "fileName": {}
-        }
-    },
-    "pleaseEnterYourPassword": "Add meg a jelszavad",
-    "@pleaseEnterYourPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourUsername": "Add meg a felhasználónevedet",
-    "@pleaseEnterYourUsername": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "privacy": "Adatvédelem",
-    "@privacy": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "publicRooms": "Nyilvános szobák",
-    "@publicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "recording": "Felvétel",
-    "@recording": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "redactedAnEvent": "{username} visszavont egy eseményt",
-    "@redactedAnEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "reject": "Elutasítás",
-    "@reject": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "rejectedTheInvitation": "{username} elutasította a meghívást",
-    "@rejectedTheInvitation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "rejoin": "Újracsatlakozás",
-    "@rejoin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "remove": "Eltávolítás",
-    "@remove": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removeAllOtherDevices": "Minden más eszköz eltávolítása",
-    "@removeAllOtherDevices": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removedBy": "{username} törölte",
-    "@removedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "removeDevice": "Eszköz eltávolítása",
-    "@removeDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbanFromChat": "Kitiltás feloldása",
-    "@unbanFromChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "renderRichContent": "Formázott üzenetek megjelenítése",
-    "@renderRichContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reply": "Válasz",
-    "@reply": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "requestPermission": "Jogosultság igénylése",
-    "@requestPermission": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomHasBeenUpgraded": "A szoba frissítve lett",
-    "@roomHasBeenUpgraded": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "seenByUser": "{username} látta",
-    "@seenByUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "send": "Küldés",
-    "@send": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAMessage": "Üzenet küldése",
-    "@sendAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendAudio": "Hangüzenet küldése",
-    "@sendAudio": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendFile": "Fájl küldése",
-    "@sendFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendImage": "Kép küldése",
-    "@sendImage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendOriginal": "Eredeti küldése",
-    "@sendOriginal": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendVideo": "Videó küldése",
-    "@sendVideo": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sentAFile": "📁 {username} fájlt küldött",
-    "@sentAFile": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAnAudio": "{username} hangüzenetet küldött",
-    "@sentAnAudio": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAPicture": "{username} képet küldött",
-    "@sentAPicture": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentASticker": "{username} matricát küldött",
-    "@sentASticker": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentAVideo": "{username} videót küldött",
-    "@sentAVideo": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "sentCallInformations": "{senderName} hívásinformációt küldött",
-    "@sentCallInformations": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "setInvitationLink": "Meghívó hivatkozás beállítása",
-    "@setInvitationLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setStatus": "Állapot beállítása",
-    "@setStatus": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "settings": "Beállítások",
-    "@settings": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "share": "Megosztás",
-    "@share": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sharedTheLocation": "{username} megosztotta a pozícióját",
-    "@sharedTheLocation": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "skip": "Kihagyás",
-    "@skip": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sourceCode": "Forráskód",
-    "@sourceCode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "startedACall": "{senderName} hívást indított",
-    "@startedACall": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "statusExampleMessage": "Hogy vagy?",
-    "@statusExampleMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "submit": "Beküldés",
-    "@submit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "systemTheme": "Rendszer",
-    "@systemTheme": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyDontMatch": "Nem egyeznek",
-    "@theyDontMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "theyMatch": "Egyeznek",
-    "@theyMatch": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "text",
-        "placeholders": {}
-    },
-    "tryToSendAgain": "Újraküldés megpróbálása",
-    "@tryToSendAgain": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unavailable": "Nem érhető el",
-    "@unavailable": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unbannedUser": "{username} feloldotta {targetName} kitiltását",
-    "@unbannedUser": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "targetName": {}
-        }
-    },
-    "unblockDevice": "Eszköz blokkolásának megszüntetése",
-    "@unblockDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownDevice": "Ismeretlen eszköz",
-    "@unknownDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEncryptionAlgorithm": "Ismeretlen titkosítási algoritmus",
-    "@unknownEncryptionAlgorithm": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unknownEvent": "Ismeretlen esemény: „{type}”",
-    "@unknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "type": {}
-        }
-    },
-    "unmuteChat": "Csevegés némításának megszüntetése",
-    "@unmuteChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unpin": "Rögzítés megszüntetése",
-    "@unpin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, other{{unreadCount} olvasatlan csevegés}}",
-    "@unreadChats": {
-        "type": "text",
-        "placeholders": {
-            "unreadCount": {}
-        }
-    },
-    "userAndOthersAreTyping": "{username} és {count} másik résztvevő gépel…",
-    "@userAndOthersAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "count": {}
-        }
-    },
-    "userAndUserAreTyping": "{username} és {username2} gépel…",
-    "@userAndUserAreTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "username2": {}
-        }
-    },
-    "userIsTyping": "{username} gépel…",
-    "@userIsTyping": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "userLeftTheChat": "{username} elhagyta a csevegést",
-    "@userLeftTheChat": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "username": "Felhasználónév",
-    "@username": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "userSentUnknownEvent": "{username} {type} eseményt küldött",
-    "@userSentUnknownEvent": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "type": {}
-        }
-    },
-    "verify": "Hitelesítés",
-    "@verify": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyStart": "Hitelesítés megkezdése",
-    "@verifyStart": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifySuccess": "Sikeres hitelesítés!",
-    "@verifySuccess": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "verifyTitle": "Másik fiók hitelesítése",
-    "@verifyTitle": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "videoCall": "Videóhívás",
-    "@videoCall": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibilityOfTheChatHistory": "Csevegési előzmény láthatósága",
-    "@visibilityOfTheChatHistory": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForAllParticipants": "Minden résztvevő számára látható",
-    "@visibleForAllParticipants": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "visibleForEveryone": "Bárki számára látható",
-    "@visibleForEveryone": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "voiceMessage": "Hangüzenet",
-    "@voiceMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerAcceptRequest": "Várakozás partnerre, amíg elfogadja a kérést…",
-    "@waitingPartnerAcceptRequest": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerEmoji": "Várakozás partnerre, hogy elfogadja a hangulatjeleket…",
-    "@waitingPartnerEmoji": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "waitingPartnerNumbers": "Várakozás a partnerre, hogy elfogadja a számokat…",
-    "@waitingPartnerNumbers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "wallpaper": "Háttér",
-    "@wallpaper": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "warning": "Figyelmeztetés!",
-    "@warning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whoIsAllowedToJoinThisGroup": "Ki csatlakozhat a csoporthoz",
-    "@whoIsAllowedToJoinThisGroup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "writeAMessage": "Írj egy üzenetet…",
-    "@writeAMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yes": "Igen",
-    "@yes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "you": "Te",
-    "@you": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youAreNoLongerParticipatingInThisChat": "Nem veszel részt ebben a csevegésben",
-    "@youAreNoLongerParticipatingInThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Kitiltottak ebből a csevegésből",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "withTheseAddressesRecoveryDescription": "Ezzekkel a címekkel vissza tudod állítani a jelszavad, ha szükséges",
-    "@withTheseAddressesRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "weSentYouAnEmail": "Küldtünk neked egy emailt",
-    "@weSentYouAnEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordRecovery": "Jelszó visszaállítás",
-    "@passwordRecovery": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noPasswordRecoveryDescription": "Még nem adtál meg semmilyen módot a jelszavad visszaállítására",
-    "@noPasswordRecoveryDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inviteForMe": "Meghívás nekem",
-    "@inviteForMe": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "iHaveClickedOnLink": "Rákattintottam a linkre",
-    "@iHaveClickedOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enterAnEmailAddress": "Adj meg egy email címet",
-    "@enterAnEmailAddress": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "encrypted": "Titkosított",
-    "@encrypted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "edit": "Szerkeszt",
-    "@edit": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "directChats": "Közvetlen beszélgetés",
-    "@directChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "deviceId": "Eszköz ID",
-    "@deviceId": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "botMessages": "Bot üzenetek",
-    "@botMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "repeatPassword": "Jelszó megismétlése",
-    "@repeatPassword": {},
-    "addEmail": "E-mail-cím hozzáadása",
-    "@addEmail": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "all": "Összes",
-    "@all": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allChats": "Összes csevegés",
-    "@allChats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "autoplayImages": "Animált matricák és hangulatjelek automatikus lejátszása",
-    "@autoplayImages": {
-        "type": "text",
-        "placeholder": {}
-    },
-    "sendOnEnter": "Küldés Enterrel",
-    "@sendOnEnter": {},
-    "cantOpenUri": "Nem sikerült az URI megnyitása: {uri}",
-    "@cantOpenUri": {
-        "type": "text",
-        "placeholders": {
-            "uri": {}
-        }
-    },
-    "changeYourAvatar": "Profilkép módosítása",
-    "@changeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "addToSpace": "Hozzáadás térhez",
-    "@addToSpace": {},
-    "areYouSureYouWantToLogout": "Biztos, hogy kijelentkezel?",
-    "@areYouSureYouWantToLogout": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "badServerLoginTypesException": "A Matrix-kiszolgáló a következő bejelentkezéseket támogatja:\n{serverVersions}\nDe ez az alkalmazást csak ezeket támogatja:\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "blocked": "Blokkolva",
-    "@blocked": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "appLock": "Alkalmazászár",
-    "@appLock": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_myroomnick": "Az ebben a szobában megjelenített beceneved megváltoztatása",
-    "@commandHint_myroomnick": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomnick"
-    },
-    "commandHint_plain": "Formázatlan szöveg küldése",
-    "@commandHint_plain": {
-        "type": "text",
-        "description": "Usage hint for the command /plain"
-    },
-    "commandHint_send": "Szöveg küldése",
-    "@commandHint_send": {
-        "type": "text",
-        "description": "Usage hint for the command /send"
-    },
-    "contentHasBeenReported": "A tartalom jelentve lett a szerver üzemeltetőinek",
-    "@contentHasBeenReported": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_myroomavatar": "Az ebben a szobában megjelenített profilképed megváltoztatása (mxc URI-t kell megadni)",
-    "@commandHint_myroomavatar": {
-        "type": "text",
-        "description": "Usage hint for the command /myroomavatar"
-    },
-    "copyToClipboard": "Vágólapra másolás",
-    "@copyToClipboard": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editRoomAliases": "Szoba címeinek szerkesztése",
-    "@editRoomAliases": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "editRoomAvatar": "Szoba profilképének szerkesztése",
-    "@editRoomAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enableEncryption": "Titkosítás bekapcsolása",
-    "@enableEncryption": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "extremeOffensive": "Extrém sértő",
-    "@extremeOffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "fontSize": "Betűméret",
-    "@fontSize": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "everythingReady": "Minden kész!",
-    "@everythingReady": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "groups": "Csoportok",
-    "@groups": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "howOffensiveIsThisContent": "Mennyire sértő ez a tartalom?",
-    "@howOffensiveIsThisContent": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "inoffensive": "Nem sértő",
-    "@inoffensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "locationPermissionDeniedNotice": "A helymeghatározás nincs engedélyezve az alkalmazásnak. Kérlek engedélyezd, hogy meg tudd osztani a helyzeted.",
-    "@locationPermissionDeniedNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "newChat": "Új beszélgetés",
-    "@newChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "scanQrCode": "QR kód beolvasása",
-    "@scanQrCode": {},
-    "notificationsEnabledForThisAccount": "Értesítések bekapcsolása ebben a fiókban",
-    "@notificationsEnabledForThisAccount": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "offensive": "Sértő",
-    "@offensive": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "oopsPushError": "Oops! Sajnos hiba történt a push értesítések beállításakor.",
-    "@oopsPushError": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_create": "Egy üres csoport létrehozása\nA --no-encryption kapcsolóval titkosítatlan szoba hozható létre",
-    "@commandHint_create": {
-        "type": "text",
-        "description": "Usage hint for the command /create"
-    },
-    "commandHint_invite": "Felhasználó meghívása ebbe a szobába",
-    "@commandHint_invite": {
-        "type": "text",
-        "description": "Usage hint for the command /invite"
-    },
-    "locationDisabledNotice": "A helymeghatározás ki van kapcsolva. Kérlek, kapcsold be, hogy meg tudd osztani a helyzeted.",
-    "@locationDisabledNotice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "homeserver": "Matrix szerver",
-    "@homeserver": {},
-    "chatBackup": "Beszélgetések mentése",
-    "@chatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "ignore": "Figyelmen kívül hagyás",
-    "@ignore": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "next": "Következő",
-    "@next": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "yourChatBackupHasBeenSetUp": "A beszélgetések mentése be lett állítva.",
-    "@yourChatBackupHasBeenSetUp": {},
-    "chatBackupDescription": "A régebbi beszélgetéseid egy biztonsági kulccsal vanak védve. Bizonyosodj meg róla, hogy nem fogod elveszíteni.",
-    "@chatBackupDescription": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Tartalmazza a megjelenített becenevet",
-    "@containsDisplayName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "containsUserName": "Tartalmazza a felhasználónevet",
-    "@containsUserName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Új szoba megnyitása",
-    "@goToTheNewRoom": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noConnectionToTheServer": "Nem elérhető a szerver",
-    "@noConnectionToTheServer": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noEncryptionForPublicRooms": "Csak akkor kapcsolható be a titkosítás, ha a szoba nem nyilvánosan hozzáférhető.",
-    "@noEncryptionForPublicRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "A beszélgetés hozzá lett adva ehhez a térhez",
-    "@chatHasBeenAddedToThisSpace": {},
-    "chats": "Beszélgetések",
-    "@chats": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "clearArchive": "Archívum törlése",
-    "@clearArchive": {},
-    "commandHint_ban": "Felhasználó kitiltása ebből a szobából",
-    "@commandHint_ban": {
-        "type": "text",
-        "description": "Usage hint for the command /ban"
-    },
-    "commandHint_clearcache": "Gyorsítótár törlése",
-    "@commandHint_clearcache": {
-        "type": "text",
-        "description": "Usage hint for the command /clearcache"
-    },
-    "commandHint_discardsession": "Munkamenet elvetése",
-    "@commandHint_discardsession": {
-        "type": "text",
-        "description": "Usage hint for the command /discardsession"
-    },
-    "commandHint_dm": "Közvetlen beszélgetés indítása\nA --no-encryption kapcsolóval titkosítatlan beszélgetés lesz létrehozva",
-    "@commandHint_dm": {
-        "type": "text",
-        "description": "Usage hint for the command /dm"
-    },
-    "commandHint_html": "HTML formázott üzenet küldése",
-    "@commandHint_html": {
-        "type": "text",
-        "description": "Usage hint for the command /html"
-    },
-    "commandHint_join": "Csatlakozás a megadott szobához",
-    "@commandHint_join": {
-        "type": "text",
-        "description": "Usage hint for the command /join"
-    },
-    "commandHint_kick": "A megadott felhasználó kirúgása a szobából",
-    "@commandHint_kick": {
-        "type": "text",
-        "description": "Usage hint for the command /kick"
-    },
-    "commandHint_leave": "Ennek a szobának az elhagyása",
-    "@commandHint_leave": {
-        "type": "text",
-        "description": "Usage hint for the command /leave"
-    },
-    "commandInvalid": "Érvénytelen parancs",
-    "@commandInvalid": {
-        "type": "text"
-    },
-    "commandMissing": "{command} nem egy parancs.",
-    "@commandMissing": {
-        "type": "text",
-        "placeholders": {
-            "command": {}
-        },
-        "description": "State that {command} is not a valid /command."
-    },
-    "configureChat": "Beszélgetés beállítása",
-    "@configureChat": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "createNewSpace": "Új tér",
-    "@createNewSpace": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "defaultPermissionLevel": "Alapértelmezett hozzáférési szint",
-    "@defaultPermissionLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "errorObtainingLocation": "Hiba a tartózkodási hely lekérése közben: {error}",
-    "@errorObtainingLocation": {
-        "type": "text",
-        "placeholders": {
-            "error": {}
-        }
-    },
-    "memberChanges": "Tagság változások",
-    "@memberChanges": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "messages": "Üzenetek",
-    "@messages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noMatrixServer": "{server1} nem egy Matrix szerver, használjam a {server2} szervert inkább?",
-    "@noMatrixServer": {
-        "type": "text",
-        "placeholders": {
-            "server1": {},
-            "server2": {}
-        }
-    },
-    "notifications": "Értesítések",
-    "@notifications": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "numUsersTyping": "{count} felhasználó gépel…",
-    "@numUsersTyping": {
-        "type": "text",
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "obtainingLocation": "Tartózkodási hely lekérése…",
-    "@obtainingLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "openVideoCamera": "Kamera megnyitása videóhoz",
-    "@openVideoCamera": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "badServerVersionsException": "A Matrix szerver ezeket a specifikáció verziókat támogatja:\n{serverVersions}\nAzonban ez az app csak ezeket: {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "text",
-        "placeholders": {
-            "serverVersions": {},
-            "supportedVersions": {}
-        }
-    },
-    "commandHint_me": "Mit csinálsz épp",
-    "@commandHint_me": {
-        "type": "text",
-        "description": "Usage hint for the command /me"
-    },
-    "commandHint_op": "Az adott felhasználó hozzáférési szintjét változtatja (alapértelmezett: 50)",
-    "@commandHint_op": {
-        "type": "text",
-        "description": "Usage hint for the command /op"
-    },
-    "commandHint_react": "Válasz küldése reakcióként",
-    "@commandHint_react": {
-        "type": "text",
-        "description": "Usage hint for the command /react"
-    },
-    "commandHint_unban": "Az adott felhasználó visszaengedése ebbe a szobába",
-    "@commandHint_unban": {
-        "type": "text",
-        "description": "Usage hint for the command /unban"
-    },
-    "editBlockedServers": "Blokkolt szerverek szerkesztése",
-    "@editBlockedServers": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "dehydrate": "Munkamenet exportálásssa és az eszköz törlése",
-    "@dehydrate": {},
-    "dehydrateWarning": "Ez nem visszavonható. Bizonyosodj meg róla, hogy biztonságos helyen tárolod a mentett fájlt.",
-    "@dehydrateWarning": {},
-    "dehydrateTor": "Tor felhasználók: munkamenet dehidratálása",
-    "@dehydrateTor": {},
-    "dehydrateTorLong": "Tor felhasználóknak ajánlott a munkamenet dehidratálása az ablak bezárása előtt.",
-    "@dehydrateTorLong": {},
-    "hydrateTor": "Tor felhasználók: hidratált munkamenet importálása",
-    "@hydrateTor": {},
-    "hydrate": "Visszaállítás fájlból",
-    "@hydrate": {},
-    "link": "Hivatkozás",
-    "@link": {},
-    "redactMessage": "Üzenet visszavonása",
-    "@redactMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "people": "Emberek",
-    "@people": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnterYourPin": "Írja be a PIN-kódot",
-    "@pleaseEnterYourPin": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "cuddleContent": "{senderName} megölelt",
-    "@cuddleContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "commandHint_markasgroup": "Csoportnak jelölés",
-    "@commandHint_markasgroup": {},
-    "addAccount": "Fiók hozzáadása",
-    "@addAccount": {},
-    "search": "Keresés",
-    "@search": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_googly": "Gülüszemek küldése",
-    "@commandHint_googly": {},
-    "commandHint_cuddle": "Ölelés küldése",
-    "@commandHint_cuddle": {},
-    "sendMessages": "Üzenetek küldése",
-    "@sendMessages": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sendSticker": "Matrica küldése",
-    "@sendSticker": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reportMessage": "Üzenet jelentése",
-    "@reportMessage": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "participant": "Résztvevő",
-    "@participant": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "passwordForgotten": "Elfelejtett jelszó",
-    "@passwordForgotten": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "roomVersion": "Szobaverzió",
-    "@roomVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "confirmMatrixId": "A fiók törléséhez adja meg a Matrix ID-t.",
-    "@confirmMatrixId": {},
-    "or": "Vagy",
-    "@or": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseChoose": "Kérjük válasszon",
-    "@pleaseChoose": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "commandHint_hug": "Ölelés küldése",
-    "@commandHint_hug": {},
-    "reason": "Ok",
-    "@reason": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "register": "Regisztrálás",
-    "@register": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saveFile": "Fájl mentése",
-    "@saveFile": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "googlyEyesContent": "{senderName} gülüszemeket küld",
-    "@googlyEyesContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "openInMaps": "Megnyitás térképen",
-    "@openInMaps": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pleaseEnter4Digits": "Írjon be 4 számjegyet, vagy hagyja üresen a zár kikapcsolásához.",
-    "@pleaseEnter4Digits": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "security": "Biztonság",
-    "@security": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "notAnImage": "Nem kép fájl.",
-    "@notAnImage": {},
-    "showPassword": "",
-    "@showPassword": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "hugContent": "",
-    "@hugContent": {
-        "type": "text",
-        "placeholders": {
-            "senderName": {}
-        }
-    },
-    "jumpToLastReadMessage": "",
-    "@jumpToLastReadMessage": {},
-    "allRooms": "",
-    "@allRooms": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "widgetVideo": "",
-    "@widgetVideo": {},
-    "dismiss": "",
-    "@dismiss": {},
-    "reportErrorDescription": "",
-    "@reportErrorDescription": {},
-    "setPermissionsLevel": "",
-    "@setPermissionsLevel": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "removeYourAvatar": "",
-    "@removeYourAvatar": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unsupportedAndroidVersion": "",
-    "@unsupportedAndroidVersion": {},
-    "widgetJitsi": "",
-    "@widgetJitsi": {},
-    "messageType": "",
-    "@messageType": {},
-    "indexedDbErrorLong": "",
-    "@indexedDbErrorLong": {},
-    "oneClientLoggedOut": "",
-    "@oneClientLoggedOut": {},
-    "toggleMuted": "",
-    "@toggleMuted": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "startFirstChat": "",
-    "@startFirstChat": {},
-    "callingAccount": "",
-    "@callingAccount": {},
-    "setColorTheme": "",
-    "@setColorTheme": {},
-    "nextAccount": "",
-    "@nextAccount": {},
-    "singlesignon": "",
-    "@singlesignon": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "allSpaces": "",
-    "@allSpaces": {},
-    "supposedMxid": "",
-    "@supposedMxid": {
-        "type": "text",
-        "placeholders": {
-            "mxid": {}
-        }
-    },
-    "user": "",
-    "@user": {},
-    "youAcceptedTheInvitation": "",
-    "@youAcceptedTheInvitation": {},
-    "youInvitedBy": "",
-    "@youInvitedBy": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "banUserDescription": "",
-    "@banUserDescription": {},
-    "widgetEtherpad": "",
-    "@widgetEtherpad": {},
-    "removeDevicesDescription": "",
-    "@removeDevicesDescription": {},
-    "separateChatTypes": "",
-    "@separateChatTypes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tryAgain": "",
-    "@tryAgain": {},
-    "youKickedAndBanned": "",
-    "@youKickedAndBanned": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "unbanUserDescription": "",
-    "@unbanUserDescription": {},
-    "pleaseClickOnLink": "",
-    "@pleaseClickOnLink": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "youRejectedTheInvitation": "",
-    "@youRejectedTheInvitation": {},
-    "otherCallingPermissions": "",
-    "@otherCallingPermissions": {},
-    "messagesStyle": "",
-    "@messagesStyle": {},
-    "widgetUrlError": "",
-    "@widgetUrlError": {},
-    "emailOrUsername": "",
-    "@emailOrUsername": {},
-    "newSpaceDescription": "",
-    "@newSpaceDescription": {},
-    "chatDescription": "",
-    "@chatDescription": {},
-    "callingAccountDetails": "",
-    "@callingAccountDetails": {},
-    "pleaseFollowInstructionsOnWeb": "",
-    "@pleaseFollowInstructionsOnWeb": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "enterSpace": "",
-    "@enterSpace": {},
-    "encryptThisChat": "",
-    "@encryptThisChat": {},
-    "previousAccount": "",
-    "@previousAccount": {},
-    "reopenChat": "",
-    "@reopenChat": {},
-    "pleaseEnterRecoveryKey": "",
-    "@pleaseEnterRecoveryKey": {},
-    "toggleFavorite": "",
-    "@toggleFavorite": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "widgetNameError": "",
-    "@widgetNameError": {},
-    "addToBundle": "",
-    "@addToBundle": {},
-    "spaceIsPublic": "",
-    "@spaceIsPublic": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "addWidget": "",
-    "@addWidget": {},
-    "countFiles": "",
-    "@countFiles": {
-        "placeholders": {
-            "count": {}
-        }
-    },
-    "noKeyForThisMessage": "",
-    "@noKeyForThisMessage": {},
-    "shareLocation": "",
-    "@shareLocation": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pushNotificationsNotAvailable": "",
-    "@pushNotificationsNotAvailable": {},
-    "storeInAppleKeyChain": "",
-    "@storeInAppleKeyChain": {},
-    "replaceRoomWithNewerVersion": "",
-    "@replaceRoomWithNewerVersion": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "invalidServerName": "",
-    "@invalidServerName": {},
-    "chatPermissions": "",
-    "@chatPermissions": {},
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "sender": "",
-    "@sender": {},
-    "storeInAndroidKeystore": "",
-    "@storeInAndroidKeystore": {},
-    "signInWithPassword": "",
-    "@signInWithPassword": {},
-    "makeAdminDescription": "",
-    "@makeAdminDescription": {},
-    "synchronizingPleaseWait": "",
-    "@synchronizingPleaseWait": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "pushRules": "",
-    "@pushRules": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "saveKeyManuallyDescription": "",
-    "@saveKeyManuallyDescription": {},
-    "editBundlesForAccount": "",
-    "@editBundlesForAccount": {},
-    "whyIsThisMessageEncrypted": "",
-    "@whyIsThisMessageEncrypted": {},
-    "setChatDescription": "",
-    "@setChatDescription": {},
-    "spaceName": "",
-    "@spaceName": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "importFromZipFile": "",
-    "@importFromZipFile": {},
-    "toggleUnread": "",
-    "@toggleUnread": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "noOtherDevicesFound": "",
-    "@noOtherDevicesFound": {},
-    "redactedBy": "",
-    "@redactedBy": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
-        }
-    },
-    "videoCallsBetaWarning": "",
-    "@videoCallsBetaWarning": {},
-    "signInWith": "",
-    "@signInWith": {
-        "type": "text",
-        "placeholders": {
-            "provider": {}
-        }
-    },
-    "fileIsTooBigForServer": "",
-    "@fileIsTooBigForServer": {},
-    "verified": "",
-    "@verified": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "callingPermissions": "",
-    "@callingPermissions": {},
-    "readUpToHere": "",
-    "@readUpToHere": {},
-    "start": "",
-    "@start": {},
-    "unlockOldMessages": "",
-    "@unlockOldMessages": {},
-    "numChats": "",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "optionalRedactReason": "",
-    "@optionalRedactReason": {},
-    "sendAsText": "",
-    "@sendAsText": {
-        "type": "text"
-    },
-    "archiveRoomDescription": "",
-    "@archiveRoomDescription": {},
-    "exportEmotePack": "",
-    "@exportEmotePack": {},
-    "switchToAccount": "",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {}
-        }
-    },
-    "setAsCanonicalAlias": "",
-    "@setAsCanonicalAlias": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "whyDoYouWantToReportThis": "",
-    "@whyDoYouWantToReportThis": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "experimentalVideoCalls": "",
-    "@experimentalVideoCalls": {},
-    "pleaseEnterRecoveryKeyDescription": "",
-    "@pleaseEnterRecoveryKeyDescription": {},
-    "inviteContactToGroupQuestion": "",
-    "@inviteContactToGroupQuestion": {},
-    "redactedByBecause": "",
-    "@redactedByBecause": {
-        "type": "text",
-        "placeholders": {
-            "username": {},
-            "reason": {}
-        }
-    },
-    "youHaveWithdrawnTheInvitationFor": "",
-    "@youHaveWithdrawnTheInvitationFor": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "appearOnTopDetails": "",
-    "@appearOnTopDetails": {},
-    "enterRoom": "",
-    "@enterRoom": {},
-    "pleaseChooseAPasscode": "",
-    "@pleaseChooseAPasscode": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "reportUser": "",
-    "@reportUser": {},
-    "confirmEventUnpin": "",
-    "@confirmEventUnpin": {},
-    "youInvitedUser": "",
-    "@youInvitedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "fileHasBeenSavedAt": "",
-    "@fileHasBeenSavedAt": {
-        "type": "text",
-        "placeholders": {
-            "path": {}
-        }
-    },
-    "redactMessageDescription": "",
-    "@redactMessageDescription": {},
-    "recoveryKey": "",
-    "@recoveryKey": {},
-    "invalidInput": "",
-    "@invalidInput": {},
-    "yourPublicKey": "",
-    "@yourPublicKey": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "tooManyRequestsWarning": "",
-    "@tooManyRequestsWarning": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "doNotShowAgain": "",
-    "@doNotShowAgain": {},
-    "report": "",
-    "@report": {},
-    "status": "",
-    "@status": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "unverified": "",
-    "@unverified": {},
-    "serverRequiresEmail": "",
-    "@serverRequiresEmail": {},
-    "hideUnimportantStateEvents": "",
-    "@hideUnimportantStateEvents": {},
-    "screenSharingTitle": "",
-    "@screenSharingTitle": {},
-    "widgetCustom": "",
-    "@widgetCustom": {},
-    "addToSpaceDescription": "",
-    "@addToSpaceDescription": {},
-    "youBannedUser": "",
-    "@youBannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "addChatDescription": "",
-    "@addChatDescription": {},
-    "hasKnocked": "",
-    "@hasKnocked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "publish": "",
-    "@publish": {},
-    "openLinkInBrowser": "",
-    "@openLinkInBrowser": {},
-    "messageInfo": "",
-    "@messageInfo": {},
-    "disableEncryptionWarning": "",
-    "@disableEncryptionWarning": {},
-    "directChat": "",
-    "@directChat": {},
-    "wrongPinEntered": "",
-    "@wrongPinEntered": {
-        "type": "text",
-        "placeholders": {
-            "seconds": {}
-        }
-    },
-    "sendTypingNotifications": "",
-    "@sendTypingNotifications": {},
-    "inviteGroupChat": "",
-    "@inviteGroupChat": {},
-    "appearOnTop": "",
-    "@appearOnTop": {},
-    "invitePrivateChat": "",
-    "@invitePrivateChat": {},
-    "foregroundServiceRunning": "",
-    "@foregroundServiceRunning": {},
-    "voiceCall": "",
-    "@voiceCall": {},
-    "importEmojis": "",
-    "@importEmojis": {},
-    "wasDirectChatDisplayName": "",
-    "@wasDirectChatDisplayName": {
-        "type": "text",
-        "placeholders": {
-            "oldDisplayName": {}
-        }
-    },
-    "noChatDescriptionYet": "",
-    "@noChatDescriptionYet": {},
-    "removeFromBundle": "",
-    "@removeFromBundle": {},
-    "whoCanPerformWhichAction": "",
-    "@whoCanPerformWhichAction": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "learnMore": "",
-    "@learnMore": {},
-    "users": "",
-    "@users": {},
-    "openGallery": "",
-    "@openGallery": {},
-    "chatDescriptionHasBeenChanged": "",
-    "@chatDescriptionHasBeenChanged": {},
-    "newGroup": "",
-    "@newGroup": {},
-    "bundleName": "",
-    "@bundleName": {},
-    "removeFromSpace": "",
-    "@removeFromSpace": {},
-    "roomUpgradeDescription": "",
-    "@roomUpgradeDescription": {},
-    "pleaseEnterANumber": "",
-    "@pleaseEnterANumber": {},
-    "youKicked": "",
-    "@youKicked": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "profileNotFound": "",
-    "@profileNotFound": {},
-    "jump": "",
-    "@jump": {},
-    "reactedWith": "",
-    "@reactedWith": {
-        "type": "text",
-        "placeholders": {
-            "sender": {},
-            "reaction": {}
-        }
-    },
-    "sorryThatsNotPossible": "",
-    "@sorryThatsNotPossible": {},
-    "videoWithSize": "",
-    "@videoWithSize": {
-        "type": "text",
-        "placeholders": {
-            "size": {}
-        }
-    },
-    "shareInviteLink": "",
-    "@shareInviteLink": {},
-    "commandHint_markasdm": "",
-    "@commandHint_markasdm": {},
-    "recoveryKeyLost": "",
-    "@recoveryKeyLost": {},
-    "deviceKeys": "",
-    "@deviceKeys": {},
-    "emoteKeyboardNoRecents": "",
-    "@emoteKeyboardNoRecents": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setCustomEmotes": "",
-    "@setCustomEmotes": {
-        "type": "text",
-        "placeholders": {}
-    },
-    "setTheme": "",
-    "@setTheme": {},
-    "youJoinedTheChat": "",
-    "@youJoinedTheChat": {},
-    "markAsRead": "",
-    "@markAsRead": {},
-    "widgetName": "",
-    "@widgetName": {},
-    "errorAddingWidget": "",
-    "@errorAddingWidget": {},
-    "replace": "",
-    "@replace": {},
-    "youUnbannedUser": "",
-    "@youUnbannedUser": {
-        "placeholders": {
-            "user": {}
-        }
-    },
-    "newSpace": "",
-    "@newSpace": {},
-    "emojis": "",
-    "@emojis": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "createGroup": "",
-    "@createGroup": {},
-    "hydrateTorLong": "",
-    "@hydrateTorLong": {},
-    "time": "",
-    "@time": {},
-    "custom": "",
-    "@custom": {},
-    "noBackupWarning": "",
-    "@noBackupWarning": {},
-    "storeInSecureStorageDescription": "",
-    "@storeInSecureStorageDescription": {},
-    "openChat": "",
-    "@openChat": {},
-    "kickUserDescription": "",
-    "@kickUserDescription": {},
-    "importNow": "",
-    "@importNow": {},
-    "pinMessage": "",
-    "@pinMessage": {},
-    "invite": "",
-    "@invite": {},
-    "enableMultiAccounts": "",
-    "@enableMultiAccounts": {},
-    "indexedDbErrorTitle": "",
-    "@indexedDbErrorTitle": {},
-    "unsupportedAndroidVersionLong": "",
-    "@unsupportedAndroidVersionLong": {},
-    "storeSecurlyOnThisDevice": "",
-    "@storeSecurlyOnThisDevice": {},
-    "screenSharingDetail": "",
-    "@screenSharingDetail": {},
-    "placeCall": "",
-    "@placeCall": {}
+  "@@locale": "hu",
+  "@@last_modified": "2021-08-14 12:41:10.016566",
+  "about": "Névjegy",
+  "@about": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accept": "Elfogadás",
+  "@accept": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 {username} elfogadta a meghívást",
+  "@acceptedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "account": "Fiók",
+  "@account": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} aktiválta a végpontok közötti titkosítást",
+  "@activatedEndToEndEncryption": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "alias": "álnév",
+  "@alias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "answeredTheCall": "{senderName} felvette a hívást",
+  "@answeredTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "anyoneCanJoin": "Bárki csatlakozhat",
+  "@anyoneCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "archive": "Archívum",
+  "@archive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Csatlakozhatnak-e vendégek",
+  "@areGuestsAllowedToJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "areYouSure": "Biztos benne?",
+  "@areYouSure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askSSSSSign": "A másik fél igazolásához meg kell adni a biztonságos tároló jelmondatát vagy a visszaállítási kulcsot.",
+  "@askSSSSSign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Elfogadja {username} hitelesítési kérelmét?",
+  "@askVerificationRequest": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "banFromChat": "Kitiltás csevegésből",
+  "@banFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "banned": "Kitiltva",
+  "@banned": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} kitiltotta: {targetName}",
+  "@bannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "blockDevice": "Eszköz blokkolása",
+  "@blockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancel": "Mégse",
+  "@cancel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Eszköznév módosítása",
+  "@changeDeviceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} módosította a csevegési profilképét",
+  "@changedTheChatAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} módosította a csevegés leírását erre: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "description": {}
+    }
+  },
+  "changedTheChatNameTo": "{username} módosította a csevegés nevét erre: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "chatname": {}
+    }
+  },
+  "changedTheChatPermissions": "{username} módosította a csevegési engedélyeket",
+  "@changedTheChatPermissions": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheDisplaynameTo": "{username} módosította a megjelenített nevét erre: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "displayname": {}
+    }
+  },
+  "changedTheGuestAccessRules": "{username} módosította a vendégek hozzáférési szabályokat",
+  "@changedTheGuestAccessRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} módosította a vendégek hozzáférési szabályait erre: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheHistoryVisibility": "{username} módosította az előzmények láthatóságát",
+  "@changedTheHistoryVisibility": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} módosította az előzmények láthatóságát erre: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "rules": {}
+    }
+  },
+  "changedTheJoinRules": "{username} módosított a csatlakozási szabályokat",
+  "@changedTheJoinRules": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheJoinRulesTo": "{username} módosította a csatlakozási szabályokat erre: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "joinRules": {}
+    }
+  },
+  "changedTheProfileAvatar": "{username} módosította a profilképét",
+  "@changedTheProfileAvatar": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomAliases": "{username} módosította a szoba álneveit",
+  "@changedTheRoomAliases": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} módosította a meghívó hivatkozást",
+  "@changedTheRoomInvitationLink": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "changePassword": "Jelszó módosítása",
+  "@changePassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "Matrix-kiszolgáló váltás",
+  "@changeTheHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheme": "Stílus módosítása",
+  "@changeTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Csoport nevének módosítása",
+  "@changeTheNameOfTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "A titkosítás megsérült",
+  "@channelCorruptedDecryptError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chat": "Csevegés",
+  "@chat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatDetails": "Csevegés részletei",
+  "@chatDetails": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Válasszon egy erős jelszót",
+  "@chooseAStrongPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "close": "Bezárás",
+  "@close": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareEmojiMatch": "Hasonlítsa össze az emojikat",
+  "@compareEmojiMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Kérem hasonlítsa össze a számokat",
+  "@compareNumbersMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirm": "Megerősítés",
+  "@confirm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "connect": "Csatlakozás",
+  "@connect": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Meghívta ismerősét a csoportba",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Vágólapra másolva",
+  "@copiedToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copy": "Másolás",
+  "@copy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Nem sikerült visszafejteni az üzenetet: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "countParticipants": "{count} résztvevő",
+  "@countParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "create": "Létrehozás",
+  "@create": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createdTheChat": "💬 {username} csevegést hozott létre",
+  "@createdTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "currentlyActive": "Jelenleg aktív",
+  "@currentlyActive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkTheme": "Sötét",
+  "@darkTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "text",
+    "placeholders": {
+      "date": {},
+      "timeOfDay": {}
+    }
+  },
+  "dateWithoutYear": "{month}. {day}.",
+  "@dateWithoutYear": {
+    "type": "text",
+    "placeholders": {
+      "month": {},
+      "day": {}
+    }
+  },
+  "dateWithYear": "{year}. {month}. {day}.",
+  "@dateWithYear": {
+    "type": "text",
+    "placeholders": {
+      "year": {},
+      "month": {},
+      "day": {}
+    }
+  },
+  "deactivateAccountWarning": "Ez deaktiválja a felhasználói fiókját. Ez nem vonható vissza! Biztos benne?",
+  "@deactivateAccountWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Törlés",
+  "@delete": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteAccount": "Fiók törlése",
+  "@deleteAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deleteMessage": "Üzenet törlése",
+  "@deleteMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "device": "Eszköz",
+  "@device": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "devices": "Eszközök",
+  "@devices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Megjelenítési név megváltozott",
+  "@displaynameHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloadFile": "Fájl letöltése",
+  "@downloadFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editDisplayname": "Megjelenítési név szerkesztése",
+  "@editDisplayname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteExists": "A hangulatjel már létezik!",
+  "@emoteExists": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Érvénytelen emoji rövidkód!",
+  "@emoteInvalid": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emotePacks": "Emoji csomagok a szobához",
+  "@emotePacks": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteSettings": "Emoji Beállítások",
+  "@emoteSettings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Emoji rövidkód",
+  "@emoteShortcode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "Az emojihoz egy képet és egy rövidkódot kell választani!",
+  "@emoteWarnNeedToPick": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emptyChat": "Üres csevegés",
+  "@emptyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Emoji csomag engedélyezése globálisan",
+  "@enableEmotesGlobally": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "Többé nem fogja tudni kikapcsolni a titkosítást. Biztos benne?",
+  "@enableEncryptionWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryption": "Titkosítás",
+  "@encryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Titkosítás nincs engedélyezve",
+  "@encryptionNotEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} befejezte a hívást",
+  "@endedTheCall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "enterYourHomeserver": "Adja meg a Matrix-kiszolgálót",
+  "@enterYourHomeserver": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fileName": "Fájlnév",
+  "@fileName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forward": "Továbbítás",
+  "@forward": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromJoining": "Csatlakozás óta",
+  "@fromJoining": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Meghívás óta",
+  "@fromTheInvitation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "group": "Csoport",
+  "@group": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupIsPublic": "A csoport nyilvános",
+  "@groupIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groupWith": "Csoport {displayname}-al",
+  "@groupWith": {
+    "type": "text",
+    "placeholders": {
+      "displayname": {}
+    }
+  },
+  "guestsAreForbidden": "Nem lehetnek vendégek",
+  "@guestsAreForbidden": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Csatlakozhatnak vendégek",
+  "@guestsCanJoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} visszavonta {targetName} meghívását",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "help": "Súgó",
+  "@help": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Visszavont események elrejtése",
+  "@hideRedactedEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideUnknownEvents": "Ismeretlen események elrejtése",
+  "@hideUnknownEvents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "identity": "Azonosító",
+  "@identity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignoredUsers": "Figyelmen kívül hagyott felhasználók",
+  "@ignoredUsers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Hibás jelmondat vagy visszaállítási kulcs",
+  "@incorrectPassphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContact": "Ismerős meghívása",
+  "@inviteContact": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Ismerős meghívása a(z) {groupName} csoportba",
+  "@inviteContactToGroup": {
+    "type": "text",
+    "placeholders": {
+      "groupName": {}
+    }
+  },
+  "invited": "Meghívott",
+  "@invited": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invitedUser": "📩 {username} meghívta {targetName}-t",
+  "@invitedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "invitedUsersOnly": "Csak meghívott felhasználók",
+  "@invitedUsersOnly": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteText": "{username} meghívott a FluffyChat-be.\n1. Keresse fel a fluffychat.im oldalt, és telepítse az alkalmazást \n2. Regisztráljon vagy jelentkezzen be \n3. Nyissa meg a meghívó linket: \n {link}",
+  "@inviteText": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "link": {}
+    }
+  },
+  "isTyping": "gépel…",
+  "@isTyping": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "joinedTheChat": "👋 {username} csatlakozott a csevegéshez",
+  "@joinedTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "joinRoom": "Csatlakozás a szobához",
+  "@joinRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "kicked": "👞 {username} kirúgta {targetName}-t",
+  "@kicked": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickedAndBanned": "🙅 {username} kirúgta és kitiltotta {targetName}-t",
+  "@kickedAndBanned": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "kickFromChat": "Kirúgás a csevegésből",
+  "@kickFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Utoljára aktív: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "text",
+    "placeholders": {
+      "localizedTimeShort": {}
+    }
+  },
+  "leave": "Elhagyás",
+  "@leave": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "leftTheChat": "Elhagyta a csevegést",
+  "@leftTheChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "license": "Licensz",
+  "@license": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lightTheme": "Világos",
+  "@lightTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "További {count} résztvevő betöltése",
+  "@loadCountMoreParticipants": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "loadingPleaseWait": "Betöltés… Kérem, várjon.",
+  "@loadingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadMore": "Továbbiak betöltése…",
+  "@loadMore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "login": "Bejelentkezés",
+  "@login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInTo": "Bejelentkezés a(z) {homeserver} Matrix-kiszolgálóra",
+  "@logInTo": {
+    "type": "text",
+    "placeholders": {
+      "homeserver": {}
+    }
+  },
+  "logout": "Kijelentkezés",
+  "@logout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mention": "Megemlítés",
+  "@mention": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "moderator": "Moderátor",
+  "@moderator": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "muteChat": "Csevegés némítása",
+  "@muteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Jelenleg a Pantalaimon szükséges a végpontok közötti titkosítás használatához.",
+  "@needPantalaimonWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "💬 Új FluffyChat üzenet",
+  "@newMessageInFluffyChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Új hitelesítési kérelem!",
+  "@newVerificationRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "no": "Nem",
+  "@no": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Emojik nem elérhetőek. 😕",
+  "@noEmotesFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Úgy tűnik a Firebase Cloud Messaging nem elérhető a készülékén. Ha mégis push értesítéseket kíván kapni, javasoljuk a ntfy telepítését. A ntfy vagy más egyéb Egyesített Push szolgáltató esetében úgy kaphat értesítést, hogy adatai biztonságban maradnak. Letöltheti a ntfy-t a PLayStore-ból, vagy F-Droid-ról is.",
+  "@noGoogleServicesWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "none": "Nincs",
+  "@none": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPermission": "Nincs engedély",
+  "@noPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noRoomsFound": "Nem találhatóak szobák…",
+  "@noRoomsFound": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ok": "Rendben",
+  "@ok": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online kulcsmentés engedélyezve",
+  "@onlineKeyBackupEnabled": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "Hoppá, valami hiba lépett fel…",
+  "@oopsSomethingWentWrong": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "Alkalmazás megnyitása az üzenetek elolvasásához",
+  "@openAppToReadMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openCamera": "Kamera megnyitása",
+  "@openCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "jelmondat vagy visszaállítási kulcs",
+  "@passphraseOrKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Jelszó",
+  "@password": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "A jelszó módosításra került",
+  "@passwordHasBeenChanged": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickImage": "Kép választása",
+  "@pickImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pin": "Rögzítés",
+  "@pin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "play": "{fileName} lejátszása",
+  "@play": {
+    "type": "text",
+    "placeholders": {
+      "fileName": {}
+    }
+  },
+  "pleaseEnterYourPassword": "Kérem adja meg jelszavát",
+  "@pleaseEnterYourPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Adja meg a felhasználónevét",
+  "@pleaseEnterYourUsername": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "privacy": "Adatvédelem",
+  "@privacy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "publicRooms": "Nyilvános szobák",
+  "@publicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "recording": "Felvétel",
+  "@recording": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "redactedAnEvent": "{username} visszavont egy eseményt",
+  "@redactedAnEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "reject": "Elutasít",
+  "@reject": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} elutasította a meghívást",
+  "@rejectedTheInvitation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "rejoin": "Újra csatlakozás",
+  "@rejoin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "remove": "Eltávolítás",
+  "@remove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Minden más eszköz eltávolítása",
+  "@removeAllOtherDevices": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removedBy": "{username} által törölve",
+  "@removedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "removeDevice": "Eszköz eltávolítása",
+  "@removeDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbanFromChat": "Csevegés kitiltás feloldása",
+  "@unbanFromChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "renderRichContent": "Formázott üzenetek megjelenítése",
+  "@renderRichContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reply": "Válasz",
+  "@reply": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "requestPermission": "Jogosultság igénylése",
+  "@requestPermission": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "A szoba frissítve lett",
+  "@roomHasBeenUpgraded": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "seenByUser": "{username} látta",
+  "@seenByUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "send": "Küldés",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAMessage": "Üzenet küldése",
+  "@sendAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendAudio": "Hangüzenet küldése",
+  "@sendAudio": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFile": "Fájl küldése",
+  "@sendFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendImage": "Kép küldése",
+  "@sendImage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendOriginal": "Eredeti küldése",
+  "@sendOriginal": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendVideo": "Videó küldése",
+  "@sendVideo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sentAFile": "📁 {username} küldött egy fájlt",
+  "@sentAFile": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAnAudio": "🎤 {username} hangüzenetet küldött",
+  "@sentAnAudio": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAPicture": "🖼️ {username} képüzenetet küldött",
+  "@sentAPicture": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentASticker": "😊 {username} matricát küldött",
+  "@sentASticker": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentAVideo": "🎥 {username} videót küldött",
+  "@sentAVideo": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "sentCallInformations": "{senderName} hívásinformációt küldött",
+  "@sentCallInformations": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "setInvitationLink": "Meghívó hivatkozás beállítása",
+  "@setInvitationLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setStatus": "Állapot beállítása",
+  "@setStatus": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Beállítások",
+  "@settings": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "share": "Megosztás",
+  "@share": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} megosztotta a pozícióját",
+  "@sharedTheLocation": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "skip": "Kihagyás",
+  "@skip": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sourceCode": "Forráskód",
+  "@sourceCode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} hívást indított",
+  "@startedACall": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "statusExampleMessage": "Hogy érzi ma magát?",
+  "@statusExampleMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "submit": "Beküldés",
+  "@submit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "systemTheme": "Rendszer",
+  "@systemTheme": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyDontMatch": "Nem egyeznek",
+  "@theyDontMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "theyMatch": "Egyeznek",
+  "@theyMatch": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Újraküldés megpróbálása",
+  "@tryToSendAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unavailable": "Nem elérhető",
+  "@unavailable": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} feloldotta {targetName} kitiltását",
+  "@unbannedUser": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "targetName": {}
+    }
+  },
+  "unblockDevice": "Eszköz blokkolásának megszüntetése",
+  "@unblockDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownDevice": "Ismeretlen eszköz",
+  "@unknownDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "Ismeretlen titkosítási algoritmus",
+  "@unknownEncryptionAlgorithm": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknownEvent": "Ismeretlen esemény: '{type}'",
+  "@unknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "unmuteChat": "Csevegés némítás feloldása",
+  "@unmuteChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unpin": "Rögzítés megszüntetése",
+  "@unpin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unreadChats": "{unreadCount, plural, =1{1 olvasatlan csevegés} other{{unreadCount} olvasatlan csevegés}}",
+  "@unreadChats": {
+    "type": "text",
+    "placeholders": {
+      "unreadCount": {}
+    }
+  },
+  "userAndOthersAreTyping": "{username} és {count} másik résztvevő gépel…",
+  "@userAndOthersAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "count": {}
+    }
+  },
+  "userAndUserAreTyping": "{username} és {username2} gépel…",
+  "@userAndUserAreTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "username2": {}
+    }
+  },
+  "userIsTyping": "{username} gépel…",
+  "@userIsTyping": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "userLeftTheChat": "🚪 {username} elhagyta a csevegést",
+  "@userLeftTheChat": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "username": "Felhasználónév",
+  "@username": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} {type} eseményt küldött",
+  "@userSentUnknownEvent": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "type": {}
+    }
+  },
+  "verify": "Hitelesít",
+  "@verify": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyStart": "Hitelesítés megkezdése",
+  "@verifyStart": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifySuccess": "Sikeres hitelesítés!",
+  "@verifySuccess": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "verifyTitle": "Másik fiók hitelesítése",
+  "@verifyTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "videoCall": "Videóhívás",
+  "@videoCall": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Csevegési előzmény láthatósága",
+  "@visibilityOfTheChatHistory": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "Minden résztvevő számára látható",
+  "@visibleForAllParticipants": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "Bárki számára látható",
+  "@visibleForEveryone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "voiceMessage": "Hangüzenet",
+  "@voiceMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Várakozás a partnerre, hogy elfogadja a kérést…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Várakozás a partnerre, hogy elfogadja az emojit…",
+  "@waitingPartnerEmoji": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Várakozás a partnerre, hogy elfogadja a számokat…",
+  "@waitingPartnerNumbers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "wallpaper": "Háttér:",
+  "@wallpaper": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "warning": "Figyelmeztetés!",
+  "@warning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Ki csatlakozhat a csoporthoz",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "writeAMessage": "Írjon egy üzenetet…",
+  "@writeAMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yes": "Igen",
+  "@yes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "you": "Ön",
+  "@you": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "Immáron nem vesz részt ebben a csevegésben",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "Kitiltották ebből a csevegésből",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Ezekkel a címekkel vissza tudja állítani a jelszavát.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "Küldtünk Önnek egy emailt",
+  "@weSentYouAnEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordRecovery": "Jelszó visszaállítás",
+  "@passwordRecovery": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Még nem adott meg semmilyen módot a jelszava visszaállítására.",
+  "@noPasswordRecoveryDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inviteForMe": "Meghívás nekem",
+  "@inviteForMe": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "iHaveClickedOnLink": "Rákattintottam a linkre",
+  "@iHaveClickedOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Adjon meg egy email címet",
+  "@enterAnEmailAddress": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "encrypted": "Titkosított",
+  "@encrypted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Szerkeszt",
+  "@edit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "directChats": "Közvetlen csevegések",
+  "@directChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "deviceId": "Eszköz ID",
+  "@deviceId": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "botMessages": "Bot üzenetek",
+  "@botMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "repeatPassword": "Jelszó megismétlése",
+  "@repeatPassword": {},
+  "addEmail": "E-mail-cím hozzáadása",
+  "@addEmail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "all": "Összes",
+  "@all": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allChats": "Összes csevegés",
+  "@allChats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "autoplayImages": "Animált matricák és hangulatjelek automatikus lejátszása",
+  "@autoplayImages": {
+    "type": "text",
+    "placeholder": {}
+  },
+  "sendOnEnter": "Küldés Enterrel",
+  "@sendOnEnter": {},
+  "cantOpenUri": "Nem sikerült az URI megnyitása: {uri}",
+  "@cantOpenUri": {
+    "type": "text",
+    "placeholders": {
+      "uri": {}
+    }
+  },
+  "changeYourAvatar": "Profilkép módosítása",
+  "@changeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToSpace": "Hozzáadás térhez",
+  "@addToSpace": {},
+  "areYouSureYouWantToLogout": "Biztosan kijelentkezik?",
+  "@areYouSureYouWantToLogout": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "A kiszolgáló a következő bejelentkezéseket támogatja:\n{serverVersions}\nDe ez az alkalmazást csak ezeket támogatja:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "blocked": "Blokkolva",
+  "@blocked": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "appLock": "Alkalmazás zár",
+  "@appLock": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomnick": "Az ebben a szobában megjelenített neved megváltoztatása",
+  "@commandHint_myroomnick": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_plain": "Formázatlan szöveg küldése",
+  "@commandHint_plain": {
+    "type": "text",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_send": "Szöveg küldése",
+  "@commandHint_send": {
+    "type": "text",
+    "description": "Usage hint for the command /send"
+  },
+  "contentHasBeenReported": "A tartalom jelentve lett a szerver üzemeltetőinek",
+  "@contentHasBeenReported": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_myroomavatar": "Az ebben a szobában megjelenített profilképed megváltoztatása (mxc URI használatával)",
+  "@commandHint_myroomavatar": {
+    "type": "text",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "copyToClipboard": "Vágólapra másolás",
+  "@copyToClipboard": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Szoba álnevek szerkesztése",
+  "@editRoomAliases": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Szoba profilképének szerkesztése",
+  "@editRoomAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enableEncryption": "Titkosítás engedélyezése",
+  "@enableEncryption": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Rendkívül sértő",
+  "@extremeOffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fontSize": "Betűméret",
+  "@fontSize": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "everythingReady": "Minden kész!",
+  "@everythingReady": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "groups": "Csoportok",
+  "@groups": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Mennyire sértő ez a tartalom?",
+  "@howOffensiveIsThisContent": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "inoffensive": "Nem sértő",
+  "@inoffensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "A helymeghatározás nem engedélyezett az alkalmazás számára. Kérem engedélyezze, hogy meg tudja osztani helyzetét.",
+  "@locationPermissionDeniedNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newChat": "Új csevegés",
+  "@newChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "scanQrCode": "QR kód beolvasása",
+  "@scanQrCode": {},
+  "notificationsEnabledForThisAccount": "Értesítések bekapcsolása ebben a fiókban",
+  "@notificationsEnabledForThisAccount": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "offensive": "Sértő",
+  "@offensive": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "oopsPushError": "Hoppá! Sajnos hiba lépett fel a push értesítések beállításakor.",
+  "@oopsPushError": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_create": "Egy üres csevegő csoport létrehozása\nA --no-encryption kapcsolóval titkosítatlan szoba hozható létre",
+  "@commandHint_create": {
+    "type": "text",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_invite": "Adott felhasználó meghívása ebbe a szobába",
+  "@commandHint_invite": {
+    "type": "text",
+    "description": "Usage hint for the command /invite"
+  },
+  "locationDisabledNotice": "A helymeghatározás ki van kapcsolva. Kérem, kapcsolja be, hogy meg tudja osztani helyzetét.",
+  "@locationDisabledNotice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeserver": "Matrix szerver",
+  "@homeserver": {},
+  "chatBackup": "Beszélgetések mentése",
+  "@chatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ignore": "Figyelmen kívül hagyás",
+  "@ignore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "next": "Következő",
+  "@next": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "A beszélgetések mentése be lett állítva.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatBackupDescription": "A régebbi beszélgetései egy biztonsági kulccsal vannak védve. Bizonyosodjon meg róla, hogy nem veszíti el.",
+  "@chatBackupDescription": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Tartalmazza a megjelenített nevet",
+  "@containsDisplayName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "containsUserName": "Tartalmazza a felhasználónevet",
+  "@containsUserName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Új szoba megnyitása",
+  "@goToTheNewRoom": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "Nem elérhető a szerver",
+  "@noConnectionToTheServer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Csak akkor kapcsolható be a titkosítás, ha a szoba nem nyilvánosan hozzáférhető.",
+  "@noEncryptionForPublicRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "A beszélgetés hozzá lett adva ehhez a térhez",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chats": "Csevegések",
+  "@chats": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "clearArchive": "Archívum törlése",
+  "@clearArchive": {},
+  "commandHint_ban": "Felhasználó kitiltása ebből a szobából",
+  "@commandHint_ban": {
+    "type": "text",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "Gyorsítótár törlése",
+  "@commandHint_clearcache": {
+    "type": "text",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_discardsession": "Munkamenet elvetése",
+  "@commandHint_discardsession": {
+    "type": "text",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Közvetlen csevegés indítása\nA --no-encryption kapcsolóval titkosítatlan beszélgetést hozhat létre",
+  "@commandHint_dm": {
+    "type": "text",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "HTML formázott üzenet küldése",
+  "@commandHint_html": {
+    "type": "text",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_join": "Csatlakozás a megadott szobához",
+  "@commandHint_join": {
+    "type": "text",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "A megadott felhasználó kirúgása a szobából",
+  "@commandHint_kick": {
+    "type": "text",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "Szoba elhagyása",
+  "@commandHint_leave": {
+    "type": "text",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandInvalid": "Érvénytelen parancs",
+  "@commandInvalid": {
+    "type": "text"
+  },
+  "commandMissing": "{command} nem egy parancs.",
+  "@commandMissing": {
+    "type": "text",
+    "placeholders": {
+      "command": {}
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "configureChat": "Csevegés konfigurálása",
+  "@configureChat": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "createNewSpace": "Új tér",
+  "@createNewSpace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Alapértelmezett hozzáférési szint",
+  "@defaultPermissionLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Hiba a tartózkodási hely meghatározása közben: {error}",
+  "@errorObtainingLocation": {
+    "type": "text",
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "memberChanges": "Tagsági változások",
+  "@memberChanges": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "messages": "Üzenetek",
+  "@messages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} nem egy Matrix szerver, használja a {server2} szervert inkább?",
+  "@noMatrixServer": {
+    "type": "text",
+    "placeholders": {
+      "server1": {},
+      "server2": {}
+    }
+  },
+  "notifications": "Értesítések",
+  "@notifications": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} felhasználó gépel…",
+  "@numUsersTyping": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "obtainingLocation": "Tartózkodási hely lekérése…",
+  "@obtainingLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "openVideoCamera": "Kamera megnyitása videóhoz",
+  "@openVideoCamera": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "badServerVersionsException": "A Matrix szerver ezeket a specifikáció verziókat támogatja:\n{serverVersions}\nAzonban ez az app csak ezeket: {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "text",
+    "placeholders": {
+      "serverVersions": {},
+      "supportedVersions": {}
+    }
+  },
+  "commandHint_me": "Jellemezd magad",
+  "@commandHint_me": {
+    "type": "text",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_op": "Az adott felhasználó hozzáférési szintjének megadása (alapértelmezett: 50)",
+  "@commandHint_op": {
+    "type": "text",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_react": "Válasz küldése reakcióként",
+  "@commandHint_react": {
+    "type": "text",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_unban": "Adott felhasználó kitiltásának feloldása a szobához",
+  "@commandHint_unban": {
+    "type": "text",
+    "description": "Usage hint for the command /unban"
+  },
+  "editBlockedServers": "Blokkolt szerverek szerkesztése",
+  "@editBlockedServers": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dehydrate": "Munkamenet exportálása és az eszköz törlése",
+  "@dehydrate": {},
+  "dehydrateWarning": "Ez nem visszavonható. Bizonyosodjon meg róla, hogy biztonságos helyen tárolja a mentett fájlt.",
+  "@dehydrateWarning": {},
+  "dehydrateTor": "TOR felhasználók: munkamenet exportálása",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "TOR felhasználóknak ajánlott a munkamenet exportálása az ablak bezárása előtt.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "TOR felhasználóknak: munkamenet export importálása",
+  "@hydrateTor": {},
+  "hydrate": "Visszaállítás mentett fájlból",
+  "@hydrate": {},
+  "link": "Hivatkozás",
+  "@link": {},
+  "redactMessage": "Üzenet visszavonása",
+  "@redactMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "people": "Emberek",
+  "@people": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Írja be PIN kódját",
+  "@pleaseEnterYourPin": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cuddleContent": "{senderName} hozzád bújik",
+  "@cuddleContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "commandHint_markasgroup": "Csoportnak jelölés",
+  "@commandHint_markasgroup": {},
+  "addAccount": "Fiók hozzáadása",
+  "@addAccount": {},
+  "search": "Keresés",
+  "@search": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_googly": "Gülüszemek küldése",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Összebújás küldése",
+  "@commandHint_cuddle": {},
+  "sendMessages": "Üzenetek küldése",
+  "@sendMessages": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendSticker": "Matrica küldése",
+  "@sendSticker": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportMessage": "Üzenet jelentése",
+  "@reportMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "participant": "Résztvevő",
+  "@participant": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Elfelejtett jelszó",
+  "@passwordForgotten": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roomVersion": "Szoba verzió",
+  "@roomVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmMatrixId": "A fiók törléséhez adja meg a Matrix ID-t.",
+  "@confirmMatrixId": {},
+  "or": "Vagy",
+  "@or": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Kérjük válasszon",
+  "@pleaseChoose": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "commandHint_hug": "Ölelés küldése",
+  "@commandHint_hug": {},
+  "reason": "Indok",
+  "@reason": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "register": "Regisztráció",
+  "@register": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveFile": "Fájl mentése",
+  "@saveFile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "googlyEyesContent": "{senderName} gülüszemeket küld",
+  "@googlyEyesContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "openInMaps": "Megnyitás térképen",
+  "@openInMaps": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Írjon be 4 számjegyet, vagy hagyja üresen a zár kikapcsolásához.",
+  "@pleaseEnter4Digits": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "security": "Biztonság",
+  "@security": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notAnImage": "Nem kép fájl.",
+  "@notAnImage": {},
+  "showPassword": "Jelszó mutatása",
+  "@showPassword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hugContent": "{senderName} megölelt",
+  "@hugContent": {
+    "type": "text",
+    "placeholders": {
+      "senderName": {}
+    }
+  },
+  "jumpToLastReadMessage": "Az utoljára olvasott üzenethez ugrás",
+  "@jumpToLastReadMessage": {},
+  "allRooms": "Minden csoport csevegés",
+  "@allRooms": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetVideo": "Videó",
+  "@widgetVideo": {},
+  "dismiss": "Elvetés",
+  "@dismiss": {},
+  "reportErrorDescription": "😭 Sajnos valami félresiklott. Ha kívánja jelezheti a bugot a fejlesztőknek.",
+  "@reportErrorDescription": {},
+  "setPermissionsLevel": "Jogok beállítása",
+  "@setPermissionsLevel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Profilkép törlése",
+  "@removeYourAvatar": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unsupportedAndroidVersion": "Nem támogatott Android verzió",
+  "@unsupportedAndroidVersion": {},
+  "widgetJitsi": "Jitsi Találkozó",
+  "@widgetJitsi": {},
+  "messageType": "Üzenet típus",
+  "@messageType": {},
+  "indexedDbErrorLong": "Sajnos az üzenet mentés alapból nincs bekapcsolva privát módban.\nKeresse meg a\n - about:config\n - állítsa a dom.indexedDB.privateBrowsing.enabled \"true\"-ra\nMáskülönben nem lehetséges a FluffyChat futtatása.",
+  "@indexedDbErrorLong": {},
+  "oneClientLoggedOut": "Az egyik kliense kijelentkezett",
+  "@oneClientLoggedOut": {},
+  "toggleMuted": "Némítottak mutatása",
+  "@toggleMuted": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startFirstChat": "Kezdje meg első csevegését",
+  "@startFirstChat": {},
+  "callingAccount": "Hívási fiók",
+  "@callingAccount": {},
+  "setColorTheme": "Szín téma beállítása:",
+  "@setColorTheme": {},
+  "nextAccount": "Következő fiók",
+  "@nextAccount": {},
+  "singlesignon": "Egyszeri bejelentkezés",
+  "@singlesignon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "allSpaces": "Minden tér",
+  "@allSpaces": {},
+  "supposedMxid": "{mxid}-nek kell lennie",
+  "@supposedMxid": {
+    "type": "text",
+    "placeholders": {
+      "mxid": {}
+    }
+  },
+  "user": "Felhasználó",
+  "@user": {},
+  "youAcceptedTheInvitation": "👍 Elfogadta a meghívást",
+  "@youAcceptedTheInvitation": {},
+  "youInvitedBy": "📩 Meghívást kapott {user}-tól",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "banUserDescription": "A felhasználó kitiltásra kerül a csevegésből, és nem fog tudni visszajönni egészen a kitiltás feloldásáig.",
+  "@banUserDescription": {},
+  "widgetEtherpad": "Szöveges megjegyzés",
+  "@widgetEtherpad": {},
+  "removeDevicesDescription": "Ki fog jelentkezni a készülékről, és többi nem fog tudni fogadni üzeneteket.",
+  "@removeDevicesDescription": {},
+  "separateChatTypes": "Csoportok és közvetlen üzenetek elkülönítése",
+  "@separateChatTypes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tryAgain": "Próbálja újra",
+  "@tryAgain": {},
+  "youKickedAndBanned": "🙅 Kirúgta és kitiltotta {user}-t",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "unbanUserDescription": "A felhasználó vissza tud jönni a csevegésbe ha akar.",
+  "@unbanUserDescription": {},
+  "pleaseClickOnLink": "Kérem kattintson a linkre az emailben, és folytassa a műveletet.",
+  "@pleaseClickOnLink": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youRejectedTheInvitation": "Visszautasította a meghívást",
+  "@youRejectedTheInvitation": {},
+  "otherCallingPermissions": "Mikrofon, kamera, és más egyéb FluffyChat engedélyek",
+  "@otherCallingPermissions": {},
+  "messagesStyle": "Üzenetek:",
+  "@messagesStyle": {},
+  "widgetUrlError": "Ez nem egy valós cím.",
+  "@widgetUrlError": {},
+  "emailOrUsername": "Email vagy felhasználónév",
+  "@emailOrUsername": {},
+  "newSpaceDescription": "A terek lehetővé teszik a csevegések konszolidációját, ezáltal létrehozva publikus vagy privát közösségeket.",
+  "@newSpaceDescription": {},
+  "chatDescription": "Csevegés leírás",
+  "@chatDescription": {},
+  "callingAccountDetails": "Engedélyezés a FluffyChat számára hogy használja a natív android hívás applikációt.",
+  "@callingAccountDetails": {},
+  "pleaseFollowInstructionsOnWeb": "Kérem kövesse az instrukciókat az oldalon, és nyomjon a tovább gombra.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterSpace": "Belépés a térre",
+  "@enterSpace": {},
+  "encryptThisChat": "A csevegés titkosítása",
+  "@encryptThisChat": {},
+  "previousAccount": "Előző fiók",
+  "@previousAccount": {},
+  "reopenChat": "Csevegés újranyitása",
+  "@reopenChat": {},
+  "pleaseEnterRecoveryKey": "Kérem adja meg a visszaállító kódját:",
+  "@pleaseEnterRecoveryKey": {},
+  "toggleFavorite": "Kedvencek mutatása",
+  "@toggleFavorite": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "widgetNameError": "Kérem adjon meg egy megjeleníthető nevet.",
+  "@widgetNameError": {},
+  "addToBundle": "Hozzáadás fiókcsoporthoz",
+  "@addToBundle": {},
+  "spaceIsPublic": "A tér publikus",
+  "@spaceIsPublic": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addWidget": "Widget hozzáadása",
+  "@addWidget": {},
+  "countFiles": "{count} fájl",
+  "@countFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "noKeyForThisMessage": "Akkor fordulhat elő, ha az üzenet az eszközre való bejelentkezés előtt került küldésre.\n\nAz is elképzelhető, hogy a küldő blokkolta az eszközét, vagy valami probléma lépett fel az internet kapcsolatban.\n\nMás helyen látja az üzenetet? Akkor át tudja másolni ide is! Menjen a Beállítások > Eszközök részbe, és győződjön meg róla, hogy az eszközei megerősítették egymást. Legközelebb amikor ezt a szobát megnyitja, és mind a két kliens az előtérben van, akkor szikronizálódni fognak.\n\nNem akarja elveszíteni a kulcsokat amikor kijelentkezik, vagy eszközt cserél? Győződjön meg róla, hogy bekapcsolta a chat mentést a beállításokban.",
+  "@noKeyForThisMessage": {},
+  "shareLocation": "Pozíció megosztása",
+  "@shareLocation": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushNotificationsNotAvailable": "Push értesítések nem elérhetőek",
+  "@pushNotificationsNotAvailable": {},
+  "storeInAppleKeyChain": "Tárolás az Apple KeyChain-be",
+  "@storeInAppleKeyChain": {},
+  "replaceRoomWithNewerVersion": "Szoba cserélése egy újabb verzióra",
+  "@replaceRoomWithNewerVersion": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "invalidServerName": "Hibás szerver név",
+  "@invalidServerName": {},
+  "chatPermissions": "Csevegés engedélyek",
+  "@chatPermissions": {},
+  "wipeChatBackup": "Le kívánja törölni a chat mentését, hogy létrehozhasson egy új visszaállítási kulcsot?",
+  "@wipeChatBackup": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sender": "Küldő",
+  "@sender": {},
+  "storeInAndroidKeystore": "Tárolás az Android KeyStore-ba",
+  "@storeInAndroidKeystore": {},
+  "signInWithPassword": "Bejelentkezés jelszóval",
+  "@signInWithPassword": {},
+  "makeAdminDescription": "Miután a felhasználóból admin lesz, nem fogja tudni visszavonni döntését, mivel azonos jogosultsági szinttel fognak rendelkezni.",
+  "@makeAdminDescription": {},
+  "synchronizingPleaseWait": "Szinkronizálás...kérem várjon.",
+  "@synchronizingPleaseWait": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Másik eszközről való átköltözés",
+  "@transferFromAnotherDevice": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pushRules": "Push szabályok",
+  "@pushRules": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "saveKeyManuallyDescription": "A kulcs manuális mentése rendszer megosztás vagy vágólap másolás segítségével.",
+  "@saveKeyManuallyDescription": {},
+  "editBundlesForAccount": "Fiókcsoportok szerkesztése ehhez a fiókhoz",
+  "@editBundlesForAccount": {},
+  "whyIsThisMessageEncrypted": "Miért nem olvasható ez az üzenet?",
+  "@whyIsThisMessageEncrypted": {},
+  "setChatDescription": "Csevegés leírás beállítása",
+  "@setChatDescription": {},
+  "spaceName": "Tér neve",
+  "@spaceName": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "importFromZipFile": "Importálás zip fájlból",
+  "@importFromZipFile": {},
+  "toggleUnread": "Jelölés olvasottként/olvasatlanként",
+  "@toggleUnread": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noOtherDevicesFound": "Nem található más eszköz",
+  "@noOtherDevicesFound": {},
+  "redactedBy": "{username} által szerkesztve",
+  "@redactedBy": {
+    "type": "text",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "videoCallsBetaWarning": "Kérem vegye figyelembe, hogy a videó hívások jelenleg béta fázisban vannak. Nem biztos, hogy megfelelően fognak működni, vagy egyáltalán elindulnak egyes platformokon.",
+  "@videoCallsBetaWarning": {},
+  "signInWith": "Bejelentkezés a következővel: {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "fileIsTooBigForServer": "A szerver számára túl nagy a fájl a küldéshez.",
+  "@fileIsTooBigForServer": {},
+  "verified": "Visszaigazolt",
+  "@verified": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "callingPermissions": "Hívási engedélyek",
+  "@callingPermissions": {},
+  "readUpToHere": "Ezidáig elolvasva",
+  "@readUpToHere": {},
+  "start": "Kezdés",
+  "@start": {},
+  "unlockOldMessages": "Régi üzenetek feloldása",
+  "@unlockOldMessages": {},
+  "numChats": "{number} csevegés",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "optionalRedactReason": "(Tetszőleges) A szerkesztés oka...",
+  "@optionalRedactReason": {},
+  "sendAsText": "Szövegként küldés",
+  "@sendAsText": {
+    "type": "text"
+  },
+  "archiveRoomDescription": "A csevegés bekerül az archívumba. Más felhasználók látni fogják, hogy elhagyta a csevegést.",
+  "@archiveRoomDescription": {},
+  "exportEmotePack": "Emojik exportálása zip-be",
+  "@exportEmotePack": {},
+  "switchToAccount": "A {number} számú fiókra váltás",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "setAsCanonicalAlias": "Beállítás mint alapértelmezett álnév",
+  "@setAsCanonicalAlias": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Miért kívánja ezt bejelenteni?",
+  "@whyDoYouWantToReportThis": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "experimentalVideoCalls": "Kísérleti videó hívások",
+  "@experimentalVideoCalls": {},
+  "pleaseEnterRecoveryKeyDescription": "A régi üzenetei feloldásához adja meg a korábban generált visszaállítási jelszavát. A visszaállítási jelszó NEM UGYANAZ mint a jelszó.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "inviteContactToGroupQuestion": "Meg kívánja hívni {contact}-ot a \"{groupName}\" csevegő csoportba?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "{username} által szerkesztve, mivel: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "text",
+    "placeholders": {
+      "username": {},
+      "reason": {}
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "Visszavonta a meghívást {user}-tól",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "appearOnTopDetails": "Engedélyezi az app számára, hogy mindig legfelül jelenjen meg (nem szükséges, ha a FluffyChat hívó fiókként lett beállítva)",
+  "@appearOnTopDetails": {},
+  "enterRoom": "Belépés a szobába",
+  "@enterRoom": {},
+  "pleaseChooseAPasscode": "Kérem válasszon egy kódot",
+  "@pleaseChooseAPasscode": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reportUser": "Felhasználó jelentése",
+  "@reportUser": {},
+  "confirmEventUnpin": "Biztosan végleg le akarja venni a kitűzött eseményt?",
+  "@confirmEventUnpin": {},
+  "youInvitedUser": "📩 Meghívta {user}-t",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "fileHasBeenSavedAt": "A fájl mentésre került a következő elérési úton {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "redactMessageDescription": "A társalgásban összes résztvevője számára módosításra kerül az üzenet. Ez nem visszavonható.",
+  "@redactMessageDescription": {},
+  "recoveryKey": "Visszaállító kulcs",
+  "@recoveryKey": {},
+  "invalidInput": "Hibás bevitel!",
+  "@invalidInput": {},
+  "yourPublicKey": "A publikus kulcsa",
+  "@yourPublicKey": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Túl sok egyidejű kérelem. Kérem próbálja meg később!",
+  "@tooManyRequestsWarning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "doNotShowAgain": "Ne mutassa újra",
+  "@doNotShowAgain": {},
+  "report": "bejelentés",
+  "@report": {},
+  "status": "Státusz",
+  "@status": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "unverified": "Nem visszaigazolt",
+  "@unverified": {},
+  "serverRequiresEmail": "Ehhez a szerverhez szükséges az email címének visszaigazolása.",
+  "@serverRequiresEmail": {},
+  "hideUnimportantStateEvents": "Jelentéktelen esemény státuszok elrejtése",
+  "@hideUnimportantStateEvents": {},
+  "screenSharingTitle": "képernyő megosztás",
+  "@screenSharingTitle": {},
+  "widgetCustom": "Egyéni",
+  "@widgetCustom": {},
+  "addToSpaceDescription": "Válassza ki melyik térhez kívánja hozzáadni a csevegést.",
+  "@addToSpaceDescription": {},
+  "youBannedUser": "Letitotta {user}-t",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "addChatDescription": "Chat leírás hozzáadása...",
+  "@addChatDescription": {},
+  "hasKnocked": "{user} kopogott",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "publish": "Közzététel",
+  "@publish": {},
+  "openLinkInBrowser": "Hivatkozás megnyitása böngészőben",
+  "@openLinkInBrowser": {},
+  "messageInfo": "Üzenet információ",
+  "@messageInfo": {},
+  "disableEncryptionWarning": "Biztonsági okokból nem kapcsolható ki egy korábban bekapcsolt csevegés titkosítás.",
+  "@disableEncryptionWarning": {},
+  "directChat": "Közvetlen csevegés",
+  "@directChat": {},
+  "wrongPinEntered": "Hibás pinkód került beírásra. Próbálja újra {seconds} mp múlva...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "sendTypingNotifications": "Gépelési infó megjelenítése",
+  "@sendTypingNotifications": {},
+  "inviteGroupChat": "📨 Meghívó a csoportba",
+  "@inviteGroupChat": {},
+  "appearOnTop": "Mindig legfelül jelenik meg",
+  "@appearOnTop": {},
+  "invitePrivateChat": "📨 Meghívó csevegéshez",
+  "@invitePrivateChat": {},
+  "foregroundServiceRunning": "Ez az értesítés akkor jelenik meg ha az előtéri szolgáltatás fut.",
+  "@foregroundServiceRunning": {},
+  "voiceCall": "Hang hívás",
+  "@voiceCall": {},
+  "importEmojis": "Emojik importálása",
+  "@importEmojis": {},
+  "wasDirectChatDisplayName": "Üres csevegés (korábban {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "text",
+    "placeholders": {
+      "oldDisplayName": {}
+    }
+  },
+  "noChatDescriptionYet": "Még nincs csevegő szoba leírás.",
+  "@noChatDescriptionYet": {},
+  "removeFromBundle": "Eltávolítás a fiókcsoportból",
+  "@removeFromBundle": {},
+  "whoCanPerformWhichAction": "Ki milyen műveletet végezhet",
+  "@whoCanPerformWhichAction": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "learnMore": "Tudjon meg többet",
+  "@learnMore": {},
+  "users": "Felhasználók",
+  "@users": {},
+  "openGallery": "Galéria megnyitása",
+  "@openGallery": {},
+  "chatDescriptionHasBeenChanged": "Csevegés leírás megváltozott",
+  "@chatDescriptionHasBeenChanged": {},
+  "newGroup": "Új csoport",
+  "@newGroup": {},
+  "bundleName": "Fiókcsoport neve",
+  "@bundleName": {},
+  "removeFromSpace": "Eltávolítás a térről",
+  "@removeFromSpace": {},
+  "roomUpgradeDescription": "A csevegés újra elkészül az új verzióval. Minden résztvevő értesítést kap, hogy át kell állniuk az új csevegésre. További információkért a szoba verziókról látogasson el a https://spec.matrix.org/latest/rooms/ címre",
+  "@roomUpgradeDescription": {},
+  "pleaseEnterANumber": "Adjon meg egy 0-nál nagyobb számot",
+  "@pleaseEnterANumber": {},
+  "youKicked": "👞 Kirúgta {user}-t",
+  "@youKicked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "profileNotFound": "A felhasználó nem található a szerveren. Lehetséges, hogy csatlakozási problémák adódtak, vagy nem létezik a felhasználó.",
+  "@profileNotFound": {},
+  "jump": "Ugrás",
+  "@jump": {},
+  "reactedWith": "{sender} a következőt reagálta: {reaction}",
+  "@reactedWith": {
+    "type": "text",
+    "placeholders": {
+      "sender": {},
+      "reaction": {}
+    }
+  },
+  "sorryThatsNotPossible": "Ez sajnos nem lehetséges",
+  "@sorryThatsNotPossible": {},
+  "videoWithSize": "Videó ({size})",
+  "@videoWithSize": {
+    "type": "text",
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "shareInviteLink": "Meghívó link megosztása",
+  "@shareInviteLink": {},
+  "commandHint_markasdm": "Szoba megjelölése mint közvetlen csevegő szoba az adott Matrix ID-nél",
+  "@commandHint_markasdm": {},
+  "recoveryKeyLost": "Elveszett visszaállító kulcs?",
+  "@recoveryKeyLost": {},
+  "deviceKeys": "Eszköz kulcsok:",
+  "@deviceKeys": {},
+  "emoteKeyboardNoRecents": "Nemrég használt emojik fognak itt megjelenni...",
+  "@emoteKeyboardNoRecents": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Egyéni emojik beállítása",
+  "@setCustomEmotes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "setTheme": "Téma beállítása:",
+  "@setTheme": {},
+  "youJoinedTheChat": "Becsatlakozott a csevegésbe",
+  "@youJoinedTheChat": {},
+  "markAsRead": "Olvasottként megjelölés",
+  "@markAsRead": {},
+  "widgetName": "Név",
+  "@widgetName": {},
+  "errorAddingWidget": "Hiba lépett fel a widget hozzáadásánál.",
+  "@errorAddingWidget": {},
+  "replace": "Kicserél",
+  "@replace": {},
+  "youUnbannedUser": "Levette a letiltást {user}-ről",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "newSpace": "Új tér",
+  "@newSpace": {},
+  "emojis": "Emojik",
+  "@emojis": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Próbálja meg máskor, vagy válasszon másik szervert.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "createGroup": "Csoport létrehozása",
+  "@createGroup": {},
+  "hydrateTorLong": "Legutóbb TOR segítségével exportálta korábbi munkamenetét? Gyorsan importálja őket vissza, és folytassa a csevegést.",
+  "@hydrateTorLong": {},
+  "time": "Idő",
+  "@time": {},
+  "custom": "Egyéni",
+  "@custom": {},
+  "noBackupWarning": "Figyelem! Ha nem kapcsolja be a csevegés mentést, elveszíti a hozzáférést a tikosított üzeneteihez. Erősen ajánlott a csevegés mentés bekapcsolása kijelentkezés előtt.",
+  "@noBackupWarning": {},
+  "storeInSecureStorageDescription": "Tárolja a visszaállítási kulcsot az eszköz biztonsági tárjában.",
+  "@storeInSecureStorageDescription": {},
+  "openChat": "Csevegés megnyitása",
+  "@openChat": {},
+  "kickUserDescription": "A felhasználó kirúgásra került a csevegésből, de nincs kitiltva. Publikus csevegés esetén a felhasználó bármikor visszatérhet.",
+  "@kickUserDescription": {},
+  "importNow": "Importálás most",
+  "@importNow": {},
+  "pinMessage": "Kitűzés a szobában",
+  "@pinMessage": {},
+  "invite": "Meghívás",
+  "@invite": {},
+  "enableMultiAccounts": "(BÉTA) Több fiók bekapcsolása az eszközön",
+  "@enableMultiAccounts": {},
+  "indexedDbErrorTitle": "Privát mód problémák",
+  "@indexedDbErrorTitle": {},
+  "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze be van e frissítve teljesen készüléke, esetlegesen van e LineageOS támogatás hozzá.",
+  "@unsupportedAndroidVersionLong": {},
+  "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",
+  "@storeSecurlyOnThisDevice": {},
+  "screenSharingDetail": "Megosztja a képernyőjét a FluffyChat-ben",
+  "@screenSharingDetail": {},
+  "placeCall": "Tér hívás",
+  "@placeCall": {},
+  "block": "blokkolás",
+  "@block": {},
+  "blockedUsers": "Blokkolt felhasználók",
+  "@blockedUsers": {},
+  "blockListDescription": "Az Önt zavaró felhasználókat blokkolhatja. A blokkolt listán található felhasználóktól nem tud fogadni üzenetet vagy szoba meghívást.",
+  "@blockListDescription": {},
+  "blockUsername": "Felhasználónév mellőzése",
+  "@blockUsername": {},
+  "presenceStyle": "Jelenlét:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Mások státusz üzenetének megjelenítése",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youInvitedToBy": "📩 Meghívást kapott linken keresztül a következőhöz:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "decline": "Elutasítás",
+  "@decline": {},
+  "yourGlobalUserIdIs": "A globális felhasználó-ID-je: ",
+  "@yourGlobalUserIdIs": {},
+  "noUsersFoundWithQuery": "\"{query}\" néven nem található felhasználó. Ellenőrizze nincs e elírás.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "acceptedKeyVerification": "{sender} elfogadta a kulcs megerősítést",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "searchForUsers": "Keressen @felhasználókat...",
+  "@searchForUsers": {},
+  "joinSpace": "Csatlakozás a térre",
+  "@joinSpace": {},
+  "publicSpaces": "Nyilvános terek",
+  "@publicSpaces": {},
+  "databaseMigrationTitle": "Adatbázis optimalizálása",
+  "@databaseMigrationTitle": {},
+  "leaveEmptyToClearStatus": "Hagyja üresen a státusz kitörléséhez.",
+  "@leaveEmptyToClearStatus": {},
+  "pleaseEnterYourCurrentPassword": "Kérem adja meg jelenlegi jelszavát",
+  "@pleaseEnterYourCurrentPassword": {},
+  "newPassword": "Új jelszó",
+  "@newPassword": {},
+  "addChatOrSubSpace": "Csevegés vagy al-tér hozzáadása",
+  "@addChatOrSubSpace": {},
+  "pleaseChooseAStrongPassword": "Kérem válasszon egy erős jelszót",
+  "@pleaseChooseAStrongPassword": {},
+  "passwordsDoNotMatch": "A jelszavak nem egyeznek",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "A beírt jelszava hibás",
+  "@passwordIsWrong": {},
+  "subspace": "Al-tér",
+  "@subspace": {},
+  "thisDevice": "Ez az eszköz:",
+  "@thisDevice": {},
+  "forwardMessageTo": "Üzenet továbbítása a {roomName} szobába?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "sendTypingNotificationsDescription": "A csevegés többi tagja látja amikor gépel.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "A csevegés többi tagja látja melyik üzenetet látta.",
+  "@sendReadReceiptsDescription": {},
+  "sendReadReceipts": "Olvasási igazolás küldése",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Formázott üzenetek",
+  "@formattedMessages": {},
+  "formattedMessagesDescription": "Formázott szöveg - mint például félkövér - megjelenítése \"markdown\"-al.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Más felhasználók igazolása",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Más eszköz megerősítése",
+  "@verifyOtherDevice": {},
+  "sessionLostBody": "A munkamenete elvesződött. Kérem jelentse ezt a fejlesztőknek a {url} címen. A hiba szövege a következő: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "databaseBuildErrorBody": "Nem lehetséges az SQlite adatbázis létrehozása. Az app megpróbálja a régi típusú adatbázist használni. Kérem jelentse a hibát a fejlesztőknek a {url} linken. A hiba szövege a következő: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "Megpróbálkozunk visszaállítani a munkamenetét egy korábbi mentésből. Kérem jelezze a hibát a fejlesztőknek a {url} címen. A hiba szövege a következő: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "hidePresences": "El kívánja menteni a státusz listát?",
+  "@hidePresences": {},
+  "searchChatsRooms": "Keressen #csevegéseket, @felhasználókat...",
+  "@searchChatsRooms": {},
+  "wrongRecoveryKey": "Sajnos, úgy tűnik hibásan adta meg a visszaállítási kulcsot.",
+  "@wrongRecoveryKey": {},
+  "startConversation": "Beszélgetés indítása",
+  "@startConversation": {},
+  "commandHint_sendraw": "Tiszta json küldése",
+  "@commandHint_sendraw": {},
+  "databaseMigrationBody": "Kérem várjon. Ez igénybe vehet valamennyi időt.",
+  "@databaseMigrationBody": {},
+  "initAppError": "Hiba lépett fel az app indítása során",
+  "@initAppError": {},
+  "canceledKeyVerification": "{sender} nem fogadta el a kulcs megerősítést",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "completedKeyVerification": "{sender} befejezte a kulcs megerősítést",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "isReadyForKeyVerification": "{sender} készen áll a kulcs megerősítésre",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "requestedKeyVerification": "{sender} kulcs megerősítést kér",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "startedKeyVerification": "{sender} elkezdte a kulcs megerősítést",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "transparent": "Átlátszó",
+  "@transparent": {},
+  "incomingMessages": "Bejövő üzenetek",
+  "@incomingMessages": {},
+  "nothingFound": "Nincs találat...",
+  "@nothingFound": {},
+  "publicLink": "Nyilvános hivatkozás",
+  "@publicLink": {},
+  "select": "Kiválaszt",
+  "@select": {},
+  "stickers": "Matrica",
+  "@stickers": {},
+  "discover": "Felfedezés",
+  "@discover": {},
+  "groupName": "Csoport név",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Hozzon létre egy csoportot és hívjon meg felhasználókat",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "Kereséssel megtalálhatja a kívánt csoportot",
+  "@groupCanBeFoundViaSearch": {},
+  "verifyOtherUserDescription": "Ha megerősít egy másik felhasználót, akkor teljesen biztos lehet abban kivel cseveg. 💪\n\nA megerősítési folyamat kezdetekor megjelenik egy felugró ablak mindkettejüknél. Ekkor egy emoji vagy szám sor összehasonlítási folyamat veszi kezdetét.\n\nA legpraktikusabb módja ennek, hogy találkozzanak, vagy videó hívás során beszéljék meg. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "Amikor egy másik eszközt erősít meg, az eszközök kulcsokat cserélnek egymás között, ezáltal növelve az összbiztonságot. 💪 Amikor megkezdődik a folyamat, mind a két eszközön megjelenik egy felugró üzenet. Emojik és számok sorozata fog megjelenni, amit össze tud hasonlítani a két eszközön. Érdemes tehát mind a két eszközt a közelben tartani. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "accessAndVisibility": "Hozzáférés és láthatóság",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Kinek engedélyezett a csevegéshez való csatlakozás és a csevegést hogyan lehet megtalálni.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Hívások",
+  "@calls": {},
+  "hideInvalidOrUnknownMessageFormats": "Érvénytelen vagy ismeretlen üzenetformátum elrejtése",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChatsBody": "Ne mutassa ha valaki be- vagy kilép a csevegésből az olvashatóság javítása végett.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "notifyMeFor": "Értesítsen engem",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Jelszó-helyreállítási beállítások",
+  "@passwordRecoverySettings": {},
+  "noOneCanJoin": "Senki sem csatlakozhat",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} szeretne csatlakozni a csevegéshez.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Még nem lett létrehozva nyilvános link",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Csevegés felfedezhető a {server} szerveren történő kereséssel",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appLockDescription": "Alkalmazás zárolása PIN-kód használat hiányában",
+  "@appLockDescription": {},
+  "customEmojisAndStickers": "Egyedi emotikonok és matricák",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Egyedi emotikonok és matricák létrehozása, amelyek bármely csevegésben használhatóak.",
+  "@customEmojisAndStickersBody": {},
+  "overview": "Áttekintés",
+  "@overview": {},
+  "publicChatAddresses": "Nyilvános csevegés címek",
+  "@publicChatAddresses": {},
+  "userRole": "Felhasználói szerep",
+  "@userRole": {},
+  "createNewAddress": "Új cím létrehozása",
+  "@createNewAddress": {},
+  "noDatabaseEncryption": "Adatbázis titkosítása nem támogatott ezen a platformon",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Jelenleg {count} felhasználó van letiltva.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "unreadChatsInApp": "{appname}: {unread} olvasatlan csevegések",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  }
 }

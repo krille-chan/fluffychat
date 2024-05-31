@@ -24,7 +24,7 @@ class EmotesSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.emoteSettings),
+        title: Text(L10n.of(context)!.customEmojisAndStickers),
         actions: [
           PopupMenuButton<PopupMenuEmojiActions>(
             onSelected: (value) {

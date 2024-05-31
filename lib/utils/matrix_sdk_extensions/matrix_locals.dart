@@ -255,7 +255,7 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String unknownEvent(String typeKey) {
-    return l10n.unknownEvent(typeKey, typeKey);
+    return l10n.userSentUnknownEvent('User', typeKey);
   }
 
   @override

@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -22,6 +21,7 @@ import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/chat_view.dart';
 import 'package:tawkie/pages/chat/event_info_dialog.dart';
@@ -43,10 +43,12 @@ import 'send_location_dialog.dart';
 class ChatPage extends StatelessWidget {
   final String roomId;
   final String? shareText;
+  final String? eventId;
 
   const ChatPage({
     super.key,
     required this.roomId,
+    this.eventId,
     this.shareText,
   });
 
@@ -66,31 +68,11 @@ class ChatPage extends StatelessWidget {
       );
     }
 
-    return Row(
-      children: [
-        Expanded(
-          child: ChatPageWithRoom(
-            key: Key('chat_page_$roomId'),
-            room: room,
-            shareText: shareText,
-          ),
-        ),
-        if (FluffyThemes.isThreeColumnMode(context) &&
-            room.membership == Membership.join)
-          Container(
-            width: FluffyThemes.columnWidth,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  width: 1,
-                  color: Theme.of(context).dividerColor,
-                ),
-              ),
-            ),
-            child: ChatDetails(roomId: roomId),
-          ),
-      ],
+    return ChatPageWithRoom(
+      key: Key('chat_page_${roomId}_$eventId'),
+      room: room,
+      shareText: shareText,
+      eventId: eventId,
     );
   }
 }
@@ -98,11 +80,13 @@ class ChatPage extends StatelessWidget {
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
   final String? shareText;
+  final String? eventId;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
     this.shareText,
+    this.eventId,
   });
 
   @override
@@ -280,8 +264,14 @@ class ChatController extends State<ChatPageWithRoom>
   void initState() {
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
+
     _loadDraft();
     super.initState();
+    _displayChatDetailsColumn = ValueNotifier(
+      Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
+          false,
+    );
+
     sendingClient = Matrix.of(context).client;
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
@@ -291,15 +281,19 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _tryLoadTimeline() async {
+    final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
     try {
       await loadTimelineFuture;
+      if (initialEventId != null) scrollToEventId(initialEventId);
+
       final fullyRead = room.fullyRead;
       if (fullyRead.isEmpty) {
         setReadMarker();
         return;
       }
-      if (timeline!.events.any((event) => event.eventId == fullyRead)) {
+      if (timeline?.events.any((event) => event.eventId == fullyRead) ??
+          false) {
         Logs().v('Scroll up to visible event', fullyRead);
         setReadMarker();
         return;
@@ -370,18 +364,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
     if (room.markedUnread) room.markUnread(false);
-
-    // when the scroll controller is attached we want to scroll to an event id, if specified
-    // and update the scroll controller...which will trigger a request history, if the
-    // "load more" button is visible on the screen
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (mounted) {
-        final event = GoRouterState.of(context).uri.queryParameters['event'];
-        if (event != null) {
-          scrollToEventId(event);
-        }
-      }
-    });
 
     return;
   }
@@ -634,7 +616,7 @@ class ChatController extends State<ChatPageWithRoom>
       }
     }
 
-    if (await Record().hasPermission() == false) return;
+    if (await AudioRecorder().hasPermission() == false) return;
     final result = await showDialog<RecordingResult>(
       context: context,
       barrierDismissible: false,
@@ -787,7 +769,7 @@ class ChatController extends State<ChatPageWithRoom>
         );
       }
       for (final event in selectedEvents) {
-        await event.remove();
+        await event.cancelSend();
       }
       setState(selectedEvents.clear);
     } catch (e, s) {
@@ -837,7 +819,7 @@ class ChatController extends State<ChatPageWithRoom>
               );
             }
           } else {
-            await event.remove();
+            await event.cancelSend();
           }
         },
       );
@@ -1328,25 +1310,12 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (callType == null) return;
 
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () =>
-          Matrix.of(context).voipPlugin!.voip.requestTurnServerCredentials(),
-    );
-    if (success.result != null) {
-      final voipPlugin = Matrix.of(context).voipPlugin;
-      try {
-        await voipPlugin!.voip.inviteToCall(room.id, callType);
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedString(context))),
-        );
-      }
-    } else {
-      await showOkAlertDialog(
-        context: context,
-        title: L10n.of(context)!.unavailable,
-        okLabel: L10n.of(context)!.next,
+    final voipPlugin = Matrix.of(context).voipPlugin;
+    try {
+      await voipPlugin!.voip.inviteToCall(room, callType);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
       );
     }
   }
@@ -1360,8 +1329,60 @@ class ChatController extends State<ChatPageWithRoom>
         editEvent = null;
       });
 
+  late final ValueNotifier<bool> _displayChatDetailsColumn;
+
+  void toggleDisplayChatDetailsColumn() async {
+    await Matrix.of(context).store.setBool(
+          SettingKeys.displayChatDetailsColumn,
+          !_displayChatDetailsColumn.value,
+        );
+    _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
+  }
+
   @override
-  Widget build(BuildContext context) => ChatView(this);
+  Widget build(BuildContext context) => Row(
+        children: [
+          Expanded(
+            child: ChatView(this),
+          ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            child: ValueListenableBuilder(
+              valueListenable: _displayChatDetailsColumn,
+              builder: (context, displayChatDetailsColumn, _) {
+                if (!FluffyThemes.isThreeColumnMode(context) ||
+                    room.membership != Membership.join ||
+                    !displayChatDetailsColumn) {
+                  return const SizedBox(
+                    height: double.infinity,
+                    width: 0,
+                  );
+                }
+                return Container(
+                  width: FluffyThemes.columnWidth,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 1,
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  ),
+                  child: ChatDetails(
+                    roomId: roomId,
+                    embeddedCloseButton: IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: toggleDisplayChatDetailsColumn,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      );
 }
 
 enum EmojiPickerType { reaction, keyboard }

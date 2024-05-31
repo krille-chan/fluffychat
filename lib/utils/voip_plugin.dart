@@ -90,11 +90,6 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   ]) =>
       webrtc_impl.createPeerConnection(configuration, constraints);
 
-  @override
-  VideoRenderer createRenderer() {
-    return webrtc_impl.RTCVideoRenderer();
-  }
-
   Future<bool> get hasCallingAccount async =>
       kIsWeb ? false : await CallKeepManager().hasPhoneAccountEnabled;
 
@@ -179,12 +174,12 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   }
 
   @override
-  Future<void> handleGroupCallEnded(GroupCall groupCall) async {
+  Future<void> handleGroupCallEnded(GroupCallSession groupCall) async {
     // TODO: implement handleGroupCallEnded
   }
 
   @override
-  Future<void> handleNewGroupCall(GroupCall groupCall) async {
+  Future<void> handleNewGroupCall(GroupCallSession groupCall) async {
     // TODO: implement handleNewGroupCall
   }
 
@@ -197,4 +192,8 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Future<void> handleMissedCall(CallSession session) async {
     // TODO: implement handleMissedCall
   }
+
+  @override
+  // TODO: implement keyProvider
+  EncryptionKeyProvider? get keyProvider => throw UnimplementedError();
 }

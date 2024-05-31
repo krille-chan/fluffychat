@@ -96,7 +96,8 @@ abstract class FluffyThemes {
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
-        selectionColor: colorScheme.onBackground.withAlpha(128),
+        selectionColor: colorScheme.onSurface.withAlpha(128),
+        selectionHandleColor: colorScheme.secondary,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
@@ -112,13 +113,15 @@ abstract class FluffyThemes {
             ? Colors.grey.withAlpha(64)
             : null,
         surfaceTintColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.background : null,
+            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
+        backgroundColor:
+            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
           statusBarBrightness: brightness,
           systemNavigationBarIconBrightness: brightness.reversed,
-          systemNavigationBarColor: colorScheme.background,
+          systemNavigationBarColor: colorScheme.surface,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -147,6 +150,9 @@ abstract class FluffyThemes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.secondaryContainer,
+          foregroundColor: colorScheme.onSecondaryContainer,
+          elevation: 0,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
           shape: RoundedRectangleBorder(

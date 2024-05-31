@@ -155,10 +155,7 @@ class MessageContent extends StatelessWidget {
             }
             return MessageDownloadContent(event, textColor);
           case MessageTypes.Video:
-            if (PlatformInfos.isMobile || PlatformInfos.isWeb) {
-              return EventVideoPlayer(event);
-            }
-            return MessageDownloadContent(event, textColor);
+            return EventVideoPlayer(event);
           case MessageTypes.File:
             return MessageDownloadContent(event, textColor);
 
@@ -254,34 +251,24 @@ class MessageContent extends StatelessWidget {
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 10;
-            return FutureBuilder<String>(
-              future: event.calcLocalizedBody(
+            return Linkify(
+              text: event.calcLocalizedBodyFallback(
                 MatrixLocals(L10n.of(context)!),
                 hideReply: true,
               ),
-              builder: (context, snapshot) {
-                return Linkify(
-                  text: snapshot.data ??
-                      event.calcLocalizedBodyFallback(
-                        MatrixLocals(L10n.of(context)!),
-                        hideReply: true,
-                      ),
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration:
-                        event.redacted ? TextDecoration.lineThrough : null,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: textColor.withAlpha(150),
-                    fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: textColor.withAlpha(150),
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                );
-              },
+              style: TextStyle(
+                color: textColor,
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: event.redacted ? TextDecoration.lineThrough : null,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: textColor.withAlpha(150),
+                fontSize: bigEmotes ? fontSize * 3 : fontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: textColor.withAlpha(150),
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
         }
       case EventTypes.CallInvite:
