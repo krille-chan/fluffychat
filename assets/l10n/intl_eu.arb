@@ -2702,5 +2702,7 @@
     }
   },
   "searchMore": "Bilatu gehiago...",
-  "@searchMore": {}
+  "@searchMore": {},
+  "restricted": "Mugatuta",
+  "@restricted": {}
 }
