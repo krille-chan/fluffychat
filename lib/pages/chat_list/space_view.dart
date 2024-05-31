@@ -285,14 +285,16 @@ class _SpaceViewState extends State<SpaceView> {
         // #Pangea
         widget.controller.cancelAction();
         if (room == null) return;
-        widget.controller.toggleSelection(room.id);
-        room.isSpace
-            ? await room.leaveSpace(
-                context,
-                Matrix.of(context).client,
-              )
-            : await widget.controller.leaveAction();
-        widget.controller.selectedRoomIds.clear();
+        if (room.isSpace) {
+          await room.leaveSpace(
+            context,
+            Matrix.of(context).client,
+          );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.leaveAction();
+          widget.controller.toggleSelection(room.id);
+        }
         _refresh();
         break;
       // await showFutureLoadingDialog(
@@ -311,27 +313,28 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
         // #Pangea
-        widget.controller.selectedRoomIds.clear();
         if (room == null) return;
-        // Pangea#
-        widget.controller.toggleSelection(room.id);
-        room.isSpace
-            // #Pangea
-            // ? await showFutureLoadingDialog(
-            //         context: context,
-            //         future: () async {
-            //           await room.archiveSpace(
-            //             Matrix.of(context).client,
-            //           );
-            //           widget.controller.selectedRoomIds.clear();
-            //         },
-            //       )
-            //     : await widget.controller.archiveAction();
-            ? await room.archiveSpace(
-                context,
-                Matrix.of(context).client,
-              )
-            : await widget.controller.archiveAction();
+        // room.isSpace
+        // ? await showFutureLoadingDialog(
+        //         context: context,
+        //         future: () async {
+        //           await room.archiveSpace(
+        //             Matrix.of(context).client,
+        //           );
+        //           widget.controller.selectedRoomIds.clear();
+        //         },
+        //       )
+        //     : await widget.controller.archiveAction();
+        if (room.isSpace) {
+          await room.archiveSpace(
+            context,
+            Matrix.of(context).client,
+          );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.archiveAction();
+          widget.controller.toggleSelection(room.id);
+        }
         // Pangea#
         _refresh();
         break;
@@ -342,8 +345,10 @@ class _SpaceViewState extends State<SpaceView> {
         // Pangea#
         widget.controller.toggleSelection(room.id);
         await widget.controller.addToSpace();
+        // #Pangea
+        setState(() => widget.controller.selectedRoomIds.clear());
+        // Pangea#
         break;
-      // Pangea#
     }
   }
 
