@@ -2679,6 +2679,5 @@
   "loading_deleteRoomSuccess": "Conversation deleted",
   "linkedinExplain_title": "Linkedin Connection Instructions",
   "linkedinExplain_instruction": "Linkedin Connection Instructions:",
-  "linkedinExplain_one": "To connect to Linkedin, please use the mobile or desktop application.",
-  "linkedinExplain_two": "Unfortunately, Linkedin does not allow direct web connections for security reasons. This feature will be added in future updates."
+  "linkedinExplain_one": "To connect to Linkedin, please use the mobile or desktop application."
 }

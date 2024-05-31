@@ -43,11 +43,6 @@ class LinkedinConnectionExplain extends StatelessWidget {
                 L10n.of(context)!.linkedinExplain_one,
                 style: const TextStyle(fontSize: 16),
               ),
-              const SizedBox(height: 10),
-              Text(
-                L10n.of(context)!.linkedinExplain_two,
-                style: const TextStyle(fontSize: 16),
-              ),
             ],
           ),
         ),
