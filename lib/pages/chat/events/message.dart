@@ -9,11 +9,9 @@ import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/events/message_reactions.dart';
 import 'package:tawkie/utils/date_time_extension.dart';
-import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/string_color.dart';
 import 'package:tawkie/widgets/avatar.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import 'package:vibration/vibration.dart';
 import 'message_content.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
@@ -530,19 +528,14 @@ class Message extends StatelessWidget {
             constraints: const BoxConstraints(
               maxWidth: FluffyThemes.columnWidth * 2.5,
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
+            padding: EdgeInsets.only(
+              left: 8.0,
+              right: 8.0,
+              top: nextEventSameSender ? 1.0 : 4.0,
+              bottom: previousEventSameSender ? 1.0 : 4.0,
             ),
             child: container,
           ),
-          padding: EdgeInsets.only(
-            left: 8.0,
-            right: 8.0,
-            top: nextEventSameSender ? 1.0 : 4.0,
-            bottom: previousEventSameSender ? 1.0 : 4.0,
-          ),
-          child: container,
         ),
       ),
     );

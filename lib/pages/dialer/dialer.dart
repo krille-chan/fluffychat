@@ -28,6 +28,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' hide VideoRenderer;
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:tawkie/utils/voip/video_renderer.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';

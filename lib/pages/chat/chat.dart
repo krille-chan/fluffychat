@@ -21,6 +21,7 @@ import 'package:record/record.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/config/setting_keys.dart';
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/chat/chat_view.dart';
 import 'package:tawkie/pages/chat/event_info_dialog.dart';

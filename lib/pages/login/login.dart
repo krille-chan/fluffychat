@@ -28,14 +28,6 @@ class Login extends StatefulWidget {
 // Endpoints will usually return a more specific error message
 
 class LoginController extends State<Login> {
-  Map<String, dynamic>? _rawLoginTypes;
-  HomeserverSummary? loginHomeserverSummary;
-  bool _supportsFlow(String flowType) =>
-      loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
-      false;
-
-  bool get supportsSso => _supportsFlow('m.login.sso');
-
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? usernameError;
@@ -338,13 +330,6 @@ class LoginController extends State<Login> {
         homeserver = Uri.https(serverName, '');
       }
 
-      loginHomeserverSummary = await client.checkHomeserver(homeserver);
-      if (supportsSso) {
-        _rawLoginTypes = await client.request(
-          RequestType.GET,
-          '/client/v3/login',
-        );
-      }
 
       final url = '$homeserver/_matrix/client/r0/login';
       final headers = {'Content-Type': 'application/json'};

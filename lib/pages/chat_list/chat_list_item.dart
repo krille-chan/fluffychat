@@ -85,6 +85,16 @@ class ChatListItem extends StatelessWidget {
       MatrixLocals(L10n.of(context)!),
     );
 
+    final filter = this.filter;
+    if (filter != null && !displayname.toLowerCase().contains(filter)) {
+      return const SizedBox.shrink();
+    }
+
+    final needLastEventSender = lastEvent == null
+        ? false
+        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+
+
     bool containsFacebook(List<String> participantsIds) {
       return participantsIds.any((id) => id.contains('@messenger2'));
     }

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_search/chat_search_view.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:tawkie/pages/chat_search/chat_search_view.dart';
+import 'package:tawkie/widgets/matrix.dart';
 
 class ChatSearchPage extends StatefulWidget {
   final String roomId;

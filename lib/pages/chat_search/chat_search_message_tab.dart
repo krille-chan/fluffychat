@@ -5,10 +5,10 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:tawkie/utils/date_time_extension.dart';
+import 'package:tawkie/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:tawkie/utils/url_launcher.dart';
+import 'package:tawkie/widgets/avatar.dart';
 
 class ChatSearchMessageTab extends StatelessWidget {
   final String searchQuery;

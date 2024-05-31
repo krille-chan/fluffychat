@@ -904,18 +904,12 @@
         "placeholders": {}
     },
     "inviteText": "{username} vous a invité·e sur FluffyChat. \n1. Installez FluffyChat : https://fluffychat.im \n2. Inscrivez-vous ou connectez-vous \n3. Ouvrez le lien d'invitation : {link}",
+    "inviteTextTawkie": "{username} t'a invité·e sur Tawkie. \nCentralise tes messages dès aujourd'hui. \nhttps://tawkie.fr",
     "@inviteText": {
         "type": "text",
         "placeholders": {
             "username": {},
             "link": {}
-        }
-    },
-    "inviteTextTawkie": "{username} t'a invité·e sur Tawkie. \nCentralise tes messages dès aujourd'hui. \nhttps://tawkie.fr",
-    "@inviteText": {
-        "type": "text",
-        "placeholders": {
-            "username": {}
         }
     },
     "isTyping": "est en train d'écrire…",
@@ -1062,7 +1056,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nouveau message dans Tawkie",
+    "newMessageInFluffyChat": "💬 Nouveau message dans FluffyChat",
     "@newMessageInFluffyChat": {
         "type": "text",
         "placeholders": {}
@@ -1097,7 +1091,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans Tawkie, nous vous recommandons d'utiliser https://ntfy.sh/ ou https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Il semble que vous n'ayez aucun service Google sur votre téléphone. C'est une bonne décision pour votre vie privée ! Pour recevoir des notifications dans FluffyChat, nous vous recommandons d'utiliser https://microg.org/ ou https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "text",
         "placeholders": {}
@@ -1657,7 +1651,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "title": "Tawkie",
+    "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
         "type": "text",
@@ -2141,7 +2135,7 @@
     "@recoveryKey": {},
     "recoveryKeyLost": "Clé de récupération perdue ?",
     "@recoveryKeyLost": {},
-    "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter Tawkie.",
+    "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter FluffyChat.",
     "@indexedDbErrorLong": {},
     "saveKeyManuallyDescription": "Enregistrer cette clé manuellement en déclenchant la boîte de dialogue de partage du système ou le presse-papiers.",
     "@saveKeyManuallyDescription": {},
@@ -2202,13 +2196,13 @@
     "@callingPermissions": {},
     "callingAccount": "Compte d'appel",
     "@callingAccount": {},
-    "callingAccountDetails": "Permet à Tawkie d'utiliser l'application de numérotation native d'Android.",
+    "callingAccountDetails": "Permet à FluffyChat d'utiliser l'application de numérotation native d'Android.",
     "@callingAccountDetails": {},
     "appearOnTop": "Apparaître en haut",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Tawkie comme compte d'appel)",
+    "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Fluffychat comme compte d'appel)",
     "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Microphone, caméra et autres autorisations de Tawkie",
+    "otherCallingPermissions": "Microphone, caméra et autres autorisations de FluffyChat",
     "@otherCallingPermissions": {},
     "newGroup": "Nouveau groupe",
     "@newGroup": {},
@@ -2313,82 +2307,76 @@
     "@createGroup": {},
     "importNow": "Importer maintenant",
     "@importNow": {},
-      "@reportErrorDescription": {},
-      "@setColorTheme": {},
-      "@banUserDescription": {},
-      "@removeDevicesDescription": {},
-      "@tryAgain": {},
-      "@unbanUserDescription": {},
-      "@messagesStyle": {},
-      "@chatDescription": {},
-      "@pushNotificationsNotAvailable": {},
-      "@invalidServerName": {},
-      "@signInWithPassword": {},
-      "@makeAdminDescription": {},
-      "@setChatDescription": {},
-      "@redactedBy": {
+    "@reportErrorDescription": {},
+    "@setColorTheme": {},
+    "@banUserDescription": {},
+    "@removeDevicesDescription": {},
+    "@tryAgain": {},
+    "@unbanUserDescription": {},
+    "@messagesStyle": {},
+    "@chatDescription": {},
+    "@pushNotificationsNotAvailable": {},
+    "@invalidServerName": {},
+    "@signInWithPassword": {},
+    "@makeAdminDescription": {},
+    "@setChatDescription": {},
+    "@redactedBy": {
         "type": "text",
         "placeholders": {
             "username": {}
         }
     },
-      "@signInWith": {
+    "@signInWith": {
         "type": "text",
         "placeholders": {
             "provider": {}
         }
     },
-      "@optionalRedactReason": {},
-      "@archiveRoomDescription": {},
-      "@exportEmotePack": {},
-      "@redactedByBecause": {
+    "@optionalRedactReason": {},
+    "@archiveRoomDescription": {},
+    "@exportEmotePack": {},
+    "@redactedByBecause": {
         "type": "text",
         "placeholders": {
             "username": {},
             "reason": {}
         }
     },
-      "@redactMessageDescription": {},
-      "@invalidInput": {},
-      "@report": {},
-      "@addChatDescription": {},
-      "@hasKnocked": {
+    "@redactMessageDescription": {},
+    "@invalidInput": {},
+    "@report": {},
+    "@addChatDescription": {},
+    "@hasKnocked": {
         "placeholders": {
             "user": {}
         }
     },
-      "@directChat": {},
-      "@wrongPinEntered": {
+    "@directChat": {},
+    "@wrongPinEntered": {
         "type": "text",
         "placeholders": {
             "seconds": {}
         }
     },
-      "@sendTypingNotifications": {},
-      "@inviteGroupChat": {},
-      "@invitePrivateChat": {},
-      "@noChatDescriptionYet": {},
-      "@learnMore": {},
-      "@roomUpgradeDescription": {},
-      "@pleaseEnterANumber": {},
-      "@profileNotFound": {},
-      "@jump": {},
-      "@shareInviteLink": {},
-      "@emoteKeyboardNoRecents": {
+    "@sendTypingNotifications": {},
+    "@inviteGroupChat": {},
+    "@invitePrivateChat": {},
+    "@noChatDescriptionYet": {},
+    "@learnMore": {},
+    "@roomUpgradeDescription": {},
+    "@pleaseEnterANumber": {},
+    "@profileNotFound": {},
+    "@jump": {},
+    "@shareInviteLink": {},
+    "@emoteKeyboardNoRecents": {
         "type": "text",
         "placeholders": {}
     },
-    "setTheme": "",
     "@setTheme": {},
-    "replace": "",
     "@replace": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "",
     "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "kickUserDescription": "",
     "@kickUserDescription": {},
-    "invite": "",
     "@invite": {},
-    "openLinkInBrowser": "",
     "@openLinkInBrowser": {},
     "youDonTHaveConversation": "Vous n'avez pas encore de conversation.",
     "connectChatNetworks": "Connectez vos réseaux de chat",

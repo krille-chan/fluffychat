@@ -7,6 +7,8 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/utils/platform_infos.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
