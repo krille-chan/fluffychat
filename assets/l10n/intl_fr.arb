@@ -2481,5 +2481,8 @@
     "subNotSubArgTwo": "Vocaux, photos, videos, post/reel",
     "subNotSubArgThree": "Chiffrement des messages",
     "subNotSubArgFour": "Remettre en non-lu",
-    "noAccountRegister": "Pas encore de compte ? Inscris-toi !"
+    "noAccountRegister": "Pas encore de compte ? Inscris-toi !",
+    "linkedinExplainTitle": "Instructions pour la connexion à Linkedin",
+    "linkedinExplainInstruction": "Instructions:",
+    "linkedinExplainOne": "Pour vous connecter à Linkedin, veuillez utiliser l'application mobile ou de bureau."
 }
