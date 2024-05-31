@@ -2562,6 +2562,7 @@
   "connectChatNetworks": "Connect your chat networks",
   "addSocialMessagingAccounts": "Add your social messaging accounts",
   "addSocialMessagingAccountsText": "Connect all of your conversations!",
+  "addSocialDoubleFactorAdvice": "Enabling two-factor identification on social networks can provide a better connection.",
   "connected": "Connected",
   "notConnected": "Not connected",
   "connectYourSocialAccount": "Login to your account",
