@@ -865,11 +865,9 @@ class BotBridgeConnection {
   }
 
   // Function to format list cookies
-  String formatCookies(List<io.Cookie> cookies) {
-    return cookies.map((cookie) {
-      return '${cookie.name}="${cookie.value}"';
-    }).join('; ');
-  }
+  String formatCookies(List<io.Cookie> cookies) =>
+      cookies.map((cookie) => '${cookie.name}="${cookie.value}"').join('; ');
+
 
   // Function to create a LinkedIn connection bridge
   Future<String> createBridgeLinkedin(
