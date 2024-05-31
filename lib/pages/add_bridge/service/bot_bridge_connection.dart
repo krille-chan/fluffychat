@@ -129,15 +129,7 @@ class BotBridgeConnection {
 
   // Ping function for each bot
   Future<String> pingSocialNetwork(SocialNetwork socialNetwork) async {
-    String botUserId;
-
-    switch (socialNetwork.name) {
-      case "Linkedin":
-        botUserId = socialNetwork.chatBot;
-        break;
-      default:
-        botUserId = '${socialNetwork.chatBot}$hostname';
-    }
+    final String botUserId = '${socialNetwork.chatBot}$hostname';
 
     // Messages to spot when we're online
     RegExp? onlineMatch;
@@ -167,13 +159,9 @@ class BotBridgeConnection {
     String? directChat = client.getDirectChatFromUserId(botUserId);
     Room? roomBot;
 
-    try{
-      directChat ??= await client.startDirectChat(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
 
-      roomBot = client.getRoomById(directChat);
-    }catch(e){
-      print("error: $e");
-    }
+    roomBot = client.getRoomById(directChat);
 
     // Send the "ping" message to the bot
     try {
@@ -259,15 +247,7 @@ class BotBridgeConnection {
   // Function to logout
   Future<String> disconnectFromNetwork(BuildContext context,
       SocialNetwork network, ConnectionStateModel connectionState) async {
-    final String? botUserId;
-
-    switch (network.name) {
-      case "Linkedin":
-        botUserId = network.chatBot;
-        break;
-      default:
-        botUserId = '${network.chatBot}$hostname';
-    }
+    final String botUserId = '${network.chatBot}$hostname';
 
     Future.microtask(() {
       connectionState.updateConnectionTitle(
@@ -884,104 +864,103 @@ class BotBridgeConnection {
     }
   }
 
-    // Function to format list cookies
-    String formatCookies(List<io.Cookie> cookies) {
-      return cookies.map((cookie) {
-        return '${cookie.name}="${cookie.value}"';
-      }).join('; ');
-    }
+  // Function to format list cookies
+  String formatCookies(List<io.Cookie> cookies) {
+    return cookies.map((cookie) {
+      return '${cookie.name}="${cookie.value}"';
+    }).join('; ');
+  }
 
-    // Function to create a LinkedIn connection bridge
-    Future<String> createBridgeLinkedin(
-        BuildContext context,
-        WebviewCookieManager cookieManager,
-        ConnectionStateModel connectionState,
-        SocialNetwork network) async {
-      final String botUserId = network.chatBot;
+  // Function to create a LinkedIn connection bridge
+  Future<String> createBridgeLinkedin(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network) async {
+    final String botUserId = '${network.chatBot}$hostname';
 
-      Future.microtask(() {
-        connectionState
-            .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
-      });
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+    });
 
-      final gotCookies = await cookieManager.getCookies(network.urlRedirect);
-      final formattedCookieString = formatCookies(gotCookies);
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString = formatCookies(gotCookies);
 
-      // Success phrases to spot
-      final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
-      final RegExp alreadySuccessMatch = LoginRegex.linkedinAlreadySuccessMatch;
+    // Success phrases to spot
+    final RegExp successMatch = LoginRegex.linkedinSuccessMatch;
+    final RegExp alreadySuccessMatch = LoginRegex.linkedinAlreadySuccessMatch;
 
-      // Add a direct chat with the Instagram bot (if you haven't already)
-      String? directChat = client.getDirectChatFromUserId(botUserId);
-      directChat ??= await client.startDirectChat(botUserId);
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
 
-      final Room? roomBot = client.getRoomById(directChat);
+    final Room? roomBot = client.getRoomById(directChat);
 
-      // Send the "login" message to the bot
-      await roomBot?.sendTextEvent("login $formattedCookieString");
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login $formattedCookieString");
 
-      await Future.delayed(const Duration(seconds: 3)); // Wait sec
+    await Future.delayed(const Duration(seconds: 3)); // Wait sec
 
-      Future.microtask(() {
-        connectionState
-            .updateConnectionTitle(L10n.of(context)!.loadingVerification);
-      });
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+    });
 
-      await Future.delayed(const Duration(seconds: 1)); // Wait sec
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
-      String result = ""; // Variable to track the result of the connection
+    String result = ""; // Variable to track the result of the connection
 
-      // variable for loop limit
-      const int maxIterations = 5;
-      int currentIteration = 0;
+    // variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
 
-      // Get the latest messages from the room (limited to the specified number)
-      while (currentIteration < maxIterations) {
-        final GetRoomEventsResponse response = await client.getRoomEvents(
-          directChat,
-          Direction.b, // To get the latest messages
-          limit: 1, // Number of messages to obtain
-        );
+    // Get the latest messages from the room (limited to the specified number)
+    while (currentIteration < maxIterations) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
 
-        final List<MatrixEvent> latestMessages = response.chunk ?? [];
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+      final String latestMessage =
+          latestMessages.first.content['body'].toString() ?? '';
 
-        if (latestMessages.isNotEmpty) {
-          if (successMatch.hasMatch(latestMessage) ||
-              alreadySuccessMatch.hasMatch(latestMessage)) {
-            Logs().v("You're logged to Linkedin");
+      if (latestMessages.isNotEmpty) {
+        if (successMatch.hasMatch(latestMessage) ||
+            alreadySuccessMatch.hasMatch(latestMessage)) {
+          Logs().v("You're logged to Linkedin");
 
-            result = "success";
+          result = "success";
 
-            Future.microtask(() {
-              connectionState
-                  .updateConnectionTitle(L10n.of(context)!.connected);
-            });
+          Future.microtask(() {
+            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          });
 
-            Future.microtask(() {
-              connectionState.updateLoading(false);
-            });
+          Future.microtask(() {
+            connectionState.updateLoading(false);
+          });
 
-            await Future.delayed(const Duration(seconds: 1)); // Wait sec
+          await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
-            break; // Exit the loop once the "login" message has been sent and is success
-          }
+          break; // Exit the loop once the "login" message has been sent and is success
         }
-        await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
-        currentIteration++;
       }
-
-      if (currentIteration == maxIterations) {
-        Logs().v("Maximum iterations reached, setting result to 'error'");
-
-        result = 'error';
-      }
-
-      Future.microtask(() {
-        connectionState.reset();
-      });
-
-      return result;
+      await Future.delayed(const Duration(seconds: 5)); // Wait 5 sec
+      currentIteration++;
     }
+
+    if (currentIteration == maxIterations) {
+      Logs().v("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
+
+    return result;
+  }
 }
