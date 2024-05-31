@@ -150,13 +150,19 @@ class LoginController extends State<Login> {
 
     for (kratos.UiNode node in nodes) {
       kratos.UiNodeInputAttributes attributes =
-          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-          TextEditingController(text: attributes.value?.toString() ?? "");
+      TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
-      if (node.type == kratos.UiNodeTypeEnum.input) {
+      // Vérification des conditions
+      if (attributes.name == "identifier" && attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
+        formWidgets.add(Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+        ));
+      } else if (node.type == kratos.UiNodeTypeEnum.input) {
         Widget inputWidget;
 
         if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.text) {
