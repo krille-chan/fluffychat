@@ -9,8 +9,8 @@ import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
-import '../extensions/client_extension.dart';
-import '../extensions/pangea_room_extension.dart';
+import '../extensions/client_extension/client_extension.dart';
+import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../models/constructs_analytics_model.dart';
 import '../models/student_analytics_event.dart';
 

@@ -5,8 +5,8 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/local.key.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -36,7 +36,7 @@ class ClassController extends BaseController {
       final List<Future<void>> classFixes = [];
       for (final room in (await _pangeaController
           .matrixState.client.classesAndExchangesImTeaching)) {
-        classFixes.add(room.setClassPowerlLevels());
+        classFixes.add(room.setClassPowerLevels());
       }
       await Future.wait(classFixes);
     } catch (err, stack) {
