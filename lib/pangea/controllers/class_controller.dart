@@ -27,7 +27,7 @@ class ClassController extends BaseController {
     _pangeaController = pangeaController;
   }
 
-  setActiveSpaceIdInChatListController(String classId) {
+  setActiveSpaceIdInChatListController(String? classId) {
     setState(data: {"activeSpaceId": classId});
   }
 

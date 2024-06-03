@@ -46,7 +46,9 @@ void onChatTap(Room room, BuildContext context) async {
     }
     if (inviteAction == InviteActions.decline) {
       // #Pangea
-      if (room.isUnread) {
+      if (!room.isSpace &&
+          room.membership == Membership.join &&
+          room.isUnread) {
         await room.markUnread(false);
       }
       // Pangea#

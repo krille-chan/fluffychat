@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -823,7 +824,7 @@ extension PangeaRoom on Room {
     for (final student in students) {
       await kick(student.id);
     }
-    if (isUnread) {
+    if (!isSpace && membership == Membership.join && isUnread) {
       await markUnread(false);
     }
     await leave();
@@ -850,6 +851,10 @@ extension PangeaRoom on Room {
         await archive();
       },
     );
+    MatrixState.pangeaController.classController
+        .setActiveSpaceIdInChatListController(
+      null,
+    );
     return success.error == null;
   }
 
@@ -869,13 +874,19 @@ extension PangeaRoom on Room {
       future: () async {
         final List<Room> children = await getChildRooms();
         for (final Room child in children) {
-          if (child.isUnread) {
+          if (!child.isSpace &&
+              child.membership == Membership.join &&
+              child.isUnread) {
             await child.markUnread(false);
           }
           await child.leave();
         }
         await leave();
       },
+    );
+    MatrixState.pangeaController.classController
+        .setActiveSpaceIdInChatListController(
+      null,
     );
     return success.error == null;
   }

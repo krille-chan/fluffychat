@@ -515,7 +515,8 @@ class ChatListController extends State<ChatList>
 
     //#Pangea
     classStream = pangeaController.classController.stateStream.listen((event) {
-      if (event["activeSpaceId"] != null && mounted) {
+      // if (event["activeSpaceId"] != null && mounted) {
+      if (mounted) {
         setActiveSpace(event["activeSpaceId"]);
       }
     });
@@ -769,10 +770,13 @@ class ChatListController extends State<ChatList>
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
       try {
-        if (client.getRoomById(roomId)!.isUnread) {
-          await client.getRoomById(roomId)!.markUnread(false);
+        final room = client.getRoomById(roomId);
+        if (!room!.isSpace &&
+            room.membership == Membership.join &&
+            room.isUnread) {
+          await room.markUnread(false);
         }
-        await client.getRoomById(roomId)!.leave();
+        await room.leave();
       } finally {
         toggleSelection(roomId);
       }

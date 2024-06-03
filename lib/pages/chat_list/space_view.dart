@@ -261,6 +261,7 @@ class _SpaceViewState extends State<SpaceView> {
                 ? L10n.of(context)!.archiveSpace
                 : L10n.of(context)!.archive,
             icon: Icons.architecture_outlined,
+            isDestructiveAction: true,
           ),
         // Pangea#
         if (room != null)
