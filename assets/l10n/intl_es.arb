@@ -1205,7 +1205,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Haga clic en el enlace del correo electrónico y luego continúe.",
+  "pleaseClickOnLink": "Haga clic en el enlace del correo electrónico y luego continúe. En casos excepcionales, el correo electrónico puede enviarse a spam o tardar hasta 5 minutos en llegar.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
