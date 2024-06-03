@@ -813,21 +813,26 @@ extension PangeaRoom on Room {
   }
 
   Future<void> archive() async {
-    final participants = await requestParticipants();
-    final students = participants
+    final students = (await requestParticipants())
         .where(
           (e) =>
+              e.id != client.userID &&
               e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
               e.id != BotName.byEnvironment,
         )
         .toList();
-    for (final student in students) {
-      await kick(student.id);
+    try {
+      for (final student in students) {
+        await kick(student.id);
+      }
+      if (!isSpace && membership == Membership.join && isUnread) {
+        await markUnread(false);
+      }
+      await leave();
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: err, s: s, data: toJson());
     }
-    if (!isSpace && membership == Membership.join && isUnread) {
-      await markUnread(false);
-    }
-    await leave();
   }
 
   Future<bool> archiveSpace(BuildContext context, Client client) async {
@@ -872,16 +877,22 @@ extension PangeaRoom on Room {
     final success = await showFutureLoadingDialog(
       context: context,
       future: () async {
-        final List<Room> children = await getChildRooms();
-        for (final Room child in children) {
-          if (!child.isSpace &&
-              child.membership == Membership.join &&
-              child.isUnread) {
-            await child.markUnread(false);
+        try {
+          final List<Room> children = await getChildRooms();
+          for (final Room child in children) {
+            if (!child.isSpace &&
+                child.membership == Membership.join &&
+                child.isUnread) {
+              await child.markUnread(false);
+            }
+            await child.leave();
           }
-          await child.leave();
+          await leave();
+        } catch (err, stack) {
+          debugger(when: kDebugMode);
+          ErrorHandler.logError(e: err, s: stack, data: powerLevels);
+          rethrow;
         }
-        await leave();
       },
     );
     MatrixState.pangeaController.classController
@@ -1091,7 +1102,7 @@ extension PangeaRoom on Room {
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room != null) {
+      if (room != null && !room.isAnalyticsRoom) {
         children.add(room);
       }
     }
