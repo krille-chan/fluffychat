@@ -153,6 +153,7 @@ class OneConstructUse {
   String chatId;
   String? msgId;
   DateTime timeStamp;
+  String? id;
 
   OneConstructUse({
     required this.useType,
@@ -162,6 +163,7 @@ class OneConstructUse {
     required this.form,
     required this.msgId,
     required this.constructType,
+    this.id,
   });
 
   factory OneConstructUse.fromJson(Map<String, dynamic> json) {
@@ -176,6 +178,7 @@ class OneConstructUse {
       constructType: json['constructType'] != null
           ? ConstructTypeUtil.fromString(json['constructType'])
           : null,
+      id: json['id'],
     );
   }
 
@@ -191,6 +194,7 @@ class OneConstructUse {
     if (!condensed && constructType != null) {
       data['constructType'] = constructType!.string;
     }
+    if (id != null) data['id'] = id;
 
     return data;
   }

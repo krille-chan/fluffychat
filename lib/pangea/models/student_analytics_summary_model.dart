@@ -58,7 +58,7 @@ class RecentMessageRecord {
 
 class StudentAnalyticsSummary {
   late List<RecentMessageRecord> _messages;
-  DateTime lastUpdated;
+  DateTime? lastUpdated;
 
   StudentAnalyticsSummary({
     required List<RecentMessageRecord> messages,
@@ -69,11 +69,7 @@ class StudentAnalyticsSummary {
 
   void addAll(List<RecentMessageRecord> msgs) {
     for (final msg in msgs) {
-      if (_messages.any((element) => element.eventId == msg.eventId)) {
-        ErrorHandler.logError(
-          m: "adding message twice in StudentAnalyticsSummary.add",
-        );
-      } else {
+      if (!(_messages.any((element) => element.eventId == msg.eventId))) {
         _messages.add(msg);
       }
     }
@@ -92,7 +88,7 @@ class StudentAnalyticsSummary {
 
   Map<String, dynamic> toJson() => {
         _messagesKey: jsonEncode(_messages.map((e) => e.toJson()).toList()),
-        _lastUpdatedKey: lastUpdated.toIso8601String(),
+        _lastUpdatedKey: lastUpdated?.toIso8601String(),
       };
 
   factory StudentAnalyticsSummary.fromJson(json) {
@@ -110,7 +106,9 @@ class StudentAnalyticsSummary {
     }
     return StudentAnalyticsSummary(
       messages: savedMessages,
-      lastUpdated: DateTime.parse(json[_lastUpdatedKey]),
+      lastUpdated: json[_lastUpdatedKey] != null
+          ? DateTime.parse(json[_lastUpdatedKey])
+          : null,
     );
   }
 }

@@ -109,4 +109,7 @@ class ModelKey {
       "discussion_trigger_reaction_enabled";
   static const String discussionTriggerReactionKey =
       "discussion_trigger_reaction_key";
+
+  static const String prevEventId = "prev_event_id";
+  static const String prevLastUpdated = "prev_last_updated";
 }

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_space/new_space_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
@@ -77,7 +76,6 @@ class NewSpaceController extends State<NewSpace> {
         stateKey: '',
         content: {
           'events': {
-            PangeaEventTypes.studentAnalyticsSummary: 0,
             EventTypes.spaceChild: 0,
           },
           'users_default': 0,

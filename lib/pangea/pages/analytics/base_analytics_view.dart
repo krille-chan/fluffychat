@@ -29,10 +29,7 @@ class BaseAnalyticsView extends StatelessWidget {
     switch (controller.selectedView!) {
       case BarChartViewSelection.messages:
         return MessagesBarChart(
-          chartAnalytics: controller.chartData(
-            context,
-            controller.selected,
-          ),
+          chartAnalytics: controller.chartData,
         );
       case BarChartViewSelection.grammar:
         return ConstructList(
@@ -41,6 +38,7 @@ class BaseAnalyticsView extends StatelessWidget {
           selected: controller.selected,
           controller: controller,
           pangeaController: controller.pangeaController,
+          refreshStream: controller.refreshStream,
         );
     }
   }
@@ -98,19 +96,34 @@ class BaseAnalyticsView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: controller.navigate,
         ),
-        actions: [
-          TimeSpanMenuButton(
-            value: controller.currentTimeSpan,
-            onChange: (TimeSpan value) =>
-                controller.toggleTimeSpan(context, value),
-          ),
-        ],
+        // actions: [
+        // TimeSpanMenuButton(
+        //   value: controller.currentTimeSpan,
+        //   onChange: (TimeSpan value) =>
+        //       controller.toggleTimeSpan(context, value),
+        // ),
+        // ],
       ),
       body: MaxWidthBody(
         withScrolling: false,
         child: controller.selectedView != null
             ? Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.refresh),
+                        onPressed: controller.onRefresh,
+                        tooltip: L10n.of(context)!.refresh,
+                      ),
+                      TimeSpanMenuButton(
+                        value: controller.currentTimeSpan,
+                        onChange: (TimeSpan value) =>
+                            controller.toggleTimeSpan(context, value),
+                      ),
+                    ],
+                  ),
                   Expanded(
                     flex: 1,
                     child: chartView(context),
@@ -153,28 +166,18 @@ class BaseAnalyticsView extends StatelessWidget {
                                       children: [
                                         ...controller.widget.tabs[0].items.map(
                                           (item) => AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
                                             avatar: item.avatar,
-                                            model: controller.chartData(
-                                              context,
-                                              AnalyticsSelected(
-                                                item.id,
-                                                controller.widget.tabs[0].type,
-                                                "",
-                                              ),
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
+                                            selected: AnalyticsSelected(
+                                              item.id,
+                                              controller.widget.tabs[0].type,
+                                              item.displayName,
                                             ),
-                                            displayName: item.displayName,
-                                            id: item.id,
-                                            type:
-                                                controller.widget.tabs[0].type,
-                                            selected:
+                                            isSelected:
                                                 controller.isSelected(item.id),
-                                            enabled: controller.enableSelection(
-                                              AnalyticsSelected(
-                                                item.id,
-                                                controller.widget.tabs[0].type,
-                                                "",
-                                              ),
-                                            ),
                                             showSpaceAnalytics: false,
                                             onTap: (_) =>
                                                 controller.toggleSelection(
@@ -188,35 +191,33 @@ class BaseAnalyticsView extends StatelessWidget {
                                                 .widget
                                                 .tabs[0]
                                                 .allowNavigateOnSelect,
+                                            pangeaController:
+                                                controller.pangeaController,
                                           ),
                                         ),
                                         if (controller
                                                 .widget.defaultSelected.type ==
                                             AnalyticsEntryType.space)
                                           AnalyticsListTile(
+                                            refreshStream:
+                                                controller.refreshStream,
+                                            defaultSelected: controller
+                                                .widget.defaultSelected,
                                             avatar: null,
-                                            model: controller.chartData(
-                                              context,
-                                              AnalyticsSelected(
-                                                controller
-                                                    .widget.defaultSelected.id,
-                                                AnalyticsEntryType.privateChats,
-                                                L10n.of(context)!
-                                                    .allPrivateChats,
-                                              ),
+                                            selected: AnalyticsSelected(
+                                              controller
+                                                  .widget.defaultSelected.id,
+                                              AnalyticsEntryType.privateChats,
+                                              L10n.of(context)!.allPrivateChats,
                                             ),
-                                            displayName: L10n.of(context)!
-                                                .allPrivateChats,
-                                            id: controller
-                                                .widget.defaultSelected.id,
-                                            type:
-                                                AnalyticsEntryType.privateChats,
                                             allowNavigateOnSelect: false,
-                                            selected: controller.isSelected(
+                                            isSelected: controller.isSelected(
                                               controller
                                                   .widget.defaultSelected.id,
                                             ),
                                             onTap: controller.toggleSelection,
+                                            pangeaController:
+                                                controller.pangeaController,
                                           ),
                                       ],
                                     ),
@@ -226,36 +227,25 @@ class BaseAnalyticsView extends StatelessWidget {
                                       children: controller.widget.tabs[1].items
                                           .map(
                                             (item) => AnalyticsListTile(
+                                              refreshStream:
+                                                  controller.refreshStream,
                                               avatar: item.avatar,
-                                              model: controller.chartData(
-                                                context,
-                                                AnalyticsSelected(
-                                                  item.id,
-                                                  controller
-                                                      .widget.tabs[1].type,
-                                                  "",
-                                                ),
+                                              defaultSelected: controller
+                                                  .widget.defaultSelected,
+                                              selected: AnalyticsSelected(
+                                                item.id,
+                                                controller.widget.tabs[1].type,
+                                                item.displayName,
                                               ),
-                                              displayName: item.displayName,
-                                              id: item.id,
-                                              type: controller
-                                                  .widget.tabs[1].type,
-                                              selected: controller
+                                              isSelected: controller
                                                   .isSelected(item.id),
                                               onTap: controller.toggleSelection,
                                               allowNavigateOnSelect: controller
                                                   .widget
                                                   .tabs[1]
                                                   .allowNavigateOnSelect,
-                                              enabled:
-                                                  controller.enableSelection(
-                                                AnalyticsSelected(
-                                                  item.id,
-                                                  controller
-                                                      .widget.tabs[1].type,
-                                                  "",
-                                                ),
-                                              ),
+                                              pangeaController:
+                                                  controller.pangeaController,
                                             ),
                                           )
                                           .toList(),

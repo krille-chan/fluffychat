@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
@@ -25,6 +24,7 @@ class ConstructList extends StatefulWidget {
   final AnalyticsSelected? selected;
   final BaseAnalyticsController controller;
   final PangeaController pangeaController;
+  final StreamController refreshStream;
 
   const ConstructList({
     super.key,
@@ -32,6 +32,7 @@ class ConstructList extends StatefulWidget {
     required this.defaultSelected,
     required this.controller,
     required this.pangeaController,
+    required this.refreshStream,
     this.selected,
   });
 
@@ -77,6 +78,7 @@ class ConstructListState extends State<ConstructList> {
                 pangeaController: widget.pangeaController,
                 defaultSelected: widget.defaultSelected,
                 selected: widget.selected,
+                refreshStream: widget.refreshStream,
               ),
             ],
           );
@@ -93,12 +95,12 @@ class ConstructListState extends State<ConstructList> {
 //    subtitle = total uses, equal to construct.content.uses.length
 // list has a fixed height of 400 and is scrollable
 class ConstructListView extends StatefulWidget {
-  // final List<ConstructEvent> constructs;
   final bool init;
   final BaseAnalyticsController controller;
   final PangeaController pangeaController;
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? selected;
+  final StreamController refreshStream;
 
   const ConstructListView({
     super.key,
@@ -106,6 +108,7 @@ class ConstructListView extends StatefulWidget {
     required this.controller,
     required this.pangeaController,
     required this.defaultSelected,
+    required this.refreshStream,
     this.selected,
   });
 
@@ -118,54 +121,29 @@ class ConstructListViewState extends State<ConstructListView> {
   final Map<String, PangeaMessageEvent> _msgEventCache = {};
   final List<PangeaMessageEvent> _msgEvents = [];
   bool fetchingUses = false;
-
-  StreamSubscription<Event>? stateSub;
-  Timer? refreshTimer;
+  StreamSubscription? refreshSubscription;
 
   @override
   void initState() {
     super.initState();
-
-    stateSub = Matrix.of(context)
-        .client
-        .onRoomState
-        .stream
-        //could optimize here be determing if the vocab event is relevant for
-        //currently displayed data
-        .where((event) => event.type == PangeaEventTypes.vocab)
-        .listen(onStateUpdate);
-  }
-
-  Future<void> onStateUpdate(Event? newState) async {
-    debugPrint("onStateUpdate construct list");
-    if (refreshTimer?.isActive ?? false) return;
-    refreshTimer = Timer(
-      const Duration(seconds: 3),
-      () async {
-        await widget.pangeaController.analytics.setConstructs(
-          constructType: ConstructType.grammar,
-          removeIT: true,
-          defaultSelected: widget.defaultSelected,
-          selected: widget.selected,
-          forceUpdate: true,
-        );
-        await fetchUses();
-      },
-    );
+    refreshSubscription = widget.refreshStream.stream.listen((forceUpdate) {
+      widget.pangeaController.analytics
+          .setConstructs(
+            constructType: ConstructType.grammar,
+            removeIT: true,
+            defaultSelected: widget.defaultSelected,
+            selected: widget.selected,
+            forceUpdate: true,
+          )
+          .then((_) => setState(() {}));
+    });
   }
 
   @override
   void dispose() {
+    refreshSubscription?.cancel();
     super.dispose();
-    refreshTimer?.cancel();
-    stateSub?.cancel();
   }
-
-  // @override
-  // void didUpdateWidget(ConstructListView oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   fetchUses();
-  // }
 
   int get lemmaIndex =>
       constructs?.indexWhere(
@@ -241,16 +219,19 @@ class ConstructListViewState extends State<ConstructListView> {
     }
   }
 
-  List<AggregateConstructUses>? get constructs =>
-      widget.pangeaController.analytics.constructs != null
-          ? widget.pangeaController.myAnalytics
-              .aggregateConstructData(
-                widget.pangeaController.analytics.constructs!,
-              )
-              .sorted(
-                (a, b) => b.uses.length.compareTo(a.uses.length),
-              )
-          : null;
+  List<AggregateConstructUses>? get constructs {
+    if (widget.pangeaController.analytics.constructs == null) {
+      return null;
+    }
+    return widget.pangeaController.myAnalytics
+        .aggregateConstructData(widget.pangeaController.analytics.constructs!)
+        .where((lemmaUses) => lemmaUses.uses.isNotEmpty)
+        .sorted((a, b) {
+      final int cmp = b.uses.length.compareTo(a.uses.length);
+      if (cmp != 0) return cmp;
+      return a.lemma.compareTo(b.lemma);
+    }).toList();
+  }
 
   AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
         (element) => element.lemma == widget.controller.currentLemma,
@@ -302,6 +283,7 @@ class ConstructListViewState extends State<ConstructListView> {
         child: Center(child: CircularProgressIndicator()),
       );
     }
+
     if ((constructs?.isEmpty ?? true) ||
         (widget.controller.currentLemma != null && currentConstruct == null)) {
       return Expanded(

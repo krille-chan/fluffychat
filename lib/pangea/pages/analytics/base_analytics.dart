@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
@@ -17,7 +15,6 @@ import '../../models/chart_analytics_model.dart';
 class BaseAnalyticsPage extends StatefulWidget {
   final String pageTitle;
   final List<TabData> tabs;
-  final Future Function(BuildContext) refreshData;
 
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? alwaysSelected;
@@ -27,7 +24,6 @@ class BaseAnalyticsPage extends StatefulWidget {
     super.key,
     required this.pageTitle,
     required this.tabs,
-    required this.refreshData,
     required this.alwaysSelected,
     required this.defaultSelected,
     this.myAnalyticsController,
@@ -42,51 +38,55 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   BarChartViewSelection? selectedView;
   AnalyticsSelected? selected;
   String? currentLemma;
+  ChartAnalyticsModel? chartData;
+  StreamController refreshStream = StreamController.broadcast();
 
   bool isSelected(String chatOrStudentId) => chatOrStudentId == selected?.id;
 
-  ChartAnalyticsModel? chartData(
-    BuildContext context,
-    AnalyticsSelected? selectedParam,
-  ) {
-    final AnalyticsSelected analyticsSelected =
-        selectedParam ?? widget.defaultSelected;
+  @override
+  void initState() {
+    super.initState();
+    setChartData();
+  }
 
-    if (analyticsSelected.type == AnalyticsEntryType.privateChats) {
-      return pangeaController.analytics.getAnalyticsLocal(
-        classId: analyticsSelected.id,
-        chatId: AnalyticsEntryType.privateChats.toString(),
-      );
-    }
+  Future<void> onRefresh() async {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        debugPrint("updating analytics");
+        await pangeaController.myAnalytics.updateAnalytics();
+        await setChartData(forceUpdate: true);
+        refreshStream.add(true);
+      },
+    );
+  }
 
-    String? chatId = analyticsSelected.type == AnalyticsEntryType.room
-        ? analyticsSelected.id
-        : null;
-    chatId ??= widget.alwaysSelected?.type == AnalyticsEntryType.room
-        ? widget.alwaysSelected?.id
-        : null;
+  Future<ChartAnalyticsModel> fetchChartData(
+    AnalyticsSelected? params, {
+    forceUpdate = false,
+  }) async {
+    ChartAnalyticsModel? data = pangeaController.analytics.getAnalyticsLocal(
+      timeSpan: currentTimeSpan,
+      defaultSelected: widget.defaultSelected,
+      selected: params,
+      forceUpdate: forceUpdate,
+    );
 
-    String? studentId = analyticsSelected.type == AnalyticsEntryType.student
-        ? analyticsSelected.id
-        : null;
-    studentId ??= widget.alwaysSelected?.type == AnalyticsEntryType.student
-        ? widget.alwaysSelected?.id
-        : null;
-
-    String? classId = analyticsSelected.type == AnalyticsEntryType.space
-        ? analyticsSelected.id
-        : null;
-    classId ??= widget.alwaysSelected?.type == AnalyticsEntryType.space
-        ? widget.alwaysSelected?.id
-        : null;
-
-    final data = pangeaController.analytics.getAnalyticsLocal(
-      classId: classId,
-      chatId: chatId,
-      studentId: studentId,
+    data ??= await pangeaController.analytics.getAnalytics(
+      defaultSelected: widget.defaultSelected,
+      selected: params,
+      forceUpdate: forceUpdate,
     );
 
     return data;
+  }
+
+  Future<void> setChartData({forceUpdate = false}) async {
+    final ChartAnalyticsModel newData = await fetchChartData(
+      selected,
+      forceUpdate: forceUpdate,
+    );
+    setState(() => chartData = newData);
   }
 
   TimeSpan get currentTimeSpan =>
@@ -103,33 +103,13 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   }
 
   Future<void> toggleSelection(AnalyticsSelected selectedParam) async {
-    final bool joinSelectedRoom =
-        selectedParam.type == AnalyticsEntryType.room &&
-            !enableSelection(
-              selectedParam,
-            );
-
-    if (joinSelectedRoom) {
-      await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = Matrix.of(context).client.waitForRoomInSync(
-                selectedParam.id,
-                join: true,
-              );
-          await Matrix.of(context).client.joinRoom(selectedParam.id);
-          await waitForRoom;
-        },
-      );
-    }
-
     setState(() {
       debugPrint("selectedParam.id is ${selectedParam.id}");
       currentLemma = null;
       selected = isSelected(selectedParam.id) ? null : selectedParam;
     });
 
-    pangeaController.analytics.setConstructs(
+    await pangeaController.analytics.setConstructs(
       constructType: ConstructType.grammar,
       defaultSelected: widget.defaultSelected,
       selected: selected,
@@ -141,54 +121,28 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
 
   Future<void> toggleTimeSpan(BuildContext context, TimeSpan timeSpan) async {
     await pangeaController.analytics.setCurrentAnalyticsTimeSpan(timeSpan);
-    await widget.refreshData(context);
     await pangeaController.analytics.setConstructs(
       constructType: ConstructType.grammar,
       defaultSelected: widget.defaultSelected,
       selected: selected,
       removeIT: true,
     );
+    await setChartData();
     setState(() {});
+    refreshStream.add(false);
   }
 
   void setSelectedView(BarChartViewSelection? view) {
     currentLemma = null;
     selectedView = view;
-    if (!enableSelection(selected)) {
-      toggleSelection(selected!);
-    }
     setState(() {});
+    refreshStream.add(false);
   }
 
   void setCurrentLemma(String? lemma) {
     currentLemma = lemma;
     setState(() {});
-  }
-
-  bool enableSelection(AnalyticsSelected? selectedParam) {
-    if (selectedView == BarChartViewSelection.grammar) {
-      if (selectedParam?.type == AnalyticsEntryType.room) {
-        return Matrix.of(context)
-                .client
-                .getRoomById(selectedParam!.id)
-                ?.membership ==
-            Membership.join;
-      }
-
-      if (selectedParam?.type == AnalyticsEntryType.student) {
-        final String? langCode =
-            pangeaController.languageController.activeL2Code(
-          roomID: widget.defaultSelected.id,
-        );
-        if (langCode == null) return false;
-        return Matrix.of(context).client.analyticsRoomLocal(
-                  langCode,
-                  selectedParam?.id,
-                ) !=
-            null;
-      }
-    }
-    return true;
+    refreshStream.add(false);
   }
 
   @override

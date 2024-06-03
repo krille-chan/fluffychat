@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import '../../widgets/matrix.dart';
 import '../constants/class_default_values.dart';
 import '../extensions/pangea_room_extension.dart';
@@ -16,7 +14,6 @@ class ClassChatPowerLevels {
     final Map<String, dynamic> powerLevelOverride = {};
     powerLevelOverride['events'] = {
       EventTypes.spaceChild: 0,
-      PangeaEventTypes.studentAnalyticsSummary: 0,
     };
     powerLevelOverride['users'] = {};
 

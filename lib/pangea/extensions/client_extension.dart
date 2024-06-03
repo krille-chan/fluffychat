@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -10,8 +8,6 @@ import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
-
-import '../utils/p_store.dart';
 
 extension PangeaClient on Client {
   List<Room> get classes => rooms.where((e) => e.isPangeaClass).toList();
@@ -97,23 +93,6 @@ extension PangeaClient on Client {
     return teachers;
   }
 
-  Future<void> updateMyLearningAnalyticsForAllClassesImIn([
-    PLocalStore? storageService,
-  ]) async {
-    try {
-      final List<Future<void>> updateFutures = [];
-      for (final classRoom in classesAndExchangesImIn) {
-        updateFutures
-            .add(classRoom.updateMyLearningAnalyticsForClass(storageService));
-      }
-      await Future.wait(updateFutures);
-    } catch (err, s) {
-      if (kDebugMode) rethrow;
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s);
-    }
-  }
-
   // get analytics room matching targetlanguage
   // if not present, create it and invite teachers of that language
   // set description to let people know what the hell it is
@@ -143,7 +122,7 @@ extension PangeaClient on Client {
     });
     if (analyticsRoom != null &&
         analyticsRoom.membership == Membership.invite) {
-      debugger(when: kDebugMode);
+      // debugger(when: kDebugMode);
       analyticsRoom
           .join()
           .onError(

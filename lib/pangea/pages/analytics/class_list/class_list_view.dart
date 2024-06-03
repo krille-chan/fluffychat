@@ -50,18 +50,23 @@ class AnalyticsClassListView extends StatelessWidget {
               builder: (context, snapshot) => ListView.builder(
                 itemCount: snapshot.hasData ? snapshot.data?.length ?? 0 : 0,
                 itemBuilder: (context, i) => AnalyticsListTile(
+                  defaultSelected: AnalyticsSelected(
+                    snapshot.data![i].id,
+                    AnalyticsEntryType.space,
+                    "",
+                  ),
                   avatar: snapshot.data![i].avatar,
-                  model: controller.pangeaController.analytics
-                      .getAnalyticsLocal(classId: snapshot.data![i].id),
-                  displayName: snapshot.data![i].name,
-                  id: snapshot.data![i].id,
-                  type: AnalyticsEntryType.space,
-                  // selected: false,
+                  selected: AnalyticsSelected(
+                    snapshot.data![i].id,
+                    AnalyticsEntryType.space,
+                    snapshot.data![i].name,
+                  ),
                   onTap: (selected) => context.go(
                     '/rooms/analytics/${selected.id}',
                   ),
                   allowNavigateOnSelect: true,
-                  selected: false,
+                  isSelected: false,
+                  pangeaController: controller.pangeaController,
                 ),
               ),
             ),

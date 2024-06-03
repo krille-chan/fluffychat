@@ -6,14 +6,16 @@ class PangeaEventTypes {
 
   static const rules = "p.rules";
 
-  static const studentAnalyticsSummary = "pangea.usranalytics";
+  // static const studentAnalyticsSummary = "pangea.usranalytics";
+  static const summaryAnalytics = "pangea.summaryAnalytics";
+  static const construct = "pangea.construct";
 
   static const translation = "pangea.translation";
   static const tokens = "pangea.tokens";
   static const choreoRecord = "pangea.record";
   static const representation = "pangea.representation";
 
-  static const vocab = "p.vocab";
+  // static const vocab = "p.vocab";
   static const roomInfo = "pangea.roomtopic";
 
   static const audio = "p.audio";

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/models/pangea_token_model.dart';
+
 import '../constants/choreo_constants.dart';
 import '../enum/construct_type_enum.dart';
 import 'constructs_analytics_model.dart';
@@ -210,9 +211,12 @@ class ChoreoRecord {
     return uses;
   }
 
-  List<OneConstructUse> toGrammarConstructUse(String msgId, String chatId) {
+  List<OneConstructUse> toGrammarConstructUse(
+    String msgId,
+    String chatId,
+    DateTime timestamp,
+  ) {
     final List<OneConstructUse> uses = [];
-    final DateTime now = DateTime.now();
     for (final step in choreoSteps) {
       if (step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted) {
         final String name = step.acceptedOrIgnoredMatch!.match.rule?.id ??
@@ -222,11 +226,12 @@ class ChoreoRecord {
           OneConstructUse(
             useType: ConstructUseType.ga,
             chatId: chatId,
-            timeStamp: now,
+            timeStamp: timestamp,
             lemma: name,
             form: name,
             msgId: msgId,
             constructType: ConstructType.grammar,
+            id: "${msgId}_${step.acceptedOrIgnoredMatch!.match.offset}_${step.acceptedOrIgnoredMatch!.match.length}",
           ),
         );
       }
