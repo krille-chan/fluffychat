@@ -58,7 +58,6 @@ class ConstructAnalyticsModel extends AnalyticsModel {
   toJson() {
     final Map<String, dynamic> usesMap = {};
     for (final use in uses) {
-      debugPrint("use: $use");
       usesMap[use.lemma] = use.toJson();
     }
 

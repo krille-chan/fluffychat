@@ -1463,7 +1463,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "pleaseClickOnLink": "Please click on the link in the email and then proceed.",
+    "pleaseClickOnLink": "Please click on the link in the email and then proceed. In rare cases, the email can be sent to spam or take up to 5 minutes to arrive.",
     "@pleaseClickOnLink": {
         "type": "text",
         "placeholders": {}
@@ -2123,7 +2123,7 @@
         "placeholders": {}
     },
     "writeAMessage": "Write a message…",
-    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}…",
+    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}",
     "@writeAMessageFlag": {
         "type": "text",
         "placeholders": {
