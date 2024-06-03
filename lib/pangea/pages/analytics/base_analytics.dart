@@ -113,6 +113,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
       selected: selected,
       removeIT: true,
     );
+    await setChartData();
 
     Future.delayed(Duration.zero, () => setState(() {}));
   }
@@ -126,7 +127,6 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
       removeIT: true,
     );
     await setChartData();
-    setState(() {});
     refreshStream.add(false);
   }
 
