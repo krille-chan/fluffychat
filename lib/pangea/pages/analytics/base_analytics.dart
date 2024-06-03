@@ -93,9 +93,7 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
       pangeaController.analytics.currentAnalyticsTimeSpan;
 
   void navigate() {
-    if (currentLemma != null) {
-      setCurrentLemma(null);
-    } else if (selectedView != null) {
+    if (selectedView != null) {
       setSelectedView(null);
     } else {
       Navigator.of(context).pop();

@@ -77,16 +77,6 @@ class BaseAnalyticsView extends StatelessWidget {
                         ? controller.setCurrentLemma(null)
                         : null,
                 ),
-              if (controller.currentLemma != null)
-                const TextSpan(
-                  text: " > ",
-                ),
-              if (controller.currentLemma != null)
-                TextSpan(
-                  text: controller.currentLemma,
-                  style: const TextStyle(decoration: TextDecoration.underline),
-                  recognizer: TapGestureRecognizer()..onTap = () {},
-                ),
             ],
           ),
           overflow: TextOverflow.ellipsis,
