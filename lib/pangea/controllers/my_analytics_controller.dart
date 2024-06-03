@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/models/constructs_model.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/models/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/summary_analytics_model.dart';
+import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
@@ -36,7 +37,10 @@ class MyAnalyticsController extends BaseController {
   ) async {
     final String? langCode = analyticsRoom.madeForLang;
     if (langCode == null) {
-      debugPrint("no lang code found for analytics room: ${analyticsRoom.id}");
+      ErrorHandler.logError(
+        e: "no lang code found for analytics room: ${analyticsRoom.id}",
+        s: StackTrace.current,
+      );
       return;
     }
 

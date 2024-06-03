@@ -96,13 +96,6 @@ class BaseAnalyticsView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: controller.navigate,
         ),
-        // actions: [
-        // TimeSpanMenuButton(
-        //   value: controller.currentTimeSpan,
-        //   onChange: (TimeSpan value) =>
-        //       controller.toggleTimeSpan(context, value),
-        // ),
-        // ],
       ),
       body: MaxWidthBody(
         withScrolling: false,
