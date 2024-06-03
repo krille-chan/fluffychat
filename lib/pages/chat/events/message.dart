@@ -515,7 +515,9 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: SwipeDirection.endToStart,
+        direction: AppConfig.swipeRightToLeftToReply
+            ? SwipeDirection.endToStart
+            : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
         child: Container(
           constraints: const BoxConstraints(

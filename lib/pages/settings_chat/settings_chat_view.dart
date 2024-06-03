@@ -65,6 +65,12 @@ class SettingsChatView extends StatelessWidget {
                 storeKey: SettingKeys.sendOnEnter,
                 defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
               ),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context)!.swipeRightToLeftToReply,
+                onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
+                storeKey: SettingKeys.swipeRightToLeftToReply,
+                defaultValue: AppConfig.swipeRightToLeftToReply,
+              ),
               Divider(
                 height: 1,
                 color: Theme.of(context).dividerColor,
