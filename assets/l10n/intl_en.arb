@@ -2123,7 +2123,7 @@
         "placeholders": {}
     },
     "writeAMessage": "Write a message…",
-    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}…",
+    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}",
     "@writeAMessageFlag": {
         "type": "text",
         "placeholders": {
