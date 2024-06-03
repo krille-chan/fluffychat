@@ -114,13 +114,12 @@ class ChatEventList extends StatelessWidget {
               }
               return const SizedBox.shrink();
             }
-            i--;
-
-            // The message at this index:
             // #Pangea
-            // final event = events[i];
-            final event = events[i - 1];
+            // i--;
+            i = i - 2;
             // Pangea#
+
+            final event = events[i];
             final animateIn = animateInEventIndex != null &&
                 controller.timeline!.events.length > animateInEventIndex &&
                 event == controller.timeline!.events[animateInEventIndex];

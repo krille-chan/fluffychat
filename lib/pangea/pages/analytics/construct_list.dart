@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
-import 'package:fluffychat/pangea/matrix_event_wrappers/construct_analytics_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
@@ -169,7 +169,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
   int get lemmaIndex =>
       constructs?.indexWhere(
-        (element) => element.content.lemma == widget.controller.currentLemma,
+        (element) => element.lemma == widget.controller.currentLemma,
       ) ??
       -1;
 
@@ -217,7 +217,7 @@ class ConstructListViewState extends State<ConstructListView> {
 
     setState(() => fetchingUses = true);
     try {
-      final List<OneConstructUse> uses = currentConstruct!.content.uses;
+      final List<OneConstructUse> uses = currentConstruct!.uses;
       _msgEvents.clear();
 
       for (final OneConstructUse use in uses) {
@@ -236,16 +236,24 @@ class ConstructListViewState extends State<ConstructListView> {
       ErrorHandler.logError(
         e: err,
         s: s,
-        m: "Failed to fetch uses for current construct ${currentConstruct?.content.lemma}",
+        m: "Failed to fetch uses for current construct ${currentConstruct?.lemma}",
       );
     }
   }
 
-  List<ConstructEvent>? get constructs =>
-      widget.pangeaController.analytics.constructs;
+  List<AggregateConstructUses>? get constructs =>
+      widget.pangeaController.analytics.constructs != null
+          ? widget.pangeaController.myAnalytics
+              .aggregateConstructData(
+                widget.pangeaController.analytics.constructs!,
+              )
+              .sorted(
+                (a, b) => b.uses.length.compareTo(a.uses.length),
+              )
+          : null;
 
-  ConstructEvent? get currentConstruct => constructs?.firstWhereOrNull(
-        (element) => element.content.lemma == widget.controller.currentLemma,
+  AggregateConstructUses? get currentConstruct => constructs?.firstWhereOrNull(
+        (element) => element.lemma == widget.controller.currentLemma,
       );
 
   // given the current lemma and list of message events, return a list of
@@ -280,6 +288,13 @@ class ConstructListViewState extends State<ConstructListView> {
     return allMsgErrorSteps;
   }
 
+  Future<void> showConstructMessagesDialog() async {
+    await showDialog<ConstructMessagesDialog>(
+      context: context,
+      builder: (c) => ConstructMessagesDialog(controller: this),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.init || fetchingUses) {
@@ -294,58 +309,92 @@ class ConstructListViewState extends State<ConstructListView> {
       );
     }
 
-    final msgEventMatches = getMessageEventMatches();
-
-    return widget.controller.currentLemma == null
-        ? Expanded(
-            child: ListView.builder(
-              itemCount: constructs!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(
-                    constructs![index].content.lemma,
-                  ),
-                  subtitle: Text(
-                    '${L10n.of(context)!.total} ${constructs![index].content.uses.length}',
-                  ),
-                  onTap: () {
-                    final String lemma = constructs![index].content.lemma;
-                    widget.controller.setCurrentLemma(lemma);
-                    fetchUses();
-                  },
-                );
-              },
+    return Expanded(
+      child: ListView.builder(
+        itemCount: constructs!.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(
+              constructs![index].lemma,
             ),
-          )
-        : Expanded(
+            subtitle: Text(
+              '${L10n.of(context)!.total} ${constructs![index].uses.length}',
+            ),
+            onTap: () async {
+              final String lemma = constructs![index].lemma;
+              widget.controller.setCurrentLemma(lemma);
+              fetchUses().then((_) => showConstructMessagesDialog());
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ConstructMessagesDialog extends StatelessWidget {
+  final ConstructListViewState controller;
+  const ConstructMessagesDialog({
+    super.key,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller.widget.controller.currentLemma == null) {
+      return const AlertDialog(content: CircularProgressIndicator.adaptive());
+    }
+
+    final msgEventMatches = controller.getMessageEventMatches();
+
+    return AlertDialog(
+      title: Center(child: Text(controller.widget.controller.currentLemma!)),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (controller.constructs![controller.lemmaIndex].uses.length >
+              controller._msgEvents.length)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(L10n.of(context)!.roomDataMissing),
+              ),
+            ),
+          SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (constructs![lemmaIndex].content.uses.length >
-                    _msgEvents.length)
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context)!.roomDataMissing),
-                    ),
-                  ),
-                Expanded(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) =>
+                ...msgEventMatches.mapIndexed(
+                  (index, event) => Column(
+                    children: [
+                      ConstructMessage(
+                        msgEvent: event.msgEvent,
+                        lemma: controller.widget.controller.currentLemma!,
+                        errorMessage: event.lemmaMatch,
+                      ),
+                      if (index < msgEventMatches.length - 1)
                         const Divider(height: 1),
-                    itemCount: msgEventMatches.length,
-                    itemBuilder: (context, index) {
-                      return ConstructMessage(
-                        msgEvent: msgEventMatches[index].msgEvent,
-                        lemma: widget.controller.currentLemma!,
-                        errorMessage: msgEventMatches[index].lemmaMatch,
-                      );
-                    },
+                    ],
                   ),
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
+          child: Text(
+            L10n.of(context)!.close.toUpperCase(),
+            style: TextStyle(
+              color:
+                  Theme.of(context).textTheme.bodyMedium?.color?.withAlpha(150),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 

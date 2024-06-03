@@ -188,10 +188,13 @@ class MessageToolbarState extends State<MessageToolbar> {
       return;
     }
 
-    setState(() {
-      currentMode = newMode;
-      updatingMode = true;
-    });
+    if (mounted) {
+      setState(() {
+        currentMode = newMode;
+        updatingMode = true;
+      });
+    }
+
     if (!subscribed) {
       toolbarContent = MessageUnsubscribedCard(
         languageTool: newMode.title(context),
@@ -221,9 +224,11 @@ class MessageToolbarState extends State<MessageToolbar> {
           break;
       }
     }
-    setState(() {
-      updatingMode = false;
-    });
+    if (mounted) {
+      setState(() {
+        updatingMode = false;
+      });
+    }
   }
 
   void showTranslation() {
@@ -289,7 +294,7 @@ class MessageToolbarState extends State<MessageToolbar> {
       final bool autoplay = MatrixState.pangeaController.pStoreService.read(
             PLocalKey.autoPlayMessages,
           ) ??
-          true;
+          false;
 
       if (widget.pangeaMessageEvent.isAudioMessage) {
         updateMode(MessageMode.speechToText);

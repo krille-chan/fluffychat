@@ -22,14 +22,14 @@ class ClassNameHeader extends StatelessWidget {
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 25),
       ),
-      label: visible.Visibility(
+      icon: visible.Visibility(
         visible: controller.showEditNameIcon,
         child: Icon(
           Icons.edit,
           color: Theme.of(context).colorScheme.onBackground,
         ),
       ),
-      icon: room.nameAndRoomTypeIcon(
+      label: room.nameAndRoomTypeIcon(
         TextStyle(
           fontSize: 20,
           color: Theme.of(context).textTheme.bodyLarge!.color,

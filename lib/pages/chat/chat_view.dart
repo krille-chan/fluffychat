@@ -42,11 +42,15 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context)!.edit,
             onPressed: controller.editSelectedEventAction,
           ),
-        IconButton(
-          icon: const Icon(Icons.copy_outlined),
-          tooltip: L10n.of(context)!.copy,
-          onPressed: controller.copyEventsAction,
-        ),
+        // #Pangea
+        if (controller.selectedEvents.length == 1 &&
+            controller.selectedEvents.single.messageType == MessageTypes.Text)
+          // Pangea#
+          IconButton(
+            icon: const Icon(Icons.copy_outlined),
+            tooltip: L10n.of(context)!.copy,
+            onPressed: controller.copyEventsAction,
+          ),
         if (controller.canSaveSelectedEvent)
           // Use builder context to correctly position the share dialog on iPad
           Builder(

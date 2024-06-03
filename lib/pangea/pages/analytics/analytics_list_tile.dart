@@ -104,7 +104,6 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
                   )
                 : null,
             selected: widget.selected,
-            enabled: widget.enabled,
             onTap: () {
               (room?.isSpace ?? false) && widget.allowNavigateOnSelect
                   ? context.go(

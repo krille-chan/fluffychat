@@ -113,7 +113,9 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     l2Code = MatrixState.pangeaController.languageController.activeL2Code(
       roomID: widget.messageEvent.room.id,
     );
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
 
     loadTranslation(() async {
       if (widget.selection.selectedText != null) {
