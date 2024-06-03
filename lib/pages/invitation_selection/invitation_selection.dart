@@ -176,22 +176,6 @@ class InvitationSelectionController extends State<InvitationSelection> {
   Future<void> inviteTeacherAction(Room room, String id) async {
     await room.invite(id);
     await room.setPower(id, ClassDefaultValues.powerLevelOfAdmin);
-    if (room.isSpace) {
-      for (final spaceChild in room.spaceChildren) {
-        if (spaceChild.roomId == null) continue;
-        final spaceChildRoom =
-            Matrix.of(context).client.getRoomById(spaceChild.roomId!);
-        if (spaceChildRoom != null &&
-            !(await spaceChildRoom.isBotDM) &&
-            !spaceChildRoom.isDirectChat) {
-          await spaceChildRoom.invite(id);
-          await spaceChildRoom.setPower(
-            id,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
-        }
-      }
-    }
   }
   // Pangea#
 

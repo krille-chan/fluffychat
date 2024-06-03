@@ -75,11 +75,6 @@ void chatListHandleSpaceTap(
               duration: const Duration(seconds: 3),
             ),
           );
-          if (space.isExchange) {
-            context.go(
-              '/rooms/join_exchange/${controller.activeSpaceId}',
-            );
-          }
         },
       );
     } else {

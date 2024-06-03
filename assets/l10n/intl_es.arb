@@ -4590,7 +4590,7 @@
   "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione.",
   "presenceStyle": "Presencia:",
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
-  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}...",
+  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}",
   "@writeAMessageFlag": {
     "type": "text",
     "placeholders": {
