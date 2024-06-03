@@ -3609,7 +3609,7 @@
     "zmCountryDisplayName": "Zambia",
     "zwCountryDisplayName": "Zimbabwe",
     "pay": "Pay",
-    "allPrivateChats": "All private chats in space (including with Pangea Bot)",
+    "allPrivateChats": "Direct chats",
     "unknownPrivateChat": "Unknown private chat",
     "copyClassCodeDesc": "Students who are already in the app can 'Join class or exchange' via the main menu.",
     "addToClass": "Add exchange to class",
