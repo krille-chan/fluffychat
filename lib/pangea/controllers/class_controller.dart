@@ -145,7 +145,13 @@ class ClassController extends BaseController {
 
       final room =
           _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
-      if (room != null && (await room.leaveIfFull(context))) {
+      if (room != null && (await room.leaveIfFull())) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 10),
+            content: Text(L10n.of(context)!.roomFull),
+          ),
+        );
         return;
       }
 

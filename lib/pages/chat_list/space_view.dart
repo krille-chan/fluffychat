@@ -177,6 +177,18 @@ class _SpaceViewState extends State<SpaceView> {
             // Wait for room actually appears in sync
             await client.waitForRoomInSync(spaceChild.roomId, join: true);
           }
+          // #Pangea
+          final room = client.getRoomById(spaceChild.roomId);
+          if (room != null && (await room.leaveIfFull())) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                duration: const Duration(seconds: 10),
+                content: Text(L10n.of(context)!.roomFull),
+              ),
+            );
+            return;
+          }
+          // Pangea#
         },
       );
       if (result.error != null) return;

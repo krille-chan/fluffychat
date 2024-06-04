@@ -1,15 +1,15 @@
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/fluffy_share.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../utils/localized_exception_extension.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
@@ -44,6 +44,18 @@ class PublicRoomBottomSheet extends StatelessWidget {
         if (client.getRoomById(roomId) == null) {
           await client.waitForRoomInSync(roomId);
         }
+        // #Pangea
+        final room = client.getRoomById(roomId);
+        if (room != null && (await room.leaveIfFull())) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: const Duration(seconds: 10),
+              content: Text(L10n.of(context)!.roomFull),
+            ),
+          );
+          throw L10n.of(context)!.roomFull;
+        }
+        // Pangea#
         return roomId;
       },
     );
