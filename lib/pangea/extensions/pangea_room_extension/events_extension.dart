@@ -1,6 +1,20 @@
 part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
+  Future<bool> _leaveIfFull(BuildContext context) async {
+    if (!isRoomAdmin &&
+        (_capacity != null) &&
+        (await _numNonAdmins) >= (int.parse(_capacity!))) {
+      ClassCodeUtil.messageSnack(context, L10n.of(context)!.roomFull);
+      if (!isSpace) {
+        markUnread(false);
+      }
+      await leave();
+      return true;
+    }
+    return false;
+  }
+
   Future<Event?> _sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,

@@ -132,8 +132,9 @@ class ClassController extends BaseController {
         ClassCodeUtil.messageSnack(context, L10n.of(context)!.alreadyInClass);
         return;
       }
+
       await _pangeaController.matrixState.client.joinRoom(classChunk.roomId);
-      setActiveSpaceIdInChatListController(classChunk.roomId);
+
       if (_pangeaController.matrixState.client.getRoomById(classChunk.roomId) ==
           null) {
         await _pangeaController.matrixState.client.waitForRoomInSync(
@@ -141,6 +142,14 @@ class ClassController extends BaseController {
           join: true,
         );
       }
+
+      final room =
+          _pangeaController.matrixState.client.getRoomById(classChunk.roomId);
+      if (room != null && (await room.leaveIfFull(context))) {
+        return;
+      }
+
+      setActiveSpaceIdInChatListController(classChunk.roomId);
 
       // add the user's analytics room to this joined space
       // so their teachers can join them via the space hierarchy

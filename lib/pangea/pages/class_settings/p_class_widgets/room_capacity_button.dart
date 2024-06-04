@@ -1,44 +1,41 @@
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
-class ClassDescriptionButton extends StatelessWidget {
+class RoomCapacityButton extends StatelessWidget {
   final Room room;
-  final ChatDetailsController controller;
-  const ClassDescriptionButton({
+  final ChatDetailsController? controller;
+  const RoomCapacityButton({
     super.key,
     required this.room,
-    required this.controller,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
+    // Edit - use FutureBuilder to allow async call
+    // String nonAdmins = (await room.numNonAdmins).toString;
     return Column(
       children: [
         ListTile(
-          onTap: room.isRoomAdmin ? controller.setTopicAction : null,
+          onTap: room.isRoomAdmin ? controller!.setCapacityAction : null,
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: iconColor,
-            child: const Icon(Icons.topic_outlined),
+            child: const Icon(Icons.reduce_capacity),
           ),
           subtitle: Text(
-            room.topic.isEmpty
-                ? (room.isRoomAdmin
-                    ? (room.isSpace
-                        ? L10n.of(context)!.classDescriptionDesc
-                        : L10n.of(context)!.chatTopicDesc)
-                    : L10n.of(context)!.topicNotSet)
-                : room.topic,
+            // Edit
+            // '$nonAdmins/${room.capacity}',
+            (room.capacity ?? L10n.of(context)!.capacityNotSet),
           ),
           title: Text(
-            room.isSpace
-                ? L10n.of(context)!.classDescription
-                : L10n.of(context)!.chatTopic,
+            L10n.of(context)!.roomCapacity,
             style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
@@ -50,24 +47,23 @@ class ClassDescriptionButton extends StatelessWidget {
   }
 }
 
-void setClassTopic(Room room, BuildContext context) {
-  final TextEditingController textFieldController =
-      TextEditingController(text: room.topic);
+void setClassCapacity(Room room, BuildContext context) {
+  final TextEditingController myTextFieldController =
+      TextEditingController(text: (room.capacity ?? ''));
   showDialog(
     context: context,
     useRootNavigator: false,
     builder: (BuildContext context) => AlertDialog(
       title: Text(
-        room.isSpace
-            ? L10n.of(context)!.classDescription
-            : L10n.of(context)!.chatTopic,
+        L10n.of(context)!.roomCapacity,
       ),
-      content: TextField(
-        controller: textFieldController,
-        keyboardType: TextInputType.multiline,
-        minLines: 1,
-        maxLines: 10,
-        maxLength: 2000,
+      content: TextFormField(
+        controller: myTextFieldController,
+        keyboardType: TextInputType.number,
+        maxLength: 2,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly,
+        ],
       ),
       actions: [
         TextButton(
@@ -79,16 +75,17 @@ void setClassTopic(Room room, BuildContext context) {
         TextButton(
           child: Text(L10n.of(context)!.ok),
           onPressed: () async {
-            if (textFieldController.text == "") return;
+            if (myTextFieldController.text == "") return;
             final success = await showFutureLoadingDialog(
               context: context,
-              future: () => room.setDescription(textFieldController.text),
+              future: () => room.updateRoomCapacity(myTextFieldController.text),
             );
             if (success.error == null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content:
-                      Text(L10n.of(context)!.groupDescriptionHasBeenChanged),
+                  content: Text(
+                    L10n.of(context)!.groupDescriptionHasBeenChanged,
+                  ), // Edit
                 ),
               );
               Navigator.of(context).pop();

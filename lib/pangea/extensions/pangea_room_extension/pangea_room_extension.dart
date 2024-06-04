@@ -10,9 +10,11 @@ import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
+import 'package:fluffychat/pangea/utils/class_code.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 // import markdown.dart
 import 'package:html_unescape/html_unescape.dart';
 import 'package:matrix/matrix.dart';
@@ -138,6 +140,9 @@ extension PangeaRoom on Room {
 
 // events
 
+  Future<bool> leaveIfFull(BuildContext context) async =>
+      await _leaveIfFull(context);
+
   Future<Event?> sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,
@@ -212,6 +217,8 @@ extension PangeaRoom on Room {
 
 // room_information
 
+  Future<int> get numNonAdmins async => await _numNonAdmins;
+
   DateTime? get creationTime => _creationTime;
 
   String? get creatorId => _creatorId;
@@ -241,6 +248,11 @@ extension PangeaRoom on Room {
   bool get isAnalyticsRoom => _isAnalyticsRoom;
 
 // room_settings
+
+  Future<String> updateRoomCapacity(String newCapacity) =>
+      _updateRoomCapacity(newCapacity);
+
+  String? get capacity => _capacity;
 
   PangeaRoomRules? get pangeaRoomRules => _pangeaRoomRules;
 

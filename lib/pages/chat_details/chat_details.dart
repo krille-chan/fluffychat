@@ -3,8 +3,9 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/set_class_name.dart';
-import 'package:fluffychat/pangea/utils/set_class_topic.dart';
 import 'package:fluffychat/pangea/widgets/class/add_space_toggles.dart';
 import 'package:fluffychat/pangea/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -231,6 +232,13 @@ class ChatDetailsController extends State<ChatDetails> {
     // }
     // Pangea#
   }
+
+  // #Pangea
+  void setCapacityAction() async {
+    final room = Matrix.of(context).client.getRoomById(roomId!)!;
+    setClassCapacity(room, context);
+  }
+  // Pangea#
 
   void setGuestAccess() async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
