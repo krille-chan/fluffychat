@@ -278,9 +278,6 @@ class ConstructListViewState extends State<ConstructListView> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-      "constructs lengths: ${constructs?.map((x) => '${x.lemma}: ${x.uses.length}').toList()}",
-    );
     if (!widget.init || fetchingUses) {
       return const Expanded(
         child: Center(child: CircularProgressIndicator()),

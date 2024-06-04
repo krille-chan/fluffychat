@@ -245,7 +245,6 @@ class MyAnalyticsController extends BaseController {
   List<Room> _studentSpaces = [];
 
   Future<void> setStudentSpaces() async {
-    if (_studentSpaces.isNotEmpty) return;
     _studentSpaces = await _pangeaController
         .matrixState.client.classesAndExchangesImStudyingIn;
   }
@@ -284,6 +283,7 @@ class MyAnalyticsController extends BaseController {
 
   Future<void> updateAnalytics() async {
     await setStudentChats();
+    await setStudentSpaces();
     final List<Room> analyticsRooms =
         _pangeaController.matrixState.client.allMyAnalyticsRooms;
     analyticsRooms.addAll(await createMissingAnalyticsRoom());
