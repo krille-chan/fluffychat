@@ -90,80 +90,37 @@ class RegisterController extends State<Register> {
     }
   }
 
-  bool _validateEmail(String email) {
-    // Define regex to validate email format
-    final RegExp emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-
-    // Check if the email matches the regex
-    if (!emailRegex.hasMatch(email)) {
-      setState(() => messageError = L10n.of(context)?.registerEmailError);
-      return false;
-    }
-
-    // Reset email error if valid
-    setState(() => messageError = null);
-    return true;
-  }
-
   Future<void> processKratosNodes(
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     List<Widget> formWidgets = [];
     List<kratos.UiNode> allNodes = [];
 
     for (kratos.UiNode node in nodes) {
-      kratos.UiNodeInputAttributes attributes =
+      var attributes =
           node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
           TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
-      if (attributes.name == "identifier" &&
-          attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
-        formWidgets.add(Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text("Code envoyé à ${attributes.value!}" ?? ""),
-        ));
-      } else if (node.type == kratos.UiNodeTypeEnum.input) {
-        Widget inputWidget;
-
-        switch (attributes.type) {
-          case kratos.UiNodeInputAttributesTypeEnum.text:
-          case kratos.UiNodeInputAttributesTypeEnum.email:
-            inputWidget = Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextFormField(
-                controller: controller,
-                onChanged: (String data) {},
-                decoration: InputDecoration(
-                  label: Text(node.meta.label!.text),
-                ),
-                enabled: !attributes.disabled,
-              ),
-            );
-            break;
-          case kratos.UiNodeInputAttributesTypeEnum.submit:
-            inputWidget = Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  _submitForm(actionUrl);
-                },
-                child: Text(node.meta.label!.text),
-              ),
-            );
-            break;
-          default:
-            inputWidget = Container(); // Placeholder for unsupported types
-        }
-
-        formWidgets.add(inputWidget);
-        allNodes.add(node);
+      Widget widget;
+      switch (attributes.type) {
+        case kratos.UiNodeInputAttributesTypeEnum.hidden:
+          widget = _buildHiddenWidget(attributes);
+          break;
+        case kratos.UiNodeInputAttributesTypeEnum.text:
+        case kratos.UiNodeInputAttributesTypeEnum.email:
+          widget = _buildTextInputWidget(attributes, controller, node);
+          break;
+        case kratos.UiNodeInputAttributesTypeEnum.submit:
+          widget = _buildSubmitButton(attributes, actionUrl, node);
+          break;
+        default:
+          widget = Container(); // Placeholder for unsupported types
       }
 
-      setState(() => loading = false);
+      formWidgets.add(widget);
+      allNodes.add(node);
     }
 
     // Add old list to stack before updating
@@ -176,6 +133,62 @@ class RegisterController extends State<Register> {
       formNodes = allNodes;
       loading = false;
     });
+  }
+
+  Widget _buildHiddenWidget(kratos.UiNodeInputAttributes attributes) {
+    if (attributes.name == "identifier") {
+      return Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+      );
+    }
+    return Container();
+  }
+
+  Widget _buildTextInputWidget(
+    kratos.UiNodeInputAttributes attributes,
+    TextEditingController controller,
+    kratos.UiNode node,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: TextFormField(
+        controller: controller,
+        onChanged: (String data) {},
+        decoration: InputDecoration(
+          label: Text(node.meta.label!.text),
+        ),
+        enabled: !attributes.disabled,
+      ),
+    );
+  }
+
+  Widget _buildSubmitButton(kratos.UiNodeInputAttributes attributes,
+      String actionUrl, kratos.UiNode node) {
+    if (attributes.name == "resend") {
+      return Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: TextButton(
+          onPressed: () {
+            // Implement your resend code logic here
+          },
+          child: Text(node.meta.label!.text),
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ElevatedButton(
+          onPressed: () {
+            _submitForm(actionUrl);
+          },
+          child: Text(
+            node.meta.label!.text,
+            style: TextStyle(color: Colors.green[500]),
+          ),
+        ),
+      );
+    }
   }
 
   Future<void> _submitForm(String actionUrl) async {
