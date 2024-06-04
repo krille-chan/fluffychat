@@ -25,7 +25,7 @@ class AnalyticsListTile extends StatefulWidget {
     required this.onTap,
     required this.pangeaController,
     // this.isEnabled = true,
-    this.showSpaceAnalytics = true,
+    // this.showSpaceAnalytics = true,
     this.refreshStream,
   });
 
@@ -39,7 +39,7 @@ class AnalyticsListTile extends StatefulWidget {
   final bool allowNavigateOnSelect;
   final bool isSelected;
   // final bool isEnabled;
-  final bool showSpaceAnalytics;
+  // final bool showSpaceAnalytics;
 
   final PangeaController pangeaController;
   final StreamController? refreshStream;
@@ -128,11 +128,9 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
               ),
             ],
           ),
-          subtitle: widget.showSpaceAnalytics || !(room?.isSpace ?? false)
-              ? ListSummaryAnalytics(
-                  chartAnalytics: tileData,
-                )
-              : null,
+          subtitle: ListSummaryAnalytics(
+            chartAnalytics: tileData,
+          ),
           selected: widget.isSelected,
           onTap: () {
             (room?.isSpace ?? false) && widget.allowNavigateOnSelect

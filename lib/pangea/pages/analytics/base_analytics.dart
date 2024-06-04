@@ -50,8 +50,20 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   @override
   void initState() {
     super.initState();
-    runFirstRefresh();
+    if (widget.defaultSelected.type == AnalyticsEntryType.student) {
+      runFirstRefresh();
+    }
     setChartData();
+  }
+
+  @override
+  void didUpdateWidget(covariant BaseAnalyticsPage oldWidget) {
+    // when a user is a parent space's analytics and clicks on a subspace
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.defaultSelected.id != widget.defaultSelected.id) {
+      setChartData();
+      refreshStream.add(false);
+    }
   }
 
   Future<void> runFirstRefresh() async {

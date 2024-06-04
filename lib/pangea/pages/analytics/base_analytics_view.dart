@@ -163,7 +163,6 @@ class BaseAnalyticsView extends StatelessWidget {
                                             ),
                                             isSelected:
                                                 controller.isSelected(item.id),
-                                            showSpaceAnalytics: false,
                                             onTap: (_) =>
                                                 controller.toggleSelection(
                                               AnalyticsSelected(

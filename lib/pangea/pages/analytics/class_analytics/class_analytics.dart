@@ -40,6 +40,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
       _classRoom = classId != null
           ? Matrix.of(context).client.getRoomById(classId!)
           : null;
+      getChatAndStudents();
     }
     return _classRoom;
   }
@@ -47,6 +48,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
   @override
   void initState() {
     super.initState();
+    debugPrint("init class analytics");
     Future.delayed(Duration.zero, () async {
       if (classRoom == null || (!(classRoom?.isSpace ?? false))) {
         context.go('/rooms');
@@ -62,9 +64,7 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
       if (classRoom != null) {
         final response = await Matrix.of(context).client.getSpaceHierarchy(
               classRoom!.id,
-              maxDepth: 1,
             );
-
         students = classRoom!.students;
         chats = response.rooms
             .where(

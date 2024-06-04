@@ -97,11 +97,9 @@ class AnalyticsController extends BaseController {
       }
     }
 
-    final List<String> spaceChildrenIds = space.spaceChildren
-        .map((e) => e.roomId)
-        .where((e) => e != null)
-        .cast<String>()
-        .toList();
+    final resp = await space.client.getSpaceHierarchy(space.id);
+    final List<String> spaceChildrenIds =
+        resp.rooms.map((room) => room.roomId).toList();
 
     final List<SummaryAnalyticsEvent> allAnalyticsEvents = [];
     for (final analyticsEvent in analyticsEvents) {
@@ -180,6 +178,14 @@ class AnalyticsController extends BaseController {
     String? roomID,
   ) {
     List<SummaryAnalyticsEvent> filtered = [...unfiltered];
+    Room? room;
+    if (roomID != null) {
+      room = _pangeaController.matrixState.client.getRoomById(roomID);
+      if (room?.isSpace == true) {
+        return filterSpaceAnalytics(unfiltered, roomID);
+      }
+    }
+
     filtered = filtered
         .where(
           (e) => (e.content).messages.any((u) => u.chatId == roomID),
@@ -229,9 +235,10 @@ class AnalyticsController extends BaseController {
 
     List<SummaryAnalyticsEvent> filtered =
         List<SummaryAnalyticsEvent>.from(unfiltered);
+
     filtered = filtered
         .where(
-          (e) => (e.content).messages.any((u) => chatIds.contains(u.chatId)),
+          (e) => e.content.messages.any((u) => chatIds.contains(u.chatId)),
         )
         .toList();
 
@@ -429,11 +436,9 @@ class AnalyticsController extends BaseController {
       }
     }
 
-    final List<String> spaceChildrenIds = space.spaceChildren
-        .map((e) => e.roomId)
-        .where((e) => e != null)
-        .cast<String>()
-        .toList();
+    final resp = await space.client.getSpaceHierarchy(space.id);
+    final List<String> spaceChildrenIds =
+        resp.rooms.map((room) => room.roomId).toList();
 
     final List<ConstructAnalyticsEvent> allConstructs = [];
     for (final constructEvent in constructEvents) {
