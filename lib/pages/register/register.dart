@@ -97,26 +97,29 @@ class RegisterController extends State<Register> {
 
     for (kratos.UiNode node in nodes) {
       var attributes =
-          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-          TextEditingController(text: attributes.value?.toString() ?? "");
+      TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
       Widget widget;
-      switch (attributes.type) {
-        case kratos.UiNodeInputAttributesTypeEnum.hidden:
-          widget = _buildHiddenWidget(attributes);
-          break;
-        case kratos.UiNodeInputAttributesTypeEnum.text:
-        case kratos.UiNodeInputAttributesTypeEnum.email:
-          widget = _buildTextInputWidget(attributes, controller, node);
-          break;
-        case kratos.UiNodeInputAttributesTypeEnum.submit:
-          widget = _buildSubmitButton(attributes, actionUrl, node);
-          break;
-        default:
-          widget = Container(); // Placeholder for unsupported types
+      if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.email) {
+        widget = _buildEmailInputWidget(attributes, controller, node);
+      } else {
+        switch (attributes.type) {
+          case kratos.UiNodeInputAttributesTypeEnum.hidden:
+            widget = _buildHiddenWidget(attributes);
+            break;
+          case kratos.UiNodeInputAttributesTypeEnum.text:
+            widget = _buildTextInputWidget(attributes, controller, node);
+            break;
+          case kratos.UiNodeInputAttributesTypeEnum.submit:
+            widget = _buildSubmitButton(attributes, actionUrl, node);
+            break;
+          default:
+            widget = Container(); // Placeholder for unsupported types
+        }
       }
 
       formWidgets.add(widget);
@@ -145,11 +148,46 @@ class RegisterController extends State<Register> {
     return Container();
   }
 
+  bool _validateEmail(String email) {
+    // Define regex to validate email format
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    // Check if the email matches the regex
+    if (!emailRegex.hasMatch(email)) {
+      setState(() => messageError = L10n.of(context)?.registerEmailError);
+      return false;
+    }
+
+    // Reset email error if valid
+    setState(() => messageError = null);
+    return true;
+  }
+
+  Widget _buildEmailInputWidget(
+      kratos.UiNodeInputAttributes attributes,
+      TextEditingController controller,
+      kratos.UiNode node,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          label: Text(node.meta.label!.text),
+        ),
+        keyboardType: TextInputType.emailAddress,
+        enabled: !attributes.disabled,
+      ),
+    );
+  }
+
   Widget _buildTextInputWidget(
-    kratos.UiNodeInputAttributes attributes,
-    TextEditingController controller,
-    kratos.UiNode node,
-  ) {
+      kratos.UiNodeInputAttributes attributes,
+      TextEditingController controller,
+      kratos.UiNode node,
+      ) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: TextFormField(
@@ -210,12 +248,18 @@ class RegisterController extends State<Register> {
 
         formData[attributes.name] = value; // Convert JsonObject to String
 
-        if (attributes.name == 'identifier') {
+        if (attributes.name == 'traits.email') {
           email = value;
         } else if (attributes.name == 'resend') {
           code = value;
         }
       }
+    }
+
+    // Validate email
+    if (email != null && !_validateEmail(email)) {
+      setState(() => loading = false);
+      return;
     }
 
     if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {
