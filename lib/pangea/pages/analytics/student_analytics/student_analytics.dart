@@ -27,6 +27,13 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
   @override
   void initState() {
     super.initState();
+
+    final listFutures = [
+      _pangeaController.myAnalytics.setStudentChats(),
+      _pangeaController.myAnalytics.setStudentSpaces(),
+    ];
+    Future.wait(listFutures).then((_) => setState(() {}));
+
     stateSub = _pangeaController.myAnalytics.stateStream.listen((_) {
       setState(() {});
     });

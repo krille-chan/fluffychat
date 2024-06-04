@@ -1,6 +1,10 @@
 import 'dart:async';
 
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/models/analytics_event.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +50,30 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   @override
   void initState() {
     super.initState();
+    runFirstRefresh();
     setChartData();
+  }
+
+  Future<void> runFirstRefresh() async {
+    final analyticsRooms =
+        pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    final List<AnalyticsEvent> analyticsEvent = [];
+    for (final analyticsRoom in analyticsRooms) {
+      final lastSummaryEvent = await analyticsRoom
+          .getLastAnalyticsEvent(PangeaEventTypes.summaryAnalytics);
+      final lastConstructEvent =
+          await analyticsRoom.getLastAnalyticsEvent(PangeaEventTypes.construct);
+      if (lastSummaryEvent != null) {
+        analyticsEvent.add(lastSummaryEvent);
+      }
+      if (lastConstructEvent != null) {
+        analyticsEvent.add(lastConstructEvent);
+      }
+    }
+
+    if (analyticsEvent.isNotEmpty) return;
+    onRefresh();
   }
 
   Future<void> onRefresh() async {

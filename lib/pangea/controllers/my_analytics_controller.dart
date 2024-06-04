@@ -331,6 +331,7 @@ class MyAnalyticsController extends BaseController {
         lastUpdates.add(lastEvent!.content.lastUpdated!);
       }
     }
+    if (lastUpdates.isEmpty) return null;
     return lastUpdates.reduce(
       (value, element) => value.isAfter(element) ? value : element,
     );
