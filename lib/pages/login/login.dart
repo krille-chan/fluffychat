@@ -265,13 +265,7 @@ class LoginController extends State<Login> {
 
   // How to return to the previous list
   void popFormWidgets() {
-    if (_previousFormWidgets.isNotEmpty) {
-      setState(() {
-        authWidgets = _previousFormWidgets.removeLast();
-        // Restore formNodes if necessary
-        // formNodes = _previousFormNodes.removeLast();
-      });
-    }
+    getLoginOry();
   }
 
   Future<void> oryLoginWithCode(
