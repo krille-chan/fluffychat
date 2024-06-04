@@ -13,57 +13,66 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginScaffold(
-      enforceMobileMode: Matrix.of(context).client.isLogged(),
-      appBar: AppBar(
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
-      ),
-      body: Builder(
-        builder: (context) {
-          return AutofillGroup(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              children: <Widget>[
-                Image.asset('assets/banner_transparent.png'),
-                const SizedBox(height: 16),
-                !controller.loading
-                ?Column(
-                  children: [
-                    ...controller.authWidgets,
-                  ],
-                ):const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                const SizedBox(height: 16),
-                if (controller.messageError != null)
+    return
+      LoginScaffold(
+        enforceMobileMode: Matrix.of(context).client.isLogged(),
+        appBar: AppBar(
+          automaticallyImplyLeading: !controller.loading,
+          titleSpacing: !controller.loading ? 0 : null,
+          leading: controller.canPop
+              ? IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              controller.popFormWidgets();
+            },
+          )
+              : null,
+        ),
+        body: Builder(
+          builder: (context) {
+            return AutofillGroup(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                children: <Widget>[
+                  Image.asset('assets/banner_transparent.png'),
+                  const SizedBox(height: 16),
+                  !controller.loading
+                      ?Column(
+                    children: [
+                      ...controller.authWidgets,
+                    ],
+                  ):const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  const SizedBox(height: 16),
+                  if (controller.messageError != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        controller.messageError!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  // Register redirection
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      controller.messageError!,
-                      style: const TextStyle(color: Colors.red),
+                    child: TextButton.icon(
+                      onPressed: controller.loading
+                          ? () {}
+                          : () => context.go('/home/register'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.error,
+                      ),
+                      icon: const Icon(Icons.app_registration),
+                      label: Text(L10n.of(context)!.noAccountRegister),
                     ),
                   ),
-                // Register redirection
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextButton.icon(
-                    onPressed: controller.loading
-                        ? () {}
-                        : () => context.go('/home/register'),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.error,
-                    ),
-                    icon: const Icon(Icons.app_registration),
-                    label: Text(L10n.of(context)!.noAccountRegister),
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-            ),
-          );
-        },
-      ),
-    );
+                  const SizedBox(height: 16),
+                ],
+              ),
+            );
+          },
+        ),
+      );
   }
 }

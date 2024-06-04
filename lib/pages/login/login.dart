@@ -52,6 +52,11 @@ class LoginController extends State<Login> {
   List<TextEditingController> textControllers = [];
   List<kratos.UiNode> formNodes = [];
 
+  // Stack for storing old widget lists
+  final List<List<Widget>> _previousFormWidgets = [];
+
+  bool get canPop => _previousFormWidgets.isNotEmpty;
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +68,11 @@ class LoginController extends State<Login> {
          checkUserQueueState(sessionToken);
        }
      });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {
@@ -199,11 +209,27 @@ class LoginController extends State<Login> {
       setState(() => loading = false);
     }
 
+    // Add old list to stack before updating
+    if (authWidgets.isNotEmpty) {
+      _previousFormWidgets.add(List.from(authWidgets));
+    }
+
     setState(() {
       authWidgets = formWidgets;
       formNodes = allNodes;
       loading = false;
     });
+  }
+
+  // How to return to the previous list
+  void popFormWidgets() {
+    if (_previousFormWidgets.isNotEmpty) {
+      setState(() {
+        authWidgets = _previousFormWidgets.removeLast();
+        // Restore formNodes if necessary
+        // formNodes = _previousFormNodes.removeLast();
+      });
+    }
   }
 
   Future<void> oryLoginWithCode(
