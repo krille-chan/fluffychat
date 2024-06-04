@@ -54,7 +54,7 @@ class LoginController extends State<Login> {
   List<kratos.UiNode> formNodes = [];
 
   // Stack for storing old widget lists
-  final List<List<Widget>> _previousFormWidgets = [];
+  late List<List<Widget>> _previousFormWidgets = [];
 
   bool get canPop => _previousFormWidgets.isNotEmpty;
 
@@ -265,7 +265,10 @@ class LoginController extends State<Login> {
 
   // How to return to the previous list
   void popFormWidgets() {
-    getLoginOry();
+    setState(() => _previousFormWidgets = []);
+    if (_previousFormWidgets.isNotEmpty) {
+      getLoginOry();
+    }
   }
 
   Future<void> oryLoginWithCode(

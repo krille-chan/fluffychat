@@ -40,7 +40,7 @@ class RegisterController extends State<Register> {
   List<kratos.UiNode> formNodes = [];
 
   // Stack for storing old widget lists
-  final List<List<Widget>> _previousFormWidgets = [];
+  late List<List<Widget>> _previousFormWidgets = [];
 
   bool get canPop => _previousFormWidgets.isNotEmpty;
 
@@ -68,13 +68,10 @@ class RegisterController extends State<Register> {
 
   // How to return to the previous list
   void popFormWidgets() {
+    setState(() => _previousFormWidgets = []);
     if (_previousFormWidgets.isNotEmpty) {
-      setState(() {
-        authWidgets = _previousFormWidgets.removeLast();
-        // Restore formNodes if necessary
-        // formNodes = _previousFormNodes.removeLast();
-      });
-    }
+      register();
+      }
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {
