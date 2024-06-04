@@ -39,21 +39,20 @@ class LoginView extends StatelessWidget {
                   !controller.loading
                       ?Column(
                     children: [
+                      if (controller.messageError != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            controller.messageError!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
                       ...controller.authWidgets,
                     ],
                   ):const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  const SizedBox(height: 16),
-                  if (controller.messageError != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        controller.messageError!,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  // Register redirection
+                  const SizedBox(height: 16), // Register redirection
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: TextButton.icon(
