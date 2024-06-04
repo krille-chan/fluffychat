@@ -2609,5 +2609,6 @@
     "subNotSubArgTwo": "Voice messages, photo, video, post/reel",
     "subNotSubArgThree": "Message encryption",
     "subNotSubArgFour": "Mark unread",
-    "noAccountRegister": "No account yet ? Register now"
+    "noAccountRegister": "No account yet ? Register now",
+    "authCodeSentTo": "Code envoyé à"
 }

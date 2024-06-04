@@ -2530,5 +2530,6 @@
     "subNotSubArgTwo": "Vocaux, photos, videos, post/reel",
     "subNotSubArgThree": "Chiffrement des messages",
     "subNotSubArgFour": "Remettre en non-lu",
-    "noAccountRegister": "Pas encore de compte ? Inscris-toi !"
+    "noAccountRegister": "Pas encore de compte ? Inscris-toi !",
+    "authCodeSentTo": "Code envoyé à"
 }
