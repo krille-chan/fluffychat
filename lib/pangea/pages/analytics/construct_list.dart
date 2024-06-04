@@ -278,14 +278,16 @@ class ConstructListViewState extends State<ConstructListView> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(
+      "constructs lengths: ${constructs?.map((x) => '${x.lemma}: ${x.uses.length}').toList()}",
+    );
     if (!widget.init || fetchingUses) {
       return const Expanded(
         child: Center(child: CircularProgressIndicator()),
       );
     }
 
-    if ((constructs?.isEmpty ?? true) ||
-        (widget.controller.currentLemma != null && currentConstruct == null)) {
+    if (constructs?.isEmpty ?? true) {
       return Expanded(
         child: Center(child: Text(L10n.of(context)!.noDataFound)),
       );
@@ -551,14 +553,7 @@ class ConstructMessageMetadata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String roomName = msgEvent.event.room.name.isEmpty
-        ? Matrix.of(context)
-                .client
-                .getRoomById(msgEvent.event.room.id)
-                ?.getLocalizedDisplayname() ??
-            ""
-        : msgEvent.event.room.name;
-
+    final String roomName = msgEvent.event.room.getLocalizedDisplayname();
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
       child: Column(

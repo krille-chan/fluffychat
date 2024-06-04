@@ -117,6 +117,7 @@ class AnalyticsController extends BaseController {
   ChartAnalyticsModel? getAnalyticsLocal({
     TimeSpan? timeSpan,
     required AnalyticsSelected defaultSelected,
+    required DateTime? analyticsLastUpdated,
     AnalyticsSelected? selected,
     bool forceUpdate = false,
     bool updateExpired = false,
@@ -132,8 +133,11 @@ class AnalyticsController extends BaseController {
     );
 
     if (index != -1) {
+      final DateTime? cachedLastUpdate =
+          _cachedAnalyticsModels[index].summaryLastUpdated;
       if ((updateExpired && _cachedAnalyticsModels[index].isExpired) ||
-          forceUpdate) {
+          forceUpdate ||
+          cachedLastUpdate != analyticsLastUpdated) {
         _cachedAnalyticsModels.removeAt(index);
       } else {
         return _cachedAnalyticsModels[index].chartAnalyticsModel;
@@ -146,6 +150,7 @@ class AnalyticsController extends BaseController {
   void cacheAnalytics({
     required ChartAnalyticsModel chartAnalyticsModel,
     required AnalyticsSelected defaultSelected,
+    required DateTime? summaryLastUpdated,
     AnalyticsSelected? selected,
     TimeSpan? timeSpan,
   }) {
@@ -155,6 +160,7 @@ class AnalyticsController extends BaseController {
         chartAnalyticsModel: chartAnalyticsModel,
         defaultSelected: defaultSelected,
         selected: selected,
+        summaryLastUpdated: summaryLastUpdated,
       ),
     );
   }
@@ -273,10 +279,13 @@ class AnalyticsController extends BaseController {
     bool forceUpdate = false,
   }) async {
     try {
+      final DateTime? analyticsLastUpdated = await _pangeaController.myAnalytics
+          .analyticsLastUpdated(PangeaEventTypes.summaryAnalytics);
       final local = getAnalyticsLocal(
         defaultSelected: defaultSelected,
         selected: selected,
         forceUpdate: forceUpdate,
+        analyticsLastUpdated: analyticsLastUpdated,
       );
       if (local != null && !forceUpdate) {
         return local;
@@ -330,6 +339,7 @@ class AnalyticsController extends BaseController {
           defaultSelected: defaultSelected,
           selected: selected,
           timeSpan: currentAnalyticsTimeSpan,
+          summaryLastUpdated: analyticsLastUpdated,
         );
       }
 
@@ -510,26 +520,36 @@ class AnalyticsController extends BaseController {
     required TimeSpan timeSpan,
     required ConstructType constructType,
     required AnalyticsSelected defaultSelected,
+    required DateTime? constructsLastUpdated,
     AnalyticsSelected? selected,
   }) {
-    final cachedEntry = _cachedConstructs
-        .firstWhereOrNull(
-          (e) =>
-              e.timeSpan == timeSpan &&
-              e.type == constructType &&
-              e.defaultSelected.id == defaultSelected.id &&
-              e.defaultSelected.type == defaultSelected.type &&
-              e.selected?.id == selected?.id &&
-              e.selected?.type == selected?.type,
-        )
-        ?.events;
-    return cachedEntry;
+    final index = _cachedConstructs.indexWhere(
+      (e) =>
+          e.timeSpan == timeSpan &&
+          e.type == constructType &&
+          e.defaultSelected.id == defaultSelected.id &&
+          e.defaultSelected.type == defaultSelected.type &&
+          e.selected?.id == selected?.id &&
+          e.selected?.type == selected?.type,
+    );
+
+    if (index > -1) {
+      if (_cachedConstructs[index].constructsLastUpdated !=
+          constructsLastUpdated) {
+        _cachedConstructs.removeAt(index);
+        return null;
+      }
+      return _cachedConstructs[index].events;
+    }
+
+    return null;
   }
 
   void cacheConstructs({
     required ConstructType constructType,
     required List<ConstructAnalyticsEvent> events,
     required AnalyticsSelected defaultSelected,
+    required DateTime? constructsLastUpdated,
     AnalyticsSelected? selected,
   }) {
     _cachedConstructs.add(
@@ -539,6 +559,7 @@ class AnalyticsController extends BaseController {
         events: events,
         defaultSelected: defaultSelected,
         selected: selected,
+        constructsLastUpdated: constructsLastUpdated,
       ),
     );
   }
@@ -638,11 +659,14 @@ class AnalyticsController extends BaseController {
     bool removeIT = false,
     bool forceUpdate = false,
   }) async {
+    final DateTime? constructsLastUpdated = await _pangeaController.myAnalytics
+        .analyticsLastUpdated(PangeaEventTypes.construct);
     final List<ConstructAnalyticsEvent>? local = getConstructsLocal(
       timeSpan: currentAnalyticsTimeSpan,
       constructType: constructType,
       defaultSelected: defaultSelected,
       selected: selected,
+      constructsLastUpdated: constructsLastUpdated,
     );
     if (local != null && !forceUpdate) {
       _constructs = local;
@@ -691,6 +715,7 @@ class AnalyticsController extends BaseController {
         events: _constructs!,
         defaultSelected: defaultSelected,
         selected: selected,
+        constructsLastUpdated: constructsLastUpdated,
       );
     }
 
@@ -705,12 +730,14 @@ class ConstructCacheEntry {
   final List<ConstructAnalyticsEvent> events;
   final AnalyticsSelected defaultSelected;
   AnalyticsSelected? selected;
+  final DateTime? constructsLastUpdated;
 
   ConstructCacheEntry({
     required this.timeSpan,
     required this.type,
     required this.events,
     required this.defaultSelected,
+    required this.constructsLastUpdated,
     this.selected,
   });
 }
@@ -721,11 +748,13 @@ class AnalyticsCacheModel {
   final AnalyticsSelected defaultSelected;
   AnalyticsSelected? selected;
   late DateTime _createdAt;
+  final DateTime? summaryLastUpdated;
 
   AnalyticsCacheModel({
     required this.timeSpan,
     required this.chartAnalyticsModel,
     required this.defaultSelected,
+    required this.summaryLastUpdated,
     this.selected,
   }) {
     _createdAt = DateTime.now();

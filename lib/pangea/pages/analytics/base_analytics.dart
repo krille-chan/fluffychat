@@ -65,14 +65,8 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
     AnalyticsSelected? params, {
     forceUpdate = false,
   }) async {
-    ChartAnalyticsModel? data = pangeaController.analytics.getAnalyticsLocal(
-      timeSpan: currentTimeSpan,
-      defaultSelected: widget.defaultSelected,
-      selected: params,
-      forceUpdate: forceUpdate,
-    );
-
-    data ??= await pangeaController.analytics.getAnalytics(
+    final ChartAnalyticsModel data =
+        await pangeaController.analytics.getAnalytics(
       defaultSelected: widget.defaultSelected,
       selected: params,
       forceUpdate: forceUpdate,

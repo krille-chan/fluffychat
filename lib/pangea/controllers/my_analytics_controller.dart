@@ -316,6 +316,25 @@ class MyAnalyticsController extends BaseController {
     }
     return aggregatedConstructs;
   }
+
+  Future<DateTime?> analyticsLastUpdated(String type) async {
+    final List<Room> analyticsRooms =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+    if (analyticsRooms.isEmpty) return null;
+    final List<DateTime> lastUpdates = [];
+    for (final analyticsRoom in analyticsRooms) {
+      final AnalyticsEvent? lastEvent =
+          await analyticsRoom.getLastAnalyticsEvent(
+        type,
+      );
+      if (lastEvent?.content.lastUpdated != null) {
+        lastUpdates.add(lastEvent!.content.lastUpdated!);
+      }
+    }
+    return lastUpdates.reduce(
+      (value, element) => value.isAfter(element) ? value : element,
+    );
+  }
 }
 
 class AggregateConstructUses {

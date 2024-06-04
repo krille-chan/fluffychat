@@ -95,11 +95,13 @@ class BaseAnalyticsView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.refresh),
-                        onPressed: controller.onRefresh,
-                        tooltip: L10n.of(context)!.refresh,
-                      ),
+                      if (controller.widget.defaultSelected.type ==
+                          AnalyticsEntryType.student)
+                        IconButton(
+                          icon: const Icon(Icons.refresh),
+                          onPressed: controller.onRefresh,
+                          tooltip: L10n.of(context)!.refresh,
+                        ),
                       TimeSpanMenuButton(
                         value: controller.currentTimeSpan,
                         onChange: (TimeSpan value) =>
