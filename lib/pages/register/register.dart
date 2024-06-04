@@ -25,7 +25,6 @@ class Register extends StatefulWidget {
 }
 
 class RegisterController extends State<Register> {
-  final TextEditingController emailController = TextEditingController();
   String? messageError;
   bool loading = true;
   bool showPassword = false;
@@ -44,12 +43,6 @@ class RegisterController extends State<Register> {
   final List<List<Widget>> _previousFormWidgets = [];
 
   bool get canPop => _previousFormWidgets.isNotEmpty;
-
-  void toggleShowPassword() =>
-      setState(() => showPassword = !loading && !showPassword);
-
-  void toggleShowConfirmPassword() =>
-      setState(() => showConfirmPassword = !loading && !showConfirmPassword);
 
   @override
   void initState() {
