@@ -1,7 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -75,11 +75,6 @@ void chatListHandleSpaceTap(
               duration: const Duration(seconds: 3),
             ),
           );
-          if (space.isExchange) {
-            context.go(
-              '/rooms/join_exchange/${controller.activeSpaceId}',
-            );
-          }
         },
       );
     } else {
