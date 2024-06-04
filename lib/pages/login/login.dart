@@ -66,11 +66,11 @@ class LoginController extends State<Login> {
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
     getLoginOry();
     // Check if sessionToken exists and handle it
-     getSessionToken().then((sessionToken) {
-       if (sessionToken != null) {
-         checkUserQueueState(sessionToken);
-       }
-     });
+    getSessionToken().then((sessionToken) {
+      if (sessionToken != null) {
+        checkUserQueueState(sessionToken);
+      }
+    });
   }
 
   @override
@@ -79,7 +79,8 @@ class LoginController extends State<Login> {
     super.dispose();
   }
 
-  Future<bool> myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) async {
+  Future<bool> myInterceptor(
+      bool stopDefaultButtonEvent, RouteInfo info) async {
     popFormWidgets();
     return true;
   }
@@ -169,14 +170,15 @@ class LoginController extends State<Login> {
 
     for (kratos.UiNode node in nodes) {
       kratos.UiNodeInputAttributes attributes =
-      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-      TextEditingController(text: attributes.value?.toString() ?? "");
+          TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
       // Vérification des conditions
-      if (attributes.name == "identifier" && attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
+      if (attributes.name == "identifier" &&
+          attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
         formWidgets.add(Padding(
           padding: const EdgeInsets.all(12.0),
           child: Text("Code envoyé à ${attributes.value!}" ?? ""),
@@ -198,15 +200,31 @@ class LoginController extends State<Login> {
           );
         } else if (attributes.type ==
             kratos.UiNodeInputAttributesTypeEnum.submit) {
-          inputWidget = Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ElevatedButton(
-              onPressed: () {
-                _submitForm(actionUrl);
-              },
-              child: Text(node.meta.label!.text),
-            ),
-          );
+          // Vérifier si c'est le bouton "resend"
+          if (attributes.name == "resend") {
+            inputWidget = Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextButton(
+                onPressed: () {
+                  // Implement your resend code logic here
+                },
+                child: Text(node.meta.label!.text),
+              ),
+            );
+          } else {
+            inputWidget = Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  _submitForm(actionUrl);
+                },
+                child: Text(
+                  node.meta.label!.text,
+                  style: TextStyle(color: Colors.green[500]),
+                ),
+              ),
+            );
+          }
         } else {
           inputWidget = Container(); // Placeholder for unsupported types
         }
@@ -290,7 +308,7 @@ class LoginController extends State<Login> {
         setState(() => messageError = errorMessage);
       } else {
         setState(
-              () => messageError = L10n.of(context)!.errTryAgain,
+          () => messageError = L10n.of(context)!.errTryAgain,
         );
       }
       return setState(() => loading = false);
