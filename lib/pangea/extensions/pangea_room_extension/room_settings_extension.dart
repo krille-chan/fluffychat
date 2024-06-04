@@ -55,7 +55,40 @@ extension RoomSettingsRoomExtension on Room {
     );
   }
 
-  Future<bool> _suggestedInSpace(Room space) async {
+  Future<bool> _isSuggested() async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+
+    for (final parent in spaceParents) {
+      final suggested = await _isSuggestedInSpace(parent);
+      if (!suggested) return false;
+    }
+    return true;
+  }
+
+  Future<void> _setSuggested(bool suggested) async {
+    final List<Room> spaceParents = client.rooms
+        .where(
+          (room) =>
+              room.isSpace &&
+              room.spaceChildren.any(
+                (sc) => sc.roomId == id,
+              ),
+        )
+        .toList();
+    for (final parent in spaceParents) {
+      await _setSuggestedInSpace(suggested, parent);
+    }
+  }
+
+  Future<bool> _isSuggestedInSpace(Room space) async {
     try {
       final Map<String, dynamic> resp =
           await client.getRoomStateWithKey(space.id, EventTypes.spaceChild, id);

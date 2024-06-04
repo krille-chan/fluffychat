@@ -253,11 +253,10 @@ extension PangeaRoom on Room {
 
   BotOptionsModel? get botOptions => _botOptions;
 
-  Future<bool> suggestedInSpace(Room space) async =>
-      await _suggestedInSpace(space);
+  Future<void> setSuggested(bool suggested) async =>
+      await _setSuggested(suggested);
 
-  Future<void> setSuggestedInSpace(bool suggest, Room space) async =>
-      await _setSuggestedInSpace(suggest, space);
+  Future<bool> isSuggested() async => await _isSuggested();
 
 // user_permissions
 

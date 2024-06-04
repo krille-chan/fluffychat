@@ -3681,24 +3681,8 @@
     "lockSpace": "Lock Space",
     "lockChat": "Lock Chat",
     "archiveSpace": "Archive Space",
-    "suggestTo": "Suggest to {spaceName}",
-    "@suggestTo": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestChatDesc": "Suggested chats will appear in the chat list for {spaceName}",
-    "@suggestToDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestExchangeDesc": "Suggested exchanges will appear in the chat list for {spaceName}",
-    "@suggestToExchangeDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
+    "suggestToChat": "Suggest this chat",
+    "suggestToChatDesc": "Suggested chats will appear in chat lists",
     "acceptSelection": "Accept Correction",
     "acceptSelectionAnyway": "Use this anyway",
     "makingActivity": "Making activity",
