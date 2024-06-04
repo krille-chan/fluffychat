@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:dio/dio.dart';
@@ -26,7 +27,7 @@ class Register extends StatefulWidget {
 class RegisterController extends State<Register> {
   final TextEditingController emailController = TextEditingController();
   String? messageError;
-  bool loading = false;
+  bool loading = true;
   bool showPassword = false;
   bool showConfirmPassword = false;
   String baseUrl = AppConfig.baseUrl;
@@ -39,6 +40,11 @@ class RegisterController extends State<Register> {
   List<TextEditingController> textControllers = [];
   List<kratos.UiNode> formNodes = [];
 
+  // Stack for storing old widget lists
+  final List<List<Widget>> _previousFormWidgets = [];
+
+  bool get canPop => _previousFormWidgets.isNotEmpty;
+
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
@@ -48,7 +54,34 @@ class RegisterController extends State<Register> {
   @override
   void initState() {
     super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
+
+    register();
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  Future<bool> myInterceptor(
+      bool stopDefaultButtonEvent, RouteInfo info) async {
+    popFormWidgets();
+    return true;
+  }
+
+  // How to return to the previous list
+  void popFormWidgets() {
+    if (_previousFormWidgets.isNotEmpty) {
+      setState(() {
+        authWidgets = _previousFormWidgets.removeLast();
+        // Restore formNodes if necessary
+        // formNodes = _previousFormNodes.removeLast();
+      });
+    }
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {
@@ -74,11 +107,6 @@ class RegisterController extends State<Register> {
     return true;
   }
 
-  // Checks password length
-  bool _validatePasswordLength(String password) {
-    return password.length >= 8 && password.length <= 64;
-  }
-
   Future<void> processKratosNodes(
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
     List<Widget> formWidgets = [];
@@ -92,34 +120,43 @@ class RegisterController extends State<Register> {
 
       textControllers.add(controller);
 
-      if (node.type == kratos.UiNodeTypeEnum.input) {
+      if (attributes.name == "identifier" &&
+          attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
+        formWidgets.add(Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+        ));
+      } else if (node.type == kratos.UiNodeTypeEnum.input) {
         Widget inputWidget;
 
-        if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.text) {
-          inputWidget = Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextFormField(
-              controller: controller,
-              onChanged: (String data) {},
-              decoration: InputDecoration(
-                label: Text(node.meta.label!.text),
+        switch (attributes.type) {
+          case kratos.UiNodeInputAttributesTypeEnum.text:
+          case kratos.UiNodeInputAttributesTypeEnum.email:
+            inputWidget = Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextFormField(
+                controller: controller,
+                onChanged: (String data) {},
+                decoration: InputDecoration(
+                  label: Text(node.meta.label!.text),
+                ),
+                enabled: !attributes.disabled,
               ),
-              enabled: !attributes.disabled,
-            ),
-          );
-        } else if (attributes.type ==
-            kratos.UiNodeInputAttributesTypeEnum.submit) {
-          inputWidget = Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: ElevatedButton(
-              onPressed: () {
-                _submitForm(actionUrl);
-              },
-              child: Text(node.meta.label!.text),
-            ),
-          );
-        } else {
-          inputWidget = Container(); // Placeholder for unsupported types
+            );
+            break;
+          case kratos.UiNodeInputAttributesTypeEnum.submit:
+            inputWidget = Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  _submitForm(actionUrl);
+                },
+                child: Text(node.meta.label!.text),
+              ),
+            );
+            break;
+          default:
+            inputWidget = Container(); // Placeholder for unsupported types
         }
 
         formWidgets.add(inputWidget);
@@ -127,6 +164,11 @@ class RegisterController extends State<Register> {
       }
 
       setState(() => loading = false);
+    }
+
+    // Add old list to stack before updating
+    if (authWidgets.isNotEmpty) {
+      _previousFormWidgets.add(List.from(authWidgets));
     }
 
     setState(() {
@@ -278,34 +320,23 @@ class RegisterController extends State<Register> {
   }
 
   Future<void> register() async {
-    if (emailController.text.isEmpty) {
-      setState(() => messageError = L10n.of(context)!.registerRequiredField);
-      return;
-    } else {
-      setState(() => messageError = null);
-    }
-
-    if (!_validateEmail(emailController.text)) {
-      setState(() => messageError = L10n.of(context)!.registerInvalidEmail);
-      return;
-    }
-
-    setState(() => loading = true);
-
     try {
       final kratos.OryKratosClient kratosClient =
           kratos.OryKratosClient(dio: dio);
 
-      Logs().v('Registering user with email: ${emailController.text}');
       // Fetch register flow
       final frontendApi = kratosClient.getFrontendApi();
       final response = await frontendApi.createNativeRegistrationFlow();
-      final actionUrl = response.data?.ui.action;
-      if (actionUrl == null) {
-        throw Exception('Action URL not found in registration flow response');
-      }
 
-      Logs().v('Register flow ID: ${response.data!.id}');
+      // Retrieve action URL from connection flow
+      final actionNodes = response.data?.ui.nodes;
+      final actionUrl = response.data?.ui.action;
+
+      if (actionNodes == null) {
+        throw Exception(
+            'URL d\'action non trouvée dans la réponse du flux de connexion');
+      }
+      await processKratosNodes(actionNodes, actionUrl!);
     } on DioException catch (e) {
       if (kDebugMode) {
         print("Dio Exception when calling Kratos log: $e\n");

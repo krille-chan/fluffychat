@@ -14,7 +14,16 @@ class RegisterView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
+        leading: controller.canPop
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  controller.popFormWidgets();
+                },
+              )
+            : controller.loading
+                ? null
+                : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
       ),
@@ -51,21 +60,6 @@ class RegisterView extends StatelessWidget {
                       style: const TextStyle(color: Colors.red),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    onPressed: controller.loading ? null : controller.register,
-                    icon: const Icon(Icons.person_add_outlined),
-                    label: controller.loading
-                        ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.register),
-                  ),
-                ),
-                const SizedBox(height: 16),
               ],
             ),
           );
