@@ -33,24 +33,15 @@ class RegisterView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
+                Image.asset('assets/banner_transparent.png'),
                 Text(
                   L10n.of(context)!.registerTitle.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 16),
-                !controller.loading
-                    ? Column(
-                        children: [
-                          ...controller.authWidgets,
-                        ],
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      ),
                 const SizedBox(height: 16),
                 if (controller.messageError != null)
                   Padding(
@@ -60,6 +51,15 @@ class RegisterView extends StatelessWidget {
                       style: const TextStyle(color: Colors.red),
                     ),
                   ),
+                !controller.loading
+                    ? Column(
+                        children: [
+                          ...controller.authWidgets,
+                        ],
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ),
               ],
             ),
           );
