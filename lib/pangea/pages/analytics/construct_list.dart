@@ -330,38 +330,40 @@ class ConstructMessagesDialog extends StatelessWidget {
 
     return AlertDialog(
       title: Center(child: Text(controller.widget.controller.currentLemma!)),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (controller.constructs![controller.lemmaIndex].uses.length >
-              controller._msgEvents.length)
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(L10n.of(context)!.roomDataMissing),
+      content: SizedBox(
+        height: 350,
+        width: 500,
+        child: Column(
+          children: [
+            if (controller.constructs![controller.lemmaIndex].uses.length >
+                controller._msgEvents.length)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(L10n.of(context)!.roomDataMissing),
+                ),
+              ),
+            Expanded(
+              child: ListView(
+                children: [
+                  ...msgEventMatches.mapIndexed(
+                    (index, event) => Column(
+                      children: [
+                        ConstructMessage(
+                          msgEvent: event.msgEvent,
+                          lemma: controller.widget.controller.currentLemma!,
+                          errorMessage: event.lemmaMatch,
+                        ),
+                        if (index < msgEventMatches.length - 1)
+                          const Divider(height: 1),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                ...msgEventMatches.mapIndexed(
-                  (index, event) => Column(
-                    children: [
-                      ConstructMessage(
-                        msgEvent: event.msgEvent,
-                        lemma: controller.widget.controller.currentLemma!,
-                        errorMessage: event.lemmaMatch,
-                      ),
-                      if (index < msgEventMatches.length - 1)
-                        const Divider(height: 1),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(
