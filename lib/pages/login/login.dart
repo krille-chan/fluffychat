@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -60,6 +61,8 @@ class LoginController extends State<Login> {
   @override
   void initState() {
     super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
     getLoginOry();
     // Check if sessionToken exists and handle it
@@ -72,7 +75,13 @@ class LoginController extends State<Login> {
 
   @override
   void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
     super.dispose();
+  }
+
+  Future<bool> myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) async {
+    popFormWidgets();
+    return true;
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {

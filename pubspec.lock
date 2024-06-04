@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.18"
+  back_button_interceptor:
+    dependency: "direct main"
+    description:
+      name: back_button_interceptor
+      sha256: "8354b03320043db546e3f446af171faaa71384100486444113628f7db1e7fe9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.3"
   badges:
     dependency: "direct main"
     description:
