@@ -71,7 +71,7 @@ class RegisterController extends State<Register> {
     setState(() => _previousFormWidgets = []);
     if (_previousFormWidgets.isNotEmpty) {
       register();
-      }
+    }
   }
 
   Future<void> storeSessionToken(String? sessionToken) async {
@@ -87,9 +87,9 @@ class RegisterController extends State<Register> {
 
     for (kratos.UiNode node in nodes) {
       var attributes =
-      node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+          node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
       var controller =
-      TextEditingController(text: attributes.value?.toString() ?? "");
+          TextEditingController(text: attributes.value?.toString() ?? "");
 
       textControllers.add(controller);
 
@@ -156,10 +156,10 @@ class RegisterController extends State<Register> {
   }
 
   Widget _buildEmailInputWidget(
-      kratos.UiNodeInputAttributes attributes,
-      TextEditingController controller,
-      kratos.UiNode node,
-      ) {
+    kratos.UiNodeInputAttributes attributes,
+    TextEditingController controller,
+    kratos.UiNode node,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: TextFormField(
@@ -174,10 +174,10 @@ class RegisterController extends State<Register> {
   }
 
   Widget _buildTextInputWidget(
-      kratos.UiNodeInputAttributes attributes,
-      TextEditingController controller,
-      kratos.UiNode node,
-      ) {
+    kratos.UiNodeInputAttributes attributes,
+    TextEditingController controller,
+    kratos.UiNode node,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: TextFormField(
