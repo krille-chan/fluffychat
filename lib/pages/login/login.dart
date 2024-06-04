@@ -176,64 +176,15 @@ class LoginController extends State<Login> {
 
       textControllers.add(controller);
 
-      // Vérification des conditions
-      if (attributes.name == "identifier" &&
-          attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
-        formWidgets.add(Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text("Code envoyé à ${attributes.value!}" ?? ""),
-        ));
+      if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
+        formWidgets.add(_buildHiddenInput(attributes));
       } else if (node.type == kratos.UiNodeTypeEnum.input) {
-        Widget inputWidget;
-
-        if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.text) {
-          inputWidget = Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextFormField(
-              controller: controller,
-              onChanged: (String data) {},
-              decoration: InputDecoration(
-                label: Text(node.meta.label!.text),
-              ),
-              enabled: !attributes.disabled,
-            ),
-          );
-        } else if (attributes.type ==
-            kratos.UiNodeInputAttributesTypeEnum.submit) {
-          // Vérifier si c'est le bouton "resend"
-          if (attributes.name == "resend") {
-            inputWidget = Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextButton(
-                onPressed: () {
-                  // Implement your resend code logic here
-                },
-                child: Text(node.meta.label!.text),
-              ),
-            );
-          } else {
-            inputWidget = Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  _submitForm(actionUrl);
-                },
-                child: Text(
-                  node.meta.label!.text,
-                  style: TextStyle(color: Colors.green[500]),
-                ),
-              ),
-            );
-          }
-        } else {
-          inputWidget = Container(); // Placeholder for unsupported types
-        }
-
+        Widget inputWidget =
+            _buildInputWidget(attributes, controller, actionUrl);
         formWidgets.add(inputWidget);
-        allNodes.add(node);
       }
 
-      setState(() => loading = false);
+      allNodes.add(node);
     }
 
     // Add old list to stack before updating
@@ -246,6 +197,68 @@ class LoginController extends State<Login> {
       formNodes = allNodes;
       loading = false;
     });
+  }
+
+  Widget _buildHiddenInput(kratos.UiNodeInputAttributes attributes) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+    );
+  }
+
+  Widget _buildInputWidget(kratos.UiNodeInputAttributes attributes,
+      TextEditingController controller, String actionUrl) {
+    switch (attributes.type) {
+      case kratos.UiNodeInputAttributesTypeEnum.text:
+        return _buildTextInput(attributes, controller);
+      case kratos.UiNodeInputAttributesTypeEnum.submit:
+        return _buildSubmitButton(attributes, actionUrl);
+      default:
+        return Container(); // Placeholder for unsupported types
+    }
+  }
+
+  Widget _buildTextInput(kratos.UiNodeInputAttributes attributes,
+      TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: TextFormField(
+        controller: controller,
+        onChanged: (String data) {},
+        decoration: InputDecoration(
+          label: Text(attributes.name),
+        ),
+        enabled: !attributes.disabled,
+      ),
+    );
+  }
+
+  Widget _buildSubmitButton(
+      kratos.UiNodeInputAttributes attributes, String actionUrl) {
+    if (attributes.name == "resend") {
+      return Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: TextButton(
+          onPressed: () {
+            // Implement your resend code logic here
+          },
+          child: Text(attributes.name),
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ElevatedButton(
+          onPressed: () {
+            _submitForm(actionUrl);
+          },
+          child: Text(
+            attributes.name,
+            style: TextStyle(color: Colors.green[500]),
+          ),
+        ),
+      );
+    }
   }
 
   // How to return to the previous list
