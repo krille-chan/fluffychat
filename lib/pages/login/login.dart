@@ -176,11 +176,12 @@ class LoginController extends State<Login> {
 
       textControllers.add(controller);
 
-      if (attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
+      if (attributes.name == "identifier" &&
+          attributes.type == kratos.UiNodeInputAttributesTypeEnum.hidden) {
         formWidgets.add(_buildHiddenInput(attributes));
       } else if (node.type == kratos.UiNodeTypeEnum.input) {
         Widget inputWidget =
-            _buildInputWidget(attributes, controller, actionUrl);
+            _buildInputWidget(attributes, controller, actionUrl, node);
         formWidgets.add(inputWidget);
       }
 
@@ -202,39 +203,40 @@ class LoginController extends State<Login> {
   Widget _buildHiddenInput(kratos.UiNodeInputAttributes attributes) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+      child: Text(
+          "${L10n.of(context)!.authCodeSentTo} ${attributes.value!}" ?? ""),
     );
   }
 
   Widget _buildInputWidget(kratos.UiNodeInputAttributes attributes,
-      TextEditingController controller, String actionUrl) {
+      TextEditingController controller, String actionUrl, kratos.UiNode node) {
     switch (attributes.type) {
       case kratos.UiNodeInputAttributesTypeEnum.text:
-        return _buildTextInput(attributes, controller);
+        return _buildTextInput(attributes, controller, node);
       case kratos.UiNodeInputAttributesTypeEnum.submit:
-        return _buildSubmitButton(attributes, actionUrl);
+        return _buildSubmitButton(attributes, actionUrl, node);
       default:
         return Container(); // Placeholder for unsupported types
     }
   }
 
   Widget _buildTextInput(kratos.UiNodeInputAttributes attributes,
-      TextEditingController controller) {
+      TextEditingController controller, kratos.UiNode node) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: TextFormField(
         controller: controller,
         onChanged: (String data) {},
         decoration: InputDecoration(
-          label: Text(attributes.name),
+          label: Text(node.meta.label!.text),
         ),
         enabled: !attributes.disabled,
       ),
     );
   }
 
-  Widget _buildSubmitButton(
-      kratos.UiNodeInputAttributes attributes, String actionUrl) {
+  Widget _buildSubmitButton(kratos.UiNodeInputAttributes attributes,
+      String actionUrl, kratos.UiNode node) {
     if (attributes.name == "resend") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
@@ -242,7 +244,7 @@ class LoginController extends State<Login> {
           onPressed: () {
             // Implement your resend code logic here
           },
-          child: Text(attributes.name),
+          child: Text(node.meta.label!.text),
         ),
       );
     } else {
@@ -253,7 +255,7 @@ class LoginController extends State<Login> {
             _submitForm(actionUrl);
           },
           child: Text(
-            attributes.name,
+            node.meta.label!.text,
             style: TextStyle(color: Colors.green[500]),
           ),
         ),
