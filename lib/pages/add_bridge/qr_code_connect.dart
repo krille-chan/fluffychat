@@ -224,7 +224,7 @@ class WhatsAppQRFutureBuilder extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // SocialNetwork network update
-                socialNetwork
+                SocialNetworkManager.socialNetworks
                     .firstWhere((element) => element.name == "WhatsApp")
                     .connected = true;
 
