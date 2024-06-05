@@ -30,15 +30,6 @@ class Login extends StatefulWidget {
 }
 
 class LoginController extends State<Login> {
-  Map<String, dynamic>? _rawLoginTypes;
-  HomeserverSummary? loginHomeserverSummary;
-
-  bool _supportsFlow(String flowType) =>
-      loginHomeserverSummary?.loginFlows.any((flow) => flow.type == flowType) ??
-      false;
-
-  bool get supportsSso => _supportsFlow('m.login.sso');
-
   final TextEditingController usernameController = TextEditingController();
   bool loading = true;
   String? messageError;
@@ -593,14 +584,6 @@ class LoginController extends State<Login> {
       var homeserver = Uri.parse(serverName);
       if (homeserver.scheme.isEmpty) {
         homeserver = Uri.https(serverName, '');
-      }
-
-      loginHomeserverSummary = await client.checkHomeserver(homeserver);
-      if (supportsSso) {
-        _rawLoginTypes = await client.request(
-          RequestType.GET,
-          '/client/v3/login',
-        );
       }
 
       final url = '$homeserver/_matrix/client/r0/login';
