@@ -47,18 +47,22 @@ class StudentAnalyticsController extends State<StudentAnalyticsPage> {
 
   List<Room> get chats {
     if (_pangeaController.myAnalytics.studentChats.isEmpty) {
-      _pangeaController.myAnalytics
-          .setStudentChats()
-          .then((_) => setState(() {}));
+      _pangeaController.myAnalytics.setStudentChats().then((_) {
+        if (_pangeaController.myAnalytics.studentChats.isNotEmpty) {
+          setState(() {});
+        }
+      });
     }
     return _pangeaController.myAnalytics.studentChats;
   }
 
   List<Room> get spaces {
     if (_pangeaController.myAnalytics.studentSpaces.isEmpty) {
-      _pangeaController.myAnalytics
-          .setStudentSpaces()
-          .then((_) => setState(() {}));
+      _pangeaController.myAnalytics.setStudentSpaces().then((_) {
+        if (_pangeaController.myAnalytics.studentSpaces.isNotEmpty) {
+          setState(() {});
+        }
+      });
     }
     return _pangeaController.myAnalytics.studentSpaces;
   }
