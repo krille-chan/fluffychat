@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: !controller.loading,
           titleSpacing: !controller.loading ? 0 : null,
-          leading: controller.canPop
+          leading: controller.hasSubmitted
               ? IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {

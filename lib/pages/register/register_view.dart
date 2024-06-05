@@ -14,7 +14,7 @@ class RegisterView extends StatelessWidget {
     return LoginScaffold(
       enforceMobileMode: Matrix.of(context).client.isLogged(),
       appBar: AppBar(
-        leading: controller.canPop
+        leading: controller.hasSubmitted
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {

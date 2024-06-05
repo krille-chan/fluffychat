@@ -39,10 +39,8 @@ class RegisterController extends State<Register> {
   List<TextEditingController> textControllers = [];
   List<kratos.UiNode> formNodes = [];
 
-  // Stack for storing old widget lists
-  late List<List<Widget>> _previousFormWidgets = [];
-
-  bool get canPop => _previousFormWidgets.isNotEmpty;
+  // If the submit button has already been pressed
+  bool hasSubmitted = false;
 
   @override
   void initState() {
@@ -68,8 +66,7 @@ class RegisterController extends State<Register> {
 
   // How to return to the previous list
   void popFormWidgets() {
-    setState(() => _previousFormWidgets = []);
-    if (_previousFormWidgets.isNotEmpty) {
+    if (hasSubmitted) {
       register();
     }
   }
@@ -114,11 +111,6 @@ class RegisterController extends State<Register> {
 
       formWidgets.add(widget);
       allNodes.add(node);
-    }
-
-    // Add old list to stack before updating
-    if (authWidgets.isNotEmpty) {
-      _previousFormWidgets.add(List.from(authWidgets));
     }
 
     setState(() {
@@ -220,7 +212,10 @@ class RegisterController extends State<Register> {
   }
 
   Future<void> _submitForm(String actionUrl) async {
-    setState(() => loading = true);
+    setState(() {
+      loading = true;
+      hasSubmitted = true;
+    });
     final formData = <String, dynamic>{};
     String? email;
     String? code;
