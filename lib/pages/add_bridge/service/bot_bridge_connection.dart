@@ -137,6 +137,8 @@ class BotBridgeConnection {
     RegExp? notLoggedMatch;
     RegExp? mQTTNotMatch;
 
+    RegExp? notLoggedNowMatch;
+
     switch (socialNetwork.name) {
       case "WhatsApp":
         onlineMatch = PingPatterns.whatsAppOnlineMatch;
@@ -150,6 +152,7 @@ class BotBridgeConnection {
       case "Instagram":
         onlineMatch = PingPatterns.instagramOnlineMatch;
         notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
+        notLoggedNowMatch = PingPatterns.instagramNotLoggedNowMatch;
         break;
       default:
         throw Exception("Unsupported social network: ${socialNetwork.name}");
@@ -198,7 +201,7 @@ class BotBridgeConnection {
 
           break; // Exit the loop if the bridge is connected
         }
-        if (notLoggedMatch.hasMatch(latestMessage) == true) {
+        if (notLoggedMatch.hasMatch(latestMessage) == true || notLoggedNowMatch?.hasMatch(latestMessage) == true) {
           Logs().v('Not connected to ${socialNetwork.name}');
 
           result = 'Not Connected';

@@ -3,6 +3,7 @@ class PingPatterns {
   // Instagram
   static RegExp instagramOnlineMatch = RegExp(r".*You're logged into Meta");
   static RegExp instagramNotLoggedMatch = RegExp(r"You're not logged in");
+  static RegExp instagramNotLoggedNowMatch = RegExp(r"You were logged in at some point");
 
   // WhatsApp
   static RegExp whatsAppOnlineMatch = RegExp(r"connection to WhatsApp OK");
