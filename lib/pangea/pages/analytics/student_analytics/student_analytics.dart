@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ import '../base_analytics.dart';
 import 'student_analytics_view.dart';
 
 class StudentAnalyticsPage extends StatefulWidget {
-  const StudentAnalyticsPage({super.key});
+  final BarChartViewSelection? selectedView;
+  const StudentAnalyticsPage({super.key, this.selectedView});
 
   @override
   State<StudentAnalyticsPage> createState() => StudentAnalyticsController();

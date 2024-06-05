@@ -48,6 +48,7 @@ class ClassAnalyticsView extends StatelessWidget {
 
     return controller.classId != null
         ? BaseAnalyticsPage(
+            selectedView: controller.widget.selectedView,
             pageTitle: pageTitle,
             tabs: [tab1, tab2],
             alwaysSelected: AnalyticsSelected(

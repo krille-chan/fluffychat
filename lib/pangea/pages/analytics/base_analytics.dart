@@ -19,6 +19,7 @@ import '../../models/chart_analytics_model.dart';
 class BaseAnalyticsPage extends StatefulWidget {
   final String pageTitle;
   final List<TabData> tabs;
+  final BarChartViewSelection? selectedView;
 
   final AnalyticsSelected defaultSelected;
   final AnalyticsSelected? alwaysSelected;
@@ -30,6 +31,7 @@ class BaseAnalyticsPage extends StatefulWidget {
     required this.tabs,
     required this.alwaysSelected,
     required this.defaultSelected,
+    this.selectedView,
     this.myAnalyticsController,
   });
 
@@ -39,7 +41,6 @@ class BaseAnalyticsPage extends StatefulWidget {
 
 class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   final PangeaController pangeaController = MatrixState.pangeaController;
-  BarChartViewSelection? selectedView;
   AnalyticsSelected? selected;
   String? currentLemma;
   ChartAnalyticsModel? chartData;
@@ -125,14 +126,6 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   TimeSpan get currentTimeSpan =>
       pangeaController.analytics.currentAnalyticsTimeSpan;
 
-  void navigate() {
-    if (selectedView != null) {
-      setSelectedView(null);
-    } else {
-      Navigator.of(context).pop();
-    }
-  }
-
   Future<void> toggleSelection(AnalyticsSelected selectedParam) async {
     setState(() {
       debugPrint("selectedParam.id is ${selectedParam.id}");
@@ -160,13 +153,6 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
       removeIT: true,
     );
     await setChartData();
-    refreshStream.add(false);
-  }
-
-  void setSelectedView(BarChartViewSelection? view) {
-    currentLemma = null;
-    selectedView = view;
-    setState(() {});
     refreshStream.add(false);
   }
 
@@ -205,6 +191,19 @@ class TabItem {
 }
 
 enum AnalyticsEntryType { student, room, space, privateChats }
+
+extension AnalyticsEntryTypeExtension on AnalyticsEntryType {
+  String get route {
+    switch (this) {
+      case AnalyticsEntryType.student:
+        return 'mylearning';
+      case AnalyticsEntryType.space:
+        return 'analytics';
+      default:
+        throw Exception('No route for $this');
+    }
+  }
+}
 
 class AnalyticsSelected {
   String id;

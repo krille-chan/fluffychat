@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
@@ -18,7 +19,8 @@ import 'class_analytics_view.dart';
 enum AnalyticsPageType { classList, student, classDetails }
 
 class ClassAnalyticsPage extends StatefulWidget {
-  const ClassAnalyticsPage({super.key});
+  final BarChartViewSelection? selectedView;
+  const ClassAnalyticsPage({super.key, this.selectedView});
 
   @override
   State<ClassAnalyticsPage> createState() => ClassAnalyticsV2Controller();
@@ -40,6 +42,9 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
       _classRoom = classId != null
           ? Matrix.of(context).client.getRoomById(classId!)
           : null;
+      if (_classRoom == null) {
+        context.go('/rooms/analytics');
+      }
       getChatAndStudents();
     }
     return _classRoom;

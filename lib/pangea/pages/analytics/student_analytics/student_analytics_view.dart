@@ -45,6 +45,7 @@ class StudentAnalyticsView extends StatelessWidget {
 
     return controller.userId != null
         ? BaseAnalyticsPage(
+            selectedView: controller.widget.selectedView,
             pageTitle: pageTitle,
             tabs: [chatTabData, classTabData],
             alwaysSelected: AnalyticsSelected(

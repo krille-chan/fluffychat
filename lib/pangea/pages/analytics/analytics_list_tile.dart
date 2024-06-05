@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/enum/bar_chart_view_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -24,6 +25,7 @@ class AnalyticsListTile extends StatefulWidget {
     required this.isSelected,
     required this.onTap,
     required this.pangeaController,
+    this.controller,
     // this.isEnabled = true,
     // this.showSpaceAnalytics = true,
     this.refreshStream,
@@ -42,6 +44,7 @@ class AnalyticsListTile extends StatefulWidget {
   // final bool showSpaceAnalytics;
 
   final PangeaController pangeaController;
+  final BaseAnalyticsController? controller;
   final StreamController? refreshStream;
 
   @override
@@ -133,11 +136,17 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
           ),
           selected: widget.isSelected,
           onTap: () {
-            (room?.isSpace ?? false) && widget.allowNavigateOnSelect
-                ? context.go(
-                    '/rooms/analytics/${room!.id}',
-                  )
-                : widget.onTap(widget.selected);
+            if (widget.controller?.widget.selectedView == null) {
+              widget.onTap(widget.selected);
+              return;
+            }
+            if ((room?.isSpace ?? false) && widget.allowNavigateOnSelect) {
+              final String selectedView =
+                  widget.controller!.widget.selectedView!.route;
+              context.go('/rooms/analytics/${room!.id}/$selectedView');
+              return;
+            }
+            widget.onTap(widget.selected);
           },
           trailing: (room?.isSpace ?? false) &&
                   widget.selected.type != AnalyticsEntryType.privateChats &&

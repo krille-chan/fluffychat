@@ -61,9 +61,11 @@ class AnalyticsClassListView extends StatelessWidget {
                     AnalyticsEntryType.space,
                     snapshot.data![i].name,
                   ),
-                  onTap: (selected) => context.go(
-                    '/rooms/analytics/${selected.id}',
-                  ),
+                  onTap: (selected) {
+                    context.go(
+                      '/rooms/analytics/${selected.id}',
+                    );
+                  },
                   allowNavigateOnSelect: true,
                   isSelected: false,
                   pangeaController: controller.pangeaController,
