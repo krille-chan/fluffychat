@@ -6,7 +6,8 @@ import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
 import 'package:tawkie/widgets/matrix.dart';
-
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:tawkie/widgets/notifier_state.dart';
 import 'model/social_network.dart';
 
 class AddBridge extends StatefulWidget {
@@ -184,6 +185,41 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  // Function to delete a conversation with a bot
+  Future<void> deleteConversation(BuildContext context, String chatBot,
+      ConnectionStateModel connectionState) async {
+    final String botUserId = "$chatBot$hostname";
+    Future.microtask(() {
+      connectionState.updateConnectionTitle(
+        L10n.of(context)!.loadingDeleteRoom,
+      );
+    });
+    try {
+      final roomId = client.getDirectChatFromUserId(botUserId);
+      final room = client.getRoomById(roomId!);
+      if (room != null) {
+        await room.leave(); // To leave and delete the room (DirectChat only)
+        Logs().v('Conversation deleted successfully');
+
+        Future.microtask(() {
+          connectionState.updateConnectionTitle(
+            L10n.of(context)!.loadingDeleteRoomSuccess,
+          );
+          connectionState.updateLoading(false);
+        });
+
+        await Future.delayed(const Duration(seconds: 1)); // Wait sec
+      } else {
+        Logs().v('Room not found');
+      }
+    } catch (e) {
+      Logs().v('Error deleting conversation: $e');
+    }
+
+    Future.microtask(() {
+      connectionState.reset();
+    });
+  }
 
   @override
   Widget build(BuildContext context) => AddBridgeBody(controller: this);
