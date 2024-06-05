@@ -82,10 +82,12 @@ class LanguageDetectionResponse {
 
   final double _confidenceThreshold = 0.95;
 
-  LanguageDetection? get thresholdedDetection =>
-      (_bestDetection?.confidence ?? 0) >= _confidenceThreshold
-          ? _bestDetection!
-          : null;
+  LanguageDetection? bestDetection({double? threshold}) {
+    threshold ??= _confidenceThreshold;
+    return (_bestDetection?.confidence ?? 0) >= _confidenceThreshold
+        ? _bestDetection!
+        : null;
+  }
 }
 
 class _LanguageDetectionCacheItem {

@@ -3128,7 +3128,7 @@
     "maybeLater": "Maybe Later",
     "mainMenu": "Main Menu",
     "toggleImmersionMode": "Immersion Mode",
-    "toggleImmersionModeDesc": "When enabled, all messages are displayed in your target language and you can click the message to access definitions and translations.",
+    "toggleImmersionModeDesc": "When enabled, all messages are displayed in your target language. This setting is most useful in language exchanges.",
     "itToggleDescription": "This language learning tool will identify words in your base language and help you translate them to your target language. Though rare, the AI can make translation errors.",
     "igcToggleDescription": "This language learning tool will identify common spelling, grammar and punctuation errors in your message and suggest corrections. Though rare, the AI can make correction errors.",
     "sendOnEnterDescription": "Turn this off to be able to add line spaces in messages. When the toggle is off on the browser app, you can press Shift + Enter to start a new line. When the toggle is off on mobile apps, just Enter will start a new line.",

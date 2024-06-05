@@ -199,18 +199,8 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Notice:
           case MessageTypes.Emote:
             if (AppConfig.renderHtml &&
-                    !event.redacted &&
-                    event.isRichMessage
-                    // #Pangea
-                    &&
-                    !(pangeaMessageEvent?.showRichText(
-                          selected,
-                          isOverlay: isOverlay,
-                          highlighted: toolbarController?.highlighted ?? false,
-                        ) ??
-                        false)
-                // Pangea#
-                ) {
+                !event.redacted &&
+                event.isRichMessage) {
               var html = event.formattedText;
               if (event.messageType == MessageTypes.Emote) {
                 html = '* $html';
@@ -306,12 +296,7 @@ class MessageContent extends StatelessWidget {
               decoration: event.redacted ? TextDecoration.lineThrough : null,
               height: 1.3,
             );
-            if (pangeaMessageEvent?.showRichText(
-                  selected,
-                  isOverlay: isOverlay,
-                  highlighted: toolbarController?.highlighted ?? false,
-                ) ??
-                false) {
+            if (immersionMode && pangeaMessageEvent != null) {
               return PangeaRichText(
                 style: messageTextStyle,
                 pangeaMessageEvent: pangeaMessageEvent!,

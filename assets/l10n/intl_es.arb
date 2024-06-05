@@ -3281,7 +3281,7 @@
   "generateVocabulary": "Generar vocabulario basado en el título y la descripción",
   "generatePrompts": "Generar preguntas basado en el título y la descripción",
   "toggleImmersionMode": "Modo de inmersión",
-  "toggleImmersionModeDesc": "Cuando está habilitado, todos los mensajes se muestran en su idioma de destino y puede hacer clic en el mensaje para acceder a definiciones y traducciones.",
+  "toggleImmersionModeDesc": "Cuando está habilitado, todos los mensajes se muestran en su idioma de destino. Esta configuración es más útil en intercambios de idiomas.",
   "subscribe": "Subscríbase",
   "getAccess": "Activar herramientas",
   "subscriptionDesc": "¡Enviar y recibir mensajes es gratis! Suscríbase para aceder a la traducción interactiva, la revisión gramatical y el análisis de aprendizaje.",

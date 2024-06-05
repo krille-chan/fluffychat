@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/enum/edit_type.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/it_step.dart';
+import 'package:fluffychat/pangea/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/any_state_holder.dart';
@@ -93,7 +94,7 @@ class Choreographer {
     }
   }
 
-  void _sendWithIGC(BuildContext context) {
+  Future<void> _sendWithIGC(BuildContext context) async {
     if (igc.canSendMessage) {
       final PangeaRepresentation? originalWritten =
           choreoRecord.includedIT && itController.sourceText != null
@@ -105,7 +106,6 @@ class Choreographer {
                 )
               : null;
 
-      // PTODO - just put this in original message event
       final PangeaRepresentation originalSent = PangeaRepresentation(
         langCode: langCodeOfCurrentText ?? LanguageKeys.unknownLanguage,
         text: currentText,
@@ -114,6 +114,22 @@ class Choreographer {
       );
       final ChoreoRecord? applicableChoreo =
           isITandIGCEnabled && igc.igcTextData != null ? choreoRecord : null;
+
+      // if the message has not been processed to determine its language
+      // then run it through the language detection endpoint. If the detection
+      // confidence is high enough, use that language code as the message's language
+      // to save that pangea representation
+      if (applicableChoreo == null) {
+        final resp = await pangeaController.languageDetection.detectLanguage(
+          currentText,
+          pangeaController.languageController.userL2?.langCode,
+          pangeaController.languageController.userL1?.langCode,
+        );
+        final LanguageDetection? bestDetection = resp.bestDetection();
+        if (bestDetection != null) {
+          originalSent.langCode = bestDetection.langCode;
+        }
+      }
 
       final UseType useType = useTypeCalculator(applicableChoreo);
       debugPrint("use type in choreographer $useType");
