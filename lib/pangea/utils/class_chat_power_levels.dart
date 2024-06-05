@@ -1,11 +1,10 @@
+import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:flutter/material.dart';
-
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import '../../widgets/matrix.dart';
 import '../constants/class_default_values.dart';
-import '../extensions/pangea_room_extension.dart';
+import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 
 class ClassChatPowerLevels {
   static Future<Map<String, dynamic>> powerLevelOverrideForClassChat(

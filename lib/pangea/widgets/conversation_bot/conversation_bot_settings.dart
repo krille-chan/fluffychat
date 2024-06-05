@@ -14,7 +14,7 @@ import 'package:matrix/matrix.dart';
 
 import '../../../widgets/matrix.dart';
 import '../../constants/pangea_event_types.dart';
-import '../../extensions/pangea_room_extension.dart';
+import '../../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../../utils/error_handler.dart';
 
 class ConversationBotSettings extends StatefulWidget {

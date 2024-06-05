@@ -1,5 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/extensions/client_extension.dart';
+import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_rules_editor.dart';
 import 'package:fluffychat/pangea/widgets/class/add_class_and_invite.dart';
@@ -96,7 +96,7 @@ class NewSpaceView extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       // #Pangea
-                      maxLength: 32,
+                      maxLength: 64,
                       // Pangea#
                       controller: controller.nameController,
                       autocorrect: false,

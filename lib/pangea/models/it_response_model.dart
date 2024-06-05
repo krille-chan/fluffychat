@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/extensions/my_list_extionsion.dart';
+import 'package:fluffychat/pangea/extensions/my_list_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 

@@ -61,9 +61,11 @@ class PangeaRichTextState extends State<PangeaRichText> {
     widget.toolbarController?.toolbar?.textSelection.setMessageText(
       newTextSpan,
     );
-    setState(() {
-      textSpan = newTextSpan;
-    });
+    if (mounted) {
+      setState(() {
+        textSpan = newTextSpan;
+      });
+    }
   }
 
   void setTextSpan() {

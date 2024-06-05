@@ -1463,7 +1463,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "pleaseClickOnLink": "Please click on the link in the email and then proceed.",
+    "pleaseClickOnLink": "Please click on the link in the email and then proceed. In rare cases, the email can be sent to spam or take up to 5 minutes to arrive.",
     "@pleaseClickOnLink": {
         "type": "text",
         "placeholders": {}
@@ -2123,7 +2123,7 @@
         "placeholders": {}
     },
     "writeAMessage": "Write a message…",
-    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}…",
+    "writeAMessageFlag": "Write a message in {l1flag} or {l2flag}",
     "@writeAMessageFlag": {
         "type": "text",
         "placeholders": {
@@ -3609,7 +3609,7 @@
     "zmCountryDisplayName": "Zambia",
     "zwCountryDisplayName": "Zimbabwe",
     "pay": "Pay",
-    "allPrivateChats": "All private chats in space (including with Pangea Bot)",
+    "allPrivateChats": "Direct chats",
     "unknownPrivateChat": "Unknown private chat",
     "copyClassCodeDesc": "Students who are already in the app can 'Join class or exchange' via the main menu.",
     "addToClass": "Add exchange to class",
@@ -3681,24 +3681,8 @@
     "lockSpace": "Lock Space",
     "lockChat": "Lock Chat",
     "archiveSpace": "Archive Space",
-    "suggestTo": "Suggest to {spaceName}",
-    "@suggestTo": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestChatDesc": "Suggested chats will appear in the chat list for {spaceName}",
-    "@suggestToDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestExchangeDesc": "Suggested exchanges will appear in the chat list for {spaceName}",
-    "@suggestToExchangeDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
+    "suggestToChat": "Suggest this chat",
+    "suggestToChatDesc": "Suggested chats will appear in chat lists",
     "acceptSelection": "Accept Correction",
     "acceptSelectionAnyway": "Use this anyway",
     "makingActivity": "Making activity",

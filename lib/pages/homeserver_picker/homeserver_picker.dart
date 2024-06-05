@@ -191,7 +191,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     } finally {
       if (mounted) {
         setState(() {
-          isLoading = isLoggingIn = false;
+          // #Pangea
+          // isLoading = isLoggingIn = false;
+          isLoggingIn = false;
+          // Pangea#
         });
       }
     }

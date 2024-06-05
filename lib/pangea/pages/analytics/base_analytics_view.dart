@@ -145,6 +145,7 @@ class BaseAnalyticsView extends StatelessWidget {
                                     ) *
                                     72,
                                 child: TabBarView(
+                                  physics: const NeverScrollableScrollPhysics(),
                                   children: [
                                     Column(
                                       crossAxisAlignment:

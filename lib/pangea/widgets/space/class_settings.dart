@@ -13,7 +13,7 @@ import '../../constants/language_keys.dart';
 import '../../constants/pangea_event_types.dart';
 import '../../controllers/language_list_controller.dart';
 import '../../controllers/pangea_controller.dart';
-import '../../extensions/pangea_room_extension.dart';
+import '../../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../../models/language_model.dart';
 import '../../utils/error_handler.dart';
 import '../user_settings/p_language_dropdown.dart';
