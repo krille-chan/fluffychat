@@ -209,6 +209,15 @@ class _SpaceViewState extends State<SpaceView> {
           await waitForRoom;
         },
       );
+      if (await room.leaveIfFull()) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 10),
+            content: Text(L10n.of(context)!.roomFull),
+          ),
+        );
+        return;
+      }
       if (joinResult.error != null) return;
     }
     // Pangea#
@@ -242,7 +251,10 @@ class _SpaceViewState extends State<SpaceView> {
           ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
-        if (room == null)
+        // #Pangea
+        // if (room == null)
+        if (room == null || room.membership == Membership.leave)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.join,
             label: L10n.of(context)!.joinRoom,
@@ -275,8 +287,9 @@ class _SpaceViewState extends State<SpaceView> {
                 : L10n.of(context)!.archive,
             icon: Icons.architecture_outlined,
           ),
-        // Pangea#
-        if (room != null)
+        // if (room != null)
+        if (room != null && room.membership != Membership.leave)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.leave,
             label: L10n.of(context)!.leave,
@@ -321,7 +334,7 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.archive:
         widget.controller.cancelAction();
         // #Pangea
-        if (room == null) return;
+        if (room == null || room.membership == Membership.leave) return;
         // Pangea#
         widget.controller.toggleSelection(room.id);
         room.isSpace
@@ -341,7 +354,7 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildContextAction.addToSpace:
         widget.controller.cancelAction();
         // #Pangea
-        if (room == null) return;
+        if (room == null || room.membership == Membership.leave) return;
         // Pangea#
         widget.controller.toggleSelection(room.id);
         await widget.controller.addToSpace();

@@ -23,6 +23,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
   Room? room;
   ChatDetailsController? controller;
   String? capacity;
+  String? nonAdmins;
 
   RoomCapacityButtonState({Key? key});
 
@@ -31,13 +32,33 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     super.initState();
     room = widget.room;
     controller = widget.controller;
+    capacity = room?.capacity;
+    room?.numNonAdmins.then(
+      (value) => setState(() {
+        nonAdmins = value.toString();
+        overCapacity();
+      }),
+    );
+  }
+
+  Future<void> overCapacity() async {
+    if ((room?.isRoomAdmin ?? false) &&
+        capacity != null &&
+        nonAdmins != null &&
+        int.parse(nonAdmins!) > int.parse(capacity!)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10n.of(context)!.roomExceedsCapacity,
+          ),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
-    // Edit - use FutureBuilder to allow async call
-    // String nonAdmins = (await room.numNonAdmins).toString();
     return Column(
       children: [
         ListTile(
@@ -49,9 +70,9 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
             child: const Icon(Icons.reduce_capacity),
           ),
           subtitle: Text(
-            // Edit
-            // '$nonAdmins/${room.capacity}',
-            (room?.capacity ?? capacity ?? L10n.of(context)!.capacityNotSet),
+            (capacity != null && nonAdmins != null)
+                ? '$nonAdmins/$capacity'
+                : (capacity ?? L10n.of(context)!.capacityNotSet),
           ),
           title: Text(
             L10n.of(context)!.roomCapacity,
@@ -71,7 +92,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
 
   Future<void> setClassCapacity() async {
     final TextEditingController myTextFieldController =
-        TextEditingController(text: (room?.capacity ?? capacity ?? ''));
+        TextEditingController(text: (capacity ?? ''));
     showDialog(
       context: context,
       useRootNavigator: false,
@@ -101,7 +122,9 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
               final success = await showFutureLoadingDialog(
                 context: context,
                 future: () => ((room != null)
-                    ? (room!.updateRoomCapacity(myTextFieldController.text))
+                    ? (room!.updateRoomCapacity(
+                        capacity = myTextFieldController.text,
+                      ))
                     : setCapacity(myTextFieldController.text)),
               );
               if (success.error == null) {
