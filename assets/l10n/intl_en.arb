@@ -3967,5 +3967,6 @@
     "roomCapacity": "Room Capacity",
     "roomFull": "This room is already at capacity.",
     "topicNotSet": "The topic has not been set.",
-    "capacityNotSet": "This room has no capacity limit."
+    "capacityNotSet": "This room has no capacity limit.",
+    "roomCapacityHasBeenChanged": "Room capacity changed"
 }

@@ -3,8 +3,10 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chat_topic_model.dart';
 import 'package:fluffychat/pangea/models/lemma.dart';
+import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/class_chat_power_levels.dart';
 import 'package:fluffychat/pangea/utils/firebase_analytics.dart';
@@ -51,6 +53,8 @@ class NewGroupController extends State<NewGroup> {
   final GlobalKey<AddToSpaceState> addToSpaceKey = GlobalKey<AddToSpaceState>();
   final GlobalKey<ConversationBotSettingsState> addConversationBotKey =
       GlobalKey<ConversationBotSettingsState>();
+  final GlobalKey<RoomCapacityButtonState> addCapacityKey =
+      GlobalKey<RoomCapacityButtonState>();
 
   ChatTopic chatTopic = ChatTopic.empty;
 
@@ -147,10 +151,16 @@ class NewGroupController extends State<NewGroup> {
           visibility: sdk.Visibility.public,
         );
       }
-      //#Pangea
+      // #Pangea
       GoogleAnalytics.createChat(roomId);
       await addToSpaceKey.currentState!.addSpaces(roomId);
-      //Pangea#
+
+      final capacity = addCapacityKey.currentState?.capacity;
+      final room = client.getRoomById(roomId);
+      if (capacity != null && room != null) {
+        room.updateRoomCapacity(capacity);
+      }
+      // Pangea#
       context.go('/rooms/$roomId/invite');
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);
