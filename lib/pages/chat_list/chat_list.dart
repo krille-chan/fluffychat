@@ -13,6 +13,8 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:tawkie/config/setting_keys.dart';
+import 'package:tawkie/pages/add_bridge/model/social_network.dart';
+import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/bootstrap/bootstrap_dialog.dart';
 import 'package:tawkie/utils/account_bundles.dart';
 import 'package:tawkie/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -159,10 +161,26 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  String getHostName() {
+    final client = Matrix.of(context).client;
+    final userId = client.userID;
+    final userHostName = extractHostName(userId!.split(':')[1]);
+    return userHostName;
+  }
+
+  List<String> getBotIds() {
+    final hostName = getHostName();
+    return socialNetwork.map((sn) => sn.chatBot + hostName).toList();
+  }
+
+  // List of user or bot IDs to exclude
+  List<String> get excludedUserIds => getBotIds();
+
   List<Room> get filteredRooms => Matrix.of(context)
       .client
       .rooms
       .where(getRoomFilterByActiveFilter(activeFilter))
+      .where((room) => !excludedUserIds.contains(room.directChatMatrixID))
       .toList();
 
   bool isSearchMode = false;
