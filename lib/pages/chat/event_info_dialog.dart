@@ -72,11 +72,16 @@ class EventInfoDialog extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Material(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-              color: Theme.of(context).colorScheme.surface,
+              color: Theme.of(context).colorScheme.inverseSurface,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8),
                 scrollDirection: Axis.horizontal,
-                child: SelectableText(prettyJson),
+                child: SelectableText(
+                  prettyJson,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onInverseSurface,
+                  ),
+                ),
               ),
             ),
           ),

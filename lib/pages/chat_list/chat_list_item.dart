@@ -21,6 +21,7 @@ class ChatListItem extends StatelessWidget {
   final void Function()? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
+  final String? filter;
 
   const ChatListItem(
     this.room, {
@@ -29,6 +30,7 @@ class ChatListItem extends StatelessWidget {
     required this.onTap,
     this.onLongPress,
     this.onForget,
+    this.filter,
     super.key,
   });
 
@@ -63,8 +65,11 @@ class ChatListItem extends StatelessWidget {
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
     final lastEvent = room.lastEvent;
-    final ownMessage = lastEvent?.senderId == Matrix.of(context).client.userID;
+    final ownMessage = lastEvent?.senderId == room.client.userID;
     final unread = room.isUnread || room.membership == Membership.invite;
+    final theme = Theme.of(context);
+    final directChatMatrixId = room.directChatMatrixID;
+    final isDirectChat = directChatMatrixId != null;
     final unreadBubbleSize = unread || room.hasNewMessages
         ? room.notificationCount > 0
             ? 20.0
@@ -72,13 +77,23 @@ class ChatListItem extends StatelessWidget {
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor = selected
-        ? Theme.of(context).colorScheme.primaryContainer
+        ? theme.colorScheme.primaryContainer
         : activeChat
-            ? Theme.of(context).colorScheme.secondaryContainer
+            ? theme.colorScheme.secondaryContainer
             : null;
     var displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)!),
     );
+
+    final filter = this.filter;
+    if (filter != null && !displayname.toLowerCase().contains(filter)) {
+      return const SizedBox.shrink();
+    }
+
+    final needLastEventSender = lastEvent == null
+        ? false
+        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+
 
     bool containsFacebook(List<String> participantsIds) {
       return participantsIds.any((id) => id.contains('@messenger2'));
@@ -90,6 +105,18 @@ class ChatListItem extends StatelessWidget {
 
     bool containsWhatsApp(List<String> participantsIds) {
       return participantsIds.any((id) => id.contains('@whatsapp'));
+    }
+
+    bool containsLinkedin(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@linkedin'));
+    }
+
+    bool containsDiscord(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@discord'));
+    }
+
+    bool containsSignal(List<String> participantsIds) {
+      return participantsIds.any((id) => id.contains('@signal'));
     }
 
     void removeFacebookTag() {
@@ -107,6 +134,29 @@ class ChatListItem extends StatelessWidget {
     void removeWhatsAppTag() {
       if (displayname.contains('(WA)')) {
         displayname = displayname.replaceAll('(WA)', ''); // Delete (WA)
+      }
+    }
+
+    void removeLinkedinTag() {
+      if (displayname.contains('(Linkedin)')) {
+        displayname =
+            displayname.replaceAll('(Linkedin)', ''); // Delete (Linkedin)
+      }
+    }
+
+    // It's the only bridge that doesn't display the social network source in the name.
+    // But I'm putting this function here just in case, for the future.
+    void removeDiscordTag() {
+      if (displayname.contains('(Discord)')) {
+        displayname =
+            displayname.replaceAll('(Discord)', ''); // Delete (Discord)
+      }
+    }
+
+    void removeSignalTag() {
+      if (displayname.contains('(Signal)')) {
+        displayname =
+            displayname.replaceAll('(Signal)', ''); // Delete (Linkedin)
       }
     }
 
@@ -141,6 +191,30 @@ class ChatListItem extends StatelessWidget {
           filterQuality: FilterQuality.high,
         );
         removeWhatsAppTag();
+      } else if (containsLinkedin(participantsIds)) {
+        networkColor = FluffyThemes.linkedinColor;
+        networkImage = Image.asset(
+          'assets/linkedin.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeLinkedinTag();
+      } else if (containsDiscord(participantsIds)) {
+        networkColor = FluffyThemes.dicordColor;
+        networkImage = Image.asset(
+          'assets/discord.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeDiscordTag();
+      } else if (containsSignal(participantsIds)) {
+        networkColor = FluffyThemes.signalColor;
+        networkImage = Image.asset(
+          'assets/signal.png',
+          color: networkColor,
+          filterQuality: FilterQuality.high,
+        );
+        removeSignalTag();
       }
 
       return [networkColor, networkImage];
@@ -162,11 +236,43 @@ class ChatListItem extends StatelessWidget {
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               onLongPress: onLongPress,
-              leading: Avatar(
-                mxContent: room.avatar,
-                name: displayname,
-                presenceUserId: room.directChatMatrixID,
-                presenceBackgroundColor: backgroundColor,
+              leading: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  HoverBuilder(
+                    builder: (context, hovered) => AnimatedScale(
+                      duration: FluffyThemes.animationDuration,
+                      curve: FluffyThemes.animationCurve,
+                      scale: hovered ? 1.1 : 1.0,
+                      child: Avatar(
+                        mxContent: room.avatar,
+                        name: displayname,
+                        presenceUserId: directChatMatrixId,
+                        presenceBackgroundColor: backgroundColor,
+                        onTap: onLongPress,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: -2,
+                    right: -2,
+                    child: AnimatedScale(
+                      duration: FluffyThemes.animationDuration,
+                      curve: FluffyThemes.animationCurve,
+                      scale: (hovered || selected) ? 1.0 : 0.0,
+                      child: Material(
+                        color: backgroundColor,
+                        borderRadius: BorderRadius.circular(16),
+                        child: Icon(
+                          selected
+                              ? Icons.check_circle
+                              : Icons.check_circle_outlined,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               title: FutureBuilder<List<dynamic>>(
                 future: loadRoomInfo(),
@@ -280,7 +386,7 @@ class ChatListItem extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 4),
                     child: Icon(
                       Icons.edit_outlined,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: theme.colorScheme.secondary,
                       size: 14,
                     ),
                   ),
@@ -289,59 +395,55 @@ class ChatListItem extends StatelessWidget {
                         ? Text(
                             typingText,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary,
+                              color: theme.colorScheme.primary,
                             ),
                             maxLines: 1,
                             softWrap: false,
                           )
-                        : FutureBuilder<String>(
-                            future: room.lastEvent?.calcLocalizedBody(
-                                  MatrixLocals(L10n.of(context)!),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: !room.isDirectChat ||
-                                      room.directChatMatrixID !=
-                                          room.lastEvent?.senderId,
-                                ) ??
-                                Future.value(L10n.of(context)!.emptyChat),
-                            builder: (context, snapshot) {
-                              return Text(
-                                room.membership == Membership.invite
-                                    ? room.isDirectChat
-                                        ? L10n.of(context)!.invitePrivateChat
-                                        : L10n.of(context)!.inviteGroupChat
-                                    : snapshot.data ??
-                                        room.lastEvent
-                                            ?.calcLocalizedBodyFallback(
-                                          MatrixLocals(L10n.of(context)!),
-                                          hideReply: true,
-                                          hideEdit: true,
-                                          plaintextBody: true,
-                                          removeMarkdown: true,
-                                          withSenderNamePrefix:
-                                              !room.isDirectChat ||
-                                                  room.directChatMatrixID !=
-                                                      room.lastEvent?.senderId,
-                                        ) ??
-                                        L10n.of(context)!.emptyChat,
-                                softWrap: false,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: unread || room.hasNewMessages
-                                      ? FontWeight.bold
-                                      : null,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                  decoration: room.lastEvent?.redacted == true
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                ),
-                              );
-                            },
+                        : FutureBuilder(
+                            key: ValueKey(lastEvent?.eventId),
+                            future: needLastEventSender
+                                ? lastEvent.calcLocalizedBody(
+                                    MatrixLocals(L10n.of(context)!),
+                                    hideReply: true,
+                                    hideEdit: true,
+                                    plaintextBody: true,
+                                    removeMarkdown: true,
+                                    withSenderNamePrefix: !isDirectChat ||
+                                        directChatMatrixId !=
+                                            room.lastEvent?.senderId,
+                                  )
+                                : null,
+                            initialData: lastEvent?.calcLocalizedBodyFallback(
+                              MatrixLocals(L10n.of(context)!),
+                              hideReply: true,
+                              hideEdit: true,
+                              plaintextBody: true,
+                              removeMarkdown: true,
+                              withSenderNamePrefix: !isDirectChat ||
+                                  directChatMatrixId !=
+                                      room.lastEvent?.senderId,
+                            ),
+                            builder: (context, snapshot) => Text(
+                              room.membership == Membership.invite
+                                  ? isDirectChat
+                                      ? L10n.of(context)!.invitePrivateChat
+                                      : L10n.of(context)!.inviteGroupChat
+                                  : snapshot.data ??
+                                      L10n.of(context)!.emptyChat,
+                              softWrap: false,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: unread || room.hasNewMessages
+                                    ? FontWeight.bold
+                                    : null,
+                                color: theme.colorScheme.onSurfaceVariant,
+                                decoration: room.lastEvent?.redacted == true
+                                    ? TextDecoration.lineThrough
+                                    : null,
+                              ),
+                            ),
                           ),
                   ),
                   const SizedBox(width: 8),
@@ -360,8 +462,8 @@ class ChatListItem extends StatelessWidget {
                               room.membership == Membership.invite
                           ? Colors.red
                           : hasNotifications || room.markedUnread
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primaryContainer,
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.primaryContainer,
                       borderRadius:
                           BorderRadius.circular(AppConfig.borderRadius),
                     ),
@@ -373,12 +475,8 @@ class ChatListItem extends StatelessWidget {
                                 color: room.highlightCount > 0
                                     ? Colors.white
                                     : hasNotifications
-                                        ? Theme.of(context)
-                                            .colorScheme
-                                            .onPrimary
-                                        : Theme.of(context)
-                                            .colorScheme
-                                            .onPrimaryContainer,
+                                        ? theme.colorScheme.onPrimary
+                                        : theme.colorScheme.onPrimaryContainer,
                                 fontSize: 13,
                               ),
                             )
@@ -389,19 +487,7 @@ class ChatListItem extends StatelessWidget {
               ),
               onTap: onTap,
               trailing: onForget == null
-                  ? hovered || selected
-                      ? IconButton(
-                          color: selected
-                              ? Theme.of(context).colorScheme.primary
-                              : null,
-                          icon: Icon(
-                            selected
-                                ? Icons.check_circle
-                                : Icons.check_circle_outlined,
-                          ),
-                          onPressed: onLongPress,
-                        )
-                      : null
+                  ? null
                   : IconButton(
                       icon: const Icon(Icons.delete_outlined),
                       onPressed: onForget,

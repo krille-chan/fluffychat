@@ -15,6 +15,7 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - run: flutter pub get
+      - run: flutter gen-l10n
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting

@@ -39,7 +39,7 @@ class ReplyContent extends StatelessWidget {
       color: backgroundColor ??
           Theme.of(context)
               .colorScheme
-              .background
+              .surface
               .withOpacity(ownMessage ? 0.2 : 0.33),
       borderRadius: borderRadius,
       child: Row(
@@ -82,7 +82,7 @@ class ReplyContent extends StatelessWidget {
                   style: TextStyle(
                     color: ownMessage
                         ? Theme.of(context).colorScheme.onPrimary
-                        : Theme.of(context).colorScheme.onBackground,
+                        : Theme.of(context).colorScheme.onSurface,
                     fontSize: fontSize,
                   ),
                 ),

@@ -64,7 +64,8 @@ class InvitationSelectionView extends StatelessWidget {
               ),
             ),
             StreamBuilder<Object>(
-              stream: room.onUpdate.stream,
+              stream: room.client.onRoomState.stream
+                  .where((update) => update.roomId == room.id),
               builder: (context, snapshot) {
                 final participants =
                     room.getParticipants().map((user) => user.id).toSet();

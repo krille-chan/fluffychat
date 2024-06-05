@@ -2381,7 +2381,7 @@
   "@invitePrivateChat": {},
   "invalidInput": "Ungültige Eingabe!",
   "@invalidInput": {},
-  "hasKnocked": "{user} hat angeklopft",
+  "hasKnocked": "🚪 {user} hat angeklopft",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2586,5 +2586,108 @@
     }
   },
   "verifyOtherDeviceDescription": "Wenn Sie ein anderes Gerät verifizieren, können diese Geräteschlüssel austauschen, was Ihre Sicherheit insgesamt erhöht. 💪 Wenn Sie eine Verifizierung starten, erscheint ein Pop-up in der App auf beiden Geräten. Dort sehen Sie dann eine Reihe von Emojis oder Zahlen, die Sie miteinander vergleichen müssen. Am besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
-  "@verifyOtherDeviceDescription": {}
+  "@verifyOtherDeviceDescription": {},
+  "presenceStyle": "Statusmeldungen:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Status-Nachrichten anderer Benutzer anzeigen",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "incomingMessages": "Eingehende Nachrichten",
+  "@incomingMessages": {},
+  "commandHint_unignore": "Angegebene Matrix-ID nicht mehr ignorieren",
+  "@commandHint_unignore": {},
+  "commandHint_ignore": "Angegebene Matrix-ID ignorieren",
+  "@commandHint_ignore": {},
+  "noDatabaseEncryption": "Datenbankverschlüsselung wird auf dieser Plattform nicht unterstützt",
+  "@noDatabaseEncryption": {},
+  "hidePresences": "Status-Liste verbergen?",
+  "@hidePresences": {},
+  "stickers": "Sticker",
+  "@stickers": {},
+  "discover": "Entdecken",
+  "@discover": {},
+  "unreadChatsInApp": "{appname}: {unread} ungelesene Chats",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "customEmojisAndStickersBody": "Eigene Emojis oder Sticker zur Nutzung im Chat hinzufügen oder teilen.",
+  "@customEmojisAndStickersBody": {},
+  "globalChatId": "Globale Chat-ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Zugang und Sichtbarkeit",
+  "@accessAndVisibility": {},
+  "hideMemberChangesInPublicChats": "Mitglieder-Änderungen in öffentlichen Chats ausblenden",
+  "@hideMemberChangesInPublicChats": {},
+  "accessAndVisibilityDescription": "Wer darf dem Chat beitreten und wie kann der Chat gefunden werden.",
+  "@accessAndVisibilityDescription": {},
+  "hideMemberChangesInPublicChatsBody": "Zeige keine Beitritt- oder Verlassen-Ereignisse von Mitgliedern in der Timeline an, um die Lesbarkeit in öffentlichen Chats zu verbessern.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} würde dem Chat gerne beitreten.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "Es wurde noch kein öffentlicher Link erstellt",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat kann über die Suche auf {server} gefunden werden",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appLockDescription": "App mit einer PIN sperren, wenn sie nicht verwendet wird",
+  "@appLockDescription": {},
+  "calls": "Anrufe",
+  "@calls": {},
+  "customEmojisAndStickers": "Eigene Emojis und Sticker",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessages": "Geschwärzte Nachrichten verstecken",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "Wenn jemand eine Nachricht schwärzt/löscht, dann wird diese Nachricht im Chat nicht mehr sichtbar sein.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Ungültige und unbekannte Nachrichten-Formate ausblenden",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Übersicht",
+  "@overview": {},
+  "notifyMeFor": "Benachrichtige mich für",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Passwort-Wiederherstellungs-Einstellungen",
+  "@passwordRecoverySettings": {},
+  "knock": "Anklopfen",
+  "@knock": {},
+  "knocking": "Klopft",
+  "@knocking": {},
+  "thereAreCountUsersBlocked": "Im Augenblick werden {count} Benutzer blockiert.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "usersMustKnock": "Benutzer müssen anklopfen",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Niemand kann beitreten",
+  "@noOneCanJoin": {},
+  "createNewAddress": "Neue Adresse erstellen",
+  "@createNewAddress": {},
+  "userRole": "Benutzerrolle",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is das minimale Power-Level.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "Öffentliche Chat-Adressen",
+  "@publicChatAddresses": {}
 }

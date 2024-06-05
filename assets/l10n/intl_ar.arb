@@ -305,7 +305,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "createdTheChat": "💬 أنشأ {username} الدردشة",
+  "createdTheChat": "💬 أنشأ {username} المحادثة",
   "@createdTheChat": {
     "type": "text",
     "placeholders": {
@@ -1113,7 +1113,7 @@
       "username": {}
     }
   },
-  "userLeftTheChat": "🚪 {username} غادر الدردشة",
+  "userLeftTheChat": "🚪 {username} غادر المحادثة",
   "@userLeftTheChat": {
     "type": "text",
     "placeholders": {
@@ -1762,7 +1762,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wipeChatBackup": "مسح نسخة الدردشة الاحتياطية لإنشاء مفتاح استرداد جديد؟",
+  "wipeChatBackup": "مسح نسخة المحادثة الاحتياطية لإنشاء مفتاح استرداد جديد؟",
   "@wipeChatBackup": {
     "type": "text",
     "placeholders": {}
@@ -2112,7 +2112,7 @@
   "@errorAddingWidget": {},
   "youRejectedTheInvitation": "لقد رفضت الدعوة",
   "@youRejectedTheInvitation": {},
-  "youJoinedTheChat": "لقد انضممت إلى الدردشة",
+  "youJoinedTheChat": "لقد انضممت إلى المحادثة",
   "@youJoinedTheChat": {},
   "youAcceptedTheInvitation": "👍 لقد قبلت الدعوة",
   "@youAcceptedTheInvitation": {},
@@ -2166,7 +2166,7 @@
   "@nextAccount": {},
   "previousAccount": "الحساب السابق",
   "@previousAccount": {},
-  "encryptThisChat": "تشفير هذه الدردشة",
+  "encryptThisChat": "تشفير هذه المحادثة",
   "@encryptThisChat": {},
   "screenSharingDetail": "أنت تشارك شاشتك في FuffyChat",
   "@screenSharingDetail": {},
@@ -2196,7 +2196,7 @@
       "senderName": {}
     }
   },
-  "hydrateTorLong": "هل قمت بتصدير جلستك الأخيرة على تور؟ قم باستيراده بسرعة واستمر في الدردشة.",
+  "hydrateTorLong": "هل قمت بتصدير جلستك الأخيرة على تور؟ قم باستيرادها بسرعة واستمر في المحادثة.",
   "@hydrateTorLong": {},
   "widgetUrlError": "هذا ليس عنوان URL صالحًا.",
   "@widgetUrlError": {},
@@ -2275,7 +2275,7 @@
       "oldDisplayName": {}
     }
   },
-  "disableEncryptionWarning": "لأسباب أمنية ، لا يمكنك تعطيل التشفير في الدردشة ، حيث تم تمكينه من قبل.",
+  "disableEncryptionWarning": "لأسباب أمنية ، لا يمكنك تعطيل التشفير في المحادثة ، حيث تم تمكينه من قبل.",
   "@disableEncryptionWarning": {},
   "reportErrorDescription": "😭 أوه لا. هناك خطأ ما. إذا كنت تريد، يمكنك الإبلاغ عن هذا الخطأ إلى المطورين.",
   "@reportErrorDescription": {},
@@ -2285,7 +2285,7 @@
   "@sorryThatsNotPossible": {},
   "openLinkInBrowser": "فتح الرابط في المتصفح",
   "@openLinkInBrowser": {},
-  "reopenChat": "إعادة فتح الدردشة",
+  "reopenChat": "إعادة فتح المحادثة",
   "@reopenChat": {},
   "noBackupWarning": "تحذير! بدون تمكين النسخ الاحتياطي للدردشة ، ستفقد الوصول إلى رسائلك المشفرة. يوصى بشدة بتمكين النسخ الاحتياطي للدردشة أولاً قبل تسجيل الخروج.",
   "@noBackupWarning": {},
@@ -2363,7 +2363,7 @@
   "@addChatDescription": {},
   "chatPermissions": "صلاحيات المحادثة",
   "@chatPermissions": {},
-  "chatDescription": "وصف الدردشة",
+  "chatDescription": "وصف المحادثة",
   "@chatDescription": {},
   "chatDescriptionHasBeenChanged": "تغير وصف المجموعة",
   "@chatDescriptionHasBeenChanged": {},
@@ -2375,7 +2375,7 @@
   "@setChatDescription": {},
   "directChat": "محادثة مباشرة",
   "@directChat": {},
-  "inviteGroupChat": "📨 دعوة الدردشة الجماعية",
+  "inviteGroupChat": "📨 دعوة للمحادثة الجماعية",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 دعوة دردشة خاصة",
   "@invitePrivateChat": {},
@@ -2393,7 +2393,7 @@
       "seconds": {}
     }
   },
-  "hasKnocked": "لقد طرق {user}",
+  "hasKnocked": "🚪 لقد طرق {user}",
   "@hasKnocked": {
     "placeholders": {
       "user": {}
@@ -2401,23 +2401,23 @@
   },
   "pleaseEnterANumber": "الرجاء إدخال رقم أكبر من 0",
   "@pleaseEnterANumber": {},
-  "banUserDescription": "سيتم حظر المستخدم من الدردشة ولن يتمكن من الدخول إلى الدردشة مرة أخرى حتى يتم رفع الحظر عنه.",
+  "banUserDescription": "سيتم حظر المستخدم من المحادثة ولن يتمكن من الدخول إلى المحادثة مرة أخرى حتى يتم رفع الحظر عنه.",
   "@banUserDescription": {},
   "removeDevicesDescription": "سيتم تسجيل خروجك من هذا الجهاز ولن تتمكن بعد ذلك من تلقي الرسائل.",
   "@removeDevicesDescription": {},
-  "unbanUserDescription": "سيتمكن المستخدم من الدخول إلى الدردشة مرة أخرى إذا حاول.",
+  "unbanUserDescription": "سيتمكن المستخدم من الدخول إلى المحادثة مرة أخرى إذا حاول.",
   "@unbanUserDescription": {},
   "pushNotificationsNotAvailable": "دفع الإخطارات غير متوفرة",
   "@pushNotificationsNotAvailable": {},
   "makeAdminDescription": "بمجرد تعيين هذا المستخدم كمسؤول، قد لا تتمكن من التراجع عن هذا لأنه سيكون لديه نفس الأذونات التي تتمتع بها.",
   "@makeAdminDescription": {},
-  "archiveRoomDescription": "سيتم نقل الدردشة إلى الأرشيف. سيتمكن المستخدمون الآخرون من رؤية أنك غادرت الدردشة.",
+  "archiveRoomDescription": "سيتم نقل المحادثة إلى الأرشيف. سيتمكن المستخدمون الآخرون من رؤية أنك غادرت المحادثة.",
   "@archiveRoomDescription": {},
   "learnMore": "تعلم المزيد",
   "@learnMore": {},
-  "roomUpgradeDescription": "سيتم بعد ذلك إعادة إنشاء الدردشة باستخدام إصدار الغرفة الجديد. سيتم إخطار جميع المشاركين بأنهم بحاجة إلى التبديل إلى الدردشة الجديدة. يمكنك معرفة المزيد حول إصدارات الغرف على https://spec.matrix.org/latest/rooms/",
+  "roomUpgradeDescription": "سيتم بعد ذلك إعادة إنشاء المحادثة باستخدام إصدار الغرفة الجديد. سيتم إخطار جميع المشاركين بأنهم بحاجة إلى التبديل إلى المحادثة الجديدة. يمكنك معرفة المزيد حول إصدارات الغرف على https://spec.matrix.org/latest/rooms/",
   "@roomUpgradeDescription": {},
-  "kickUserDescription": "يتم طرد المستخدم من الدردشة ولكن لا يتم حظره. في الدردشات العامة، يمكن للمستخدم الانضمام مرة أخرى في أي وقت.",
+  "kickUserDescription": "يتم طرد المستخدم من المحادثة ولكن لا يتم حظره. في المحادثات العامة، يمكن للمستخدم الانضمام مرة أخرى في أي وقت.",
   "@kickUserDescription": {},
   "createGroupAndInviteUsers": "إنشاء مجموعة ودعوة المستخدمين",
   "@createGroupAndInviteUsers": {},
@@ -2553,9 +2553,9 @@
       "roomName": {}
     }
   },
-  "sendTypingNotificationsDescription": "يستطيع المشاركون الآخرون في الدردشة رؤيتك عند كتابة رسالة جديدة.",
+  "sendTypingNotificationsDescription": "يستطيع المشاركون الآخرون في المحادثة رؤيتك عند كتابة رسالة جديدة.",
   "@sendTypingNotificationsDescription": {},
-  "sendReadReceiptsDescription": "يمكن للمشاركين الآخرين في الدردشة معرفة متى قرأت رسالة.",
+  "sendReadReceiptsDescription": "يمكن للمشاركين الآخرين في المحادثة معرفة متى قرأت الرسالة.",
   "@sendReadReceiptsDescription": {},
   "verifyOtherUser": "🔐 التحقق من المستخدم الآخر",
   "@verifyOtherUser": {},
@@ -2600,5 +2600,94 @@
   "@presencesToggle": {
     "type": "text",
     "placeholders": {}
+  },
+  "stickers": "الملصقات",
+  "@stickers": {},
+  "discover": "استكشف",
+  "@discover": {},
+  "commandHint_ignore": "تجاهل معرف المصفوفة المعطى",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "إلغاء تجاهل معرف المصفوفة المحدد",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} الدردشات غير المقروءة",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "noDatabaseEncryption": "تشفير قاعدة البيانات غير مدعوم على هذا النظام الأساسي",
+  "@noDatabaseEncryption": {},
+  "appLockDescription": "قفل التطبيق عند عدم استخدامه بالرمز السري",
+  "@appLockDescription": {},
+  "accessAndVisibility": "الوصول والرؤية",
+  "@accessAndVisibility": {},
+  "calls": "المكالمات",
+  "@calls": {},
+  "customEmojisAndStickers": "الرموز التعبيرية والملصقات المخصصة",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessagesBody": "إذا قام شخص ما بتنقيح رسالة، فلن تكون هذه الرسالة مرئية في المحادثة بعد الآن.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "إخفاء تنسيقات الرسائل غير الصالحة أو غير المعروفة",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "نظرة عامة",
+  "@overview": {},
+  "notifyMeFor": "أعلمني بـ",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "إعدادات استعادة كلمة المرور",
+  "@passwordRecoverySettings": {},
+  "globalChatId": "معرف المحادثة العامة",
+  "@globalChatId": {},
+  "accessAndVisibilityDescription": "من المسموح له بالانضمام إلى هذه المحادثة وكيف يمكن اكتشاف المحادثة.",
+  "@accessAndVisibilityDescription": {},
+  "customEmojisAndStickersBody": "قم بإضافة أو مشاركة الرموز التعبيرية أو الملصقات المخصصة التي يمكن استخدامها في أي دردشة.",
+  "@customEmojisAndStickersBody": {},
+  "hideRedactedMessages": "إخفاء الرسائل المكررة",
+  "@hideRedactedMessages": {},
+  "hideMemberChangesInPublicChats": "إخفاء تغييرات الأعضاء في الدردشات العامة",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "لا تظهر في المخطط الزمني للدردشة إذا انضم شخص ما إلى محادثة عامة أو غادرها لتحسين إمكانية القراءة.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "usersMustKnock": "المستخدم يجب أن يطرق الباب",
+  "@usersMustKnock": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "يمكن اكتشاف الشات عن طريق البحث في {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "noOneCanJoin": "لا أحد يستطيع الانضمام",
+  "@noOneCanJoin": {},
+  "knocking": "طرق",
+  "@knocking": {},
+  "userWouldLikeToChangeTheChat": "{user} يرغب في الانضمام إلى المحادثة.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "لم يتم بعد إنشاء أي رابط عام",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "دق",
+  "@knock": {},
+  "thereAreCountUsersBlocked": "يوجد حاليًا {count} من المستخدمين المحظورين.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "publicChatAddresses": "عناوين المحادثة العامة",
+  "@publicChatAddresses": {},
+  "createNewAddress": "إنشاء عنوان جديد",
+  "@createNewAddress": {},
+  "userRole": "دور المستخدم",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} هو الحد الأدنى من مستوى الطاقة.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
   }
 }

@@ -2600,5 +2600,94 @@
   "hidePresences": "隐藏状态列表？",
   "@hidePresences": {},
   "incomingMessages": "传入消息",
-  "@incomingMessages": {}
+  "@incomingMessages": {},
+  "stickers": "贴纸",
+  "@stickers": {},
+  "discover": "发现",
+  "@discover": {},
+  "commandHint_ignore": "忽略给定的 matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "取消忽略给定的 matrix ID",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} 未读聊天",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "appLockDescription": "用 pin 码在不用 FluffyChat 时锁定它",
+  "@appLockDescription": {},
+  "globalChatId": "全局聊天 ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "访问和可见性",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "谁可以加入此聊天以及怎样发现该聊天。",
+  "@accessAndVisibilityDescription": {},
+  "calls": "通话",
+  "@calls": {},
+  "customEmojisAndStickers": "自定义表情符号和贴纸",
+  "@customEmojisAndStickers": {},
+  "hideRedactedMessages": "隐藏被涂黑的消息",
+  "@hideRedactedMessages": {},
+  "overview": "概览",
+  "@overview": {},
+  "notifyMeFor": "提示内容",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "密码发现设置",
+  "@passwordRecoverySettings": {},
+  "noPublicLinkHasBeenCreatedYet": "尚未创建公开链接",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "请求",
+  "@knock": {},
+  "noOneCanJoin": "无人可以加入",
+  "@noOneCanJoin": {},
+  "knocking": "正在请求",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "可通过搜索 {server} 发现聊天",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "thereAreCountUsersBlocked": "目前有 {count} 名用户被封禁。",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "hideRedactedMessagesBody": "如果某人涂黑了一条消息，那么在聊天中再也看不到这条消息。",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "隐藏无效或未知的消息格式",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "hideMemberChangesInPublicChats": "在公开聊天中隐藏成员变化",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "不在聊天时间线中显示某人是否加入或离开了公开聊天来改进可读性。",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "userWouldLikeToChangeTheChat": "{user} 想加入聊天。",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "customEmojisAndStickersBody": "添加或分享可用于任何聊天的表情符号或贴纸。",
+  "@customEmojisAndStickersBody": {},
+  "usersMustKnock": "用户必须请求加入",
+  "@usersMustKnock": {},
+  "noDatabaseEncryption": "数据库加密在此平台上不受支持",
+  "@noDatabaseEncryption": {},
+  "userRole": "用户角色",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} 是最低权限等级。",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "publicChatAddresses": "公开聊天的地址",
+  "@publicChatAddresses": {},
+  "createNewAddress": "新建地址",
+  "@createNewAddress": {}
 }

@@ -236,7 +236,7 @@ class InputBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '/$command',
+                commandExample(command),
                 style: const TextStyle(fontFamily: 'monospace'),
               ),
               Text(
@@ -465,8 +465,11 @@ class InputBar extends StatelessWidget {
                   mimeType: content.mimeType,
                   bytes: data,
                   name: content.uri.split('/').last,
-                ).detectFileType;
-                room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+                );
+                room.sendFileEvent(
+                  file,
+                  shrinkImageMaxDimension: 1600,
+                );
               },
             ),
             minLines: minLines,
@@ -474,6 +477,9 @@ class InputBar extends StatelessWidget {
             keyboardType: keyboardType!,
             textInputAction: textInputAction,
             autofocus: autofocus!,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+            ],
             onSubmitted: (text) {
               // fix for library for now
               // it sets the types for the callback incorrectly

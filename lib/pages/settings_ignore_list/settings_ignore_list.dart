@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:matrix/matrix.dart';
 
 import '../../widgets/matrix.dart';
 import 'settings_ignore_list_view.dart';
@@ -25,9 +27,20 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
     }
   }
 
+  String? errorText;
+
   void ignoreUser(BuildContext context) {
-    if (controller.text.isEmpty) return;
-    final userId = '@${controller.text}';
+    final userId = controller.text.trim();
+    if (userId.isEmpty) return;
+    if (!userId.isValidMatrixId || userId.sigil != '@') {
+      setState(() {
+        errorText = L10n.of(context)!.invalidInput;
+      });
+      return;
+    }
+    setState(() {
+      errorText = null;
+    });
 
     showFutureLoadingDialog(
       context: context,

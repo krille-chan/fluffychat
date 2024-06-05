@@ -96,6 +96,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         data: jsonEncode({'username': newUsername}),
       );
       final matrixUsername = updateUsernameResponse.data['username'];
+      final newState = updateUsernameResponse.data['userState'];
 
       Logs().v("New matrixUsername: $matrixUsername");
       if (matrixUsername != newUsername) {
@@ -104,6 +105,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
       setState(() {
         widget.queueStatus['username'] = newUsername;
+        widget.queueStatus['userState'] = newState;
         _loadingUpdateUsername = false;
       });
 
@@ -192,30 +194,19 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
 
   void _onNextButtonPressed() async {
     setState(() => _loadingCreateUser = true);
-    if (PlatformInfos.shouldInitializePurchase()) {
-      final hasSubscription = await SubscriptionManager
-          .checkSubscriptionStatus();
-
-      if (!hasSubscription) {
-        Logs().v('No subscription found, redirecting to subscribe page.');
-        context.go('/home/subscribe');
-      } else if (_isAccepted()) {
-        try {
-          await createUser(widget.sessionToken);
-        } catch (e) {
-          Logs().v('Error creating user: $e');
-          setState(() => _loadingCreateUser = false);
-          showCatchErrorDialog(context, e.toString());
-        }
-        if (_isCreated()) {
-          Navigator.of(context).pop();
-          await widget.onUserCreated(widget.sessionToken);
-          // don't update state because we popped the page
-        }
+    if (_isAccepted()) {
+      try {
+        await createUser(widget.sessionToken);
+      } catch (e) {
+        Logs().v('Error creating user: $e');
+        setState(() => _loadingCreateUser = false);
+        showCatchErrorDialog(context, e.toString());
       }
-    } else {
-      // Todo: make purchases for Web, Windows and Linux
-      showCatchErrorDialog(context, 'Well this is awkward. Try subscribing from the panel or mobile app.');
+    }
+    if (_isCreated()) {
+      Navigator.of(context).pop();
+      await widget.onUserCreated(widget.sessionToken);
+      // don't update state because we popped the page
     }
   }
 

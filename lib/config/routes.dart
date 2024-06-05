@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:tawkie/config/subscription.dart';
 
 import 'package:tawkie/config/themes.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/archive/archive.dart';
 import 'package:tawkie/pages/chat/chat.dart';
+import 'package:tawkie/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:tawkie/pages/chat_details/chat_details.dart';
 import 'package:tawkie/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:tawkie/pages/chat_list/chat_list.dart';
 import 'package:tawkie/pages/chat_members/chat_members.dart';
 import 'package:tawkie/pages/chat_permissions_settings/chat_permissions_settings.dart';
+import 'package:tawkie/pages/chat_search/chat_search_page.dart';
 import 'package:tawkie/pages/device_settings/device_settings.dart';
 import 'package:tawkie/pages/invitation_selection/invitation_selection.dart';
 import 'package:tawkie/pages/login/login.dart';
@@ -53,18 +54,12 @@ abstract class AppRoutes {
     final bool preAuth = state.fullPath!.startsWith('/home');
 
     if (isLoggedKratos && isLoggedMatrix) {
-      final bool hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
-      if (hasSubscription) {
-        return '/rooms';
-      } else {
-        return '/home/subscribe';
-      }
+      return '/rooms';
     } else if (isLoggedKratos && !isLoggedMatrix && !preAuth) {
       return '/home/login';
     } else if (!isLoggedMatrix && !preAuth) {
       return '/home/welcome';
     }
-    print('returning ning');
 
     return null;
   }
@@ -75,12 +70,8 @@ abstract class AppRoutes {
   ) async {
     // Check connection to Matrix
     final hasLogin = Matrix.of(context).client.isLogged();
-    var hasSubscription = await SubscriptionManager.checkSubscriptionStatus();
     if (!hasLogin) {
       return '/home';
-    } else if (hasLogin && !hasSubscription) {
-      // If the user doesn't have a subscription, redirect to /subscribe
-      return '/home/subscribe';
     }
     return null;
   }
@@ -90,8 +81,7 @@ abstract class AppRoutes {
   static final List<RouteBase> routes = [
     GoRoute(
       path: '/',
-      redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/home/welcome',
+      redirect: loggedInRedirect,
     ),
     GoRoute(
       path: '/home',
@@ -192,6 +182,7 @@ abstract class AppRoutes {
                     state,
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
+                      eventId: state.uri.queryParameters['event'],
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -394,10 +385,22 @@ abstract class AppRoutes {
                 ChatPage(
                   roomId: state.pathParameters['roomid']!,
                   shareText: state.uri.queryParameters['body'],
+                  eventId: state.uri.queryParameters['event'],
                 ),
               ),
               redirect: loggedOutRedirect,
               routes: [
+                GoRoute(
+                  path: 'search',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    ChatSearchPage(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
                 GoRoute(
                   path: 'encryption',
                   pageBuilder: (context, state) => defaultPageBuilder(
@@ -428,6 +431,17 @@ abstract class AppRoutes {
                     ),
                   ),
                   routes: [
+                    GoRoute(
+                      path: 'access',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatAccessSettings(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'members',
                       pageBuilder: (context, state) => defaultPageBuilder(

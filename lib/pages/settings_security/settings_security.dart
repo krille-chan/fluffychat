@@ -59,6 +59,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
           message: L10n.of(context)!.deactivateAccountWarning,
           okLabel: L10n.of(context)!.ok,
           cancelLabel: L10n.of(context)!.cancel,
+          isDestructiveAction: true,
         ) ==
         OkCancelResult.cancel) {
       return;
@@ -75,6 +76,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
               : L10n.of(context)!.supposedMxid(supposedMxid),
         ),
       ],
+      isDestructiveAction: true,
       okLabel: L10n.of(context)!.delete,
       cancelLabel: L10n.of(context)!.cancel,
     );
@@ -87,6 +89,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       title: L10n.of(context)!.pleaseEnterYourPassword,
       okLabel: L10n.of(context)!.ok,
       cancelLabel: L10n.of(context)!.cancel,
+      isDestructiveAction: true,
       textFields: [
         const DialogTextField(
           obscureText: true,

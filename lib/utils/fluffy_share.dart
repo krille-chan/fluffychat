@@ -15,10 +15,11 @@ abstract class FluffyShare {
   }) async {
     if (PlatformInfos.isMobile && !copyOnly) {
       final box = context.findRenderObject() as RenderBox;
-      return Share.share(
+      await Share.share(
         text,
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
       );
+      return;
     }
     await Clipboard.setData(
       ClipboardData(text: text),

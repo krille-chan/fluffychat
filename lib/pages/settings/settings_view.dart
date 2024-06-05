@@ -37,7 +37,7 @@ class SettingsView extends StatelessWidget {
         ],
       ),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onBackground,
+        iconColor: Theme.of(context).colorScheme.onSurface,
         child: ListView(
           key: const Key('SettingsListViewContent'),
           children: <Widget>[
@@ -103,7 +103,7 @@ class SettingsView extends StatelessWidget {
                             ),
                             style: TextButton.styleFrom(
                               foregroundColor:
-                                  Theme.of(context).colorScheme.onBackground,
+                                  Theme.of(context).colorScheme.onSurface,
                             ),
                             label: Text(
                               displayname,
@@ -136,7 +136,10 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            const Divider(thickness: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             if (showChatBackupBanner == null)
               ListTile(
                 leading: const Icon(Icons.backup_outlined),
@@ -197,7 +200,10 @@ class SettingsView extends StatelessWidget {
               onTap: () => context.go('/rooms/settings/security'),
               trailing: const Icon(Icons.chevron_right_outlined),
             ),
-            const Divider(thickness: 1),
+            Divider(
+              height: 1,
+              color: Theme.of(context).dividerColor,
+            ),
             ListTile(
               leading: const Icon(Icons.help_outline_outlined),
               title: Text(L10n.of(context)!.help),

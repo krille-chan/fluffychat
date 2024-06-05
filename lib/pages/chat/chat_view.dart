@@ -152,7 +152,8 @@ class ChatView extends StatelessWidget {
         }
       },
       child: StreamBuilder(
-        stream: controller.room.onUpdate.stream
+        stream: controller.room.client.onRoomState.stream
+            .where((update) => update.roomId == controller.room.id)
             .rateLimit(const Duration(seconds: 1)),
         builder: (context, snapshot) => FutureBuilder(
           future: controller.loadTimelineFuture,
@@ -304,7 +305,7 @@ class ChatView extends StatelessWidget {
                                 clipBehavior: Clip.hardEdge,
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .surfaceVariant,
+                                    .surfaceContainerHighest,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),

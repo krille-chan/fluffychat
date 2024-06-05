@@ -18,25 +18,18 @@ class StateMessage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
-          child: FutureBuilder<String>(
-            future: event.calcLocalizedBody(MatrixLocals(L10n.of(context)!)),
-            builder: (context, snapshot) {
-              return Text(
-                snapshot.data ??
-                    event.calcLocalizedBodyFallback(
-                      MatrixLocals(L10n.of(context)!),
-                    ),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12 * AppConfig.fontSizeFactor,
-                  decoration:
-                      event.redacted ? TextDecoration.lineThrough : null,
-                ),
-              );
-            },
+          child: Text(
+            event.calcLocalizedBodyFallback(
+              MatrixLocals(L10n.of(context)!),
+            ),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12 * AppConfig.fontSizeFactor,
+              decoration: event.redacted ? TextDecoration.lineThrough : null,
+            ),
           ),
         ),
       ),
