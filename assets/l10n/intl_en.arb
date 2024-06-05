@@ -2610,5 +2610,6 @@
     "subNotSubArgThree": "Message encryption",
     "subNotSubArgFour": "Mark unread",
     "noAccountRegister": "No account yet ? Register now",
-    "authCodeSentTo": "Code envoyé à"
+    "authCodeSentTo": "Code sent to",
+    "authResendCodeMessage": "A new code has been sent"
 }

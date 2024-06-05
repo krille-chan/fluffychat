@@ -234,8 +234,8 @@ class LoginController extends State<Login> {
       return Padding(
         padding: const EdgeInsets.all(12.0),
         child: TextButton(
-          onPressed: () {
-            // Implement your resend code logic here
+          onPressed: () async {
+            _resendCode(actionUrl);
           },
           child: Text(node.meta.label!.text),
         ),
@@ -262,6 +262,69 @@ class LoginController extends State<Login> {
       setState(() => hasSubmitted = false);
       getLoginOry();
     }
+  }
+
+  Map<String, dynamic> _buildFormData() {
+    final formData = <String, dynamic>{};
+
+    for (int i = 0; i < formNodes.length; i++) {
+      final kratos.UiNode node = formNodes[i];
+      if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
+        final kratos.UiNodeInputAttributes attributes =
+            node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
+        final value = textControllers[i].text;
+
+        formData[attributes.name] = value;
+      }
+    }
+
+    return formData;
+  }
+
+  Future<void> _resendCode(String actionUrl) async {
+    setState(() {
+      loading = true;
+    });
+    final formData = _buildFormData();
+
+    formData["resend"] = "code";
+
+    try {
+      final response = await dio.post(
+        actionUrl,
+        data: formData,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print('Code resent successfully: ${response.data}');
+        }
+      } else {
+        if (kDebugMode) {
+          print('Error resending code: ${response.data}');
+        }
+      }
+    } on DioException catch (e) {
+      if (kDebugMode) {
+        print('Error resending code: ${e.response?.data}');
+      }
+    } finally {
+      setState(() {
+        loading = false;
+      });
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(L10n.of(context)!.authResendCodeMessage),
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   Future<void> oryLoginWithCode(
