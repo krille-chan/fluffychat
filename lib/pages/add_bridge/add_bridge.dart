@@ -1,15 +1,16 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
+import 'package:tawkie/pages/add_bridge/show_bottom_sheet.dart';
 import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
 import 'package:tawkie/widgets/matrix.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+
+import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
@@ -46,14 +47,6 @@ class BotController extends State<AddBridge> {
     client = Matrix.of(context).client;
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
-  }
-
-  void updateNetworkStatus(bool isConnected) {
-    setState(() {
-      network.connected = isConnected;
-      network.loading = false;
-      network.error = !isConnected;
-    });
   }
 
   Future<void> handleRefresh() async {
@@ -232,7 +225,32 @@ class BotController extends State<AddBridge> {
     });
   }
 
-  Future<void> handleConnection(BuildContext context, SocialNetwork network) async {
+  // Different ways of connecting and disconnecting depending on the social network, for now only Instagram
+  void handleSocialNetworkAction(
+    SocialNetwork network,
+  ) async {
+    if (network.loading == false) {
+      if (network.connected != true && network.error == false) {
+        await handleConnection(context, network);
+      } else if (network.connected == true && network.error == false) {
+        // Disconnect button, for the moment only this choice
+        await handleDisconnection(context, network);
+      }
+
+      // If there is a ping error
+      if (network.error && network.connected == false) {
+        setState(() {
+          network.loading = true;
+        });
+
+        // Reload pinging
+        await pingSocialNetwork(network);
+      }
+    }
+  }
+
+  Future<void> handleConnection(
+      BuildContext context, SocialNetwork network) async {
     switch (network.name) {
       case "Instagram":
         Navigator.push(
@@ -243,7 +261,7 @@ class BotController extends State<AddBridge> {
               network: network,
               onConnectionResult: (bool success) {
                 if (success) {
-                  updateNetworkStatus(true);
+                  network.updateConnectionResult(true);
                   showCatchSuccessDialog(context,
                       "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
                 } else {
@@ -256,8 +274,8 @@ class BotController extends State<AddBridge> {
         );
         break;
       case "WhatsApp":
-      // Replace this with your actual WhatsApp connection logic
-      // success = await connectToWhatsApp(context, network, controller);
+        // Replace this with your actual WhatsApp connection logic
+        // success = await connectToWhatsApp(context, network, controller);
         break;
       case "Facebook Messenger":
         Navigator.push(
@@ -268,7 +286,7 @@ class BotController extends State<AddBridge> {
               network: network,
               onConnectionResult: (bool success) {
                 if (success) {
-                  updateNetworkStatus(true);
+                  network.updateConnectionResult(true);
                   showCatchSuccessDialog(context,
                       "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
                 } else {
@@ -280,10 +298,21 @@ class BotController extends State<AddBridge> {
           ),
         );
         break;
-    // Add other cases here
+      // Add other cases here
     }
   }
 
+  Future<void> handleDisconnection(
+      BuildContext context, SocialNetwork network) async {
+    final bool success = await showBottomSheetBridge(context, network, this);
+
+    if (success) {
+      network.updateConnectionResult(false);
+      await deleteConversationDialog(context, network, this);
+    } else {
+      showCatchErrorDialog(context, L10n.of(context)!.errTimeOut);
+    }
+  }
 
   @override
   Widget build(BuildContext context) => AddBridgeBody(controller: this);
