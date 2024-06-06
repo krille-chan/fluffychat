@@ -2482,6 +2482,7 @@
     "subNotSubArgThree": "Chiffrement des messages",
     "subNotSubArgFour": "Remettre en non-lu",
     "noAccountRegister": "Pas encore de compte ? Inscrivez-vous !",
+    "alreadyAccountRegister": "Vous avez déjà un compte ?",
     "authCodeSentTo": "Code envoyé à",
     "authResendCodeMessage": "Un nouveau code a été envoyé",
     "privacyText": "En créant un compte, vous acceptez nos",
