@@ -228,6 +228,17 @@ class ChatController extends State<ChatPageWithRoom>
     context.go('/rooms');
   }
 
+  // #Pangea
+  void archiveChat() async {
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: room.archive,
+    );
+    if (success.error != null) return;
+    context.go('/rooms');
+  }
+  // Pangea#
+
   EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   // #Pangea

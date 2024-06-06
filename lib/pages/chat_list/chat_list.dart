@@ -515,7 +515,8 @@ class ChatListController extends State<ChatList>
 
     //#Pangea
     classStream = pangeaController.classController.stateStream.listen((event) {
-      if (event["activeSpaceId"] != null && mounted) {
+      // if (event["activeSpaceId"] != null && mounted) {
+      if (mounted) {
         setActiveSpace(event["activeSpaceId"]);
       }
     });
@@ -679,6 +680,38 @@ class ChatListController extends State<ChatList>
     // Pangea#
   }
 
+  // #Pangea
+  Future<void> leaveAction() async {
+    final bool onlyAdmin = await Matrix.of(context)
+            .client
+            .getRoomById(selectedRoomIds.first)
+            ?.isOnlyAdmin() ??
+        false;
+    final confirmed = await showOkCancelAlertDialog(
+          useRootNavigator: false,
+          context: context,
+          title: L10n.of(context)!.areYouSure,
+          okLabel: L10n.of(context)!.yes,
+          cancelLabel: L10n.of(context)!.cancel,
+          message: onlyAdmin
+              ? L10n.of(context)!.onlyAdminDescription
+              : L10n.of(context)!.leaveRoomDescription,
+        ) ==
+        OkCancelResult.ok;
+    if (!confirmed) return;
+    final bool leftActiveRoom =
+        selectedRoomIds.contains(Matrix.of(context).activeRoomId);
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => _leaveSelectedRooms(onlyAdmin),
+    );
+    setState(() {});
+    if (leftActiveRoom) {
+      context.go('/rooms');
+    }
+  }
+  // Pangea#
+
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
       title: L10n.of(context)!.hidePresences,
@@ -729,16 +762,34 @@ class ChatListController extends State<ChatList>
       final roomId = selectedRoomIds.first;
       try {
         // #Pangea
-        if (client.getRoomById(roomId)!.isUnread) {
-          await client.getRoomById(roomId)!.markUnread(false);
-        }
+        // await client.getRoomById(roomId)!.leave();
+        await client.getRoomById(roomId)!.archive();
         // Pangea#
-        await client.getRoomById(roomId)!.leave();
       } finally {
         toggleSelection(roomId);
       }
     }
   }
+
+  // #Pangea
+  Future<void> _leaveSelectedRooms(bool onlyAdmin) async {
+    final client = Matrix.of(context).client;
+    while (selectedRoomIds.isNotEmpty) {
+      final roomId = selectedRoomIds.first;
+      try {
+        final room = client.getRoomById(roomId);
+        if (!room!.isSpace &&
+            room.membership == Membership.join &&
+            room.isUnread) {
+          await room.markUnread(false);
+        }
+        onlyAdmin ? await room.archive() : await room.leave();
+      } finally {
+        toggleSelection(roomId);
+      }
+    }
+  }
+  // Pangea#
 
   Future<void> addToSpace() async {
     final selectedSpace = await showConfirmationDialog<String>(
