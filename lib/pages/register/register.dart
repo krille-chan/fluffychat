@@ -122,10 +122,10 @@ class RegisterController extends State<Register> {
   }
 
   Widget _buildHiddenWidget(kratos.UiNodeInputAttributes attributes) {
-    if (attributes.name == "identifier") {
+    if (attributes.name == "traits.email") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Text("Code envoyé à ${attributes.value!}" ?? ""),
+        child: Text("${L10n.of(context)!.authCodeSentTo} ${attributes.value!}" ?? ""),
       );
     }
     return Container();
