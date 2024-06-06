@@ -33,6 +33,9 @@ void chatListHandleSpaceTap(
       context: context,
       future: () async {
         await space.join();
+        if (await space.leaveIfFull()) {
+          throw L10n.of(context)!.roomFull;
+        }
         await space.postLoad();
         setActiveSpaceAndCloseChat();
       },
@@ -65,6 +68,9 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
+          if (await space.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
           if (space.isSpace) {
             await space.joinAnalyticsRoomsInSpace();
           }

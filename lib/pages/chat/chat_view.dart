@@ -20,6 +20,7 @@ import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../utils/stream_extension.dart';
@@ -151,6 +152,11 @@ class ChatView extends StatelessWidget {
         context: context,
         future: () => controller.room.join(),
       );
+      // #Pangea
+      controller.room.leaveIfFull().then(
+            (full) => full ? context.go('/rooms') : null,
+          );
+      // Pangea#
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;

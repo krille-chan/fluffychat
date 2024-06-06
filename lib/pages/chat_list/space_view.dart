@@ -180,13 +180,7 @@ class _SpaceViewState extends State<SpaceView> {
           // #Pangea
           final room = client.getRoomById(spaceChild.roomId);
           if (room != null && (await room.leaveIfFull())) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 10),
-                content: Text(L10n.of(context)!.roomFull),
-              ),
-            );
-            return;
+            throw L10n.of(context)!.roomFull;
           }
           // Pangea#
         },
@@ -207,17 +201,11 @@ class _SpaceViewState extends State<SpaceView> {
           );
           await room.join();
           await waitForRoom;
+          if (await room.leaveIfFull()) {
+            throw L10n.of(context)!.roomFull;
+          }
         },
       );
-      if (await room.leaveIfFull()) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: const Duration(seconds: 10),
-            content: Text(L10n.of(context)!.roomFull),
-          ),
-        );
-        return;
-      }
       if (joinResult.error != null) return;
     }
     // Pangea#

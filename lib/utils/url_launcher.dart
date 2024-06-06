@@ -159,7 +159,10 @@ class UrlLauncher {
         room = matrix.client.getRoomById(roomId!);
       }
       servers.addAll(identityParts.via);
-      if (room != null) {
+      // #Pangea
+      if (room != null && room.membership != Membership.leave) {
+        // if (room != null) {
+        // Pangea#
         if (room.isSpace) {
           // TODO: Implement navigate to space
           context.go('/rooms/${room.id}');

@@ -47,12 +47,6 @@ class PublicRoomBottomSheet extends StatelessWidget {
         // #Pangea
         final room = client.getRoomById(roomId);
         if (room != null && (await room.leaveIfFull())) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: const Duration(seconds: 10),
-              content: Text(L10n.of(context)!.roomFull),
-            ),
-          );
           throw L10n.of(context)!.roomFull;
         }
         // Pangea#

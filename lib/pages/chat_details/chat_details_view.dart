@@ -36,7 +36,10 @@ class ChatDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = Matrix.of(context).client.getRoomById(controller.roomId!);
-    if (room == null) {
+    // #Pangea
+    if (room == null || room.membership == Membership.leave) {
+      // if (room == null) {
+      // Pangea#
       return Scaffold(
         appBar: AppBar(
           title: Text(L10n.of(context)!.oopsSomethingWentWrong),
