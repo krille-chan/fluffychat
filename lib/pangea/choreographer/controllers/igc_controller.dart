@@ -12,7 +12,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import '../../../widgets/matrix.dart';
 import '../../models/language_detection_model.dart';
 import '../../models/span_card_model.dart';
 import '../../repo/span_data_repo.dart';
@@ -237,7 +236,8 @@ class IgcController {
 
   clear() {
     igcTextData = null;
-    MatrixState.pAnyState.closeOverlay();
+    // Not sure why this is here
+    // MatrixState.pAnyState.closeOverlay();
   }
 
   bool get canSendMessage {

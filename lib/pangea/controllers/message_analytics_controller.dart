@@ -11,8 +11,8 @@ import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
 import '../constants/class_default_values.dart';
-import '../extensions/client_extension.dart';
-import '../extensions/pangea_room_extension.dart';
+import '../extensions/client_extension/client_extension.dart';
+import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../matrix_event_wrappers/construct_analytics_event.dart';
 import '../models/chart_analytics_model.dart';
 import '../models/student_analytics_event.dart';

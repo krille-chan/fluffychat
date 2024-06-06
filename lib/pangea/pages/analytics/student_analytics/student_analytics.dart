@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/models/chart_analytics_model.dart';
 import 'package:fluffychat/pangea/widgets/common/list_placeholder.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +11,7 @@ import 'package:matrix/matrix.dart';
 
 import '../../../../widgets/matrix.dart';
 import '../../../controllers/pangea_controller.dart';
-import '../../../extensions/client_extension.dart';
+import '../../../extensions/client_extension/client_extension.dart';
 import '../../../utils/sync_status_util_v2.dart';
 import '../base_analytics.dart';
 import 'student_analytics_view.dart';

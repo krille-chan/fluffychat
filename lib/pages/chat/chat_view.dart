@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/has_error_button.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/language_permissions_warning_buttons.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_analytics/measure_able.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
@@ -42,11 +42,15 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context)!.edit,
             onPressed: controller.editSelectedEventAction,
           ),
-        IconButton(
-          icon: const Icon(Icons.copy_outlined),
-          tooltip: L10n.of(context)!.copy,
-          onPressed: controller.copyEventsAction,
-        ),
+        // #Pangea
+        if (controller.selectedEvents.length == 1 &&
+            controller.selectedEvents.single.messageType == MessageTypes.Text)
+          // Pangea#
+          IconButton(
+            icon: const Icon(Icons.copy_outlined),
+            tooltip: L10n.of(context)!.copy,
+            onPressed: controller.copyEventsAction,
+          ),
         if (controller.canSaveSelectedEvent)
           // Use builder context to correctly position the share dialog on iPad
           Builder(

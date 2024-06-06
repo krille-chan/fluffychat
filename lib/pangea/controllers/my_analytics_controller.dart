@@ -3,13 +3,14 @@ import 'dart:developer';
 
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/construct_analytics_event.dart';
 import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
 import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 
-import '../extensions/client_extension.dart';
-import '../extensions/pangea_room_extension.dart';
+import '../extensions/client_extension/client_extension.dart';
+import '../extensions/pangea_room_extension/pangea_room_extension.dart';
 import '../models/constructs_analytics_model.dart';
 import '../models/student_analytics_event.dart';
 
@@ -111,4 +112,48 @@ class MyAnalyticsController {
       ErrorHandler.logError(e: err, s: s);
     }
   }
+
+  // used to aggregate ConstructEvents, from multiple senders (students) with the same lemma
+  List<AggregateConstructUses> aggregateConstructData(
+    List<ConstructEvent> constructs,
+  ) {
+    final Map<String, List<ConstructEvent>> lemmasToConstructs = {};
+    for (final construct in constructs) {
+      lemmasToConstructs[construct.content.lemma] ??= [];
+      lemmasToConstructs[construct.content.lemma]!.add(construct);
+    }
+
+    final List<AggregateConstructUses> aggregatedConstructs = [];
+    for (final lemmaToConstructs in lemmasToConstructs.entries) {
+      final List<ConstructEvent> lemmaConstructs = lemmaToConstructs.value;
+      final AggregateConstructUses aggregatedData = AggregateConstructUses(
+        constructs: lemmaConstructs,
+      );
+      aggregatedConstructs.add(aggregatedData);
+    }
+    return aggregatedConstructs;
+  }
+}
+
+class AggregateConstructUses {
+  final List<ConstructEvent> _constructs;
+
+  AggregateConstructUses({required List<ConstructEvent> constructs})
+      : _constructs = constructs;
+
+  String get lemma {
+    assert(
+      _constructs.isNotEmpty &&
+          _constructs.every(
+            (construct) =>
+                construct.content.lemma == _constructs.first.content.lemma,
+          ),
+    );
+    return _constructs.first.content.lemma;
+  }
+
+  List<OneConstructUse> get uses => _constructs
+      .map((construct) => construct.content.uses)
+      .expand((element) => element)
+      .toList();
 }

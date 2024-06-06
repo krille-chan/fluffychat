@@ -68,26 +68,33 @@ class ConstructUses {
 }
 
 enum ConstructUseType {
-  /// encountered match and accepted it
+  /// produced in chat by user, igc was run, and we've judged it to be a correct use
+  wa,
+
+  /// produced in chat by user, igc was run, and we've judged it to be a incorrect use
+  /// Note: if the IGC match is ignored, this is not counted as an incorrect use
   ga,
 
-  /// used without assistance
-  wa,
+  /// produced in chat by user and igc was not run
+  unk,
 
   /// selected correctly in IT flow
   corIt,
 
-  /// encountered as it distractor and selected it
-  incIt,
-
   /// encountered as IT distractor and correctly ignored it
   ignIt,
+
+  /// encountered as it distractor and selected it
+  incIt,
 
   /// encountered in igc match and ignored match
   ignIGC,
 
-  /// encountered in igc match and ignored match
+  /// selected correctly in IGC flow
   corIGC,
+
+  /// encountered as distractor in IGC flow and selected it
+  incIGC,
 }
 
 extension on ConstructUseType {
@@ -107,6 +114,10 @@ extension on ConstructUseType {
         return 'ignIGC';
       case ConstructUseType.corIGC:
         return 'corIGC';
+      case ConstructUseType.incIGC:
+        return 'incIGC';
+      case ConstructUseType.unk:
+        return 'unk';
     }
   }
 
@@ -126,6 +137,10 @@ extension on ConstructUseType {
         return Icons.close;
       case ConstructUseType.corIGC:
         return Icons.check;
+      case ConstructUseType.incIGC:
+        return Icons.close;
+      case ConstructUseType.unk:
+        return Icons.help;
     }
   }
 }
