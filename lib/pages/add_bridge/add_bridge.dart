@@ -189,6 +189,138 @@ class BotController extends State<AddBridge> {
     }
   }
 
+  // Function to logout
+  Future<String> disconnectFromNetwork(BuildContext context,
+      SocialNetwork network, ConnectionStateModel connectionState) async {
+    final String botUserId = '${network.chatBot}$hostname';
+
+    connectionState
+        .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
+
+    final Map<String, RegExp> patterns = _getLogoutNetworkPatterns(network.name);
+    final String eventName = _getEventName(network.name);
+
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) return 'error';
+
+    final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) return 'error';
+
+    if (!await _sendLogoutEvent(roomBot, eventName)) return 'error';
+
+    return await _waitForDisconnection(
+        context, network, connectionState, directChat, patterns);
+  }
+
+  Map<String, RegExp> _getLogoutNetworkPatterns(String networkName) {
+    switch (networkName) {
+      case 'Instagram':
+        return {
+          'success': LogoutRegex.instagramSuccessMatch,
+          'alreadyLogout': LogoutRegex.instagramAlreadyLogoutMatch
+        };
+      case 'WhatsApp':
+        return {
+          'success': LogoutRegex.whatsappSuccessMatch,
+          'alreadyLogout': LogoutRegex.whatsappAlreadyLogoutMatch
+        };
+      case 'Facebook Messenger':
+        return {
+          'success': LogoutRegex.facebookSuccessMatch,
+          'alreadyLogout': LogoutRegex.facebookAlreadyLogoutMatch
+        };
+      default:
+        throw ArgumentError('Unsupported network: $networkName');
+    }
+  }
+
+  String _getEventName(String networkName) {
+    switch (networkName) {
+      case 'Instagram':
+      case 'Facebook Messenger':
+        return 'delete-session';
+      default:
+        return 'logout';
+    }
+  }
+
+  Future<String?> _getOrCreateDirectChat(String botUserId) async {
+    try {
+      String? directChat = client.getDirectChatFromUserId(botUserId);
+      directChat ??= await client.startDirectChat(botUserId);
+      return directChat;
+    } catch (e) {
+      Logs().v('Error getting or starting direct chat: $e');
+      return null;
+    }
+  }
+
+  Future<bool> _sendLogoutEvent(Room roomBot, String eventName) async {
+    try {
+      await roomBot.sendTextEvent(eventName);
+      await Future.delayed(const Duration(seconds: 3));
+      return true;
+    } catch (e) {
+      Logs().v('Error sending text event: $e');
+      return false;
+    }
+  }
+
+  Future<String> _waitForDisconnection(
+      BuildContext context,
+      SocialNetwork network,
+      ConnectionStateModel connectionState,
+      String directChat,
+      Map<String, RegExp> patterns) async {
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
+      try {
+        final GetRoomEventsResponse response =
+            await client.getRoomEvents(directChat, Direction.b, limit: 1);
+        final List<MatrixEvent> latestMessages = response.chunk ?? [];
+
+        if (latestMessages.isNotEmpty) {
+          final String latestMessage =
+              latestMessages.first.content['body'].toString() ?? '';
+
+          if (_isStillConnected(latestMessage, patterns)) {
+            Logs().v("You're still connected to ${network.name}");
+            return 'Connected';
+          }
+
+          if (_isDisconnected(latestMessage, patterns)) {
+            Logs().v("You're disconnected from ${network.name}");
+            connectionState.updateConnectionTitle(
+                L10n.of(context)!.loadingDisconnectionSuccess);
+            connectionState.updateLoading(false);
+            await Future.delayed(const Duration(seconds: 1));
+            connectionState.reset();
+            return 'Not Connected';
+          }
+        }
+      } catch (e) {
+        Logs().v('Error in matrix related async function call: $e');
+        return 'error';
+      }
+      currentIteration++;
+    }
+
+    connectionState.reset();
+    return 'error';
+  }
+
+  bool _isStillConnected(String message, Map<String, RegExp> patterns) {
+    return !patterns['success']!.hasMatch(message) &&
+        !patterns['alreadyLogout']!.hasMatch(message);
+  }
+
+  bool _isDisconnected(String message, Map<String, RegExp> patterns) {
+    return patterns['success']!.hasMatch(message) ||
+        patterns['alreadyLogout']!.hasMatch(message);
+  }
+
   // Function to delete a conversation with a bot
   Future<void> deleteConversation(BuildContext context, String chatBot,
       ConnectionStateModel connectionState) async {
