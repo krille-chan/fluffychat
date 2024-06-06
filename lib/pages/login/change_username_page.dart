@@ -1,19 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
-import 'package:tawkie/config/subscription.dart';
 import 'package:tawkie/pages/add_bridge/error_message_dialog.dart';
-import 'package:tawkie/pages/login/login.dart';
-import 'package:tawkie/utils/platform_infos.dart';
 
 class ChangeUsernamePage extends StatefulWidget {
   final Map<String, dynamic> queueStatus;
