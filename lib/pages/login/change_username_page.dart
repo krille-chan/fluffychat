@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,28 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
   String? _usernameError;
   bool _loadingUpdateUsername = false;
   bool _loadingCreateUser = false;
+
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+
+    if (isUsernameSet()) {
+      _usernameController.text = widget.queueStatus['username'];
+    }
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  Future<bool> myInterceptor(
+      bool stopDefaultButtonEvent, RouteInfo info) async {
+    return true;
+  }
 
   bool isUsernameSet() {
     return widget.queueStatus['username'] != null &&
@@ -157,15 +180,6 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    if (isUsernameSet()) {
-      _usernameController.text = widget.queueStatus['username'];
-    }
-  }
-
   void _onSubmitButtonPressed() async {
     if (widget.queueStatus['username'] != _usernameController.text) {
       final newUsername = _usernameController.text;
@@ -209,6 +223,7 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context)!.usernamePageTitle),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -244,8 +259,8 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 10),
               Text(
                 widget.queueStatus['userState'] == 'IN_QUEUE'
-                  ? L10n.of(context)!.usernameInQueueChangeUsername
-                  : L10n.of(context)!.usernameChangeUsername,
+                    ? L10n.of(context)!.usernameInQueueChangeUsername
+                    : L10n.of(context)!.usernameChangeUsername,
                 style: const TextStyle(fontSize: 18),
                 textAlign: TextAlign.center,
               ),
@@ -274,7 +289,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _isLoading() ? null : _onSubmitButtonPressed,
-                child: _loadingUpdateUsername ? const LinearProgressIndicator() : Text(L10n.of(context)!.usernameSubmit),
+                child: _loadingUpdateUsername
+                    ? const LinearProgressIndicator()
+                    : Text(L10n.of(context)!.usernameSubmit),
               ),
               const SizedBox(height: 50),
               isUsernameSet()
@@ -287,7 +304,9 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
               isUsernameSet() && _isAccepted()
                   ? ElevatedButton(
                       onPressed: _isLoading() ? null : _onNextButtonPressed,
-                      child: _loadingCreateUser ? const LinearProgressIndicator() : Text(L10n.of(context)!.next),
+                      child: _loadingCreateUser
+                          ? const LinearProgressIndicator()
+                          : Text(L10n.of(context)!.next),
                     )
                   : Container(),
             ],
@@ -295,12 +314,6 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    super.dispose();
   }
 }
 
