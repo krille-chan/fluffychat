@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge.dart';
+import 'package:tawkie/pages/add_bridge/social_network_action.dart';
 import 'package:tawkie/pages/add_bridge/social_network_item.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/utils/platform_size.dart';
@@ -65,9 +66,7 @@ class AddBridgeBody extends StatelessWidget {
                           CupertinoIcons.refresh_bold,
                         ),
                         // Different ways of connecting and disconnecting depending on the social network
-                        // onTap: () => socialNetwork[index].error != false
-                        //     ? controller.onlyNetworkRefresh(socialNetwork[index])
-                        //     : controller.handleSocialNetworkAction(socialNetwork[index]),
+                        onTap: () => controller.handleSocialNetworkAction(controller.socialNetworks[index]),
                       );
                     },
                   ),
