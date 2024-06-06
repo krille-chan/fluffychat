@@ -2483,5 +2483,7 @@
     "subNotSubArgFour": "Remettre en non-lu",
     "noAccountRegister": "Pas encore de compte ? Inscrivez-vous !",
     "authCodeSentTo": "Code envoyé à",
-    "authResendCodeMessage": "Un nouveau code a été envoyé"
+    "authResendCodeMessage": "Un nouveau code a été envoyé",
+    "privacyText": "En créant un compte, vous acceptez nos",
+    "privacyTextPrivacy": "politiques de confidentialité"
 }

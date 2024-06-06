@@ -14,6 +14,7 @@ import 'package:matrix/matrix.dart';
 import 'package:one_of/one_of.dart';
 import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:tawkie/config/app_config.dart';
+import 'package:tawkie/pages/register/privacy_polocy_text.dart';
 import 'package:tawkie/pages/register/register_view.dart';
 import 'package:tawkie/widgets/show_error_dialog.dart';
 
@@ -198,14 +199,20 @@ class RegisterController extends State<Register> {
     } else {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ElevatedButton(
-          onPressed: () {
-            _submitForm(actionUrl);
-          },
-          child: Text(
-            node.meta.label!.text,
-            style: TextStyle(color: Colors.green[500]),
-          ),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                _submitForm(actionUrl);
+              },
+              child: Text(
+                node.meta.label!.text,
+                style: TextStyle(color: Colors.green[500]),
+              ),
+            ),
+            const SizedBox(height: 8),
+            const PrivacyPolicyText(),
+          ],
         ),
       );
     }

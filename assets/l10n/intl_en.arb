@@ -2773,5 +2773,7 @@
   "subNotSubArgFour": "Mark unread",
   "noAccountRegister": "No account yet ? Register now",
   "authCodeSentTo": "Code sent to",
-  "authResendCodeMessage": "A new code has been sent"
+  "authResendCodeMessage": "A new code has been sent",
+  "privacyText": "By creating an account, you agree to our",
+  "privacyTextPrivacy": "privacy policy"
 }
