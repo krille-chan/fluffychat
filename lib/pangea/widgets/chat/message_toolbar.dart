@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/widgets/chat/message_translation_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/widgets/chat/overlay_message.dart';
 import 'package:fluffychat/pangea/widgets/igc/word_data_card.dart';
+import 'package:fluffychat/pangea/widgets/practice_activity_card/message_practice_activity_card.dart';
 import 'package:fluffychat/pangea/widgets/user_settings/p_language_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
@@ -215,6 +216,9 @@ class MessageToolbarState extends State<MessageToolbar> {
         case MessageMode.definition:
           showDefinition();
           break;
+        case MessageMode.practiceActivity:
+          showPracticeActivity();
+          break;
         default:
           ErrorHandler.logError(
             e: "Invalid toolbar mode",
@@ -269,6 +273,15 @@ class MessageToolbarState extends State<MessageToolbar> {
       fullTextLang: widget.pangeaMessageEvent.messageDisplayLangCode,
       hasInfo: true,
       room: widget.room,
+    );
+  }
+
+  void showPracticeActivity() {
+    toolbarContent = PracticeActivityCard(
+      practiceActivity: widget.pangeaMessageEvent
+          // @ggurdin - is this the best way to get the l2 language here?
+          .activities(widget.pangeaMessageEvent.messageDisplayLangCode)
+          .first,
     );
   }
 

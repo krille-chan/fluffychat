@@ -3,7 +3,13 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
-enum MessageMode { translation, definition, speechToText, textToSpeech }
+enum MessageMode {
+  translation,
+  definition,
+  speechToText,
+  textToSpeech,
+  practiceActivity
+}
 
 extension MessageModeExtension on MessageMode {
   IconData get icon {
@@ -17,6 +23,8 @@ extension MessageModeExtension on MessageMode {
       //TODO change icon for audio messages
       case MessageMode.definition:
         return Icons.book;
+      case MessageMode.practiceActivity:
+        return Symbols.fitness_center;
       default:
         return Icons.error; // Icon to indicate an error or unsupported mode
     }
@@ -32,6 +40,8 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context)!.speechToTextTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.definitions;
+      case MessageMode.practiceActivity:
+        return L10n.of(context)!.practice;
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
@@ -48,6 +58,8 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context)!.speechToTextTooltip;
       case MessageMode.definition:
         return L10n.of(context)!.define;
+      case MessageMode.practiceActivity:
+        return L10n.of(context)!.practice;
       default:
         return L10n.of(context)!
             .oopsSomethingWentWrong; // Title to indicate an error or unsupported mode
@@ -58,6 +70,7 @@ extension MessageModeExtension on MessageMode {
     switch (this) {
       case MessageMode.translation:
       case MessageMode.textToSpeech:
+      case MessageMode.practiceActivity:
       case MessageMode.definition:
         return event.messageType == MessageTypes.Text;
       case MessageMode.speechToText:

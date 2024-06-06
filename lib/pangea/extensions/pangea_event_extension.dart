@@ -26,6 +26,8 @@ extension PangeaEvent on Event {
         return PangeaRepresentation.fromJson(json) as V;
       case PangeaEventTypes.choreoRecord:
         return ChoreoRecord.fromJson(json) as V;
+      case PangeaEventTypes.activityResponse:
+        return PangeaMessageTokens.fromJson(json) as V;
       default:
         throw Exception("$type events do not have pangea content");
     }

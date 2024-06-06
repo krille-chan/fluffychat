@@ -3963,5 +3963,6 @@
     "studentAnalyticsNotAvailable": "Student data not currently available",
     "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
     "updatePhoneOS": "You may need to update your device's OS version.",
-    "wordsPerMinute": "Words per minute"
+    "wordsPerMinute": "Words per minute",
+    "practice": "Practice"
 }

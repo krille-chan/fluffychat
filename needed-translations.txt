@@ -839,7 +839,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "be": [
@@ -2277,7 +2278,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "bn": [
@@ -3177,7 +3179,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "bo": [
@@ -4077,7 +4080,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ca": [
@@ -4977,7 +4981,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "cs": [
@@ -5877,7 +5882,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "de": [
@@ -6724,7 +6730,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "el": [
@@ -7624,7 +7631,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "eo": [
@@ -8524,7 +8532,12 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
+  ],
+
+  "es": [
+    "practice"
   ],
 
   "et": [
@@ -9367,7 +9380,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "eu": [
@@ -10210,7 +10224,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "fa": [
@@ -11110,7 +11125,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "fi": [
@@ -12010,7 +12026,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "fr": [
@@ -12910,7 +12927,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ga": [
@@ -13810,7 +13828,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "gl": [
@@ -14653,7 +14672,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "he": [
@@ -15553,7 +15573,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "hi": [
@@ -16453,7 +16474,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "hr": [
@@ -17340,7 +17362,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "hu": [
@@ -18240,7 +18263,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ia": [
@@ -19664,7 +19688,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "id": [
@@ -20564,7 +20589,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ie": [
@@ -21464,7 +21490,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "it": [
@@ -22349,7 +22376,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ja": [
@@ -23249,7 +23277,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ko": [
@@ -24149,7 +24178,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "lt": [
@@ -25049,7 +25079,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "lv": [
@@ -25949,7 +25980,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "nb": [
@@ -26849,7 +26881,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "nl": [
@@ -27749,7 +27782,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "pl": [
@@ -28649,7 +28683,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "pt": [
@@ -29549,7 +29584,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "pt_BR": [
@@ -30418,7 +30454,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "pt_PT": [
@@ -31318,7 +31355,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ro": [
@@ -32218,7 +32256,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ru": [
@@ -33061,7 +33100,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "sk": [
@@ -33961,7 +34001,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "sl": [
@@ -34861,7 +34902,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "sr": [
@@ -35761,7 +35803,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "sv": [
@@ -36626,7 +36669,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "ta": [
@@ -37526,7 +37570,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "th": [
@@ -38426,7 +38471,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "tr": [
@@ -39311,7 +39357,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "uk": [
@@ -40154,7 +40201,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "vi": [
@@ -41054,7 +41102,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "zh": [
@@ -41897,7 +41946,8 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ],
 
   "zh_Hant": [
@@ -42797,6 +42847,7 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "practice"
   ]
 }

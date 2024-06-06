@@ -4,11 +4,15 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/enum/audio_encoding_enum.dart';
+import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/models/choreo_record.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/multiple_choice_activity_model.dart';
+import 'package:fluffychat/pangea/models/practice_activities.dart/practice_activity_model.dart';
 import 'package:fluffychat/pangea/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
@@ -599,6 +603,52 @@ class PangeaMessageEvent {
         .cast<PangeaMatch>()
         .toList();
     return steps;
+  }
+
+  List<PracticeActivityEvent> get _practiceActivityEvents => _latestEdit
+      .aggregatedEvents(
+        timeline,
+        PangeaEventTypes.activityResponse,
+      )
+      .map(
+        (e) => PracticeActivityEvent(
+          event: e,
+        ),
+      )
+      .toList();
+
+  List<PracticeActivityModel> activities(String langCode) {
+    // final List<PracticeActivityEvent> practiceActivityEvents = _practiceActivityEvents;
+
+    // final List<PracticeActivityModel> activities = _practiceActivityEvents
+    //     .map(
+    //       (e) => PracticeActivityModel.fromJson(
+    //         e.event.content,
+    //       ),
+    //     )
+    //     .where(
+    //       (element) => element.langCode == langCode,
+    //     )
+    //     .toList();
+
+    // return activities;
+
+    // for now, return a hard-coded activity
+    final PracticeActivityModel activityModel = PracticeActivityModel(
+      tgtConstructs: [
+        ConstructIdentifier(lemma: "be", type: ConstructType.vocab.string),
+      ],
+      activityType: ActivityType.multipleChoice,
+      langCode: langCode,
+      msgId: _event.eventId,
+      multipleChoice: MultipleChoice(
+        question: "What is a synonym for 'happy'?",
+        choices: ["sad", "angry", "joyful", "tired"],
+        correctAnswer: "joyful",
+      ),
+    );
+
+    return [activityModel];
   }
 
   // List<SpanData> get activities =>
