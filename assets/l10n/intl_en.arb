@@ -2723,6 +2723,7 @@
   "loadingDeleteRoom": "Delete the conversation...",
   "loadingDeleteRoomSuccess": "Conversation deleted",
   "refreshList": "Refresh list",
+  "loginTitle": "Login to your Tawkie account",
   "registerTitle": "Create your account Tawkie",
   "registerConfirmPassword": "Confirm your password",
   "registerPleaseEnterYourEmail": "Please enter your email",

@@ -2437,6 +2437,7 @@
     "loadingDeleteRoom": "Suppression de la conversation...",
     "loadingDeleteRoomSuccess": "Conversation supprimée",
     "refreshList": "Actualiser la liste",
+    "loginTitle": "Connectez-vous à votre compte Tawkie",
     "registerTitle": "Créez votre compte Tawkie",
     "registerConfirmPassword": "Confirmez votre mot de passe",
     "registerPleaseEnterYourEmail": "Veuillez entrer votre adresse e-mail",

@@ -37,6 +37,14 @@ class LoginView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   children: <Widget>[
                     Image.asset('assets/banner_transparent.png'),
+                    Text(
+                      L10n.of(context)!.loginTitle.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 16),
                     !controller.loading
                         ? Column(
