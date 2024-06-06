@@ -16,7 +16,7 @@ abstract class AppConfig {
   static const double messageFontSize = 15.75;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const Color primaryColor = Color(0xFF3614A6);
+  static const Color primaryColor = Color(0xFF8123B0);
   static const Color primaryColorLight = Color(0xFFFEEA77);
   static const Color secondaryColor = Color(0xFFFAAB22);
   static String _privacyUrl = 'https://tawkie.fr/privacy-policy/';
