@@ -62,3 +62,11 @@ class LogoutRegex {
   static final RegExp facebookAlreadyLogoutMatch =
       RegExp(r"TYou weren't logged in, but deleted session anyway");
 }
+
+class RegExpPingPatterns {
+  final RegExp onlineMatch;
+  final RegExp notLoggedMatch;
+  final RegExp? mQTTNotMatch;
+
+  RegExpPingPatterns(this.onlineMatch, this.notLoggedMatch, [this.mQTTNotMatch]);
+}

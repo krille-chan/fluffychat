@@ -49,6 +49,17 @@ class BotController extends State<AddBridge> {
     hostname = extractHostName(fullUrl);
   }
 
+  Future<String?> _getOrCreateDirectChat(String botUserId) async {
+    try {
+      String? directChat = client.getDirectChatFromUserId(botUserId);
+      directChat ??= await client.startDirectChat(botUserId);
+      return directChat;
+    } catch (e) {
+      Logs().i('Error getting or starting direct chat: $e');
+      return null;
+    }
+  }
+
   Future<void> handleRefresh() async {
     setState(() {
       // Reset loading values to their original state
@@ -68,57 +79,69 @@ class BotController extends State<AddBridge> {
   Future<void> pingSocialNetwork(SocialNetwork socialNetwork) async {
     final String botUserId = '${socialNetwork.chatBot}$hostname';
 
-    // Messages to spot when we're online
-    RegExp? onlineMatch;
+    final RegExpPingPatterns patterns = _getPingPatterns(socialNetwork.name);
 
-    // Messages to spot when we're not online
-    RegExp? notLoggedMatch;
-    RegExp? mQTTNotMatch;
-
-    switch (socialNetwork.name) {
-      case "WhatsApp":
-        onlineMatch = PingPatterns.whatsAppOnlineMatch;
-        notLoggedMatch = PingPatterns.whatsAppNotLoggedMatch;
-        mQTTNotMatch = PingPatterns.whatsAppLoggedButNotConnectedMatch;
-        break;
-      case "Facebook Messenger":
-        onlineMatch = PingPatterns.facebookOnlineMatch;
-        notLoggedMatch = PingPatterns.facebookNotLoggedMatch;
-        break;
-      case "Instagram":
-        onlineMatch = PingPatterns.instagramOnlineMatch;
-        notLoggedMatch = PingPatterns.instagramNotLoggedMatch;
-        break;
-      default:
-        throw Exception("Unsupported social network: ${socialNetwork.name}");
+    final String? directChat = await _getOrCreateDirectChat(botUserId);
+    if (directChat == null) {
+      _handleError(socialNetwork);
+      return;
     }
 
-    // Add a direct chat with the bot (if you haven't already)
-    String? directChat = client.getDirectChatFromUserId(botUserId);
-    directChat ??= await client.startDirectChat(botUserId);
-
     final Room? roomBot = client.getRoomById(directChat);
+    if (roomBot == null) {
+      _handleError(socialNetwork);
+      return;
+    }
 
-    // Send the "ping" message to the bot
-    try {
-      await roomBot?.sendTextEvent("ping");
-    } catch (error) {
-      Logs().i('Error: $error');
-      setState(() {
-        socialNetwork.setError(true);
-      });
+    if (!await _sendPingMessage(roomBot)) {
+      _handleError(socialNetwork);
+      return;
     }
 
     await Future.delayed(const Duration(seconds: 2)); // Wait sec
 
-    String result = ''; // Variable to track the result of the connection
+    await _processPingResponse(socialNetwork, directChat, roomBot, patterns);
+  }
 
-    // Variable for loop limit
+  RegExpPingPatterns _getPingPatterns(String networkName) {
+    switch (networkName) {
+      case "WhatsApp":
+        return RegExpPingPatterns(
+          PingPatterns.whatsAppOnlineMatch,
+          PingPatterns.whatsAppNotLoggedMatch,
+          PingPatterns.whatsAppLoggedButNotConnectedMatch,
+        );
+      case "Facebook Messenger":
+        return RegExpPingPatterns(
+          PingPatterns.facebookOnlineMatch,
+          PingPatterns.facebookNotLoggedMatch,
+        );
+      case "Instagram":
+        return RegExpPingPatterns(
+          PingPatterns.instagramOnlineMatch,
+          PingPatterns.instagramNotLoggedMatch,
+        );
+      default:
+        throw Exception("Unsupported social network: $networkName");
+    }
+  }
+
+  Future<bool> _sendPingMessage(Room roomBot) async {
+    try {
+      await roomBot.sendTextEvent("ping");
+      return true;
+    } catch (e) {
+      Logs().i('Error sending ping message: $e');
+      return false;
+    }
+  }
+
+  // TODO: Faire en sorte de relancer si plusieurs ping envoyés d'affilé n'ont pas de reponse
+  Future<void> _processPingResponse(SocialNetwork socialNetwork, String directChat, Room roomBot, RegExpPingPatterns patterns) async {
     const int maxIterations = 5;
     int currentIteration = 0;
 
     while (continueProcess && currentIteration < maxIterations) {
-      // To take the latest message
       final GetRoomEventsResponse response = await client.getRoomEvents(
         directChat,
         Direction.b, // To get the latest messages
@@ -128,48 +151,25 @@ class BotController extends State<AddBridge> {
       final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
       if (latestMessages.isNotEmpty) {
-        final String latestMessage =
-            latestMessages.first.content['body'].toString() ?? '';
+        final String latestMessage = latestMessages.first.content['body'].toString() ?? '';
 
-        // To find out if we're connected
-        if (onlineMatch.hasMatch(latestMessage)) {
+        if (_isOnline(patterns.onlineMatch, latestMessage)) {
           Logs().v("You're logged to ${socialNetwork.name}");
-
-          setState(() {
-            socialNetwork.updateConnectionResult(true);
-            socialNetwork.setError(false);
-          });
-
-          break; // Exit the loop if the bridge is connected
+          _updateNetworkStatus(socialNetwork, true, false);
+          return;
         }
-        if (notLoggedMatch.hasMatch(latestMessage) == true) {
+
+        if (_isNotLogged(patterns.notLoggedMatch, latestMessage)) {
           Logs().v('Not connected to ${socialNetwork.name}');
+          _updateNetworkStatus(socialNetwork, false, false);
+          return;
+        }
 
-          setState(() {
-            socialNetwork.updateConnectionResult(false);
-            socialNetwork.setError(false);
-          });
-
-          break; // Exit the loop if the bridge is disconnected
-        } else if (mQTTNotMatch?.hasMatch(latestMessage) == true) {
-          String eventToSend;
-
-          switch (socialNetwork.name) {
-            case "WhatsApp":
-              eventToSend = "reconnect";
-              break;
-            default:
-              eventToSend = "connect";
-              break;
-          }
-
-          await roomBot?.sendTextEvent(eventToSend);
-
+        if (_shouldReconnect(patterns.mQTTNotMatch, latestMessage)) {
+          await _sendReconnectEvent(roomBot, socialNetwork.name);
           await Future.delayed(const Duration(seconds: 3)); // Wait sec
         } else {
-          // If no new message is received from the bot, we send back a ping
-          // Or no expected answer is found
-          await roomBot?.sendTextEvent("ping");
+          await _sendPingMessage(roomBot);
           await Future.delayed(const Duration(seconds: 2)); // Wait sec
         }
       }
@@ -177,16 +177,42 @@ class BotController extends State<AddBridge> {
     }
 
     if (currentIteration == maxIterations) {
-      Logs().v(
-          "Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
-
-      setState(() {
-        socialNetwork.setError(true);
-      });
+      Logs().v("Maximum iterations reached, setting result to 'error to ${socialNetwork.name}'");
+      _handleError(socialNetwork);
     } else if (!continueProcess) {
       Logs().v(('ping stopping'));
-      result = 'stop';
     }
+  }
+
+  bool _isOnline(RegExp onlineMatch, String latestMessage) {
+    return onlineMatch.hasMatch(latestMessage);
+  }
+
+  bool _isNotLogged(RegExp notLoggedMatch, String latestMessage) {
+    return notLoggedMatch.hasMatch(latestMessage);
+  }
+
+  bool _shouldReconnect(RegExp? mQTTNotMatch, String latestMessage) {
+    return mQTTNotMatch?.hasMatch(latestMessage) ?? false;
+  }
+
+  Future<void> _sendReconnectEvent(Room roomBot, String networkName) async {
+    String eventToSend = networkName == "WhatsApp" ? "reconnect" : "connect";
+    await roomBot.sendTextEvent(eventToSend);
+  }
+
+  void _updateNetworkStatus(SocialNetwork socialNetwork, bool isConnected, bool isError) {
+    setState(() {
+      socialNetwork.connected = isConnected;
+      socialNetwork.loading = false;
+      socialNetwork.error = isError;
+    });
+  }
+
+  void _handleError(SocialNetwork socialNetwork) {
+    setState(() {
+      socialNetwork.setError(true);
+    });
   }
 
   // Function to logout
@@ -241,17 +267,6 @@ class BotController extends State<AddBridge> {
         return 'delete-session';
       default:
         return 'logout';
-    }
-  }
-
-  Future<String?> _getOrCreateDirectChat(String botUserId) async {
-    try {
-      String? directChat = client.getDirectChatFromUserId(botUserId);
-      directChat ??= await client.startDirectChat(botUserId);
-      return directChat;
-    } catch (e) {
-      Logs().v('Error getting or starting direct chat: $e');
-      return null;
     }
   }
 
