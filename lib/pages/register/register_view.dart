@@ -19,11 +19,11 @@ class RegisterView extends StatelessWidget {
         titleSpacing: !controller.loading ? 0 : null,
         leading: controller.hasSubmitted
             ? IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            controller.popFormWidgets();
-          },
-        )
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  controller.popFormWidgets();
+                },
+              )
             : null,
       ),
       body: Builder(
@@ -55,13 +55,13 @@ class RegisterView extends StatelessWidget {
                         ),
                       !controller.loading
                           ? Column(
-                        children: [
-                          ...controller.authWidgets,
-                        ],
-                      )
+                              children: [
+                                ...controller.authWidgets,
+                              ],
+                            )
                           : const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                              child: CircularProgressIndicator(),
+                            ),
                     ],
                   ),
                 ),
