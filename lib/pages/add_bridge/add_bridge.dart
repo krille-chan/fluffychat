@@ -5,9 +5,12 @@ import 'package:matrix/matrix.dart';
 import 'package:tawkie/pages/add_bridge/add_bridge_body.dart';
 import 'package:tawkie/pages/add_bridge/service/hostname.dart';
 import 'package:tawkie/pages/add_bridge/service/reg_exp_pattern.dart';
+import 'package:tawkie/pages/add_bridge/success_message.dart';
+import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+import 'error_message_dialog.dart';
 import 'model/social_network.dart';
 
 class AddBridge extends StatefulWidget {
@@ -43,6 +46,14 @@ class BotController extends State<AddBridge> {
     client = Matrix.of(context).client;
     final String fullUrl = client.homeserver!.host;
     hostname = extractHostName(fullUrl);
+  }
+
+  void updateNetworkStatus(bool isConnected) {
+    setState(() {
+      network.connected = isConnected;
+      network.loading = false;
+      network.error = !isConnected;
+    });
   }
 
   Future<void> handleRefresh() async {
@@ -220,6 +231,59 @@ class BotController extends State<AddBridge> {
       connectionState.reset();
     });
   }
+
+  Future<void> handleConnection(BuildContext context, SocialNetwork network) async {
+    switch (network.name) {
+      case "Instagram":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WebViewConnection(
+              controller: this,
+              network: network,
+              onConnectionResult: (bool success) {
+                if (success) {
+                  updateNetworkStatus(true);
+                  showCatchSuccessDialog(context,
+                      "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
+                } else {
+                  showCatchErrorDialog(context,
+                      "${L10n.of(context)!.errToConnect} ${network.name}");
+                }
+              },
+            ),
+          ),
+        );
+        break;
+      case "WhatsApp":
+      // Replace this with your actual WhatsApp connection logic
+      // success = await connectToWhatsApp(context, network, controller);
+        break;
+      case "Facebook Messenger":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WebViewConnection(
+              controller: this,
+              network: network,
+              onConnectionResult: (bool success) {
+                if (success) {
+                  updateNetworkStatus(true);
+                  showCatchSuccessDialog(context,
+                      "${L10n.of(context)!.youAreConnectedTo} ${network.name}");
+                } else {
+                  showCatchErrorDialog(context,
+                      "${L10n.of(context)!.errToConnect} ${network.name}");
+                }
+              },
+            ),
+          ),
+        );
+        break;
+    // Add other cases here
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) => AddBridgeBody(controller: this);
