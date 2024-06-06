@@ -255,6 +255,8 @@ class LoginController extends State<Login> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
+            const PrivacyPolicyText(),
+            const SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white, backgroundColor: AppConfig.primaryColor,
@@ -266,8 +268,6 @@ class LoginController extends State<Login> {
                 node.meta.label!.text,
               ),
             ),
-            const SizedBox(height: 8),
-            const PrivacyPolicyText(),
           ],
         ),
       );

@@ -201,6 +201,8 @@ class RegisterController extends State<Register> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
+            const PrivacyPolicyText(),
+            const SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
@@ -213,8 +215,6 @@ class RegisterController extends State<Register> {
                 node.meta.label!.text,
               ),
             ),
-            const SizedBox(height: 8),
-            const PrivacyPolicyText(),
           ],
         ),
       );
