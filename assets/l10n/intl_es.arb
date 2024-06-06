@@ -1205,7 +1205,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pleaseClickOnLink": "Haga clic en el enlace del correo electrónico y luego continúe.",
+  "pleaseClickOnLink": "Haga clic en el enlace del correo electrónico y luego continúe. En casos excepcionales, el correo electrónico puede enviarse a spam o tardar hasta 5 minutos en llegar.",
   "@pleaseClickOnLink": {
     "type": "text",
     "placeholders": {}
@@ -4274,7 +4274,7 @@
   "zwCountryDisplayName": "Zimbabue",
   "downloadXLSXFile": "Descargar archivo Excel",
   "unknownPrivateChat": "Chat Privado Desconocido",
-  "allPrivateChats": "Todos los chats privados (incluso con bots) en clase",
+  "allPrivateChats": "Chats privado",
   "chatHasBeenAddedToThisSpace": "Se ha añadido el chat a este espacio",
   "classes": "Clases",
   "spaceIsPublic": "El espacio es público",
@@ -4590,7 +4590,7 @@
   "autoPlayDesc": "Cuando está activado, el audio de texto a voz de los mensajes se reproducirá automáticamente cuando se seleccione.",
   "presenceStyle": "Presencia:",
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
-  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}...",
+  "writeAMessageFlag": "Escribe un mensaje en {l1flag} o {l2flag}",
   "@writeAMessageFlag": {
     "type": "text",
     "placeholders": {

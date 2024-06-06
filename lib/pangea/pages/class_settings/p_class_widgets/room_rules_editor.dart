@@ -7,7 +7,7 @@ import 'package:matrix/matrix.dart';
 import '../../../../config/app_config.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../constants/pangea_event_types.dart';
-import '../../../extensions/pangea_room_extension.dart';
+import '../../../extensions/pangea_room_extension/pangea_room_extension.dart';
 
 class RoomRulesEditor extends StatefulWidget {
   final String? roomId;

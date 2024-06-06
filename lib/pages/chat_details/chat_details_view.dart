@@ -2,7 +2,7 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/pages/class_settings/class_name_header.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_description_button.dart';
 import 'package:fluffychat/pangea/pages/class_settings/p_class_widgets/class_details_toggle_add_students_tile.dart';
@@ -646,12 +646,12 @@ class ChatDetailsView extends StatelessWidget {
                                   Theme.of(context).scaffoldBackgroundColor,
                               foregroundColor: iconColor,
                               child: Icon(
-                                room.locked
+                                room.isLocked
                                     ? Icons.lock_outlined
                                     : Icons.no_encryption_outlined,
                               ),
                             ),
-                            value: room.locked,
+                            value: room.isLocked,
                             onChanged: (value) => showFutureLoadingDialog(
                               context: context,
                               future: () => value

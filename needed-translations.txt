@@ -745,9 +745,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -839,7 +838,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "be": [
@@ -2124,9 +2126,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -2277,7 +2278,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "bn": [
@@ -3034,9 +3038,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -3177,7 +3180,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "bo": [
@@ -3934,9 +3940,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -4077,7 +4082,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ca": [
@@ -4834,9 +4842,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -4977,7 +4984,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "cs": [
@@ -5734,9 +5744,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -5877,7 +5886,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "de": [
@@ -6629,9 +6641,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -6724,7 +6735,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "el": [
@@ -7481,9 +7495,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -7624,7 +7637,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "eo": [
@@ -8381,9 +8397,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -8524,7 +8539,18 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
+  ],
+
+  "es": [
+    "suggestToChat",
+    "suggestToChatDesc",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "et": [
@@ -9273,9 +9299,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -9367,7 +9392,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "eu": [
@@ -10116,9 +10144,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -10210,7 +10237,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "fa": [
@@ -10967,9 +10997,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -11110,7 +11139,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "fi": [
@@ -11867,9 +11899,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -12010,7 +12041,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "fr": [
@@ -12767,9 +12801,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -12910,7 +12943,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ga": [
@@ -13667,9 +13703,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -13810,7 +13845,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "gl": [
@@ -14559,9 +14597,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -14653,7 +14690,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "he": [
@@ -15410,9 +15450,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -15553,7 +15592,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "hi": [
@@ -16310,9 +16352,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -16453,7 +16494,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "hr": [
@@ -17207,9 +17251,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -17340,7 +17383,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "hu": [
@@ -18097,9 +18143,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -18240,7 +18285,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ia": [
@@ -19511,9 +19559,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -19664,7 +19711,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "id": [
@@ -20421,9 +20471,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -20564,7 +20613,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ie": [
@@ -21321,9 +21373,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -21464,7 +21515,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "it": [
@@ -22217,9 +22271,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -22349,7 +22402,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ja": [
@@ -23106,9 +23162,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -23249,7 +23304,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ko": [
@@ -24006,9 +24064,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -24149,7 +24206,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "lt": [
@@ -24906,9 +24966,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -25049,7 +25108,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "lv": [
@@ -25806,9 +25868,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -25949,7 +26010,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "nb": [
@@ -26706,9 +26770,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -26849,7 +26912,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "nl": [
@@ -27606,9 +27672,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -27749,7 +27814,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "pl": [
@@ -28506,9 +28574,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -28649,7 +28716,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "pt": [
@@ -29406,9 +29476,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -29549,7 +29618,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "pt_BR": [
@@ -30302,9 +30374,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -30418,7 +30489,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "pt_PT": [
@@ -31175,9 +31249,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -31318,7 +31391,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ro": [
@@ -32075,9 +32151,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -32218,7 +32293,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ru": [
@@ -32967,9 +33045,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -33061,7 +33138,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "sk": [
@@ -33818,9 +33898,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -33961,7 +34040,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "sl": [
@@ -34718,9 +34800,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -34861,7 +34942,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "sr": [
@@ -35618,9 +35702,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -35761,7 +35844,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "sv": [
@@ -36514,9 +36600,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -36626,7 +36711,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "ta": [
@@ -37383,9 +37471,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -37526,7 +37613,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "th": [
@@ -38283,9 +38373,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -38426,7 +38515,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "tr": [
@@ -39179,9 +39271,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -39311,7 +39402,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "uk": [
@@ -40060,9 +40154,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -40154,7 +40247,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "vi": [
@@ -40911,9 +41007,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -41054,7 +41149,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "zh": [
@@ -41803,9 +41901,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -41897,7 +41994,10 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ],
 
   "zh_Hant": [
@@ -42654,9 +42754,8 @@
     "lockSpace",
     "lockChat",
     "archiveSpace",
-    "suggestTo",
-    "suggestChatDesc",
-    "suggestExchangeDesc",
+    "suggestToChat",
+    "suggestToChatDesc",
     "acceptSelection",
     "acceptSelectionAnyway",
     "makingActivity",
@@ -42797,6 +42896,9 @@
     "studentAnalyticsNotAvailable",
     "roomDataMissing",
     "updatePhoneOS",
-    "wordsPerMinute"
+    "wordsPerMinute",
+    "leaveRoomDescription",
+    "archiveSpaceDescription",
+    "leaveSpaceDescription"
   ]
 }

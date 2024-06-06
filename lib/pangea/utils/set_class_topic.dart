@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -18,6 +17,10 @@ void setClassTopic(Room room, BuildContext context) {
       ),
       content: TextField(
         controller: textFieldController,
+        keyboardType: TextInputType.multiline,
+        minLines: 1,
+        maxLines: 10,
+        maxLength: 2000,
       ),
       actions: [
         TextButton(

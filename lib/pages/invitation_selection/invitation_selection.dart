@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -159,6 +159,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
       future: () async {
         if (mode == InvitationSelectionMode.admin) {
           await inviteTeacherAction(room, id);
+        } else {
+          await room.invite(id);
         }
       },
       // Pangea#
@@ -176,22 +178,6 @@ class InvitationSelectionController extends State<InvitationSelection> {
   Future<void> inviteTeacherAction(Room room, String id) async {
     await room.invite(id);
     await room.setPower(id, ClassDefaultValues.powerLevelOfAdmin);
-    if (room.isSpace) {
-      for (final spaceChild in room.spaceChildren) {
-        if (spaceChild.roomId == null) continue;
-        final spaceChildRoom =
-            Matrix.of(context).client.getRoomById(spaceChild.roomId!);
-        if (spaceChildRoom != null &&
-            !(await spaceChildRoom.isBotDM) &&
-            !spaceChildRoom.isDirectChat) {
-          await spaceChildRoom.invite(id);
-          await spaceChildRoom.setPower(
-            id,
-            ClassDefaultValues.powerLevelOfAdmin,
-          );
-        }
-      }
-    }
   }
   // Pangea#
 
