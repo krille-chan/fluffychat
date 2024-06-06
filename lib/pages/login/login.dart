@@ -75,6 +75,24 @@ class LoginController extends State<Login> {
     return true;
   }
 
+  bool _validateEmail(String email) {
+
+    // Define regex to validate email format
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    // Check if the email matches the regex
+    if (!emailRegex.hasMatch(email)) {
+      setState(() => messageError = L10n.of(context)?.registerEmailError);
+      return false;
+    }
+
+    // Reset email error if valid
+    setState(() => messageError = null);
+    return true;
+  }
+
   Future<void> storeSessionToken(String? sessionToken) async {
     if (sessionToken != null) {
       await _secureStorage.write(key: 'sessionToken', value: sessionToken);
@@ -407,7 +425,10 @@ class LoginController extends State<Login> {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        final value = textControllers[i].text;
+        String value = textControllers[i].text;
+
+        // Trim the value here
+        value = value.trim();
 
         formData[attributes.name] = value; // Convert JsonObject to String
 
@@ -417,6 +438,12 @@ class LoginController extends State<Login> {
           code = value;
         }
       }
+    }
+
+    // Validate email
+    if (email != null && !_validateEmail(email)) {
+      setState(() => loading = false);
+      return;
     }
 
     if (email != null && email.isNotEmpty && code != null && code.isNotEmpty) {

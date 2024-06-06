@@ -239,7 +239,10 @@ class RegisterController extends State<Register> {
       if (node.attributes.oneOf.value is kratos.UiNodeInputAttributes) {
         final kratos.UiNodeInputAttributes attributes =
             node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-        final value = textControllers[i].text;
+        String value = textControllers[i].text;
+
+        // Trim the value here
+        value = value.trim();
 
         formData[attributes.name] = value; // Convert JsonObject to String
 
