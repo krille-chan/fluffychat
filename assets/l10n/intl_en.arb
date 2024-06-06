@@ -2775,6 +2775,6 @@
   "alreadyAccountRegister": "Already have an account?",
   "authCodeSentTo": "Code sent to",
   "authResendCodeMessage": "A new code has been sent",
-  "privacyText": "By creating an account, you agree to our",
+  "privacyText": "By creating an account, you agree to our ",
   "privacyTextPrivacy": "privacy policy"
 }
