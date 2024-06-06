@@ -60,9 +60,6 @@ class _WebViewConnectionState extends State<WebViewConnection> {
         },
         onLoadStop: (InAppWebViewController controller, Uri? url) async {
           // Check the URL when the page finishes loading
-
-          String result = ""; // Variable to store the result of the connection
-
           switch (widget.network.name) {
             case "Facebook Messenger":
               if (!_facebookBridgeCreated &&
@@ -74,24 +71,11 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                     // Mark the Facebook bridge as created
                     _facebookBridgeCreated = true;
 
-                    // result = await widget.controller
-                    //     .createBridgeFacebook(context, cookieManager,
-                    //         connectionState, widget.network);
+                    await widget.controller
+                         .createBridgeFacebook(context, cookieManager,
+                             connectionState, widget.network);
                   },
                 );
-              }
-
-              if (result == "success" && !_isDisposed) {
-                // Close the current page
-                if (_webViewController != null) {
-                  _webViewController!.dispose();
-                }
-
-                // Close the current page
-                Navigator.pop(context);
-
-                // Call callback function with success result
-                widget.onConnectionResult(true);
               }
               break;
 
@@ -111,21 +95,18 @@ class _WebViewConnectionState extends State<WebViewConnection> {
                   },
                 );
               }
-
-              if (result == "success" && !_isDisposed) {
-                // Close the current page
-                if (_webViewController != null) {
-                  _webViewController!.dispose();
-                }
-
-                // Close the current page
-                Navigator.pop(context);
-
-                // Call callback function with success result
-                widget.onConnectionResult(true);
-              }
               break;
             // Other network
+          }
+
+          if (widget.network.connected == true && !_isDisposed) {
+            // Close the current page
+            if (_webViewController != null) {
+              _webViewController!.dispose();
+            }
+
+            // Close the current page
+            Navigator.pop(context);
           }
         },
       ),
