@@ -454,11 +454,7 @@ class ChatController extends State<ChatPageWithRoom>
       }
     }
     timeline!.requestKeys(onlineKeyBackupOnly: false);
-    if (!room.isSpace &&
-        room.membership == Membership.join &&
-        room.markedUnread) {
-      room.markUnread(false);
-    }
+    if (room.markedUnread) room.markUnread(false);
 
     // when the scroll controller is attached we want to scroll to an event id, if specified
     // and update the scroll controller...which will trigger a request history, if the

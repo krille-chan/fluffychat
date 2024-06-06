@@ -229,7 +229,10 @@ class _SpaceViewState extends State<SpaceView> {
           ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
+        // #Pangea
+        // if (room == null)
         if (room == null || room.membership == Membership.leave)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.join,
             label: L10n.of(context)!.joinRoom,
@@ -304,7 +307,6 @@ class _SpaceViewState extends State<SpaceView> {
         } else {
           widget.controller.toggleSelection(room.id);
           await widget.controller.leaveAction();
-          widget.controller.toggleSelection(room.id);
         }
         _refresh();
         break;
@@ -344,7 +346,6 @@ class _SpaceViewState extends State<SpaceView> {
         } else {
           widget.controller.toggleSelection(room.id);
           await widget.controller.archiveAction();
-          widget.controller.toggleSelection(room.id);
         }
         // Pangea#
         _refresh();
