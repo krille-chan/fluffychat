@@ -229,7 +229,7 @@ class _SpaceViewState extends State<SpaceView> {
           ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
-        if (room == null)
+        if (room == null || room.membership == Membership.leave)
           SheetAction(
             key: SpaceChildContextAction.join,
             label: L10n.of(context)!.joinRoom,
@@ -254,7 +254,9 @@ class _SpaceViewState extends State<SpaceView> {
             label: L10n.of(context)!.addToSpace,
             icon: Icons.workspaces_outlined,
           ),
-        if (room != null && room.isRoomAdmin)
+        if (room != null &&
+            room.isRoomAdmin &&
+            room.membership != Membership.leave)
           SheetAction(
             key: SpaceChildContextAction.archive,
             label: room.isSpace
@@ -263,8 +265,10 @@ class _SpaceViewState extends State<SpaceView> {
             icon: Icons.architecture_outlined,
             isDestructiveAction: true,
           ),
-        // Pangea#
-        if (room != null)
+
+        if (room != null && room.membership != Membership.leave)
+          // if (room != null)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.leave,
             label: L10n.of(context)!.leave,
@@ -287,10 +291,16 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.cancelAction();
         if (room == null) return;
         if (room.isSpace) {
-          await room.leaveSpace(
-            context,
-            Matrix.of(context).client,
-          );
+          await room.isOnlyAdmin()
+              ? await room.archiveSpace(
+                  context,
+                  Matrix.of(context).client,
+                  onlyAdmin: true,
+                )
+              : await room.leaveSpace(
+                  context,
+                  Matrix.of(context).client,
+                );
         } else {
           widget.controller.toggleSelection(room.id);
           await widget.controller.leaveAction();

@@ -835,14 +835,43 @@ extension PangeaRoom on Room {
     }
   }
 
-  Future<bool> archiveSpace(BuildContext context, Client client) async {
+  // If there are no other admins, and at least one non-admin, return true
+  Future<bool> isOnlyAdmin() async {
+    if (!isRoomAdmin) {
+      return false;
+    }
+    final List<User> participants = await requestParticipants();
+
+    return ((participants
+                .where(
+                  (e) =>
+                      e.powerLevel == ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList()
+                .length) ==
+            1) &&
+        (participants
+                .where(
+                  (e) =>
+                      e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
+                      e.id != BotName.byEnvironment,
+                )
+                .toList())
+            .isNotEmpty;
+  }
+
+  Future<bool> archiveSpace(BuildContext context, Client client,
+      {bool onlyAdmin = false}) async {
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.archiveSpaceDescription,
+          message: onlyAdmin
+              ? L10n.of(context)!.onlyAdminDescription
+              : L10n.of(context)!.archiveSpaceDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return false;

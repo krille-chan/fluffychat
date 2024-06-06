@@ -200,18 +200,22 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 break;
               // Pangea#
               case 'leave':
+                final bool onlyAdmin = await widget.room.isOnlyAdmin();
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
                   context: context,
                   title: L10n.of(context)!.areYouSure,
                   okLabel: L10n.of(context)!.ok,
                   cancelLabel: L10n.of(context)!.cancel,
-                  message: L10n.of(context)!.leaveRoomDescription,
+                  message: onlyAdmin
+                      ? L10n.of(context)!.onlyAdminDescription
+                      : L10n.of(context)!.leaveRoomDescription,
                 );
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
                     context: context,
-                    future: () => widget.room.leave(),
+                    future: () =>
+                        onlyAdmin ? widget.room.archive() : widget.room.leave(),
                   );
                   if (success.error == null) {
                     context.go('/rooms');

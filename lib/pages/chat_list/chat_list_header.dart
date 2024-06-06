@@ -172,6 +172,17 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   // #Pangea
                   if (controller.selectedRoomIds.length == 1 &&
+                      !(Matrix.of(context)
+                              .client
+                              .getRoomById(controller.selectedRoomIds.single)
+                              ?.isRoomAdmin ??
+                          false))
+                    IconButton(
+                      icon: const Icon(Icons.arrow_forward),
+                      tooltip: L10n.of(context)!.leave,
+                      onPressed: controller.leaveAction,
+                    ),
+                  if (controller.selectedRoomIds.length == 1 &&
                       (Matrix.of(context)
                               .client
                               .getRoomById(controller.selectedRoomIds.single)

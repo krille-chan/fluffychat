@@ -597,6 +597,8 @@ class ChatDetailsView extends StatelessWidget {
                           onTap: () async {
                             OkCancelResult confirmed = OkCancelResult.ok;
                             bool shouldGo = false;
+                            // If user is only admin, room will be archived
+                            final bool onlyAdmin = await room.isOnlyAdmin();
                             // archiveSpace has its own popup; only show if not space
                             if (!room.isSpace) {
                               confirmed = await showOkCancelAlertDialog(
@@ -605,20 +607,30 @@ class ChatDetailsView extends StatelessWidget {
                                 title: L10n.of(context)!.areYouSure,
                                 okLabel: L10n.of(context)!.ok,
                                 cancelLabel: L10n.of(context)!.cancel,
-                                message: L10n.of(context)!.leaveRoomDescription,
+                                message: onlyAdmin
+                                    ? L10n.of(context)!.onlyAdminDescription
+                                    : L10n.of(context)!.leaveRoomDescription,
                               );
                             }
                             if (confirmed == OkCancelResult.ok) {
                               if (room.isSpace) {
-                                shouldGo = await room.leaveSpace(
-                                  context,
-                                  Matrix.of(context).client,
-                                );
+                                shouldGo = onlyAdmin
+                                    ? await room.archiveSpace(
+                                        context,
+                                        Matrix.of(context).client,
+                                        onlyAdmin: true,
+                                      )
+                                    : await room.leaveSpace(
+                                        context,
+                                        Matrix.of(context).client,
+                                      );
                               } else {
                                 final success = await showFutureLoadingDialog(
                                   context: context,
                                   future: () async {
-                                    await room.leave();
+                                    onlyAdmin
+                                        ? await room.archive()
+                                        : await room.leave();
                                   },
                                 );
                                 shouldGo = (success.error == null);

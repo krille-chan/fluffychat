@@ -682,13 +682,20 @@ class ChatListController extends State<ChatList>
 
   // #Pangea
   Future<void> leaveAction() async {
+    final bool onlyAdmin = await Matrix.of(context)
+            .client
+            .getRoomById(selectedRoomIds.first)
+            ?.isOnlyAdmin() ??
+        false;
     final confirmed = await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
           title: L10n.of(context)!.areYouSure,
           okLabel: L10n.of(context)!.yes,
           cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.leaveRoomDescription,
+          message: onlyAdmin
+              ? L10n.of(context)!.onlyAdminDescription
+              : L10n.of(context)!.leaveRoomDescription,
         ) ==
         OkCancelResult.ok;
     if (!confirmed) return;
@@ -696,7 +703,7 @@ class ChatListController extends State<ChatList>
         selectedRoomIds.contains(Matrix.of(context).activeRoomId);
     await showFutureLoadingDialog(
       context: context,
-      future: () => _leaveSelectedRooms(),
+      future: () => _leaveSelectedRooms(onlyAdmin),
     );
     setState(() {});
     if (leftActiveRoom) {
@@ -765,7 +772,7 @@ class ChatListController extends State<ChatList>
   }
 
   // #Pangea
-  Future<void> _leaveSelectedRooms() async {
+  Future<void> _leaveSelectedRooms(bool onlyAdmin) async {
     final client = Matrix.of(context).client;
     while (selectedRoomIds.isNotEmpty) {
       final roomId = selectedRoomIds.first;
@@ -776,7 +783,7 @@ class ChatListController extends State<ChatList>
             room.isUnread) {
           await room.markUnread(false);
         }
-        await room.leave();
+        onlyAdmin ? await room.archive() : await room.leave();
       } finally {
         toggleSelection(roomId);
       }
