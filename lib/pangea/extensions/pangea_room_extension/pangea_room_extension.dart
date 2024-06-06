@@ -142,6 +142,18 @@ extension PangeaRoom on Room {
 
 // events
 
+  Future<void> archive() async => await _archive();
+
+  Future<bool> archiveSpace(
+    BuildContext context,
+    Client client, {
+    bool onlyAdmin = false,
+  }) async =>
+      await _archiveSpace(context, client, onlyAdmin: onlyAdmin);
+
+  Future<bool> leaveSpace(BuildContext context, Client client) async =>
+      await _leaveSpace(context, client);
+
   Future<Event?> sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,
@@ -289,100 +301,4 @@ extension PangeaRoom on Room {
   bool pangeaCanSendEvent(String eventType) => _pangeaCanSendEvent(eventType);
 
   int? get eventsDefaultPowerLevel => _eventsDefaultPowerLevel;
-
-  Future<void> archive() async {
-    final students = (await requestParticipants())
-        .where(
-          (e) =>
-              e.id != client.userID &&
-              e.powerLevel < ClassDefaultValues.powerLevelOfAdmin &&
-              e.id != BotName.byEnvironment,
-        )
-        .toList();
-    try {
-      for (final student in students) {
-        await kick(student.id);
-      }
-      if (!isSpace && membership == Membership.join && isUnread) {
-        await markUnread(false);
-      }
-      await leave();
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(e: err, s: s, data: toJson());
-    }
-  }
-
-  Future<bool> archiveSpace(
-    BuildContext context,
-    Client client, {
-    bool onlyAdmin = false,
-  }) async {
-    final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: onlyAdmin
-              ? L10n.of(context)!.onlyAdminDescription
-              : L10n.of(context)!.archiveSpaceDescription,
-        ) ==
-        OkCancelResult.ok;
-    if (!confirmed) return false;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        final List<Room> children = await getChildRooms();
-        for (final Room child in children) {
-          await child.archive();
-        }
-        await archive();
-      },
-    );
-    MatrixState.pangeaController.classController
-        .setActiveSpaceIdInChatListController(
-      null,
-    );
-    return success.error == null;
-  }
-
-  Future<bool> leaveSpace(BuildContext context, Client client) async {
-    final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
-          context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.leaveSpaceDescription,
-        ) ==
-        OkCancelResult.ok;
-    if (!confirmed) return false;
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        try {
-          final List<Room> children = await getChildRooms();
-          for (final Room child in children) {
-            if (!child.isSpace &&
-                child.membership == Membership.join &&
-                child.isUnread) {
-              await child.markUnread(false);
-            }
-            await child.leave();
-          }
-          await leave();
-        } catch (err, stack) {
-          debugger(when: kDebugMode);
-          ErrorHandler.logError(e: err, s: stack, data: powerLevels);
-          rethrow;
-        }
-      },
-    );
-    MatrixState.pangeaController.classController
-        .setActiveSpaceIdInChatListController(
-      null,
-    );
-    return success.error == null;
-  }
 }
