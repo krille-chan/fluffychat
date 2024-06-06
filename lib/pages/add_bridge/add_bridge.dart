@@ -320,7 +320,8 @@ class BotController extends State<AddBridge> {
 
           if (_isStillConnected(latestMessage, patterns)) {
             Logs().v("You're still connected to ${network.name}");
-            return 'Connected';
+            setState(() => network.updateConnectionResult(true));
+            break;
           }
 
           if (_isDisconnected(latestMessage, patterns)) {
@@ -330,7 +331,8 @@ class BotController extends State<AddBridge> {
             connectionState.updateLoading(false);
             await Future.delayed(const Duration(seconds: 1));
             connectionState.reset();
-            return 'Not Connected';
+            setState(() => network.updateConnectionResult(false));
+            break;
           }
         }
       } catch (e) {
@@ -492,7 +494,7 @@ class BotController extends State<AddBridge> {
   }
 
   // Create a set to keep track of invitations already processed
-  Set<String> acceptedInvitations = Set();
+  Set<String> acceptedInvitations = {};
 
   // Function to accept an invitation to a conversation
   void acceptInvitation(Room room, BuildContext context) async {
@@ -518,7 +520,7 @@ class BotController extends State<AddBridge> {
   }
 
   // Function to login Facebook
-  Future<String> createBridgeFacebook(
+  Future<void> createBridgeFacebook(
       BuildContext context,
       WebviewCookieManager cookieManager,
       ConnectionStateModel connectionState,
@@ -593,7 +595,7 @@ class BotController extends State<AddBridge> {
               const Duration(seconds: 10)); // Wait sec for rooms loading
           await handleNewRoomsSync(context, network);
 
-          result = "success";
+          setState(() => network.updateConnectionResult(true));
 
           Future.microtask(() {
             connectionState.updateConnectionTitle(L10n.of(context)!.connected);
@@ -621,8 +623,6 @@ class BotController extends State<AddBridge> {
 
       result = 'error';
     }
-
-    return result;
   }
 
   @override
