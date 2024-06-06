@@ -202,12 +202,15 @@ class RegisterController extends State<Register> {
         child: Column(
           children: [
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: AppConfig.primaryColor,
+              ),
               onPressed: () {
                 _submitForm(actionUrl);
               },
               child: Text(
                 node.meta.label!.text,
-                style: TextStyle(color: Colors.green[500]),
               ),
             ),
             const SizedBox(height: 8),

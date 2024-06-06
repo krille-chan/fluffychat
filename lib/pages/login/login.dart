@@ -15,6 +15,7 @@ import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/web_login.dart';
+import 'package:tawkie/pages/register/privacy_polocy_text.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/show_error_dialog.dart';
@@ -234,14 +235,22 @@ class LoginController extends State<Login> {
     } else {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ElevatedButton(
-          onPressed: () {
-            _submitForm(actionUrl);
-          },
-          child: Text(
-            node.meta.label!.text,
-            style: TextStyle(color: Colors.green[500]),
-          ),
+        child: Column(
+          children: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: AppConfig.primaryColor,
+              ),
+              onPressed: () {
+                _submitForm(actionUrl);
+              },
+              child: Text(
+                node.meta.label!.text,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const PrivacyPolicyText(),
+          ],
         ),
       );
     }
