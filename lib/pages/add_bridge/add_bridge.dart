@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io' as io;
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
@@ -9,6 +13,7 @@ import 'package:tawkie/pages/add_bridge/success_message.dart';
 import 'package:tawkie/pages/add_bridge/web_view_connection.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
+import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 
 import 'delete_conversation_dialog.dart';
 import 'error_message_dialog.dart';
@@ -40,6 +45,7 @@ class BotController extends State<AddBridge> {
 
   @override
   void dispose() {
+    continueProcess = false;
     super.dispose();
   }
 
@@ -59,6 +65,18 @@ class BotController extends State<AddBridge> {
       return null;
     }
   }
+
+  String formatCookiesToJsonString(List<io.Cookie> cookies) {
+    Map<String, String> formattedCookies = {};
+
+    for (var cookie in cookies) {
+      String decodedValue = Uri.decodeComponent(cookie.value);
+      formattedCookies[cookie.name] = decodedValue;
+    }
+
+    return json.encode(formattedCookies);
+  }
+
 
   Future<void> handleRefresh() async {
     setState(() {
@@ -459,6 +477,152 @@ class BotController extends State<AddBridge> {
     } else {
       showCatchErrorDialog(context, L10n.of(context)!.errTimeOut);
     }
+  }
+
+  // Function to manage the synchronization of new rooms from the Matrix server
+  Future<void> handleNewRoomsSync(
+      BuildContext context, SocialNetwork network) async {
+    // Retrieve newly added rooms from the Matrix server
+    final List<Room> newRooms = client.rooms;
+
+    // Iterating on new rooms
+    for (final Room newRoom in newRooms) {
+      acceptInvitation(newRoom, context);
+    }
+  }
+
+  // Create a set to keep track of invitations already processed
+  Set<String> acceptedInvitations = Set();
+
+  // Function to accept an invitation to a conversation
+  void acceptInvitation(Room room, BuildContext context) async {
+    try {
+      // Check if the invitation has already been processed
+      if (!acceptedInvitations.contains(room.id)) {
+        // Mark the invitation as processed by adding it to the set of accepted invitations
+        acceptedInvitations.add(room.id);
+
+        // Accept invitation
+        final waitForRoom = room.client.waitForRoomInSync(
+          room.id,
+          join: true,
+        );
+        await room.join();
+        await waitForRoom;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("error: $e");
+      }
+    }
+  }
+
+  // Function to login Facebook
+  Future<String> createBridgeFacebook(
+      BuildContext context,
+      WebviewCookieManager cookieManager,
+      ConnectionStateModel connectionState,
+      SocialNetwork network,
+      ) async {
+    final String botUserId = '${network.chatBot}$hostname';
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDemandToConnect);
+    });
+
+    final RegExp successMatch = LoginRegex.facebookSuccessMatch;
+    final RegExp alreadyConnected = LoginRegex.facebookAlreadyConnectedMatch;
+    final RegExp pasteCookie = LoginRegex.facebookPasteCookies;
+
+    // Add a direct chat with the Instagram bot (if you haven't already)
+    String? directChat = client.getDirectChatFromUserId(botUserId);
+    directChat ??= await client.startDirectChat(botUserId);
+
+    final Room? roomBot = client.getRoomById(directChat);
+
+    String result = ""; // Variable to track the result of the connection
+
+    await Future.delayed(const Duration(seconds: 1)); // Wait sec
+
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingVerification);
+    });
+
+    final gotCookies = await cookieManager.getCookies(network.urlRedirect);
+    final formattedCookieString = formatCookiesToJsonString(gotCookies);
+
+    // Send the "login" message to the bot
+    await roomBot?.sendTextEvent("login");
+    await Future.delayed(const Duration(seconds: 5)); // Wait sec
+
+    // Variable for loop limit
+    const int maxIterations = 5;
+    int currentIteration = 0;
+
+    while (currentIteration < maxIterations) {
+      final GetRoomEventsResponse response = await client.getRoomEvents(
+        directChat,
+        Direction.b, // To get the latest messages
+        limit: 1, // Number of messages to obtain
+      );
+
+      final List<MatrixEvent> latestMessages = response.chunk ?? [];
+      final String latestMessage =
+          latestMessages.first.content['body'].toString() ?? '';
+
+      if (latestMessages.isNotEmpty) {
+        if (kDebugMode) {
+          print('latestMessage : $latestMessage');
+        }
+        if (pasteCookie.hasMatch(latestMessage)) {
+          await roomBot?.sendTextEvent(formattedCookieString);
+        } else if (alreadyConnected.hasMatch(latestMessage)) {
+          Logs().v("Already Connected to Facebook");
+          result = "alreadyConnected";
+          break;
+        } else if (successMatch.hasMatch(latestMessage)) {
+          Logs().v("You're logged to Messenger");
+
+          Future.microtask(() {
+            connectionState
+                .updateConnectionTitle("Récupération des conversations");
+          });
+          await Future.delayed(
+              const Duration(seconds: 10)); // Wait sec for rooms loading
+          await handleNewRoomsSync(context, network);
+
+          result = "success";
+
+          Future.microtask(() {
+            connectionState.updateConnectionTitle(L10n.of(context)!.connected);
+          });
+
+          Future.microtask(() {
+            connectionState.updateLoading(false);
+          });
+
+          await Future.delayed(const Duration(seconds: 1)); // Wait sec
+          Future.microtask(() {
+            connectionState.reset();
+          });
+
+          break; // Exit the loop once the "login" message has been sent and is success
+        }
+      }
+
+      await Future.delayed(const Duration(seconds: 3)); // Wait sec
+      currentIteration++;
+    }
+
+    if (currentIteration == maxIterations) {
+      Logs().v("Maximum iterations reached, setting result to 'error'");
+
+      result = 'error';
+    }
+
+    return result;
   }
 
   @override
