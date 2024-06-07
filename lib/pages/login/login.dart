@@ -15,7 +15,6 @@ import 'package:ory_kratos_client/ory_kratos_client.dart' as kratos;
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:tawkie/config/app_config.dart';
 import 'package:tawkie/pages/login/web_login.dart';
-import 'package:tawkie/pages/register/privacy_polocy_text.dart';
 import 'package:tawkie/utils/platform_infos.dart';
 import 'package:tawkie/widgets/matrix.dart';
 import 'package:tawkie/widgets/show_error_dialog.dart';
@@ -76,7 +75,6 @@ class LoginController extends State<Login> {
   }
 
   bool _validateEmail(String email) {
-
     // Define regex to validate email format
     final RegExp emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
@@ -255,7 +253,6 @@ class LoginController extends State<Login> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            const PrivacyPolicyText(),
             const SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
