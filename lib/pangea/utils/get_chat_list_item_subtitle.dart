@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/language_keys.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
@@ -10,6 +11,17 @@ import 'package:matrix/matrix.dart';
 import '../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class GetChatListItemSubtitle {
+  final List<String> hideContentKeys = [
+    ModelKey.transcription,
+  ];
+
+  bool moveBackInTimeline(Event event) =>
+      hideContentKeys.any(
+        (key) => event.content.tryGet(key) != null,
+      ) ||
+      event.type.startsWith("p.") ||
+      event.type.startsWith("pangea.");
+
   Future<String> getSubtitle(
     L10n l10n,
     Event? event,
@@ -22,23 +34,14 @@ class GetChatListItemSubtitle {
         eventContextId = null;
       }
 
-      final Timeline timeline =
-          await event.room.getTimeline(eventContextId: eventContextId);
+      final Timeline timeline = await event.room.getTimeline(
+        eventContextId: eventContextId,
+      );
 
-      if (event.content.tryGet(ModelKey.transcription) != null) {
-        int index = timeline.events.indexWhere(
-          (e) => e.eventId == event!.eventId,
-        );
-
-        while (index < timeline.events.length &&
-            (timeline.events[index].content.tryGet(ModelKey.transcription) !=
-                    null ||
-                timeline.events[index].type != EventTypes.Message)) {
-          index++;
-        }
-
-        if (timeline.events.length > index + 1) {
-          event = timeline.events[index];
+      if (moveBackInTimeline(event)) {
+        event = timeline.events.firstWhereOrNull((e) => !moveBackInTimeline(e));
+        if (event == null) {
+          return l10n.emptyChat;
         }
       }
 
