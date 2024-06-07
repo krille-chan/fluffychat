@@ -2725,7 +2725,7 @@
   "loadingDeleteRoomSuccess": "Conversation deleted",
   "refreshList": "Refresh list",
   "loginTitle": "Login to your Tawkie account",
-  "registerTitle": "Create your account Tawkie",
+  "registerTitle": "Create your Tawkie account",
   "registerConfirmPassword": "Confirm your password",
   "registerPleaseEnterYourEmail": "Please enter your email",
   "registerPleaseConfirmYourPassword": "Please confirm your password",
@@ -2778,5 +2778,7 @@
   "authCodeSentTo": "Code sent to",
   "authResendCodeMessage": "A new code has been sent",
   "privacyText": "By creating an account, you agree to our ",
-  "privacyTextPrivacy": "privacy policy"
+  "privacyTextPrivacy": "privacy policy",
+  "privacyTextAnd": " and ",
+  "privacyTextTerms": "terms of service"
 }

@@ -2488,5 +2488,7 @@
     "authCodeSentTo": "Code envoyé à",
     "authResendCodeMessage": "Un nouveau code a été envoyé",
     "privacyText": "En créant un compte, vous acceptez nos ",
-    "privacyTextPrivacy": "politiques de confidentialité"
+    "privacyTextPrivacy": "politiques de confidentialité",
+    "privacyTextAnd": " et ",
+    "privacyTextTerms": "conditions générales d’utilisation et de services"
 }

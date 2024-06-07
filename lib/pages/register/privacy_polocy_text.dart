@@ -24,6 +24,18 @@ class PrivacyPolicyText extends StatelessWidget {
             recognizer: TapGestureRecognizer()
               ..onTap = () => launchUrlString(AppConfig.privacyUrl),
           ),
+          TextSpan(
+            text: L10n.of(context)!.privacyTextAnd,
+          ),
+          TextSpan(
+            text: L10n.of(context)!.privacyTextTerms,
+            style: const TextStyle(
+              color: Colors.blue,
+              decoration: TextDecoration.underline,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => launchUrlString(AppConfig.termsUrl),
+          ),
           const TextSpan(
             text: '.',
           ),
