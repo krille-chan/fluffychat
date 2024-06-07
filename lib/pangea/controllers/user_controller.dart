@@ -138,8 +138,6 @@ class UserController extends BaseController {
         migratedProfileInfo(MatrixProfile.showedClickMessage);
     final bool? showBlurMeansTranslate =
         migratedProfileInfo(MatrixProfile.showedBlurMeansTranslate);
-    final bool? showTooltipInstructions =
-        migratedProfileInfo(MatrixProfile.showedTooltipInstructions);
 
     await updateMatrixProfile(
       dateOfBirth: dob,
@@ -153,7 +151,6 @@ class UserController extends BaseController {
       showedItInstructions: showItInstructions,
       showedClickMessage: showClickMessage,
       showedBlurMeansTranslate: showBlurMeansTranslate,
-      showedTooltipInstructions: showTooltipInstructions,
       createdAt: createdAt,
       targetLanguage: targetLanguage,
       sourceLanguage: sourceLanguage,

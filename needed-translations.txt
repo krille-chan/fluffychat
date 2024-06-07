@@ -841,7 +841,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "be": [
@@ -2281,7 +2285,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "bn": [
@@ -3183,7 +3191,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "bo": [
@@ -4085,7 +4097,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ca": [
@@ -4987,7 +5003,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "cs": [
@@ -5889,7 +5909,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "de": [
@@ -6738,7 +6762,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "el": [
@@ -7640,7 +7668,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "eo": [
@@ -8542,7 +8574,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "es": [
@@ -8550,7 +8586,11 @@
     "suggestToChatDesc",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "et": [
@@ -9395,7 +9435,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "eu": [
@@ -10240,7 +10284,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fa": [
@@ -11142,7 +11190,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fi": [
@@ -12044,7 +12096,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "fr": [
@@ -12946,7 +13002,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ga": [
@@ -13848,7 +13908,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "gl": [
@@ -14693,7 +14757,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "he": [
@@ -15595,7 +15663,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hi": [
@@ -16497,7 +16569,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hr": [
@@ -17386,7 +17462,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "hu": [
@@ -18288,7 +18368,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ia": [
@@ -19714,7 +19798,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "id": [
@@ -20616,7 +20704,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ie": [
@@ -21518,7 +21610,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "it": [
@@ -22405,7 +22501,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ja": [
@@ -23307,7 +23407,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ko": [
@@ -24209,7 +24313,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "lt": [
@@ -25111,7 +25219,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "lv": [
@@ -26013,7 +26125,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "nb": [
@@ -26915,7 +27031,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "nl": [
@@ -27817,7 +27937,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pl": [
@@ -28719,7 +28843,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt": [
@@ -29621,7 +29749,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt_BR": [
@@ -30492,7 +30624,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "pt_PT": [
@@ -31394,7 +31530,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ro": [
@@ -32296,7 +32436,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ru": [
@@ -33141,7 +33285,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sk": [
@@ -34043,7 +34191,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sl": [
@@ -34945,7 +35097,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sr": [
@@ -35847,7 +36003,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "sv": [
@@ -36714,7 +36874,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "ta": [
@@ -37616,7 +37780,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "th": [
@@ -38518,7 +38686,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "tr": [
@@ -39405,7 +39577,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "uk": [
@@ -40250,7 +40426,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "vi": [
@@ -41152,7 +41332,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "zh": [
@@ -41997,7 +42181,11 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ],
 
   "zh_Hant": [
@@ -42899,6 +43087,10 @@
     "wordsPerMinute",
     "leaveRoomDescription",
     "archiveSpaceDescription",
-    "leaveSpaceDescription"
+    "leaveSpaceDescription",
+    "onlyAdminDescription",
+    "tooltipInstructionsTitle",
+    "tooltipInstructionsMobileBody",
+    "tooltipInstructionsBrowserBody"
   ]
 }
