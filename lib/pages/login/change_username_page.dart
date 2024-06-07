@@ -303,6 +303,10 @@ class _ChangeUsernamePageState extends State<ChangeUsernamePage> {
                   : Container(),
               isUsernameSet() && _isAccepted()
                   ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: AppConfig.primaryColor,
+                      ),
                       onPressed: _isLoading() ? null : _onNextButtonPressed,
                       child: _loadingCreateUser
                           ? const LinearProgressIndicator()
