@@ -573,12 +573,15 @@ class LoginController extends State<Login> {
       Logs().v("Error logging in with jwt : ${e.response?.data}");
       // Explanation to the user
       DioErrorHandler.fetchError(context, e);
-    } finally {
       // Set loading to false after handling the error
       setState(() => loading = false);
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+      setState(() => messageError = exception.toString());
+      return setState(() => loading = false);
     }
-
-    setState(() => loading = false);
   }
 
   Future<Map<String, dynamic>> getMatrixLoginJwt(String sessionToken) async {
