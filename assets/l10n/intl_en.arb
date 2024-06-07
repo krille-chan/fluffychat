@@ -2731,7 +2731,7 @@
   "registerPleaseConfirmYourPassword": "Please confirm your password",
   "registerNotSamePassword": "Passwords don't match",
   "registerRequiredField": "This field is required",
-  "registerEmailError": "Please enter a valid email",
+  "registerEmailError": "Please enter a valid email address",
   "registerPasswordError": "Password must be 8-64 characters long.",
   "usernamePageTitle": "Choose username",
   "usernameYourPosition": "Your position in the list:",

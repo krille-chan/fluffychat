@@ -284,19 +284,30 @@ class RegisterController extends State<Register> {
           print('Erreur lors de la soumission du formulaire: $e');
         }
         if (e.response != null) {
-          // Unserialize the JSON response in LoginFlow
-          final responseData = e.response?.data;
-          final loginFlow = kratosClient.serializers
-              .deserializeWith(kratos.LoginFlow.serializer, responseData);
+          try {
+            // Unserialize the JSON response in LoginFlow
+            final responseData = e.response?.data;
+            final loginFlow = kratosClient.serializers
+                .deserializeWith(kratos.LoginFlow.serializer, responseData);
 
-          setState(() => flowId = loginFlow?.id);
+            setState(() => flowId = loginFlow?.id);
 
-          // new response to retrieve nodes and action URL
-          final newNodes = loginFlow?.ui.nodes;
-          final newActionUrl = loginFlow?.ui.action;
+            // new response to retrieve nodes and action URL
+            final newNodes = loginFlow?.ui.nodes;
+            final newActionUrl = loginFlow?.ui.action;
 
-          if (newNodes != null && newActionUrl != null) {
-            await processKratosNodes(newNodes, newActionUrl);
+            if (newNodes != null && newActionUrl != null) {
+              await processKratosNodes(newNodes, newActionUrl);
+            }
+          } catch (exception) {
+            if (kDebugMode) {
+              print('Error deserializing login flow: $exception');
+            }
+            setState(() {
+              messageError = L10n.of(context)!.errTryAgain;
+              loading = false;
+            });
+            // TODO refresh ?
           }
         }
       }
