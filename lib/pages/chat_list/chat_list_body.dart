@@ -262,13 +262,10 @@ class ChatListViewBody extends StatelessWidget {
                       );
                     },
                   ),
-                if (client.prevBatch != null &&
-                    !PlatformInfos.isWeb &&
-                    client.rooms
-                        .isEmpty) //Change to client.rooms.isEmpty for final version
-                  const SliverToBoxAdapter(
-                    child: AddChatNetwork(),
-                  ),
+                SliverToBoxAdapter(
+                  child: AddChatNetwork(
+                      !PlatformInfos.isWeb && client.rooms.isEmpty),
+                ),
               ],
             ),
           );
