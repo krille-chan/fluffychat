@@ -24,7 +24,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        context.go('/rooms/newprivatechat');
+        context.go('/rooms/settings/addbridgebot');
         break;
       case ActiveFilter.groups:
         context.go('/rooms/newgroup');
@@ -51,9 +51,7 @@ class StartChatFloatingActionButton extends StatelessWidget {
     switch (activeFilter) {
       case ActiveFilter.allChats:
       case ActiveFilter.messages:
-        return roomsIsEmpty
-            ? L10n.of(context)!.startFirstChat
-            : L10n.of(context)!.newChat;
+        return L10n.of(context)!.addChatNetwork;
       case ActiveFilter.groups:
         return L10n.of(context)!.newGroup;
       case ActiveFilter.spaces:

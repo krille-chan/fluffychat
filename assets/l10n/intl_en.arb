@@ -2666,6 +2666,7 @@
   "knockRestricted": "Knock restricted",
   "youDonTHaveConversation": "You don't have any conversation yet.",
   "connectChatNetworks": "Connect your chat networks",
+  "addChatNetwork": "Add chat network",
   "addSocialMessagingAccounts": "Add your social messaging accounts",
   "addSocialMessagingAccountsText": "Connect all of your conversations!",
   "connected": "Connected",
