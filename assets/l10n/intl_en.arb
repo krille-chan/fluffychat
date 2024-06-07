@@ -2743,7 +2743,7 @@
   "usernameUsernameImmutable": "After this step, you will not be able to change your username.",
   "usernameWaitingForAcceptance": "You will be notified by email when your account is activated.",
   "usernameSuccess": "Successful name change for",
-  "usernameRequirements": "Username must have at least 3 and at most 16 characters consisting of lowercase letters and digits.",
+  "usernameRequirements": "Username must only contain lowercase letters and digits (3-16 characters). Example : john123",
   "registerInvalidEmail": "Please enter a valid email address.",
   "errorConnectionText": "Please check your Internet connection and try again.",
   "slideOne": "Welcome to Tawkie your all-in-one messaging application.",
