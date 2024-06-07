@@ -3951,5 +3951,8 @@
     "leaveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
     "archiveSpaceDescription": "All chats within this space will be moved to the archive for yourself and other non-admin users.",
     "leaveSpaceDescription": "All chats within this space will be moved to the archive. Other users will be able to see that you have left the space.",
-    "onlyAdminDescription": "Since there are no other admins, all other participants will also be removed."
+    "onlyAdminDescription": "Since there are no other admins, all other participants will also be removed.",
+    "tooltipInstructionsTitle": "Not sure what that does?",
+    "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
+    "tooltipInstructionsBrowserBody": "Hover over items to view tooltips."
 }

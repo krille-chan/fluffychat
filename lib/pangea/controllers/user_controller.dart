@@ -138,6 +138,8 @@ class UserController extends BaseController {
         migratedProfileInfo(MatrixProfile.showedClickMessage);
     final bool? showBlurMeansTranslate =
         migratedProfileInfo(MatrixProfile.showedBlurMeansTranslate);
+    final bool? showTooltipInstructions =
+        migratedProfileInfo(MatrixProfile.showedTooltipInstructions);
 
     await updateMatrixProfile(
       dateOfBirth: dob,
@@ -151,6 +153,7 @@ class UserController extends BaseController {
       showedItInstructions: showItInstructions,
       showedClickMessage: showClickMessage,
       showedBlurMeansTranslate: showBlurMeansTranslate,
+      showedTooltipInstructions: showTooltipInstructions,
       createdAt: createdAt,
       targetLanguage: targetLanguage,
       sourceLanguage: sourceLanguage,
@@ -232,6 +235,7 @@ class UserController extends BaseController {
     bool? showedItInstructions,
     bool? showedClickMessage,
     bool? showedBlurMeansTranslate,
+    bool? showedTooltipInstructions,
     String? createdAt,
     String? targetLanguage,
     String? sourceLanguage,
@@ -302,6 +306,12 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.showedBlurMeansTranslate.title,
         showedBlurMeansTranslate,
+      );
+    }
+    if (showedTooltipInstructions != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedTooltipInstructions.title,
+        showedTooltipInstructions,
       );
     }
     if (createdAt != null) {
