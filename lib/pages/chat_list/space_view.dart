@@ -147,7 +147,10 @@ class _SpaceViewState extends State<SpaceView> {
       if (activeSpace != null) {
         await setChatCount(
           activeSpace,
-          _lastResponse[activeSpaceId],
+          _lastResponse[activeSpaceId] ??
+              GetSpaceHierarchyResponse(
+                rooms: [],
+              ),
         );
       }
       // Pangea#
