@@ -232,6 +232,7 @@ class UserController extends BaseController {
     bool? showedItInstructions,
     bool? showedClickMessage,
     bool? showedBlurMeansTranslate,
+    bool? showedTooltipInstructions,
     String? createdAt,
     String? targetLanguage,
     String? sourceLanguage,
@@ -302,6 +303,12 @@ class UserController extends BaseController {
       await _pangeaController.pStoreService.save(
         MatrixProfile.showedBlurMeansTranslate.title,
         showedBlurMeansTranslate,
+      );
+    }
+    if (showedTooltipInstructions != null) {
+      await _pangeaController.pStoreService.save(
+        MatrixProfile.showedTooltipInstructions.title,
+        showedTooltipInstructions,
       );
     }
     if (createdAt != null) {

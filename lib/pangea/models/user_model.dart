@@ -63,6 +63,7 @@ enum MatrixProfile {
   showedItInstructions,
   showedClickMessage,
   showedBlurMeansTranslate,
+  showedTooltipInstructions,
   createdAt,
   targetLanguage,
   sourceLanguage,
@@ -95,6 +96,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return InstructionsEnum.clickMessage.toString();
       case MatrixProfile.showedBlurMeansTranslate:
         return InstructionsEnum.blurMeansTranslate.toString();
+      case MatrixProfile.showedTooltipInstructions:
+        return InstructionsEnum.tooltipInstructions.toString();
       case MatrixProfile.createdAt:
         return ModelKey.userCreatedAt;
       case MatrixProfile.targetLanguage:
