@@ -3128,7 +3128,7 @@
     "maybeLater": "Maybe Later",
     "mainMenu": "Main Menu",
     "toggleImmersionMode": "Immersion Mode",
-    "toggleImmersionModeDesc": "When enabled, all messages are displayed in your target language and you can click the message to access definitions and translations.",
+    "toggleImmersionModeDesc": "When enabled, all messages are displayed in your target language. This setting is most useful in language exchanges.",
     "itToggleDescription": "This language learning tool will identify words in your base language and help you translate them to your target language. Though rare, the AI can make translation errors.",
     "igcToggleDescription": "This language learning tool will identify common spelling, grammar and punctuation errors in your message and suggest corrections. Though rare, the AI can make correction errors.",
     "sendOnEnterDescription": "Turn this off to be able to add line spaces in messages. When the toggle is off on the browser app, you can press Shift + Enter to start a new line. When the toggle is off on mobile apps, just Enter will start a new line.",
@@ -3609,7 +3609,7 @@
     "zmCountryDisplayName": "Zambia",
     "zwCountryDisplayName": "Zimbabwe",
     "pay": "Pay",
-    "allPrivateChats": "All private chats in space (including with Pangea Bot)",
+    "allPrivateChats": "Direct chats",
     "unknownPrivateChat": "Unknown private chat",
     "copyClassCodeDesc": "Students who are already in the app can 'Join class or exchange' via the main menu.",
     "addToClass": "Add exchange to class",
@@ -3681,24 +3681,8 @@
     "lockSpace": "Lock Space",
     "lockChat": "Lock Chat",
     "archiveSpace": "Archive Space",
-    "suggestTo": "Suggest to {spaceName}",
-    "@suggestTo": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestChatDesc": "Suggested chats will appear in the chat list for {spaceName}",
-    "@suggestToDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
-    "suggestExchangeDesc": "Suggested exchanges will appear in the chat list for {spaceName}",
-    "@suggestToExchangeDesc": {
-        "placeholders": {
-            "spaceName": {}
-        }
-    },
+    "suggestToChat": "Suggest this chat",
+    "suggestToChatDesc": "Suggested chats will appear in chat lists",
     "acceptSelection": "Accept Correction",
     "acceptSelectionAnyway": "Use this anyway",
     "makingActivity": "Making activity",
@@ -3724,7 +3708,7 @@
     },
     "noTeachersFound": "No teachers found to report to",
     "pleaseEnterANumber": "Please enter a number greater than 0",
-    "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+    "archiveRoomDescription": "The chat will be moved to the archive for yourself and other non-admin users.",
     "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
     "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
     "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
@@ -3963,5 +3947,17 @@
     "studentAnalyticsNotAvailable": "Student data not currently available",
     "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
     "updatePhoneOS": "You may need to update your device's OS version.",
-    "wordsPerMinute": "Words per minute"
+    "wordsPerMinute": "Words per minute",
+    "autoIGCToolName": "Run Language Assistance Automatically",
+    "autoIGCToolDescription": "Automatically run language assistance after typing messages",
+    "runGrammarCorrection": "Run grammar correction",
+    "grammarCorrectionFailed": "Grammar correction failed",
+    "grammarCorrectionComplete": "Grammar correction complete",
+    "leaveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+    "archiveSpaceDescription": "All chats within this space will be moved to the archive for yourself and other non-admin users.",
+    "leaveSpaceDescription": "All chats within this space will be moved to the archive. Other users will be able to see that you have left the space.",
+    "onlyAdminDescription": "Since there are no other admins, all other participants will also be removed.",
+    "tooltipInstructionsTitle": "Not sure what that does?",
+    "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
+    "tooltipInstructionsBrowserBody": "Hover over items to view tooltips."
 }

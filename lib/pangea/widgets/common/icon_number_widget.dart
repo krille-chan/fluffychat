@@ -6,6 +6,7 @@ class IconNumberWidget extends StatelessWidget {
   final Color? iconColor;
   final double? iconSize;
   final String? toolTip;
+  final VoidCallback onPressed;
 
   const IconNumberWidget({
     super.key,
@@ -14,16 +15,20 @@ class IconNumberWidget extends StatelessWidget {
     this.toolTip,
     this.iconColor,
     this.iconSize,
+    required this.onPressed,
   });
 
   Widget _content(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(
-          icon,
-          color: iconColor ?? Theme.of(context).iconTheme.color,
-          size: iconSize ?? Theme.of(context).iconTheme.size,
+        IconButton(
+          icon: Icon(
+            icon,
+            color: iconColor ?? Theme.of(context).iconTheme.color,
+            size: iconSize ?? Theme.of(context).iconTheme.size,
+          ),
+          onPressed: onPressed,
         ),
         const SizedBox(width: 8),
         Text(

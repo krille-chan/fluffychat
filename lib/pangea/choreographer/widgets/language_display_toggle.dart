@@ -17,9 +17,9 @@ class LanguageDisplayToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.choreographer.translationEnabled) {
-      return const SizedBox();
-    }
+    // if (!controller.choreographer.translationEnabled) {
+    //   return const SizedBox();
+    // }
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,

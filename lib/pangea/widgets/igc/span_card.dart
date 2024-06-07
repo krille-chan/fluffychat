@@ -61,7 +61,7 @@ class SpanCardState extends State<SpanCard> {
   SpanChoice? get selectedChoice {
     if (selectedChoiceIndex == null ||
         widget.scm.pangeaMatch?.match.choices == null ||
-        widget.scm.pangeaMatch!.match.choices!.length >= selectedChoiceIndex!) {
+        widget.scm.pangeaMatch!.match.choices!.length <= selectedChoiceIndex!) {
       return null;
     }
     return widget.scm.pangeaMatch?.match.choices?[selectedChoiceIndex!];

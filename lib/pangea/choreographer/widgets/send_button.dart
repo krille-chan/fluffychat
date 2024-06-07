@@ -1,8 +1,7 @@
+import 'package:fluffychat/pangea/constants/colors.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/constants/colors.dart';
 import '../../../pages/chat/chat.dart';
 
 class ChoreographerSendButton extends StatelessWidget {
@@ -16,7 +15,8 @@ class ChoreographerSendButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // commit for cicd
-    return controller.choreographer.isFetching
+    return controller.choreographer.isFetching &&
+            controller.choreographer.isAutoIGCEnabled
         ? Container(
             height: 56,
             width: 56,
@@ -28,7 +28,8 @@ class ChoreographerSendButton extends StatelessWidget {
             alignment: Alignment.center,
             child: IconButton(
               icon: const Icon(Icons.send_outlined),
-              color: controller.choreographer.igc.canSendMessage
+              color: controller.choreographer.igc.canSendMessage ||
+                      !controller.choreographer.isAutoIGCEnabled
                   ? null
                   : PangeaColors.igcError,
               onPressed: () {

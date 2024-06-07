@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
@@ -15,8 +16,11 @@ import 'package:fluffychat/pangea/models/class_model.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:future_loading_dialog/future_loading_dialog.dart';
 // import markdown.dart
 import 'package:html_unescape/html_unescape.dart';
 import 'package:matrix/matrix.dart';
@@ -137,6 +141,18 @@ extension PangeaRoom on Room {
 
 // events
 
+  Future<void> archive() async => await _archive();
+
+  Future<bool> archiveSpace(
+    BuildContext context,
+    Client client, {
+    bool onlyAdmin = false,
+  }) async =>
+      await _archiveSpace(context, client, onlyAdmin: onlyAdmin);
+
+  Future<bool> leaveSpace(BuildContext context, Client client) async =>
+      await _leaveSpace(context, client);
+
   Future<Event?> sendPangeaEvent({
     required Map<String, dynamic> content,
     required String parentEventId,
@@ -229,13 +245,14 @@ extension PangeaRoom on Room {
 
   BotOptionsModel? get botOptions => _botOptions;
 
-  Future<bool> suggestedInSpace(Room space) async =>
-      await _suggestedInSpace(space);
+  Future<void> setSuggested(bool suggested) async =>
+      await _setSuggested(suggested);
 
-  Future<void> setSuggestedInSpace(bool suggest, Room space) async =>
-      await _setSuggestedInSpace(suggest, space);
+  Future<bool> isSuggested() async => await _isSuggested();
 
 // user_permissions
+
+  Future<bool> isOnlyAdmin() async => await _isOnlyAdmin();
 
   bool isMadeByUser(String userId) => _isMadeByUser(userId);
 
