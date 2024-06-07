@@ -183,7 +183,7 @@ class ITController {
     }
   }
 
-  Future<void>getNextTranslationData() async {
+  Future<void> getNextTranslationData() async {
     try {
       if (completedITSteps.length < goldRouteTracker.continuances.length) {
         final String currentText = choreographer.currentText;
@@ -478,5 +478,5 @@ class CurrentITStep {
 
   // get continuance with highest level
   Continuance get best =>
-      continuances.reduce((a, b) => a.level > b.level ? a : b);
+      continuances.reduce((a, b) => a.level < b.level ? a : b);
 }
