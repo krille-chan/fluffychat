@@ -7,7 +7,6 @@ extension EventsRoomExtension on Room {
     required String type,
   }) async {
     try {
-      debugPrint("creating $type child for $parentEventId");
       Sentry.addBreadcrumb(Breadcrumb.fromJson(content));
       if (parentEventId.contains("web")) {
         debugger(when: kDebugMode);
@@ -269,57 +268,81 @@ extension EventsRoomExtension on Room {
   Future<List<PangeaMessageEvent>> myMessageEventsInChat({
     DateTime? since,
   }) async {
+    final List<Event> msgEvents = await getEventsBySender(
+      type: EventTypes.Message,
+      sender: client.userID!,
+      since: since,
+    );
+    final Timeline timeline = await getTimeline();
+    return msgEvents
+        .where((event) => (event.content['msgtype'] == MessageTypes.Text))
+        .map((event) {
+      return PangeaMessageEvent(
+        event: event,
+        timeline: timeline,
+        ownMessage: true,
+      );
+    }).toList();
+  }
+
+  // fetch event of a certain type by a certain sender
+  // since a certain time or up to a certain amount
+  Future<List<Event>> getEventsBySender({
+    required String type,
+    required String sender,
+    DateTime? since,
+    int? count,
+  }) async {
     try {
       int numberOfSearches = 0;
-      if (isSpace) {
-        throw Exception(
-          "In messageListForChat with room that is not a chat",
-        );
-      }
       final Timeline timeline = await getTimeline();
-      while (timeline.canRequestHistory && numberOfSearches < 50) {
-        try {
-          await timeline.requestHistory();
-        } catch (err) {
-          break;
+
+      List<Event> relevantEvents() => timeline.events
+          .where((event) => event.senderId == sender && event.type == type)
+          .toList();
+
+      bool reachedEnd() {
+        if (since != null) {
+          return relevantEvents().any(
+            (event) => event.originServerTs.isBefore(since),
+          );
         }
+        if (count != null) {
+          return relevantEvents().length >= count;
+        }
+        return false;
+      }
+
+      while (timeline.canRequestHistory &&
+          !reachedEnd() &&
+          numberOfSearches < 10) {
+        await timeline.requestHistory(historyCount: 100);
         numberOfSearches += 1;
-        if (timeline.events.any(
-          (event) => event.originServerTs.isAfter(since ?? DateTime.now()),
-        )) {
+        if (reachedEnd()) {
           break;
         }
       }
 
-      final List<PangeaMessageEvent> msgs = [];
-      for (Event event in timeline.events) {
-        final bool hasAnalytics = (event.senderId == client.userID) &&
-            (event.type == EventTypes.Message) &&
-            (event.content['msgtype'] == MessageTypes.Text &&
-                !(event.relationshipType == RelationshipTypes.edit));
-        if (hasAnalytics &&
-            (since == null || event.originServerTs.isAfter(since))) {
-          if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit)) {
-            event = event
-                    .aggregatedEvents(
-                      timeline,
-                      RelationshipTypes.edit,
-                    )
-                    .sorted(
-                      (a, b) => b.originServerTs.compareTo(a.originServerTs),
-                    )
-                    .firstOrNull ??
-                event;
-          }
-          final PangeaMessageEvent pMsgEvent = PangeaMessageEvent(
-            event: event,
-            timeline: timeline,
-            ownMessage: true,
-          );
-          msgs.add(pMsgEvent);
-        }
+      final List<Event> fetchedEvents = timeline.events
+          .where((event) => event.senderId == sender && event.type == type)
+          .toList();
+
+      if (since != null) {
+        fetchedEvents.removeWhere(
+          (event) => event.originServerTs.isBefore(since),
+        );
       }
-      return msgs;
+
+      final List<Event> events = [];
+      for (Event event in fetchedEvents) {
+        if (event.relationshipType == RelationshipTypes.edit) continue;
+        if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit)) {
+          event = event.getDisplayEvent(timeline);
+        }
+        events.add(event);
+      }
+
+      return events;
     } catch (err, s) {
       if (kDebugMode) rethrow;
       debugger(when: kDebugMode);

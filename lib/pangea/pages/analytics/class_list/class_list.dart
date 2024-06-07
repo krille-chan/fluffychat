@@ -8,7 +8,7 @@ import 'package:matrix/matrix.dart';
 
 import '../../../../widgets/matrix.dart';
 import '../../../controllers/pangea_controller.dart';
-import '../../../models/chart_analytics_model.dart';
+import '../../../models/analytics/chart_analytics_model.dart';
 import '../../../utils/sync_status_util_v2.dart';
 import '../../../widgets/common/list_placeholder.dart';
 

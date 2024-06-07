@@ -6,11 +6,12 @@ import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/model_keys.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/models/analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_event.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:fluffychat/pangea/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/models/class_model.dart';
-import 'package:fluffychat/pangea/models/constructs_event.dart';
-import 'package:fluffychat/pangea/models/summary_analytics_event.dart';
 import 'package:fluffychat/pangea/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/utils/bot_name.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -28,7 +29,6 @@ import '../../constants/pangea_event_types.dart';
 import '../../enum/use_type.dart';
 import '../../models/choreo_record.dart';
 import '../../models/representation_content_model.dart';
-import '../../models/student_analytics_summary_model.dart';
 import '../client_extension/client_extension.dart';
 
 part "children_and_parents_extension.dart";
@@ -69,19 +69,20 @@ extension PangeaRoom on Room {
 
   Future<AnalyticsEvent?> getLastAnalyticsEvent(
     String type,
+    String userId,
   ) async =>
-      await _getLastAnalyticsEvent(type);
+      await _getLastAnalyticsEvent(type, userId);
 
-  Future<AnalyticsEvent?> getPrevAnalyticsEvent(
-    AnalyticsEvent analyticsEvent,
-  ) async =>
-      await _getPrevAnalyticsEvent(analyticsEvent);
+  Future<DateTime?> analyticsLastUpdated(String type, String userId) async {
+    return await _analyticsLastUpdated(type, userId);
+  }
 
   Future<List<AnalyticsEvent>?> getAnalyticsEvents({
     required String type,
+    required String userId,
     DateTime? since,
   }) async =>
-      await _getAnalyticsEvents(type: type, since: since);
+      await _getAnalyticsEvents(type: type, since: since, userId: userId);
 
   String? get madeForLang => _madeForLang;
 

@@ -4,7 +4,7 @@ import 'package:fluffychat/pangea/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/client_extension/client_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/models/analytics_event.dart';
+import 'package:fluffychat/pangea/models/analytics/analytics_event.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics_view.dart';
 import 'package:fluffychat/pangea/pages/analytics/student_analytics/student_analytics.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ import '../../../widgets/matrix.dart';
 import '../../controllers/pangea_controller.dart';
 import '../../enum/bar_chart_view_enum.dart';
 import '../../enum/time_span.dart';
-import '../../models/chart_analytics_model.dart';
+import '../../models/analytics/chart_analytics_model.dart';
 
 class BaseAnalyticsPage extends StatefulWidget {
   final String pageTitle;
@@ -73,10 +73,14 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
 
     final List<AnalyticsEvent> analyticsEvent = [];
     for (final analyticsRoom in analyticsRooms) {
-      final lastSummaryEvent = await analyticsRoom
-          .getLastAnalyticsEvent(PangeaEventTypes.summaryAnalytics);
-      final lastConstructEvent =
-          await analyticsRoom.getLastAnalyticsEvent(PangeaEventTypes.construct);
+      final lastSummaryEvent = await analyticsRoom.getLastAnalyticsEvent(
+        PangeaEventTypes.summaryAnalytics,
+        Matrix.of(context).client.userID!,
+      );
+      final lastConstructEvent = await analyticsRoom.getLastAnalyticsEvent(
+        PangeaEventTypes.construct,
+        Matrix.of(context).client.userID!,
+      );
       if (lastSummaryEvent != null) {
         analyticsEvent.add(lastSummaryEvent);
       }

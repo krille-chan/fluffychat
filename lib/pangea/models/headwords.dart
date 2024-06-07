@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 

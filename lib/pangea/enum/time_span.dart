@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../models/chart_analytics_model.dart';
+import '../models/analytics/chart_analytics_model.dart';
 
 enum TimeSpan { day, week, month, sixmonths, year }
 

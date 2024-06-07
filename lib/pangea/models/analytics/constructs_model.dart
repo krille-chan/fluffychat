@@ -1,9 +1,10 @@
 import 'package:fluffychat/pangea/constants/model_keys.dart';
-import 'package:fluffychat/pangea/models/analytics_model.dart';
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
+import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/models/analytics/analytics_model.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
-import '../enum/construct_type_enum.dart';
+import '../../enum/construct_type_enum.dart';
 
 class ConstructAnalyticsModel extends AnalyticsModel {
   ConstructType type;
@@ -12,47 +13,19 @@ class ConstructAnalyticsModel extends AnalyticsModel {
   ConstructAnalyticsModel({
     required this.type,
     this.uses = const [],
-    super.lastUpdated,
-    super.prevEventId,
-    super.prevLastUpdated,
   });
 
-  static const _lastUpdatedKey = "lupt";
   static const _usesKey = "uses";
 
   factory ConstructAnalyticsModel.fromJson(Map<String, dynamic> json) {
-    // try {
-    // debugger(
-    //   when:
-    //       kDebugMode && (json['uses'] == null || json[ModelKey.lemma] == null),
-    // );
     return ConstructAnalyticsModel(
-      // lemma: json[ModelKey.lemma],
-      // uses: (json['uses'] as Iterable)
-      //     .map<OneConstructUse?>(
-      //       (use) => use != null ? OneConstructUse.fromJson(use) : null,
-      //     )
-      //     .where((element) => element != null)
-      //     .cast<OneConstructUse>()
-      //     .toList(),
       type: ConstructTypeUtil.fromString(json['type']),
-      lastUpdated: json[_lastUpdatedKey] != null
-          ? DateTime.parse(json[_lastUpdatedKey])
-          : null,
-      prevEventId: json[ModelKey.prevEventId],
-      prevLastUpdated: json[ModelKey.prevLastUpdated] != null
-          ? DateTime.parse(json[ModelKey.prevLastUpdated])
-          : null,
       uses: json[_usesKey]
           .values
           .map((lemmaUses) => LemmaConstructsModel.fromJson(lemmaUses))
           .cast<LemmaConstructsModel>()
           .toList(),
     );
-    // } catch (err) {
-    //   debugger(when: kDebugMode);
-    //   rethrow;
-    // }
   }
 
   toJson() {
@@ -62,24 +35,30 @@ class ConstructAnalyticsModel extends AnalyticsModel {
     }
 
     return {
-      // ModelKey.lemma: lemma,
-      // 'uses': uses.map((use) => use.toJson()).toList(),
       'type': type.string,
-      _lastUpdatedKey: lastUpdated?.toIso8601String(),
       _usesKey: usesMap,
-      ModelKey.prevEventId: prevEventId,
-      ModelKey.prevLastUpdated: prevLastUpdated?.toIso8601String(),
     };
   }
 
-  // void addUsesByUseType(List<OneConstructUse> uses) {
-  //   for (final use in uses) {
-  //     if (use.lemma != lemma) {
-  //       throw Exception('lemma mismatch');
-  //     }
-  //     uses.add(use);
-  //   }
-  // }
+  static List<OneConstructUse> formatConstructsContent(
+    List<PangeaMessageEvent> recentMsgs,
+  ) {
+    final List<PangeaMessageEvent> filtered = List.from(recentMsgs);
+    final List<OneConstructUse> uses = filtered
+        .map(
+          (msg) => msg.originalSent?.choreo?.toGrammarConstructUse(
+            msg.eventId,
+            msg.room.id,
+            msg.originServerTs,
+          ),
+        )
+        .where((element) => element != null)
+        .cast<List<OneConstructUse>>()
+        .expand((element) => element)
+        .toList();
+
+    return uses;
+  }
 }
 
 class LemmaConstructsModel {
@@ -188,4 +167,91 @@ extension on ConstructUseType {
         return Icons.help;
     }
   }
+}
+
+class OneConstructUse {
+  String? lemma;
+  ConstructType? constructType;
+  String? form;
+  ConstructUseType useType;
+  String chatId;
+  String? msgId;
+  DateTime timeStamp;
+  String? id;
+
+  OneConstructUse({
+    required this.useType,
+    required this.chatId,
+    required this.timeStamp,
+    required this.lemma,
+    required this.form,
+    required this.msgId,
+    required this.constructType,
+    this.id,
+  });
+
+  factory OneConstructUse.fromJson(Map<String, dynamic> json) {
+    return OneConstructUse(
+      useType: ConstructUseType.values
+          .firstWhere((e) => e.string == json['useType']),
+      chatId: json['chatId'],
+      timeStamp: DateTime.parse(json['timeStamp']),
+      lemma: json['lemma'],
+      form: json['form'],
+      msgId: json['msgId'],
+      constructType: json['constructType'] != null
+          ? ConstructTypeUtil.fromString(json['constructType'])
+          : null,
+      id: json['id'],
+    );
+  }
+
+  Map<String, dynamic> toJson([bool condensed = true]) {
+    final Map<String, String?> data = {
+      'useType': useType.string,
+      'chatId': chatId,
+      'timeStamp': timeStamp.toIso8601String(),
+      'form': form,
+      'msgId': msgId,
+    };
+    if (!condensed && lemma != null) data['lemma'] = lemma!;
+    if (!condensed && constructType != null) {
+      data['constructType'] = constructType!.string;
+    }
+    if (id != null) data['id'] = id;
+
+    return data;
+  }
+
+  Room? getRoom(Client client) {
+    return client.getRoomById(chatId);
+  }
+
+  Future<Event?> getEvent(Client client) async {
+    final Room? room = getRoom(client);
+    if (room == null || msgId == null) return null;
+    return room.getEventById(msgId!);
+  }
+}
+
+class AggregateConstructUses {
+  final List<LemmaConstructsModel> _lemmaUses;
+
+  AggregateConstructUses({required List<LemmaConstructsModel> lemmaUses})
+      : _lemmaUses = lemmaUses;
+
+  String get lemma {
+    assert(
+      _lemmaUses.isNotEmpty &&
+          _lemmaUses.every(
+            (construct) => construct.lemma == _lemmaUses.first.lemma,
+          ),
+    );
+    return _lemmaUses.first.lemma;
+  }
+
+  List<OneConstructUse> get uses => _lemmaUses
+      .map((lemmaUse) => lemmaUse.uses)
+      .expand((element) => element)
+      .toList();
 }

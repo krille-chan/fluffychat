@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:fluffychat/pangea/enum/time_span.dart';
+import 'package:fluffychat/pangea/models/analytics/summary_analytics_model.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:fluffychat/pangea/enum/time_span.dart';
-import 'package:fluffychat/pangea/models/student_analytics_summary_model.dart';
-import '../enum/use_type.dart';
+import '../../enum/use_type.dart';
 
 class TimeSeriesTotals {
   int ta;

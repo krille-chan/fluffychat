@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/controllers/my_analytics_controller.dart';
 import 'package:fluffychat/pangea/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/enum/construct_type_enum.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/matrix_event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/models/constructs_analytics_model.dart';
+import 'package:fluffychat/pangea/models/analytics/constructs_model.dart';
 import 'package:fluffychat/pangea/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/pages/analytics/base_analytics.dart';
 import 'package:fluffychat/pangea/utils/error_handler.dart';
@@ -223,7 +222,7 @@ class ConstructListViewState extends State<ConstructListView> {
     if (widget.pangeaController.analytics.constructs == null) {
       return null;
     }
-    return widget.pangeaController.myAnalytics
+    return widget.pangeaController.analytics
         .aggregateConstructData(widget.pangeaController.analytics.constructs!)
         .where((lemmaUses) => lemmaUses.uses.isNotEmpty)
         .sorted((a, b) {

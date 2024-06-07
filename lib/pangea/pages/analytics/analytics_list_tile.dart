@@ -11,7 +11,7 @@ import 'package:matrix/matrix.dart';
 import '../../../../utils/date_time_extension.dart';
 import '../../../widgets/avatar.dart';
 import '../../../widgets/matrix.dart';
-import '../../models/chart_analytics_model.dart';
+import '../../models/analytics/chart_analytics_model.dart';
 import 'base_analytics.dart';
 import 'list_summary_analytics.dart';
 

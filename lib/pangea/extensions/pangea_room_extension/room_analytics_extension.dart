@@ -197,77 +197,53 @@ extension AnalyticsRoomExtension on Room {
 
   Future<AnalyticsEvent?> _getLastAnalyticsEvent(
     String type,
+    String userId,
   ) async {
-    final Timeline timeline = await getTimeline();
-    int requests = 0;
-    Event? lastEvent = timeline.events.firstWhereOrNull(
-      (event) => event.type == type,
+    final List<Event> events = await getEventsBySender(
+      type: type,
+      sender: userId,
+      count: 1,
     );
-
-    while (requests < 10 && timeline.canRequestHistory && lastEvent == null) {
-      await timeline.requestHistory();
-      lastEvent = timeline.events.firstWhereOrNull(
-        (event) => event.type == type,
-      );
-      requests++;
-    }
-
-    if (lastEvent == null) return null;
-
+    if (events.isEmpty) return null;
+    final Event event = events.first;
+    AnalyticsEvent? analyticsEvent;
     switch (type) {
       case PangeaEventTypes.summaryAnalytics:
-        return SummaryAnalyticsEvent(event: lastEvent);
+        analyticsEvent = SummaryAnalyticsEvent(event: event);
       case PangeaEventTypes.construct:
-        return ConstructAnalyticsEvent(event: lastEvent);
+        analyticsEvent = ConstructAnalyticsEvent(event: event);
     }
-
-    return null;
+    return analyticsEvent;
   }
 
-  Future<AnalyticsEvent?> _getPrevAnalyticsEvent(
-    AnalyticsEvent analyticsEvent,
-  ) async {
-    if (analyticsEvent.content.prevEventId == null) {
-      return null;
-    }
-    final Event? prevEvent = await getEventById(
-      analyticsEvent.content.prevEventId!,
-    );
-    if (prevEvent == null) return null;
-
-    switch (analyticsEvent.event.type) {
-      case PangeaEventTypes.summaryAnalytics:
-        return SummaryAnalyticsEvent(event: prevEvent);
-      case PangeaEventTypes.construct:
-        return ConstructAnalyticsEvent(event: prevEvent);
-    }
-
-    return null;
+  Future<DateTime?> _analyticsLastUpdated(String type, String userId) async {
+    final lastEvent = await _getLastAnalyticsEvent(type, userId);
+    return lastEvent?.event.originServerTs;
   }
 
   Future<List<AnalyticsEvent>?> _getAnalyticsEvents({
     required String type,
+    required String userId,
     DateTime? since,
   }) async {
-    final AnalyticsEvent? mostRecentEvent = await getLastAnalyticsEvent(type);
-    if (mostRecentEvent == null) return null;
-    final List<AnalyticsEvent> events = [mostRecentEvent];
-
-    bool getAllEvents() =>
-        since == null && events.last.content.prevEventId == null;
-
-    bool reachedUpdated() =>
-        since != null &&
-        (events.last.content.lastUpdated?.isBefore(since) ?? true);
-
-    while (getAllEvents() || !reachedUpdated()) {
-      final AnalyticsEvent? prevEvent = await getPrevAnalyticsEvent(
-        events.last,
-      );
-      if (prevEvent == null) break;
-      events.add(prevEvent);
+    final List<Event> events = await getEventsBySender(
+      type: type,
+      sender: userId,
+      since: since,
+    );
+    final List<AnalyticsEvent> analyticsEvents = [];
+    for (final Event event in events) {
+      switch (type) {
+        case PangeaEventTypes.summaryAnalytics:
+          analyticsEvents.add(SummaryAnalyticsEvent(event: event));
+          break;
+        case PangeaEventTypes.construct:
+          analyticsEvents.add(ConstructAnalyticsEvent(event: event));
+          break;
+      }
     }
-    return events;
+
+    return analyticsEvents;
   }
 
   String? get _madeForLang {
