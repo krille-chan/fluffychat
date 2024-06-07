@@ -122,7 +122,7 @@ class AnalyticsListTileState extends State<AnalyticsListTile> {
               Tooltip(
                 message: L10n.of(context)!.timeOfLastMessage,
                 child: Text(
-                  tileData?.lastMessage?.localizedTimeShort(context) ?? "",
+                  tileData?.lastMessageTime?.localizedTimeShort(context) ?? "",
                   style: TextStyle(
                     fontSize: 13,
                     color: Theme.of(context).textTheme.bodyMedium!.color,

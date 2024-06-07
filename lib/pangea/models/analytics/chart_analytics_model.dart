@@ -137,4 +137,13 @@ class ChartAnalyticsModel {
     }
     timeSeries = intervals.values.toList().reversed.toList();
   }
+
+  DateTime? get lastMessageTime {
+    if (msgs.isEmpty) {
+      return null;
+    }
+    return msgs.map((msg) => msg.time).reduce(
+          (compare, recent) => compare.isAfter(recent) ? compare : recent,
+        );
+  }
 }
