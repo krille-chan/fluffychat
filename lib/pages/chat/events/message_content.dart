@@ -303,6 +303,10 @@ class MessageContent extends StatelessWidget {
                 immersionMode: immersionMode,
                 toolbarController: toolbarController,
               );
+            } else if (pangeaMessageEvent != null) {
+              toolbarController?.toolbar?.textSelection.setMessageText(
+                pangeaMessageEvent!.body,
+              );
             }
             // Pangea#
             return FutureBuilder<String>(

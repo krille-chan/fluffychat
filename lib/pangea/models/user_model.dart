@@ -59,7 +59,7 @@ enum MatrixProfile {
   interactiveGrammar,
   immersionMode,
   definitions,
-  translations,
+  // translations,
   showedItInstructions,
   showedClickMessage,
   showedBlurMeansTranslate,
@@ -88,8 +88,8 @@ extension MatrixProfileExtension on MatrixProfile {
         return ToolSetting.immersionMode.toString();
       case MatrixProfile.definitions:
         return ToolSetting.definitions.toString();
-      case MatrixProfile.translations:
-        return ToolSetting.translations.toString();
+      // case MatrixProfile.translations:
+      //   return ToolSetting.translations.toString();
       case MatrixProfile.autoIGC:
         return ToolSetting.autoIGC.toString();
       case MatrixProfile.showedItInstructions:

@@ -199,9 +199,9 @@ class PangeaRoomRules {
       case ToolSetting.definitions:
         definitions = value;
         break;
-      case ToolSetting.translations:
-        translations = value;
-        break;
+      // case ToolSetting.translations:
+      //   translations = value;
+      //   break;
       case ToolSetting.autoIGC:
         autoIGC = value;
         break;
@@ -275,8 +275,8 @@ class PangeaRoomRules {
         return immersionMode;
       case ToolSetting.definitions:
         return definitions;
-      case ToolSetting.translations:
-        return translations;
+      // case ToolSetting.translations:
+      //   return translations;
       case ToolSetting.autoIGC:
         return autoIGC;
       default:
@@ -306,7 +306,7 @@ enum ToolSetting {
   interactiveGrammar,
   immersionMode,
   definitions,
-  translations,
+  // translations,
   autoIGC,
 }
 
@@ -321,8 +321,8 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.toggleImmersionMode;
       case ToolSetting.definitions:
         return L10n.of(context)!.definitionsToolName;
-      case ToolSetting.translations:
-        return L10n.of(context)!.messageTranslationsToolName;
+      // case ToolSetting.translations:
+      //   return L10n.of(context)!.messageTranslationsToolName;
       case ToolSetting.autoIGC:
         return L10n.of(context)!.autoIGCToolName;
     }
@@ -339,8 +339,8 @@ extension SettingCopy on ToolSetting {
         return L10n.of(context)!.toggleImmersionModeDesc;
       case ToolSetting.definitions:
         return L10n.of(context)!.definitionsToolDescription;
-      case ToolSetting.translations:
-        return L10n.of(context)!.translationsToolDescrption;
+      // case ToolSetting.translations:
+      //   return L10n.of(context)!.translationsToolDescrption;
       case ToolSetting.autoIGC:
         return L10n.of(context)!.autoIGCToolDescription;
     }

@@ -545,11 +545,11 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get translationEnabled =>
-      pangeaController.permissionsController.isToolEnabled(
-        ToolSetting.translations,
-        chatController.room,
-      );
+  // bool get translationEnabled =>
+  //     pangeaController.permissionsController.isToolEnabled(
+  //       ToolSetting.translations,
+  //       chatController.room,
+  //     );
 
   bool get isITandIGCEnabled =>
       pangeaController.permissionsController.isWritingAssistanceEnabled(
