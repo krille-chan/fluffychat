@@ -914,7 +914,7 @@
       "targetName": {}
     }
   },
-  "kickedAndBanned": "🙅 {username} je izbacio/la i isključio/la {targetName}",
+  "kickedAndBanned": "🙅 {username} je izbacio/la i blokirao/la {targetName}",
   "@kickedAndBanned": {
     "type": "text",
     "placeholders": {
@@ -2029,7 +2029,7 @@
   "@recoveryKey": {},
   "recoveryKeyLost": "Izgubio/la si ključ za obnavljanje?",
   "@recoveryKeyLost": {},
-  "youKickedAndBanned": "🙅 Izbacio/la si i isključio/la korisnika {user}",
+  "youKickedAndBanned": "🙅 Izbacio/la si i blokirao/la korisnika {user}",
   "@youKickedAndBanned": {
     "placeholders": {
       "user": {}
@@ -2449,5 +2449,135 @@
   "discover": "Otkrij",
   "@discover": {},
   "formattedMessagesDescription": "Prikaži formatirani sadržaj poruke poput podebljanog teksta koristeći markdown.",
-  "@formattedMessagesDescription": {}
+  "@formattedMessagesDescription": {},
+  "nothingFound": "Ništa nije pronađeno...",
+  "@nothingFound": {},
+  "select": "Odaberi",
+  "@select": {},
+  "newPassword": "Nova lozinka",
+  "@newPassword": {},
+  "unbanUserDescription": "Korisnik će se ponovo moći pridružiti razgovoru ako pokuša.",
+  "@unbanUserDescription": {},
+  "publicSpaces": "Javni prostori",
+  "@publicSpaces": {},
+  "subspace": "Podprostori",
+  "@subspace": {},
+  "decline": "Odbij",
+  "@decline": {},
+  "thisDevice": "Ovaj uređaj:",
+  "@thisDevice": {},
+  "presenceStyle": "Prisutnost:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "presencesToggle": "Prikaži poruke stanja od drugih korisnika",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "noPublicLinkHasBeenCreatedYet": "Još nije stvorena nijedna javna poveznica",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "hidePresences": "Sakriti popis stanja?",
+  "@hidePresences": {},
+  "pleaseEnterYourCurrentPassword": "Upiši svoju trenutačnu lozinku",
+  "@pleaseEnterYourCurrentPassword": {},
+  "publicLink": "Javna poveznica",
+  "@publicLink": {},
+  "passwordIsWrong": "Tvoja upisana lozinka je kriva",
+  "@passwordIsWrong": {},
+  "initAppError": "Dogodila se greška prilikom inicijaliziranja aplikacije",
+  "@initAppError": {},
+  "hideRedactedMessagesBody": "Ako netko redigira poruku, ta poruka više neće biti vidljiva u razgovoru.",
+  "@hideRedactedMessagesBody": {},
+  "kickUserDescription": "Korisnik je izbačen iz razgovora, ali nije blokiran. U javnim razgovorima se korisnik može ponovo pridružiti u bilo kojem trenutku.",
+  "@kickUserDescription": {},
+  "addChatOrSubSpace": "Dodaj razgovor ili podpodručje",
+  "@addChatOrSubSpace": {},
+  "appLockDescription": "Zaključaj aplikaciju kada je ne koristiš s PIN kodom",
+  "@appLockDescription": {},
+  "globalChatId": "Globalni ID razgovora",
+  "@globalChatId": {},
+  "hideRedactedMessages": "Sakrij redigirane poruke",
+  "@hideRedactedMessages": {},
+  "hideInvalidOrUnknownMessageFormats": "Sakrij nevažeće ili nepoznate formate poruka",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "overview": "Pregled",
+  "@overview": {},
+  "notifyMeFor": "Obavijesit me za",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Postavke za obnavljanje lozinke",
+  "@passwordRecoverySettings": {},
+  "hideMemberChangesInPublicChats": "Sakrij promjene članova u javnim razgovorima",
+  "@hideMemberChangesInPublicChats": {},
+  "youInvitedToBy": "📩 Pozvan/a si putem poveznice na:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "usersMustKnock": "Korisnici moraju pokucati",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Nitko se ne može pridružiti",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} se želi pridružiti razgovoru.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "knock": "Pokucaj",
+  "@knock": {},
+  "knocking": "Kucanje",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Razgovor se može otkriti pretraživanjem servera {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "searchForUsers": "Traži @users...",
+  "@searchForUsers": {},
+  "pleaseChooseAStrongPassword": "Odaberi snažnu lozinku",
+  "@pleaseChooseAStrongPassword": {},
+  "joinSpace": "Pridruži se prostoru",
+  "@joinSpace": {},
+  "publicChatAddresses": "Adrese javnih razgovora",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Stvori novu adresu",
+  "@createNewAddress": {},
+  "userRole": "Korisnička uloga",
+  "@userRole": {},
+  "verifyOtherUser": "🔐 Potvrdi drugog korisnika",
+  "@verifyOtherUser": {},
+  "sendTypingNotificationsDescription": "Drugi sudionici u razgovoru mogu vidjeti kada pišeš novu poruku.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Drugi sudionici u raygovoru mogu vidjeti kada pročitaš poruku.",
+  "@sendReadReceiptsDescription": {},
+  "searchIn": "Traži u razgovoru „{chat}”...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "searchMore": "Traži više...",
+  "@searchMore": {},
+  "gallery": "Galerija",
+  "@gallery": {},
+  "files": "Datoteke",
+  "@files": {},
+  "verifyOtherDevice": "🔐 Potvrdi drugi uređaj",
+  "@verifyOtherDevice": {},
+  "unreadChatsInApp": "{appname}: Nroj nepročitanih razgovora: {unread}",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "commandHint_ignore": "Zanemari navedeni matrix ID",
+  "@commandHint_ignore": {}
 }
