@@ -368,6 +368,29 @@ class ChatView extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              // #Pangea
+                                              if (controller.room.isRoomAdmin)
+                                                TextButton.icon(
+                                                  style: TextButton.styleFrom(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                      16,
+                                                    ),
+                                                    foregroundColor:
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .error,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.archive_outlined,
+                                                  ),
+                                                  onPressed:
+                                                      controller.archiveChat,
+                                                  label: Text(
+                                                    L10n.of(context)!.archive,
+                                                  ),
+                                                ),
+                                              // Pangea#
                                               TextButton.icon(
                                                 style: TextButton.styleFrom(
                                                   padding: const EdgeInsets.all(
@@ -379,7 +402,10 @@ class ChatView extends StatelessWidget {
                                                           .error,
                                                 ),
                                                 icon: const Icon(
-                                                  Icons.archive_outlined,
+                                                  // #Pangea
+                                                  // Icons.archive_outlined,
+                                                  Icons.arrow_forward,
+                                                  // Pangea#
                                                 ),
                                                 onPressed: controller.leaveChat,
                                                 label: Text(

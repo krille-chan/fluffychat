@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/constants/class_default_values.dart';
 import 'package:fluffychat/pangea/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/sync_update_extension.dart';
-import 'package:fluffychat/pangea/utils/archive_space.dart';
 import 'package:fluffychat/pangea/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -230,7 +229,10 @@ class _SpaceViewState extends State<SpaceView> {
           ),
       message: spaceChild?.topic ?? room?.topic,
       actions: [
-        if (room == null)
+        // #Pangea
+        // if (room == null)
+        if (room == null || room.membership == Membership.leave)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.join,
             label: L10n.of(context)!.joinRoom,
@@ -255,16 +257,21 @@ class _SpaceViewState extends State<SpaceView> {
             label: L10n.of(context)!.addToSpace,
             icon: Icons.workspaces_outlined,
           ),
-        if (room != null && room.isRoomAdmin)
+        if (room != null &&
+            room.isRoomAdmin &&
+            room.membership != Membership.leave)
           SheetAction(
             key: SpaceChildContextAction.archive,
             label: room.isSpace
                 ? L10n.of(context)!.archiveSpace
                 : L10n.of(context)!.archive,
             icon: Icons.architecture_outlined,
+            isDestructiveAction: true,
           ),
-        // Pangea#
-        if (room != null)
+
+        if (room != null && room.membership != Membership.leave)
+          // if (room != null)
+          // Pangea#
           SheetAction(
             key: SpaceChildContextAction.leave,
             label: L10n.of(context)!.leave,
@@ -283,22 +290,32 @@ class _SpaceViewState extends State<SpaceView> {
         _onJoinSpaceChild(spaceChild!);
         break;
       case SpaceChildContextAction.leave:
-        await showFutureLoadingDialog(
-          context: context,
-          // #Pangea
-          // future: room!.leave,
-          future: () async {
-            if (room!.isUnread) {
-              await room.markUnread(false);
-            }
-            await room.leave();
-            if (Matrix.of(context).activeRoomId == room.id) {
-              context.go('/rooms');
-            }
-          },
-          // Pangea#
-        );
+        // #Pangea
+        widget.controller.cancelAction();
+        if (room == null) return;
+        if (room.isSpace) {
+          await room.isOnlyAdmin()
+              ? await room.archiveSpace(
+                  context,
+                  Matrix.of(context).client,
+                  onlyAdmin: true,
+                )
+              : await room.leaveSpace(
+                  context,
+                  Matrix.of(context).client,
+                );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.leaveAction();
+        }
+        _refresh();
         break;
+      // await showFutureLoadingDialog(
+      //   context: context,
+      //   future: room!.leave,
+      // );
+      // break;
+      // Pangea#
       case SpaceChildContextAction.removeFromSpace:
         await showFutureLoadingDialog(
           context: context,
@@ -310,20 +327,27 @@ class _SpaceViewState extends State<SpaceView> {
         widget.controller.cancelAction();
         // #Pangea
         if (room == null) return;
+        // room.isSpace
+        // ? await showFutureLoadingDialog(
+        //         context: context,
+        //         future: () async {
+        //           await room.archiveSpace(
+        //             Matrix.of(context).client,
+        //           );
+        //           widget.controller.selectedRoomIds.clear();
+        //         },
+        //       )
+        //     : await widget.controller.archiveAction();
+        if (room.isSpace) {
+          await room.archiveSpace(
+            context,
+            Matrix.of(context).client,
+          );
+        } else {
+          widget.controller.toggleSelection(room.id);
+          await widget.controller.archiveAction();
+        }
         // Pangea#
-        widget.controller.toggleSelection(room.id);
-        room.isSpace
-            ? await showFutureLoadingDialog(
-                context: context,
-                future: () async {
-                  await archiveSpace(
-                    room,
-                    Matrix.of(context).client,
-                  );
-                  widget.controller.selectedRoomIds.clear();
-                },
-              )
-            : await widget.controller.archiveAction();
         _refresh();
         break;
       case SpaceChildContextAction.addToSpace:
@@ -333,8 +357,10 @@ class _SpaceViewState extends State<SpaceView> {
         // Pangea#
         widget.controller.toggleSelection(room.id);
         await widget.controller.addToSpace();
+        // #Pangea
+        setState(() => widget.controller.selectedRoomIds.clear());
+        // Pangea#
         break;
-      // Pangea#
     }
   }
 

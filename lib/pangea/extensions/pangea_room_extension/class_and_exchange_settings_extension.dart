@@ -71,8 +71,8 @@ extension ClassAndExchangeSettingsRoomExtension on Room {
       }
       final spaceChildPower =
           currentPowerContent["events"][EventTypes.spaceChild];
-      final studentAnalyticsPower =
-          currentPowerContent[PangeaEventTypes.studentAnalyticsSummary];
+      final studentAnalyticsPower = currentPowerContent["events"]
+          [PangeaEventTypes.studentAnalyticsSummary];
 
       if ((spaceChildPower == null || studentAnalyticsPower == null)) {
         currentPowerContent["events"][EventTypes.spaceChild] = 0;
