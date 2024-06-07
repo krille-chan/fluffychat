@@ -3698,7 +3698,7 @@
   "@optionalRedactReason": {},
   "dehydrate": "Exportar sesión y borrar dispositivo",
   "@dehydrate": {},
-  "archiveRoomDescription": "",
+  "archiveRoomDescription": "El chat se moverá al archivo para ti y para otros usuarios que no sean administradores",
   "@archiveRoomDescription": {},
   "pleaseEnterRecoveryKeyDescription": "Para desbloquear sus mensajes antiguos, ingrese su clave de recuperación que se generó en una sesión anterior. Su clave de recuperación NO es su contraseña.",
   "@pleaseEnterRecoveryKeyDescription": {},

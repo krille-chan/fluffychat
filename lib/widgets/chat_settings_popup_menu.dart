@@ -85,20 +85,31 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             ),
       // #Pangea
       if (!widget.room.isArchived)
-        // Pangea#
-        PopupMenuItem<String>(
-          value: 'leave',
-          child: Row(
-            children: [
-              // #Pangea
-              // const Icon(Icons.delete_outlined),
-              const Icon(Icons.arrow_forward),
-              // Pangea#
-              const SizedBox(width: 12),
-              Text(L10n.of(context)!.leave),
-            ],
+        if (widget.room.isRoomAdmin)
+          PopupMenuItem<String>(
+            value: 'archive',
+            child: Row(
+              children: [
+                const Icon(Icons.archive_outlined),
+                const SizedBox(width: 12),
+                Text(L10n.of(context)!.archive),
+              ],
+            ),
           ),
+      // Pangea#
+      PopupMenuItem<String>(
+        value: 'leave',
+        child: Row(
+          children: [
+            // #Pangea
+            // const Icon(Icons.delete_outlined),
+            const Icon(Icons.arrow_forward),
+            // Pangea#
+            const SizedBox(width: 12),
+            Text(L10n.of(context)!.leave),
+          ],
         ),
+      ),
       // #Pangea
       if (classSettings != null)
         PopupMenuItem<String>(
@@ -167,7 +178,8 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
         PopupMenuButton(
           onSelected: (String choice) async {
             switch (choice) {
-              case 'leave':
+              // #Pangea
+              case 'archive':
                 final confirmed = await showOkCancelAlertDialog(
                   useRootNavigator: false,
                   context: context,
@@ -179,7 +191,31 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 if (confirmed == OkCancelResult.ok) {
                   final success = await showFutureLoadingDialog(
                     context: context,
-                    future: () => widget.room.leave(),
+                    future: () => widget.room.archive(),
+                  );
+                  if (success.error == null) {
+                    context.go('/rooms');
+                  }
+                }
+                break;
+              // Pangea#
+              case 'leave':
+                final bool onlyAdmin = await widget.room.isOnlyAdmin();
+                final confirmed = await showOkCancelAlertDialog(
+                  useRootNavigator: false,
+                  context: context,
+                  title: L10n.of(context)!.areYouSure,
+                  okLabel: L10n.of(context)!.ok,
+                  cancelLabel: L10n.of(context)!.cancel,
+                  message: onlyAdmin
+                      ? L10n.of(context)!.onlyAdminDescription
+                      : L10n.of(context)!.leaveRoomDescription,
+                );
+                if (confirmed == OkCancelResult.ok) {
+                  final success = await showFutureLoadingDialog(
+                    context: context,
+                    future: () =>
+                        onlyAdmin ? widget.room.archive() : widget.room.leave(),
                   );
                   if (success.error == null) {
                     context.go('/rooms');
