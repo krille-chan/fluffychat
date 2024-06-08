@@ -2694,7 +2694,7 @@
   "@files": {},
   "gallery": "Galeria",
   "@gallery": {},
-  "searchIn": "Bilatu {chat}ean...",
+  "searchIn": "Bilatu {chat} txatean...",
   "@searchIn": {
     "type": "text",
     "placeholders": {
