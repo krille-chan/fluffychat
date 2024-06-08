@@ -61,11 +61,9 @@ class ITController {
   }
 
   void closeIT() {
-    //if they close it before choosing anything, just put their text back
+    //if they close it before completing, just put their text back
     //PTODO - explore using last itStep
-    if (choreographer.currentText.isEmpty) {
-      choreographer.textController.text = sourceText ?? "";
-    }
+    choreographer.textController.text = sourceText ?? "";
     clear();
   }
 
@@ -217,8 +215,20 @@ class ITController {
 
   Future<void> onEditSourceTextSubmit(String newSourceText) async {
     try {
-      sourceText = newSourceText;
+
+      _isOpen = true;
       _isEditingSourceText = false;
+      _itStartData = ITStartData(newSourceText, choreographer.l1LangCode);
+      completedITSteps = [];
+      currentITStep = null;
+      nextITStep = null;
+      goldRouteTracker = GoldRouteTracker.defaultTracker;
+      payLoadIds = [];
+
+      _setSourceText();
+      getTranslationData(false);
+
+      /*sourceText = newSourceText;
       final String currentText = choreographer.currentText;
 
       choreographer.startLoading();
@@ -241,7 +251,7 @@ class ITController {
         storedGoldContinuances: goldRouteTracker.continuances,
       );
 
-      _addPayloadId(responses[1]);
+      _addPayloadId(responses[1]);*/
     } catch (err, stack) {
       debugger(when: kDebugMode);
       if (err is! http.Response) {
@@ -252,6 +262,7 @@ class ITController {
       );
     } finally {
       choreographer.stopLoading();
+      choreographer.textController.text = "";
     }
   }
 

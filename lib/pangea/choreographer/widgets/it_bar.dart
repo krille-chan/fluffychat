@@ -184,7 +184,12 @@ class OriginalText extends StatelessWidget {
                 ),
               ),
             ),
-          if (!controller.isEditingSourceText && controller.sourceText != null)
+          if (
+            !controller.isEditingSourceText
+            && controller.sourceText != null
+            && controller.completedITSteps.length
+              < controller.goldRouteTracker.continuances.length
+          )
             IconButton(
               onPressed: () => controller.setIsEditingSourceText(true),
               icon: const Icon(Icons.edit_outlined),
