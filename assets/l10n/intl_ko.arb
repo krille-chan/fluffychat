@@ -727,7 +727,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "answeredTheCall": "{senderName} 가 전화에 응답했습니다",
+  "answeredTheCall": "{senderName}님이 전화에 응답했습니다",
   "@answeredTheCall": {
     "type": "text",
     "placeholders": {
@@ -2705,5 +2705,7 @@
   "restricted": "스페이스 멤버로 제한",
   "@restricted": {},
   "knockRestricted": "스페이스 멤버만 참가 요청 가능",
-  "@knockRestricted": {}
+  "@knockRestricted": {},
+  "swipeRightToLeftToReply": "오른쪽에서 왼쪽으로 스와이프해서 답장",
+  "@swipeRightToLeftToReply": {}
 }
