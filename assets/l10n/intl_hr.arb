@@ -2706,5 +2706,7 @@
   "@thereAreCountUsersBlocked": {
     "type": "text",
     "count": {}
-  }
+  },
+  "swipeRightToLeftToReply": "Za odgovaranje povuci prstom zdesna ulijevo",
+  "@swipeRightToLeftToReply": {}
 }
