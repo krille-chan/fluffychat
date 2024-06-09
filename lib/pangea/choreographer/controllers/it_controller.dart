@@ -21,6 +21,7 @@ class ITController {
   Choreographer choreographer;
 
   bool _isOpen = false;
+  bool _willOpen = false;
   bool _isEditingSourceText = false;
   bool showChoiceFeedback = false;
 
@@ -36,6 +37,7 @@ class ITController {
 
   void clear() {
     _isOpen = false;
+    _willOpen = false;
     showChoiceFeedback = false;
     _isEditingSourceText = false;
 
@@ -54,6 +56,7 @@ class ITController {
   }
 
   Future<void> initializeIT(ITStartData itStartData) async {
+    _willOpen = true;
     Future.delayed(const Duration(microseconds: 100), () {
       _isOpen = true;
     });
@@ -346,6 +349,8 @@ class ITController {
   bool get isTranslationDone => currentITStep != null && currentITStep!.isFinal;
 
   bool get isOpen => _isOpen;
+
+  bool get willOpen => _willOpen;
 
   String get targetLangCode => choreographer.l2LangCode!;
 
