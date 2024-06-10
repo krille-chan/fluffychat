@@ -127,6 +127,7 @@ class ChoreoRecord {
     List<PangeaToken> tokens,
     String chatId,
     String msgId,
+    DateTime timestamp,
   ) {
     final List<OneConstructUse> uses = [];
     final DateTime now = DateTime.now();
@@ -141,7 +142,7 @@ class ChoreoRecord {
             OneConstructUse(
               useType: type,
               chatId: chatId,
-              timeStamp: now,
+              timeStamp: timestamp,
               lemma: lemma.text,
               form: lemma.form,
               msgId: msgId,
