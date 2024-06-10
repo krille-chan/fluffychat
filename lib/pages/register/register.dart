@@ -28,8 +28,6 @@ class Register extends StatefulWidget {
 class RegisterController extends State<Register> {
   String? messageError;
   bool loading = true;
-  bool showPassword = false;
-  bool showConfirmPassword = false;
   String baseUrl = AppConfig.baseUrl;
   late final Dio dio;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
@@ -37,6 +35,7 @@ class RegisterController extends State<Register> {
   kratos.FrontendApi? api;
   String? flowId;
   List<Widget> authWidgets = [];
+  // TODO use a map instead of a list. The key will be the node name
   List<TextEditingController> textControllers = [];
   List<kratos.UiNode> formNodes = [];
 
@@ -46,7 +45,7 @@ class RegisterController extends State<Register> {
   @override
   void initState() {
     super.initState();
-    BackButtonInterceptor.add(myInterceptor);
+    BackButtonInterceptor.add(onBackButtonPress);
 
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
 
@@ -55,11 +54,11 @@ class RegisterController extends State<Register> {
 
   @override
   void dispose() {
-    BackButtonInterceptor.remove(myInterceptor);
+    BackButtonInterceptor.remove(onBackButtonPress);
     super.dispose();
   }
 
-  Future<bool> myInterceptor(
+  Future<bool> onBackButtonPress(
       bool stopDefaultButtonEvent, RouteInfo info) async {
     popFormWidgets();
     return true;
@@ -80,15 +79,16 @@ class RegisterController extends State<Register> {
 
   Future<void> processKratosNodes(
       BuiltList<kratos.UiNode> nodes, String actionUrl) async {
-    List<Widget> formWidgets = [];
-    List<kratos.UiNode> allNodes = [];
+    final List<Widget> formWidgets = [];
+    final List<kratos.UiNode> allNodes = [];
 
-    for (kratos.UiNode node in nodes) {
-      var attributes =
+    for (final kratos.UiNode node in nodes) {
+      final attributes =
           node.attributes.oneOf.value as kratos.UiNodeInputAttributes;
-      var controller =
+      final controller =
           TextEditingController(text: attributes.value?.toString() ?? "");
 
+      // TODO only create text controllers for text inputs
       textControllers.add(controller);
 
       Widget widget;
@@ -125,7 +125,8 @@ class RegisterController extends State<Register> {
     if (attributes.name == "traits.email") {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Text("${L10n.of(context)!.authCodeSentTo} ${attributes.value!}" ?? ""),
+        child: Text(
+            "${L10n.of(context)!.authCodeSentTo} ${attributes.value!}" ?? ""),
       );
     }
     return Container();
@@ -350,19 +351,15 @@ class RegisterController extends State<Register> {
         ),
       );
 
-      if (response.statusCode == 200) {
-        if (kDebugMode) {
-          print('Code resent successfully: ${response.data}');
-        }
-      } else {
-        if (kDebugMode) {
-          print('Error resending code: ${response.data}');
-        }
+      if (kDebugMode) {
+        print(
+            'register._resendCode: status=${response.statusCode} data=${response.data}');
       }
     } on DioException catch (e) {
       if (kDebugMode) {
         print('Error resending code: ${e.response?.data}');
       }
+      // TODO handle non-Dio exceptions
     } finally {
       setState(() {
         loading = false;

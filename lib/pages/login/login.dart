@@ -50,7 +50,7 @@ class LoginController extends State<Login> {
   @override
   void initState() {
     super.initState();
-    BackButtonInterceptor.add(myInterceptor);
+    BackButtonInterceptor.add(onBackButtonPress);
 
     dio = Dio(BaseOptions(baseUrl: '${baseUrl}panel/api/.ory'));
     getLoginOry();
@@ -64,11 +64,11 @@ class LoginController extends State<Login> {
 
   @override
   void dispose() {
-    BackButtonInterceptor.remove(myInterceptor);
+    BackButtonInterceptor.remove(onBackButtonPress);
     super.dispose();
   }
 
-  Future<bool> myInterceptor(
+  Future<bool> onBackButtonPress(
       bool stopDefaultButtonEvent, RouteInfo info) async {
     popFormWidgets();
     return true;
@@ -256,7 +256,8 @@ class LoginController extends State<Login> {
             const SizedBox(height: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: AppConfig.primaryColor,
+                foregroundColor: Colors.white,
+                backgroundColor: AppConfig.primaryColor,
               ),
               onPressed: () {
                 _submitForm(actionUrl);
