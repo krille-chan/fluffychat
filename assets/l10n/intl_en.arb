@@ -2722,6 +2722,7 @@
   "loadingDisconnectionSuccess": "Successful logout",
   "loadingDeleteRoom": "Delete the conversation...",
   "loadingDeleteRoomSuccess": "Conversation deleted",
+  "loadingRetrieveRooms": "Retrieving conversations",
   "refreshList": "Refresh list",
   "registerTitle": "Create your account Tawkie",
   "registerConfirmPassword": "Confirm your password",

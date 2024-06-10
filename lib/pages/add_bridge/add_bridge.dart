@@ -592,7 +592,7 @@ class BotController extends State<AddBridge> {
 
           Future.microtask(() {
             connectionState
-                .updateConnectionTitle("Récupération des conversations");
+                .updateConnectionTitle(L10n.of(context)!.loadingRetrieveRooms);
           });
           await Future.delayed(
               const Duration(seconds: 10)); // Wait sec for rooms loading

@@ -2436,6 +2436,7 @@
     "loadingDisconnectionSuccess": "Déconnexion réussie",
     "loadingDeleteRoom": "Suppression de la conversation...",
     "loadingDeleteRoomSuccess": "Conversation supprimée",
+    "loadingRetrieveRooms": "Récupération des conversations",
     "refreshList": "Actualiser la liste",
     "registerTitle": "Créez votre compte Tawkie",
     "registerConfirmPassword": "Confirmez votre mot de passe",
