@@ -2780,5 +2780,6 @@
   "privacyText": "By creating an account, you agree to our ",
   "privacyTextPrivacy": "privacy policy",
   "privacyTextAnd": " and ",
-  "privacyTextTerms": "terms of service"
+  "privacyTextTerms": "terms of service",
+  "createGroupLimitationWarning": "Only Tawkie / Matrix users can be added to a group chat."
 }

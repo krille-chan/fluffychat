@@ -2490,5 +2490,6 @@
     "privacyText": "En créant un compte, vous acceptez nos ",
     "privacyTextPrivacy": "politiques de confidentialité",
     "privacyTextAnd": " et ",
-    "privacyTextTerms": "conditions générales d’utilisation et de services"
+    "privacyTextTerms": "conditions générales d’utilisation et de services",
+    "createGroupLimitationWarning": "Seul.es les utilisateur.ices Tawkie peuvent être rajouté.es aux groupes."
 }
