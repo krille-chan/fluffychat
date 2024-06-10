@@ -480,8 +480,6 @@ class BotController extends State<AddBridge> {
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
 
-    print("success in handle: $success");
-
     if (success) {
       await deleteConversationDialog(context, network, this);
     }
@@ -594,9 +592,9 @@ class BotController extends State<AddBridge> {
             connectionState
                 .updateConnectionTitle(L10n.of(context)!.loadingRetrieveRooms);
           });
-          await Future.delayed(
-              const Duration(seconds: 10)); // Wait sec for rooms loading
-          await handleNewRoomsSync(context, network);
+          // await Future.delayed(
+          //     const Duration(seconds: 10)); // Wait sec for rooms loading
+          // await handleNewRoomsSync(context, network);
 
           setState(() => network.updateConnectionResult(true));
 
