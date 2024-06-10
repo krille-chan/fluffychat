@@ -70,6 +70,13 @@ class ClassAnalyticsV2Controller extends State<ClassAnalyticsPage> {
         final response = await Matrix.of(context).client.getSpaceHierarchy(
               classRoom!.id,
             );
+
+        // set the latest fetched full hierarchy in message analytics controller
+        // we want to avoid calling this endpoint again and again, so whenever the
+        // data is made available, set it in the controller
+        MatrixState.pangeaController.analytics
+            .setLatestHierarchy(_classRoom!.id, response);
+
         students = classRoom!.students;
         chats = response.rooms
             .where(

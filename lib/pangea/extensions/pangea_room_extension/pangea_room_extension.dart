@@ -25,7 +25,6 @@ import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
-import 'package:matrix/src/utils/space_child.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../config/app_config.dart';
@@ -98,11 +97,6 @@ extension PangeaRoom on Room {
 
   List<String> get joinedChildrenRoomIds => _joinedChildrenRoomIds;
 
-  List<SpaceChild> get childrenAndGrandChildren => _childrenAndGrandChildren;
-
-  List<String> get childrenAndGrandChildrenDirectChatIds =>
-      _childrenAndGrandChildrenDirectChatIds;
-
   Future<List<Room>> getChildRooms() async => await _getChildRooms();
 
   Future<void> joinSpaceChild(String roomID) async =>
@@ -114,6 +108,8 @@ extension PangeaRoom on Room {
   List<Room> get immediateClassParents => _immediateClassParents;
 
   List<Room> get pangeaSpaceParents => _pangeaSpaceParents;
+
+  List<String> get allSpaceChildRoomIds => _allSpaceChildRoomIds;
 
 // class_and_exchange_settings
 

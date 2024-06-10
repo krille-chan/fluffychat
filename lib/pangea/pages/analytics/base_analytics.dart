@@ -94,15 +94,18 @@ class BaseAnalyticsController extends State<BaseAnalyticsPage> {
   }
 
   Future<void> onRefresh() async {
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        debugPrint("updating analytics");
-        await pangeaController.myAnalytics.updateAnalytics();
-        await setChartData(forceUpdate: true);
-        refreshStream.add(true);
-      },
-    );
+    // postframe callback to avoid calling this function during build
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          debugPrint("updating analytics");
+          await pangeaController.myAnalytics.updateAnalytics();
+          await setChartData(forceUpdate: true);
+          refreshStream.add(true);
+        },
+      );
+    });
   }
 
   Future<ChartAnalyticsModel> fetchChartData(

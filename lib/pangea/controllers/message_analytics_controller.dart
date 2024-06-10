@@ -129,6 +129,15 @@ class AnalyticsController extends BaseController {
     return null;
   }
 
+  // Map of space ids to the last fetched hierarchy. Used when filtering
+  // private chat analytics to determine which children are already visible
+  // in the chat list
+  final Map<String, List<String>> _lastFetchedHierarchies = {};
+  void setLatestHierarchy(String spaceId, GetSpaceHierarchyResponse resp) {
+    final List<String> roomIds = resp.rooms.map((room) => room.roomId).toList();
+    _lastFetchedHierarchies[spaceId] = roomIds;
+  }
+
   //////////////////////////// MESSAGE SUMMARY ANALYTICS ////////////////////////////
 
   Future<List<SummaryAnalyticsEvent>> mySummaryAnalytics() async {
@@ -188,10 +197,7 @@ class AnalyticsController extends BaseController {
       }
     }
 
-    // get a list of all the space's children, including sub-space children
-    final resp = await space.client.getSpaceHierarchy(space.id);
-    final List<String> spaceChildrenIds =
-        resp.rooms.map((room) => room.roomId).toList();
+    final List<String> spaceChildrenIds = space.allSpaceChildRoomIds;
 
     // filter out the analyics events that don't belong to the space's children
     final List<SummaryAnalyticsEvent> allAnalyticsEvents = [];
@@ -288,22 +294,32 @@ class AnalyticsController extends BaseController {
     return filtered;
   }
 
-  List<SummaryAnalyticsEvent> filterPrivateChatAnalytics(
+  Future<List<SummaryAnalyticsEvent>> filterPrivateChatAnalytics(
     List<SummaryAnalyticsEvent> unfiltered,
     Room? space,
-  ) {
-    final List<String> directChatIds =
-        space?.childrenAndGrandChildrenDirectChatIds ?? [];
+  ) async {
+    if (space != null && !_lastFetchedHierarchies.containsKey(space.id)) {
+      final resp = await _pangeaController.matrixState.client
+          .getSpaceHierarchy(space.id);
+      setLatestHierarchy(space.id, resp);
+    }
+
+    final List<String> privateChatIds = space?.allSpaceChildRoomIds ?? [];
+    final List<String> lastFetched = _lastFetchedHierarchies[space!.id] ?? [];
+    for (final id in lastFetched) {
+      privateChatIds.removeWhere((e) => e == id);
+    }
+
     List<SummaryAnalyticsEvent> filtered =
         List<SummaryAnalyticsEvent>.from(unfiltered);
     filtered = filtered.where((e) {
       return (e.content).messages.any(
-            (u) => directChatIds.contains(u.chatId),
+            (u) => privateChatIds.contains(u.chatId),
           );
     }).toList();
     filtered.forEachIndexed(
       (i, _) => (filtered[i].content).messages.removeWhere(
-            (u) => !directChatIds.contains(u.chatId),
+            (u) => !privateChatIds.contains(u.chatId),
           ),
     );
     return filtered;
@@ -369,7 +385,10 @@ class AnalyticsController extends BaseController {
         if (defaultSelected.type == AnalyticsEntryType.student) {
           throw "private chat filtering not available for my analytics";
         }
-        return filterPrivateChatAnalytics(unfilteredAnalytics, space);
+        return await filterPrivateChatAnalytics(
+          unfilteredAnalytics,
+          space,
+        );
       case AnalyticsEntryType.space:
         return filterSpaceAnalytics(unfilteredAnalytics, selected!.id);
       default:
@@ -573,10 +592,7 @@ class AnalyticsController extends BaseController {
       }
     }
 
-    final resp = await space.client.getSpaceHierarchy(space.id);
-    final List<String> spaceChildrenIds =
-        resp.rooms.map((room) => room.roomId).toList();
-
+    final List<String> spaceChildrenIds = space.allSpaceChildRoomIds;
     final List<ConstructAnalyticsEvent> allConstructs = [];
     for (final constructEvent in constructEvents) {
       final lemmaUses = constructEvent.content.uses;
@@ -622,8 +638,7 @@ class AnalyticsController extends BaseController {
     List<ConstructAnalyticsEvent> unfilteredConstructs,
     Room parentSpace,
   ) {
-    final List<String> directChatIds =
-        parentSpace.childrenAndGrandChildrenDirectChatIds;
+    final List<String> directChatIds = [];
     final List<ConstructAnalyticsEvent> filtered =
         List<ConstructAnalyticsEvent>.from(unfilteredConstructs);
     for (final construct in filtered) {
