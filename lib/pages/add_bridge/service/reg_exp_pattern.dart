@@ -60,7 +60,7 @@ class LogoutRegex {
   static final RegExp facebookSuccessMatch =
       RegExp(r"Disconnected and deleted session");
   static final RegExp facebookAlreadyLogoutMatch =
-      RegExp(r"TYou weren't logged in, but deleted session anyway");
+      RegExp(r"You weren't logged in, but deleted session anyway");
 }
 
 class RegExpPingPatterns {
