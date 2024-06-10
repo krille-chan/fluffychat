@@ -1,7 +1,7 @@
 part of "pangea_room_extension.dart";
 
 extension RoomSettingsRoomExtension on Room {
-  Future<String> _updateRoomCapacity(String newCapacity) =>
+  Future<void> _updateRoomCapacity(int newCapacity) =>
       client.setRoomStateWithKey(
         id,
         PangeaEventTypes.capacity,
@@ -9,9 +9,9 @@ extension RoomSettingsRoomExtension on Room {
         {'capacity': newCapacity},
       );
 
-  String? get _capacity {
+  int? get _capacity {
     final t = getState(PangeaEventTypes.capacity)?.content['capacity'];
-    return t is String ? t : null;
+    return t is int ? t : null;
   }
 
   PangeaRoomRules? get _pangeaRoomRules {

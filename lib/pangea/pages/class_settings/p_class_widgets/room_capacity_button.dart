@@ -22,7 +22,7 @@ class RoomCapacityButton extends StatefulWidget {
 class RoomCapacityButtonState extends State<RoomCapacityButton> {
   Room? room;
   ChatDetailsController? controller;
-  String? capacity;
+  int? capacity;
   String? nonAdmins;
 
   RoomCapacityButtonState({Key? key});
@@ -45,7 +45,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     if ((room?.isRoomAdmin ?? false) &&
         capacity != null &&
         nonAdmins != null &&
-        int.parse(nonAdmins!) > int.parse(capacity!)) {
+        int.parse(nonAdmins!) > capacity!) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -70,9 +70,11 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
             child: const Icon(Icons.reduce_capacity),
           ),
           subtitle: Text(
-            (capacity != null && nonAdmins != null)
-                ? '$nonAdmins/$capacity'
-                : (capacity ?? L10n.of(context)!.capacityNotSet),
+            (capacity == null)
+                ? L10n.of(context)!.capacityNotSet
+                : (nonAdmins != null)
+                    ? '$nonAdmins/$capacity'
+                    : '$capacity',
           ),
           title: Text(
             L10n.of(context)!.roomCapacity,
@@ -86,13 +88,13 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     );
   }
 
-  Future<void> setCapacity(String newCapacity) async {
+  Future<void> setCapacity(int newCapacity) async {
     capacity = newCapacity;
   }
 
   Future<void> setClassCapacity() async {
-    final TextEditingController myTextFieldController =
-        TextEditingController(text: (capacity ?? ''));
+    final TextEditingController capacityTextController =
+        TextEditingController(text: (capacity != null ? '$capacity' : ''));
     showDialog(
       context: context,
       useRootNavigator: false,
@@ -101,7 +103,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
           L10n.of(context)!.roomCapacity,
         ),
         content: TextFormField(
-          controller: myTextFieldController,
+          controller: capacityTextController,
           keyboardType: TextInputType.number,
           maxLength: 3,
           inputFormatters: <TextInputFormatter>[
@@ -118,14 +120,18 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
           TextButton(
             child: Text(L10n.of(context)!.ok),
             onPressed: () async {
-              if (myTextFieldController.text == "") return;
+              // Check if text field empty or non-int
+              final newCapacity = int.tryParse(capacityTextController.text);
+              if (newCapacity == null || capacityTextController.text == "") {
+                return;
+              }
               final success = await showFutureLoadingDialog(
                 context: context,
                 future: () => ((room != null)
                     ? (room!.updateRoomCapacity(
-                        capacity = myTextFieldController.text,
+                        capacity = newCapacity,
                       ))
-                    : setCapacity(myTextFieldController.text)),
+                    : setCapacity(newCapacity)),
               );
               if (success.error == null) {
                 ScaffoldMessenger.of(context).showSnackBar(

@@ -246,10 +246,10 @@ extension PangeaRoom on Room {
 
 // room_settings
 
-  Future<String> updateRoomCapacity(String newCapacity) =>
+  Future<void> updateRoomCapacity(int newCapacity) =>
       _updateRoomCapacity(newCapacity);
 
-  String? get capacity => _capacity;
+  int? get capacity => _capacity;
 
   PangeaRoomRules? get pangeaRoomRules => _pangeaRoomRules;
 

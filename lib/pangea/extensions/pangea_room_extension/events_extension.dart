@@ -5,7 +5,7 @@ extension EventsRoomExtension on Room {
     await postLoad();
     if (!isRoomAdmin &&
         (_capacity != null) &&
-        (await _numNonAdmins) >= (int.parse(_capacity!))) {
+        (await _numNonAdmins) >= (_capacity!)) {
       if (!isSpace) {
         markUnread(false);
       }
