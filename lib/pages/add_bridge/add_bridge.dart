@@ -549,8 +549,6 @@ class BotController extends State<AddBridge> {
 
     final Room? roomBot = client.getRoomById(directChat);
 
-    String result = ""; // Variable to track the result of the connection
-
     await Future.delayed(const Duration(seconds: 1)); // Wait sec
 
     Future.microtask(() {
@@ -568,6 +566,7 @@ class BotController extends State<AddBridge> {
     // Variable for loop limit
     const int maxIterations = 5;
     int currentIteration = 0;
+    bool isSuccess = false;  // Variable to track the success of the operation
 
     while (currentIteration < maxIterations) {
       final GetRoomEventsResponse response = await client.getRoomEvents(
@@ -588,7 +587,7 @@ class BotController extends State<AddBridge> {
           await roomBot?.sendTextEvent(formattedCookieString);
         } else if (alreadyConnected.hasMatch(latestMessage)) {
           Logs().v("Already Connected to Facebook");
-          result = "alreadyConnected";
+          isSuccess = true;
           break;
         } else if (successMatch.hasMatch(latestMessage)) {
           Logs().v("You're logged to Messenger");
@@ -616,6 +615,7 @@ class BotController extends State<AddBridge> {
             connectionState.reset();
           });
 
+          isSuccess = true;
           break; // Exit the loop once the "login" message has been sent and is success
         }
       }
@@ -624,10 +624,17 @@ class BotController extends State<AddBridge> {
       currentIteration++;
     }
 
-    if (currentIteration == maxIterations) {
+    if (!isSuccess) {
       Logs().v("Maximum iterations reached, setting result to 'error'");
-
-      result = 'error';
+      Future.microtask(() {
+        connectionState.updateConnectionTitle(L10n.of(context)!.errTryAgain);
+        connectionState.updateLoading(false);
+      });
+      await Future.delayed(const Duration(seconds: 1)); // Wait sec
+      Future.microtask(() {
+        connectionState.reset();
+      });
+      showCatchErrorDialog(context, L10n.of(context)!.errTryAgain);
     }
   }
 
