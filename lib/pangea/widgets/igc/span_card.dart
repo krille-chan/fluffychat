@@ -55,7 +55,7 @@ class SpanCardState extends State<SpanCard> {
     // debugger(when: kDebugMode);
     super.initState();
     getSpanDetails();
-    // fetchSelected();
+    fetchSelected();
   }
 
   //get selected choice
