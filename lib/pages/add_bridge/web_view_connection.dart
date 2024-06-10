@@ -76,6 +76,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             case "Facebook Messenger":
               if (!_facebookBridgeCreated &&
                   url != null &&
+                  url.toString() != widget.network.urlLogin! &&
                   url.toString().contains(widget.network.urlRedirect!)) {
                 // Close the WebView
                 await _closeWebView();
@@ -96,7 +97,8 @@ class _WebViewConnectionState extends State<WebViewConnection> {
             case "Instagram":
               if (!_instagramBridgeCreated &&
                   url != null &&
-                  url.toString() == widget.network.urlRedirect!) {
+                  url.toString() != widget.network.urlLogin! &&
+                  url.toString().contains(widget.network.urlRedirect!)) {
                 // Close the WebView
                 await _closeWebView();
                 await showCustomLoadingDialog(
