@@ -5,6 +5,7 @@ import 'package:tawkie/pages/add_bridge/add_bridge.dart';
 import 'package:tawkie/widgets/future_loading_dialog_custom.dart';
 import 'package:tawkie/widgets/notifier_state.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
+
 import 'model/social_network.dart';
 
 class WebViewConnection extends StatefulWidget {
@@ -35,10 +36,21 @@ class _WebViewConnectionState extends State<WebViewConnection> {
   @override
   void dispose() {
     if (_webViewController != null && mounted) {
+      _webViewController!
+          .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
       _webViewController!.dispose();
     }
     _isDisposed = true; // Mark widget disposed
     super.dispose();
+  }
+
+  Future<void> _closeWebView() async {
+    if (_webViewController != null && mounted) {
+      await _webViewController!
+          .loadUrl(urlRequest: URLRequest(url: WebUri('about:blank')));
+      _webViewController!.dispose();
+      _webViewController = null;
+    }
   }
 
   @override
@@ -65,15 +77,17 @@ class _WebViewConnectionState extends State<WebViewConnection> {
               if (!_facebookBridgeCreated &&
                   url != null &&
                   url.toString().contains(widget.network.urlRedirect!)) {
+                // Close the WebView
+                await _closeWebView();
+
                 await showCustomLoadingDialog(
                   context: context,
                   future: () async {
                     // Mark the Facebook bridge as created
                     _facebookBridgeCreated = true;
 
-                    await widget.controller
-                         .createBridgeFacebook(context, cookieManager,
-                             connectionState, widget.network);
+                    await widget.controller.createBridgeFacebook(context,
+                        cookieManager, connectionState, widget.network);
                   },
                 );
               }
@@ -101,9 +115,7 @@ class _WebViewConnectionState extends State<WebViewConnection> {
 
           if (widget.network.connected == true && !_isDisposed) {
             // Close the current page
-            if (_webViewController != null) {
-              _webViewController!.dispose();
-            }
+            await _closeWebView();
 
             // Close the current page
             Navigator.pop(context);
