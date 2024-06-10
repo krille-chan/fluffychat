@@ -238,19 +238,19 @@ class BotController extends State<AddBridge> {
       SocialNetwork network, ConnectionStateModel connectionState) async {
     final String botUserId = '${network.chatBot}$hostname';
 
-    connectionState
-        .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
+    Future.microtask(() {
+      connectionState
+          .updateConnectionTitle(L10n.of(context)!.loadingDisconnectionDemand);
+    });
 
     final Map<String, RegExp> patterns = _getLogoutNetworkPatterns(network.name);
     final String eventName = _getEventName(network.name);
 
     final String? directChat = await _getOrCreateDirectChat(botUserId);
-    if (directChat == null) return 'error';
 
-    final Room? roomBot = client.getRoomById(directChat);
-    if (roomBot == null) return 'error';
+    final Room? roomBot = client.getRoomById(directChat!);
 
-    if (!await _sendLogoutEvent(roomBot, eventName)) return 'error';
+    await _sendLogoutEvent(roomBot!, eventName);
 
     return await _waitForDisconnection(
         context, network, connectionState, directChat, patterns);
@@ -311,29 +311,36 @@ class BotController extends State<AddBridge> {
     while (currentIteration < maxIterations) {
       try {
         final GetRoomEventsResponse response =
-            await client.getRoomEvents(directChat, Direction.b, limit: 1);
+        await client.getRoomEvents(directChat, Direction.b, limit: 1);
         final List<MatrixEvent> latestMessages = response.chunk ?? [];
 
         if (latestMessages.isNotEmpty) {
-          final String latestMessage =
-              latestMessages.first.content['body'].toString() ?? '';
+          final MatrixEvent latestEvent = latestMessages.first;
+          final String latestMessage = latestEvent.content['body'].toString() ?? '';
+          final String sender = latestEvent.senderId;
+          final String botUserId = '${network.chatBot}$hostname';
 
-          if (_isStillConnected(latestMessage, patterns)) {
-            Logs().v("You're still connected to ${network.name}");
-            setState(() => network.updateConnectionResult(true));
-            break;
+          // Check if the message comes from the bot
+          if (sender == botUserId) {
+            if (_isStillConnected(latestMessage, patterns)) {
+              Logs().v("You're still connected to ${network.name}");
+              setState(() => network.updateConnectionResult(true));
+              return 'Connected';
+            }
+
+            if (_isDisconnected(latestMessage, patterns)) {
+              Logs().v("You're disconnected from ${network.name}");
+              connectionState.updateConnectionTitle(
+                  L10n.of(context)!.loadingDisconnectionSuccess);
+              connectionState.updateLoading(false);
+              await Future.delayed(const Duration(seconds: 1));
+              connectionState.reset();
+              setState(() => network.updateConnectionResult(false));
+              return 'Not Connected';
+            }
           }
 
-          if (_isDisconnected(latestMessage, patterns)) {
-            Logs().v("You're disconnected from ${network.name}");
-            connectionState.updateConnectionTitle(
-                L10n.of(context)!.loadingDisconnectionSuccess);
-            connectionState.updateLoading(false);
-            await Future.delayed(const Duration(seconds: 1));
-            connectionState.reset();
-            setState(() => network.updateConnectionResult(false));
-            break;
-          }
+          await Future.delayed(const Duration(seconds: 3));
         }
       } catch (e) {
         Logs().v('Error in matrix related async function call: $e');
@@ -379,7 +386,7 @@ class BotController extends State<AddBridge> {
           connectionState.updateLoading(false);
         });
 
-        await Future.delayed(const Duration(seconds: 1)); // Wait sec
+        await Future.delayed(const Duration(seconds: 1));
       } else {
         Logs().v('Room not found');
       }
@@ -473,11 +480,10 @@ class BotController extends State<AddBridge> {
       BuildContext context, SocialNetwork network) async {
     final bool success = await showBottomSheetBridge(context, network, this);
 
+    print("success in handle: $success");
+
     if (success) {
-      network.updateConnectionResult(false);
       await deleteConversationDialog(context, network, this);
-    } else {
-      showCatchErrorDialog(context, L10n.of(context)!.errTimeOut);
     }
   }
 
