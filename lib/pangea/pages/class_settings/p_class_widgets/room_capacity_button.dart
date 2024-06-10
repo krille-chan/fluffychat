@@ -1,7 +1,7 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension/pangea_room_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
@@ -63,7 +63,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
       children: [
         ListTile(
           onTap: () =>
-              ((room?.isRoomAdmin ?? true) ? (setClassCapacity()) : null),
+              ((room?.isRoomAdmin ?? true) ? (setRoomCapacity()) : null),
           leading: CircleAvatar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: iconColor,
@@ -92,61 +92,57 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
     capacity = newCapacity;
   }
 
-  Future<void> setClassCapacity() async {
-    final TextEditingController capacityTextController =
-        TextEditingController(text: (capacity != null ? '$capacity' : ''));
-    showDialog(
+  Future<void> setRoomCapacity() async {
+    final input = await showTextInputDialog(
       context: context,
-      useRootNavigator: false,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(
-          L10n.of(context)!.roomCapacity,
-        ),
-        content: TextFormField(
-          controller: capacityTextController,
+      title: L10n.of(context)!.roomCapacity,
+      message: L10n.of(context)!.roomCapacityExplanation,
+      okLabel: L10n.of(context)!.ok,
+      cancelLabel: L10n.of(context)!.cancel,
+      textFields: [
+        DialogTextField(
+          initialText: ((capacity != null) ? '$capacity' : ''),
           keyboardType: TextInputType.number,
           maxLength: 3,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
-          ],
+          validator: (value) {
+            if (value == null ||
+                value.isEmpty ||
+                int.tryParse(value) == null ||
+                int.parse(value) < 0) {
+              return L10n.of(context)!.enterNumber;
+            }
+            if (nonAdmins != null && int.parse(value) < int.parse(nonAdmins!)) {
+              return L10n.of(context)!.capacitySetTooLow;
+            }
+            return null;
+          },
         ),
-        actions: [
-          TextButton(
-            child: Text(L10n.of(context)!.cancel),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            child: Text(L10n.of(context)!.ok),
-            onPressed: () async {
-              // Check if text field empty or non-int
-              final newCapacity = int.tryParse(capacityTextController.text);
-              if (newCapacity == null || capacityTextController.text == "") {
-                return;
-              }
-              final success = await showFutureLoadingDialog(
-                context: context,
-                future: () => ((room != null)
-                    ? (room!.updateRoomCapacity(
-                        capacity = newCapacity,
-                      ))
-                    : setCapacity(newCapacity)),
-              );
-              if (success.error == null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      L10n.of(context)!.roomCapacityHasBeenChanged,
-                    ),
-                  ),
-                );
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
-      ),
+      ],
     );
+    if (input == null ||
+        input.first == "" ||
+        int.tryParse(input.first) == null) {
+      return;
+    }
+
+    final newCapacity = int.parse(input.first);
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => ((room != null)
+          ? (room!.updateRoomCapacity(
+              capacity = newCapacity,
+            ))
+          : setCapacity(newCapacity)),
+    );
+    if (success.error == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10n.of(context)!.roomCapacityHasBeenChanged,
+          ),
+        ),
+      );
+      setState(() {});
+    }
   }
 }

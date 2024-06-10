@@ -3969,5 +3969,8 @@
     "topicNotSet": "The topic has not been set.",
     "capacityNotSet": "This room has no capacity limit.",
     "roomCapacityHasBeenChanged": "Room capacity changed",
-    "roomExceedsCapacity": "Room exceeds capacity. Consider removing students from the room, or raising the capacity."
+    "roomExceedsCapacity": "Room exceeds capacity. Consider removing students from the room, or raising the capacity.",
+    "capacitySetTooLow": "Room capacity cannot be set below the current number of non-admins.",
+    "roomCapacityExplanation": "Room capacity limits the number of non-admins allowed in a room.",
+    "enterNumber": "Please enter a whole number value."
 }
